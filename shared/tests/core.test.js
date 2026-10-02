@@ -3,7 +3,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { applyAnswer, newRecord, isDue, dueIds, dayNumber, dateKey, INTERVALS } from '../js/lib/srs.js';
 import { answerXp, levelFromXp, totalXpForLevel, updateStreak, currentStreak, daysUntil, starsFor, masteryLevel } from '../js/lib/scoring.js';
-import { shuffle, shuffleChoices, pickQuestions, examPlan, byMajor } from '../js/lib/quiz.js';
+import { shuffle, shuffleChoices, pickQuestions, examPlan, byMajor, secondsPerQuestion, challengeName } from '../js/lib/quiz.js';
+import { badgeDefs } from '../js/lib/badges.js';
 import { loadData, resolveRef, buildConceptIndex } from '../js/lib/data.js';
 import { defaultState, recordAnswer, recordStageResult } from '../js/lib/progress.js';
 import { createStorage } from '../js/lib/storage.js';
@@ -264,4 +265,33 @@ test('用語カードの参照: id で解決／id が無く title だけでも�
   assert.equal(none.point, 'p');
   assert.equal(resolveRef({ id: 'C-ZZZ' }, idx).concept, null);
   assert.equal(resolveRef('C-B', idx).concept.title, 'シグモイド関数');
+});
+
+test('場面判断（scenario）は選択肢を並べ替えない／ほかの形式は並べ替える', () => {
+  const base = { id: 'S', choices: ['A社では…', 'B社では…', 'C社では…', 'D社では…'], answer: 2, whyWrong: ['a', 'b', null, 'd'] };
+  const sc = { ...base, format: 'scenario' };
+  for (let seed = 1; seed <= 200; seed++) {
+    const s = shuffleChoices(sc, seeded(seed));
+    assert.deepEqual(s.choices, sc.choices);
+    assert.equal(s.answer, 2);
+    assert.deepEqual(s.whyWrong, sc.whyWrong);
+    assert.deepEqual(s.perm, [0, 1, 2, 3]);
+  }
+  let moved = false;
+  for (let seed = 1; seed <= 50; seed++) {
+    const s = shuffleChoices({ ...base, format: 'single' }, seeded(seed));
+    if (s.choices.join() !== base.choices.join()) moved = true;
+  }
+  assert.ok(moved, 'single は今まで通り並べ替わる');
+});
+
+test('秒数の表示は config から作る（キー無し・不正値は40秒）', () => {
+  assert.equal(secondsPerQuestion({ secondsPerQuestion: 37 }), 37);
+  assert.equal(challengeName({ secondsPerQuestion: 37 }), '37秒チャレンジ');
+  assert.equal(challengeName({ secondsPerQuestion: 40 }), '40秒チャレンジ');
+  assert.equal(challengeName({}), '40秒チャレンジ');
+  assert.equal(secondsPerQuestion({ secondsPerQuestion: 0 }), 40);
+  const b = badgeDefs({ roots: [] }, { secondsPerQuestion: 37 }).find((d) => d.id === 'challenge-8');
+  assert.equal(b.name, '37秒の達人');
+  assert.equal(b.desc, '37秒チャレンジで8問以上正解');
 });

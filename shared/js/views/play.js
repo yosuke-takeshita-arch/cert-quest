@@ -1,6 +1,6 @@
-// 出題画面。ステージ・復習・40秒チャレンジで共通（mode で挙動が少し変わる）。
+// 出題画面。ステージ・復習・秒数つきチャレンジで共通（mode で挙動が少し変わる）。
 import { h, clear, icon, stars, burst, vibrate, beep, toast } from '../ui.js';
-import { shuffleChoices } from '../lib/quiz.js';
+import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.js';
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, CHOICE_LABELS } from './explain.js';
@@ -25,7 +25,7 @@ export function renderPlay(app) {
     app.go('#/home');
     return h('div');
   }
-  const limit = app.config.secondsPerQuestion || 40;
+  const limit = secondsPerQuestion(app.config);
   const timed = spec.mode === 'challenge';
   const S = {
     idx: 0,
@@ -169,7 +169,7 @@ export function renderPlay(app) {
     app.commit();
     const wrong = S.results.filter((r) => !r.correct);
     const card = h('div', { class: 'card result' },
-      h('h1', { text: spec.mode === 'review' ? '復習おわり' : spec.mode === 'challenge' ? '40秒チャレンジ 結果' : 'ステージ結果' }),
+      h('h1', { text: spec.mode === 'review' ? '復習おわり' : spec.mode === 'challenge' ? challengeName(app.config) + ' 結果' : 'ステージ結果' }),
       h('p', { class: 'score' }, h('strong', { text: ok + ' / ' + total }), ' 正解（' + Math.round((ok / Math.max(1, total)) * 100) + '%）'),
       h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
     if (starInfo) {

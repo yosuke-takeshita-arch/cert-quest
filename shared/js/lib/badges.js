@@ -1,7 +1,9 @@
 // バッジの定義と判定。大項目制覇のバッジは、シラバスの木から動的に作る。
 import { levelFromXp } from './scoring.js';
+import { secondsPerQuestion } from './quiz.js';
 
-export function badgeDefs(tree) {
+export function badgeDefs(tree, config) {
+  const sec = secondsPerQuestion(config);
   const defs = [
     { id: 'first-answer', name: 'はじめの一歩', desc: '最初の1問に答えた', test: (s) => s.totals.answered >= 1 },
     { id: 'correct-10', name: '10問正解', desc: '通算10問正解', test: (s) => s.totals.correct >= 10 },
@@ -11,7 +13,7 @@ export function badgeDefs(tree) {
     { id: 'streak-30', name: '30日連続', desc: '30日続けて学習', test: (s) => s.streak.best >= 30 },
     { id: 'level-5', name: 'レベル5', desc: 'レベル5に到達', test: (s) => levelFromXp(s.xp).level >= 5 },
     { id: 'level-10', name: 'レベル10', desc: 'レベル10に到達', test: (s) => levelFromXp(s.xp).level >= 10 },
-    { id: 'challenge-8', name: '40秒の達人', desc: '40秒チャレンジで8問以上正解', test: (s) => s.challenge.best >= 8 },
+    { id: 'challenge-8', name: sec + '秒の達人', desc: sec + '秒チャレンジで8問以上正解', test: (s) => s.challenge.best >= 8 },
     { id: 'exam-first', name: '模試デビュー', desc: '模擬試験を1回受けた', test: (s) => s.exams.length >= 1 },
     { id: 'exam-70', name: '模試7割', desc: '模擬試験で正答率70%以上', test: (s) => s.exams.some((e) => e.total >= 10 && e.correct / e.total >= 0.7) },
     { id: 'exam-90', name: '模試9割', desc: '模擬試験で正答率90%以上', test: (s) => s.exams.some((e) => e.total >= 10 && e.correct / e.total >= 0.9) },

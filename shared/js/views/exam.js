@@ -1,7 +1,7 @@
 // 模擬試験。本番の問題数・制限時間に合わせる（問題が足りない間は有る分で縮小版）。
 // 本番と同じく、途中では解説を出さない。終わってから大項目別の正答率と見直しを出す。
 import { h, clear, burst, toast } from '../ui.js';
-import { shuffle, shuffleChoices, examPlan, byMajor } from '../lib/quiz.js';
+import { shuffle, shuffleChoices, examPlan, byMajor, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, CHOICE_LABELS } from './explain.js';
@@ -58,7 +58,7 @@ export function renderExam(app) {
       const results = S.items.map((sq, i) => {
         const chosen = S.answers[i];
         const correct = chosen !== null && chosen === sq.answer;
-        recordAnswer(app.state, sq.q, { correct, seconds: null, sessionStreak: 0, exam: true, now: new Date(), limit: app.config.secondsPerQuestion || 40 });
+        recordAnswer(app.state, sq.q, { correct, seconds: null, sessionStreak: 0, exam: true, now: new Date(), limit: secondsPerQuestion(app.config) });
         return { sq, q: sq.q, chosen, correct, major: sq.q.syllabus[0] };
       });
       const ok = results.filter((r) => r.correct).length;

@@ -21,7 +21,7 @@ export function renderBadges(app) {
   const root = h('section', { class: 'view badges' });
   root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/more') }, '← もっと'));
   root.appendChild(h('h1', { text: 'バッジ' }));
-  const defs = badgeDefs(app.data.tree);
+  const defs = badgeDefs(app.data.tree, app.config);
   const got = defs.filter((d) => app.state.badges[d.id]).length;
   root.appendChild(h('p', { class: 'small muted', text: got + ' / ' + defs.length + ' 個' }));
   const grid = h('div', { class: 'badge-grid' });

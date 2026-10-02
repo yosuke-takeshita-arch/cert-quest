@@ -3,7 +3,7 @@ import { h, icon, stars, externalLink } from '../ui.js';
 import { levelFromXp, daysUntil, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
 import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
 import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
-import { pickQuestions } from '../lib/quiz.js';
+import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { startSession } from './play.js';
 import { cardBody } from './cards.js';
 
@@ -35,7 +35,7 @@ function reviewSpec(app) {
 function challengeSpec(app) {
   return {
     mode: 'challenge',
-    title: '40秒チャレンジ',
+    title: challengeName(app.config),
     backHash: '#/home',
     pick: (a) => pickQuestions(a.data.questions, a.state.qstats, (a.config.challenge && a.config.challenge.questions) || 10, a.rng),
   };
@@ -84,7 +84,7 @@ export function renderHome(app) {
         h('span', { class: 'cta-sub small', text: p.answered ? 'つづきから' : '次のステージ' }), h('span', { text: next.name })));
     }
     root.appendChild(h('div', { class: 'grid2' },
-      h('button', { class: 'btn big tile', type: 'button', onClick: () => startSession(app, challengeSpec(app)) }, h('strong', { text: '40秒チャレンジ' }), h('span', { class: 'small muted', text: '本番のペースで' })),
+      h('button', { class: 'btn big tile', type: 'button', onClick: () => startSession(app, challengeSpec(app)) }, h('strong', { text: challengeName(app.config) }), h('span', { class: 'small muted', text: '本番のペースで' })),
       h('button', { class: 'btn big tile', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' }), h('span', { class: 'small muted', text: (app.config.exam ? app.config.exam.questions + '問・' + app.config.exam.minutes + '分' : '') }))));
 
     const untouched = data.tree.stages.filter((s) => s.questions.length && nodeProgress(s, state.qstats).level === 'none');

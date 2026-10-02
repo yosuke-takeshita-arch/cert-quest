@@ -64,7 +64,7 @@ export async function start() {
   }
 
   const storage = createStorage('certquest:' + (config.id || 'app') + (sample ? ':sample' : '') + ':v1');
-  const defs = badgeDefs(data.tree);
+  const defs = badgeDefs(data.tree, config);
   const app = {
     config,
     data,

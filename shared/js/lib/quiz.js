@@ -9,12 +9,25 @@ export function shuffle(arr, rng = Math.random) {
   return a;
 }
 
+/** 1問あたりの制限秒数（config.secondsPerQuestion。無ければ40）。 */
+export function secondsPerQuestion(config) {
+  const n = config && Number(config.secondsPerQuestion);
+  return n > 0 ? n : 40;
+}
+
+/** 「37秒チャレンジ」のような表示名。秒数は config から作る。 */
+export function challengeName(config) {
+  return secondsPerQuestion(config) + '秒チャレンジ';
+}
+
 /**
- * 選択肢をシャッフルする。answer と whyWrong は選択肢と一緒に動かし、対応を崩さない。
+ * 選択肢をシャッフルする（format が scenario のときは元の順のまま）。answer と whyWrong は選択肢と一緒に動かし、対応を崩さない。
  * perm[新しい位置] = 元の位置。
  */
 export function shuffleChoices(q, rng = Math.random) {
-  const perm = shuffle(q.choices.map((_, i) => i), rng);
+  const order = q.choices.map((_, i) => i);
+  // 場面判断（scenario）は「A社では…」のように選択肢が記号と結びついているので、並べ替えない。
+  const perm = q.format === 'scenario' ? order : shuffle(order, rng);
   return {
     q,
     perm,
