@@ -1,0 +1,778 @@
+[
+  {
+    "id": "C-08-001",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "平均・中央値・最頻値",
+    "oneLine": "平均＝データの合計をデータ数で割った値。中央値＝小さい順に並べたときに真ん中に来る値（偶数個なら真ん中2つの平均）。最頻値＝最も多く現れる値（1つとは限らない）。",
+    "why": "データの「代表的な値」の取り方は1つではない。分布の形や外れ値の有無で、どれを使うべきかが変わる。",
+    "links": [
+      {
+        "id": "C-08-002",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-003",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-004",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-002",
+        "point": "平均は外れ値に引っ張られる。中央値は引っ張られにくい"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-002",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "外れ値",
+    "oneLine": "他の大多数のデータから大きく離れた値。入力ミスや測定の異常のこともあれば、本当に珍しい事象のこともある。",
+    "why": "平均や分散、最小二乗法の結果を大きくゆがめる。取り除くか、中央値のような外れ値に強い指標を使うかを、原因を確かめてから決める。",
+    "links": [
+      {
+        "id": "C-08-001",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-015",
+        "relation": "原因"
+      },
+      {
+        "id": "C-08-020",
+        "relation": "解決策"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-001",
+        "point": "外れ値に強いのは中央値、弱いのは平均"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-003",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "分散と標準偏差",
+    "oneLine": "分散＝各データの平均からの差（偏差）を2乗して平均したもの（標本からの推定では n−1 で割ることもある）。標準偏差＝分散の正の平方根で、元のデータと同じ単位でばらつきを表す。",
+    "why": "代表値だけでは、データがどれだけ散らばっているか分からない。2乗するので平均から遠い値ほど強く効く。",
+    "links": [
+      {
+        "id": "C-08-001",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-011",
+        "relation": "発展形"
+      },
+      {
+        "id": "C-08-008",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-011",
+        "point": "分散は1つの変数のばらつき、共分散は2つの変数の一緒の動き"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.5.6 Measures of Scale",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda356.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-004",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "度数分布（ヒストグラム）",
+    "oneLine": "データの値の範囲をいくつかの区間（階級）に区切り、各区間に入るデータの個数（度数）を数えて表にしたもの。棒グラフにしたものがヒストグラム。",
+    "why": "分布の山がいくつあるか、偏りや外れ値があるかを一目で確かめられる。最頻値の見当もつく。",
+    "links": [
+      {
+        "id": "C-08-001",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-019",
+        "relation": "対比"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-019",
+        "point": "度数分布は手元のデータの集計、確率分布は確率モデル"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-005",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "確率変数・確率分布・確率密度",
+    "oneLine": "確率変数＝とる値が確率的に決まる変数（サイコロの目など）。確率分布＝確率変数がどの値をどれくらいの確率でとるかを表したもの。確率密度＝連続的な値をとる確率変数で、ある区間に入る確率をその区間の面積（積分）として与える関数の値。",
+    "why": "機械学習の多くは、データが何らかの確率分布から生まれたとみなして、その分布を推定する。連続値では「ちょうどその値になる確率」は0で、密度の面積で考える。",
+    "links": [
+      {
+        "id": "C-08-006",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-008",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-009",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-006",
+        "point": "確率密度の値そのものは確率ではなく、1を超えることもある"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.6.1 Normal Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-006",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "期待値",
+    "oneLine": "確率変数がとる値に、その値をとる確率を掛けて足し合わせたもの（平均的に期待できる値）。公平なサイコロの目の期待値は3.5。",
+    "why": "損得の判断（くじ・投資）や、損失関数の平均（期待損失）を最小にするという機械学習の考え方の基本になる。",
+    "links": [
+      {
+        "id": "C-08-005",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-009",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-001",
+        "point": "期待値は確率分布の平均。手元のデータの平均（標本平均）とは区別する"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.6.18 Binomial Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-007",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "条件付き確率",
+    "oneLine": "ある事象Bが起きたと分かっているときに事象Aが起きる確率。P(A|B) = P(A∩B) ÷ P(B)。",
+    "why": "ベイズの定理やナイーブベイズ分類、言語モデル（前の単語が分かったときの次の単語の確率）など、多くの手法の土台になる。",
+    "links": [
+      {
+        "id": "C-08-005",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-021",
+        "relation": "発展形"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-007",
+        "point": "P(A|B)とP(B|A)は一般に違う値になる"
+      }
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-008",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "正規分布",
+    "oneLine": "平均を中心に左右対称な釣り鐘型の連続分布。平均・中央値・最頻値がすべて一致し、平均と標準偏差の2つで形が決まる。",
+    "why": "測定の誤差など多くの現象をよく近似する。また、標本の大きさを大きくすると、標本平均の分布は元の分布によらず正規分布に近づく（中心極限定理）。",
+    "links": [
+      {
+        "id": "C-08-005",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-003",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-020",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-010",
+        "point": "正規分布は連続値、ポアソン分布は回数（0, 1, 2, …）の離散値"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.6.1 Normal Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-009",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "ベルヌーイ分布と二項分布",
+    "oneLine": "ベルヌーイ分布＝「成功か失敗か」の2通りの結果をとる1回の試行の分布。二項分布＝成功確率pの独立な試行をn回行ったときの成功回数の分布で、平均はnp、標準偏差は√(np(1−p))。",
+    "why": "クリックしたかしないか、合格か不合格かのような2値の現象を扱う基本の分布。",
+    "links": [
+      {
+        "id": "C-08-010",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-006",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-010",
+        "point": "二項分布は試行回数nが決まっている。ポアソン分布は一定時間内の発生回数"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.6.18 Binomial Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-010",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "ポアソン分布",
+    "oneLine": "一定の時間（範囲）の中である出来事が起きる回数の分布。平均の発生回数λだけで形が決まり、平均はλ、標準偏差は√λ（分散もλ）。",
+    "why": "1時間あたりの来店客数、1日の問い合わせ件数など、まれに起きる出来事の回数をモデル化するのに使う。",
+    "links": [
+      {
+        "id": "C-08-009",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-008",
+        "relation": "対比"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-009",
+        "point": "回数の上限が決まっているなら二項分布、決まっていないならポアソン分布"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.6.19 Poisson Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-011",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "共分散",
+    "oneLine": "2つの変数について、それぞれの平均からの偏差を掛け合わせたものの平均。一方が大きいとき他方も大きい傾向があれば正、逆なら負になる。",
+    "why": "2変数の関係の向きを表すが、値の大きさは単位（cmかmか）で変わるので、関係の強さは比べにくい。",
+    "links": [
+      {
+        "id": "C-08-012",
+        "relation": "発展形"
+      },
+      {
+        "id": "C-08-003",
+        "relation": "対比"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-012",
+        "point": "共分散は単位に左右される。相関係数は単位によらず−1〜1"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 6.5.4.1 Mean Vector and Covariance Matrix",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmc/section5/pmc541.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-012",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "相関係数",
+    "oneLine": "共分散を2つの変数の標準偏差の積で割った値で、−1から1の範囲をとり、直線的な関係の強さと向きを表す。",
+    "why": "単位によらず関係の強さを比べられる。ただし直線的でない関係は見逃すことがあり、相関があっても因果関係があるとは限らない。",
+    "links": [
+      {
+        "id": "C-08-011",
+        "relation": "原因"
+      },
+      {
+        "id": "C-08-013",
+        "relation": "発展形"
+      },
+      {
+        "id": "C-08-014",
+        "relation": "対比"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-014",
+        "point": "相関係数が大きくても、因果関係の証拠にはならない"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 6.5.4.2 The Multivariate Normal Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmc/section5/pmc542.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-013",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "偏相関係数",
+    "oneLine": "3つ以上の変数があるとき、他の変数の影響を取り除いたうえでの2つの変数の相関の強さを表す係数。",
+    "why": "見かけの相関（疑似相関）が第3の変数のせいかどうかを確かめる手がかりになる。",
+    "links": [
+      {
+        "id": "C-08-012",
+        "relation": "発展形"
+      },
+      {
+        "id": "C-08-014",
+        "relation": "解決策"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-012",
+        "point": "相関係数は他の変数の影響を含んだまま、偏相関係数は取り除いた後"
+      }
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-014",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "疑似相関",
+    "oneLine": "2つの変数の間に直接の因果関係がないのに、第3の変数（交絡因子）が両方に影響しているために相関が見えてしまうこと。",
+    "why": "データ分析から施策を決めるとき、疑似相関を因果と取り違えると効果のない施策を打ってしまう。",
+    "links": [
+      {
+        "id": "C-08-013",
+        "relation": "解決策"
+      },
+      {
+        "id": "C-08-012",
+        "relation": "対比"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-012",
+        "point": "相関がある≠原因と結果の関係がある"
+      }
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-015",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "最小二乗法",
+    "oneLine": "モデルの予測値と実際の観測値の差（残差）の2乗の和が最小になるように、モデルのパラメータを決める方法。線形回帰で使われる。",
+    "why": "誤差の2乗を使うので計算しやすく、線形モデルなら微分を使って解析的に解ける。一方で、外れ値の影響を強く受ける。",
+    "links": [
+      {
+        "id": "C-08-016",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-002",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-022",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-016",
+        "point": "最小二乗法は誤差の2乗和を最小化、最尤法は尤度を最大化"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 4.4.3.1 Least Squares",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd431.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-016",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "最尤法（最尤推定）",
+    "oneLine": "観測されたデータが得られる確率（尤度）を、モデルのパラメータの関数として表し、それが最大になるパラメータを推定値とする方法。",
+    "why": "さまざまな推定の問題に一貫して使え、標本が大きくなると良い性質（不偏で分散が最小に近づく）を持つ。誤差を正規分布と仮定した場合の最尤法は最小二乗法と一致する。",
+    "links": [
+      {
+        "id": "C-08-015",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-005",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-015",
+        "point": "「最も尤もらしい（もっともらしい）」パラメータを選ぶ＝最尤法"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.5.2 Maximum Likelihood",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3652.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-017",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "帰無仮説と対立仮説（仮説検定）",
+    "oneLine": "帰無仮説＝「差がない」「効果がない」のような、否定したい側の仮説。対立仮説＝帰無仮説が否定されたときに採る、主張したい仮説。p値は、帰無仮説が正しいとしたとき、観測された結果と同じかそれ以上に極端な結果が得られる確率。",
+    "why": "p値が事前に決めた有意水準（0.05など）より小さければ帰無仮説を棄却する。有意水準0.05は、帰無仮説が本当は正しいのに棄却してしまう割合が5％という意味。",
+    "links": [
+      {
+        "id": "C-08-005",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-017",
+        "point": "p値は「帰無仮説が正しい確率」ではない"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.1.3.1 Critical values and p values",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc131.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-018",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "移動平均",
+    "oneLine": "時系列データで、直近のN個の値の平均を、1時点ずつずらしながら計算していくこと。短期の変動をならして（平滑化して）傾向を見やすくする。",
+    "why": "売上や株価のような時系列データの細かな上下動を取り除き、全体の傾向をつかむのに使う。",
+    "links": [
+      {
+        "id": "C-08-001",
+        "relation": "発展形"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-001",
+        "point": "移動平均は時点をずらしながら計算する平均"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 6.4.2.1 Single Moving Average",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc421.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-019",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "ユークリッド距離とコサイン類似度",
+    "oneLine": "ユークリッド距離＝2点の座標の差の2乗の和の平方根（いわゆる直線距離）。コサイン類似度＝2つのベクトルのなす角のコサインで、向きが同じなら1、直交なら0、逆向きなら−1。ベクトルの長さには左右されない。",
+    "why": "k近傍法やクラスタリングの近さの基準になる。文章や単語の分散表現の類似度には、長さよりも向きを見るコサイン類似度がよく使われる。",
+    "links": [
+      {
+        "id": "C-08-020",
+        "relation": "発展形"
+      },
+      {
+        "title": "分散表現（単語埋め込み）",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-020",
+        "point": "ユークリッド距離は各軸を同じ重みで測る。マハラノビス距離は分布のばらつきと相関を考慮する"
+      }
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-020",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "マハラノビス距離",
+    "oneLine": "データの分布の広がり（分散）と変数間の相関（共分散行列）を考慮した距離。ばらつきの大きい方向へのずれは小さく、ばらつきの小さい方向へのずれは大きく評価する。",
+    "why": "変数ごとに単位やばらつきが違うデータでも公平に「どれだけ異常か」を測れるため、異常検知に使われる。",
+    "links": [
+      {
+        "id": "C-08-019",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-011",
+        "relation": "部分"
+      },
+      {
+        "id": "C-08-002",
+        "relation": "解決策"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-019",
+        "point": "相関やばらつきを考えるならマハラノビス"
+      }
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-021",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "相互情報量",
+    "oneLine": "一方の変数の値を知ることで、もう一方の変数についての不確かさがどれだけ減るかを表す量。2つの変数が独立なら0になり、直線的でない関係も含めて依存の強さを表す。",
+    "why": "特徴量の選択などで、目的変数との関係の強さを測るのに使える。相関係数が見逃す非線形な関係もとらえられる。",
+    "links": [
+      {
+        "id": "C-08-012",
+        "relation": "対比"
+      },
+      {
+        "id": "C-08-007",
+        "relation": "部分"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-012",
+        "point": "相関係数は直線的な関係だけ、相互情報量は非線形な依存も含む"
+      }
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-08-022",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "微分と最適化",
+    "oneLine": "微分は、関数の入力を少し変えたときに出力がどれだけ変わるか（傾き）を表す。f(x)=x²の微分は2x。多変数の関数では、各変数で偏微分した値を並べた勾配が、関数が最も増える向きを表す。",
+    "why": "機械学習では、損失関数を勾配の逆向きに少しずつ動かして最小化する（勾配降下法）。誤差逆伝播法は、合成関数の微分（連鎖律）で勾配を効率よく求める方法。",
+    "links": [
+      {
+        "id": "C-08-015",
+        "relation": "部分"
+      },
+      {
+        "title": "勾配降下法",
+        "relation": "発展形"
+      },
+      {
+        "title": "誤差逆伝播法",
+        "relation": "発展形"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-015",
+        "point": "線形回帰なら解析的に、ニューラルネットなら勾配降下法で反復的に解く"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 4.4.3.1 Least Squares",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd431.htm"
+      }
+    ],
+    "status": "unverified"
+  }
+]

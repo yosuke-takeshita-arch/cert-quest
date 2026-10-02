@@ -1,0 +1,754 @@
+[
+  {
+    "id": "C-02-001",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "第1次AIブーム",
+    "oneLine": "1950年代後半〜1960年代。コンピュータによる「推論」と「探索」で、特定の問題に解を示せるようになったことによるブーム。",
+    "why": "迷路や定理証明のようなトイ・プロブレムは解けたが、要因が絡み合う現実の問題は解けないと分かり、冬の時代を迎えた。冷戦下の米国では機械翻訳にも力が注がれた。",
+    "links": [
+      { "title": "ダートマス会議", "relation": "始まり" },
+      { "id": "C-02-002", "relation": "中心技術" },
+      { "title": "トイ・プロブレム", "relation": "限界（原因）" },
+      { "id": "C-02-012", "relation": "次の時代" }
+    ],
+    "confusions": [
+      { "id": "C-02-012", "point": "第1次＝探索・推論、第2次＝知識（エキスパートシステム）、第3次＝機械学習・ディープラーニング。" }
+    ],
+    "sources": [
+      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
+      { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-002",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "探索木",
+    "oneLine": "問題の状態を節点、とりうる手（操作）を枝として、場合分けを木の形に表したもの。目的の状態に至る道筋を木の中から探す。",
+    "why": "迷路・パズル・ゲームなどを「どの順に枝をたどるか」という問題に置き換えられる。たどり方の違いが幅優先探索・深さ優先探索。",
+    "links": [
+      { "id": "C-02-003", "relation": "たどり方" },
+      { "id": "C-02-004", "relation": "たどり方" },
+      { "id": "C-02-007", "relation": "ゲームへの応用" },
+      { "id": "C-02-001", "relation": "時代" }
+    ],
+    "confusions": [
+      { "title": "決定木", "point": "決定木はデータから学習する分類・回帰のモデル。探索木は解を探すための場合分けの木で、学習はしない。" }
+    ],
+    "sources": [
+      { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-003",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "幅優先探索",
+    "oneLine": "出発点に近い節点から順に、同じ深さの節点をすべて調べてから次の深さへ進む探索。キュー（先入れ先出し）で実装する。",
+    "why": "浅いところにある解（手数の最も少ない解）を必ず先に見つけられる。代わりに、途中の節点を大量に覚えておく必要があり、メモリを多く使う。",
+    "links": [
+      { "id": "C-02-004", "relation": "対比" },
+      { "id": "C-02-002", "relation": "前提" }
+    ],
+    "confusions": [
+      { "id": "C-02-004", "point": "幅優先＝横に広げる・最短解が見つかる・メモリ大。深さ優先＝縦に掘る・メモリ小・最短とは限らない。" }
+    ],
+    "sources": [
+      { "title": "NIST Dictionary of Algorithms and Data Structures: breadth-first search", "url": "https://xlinux.nist.gov/dads/HTML/breadthfirst.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-004",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "深さ優先探索",
+    "oneLine": "一つの枝を行き止まりまで深く進み、行き詰まったら戻って別の枝を試す探索。再帰（またはスタック）で実装しやすい。",
+    "why": "今たどっている道筋だけ覚えればよいのでメモリが少なくて済む。ただし最初に見つかる解が最短とは限らない。",
+    "links": [
+      { "id": "C-02-003", "relation": "対比" },
+      { "id": "C-02-007", "relation": "応用（Mini-Max法は深さ優先の一種）" }
+    ],
+    "confusions": [
+      { "id": "C-02-003", "point": "最短解を保証するのは幅優先のほう。" }
+    ],
+    "sources": [
+      { "title": "NIST Dictionary of Algorithms and Data Structures: depth-first search", "url": "https://xlinux.nist.gov/dads/HTML/depthfirst.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-005",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "ハノイの塔",
+    "oneLine": "3本の柱と大きさの違う円盤n枚を、小さい円盤の上に大きい円盤を置かないように1枚ずつ移すパズル。最少手数は2のn乗−1。",
+    "why": "ルールとゴールが明確な典型的なトイ・プロブレムで、探索や再帰の例題としてよく使われる。円盤が増えると手数が指数的に増える。",
+    "links": [
+      { "title": "トイ・プロブレム", "relation": "具体例" },
+      { "id": "C-02-002", "relation": "解き方" }
+    ],
+    "confusions": [
+      { "id": "C-02-006", "point": "ハノイの塔は「問題」、ブルートフォースは「解き方（総当たり）」。" }
+    ],
+    "sources": [
+      { "title": "NIST Dictionary of Algorithms and Data Structures: towers of Hanoi", "url": "https://xlinux.nist.gov/dads/HTML/towersOfHanoi.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-006",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "ブルートフォース",
+    "oneLine": "考えられる解の候補をすべて試して答えを見つける総当たりの方法。",
+    "why": "確実だが非効率。候補の数が組合せ的に爆発する問題（囲碁など）では現実的な時間で終わらないため、αβ法での枝刈りやモンテカルロ法などの工夫が要る。",
+    "links": [
+      { "id": "C-02-008", "relation": "解決策（枝刈りで減らす）" },
+      { "id": "C-02-009", "relation": "解決策（ランダムに試して見積もる）" }
+    ],
+    "confusions": [
+      { "id": "C-02-009", "point": "ブルートフォースは全部試す。モンテカルロ法はランダムに一部を試して見積もる。" }
+    ],
+    "sources": [
+      { "title": "NIST Dictionary of Algorithms and Data Structures: brute force", "url": "https://xlinux.nist.gov/dads/HTML/bruteforce.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-007",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "Mini-Max法",
+    "oneLine": "ゲーム木の末端（葉）を評価し、自分の手番では評価が最大の手、相手の手番では評価が最小の手を選ぶと仮定して、さかのぼって最善手を決める方法。",
+    "why": "相手も最善を尽くすと仮定して、二人対戦ゲームの手を決められる。ただし木をすべて展開するため計算量が大きく、αβ法で無駄な枝を省く。",
+    "links": [
+      { "id": "C-02-008", "relation": "発展形（効率化）" },
+      { "id": "C-02-002", "relation": "前提" }
+    ],
+    "confusions": [
+      { "id": "C-02-008", "point": "Mini-Max法は評価のやり方、αβ法はその結果を変えずに探索を省く工夫。" }
+    ],
+    "sources": [
+      { "title": "NIST Dictionary of Algorithms and Data Structures: minimax", "url": "https://xlinux.nist.gov/dads/HTML/minimax.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-008",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "αβ法",
+    "oneLine": "Mini-Max法で、結果に影響しないと分かった枝の探索を打ち切る（枝刈りする）ことで計算量を減らす方法。αは自分側の下限、βは相手側の上限。",
+    "why": "Mini-Max法と同じ手を選びつつ、調べる節点を大きく減らせる。αカット・βカットと呼ばれる2種類の打ち切りがある。",
+    "links": [
+      { "id": "C-02-007", "relation": "前提（改良元）" },
+      { "id": "C-02-006", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-02-009", "point": "αβ法は結果を変えずに枝を省く。モンテカルロ法はランダムなプレイで評価を見積もる。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-009",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "モンテカルロ法",
+    "oneLine": "乱数を使った試行を多数くり返して答えを見積もる方法。ゲームでは、ある局面から終局までランダムに打つ（プレイアウト）を何度も行い、勝率で手の良さを評価する。",
+    "why": "囲碁のように局面の良し悪しを評価する式を作りにくいゲームでも、多数のランダム対局の結果で評価できる。AlphaGoはモンテカルロ木探索とニューラルネットワークを組み合わせた。",
+    "links": [
+      { "id": "C-02-039", "relation": "発展形（組み込まれた例）" },
+      { "id": "C-02-006", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-02-008", "point": "αβ法は評価関数が必要。モンテカルロ法は評価関数の代わりにランダム対局の勝率を使う。" }
+    ],
+    "sources": [
+      { "title": "NIST Dictionary of Algorithms and Data Structures: Monte Carlo algorithm", "url": "https://xlinux.nist.gov/dads/HTML/monteCarlo.html" },
+      { "title": "Silver et al. (2016) Mastering the game of Go with deep neural networks and tree search. Nature", "url": "https://www.nature.com/articles/nature16961" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-010",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "STRIPS",
+    "oneLine": "初期状態・目標・操作（前提条件と効果）を記述し、目標に至る操作の並びを探す自動計画（プランニング）の手法。1971年にSRIのFikesとNilssonが発表。",
+    "why": "ロボットなどの行動計画を、論理式で表した世界のモデルの上で探索として解けるようにした。",
+    "links": [
+      { "id": "C-02-011", "relation": "同時代" },
+      { "id": "C-02-002", "relation": "前提（探索）" }
+    ],
+    "confusions": [
+      { "id": "C-02-011", "point": "STRIPSは行動の計画（プランニング）、SHRDLUは英語で積み木の世界と対話するシステム。" }
+    ],
+    "sources": [
+      { "title": "Fikes & Nilsson (1971) STRIPS: A New Approach to the Application of Theorem Proving to Problem Solving", "url": "https://ai.stanford.edu/~nilsson/OnlinePubs-Nils/PublishedPapers/strips.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-011",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "探索・推論"],
+    "title": "SHRDLU",
+    "oneLine": "テリー・ウィノグラードがMITで開発した、英語で指示や質問を受け、仮想の積み木の世界で手と目を持つロボットを動かすシステム。",
+    "why": "限られた世界なら、文法解析と世界の知識を組み合わせて自然言語を「理解して」応答できることを示した。一方で、世界を広げると通用しない点はトイ・プロブレムの限界そのもの。",
+    "links": [
+      { "title": "トイ・プロブレム", "relation": "限界" },
+      { "id": "C-02-016", "relation": "対比（会話システム）" }
+    ],
+    "confusions": [
+      { "id": "C-02-016", "point": "ELIZAはキーワードに反応して返すだけで世界のモデルを持たない。SHRDLUは積み木の世界のモデルを持って文を解釈する。" }
+    ],
+    "sources": [
+      { "title": "Winograd (1971) Procedures as a Representation for Data in a Computer Program for Understanding Natural Language (MIT AI Lab, AITR-235)", "url": "https://dspace.mit.edu/handle/1721.1/7095" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-012",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "第2次AIブーム",
+    "oneLine": "1980年代。コンピュータが推論に使う「知識」を与えることで実用水準に達し、多数のエキスパートシステムが作られたブーム。日本では第五世代コンピュータ計画が進められた。",
+    "why": "知識は人がコンピュータに分かる形で記述する必要があり、膨大な知識を用意し切れなかった（知識獲得のボトルネック）。1995年頃から再び冬の時代に入った。",
+    "links": [
+      { "id": "C-02-013", "relation": "中心技術" },
+      { "title": "知識獲得のボトルネック", "relation": "限界（原因）" },
+      { "id": "C-02-027", "relation": "次の時代" }
+    ],
+    "confusions": [
+      { "id": "C-02-001", "point": "知識を使うのが第2次、探索・推論が第1次。" }
+    ],
+    "sources": [
+      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-013",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "エキスパートシステム",
+    "oneLine": "特定分野の専門家の知識をルールなどの形で取り込み、推論によって専門家のように判断・助言するシステム。",
+    "why": "医療診断や化学分析など、専門家の判断を再現できることを示し第2次ブームを牽引した。しかし知識を人手で書き起こす負担が大きく、常識のような曖昧な知識も扱えなかった。",
+    "links": [
+      { "id": "C-02-015", "relation": "具体例" },
+      { "id": "C-02-014", "relation": "具体例" },
+      { "title": "知識獲得のボトルネック", "relation": "課題" },
+      { "id": "C-02-022", "relation": "解決策（知識を聞き出す仕組み）" }
+    ],
+    "confusions": [
+      { "title": "機械学習", "point": "エキスパートシステムは知識を人が与える。機械学習は知識をデータから学ぶ。" }
+    ],
+    "sources": [
+      { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
+      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-014",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "DENDRAL",
+    "oneLine": "1960年代にスタンフォード大学で開発された、質量分析のデータから未知の有機化合物の構造を推定するシステム。初期のエキスパートシステムとして知られる。",
+    "why": "化学者の専門知識をプログラムに取り込めば専門家並みの推論ができることを示し、エキスパートシステム研究の出発点になった。",
+    "links": [
+      { "id": "C-02-013", "relation": "部分（代表例）" },
+      { "id": "C-02-015", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-02-015", "point": "DENDRAL＝化学（有機化合物の構造推定）、MYCIN＝医療（感染症の診断と抗生物質の推薦）。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-015",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "マイシン（MYCIN）",
+    "oneLine": "スタンフォード大学で開発された、感染症の専門医を手本に、対話を通じて診断と抗生物質の処方を助言するルールベースのエキスパートシステム。",
+    "why": "医療のように明確なアルゴリズムが無い分野でも、「もし〜ならば〜」という条件文（ルール）を連鎖させることで専門家に近い助言ができることを示した。",
+    "links": [
+      { "id": "C-02-013", "relation": "部分（代表例）" },
+      { "id": "C-02-014", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-02-014", "point": "MYCIN＝医療（感染症）、DENDRAL＝化学（構造推定）。" },
+      { "id": "C-02-016", "point": "ELIZAは会話の真似で専門知識を持たない。MYCINは専門知識で助言する。" }
+    ],
+    "sources": [
+      { "title": "Buchanan & Shortliffe (1984) Rule-Based Expert Systems: The MYCIN Experiments, Chapter 1", "url": "https://www.shortliffe.net/Buchanan-Shortliffe-1984/Chapter-01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-016",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "イライザ（ELIZA）",
+    "oneLine": "1960年代にMITのワイゼンバウムが作った対話プログラム。入力文のキーワードに反応し、あらかじめ用意した規則で文を組み替えて応答する。",
+    "why": "文の意味を理解する仕組みを持たず、キーワードと組み替え規則だけで会話らしく見せた。言葉のやり取りが自然に見えることと理解していることは別だ、という論点の具体例になる。後のチャットボットの原型。",
+    "links": [
+      { "title": "チューリングテスト", "relation": "関連" },
+      { "id": "C-02-011", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-02-015", "point": "ELIZAは専門知識を持たない会話プログラム、MYCINは専門知識で助言するエキスパートシステム。" }
+    ],
+    "sources": [
+      { "title": "Weizenbaum (1966) ELIZA - A Computer Program For the Study of Natural Language Communication Between Man And Machine. CACM", "url": "https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-017",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "意味ネットワーク",
+    "oneLine": "概念を節点、概念どうしの関係を矢印（ラベル付きの辺）で結んだネットワークで知識を表す方法。",
+    "why": "「犬は動物である」「車はタイヤを持つ」のような知識を、関係の種類（is-a、part-of など）と一緒に表せる。関係をたどれば、書いていない知識（犬は生き物）も推論できる。",
+    "links": [
+      { "id": "C-02-018", "relation": "部分（関係の種類）" },
+      { "id": "C-02-019", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "title": "ニューラルネットワーク", "point": "名前は似ているが、意味ネットワークは人が知識を書く表現方法で、学習するモデルではない。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-018",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "is-aの関係・has-aの関係・part-ofの関係",
+    "oneLine": "is-a：「AはBの一種」（上位・下位概念、継承）。has-a：「AはBを持つ」。part-of：「AはBの一部」（全体と部分）。",
+    "why": "知識表現で関係の種類を区別するための基本。is-aは推移律が成り立ち（犬is-a哺乳類、哺乳類is-a動物→犬is-a動物）、性質を上位から引き継げる。part-ofは関係の種類によって推移律が成り立たない場合がある。",
+    "links": [
+      { "id": "C-02-017", "relation": "部分" },
+      { "id": "C-02-019", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-02-019", "point": "is-a（一種）とpart-of（一部）の取り違えが典型的なひっかけ。「タイヤは車の一種」は誤りで、「タイヤは車の一部」。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-019",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "オントロジー",
+    "oneLine": "ある分野の概念・概念間の関係・性質を、共通の語彙として形式的に定義したもの。知識を共有・再利用するための「概念の設計図」。",
+    "why": "人ごとに同じ言葉の意味がずれると知識を組み合わせられない。概念を明示的に定義しておけば、システム間で知識を共有できる。セマンティックWebのOWLはオントロジーを記述する言語。",
+    "links": [
+      { "id": "C-02-021", "relation": "応用" },
+      { "id": "C-02-020", "relation": "具体例（大規模な知識ベース）" },
+      { "id": "C-02-018", "relation": "部分（関係）" }
+    ],
+    "confusions": [
+      { "id": "C-02-017", "point": "意味ネットワークは知識の表し方（図の形式）。オントロジーは概念の定義そのもの（何をどう呼び、どう関係づけるかの取り決め）。" }
+    ],
+    "sources": [
+      { "title": "W3C OWL 2 Web Ontology Language Document Overview (Second Edition)", "url": "https://www.w3.org/TR/owl2-overview/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-020",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "Cycプロジェクト",
+    "oneLine": "人間の一般常識をコンピュータに書き込み、常識に基づく推論をさせようとする、長期にわたる大規模な知識ベース構築プロジェクト。",
+    "why": "エキスパートシステムが常識を持たないことが限界だったため、常識そのものを知識ベース化しようとした。人手で書き続ける規模の大きさが、知識獲得のボトルネックの象徴にもなっている。",
+    "links": [
+      { "title": "知識獲得のボトルネック", "relation": "背景" },
+      { "id": "C-02-019", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-02-025", "point": "Cycは常識を人手で書く知識ベース。ワトソンは大量の文書から答えを探す質問応答システム。" }
+    ],
+    "sources": [
+      { "title": "Cycorp: Cyc Platform", "url": "https://cyc.com/platform/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-021",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "セマンティックWeb",
+    "oneLine": "Web上の情報に意味（メタデータ）を付け、コンピュータが情報の意味を扱えるようにする構想。W3Cが推進し、RDFやOWLを基盤とする「データのWeb」。",
+    "why": "人が読むためのWebページでは、コンピュータは内容の意味を扱えない。共通の形式で意味を記述すれば、アプリや組織をまたいでデータを共有・再利用できる。",
+    "links": [
+      { "id": "C-02-019", "relation": "部分（意味の定義）" },
+      { "id": "C-02-023", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-02-023", "point": "セマンティックWebはデータに意味を付ける仕組み。ウェブマイニングはWebのデータから知識を掘り出す分析。" }
+    ],
+    "sources": [
+      { "title": "W3C Semantic Web Activity", "url": "https://www.w3.org/2001/sw/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-022",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "インタビューシステム",
+    "oneLine": "専門家に質問を重ねて、エキスパートシステムに入れる知識を聞き出し、整理する仕組み。",
+    "why": "専門家の知識は暗黙的で、本人も言葉にしにくい。知識を取り出す作業を支援しないと知識ベースを作れない（知識獲得のボトルネック）。",
+    "links": [
+      { "id": "C-02-013", "relation": "解決しようとした課題の持ち主" },
+      { "title": "知識獲得のボトルネック", "relation": "解決策の一つ" }
+    ],
+    "confusions": [
+      { "id": "C-02-016", "point": "ELIZAも質問を返すが、知識を集める目的ではない会話プログラム。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-023",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "データマイニング・ウェブマイニング",
+    "oneLine": "データマイニング：大量のデータから、有用なパターンや規則を掘り出すこと。ウェブマイニング：その対象をWebページの内容・リンク構造・利用履歴にしたもの。",
+    "why": "知識を人が書くのではなく、蓄積されたデータから見つけ出す発想。知識表現の手間を減らす方向で、機械学習の普及にもつながった。",
+    "links": [
+      { "id": "C-02-029", "relation": "前提（材料）" },
+      { "title": "機械学習", "relation": "手段" },
+      { "id": "C-02-021", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-02-021", "point": "マイニング＝掘り出す（分析）、セマンティックWeb＝意味を付ける（記述）。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-024",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "Question-Answering（質問応答）",
+    "oneLine": "自然言語で書かれた質問に対し、知識ベースや大量の文書から答えを見つけて返すタスク・システム。",
+    "why": "検索のように文書の一覧を返すのではなく、答えそのものを返す。IBMのワトソン（DeepQA）がクイズ番組で人間のチャンピオンに勝ち、代表例となった。",
+    "links": [
+      { "id": "C-02-025", "relation": "具体例" },
+      { "id": "C-02-026", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "情報検索", "point": "情報検索は関係する文書を探して並べる。質問応答は答えそのものを返す。" }
+    ],
+    "sources": [
+      { "title": "IBM History: Watson, Jeopardy! champion", "url": "https://www.ibm.com/history/watson-jeopardy" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-025",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "ワトソン",
+    "oneLine": "IBMの質問応答システム（DeepQA）。2011年2月、米国のクイズ番組「ジェパディ!」で歴代チャンピオン2人に勝った。",
+    "why": "大量の文書から答えの候補を集めて確からしさで順位づける質問応答の実例として、自然言語処理の時代を開いたとされる。",
+    "links": [
+      { "id": "C-02-024", "relation": "部分（質問応答の代表例）" },
+      { "id": "C-02-026", "relation": "対比" }
+    ],
+    "confusions": [
+      { "title": "ディープ・ブルー", "point": "ディープ・ブルーは1997年にチェスで世界王者に勝ったIBMのシステム。ワトソンはクイズ番組（2011年）。" },
+      { "id": "C-02-039", "point": "AlphaGoは囲碁（2016年）でDeepMind（Google）。ワトソンはクイズでIBM。" }
+    ],
+    "sources": [
+      { "title": "IBM History: Watson, Jeopardy! champion", "url": "https://www.ibm.com/history/watson-jeopardy" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-026",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "知識表現とエキスパートシステム"],
+    "title": "東ロボくん",
+    "oneLine": "国立情報学研究所（NII）が中心となった人工知能プロジェクト「ロボットは東大に入れるか」の通称。AIに大学入試問題を解かせた。",
+    "why": "AIが得意な問題（計算・知識の検索）と苦手な問題（文章の意味を読み取る読解）を、入試という共通のものさしで明らかにした。",
+    "links": [
+      { "id": "C-02-024", "relation": "関連" },
+      { "title": "シンボルグラウンディング問題", "relation": "関連（意味理解の難しさ）" }
+    ],
+    "confusions": [
+      { "id": "C-02-025", "point": "ワトソンはクイズ番組のIBM、東ロボくんは大学入試のNII。" }
+    ],
+    "sources": [
+      { "title": "国立情報学研究所 ニュースリリース（2016年11月14日）人工知能プロジェクト「ロボットは東大に入れるか」", "url": "https://www.nii.ac.jp/news/release/2016/1114.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-027",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "機械学習"],
+    "title": "第3次AIブーム",
+    "oneLine": "2000年代から続くブーム。ビッグデータを使ってAI自身が知識を獲得する機械学習が実用化し、さらに特徴量まで自ら学ぶディープラーニングが登場した。",
+    "why": "Webの普及でデータが大量に手に入り、計算能力も上がったことで、知識を人が書く限界（第2次）をデータからの学習で越えた。",
+    "links": [
+      { "id": "C-02-029", "relation": "原因（背景）" },
+      { "title": "機械学習", "relation": "中心技術" },
+      { "title": "ディープラーニング", "relation": "中心技術" },
+      { "id": "C-02-012", "relation": "前の時代" }
+    ],
+    "confusions": [
+      { "id": "C-02-012", "point": "第2次は知識を人が与える、第3次はデータから学ぶ。" }
+    ],
+    "sources": [
+      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
+      { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-028",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "機械学習"],
+    "title": "ルールベースと機械学習の違い",
+    "oneLine": "ルールベース：人が規則を書く。機械学習：データから規則やパターンを学ぶ。",
+    "why": "ルールベースは理由を説明しやすく少ないデータでも作れるが、規則を書き尽くせない・変化に弱い。機械学習は規則を書けない複雑な問題（画像・言語・大量の顧客データ）に強いが、データが必要で、判断理由が分かりにくいことがある。",
+    "links": [
+      { "id": "C-02-013", "relation": "対比（ルールベースの代表）" },
+      { "id": "C-02-031", "relation": "具体例（機械学習が効く場面）" },
+      { "title": "ルールベース機械翻訳", "relation": "具体例" }
+    ],
+    "confusions": [
+      { "title": "ディープラーニング", "point": "機械学習一般はまだ特徴量を人が設計する。ルールを書かないことと、特徴量を設計しないことは別の段階。" }
+    ],
+    "sources": [
+      { "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-029",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "機械学習"],
+    "title": "ビッグデータ",
+    "oneLine": "従来のデータベースソフトでは扱い切れない規模のデータ。量だけでなく、高頻度（リアルタイム）・多様性（非構造データを含む）といった質の面にも特徴がある。",
+    "why": "機械学習はデータが多いほど力を発揮する。Webやセンサーの普及で大量のデータが手に入るようになったことが第3次AIブームの背景。",
+    "links": [
+      { "id": "C-02-027", "relation": "原因（ブームの背景）" },
+      { "id": "C-02-030", "relation": "対比（次元が増えるとデータがいくらあっても足りない）" }
+    ],
+    "confusions": [
+      { "id": "C-02-030", "point": "ビッグデータはデータの「件数・種類」が多いこと。次元の呪いは特徴量の「次元」が多いことで起きる問題。" }
+    ],
+    "sources": [
+      { "title": "総務省 平成24年版 情報通信白書 ビッグデータとは何か", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h24/html/nc121410.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-030",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "機械学習"],
+    "title": "次元の呪い",
+    "oneLine": "特徴量の次元（変数の数）が増えると、データ空間がすかすかになり、必要なデータ量や計算量が急激に増えて学習がうまくいかなくなる現象。",
+    "why": "高次元では点どうしの距離の差が小さくなり、近いデータを手がかりにする手法（k近傍法など）が効きにくくなる。対策は次元削減（主成分分析など）や特徴選択。",
+    "links": [
+      { "title": "次元削減", "relation": "解決策" },
+      { "title": "主成分分析 (PCA)", "relation": "解決策" },
+      { "title": "過学習", "relation": "関連（結果として起きやすい）" }
+    ],
+    "confusions": [
+      { "id": "C-02-029", "point": "データの件数が多いのはむしろ助けになる。呪いの原因は特徴量の次元の多さ。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Nearest Neighbors", "url": "https://scikit-learn.org/stable/modules/neighbors.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-031",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "機械学習"],
+    "title": "スパムフィルタ",
+    "oneLine": "迷惑メールかどうかを判定する仕組み。過去のメールと「迷惑か否か」のラベルから単語の出方の傾向を学ぶ、機械学習（分類）の代表的な応用。",
+    "why": "迷惑メールの書き方は次々に変わるので、人がルールを書いて追いかけるより、データから学び直すほうが対応しやすい。",
+    "links": [
+      { "title": "分類問題", "relation": "部分（タスクの種類）" },
+      { "id": "C-02-028", "relation": "具体例" },
+      { "id": "C-02-033", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-02-032", "point": "スパムフィルタは分類（迷惑か否か）、レコメンデーションは好みの推定。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Naive Bayes", "url": "https://scikit-learn.org/stable/modules/naive_bayes.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-032",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "機械学習"],
+    "title": "レコメンデーションエンジン",
+    "oneLine": "利用者の購買・閲覧履歴などから、その人が好みそうな商品やコンテンツを推薦する仕組み。",
+    "why": "商品が多すぎて利用者が自分で探し切れない場面で売上や満足度を上げる。主な方式は、似た利用者の行動を使う協調フィルタリングと、商品の特徴を使うコンテンツベースフィルタリング。",
+    "links": [
+      { "title": "協調フィルタリング", "relation": "部分（方式）" },
+      { "title": "コンテンツベースフィルタリング", "relation": "部分（方式）" },
+      { "title": "コールドスタート問題", "relation": "課題" }
+    ],
+    "confusions": [
+      { "id": "C-02-031", "point": "推薦は好みの推定、スパムフィルタは2値の分類。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-033",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "機械学習"],
+    "title": "統計的自然言語処理",
+    "oneLine": "大量の文章（コーパス）から単語の出現頻度や並び方の確率を学び、翻訳・分類・検索などを行う自然言語処理の方法。",
+    "why": "文法規則を人が書く方式では言葉の多様さに追いつけなかった。データから確率で扱うことで、機械翻訳などが大きく進んだ。",
+    "links": [
+      { "title": "統計的機械翻訳", "relation": "具体例" },
+      { "title": "n-gram", "relation": "部分（手法）" },
+      { "id": "C-02-028", "relation": "対比（ルールベース）" }
+    ],
+    "confusions": [
+      { "title": "ルールベース機械翻訳", "point": "ルールベースは人が規則を書く。統計的手法はコーパスから確率を学ぶ。" }
+    ],
+    "sources": [
+      { "title": "Brown et al. (1990) A Statistical Approach to Machine Translation. Computational Linguistics", "url": "https://aclanthology.org/J90-2002.pdf" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-02-034",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "ディープラーニング"],
+    "title": "人間の神経回路（形式ニューロン）",
+    "oneLine": "脳の神経細胞（ニューロン）が「発火する／しない」の二択で信号を伝える性質を、論理演算として数式化したモデル。1943年にマカロックとピッツが提案した。",
+    "why": "人間の神経回路を計算機で真似るというニューラルネットワークの出発点。その後、単純パーセプトロン → 多層化 → ディープラーニングへとつながる。",
+    "links": [
+      { "title": "単純パーセプトロン", "relation": "発展形" },
+      { "id": "C-02-035", "relation": "発展形（視覚の仕組みをまねたモデル）" },
+      { "title": "ディープラーニング", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "title": "意味ネットワーク", "point": "ネットワークという名前でも、意味ネットワークは知識表現。形式ニューロンは神経細胞のモデル。" }
+    ],
+    "sources": [
+      { "title": "McCulloch & Pitts (1943) A logical calculus of the ideas immanent in nervous activity. Bulletin of Mathematical Biophysics", "url": "https://link.springer.com/article/10.1007/BF02478259" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-035",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "ディープラーニング"],
+    "title": "ネオコグニトロン",
+    "oneLine": "福島邦彦が1980年に発表した、視覚野の階層構造（ヒューベルとウィーゼルのモデル）をまねたニューラルネットワーク。位置がずれても同じ形を認識できる。",
+    "why": "特徴を取り出す層と、位置のずれを吸収する層を交互に重ねる構造は、のちの畳み込みニューラルネットワーク（CNN）の畳み込み層・プーリング層の原型とされる。",
+    "links": [
+      { "id": "C-02-036", "relation": "発展形" },
+      { "title": "畳み込みニューラルネットワーク (CNN)", "relation": "発展形" },
+      { "title": "不変性の獲得", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-02-036", "point": "ネオコグニトロンは誤差逆伝播法を使わない（自己組織化で学ぶ）。LeNetは誤差逆伝播法で学習するCNN。" }
+    ],
+    "sources": [
+      { "title": "Fukushima (1980) Neocognitron. Biological Cybernetics", "url": "https://link.springer.com/article/10.1007/BF00344251" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-036",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "ディープラーニング"],
+    "title": "LeNet",
+    "oneLine": "ヤン・ルカンらが手書き文字（数字）の認識のために開発した畳み込みニューラルネットワーク。畳み込みとサブサンプリング（プーリング）を重ね、誤差逆伝播法で学習する。",
+    "why": "CNNの基本形（畳み込み→プーリング→全結合）を示し、実用的な文字認識に使われた。2012年のAlexNetはこれを大規模化・深層化したものといえる。",
+    "links": [
+      { "id": "C-02-035", "relation": "前身" },
+      { "title": "AlexNet", "relation": "発展形" },
+      { "title": "誤差逆伝播法", "relation": "学習方法" }
+    ],
+    "confusions": [
+      { "id": "C-02-035", "point": "LeNetは誤差逆伝播法で学習。ネオコグニトロンは使わない。" }
+    ],
+    "sources": [
+      { "title": "LeCun et al. (1998) Gradient-Based Learning Applied to Document Recognition", "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-037",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "ディープラーニング"],
+    "title": "ImageNet",
+    "oneLine": "数百万枚の画像に、物体のカテゴリ名を付けた大規模な画像データセット。画像認識の競技会ILSVRCの基盤。",
+    "why": "ディープラーニングは大量のラベル付きデータを必要とする。ImageNetが整備されたことで、大規模なCNNを学習させて性能を比べることができた。",
+    "links": [
+      { "id": "C-02-038", "relation": "部分（競技会で使われた）" },
+      { "id": "C-02-029", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-02-038", "point": "ImageNetはデータセット、ILSVRCはそれを使った競技会。" }
+    ],
+    "sources": [
+      { "title": "Russakovsky et al. (2015) ImageNet Large Scale Visual Recognition Challenge (arXiv:1409.0575)", "url": "https://arxiv.org/abs/1409.0575" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-038",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "ディープラーニング"],
+    "title": "ILSVRC",
+    "oneLine": "ImageNet Large Scale Visual Recognition Challenge。2010年から毎年開かれた、画像の物体分類・検出の精度を競う国際競技会。",
+    "why": "2012年、ヒントンらのチーム（SuperVision、モデルはAlexNet）がディープラーニングで大差をつけて優勝し、第3次AIブームでディープラーニングが注目される決定的なきっかけとなった。2014年以降は上位がCNN中心になった。",
+    "links": [
+      { "id": "C-02-037", "relation": "前提（データ）" },
+      { "title": "AlexNet", "relation": "2012年の優勝モデル" },
+      { "title": "ResNet", "relation": "2015年の優勝モデル" },
+      { "title": "GoogLeNet", "relation": "2014年の優勝モデル" }
+    ],
+    "confusions": [
+      { "title": "ローブナーコンテスト", "point": "ILSVRCは画像認識、ローブナーコンテストは会話の人間らしさ。" }
+    ],
+    "sources": [
+      { "title": "Russakovsky et al. (2015) ImageNet Large Scale Visual Recognition Challenge (arXiv:1409.0575)", "url": "https://arxiv.org/abs/1409.0575" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-039",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "ディープラーニング"],
+    "title": "アルファ碁（AlphaGo）",
+    "oneLine": "Google傘下のDeepMindが開発した囲碁AI。次の手を選ぶ「方策ネットワーク」と勝敗を予測する「価値ネットワーク」を、モンテカルロ木探索と組み合わせた。2016年3月に李世乭（イ・セドル）九段に4勝1敗。",
+    "why": "盤面が広く探索の組合せが桁違いに多い囲碁は、チェスや将棋より人間に勝つのが遅れると見られていた。ディープラーニング＋強化学習＋探索の組み合わせで、それを覆した。",
+    "links": [
+      { "id": "C-02-009", "relation": "部分（探索）" },
+      { "title": "強化学習", "relation": "部分（自己対局で強化）" },
+      { "title": "深層強化学習", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-02-025", "point": "ワトソンはIBMのクイズ（2011年）、AlphaGoはDeepMindの囲碁（2016年）、ディープ・ブルーはIBMのチェス（1997年）。" }
+    ],
+    "sources": [
+      { "title": "Google DeepMind: AlphaGo", "url": "https://deepmind.google/research/breakthroughs/alphago/" },
+      { "title": "Silver et al. (2016) Mastering the game of Go with deep neural networks and tree search. Nature", "url": "https://www.nature.com/articles/nature16961" },
+      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-040",
+    "syllabus": ["技術分野", "人工知能をめぐる動向", "ディープラーニング"],
+    "title": "生成AI",
+    "oneLine": "テキスト・画像・音声などを自律的に生成できるAI技術の総称。2022年のChatGPTの発表を機に急速に普及した。",
+    "why": "ディープラーニング、トランスフォーマーの大規模化、基盤モデル・大規模言語モデル（LLM）の登場で、自然な言葉で指示するだけで多様な形式の出力が得られるようになった。",
+    "links": [
+      { "title": "Transformer", "relation": "部分（基盤技術）" },
+      { "title": "大規模言語モデル (LLM)", "relation": "部分" },
+      { "title": "基盤モデル", "relation": "部分" },
+      { "title": "ディープラーニング", "relation": "前提" }
+    ],
+    "confusions": [
+      { "title": "識別モデル", "point": "分類（どれに当たるか判定）するAIに対し、生成AIは新しいデータを作り出す。" }
+    ],
+    "sources": [
+      { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
+    ],
+    "status": "verified"
+  }
+]

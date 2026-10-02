@@ -1,0 +1,931 @@
+[
+  {
+    "id": "C-05-001",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "全結合層"],
+    "title": "全結合層",
+    "oneLine": "前の層のすべてのユニットと、次の層のすべてのユニットが重みでつながった層。入力xに重み行列Wを掛けてバイアスbを足す線形関数（y＝Wx＋b）を計算する。",
+    "why": "入力のすべての情報を組み合わせて出力を作れるので、CNNの最後で特徴をまとめて分類する部分などに使われる。ただし入力と出力のユニット数の積だけ重みがあり、パラメータ数が非常に多くなりやすい。",
+    "links": [
+      { "id": "C-05-002", "relation": "部分" },
+      { "id": "C-05-003", "relation": "対比（局所的につなぐ）" },
+      { "id": "C-05-017", "relation": "置き換え（出力層をGAPに）" }
+    ],
+    "confusions": [
+      { "id": "C-05-003", "point": "全結合層は全部とつながる（パラメータが多い）。畳み込み層は近くだけとつながり、同じフィルタを使い回す（パラメータが少ない）。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Linear", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Linear.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-002",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "全結合層"],
+    "title": "重みと線形関数（全結合層のパラメータ数）",
+    "oneLine": "全結合層は線形関数 y＝Wx＋b。重みWは「出力数×入力数」個、バイアスbは「出力数」個なので、パラメータ数は（入力数＋1）×出力数。",
+    "why": "例：入力784、出力100の全結合層なら (784＋1)×100＝78,500個。画像を全結合層に直接入れるとパラメータが膨大になる理由で、畳み込み層を使う動機の一つ。重みは学習で決まる値。",
+    "links": [
+      { "id": "C-05-001", "relation": "部分" },
+      { "id": "C-05-008", "relation": "対比（畳み込み層のパラメータ数）" },
+      { "title": "活性化関数", "relation": "組み合わせ（線形の後に非線形をかける）" }
+    ],
+    "confusions": [
+      { "title": "ハイパーパラメータ", "point": "重みは学習で決まるパラメータ。層のユニット数は人が決めるハイパーパラメータ。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Linear", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Linear.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-003",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "畳み込みニューラルネットワーク (CNN)",
+    "oneLine": "畳み込み層とプーリング層を重ね、画像などの局所的な特徴（エッジ→形→物体）を段階的に取り出すニューラルネットワーク。",
+    "why": "画像は近くの画素どうしの関係が重要で、同じ模様は画像のどこに出ても同じ意味を持つ。局所的な結合と重みの共有によって、少ないパラメータで位置のずれに強い特徴を学べる。ネオコグニトロン・LeNetが源流。",
+    "links": [
+      { "id": "C-05-004", "relation": "部分" },
+      { "id": "C-05-014", "relation": "部分" },
+      { "title": "ネオコグニトロン", "relation": "起源" },
+      { "title": "LeNet", "relation": "起源" },
+      { "id": "C-05-020", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-05-001", "point": "CNNの中心は畳み込み層。全結合層だけのネットワークはCNNとは呼ばない。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks", "url": "https://www.deeplearningbook.org/contents/convnets.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-004",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "畳み込み操作",
+    "oneLine": "小さな格子状の重み（フィルタ）を入力の上で少しずつずらしながら、重なった部分の要素ごとの積の和を計算していく操作。",
+    "why": "フィルタの重みが「どんな模様に反応するか」を表す。同じフィルタを画像全体で使い回す（重み共有）ので、パラメータが少なく、模様がどこに出ても検出できる。",
+    "links": [
+      { "id": "C-05-005", "relation": "部分（使う重み）" },
+      { "id": "C-05-006", "relation": "部分（ずらし幅）" },
+      { "id": "C-05-007", "relation": "部分（周囲の補い）" },
+      { "id": "C-05-009", "relation": "結果" }
+    ],
+    "confusions": [
+      { "id": "C-05-014", "point": "畳み込みは重みを学習して特徴を取り出す。プーリングは重みを持たず、領域の最大値や平均をとるだけ。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Conv2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-005",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "フィルタ・カーネル",
+    "oneLine": "畳み込みで使う小さな重みの格子（例：3×3）。CNNではフィルタとカーネルはほぼ同じ意味で使われる。値は学習で決まる。",
+    "why": "フィルタの数だけ異なる特徴（縦のエッジ、横のエッジ、色など）を取り出せる。出力チャネル数＝フィルタの数。",
+    "links": [
+      { "id": "C-05-004", "relation": "部分" },
+      { "id": "C-05-009", "relation": "結果（1フィルタ＝1枚の特徴マップ）" }
+    ],
+    "confusions": [
+      { "title": "カーネル・カーネルトリック", "point": "SVMのカーネル（類似度の関数）とは別物。CNNのカーネルは畳み込みの重み。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Conv2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-006",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "ストライド",
+    "oneLine": "フィルタ（やプーリングの窓）を1回にずらす幅。ストライドを大きくすると出力（特徴マップ）が小さくなる。",
+    "why": "出力サイズ＝⌊(入力サイズ＋2×パディング−カーネルサイズ)÷ストライド⌋＋1（ダイレーションが1のとき）。ストライド2なら縦横がおよそ半分になり、計算量を減らせる。",
+    "links": [
+      { "id": "C-05-004", "relation": "部分" },
+      { "id": "C-05-007", "relation": "組み合わせ（出力サイズを決める）" }
+    ],
+    "confusions": [
+      { "id": "C-05-007", "point": "ストライドを大きく→出力は小さく。パディングを大きく→出力は大きく（元のサイズを保ちやすく）。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Conv2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-007",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "パディング",
+    "oneLine": "畳み込みの前に、入力の周囲を0などの値で埋めて大きくすること。出力サイズを調整（入力と同じに保つなど）でき、端の情報も使えるようにする。",
+    "why": "パディングが無いと畳み込みのたびに特徴マップが縮み、画像の端の画素は計算に使われる回数が少なくなる。周囲を埋めることでサイズを保ち、端の特徴も取り出せる。",
+    "links": [
+      { "id": "C-05-006", "relation": "組み合わせ" },
+      { "id": "C-05-004", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-05-014", "point": "パディングの主な効果は出力サイズの調整。特徴マップを小さくするのはストライドやプーリング。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Conv2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-008",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "畳み込み層のパラメータ数",
+    "oneLine": "畳み込み層のパラメータ数＝（カーネル縦×カーネル横×入力チャネル数＋1）×出力チャネル数。入力画像の大きさには依存しない。",
+    "why": "例：3×3、入力3チャネル、出力64チャネルなら (3×3×3＋1)×64＝1,792個。同じフィルタを画像全体で共有するので、全結合層よりはるかに少ない。",
+    "links": [
+      { "id": "C-05-002", "relation": "対比" },
+      { "id": "C-05-013", "relation": "解決策（さらに減らす）" }
+    ],
+    "confusions": [
+      { "id": "C-05-002", "point": "全結合層は入力の大きさに比例してパラメータが増える。畳み込み層は画像の大きさに関係しない。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Conv2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-009",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "特徴マップ",
+    "oneLine": "畳み込み（やプーリング）の結果として得られる、入力のどこにどの特徴が現れたかを表す2次元の配列。フィルタ1つにつき1枚できる。",
+    "why": "層が深くなるほど、エッジのような単純な特徴から、形・物体の部分のような複雑な特徴を表す特徴マップになる。",
+    "links": [
+      { "id": "C-05-004", "relation": "原因（畳み込みの出力）" },
+      { "id": "C-05-014", "relation": "次の処理" },
+      { "id": "C-05-017", "relation": "関連（特徴マップごとに平均）" }
+    ],
+    "confusions": [
+      { "id": "C-05-005", "point": "フィルタは重み（学習するもの）、特徴マップはその出力（計算結果）。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks", "url": "https://www.deeplearningbook.org/contents/convnets.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-010",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "Dilated Convolution・Atrous Convolution",
+    "oneLine": "フィルタの要素の間に隙間をあけて（間引いて）畳み込む方法。パラメータ数を増やさずに、広い範囲（受容野）を見られる。Dilated（膨張）とAtrous（フランス語で「穴あき」）は同じもの。",
+    "why": "セマンティックセグメンテーションのように画素ごとの予測では、解像度を落とさずに広い文脈を取り込みたい。プーリングで縮めずに視野を広げられる。DeepLabなどで使われる。",
+    "links": [
+      { "id": "C-05-004", "relation": "発展形" },
+      { "title": "DeepLab", "relation": "応用" },
+      { "title": "セマンティックセグメンテーション", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-05-011", "point": "Dilated/Atrousは視野を広げる工夫、Depthwise Separableは計算量とパラメータを減らす工夫。" }
+    ],
+    "sources": [
+      { "title": "Yu & Koltun (2015) Multi-Scale Context Aggregation by Dilated Convolutions (arXiv:1511.07122)", "url": "https://arxiv.org/abs/1511.07122" },
+      { "title": "Chen et al. (2016) DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (arXiv:1606.00915)", "url": "https://arxiv.org/abs/1606.00915" },
+      { "title": "PyTorch Documentation: torch.nn.Conv2d（dilation）", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-011",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "畳み込み層"],
+    "title": "Depthwise Separable Convolution",
+    "oneLine": "通常の畳み込みを、チャネルごとに独立に空間方向の畳み込みを行う「Depthwise畳み込み」と、1×1の畳み込みでチャネルを混ぜる「Pointwise畳み込み」の2段に分けたもの。",
+    "why": "通常の畳み込みとほぼ同じ働きを、はるかに少ない計算量とパラメータで実現できる。スマートフォンなどで動かす軽量モデルMobileNetの基礎。",
+    "links": [
+      { "title": "MobileNet", "relation": "応用" },
+      { "id": "C-05-008", "relation": "解決策（パラメータを減らす）" },
+      { "title": "モデルの軽量化", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-05-010", "point": "Depthwise Separableは軽くする工夫。広く見る工夫はDilated（Atrous）。" }
+    ],
+    "sources": [
+      { "title": "Howard et al. (2017) MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications (arXiv:1704.04861)", "url": "https://arxiv.org/abs/1704.04861" },
+      { "title": "PyTorch Documentation: torch.nn.Conv2d（groups）", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-012",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "正規化層"],
+    "title": "バッチ正規化",
+    "oneLine": "ミニバッチ内のデータで、各特徴（チャネル）ごとに平均0・分散1になるよう正規化し、学習可能なスケールとシフトをかける層。2015年にIoffeとSzegedyが提案。",
+    "why": "前の層のパラメータが変わるたびに層への入力の分布が変わる（内部共変量シフト）と、学習率を下げたり初期値に気を使ったりする必要があった。正規化で学習を速く安定させ、勾配消失も和らげる。ただしバッチサイズが小さいと統計が不正確になり性能が落ちる。",
+    "links": [
+      { "id": "C-05-013", "relation": "解決策（小さいバッチでの弱点を補う）" },
+      { "id": "C-05-014", "relation": "対比" },
+      { "title": "勾配消失問題", "relation": "解決策" }
+    ],
+    "confusions": [
+      { "id": "C-05-014", "point": "バッチ正規化＝バッチ方向に正規化（バッチサイズに依存）。レイヤー正規化＝1つのデータの中で正規化（バッチサイズに依存しない）。" },
+      { "title": "正則化", "point": "正規化（normalization）と正則化（regularization）は別物。" }
+    ],
+    "sources": [
+      { "title": "Ioffe & Szegedy (2015) Batch Normalization (arXiv:1502.03167)", "url": "https://arxiv.org/abs/1502.03167" },
+      { "title": "Wu & He (2018) Group Normalization (arXiv:1803.08494)", "url": "https://arxiv.org/abs/1803.08494" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-013",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "正規化層"],
+    "title": "グループ正規化",
+    "oneLine": "1つのデータの中で、チャネルをいくつかのグループに分け、グループごとに平均と分散を求めて正規化する方法。2018年にWuとHeが提案。",
+    "why": "計算がバッチサイズに依存しないので、メモリの制約でバッチを小さくせざるを得ない物体検出・セグメンテーション・動画などでも安定する。グループ数1ならレイヤー正規化、グループ数＝チャネル数ならインスタンス正規化に相当する。",
+    "links": [
+      { "id": "C-05-012", "relation": "解決策（BNの弱点を補う）" },
+      { "id": "C-05-014", "relation": "関連（両極端）" },
+      { "id": "C-05-015", "relation": "関連（両極端）" }
+    ],
+    "confusions": [
+      { "id": "C-05-015", "point": "グループ＝チャネルの束ごと、インスタンス＝チャネル1枚ごと、レイヤー＝全チャネルまとめて。" }
+    ],
+    "sources": [
+      { "title": "Wu & He (2018) Group Normalization (arXiv:1803.08494)", "url": "https://arxiv.org/abs/1803.08494" },
+      { "title": "PyTorch Documentation: torch.nn.GroupNorm", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-014",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "正規化層"],
+    "title": "レイヤー正規化",
+    "oneLine": "1つのデータ（1つの訓練例）について、その層のすべてのユニットの入力から平均と分散を求めて正規化する方法。2016年にBaらが提案。",
+    "why": "バッチの統計を使わないので、バッチサイズに依存せず、学習時と推論時で同じ計算になる。系列の長さが変わるRNNやTransformerで広く使われる。",
+    "links": [
+      { "id": "C-05-012", "relation": "対比" },
+      { "title": "Transformer", "relation": "応用" },
+      { "title": "リカレントニューラルネットワーク (RNN)", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-05-012", "point": "Transformerで標準的に使われるのはレイヤー正規化。バッチ正規化ではない。" }
+    ],
+    "sources": [
+      { "title": "Ba, Kiros & Hinton (2016) Layer Normalization (arXiv:1607.06450)", "url": "https://arxiv.org/abs/1607.06450" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-015",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "正規化層"],
+    "title": "インスタンス正規化",
+    "oneLine": "1つのデータの、チャネル1枚ずつについて平均と分散を求めて正規化する方法。画像の画風変換（スタイル変換）で効果が示された。",
+    "why": "画像ごと・チャネルごとのコントラストなどの違いを取り除けるので、画風変換のように個々の画像のスタイルを扱う生成タスクで、バッチ正規化と置き換えると品質が大きく上がった。",
+    "links": [
+      { "id": "C-05-013", "relation": "関連" },
+      { "id": "C-05-012", "relation": "対比（置き換え元）" }
+    ],
+    "confusions": [
+      { "id": "C-05-014", "point": "インスタンス＝チャネル1枚ずつ、レイヤー＝全チャネルまとめて。" }
+    ],
+    "sources": [
+      { "title": "Ulyanov, Vedaldi & Lempitsky (2016) Instance Normalization: The Missing Ingredient for Fast Stylization (arXiv:1607.08022)", "url": "https://arxiv.org/abs/1607.08022" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-016",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "プーリング層"],
+    "title": "最大値プーリング・平均値プーリング",
+    "oneLine": "プーリング層は、特徴マップを小さな領域に区切り、各領域を1つの値にまとめて縮小する層。最大値プーリングは領域の最大値を、平均値プーリングは平均値をとる。",
+    "why": "特徴マップを小さくして計算量を減らし、位置の小さなずれに対して出力が変わりにくくなる（不変性の獲得）。重み（学習するパラメータ）を持たない。",
+    "links": [
+      { "id": "C-05-018", "relation": "効果" },
+      { "id": "C-05-017", "relation": "発展形" },
+      { "id": "C-05-004", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-05-004", "point": "プーリング層には学習するパラメータが無い。畳み込み層にはある。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.MaxPool2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html" },
+      { "title": "PyTorch Documentation: torch.nn.AvgPool2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.AvgPool2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-017",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "プーリング層"],
+    "title": "グローバルアベレージプーリング (GAP)",
+    "oneLine": "特徴マップ1枚全体の平均をとって1つの値にするプーリング。チャネル数と同じ長さのベクトルになる。Network In Network（2013年）で、全結合層の代わりに出力に使われた。",
+    "why": "全結合層を置き換えるとパラメータが大幅に減り、過学習しにくくなる。特徴マップとクラスが直接対応するので、出力の解釈もしやすい（CAMにもつながる）。",
+    "links": [
+      { "id": "C-05-001", "relation": "置き換え対象" },
+      { "id": "C-05-016", "relation": "発展元" },
+      { "title": "CAM", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-05-016", "point": "平均値プーリングは小さな領域ごと、GAPは特徴マップ全体で1つの値にする。" }
+    ],
+    "sources": [
+      { "title": "Lin, Chen & Yan (2013) Network In Network (arXiv:1312.4400)", "url": "https://arxiv.org/abs/1312.4400" },
+      { "title": "PyTorch Documentation: torch.nn.AdaptiveAvgPool2d", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.AdaptiveAvgPool2d.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-018",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "プーリング層"],
+    "title": "不変性の獲得",
+    "oneLine": "プーリングによって、入力の位置が少しずれても出力がほとんど変わらなくなる性質（小さな平行移動への不変性）を得ること。",
+    "why": "物体が画像の中で少し動いても同じ物体だと認識したい。プーリングは、特徴が「どこにあるか」より「あるかどうか」を重視させる。",
+    "links": [
+      { "id": "C-05-016", "relation": "原因" },
+      { "title": "ネオコグニトロン", "relation": "起源（位置ずれに強い認識）" },
+      { "id": "C-05-034", "relation": "関連（データ拡張でも不変性を学ばせる）" }
+    ],
+    "confusions": [
+      { "id": "C-05-007", "point": "不変性を与えるのはプーリング。パディングは出力サイズの調整。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks", "url": "https://www.deeplearningbook.org/contents/convnets.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-019",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "スキップ結合"],
+    "title": "スキップ結合",
+    "oneLine": "ある層の入力を、いくつかの層を飛ばして（スキップして）後ろの層の出力に足し合わせる結合。ショートカット結合とも呼ぶ。",
+    "why": "層は「入力からの差分（残差）」だけを学べばよくなり、非常に深いネットワークでも最適化しやすくなる。勾配も足し算の経路を通って浅い層へ直接届く。",
+    "links": [
+      { "id": "C-05-020", "relation": "応用（代表例）" },
+      { "title": "勾配消失問題", "relation": "関連（勾配が届く経路を作る）" }
+    ],
+    "confusions": [
+      { "title": "ドロップアウト", "point": "スキップ結合は層を飛ばす「道」を足す。ドロップアウトはニューロンを学習中にランダムに消す。" }
+    ],
+    "sources": [
+      { "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)", "url": "https://arxiv.org/abs/1512.03385" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-020",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "スキップ結合"],
+    "title": "ResNet",
+    "oneLine": "スキップ結合で入力をそのまま（恒等写像で）足し、層には残差F(x)を学ばせる「残差学習」を用いたネットワーク。Microsoft Researchのチームが発表し、152層のモデルを含むアンサンブルでILSVRC 2015の分類部門で1位。",
+    "why": "層を単純に深くすると、過学習ではないのに訓練誤差まで悪化する（劣化問題）。残差学習にすると、追加した層は「何もしない（恒等写像）」から学べるので、深くしても性能が落ちにくくなった。",
+    "links": [
+      { "id": "C-05-019", "relation": "部分" },
+      { "title": "ILSVRC", "relation": "成果" },
+      { "title": "画像認識", "relation": "応用" }
+    ],
+    "confusions": [
+      { "title": "AlexNet", "point": "2012年の優勝はAlexNet、2014年はGoogLeNet、2015年はResNet。" }
+    ],
+    "sources": [
+      { "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)", "url": "https://arxiv.org/abs/1512.03385" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-021",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "リカレントニューラルネットワーク (RNN)",
+    "oneLine": "前の時刻の隠れ層の状態を次の時刻の入力に戻す（回帰結合する）ことで、過去の情報を持ちながら系列データを1つずつ処理するニューラルネットワーク。",
+    "why": "文章・音声・株価のように順番に意味がある時系列データを扱える。ただし時間方向に何度も同じ重みを掛けるので、長い系列では勾配消失・勾配爆発が起き、遠い過去の情報を学びにくい。",
+    "links": [
+      { "id": "C-05-022", "relation": "対象" },
+      { "id": "C-05-025", "relation": "学習方法" },
+      { "id": "C-05-027", "relation": "解決策（長期の依存）" },
+      { "id": "C-05-034", "relation": "関連" },
+      { "title": "Attention", "relation": "解決策（さらに長い依存と並列化）" }
+    ],
+    "confusions": [
+      { "title": "再帰的ニューラルネットワーク", "point": "G検定のRNNは時間方向に回帰するリカレント（recurrent）。木構造に再帰するrecursiveとは別。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets", "url": "https://www.deeplearningbook.org/contents/rnn.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-022",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "時系列データ",
+    "oneLine": "株価・気温・音声・文章のように、データの並ぶ順番に意味があるデータ。",
+    "why": "順番を入れ替えると意味が変わるので、前の情報を覚えながら処理するモデル（RNN、LSTM、Transformerなど）が必要になる。",
+    "links": [
+      { "id": "C-05-021", "relation": "対象とするモデル" },
+      { "title": "自己回帰モデル (ARモデル)", "relation": "関連（統計の時系列モデル）" }
+    ],
+    "confusions": [
+      { "id": "C-05-021", "point": "画像のように順番が無いデータは通常CNNで、時系列データはRNNなどで扱う。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets", "url": "https://www.deeplearningbook.org/contents/rnn.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-023",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "エルマンネットワーク",
+    "oneLine": "隠れ層の出力を、次の時刻の隠れ層への入力として戻す、単純なRNN。1990年にエルマンが発表した。",
+    "why": "隠れ層の状態に過去の情報を持たせることで、系列の文脈を扱えるようにした。今日「単純RNN」と呼ばれる形の基本。",
+    "links": [
+      { "id": "C-05-021", "relation": "部分（基本形）" },
+      { "id": "C-05-024", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-05-024", "point": "エルマン＝隠れ層の出力を戻す。ジョルダン＝出力層の出力を戻す。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-024",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "ジョルダンネットワーク",
+    "oneLine": "出力層の出力を、次の時刻の隠れ層への入力として戻すRNN。ジョルダンが提案した。",
+    "why": "前の時刻の出力（予測結果）を文脈として使う。エルマンネットワークとは戻す元の層が違う。",
+    "links": [
+      { "id": "C-05-021", "relation": "部分" },
+      { "id": "C-05-023", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-05-023", "point": "戻すのが隠れ層ならエルマン、出力層ならジョルダン。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-025",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "BPTT",
+    "oneLine": "Backpropagation Through Time。RNNを時間方向に展開して、時刻をさかのぼりながら誤差逆伝播法を適用する学習方法。",
+    "why": "RNNは各時刻で同じ重みを使うので、時間方向に展開すれば深いネットワークとみなして勾配を計算できる。系列が長いほど展開が深くなり、勾配消失・勾配爆発が起きやすい。",
+    "links": [
+      { "title": "誤差逆伝播法", "relation": "部分（応用）" },
+      { "title": "勾配消失問題", "relation": "課題" },
+      { "title": "勾配爆発問題", "relation": "課題" },
+      { "id": "C-05-026", "relation": "関連（学習時の工夫）" }
+    ],
+    "confusions": [
+      { "id": "C-05-026", "point": "BPTTは勾配の計算方法、教師強制は学習時に何を入力として与えるかの工夫。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets", "url": "https://www.deeplearningbook.org/contents/rnn.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-026",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "教師強制",
+    "oneLine": "系列を生成するRNNの学習時に、次の時刻の入力として、モデル自身の予測ではなく正解の値（教師データ）を与える方法。teacher forcing。",
+    "why": "学習の初期はモデルの予測が誤りだらけなので、それを次の入力にすると誤りが連鎖して学習が進まない。正解を与えると安定して速く学べる。一方、推論時は自分の予測を入力するので、学習時と条件がずれる問題がある。",
+    "links": [
+      { "id": "C-05-021", "relation": "対象" },
+      { "id": "C-05-030", "relation": "応用（Seq2Seqのデコーダ）" }
+    ],
+    "confusions": [
+      { "id": "C-05-025", "point": "教師強制は入力の与え方、BPTTは勾配の計算方法。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets", "url": "https://www.deeplearningbook.org/contents/rnn.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-027",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "LSTM",
+    "oneLine": "Long Short-Term Memory。誤差を一定に流し続けるセル（CEC：Constant Error Carousel）と、情報の流れを開閉するゲート（入力ゲート・出力ゲート、のちに忘却ゲート）を持つRNN。1997年にHochreiterとSchmidhuberが提案。",
+    "why": "単純なRNNは勾配消失のため長い時間差の依存関係を学べなかった。セルで誤差を保ち、ゲートで記憶の書き込み・読み出し・忘却を制御することで、長期の依存を学べるようになった。",
+    "links": [
+      { "id": "C-05-021", "relation": "発展形（改良）" },
+      { "id": "C-05-029", "relation": "部分" },
+      { "id": "C-05-028", "relation": "発展形（簡略版）" },
+      { "title": "勾配消失問題", "relation": "解決策" }
+    ],
+    "confusions": [
+      { "id": "C-05-028", "point": "LSTMは入力・忘却・出力の3ゲート＋セル。GRUはリセット・更新の2ゲートでセルを持たず、パラメータが少ない。" }
+    ],
+    "sources": [
+      { "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation", "url": "https://www.bioinf.jku.at/publications/older/2604.pdf" },
+      { "title": "PyTorch Documentation: torch.nn.LSTM", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-028",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "GRU",
+    "oneLine": "Gated Recurrent Unit。リセットゲートと更新ゲートの2つで情報の流れを制御する、LSTMを簡略化したRNNのユニット。2014年にChoらが提案。",
+    "why": "LSTMよりゲートが少なくセルも持たないので、パラメータが少なく計算が軽い一方、長期の依存を学ぶ力はLSTMと同程度のことが多い。",
+    "links": [
+      { "id": "C-05-027", "relation": "対比（簡略化）" },
+      { "id": "C-05-029", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-05-027", "point": "ゲートの数：LSTM3つ、GRU2つ。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.GRU", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.GRU.html" },
+      { "title": "Cho et al. (2014) Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation (arXiv:1406.1078)", "url": "https://arxiv.org/abs/1406.1078" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-029",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "ゲート機構",
+    "oneLine": "シグモイド関数の出力（0〜1）を掛けることで、情報をどれだけ通すか（開くか閉じるか）を学習によって調節する仕組み。",
+    "why": "何を記憶に書き込み、何を忘れ、何を出力するかをデータに応じて制御できる。LSTMやGRUが長期の依存を学べる鍵。",
+    "links": [
+      { "id": "C-05-027", "relation": "応用" },
+      { "id": "C-05-028", "relation": "応用" },
+      { "title": "シグモイド関数", "relation": "部分" }
+    ],
+    "confusions": [
+      { "title": "Attention", "point": "ゲートは「通す量」を0〜1で調整、Attentionは「どこに注目するか」を重みで配分。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.LSTM", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html" },
+      { "title": "PyTorch Documentation: torch.nn.GRU", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.GRU.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-030",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "回帰結合層"],
+    "title": "双方向 RNN (Bidirectional RNN)",
+    "oneLine": "系列を前から読むRNNと、後ろから読むRNNを組み合わせ、各時刻で過去と未来の両方の情報を使えるようにしたRNN。",
+    "why": "文中の単語の品詞や意味は、前の語だけでなく後ろの語にも左右される。系列全体が手元にあるタスク（翻訳の入力の読み取り、音声認識など）で精度が上がる。ただし先の入力が要るので、リアルタイムの逐次予測には向かない。",
+    "links": [
+      { "id": "C-05-021", "relation": "発展形" },
+      { "title": "ELMo", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-05-021", "point": "通常のRNNは過去の情報だけ。双方向RNNは未来（後ろ）の情報も使う。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10（10.3 Bidirectional RNNs）", "url": "https://www.deeplearningbook.org/contents/rnn.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-031",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "Seq2Seq",
+    "oneLine": "入力の系列をエンコーダ（RNN/LSTM）で固定長のベクトルにまとめ、そのベクトルからデコーダで出力の系列を生成するモデル。系列から系列への変換（翻訳など）に使う。",
+    "why": "入力と出力の長さが違う翻訳などを、1つのネットワークで端から端まで学習できる。一方、長い文でも固定長の1ベクトルに押し込むので、それが性能のボトルネックになり、Attentionが導入された。",
+    "links": [
+      { "id": "C-05-032", "relation": "解決策（ボトルネックの解消）" },
+      { "title": "LSTM", "relation": "部分" },
+      { "id": "C-05-026", "relation": "関連（デコーダの学習）" },
+      { "title": "機械翻訳", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-05-035", "point": "初期のSeq2SeqはRNN（LSTM）。TransformerもEncoder-Decoder型だがRNNを使わない。" }
+    ],
+    "sources": [
+      { "title": "Sutskever, Vinyals & Le (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)", "url": "https://arxiv.org/abs/1409.3215" },
+      { "title": "Cho et al. (2014) Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation (arXiv:1406.1078)", "url": "https://arxiv.org/abs/1406.1078" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-032",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "Attention",
+    "oneLine": "出力の各時点で、入力のどの部分にどれだけ注目するかの重みを計算し、その重みで入力の情報を足し合わせて使う仕組み。",
+    "why": "Seq2Seqでは入力を固定長の1ベクトルに押し込むことが性能のボトルネックだった。Attentionは出力のたびに関係する入力の部分を探して使えるので、長い文でも性能が落ちにくい（Bahdanauら、2014年）。",
+    "links": [
+      { "id": "C-05-031", "relation": "解決策（何を解いたか）" },
+      { "id": "C-05-036", "relation": "部分（計算の材料）" },
+      { "id": "C-05-033", "relation": "部分（種類）" },
+      { "id": "C-05-034", "relation": "部分（種類）" },
+      { "id": "C-05-035", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-05-029", "point": "Attentionは注目先の配分、ゲート機構は情報を通す量の調整。" }
+    ],
+    "sources": [
+      { "title": "Bahdanau, Cho & Bengio (2014) Neural Machine Translation by Jointly Learning to Align and Translate (arXiv:1409.0473)", "url": "https://arxiv.org/abs/1409.0473" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-033",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "Source-Target Attention",
+    "oneLine": "クエリを出力側（デコーダ）から、キーとバリューを入力側（エンコーダの出力）からとるAttention。Encoder-Decoder Attentionとも呼ぶ。",
+    "why": "出力の各位置が、入力文のすべての位置を参照できる。翻訳で「今訳している語に対応する原文の語」を探す役割。",
+    "links": [
+      { "id": "C-05-032", "relation": "部分" },
+      { "id": "C-05-034", "relation": "対比" },
+      { "id": "C-05-035", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-05-034", "point": "Source-Target＝クエリとキー・バリューが別の系列。Self＝同じ系列の中。" }
+    ],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-034",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "Self-Attention",
+    "oneLine": "1つの系列の中で、各位置が同じ系列の他のすべての位置との関係を計算し、文脈を反映した表現を作るAttention。クエリ・キー・バリューをすべて同じ系列からとる。",
+    "why": "離れた位置どうしの関係も1ステップで直接計算でき、時刻を順に処理するRNNと違って並列に計算できる。Transformerの中心。",
+    "links": [
+      { "id": "C-05-032", "relation": "部分" },
+      { "id": "C-05-035", "relation": "応用" },
+      { "id": "C-05-037", "relation": "発展形（複数並べる）" },
+      { "id": "C-05-021", "relation": "対比（逐次処理）" }
+    ],
+    "confusions": [
+      { "id": "C-05-033", "point": "Self-Attentionは自分の系列の中で注目し合う。" }
+    ],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-035",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "Transformer",
+    "oneLine": "RNNも畳み込みも使わず、Attention（Self-Attention、Source-Target Attention、Multi-Head Attention）だけで構成したEncoder-Decoder型のモデル。2017年の論文「Attention Is All You Need」で発表。",
+    "why": "並列に計算できるので学習が速く、長い依存関係も扱える。BERTやGPTなどの大規模言語モデル、生成AIの土台になった。語順の情報は位置エンコーディングで加える。",
+    "links": [
+      { "id": "C-05-034", "relation": "部分" },
+      { "id": "C-05-037", "relation": "部分" },
+      { "id": "C-05-038", "relation": "部分" },
+      { "id": "C-05-014", "relation": "部分（レイヤー正規化）" },
+      { "title": "BERT", "relation": "発展形" },
+      { "title": "生成AI", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-05-031", "point": "TransformerはRNNを使わない。「LSTMを改良したモデル」は誤り。" }
+    ],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-036",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "クエリ・キー・バリュー",
+    "oneLine": "Attentionの計算に使う3種類のベクトル。クエリ（何を探しているか）とキー（各要素の見出し）の類似度で重みを決め、その重みでバリュー（各要素の中身）を足し合わせる。",
+    "why": "検索にたとえると、クエリが検索語、キーが各記事のタイトル、バリューが記事の本文。似ているキーのバリューほど強く取り込む。",
+    "links": [
+      { "id": "C-05-032", "relation": "部分" },
+      { "id": "C-05-034", "relation": "関連（3つとも同じ系列から）" },
+      { "id": "C-05-033", "relation": "関連（クエリと、キー・バリューが別の系列から）" }
+    ],
+    "confusions": [
+      { "id": "C-05-033", "point": "Source-Target Attentionでは、クエリがデコーダ、キーとバリューがエンコーダから来る。" }
+    ],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-037",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "Multi-Head Attention",
+    "oneLine": "クエリ・キー・バリューを異なる線形変換で複数組（複数のヘッド）に写し、それぞれでAttentionを計算して結果を連結する仕組み。",
+    "why": "1つのAttentionでは注目の仕方が1通りに平均されてしまう。複数のヘッドで、異なる表現の部分空間・異なる位置の情報に同時に注目できる。",
+    "links": [
+      { "id": "C-05-034", "relation": "発展元" },
+      { "id": "C-05-035", "relation": "部分" }
+    ],
+    "confusions": [
+      { "title": "マルチタスク学習", "point": "Multi-Headは1つのタスクの中で注目の仕方を複数持つ仕組み。複数タスクを学ぶマルチタスク学習とは別。" }
+    ],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
+      { "title": "PyTorch Documentation: torch.nn.MultiheadAttention", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-038",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "Attention"],
+    "title": "位置エンコーディング",
+    "oneLine": "各単語の埋め込みに、その単語が系列の何番目にあるかを表すベクトルを足し合わせ、語順の情報を与える仕組み。元のTransformerでは周波数の異なる正弦波（sin・cos）を使った。",
+    "why": "TransformerにはRNNも畳み込みも無いので、そのままでは単語の順番を区別できない。位置の情報を入力に加えることで語順を扱えるようにする。",
+    "links": [
+      { "id": "C-05-035", "relation": "部分" },
+      { "id": "C-05-034", "relation": "原因（順番を見ない）" }
+    ],
+    "confusions": [
+      { "id": "C-05-021", "point": "RNNは順に処理するので位置情報が自然に入る。Transformerは並列処理なので位置エンコーディングが必要。" }
+    ],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-039",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "オートエンコーダ"],
+    "title": "オートエンコーダ",
+    "oneLine": "入力をエンコーダで低次元の表現（潜在表現）に圧縮し、デコーダで元の入力を復元するように学習するニューラルネットワーク。入力そのものを正解として使う。",
+    "why": "ラベル無しのデータから、データの本質を表す特徴を学べる。中間の表現は次元削減に、復元の誤差の大きさは異常検知に使える。ノイズを加えた入力から元を復元させるのがデノイジングオートエンコーダ。",
+    "links": [
+      { "id": "C-05-040", "relation": "発展形" },
+      { "id": "C-05-041", "relation": "発展形" },
+      { "title": "次元削減", "relation": "応用" }
+    ],
+    "confusions": [
+      { "title": "主成分分析 (PCA)", "point": "PCAは線形の次元削減。オートエンコーダは非線形の次元削減もできる。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 14 Autoencoders", "url": "https://www.deeplearningbook.org/contents/autoencoders.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-040",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "オートエンコーダ"],
+    "title": "積層オートエンコーダと事前学習",
+    "oneLine": "積層オートエンコーダ：オートエンコーダを何段も重ねたもの。浅い層から1層ずつ順にオートエンコーダとして学習させ（層ごとの貪欲な事前学習）、その重みを初期値として深いネットワーク全体を微調整（ファインチューニング）する。",
+    "why": "深いネットワークを最初からまとめて学習するのが難しかった時代に、良い初期値を用意して学習を可能にした（2006〜2007年頃のヒントンやベンジオらの研究）。現在は事前学習済みモデルを使った転移学習へと考え方が受け継がれている。",
+    "links": [
+      { "id": "C-05-039", "relation": "部分" },
+      { "title": "事前学習済みモデル", "relation": "発展形（考え方を受け継ぐ）" },
+      { "title": "勾配消失問題", "relation": "背景（深い層の学習の難しさ）" }
+    ],
+    "confusions": [
+      { "title": "ファインチューニング", "point": "事前学習は「下準備の学習」、ファインチューニングはその後の「目的のタスクに合わせた微調整」。" }
+    ],
+    "sources": [
+      { "title": "Bengio et al. (2006) Greedy Layer-Wise Training of Deep Networks. NeurIPS", "url": "https://papers.nips.cc/paper_files/paper/2006/hash/5da713a690c067105aeb2fae32403405-Abstract.html" },
+      { "title": "Vincent et al. (2010) Stacked Denoising Autoencoders. JMLR", "url": "https://www.jmlr.org/papers/v11/vincent10a.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-041",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "オートエンコーダ"],
+    "title": "変分オートエンコーダ (VAE)",
+    "oneLine": "潜在表現を1点ではなく確率分布（平均と分散）として学習するオートエンコーダ。潜在空間から値をサンプリングしてデコーダに入れると、新しいデータを生成できる。2013年にKingmaとWellingが提案。",
+    "why": "潜在空間がなめらかで連続的になるので、データの生成や、潜在空間上での補間ができる。学習には再パラメータ化トリックを使い、誤差関数には復元誤差とKL情報量（潜在分布を事前分布に近づける項）を使う。",
+    "links": [
+      { "id": "C-05-039", "relation": "発展元" },
+      { "id": "C-05-042", "relation": "発展形" },
+      { "title": "カルバック・ライブラー情報量 (KL)", "relation": "部分（誤差関数）" },
+      { "title": "画像生成", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-05-039", "point": "通常のオートエンコーダは潜在表現が1点。VAEは分布なので生成モデルとして使える。" }
+    ],
+    "sources": [
+      { "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)", "url": "https://arxiv.org/abs/1312.6114" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-042",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "オートエンコーダ"],
+    "title": "VQ-VAE・info VAE・β-VAE",
+    "oneLine": "VAEの代表的な改良。VQ-VAE：潜在表現を連続値ではなく離散的なコード（ベクトル量子化）にし、事前分布も学習する。info VAE：潜在変数が無視されやすい問題などを、目的関数を変えて改善する。β-VAE：KL情報量の項に係数βをかけて強め、潜在変数の各次元が独立した意味を持つ（もつれが解けた）表現を学ぶ。",
+    "why": "VAEには、潜在表現がぼやける・潜在変数が使われない・各次元の意味が混ざる、といった課題があり、それぞれを改善するために提案された。",
+    "links": [
+      { "id": "C-05-041", "relation": "発展元" }
+    ],
+    "confusions": [
+      { "id": "C-05-041", "point": "離散的な潜在表現＝VQ-VAE、KL項の重みβ＝β-VAE。" }
+    ],
+    "sources": [
+      { "title": "van den Oord, Vinyals & Kavukcuoglu (2017) Neural Discrete Representation Learning (arXiv:1711.00937)", "url": "https://arxiv.org/abs/1711.00937" },
+      { "title": "Zhao, Song & Ermon (2017) InfoVAE: Information Maximizing Variational Autoencoders (arXiv:1706.02262)", "url": "https://arxiv.org/abs/1706.02262" },
+      { "title": "Higgins et al. (2017) beta-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework. ICLR", "url": "https://openreview.net/forum?id=Sy2fzU9gl" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-043",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "データ拡張"],
+    "title": "データ拡張",
+    "oneLine": "手元の訓練データに、意味を変えない範囲の変換（反転・回転・切り抜き・明るさの変更、文の言い換えなど）を加えて、データを水増しする方法。",
+    "why": "ディープラーニングは大量のデータを必要とし、データが少ないと過学習しやすい。データ拡張で多様なデータを学ばせると、汎化性能や、位置・向き・明るさの変化に対する頑健さが上がる。ただしタスクの意味を壊す変換（数字の6と9を入れ替えてしまう回転など）は避ける。",
+    "links": [
+      { "title": "過学習", "relation": "解決策" },
+      { "id": "C-05-044", "relation": "具体例（画像の基本）" },
+      { "id": "C-05-045", "relation": "具体例（画像の領域消去）" },
+      { "id": "C-05-046", "relation": "具体例（画像の混合）" },
+      { "id": "C-05-048", "relation": "具体例（テキスト）" }
+    ],
+    "confusions": [
+      { "title": "ドロップアウト", "point": "データ拡張は入力データを変える。ドロップアウトはネットワークの中のニューロンを消す。" }
+    ],
+    "sources": [
+      { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 7 Regularization（7.4 Dataset Augmentation）", "url": "https://www.deeplearningbook.org/contents/regularization.html" },
+      { "title": "PyTorch Documentation: torchvision Transforms", "url": "https://docs.pytorch.org/vision/stable/transforms.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-044",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "データ拡張"],
+    "title": "画像の基本的なデータ拡張（Random Flip・Rotate・Crop・Brightness・Contrast）",
+    "oneLine": "Random Flip：ランダムに左右（上下）反転。Rotate：回転。Crop：画像の一部を切り抜く。Brightness：明るさを変える。Contrast：明暗の差（コントラスト）を変える。",
+    "why": "撮影の向き・位置・照明の違いに強くするための基本の変換。torchvisionなどのライブラリに標準で用意されている。",
+    "links": [
+      { "id": "C-05-043", "relation": "部分" },
+      { "id": "C-05-047", "relation": "関連（組み合わせを自動で選ぶ）" }
+    ],
+    "confusions": [
+      { "id": "C-05-045", "point": "Cropは一部を切り出して使う。CutoutやRandom Erasingは一部を消して（塗りつぶして）使う。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torchvision Transforms", "url": "https://docs.pytorch.org/vision/stable/transforms.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-045",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "データ拡張"],
+    "title": "Cutout・Random Erasing",
+    "oneLine": "Cutout：学習時に画像のランダムな位置の正方形領域を隠す（マスクする）。Random Erasing：ランダムに選んだ長方形の領域をランダムな値で塗りつぶす。",
+    "why": "画像の一部が隠れていても認識できるように学ばせ（遮蔽への頑健性）、過学習を抑える。どちらも学習するパラメータが要らず、多くのCNNに組み込める。",
+    "links": [
+      { "id": "C-05-043", "relation": "部分" },
+      { "id": "C-05-046", "relation": "発展形（消した部分に別画像を貼る＝CutMix）" }
+    ],
+    "confusions": [
+      { "id": "C-05-046", "point": "Cutout・Random Erasingは消すだけ。CutMixは消した領域に別の画像を貼り、ラベルも面積比で混ぜる。" }
+    ],
+    "sources": [
+      { "title": "DeVries & Taylor (2017) Improved Regularization of Convolutional Neural Networks with Cutout (arXiv:1708.04552)", "url": "https://arxiv.org/abs/1708.04552" },
+      { "title": "Zhong et al. (2017) Random Erasing Data Augmentation (arXiv:1708.04896)", "url": "https://arxiv.org/abs/1708.04896" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-046",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "データ拡張"],
+    "title": "Mixup・CutMix",
+    "oneLine": "Mixup：2枚の画像とそのラベルを、同じ比率で重ね合わせた（線形に混ぜた）データで学習する。CutMix：1枚の画像の一部の領域を切り取って別の画像のパッチを貼り、ラベルを貼った面積の比率で混ぜる。",
+    "why": "どちらも2つのデータを混ぜることで、モデルの過信や丸暗記を抑え汎化性能を上げる。CutMixは、Cutoutのように情報を捨てずに、物体の目立たない部分にも注目させられる。",
+    "links": [
+      { "id": "C-05-043", "relation": "部分" },
+      { "id": "C-05-045", "relation": "発展元（CutMix）" }
+    ],
+    "confusions": [
+      { "id": "C-05-046", "point": "Mixup＝画像全体を半透明に重ねる、CutMix＝切り貼り。どちらもラベルも混ぜる。" }
+    ],
+    "sources": [
+      { "title": "Zhang et al. (2017) mixup: Beyond Empirical Risk Minimization (arXiv:1710.09412)", "url": "https://arxiv.org/abs/1710.09412" },
+      { "title": "Yun et al. (2019) CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features (arXiv:1905.04899)", "url": "https://arxiv.org/abs/1905.04899" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-047",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "データ拡張"],
+    "title": "RandAugment",
+    "oneLine": "あらかじめ用意した多数の変換の中からランダムにN個を選び、共通の強さMで適用するデータ拡張の方法。調整する値がNとMの2つだけで済む。シラバスでは「RandAugument」と表記されている。",
+    "why": "どの変換をどの強さで使うかを自動探索する方法（AutoAugmentなど）は、別途の探索に大きな計算コストがかかっていた。RandAugmentは探索空間を大幅に小さくし、探索の段階を省けるようにした。",
+    "links": [
+      { "id": "C-05-043", "relation": "部分" },
+      { "id": "C-05-044", "relation": "部分（組み合わせる変換）" }
+    ],
+    "confusions": [
+      { "id": "C-05-046", "point": "RandAugmentは変換の選び方の方法。Mixupは2つのデータを混ぜる方法。" }
+    ],
+    "sources": [
+      { "title": "Cubuk et al. (2019) RandAugment: Practical automated data augmentation with a reduced search space (arXiv:1909.13719)", "url": "https://arxiv.org/abs/1909.13719" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-05-048",
+    "syllabus": ["技術分野", "ディープラーニングの要素技術", "データ拡張"],
+    "title": "テキストのデータ拡張（noising・paraphrasing）",
+    "oneLine": "noising：文の単語をランダムに削除・入れ替え・置き換えるなど、入力にノイズを加える方法。paraphrasing：同義語への置き換えや言い換え（別の言語に翻訳して戻す逆翻訳など）で、意味を保ったまま別の文を作る方法。",
+    "why": "テキストは画像のように反転や回転ができないので、言葉の単位で意味を大きく変えない変換を加える。データが少ない文書分類などで効果がある。",
+    "links": [
+      { "id": "C-05-043", "relation": "部分" },
+      { "title": "自然言語処理", "relation": "応用分野" }
+    ],
+    "confusions": [
+      { "id": "C-05-048", "point": "paraphrasing＝言い換え（意味は保つ）。単語をランダムに消したり並べ替えたりするのはnoisingの側。" }
+    ],
+    "sources": [
+      { "title": "Wei & Zou (2019) EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks (arXiv:1901.11196)", "url": "https://arxiv.org/abs/1901.11196" },
+      { "title": "Xie et al. (2017) Data Noising as Smoothing in Neural Network Language Models (arXiv:1703.02573)", "url": "https://arxiv.org/abs/1703.02573" },
+      { "title": "Sennrich, Haddow & Birch (2015) Improving Neural Machine Translation Models with Monolingual Data (arXiv:1511.06709)", "url": "https://arxiv.org/abs/1511.06709" }
+    ],
+    "status": "unverified"
+  }
+]

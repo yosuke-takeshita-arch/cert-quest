@@ -1,0 +1,852 @@
+[
+  {
+    "id": "C-04-001",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "title": "単純パーセプトロン",
+    "oneLine": "入力層と出力層だけからなる最も単純なニューラルネットワーク。入力の重み付き和がしきい値を超えるかで出力を決める。",
+    "why": "ニューラルネットワークの出発点。ただし直線（超平面）で分けられる問題しか解けず、排他的論理和（XOR）のような線形分離できない問題は解けない。これを越えるために隠れ層を持つ多層パーセプトロンが必要になった。",
+    "links": [
+      { "id": "C-04-002", "relation": "発展形" },
+      { "title": "人間の神経回路（形式ニューロン）", "relation": "前身" }
+    ],
+    "confusions": [
+      { "id": "C-04-002", "point": "単純パーセプトロンは隠れ層が無く、線形分離可能な問題しか解けない。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Neural network models (supervised)", "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-002",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "title": "多層パーセプトロン",
+    "oneLine": "入力層と出力層の間に1つ以上の隠れ層を持つニューラルネットワーク。非線形な関数を学習できる。",
+    "why": "隠れ層と非線形の活性化関数によって、直線で分けられない問題も解ける。隠れ層を深く（多く）重ねたものがディープラーニング（深層学習）。",
+    "links": [
+      { "id": "C-04-001", "relation": "発展元" },
+      { "id": "C-04-003", "relation": "部分" },
+      { "title": "ディープラーニング", "relation": "発展形（層を深くする）" },
+      { "id": "C-04-022", "relation": "学習方法" }
+    ],
+    "confusions": [
+      { "title": "ディープラーニング", "point": "隠れ層が1つでも多層パーセプトロン。ディープラーニングはそれを何層も重ねたもの。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Neural network models (supervised)", "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-003",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "title": "入力層・隠れ層・出力層",
+    "oneLine": "入力層：データを受け取る層。隠れ層：入力と出力の間で特徴を変換する層（外から直接見えない）。出力層：予測結果を出す層。",
+    "why": "隠れ層が学習によって課題に重要な特徴を表すようになる。これが「特徴量を自分で学ぶ」ディープラーニングの仕組み。",
+    "links": [
+      { "id": "C-04-002", "relation": "部分" },
+      { "title": "全結合層", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-04-001", "point": "隠れ層の無いネットワークは単純パーセプトロン。" }
+    ],
+    "sources": [
+      { "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature", "url": "https://www.nature.com/articles/323533a0" },
+      { "title": "scikit-learn User Guide: Neural network models (supervised)", "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-004",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "title": "CPU・GPU・TPU",
+    "oneLine": "CPU：汎用の計算装置で、複雑な処理を順に速くこなす。GPU：もとはグラフィックス処理用で、多数の単純な計算を並列に行うのが得意。TPU：Googleが機械学習向けに独自開発した専用チップ（ASIC）で、大規模な行列演算に特化。",
+    "why": "ディープラーニングの学習・推論は大量の行列演算の繰り返しで、並列に計算できる。だから並列処理に強いGPUや行列演算専用のTPUが向く。",
+    "links": [
+      { "title": "ディープラーニング", "relation": "前提（計算資源）" },
+      { "title": "第3次AIブーム", "relation": "原因（計算能力の向上）" }
+    ],
+    "confusions": [
+      { "title": "ディープラーニング", "point": "TPUはGoogleが機械学習向けに開発したもの。GPUはもとはグラフィックス処理用。「TPUは画像処理用に作られた」は誤り。" }
+    ],
+    "sources": [
+      { "title": "Google Cloud: Introduction to Cloud TPU", "url": "https://cloud.google.com/tpu/docs/intro-to-tpu" },
+      { "title": "Google for Developers: Machine Learning Glossary（accelerator chip）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及（GPUの注記）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-005",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "活性化関数",
+    "oneLine": "ニューロンの入力の重み付き和を変換して出力する関数。非線形の関数を使うことで、ネットワークが複雑な（非線形の）関係を学べるようになる。",
+    "why": "活性化関数が線形だと、何層重ねても全体は1つの線形変換にしかならず、層を深くする意味が無い。どの関数を使うかで勾配消失の起きやすさも変わる。",
+    "links": [
+      { "id": "C-04-006", "relation": "具体例" },
+      { "id": "C-04-008", "relation": "具体例" },
+      { "id": "C-04-009", "relation": "具体例" },
+      { "id": "C-04-010", "relation": "具体例（出力層）" },
+      { "id": "C-04-024", "relation": "関連（選び方で起きやすさが変わる）" }
+    ],
+    "confusions": [
+      { "id": "C-04-011", "point": "活性化関数はニューロンの出力を作る関数。誤差関数は予測と正解のずれを測る関数。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（activation function）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-006",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "シグモイド関数",
+    "oneLine": "任意の実数を0〜1の値に変換するS字型の関数。σ(x)＝1/(1＋e^−x)。",
+    "why": "出力を確率として扱えるので、2値分類の出力層に使う。一方で隠れ層に使うと、微分の最大値が0.25と小さく、入力の絶対値が大きいと微分がほぼ0になる（飽和）ため、層を重ねると勾配が掛け算で小さくなり勾配消失問題が起きやすい。",
+    "links": [
+      { "id": "C-04-024", "relation": "原因（勾配消失の原因になりやすい）" },
+      { "id": "C-04-008", "relation": "解決策（隠れ層ではReLUへ）" },
+      { "title": "ロジスティック回帰", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-04-007", "point": "シグモイドの出力は0〜1、tanhは−1〜1。tanhの微分の最大値は1でシグモイド（0.25）より大きい。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Sigmoid", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html" },
+      { "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS", "url": "https://proceedings.mlr.press/v9/glorot10a.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-007",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "tanh関数",
+    "oneLine": "任意の実数を−1〜1の値に変換するS字型の関数（双曲線正接関数）。原点を中心に対称。",
+    "why": "出力の中心が0なのでシグモイドより学習が進みやすく、微分の最大値も1と大きい。ただし入力の絶対値が大きいと微分がほぼ0になる飽和は残り、深い層では勾配消失が起こりうる。",
+    "links": [
+      { "id": "C-04-006", "relation": "対比" },
+      { "id": "C-04-008", "relation": "解決策（さらに勾配消失を緩和）" }
+    ],
+    "confusions": [
+      { "id": "C-04-006", "point": "tanhは−1〜1、シグモイドは0〜1。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Tanh", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Tanh.html" },
+      { "title": "Glorot, Bordes & Bengio (2011) Deep Sparse Rectifier Neural Networks. AISTATS", "url": "https://proceedings.mlr.press/v15/glorot11a.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-008",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "ReLU関数",
+    "oneLine": "入力が0以下なら0、正ならそのまま出力する関数。ReLU(x)＝max(0, x)。正規化線形関数。",
+    "why": "正の領域では微分が常に1なので、層を重ねても勾配が小さくなりにくく、勾配消失を緩和する。計算も軽い。ただし入力が負だと微分が0になり、そのニューロンが学習しなくなることがある（これを避けるのがLeaky ReLU）。",
+    "links": [
+      { "id": "C-04-024", "relation": "解決策（勾配消失を緩和）" },
+      { "id": "C-04-009", "relation": "発展形" },
+      { "id": "C-04-006", "relation": "対比（置き換え元）" },
+      { "title": "スキップ結合", "relation": "さらなる解決策" }
+    ],
+    "confusions": [
+      { "id": "C-04-009", "point": "ReLUは負で0（傾き0）、Leaky ReLUは負でもわずかな傾きを持つ。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.ReLU", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.ReLU.html" },
+      { "title": "Google for Developers: Machine Learning Glossary（Rectified Linear Unit）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Glorot, Bordes & Bengio (2011) Deep Sparse Rectifier Neural Networks. AISTATS", "url": "https://proceedings.mlr.press/v15/glorot11a.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-009",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "Leaky ReLU関数",
+    "oneLine": "入力が負のときも0にせず、小さな傾き（例：0.01倍）をかけた値を出力するReLUの改良版。",
+    "why": "全域で勾配が0にならないので、負の入力ばかりになったニューロンが学習しなくなる問題を避けられる。",
+    "links": [
+      { "id": "C-04-008", "relation": "発展元" }
+    ],
+    "confusions": [
+      { "id": "C-04-008", "point": "Leaky＝漏れる。負の側にも少しだけ勾配が漏れる。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.LeakyReLU", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html" },
+      { "title": "Maas, Hannun & Ng (2013) Rectifier Nonlinearities Improve Neural Network Acoustic Models", "url": "https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-010",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "ソフトマックス関数",
+    "oneLine": "複数の出力値を、それぞれ0〜1で合計が1になる値（確率）に変換する関数。多クラス分類の出力層に使う。",
+    "why": "各クラスに属する確率として読めるので、交差エントロピーと組み合わせて多クラス分類を学習できる。",
+    "links": [
+      { "id": "C-04-012", "relation": "組み合わせる誤差関数" },
+      { "title": "多クラス分類", "relation": "用途" },
+      { "id": "C-04-006", "relation": "対比（2値分類の出力）" }
+    ],
+    "confusions": [
+      { "id": "C-04-006", "point": "シグモイドは各出力を独立に0〜1にする（合計は1とは限らない）。ソフトマックスは全出力の合計を1にする。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.Softmax", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-011",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "title": "誤差関数",
+    "oneLine": "モデルの予測と正解とのずれを数値にする関数（損失関数）。学習はこの値を小さくするようにパラメータを調整すること。",
+    "why": "何を「良い予測」とするかを決めるのが誤差関数。タスクに合わせて選ぶ：回帰なら平均二乗誤差、分類なら交差エントロピー、距離を学ぶなら Contrastive Loss や Triplet Loss。",
+    "links": [
+      { "id": "C-04-012", "relation": "具体例（分類）" },
+      { "id": "C-04-013", "relation": "具体例（回帰）" },
+      { "id": "C-04-015", "relation": "具体例（距離学習）" },
+      { "id": "C-04-027", "relation": "これを最小化する方法" }
+    ],
+    "confusions": [
+      { "id": "C-04-005", "point": "誤差関数はずれを測る関数、活性化関数はニューロンの出力を作る関数。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（backpropagation / loss）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-012",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "title": "交差エントロピー",
+    "oneLine": "2つの確率分布（正解の分布と予測の分布）の違いを表す量。分類問題の誤差関数として使い、正解クラスの予測確率が高いほど小さくなる。",
+    "why": "ソフトマックスやシグモイドの出力（確率）と組み合わせると、分類の学習がうまく進む。2値の場合はログ損失（log loss）とも呼ぶ。",
+    "links": [
+      { "id": "C-04-010", "relation": "組み合わせる出力" },
+      { "id": "C-04-014", "relation": "関連（分布の違いを測る）" },
+      { "id": "C-04-013", "relation": "対比（回帰向け）" }
+    ],
+    "confusions": [
+      { "id": "C-04-013", "point": "分類＝交差エントロピー、回帰＝平均二乗誤差、が基本の組み合わせ。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.CrossEntropyLoss", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html" },
+      { "title": "Google for Developers: Machine Learning Glossary（cross-entropy）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-013",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "title": "平均二乗誤差関数",
+    "oneLine": "予測値と正解値の差を二乗して平均した誤差関数。回帰問題の学習に使う。",
+    "why": "差が大きいほど二乗で強く罰するので、大きな外れを減らすように学習が進む。評価指標のMSEと同じ式を、学習の誤差関数として使う。",
+    "links": [
+      { "title": "平均二乗誤差 (MSE)・二乗平均平方根誤差 (RMSE)・平均絶対値誤差 (MAE)", "relation": "関連（評価指標としての同じ式）" },
+      { "id": "C-04-012", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-04-012", "point": "確率を出す分類では交差エントロピーが基本。平均二乗誤差は回帰の基本。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.MSELoss", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.MSELoss.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-014",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "title": "カルバック・ライブラー情報量 (KL)",
+    "oneLine": "2つの確率分布P、Qがどれだけ異なるかを表す量（KLダイバージェンス）。同じ分布なら0。PとQを入れ替えると値が変わる（非対称）ので、厳密な意味の距離ではない。",
+    "why": "予測した分布を目標の分布に近づける学習（変分オートエンコーダ、知識の蒸留など）の誤差関数に使われる。",
+    "links": [
+      { "id": "C-04-012", "relation": "関連（交差エントロピー＝エントロピー＋KL）" },
+      { "title": "変分オートエンコーダ (VAE)", "relation": "応用" },
+      { "title": "蒸留", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-04-012", "point": "KL情報量は非対称で、「PからQ」と「QからP」は一致しない。対称だとする選択肢はひっかけ。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.nn.KLDivLoss", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-015",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "title": "Contrastive Loss",
+    "oneLine": "2つのデータの組を入力し、似たペアは埋め込み空間で近づけ、似ていないペアは一定以上遠ざけるように学習する誤差関数。2006年にHadsellらが用いた。",
+    "why": "クラスの分類ではなく「似ている度合い（距離）」を学びたいとき（顔の照合、類似画像検索など）に使う。",
+    "links": [
+      { "id": "C-04-016", "relation": "発展形（3つ組にする）" },
+      { "id": "C-04-011", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-04-016", "point": "Contrastive Lossは2つ組（ペア）、Triplet Lossは3つ組（基準・似たもの・似ていないもの）。" }
+    ],
+    "sources": [
+      { "title": "Hadsell, Chopra & LeCun (2006) Dimensionality Reduction by Learning an Invariant Mapping. CVPR", "url": "http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-016",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "title": "Triplet Loss",
+    "oneLine": "基準（アンカー）・同じ種類（ポジティブ）・違う種類（ネガティブ）の3つ組を使い、アンカーとポジティブの距離が、アンカーとネガティブの距離より一定以上小さくなるよう学習する誤差関数。",
+    "why": "顔認識のFaceNetなどで、顔画像を「距離がそのまま似ている度合いを表す」空間に写すのに使われた。",
+    "links": [
+      { "id": "C-04-015", "relation": "発展元" },
+      { "id": "C-04-011", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-04-015", "point": "Triplet＝3つ組。2つ組はContrastive。" }
+    ],
+    "sources": [
+      { "title": "Schroff, Kalenichenko & Philbin (2015) FaceNet: A Unified Embedding for Face Recognition and Clustering (arXiv:1503.03832)", "url": "https://arxiv.org/abs/1503.03832" },
+      { "title": "PyTorch Documentation: torch.nn.TripletMarginLoss", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.TripletMarginLoss.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-017",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "title": "正則化",
+    "oneLine": "モデルが複雑になりすぎないよう、誤差関数に重みの大きさや数への罰則を加えるなどして、過学習を防ぐ工夫の総称。",
+    "why": "訓練データに合わせすぎる過学習を抑え、汎化性能を上げるため。罰則の付け方でL0・L1・L2正則化があり、ニューラルネットではドロップアウトや早期終了も正則化として使われる。",
+    "links": [
+      { "title": "過学習", "relation": "解決策（何を解くか）" },
+      { "id": "C-04-018", "relation": "具体例" },
+      { "id": "C-04-019", "relation": "具体例" },
+      { "id": "C-04-020", "relation": "具体例" },
+      { "id": "C-04-021", "relation": "具体例" },
+      { "id": "C-04-040", "relation": "具体例" }
+    ],
+    "confusions": [
+      { "title": "正規化層", "point": "正則化（regularization）は過学習を防ぐ罰則、正規化（normalization）はデータや層の出力の尺度をそろえる処理。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（L1 / L2 regularization）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-018",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "title": "L0正則化",
+    "oneLine": "0でない重みの個数そのものに罰則を加える正則化。使う特徴量の数を直接減らそうとする。",
+    "why": "最も素直に「使う変数を少なく」できるが、個数は微分できないため最適化が難しい。そこで実用上はL1正則化で代用されることが多い。",
+    "links": [
+      { "id": "C-04-019", "relation": "対比（扱いやすい代用）" },
+      { "id": "C-04-017", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-04-019", "point": "L0＝0でない重みの「個数」、L1＝重みの「絶対値の和」、L2＝重みの「二乗の和」。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（L0 regularization）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-019",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "title": "L1正則化とラッソ回帰",
+    "oneLine": "L1正則化：重みの絶対値の和に比例する罰則を加える正則化。関係の薄い特徴量の重みをちょうど0にしやすい（スパースになる）。ラッソ回帰：線形回帰にL1正則化を加えたもの。",
+    "why": "不要な変数の重みが0になるので、特徴量の選択（どの変数を使うか）を同時に行える。",
+    "links": [
+      { "id": "C-04-017", "relation": "部分" },
+      { "id": "C-04-020", "relation": "対比" },
+      { "title": "線形回帰", "relation": "発展元" }
+    ],
+    "confusions": [
+      { "id": "C-04-020", "point": "ラッソ（L1）は重みを0にして変数を減らす。リッジ（L2）は重みを全体に小さくするが0にはしにくい。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（L1 regularization）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "scikit-learn User Guide: Linear Models（Lasso）", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-020",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "title": "L2正則化とリッジ回帰",
+    "oneLine": "L2正則化：重みの二乗の和に比例する罰則を加える正則化。重み全体を滑らかに小さくする（0にはなりにくい）。リッジ回帰：線形回帰にL2正則化を加えたもの。",
+    "why": "極端に大きな重みを抑えて過学習を防ぐ。説明変数どうしが強く相関するときの係数の不安定さも和らげる。ニューラルネットでは重み減衰（weight decay）とも呼ばれる。",
+    "links": [
+      { "id": "C-04-017", "relation": "部分" },
+      { "id": "C-04-019", "relation": "対比" },
+      { "title": "線形回帰", "relation": "発展元" }
+    ],
+    "confusions": [
+      { "id": "C-04-019", "point": "「特徴量を自動で選びたい（重みを0にしたい）」ならL1（ラッソ）。L2（リッジ）ではない。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（L2 regularization）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "scikit-learn User Guide: Linear Models（Ridge regression）", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-021",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "title": "ドロップアウト",
+    "oneLine": "学習中、ニューロンを一定の確率でランダムに無効化（出力を0に）しながら学習する正則化の手法。推論時はすべてのニューロンを使う。",
+    "why": "特定のニューロンに頼った学習（共適応）を防ぎ、過学習を抑える。毎回違う部分ネットワークを学習するので、多数のモデルを平均するアンサンブルに近い効果がある。",
+    "links": [
+      { "id": "C-04-017", "relation": "部分" },
+      { "title": "アンサンブル学習", "relation": "関連（似た効果）" },
+      { "title": "過学習", "relation": "解決策" }
+    ],
+    "confusions": [
+      { "title": "データ拡張", "point": "ドロップアウトはネットワークの中のニューロンを消す。Cutoutなどのデータ拡張は入力画像の一部を消す。" }
+    ],
+    "sources": [
+      { "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR", "url": "https://jmlr.org/papers/v15/srivastava14a.html" },
+      { "title": "PyTorch Documentation: torch.nn.Dropout", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-022",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "title": "誤差逆伝播法",
+    "oneLine": "出力の誤差を、出力層から入力層へ向かって逆向きに伝え、各層の重みについての勾配を連鎖律で効率よく計算する方法。1986年にRumelhartらが広めた。",
+    "why": "層が多くても、すべての重みの勾配をまとめて計算できるので、多層のネットワークを勾配降下法で学習できる。隠れ層が課題に重要な特徴を表すようになる。",
+    "links": [
+      { "id": "C-04-023", "relation": "部分（計算の原理）" },
+      { "id": "C-04-027", "relation": "組み合わせる最適化" },
+      { "id": "C-04-024", "relation": "課題" },
+      { "id": "C-04-025", "relation": "課題" },
+      { "id": "C-04-026", "relation": "解決したこと" }
+    ],
+    "confusions": [
+      { "id": "C-04-027", "point": "誤差逆伝播法は勾配の「計算方法」、勾配降下法はその勾配で重みを「更新する方法」。" }
+    ],
+    "sources": [
+      { "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature", "url": "https://www.nature.com/articles/323533a0" },
+      { "title": "Google for Developers: Machine Learning Glossary（backpropagation）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-023",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "title": "連鎖律",
+    "oneLine": "合成関数の微分は、それぞれの関数の微分の積で表せるという微分の法則。y＝f(g(x))なら dy/dx ＝ (dy/dg)×(dg/dx)。",
+    "why": "ニューラルネットは関数を何層も合成したものなので、連鎖律で出力側から順に微分を掛け合わせれば各重みの勾配が求まる。これが誤差逆伝播法の原理。掛け算が続くので、小さい値が続けば勾配消失、大きい値が続けば勾配爆発になる。",
+    "links": [
+      { "id": "C-04-022", "relation": "部分（原理）" },
+      { "id": "C-04-024", "relation": "原因（積が小さくなる）" },
+      { "id": "C-04-025", "relation": "原因（積が大きくなる）" }
+    ],
+    "confusions": [
+      { "id": "C-04-022", "point": "連鎖律は数学の法則、誤差逆伝播法はそれを使った勾配の計算手順。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Tutorials: A Gentle Introduction to torch.autograd", "url": "https://docs.pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-024",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "title": "勾配消失問題",
+    "oneLine": "誤差逆伝播で入力に近い層へ勾配を伝えるうちに、勾配がどんどん小さくなり、浅い層の重みがほとんど更新されず学習が進まなくなる問題。",
+    "why": "連鎖律で微分を掛け合わせるため、1より小さい微分（シグモイドの最大0.25など）が層の数だけ掛かると勾配が指数的に小さくなる。層が深いほど起きやすい。対策：ReLUなどの活性化関数、適切な重みの初期値、バッチ正規化、スキップ結合（ResNet）、RNNではLSTM。",
+    "links": [
+      { "id": "C-04-006", "relation": "原因（微分が小さい活性化関数）" },
+      { "id": "C-04-023", "relation": "原因（掛け算の連鎖）" },
+      { "id": "C-04-008", "relation": "解決策" },
+      { "title": "バッチ正規化", "relation": "解決策" },
+      { "title": "スキップ結合", "relation": "解決策" },
+      { "title": "LSTM", "relation": "解決策（RNNの場合）" },
+      { "id": "C-04-025", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-04-025", "point": "勾配消失＝小さくなって学習が止まる。勾配爆発＝大きくなって学習が発散する。勾配爆発の対策は勾配クリッピング。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS", "url": "https://proceedings.mlr.press/v9/glorot10a.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-025",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "title": "勾配爆発問題",
+    "oneLine": "誤差逆伝播で勾配が極端に大きくなり、重みの更新が大きすぎて学習が不安定になったり発散したりする問題。RNNで特に起きやすい。",
+    "why": "1より大きい値が層（RNNでは時間の長さ）の数だけ掛け合わされると勾配が爆発的に大きくなる。対策は勾配の大きさに上限を設ける勾配クリッピング。",
+    "links": [
+      { "id": "C-04-024", "relation": "対比" },
+      { "id": "C-04-023", "relation": "原因" },
+      { "title": "リカレントニューラルネットワーク (RNN)", "relation": "起きやすい場面" }
+    ],
+    "confusions": [
+      { "id": "C-04-024", "point": "勾配クリッピングは勾配爆発の対策。勾配消失の対策ではない。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（exploding gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)", "url": "https://arxiv.org/abs/1211.5063" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-026",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "title": "信用割当問題",
+    "oneLine": "最終的な結果（誤差や報酬）に対して、どの重み（どの要素・どの行動）がどれだけ貢献したのかを割り当てる問題。",
+    "why": "多層ネットワークでは、出力の誤差をどの隠れ層のどの重みのせいにするかが分からなければ学習できない。誤差逆伝播法は勾配を計算することでこの問題に答えた。強化学習では、どの行動が後の報酬に効いたかという形で現れる。",
+    "links": [
+      { "id": "C-04-022", "relation": "解決策" },
+      { "title": "強化学習", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-04-024", "point": "信用割当問題は「誰の手柄（責任）か」を決める問題。勾配消失はその割り当て（勾配）が浅い層に届かない問題。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-027",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "勾配降下法",
+    "oneLine": "誤差関数の勾配（傾き）を求め、誤差が小さくなる方向（勾配の逆向き）へ、学習率の分だけパラメータを少しずつ動かすことを繰り返す最適化の方法。",
+    "why": "パラメータが何百万あっても、勾配さえ分かれば誤差を下げる方向が分かる。ただし局所最適解や鞍点で止まることがあり、学習率の選び方も難しい。それを改善したのがモーメンタム・AdaGrad・RMSprop・Adamなど。",
+    "links": [
+      { "id": "C-04-028", "relation": "部分（一歩の大きさ）" },
+      { "id": "C-04-029", "relation": "課題" },
+      { "id": "C-04-030", "relation": "課題" },
+      { "id": "C-04-032", "relation": "発展形" },
+      { "id": "C-04-038", "relation": "発展形" },
+      { "id": "C-04-022", "relation": "勾配の求め方" }
+    ],
+    "confusions": [
+      { "title": "勾配ブースティング", "point": "勾配ブースティングは決定木を足していくアンサンブル手法。勾配降下法はパラメータを更新する最適化手法。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-028",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "学習率",
+    "oneLine": "勾配降下法で、1回の更新でパラメータをどれだけ動かすかを決める係数。代表的なハイパーパラメータ。",
+    "why": "大きすぎると最適解を飛び越えて発散し、小さすぎると学習がなかなか進まない（局所最適解から抜け出しにくい）。パラメータごとに学習率を自動調整するのがAdaGrad・RMSprop・Adam。",
+    "links": [
+      { "id": "C-04-027", "relation": "部分" },
+      { "id": "C-04-043", "relation": "部分（代表的なハイパーパラメータ）" },
+      { "id": "C-04-035", "relation": "解決策（自動調整）" }
+    ],
+    "confusions": [
+      { "title": "割引率", "point": "学習率は更新の大きさ、割引率は強化学習で将来の報酬を割り引く係数。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（learning rate）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-029",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "局所最適解・大域最適解",
+    "oneLine": "大域最適解：全体の中で誤差が最も小さい本当の最適解。局所最適解：周りより誤差が小さい（谷底）が、全体では最小とは限らない解。",
+    "why": "勾配降下法は「今いる場所の傾き」しか見ないので、近くの谷底（局所最適解）で止まってしまうことがある。誤差関数が凸（U字形）なら局所最適解は1つで大域最適解と一致するが、ニューラルネットの誤差関数は凸ではない。",
+    "links": [
+      { "id": "C-04-027", "relation": "課題" },
+      { "id": "C-04-030", "relation": "関連（高次元では鞍点が問題になりやすい）" },
+      { "id": "C-04-034", "relation": "解決策（勢いで抜ける）" }
+    ],
+    "confusions": [
+      { "id": "C-04-030", "point": "局所最適解はどの方向にも上り坂の谷底。鞍点はある方向では谷底だが別の方向では山頂。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（convex function）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-030",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "鞍点",
+    "oneLine": "ある方向から見ると極小（谷底）だが、別の方向から見ると極大（山頂）になっている点。馬の鞍の形。勾配が0になるので、勾配降下法がそこで停滞しやすい。",
+    "why": "高次元の最適化では、悪い局所最適解よりも鞍点の多さが学習を遅らせる主な原因だと指摘されている。周辺が平らだと抜け出すのに時間がかかる。",
+    "links": [
+      { "id": "C-04-029", "relation": "対比" },
+      { "id": "C-04-034", "relation": "解決策（勢いで抜ける）" }
+    ],
+    "confusions": [
+      { "id": "C-04-029", "point": "鞍点も勾配は0になるが、最適解ではない。" }
+    ],
+    "sources": [
+      { "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)", "url": "https://arxiv.org/abs/1406.2572" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-031",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "バッチ学習・ミニバッチ学習・オンライン学習",
+    "oneLine": "バッチ学習：訓練データ全部を使って1回更新する。ミニバッチ学習：データを小さな組（例：数十〜数百件）に分け、組ごとに更新する。オンライン学習：1件ずつ（あるいはデータが届くたびに）更新する。",
+    "why": "全データで1回の更新は安定するが重く遅い。1件ずつは速いが不安定。ミニバッチはその中間で、GPUの並列計算も活かせるので、ディープラーニングで最もよく使われる。",
+    "links": [
+      { "id": "C-04-032", "relation": "関連" },
+      { "id": "C-04-033", "relation": "関連（回数の数え方）" }
+    ],
+    "confusions": [
+      { "id": "C-04-033", "point": "バッチの大きさ（何件で1回更新するか）とエポック（全データを何周したか）は別の量。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（batch size / mini-batch）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-032",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "確率的勾配降下法 (SGD)",
+    "oneLine": "訓練データからランダムに選んだ1件（または少数）で勾配を求めて更新する勾配降下法。厳密には1件ずつの更新を指し、実務ではミニバッチで行うものもSGDと呼ぶ。",
+    "why": "全データで勾配を計算するより1回の更新が軽く、勾配のばらつき（ノイズ）が局所最適解や鞍点から抜け出す助けにもなる。",
+    "links": [
+      { "id": "C-04-027", "relation": "部分（勾配降下法の一種）" },
+      { "id": "C-04-031", "relation": "関連" },
+      { "id": "C-04-034", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-04-031", "point": "SGDの「確率的」は、データをランダムに選んで使うこと。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（stochastic gradient descent / batch size）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "PyTorch Documentation: torch.optim.SGD", "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-033",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "エポック・イテレーション",
+    "oneLine": "エポック：訓練データ全体を1周（全データを1回ずつ処理）すること。イテレーション：パラメータを1回更新すること。1エポックのイテレーション数＝データ数÷バッチサイズ。",
+    "why": "学習の進み具合を数える単位。例：1,000件をバッチサイズ100で学習すると、1エポックは10イテレーション。",
+    "links": [
+      { "id": "C-04-031", "relation": "関連" },
+      { "id": "C-04-040", "relation": "関連（何エポックで止めるか）" }
+    ],
+    "confusions": [
+      { "id": "C-04-031", "point": "イテレーション＝更新回数、エポック＝データの周回数。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（epoch / iteration）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-034",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "モーメンタム",
+    "oneLine": "今の勾配だけでなく、直前までの更新の向き（勢い）も加えてパラメータを更新する方法。坂を転がるボールのように慣性を持たせる。",
+    "why": "勾配が小さい平らな所や鞍点でも勢いで進め、谷の中で左右に振動するのも抑えられるので、学習が速く安定する。",
+    "links": [
+      { "id": "C-04-032", "relation": "発展元" },
+      { "id": "C-04-030", "relation": "解決策（鞍点を抜ける）" },
+      { "id": "C-04-038", "relation": "発展形（Adamに組み込まれた）" }
+    ],
+    "confusions": [
+      { "id": "C-04-035", "point": "モーメンタムは「向き（勢い）」を工夫、AdaGrad・RMSpropは「学習率（歩幅）」をパラメータごとに工夫。Adamはその両方。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（Momentum）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "PyTorch Documentation: torch.optim.SGD（momentum）", "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-035",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "AdaGrad",
+    "oneLine": "パラメータごとに、これまでの勾配の二乗の累積で学習率を割ることで、よく更新されたパラメータの学習率を小さく、あまり更新されないパラメータの学習率を大きく保つ最適化手法。",
+    "why": "まれにしか現れないが重要な特徴（の重み）もしっかり学べる。ただし累積は増える一方なので、学習が進むと学習率が0に近づき、更新がほとんど止まってしまう。これを改善したのがRMSpropやAdaDelta。",
+    "links": [
+      { "id": "C-04-036", "relation": "発展形（累積を指数移動平均に）" },
+      { "id": "C-04-037", "relation": "発展形" },
+      { "id": "C-04-028", "relation": "解決策（学習率の自動調整）" }
+    ],
+    "confusions": [
+      { "id": "C-04-036", "point": "AdaGradは過去の勾配を全部ため込む（学習率が下がり続ける）。RMSpropは古い勾配を忘れる（指数移動平均）。" }
+    ],
+    "sources": [
+      { "title": "Duchi, Hazan & Singer (2011) Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. JMLR", "url": "https://jmlr.org/papers/v12/duchi11a.html" },
+      { "title": "Google for Developers: Machine Learning Glossary（AdaGrad）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-036",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "RMSprop",
+    "oneLine": "勾配の二乗の指数移動平均（最近の勾配ほど重く見る平均）で学習率を割る最適化手法。ヒントンが講義資料で示した。",
+    "why": "AdaGradのように過去の勾配をすべてため込まず、古い勾配の影響を薄めるので、学習が進んでも学習率が0に近づきすぎない。",
+    "links": [
+      { "id": "C-04-035", "relation": "発展元（AdaGradの改良）" },
+      { "id": "C-04-038", "relation": "発展形（モーメンタムと組み合わせ）" }
+    ],
+    "confusions": [
+      { "id": "C-04-037", "point": "RMSpropもAdaDeltaもAdaGradの改良。AdaDeltaは学習率そのものの手動設定も不要にした点が特徴。" }
+    ],
+    "sources": [
+      { "title": "PyTorch Documentation: torch.optim.RMSprop", "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.RMSprop.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-037",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "AdaDelta",
+    "oneLine": "AdaGradの学習率が下がり続ける問題を改善し、さらに学習率を手で設定しなくてよいようにした最適化手法。2012年にZeilerが提案。",
+    "why": "パラメータごとの学習率を時間とともに自動で適応させ、勾配のノイズやモデル構造の違いにも頑健とされる。",
+    "links": [
+      { "id": "C-04-035", "relation": "発展元" },
+      { "id": "C-04-036", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-04-036", "point": "「学習率の手動調整が要らない」はAdaDeltaの特徴。" }
+    ],
+    "sources": [
+      { "title": "Zeiler (2012) ADADELTA: An Adaptive Learning Rate Method (arXiv:1212.5701)", "url": "https://arxiv.org/abs/1212.5701" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-038",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "Adam",
+    "oneLine": "勾配の1次モーメント（平均＝モーメンタムに相当）と2次モーメント（二乗の平均＝RMSpropに相当）の推定値を使って、パラメータごとに更新の大きさを調整する最適化手法。2014年にKingmaとBaが提案。",
+    "why": "実装が簡単で計算効率がよく、メモリも少なくて済み、大規模なデータ・パラメータにも向くので、ディープラーニングで最もよく使われる最適化手法の一つ。",
+    "links": [
+      { "id": "C-04-034", "relation": "部分（1次モーメント）" },
+      { "id": "C-04-036", "relation": "部分（2次モーメント）" },
+      { "id": "C-04-039", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-04-039", "point": "Adamの改良：AdaBound（Adamの学習率に動的な上下限）、AMSBound（AMSGradに同じ工夫）。" }
+    ],
+    "sources": [
+      { "title": "Kingma & Ba (2014) Adam: A Method for Stochastic Optimization (arXiv:1412.6980)", "url": "https://arxiv.org/abs/1412.6980" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-039",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "AdaBound・AMSBound",
+    "oneLine": "AdamやAMSGradの学習率に動的な上限と下限を設け、学習が進むにつれて適応的な手法からSGDへなめらかに移行させる最適化手法。AdaBoundはAdamの、AMSBoundはAMSGradの改良版。",
+    "why": "Adamなどの適応的手法は学習が速い一方で、極端な学習率のせいでSGDより汎化性能が劣ったり収束しなかったりすることがある。両者のよいところを取ろうとした。",
+    "links": [
+      { "id": "C-04-038", "relation": "発展元" },
+      { "id": "C-04-032", "relation": "関連（最終的にSGDに近づく）" }
+    ],
+    "confusions": [
+      { "id": "C-04-038", "point": "AdaBound＝Adam＋学習率の上下限。AMSBound＝AMSGrad＋学習率の上下限。" }
+    ],
+    "sources": [
+      { "title": "Luo et al. (2019) Adaptive Gradient Methods with Dynamic Bound of Learning Rate (arXiv:1902.09843)", "url": "https://arxiv.org/abs/1902.09843" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-040",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "早期終了",
+    "oneLine": "学習中に検証データでの誤差を監視し、検証誤差が下がらなくなった（上がり始めた）時点で学習を打ち切る方法。正則化の一種。",
+    "why": "学習を続けると訓練誤差は下がり続けても、ある時点から未知データでの誤差が上がる（過学習）。その手前で止めれば汎化性能のよいモデルが得られる。",
+    "links": [
+      { "title": "過学習", "relation": "解決策" },
+      { "id": "C-04-017", "relation": "部分（正則化の一種）" },
+      { "id": "C-04-041", "relation": "関連（エポックを増やすと再び性能が上がる場合もある）" }
+    ],
+    "confusions": [
+      { "id": "C-04-041", "point": "早期終了は「検証誤差が上がり始めたら止める」。二重降下現象は、さらに続けると再び誤差が下がることがあるという観察。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（early stopping）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-041",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "二重降下現象",
+    "oneLine": "モデルを大きくしていく（または学習を長くしていく）と、テスト誤差がいったん下がった後に上がり、さらに大きくすると再び下がる、という現象（double descent）。",
+    "why": "「モデルを複雑にしすぎると過学習で必ず悪くなる」という従来の見方では説明できない現象で、深層学習の大規模化を考えるうえで重要。モデルの大きさだけでなく、エポック数に対しても起きる。",
+    "links": [
+      { "title": "過学習", "relation": "対比（従来の見方）" },
+      { "id": "C-04-040", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "過学習", "point": "「モデルを大きくすると性能は単調に悪くなる」は誤り。いったん悪化した後、再び良くなることがある。" }
+    ],
+    "sources": [
+      { "title": "Nakkiran et al. (2019) Deep Double Descent: Where Bigger Models and More Data Hurt (arXiv:1912.02292)", "url": "https://arxiv.org/abs/1912.02292" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-042",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "ノーフリーランチの定理",
+    "oneLine": "あらゆる問題で平均すると、どの最適化（学習）アルゴリズムも性能は同じで、すべての問題に対して最良の万能なアルゴリズムは存在しない、という定理。",
+    "why": "手法の良し悪しは問題によって変わるので、問題に合わせて手法やハイパーパラメータを選び、比較・検証する必要がある。",
+    "links": [
+      { "id": "C-04-043", "relation": "関連（問題ごとに調整が要る）" }
+    ],
+    "confusions": [
+      { "title": "オッカムの剃刀", "point": "オッカムの剃刀は「単純なモデルを選べ」という指針。ノーフリーランチの定理は「万能な手法は無い」という定理。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-043",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "ハイパーパラメータ",
+    "oneLine": "学習によって決まる重みとは別に、学習を始める前に人（または調整の仕組み）が設定する値。学習率、バッチサイズ、層の数、ドロップアウト率、正則化の強さなど。",
+    "why": "同じモデルでもハイパーパラメータで性能が大きく変わる。検証データで評価しながら、グリッドサーチやランダムサーチなどで調整する。",
+    "links": [
+      { "id": "C-04-044", "relation": "調整方法" },
+      { "id": "C-04-028", "relation": "具体例" }
+    ],
+    "confusions": [
+      { "title": "重み", "point": "重み（パラメータ）は学習で自動的に決まる。ハイパーパラメータは学習の前に決める。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（hyperparameter）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-044",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "title": "グリッドサーチ・ランダムサーチ",
+    "oneLine": "グリッドサーチ：ハイパーパラメータの候補値の組み合わせをすべて試す方法。ランダムサーチ：指定した範囲からランダムに選んだ組み合わせを決まった回数だけ試す方法。",
+    "why": "グリッドサーチは網羅的だが、ハイパーパラメータが増えると組み合わせが爆発する。ランダムサーチは同じ試行回数なら、効くハイパーパラメータの値を多様に試せるので効率がよいことが示されている。",
+    "links": [
+      { "id": "C-04-043", "relation": "対象" }
+    ],
+    "confusions": [
+      { "title": "ブルートフォース", "point": "グリッドサーチは候補の総当たりなので、ブルートフォースの一種とも言える。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Tuning the hyper-parameters of an estimator", "url": "https://scikit-learn.org/stable/modules/grid_search.html" },
+      { "title": "Bergstra & Bengio (2012) Random Search for Hyper-Parameter Optimization. JMLR", "url": "https://www.jmlr.org/papers/v13/bergstra12a.html" }
+    ],
+    "status": "verified"
+  }
+]

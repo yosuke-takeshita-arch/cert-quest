@@ -1,0 +1,2706 @@
+[
+  {
+    "id": "G-06-001",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ある層への入力をその層の出力に足し合わせる近道（スキップ結合）を設け、層には入力との差分（残差）だけを学習させることで、150層を超える非常に深いネットワークの学習を可能にしたモデルとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "ResNet",
+      "GoogLeNet",
+      "VGG",
+      "DenseNet"
+    ],
+    "answer": 0,
+    "explanation": "ResNetは残差学習の枠組みで、152層の深さでもImageNetで学習でき、ILSVRC 2015の分類で1位になった。",
+    "whyWrong": [
+      null,
+      "GoogLeNetは複数サイズの畳み込みを並列に束ねるInceptionモジュールが特徴。",
+      "VGGは3×3の小さなフィルタを積み重ねて16〜19層にしたモデルで、残差接続は持たない。",
+      "DenseNetも近道を使うが、前のすべての層の出力を「連結」して渡す。入力を「足し算」するのはResNet。"
+    ],
+    "memoryTip": "足すResNet、つなぐ（連結する）DenseNet。",
+    "concepts": [
+      "C-06-005",
+      "C-06-007"
+    ],
+    "sources": [
+      {
+        "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)",
+        "url": "https://arxiv.org/abs/1512.03385"
+      },
+      {
+        "title": "Huang et al. (2016) Densely Connected Convolutional Networks (arXiv:1608.06993)",
+        "url": "https://arxiv.org/abs/1608.06993"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-002",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "VGGは、（　）という小さな畳み込みフィルタだけを積み重ね、層を16〜19層まで深くすることで精度を高めた。",
+    "choices": [
+      "1×1",
+      "5×5",
+      "3×3",
+      "7×7"
+    ],
+    "answer": 2,
+    "explanation": "VGGの論文は「とても小さい（3×3）畳み込みフィルタ」を使った構造で深さを増やす効果を評価した。",
+    "whyWrong": [
+      "1×1畳み込みはチャネル数の調整などに使われる（GoogLeNetのInceptionモジュールなど）。VGGの中心ではない。",
+      "VGGの主眼は大きいフィルタを小さいフィルタの積み重ねで置き換えることにある。",
+      null,
+      "同上。7×7は1枚の受容野を広げる大きめのフィルタで、VGGの考え方と逆。"
+    ],
+    "memoryTip": "VGG＝「3×3をひたすら重ねる」。小さく積めば大きな視野。",
+    "concepts": [
+      "C-06-003"
+    ],
+    "sources": [
+      {
+        "title": "Simonyan & Zisserman (2014) Very Deep Convolutional Networks for Large-Scale Image Recognition (arXiv:1409.1556)",
+        "url": "https://arxiv.org/abs/1409.1556"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-003",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ネットワークの深さ・幅・入力画像の解像度を、1つの複合係数でバランスよく同時に拡大するスケーリング方法を提案したモデルとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "Wide ResNet",
+      "MobileNet",
+      "SENet",
+      "EfficientNet"
+    ],
+    "answer": 3,
+    "explanation": "EfficientNetは深さ・幅・解像度を複合係数で一様にスケールする方法を提案し、NASで作った基本ネットワークを拡大して高い精度と効率を得た。",
+    "whyWrong": [
+      "Wide ResNetは深さを減らして幅を広げたもので、3方向を同時に拡大するものではない。",
+      "MobileNetは深さ方向分離可能畳み込みで軽量化したモデル。",
+      "SENetはチャネルごとの重みを付け直すSEブロックを使うモデル。",
+      null
+    ],
+    "memoryTip": "Efficient＝効率よく「3方向（深さ・幅・解像度）」まとめて拡大。",
+    "concepts": [
+      "C-06-012",
+      "C-06-006"
+    ],
+    "sources": [
+      {
+        "title": "Tan & Le (2019) EfficientNet (arXiv:1905.11946)",
+        "url": "https://arxiv.org/abs/1905.11946"
+      },
+      {
+        "title": "Zagoruyko & Komodakis (2016) Wide Residual Networks (arXiv:1605.07146)",
+        "url": "https://arxiv.org/abs/1605.07146"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-004",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "画像認識モデルの軽量化・自動設計に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "MobileNetは、深さ方向分離可能畳み込みを用いて計算量とパラメータ数を減らしている。",
+      "NASの初期の研究では、RNNがネットワーク構造を生成し、検証精度を報酬とする強化学習でRNNを訓練した。",
+      "SENetは、画像の空間上の位置ごとに重みを付け直すことで、注目すべき場所を強調する。",
+      "MnasNetは、スマートフォン上で実際に測った推論遅延を探索の目的に組み込んだ。"
+    ],
+    "answer": 2,
+    "explanation": "SENetのSEブロックはチャネル間の関係をモデル化し、チャネルごとの特徴の重みを付け直す。空間位置ごとではない。",
+    "whyWrong": [
+      "MobileNetの説明として正しい。",
+      "Zoph & Le (2016) のNASの説明として正しい。",
+      null,
+      "MnasNetはFLOPSなどの代理指標ではなく実機の遅延を測った。正しい。"
+    ],
+    "memoryTip": "SE＝Squeeze（空間を潰す）→Excitation（チャネルに重み）。「空間を潰す」のでチャネル方向。",
+    "concepts": [
+      "C-06-008",
+      "C-06-009",
+      "C-06-010"
+    ],
+    "sources": [
+      {
+        "title": "Hu et al. (2017) Squeeze-and-Excitation Networks (arXiv:1709.01507)",
+        "url": "https://arxiv.org/abs/1709.01507"
+      },
+      {
+        "title": "Howard et al. (2017) MobileNets (arXiv:1704.04861)",
+        "url": "https://arxiv.org/abs/1704.04861"
+      },
+      {
+        "title": "Zoph & Le (2016) Neural Architecture Search with Reinforcement Learning (arXiv:1611.01578)",
+        "url": "https://arxiv.org/abs/1611.01578"
+      },
+      {
+        "title": "Tan et al. (2018) MnasNet: Platform-Aware Neural Architecture Search for Mobile (arXiv:1807.11626)",
+        "url": "https://arxiv.org/abs/1807.11626"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-005",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "画像を小さなパッチに分割し、そのパッチの並びを単語の列のように扱って、畳み込みを使わずTransformerで画像分類を行うモデルとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "GoogLeNet",
+      "Vision Transformer",
+      "U-Net",
+      "YOLO"
+    ],
+    "answer": 1,
+    "explanation": "Vision Transformer（ViT）は画像パッチの系列に純粋なTransformerを適用する。大量のデータで事前学習すると、畳み込みネットワークに匹敵する性能を出す。",
+    "whyWrong": [
+      "GoogLeNetはInceptionモジュールを使う畳み込みネットワーク。",
+      null,
+      "U-Netは畳み込みによるセグメンテーション用のモデル。",
+      "YOLOは畳み込みネットワークを使う1段階型の物体検出器。"
+    ],
+    "memoryTip": "ViT＝画像を「16×16の単語」に切ってTransformerへ。",
+    "concepts": [
+      "C-06-013"
+    ],
+    "sources": [
+      {
+        "title": "Dosovitskiy et al. (2020) An Image is Worth 16x16 Words (Vision Transformer) (arXiv:2010.11929)",
+        "url": "https://arxiv.org/abs/2010.11929"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-006",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "DenseNetの構造上の特徴として、最も適切なものを1つ選べ。",
+    "choices": [
+      "各層が、それより前のすべての層の特徴マップを入力として受け取る。",
+      "層の入力を出力に足し合わせる残差接続を2層ごとに置く。",
+      "複数サイズの畳み込みを並列に行うモジュールを積み重ねる。",
+      "層の数を減らす代わりに各層のチャネル数を大きく広げる。"
+    ],
+    "answer": 0,
+    "explanation": "DenseNetは各層を前方のすべての層と結び、L層ならL(L+1)/2本の直接接続を持つ。特徴の再利用が進み、勾配消失も和らぐ。",
+    "whyWrong": [
+      null,
+      "これはResNetの残差接続の説明。",
+      "これはGoogLeNetのInceptionモジュールの説明。",
+      "これはWide ResNetの説明。"
+    ],
+    "memoryTip": "Dense（密）＝全部の層とつながる。",
+    "concepts": [
+      "C-06-007",
+      "C-06-005",
+      "C-06-006"
+    ],
+    "sources": [
+      {
+        "title": "Huang et al. (2016) Densely Connected Convolutional Networks (arXiv:1608.06993)",
+        "url": "https://arxiv.org/abs/1608.06993"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-007",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "物体検出モデルに関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "YOLOは、物体検出を、画像全体からバウンディングボックスとクラス確率を直接求める回帰問題として扱う。",
+      "Faster R-CNNは、候補領域を提案するRPNを検出ネットワークと特徴を共有する形で組み込んだ。",
+      "FPNはセグメンテーション専用の構造であり、物体検出の特徴抽出には使われない。",
+      "SSDは、解像度の異なる複数の特徴マップ上にデフォルトボックスを置き、さまざまな大きさの物体を検出する。"
+    ],
+    "answer": 2,
+    "explanation": "FPNはトップダウン経路と横方向の接続で多重スケールの特徴ピラミッドを作る構造で、Faster R-CNNに組み込んでCOCOの物体検出で最高水準の結果を出した。",
+    "whyWrong": [
+      "YOLOの論文の説明として正しい。",
+      "Faster R-CNNの説明として正しい。",
+      null,
+      "SSDの説明として正しい。"
+    ],
+    "memoryTip": "FPN＝「物体検出のための」特徴ピラミッド。論文名にObject Detectionと入っている。",
+    "concepts": [
+      "C-06-014",
+      "C-06-018",
+      "C-06-016",
+      "C-06-017"
+    ],
+    "sources": [
+      {
+        "title": "Lin et al. (2016) Feature Pyramid Networks for Object Detection (arXiv:1612.03144)",
+        "url": "https://arxiv.org/abs/1612.03144"
+      },
+      {
+        "title": "Redmon et al. (2015) You Only Look Once (arXiv:1506.02640)",
+        "url": "https://arxiv.org/abs/1506.02640"
+      },
+      {
+        "title": "Ren et al. (2015) Faster R-CNN (arXiv:1506.01497)",
+        "url": "https://arxiv.org/abs/1506.01497"
+      },
+      {
+        "title": "Liu et al. (2015) SSD: Single Shot MultiBox Detector (arXiv:1512.02325)",
+        "url": "https://arxiv.org/abs/1512.02325"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-008",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "自動運転の歩行者検知で、カメラ映像を毎秒数十枚の速さで処理する必要がある。候補領域を作る段階を持たず、1つのネットワークで位置とクラスを一度に推定する方式を選びたい。この条件に合うモデルの組み合わせとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "YOLO と SSD",
+      "Fast R-CNN と Faster R-CNN",
+      "FCN と SegNet",
+      "Mask R-CNN と FPN"
+    ],
+    "answer": 0,
+    "explanation": "YOLOとSSDは候補領域の生成を省いた1段階型の検出器で、速度に優れる。YOLOの論文は毎秒45フレームでの処理を報告している。",
+    "whyWrong": [
+      null,
+      "どちらも候補領域を分類する2段階型（R-CNN系）。",
+      "どちらもセマンティックセグメンテーションのモデルで、物体検出器ではない。",
+      "Mask R-CNNはFaster R-CNNを拡張した2段階型、FPNは特徴抽出の構造。"
+    ],
+    "memoryTip": "1段階（ワンショット）＝YOLO・SSD。名前に「Once」「Single Shot」。",
+    "concepts": [
+      "C-06-014",
+      "C-06-016",
+      "C-06-017"
+    ],
+    "sources": [
+      {
+        "title": "Redmon et al. (2015) You Only Look Once (arXiv:1506.02640)",
+        "url": "https://arxiv.org/abs/1506.02640"
+      },
+      {
+        "title": "Liu et al. (2015) SSD: Single Shot MultiBox Detector (arXiv:1512.02325)",
+        "url": "https://arxiv.org/abs/1512.02325"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-009",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "画像中の「人」が3人写っているとき、3人をそれぞれ別の領域として切り分け、さらに道路や空などの背景も含めてすべての画素にクラスを付けるタスクとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "セマンティックセグメンテーション",
+      "インスタンスセグメンテーション",
+      "物体識別",
+      "パノプティックセグメンテーション"
+    ],
+    "answer": 3,
+    "explanation": "パノプティックセグメンテーションは、セマンティック（全画素にクラス）とインスタンス（個体ごとに検出・分割）を統合したタスク。",
+    "whyWrong": [
+      "セマンティックは全画素にクラスを付けるが、同じクラスの個体は区別しない（3人が1つの「人」領域になる）。",
+      "インスタンスは物体を個体ごとに分けるが、背景のような数えられない領域まではラベル付けの対象にしない。",
+      "物体識別は画像全体に1つのラベルを付けるだけ。",
+      null
+    ],
+    "memoryTip": "Panoptic＝pan（全部）＋optic（見る）。全画素×個体の区別。",
+    "concepts": [
+      "C-06-019"
+    ],
+    "sources": [
+      {
+        "title": "Kirillov et al. (2018) Panoptic Segmentation (arXiv:1801.00868)",
+        "url": "https://arxiv.org/abs/1801.00868"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-010",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Faster R-CNNに、物体ごとのマスクを予測する分岐を並列に追加し、インスタンスセグメンテーションを行えるようにしたモデルとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "Fast R-CNN",
+      "Mask R-CNN",
+      "FCN",
+      "PSPNet"
+    ],
+    "answer": 1,
+    "explanation": "Mask R-CNNはFaster R-CNNのバウンディングボックス認識の分岐と並列に、物体マスクを予測する分岐を追加した。同じ枠組みで人物のキーポイント検出にも拡張できる。",
+    "whyWrong": [
+      "Fast R-CNNは候補領域の分類を高速化した検出器で、マスクは出さない。",
+      null,
+      "FCNはセマンティックセグメンテーションのモデルで、個体を区別しない。",
+      "PSPNetはピラミッドプーリングで文脈を集めるセマンティックセグメンテーションのモデル。"
+    ],
+    "memoryTip": "Mask R-CNN＝Faster R-CNN＋マスクの枝。",
+    "concepts": [
+      "C-06-024",
+      "C-06-015",
+      "C-06-019"
+    ],
+    "sources": [
+      {
+        "title": "He et al. (2017) Mask R-CNN (arXiv:1703.06870)",
+        "url": "https://arxiv.org/abs/1703.06870"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-011",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "（　）は、文脈をとらえる縮小側の経路と、それと対称な拡大側の経路をもつセグメンテーションモデルで、少ない学習画像でもデータ拡張を多用して学習でき、医用画像の分野で成果を挙げた。",
+    "choices": [
+      "SegNet",
+      "U-Net",
+      "DeepLab",
+      "Fast R-CNN"
+    ],
+    "answer": 1,
+    "explanation": "U-Netの論文は電子顕微鏡画像の細胞構造のセグメンテーションで従来法を上回り、少数の画像からend-to-endで学習できることを示した。",
+    "whyWrong": [
+      "SegNetはエンコーダ側のプーリング位置（インデックス）を使ってデコーダでアップサンプリングするモデルで、医用画像専用の文脈で提案されたものではない。",
+      null,
+      "DeepLabはAtrous畳み込みとASPPが特徴。",
+      "Fast R-CNNは物体検出器。"
+    ],
+    "memoryTip": "U字形・対称・医用画像＝U-Net。",
+    "concepts": [
+      "C-06-022",
+      "C-06-021"
+    ],
+    "sources": [
+      {
+        "title": "Ronneberger et al. (2015) U-Net (arXiv:1505.04597)",
+        "url": "https://arxiv.org/abs/1505.04597"
+      },
+      {
+        "title": "Badrinarayanan et al. (2015) SegNet (arXiv:1511.00561)",
+        "url": "https://arxiv.org/abs/1511.00561"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-012",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "セグメンテーションモデルとその特徴の組み合わせとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "FCN ― 全結合層を多段に重ね、入力画像を固定サイズに縮小してから画素ごとに分類する",
+      "PSPNet ― デコーダがエンコーダ側の最大値プーリングの位置情報を使ってアップサンプリングする",
+      "SegNet ― ピラミッドプーリングモジュールで異なる大きさの領域の文脈を集める",
+      "DeepLab ― 間隔を空けた畳み込み（Atrous畳み込み）で受容野を広げ、複数の間隔を並べたASPPで多重スケールに対応する"
+    ],
+    "answer": 3,
+    "explanation": "DeepLabの論文の3つの貢献のうち2つがAtrous畳み込みとASPP（Atrous Spatial Pyramid Pooling）である。",
+    "whyWrong": [
+      "FCNは全結合層を使わず畳み込みだけで構成し、任意サイズの入力に対応する。",
+      "プーリングの位置を使うのはSegNet。",
+      "ピラミッドプーリングモジュールはPSPNet。",
+      null
+    ],
+    "memoryTip": "Atrous（穴あき）＝DeepLab、Pyramid Pooling＝PSPNet、プーリングの位置＝SegNet。",
+    "concepts": [
+      "C-06-023",
+      "C-06-021",
+      "C-06-020"
+    ],
+    "sources": [
+      {
+        "title": "Chen et al. (2016) DeepLab (arXiv:1606.00915)",
+        "url": "https://arxiv.org/abs/1606.00915"
+      },
+      {
+        "title": "Zhao et al. (2016) Pyramid Scene Parsing Network (arXiv:1612.01105)",
+        "url": "https://arxiv.org/abs/1612.01105"
+      },
+      {
+        "title": "Badrinarayanan et al. (2015) SegNet (arXiv:1511.00561)",
+        "url": "https://arxiv.org/abs/1511.00561"
+      },
+      {
+        "title": "Long et al. (2014) Fully Convolutional Networks for Semantic Segmentation (arXiv:1411.4038)",
+        "url": "https://arxiv.org/abs/1411.4038"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-013",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "体の部位の位置と、それらを個々の人物に結び付けるための表現（Part Affinity Fields）を学習し、画像中の人数によらずリアルタイムで複数人の2次元姿勢を推定する手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "OpenPose",
+      "Mask R-CNN",
+      "SSD",
+      "EfficientNet"
+    ],
+    "answer": 0,
+    "explanation": "OpenPoseはPart Affinity Fields（PAF）で部位と人物の対応を学習するボトムアップ型の手法。",
+    "whyWrong": [
+      null,
+      "Mask R-CNNもキーポイント推定に拡張できるが、先に人物を検出してから処理する方式で、PAFは使わない。",
+      "SSDは物体検出器。",
+      "EfficientNetは画像分類のモデル群。"
+    ],
+    "memoryTip": "OpenPose＝PAFで「骨をつなぐ」ボトムアップ。",
+    "concepts": [
+      "C-06-025",
+      "C-06-024"
+    ],
+    "sources": [
+      {
+        "title": "Cao et al. (2018) OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields (arXiv:1812.08008)",
+        "url": "https://arxiv.org/abs/1812.08008"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-014",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "Wide ResNetは、ResNetの層の数を（　）、各層のチャネル数を広げることで、非常に深いResNetより高い精度と速い学習を実現した。",
+    "choices": [
+      "増やし",
+      "固定したまま入力解像度を上げ",
+      "減らし",
+      "半分にして全結合層を追加し"
+    ],
+    "answer": 2,
+    "explanation": "Wide ResNetの論文は「深さを減らし幅を増やした」構造を提案し、16層の浅いネットワークでも従来の非常に深いResNetを上回ることを示した。",
+    "whyWrong": [
+      "深さを増やすのは元のResNetの方向。",
+      "解像度を含めて拡大するのはEfficientNet。",
+      null,
+      "全結合層の追加はWide ResNetの提案ではない。"
+    ],
+    "memoryTip": "Wide＝幅を広げ、その分だけ浅くする。",
+    "concepts": [
+      "C-06-006",
+      "C-06-005"
+    ],
+    "sources": [
+      {
+        "title": "Zagoruyko & Komodakis (2016) Wide Residual Networks (arXiv:1605.07146)",
+        "url": "https://arxiv.org/abs/1605.07146"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-015",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "word2vecには2つのモデルがある。周囲の単語から中心の単語を予測するのが（　）、中心の単語から周囲の単語を予測するのが（　）である。前から順に空欄に入る語の組み合わせとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "fastText／スキップグラム",
+      "スキップグラム／CBOW",
+      "CBOW／ELMo",
+      "CBOW／スキップグラム"
+    ],
+    "answer": 3,
+    "explanation": "word2vecの論文はCBOW（Continuous Bag-of-Words）とスキップグラムの2つの構造を提案した。スキップグラムは現在の単語から周囲の単語を予測する。",
+    "whyWrong": [
+      "fastTextはスキップグラムを拡張した別の手法。",
+      "逆になっている。",
+      "ELMoは双方向言語モデルから文脈依存の表現を作る別の手法で、word2vecのモデルではない。",
+      null
+    ],
+    "memoryTip": "CBOW＝周りを袋（Bag）に入れて真ん中を当てる。スキップグラム＝真ん中から周りへ跳ぶ。",
+    "concepts": [
+      "C-06-029"
+    ],
+    "sources": [
+      {
+        "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-016",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "単語や文の表現の学習手法に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "fastTextは、単語を文字n-gramの集まりとして表すため、学習データに出てこなかった単語にもベクトルを作れる。",
+      "BERTは、文の左右両方の文脈を同時に用いて双方向の表現を事前学習する。",
+      "ELMoは、文脈によらず各単語に1つの固定ベクトルを割り当てるため、多義語を区別できない。",
+      "word2vecは、単語を意味の近さが反映された連続値のベクトルで表す。"
+    ],
+    "answer": 2,
+    "explanation": "ELMoは事前学習した双方向言語モデルの内部状態から、文脈に応じて変わる単語表現を作る。多義性を扱えることが特徴。",
+    "whyWrong": [
+      "fastTextの論文の説明として正しい。",
+      "BERTの説明として正しい。",
+      null,
+      "word2vecの説明として正しい。"
+    ],
+    "memoryTip": "word2vec＝1単語1ベクトル（固定）、ELMo以降＝文脈で変わる。",
+    "concepts": [
+      "C-06-031",
+      "C-06-029",
+      "C-06-030",
+      "C-06-033"
+    ],
+    "sources": [
+      {
+        "title": "Peters et al. (2018) Deep contextualized word representations (arXiv:1802.05365)",
+        "url": "https://arxiv.org/abs/1802.05365"
+      },
+      {
+        "title": "Bojanowski et al. (2016) Enriching Word Vectors with Subword Information (arXiv:1607.04606)",
+        "url": "https://arxiv.org/abs/1607.04606"
+      },
+      {
+        "title": "Devlin et al. (2018) BERT (arXiv:1810.04805)",
+        "url": "https://arxiv.org/abs/1810.04805"
+      },
+      {
+        "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-017",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "BERTの事前学習で用いられた課題の組み合わせとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "次の単語の予測 と 機械翻訳",
+      "Masked Language Model と Next Sentence Prediction",
+      "画像と文章の対応付け と 画像生成",
+      "CBOW と スキップグラム"
+    ],
+    "answer": 1,
+    "explanation": "BERTは、入力の一部のトークンを隠して元の語を当てるMasked Language Modelと、2つの文が連続するかを当てるNext Sentence Predictionで事前学習する。",
+    "whyWrong": [
+      "左から右へ次の単語を予測するのはGPT系の言語モデルの学習。BERTは双方向。",
+      null,
+      "画像と文章の対応付けはCLIP。",
+      "word2vecの2つのモデル。"
+    ],
+    "memoryTip": "BERT＝穴埋め（Masked）＋文のつながり（Next Sentence）。",
+    "concepts": [
+      "C-06-033",
+      "C-06-072"
+    ],
+    "sources": [
+      {
+        "title": "Devlin et al. (2018) BERT (arXiv:1810.04805)",
+        "url": "https://arxiv.org/abs/1810.04805"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-018",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "エンコーダのLSTMが入力系列を固定長のベクトルにまとめ、デコーダのLSTMがそのベクトルから出力系列を生成するモデルとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "Seq2Seq",
+      "word2vec",
+      "GLUE",
+      "TF-IDF"
+    ],
+    "answer": 0,
+    "explanation": "Sutskeverら（2014）のSeq2Seqは、多層LSTMで入力系列を固定次元のベクトルに写し、別の深いLSTMで出力系列を復号する。英仏翻訳で成果を出した。",
+    "whyWrong": [
+      null,
+      "word2vecは単語の分散表現を学習する手法で、系列を変換するモデルではない。",
+      "GLUEは自然言語理解の評価ベンチマーク。",
+      "TF-IDFは単語の重要度を計算する指標。"
+    ],
+    "memoryTip": "Seq2Seq＝系列（Sequence）から系列へ。真ん中が「固定長の1本のベクトル」なのが弱点で、Attentionの動機になった。",
+    "concepts": [
+      "C-06-032"
+    ],
+    "sources": [
+      {
+        "title": "Sutskever et al. (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)",
+        "url": "https://arxiv.org/abs/1409.3215"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-019",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "GLUEの説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "文書内の出現頻度と文書全体での珍しさから単語の重みを計算する指標",
+      "双方向Transformerで事前学習した言語モデル",
+      "複数の自然言語理解タスクを集め、モデルの汎用的な言語理解能力を評価するためのベンチマーク",
+      "音声を文字に変換するための損失関数"
+    ],
+    "answer": 2,
+    "explanation": "GLUE（General Language Understanding Evaluation）は多様な既存の自然言語理解タスクでモデルを評価・分析するためのツールである。",
+    "whyWrong": [
+      "これはTF-IDFの説明。",
+      "これはBERTの説明。BERTはGLUEのスコアを大きく伸ばしたが、GLUE自体はモデルではない。",
+      null,
+      "これはCTCの説明に近い。"
+    ],
+    "memoryTip": "GLUE＝評価（Evaluation）のものさし。モデル名ではない。",
+    "concepts": [
+      "C-06-034",
+      "C-06-033"
+    ],
+    "sources": [
+      {
+        "title": "Wang et al. (2018) GLUE (arXiv:1804.07461)",
+        "url": "https://arxiv.org/abs/1804.07461"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-020",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "言語モデルの損失が、モデルの大きさ・データ量・学習の計算量に対してべき乗則に従って下がるという経験則として、最も適切なものを1つ選べ。",
+    "choices": [
+      "スケーリング則",
+      "中心極限定理",
+      "ノーフリーランチ定理",
+      "大数の法則"
+    ],
+    "answer": 0,
+    "explanation": "Kaplanら（2020）は、言語モデルの交差エントロピー損失がモデルサイズ・データセットサイズ・計算量に対してべき乗則で変化し、その傾向が7桁以上の範囲にわたることを示した。",
+    "whyWrong": [
+      null,
+      "中心極限定理は、標本平均の分布が標本数を増やすと正規分布に近づくという統計の定理。",
+      "ノーフリーランチ定理は、あらゆる問題で常に最良の万能アルゴリズムは存在しないという主張。",
+      "大数の法則は、試行回数を増やすと標本平均が期待値に近づくという法則。"
+    ],
+    "memoryTip": "スケール（規模）を上げると損失がべき乗で下がる＝スケーリング則。大規模化の理論的な支え。",
+    "concepts": [
+      "C-06-036",
+      "C-06-035"
+    ],
+    "sources": [
+      {
+        "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)",
+        "url": "https://arxiv.org/abs/2001.08361"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-021",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "GPT-3やPaLMのような大規模言語モデルに関する説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "大規模言語モデルは、モデルを大きくすると少数例での性能がかえって下がることが確認されている。",
+      "PaLMは画像と文章のペアから学習したマルチモーダルモデルで、文章から画像を生成する。",
+      "大規模言語モデルは、新しいタスクごとに必ず数万件のデータでファインチューニングしなければ使えない。",
+      "GPT-3は1750億パラメータの自己回帰型言語モデルで、少数の例を示すだけで多くのタスクをこなす能力を示した。"
+    ],
+    "answer": 3,
+    "explanation": "GPT-3の論文は1750億パラメータのモデルで、Few-shotの設定でファインチューニングに匹敵する場合があることを示した。PaLMは5400億パラメータの言語モデル。",
+    "whyWrong": [
+      "PaLMの論文は規模を大きくすることによるFew-shot性能の継続的な向上を示した。",
+      "PaLMは言語モデル（Pathways Language Model）。文章から画像を作るのはDALL-Eなど。",
+      "GPT-3の論文の要点は、重みを更新しない少数例の提示（Few-shot）でもタスクをこなせることにある。",
+      null
+    ],
+    "memoryTip": "GPT-3＝175B・Few-shot、PaLM＝540B・Pathways。",
+    "concepts": [
+      "C-06-035",
+      "C-06-074"
+    ],
+    "sources": [
+      {
+        "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
+        "url": "https://arxiv.org/abs/2005.14165"
+      },
+      {
+        "title": "Chowdhery et al. (2022) PaLM (arXiv:2204.02311)",
+        "url": "https://arxiv.org/abs/2204.02311"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-022",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "LSTMでは、（　）と呼ばれる仕組みによりセル内の誤差の流れを一定に保ち、入力ゲートや出力ゲートがその流れへの出入りを制御することで、長い時間差のある依存関係を学習できる。",
+    "choices": [
+      "CTC（Connectionist Temporal Classification）",
+      "CEC（Constant Error Carousel）",
+      "GAP（Global Average Pooling）",
+      "BoW（Bag-of-Words）"
+    ],
+    "answer": 1,
+    "explanation": "Hochreiter & Schmidhuber（1997）は、特別なユニット内の「constant error carrousel」で一定の誤差の流れを保ち、乗算的なゲートがその出入りを開閉すると説明している。",
+    "whyWrong": [
+      "CTCは区切りのない系列にラベルを付けるための学習法（音声認識など）。略語が似ているので注意。",
+      null,
+      "GAPは特徴マップ全体の平均をとるプーリング。",
+      "BoWは文書を単語の出現回数で表す方法。"
+    ],
+    "memoryTip": "CEC＝誤差（Error）が一定（Constant）で回り続ける回転木馬（Carousel）。CTCと取り違えない。",
+    "concepts": [
+      "C-06-038",
+      "C-06-044"
+    ],
+    "sources": [
+      {
+        "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory",
+        "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+      },
+      {
+        "title": "Graves et al. (2006) Connectionist Temporal Classification (ICML 2006)",
+        "url": "https://www.cs.toronto.edu/~graves/icml_2006.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-023",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ある語が特定の文書の中ではよく出てくるが、他の多くの文書にはあまり出てこない場合に、その語の重みを大きくする指標として、最も適切なものを1つ選べ。",
+    "choices": [
+      "ワンホットベクトル",
+      "TF-IDF",
+      "n-gram",
+      "BoW"
+    ],
+    "answer": 1,
+    "explanation": "TF-IDFは、文書内での出現頻度（TF）と、全文書の中での珍しさ（IDF：その語を含む文書が少ないほど大きい）を掛け合わせて語の重要度を表す。",
+    "whyWrong": [
+      "ワンホットベクトルは語の有無を1か所の1で表すだけで、重要度の重み付けはしない。",
+      null,
+      "n-gramは連続するn個の単語（文字）の並びのこと。",
+      "BoWは出現回数を数えるだけで、他の文書での珍しさは考慮しない。"
+    ],
+    "memoryTip": "TF（その文書でよく出る）×IDF（他ではあまり出ない）＝その文書らしい語。",
+    "concepts": [
+      "C-06-027"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-024",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "日本語の文「すもももももももものうち」を、意味を持つ最小の単位に分割し、それぞれに品詞を付ける処理として、最も適切なものを1つ選べ。",
+    "choices": [
+      "構文解析",
+      "文書要約",
+      "感情分析",
+      "形態素解析"
+    ],
+    "answer": 3,
+    "explanation": "形態素解析は、文を形態素（意味を持つ最小の言語単位）に分割し、品詞などを判定する処理。単語の間に空白がない日本語では多くの処理の前段になる。",
+    "whyWrong": [
+      "構文解析は、分割した語どうしの係り受けなど文の構造を解析する処理で、形態素解析の後に行う。",
+      "文書要約は長い文書を短くまとめる処理。",
+      "感情分析は文の肯定・否定などの感情を推定する処理。",
+      null
+    ],
+    "memoryTip": "形態素＝「形」で区切る（分かち書き＋品詞）、構文＝「つながり」を見る。",
+    "concepts": [
+      "C-06-026"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-025",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "機械翻訳の方式に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "統計的機械翻訳は、エンコーダ・デコーダ型のニューラルネットワークで文全体を固定長ベクトルに変換して翻訳する方式である。",
+      "統計的機械翻訳は、対訳コーパスから訳語や語順の確率を学習して翻訳する。",
+      "ニューラル機械翻訳では、Seq2SeqやTransformerのような系列変換モデルが用いられる。",
+      "ルールベース機械翻訳は、人が記述した文法規則や辞書に基づいて翻訳する。"
+    ],
+    "answer": 0,
+    "explanation": "文全体をニューラルネットで符号化・復号するのはニューラル機械翻訳（Seq2Seqなど）である。統計的機械翻訳は確率モデルに基づく方式で、ニューラル機械翻訳より前に主流だった。",
+    "whyWrong": [
+      null,
+      "統計的機械翻訳の説明として正しい。",
+      "Seq2Seqは機械翻訳で成果を出し、Transformerも機械翻訳の課題で評価された。",
+      "ルールベース機械翻訳の説明として正しい。"
+    ],
+    "memoryTip": "ルール（人が書く）→統計（確率で学ぶ）→ニューラル（ネットで丸ごと学ぶ）。",
+    "concepts": [
+      "C-06-037",
+      "C-06-032"
+    ],
+    "sources": [
+      {
+        "title": "Sutskever et al. (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)",
+        "url": "https://arxiv.org/abs/1409.3215"
+      },
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-026",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "音声認識の学習で、入力音声の各時刻とラベル（音素や文字）の対応をあらかじめ区切っておかなくても、RNNに系列のラベル付けを学習させる手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "MFCC",
+      "WaveNet",
+      "CTC",
+      "PCM"
+    ],
+    "answer": 2,
+    "explanation": "CTC（Connectionist Temporal Classification）は、事前に区切った学習データも、出力を系列に変換する後処理も不要にした。",
+    "whyWrong": [
+      "MFCCは音声の特徴量で、学習手法ではない。",
+      "WaveNetは音声波形を生成する自己回帰モデルで、主に音声合成に使う。",
+      null,
+      "PCMはアナログ音声をデジタル化する方式。"
+    ],
+    "memoryTip": "CTC＝区切り（アライメント）不要の音声認識の学習法。",
+    "concepts": [
+      "C-06-044",
+      "C-06-043"
+    ],
+    "sources": [
+      {
+        "title": "Graves et al. (2006) Connectionist Temporal Classification (ICML 2006)",
+        "url": "https://www.cs.toronto.edu/~graves/icml_2006.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-027",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "WaveNetの説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "入力と出力の長さが異なる系列を、区切りなしで対応付けるための損失関数である。",
+      "音声から話者が誰かを識別するために、声の特徴を数値化した係数である。",
+      "音声を周波数成分に高速に分解するための計算アルゴリズムである。",
+      "音声波形を、それまでのサンプルを条件として1サンプルずつ予測する自己回帰型の生成モデルで、音声合成で従来方式より自然な音声を生成した。"
+    ],
+    "answer": 3,
+    "explanation": "WaveNetは生の音声波形を扱う完全に確率的・自己回帰的なモデルで、テキスト音声合成で人の評価により従来のパラメトリック方式・波形接続方式より自然と判定された。",
+    "whyWrong": [
+      "これはCTCの説明。",
+      "これはMFCCなどの特徴量の説明。",
+      "これは高速フーリエ変換（FFT）の説明。",
+      null
+    ],
+    "memoryTip": "Wave（波形）を直接作るNet＝WaveNet。合成側。",
+    "concepts": [
+      "C-06-045",
+      "C-06-044"
+    ],
+    "sources": [
+      {
+        "title": "van den Oord et al. (2016) WaveNet (arXiv:1609.03499)",
+        "url": "https://arxiv.org/abs/1609.03499"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-028",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "PCM（パルス符号変調）では、アナログの音声信号を（　）→（　）→符号化の順でデジタル化する。前から順に空欄に入る語の組み合わせとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "符号化／標本化",
+      "量子化／標本化",
+      "標本化／量子化",
+      "フーリエ変換／量子化"
+    ],
+    "answer": 2,
+    "explanation": "まず一定の時間間隔で値を取り出し（標本化）、その値を有限の段階に丸め（量子化）、最後に2進数の符号にする（符号化）。",
+    "whyWrong": [
+      "符号化は最後の段階。",
+      "順序が逆。時間方向に区切ってから、値の大きさを丸める。",
+      null,
+      "フーリエ変換は周波数分析の手法で、PCMの手順ではない。"
+    ],
+    "memoryTip": "「ひょう・りょう・ふ」＝標本化→量子化→符号化。時間を刻んで、値を刻んで、数字にする。",
+    "concepts": [
+      "C-06-039"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-029",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "音声のスペクトル包絡に現れる山（共振）の位置を指し、母音の聞き分けに大きく関わるものとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "音素",
+      "フォルマント",
+      "メル尺度",
+      "サンプリング周波数"
+    ],
+    "answer": 1,
+    "explanation": "スペクトル包絡の山の部分をフォルマントといい、その周波数（フォルマント周波数）の組み合わせで母音が区別される。",
+    "whyWrong": [
+      "音素は言語学上の音の単位で、周波数の山そのものではない。",
+      null,
+      "メル尺度は人の聴覚に合わせた周波数の尺度。",
+      "サンプリング周波数はPCMで標本化する間隔に関わる値。"
+    ],
+    "memoryTip": "フォルマント＝包絡の「山」。山の位置で「あ・い・う」が決まる。",
+    "concepts": [
+      "C-06-040",
+      "C-06-042"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-030",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "MFCC（メル周波数ケプストラム係数）の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "人の聴覚特性に合わせたメル尺度を用い、スペクトル包絡の特徴を少数の係数で表した音声の特徴量",
+      "音声波形を1サンプルずつ生成する自己回帰モデル",
+      "観測できない状態が確率的に移り変わるとみなす時系列モデル",
+      "アナログ信号を一定間隔で取り出してデジタル化する方式"
+    ],
+    "answer": 0,
+    "explanation": "MFCCは、低い音ほど細かく聞き分ける人の聴覚に合わせたメル尺度上で、スペクトル包絡を圧縮した特徴量で、音声認識の入力として広く使われてきた。",
+    "whyWrong": [
+      null,
+      "これはWaveNetの説明。",
+      "これは隠れマルコフモデル（HMM）の説明。",
+      "これはPCM（標本化）の説明。"
+    ],
+    "memoryTip": "メル＝耳の物差し、ケプストラム＝包絡を取り出す計算。MFCC＝耳寄りの声の形の要約。",
+    "concepts": [
+      "C-06-041"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-031",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "コールセンターの録音から「今話しているのは登録済みの顧客Aさん本人か」を判定したい。このタスクとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "音声認識",
+      "音声合成",
+      "話者識別",
+      "形態素解析"
+    ],
+    "answer": 2,
+    "explanation": "話者識別は声の特徴から「誰が話しているか」を判定するタスク。発話の内容を文字にする音声認識とは目的が違う。",
+    "whyWrong": [
+      "音声認識は「何と言ったか」を文字にするタスク。",
+      "音声合成は文字から音声を作るタスク。",
+      null,
+      "形態素解析はテキストを単語に分ける処理。"
+    ],
+    "memoryTip": "「誰が」＝話者識別、「何を」＝音声認識。",
+    "concepts": [
+      "C-06-046"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-032",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "音声認識の手法に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "CTCを使うと、入力フレームとラベルの対応を事前に区切ったデータが必須になる。",
+      "隠れマルコフモデルは、ディープラーニング以前から音声認識に用いられてきた。",
+      "隠れマルコフモデルは、観測できない状態が確率的に遷移し、各状態から特徴量が確率的に出力されるとみなすモデルである。",
+      "音声認識では、音声を周波数成分に分解した特徴量（MFCCなど）が入力に使われてきた。"
+    ],
+    "answer": 0,
+    "explanation": "CTCの目的は、事前に区切ったデータ（pre-segmented data）を不要にすることにある。",
+    "whyWrong": [
+      null,
+      "正しい。CTCの論文もHMMとのハイブリッド方式と比較している。",
+      "隠れマルコフモデルの説明として正しい。",
+      "正しい。"
+    ],
+    "memoryTip": "CTCの売りは「区切り不要」。必須になるなら意味がない。",
+    "concepts": [
+      "C-06-044",
+      "C-06-043",
+      "C-06-041"
+    ],
+    "sources": [
+      {
+        "title": "Graves et al. (2006) Connectionist Temporal Classification (ICML 2006)",
+        "url": "https://www.cs.toronto.edu/~graves/icml_2006.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-033",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "DQNが行動価値を過大に見積もりやすいという問題に対処するために提案された手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "Ape-X",
+      "デュエリングネットワーク",
+      "ノイジーネットワーク",
+      "ダブルDQN"
+    ],
+    "answer": 3,
+    "explanation": "ダブルDQNは、Double Q-learningの考え方をDQNに適用し、過大評価を減らして性能を向上させた。",
+    "whyWrong": [
+      "Ape-Xは経験を分散して集め、優先度付きで再生する学習の仕組み。",
+      "デュエリングネットワークはQ値を状態価値とアドバンテージに分けて推定する構造の工夫。",
+      "ノイジーネットワークは重みにノイズを入れて探索を促す工夫。",
+      null
+    ],
+    "memoryTip": "ダブル（2つ）で見積もりを分け、「盛りすぎ」を防ぐ。",
+    "concepts": [
+      "C-06-048",
+      "C-06-049",
+      "C-06-050"
+    ],
+    "sources": [
+      {
+        "title": "van Hasselt et al. (2015) Deep Reinforcement Learning with Double Q-learning (arXiv:1509.06461)",
+        "url": "https://arxiv.org/abs/1509.06461"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-034",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Q値を「状態そのものの価値」と「各行動のアドバンテージ」の2つの推定に分けて出力するネットワーク構造として、最も適切なものを1つ選べ。",
+    "choices": [
+      "ダブルDQN",
+      "デュエリングネットワーク",
+      "Rainbow",
+      "PPO"
+    ],
+    "answer": 1,
+    "explanation": "デュエリングネットワークは状態価値関数と行動のアドバンテージ関数を別々に推定する2つの流れを持つ。似た価値の行動が多い場合に方策評価が良くなる。",
+    "whyWrong": [
+      "ダブルDQNは更新の仕方を変えて過大評価を抑える手法で、ネットワークの出力を分けるものではない。",
+      null,
+      "Rainbowは複数の拡張を組み合わせた手法。",
+      "PPOは方策勾配法の一種。"
+    ],
+    "memoryTip": "デュエル（決闘）＝2つの流れ（価値とアドバンテージ）。",
+    "concepts": [
+      "C-06-049",
+      "C-06-048"
+    ],
+    "sources": [
+      {
+        "title": "Wang et al. (2015) Dueling Network Architectures (arXiv:1511.06581)",
+        "url": "https://arxiv.org/abs/1511.06581"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-035",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "DQNに対して独立に提案されてきた6つの拡張を組み合わせ、Atariのベンチマークで当時の最高性能を示した手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "Agent57",
+      "Rainbow",
+      "A3C",
+      "OpenAI Five"
+    ],
+    "answer": 1,
+    "explanation": "Rainbowの論文は6つのDQNの拡張を組み合わせ、データ効率と最終性能の両方で最高水準を示し、各要素の寄与もアブレーションで分析した。",
+    "whyWrong": [
+      "Agent57は57本すべてのAtariゲームで人間の標準スコアを超えた別のエージェント。",
+      null,
+      "A3Cは非同期に並列学習するアクタークリティック手法。",
+      "OpenAI FiveはDota 2のエージェント。"
+    ],
+    "memoryTip": "虹（Rainbow）＝いろいろな改良の色を全部混ぜる。",
+    "concepts": [
+      "C-06-051"
+    ],
+    "sources": [
+      {
+        "title": "Hessel et al. (2017) Rainbow (arXiv:1710.02298)",
+        "url": "https://arxiv.org/abs/1710.02298"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-036",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "多数のアクターがそれぞれ環境とやり取りして経験を共有のリプレイメモリにため、学習役のラーナーが重要な経験を優先的に再生してネットワークを更新する、行動と学習を分離した分散型の手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "オフライン強化学習",
+      "ダブルDQN",
+      "残差強化学習",
+      "Ape-X"
+    ],
+    "answer": 3,
+    "explanation": "Ape-X（Distributed Prioritized Experience Replay）は、行動と学習を切り離し、優先度付き経験再生で重要なデータに集中する。",
+    "whyWrong": [
+      "オフライン強化学習は新たにデータを集めず、既存データだけで学習する。多数のアクターが環境とやり取りする点が合わない。",
+      "ダブルDQNは行動価値の過大評価を抑える手法。",
+      "残差強化学習は従来の制御と強化学習を足し合わせる手法。",
+      null
+    ],
+    "memoryTip": "Ape-X＝分散（多数のアクター）＋優先度付き経験再生。",
+    "concepts": [
+      "C-06-053",
+      "C-06-052"
+    ],
+    "sources": [
+      {
+        "title": "Horgan et al. (2018) Distributed Prioritized Experience Replay (arXiv:1803.00933)",
+        "url": "https://arxiv.org/abs/1803.00933"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-037",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ゲームとそれを攻略したAIの組み合わせとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "Atari 2600の57ゲームすべてで人間の標準スコアを超えた ― Agent57",
+      "StarCraft II ― OpenAI Five",
+      "Dota 2 ― AlphaStar",
+      "StarCraft II ― Agent57"
+    ],
+    "answer": 0,
+    "explanation": "Agent57はAtari 57ゲームすべてで標準的な人間のベンチマークを上回った最初の深層強化学習エージェント。Dota 2はOpenAI Five、StarCraft IIはAlphaStar。",
+    "whyWrong": [
+      null,
+      "StarCraft IIでグランドマスター級に達したのはAlphaStar。",
+      "Dota 2で世界王者に勝ったのはOpenAI Five。",
+      "Agent57はAtariのエージェント。"
+    ],
+    "memoryTip": "Five＝5人チームのDota 2、Star＝StarCraft、57＝Atari57本。",
+    "concepts": [
+      "C-06-054",
+      "C-06-056"
+    ],
+    "sources": [
+      {
+        "title": "Badia et al. (2020) Agent57 (arXiv:2003.13350)",
+        "url": "https://arxiv.org/abs/2003.13350"
+      },
+      {
+        "title": "OpenAI (2019) Dota 2 with Large Scale Deep Reinforcement Learning (arXiv:1912.06680)",
+        "url": "https://arxiv.org/abs/1912.06680"
+      },
+      {
+        "title": "Vinyals et al. (2019) Grandmaster level in StarCraft II using multi-agent reinforcement learning (Nature 575)",
+        "url": "https://www.nature.com/articles/s41586-019-1724-z"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-038",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "PPO（Proximal Policy Optimization）の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "重みに学習可能なノイズを加えて探索を促す手法",
+      "行動価値を画面の画素から直接推定するQ学習の手法",
+      "データを集める段階と代理目的関数を最適化する段階を交互に行い、同じデータで複数エポックのミニバッチ更新ができる方策勾配法",
+      "人間が作った模範の行動を真似るだけで報酬を使わない手法"
+    ],
+    "answer": 2,
+    "explanation": "PPOはTRPOの利点の一部を持ちながら、実装が簡単で汎用的、サンプル効率も良い方策勾配法。",
+    "whyWrong": [
+      "これはノイジーネットワークの説明。",
+      "これはDQNの説明。PPOは方策を直接最適化する。",
+      null,
+      "PPOは報酬を使う強化学習の手法。"
+    ],
+    "memoryTip": "Proximal（近くの）＝方策を「近くの範囲」で少しずつ更新して安定させる。",
+    "concepts": [
+      "C-06-055",
+      "C-06-047"
+    ],
+    "sources": [
+      {
+        "title": "Schulman et al. (2017) Proximal Policy Optimization Algorithms (arXiv:1707.06347)",
+        "url": "https://arxiv.org/abs/1707.06347"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-039",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "対話AIの出力について、人間の評価者が複数の回答を良い順に並べたデータを集め、それを手がかりに強化学習でモデルを調整し、利用者の意図に沿った応答をするようにする手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "オフライン強化学習",
+      "ドメインランダマイゼーション",
+      "報酬成形",
+      "RLHF"
+    ],
+    "answer": 3,
+    "explanation": "RLHF（Reinforcement Learning from Human Feedback）。InstructGPTでは、出力の順位データを使い、人のフィードバックからの強化学習でGPT-3をさらにファインチューニングした。",
+    "whyWrong": [
+      "オフライン強化学習は既存データだけで学ぶ枠組みで、人の評価を報酬にすることが本質ではない。",
+      "ドメインランダマイゼーションはシミュレーションの条件をランダムに変えて現実への移行を助ける手法。",
+      "報酬成形は人が補助的な報酬を設計すること。人の比較評価から報酬を学ぶRLHFとは異なる。",
+      null
+    ],
+    "memoryTip": "HF＝Human Feedback。人の「どっちが良い」を報酬に変える。",
+    "concepts": [
+      "C-06-057",
+      "C-06-061"
+    ],
+    "sources": [
+      {
+        "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)",
+        "url": "https://arxiv.org/abs/2203.02155"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-040",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "シミュレーションで学習したロボットの物体認識を実機に移すため、シミュレータの物体の色や質感をランダムに大きく変えて学習させ、現実の見え方を「多様な変化の1つ」とみなせるようにする手法を（　）という。",
+    "choices": [
+      "オフライン強化学習",
+      "残差強化学習",
+      "ドメインランダマイゼーション",
+      "状態表現学習"
+    ],
+    "answer": 2,
+    "explanation": "Tobinら（2017）は、非現実的なランダムなテクスチャのシミュレーション画像だけで、実世界で精度よく物体位置を推定する検出器を学習できることを示した。シミュレーションから現実への移行はsim2realと呼ばれる。",
+    "whyWrong": [
+      "オフライン強化学習は過去に集めたデータだけで学ぶ。",
+      "残差強化学習は従来の制御と強化学習の和で制御する手法。",
+      null,
+      "状態表現学習は観測から有用な状態の表し方を学ぶこと。"
+    ],
+    "memoryTip": "ランダムに揺らしておけば、現実も「揺らぎの1つ」に見える。",
+    "concepts": [
+      "C-06-058"
+    ],
+    "sources": [
+      {
+        "title": "Tobin et al. (2017) Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World (arXiv:1703.06907)",
+        "url": "https://arxiv.org/abs/1703.06907"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-041",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "工場の組立ロボットで、従来のフィードバック制御で解ける部分はそのまま使い、接触や摩擦のようにモデル化しにくい部分だけを強化学習で補って、最終的な制御信号を両者の和とする手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "マルチエージェント強化学習",
+      "残差強化学習",
+      "デュエリングネットワーク",
+      "Agent57"
+    ],
+    "answer": 1,
+    "explanation": "Johanninkら（2018）の残差強化学習は、制御問題を従来の制御で効率よく解ける部分と、強化学習で解く残差に分解する。",
+    "whyWrong": [
+      "マルチエージェント強化学習は複数のエージェントが同じ環境で学習する設定。",
+      null,
+      "デュエリングネットワークはQ値を分解するネットワーク構造。",
+      "Agent57はAtariのエージェント。"
+    ],
+    "memoryTip": "残差＝「従来の制御で足りない残り」だけ学ぶ。",
+    "concepts": [
+      "C-06-060",
+      "C-06-062"
+    ],
+    "sources": [
+      {
+        "title": "Johannink et al. (2018) Residual Reinforcement Learning for Robot Control (arXiv:1812.03201)",
+        "url": "https://arxiv.org/abs/1812.03201"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-042",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "病院の治療方針の決定に強化学習を使いたいが、患者で試行錯誤させることはできない。過去に蓄積された診療データだけを使い、環境との新たなやり取りなしに方策を学習する枠組みとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "オフライン強化学習",
+      "sim2real",
+      "ノイジーネットワーク",
+      "A3C"
+    ],
+    "answer": 0,
+    "explanation": "オフライン強化学習は、追加のオンラインのデータ収集なしに、以前に集めたデータを使う強化学習アルゴリズム。医療・教育・ロボティクスなどへの応用が期待されている。",
+    "whyWrong": [
+      null,
+      "sim2realはシミュレーションで学習して現実へ移す考え方で、既存データだけを使うものではない。",
+      "ノイジーネットワークは探索を促す工夫で、環境とやり取りする前提。",
+      "A3Cは並列に環境とやり取りしながら学ぶ手法。"
+    ],
+    "memoryTip": "オフライン＝もう環境に触らない。手元のデータだけ。",
+    "concepts": [
+      "C-06-059",
+      "C-06-058"
+    ],
+    "sources": [
+      {
+        "title": "Levine et al. (2020) Offline Reinforcement Learning: Tutorial, Review, and Perspectives (arXiv:2005.01643)",
+        "url": "https://arxiv.org/abs/2005.01643"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-043",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "深層強化学習の手法に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "ノイジーネットワークは、重みに学習可能なノイズを加え、ε-greedyなどの探索の工夫を置き換える。",
+      "A3Cは、複数のアクター・ラーナーを非同期に並列で動かし、連続的な運動制御の問題にも適用された。",
+      "DQNは、行動が連続値をとるロボットの関節制御に、行動を離散化せずそのまま適用できる。",
+      "報酬成形は、目標達成時にしか報酬が得られない課題に補助的な報酬を設計して学習を助ける。"
+    ],
+    "answer": 2,
+    "explanation": "DQNは有限個の行動それぞれのQ値を出力して最大のものを選ぶため、連続値の行動にはそのままでは適用しにくい。連続値制御にはアクタークリティック系の手法などが使われる。",
+    "whyWrong": [
+      "ノイジーネットワークの論文の説明として正しい。",
+      "A3Cの論文は連続的な運動制御の問題でも成功したと報告している。",
+      null,
+      "報酬成形の説明として正しい。"
+    ],
+    "memoryTip": "DQN＝「ボタンを選ぶ」AI。ハンドルの角度のような連続値は苦手。",
+    "concepts": [
+      "C-06-062",
+      "C-06-047",
+      "C-06-050",
+      "C-06-061"
+    ],
+    "sources": [
+      {
+        "title": "Mnih et al. (2013) Playing Atari with Deep Reinforcement Learning (arXiv:1312.5602)",
+        "url": "https://arxiv.org/abs/1312.5602"
+      },
+      {
+        "title": "Fortunato et al. (2017) Noisy Networks for Exploration (arXiv:1706.10295)",
+        "url": "https://arxiv.org/abs/1706.10295"
+      },
+      {
+        "title": "Mnih et al. (2016) Asynchronous Methods for Deep Reinforcement Learning (arXiv:1602.01783)",
+        "url": "https://arxiv.org/abs/1602.01783"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-044",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "GANの学習の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "生成器は識別器が誤る確率を最大にするように学習し、識別器は本物と生成物を見分けるように学習する。",
+      "生成器と識別器は別々に学習し、最後に結果を平均する。",
+      "データに少しずつノイズを加える過程の逆をたどってデータを生成する。",
+      "入力を低次元に圧縮して元に戻すことで、生成のための潜在変数を学習する。"
+    ],
+    "answer": 0,
+    "explanation": "GANは生成モデルGと識別モデルDを同時に学習する2人ゼロ和ゲーム（ミニマックスゲーム）の枠組み。",
+    "whyWrong": [
+      null,
+      "GANの2つのネットワークは互いに競いながら同時に学習する。",
+      "これは拡散モデルの説明。",
+      "これはオートエンコーダ（VAEなど）の考え方。"
+    ],
+    "memoryTip": "偽札作り（生成器）と警察（識別器）のいたちごっこ。",
+    "concepts": [
+      "C-06-063",
+      "C-06-067"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)",
+        "url": "https://arxiv.org/abs/1406.2661"
+      },
+      {
+        "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
+        "url": "https://arxiv.org/abs/2006.11239"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-045",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "夏の風景写真を冬の風景写真に変換したいが、同じ場所・同じ構図の夏と冬の写真の対はほとんど手に入らない。このとき最も適した手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "Pix2Pix",
+      "NeRF",
+      "DCGAN",
+      "CycleGAN"
+    ],
+    "answer": 3,
+    "explanation": "CycleGANは対になった学習例がなくても、X→YとY→Xの2つの写像とサイクル一貫性損失により画像変換を学習できる。",
+    "whyWrong": [
+      "Pix2Pixは入力と出力の対になった画像で学習する条件付きGAN。対がない条件に合わない。",
+      "NeRFは複数視点の画像から新しい視点の画像を合成する手法。",
+      "DCGANは条件なしに画像を生成するGANで、入力画像を別のスタイルに変換するものではない。",
+      null
+    ],
+    "memoryTip": "Cycle＝夏→冬→夏で元に戻るか確かめる。だから対がいらない。",
+    "concepts": [
+      "C-06-066",
+      "C-06-065"
+    ],
+    "sources": [
+      {
+        "title": "Zhu et al. (2017) CycleGAN (arXiv:1703.10593)",
+        "url": "https://arxiv.org/abs/1703.10593"
+      },
+      {
+        "title": "Isola et al. (2016) Image-to-Image Translation with Conditional Adversarial Networks (arXiv:1611.07004)",
+        "url": "https://arxiv.org/abs/1611.07004"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-046",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "拡散モデル（Diffusion Model）の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "生成器と識別器を競わせて学習する。",
+      "データにガウスノイズを少しずつ加える過程を考え、その逆にノイズを少しずつ取り除いてデータを生成するよう学習する。",
+      "文章と画像のペアから、画像と文章が対応するかを判定する。",
+      "少数の視点の画像から、空間の各点の密度と色を出すネットワークを最適化する。"
+    ],
+    "answer": 1,
+    "explanation": "DDPMの論文では、拡散過程（forward process）を、分散のスケジュールに従ってデータに徐々にガウスノイズを加えるマルコフ連鎖として定める。",
+    "whyWrong": [
+      "これはGANの説明。",
+      null,
+      "これはCLIPの説明。",
+      "これはNeRFの説明。"
+    ],
+    "memoryTip": "拡散＝インクを水に垂らして広がる（ノイズ化）→逆再生で元に戻す（生成）。",
+    "concepts": [
+      "C-06-067",
+      "C-06-063"
+    ],
+    "sources": [
+      {
+        "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
+        "url": "https://arxiv.org/abs/2006.11239"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-047",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "建物を数十枚の写真で撮影し、撮っていない角度からの見え方を合成したい。空間の位置と視線方向を入力として、その点の密度と色を出すネットワークで場面を表し、ボリュームレンダリングで画像を合成する手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "DCGAN",
+      "NeRF",
+      "Pix2Pix",
+      "WaveNet"
+    ],
+    "answer": 1,
+    "explanation": "NeRFは5次元の座標（位置x, y, zと視線方向）から体積密度と視点依存の色を出す全結合ネットワークで場面を表現し、新しい視点の画像を合成する。",
+    "whyWrong": [
+      "DCGANは畳み込みを使ったGANで、特定の場面の新視点を合成する手法ではない。",
+      null,
+      "Pix2Pixは対になった画像間の変換を学ぶ手法。",
+      "WaveNetは音声波形の生成モデル。"
+    ],
+    "memoryTip": "NeRF＝Neural Radiance Fields（光の場）。視点を変えた写真を作る。",
+    "concepts": [
+      "C-06-068"
+    ],
+    "sources": [
+      {
+        "title": "Mildenhall et al. (2020) NeRF (arXiv:2003.08934)",
+        "url": "https://arxiv.org/abs/2003.08934"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-048",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "（　）は、生成器と識別器に一定の構造上の制約を設けた畳み込みニューラルネットワークを用いたGANで、物体の部分から場面全体までの階層的な表現を教師なしで学習することを示した。",
+    "choices": [
+      "U-Net",
+      "CycleGAN",
+      "Mask R-CNN",
+      "DCGAN"
+    ],
+    "answer": 3,
+    "explanation": "DCGAN（Deep Convolutional GAN）は、CNNを生成器と識別器に用いたGANで、教師なし学習の有力な候補であることを示した。",
+    "whyWrong": [
+      "U-Netはセグメンテーションのモデル。",
+      "CycleGANは対のない画像変換の手法。",
+      "Mask R-CNNはインスタンスセグメンテーションのモデル。",
+      null
+    ],
+    "memoryTip": "DC＝Deep Convolutional。GANに畳み込みを入れた基本形。",
+    "concepts": [
+      "C-06-064",
+      "C-06-063"
+    ],
+    "sources": [
+      {
+        "title": "Radford et al. (2015) DCGAN (arXiv:1511.06434)",
+        "url": "https://arxiv.org/abs/1511.06434"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-049",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "転移学習・ファインチューニング"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "画像分類の学習済みモデルを工場の不良品検査に流用しようと、新しいデータで追加学習したところ、元の分類タスクの性能が大きく下がってしまった。この現象として、最も適切なものを1つ選べ。",
+    "choices": [
+      "破滅的忘却",
+      "過学習",
+      "勾配消失",
+      "データリーケージ"
+    ],
+    "answer": 0,
+    "explanation": "新しいタスクを順番に学習すると以前のタスクの知識が失われる現象を破滅的忘却という。前のタスクで重要だった重みの学習を遅くする手法（EWC）などの対策がある。",
+    "whyWrong": [
+      null,
+      "過学習は訓練データに合わせすぎて未知のデータで性能が出ない現象で、前のタスクを忘れる話ではない。",
+      "勾配消失は深い層で勾配が小さくなり学習が進まない現象。",
+      "データリーケージは評価用の情報が学習に漏れ込み、評価が実力以上に良く見える問題。"
+    ],
+    "memoryTip": "新しいことを覚えたら、古いことを「破滅的に」忘れた。",
+    "concepts": [
+      "C-06-075",
+      "C-06-070"
+    ],
+    "sources": [
+      {
+        "title": "Kirkpatrick et al. (2016) Overcoming catastrophic forgetting in neural networks (arXiv:1612.00796)",
+        "url": "https://arxiv.org/abs/1612.00796"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-050",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "転移学習・ファインチューニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "GPT-3の論文の定義で、推論時にモデルの重みを更新せず、タスクの説明に加えて例を1つだけ示して解かせる設定として、最も適切なものを1つ選べ。",
+    "choices": [
+      "Zero-shot",
+      "Few-shot",
+      "One-shot",
+      "ファインチューニング"
+    ],
+    "answer": 2,
+    "explanation": "One-shotはFew-shotと同じだが、示す例が1つだけの設定。Zero-shotは例を示さず指示だけ、Few-shotは数例を示す。いずれも重みは更新しない。",
+    "whyWrong": [
+      "Zero-shotは例を1つも示さない。",
+      "Few-shotは数例を示す設定。",
+      null,
+      "ファインチューニングは重みを更新する。"
+    ],
+    "memoryTip": "0例＝Zero、1例＝One、数例＝Few。どれも「重みは動かさない」。",
+    "concepts": [
+      "C-06-074",
+      "C-06-070"
+    ],
+    "sources": [
+      {
+        "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
+        "url": "https://arxiv.org/abs/2005.14165"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-051",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "転移学習・ファインチューニング"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "学習の方法に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "自己教師あり学習は、データ自体から疑似的な正解を作って学習する。",
+      "半教師あり学習は、少量のラベル付きデータと大量のラベルなしデータを組み合わせて学習する。",
+      "事前学習済みモデルをファインチューニングすると、新しいタスクのデータが少なくても高い精度が出やすい。",
+      "自己教師あり学習では、すべてのデータに人手で正解ラベルを付けておく必要がある。"
+    ],
+    "answer": 3,
+    "explanation": "自己教師あり学習は、文の一部を隠して当てる、加工した2枚の画像が同じ元画像かを見分けるなど、人手のラベルなしで教師信号を作る点に意義がある。",
+    "whyWrong": [
+      "自己教師あり学習の説明として正しい。",
+      "半教師あり学習の説明として正しい。",
+      "転移学習の利点として正しい。",
+      null
+    ],
+    "memoryTip": "自己教師あり＝「自分で問題を作って自分で解く」。人手のラベルは不要。",
+    "concepts": [
+      "C-06-072",
+      "C-06-073",
+      "C-06-070"
+    ],
+    "sources": [
+      {
+        "title": "Chen et al. (2020) SimCLR (arXiv:2002.05709)",
+        "url": "https://arxiv.org/abs/2002.05709"
+      },
+      {
+        "title": "Devlin et al. (2018) BERT (arXiv:1810.04805)",
+        "url": "https://arxiv.org/abs/1810.04805"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-052",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "転移学習・ファインチューニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "同じ画像に異なるデータ拡張を施した2枚を「同じもの」として近づけ、別の画像とは遠ざけるように表現を学習する、ラベルを使わない学習の例として最も適切なものを1つ選べ。",
+    "choices": [
+      "Pix2Pixによる画像変換",
+      "BERTのファインチューニング",
+      "SimCLRによる対照学習（自己教師あり学習）",
+      "Grad-CAMによる可視化"
+    ],
+    "answer": 2,
+    "explanation": "SimCLRは対照学習による自己教師ありの表現学習の枠組みで、データ拡張の組み合わせが有効な予測課題を作るうえで決定的に重要だと示した。",
+    "whyWrong": [
+      "Pix2Pixは対になった画像で学習する条件付きGAN。",
+      "ファインチューニングはラベル付きデータで目的タスクに合わせる工程。",
+      null,
+      "Grad-CAMは判断根拠を可視化する手法で、学習方法ではない。"
+    ],
+    "memoryTip": "対照（Contrastive）＝似たもの同士を寄せ、違うものを離す。",
+    "concepts": [
+      "C-06-072"
+    ],
+    "sources": [
+      {
+        "title": "Chen et al. (2020) SimCLR (arXiv:2002.05709)",
+        "url": "https://arxiv.org/abs/2002.05709"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-053",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "転移学習・ファインチューニング"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "転移学習とファインチューニングの関係の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "ファインチューニングは、モデルの重みを一切更新せず、入力の指示文だけを工夫する方法である。",
+      "大量のデータで事前学習したモデルの重みを初期値として、目的のタスクのデータで追加学習する方法の1つがファインチューニングである。",
+      "転移学習では、事前学習したモデルの重みを捨て、目的のタスクのデータだけで一から学習し直す。",
+      "ファインチューニングは、学習済みモデルを小さなモデルに置き換えて推論を速くする手法である。"
+    ],
+    "answer": 1,
+    "explanation": "BERTの論文は、事前学習済みモデルに出力層を1つ追加してファインチューニングするだけで、多様なタスクで最高水準の性能が出ることを示した。",
+    "whyWrong": [
+      "重みを更新せず指示や例示で対応するのはZero-shot/Few-shot（プロンプトの工夫）。",
+      null,
+      "一から学習し直すのでは知識を転移していない。",
+      "これは蒸留などのモデル軽量化の説明。"
+    ],
+    "memoryTip": "事前学習（土台づくり）→ファインチューニング（仕上げ）。",
+    "concepts": [
+      "C-06-070",
+      "C-06-071"
+    ],
+    "sources": [
+      {
+        "title": "Devlin et al. (2018) BERT (arXiv:1810.04805)",
+        "url": "https://arxiv.org/abs/1810.04805"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-054",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "インターネットから集めた大量の画像と説明文の組を使い、「どの説明文がどの画像に対応するか」を当てる事前学習を行い、学習後は自然言語でクラスを指定するだけで画像分類ができるモデルとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "CLIP",
+      "DALL-E",
+      "BERT",
+      "Mask R-CNN"
+    ],
+    "answer": 0,
+    "explanation": "CLIPは4億組の画像と文章のペアで事前学習し、自然言語で視覚概念を指定してゼロショットで下流タスクに転移できる。",
+    "whyWrong": [
+      null,
+      "DALL-Eは文章から画像を生成するモデル。",
+      "BERTは文章だけを扱う言語モデル。",
+      "Mask R-CNNはインスタンスセグメンテーションのモデル。"
+    ],
+    "memoryTip": "CLIP＝画像と文章を「留める（クリップする）」。生成はしない。",
+    "concepts": [
+      "C-06-076",
+      "C-06-081"
+    ],
+    "sources": [
+      {
+        "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
+        "url": "https://arxiv.org/abs/2103.00020"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-055",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Zero-shotの説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "教師あり学習と強化学習を組み合わせた学習方法",
+      "学習データにあるクラスの新しいサンプルを識別すること",
+      "そのタスク（クラス）専用の学習例を使わずに、新しいタスクやクラスに対応すること",
+      "学習データに存在しないクラスのサンプルを使ってパラメータを更新すること"
+    ],
+    "answer": 2,
+    "explanation": "CLIPは、例えばImageNetの学習データを1枚も使わずに、元のResNet-50と同等の精度をゼロショットで達成した。",
+    "whyWrong": [
+      "Zero-shotは学習方式の組み合わせを指す言葉ではない。",
+      "学習済みのクラスの新しいサンプルを識別するのは通常の分類（汎化）であり、Zero-shotの意味ではない。",
+      null,
+      "パラメータを更新するなら、そのクラスのデータで学習していることになる。"
+    ],
+    "memoryTip": "Zero-shot＝そのタスクの例を「ゼロ」件しか見ていない。",
+    "concepts": [
+      "C-06-081",
+      "C-06-076",
+      "C-06-074"
+    ],
+    "sources": [
+      {
+        "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
+        "url": "https://arxiv.org/abs/2103.00020"
+      },
+      {
+        "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
+        "url": "https://arxiv.org/abs/2005.14165"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-056",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "画像とそれに関する自由形式の質問（例：「この写真の傘は何色？」）を入力し、自然言語で答えるタスクとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "Visual Question Answering",
+      "Image Captioning",
+      "Text-To-Image",
+      "セマンティックセグメンテーション"
+    ],
+    "answer": 0,
+    "explanation": "VQA（Visual Question Answering）は画像と質問から答えを出すタスク。質問は画像の特定の部分や背景の文脈に向けられるため、一般的なキャプション生成より詳しい理解と推論が要る。",
+    "whyWrong": [
+      null,
+      "Image Captioningは質問なしに画像を説明する文を生成するタスク。",
+      "Text-To-Imageは文章から画像を生成するタスク。",
+      "セマンティックセグメンテーションは画素ごとにクラスを付けるタスク。"
+    ],
+    "memoryTip": "VQA＝画像に「質問（Question）」して「答え（Answer）」をもらう。",
+    "concepts": [
+      "C-06-078"
+    ],
+    "sources": [
+      {
+        "title": "Antol et al. (2015) VQA: Visual Question Answering (arXiv:1505.00468)",
+        "url": "https://arxiv.org/abs/1505.00468"
+      },
+      {
+        "title": "Vinyals et al. (2014) Show and Tell: A Neural Image Caption Generator (arXiv:1411.4555)",
+        "url": "https://arxiv.org/abs/1411.4555"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-057",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "基盤モデル（Foundation Model）の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "学習済みモデルの重みを少ないビット数で表すための手法",
+      "特定の1つのタスクのためだけに少量のデータで学習した小型のモデル",
+      "画像の判断根拠を可視化するための手法",
+      "大規模で幅広いデータで学習され、多様な下流タスクに適応できるモデル"
+    ],
+    "answer": 3,
+    "explanation": "Bommasaniら（2021）は、BERT・DALL-E・GPT-3のように広いデータで大規模に学習され、幅広い下流タスクに適応できるモデルを基盤モデルと名付けた。",
+    "whyWrong": [
+      "これは量子化の説明。",
+      "基盤モデルは汎用性が特徴で、特定タスク専用の小型モデルとは逆。",
+      "これはGrad-CAMなどの説明可能AIの手法。",
+      null
+    ],
+    "memoryTip": "基盤（Foundation）＝その上にいろいろな用途の家を建てる土台。",
+    "concepts": [
+      "C-06-082"
+    ],
+    "sources": [
+      {
+        "title": "Bommasani et al. (2021) On the Opportunities and Risks of Foundation Models (arXiv:2108.07258)",
+        "url": "https://arxiv.org/abs/2108.07258"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-058",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "マルチモーダルモデルに関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "Flamingoは、画像と文章が交互に並んだ入力を扱い、少数の例示で新しいタスクに適応できる視覚言語モデルである。",
+      "CLIPは、文章から高解像度の画像を生成するために、拡散モデルを中心に設計されたモデルである。",
+      "DALL-Eは、文章と画像のトークンを1つの系列としてTransformerでモデル化し、文章から画像を生成する。",
+      "Unified-IOは、多様なタスクの入出力を離散的なトークンの系列にそろえ、1つのモデルで扱う。"
+    ],
+    "answer": 1,
+    "explanation": "CLIPは画像と文章の対応を学習するモデルで、画像生成モデルではない。",
+    "whyWrong": [
+      "Flamingoの論文の説明として正しい。",
+      null,
+      "DALL-Eの論文の説明として正しい。",
+      "Unified-IOの論文の説明として正しい。"
+    ],
+    "memoryTip": "CLIP＝判定（どの文がどの画像か）。生成するのはDALL-Eなど。",
+    "concepts": [
+      "C-06-076",
+      "C-06-079",
+      "C-06-080",
+      "C-06-077"
+    ],
+    "sources": [
+      {
+        "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
+        "url": "https://arxiv.org/abs/2103.00020"
+      },
+      {
+        "title": "Alayrac et al. (2022) Flamingo (arXiv:2204.14198)",
+        "url": "https://arxiv.org/abs/2204.14198"
+      },
+      {
+        "title": "Lu et al. (2022) Unified-IO (arXiv:2206.08916)",
+        "url": "https://arxiv.org/abs/2206.08916"
+      },
+      {
+        "title": "Ramesh et al. (2021) Zero-Shot Text-to-Image Generation (DALL-E) (arXiv:2102.12092)",
+        "url": "https://arxiv.org/abs/2102.12092"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-059",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "「夕焼けの海辺を走る白い犬」という文章を入力すると、その場面の画像を作り出すタスクとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "Image Captioning",
+      "Text-To-Image",
+      "Visual Question Answering",
+      "物体検出"
+    ],
+    "answer": 1,
+    "explanation": "Text-To-Imageは文章から画像を生成するタスクで、DALL-Eなどが代表例。",
+    "whyWrong": [
+      "Image Captioningは逆向きで、画像から説明文を作る。",
+      null,
+      "VQAは画像と質問から答えを出す。",
+      "物体検出は画像中の物体の位置とクラスを出す。"
+    ],
+    "memoryTip": "矢印の向きで覚える：Text→Image（生成）、Image→Text（キャプション）。",
+    "concepts": [
+      "C-06-077",
+      "C-06-078"
+    ],
+    "sources": [
+      {
+        "title": "Ramesh et al. (2021) Zero-Shot Text-to-Image Generation (DALL-E) (arXiv:2102.12092)",
+        "url": "https://arxiv.org/abs/2102.12092"
+      },
+      {
+        "title": "Vinyals et al. (2014) Show and Tell: A Neural Image Caption Generator (arXiv:1411.4555)",
+        "url": "https://arxiv.org/abs/1411.4555"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-060",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CNNの判断根拠を可視化する手法で、対象クラスの勾配を最後の畳み込み層まで流し、その勾配で特徴マップを重み付けしてヒートマップを作り、ネットワークの構造を変えたり再学習したりせずに使えるものとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "CAM",
+      "Permutation Importance",
+      "LIME",
+      "Grad-CAM"
+    ],
+    "answer": 3,
+    "explanation": "Grad-CAMは勾配で重み付けしたクラス活性化マップで、全結合層を持つCNNなど幅広いモデル群に構造の変更なく適用できる。",
+    "whyWrong": [
+      "CAMは、全結合層の代わりにグローバルアベレージプーリングを置いた構造を前提とし、勾配は使わない。",
+      "Permutation Importanceは特徴量をシャッフルして精度の低下を見る手法。",
+      "LIMEはモデルの内部を見ずに、予測の近くで解釈しやすい代理モデルを作る手法。",
+      null
+    ],
+    "memoryTip": "Grad（勾配）を使うからGrad-CAM。構造を選ばない。",
+    "concepts": [
+      "C-06-085",
+      "C-06-084"
+    ],
+    "sources": [
+      {
+        "title": "Selvaraju et al. (2016) Grad-CAM (arXiv:1610.02391)",
+        "url": "https://arxiv.org/abs/1610.02391"
+      },
+      {
+        "title": "Zhou et al. (2015) Learning Deep Features for Discriminative Localization (CAM) (arXiv:1512.04150)",
+        "url": "https://arxiv.org/abs/1512.04150"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-061",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "説明したい1件の予測について、その入力を少しずつ変えたデータを作り、その近くだけで元のモデルの振る舞いをまねる線形モデルなどを学習して説明する、モデルの種類を問わない手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "LIME",
+      "SHAP",
+      "Grad-CAM",
+      "CAM"
+    ],
+    "answer": 0,
+    "explanation": "LIMEは、予測の局所的なまわりで解釈可能なモデルを学習して、任意の分類器の予測を説明する。",
+    "whyWrong": [
+      null,
+      "SHAPはシャープレイ値に基づいて各特徴量の寄与を配分する枠組み。",
+      "Grad-CAMはCNNの勾配を使う画像向けの手法で、モデルの種類を問わないものではない。",
+      "CAMはGAPを持つCNNを前提とした可視化手法。"
+    ],
+    "memoryTip": "LIME＝Local（局所）＋代理モデル。",
+    "concepts": [
+      "C-06-086",
+      "C-06-087"
+    ],
+    "sources": [
+      {
+        "title": "Ribeiro et al. (2016) \"Why Should I Trust You?\" (LIME) (arXiv:1602.04938)",
+        "url": "https://arxiv.org/abs/1602.04938"
+      },
+      {
+        "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
+        "url": "https://arxiv.org/abs/1705.07874"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-062",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "SHAPは、協力ゲーム理論の（　）の考え方を用いて、ある予測に対する各特徴量の寄与を配分する。",
+    "choices": [
+      "ナッシュ均衡",
+      "ミニマックス法",
+      "シャープレイ値",
+      "ベイズの定理"
+    ],
+    "answer": 2,
+    "explanation": "SHAP（SHapley Additive exPlanations）は、各特徴量にその予測への重要度の値を割り当てる統一的な枠組みで、シャープレイ値に基づく。",
+    "whyWrong": [
+      "ナッシュ均衡は非協力ゲームの安定状態の概念。",
+      "ミニマックス法はゲーム木の探索手法。",
+      null,
+      "ベイズの定理は条件付き確率の関係式。"
+    ],
+    "memoryTip": "SHAP＝SHApley（シャープレイ）。名前に答えが入っている。",
+    "concepts": [
+      "C-06-087"
+    ],
+    "sources": [
+      {
+        "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
+        "url": "https://arxiv.org/abs/1705.07874"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-063",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ある特徴量の値だけをデータ間でランダムに並べ替えたとき、モデルの予測精度がどれだけ落ちるかで、その特徴量の重要度を測る方法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "データ拡張",
+      "Grad-CAM",
+      "蒸留",
+      "Permutation Importance"
+    ],
+    "answer": 3,
+    "explanation": "Permutation Importanceは、特徴量をシャッフル（並べ替え）して予測との関係を壊したときの精度の落ち幅で重要度を測る。モデルの種類を問わず使える。",
+    "whyWrong": [
+      "データ拡張は学習データを加工して増やす手法。",
+      "Grad-CAMはCNNの判断根拠を画像上に可視化する手法。",
+      "蒸留は大きなモデルの知識を小さなモデルに移す手法。",
+      null
+    ],
+    "memoryTip": "Permutation＝並べ替え。並べ替えて困る特徴ほど大事。",
+    "concepts": [
+      "C-06-088"
+    ],
+    "sources": [
+      {
+        "title": "Fisher et al. (2018) All Models are Wrong, but Many are Useful (arXiv:1801.01489)",
+        "url": "https://arxiv.org/abs/1801.01489"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-06-064",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "モデルの解釈性・説明可能AI（XAI）に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "CAMは、CNNの最後に全結合層の代わりにグローバルアベレージプーリングを置いた構造を利用して、判断に効いた領域を示す。",
+      "融資の審査のように判断の理由を説明する必要がある場面では、モデルの解釈性が求められる。",
+      "ディープラーニングのモデルは構造が単純なので、精度が高いほど自動的に判断根拠が人に分かりやすくなる。",
+      "予測の理由を示せると、そのモデルの予測を信頼して行動に移すかを判断する材料になる。"
+    ],
+    "answer": 2,
+    "explanation": "一般に、アンサンブルやディープラーニングのような高精度で複雑なモデルほど、専門家でも解釈が難しく、精度と解釈性の間に緊張関係がある（SHAPの論文）。",
+    "whyWrong": [
+      "CAMの説明として正しい。",
+      "判断の根拠を説明する必要がある場面で解釈性が求められるのは正しい。",
+      null,
+      "LIMEの論文は、予測の理由を理解することが信頼の判断に重要だと述べている。"
+    ],
+    "memoryTip": "高精度・複雑＝ブラックボックス化しやすい。だからXAIが要る。",
+    "concepts": [
+      "C-06-083",
+      "C-06-084"
+    ],
+    "sources": [
+      {
+        "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
+        "url": "https://arxiv.org/abs/1705.07874"
+      },
+      {
+        "title": "Ribeiro et al. (2016) \"Why Should I Trust You?\" (LIME) (arXiv:1602.04938)",
+        "url": "https://arxiv.org/abs/1602.04938"
+      },
+      {
+        "title": "Zhou et al. (2015) Learning Deep Features for Discriminative Localization (CAM) (arXiv:1512.04150)",
+        "url": "https://arxiv.org/abs/1512.04150"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-065",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの軽量化"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "エッジデバイスで深層学習モデルを動かすため、モデルの重みや計算を32ビットの浮動小数点数から8ビットの整数などのより少ないビット数で表す（　）が行われる。",
+    "choices": [
+      "プルーニング",
+      "量子化",
+      "蒸留",
+      "正規化"
+    ],
+    "answer": 1,
+    "explanation": "Jacobら（2017）は、整数演算だけで推論できる量子化の方式と、量子化後の精度を保つ学習手順を提案した。",
+    "whyWrong": [
+      "プルーニングは重要度の低い重み（接続）を取り除いて数を減らす手法で、1つの重みのビット数を減らすものではない。",
+      null,
+      "蒸留は大きなモデルの知識を小さなモデルに移す手法。",
+      "正規化はデータや中間出力の尺度をそろえる処理。"
+    ],
+    "memoryTip": "量子化＝「細かい目盛りを粗い目盛りに」。数は同じでビットが減る。",
+    "concepts": [
+      "C-06-092",
+      "C-06-091"
+    ],
+    "sources": [
+      {
+        "title": "Jacob et al. (2017) Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference (arXiv:1712.05877)",
+        "url": "https://arxiv.org/abs/1712.05877"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-066",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの軽量化"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "高精度だが大きすぎる教師モデル（または複数モデルのアンサンブル）の出力をまねるように、小さな生徒モデルを学習させる手法として、最も適切なものを1つ選べ。",
+    "choices": [
+      "蒸留",
+      "量子化",
+      "プルーニング",
+      "データ拡張"
+    ],
+    "answer": 0,
+    "explanation": "Hintonら（2015）は、アンサンブルの知識を1つのモデルに蒸留することで、配備しやすいモデルで近い性能を出せることを示した。",
+    "whyWrong": [
+      null,
+      "量子化は同じモデルの数値の表現を粗くする手法。",
+      "プルーニングは同じモデルから不要な重みを取り除く手法。",
+      "データ拡張は学習データを増やす手法で、モデルを小さくするものではない。"
+    ],
+    "memoryTip": "蒸留＝先生（大きいモデル）の答え方を生徒（小さいモデル）が写す。",
+    "concepts": [
+      "C-06-090"
+    ],
+    "sources": [
+      {
+        "title": "Hinton et al. (2015) Distilling the Knowledge in a Neural Network (arXiv:1503.02531)",
+        "url": "https://arxiv.org/abs/1503.02531"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-067",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの軽量化"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "宝くじ仮説（Lottery Ticket Hypothesis）の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "大きな教師モデルの出力を確率的にまねることで、生徒モデルの精度が上がる。",
+      "ニューラルネットワークの性能は、初期値の運によって決まるため、学習の工夫には意味がない。",
+      "ランダムに初期化した密なネットワークには、単独で学習しても元と同程度の精度に達する部分ネットワークが含まれている。",
+      "モデルの大きさを10倍にすると、精度も必ず10倍になる。"
+    ],
+    "answer": 2,
+    "explanation": "Frankle & Carbin（2018）は、プルーニングで見つかる部分ネットワーク（当たりくじ）は、元の初期値のまま単独で学習させると元のネットワークに匹敵する精度に達すると述べた。",
+    "whyWrong": [
+      "これは蒸留の説明。",
+      "学習が無意味という主張ではない。プルーニングで見つかる構造の性質に関する仮説。",
+      null,
+      "そのような関係は主張されていない。"
+    ],
+    "memoryTip": "大きなくじの束（密なネット）に、当たりくじ（小さく学習できる部分）が入っている。",
+    "concepts": [
+      "C-06-093",
+      "C-06-091"
+    ],
+    "sources": [
+      {
+        "title": "Frankle & Carbin (2018) The Lottery Ticket Hypothesis (arXiv:1803.03635)",
+        "url": "https://arxiv.org/abs/1803.03635"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-068",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの軽量化"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "モデルの軽量化に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "量子化は、モデルの層の数を減らして浅いネットワークに作り替える手法である。",
+      "Deep Compressionは、プルーニング・量子化・ハフマン符号化を組み合わせてモデルの保存サイズを大きく減らした。",
+      "エッジ機器は計算能力やメモリが限られるため、モデルの軽量化が必要になる。",
+      "プルーニングは、学習済みネットワークの重要度の低い接続を取り除いてパラメータ数を減らす。"
+    ],
+    "answer": 0,
+    "explanation": "量子化は、重みや演算を少ないビット数で表す手法で、層の数を減らすものではない。",
+    "whyWrong": [
+      null,
+      "Deep Compressionの説明として正しい（精度を落とさず35〜49分の1）。",
+      "正しい。MobileNetなども組込み機器向けに設計された。",
+      "プルーニングの説明として正しい。"
+    ],
+    "memoryTip": "量子化＝ビットを減らす、プルーニング＝重みを減らす、蒸留＝小さいモデルに写す。",
+    "concepts": [
+      "C-06-092",
+      "C-06-091",
+      "C-06-089"
+    ],
+    "sources": [
+      {
+        "title": "Han et al. (2015) Deep Compression (arXiv:1510.00149)",
+        "url": "https://arxiv.org/abs/1510.00149"
+      },
+      {
+        "title": "Jacob et al. (2017) Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference (arXiv:1712.05877)",
+        "url": "https://arxiv.org/abs/1712.05877"
+      },
+      {
+        "title": "Howard et al. (2017) MobileNets (arXiv:1704.04861)",
+        "url": "https://arxiv.org/abs/1704.04861"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-069",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの軽量化"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "工場の検査カメラで、通信が不安定でもその場で即座に不良品を判定したい。また、撮影画像を社外のサーバに送りたくない。この要件に最も合う方針として、最も適切なものを1つ選べ。",
+    "choices": [
+      "判定のたびに人がすべての画像を目視で確認する。",
+      "すべての画像をクラウドに送り、巨大なモデルで判定する。",
+      "モデルを大きくして精度を上げることだけを優先する。",
+      "軽量化したモデルをカメラ側の端末で動かすエッジAIにする。"
+    ],
+    "answer": 3,
+    "explanation": "端末側で推論するエッジAIは、通信遅延や通信断の影響を受けにくく、データを外部に送らずに済む。端末の資源は限られるため、量子化やプルーニングなどの軽量化と組み合わせる。",
+    "whyWrong": [
+      "自動判定の要件を満たさない。",
+      "通信が不安定な場合や画像を外に出したくない要件に合わない。",
+      "端末の資源の制約を無視しており、その場で動かせない。",
+      null
+    ],
+    "memoryTip": "エッジ＝現場で考える。速い・切れても動く・データが外に出ない。",
+    "concepts": [
+      "C-06-089",
+      "C-06-092"
+    ],
+    "sources": [
+      {
+        "title": "Jacob et al. (2017) Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference (arXiv:1712.05877)",
+        "url": "https://arxiv.org/abs/1712.05877"
+      }
+    ],
+    "status": "unverified"
+  }
+]

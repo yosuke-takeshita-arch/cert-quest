@@ -1,0 +1,1093 @@
+[
+  {
+    "id": "C-03-001",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "教師あり学習",
+    "oneLine": "入力（特徴量）と正解（教師データ・ラベル）のペアから、入力から正解を予測する関係を学ぶ学習。",
+    "why": "過去の「問題と答え」の組から、未知の入力に対する答えを当てられるようにする。予測したいものが数値なら回帰、カテゴリなら分類。",
+    "links": [
+      { "id": "C-03-002", "relation": "部分（タスク）" },
+      { "id": "C-03-003", "relation": "部分（タスク）" },
+      { "id": "C-03-021", "relation": "対比" },
+      { "id": "C-03-036", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-021", "point": "教師なし学習は正解ラベルを使わず、特徴量だけからデータの構造を見つける。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Cross-validation（教師あり学習の評価の前提）", "url": "https://scikit-learn.org/stable/modules/cross_validation.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-03-002",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "回帰問題",
+    "oneLine": "売上・気温・価格のような連続した数値を予測する問題。",
+    "why": "「どのくらいか」を答える。評価にはMSE・RMSE・MAEのような誤差の大きさの指標を使う。",
+    "links": [
+      { "id": "C-03-005", "relation": "代表的な手法" },
+      { "title": "平均二乗誤差 (MSE)", "relation": "評価指標" },
+      { "id": "C-03-003", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-008", "point": "ロジスティック回帰は名前に「回帰」が付くが、分類に使う手法。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Linear Models", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-03-003",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "分類問題",
+    "oneLine": "迷惑メールか否か、画像が犬か猫か、のように、入力をあらかじめ決めたカテゴリ（クラス）に振り分ける問題。",
+    "why": "「どれに当たるか」を答える。2つに分けるのが2値分類、3つ以上が多クラス分類。評価には正解率・適合率・再現率などを使う。",
+    "links": [
+      { "id": "C-03-004", "relation": "部分（3クラス以上）" },
+      { "id": "C-03-008", "relation": "代表的な手法" },
+      { "title": "混同行列", "relation": "評価" },
+      { "id": "C-03-002", "relation": "対比" }
+    ],
+    "confusions": [
+      { "title": "クラスタリング", "point": "分類は正解ラベルのあるカテゴリに振り分ける（教師あり）。クラスタリングはラベル無しで似たもの同士をまとめる（教師なし）。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Multiclass and multioutput algorithms", "url": "https://scikit-learn.org/stable/modules/multiclass.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-03-004",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "多クラス分類",
+    "oneLine": "3つ以上のクラスのどれか1つに振り分ける分類。2値分類器を組み合わせる方法（one-vs-rest、one-vs-one）や、ソフトマックス関数で各クラスの確率を出す方法がある。",
+    "why": "手書き数字（0〜9）や商品カテゴリなど、現実の分類は2択でないことが多い。",
+    "links": [
+      { "id": "C-03-003", "relation": "部分" },
+      { "title": "ソフトマックス関数", "relation": "解決策（出力層）" }
+    ],
+    "confusions": [
+      { "title": "マルチラベル分類", "point": "多クラス分類は1つだけ選ぶ。1つの入力に複数のラベルを同時に付けるのはマルチラベル分類。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Multiclass and multioutput algorithms", "url": "https://scikit-learn.org/stable/modules/multiclass.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-005",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "線形回帰",
+    "oneLine": "目的変数を説明変数の一次式（重み付きの和＋切片）で表し、予測と実測の差の二乗の和が最小になるように係数を決める回帰（最小二乗法）。",
+    "why": "最も基本的な回帰手法で、係数を見ればどの変数がどれだけ効くかが分かる。正則化を加えたものがリッジ回帰・ラッソ回帰。",
+    "links": [
+      { "id": "C-03-006", "relation": "部分（説明変数1つ）" },
+      { "id": "C-03-007", "relation": "部分（説明変数2つ以上）" },
+      { "title": "リッジ回帰", "relation": "発展形（L2正則化）" },
+      { "title": "ラッソ回帰", "relation": "発展形（L1正則化）" }
+    ],
+    "confusions": [
+      { "id": "C-03-008", "point": "線形回帰は数値を予測、ロジスティック回帰は確率を出して分類する。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Linear Models", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-006",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "単回帰分析",
+    "oneLine": "説明変数が1つの線形回帰。y＝ax＋b の直線を当てはめる。",
+    "why": "「気温からアイスの売上を予測する」のように、1つの要因と結果の関係を見る基本形。",
+    "links": [
+      { "id": "C-03-005", "relation": "部分" },
+      { "id": "C-03-007", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-007", "point": "説明変数が1つなら単回帰、2つ以上なら重回帰。目的変数の数ではない。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Linear Models", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-03-007",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "重回帰分析",
+    "oneLine": "説明変数が2つ以上の線形回帰。例：店舗の売上を、周辺人口・店舗面積・品目数から予測する。",
+    "why": "現実の結果は複数の要因で決まる。複数の要因を同時に考慮して数値を予測できる。説明変数どうしが強く相関すると係数が不安定になる（多重共線性）。",
+    "links": [
+      { "id": "C-03-005", "relation": "部分" },
+      { "id": "C-03-006", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-009", "point": "自分自身の過去の値から未来を予測するのは自己回帰モデル。複数の別の変数から予測するのが重回帰。" },
+      { "title": "主成分分析 (PCA)", "point": "多数の項目を少数の軸にまとめるのは主成分分析（教師なし）。重回帰は目的変数を予測する。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Linear Models", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-03-008",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "ロジスティック回帰",
+    "oneLine": "入力の重み付き和をシグモイド関数で0〜1の確率に変換し、その確率で分類する手法。名前は回帰だが分類に使う。",
+    "why": "「購入するか」「不良品か」などの2値分類を、確率つきで出せる。係数から各変数の効き方も読める。多クラスへはソフトマックスで拡張する。",
+    "links": [
+      { "id": "C-03-003", "relation": "部分（分類の手法）" },
+      { "title": "シグモイド関数", "relation": "部分" },
+      { "title": "交差エントロピー", "relation": "誤差関数" }
+    ],
+    "confusions": [
+      { "id": "C-03-005", "point": "「回帰」という名前に引っかけられやすい。ロジスティック回帰は分類。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Linear Models（Logistic regression）", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-009",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "自己回帰モデル (ARモデル)",
+    "oneLine": "ある時点の値を、同じ系列の過去の値（ラグ）の線形結合で表す時系列モデル。",
+    "why": "株価・気温・売上のように過去の値が未来に影響する時系列を予測する。変数が1つの時系列を扱う。",
+    "links": [
+      { "id": "C-03-010", "relation": "発展形（多変数）" },
+      { "title": "時系列データ", "relation": "対象" },
+      { "title": "リカレントニューラルネットワーク (RNN)", "relation": "対比（ニューラルネットで時系列を扱う）" }
+    ],
+    "confusions": [
+      { "id": "C-03-010", "point": "ARは1つの系列、VARは複数の系列が互いに影響し合うのを扱う。" }
+    ],
+    "sources": [
+      { "title": "statsmodels: AutoReg (Autoregressive AR-X(p) model)", "url": "https://www.statsmodels.org/stable/generated/statsmodels.tsa.ar_model.AutoReg.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-010",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "ベクトル自己回帰モデル (VARモデル)",
+    "oneLine": "複数の時系列（例：金利と為替）を、それぞれの過去の値から同時に予測する、自己回帰モデルの多変数版。",
+    "why": "互いに影響し合う複数の時系列の関係をまとめて扱える。",
+    "links": [
+      { "id": "C-03-009", "relation": "発展形の元" }
+    ],
+    "confusions": [
+      { "id": "C-03-009", "point": "ARは単変量、VARは多変量。「ベクトル」＝複数の変数をまとめたもの。" }
+    ],
+    "sources": [
+      { "title": "statsmodels: Vector Autoregressions (tsa.vector_ar)", "url": "https://www.statsmodels.org/stable/vector_ar.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-011",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "サポートベクターマシン (SVM)",
+    "oneLine": "クラスを分ける境界（超平面）を、境界に最も近いデータ（サポートベクター）からの距離（マージン）が最大になるように決める手法。分類にも回帰にも使える。",
+    "why": "マージンが大きいほど未知データへの汎化誤差が小さくなりやすい。カーネル関数を使えば、直線で分けられないデータも分類できる。",
+    "links": [
+      { "id": "C-03-012", "relation": "部分（考え方）" },
+      { "id": "C-03-013", "relation": "部分（非線形への拡張）" },
+      { "title": "汎化性能", "relation": "目的" }
+    ],
+    "confusions": [
+      { "id": "C-03-008", "point": "ロジスティック回帰は確率を最適化、SVMはマージンを最大化。境界の決め方が違う。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Support Vector Machines", "url": "https://scikit-learn.org/stable/modules/svm.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-012",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "マージン最大化",
+    "oneLine": "分類境界と、境界に最も近い各クラスのデータとの距離（マージン）を最大にするよう境界を決める考え方。SVMの基本原理。",
+    "why": "ぎりぎりの位置に境界を引くと、少し違う新データで誤分類しやすい。余裕（マージン）を大きくとると汎化しやすい。",
+    "links": [
+      { "id": "C-03-011", "relation": "部分（SVMの原理）" }
+    ],
+    "confusions": [
+      { "title": "誤差関数", "point": "マージン最大化は境界の余裕を最大にする。誤差を最小化する一般的な学習と目的の書き方が違う。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Support Vector Machines", "url": "https://scikit-learn.org/stable/modules/svm.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-013",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "カーネル・カーネルトリック",
+    "oneLine": "カーネル：2つのデータの類似度を、高次元に写した後の内積として計算する関数。カーネルトリック：高次元への写像を実際には計算せず、カーネル関数だけで高次元空間での計算を済ませる工夫。",
+    "why": "元の空間では直線で分けられないデータも、高次元に写せば平面で分けられることがある。写像を直接計算すると重いので、カーネル関数で計算量を抑える。",
+    "links": [
+      { "id": "C-03-011", "relation": "部分（SVMを非線形に拡張）" },
+      { "title": "次元の呪い", "relation": "対比（高次元でも計算を抑える）" }
+    ],
+    "confusions": [
+      { "title": "カーネル（畳み込み）", "point": "CNNの「カーネル」は畳み込みのフィルタのことで、SVMのカーネル関数とは別物。同じ語に注意。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Support Vector Machines", "url": "https://scikit-learn.org/stable/modules/svm.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-014",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "決定木",
+    "oneLine": "「年齢が30以上か」のような条件で、データを木の形に繰り返し分けて分類・回帰する手法。",
+    "why": "判断の過程を人が読めて解釈しやすく、前処理（標準化など）もほとんど要らない。ただし木を深くすると訓練データに合わせすぎて過学習しやすいため、アンサンブルで補う。",
+    "links": [
+      { "id": "C-03-016", "relation": "発展形（多数の木で平均）" },
+      { "id": "C-03-019", "relation": "発展形（木を順に足す）" },
+      { "title": "過学習", "relation": "課題" }
+    ],
+    "confusions": [
+      { "title": "探索木", "point": "探索木は解を探す場合分け（学習しない）。決定木はデータから学ぶ予測モデル。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Decision Trees", "url": "https://scikit-learn.org/stable/modules/tree.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-015",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "アンサンブル学習",
+    "oneLine": "複数のモデル（弱いモデルを含む）を組み合わせて、1つのモデルより良い予測を得る方法。代表はバギング（並列に作って平均）とブースティング（順に作って誤りを補う）。",
+    "why": "1つのモデルの癖や誤りを、別のモデルで打ち消せる。決定木と組み合わせたランダムフォレストや勾配ブースティングが代表例。",
+    "links": [
+      { "id": "C-03-017", "relation": "部分（並列）" },
+      { "id": "C-03-018", "relation": "部分（逐次）" },
+      { "id": "C-03-016", "relation": "具体例" },
+      { "id": "C-03-019", "relation": "具体例" }
+    ],
+    "confusions": [
+      { "title": "マルチタスク学習", "point": "アンサンブルは1つのタスクに複数モデル。マルチタスク学習は1つのモデルで複数タスク。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Ensembles", "url": "https://scikit-learn.org/stable/modules/ensemble.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-016",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "ランダムフォレスト",
+    "oneLine": "ブートストラップサンプリングで作った複数の訓練データと、分割ごとにランダムに選んだ一部の特徴量で多数の決定木を作り、多数決（分類）や平均（回帰）で予測するバギング系の手法。",
+    "why": "データも特徴量もランダムに変えることで木どうしの相関を下げ、1本の深い決定木の過学習を抑える。",
+    "links": [
+      { "id": "C-03-014", "relation": "部分（構成要素）" },
+      { "id": "C-03-017", "relation": "部分（方式）" },
+      { "id": "C-03-020", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-03-019", "point": "ランダムフォレストは木を独立に作って平均（バギング）。勾配ブースティングは前の木の誤りを次の木で補う（ブースティング）。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Ensembles（Random forests）", "url": "https://scikit-learn.org/stable/modules/ensemble.html" },
+      { "title": "Breiman (2001) Random Forests. Machine Learning", "url": "https://link.springer.com/article/10.1023/A:1010933404324" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-017",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "バギング",
+    "oneLine": "ブートストラップサンプリングで作った複数のデータでモデルを独立（並列）に学習し、予測を平均や多数決でまとめるアンサンブル手法。",
+    "why": "個々のモデルのばらつきを平均で打ち消し、過学習を抑える。完全に育てた決定木のような強く複雑なモデルと相性がよい。",
+    "links": [
+      { "id": "C-03-020", "relation": "部分（データの作り方）" },
+      { "id": "C-03-016", "relation": "具体例" },
+      { "id": "C-03-018", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-018", "point": "バギング＝並列・独立・平均。ブースティング＝逐次・前の誤りを重視。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Ensembles（Bagging meta-estimator）", "url": "https://scikit-learn.org/stable/modules/ensemble.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-018",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "ブースティング",
+    "oneLine": "モデルを1つずつ順番に（逐次）作り、前のモデルが間違えたデータを重視して次のモデルを学習させ、全体を組み合わせるアンサンブル手法。",
+    "why": "浅い決定木のような弱いモデルでも、誤りを少しずつ直すことで高精度になる。逐次なので並列化しにくく、学習に時間がかかる。",
+    "links": [
+      { "id": "C-03-019", "relation": "具体例" },
+      { "id": "C-03-017", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-017", "point": "ブースティングは強いモデルではなく弱いモデル（浅い木）と相性がよい。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Ensembles", "url": "https://scikit-learn.org/stable/modules/ensemble.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-019",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "勾配ブースティング",
+    "oneLine": "前までのモデルの誤差を小さくする方向（損失関数の負の勾配）を、次の決定木に予測させて足していくブースティング手法。",
+    "why": "任意の微分可能な損失関数に使え、表形式データの予測で高い精度を出すことが多い。XGBoostやLightGBMなどの実装が広く使われる。",
+    "links": [
+      { "id": "C-03-018", "relation": "部分（方式）" },
+      { "id": "C-03-014", "relation": "部分（構成要素）" },
+      { "title": "勾配降下法", "relation": "関連（負の勾配の方向に進む）" }
+    ],
+    "confusions": [
+      { "id": "C-03-016", "point": "勾配ブースティング＝木を順に足す。ランダムフォレスト＝木を並列に作って平均。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Ensembles（Gradient-boosted trees）", "url": "https://scikit-learn.org/stable/modules/ensemble.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-020",
+    "syllabus": ["技術分野", "機械学習の概要", "教師あり学習"],
+    "title": "ブートストラップサンプリング",
+    "oneLine": "元のデータから、同じデータを重複して選ぶことを許して（復元抽出で）同じ数だけ取り出し、新しいデータセットを作る方法。",
+    "why": "1つのデータから少しずつ違う訓練データを多数作れる。バギングやランダムフォレストの土台。選ばれなかったデータ（OOB）で性能を見積もることもできる。",
+    "links": [
+      { "id": "C-03-017", "relation": "部分（バギングの土台）" },
+      { "id": "C-03-016", "relation": "部分" }
+    ],
+    "confusions": [
+      { "title": "交差検証", "point": "交差検証はデータを重複なく分けて評価に使う。ブートストラップは重複を許して取り出し、学習用データを作る。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Ensembles", "url": "https://scikit-learn.org/stable/modules/ensemble.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-021",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "教師なし学習",
+    "oneLine": "正解ラベルを使わず、特徴量だけからデータの構造（まとまり・軸・話題）を見つける学習。代表はクラスタリングと次元削減。",
+    "why": "ラベル付けには手間がかかる。ラベルが無くても、顧客のグループ分けや、データの要約・可視化ができる。",
+    "links": [
+      { "id": "C-03-022", "relation": "部分（タスク）" },
+      { "id": "C-03-027", "relation": "部分（タスク）" },
+      { "id": "C-03-001", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-001", "point": "教師あり＝特徴量と正解のペアが要る。教師なし＝特徴量だけでよい。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Clustering", "url": "https://scikit-learn.org/stable/modules/clustering.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-03-022",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "クラスタリング",
+    "oneLine": "ラベルの無いデータを、似たもの同士のグループ（クラスタ）にまとめること。",
+    "why": "購買履歴から顧客を似た好みのグループに分けるなど、事前に答えが無いまま構造を見つけられる。k-means法のような非階層型と、ウォード法のような階層型がある。",
+    "links": [
+      { "id": "C-03-023", "relation": "具体例（非階層型）" },
+      { "id": "C-03-024", "relation": "具体例（階層型）" },
+      { "id": "C-03-021", "relation": "部分" }
+    ],
+    "confusions": [
+      { "title": "分類問題", "point": "分類は決まったラベルに当てはめる教師あり。クラスタリングはラベル無しでまとまりを見つける教師なし。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Clustering", "url": "https://scikit-learn.org/stable/modules/clustering.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-023",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "k-means法",
+    "oneLine": "あらかじめ決めたk個のクラスタに、各データを最も近い中心へ割り当て、中心を平均で更新することを繰り返す非階層型クラスタリング。クラスタ内の二乗距離の和（イナーシャ）を小さくする。",
+    "why": "シンプルで大量のデータにも使いやすい。ただしクラスタ数kを事前に指定する必要があり、初期値によって結果が変わる。",
+    "links": [
+      { "id": "C-03-022", "relation": "部分" },
+      { "id": "C-03-024", "relation": "対比" }
+    ],
+    "confusions": [
+      { "title": "k-近傍法", "point": "k-近傍法（k-NN）は近いk個のラベルで判定する教師ありの分類。k-means法はクラスタ数kの教師なしクラスタリング。" },
+      { "title": "k- 分割交差検証", "point": "kは「データをk分割する」の意味で、クラスタ数とは別。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Clustering（K-means）", "url": "https://scikit-learn.org/stable/modules/clustering.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-024",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "ウォード法",
+    "oneLine": "階層的クラスタリングの結合方法の一つ。結合したときにクラスタ内の二乗誤差（ばらつき）の増え方が最も小さい2つのクラスタを順に結合していく。",
+    "why": "データを1つずつのクラスタから始めて順にまとめる（凝集型）ので、クラスタ数を事前に決めなくてよい。結合の過程はデンドログラムで見られる。",
+    "links": [
+      { "id": "C-03-025", "relation": "部分（結果の図）" },
+      { "id": "C-03-023", "relation": "対比" },
+      { "id": "C-03-022", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-03-023", "point": "ウォード法は階層型（クラスタ数を後から決められる）、k-means法は非階層型（kを先に決める）。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Clustering（Hierarchical clustering）", "url": "https://scikit-learn.org/stable/modules/clustering.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-025",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "デンドログラム (樹形図)",
+    "oneLine": "階層的クラスタリングで、クラスタがどの順・どの距離で結合されたかを木の形で表した図。",
+    "why": "どの高さで木を切るかでクラスタ数を後から選べる。根はすべてのデータを含む1つのクラスタ、葉は1件ずつのクラスタ。",
+    "links": [
+      { "id": "C-03-024", "relation": "部分（結果の表し方）" }
+    ],
+    "confusions": [
+      { "title": "決定木", "point": "どちらも木の図だが、デンドログラムはクラスタの結合の過程、決定木は分類の条件分岐。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Clustering（Hierarchical clustering）", "url": "https://scikit-learn.org/stable/modules/clustering.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-026",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "主成分分析 (PCA)",
+    "oneLine": "多数の変数を、データのばらつき（分散）を最も多く説明する互いに直交する少数の軸（主成分）にまとめる次元削減の手法。",
+    "why": "たくさんのアンケート項目を2〜3の軸に要約したり、可視化や前処理として次元の呪いを和らげたりできる。線形の変換。",
+    "links": [
+      { "id": "C-03-027", "relation": "部分（次元削減の代表）" },
+      { "id": "C-03-028", "relation": "関連（計算の基礎）" },
+      { "title": "次元の呪い", "relation": "解決策" }
+    ],
+    "confusions": [
+      { "id": "C-03-029", "point": "PCAは線形で分散を保つ。t-SNEは非線形で、近いデータ同士の関係を保って可視化する。" },
+      { "title": "重回帰分析", "point": "重回帰は目的変数を予測（教師あり）。PCAは目的変数なしで軸をまとめる（教師なし）。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Decomposing signals in components（PCA）", "url": "https://scikit-learn.org/stable/modules/decomposition.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-027",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "次元削減",
+    "oneLine": "データの持つ情報をなるべく失わずに、特徴量の数（次元）を減らすこと。",
+    "why": "次元が多いと計算が重く、次元の呪いで学習もしにくい。要約・可視化（2〜3次元に落とす）・前処理に使う。PCA、SVD、MDS、t-SNE、オートエンコーダなどがある。",
+    "links": [
+      { "id": "C-03-026", "relation": "具体例" },
+      { "id": "C-03-029", "relation": "具体例" },
+      { "id": "C-03-030", "relation": "具体例" },
+      { "title": "オートエンコーダ", "relation": "具体例（ニューラルネット）" },
+      { "title": "次元の呪い", "relation": "解決策（何を解くか）" }
+    ],
+    "confusions": [
+      { "title": "特徴選択", "point": "特徴選択は元の変数の一部を選ぶ。次元削減の多くは元の変数を組み合わせた新しい軸を作る。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Decomposing signals in components", "url": "https://scikit-learn.org/stable/modules/decomposition.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-028",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "特異値分解 (SVD)",
+    "oneLine": "行列を3つの行列の積に分解する線形代数の手法。大きい特異値だけを残せば、行列を少ない次元で近似できる。",
+    "why": "PCAの計算や、文書×単語の行列から潜在的な意味の軸を取り出す処理（潜在意味解析）、推薦の行列分解に使われる。",
+    "links": [
+      { "id": "C-03-026", "relation": "関連（計算に使う）" },
+      { "id": "C-03-027", "relation": "部分" },
+      { "id": "C-03-033", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-03-026", "point": "PCAはデータを中心化してから分解する。打ち切りSVDは中心化しなくてよい（疎な行列に向く）。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Decomposing signals in components（Truncated SVD）", "url": "https://scikit-learn.org/stable/modules/decomposition.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-029",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "t-SNE",
+    "oneLine": "高次元のデータを、近いデータ同士の関係を保ちながら2次元や3次元の地図に配置する非線形の次元削減手法。主に可視化に使う。2008年にvan der MaatenとHintonが発表。",
+    "why": "高次元のデータのまとまりを目で確かめられる。非線形なので、PCAでは重なってしまう構造も分けて見えることがある。",
+    "links": [
+      { "id": "C-03-027", "relation": "部分" },
+      { "id": "C-03-026", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-030", "point": "MDSは点どうしの距離そのものを保つ。t-SNEは近さを確率で表し、近い点の関係を重視する。" }
+    ],
+    "sources": [
+      { "title": "van der Maaten & Hinton (2008) Visualizing Data using t-SNE. JMLR", "url": "https://www.jmlr.org/papers/v9/vandermaaten08a.html" },
+      { "title": "scikit-learn User Guide: Manifold learning", "url": "https://scikit-learn.org/stable/modules/manifold.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-030",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "多次元尺度構成法 (MDS)",
+    "oneLine": "データ間の距離（似ていなさ）ができるだけ保たれるように、データを低次元の空間に配置する次元削減手法。",
+    "why": "「商品どうしの似ている度合い」のような距離の情報だけから、位置関係を地図として描ける。",
+    "links": [
+      { "id": "C-03-027", "relation": "部分" },
+      { "id": "C-03-029", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-026", "point": "PCAは分散を最大化する軸を探す。MDSは距離を保つように配置する。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Manifold learning（Multi-dimensional Scaling）", "url": "https://scikit-learn.org/stable/modules/manifold.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-031",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "トピックモデル",
+    "oneLine": "文書の集まりから、各文書がどんな話題（トピック）をどの割合で含むかを推定するモデル。",
+    "why": "大量の文書を読まずに、話題ごとの分類や傾向の把握ができる。1つの文書が複数の話題を持てる点が、1つのクラスタに割り当てるクラスタリングとの違い。",
+    "links": [
+      { "id": "C-03-032", "relation": "具体例" },
+      { "title": "自然言語処理", "relation": "応用分野" }
+    ],
+    "confusions": [
+      { "id": "C-03-022", "point": "クラスタリングは1文書1グループ。トピックモデルは1文書が複数の話題を割合で持つ。" }
+    ],
+    "sources": [
+      { "title": "Blei, Ng & Jordan (2003) Latent Dirichlet Allocation. JMLR", "url": "https://www.jmlr.org/papers/v3/blei03a.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-032",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "潜在的ディリクレ配分法 (LDA)",
+    "oneLine": "各文書はトピックの混合、各トピックは単語の確率分布であると考える、文書の生成確率モデル（トピックモデル）。2003年にBleiらが発表。",
+    "why": "文書の背後にある潜在的な話題を、ラベル無しで推定できる。",
+    "links": [
+      { "id": "C-03-031", "relation": "部分（代表的なトピックモデル）" }
+    ],
+    "confusions": [
+      { "title": "線形判別分析", "point": "略称が同じLDAでも、線形判別分析（Linear Discriminant Analysis）は教師ありの分類・次元削減。G検定の教師なし学習で出るLDAは潜在的ディリクレ配分法。" }
+    ],
+    "sources": [
+      { "title": "Blei, Ng & Jordan (2003) Latent Dirichlet Allocation. JMLR", "url": "https://www.jmlr.org/papers/v3/blei03a.html" },
+      { "title": "scikit-learn User Guide: Latent Dirichlet Allocation (LDA)", "url": "https://scikit-learn.org/stable/modules/decomposition.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-033",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "協調フィルタリング",
+    "oneLine": "多くの利用者の行動履歴（評価・購買）から、利用者どうし・商品どうしの類似性を使って推薦する方法。「あなたと似た人はこれも買っています」。",
+    "why": "商品の中身の情報が無くても、意外な（セレンディピティのある）推薦ができる。ただし履歴の無い新しい利用者や新商品には推薦しにくい（コールドスタート問題）。",
+    "links": [
+      { "id": "C-03-035", "relation": "課題" },
+      { "id": "C-03-034", "relation": "対比" },
+      { "title": "レコメンデーションエンジン", "relation": "部分（方式）" }
+    ],
+    "confusions": [
+      { "id": "C-03-034", "point": "協調＝他の利用者のデータを使う。コンテンツベース＝商品の特徴を使い、他の利用者のデータは使わない。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Recommendation Systems - Collaborative filtering", "url": "https://developers.google.com/machine-learning/recommendation/collaborative/basics" },
+      { "title": "Google for Developers: Recommendation Systems - Collaborative filtering summary", "url": "https://developers.google.com/machine-learning/recommendation/collaborative/summary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-034",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "コンテンツベースフィルタリング",
+    "oneLine": "商品の特徴（ジャンル・作者・成分など）と利用者の好みを照らし合わせて、似た特徴の商品を推薦する方法。他の利用者のデータは使わない。",
+    "why": "他の利用者の履歴が無くても、商品の情報さえあれば推薦できるので、サービス開始直後や新商品に強い。反面、似たものばかりを推薦しがち。",
+    "links": [
+      { "id": "C-03-035", "relation": "解決策" },
+      { "id": "C-03-033", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-033", "point": "リリース直後や新商品で使いやすいのはコンテンツベース。利用者が増えてから強いのは協調フィルタリング。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Recommendation Systems - Content-based filtering", "url": "https://developers.google.com/machine-learning/recommendation/content-based/basics" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-035",
+    "syllabus": ["技術分野", "機械学習の概要", "教師なし学習"],
+    "title": "コールドスタート問題",
+    "oneLine": "推薦システムで、新しい利用者や新しい商品には履歴が無いため、うまく推薦できない問題。協調フィルタリングで特に起きる。",
+    "why": "協調フィルタリングは他の利用者の行動を手がかりにするので、データが溜まるまで役に立たない。対策は商品の特徴を使うコンテンツベースとの併用など。",
+    "links": [
+      { "id": "C-03-033", "relation": "原因" },
+      { "id": "C-03-034", "relation": "解決策" }
+    ],
+    "confusions": [
+      { "title": "フレーム問題", "point": "コールドスタートはデータ不足の問題。フレーム問題は関係あることを選べない問題。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: Recommendation Systems - Collaborative filtering summary", "url": "https://developers.google.com/machine-learning/recommendation/collaborative/summary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-036",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "強化学習",
+    "oneLine": "エージェントが環境の中で行動し、得られる報酬の合計（累積報酬）が最大になるような行動の選び方（方策）を、試行錯誤から学ぶ学習。",
+    "why": "正解の行動が事前に分からなくても、結果としての報酬から学べる。ゲーム・ロボット制御・広告配信などで使われる。教師あり・教師なしには無い課題として「探索と活用のトレードオフ」がある。",
+    "links": [
+      { "id": "C-03-037", "relation": "部分（定式化）" },
+      { "id": "C-03-042", "relation": "部分（課題）" },
+      { "title": "エージェント", "relation": "部分" },
+      { "title": "深層強化学習", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-03-001", "point": "教師あり学習は「正解の行動」を与える。強化学習は「行動の良し悪しの結果（報酬）」だけを与える。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-037",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "マルコフ決定過程",
+    "oneLine": "状態・行動・報酬・状態遷移で問題を表し、次の状態は現在の状態と行動だけで決まる（過去の経緯に依存しない＝マルコフ性）とする強化学習の定式化。",
+    "why": "過去全部ではなく現在の状態だけを見ればよいと仮定することで、価値関数やベルマン方程式で解ける形になる。",
+    "links": [
+      { "id": "C-03-036", "relation": "部分（定式化）" },
+      { "id": "C-03-038", "relation": "部分" },
+      { "id": "C-03-039", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "隠れマルコフモデル", "point": "隠れマルコフモデルは観測できない状態の系列を推定する確率モデル（音声認識など）。マルコフ決定過程は行動と報酬を含む意思決定の定式化。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.3 Finite Markov Decision Processes）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-038",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "割引率",
+    "oneLine": "将来の報酬を現在の価値に換算するための0以上1以下の係数γ。k時点先の報酬はγのk乗倍して足し合わせる。",
+    "why": "遠い将来の報酬ほど不確かなので小さく見積もる。また無限に続く問題でも報酬の合計が有限になる。γが0に近いほど目先の報酬を、1に近いほど将来の報酬を重視する。",
+    "links": [
+      { "id": "C-03-039", "relation": "部分（価値の計算）" },
+      { "id": "C-03-037", "relation": "部分" }
+    ],
+    "confusions": [
+      { "title": "学習率", "point": "割引率は将来の報酬の重み。学習率はパラメータを1回にどれだけ更新するか。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（3.3 Returns and Episodes）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-039",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "状態価値関数・行動価値関数",
+    "oneLine": "状態価値関数V(s)：状態sから方策に従って行動したときに得られる累積報酬の期待値。行動価値関数Q(s,a)：状態sで行動aをとり、その後方策に従ったときの累積報酬の期待値。",
+    "why": "価値が分かれば、価値の高い行動を選べばよい。Q値（行動価値）を学ぶのがQ学習やSARSA。",
+    "links": [
+      { "id": "C-03-040", "relation": "部分（Qを学ぶ手法）" },
+      { "id": "C-03-041", "relation": "部分（Qを学ぶ手法）" },
+      { "id": "C-03-038", "relation": "部分" },
+      { "id": "C-03-045", "relation": "対比（価値ではなく方策を直接学ぶ）" }
+    ],
+    "confusions": [
+      { "id": "C-03-040", "point": "V(s)は状態だけ、Q(s,a)は状態と行動の組。Q学習の「Q」は行動価値Q(s,a)のQ。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-040",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "Q学習",
+    "oneLine": "行動価値Q(s,a)を、実際に次にとる行動に関係なく「次の状態で最大のQ値」を使って更新する方策オフ型（off-policy）のTD学習。",
+    "why": "探索のためにランダムな行動をとっていても、最適な行動価値を学べる。深層化したものがDQN。",
+    "links": [
+      { "id": "C-03-041", "relation": "対比" },
+      { "id": "C-03-039", "relation": "部分" },
+      { "title": "DQN", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-03-041", "point": "Q学習＝次の状態で最大のQを使う（off-policy）。SARSA＝実際に次に選んだ行動のQを使う（on-policy）。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（6.5 Q-learning: Off-policy TD Control）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-041",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "SARSA",
+    "oneLine": "行動価値Q(s,a)を、実際に次の状態で選んだ行動のQ値を使って更新する方策オン型（on-policy）のTD学習。名前は更新に使う State・Action・Reward・State・Action の頭文字。",
+    "why": "今の方策（探索も含む）で実際に動いたときの価値を学ぶので、危険な行動を避けた慎重な方策になりやすい。",
+    "links": [
+      { "id": "C-03-040", "relation": "対比" },
+      { "id": "C-03-039", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-03-040", "point": "SARSAは「実際の次の行動」、Q学習は「最大の行動」。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（6.4 Sarsa: On-policy TD Control）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-042",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "バンディットアルゴリズム",
+    "oneLine": "当たりの確率が分からない複数の選択肢（スロットマシンの腕）から、何度も選んで報酬の合計を最大にする問題（多腕バンディット問題）を解く方法。",
+    "why": "今いちばん良さそうなものを選ぶ（活用）か、まだよく知らないものを試す（探索）かのトレードオフを扱う。広告やニュース記事の出し分けに使われる。",
+    "links": [
+      { "id": "C-03-043", "relation": "具体例" },
+      { "id": "C-03-044", "relation": "具体例" },
+      { "id": "C-03-036", "relation": "部分（強化学習の単純な形）" }
+    ],
+    "confusions": [
+      { "id": "C-03-037", "point": "バンディット問題は状態が変わらない（選ぶだけ）。マルコフ決定過程は行動で状態が変わる。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.2 Multi-armed Bandits）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-043",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "ε-greedy方策",
+    "oneLine": "確率εでランダムに行動を選び（探索）、確率1−εで今いちばん価値が高いと見積もった行動を選ぶ（活用）方策。",
+    "why": "常に最良に見える行動だけを選ぶと、本当はもっと良い行動を見つけられない。少しだけランダムに試すことで探索を確保する。",
+    "links": [
+      { "id": "C-03-042", "relation": "部分（探索と活用の解き方）" },
+      { "id": "C-03-044", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-044", "point": "ε-greedyは一定確率で完全にランダムに試す。UCBは試した回数が少なく不確かな選択肢を優先して試す。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.2）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-044",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "UCB方策",
+    "oneLine": "推定した価値に「まだ試した回数が少ない（不確かさが大きい）ほど大きくなる上乗せ」を加えた値（信頼区間の上限）で行動を選ぶ方策。Upper Confidence Bound。",
+    "why": "ランダムに探索するより効率的に、有望かもしれない選択肢を重点的に試せる。",
+    "links": [
+      { "id": "C-03-042", "relation": "部分" },
+      { "id": "C-03-043", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-03-043", "point": "UCBは不確かさを根拠に試す（狙って探索）、ε-greedyはランダムに試す。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（2.7 Upper-Confidence-Bound Action Selection）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-045",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "方策勾配法",
+    "oneLine": "価値関数を経由せず、方策（行動の選び方）をパラメータで表し、累積報酬が増える方向（勾配）へパラメータを直接更新する方法。",
+    "why": "行動が連続値（ロボットの関節の角度など）で選択肢が無数にある場合にも使いやすい。代表がREINFORCE、価値の推定と組み合わせたのがActor-Critic。",
+    "links": [
+      { "id": "C-03-046", "relation": "具体例" },
+      { "id": "C-03-047", "relation": "発展形" },
+      { "id": "C-03-039", "relation": "対比（価値ベース）" }
+    ],
+    "confusions": [
+      { "id": "C-03-040", "point": "Q学習は価値を学んでから行動を選ぶ（価値ベース）。方策勾配法は方策そのものを学ぶ（方策ベース）。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.13 Policy Gradient Methods）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-046",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "REINFORCE",
+    "oneLine": "1エピソードを最後まで行って得た累積報酬を使い、その報酬を得た行動が選ばれやすくなるよう方策のパラメータを更新する、基本的な方策勾配法。",
+    "why": "方策勾配法の最も素朴な形。エピソード全体の結果を使うので、推定のばらつき（分散）が大きくなりやすく、ベースラインを引く工夫などが使われる。",
+    "links": [
+      { "id": "C-03-045", "relation": "部分（代表例）" },
+      { "id": "C-03-047", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-03-047", "point": "REINFORCEは方策だけ、Actor-Criticは方策（Actor）と価値（Critic）の両方を持つ。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（13.3 REINFORCE）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-047",
+    "syllabus": ["技術分野", "機械学習の概要", "強化学習"],
+    "title": "Actor-Critic",
+    "oneLine": "行動を選ぶ方策（Actor：役者）と、その行動の良さを価値関数で評価する部分（Critic：批評家）を組み合わせて学ぶ方法。",
+    "why": "方策勾配法に価値の推定を組み合わせることで、REINFORCEのような推定のばらつきを抑え、学習を安定・効率化する。深層化したものにA3Cなど。",
+    "links": [
+      { "id": "C-03-045", "relation": "部分（方策ベース）" },
+      { "id": "C-03-039", "relation": "部分（価値ベース）" },
+      { "title": "A3C", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-03-046", "point": "Actor-Criticは価値（Critic）も学ぶ。REINFORCEは方策だけ。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（13.5 Actor-Critic Methods）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-048",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "汎化性能",
+    "oneLine": "学習に使っていない未知のデータに対して、正しく予測できる能力。訓練誤差ではなく汎化誤差（未知データでの誤差）で測る。",
+    "why": "機械学習の目的は訓練データを覚えることではなく、新しいデータに当てはまること。だから訓練データとは別のデータで評価する。",
+    "links": [
+      { "id": "C-03-049", "relation": "対比（悪化する現象）" },
+      { "id": "C-03-050", "relation": "推定の方法" },
+      { "id": "C-03-051", "relation": "推定の方法" }
+    ],
+    "confusions": [
+      { "id": "C-03-049", "point": "訓練データでの成績が良くても汎化性能が高いとは限らない（過学習）。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: ML Crash Course - Overfitting", "url": "https://developers.google.com/machine-learning/crash-course/overfitting/overfitting" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-049",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "過学習",
+    "oneLine": "モデルが訓練データに合わせすぎ（覚え込みすぎ）て、未知のデータでは正しく予測できなくなる状態。訓練誤差は小さいが汎化誤差が大きい。",
+    "why": "モデルが複雑すぎる・データが少なすぎるときに起きやすい。対策は、データを増やす、正則化、ドロップアウト、早期終了、モデルを単純にする、など。",
+    "links": [
+      { "title": "正則化", "relation": "解決策" },
+      { "title": "ドロップアウト", "relation": "解決策" },
+      { "title": "早期終了", "relation": "解決策" },
+      { "id": "C-03-058", "relation": "関連（単純なモデルを選ぶ指針）" },
+      { "id": "C-03-048", "relation": "対比" }
+    ],
+    "confusions": [
+      { "title": "未学習", "point": "未学習は訓練データにすら合っていない状態（モデルが単純すぎる）。過学習は訓練データにだけ合っている状態。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: ML Crash Course - Overfitting", "url": "https://developers.google.com/machine-learning/crash-course/overfitting/overfitting" },
+      { "title": "scikit-learn User Guide: Cross-validation", "url": "https://scikit-learn.org/stable/modules/cross_validation.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-050",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "ホールドアウト検証",
+    "oneLine": "データを訓練用とテスト用（必要に応じて検証用も）に一度だけ分け、訓練用で学習してテスト用で評価する方法。",
+    "why": "簡単で計算が軽い。ただしデータが少ないと、分け方によって評価が大きくぶれ、学習に使えるデータも減る。そのときは交差検証を使う。",
+    "links": [
+      { "id": "C-03-051", "relation": "対比" },
+      { "id": "C-03-048", "relation": "目的" }
+    ],
+    "confusions": [
+      { "id": "C-03-051", "point": "ホールドアウトは1回分けるだけ。k-分割交差検証はk回入れ替えて平均する。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Cross-validation", "url": "https://scikit-learn.org/stable/modules/cross_validation.html" },
+      { "title": "Google for Developers: ML Crash Course - Dividing the original dataset", "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-051",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "交差検証・k-分割交差検証",
+    "oneLine": "交差検証：データを分けて、学習と評価を役割を入れ替えながら繰り返し、評価を平均する方法。k-分割交差検証：データをk個に分け、1つを評価用・残りk−1個を学習用にしてk回繰り返す。",
+    "why": "どのデータも1回は評価に使われるので、データが少なくても評価が安定し、データを無駄にしない。その代わり学習をk回行うので計算コストが大きい。k＝データ数にしたものが1つ抜き交差検証（Leave One Out）。",
+    "links": [
+      { "id": "C-03-050", "relation": "対比" },
+      { "id": "C-03-048", "relation": "目的" }
+    ],
+    "confusions": [
+      { "title": "k-means法", "point": "k-分割のkは分割数、k-means法のkはクラスタ数。" },
+      { "id": "C-03-020", "point": "交差検証は重複なく分割、ブートストラップは重複を許して抽出。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Cross-validation（K-fold）", "url": "https://scikit-learn.org/stable/modules/cross_validation.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-052",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "混同行列",
+    "oneLine": "分類の結果を「実際の正解」と「予測」の組み合わせで数えた表。2値分類では真陽性(TP)・偽陽性(FP)・偽陰性(FN)・真陰性(TN)の4つに分かれる。",
+    "why": "正解率だけでは、どの種類の間違い（見逃しか、誤検知か）が多いかが分からない。混同行列から適合率・再現率などを計算する。",
+    "links": [
+      { "id": "C-03-053", "relation": "部分" },
+      { "id": "C-03-054", "relation": "応用（指標の計算）" }
+    ],
+    "confusions": [
+      { "id": "C-03-053", "point": "「陽性・陰性」は予測の結果、「真・偽」は予測が当たったかどうか。偽陽性＝陽性と予測して外れた。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Metrics and scoring（Confusion matrix）", "url": "https://scikit-learn.org/stable/modules/model_evaluation.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-053",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "真陽性・真陰性・偽陽性・偽陰性",
+    "oneLine": "真陽性(TP)：陽性と予測し実際も陽性。真陰性(TN)：陰性と予測し実際も陰性。偽陽性(FP)：陽性と予測したが実際は陰性（誤検知）。偽陰性(FN)：陰性と予測したが実際は陽性（見逃し）。",
+    "why": "どちらの間違いが重いかは業務で決まる。病気の検査では見逃し（偽陰性）が重く、迷惑メールの判定では大事なメールを迷惑扱いする誤検知（偽陽性）が重い。",
+    "links": [
+      { "id": "C-03-052", "relation": "部分" },
+      { "id": "C-03-054", "relation": "応用" }
+    ],
+    "confusions": [
+      { "id": "C-03-054", "point": "偽陽性を減らしたい→適合率を重視。偽陰性を減らしたい→再現率を重視。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Metrics and scoring", "url": "https://scikit-learn.org/stable/modules/model_evaluation.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-054",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "正解率・適合率・再現率・F値",
+    "oneLine": "正解率＝(TP+TN)/全体。適合率＝TP/(TP+FP)：陽性と予測したうち本当に陽性の割合。再現率＝TP/(TP+FN)：本当の陽性のうち見つけられた割合。F値＝適合率と再現率の調和平均。",
+    "why": "陽性がまれなデータ（不正検知など）では、全部を陰性と予測しても正解率は高くなってしまう。目的に合わせて適合率（誤検知を減らす）と再現率（見逃しを減らす）を選び、両方の釣り合いはF値で見る。",
+    "links": [
+      { "id": "C-03-052", "relation": "前提" },
+      { "id": "C-03-055", "relation": "関連（しきい値を変えたときの評価）" }
+    ],
+    "confusions": [
+      { "id": "C-03-053", "point": "適合率の分母は「陽性と予測した数」、再現率の分母は「実際の陽性の数」。分母の取り違えが定番のひっかけ。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Metrics and scoring（Precision, recall and F-measures）", "url": "https://scikit-learn.org/stable/modules/model_evaluation.html" },
+      { "title": "Google for Developers: ML Crash Course - Accuracy, precision, recall", "url": "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-055",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "ROC曲線・AUC",
+    "oneLine": "ROC曲線：分類のしきい値を変えながら、横軸に偽陽性率、縦軸に真陽性率（再現率）をとって描いた曲線。AUC：ROC曲線の下の面積で、1に近いほど良く、0.5はランダムと同程度。",
+    "why": "しきい値を1つに決めなくても、モデルの陽性・陰性を見分ける力を1つの数値で比べられる。",
+    "links": [
+      { "id": "C-03-054", "relation": "関連" },
+      { "id": "C-03-053", "relation": "部分（軸の材料）" }
+    ],
+    "confusions": [
+      { "id": "C-03-054", "point": "ROC曲線の縦軸は真陽性率（＝再現率）、横軸は偽陽性率。適合率は使わない。" }
+    ],
+    "sources": [
+      { "title": "Google for Developers: ML Crash Course - ROC and AUC", "url": "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc" },
+      { "title": "scikit-learn User Guide: Metrics and scoring", "url": "https://scikit-learn.org/stable/modules/model_evaluation.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-056",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "平均二乗誤差 (MSE)・二乗平均平方根誤差 (RMSE)・平均絶対値誤差 (MAE)",
+    "oneLine": "MSE：予測と実測の差を二乗して平均。RMSE：MSEの平方根（元の単位に戻る）。MAE：差の絶対値の平均。いずれも回帰の評価指標で、小さいほど良い。",
+    "why": "二乗する MSE・RMSE は大きな外れを強く罰する。MAE は外れ値の影響を受けにくい。RMSE と MAE は予測対象と同じ単位で読める。",
+    "links": [
+      { "title": "回帰問題", "relation": "対象" },
+      { "title": "平均二乗誤差関数", "relation": "関連（学習の誤差関数として使う）" }
+    ],
+    "confusions": [
+      { "id": "C-03-054", "point": "MSE・RMSE・MAEは回帰の指標、正解率・適合率・再現率は分類の指標。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Metrics and scoring（Regression metrics）", "url": "https://scikit-learn.org/stable/modules/model_evaluation.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-057",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "赤池情報量規準 (AIC)・ベイズ情報量規準 (BIC)",
+    "oneLine": "モデルの当てはまりの良さに、パラメータ数の多さへの罰則を加えてモデルの良さを評価する指標。値が小さいモデルを選ぶ。BICはAICよりもデータ数に応じて複雑さを強く罰する。",
+    "why": "パラメータを増やせば訓練データへの当てはまりはいくらでも良くなるが、過学習する。当てはまりと単純さの釣り合いを数値で比べられ、交差検証より計算が軽い。",
+    "links": [
+      { "id": "C-03-058", "relation": "関連（単純さを重んじる考え方）" },
+      { "id": "C-03-049", "relation": "解決策（過学習を避けるモデル選択）" }
+    ],
+    "confusions": [
+      { "id": "C-03-051", "point": "交差検証はデータを分けて実際に評価する。AIC・BICは1回の学習結果から式で評価する。" }
+    ],
+    "sources": [
+      { "title": "scikit-learn User Guide: Linear Models（Information-criteria based model selection）", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-03-058",
+    "syllabus": ["技術分野", "機械学習の概要", "モデルの選択・評価"],
+    "title": "オッカムの剃刀",
+    "oneLine": "同じくらいうまく説明できるなら、仮定（パラメータ）の少ない単純なモデルを選ぶべきだ、という考え方。",
+    "why": "複雑なモデルは訓練データに合わせすぎて過学習しやすい。モデル選択の指針として、AIC・BICの罰則や正則化と同じ方向を向く。",
+    "links": [
+      { "id": "C-03-057", "relation": "関連（考え方を数値化）" },
+      { "id": "C-03-049", "relation": "解決策の指針" },
+      { "title": "正則化", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "ノーフリーランチの定理", "point": "オッカムの剃刀は「単純なほうを選べ」という指針。ノーフリーランチの定理は「どの問題にも最良の万能アルゴリズムは無い」という定理。" }
+    ],
+    "sources": [
+      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+    ],
+    "status": "unverified"
+  }
+]
