@@ -1,0 +1,19 @@
+{
+  "id": "g-kentei",
+  "name": "G検定クエスト",
+  "shortName": "G検定",
+  "examDate": "2026-11-06",
+  "exam": { "questions": 145, "minutes": 100 },
+  "secondsPerQuestion": 40,
+  "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
+  "challenge": { "questions": 10 },
+  "officialUrl": "https://www.jdla.org/certificate/general/",
+  "officialLinks": [
+    { "title": "G検定 公式ページ（試験情報）", "url": "https://www.jdla.org/certificate/general/" },
+    { "title": "公開されている例題（20問）", "url": "https://www.jdla.org/certificate/general/issues/" }
+  ],
+  "theme": {
+    "light": { "accent": "#1565c0", "onAccent": "#ffffff", "accentSoft": "#e3effc" },
+    "dark": { "accent": "#90caf9", "onAccent": "#0b1b2e", "accentSoft": "#1d2d42" }
+  }
+}

@@ -1,0 +1,198 @@
+// ホーム・シラバスの地図・ステージ・復習。
+import { h, icon, stars, externalLink } from '../ui.js';
+import { levelFromXp, daysUntil, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
+import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
+import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
+import { pickQuestions } from '../lib/quiz.js';
+import { startSession } from './play.js';
+import { cardBody } from './cards.js';
+
+export function masteryChip(level) {
+  return h('span', { class: 'chip m-' + level, text: MASTERY_LABEL[level] });
+}
+
+function stageSpec(app, stage, small) {
+  const pool = small ? small.questions : stage.questions;
+  return {
+    mode: 'stage',
+    title: small ? small.name : stage.name,
+    stageKey: stage.key,
+    small: !!small,
+    backHash: '#/stage/' + encodeURIComponent(stage.key),
+    pick: (a) => pickQuestions(pool, a.state.qstats, a.config.stage && a.config.stage.size ? a.config.stage.size : 10, a.rng),
+  };
+}
+
+function reviewSpec(app) {
+  return {
+    mode: 'review',
+    title: '今日の復習',
+    backHash: '#/review',
+    pick: (a) => dueQuestions(a.state, a.data.questionById, new Date()).slice(0, 20),
+  };
+}
+
+function challengeSpec(app) {
+  return {
+    mode: 'challenge',
+    title: '40秒チャレンジ',
+    backHash: '#/home',
+    pick: (a) => pickQuestions(a.data.questions, a.state.qstats, (a.config.challenge && a.config.challenge.questions) || 10, a.rng),
+  };
+}
+
+export function renderHome(app) {
+  const { config, state, data } = app;
+  const now = new Date();
+  const root = h('section', { class: 'view home' });
+  const left = daysUntil(config.examDate, now);
+  const lv = levelFromXp(state.xp);
+  const streak = currentStreak(state.streak, dateKey(now));
+  const due = dueQuestions(state, data.questionById, now).length;
+
+  root.appendChild(h('header', { class: 'hero' },
+    h('p', { class: 'hero-name', text: config.name }),
+    left === null ? null
+      : left > 0 ? h('p', { class: 'countdown' }, '受験まで あと ', h('strong', { class: 'days', text: String(left) }), ' 日')
+      : left === 0 ? h('p', { class: 'countdown' }, h('strong', { text: '今日が受験日です。' }))
+      : h('p', { class: 'countdown' }, '受験日（' + config.examDate + '）は過ぎました'),
+    config.examDate ? h('p', { class: 'small', text: '受験日 ' + config.examDate }) : null));
+
+  const prog = h('div', { class: 'card status' },
+    h('div', { class: 'lv-row' },
+      h('div', {}, h('span', { class: 'small muted', text: 'レベル' }), h('strong', { class: 'lv', text: 'Lv ' + lv.level })),
+      h('div', { class: 'streak', title: '連続日数' }, icon('flame', streak ? 'on' : 'off'), h('strong', { text: streak + ' 日連続' }))),
+    h('div', { class: 'progress', role: 'progressbar', 'aria-label': '次のレベルまで', 'aria-valuemin': '0', 'aria-valuemax': String(lv.need), 'aria-valuenow': String(lv.into) }, h('div', { class: 'progress-fill', style: { width: Math.round(lv.progress * 100) + '%' } })),
+    h('p', { class: 'small muted', text: 'XP ' + state.xp + '（次のレベルまで あと ' + (lv.need - lv.into) + '）' }));
+  root.appendChild(prog);
+
+  if (!data.questions.length) {
+    root.appendChild(h('div', { class: 'card empty' },
+      h('h2', { text: '問題を準備中です' }),
+      h('p', { text: 'いま用意している最中です。できあがると、ここから学習を始められます。' }),
+      data.concepts.length ? h('button', { class: 'btn primary', type: 'button', onClick: () => app.go('#/cards') }, '用語カードを見る') : null));
+  } else {
+    const next = suggestStage(data.tree.stages, state.qstats);
+    if (due > 0) {
+      root.appendChild(h('button', { class: 'btn primary big cta', type: 'button', onClick: () => startSession(app, reviewSpec(app)) }, '今日の復習 ', h('span', { class: 'badge-count', text: due + '問' })));
+    } else {
+      root.appendChild(h('div', { class: 'card done-today' }, h('p', {}, '今日の復習は ', h('strong', { text: '0件' }), ' です。')));
+    }
+    if (next) {
+      const p = nodeProgress(next, state.qstats);
+      root.appendChild(h('button', { class: 'btn ' + (due > 0 ? '' : 'primary') + ' big cta', type: 'button', onClick: () => app.go('#/stage/' + encodeURIComponent(next.key)) },
+        h('span', { class: 'cta-sub small', text: p.answered ? 'つづきから' : '次のステージ' }), h('span', { text: next.name })));
+    }
+    root.appendChild(h('div', { class: 'grid2' },
+      h('button', { class: 'btn big tile', type: 'button', onClick: () => startSession(app, challengeSpec(app)) }, h('strong', { text: '40秒チャレンジ' }), h('span', { class: 'small muted', text: '本番のペースで' })),
+      h('button', { class: 'btn big tile', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' }), h('span', { class: 'small muted', text: (app.config.exam ? app.config.exam.questions + '問・' + app.config.exam.minutes + '分' : '') }))));
+
+    const untouched = data.tree.stages.filter((s) => s.questions.length && nodeProgress(s, state.qstats).level === 'none');
+    const unready = data.tree.stages.filter((s) => !s.questions.length).length;
+    const box = h('div', { class: 'card' }, h('h2', { text: '未着手の範囲' }));
+    if (untouched.length) {
+      const ul = h('ul', { class: 'plain link-list' });
+      untouched.slice(0, 5).forEach((s) => ul.appendChild(h('li', {}, h('button', { class: 'link-btn', type: 'button', onClick: () => app.go('#/stage/' + encodeURIComponent(s.key)) }, s.path[0] + ' › ' + s.name))));
+      box.appendChild(ul);
+      if (untouched.length > 5) box.appendChild(h('p', { class: 'small muted', text: 'ほか ' + (untouched.length - 5) + ' ステージ（「地図」で全部見られます）' }));
+    } else {
+      box.appendChild(h('p', { text: '問題のあるステージは、すべて手をつけました。' }));
+    }
+    if (unready) box.appendChild(h('p', { class: 'small muted', text: '問題を準備中のステージ: ' + unready + ' 件' }));
+    root.appendChild(box);
+  }
+
+  const foot = h('p', { class: 'small muted foot' });
+  if (config.officialUrl) foot.appendChild(externalLink(config.officialUrl, '公式の例題・試験情報（外部サイト）'));
+  root.appendChild(foot);
+  if (!app.storage.persistent) root.appendChild(h('p', { class: 'note', text: 'この端末では学習記録を保存できません。アプリを閉じると記録が消えます。' }));
+  return root;
+}
+
+// ---- 地図（シラバスの木） ----
+export function renderMap(app) {
+  const { data, state } = app;
+  const root = h('section', { class: 'view map' }, h('h1', { text: 'シラバスの地図' }));
+  if (!data.tree.roots.length) {
+    root.appendChild(h('div', { class: 'empty' }, h('p', { text: 'シラバスを準備中です。' })));
+    return root;
+  }
+  root.appendChild(h('p', { class: 'small muted', text: '色は「最後に解いたとき正解だった問題の割合」。ステージを選ぶと出題されます。' }));
+  for (const major of data.tree.roots) {
+    const mp = nodeProgress(major, state.qstats);
+    const det = h('details', { class: 'major', open: major === data.tree.roots[0] ? true : null },
+      h('summary', {}, h('span', { class: 'sum-name', text: major.name }), masteryChip(mp.level), h('span', { class: 'small muted', text: mp.answered + '/' + mp.total + '問' })));
+    for (const st of major.children) det.appendChild(stageRow(app, st));
+    root.appendChild(det);
+  }
+  return root;
+}
+
+function stageRow(app, st) {
+  const p = nodeProgress(st, app.state.qstats);
+  const rec = app.state.stages[st.key];
+  return h('button', { class: 'stage-row m-border-' + p.level, type: 'button', onClick: () => app.go('#/stage/' + encodeURIComponent(st.key)) },
+    h('span', { class: 'row-main' }, h('strong', { text: st.name }), h('span', { class: 'small muted', text: p.total ? p.answered + '/' + p.total + '問' + (st.concepts.length ? '・カード' + st.concepts.length : '') : '問題は準備中' + (st.concepts.length ? '・カード' + st.concepts.length : '') })),
+    stars(rec ? rec.stars : 0), masteryChip(p.level));
+}
+
+// ---- ステージ ----
+export function renderStage(app, key) {
+  const st = app.data.tree.byKey.get(key);
+  const root = h('section', { class: 'view stage' });
+  root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/map') }, '← 地図へ'));
+  if (!st || st.depth !== 1) {
+    root.appendChild(h('div', { class: 'empty' }, h('p', { text: 'このステージは見つかりません。' })));
+    return root;
+  }
+  const p = nodeProgress(st, app.state.qstats);
+  const rec = app.state.stages[st.key];
+  root.appendChild(h('p', { class: 'crumb small muted', text: st.path[0] }));
+  root.appendChild(h('h1', { text: st.name }));
+  root.appendChild(h('div', { class: 'row-line' }, stars(rec ? rec.stars : 0), masteryChip(p.level), h('span', { class: 'small muted', text: p.total + '問・カード' + st.concepts.length + '枚' })));
+  if (p.total) {
+    const size = Math.min(p.total, (app.config.stage && app.config.stage.size) || 10);
+    root.appendChild(h('button', { class: 'btn primary big', type: 'button', onClick: () => startSession(app, stageSpec(app, st)) }, 'このステージに挑戦（' + size + '問）'));
+    root.appendChild(h('p', { class: 'small muted', text: '未回答の問題→前回まちがえた問題の順に出ます。6割正解で星1、8割で星2、9割以上で星3。' }));
+  } else {
+    root.appendChild(h('div', { class: 'empty' }, h('p', { text: 'このステージの問題は準備中です。' })));
+  }
+  if (st.children.length) {
+    const box = h('div', { class: 'card' }, h('h2', { text: '小項目' }));
+    for (const sm of st.children) {
+      const sp = nodeProgress(sm, app.state.qstats);
+      box.appendChild(h('div', { class: 'small-row' },
+        h('span', { class: 'row-main' }, h('strong', { text: sm.name }), h('span', { class: 'small muted', text: sp.total ? sp.answered + '/' + sp.total + '問' : '問題は準備中' })),
+        masteryChip(sp.level),
+        sp.total ? h('button', { class: 'btn small-btn', type: 'button', 'aria-label': sm.name + ' だけ出題', onClick: () => startSession(app, stageSpec(app, st, sm)) }, 'この項目だけ') : null));
+    }
+    root.appendChild(box);
+  }
+  if (st.concepts.length) {
+    const box = h('div', { class: 'card' }, h('h2', { text: '用語カード' }));
+    const row = h('div', { class: 'chips' });
+    st.concepts.forEach((c) => row.appendChild(h('button', { class: 'chip link', type: 'button', onClick: () => app.go('#/card/' + encodeURIComponent(c.id)) }, c.title)));
+    box.appendChild(row);
+    root.appendChild(box);
+  }
+  return root;
+}
+
+// ---- 復習 ----
+export function renderReview(app) {
+  const root = h('section', { class: 'view review' }, h('h1', { text: '復習' }));
+  const today = dayNumber(new Date());
+  const due = dueQuestions(app.state, app.data.questionById, new Date());
+  const up = upcoming(app.state.qstats, today);
+  root.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は、翌日・3日後・7日後・14日後に出ます。正解で次の間隔へ、まちがえると最初に戻ります。' }));
+  if (due.length) {
+    root.appendChild(h('div', { class: 'card' }, h('p', {}, h('strong', { class: 'big-num', text: due.length + '問' }), ' が復習の日です'), h('button', { class: 'btn primary big', type: 'button', onClick: () => startSession(app, reviewSpec(app)) }, '復習を始める' + (due.length > 20 ? '（まず20問）' : ''))));
+  } else {
+    root.appendChild(h('div', { class: 'card empty' }, h('p', { text: '今日の復習はありません。' }), h('p', { class: 'small muted', text: up.tomorrow || up.later ? 'つぎの復習が来たら、ここに出ます。' : 'ステージで問題を解くと、まちがえた問題がここに入ります。' })));
+  }
+  root.appendChild(h('div', { class: 'card' }, h('h2', { text: '復習の予定' }),
+    h('p', { class: 'row-line' }, '今日以前: ', h('strong', { text: up.now + '問' })),
+    h('p', { class: 'row-line' }, '明日: ', h('strong', { text: up.tomorrow + '問' })),
+    h('p', { class: 'row-line' }, 'あさって以降: ', h('strong', { text: up.later + '問' }))));
+  return root;
+}
