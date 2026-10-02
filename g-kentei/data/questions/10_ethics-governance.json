@@ -70,7 +70,7 @@
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-003",
@@ -358,7 +358,7 @@
       "学習データに誤ったラベルが付いていたこと"
     ],
     "answer": 2,
-    "explanation": "プライバシーの問題は、データの収集段階だけでなく、推論段階でも生じる。収集が適法でも、推論によってセンシティブな属性を推定・利用することはプライバシーを侵害しうる。",
+    "explanation": "プライバシーの問題は、データの収集段階だけでなく、推論段階でも生じる。収集が適法でも、分析・推論によって本人が明かしていない属性を推定・利用することはプライバシーを侵害しうる。個人情報保護委員会のガイドラインも、本人から得た情報から行動・関心等を分析する場合は、本人が予測・想定できる程度に利用目的を特定しなければならないとしている。",
     "whyWrong": [
       "モデル窃取は別のセキュリティの問題。",
       "問題文では同意を得て適法に収集している。",
@@ -371,11 +371,15 @@
     ],
     "sources": [
       {
+        "title": "個人情報保護委員会「個人情報の保護に関する法律についてのガイドライン（通則編）」3-1-1 利用目的の特定",
+        "url": "https://www.ppc.go.jp/personalinfo/legal/guidelines_tsusoku/"
+      },
+      {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-011",
@@ -431,7 +435,7 @@
       "勾配消失"
     ],
     "answer": 2,
-    "explanation": "学習データに特定の属性の人の画像が少ないと、その人たちに対する精度が下がる。データの偏り・サンプリングバイアスは公平性の問題の代表的な原因。",
+    "explanation": "Buolamwiniらは市販の顔分析（性別分類）サービスを評価し、肌の色が濃い女性で誤りが最も多いことを示した。原因の候補として、学習データにそうした人々の顔の特徴が少なかったことを挙げ、既存の評価用データセットも肌の色の明るい人に大きく偏っていたと報告している。データの偏りは公平性の問題の代表的な原因である。",
     "whyWrong": [
       "破滅的忘却は追加学習で前のタスクを忘れる現象。",
       "データリーケージは評価の情報が学習に漏れる問題。",
@@ -445,11 +449,15 @@
     ],
     "sources": [
       {
+        "title": "Buolamwini & Gebru (2018) Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification (PMLR 81)",
+        "url": "https://proceedings.mlr.press/v81/buolamwini18a.html"
+      },
+      {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-013",
@@ -522,11 +530,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "NIST SP 1270 Towards a Standard for Identifying and Managing Bias in Artificial Intelligence (2022)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-015",
@@ -910,7 +922,7 @@
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-025",
@@ -1078,7 +1090,7 @@
       "蒸留や量子化でモデルを軽量化し、推論に必要な計算量を減らす。"
     ],
     "answer": 3,
-    "explanation": "モデルの軽量化は計算量と電力消費を減らす。事前学習済みモデルの再利用（転移学習）も、ゼロから学習するより計算を減らせる。",
+    "explanation": "AI事業者ガイドライン別添は、計算資源の需要拡大によるエネルギー使用量の増加を懸念として挙げ、目的に応じて環境への影響が小さい軽量なモデルを使い分けることを具体的な手法として示している。蒸留や量子化はモデルを軽量化する代表的な手法である。",
     "whyWrong": [
       "不要な計算が増える。",
       "電力消費が増え続ける。",
@@ -1095,7 +1107,7 @@
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-030",
@@ -1274,9 +1286,13 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "UNODA \"Lethal Autonomous Weapon Systems (LAWS)\"",
+        "url": "https://disarmament.unoda.org/en/our-work/emerging-challenges/lethal-autonomous-weapon-systems"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-035",
@@ -1384,9 +1400,13 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-038",

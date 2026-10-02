@@ -1,382 +1,777 @@
 [
   {
     "id": "C-01-001",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能の定義"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能の定義"
+    ],
     "title": "人工知能（AI）",
     "oneLine": "知的な機械、特に知的なコンピュータプログラムを作る科学と技術。研究者の間で統一された定義は無い。",
     "why": "「知性」そのものの定義が無いため、AIの定義も研究者ごとに異なる。だから試験では「定義は一つに定まっていない」こと自体が問われる。1956年のダートマス会議でジョン・マッカーシーが命名した。",
     "links": [
-      { "id": "C-01-008", "relation": "起源" },
-      { "id": "C-01-002", "relation": "部分" },
-      { "id": "C-01-007", "relation": "対比" },
-      { "id": "C-01-003", "relation": "関連" }
+      {
+        "id": "C-01-008",
+        "relation": "起源"
+      },
+      {
+        "id": "C-01-002",
+        "relation": "部分"
+      },
+      {
+        "id": "C-01-007",
+        "relation": "対比"
+      },
+      {
+        "id": "C-01-003",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-007", "point": "AIは「考える」ことを扱う研究分野で、ロボットのような体（形態）に載っている必要はない。" }
+      {
+        "id": "C-01-007",
+        "point": "AIは「考える」ことを扱う研究分野で、ロボットのような体（形態）に載っている必要はない。"
+      }
     ],
     "sources": [
-      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" }
+      {
+        "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-002",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能の定義"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能の定義"
+    ],
     "title": "AIのレベル分類（4段階）",
     "oneLine": "AIを「単純な制御プログラム」「古典的な人工知能」「機械学習」「深層学習」の4段階に分けて捉える見方。",
     "why": "「AI搭載」と呼ばれる製品の中身は、決められた通りに動くだけの制御から、データから特徴まで自分で学ぶ深層学習まで幅がある。段階で分けると、何ができて何ができないかを区別できる。目安：①単純な制御＝入力に応じて決めた通りに動く ②古典的AI＝探索・推論・知識（ルール）で振る舞いを変える ③機械学習＝データからルールやパターンを学ぶ ④深層学習＝特徴量そのものも学ぶ。",
     "links": [
-      { "id": "C-01-005", "relation": "部分" },
-      { "id": "C-01-006", "relation": "部分" },
-      { "title": "エキスパートシステム", "relation": "具体例" },
-      { "id": "C-01-003", "relation": "関連" }
+      {
+        "id": "C-01-005",
+        "relation": "部分"
+      },
+      {
+        "id": "C-01-006",
+        "relation": "部分"
+      },
+      {
+        "title": "エキスパートシステム",
+        "relation": "具体例"
+      },
+      {
+        "id": "C-01-003",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-005", "point": "機械学習はデータからルールを学ぶが、特徴量の設計は人が行う。特徴量まで自動で学ぶのが深層学習。" }
+      {
+        "id": "C-01-005",
+        "point": "機械学習はデータからルールを学ぶが、特徴量の設計は人が行う。特徴量まで自動で学ぶのが深層学習。"
+      }
     ],
     "sources": [
-      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+      {
+        "title": "JDLA G検定シラバス 2024（第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
     ],
     "status": "unverified"
   },
   {
     "id": "C-01-003",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能の定義"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能の定義"
+    ],
     "title": "AI効果",
     "oneLine": "ある処理がAIで実現されて仕組みが分かると、「それは単なる自動化で、知能ではない」と見なされてしまう現象。",
     "why": "AIの成果が「AI」として評価されにくくなり、AIの範囲がいつまでも「まだできていないこと」に押しやられる。AIの定義が定まらない一因でもある。",
     "links": [
-      { "id": "C-01-001", "relation": "背景" },
-      { "id": "C-01-002", "relation": "関連" }
+      {
+        "id": "C-01-001",
+        "relation": "背景"
+      },
+      {
+        "id": "C-01-002",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-018", "point": "シンギュラリティは「AIが人間を超える転換点」の話。AI効果は「実現した途端にAIと呼ばれなくなる」という人の受け止め方の話。" }
+      {
+        "id": "C-01-018",
+        "point": "シンギュラリティは「AIが人間を超える転換点」の話。AI効果は「実現した途端にAIと呼ばれなくなる」という人の受け止め方の話。"
+      }
     ],
     "sources": [
-      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+      {
+        "title": "JDLA G検定シラバス 2024（第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
     ],
     "status": "unverified"
   },
   {
     "id": "C-01-004",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能の定義"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能の定義"
+    ],
     "title": "エージェント",
     "oneLine": "環境をセンサーなどで知覚し、その結果に応じて行動する主体。AIを「知覚→判断→行動」の主体として捉える見方。",
     "why": "AIを「入力に応じて適切に行動するもの」と捉えると、掃除ロボットから対話システム、強化学習の学習者までを同じ枠組みで説明できる。",
     "links": [
-      { "title": "強化学習", "relation": "発展形" },
-      { "id": "C-01-001", "relation": "関連" }
+      {
+        "title": "強化学習",
+        "relation": "発展形"
+      },
+      {
+        "id": "C-01-001",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-007", "point": "エージェントは物理的な体を持つとは限らない（ソフトウェアのエージェントもある）。体を持つものがロボット。" }
+      {
+        "id": "C-01-007",
+        "point": "エージェントは物理的な体を持つとは限らない（ソフトウェアのエージェントもある）。体を持つものがロボット。"
+      }
     ],
     "sources": [
-      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+      {
+        "title": "JDLA G検定シラバス 2024（第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
+        "url": "http://incompleteideas.net/book/RLbook2020.pdf"
+      }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-01-005",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能の定義"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能の定義"
+    ],
     "title": "機械学習",
     "oneLine": "大量のデータからAI自身が知識（ルールやパターン）を獲得する手法。第3次AIブームの中心。",
     "why": "第2次ブームでは知識を人が書き込む必要があり、その手間が限界になった（知識獲得のボトルネック）。ビッグデータと計算能力の向上で、データから知識を学ばせる機械学習が実用化した。",
     "links": [
-      { "id": "C-01-017", "relation": "解決策（何を解いたか）" },
-      { "id": "C-01-006", "relation": "発展形" },
-      { "title": "ビッグデータ", "relation": "前提" },
-      { "title": "第3次AIブーム", "relation": "関連" }
+      {
+        "id": "C-01-017",
+        "relation": "解決策（何を解いたか）"
+      },
+      {
+        "id": "C-01-006",
+        "relation": "発展形"
+      },
+      {
+        "title": "ビッグデータ",
+        "relation": "前提"
+      },
+      {
+        "title": "第3次AIブーム",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-006", "point": "機械学習一般では特徴量を人が設計する。特徴量まで学ぶのがディープラーニング。" }
+      {
+        "id": "C-01-006",
+        "point": "機械学習一般では特徴量を人が設計する。特徴量まで学ぶのがディープラーニング。"
+      }
     ],
     "sources": [
-      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
+      {
+        "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-006",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能の定義"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能の定義"
+    ],
     "title": "ディープラーニング",
     "oneLine": "多層のニューラルネットワークで、知識を定義する要素（特徴量）までデータから自ら学ぶ機械学習の手法。深層学習。",
     "why": "従来の機械学習では「何に注目するか（特徴量）」を人が設計しており、ここが性能の壁だった。ディープラーニングは特徴量を自分で作り出せる点が画期的とされる。",
     "links": [
-      { "id": "C-01-005", "relation": "部分（機械学習の一手法）" },
-      { "id": "C-04-002", "relation": "部分（多層のニューラルネットワーク）" },
-      { "title": "ILSVRC", "relation": "注目のきっかけ" },
-      { "title": "勾配消失問題", "relation": "課題" }
+      {
+        "id": "C-01-005",
+        "relation": "部分（機械学習の一手法）"
+      },
+      {
+        "id": "C-04-002",
+        "relation": "部分（多層のニューラルネットワーク）"
+      },
+      {
+        "title": "ILSVRC",
+        "relation": "注目のきっかけ"
+      },
+      {
+        "title": "勾配消失問題",
+        "relation": "課題"
+      }
     ],
     "confusions": [
-      { "id": "C-01-005", "point": "「ディープラーニング＝AIのすべて」ではない。AI ⊃ 機械学習 ⊃ ディープラーニングの包含関係。" }
+      {
+        "id": "C-01-005",
+        "point": "「ディープラーニング＝AIのすべて」ではない。AI ⊃ 機械学習 ⊃ ディープラーニングの包含関係。"
+      }
     ],
     "sources": [
-      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
-      { "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html" }
+      {
+        "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html"
+      },
+      {
+        "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-007",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能の定義"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能の定義"
+    ],
     "title": "人工知能とロボットの違い",
     "oneLine": "AIは「考える」部分の研究で、ロボットは体を持って動く機械。AIがロボットに載っている必要はなく、両者の研究は基本的に別々に進んできた。",
     "why": "検索エンジンや音声アシスタントのように体の無いAIは多い。逆にロボットでも決められた動作を繰り返すだけのものはAIとは限らない。混同すると「AI＝人型ロボット」という誤解になる。",
     "links": [
-      { "id": "C-01-001", "relation": "対比" },
-      { "id": "C-01-014", "relation": "関連（体を通じた経験）" }
+      {
+        "id": "C-01-001",
+        "relation": "対比"
+      },
+      {
+        "id": "C-01-014",
+        "relation": "関連（体を通じた経験）"
+      }
     ],
     "confusions": [
-      { "id": "C-01-004", "point": "エージェントは知覚して行動する主体の総称で、体の有無は問わない。" }
+      {
+        "id": "C-01-004",
+        "point": "エージェントは知覚して行動する主体の総称で、体の有無は問わない。"
+      }
     ],
     "sources": [
-      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" },
-      { "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html" }
+      {
+        "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html"
+      },
+      {
+        "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-008",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "ダートマス会議",
     "oneLine": "1956年夏に米国ダートマス大学で開かれた研究会。提案書でマッカーシーらが「artificial intelligence」という語を使い、AIという分野名が生まれた。",
     "why": "AIが一つの研究分野として名前を持った出発点。ここから第1次AIブーム（探索・推論）が始まる。提案者はマッカーシー、ミンスキー、ロチェスター、シャノン。",
     "links": [
-      { "id": "C-01-001", "relation": "起源" },
-      { "title": "第1次AIブーム", "relation": "その後の展開" }
+      {
+        "id": "C-01-001",
+        "relation": "起源"
+      },
+      {
+        "title": "第1次AIブーム",
+        "relation": "その後の展開"
+      }
     ],
     "confusions": [
-      { "id": "C-01-009", "point": "チューリングテストの提案は1950年の論文で、ダートマス会議（1956年）より前。" }
+      {
+        "id": "C-01-009",
+        "point": "チューリングテストの提案は1950年の論文で、ダートマス会議（1956年）より前。"
+      }
     ],
     "sources": [
-      { "title": "McCarthy et al. A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence (1955)", "url": "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf" },
-      { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
+      {
+        "title": "McCarthy et al. A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence (1955)",
+        "url": "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf"
+      },
+      {
+        "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-009",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "チューリングテスト",
     "oneLine": "人間の判定者が、相手が機械か人間かを会話（文字のやり取り）だけで見分けられなければ、その機械は知的だとみなす、という判定方法。アラン・チューリングが1950年に提案（模倣ゲーム）。",
     "why": "「機械は考えられるか」という定義しにくい問いを、観察できる振る舞い（会話）の問題に置き換えた。ただし外から見た振る舞いだけで判定するため、「中身で理解しているか」は問えない、という批判（中国語の部屋）につながる。",
     "links": [
-      { "id": "C-01-010", "relation": "発展形（実際の競技会）" },
-      { "id": "C-01-011", "relation": "批判" },
-      { "title": "イライザ（ELIZA）", "relation": "関連" }
+      {
+        "id": "C-01-010",
+        "relation": "発展形（実際の競技会）"
+      },
+      {
+        "id": "C-01-011",
+        "relation": "批判"
+      },
+      {
+        "title": "イライザ（ELIZA）",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-011", "point": "チューリングテストは「振る舞いで知能を判定する」側、中国語の部屋は「振る舞いだけでは理解とは言えない」という反論側。" }
+      {
+        "id": "C-01-011",
+        "point": "チューリングテストは「振る舞いで知能を判定する」側、中国語の部屋は「振る舞いだけでは理解とは言えない」という反論側。"
+      }
     ],
     "sources": [
-      { "title": "Stanford Encyclopedia of Philosophy: The Turing Test", "url": "https://plato.stanford.edu/entries/turing-test/" }
+      {
+        "title": "Stanford Encyclopedia of Philosophy: The Turing Test",
+        "url": "https://plato.stanford.edu/entries/turing-test/"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-010",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "ローブナーコンテスト",
     "oneLine": "チューリングテストの考え方に基づき、会話プログラムの人間らしさを競った年1回の競技会（ローブナー賞）。",
     "why": "チューリングテストを実際に運用した場として知られる。一方で「審査員をだます工夫を競うだけで、知能の研究に役立たない」という批判もあった。",
     "links": [
-      { "id": "C-01-009", "relation": "原因（基になった考え方）" }
+      {
+        "id": "C-01-009",
+        "relation": "原因（基になった考え方）"
+      }
     ],
     "confusions": [
-      { "title": "ILSVRC", "point": "ILSVRCは画像認識の精度を競う競技会。ローブナーコンテストは会話の人間らしさを競う。" }
+      {
+        "title": "ILSVRC",
+        "point": "ILSVRCは画像認識の精度を競う競技会。ローブナーコンテストは会話の人間らしさを競う。"
+      }
     ],
     "sources": [
-      { "title": "Stanford Encyclopedia of Philosophy: The Turing Test", "url": "https://plato.stanford.edu/entries/turing-test/" }
+      {
+        "title": "Stanford Encyclopedia of Philosophy: The Turing Test",
+        "url": "https://plato.stanford.edu/entries/turing-test/"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-011",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "中国語の部屋",
     "oneLine": "中国語を知らない人が、部屋の中で手順書どおりに記号を操作して中国語の質問に正しく答えられても、中国語を理解しているとは言えない、という思考実験。哲学者ジョン・サールが1980年に提示。",
     "why": "プログラムを動かす（記号を操作する）だけでは理解や意図は生まれない、と主張して「強いAI」を批判した。チューリングテストのように振る舞いだけで知能を判定する考えへの反論。",
     "links": [
-      { "id": "C-01-009", "relation": "対比（批判の対象）" },
-      { "id": "C-01-012", "relation": "批判の対象" },
-      { "id": "C-01-013", "relation": "関連（記号の意味）" }
+      {
+        "id": "C-01-009",
+        "relation": "対比（批判の対象）"
+      },
+      {
+        "id": "C-01-012",
+        "relation": "批判の対象"
+      },
+      {
+        "id": "C-01-013",
+        "relation": "関連（記号の意味）"
+      }
     ],
     "confusions": [
-      { "id": "C-01-013", "point": "どちらも「記号と意味」の問題だが、中国語の部屋は「操作できても理解ではない」という哲学的主張、シンボルグラウンディング問題は「記号を実世界の意味に結びつけるにはどうするか」という問い。" }
+      {
+        "id": "C-01-013",
+        "point": "どちらも「記号と意味」の問題だが、中国語の部屋は「操作できても理解ではない」という哲学的主張、シンボルグラウンディング問題は「記号を実世界の意味に結びつけるにはどうするか」という問い。"
+      }
     ],
     "sources": [
-      { "title": "Searle (1980) Minds, brains, and programs. Behavioral and Brain Sciences", "url": "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A" },
-      { "title": "Stanford Encyclopedia of Philosophy: The Chinese Room Argument", "url": "https://plato.stanford.edu/entries/chinese-room/" }
+      {
+        "title": "Searle (1980) Minds, brains, and programs. Behavioral and Brain Sciences",
+        "url": "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A"
+      },
+      {
+        "title": "Stanford Encyclopedia of Philosophy: The Chinese Room Argument",
+        "url": "https://plato.stanford.edu/entries/chinese-room/"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-012",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "強いAIと弱いAI",
     "oneLine": "強いAI：適切にプログラムされたコンピュータは本当に心を持ち理解する、という立場。弱いAI：コンピュータは心のふるまいを模擬する道具として役に立つ、という控えめな立場。サールが区別した。",
     "why": "「AIは本当に考えているのか」という議論を整理するための区別。サールは中国語の部屋で強いAIを否定したが、弱いAIは否定していない。",
     "links": [
-      { "id": "C-01-011", "relation": "強いAIへの批判" },
-      { "id": "C-01-018", "relation": "関連（人間を超える知能の議論）" }
+      {
+        "id": "C-01-011",
+        "relation": "強いAIへの批判"
+      },
+      {
+        "id": "C-01-018",
+        "relation": "関連（人間を超える知能の議論）"
+      }
     ],
     "confusions": [
-      { "id": "C-01-018", "point": "強いAIは「心を持つか」の哲学的な立場。シンギュラリティは「人間を超える知能が出現する時点」の話で、別の論点。" }
+      {
+        "id": "C-01-018",
+        "point": "強いAIは「心を持つか」の哲学的な立場。シンギュラリティは「人間を超える知能が出現する時点」の話で、別の論点。"
+      }
     ],
     "sources": [
-      { "title": "Stanford Encyclopedia of Philosophy: The Chinese Room Argument", "url": "https://plato.stanford.edu/entries/chinese-room/" },
-      { "title": "Searle (1980) Minds, brains, and programs. Behavioral and Brain Sciences", "url": "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A" }
+      {
+        "title": "Stanford Encyclopedia of Philosophy: The Chinese Room Argument",
+        "url": "https://plato.stanford.edu/entries/chinese-room/"
+      },
+      {
+        "title": "Searle (1980) Minds, brains, and programs. Behavioral and Brain Sciences",
+        "url": "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-013",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "シンボルグラウンディング問題",
     "oneLine": "コンピュータが扱う記号（シンボル）を、それが指す実世界の対象や意味にどう結びつける（接地させる）か、という問題。ハルナッドが1990年に提起。",
     "why": "記号を別の記号で定義するだけでは意味にたどり着かない（中国語を中中辞典だけで学ぶようなもの）。例：「シマウマ＝縞のある馬」と記号上は分かっても、実物を見てシマウマと認識できるとは限らない。",
     "links": [
-      { "id": "C-01-014", "relation": "解決策の方向（体を通じた経験）" },
-      { "id": "C-01-011", "relation": "関連" },
-      { "id": "C-01-015", "relation": "対比" }
+      {
+        "id": "C-01-014",
+        "relation": "解決策の方向（体を通じた経験）"
+      },
+      {
+        "id": "C-01-011",
+        "relation": "関連"
+      },
+      {
+        "id": "C-01-015",
+        "relation": "対比"
+      }
     ],
     "confusions": [
-      { "id": "C-01-015", "point": "フレーム問題は「関係のあることだけを選び出せない」問題、シンボルグラウンディング問題は「記号と実物の意味が結びつかない」問題。" }
+      {
+        "id": "C-01-015",
+        "point": "フレーム問題は「関係のあることだけを選び出せない」問題、シンボルグラウンディング問題は「記号と実物の意味が結びつかない」問題。"
+      }
     ],
     "sources": [
-      { "title": "Harnad (1990) The Symbol Grounding Problem (arXiv:cs/9906002)", "url": "https://arxiv.org/abs/cs/9906002" }
+      {
+        "title": "Harnad (1990) The Symbol Grounding Problem (arXiv:cs/9906002)",
+        "url": "https://arxiv.org/abs/cs/9906002"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-014",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "身体性",
     "oneLine": "知能の成立には、体を持って環境とやり取りする経験が重要だ、という考え方。",
     "why": "記号だけを操作するAIでは意味を実世界に結びつけにくい（シンボルグラウンディング問題）。体を通じて「重い」「冷たい」を経験すれば概念が実感と結びつく、という発想につながる。",
     "links": [
-      { "id": "C-01-013", "relation": "解決策の方向" },
-      { "id": "C-01-007", "relation": "関連" }
+      {
+        "id": "C-01-013",
+        "relation": "解決策の方向"
+      },
+      {
+        "id": "C-01-007",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-007", "point": "身体性は「知能には体の経験が要る」という考え方であり、「AIはロボットでなければならない」という定義ではない。" }
+      {
+        "id": "C-01-007",
+        "point": "身体性は「知能には体の経験が要る」という考え方であり、「AIはロボットでなければならない」という定義ではない。"
+      }
     ],
     "sources": [
-      { "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html" }
+      {
+        "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html"
+      }
     ],
     "status": "unverified"
   },
   {
     "id": "C-01-015",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "フレーム問題",
     "oneLine": "行動するとき、無数にある事柄の中から「今関係のあること」だけを選び出して考えることがAIには難しい、という問題。マッカーシーとヘイズが1969年に提起。",
     "why": "処理能力が有限なAIは、行動の結果として「変わらないこと」まで全部確かめていたら動けなくなる。現実の問題に対処するうえでの根本的な難しさとして議論される。",
     "links": [
-      { "id": "C-01-016", "relation": "対比（閉じた世界のトイ・プロブレムでは表に出にくい）" },
-      { "id": "C-01-013", "relation": "対比" }
+      {
+        "id": "C-01-016",
+        "relation": "対比（閉じた世界のトイ・プロブレムでは表に出にくい）"
+      },
+      {
+        "id": "C-01-013",
+        "relation": "対比"
+      }
     ],
     "confusions": [
-      { "id": "C-01-013", "point": "フレーム問題＝関係あるものだけ選べない。シンボルグラウンディング問題＝記号と意味が結びつかない。" },
-      { "title": "ブラックボックス問題", "point": "ブラックボックス問題はモデルの判断根拠が人に説明できないこと。フレーム問題とは別。" }
+      {
+        "id": "C-01-013",
+        "point": "フレーム問題＝関係あるものだけ選べない。シンボルグラウンディング問題＝記号と意味が結びつかない。"
+      },
+      {
+        "title": "ブラックボックス問題",
+        "point": "ブラックボックス問題はモデルの判断根拠が人に説明できないこと。フレーム問題とは別。"
+      }
     ],
     "sources": [
-      { "title": "McCarthy & Hayes (1969) Some Philosophical Problems from the Standpoint of Artificial Intelligence", "url": "http://jmc.stanford.edu/articles/mcchay69/mcchay69.pdf" },
-      { "title": "Stanford Encyclopedia of Philosophy: The Frame Problem", "url": "https://plato.stanford.edu/entries/frame-problem/" }
+      {
+        "title": "McCarthy & Hayes (1969) Some Philosophical Problems from the Standpoint of Artificial Intelligence",
+        "url": "http://jmc.stanford.edu/articles/mcchay69/mcchay69.pdf"
+      },
+      {
+        "title": "Stanford Encyclopedia of Philosophy: The Frame Problem",
+        "url": "https://plato.stanford.edu/entries/frame-problem/"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-016",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "トイ・プロブレム",
     "oneLine": "迷路やパズルのように、ルールとゴールが明確で範囲が閉じた簡単な問題。第1次AIブームのAIはこれしか解けなかった。",
     "why": "探索・推論で迷路や定理証明は解けても、要因が複雑に絡む現実の問題は解けないことが分かり、第1次ブームは冬の時代を迎えた。",
     "links": [
-      { "title": "第1次AIブーム", "relation": "原因（限界）" },
-      { "title": "ハノイの塔", "relation": "具体例" },
-      { "id": "C-01-015", "relation": "関連" }
+      {
+        "title": "第1次AIブーム",
+        "relation": "原因（限界）"
+      },
+      {
+        "title": "ハノイの塔",
+        "relation": "具体例"
+      },
+      {
+        "id": "C-01-015",
+        "relation": "関連"
+      }
     ],
     "confusions": [
-      { "id": "C-01-017", "point": "トイ・プロブレムは第1次ブームの限界、知識獲得のボトルネックは第2次ブームの限界。" }
+      {
+        "id": "C-01-017",
+        "point": "トイ・プロブレムは第1次ブームの限界、知識獲得のボトルネックは第2次ブームの限界。"
+      }
     ],
     "sources": [
-      { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
+      {
+        "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-017",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "知識獲得のボトルネック",
     "oneLine": "専門家の知識を、人の手でコンピュータが扱える形に書き起こす作業が膨大で、知識ベースを作り切れないという限界。",
     "why": "第2次AIブームのエキスパートシステムは、知識を人が記述する必要があった。世の中の膨大な知識をすべて書くことはできず、使える範囲が特定分野に限られ、ブームが終わった。データから知識を学ぶ機械学習がこれを乗り越える方向になった。",
     "links": [
-      { "title": "エキスパートシステム", "relation": "原因" },
-      { "title": "第2次AIブーム", "relation": "関連（ブームの限界）" },
-      { "id": "C-01-005", "relation": "解決策" }
+      {
+        "title": "エキスパートシステム",
+        "relation": "原因"
+      },
+      {
+        "title": "第2次AIブーム",
+        "relation": "関連（ブームの限界）"
+      },
+      {
+        "id": "C-01-005",
+        "relation": "解決策"
+      }
     ],
     "confusions": [
-      { "id": "C-01-016", "point": "第1次ブームの限界＝トイ・プロブレムしか解けない。第2次ブームの限界＝知識獲得のボトルネック。" }
+      {
+        "id": "C-01-016",
+        "point": "第1次ブームの限界＝トイ・プロブレムしか解けない。第2次ブームの限界＝知識獲得のボトルネック。"
+      }
     ],
     "sources": [
-      { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
-      { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
+      {
+        "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html"
+      },
+      {
+        "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html"
+      },
+      {
+        "title": "Feigenbaum (1977) The Art of Artificial Intelligence: Themes and Case Studies of Knowledge Engineering (IJCAI-77)",
+        "url": "https://www.ijcai.org/Proceedings/77-2/Papers/092.pdf"
+      }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-01-018",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "シンギュラリティ",
     "oneLine": "技術的特異点。人間を超える知能が生まれ、そこから先の変化を人間が予測できなくなる転換点。ヴァーナー・ヴィンジが1993年の論文で論じた。",
     "why": "汎用的な人工知能の実現可能性と社会への影響を考える議論の中心にある概念。人間より賢い知能が自分よりさらに賢い知能を作る、という連鎖が想定されている。",
     "links": [
-      { "id": "C-01-012", "relation": "関連" },
-      { "id": "C-01-003", "relation": "対比" }
+      {
+        "id": "C-01-012",
+        "relation": "関連"
+      },
+      {
+        "id": "C-01-003",
+        "relation": "対比"
+      }
     ],
     "confusions": [
-      { "id": "C-01-012", "point": "強いAIは「心を持つか」、シンギュラリティは「人間を超えて予測不能になる時点」。" }
+      {
+        "id": "C-01-012",
+        "point": "強いAIは「心を持つか」、シンギュラリティは「人間を超えて予測不能になる時点」。"
+      }
     ],
     "sources": [
-      { "title": "Vinge (1993) The coming technological singularity (NASA Technical Reports Server)", "url": "https://ntrs.nasa.gov/citations/19940022856" }
+      {
+        "title": "Vinge (1993) The coming technological singularity (NASA Technical Reports Server)",
+        "url": "https://ntrs.nasa.gov/citations/19940022856"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "C-01-019",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "ルールベース機械翻訳",
     "oneLine": "文法や対訳辞書などの翻訳規則を人が書き、その規則に従って訳す機械翻訳。",
     "why": "規則を書けば訳の理由は説明できるが、言語の例外は無数にあり、規則を書き尽くせない。これは知識獲得のボトルネックと同じ型の限界。",
     "links": [
-      { "id": "C-01-020", "relation": "対比（後継）" },
-      { "id": "C-01-017", "relation": "同じ型の限界" }
+      {
+        "id": "C-01-020",
+        "relation": "対比（後継）"
+      },
+      {
+        "id": "C-01-017",
+        "relation": "同じ型の限界"
+      }
     ],
     "confusions": [
-      { "id": "C-01-020", "point": "ルール＝人が規則を書く。統計的＝対訳データから確率を学ぶ。" }
+      {
+        "id": "C-01-020",
+        "point": "ルール＝人が規則を書く。統計的＝対訳データから確率を学ぶ。"
+      }
     ],
     "sources": [
-      { "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }
+      {
+        "title": "JDLA G検定シラバス 2024（第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      }
     ],
     "status": "unverified"
   },
   {
     "id": "C-01-020",
-    "syllabus": ["技術分野", "人工知能とは", "人工知能分野で議論される問題"],
+    "syllabus": [
+      "技術分野",
+      "人工知能とは",
+      "人工知能分野で議論される問題"
+    ],
     "title": "統計的機械翻訳",
     "oneLine": "大量の対訳文（コーパス）から統計的に訳し方を学び、最もありそうな訳文を選ぶ機械翻訳。1990年にIBMの研究者らが本格的に提案した。",
     "why": "規則を人が書く方式の限界を、大量の機械可読テキストと計算能力で乗り越えた。その後、ニューラル機械翻訳へ発展する。",
     "links": [
-      { "id": "C-01-019", "relation": "対比（前の方式）" },
-      { "title": "統計的自然言語処理", "relation": "部分" },
-      { "title": "Seq2Seq", "relation": "発展形" }
+      {
+        "id": "C-01-019",
+        "relation": "対比（前の方式）"
+      },
+      {
+        "title": "統計的自然言語処理",
+        "relation": "部分"
+      },
+      {
+        "title": "Seq2Seq",
+        "relation": "発展形"
+      }
     ],
     "confusions": [
-      { "id": "C-01-019", "point": "統計的機械翻訳は人が規則を書かない。データから学ぶ。" }
+      {
+        "id": "C-01-019",
+        "point": "統計的機械翻訳は人が規則を書かない。データから学ぶ。"
+      }
     ],
     "sources": [
-      { "title": "Brown et al. (1990) A Statistical Approach to Machine Translation. Computational Linguistics", "url": "https://aclanthology.org/J90-2002.pdf" }
+      {
+        "title": "Brown et al. (1990) A Statistical Approach to Machine Translation. Computational Linguistics",
+        "url": "https://aclanthology.org/J90-2002.pdf"
+      }
     ],
     "status": "verified"
   }

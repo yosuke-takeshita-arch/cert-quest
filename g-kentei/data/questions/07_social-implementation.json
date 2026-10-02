@@ -179,9 +179,13 @@
       {
         "title": "Sculley et al. (2015) Hidden Technical Debt in Machine Learning Systems (NeurIPS)",
         "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+      },
+      {
+        "title": "Google Cloud「MLOps: 機械学習における継続的デリバリーと自動化のパイプライン」",
+        "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ja"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-07-006",
@@ -348,7 +352,7 @@
       "他業種の企業とデータを持ち寄って開発する場合、データや成果物の権利の扱いを契約で決めておく。"
     ],
     "answer": 1,
-    "explanation": "精度が高くても、現場の業務に合わない・関係者に受け入れられないAIは使われない。ステークホルダーのニーズを確認することは成功の前提。",
+    "explanation": "精度が高くても、現場の業務に合わない・関係者に受け入れられないAIは使われない。AI事業者ガイドラインは、AIの活用で直接・間接に影響を受ける可能性がある者をステークホルダーとし、その懸念を踏まえてリスクを認識することを求めている。また産学官連携やオープンイノベーションの推進も掲げている。",
     "whyWrong": [
       "産学連携の説明として正しい。",
       null,
@@ -364,9 +368,13 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-07-011",
@@ -434,11 +442,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "AWS「API とは」",
+        "url": "https://aws.amazon.com/jp/what-is/api/"
+      },
+      {
+        "title": "IPA「DX白書2023」",
+        "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-07-013",
@@ -470,11 +482,11 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "scikit-learn User Guide 12. Common pitfalls and recommended practices（Data leakage）",
+        "url": "https://scikit-learn.org/stable/common_pitfalls.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-07-014",
@@ -506,11 +518,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "scikit-learn User Guide 12. Common pitfalls and recommended practices（Data leakage）",
+        "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+      },
+      {
+        "title": "scikit-learn User Guide 3.1 Cross-validation（grouped data・time series）",
+        "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-07-015",
@@ -529,7 +545,7 @@
       "デプロイ"
     ],
     "answer": 2,
-    "explanation": "アノテーションは学習用データに正解ラベル（注釈）を付ける作業。ラベルの質がモデルの性能を左右する。",
+    "explanation": "アノテーションは学習用データに正解ラベル（注釈）を付ける作業。経済産業省の契約ガイドラインも、生データに関連する情報を注釈として付与することを「アノテーション」と呼ぶとしている。ラベルの質がモデルの性能を左右する。",
     "whyWrong": [
       "プルーニングはモデルの軽量化の手法。",
       "データ拡張は既存のデータを回転・反転などで加工して増やす処理で、ラベルを新たに付ける作業ではない。",
@@ -542,11 +558,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+      },
+      {
+        "title": "産業技術総合研究所「機械学習品質マネジメントガイドライン 第3版」（2022年8月）",
+        "url": "https://www.digiarc.aist.go.jp/publication/aiqm/AIQM-Guideline-3.1.1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-07-016",
@@ -579,10 +599,540 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "ImageNet Download（Terms of access）",
+        "url": "https://www.image-net.org/download.php"
+      },
+      {
+        "title": "産業技術総合研究所「機械学習品質マネジメントガイドライン 第3版」（2022年8月）",
+        "url": "https://www.digiarc.aist.go.jp/publication/aiqm/AIQM-Guideline-3.1.1.pdf"
+      },
+      {
+        "title": "国立国語研究所「言語コーパスガイダンス」",
+        "url": "https://clrd.ninjal.ac.jp/guidance.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
+  },
+  {
+    "id": "G-07-017",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "経済産業省の契約ガイドラインが提唱するAI開発の「探索的段階型」の方式について、ウォーターフォール型・アジャイル型との違いの説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "開発初期に成果物を確定しない点でウォーターフォール型と異なり、開発全体を1つの基本契約で規律しない点でアジャイル型と異なる。",
+      "開発初期に成果物を確定する点でアジャイル型と異なり、短い反復を繰り返す点でウォーターフォール型と異なる。",
+      "開発を段階に分けない点で、ウォーターフォール型ともアジャイル型とも異なる。",
+      "性能を最初の契約で保証する点で、ウォーターフォール型ともアジャイル型とも異なる。"
+    ],
+    "answer": 0,
+    "explanation": "ガイドラインは、探索的段階型は開発初期に成果物を確定しない点でウォーターフォール型と、開発全体を1つの基本契約で規律する枠組みをとらない点でアジャイル型と、それぞれ異なるとしている。開発を多段階に分けること自体は両者と共通する。",
+    "whyWrong": [
+      null,
+      "向きが逆。成果物を初期に確定するのはウォーターフォール型の考え方で、探索的段階型は確定しない。",
+      "探索的段階型はアセスメント・PoC・開発・追加学習の段階に分ける方式で、段階に分ける発想はウォーターフォール型・アジャイル型とも共通する。",
+      "AIは未知の入力に対する性能保証が難しいため、最初の契約で性能を保証する方式ではない。"
+    ],
+    "memoryTip": "対比で覚える：ウォーターフォール＝最初に決める／アジャイル＝1つの基本契約で反復／探索的段階型＝決めずに段階ごとに契約。",
+    "concepts": [
+      "C-07-005",
+      "C-07-004"
+    ],
+    "sources": [
+      {
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-018",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "（　）型の開発は、顧客の要求に従って優先度の高い機能から、要求・開発・テスト・リリースを短い期間で繰り返しながら、動作するソフトウェアを作り上げていく手法である。",
+    "choices": [
+      "ウォーターフォール",
+      "アセスメント",
+      "リエンジニアリング",
+      "アジャイル"
+    ],
+    "answer": 3,
+    "explanation": "経済産業省の契約ガイドラインは、非ウォーターフォール型の典型であるアジャイル型開発を、優先度の高い機能を要求・開発・テスト・リリースの短い繰り返しで作り上げる手法と説明している。",
+    "whyWrong": [
+      "ウォーターフォール型は要件定義・設計・実装・テストを順に1回で進める方式で、短い反復はしない。",
+      "アセスメントは探索的段階型の最初の段階（導入できるかの事前の見極め）で、開発手法の名前ではない。",
+      "リエンジニアリング（BPR）は業務の流れの作り直しで、ソフトウェアの開発手法ではない。",
+      null
+    ],
+    "memoryTip": "アジャイル＝「機敏な」。小さく作って、すぐ見せて、すぐ直す。",
+    "concepts": [
+      "C-07-005"
+    ],
+    "sources": [
+      {
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+      },
+      {
+        "title": "IPA「DX白書2023」",
+        "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-019",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "NISTによるクラウドコンピューティングの定義に含まれる基本的な特徴に関する説明として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "利用者は、事業者の担当者とやりとりすることなく、必要に応じて自分で計算資源を確保できる。",
+      "計算資源は複数の利用者で共用され、需要に応じて動的に割り当てられる。",
+      "計算資源を増やすには、毎回事業者に申請し、物理サーバの納品を待つ必要がある。",
+      "資源の利用量は計測され、利用者と事業者の双方に見える形で報告できる。"
+    ],
+    "answer": 2,
+    "explanation": "NISTの定義は、需要に応じて資源を素早く拡大・縮小できること（スピーディな拡張性）を基本的な特徴の1つとしている。毎回申請して物理サーバを待つのは、クラウドではなく従来型の調達の姿である。",
+    "whyWrong": [
+      "オンデマンド・セルフサービスの説明として正しい。",
+      "リソースの共用（リソースプーリング）の説明として正しい。",
+      null,
+      "サービスが計測可能であること（Measured service）の説明として正しい。"
+    ],
+    "memoryTip": "クラウドの5つの特徴：自分で（セルフサービス）・どこからでも（ネットワーク）・みんなで（共用）・すぐ増減（拡張性）・使った分だけ（計測）。",
+    "concepts": [
+      "C-07-011"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-145 The NIST Definition of Cloud Computing (2011)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf"
+      },
+      {
+        "title": "IPA「DX白書2023」",
+        "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-020",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "クラウドのサービスモデルのうち、事業者が用意したプログラミング言語やライブラリを使って、利用者が自分で作ったアプリケーション（学習済みモデルを組み込んだ推論プログラムなど）を配備でき、サーバやOSの管理は事業者に任せられるものとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "SaaS",
+      "PaaS",
+      "IaaS",
+      "オンプレミス"
+    ],
+    "answer": 1,
+    "explanation": "NISTの定義では、PaaSは事業者がサポートする言語・ライブラリ・ツールで作ったアプリケーションをクラウド基盤に配備できるモデルで、利用者はネットワーク・サーバ・OS・ストレージを管理しない。",
+    "whyWrong": [
+      "SaaSは事業者のアプリケーションをそのまま使うモデルで、自分のアプリケーションを配備するものではない。",
+      null,
+      "IaaSは計算・ストレージ・ネットワークなどの基盤を借りるモデルで、OSも利用者が管理する。",
+      "オンプレミスは自社で設備を持つ形態で、クラウドのサービスモデルではない。"
+    ],
+    "memoryTip": "任せる範囲が広い順に SaaS（アプリまで）→ PaaS（実行環境まで）→ IaaS（基盤だけ）。",
+    "concepts": [
+      "C-07-011"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-145 The NIST Definition of Cloud Computing (2011)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-021",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "MLOpsの考え方で、従来のソフトウェアのCI（継続的インテグレーション）・CD（継続的デリバリー）に加えて機械学習システムに固有のものとされ、新しいデータでモデルを自動的に再学習して提供する仕組みとして、最も適切なものを1つ選べ。",
+    "choices": [
+      "CT（継続的トレーニング）",
+      "PoC（概念実証）",
+      "BPR（業務改革）",
+      "NDA（秘密保持契約）"
+    ],
+    "answer": 0,
+    "explanation": "Google Cloudの解説は、MLOpsを機械学習システムの開発（Dev）と運用（Ops）の統合をめざす文化と手法とし、CTはモデルを自動的に再トレーニングして提供する機械学習システム固有の性質だと説明している。",
+    "whyWrong": [
+      null,
+      "PoCは本開発の前に実現可能性を確かめる段階で、運用中の再学習の仕組みではない。",
+      "BPRは業務の流れの抜本的な見直しで、モデルの再学習とは関係がない。",
+      "NDAは秘密保持の契約で、運用の仕組みではない。"
+    ],
+    "memoryTip": "ソフトウェアはCI/CD、機械学習はそれに「CT（学び直し）」が加わる。",
+    "concepts": [
+      "C-07-007",
+      "C-07-008"
+    ],
+    "sources": [
+      {
+        "title": "Google Cloud「MLOps: 機械学習における継続的デリバリーと自動化のパイプライン」",
+        "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ja"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-022",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "Sculleyら（2015）は、機械学習システムは技術的負債を抱えやすいと指摘した。その理由の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "機械学習システムはコードが短いので、従来のソフトウェアの保守の問題は起こらないから。",
+      "機械学習システムの負債はコードの中にあるので、リファクタリングだけで完全に返済できるから。",
+      "機械学習のモデルは一度学習すれば外部環境が変わっても性能が変わらないから。",
+      "従来のコードの保守の問題をすべて抱えたうえで、データへの依存や外部環境の変化など機械学習に固有の問題が加わるから。"
+    ],
+    "answer": 3,
+    "explanation": "論文は、機械学習システムは従来のコードの保守の問題をすべて持ったうえに機械学習固有の問題を抱え、その負債はコードではなくシステムの水準にあるため見つけにくいと述べている。データ依存や外部世界の変化を危険因子に挙げている。",
+    "whyWrong": [
+      "論文は、従来のコードの保守の問題もすべて持つとしている。",
+      "論文は、コードの水準の負債を返す典型的な方法では、システムの水準にある機械学習固有の負債には足りないとしている。",
+      "外部世界の変化はシステムの振る舞いに意図しない影響を与える危険因子として挙げられている。",
+      null
+    ],
+    "memoryTip": "技術的負債＝早く作った「つけ」。機械学習は、つけがコードの外（データ・環境）にもたまる。",
+    "concepts": [
+      "C-07-007"
+    ],
+    "sources": [
+      {
+        "title": "Sculley et al. (2015) Hidden Technical Debt in Machine Learning Systems (NeurIPS)",
+        "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-023",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "IPA「DX白書2023」の人材の分類で、「事業・業務に精通したデータ解析・分析ができる人材」とされる職種として、最も適切なものを1つ選べ。",
+    "choices": [
+      "UI／UXデザイナー",
+      "テックリード",
+      "データサイエンティスト",
+      "ビジネスデザイナー"
+    ],
+    "answer": 2,
+    "explanation": "DX白書2023は、データサイエンティストを「事業・業務に精通したデータ解析・分析ができる人材」と位置づけている。日本企業ではこの職種の不足感が強いことも示されている。",
+    "whyWrong": [
+      "UI／UXデザイナーは、システムの利用者向けのデザインを担当する人材。",
+      "テックリードは、システムの設計から実装ができる人材（エンジニアリングマネージャー、アーキテクト）。",
+      null,
+      "ビジネスデザイナーは、デジタル事業の企画・立案・推進を担う人材。"
+    ],
+    "memoryTip": "データサイエンティスト＝「業務がわかる」×「データが読める」。",
+    "concepts": [
+      "C-07-012"
+    ],
+    "sources": [
+      {
+        "title": "IPA「DX白書2023」",
+        "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-024",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "scenario",
+    "difficulty": 2,
+    "stem": "小売業のA社は、自社の購買データだけでは需要予測の精度が上がらないため、気象データを持つ企業や、データ分析を研究する大学と組んでAIを開発することにした。この進め方に関する説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "業種を超えてデータを組み合わせると新しい価値が生まれうるので、外部と連携するオープン・イノベーションは有効だが、データや成果物の権利の扱いを契約で決めておく必要がある。",
+      "他社や大学と組むと自社の競争力が失われるので、AI開発は必ず自社だけで行うべきである。",
+      "大学との共同研究では、成果物の権利の扱いは自動的に法律で決まるので、契約で取り決める必要はない。",
+      "外部のデータを使えば、学習データの品質を確認する必要はない。"
+    ],
+    "answer": 0,
+    "explanation": "経済産業省の契約ガイドラインは、業種を超えた複数のデータの組み合わせはオープンイノベーションをもたらすと期待されるとし、産学連携で学習済みモデルを作るときの権利関係をユースケースとして取り上げている。AI事業者ガイドラインも産学官連携とオープンイノベーションの推進を掲げている。",
+    "whyWrong": [
+      null,
+      "自社だけでは専門人材・データ・計算資源をそろえにくい。外部との連携は推奨されている。",
+      "権利の扱いは当事者の契約で決めておくべきもので、ガイドラインは産学連携の権利関係を検討事例として扱っている。",
+      "外部から得たデータでも、品質や偏り、利用条件を確かめる必要がある。"
+    ],
+    "memoryTip": "組むなら「何を出し合い、できたものは誰のものか」を先に書面に。",
+    "concepts": [
+      "C-07-013"
+    ],
+    "sources": [
+      {
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-025",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Dockerにおける「イメージ」と「コンテナ」の関係の説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "コンテナはイメージを作るための設計図で、イメージはそれを実行したものである。",
+      "イメージは学習済みモデルの重みのファイルで、コンテナは学習用データの保存場所である。",
+      "イメージはコンテナを作るための読み取り専用のひな形で、コンテナはイメージから作られた実行可能なインスタンスである。",
+      "イメージとコンテナは同じものの別名である。"
+    ],
+    "answer": 2,
+    "explanation": "Dockerの公式ドキュメントは、イメージをDockerコンテナを作るための指示を含む読み取り専用のひな形、コンテナをイメージの実行可能なインスタンスと説明している。同じイメージから同じ環境のコンテナをいくつでも作れる。",
+    "whyWrong": [
+      "向きが逆。ひな形はイメージで、実行しているのがコンテナ。",
+      "イメージはアプリケーションと実行環境をまとめたひな形で、モデルの重みに限らない。コンテナもデータの保存場所ではない。",
+      null,
+      "読み取り専用のひな形（イメージ）と、実行中のもの（コンテナ）は区別される。"
+    ],
+    "memoryTip": "イメージ＝型（クッキーの型）、コンテナ＝型抜きしたクッキー。",
+    "concepts": [
+      "C-07-010"
+    ],
+    "sources": [
+      {
+        "title": "Docker Docs \"What is Docker?\"",
+        "url": "https://docs.docker.com/get-started/docker-overview/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-026",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "機械学習のライブラリ scikit-learn は、NumPy・SciPy・matplotlib の上に作られた、（　）向けの機械学習ライブラリである。",
+    "choices": [
+      "Python",
+      "COBOL",
+      "HTML",
+      "SQL"
+    ],
+    "answer": 0,
+    "explanation": "scikit-learnの公式サイトは、自らを「Machine Learning in Python」と表し、NumPy・SciPy・matplotlibの上に作られていると説明している。",
+    "whyWrong": [
+      null,
+      "COBOLは主に事務処理の基幹システムで使われてきた言語。",
+      "HTMLはWebページの構造を書く言語で、プログラミング言語として機械学習のライブラリを動かすものではない。",
+      "SQLはデータベースを操作する言語。"
+    ],
+    "memoryTip": "NumPy・SciPy・scikit-learn の「Py」は Python の Py。",
+    "concepts": [
+      "C-07-009"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn: Machine Learning in Python（公式サイト）",
+        "url": "https://scikit-learn.org/stable/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-027",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "format": "scenario",
+    "difficulty": 2,
+    "stem": "画像の物体検出のため、外注先の複数の作業者に車や歩行者を矩形で囲むアノテーションを依頼した。届いたデータを確かめると、遠くの小さな歩行者や、一部が隠れた車を囲むかどうかが作業者によってばらついていた。対応として、最も適切なものを1つ選べ。",
+    "choices": [
+      "ばらつきはモデルが学習で吸収するので、そのまま学習に使う。",
+      "ばらつきが出た画像はすべて捨て、残りだけで評価用データも作る。",
+      "データ拡張で画像を増やせば、ラベルのばらつきは解消する。",
+      "囲む対象の大きさや隠れ方の扱いなどの判断基準を明文化して作業者で統一し、ダブルチェックなどで品質を確かめる。"
+    ],
+    "answer": 3,
+    "explanation": "産総研の機械学習品質マネジメントガイドラインは、抽出すべき物体のサイズや距離、重なり合う物体の隠れ方などの扱いを作業者で統一しないとラベルの揺らぎが精度の低下や不正確なテストにつながるとし、統一した基準でのラベル付けやダブルチェックを求めている。",
+    "whyWrong": [
+      "ラベルの揺らぎは、そのまま学習の精度低下や評価の不正確さにつながる。",
+      "捨てると、見分けにくい場面（遠く・隠れ）のデータが偏って欠け、本番で弱くなるおそれがある。基準をそろえて付け直すのが先。",
+      "データ拡張は画像を加工して増やす処理で、元のラベルの基準のばらつきは直らない。",
+      null
+    ],
+    "memoryTip": "ラベルの品質＝基準書（どう付けるか）×検査（付いたか）。",
+    "concepts": [
+      "C-07-014"
+    ],
+    "sources": [
+      {
+        "title": "産業技術総合研究所「機械学習品質マネジメントガイドライン 第3版」（2022年8月）",
+        "url": "https://www.digiarc.aist.go.jp/publication/aiqm/AIQM-Guideline-3.1.1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-028",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "日本政府の「オープンデータ基本指針」が定めるオープンデータの要件として、最も不適切なものを1つ選べ。",
+    "choices": [
+      "営利目的・非営利目的を問わず二次利用できるルールが適用されている。",
+      "機械判読に適したデータ形式で公開されている。",
+      "無償で利用できる。",
+      "利用者が利用目的を申請し、審査を通った研究者だけが利用できる。"
+    ],
+    "answer": 3,
+    "explanation": "オープンデータ基本指針は、①営利・非営利を問わず二次利用可能なルールが適用されたもの、②機械判読に適したもの、③無償で利用できるもの、のいずれにも当てはまる形で公開されたデータをオープンデータとしている。審査を通った研究者だけに限る提供は「限定公開」の扱いで、オープンデータとは別に整理されている。",
+    "whyWrong": [
+      "要件①として正しい。",
+      "要件②として正しい。CSV・XML・JSONなどが例に挙がっている。",
+      "要件③として正しい。",
+      null
+    ],
+    "memoryTip": "オープンデータの3要件＝「誰でも二次利用」「機械が読める」「タダ」。",
+    "concepts": [
+      "C-07-015"
+    ],
+    "sources": [
+      {
+        "title": "デジタル庁「オープンデータ基本指針」（令和6年7月5日改正）",
+        "url": "https://digital.go.jp/assets/contents/node/basic_page/field_ref_resources/f7fde41d-ffca-4b2a-9b25-94b8a701a037/f1e42cee/20240705_resources_data_guideline_01.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-029",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "言語を分析するための基礎資料として、書き言葉や話し言葉の資料を体系的に集め、研究用の情報を付けたデータベースを（　）という。",
+    "choices": [
+      "オントロジー",
+      "コーパス",
+      "ナレッジグラフ",
+      "デンドログラム"
+    ],
+    "answer": 1,
+    "explanation": "国立国語研究所は、書き言葉や話し言葉の資料を体系的に収集し、研究用の情報を付与した言葉のデータベースを言語コーパスと呼ぶと説明している。",
+    "whyWrong": [
+      "オントロジーは概念とその関係を体系的に定めたもので、文章そのものを集めたデータではない。",
+      null,
+      "ナレッジグラフは事物とその関係をグラフで表した知識の集まりで、文章の資料集ではない。",
+      "デンドログラムは階層的クラスタリングの結果を表す樹形図。"
+    ],
+    "memoryTip": "コーパス＝ラテン語の「体（corpus）」。言葉の実物を集めた体。",
+    "concepts": [
+      "C-07-015"
+    ],
+    "sources": [
+      {
+        "title": "国立国語研究所「言語コーパスガイダンス」",
+        "url": "https://clrd.ninjal.ac.jp/guidance.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-07-030",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "format": "scenario",
+    "difficulty": 3,
+    "stem": "病院の画像診断AIを作るため、患者200人から1人あたり複数枚の画像を集めた。画像を1枚ずつランダムに学習用と評価用に分けて評価したところ、非常に高い精度が出た。この評価に関する説明として、最も適切なものを1つ選べ。",
+    "choices": [
+      "同じ患者の画像が学習用と評価用の両方に入るため、患者の特徴を覚えただけでも精度が高く見えるおそれがある。患者単位で分けて評価し直すべきである。",
+      "画像単位でランダムに分けているので、リーケージは起こりえない。",
+      "精度が高いのは画像の枚数が多いためなので、問題はない。",
+      "評価用データを学習にも使えば、さらに正確な評価ができる。"
+    ],
+    "answer": 0,
+    "explanation": "scikit-learnのドキュメントは、複数の患者から1人あたり複数のサンプルを集めたデータは患者ごとに依存しているとし、未知の患者への汎化を測るには評価用のサンプルが学習側にまったく含まれない患者（グループ）から来るように分けるべきだとしている。",
+    "whyWrong": [
+      null,
+      "ランダムに分けても、同じ患者という依存関係は学習側と評価側にまたがって残る。",
+      "枚数の多さでは、同じ患者が両方に入るという評価の偏りは説明できない。",
+      "評価用データを学習に使うのは典型的なリーケージで、評価の数値が実力以上に良く出る。"
+    ],
+    "memoryTip": "分ける単位は「本番で新しく来るもの」の単位（新しい患者なら患者ごと）。",
+    "concepts": [
+      "C-07-016"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide 3.1 Cross-validation（grouped data・time series）",
+        "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+      },
+      {
+        "title": "scikit-learn User Guide 12. Common pitfalls and recommended practices（Data leakage）",
+        "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+      }
+    ],
+    "status": "verified"
   }
 ]

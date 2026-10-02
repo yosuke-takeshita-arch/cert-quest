@@ -683,15 +683,23 @@
     ],
     "sources": [
       {
-        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
-        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+        "title": "特許庁「産業財産権について」",
+        "url": "https://www.jpo.go.jp/system/patent/gaiyo/seidogaiyo/chizai01.html"
+      },
+      {
+        "title": "特許庁「知的財産権について」",
+        "url": "https://www.jpo.go.jp/system/patent/gaiyo/seidogaiyo/chizai02.html"
       },
       {
         "title": "不正競争防止法（e-Gov法令検索・令和8年5月21日施行版）",
         "url": "https://laws.e-gov.go.jp/law/405AC0000000047"
+      },
+      {
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-09-020",
@@ -935,7 +943,7 @@
       "AI開発委託契約"
     ],
     "title": "精度保証と保守契約",
-    "oneLine": "精度保証は、学習済みモデルの性能（精度）を契約で保証すること。学習済みモデルは未知のデータに対する性能の保証が難しいため、契約時点での性能保証は慎重に扱われる。運用後のモデルの性能維持・更新（追加学習など）は、保守契約や追加学習段階の契約として別に定める。",
+    "oneLine": "精度保証は、学習済みモデルの性能（精度）を契約で保証すること。学習済みモデルは未知の入力に対する性能の保証が難しいため、契約時点での性能保証は慎重に扱われる（既知の入力・評価条件に限れば保証に合理性がある場合もある）。運用後の追加学習は、保守運用契約の中に定めたり、別に契約を結んだりする。",
     "why": "「精度○％を保証」と安易に約束すると、運用データが変わったときに責任の争いになる。評価に使うデータや条件を明確にして合意しておくことが重要。",
     "links": [
       {
@@ -959,7 +967,7 @@
         "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-09-028",

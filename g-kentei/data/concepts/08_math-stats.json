@@ -45,8 +45,8 @@
       "AI に必要な数理・統計知識"
     ],
     "title": "外れ値",
-    "oneLine": "他の大多数のデータから大きく離れた値。入力ミスや測定の異常のこともあれば、本当に珍しい事象のこともある。",
-    "why": "平均や分散、最小二乗法の結果を大きくゆがめる。取り除くか、中央値のような外れ値に強い指標を使うかを、原因を確かめてから決める。",
+    "oneLine": "他の大多数のデータから大きく離れた値。入力ミスや測定の異常のこともあれば、偶然のばらつきや本当に珍しい事象のこともある。",
+    "why": "平均や分散、最小二乗法の結果を大きくゆがめる（1〜2個の外れ値で最小二乗法の結果が大きく狂うことがある）。誤りと分かれば除くか直すが、分からなければ安易に捨てず、中央値のような外れ値に強い指標や手法を使う。",
     "links": [
       {
         "id": "C-08-001",
@@ -69,11 +69,19 @@
     ],
     "sources": [
       {
-        "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
-        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm"
+        "title": "NIST/SEMATECH e-Handbook 1.3.5.17 Detection of Outliers",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 4.1.4.1 Linear Least Squares Regression",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmd/section1/pmd141.htm"
+      },
+      {
+        "title": "総務省統計局 なるほど統計学園「統計用語辞典（は行）」",
+        "url": "https://www.stat.go.jp/naruhodo/13_yougo/ha-gyo.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-003",
@@ -141,11 +149,19 @@
     ],
     "sources": [
       {
-        "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
-        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm"
+        "title": "総務省統計局 なるほど統計学園「統計用語辞典（た行）」",
+        "url": "https://www.stat.go.jp/naruhodo/13_yougo/ta-gyo.html"
+      },
+      {
+        "title": "総務省統計局 なるほど統計学園「ヒストグラム」",
+        "url": "https://www.stat.go.jp/naruhodo/4_graph/shokyu/histogram.html"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.3.14 Histogram",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda33e.htm"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-005",
@@ -179,11 +195,15 @@
     ],
     "sources": [
       {
-        "title": "NIST/SEMATECH e-Handbook 1.3.6.6.1 Normal Distribution",
-        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm"
+        "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 4a Reading: Discrete Random Variables",
+        "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class04-prep-a_pdf/"
+      },
+      {
+        "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 5b Reading: Continuous Random Variables",
+        "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class05-prep-b_pdf/"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-006",
@@ -194,7 +214,7 @@
     ],
     "title": "期待値",
     "oneLine": "確率変数がとる値に、その値をとる確率を掛けて足し合わせたもの（平均的に期待できる値）。公平なサイコロの目の期待値は3.5。",
-    "why": "損得の判断（くじ・投資）や、損失関数の平均（期待損失）を最小にするという機械学習の考え方の基本になる。",
+    "why": "くじや投資の損得の判断の基本になる。多くの確率分布の「平均」は期待値のこと（二項分布の平均np、ポアソン分布の平均λ）。",
     "links": [
       {
         "id": "C-08-005",
@@ -213,11 +233,19 @@
     ],
     "sources": [
       {
+        "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 4b Reading: Expected Value of Discrete Random Variables",
+        "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class04-prep-b_pdf/"
+      },
+      {
         "title": "NIST/SEMATECH e-Handbook 1.3.6.6.18 Binomial Distribution",
         "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.6.19 Poisson Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-007",
@@ -228,7 +256,7 @@
     ],
     "title": "条件付き確率",
     "oneLine": "ある事象Bが起きたと分かっているときに事象Aが起きる確率。P(A|B) = P(A∩B) ÷ P(B)。",
-    "why": "ベイズの定理やナイーブベイズ分類、言語モデル（前の単語が分かったときの次の単語の確率）など、多くの手法の土台になる。",
+    "why": "ベイズの定理の土台になる。検査の偽陽性率・偽陰性率も「病気でないのに陽性」「病気なのに陰性」という条件付き確率である。",
     "links": [
       {
         "id": "C-08-005",
@@ -247,11 +275,11 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 3 Reading: Conditional Probability, Independence, Bayes’ Theorem",
+        "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class03-prep_pdf/"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-008",
@@ -459,11 +487,11 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "岡本安晴（日本女子大学）「偏相関係数と擬似相関」",
+        "url": "https://mcn-www.jwu.ac.jp/~yokamoto/ccc/stat/p23cor/"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-014",
@@ -493,11 +521,11 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "岡本安晴（日本女子大学）「偏相関係数と擬似相関」",
+        "url": "https://mcn-www.jwu.ac.jp/~yokamoto/ccc/stat/p23cor/"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-015",
@@ -640,7 +668,7 @@
     ],
     "title": "ユークリッド距離とコサイン類似度",
     "oneLine": "ユークリッド距離＝2点の座標の差の2乗の和の平方根（いわゆる直線距離）。コサイン類似度＝2つのベクトルのなす角のコサインで、向きが同じなら1、直交なら0、逆向きなら−1。ベクトルの長さには左右されない。",
-    "why": "k近傍法やクラスタリングの近さの基準になる。文章や単語の分散表現の類似度には、長さよりも向きを見るコサイン類似度がよく使われる。",
+    "why": "k近傍法やクラスタリングの近さの基準になる。文章をTF-IDFなどのベクトルで表したときの類似度には、長さよりも向きを見るコサイン類似度がよく使われる。",
     "links": [
       {
         "id": "C-08-020",
@@ -659,11 +687,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "scikit-learn API sklearn.metrics.pairwise.euclidean_distances",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.euclidean_distances.html"
+      },
+      {
+        "title": "scikit-learn User Guide 8.8 Pairwise metrics, Affinities and Kernels（Cosine similarity）",
+        "url": "https://scikit-learn.org/stable/modules/metrics.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-020",
@@ -674,7 +706,7 @@
     ],
     "title": "マハラノビス距離",
     "oneLine": "データの分布の広がり（分散）と変数間の相関（共分散行列）を考慮した距離。ばらつきの大きい方向へのずれは小さく、ばらつきの小さい方向へのずれは大きく評価する。",
-    "why": "変数ごとに単位やばらつきが違うデータでも公平に「どれだけ異常か」を測れるため、異常検知に使われる。",
+    "why": "変数ごとに単位やばらつきが違うデータでも「分布の中心からどれだけ外れているか」を測れるため、外れ値（異常）の検出に使われる。ただし共分散の推定自体が外れ値に弱いので、頑健な推定と組み合わせることがある。",
     "links": [
       {
         "id": "C-08-019",
@@ -697,11 +729,11 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "scikit-learn Example: Robust covariance estimation and Mahalanobis distances relevance",
+        "url": "https://scikit-learn.org/stable/auto_examples/covariance/plot_mahalanobis_distances.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-021",
@@ -712,7 +744,7 @@
     ],
     "title": "相互情報量",
     "oneLine": "一方の変数の値を知ることで、もう一方の変数についての不確かさがどれだけ減るかを表す量。2つの変数が独立なら0になり、直線的でない関係も含めて依存の強さを表す。",
-    "why": "特徴量の選択などで、目的変数との関係の強さを測るのに使える。相関係数が見逃す非線形な関係もとらえられる。",
+    "why": "特徴量の選択などで、目的変数との関係の強さを測るのに使える。F検定のような直線的な依存しか見ない方法と違い、どんな種類の統計的な依存もとらえられる（その代わり推定に多くのデータが要る）。",
     "links": [
       {
         "id": "C-08-012",
@@ -731,11 +763,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "scikit-learn API sklearn.feature_selection.mutual_info_classif",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html"
+      },
+      {
+        "title": "scikit-learn User Guide 1.13 Feature selection（univariate feature selection）",
+        "url": "https://scikit-learn.org/stable/modules/feature_selection.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-08-022",
@@ -769,10 +805,18 @@
     ],
     "sources": [
       {
-        "title": "NIST/SEMATECH e-Handbook 4.4.3.1 Least Squares",
-        "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd431.htm"
+        "title": "MIT OCW 18.01SC Single Variable Calculus (Fall 2010) Session 18: The Power Rule",
+        "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/cc53f4a12df600e1e43b4f02b9badac7_MIT18_01SCF10_Ses18d.pdf"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 4 Numerical Computation（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/numerical.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   }
 ]

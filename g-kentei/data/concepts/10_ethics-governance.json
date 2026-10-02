@@ -119,7 +119,7 @@
         "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-10-004",
@@ -331,6 +331,10 @@
     ],
     "sources": [
       {
+        "title": "個人情報保護委員会「個人情報の保護に関する法律についてのガイドライン（通則編）」3-1-1 利用目的の特定",
+        "url": "https://www.ppc.go.jp/personalinfo/legal/guidelines_tsusoku/"
+      },
+      {
         "title": "Shokri et al. (2016) Membership Inference Attacks against Machine Learning Models (arXiv:1610.05820)",
         "url": "https://arxiv.org/abs/1610.05820"
       },
@@ -339,7 +343,7 @@
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-10-010",
@@ -411,11 +415,15 @@
     ],
     "sources": [
       {
+        "title": "NIST SP 1270 Towards a Standard for Identifying and Managing Bias in Artificial Intelligence (2022)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf"
+      },
+      {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-10-012",
@@ -1033,7 +1041,7 @@
       "AIガバナンス"
     ],
     "title": "倫理アセスメントとモニタリング",
-    "oneLine": "倫理アセスメントは、AIを開発・導入する前に、そのAIが人や社会に与えうる影響やリスクを洗い出して評価すること。モニタリングは、運用を始めた後もAIの動作や影響を継続的に監視し、問題があれば見直すこと。",
+    "oneLine": "倫理アセスメントは、AIを開発・導入する前に、そのAIが人や社会に与えうる影響やリスクを洗い出して評価すること。モニタリングは、運用を始めた後もAIの動作やリスク評価の仕組みが有効に機能しているかを継続的に監視し、問題があれば見直すこと。",
     "why": "AIのリスクは外部環境や使われ方で変化するため、事前の評価と運用中の監視の両方が要る。",
     "links": [
       {
@@ -1061,7 +1069,7 @@
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-10-029",
@@ -1178,7 +1186,7 @@
     ],
     "title": "ダイバーシティ（多様性のある体制）",
     "oneLine": "AIの開発・評価にかかわるチームや意思決定の場に、性別・年齢・専門分野・文化的背景などの異なる人々を加えること。",
-    "why": "同じような背景の人だけで作ると、特定の利用者への影響や偏りに気づきにくい。多様な視点はバイアスの発見とインクルージョンにつながる。",
+    "why": "同じような背景の人だけで作ると、特定の利用者への影響や偏りに気づきにくい。AI事業者ガイドラインは、潜在的なバイアスに留意し、多様な背景・文化・分野のステークホルダーと対話したうえで方針を決めることを求めている。",
     "links": [
       {
         "id": "C-10-027",
@@ -1201,10 +1209,14 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   }
 ]

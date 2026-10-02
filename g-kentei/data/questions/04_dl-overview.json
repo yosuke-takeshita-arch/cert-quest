@@ -1,7 +1,11 @@
 [
   {
     "id": "G-04-001",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "単純パーセプトロンの限界として、最も適切な選択肢を1つ選べ。",
@@ -13,30 +17,77 @@
     ],
     "answer": 0,
     "explanation": "単純パーセプトロンは入力の重み付き和で直線（超平面）の境界を作るだけなので、排他的論理和（XOR）のように直線で分けられない問題は解けない。隠れ層を持つ多層パーセプトロンでこれを越える。",
-    "whyWrong": [null, "単純パーセプトロンは入力層と出力層からなる。無いのは隠れ層。", "入力は複数あってよい。", "隠れ層が無いので、誤差逆伝播法を使わずに学習できる。"],
+    "whyWrong": [
+      null,
+      "単純パーセプトロンは入力層と出力層からなる。無いのは隠れ層。",
+      "入力は複数あってよい。",
+      "隠れ層が無いので、誤差逆伝播法を使わずに学習できる。"
+    ],
     "memoryTip": "単純パーセプトロン＝定規1本で線を引くだけ。曲がった境界は引けない。",
-    "concepts": ["C-04-001", "C-04-002"],
-    "sources": [{ "title": "scikit-learn User Guide: Neural network models (supervised)", "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html" }],
-    "status": "unverified"
+    "concepts": [
+      "C-04-001",
+      "C-04-002"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Neural network models (supervised)",
+        "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 1 Introduction（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/intro.html"
+      },
+      {
+        "title": "Jordan (1986) Serial Order: A Parallel Distributed Processing Approach. ICS Report 8604, UC San Diego",
+        "url": "https://cseweb.ucsd.edu/~gary/PAPER-SUGGESTIONS/Jordan-TR-8604-OCRed.pdf"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-002",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
     "format": "fill",
     "difficulty": 1,
     "stem": "多層パーセプトロンは、入力層と出力層の間に（　）を持つ。これを深く重ねたものがディープラーニングである。空欄に最もよく当てはまる選択肢を1つ選べ。",
-    "choices": ["隠れ層", "プーリング層", "埋め込み層", "正規化層"],
+    "choices": [
+      "隠れ層",
+      "プーリング層",
+      "埋め込み層",
+      "正規化層"
+    ],
     "answer": 0,
     "explanation": "隠れ層は入力と出力の間で特徴を変換する層。隠れ層が課題に重要な特徴を表すように学習される。",
-    "whyWrong": [null, "プーリング層はCNNで特徴マップを縮小する層で、多層パーセプトロンの定義には含まれない。", "埋め込み層は単語などを密なベクトルに変換する層で、多層パーセプトロンを定義する層ではない。", "正規化層は層の出力の尺度をそろえる層で、多層パーセプトロンの定義には含まれない。"],
+    "whyWrong": [
+      null,
+      "プーリング層はCNNで特徴マップを縮小する層で、多層パーセプトロンの定義には含まれない。",
+      "埋め込み層は単語などを密なベクトルに変換する層で、多層パーセプトロンを定義する層ではない。",
+      "正規化層は層の出力の尺度をそろえる層で、多層パーセプトロンの定義には含まれない。"
+    ],
     "memoryTip": "入力（見える）→隠れ（見えない）→出力（見える）。",
-    "concepts": ["C-04-003", "C-04-002"],
-    "sources": [{ "title": "scikit-learn User Guide: Neural network models (supervised)", "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html" }],
+    "concepts": [
+      "C-04-003",
+      "C-04-002"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Neural network models (supervised)",
+        "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-003",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "GPUがディープラーニングの学習に適している理由として、最も適切な選択肢を1つ選べ。",
@@ -48,18 +99,35 @@
     ],
     "answer": 0,
     "explanation": "GPUはもとはグラフィックス処理用だが、高い並列処理能力により、ディープラーニングのような大規模な行列演算に適している。",
-    "whyWrong": [null, "これはCPUの得意分野。", "これはTPUの説明。GPUはもともとグラフィックス処理用に開発された。", "GPUのメモリにも上限があり、大きなモデルでは不足する。"],
+    "whyWrong": [
+      null,
+      "これはCPUの得意分野。",
+      "これはTPUの説明。GPUはもともとグラフィックス処理用に開発された。",
+      "GPUのメモリにも上限があり、大きなモデルでは不足する。"
+    ],
     "memoryTip": "CPU＝少数精鋭（複雑な仕事を順に）、GPU＝大人数（単純な仕事を一斉に）、TPU＝行列演算の専門職（Google）。",
-    "concepts": ["C-04-004"],
+    "concepts": [
+      "C-04-004"
+    ],
     "sources": [
-      { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及（GPUの注記）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" },
-      { "title": "Google for Developers: Machine Learning Glossary（accelerator chip）", "url": "https://developers.google.com/machine-learning/glossary" }
+      {
+        "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及（GPUの注記）",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html"
+      },
+      {
+        "title": "Google for Developers: Machine Learning Glossary（accelerator chip）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-004",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "ニューラルネットワークとディープラーニング"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
     "format": "not",
     "difficulty": 2,
     "stem": "TPUについて、最も不適切な選択肢を1つ選べ。",
@@ -71,15 +139,31 @@
     ],
     "answer": 3,
     "explanation": "グラフィックス処理用として開発され機械学習に転用されたのはGPU。TPUははじめから機械学習のワークロードを加速するためにGoogleが開発した。",
-    "whyWrong": ["適切。Google Cloudの説明と一致。", "適切。行列演算に特化した設計。", "適切。Cloud TPUとして提供されている。", null],
+    "whyWrong": [
+      "適切。Google Cloudの説明と一致。",
+      "適切。行列演算に特化した設計。",
+      "適切。Cloud TPUとして提供されている。",
+      null
+    ],
     "memoryTip": "GPU＝転職組（グラフィックス出身）、TPU＝生え抜き（最初から機械学習）。",
-    "concepts": ["C-04-004"],
-    "sources": [{ "title": "Google Cloud: Introduction to Cloud TPU", "url": "https://cloud.google.com/tpu/docs/intro-to-tpu" }],
+    "concepts": [
+      "C-04-004"
+    ],
+    "sources": [
+      {
+        "title": "Google Cloud: Introduction to Cloud TPU",
+        "url": "https://cloud.google.com/tpu/docs/intro-to-tpu"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-005",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "ニューラルネットワークの隠れ層で、非線形の活性化関数を使う理由として、最も適切な選択肢を1つ選べ。",
@@ -91,15 +175,31 @@
     ],
     "answer": 0,
     "explanation": "線形変換を重ねても線形変換のままなので、層を深くする意味が無い。非線形の活性化関数で初めて、複雑な（非線形の）関係を学習できる。",
-    "whyWrong": [null, "活性化関数の種類でデータ量の必要性が必ず減るわけではない。", "活性化関数だけで過学習は防げない。過学習の対策は正則化など。", "線形の関数でも微分はでき、勾配は計算できる。"],
+    "whyWrong": [
+      null,
+      "活性化関数の種類でデータ量の必要性が必ず減るわけではない。",
+      "活性化関数だけで過学習は防げない。過学習の対策は正則化など。",
+      "線形の関数でも微分はでき、勾配は計算できる。"
+    ],
     "memoryTip": "線形×線形＝線形。曲がり（非線形）を入れないと深くしても無駄。",
-    "concepts": ["C-04-005"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（activation function）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-005"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（activation function）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-006",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
     "format": "single",
     "difficulty": 3,
     "stem": "シグモイド関数を隠れ層に使った深いネットワークで勾配消失が起きやすい理由として、最も適切な選択肢を1つ選べ。",
@@ -111,36 +211,88 @@
     ],
     "answer": 0,
     "explanation": "シグモイドの微分はσ(x)(1−σ(x))で、x＝0のとき最大の0.25。入力の絶対値が大きいとほぼ0になる。誤差逆伝播では各層の微分を掛け合わせるので、層が深いほど勾配が小さくなる。",
-    "whyWrong": [null, "微分が正の領域で1になるのはReLU。", "−1〜1はtanhの出力範囲。シグモイドは0〜1。", "負の入力で出力も微分も0になるのはReLU。"],
-    "memoryTip": "0.25を10回掛けると約0.000001。小さい数の掛け算の連鎖＝勾配消失。",
-    "concepts": ["C-04-006", "C-04-024"],
-    "sources": [
-      { "title": "PyTorch Documentation: torch.nn.Sigmoid", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html" },
-      { "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS", "url": "https://proceedings.mlr.press/v9/glorot10a.html" }
+    "whyWrong": [
+      null,
+      "微分が正の領域で1になるのはReLU。",
+      "−1〜1はtanhの出力範囲。シグモイドは0〜1。",
+      "負の入力で出力も微分も0になるのはReLU。"
     ],
-    "status": "unverified"
+    "memoryTip": "0.25を10回掛けると約0.000001。小さい数の掛け算の連鎖＝勾配消失。",
+    "concepts": [
+      "C-04-006",
+      "C-04-024"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.Sigmoid",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html"
+      },
+      {
+        "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS",
+        "url": "https://proceedings.mlr.press/v9/glorot10a.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      },
+      {
+        "title": "Hochreiter (1998) The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions. IJUFKS 6(2)（著者所属機関の公開版）",
+        "url": "https://www.bioinf.jku.at/publications/older/2304.pdf"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-007",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
     "format": "fill",
     "difficulty": 1,
     "stem": "入力が0以下なら0を、正なら入力をそのまま出力する活性化関数を（　）という。正の領域で微分が1になるため、勾配消失を緩和できる。空欄に最もよく当てはまる選択肢を1つ選べ。",
-    "choices": ["ReLU関数", "シグモイド関数", "tanh関数", "ソフトマックス関数"],
+    "choices": [
+      "ReLU関数",
+      "シグモイド関数",
+      "tanh関数",
+      "ソフトマックス関数"
+    ],
     "answer": 0,
     "explanation": "ReLU(x)＝max(0, x)。正の領域では微分が1なので、層を重ねても勾配が小さくなりにくい。",
-    "whyWrong": [null, "シグモイドは0〜1のS字型で、微分の最大値は0.25。", "tanhは−1〜1のS字型。", "ソフトマックスは複数の出力を合計1の確率に変える出力層の関数。"],
+    "whyWrong": [
+      null,
+      "シグモイドは0〜1のS字型で、微分の最大値は0.25。",
+      "tanhは−1〜1のS字型。",
+      "ソフトマックスは複数の出力を合計1の確率に変える出力層の関数。"
+    ],
     "memoryTip": "ReLU＝マイナスは切り捨て、プラスは素通り。",
-    "concepts": ["C-04-008"],
+    "concepts": [
+      "C-04-008"
+    ],
     "sources": [
-      { "title": "PyTorch Documentation: torch.nn.ReLU", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.ReLU.html" },
-      { "title": "Google for Developers: Machine Learning Glossary（Rectified Linear Unit）", "url": "https://developers.google.com/machine-learning/glossary" }
+      {
+        "title": "PyTorch Documentation: torch.nn.ReLU",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.ReLU.html"
+      },
+      {
+        "title": "Google for Developers: Machine Learning Glossary（Rectified Linear Unit）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-008",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "Leaky ReLU関数がReLU関数を改良した点として、最も適切な選択肢を1つ選べ。",
@@ -152,33 +304,72 @@
     ],
     "answer": 0,
     "explanation": "ReLUは負の入力で勾配が0になり、そのニューロンが学習しなくなることがある。Leaky ReLUは負の側にもわずかな傾きを持たせ、全域で勾配が0にならない。",
-    "whyWrong": [null, "これはシグモイド関数の性質。", "これはソフトマックス関数の性質。", "正の側の傾きを0にしたら学習できない。"],
+    "whyWrong": [
+      null,
+      "これはシグモイド関数の性質。",
+      "これはソフトマックス関数の性質。",
+      "正の側の傾きを0にしたら学習できない。"
+    ],
     "memoryTip": "Leaky（漏れる）＝負の側に少し勾配が漏れる。",
-    "concepts": ["C-04-009", "C-04-008"],
+    "concepts": [
+      "C-04-009",
+      "C-04-008"
+    ],
     "sources": [
-      { "title": "PyTorch Documentation: torch.nn.LeakyReLU", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html" },
-      { "title": "Maas, Hannun & Ng (2013) Rectifier Nonlinearities Improve Neural Network Acoustic Models", "url": "https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf" }
+      {
+        "title": "PyTorch Documentation: torch.nn.LeakyReLU",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html"
+      },
+      {
+        "title": "Maas, Hannun & Ng (2013) Rectifier Nonlinearities Improve Neural Network Acoustic Models",
+        "url": "https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-009",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "画像を「犬」「猫」「鳥」の3クラスに分類するネットワークの出力層で使う活性化関数として、最も適切な選択肢を1つ選べ。",
-    "choices": ["ソフトマックス関数", "ReLU関数", "tanh関数", "恒等関数"],
+    "choices": [
+      "ソフトマックス関数",
+      "ReLU関数",
+      "tanh関数",
+      "恒等関数"
+    ],
     "answer": 0,
     "explanation": "ソフトマックス関数は各出力を0〜1にし、合計を1にするので、各クラスの確率として読める。交差エントロピーと組み合わせて学習する。",
-    "whyWrong": [null, "ReLUは主に隠れ層で使う。出力が確率にならない。", "tanhは−1〜1を出し、確率にならない。", "恒等関数は回帰の出力層で使う。"],
+    "whyWrong": [
+      null,
+      "ReLUは主に隠れ層で使う。出力が確率にならない。",
+      "tanhは−1〜1を出し、確率にならない。",
+      "恒等関数は回帰の出力層で使う。"
+    ],
     "memoryTip": "出力層の定番：多クラス分類＝ソフトマックス、2値分類＝シグモイド、回帰＝恒等関数。",
-    "concepts": ["C-04-010"],
-    "sources": [{ "title": "PyTorch Documentation: torch.nn.Softmax", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax.html" }],
+    "concepts": [
+      "C-04-010"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.Softmax",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax.html"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-010",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
     "format": "not",
     "difficulty": 2,
     "stem": "活性化関数について、最も不適切な選択肢を1つ選べ。",
@@ -189,19 +380,46 @@
       "tanh関数は出力が常に正なので、シグモイド関数より勾配消失が起きやすい"
     ],
     "answer": 3,
-    "explanation": "tanhの出力は−1〜1で常に正ではない。微分の最大値も1でシグモイド（0.25）より大きく、一般にシグモイドより勾配消失は起きにくい。",
-    "whyWrong": ["適切。", "適切。", "適切。", null],
-    "memoryTip": "シグモイド0〜1（微分最大0.25）、tanh −1〜1（微分最大1）。",
-    "concepts": ["C-04-007", "C-04-006", "C-04-010"],
-    "sources": [
-      { "title": "PyTorch Documentation: torch.nn.Tanh", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Tanh.html" },
-      { "title": "PyTorch Documentation: torch.nn.Softmax", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax.html" }
+    "explanation": "tanhの出力は−1〜1で常に正ではない。tanh(0)＝0で原点付近は恒等関数に近く、シグモイドを使わざるをえない場面では一般にtanhのほうが性能が良いとされる。",
+    "whyWrong": [
+      "適切。",
+      "適切。",
+      "適切。",
+      null
     ],
-    "status": "unverified"
+    "memoryTip": "シグモイド0〜1（微分最大0.25）、tanh −1〜1（微分最大1）。",
+    "concepts": [
+      "C-04-007",
+      "C-04-006",
+      "C-04-010"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.Tanh",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Tanh.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.Softmax",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Softmax.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-011",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "タスクと誤差関数の組み合わせとして、最も適切な選択肢を1つ選べ。",
@@ -213,18 +431,41 @@
     ],
     "answer": 0,
     "explanation": "回帰では予測値と正解値の差を測る平均二乗誤差、分類では確率の分布の違いを測る交差エントロピーが基本。",
-    "whyWrong": [null, "組み合わせが逆。", "Triplet Lossは似ている度合い（距離）を学ぶための誤差関数で、回帰や通常の分類の基本ではない。", "KL情報量は分布の違いを測る量で、回帰の誤差関数として一般的ではない。"],
-    "memoryTip": "数値を当てる＝二乗誤差、クラスを当てる＝交差エントロピー。",
-    "concepts": ["C-04-013", "C-04-012", "C-04-011"],
-    "sources": [
-      { "title": "PyTorch Documentation: torch.nn.MSELoss", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.MSELoss.html" },
-      { "title": "PyTorch Documentation: torch.nn.CrossEntropyLoss", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html" }
+    "whyWrong": [
+      null,
+      "組み合わせが逆。",
+      "Triplet Lossは似ている度合い（距離）を学ぶための誤差関数で、回帰や通常の分類の基本ではない。",
+      "KL情報量は分布の違いを測る量で、回帰の誤差関数として一般的ではない。"
     ],
-    "status": "unverified"
+    "memoryTip": "数値を当てる＝二乗誤差、クラスを当てる＝交差エントロピー。",
+    "concepts": [
+      "C-04-013",
+      "C-04-012",
+      "C-04-011"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.MSELoss",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.MSELoss.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.CrossEntropyLoss",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-012",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
     "format": "not",
     "difficulty": 3,
     "stem": "カルバック・ライブラー情報量（KL）について、最も不適切な選択肢を1つ選べ。",
@@ -236,75 +477,189 @@
     ],
     "answer": 3,
     "explanation": "KL情報量は非対称で、PとQを入れ替えると一般に値が変わる。そのため厳密な意味での距離ではない。",
-    "whyWrong": ["適切。KL情報量の定義。", "適切。同一の分布なら0。", "適切。VAEの学習などに使う。", null],
+    "whyWrong": [
+      "適切。KL情報量の定義。",
+      "適切。同一の分布なら0。",
+      "適切。VAEの学習などに使う。",
+      null
+    ],
     "memoryTip": "KLは一方通行。「行き」と「帰り」で値が違う。",
-    "concepts": ["C-04-014"],
-    "sources": [{ "title": "PyTorch Documentation: torch.nn.KLDivLoss", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html" }],
-    "status": "unverified"
+    "concepts": [
+      "C-04-014"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.KLDivLoss",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      },
+      {
+        "title": "Burgess, Higgins et al. (2018) Understanding disentangling in β-VAE (arXiv:1804.03599)",
+        "url": "https://arxiv.org/abs/1804.03599"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-013",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "基準となるデータ（アンカー）、同じ種類のデータ、違う種類のデータの3つを1組にして、アンカーと同じ種類の距離が、アンカーと違う種類の距離より小さくなるように学習する誤差関数として、最も適切な選択肢を1つ選べ。",
-    "choices": ["Triplet Loss", "Contrastive Loss", "交差エントロピー", "平均二乗誤差関数"],
+    "choices": [
+      "Triplet Loss",
+      "Contrastive Loss",
+      "交差エントロピー",
+      "平均二乗誤差関数"
+    ],
     "answer": 0,
     "explanation": "Triplet Lossは3つ組（アンカー・ポジティブ・ネガティブ）で距離を学ぶ。顔認識のFaceNetで使われた。",
-    "whyWrong": [null, "Contrastive Lossは2つ組（ペア）で、似ていれば近づけ、似ていなければ遠ざける。", "交差エントロピーはクラスの確率を当てる分類の誤差関数。", "平均二乗誤差は回帰の誤差関数。"],
+    "whyWrong": [
+      null,
+      "Contrastive Lossは2つ組（ペア）で、似ていれば近づけ、似ていなければ遠ざける。",
+      "交差エントロピーはクラスの確率を当てる分類の誤差関数。",
+      "平均二乗誤差は回帰の誤差関数。"
+    ],
     "memoryTip": "Triplet＝トリオ（3人組）、Contrastive＝ペア（2人組）。",
-    "concepts": ["C-04-016", "C-04-015"],
-    "sources": [{ "title": "Schroff, Kalenichenko & Philbin (2015) FaceNet: A Unified Embedding for Face Recognition and Clustering (arXiv:1503.03832)", "url": "https://arxiv.org/abs/1503.03832" }],
+    "concepts": [
+      "C-04-016",
+      "C-04-015"
+    ],
+    "sources": [
+      {
+        "title": "Schroff, Kalenichenko & Philbin (2015) FaceNet: A Unified Embedding for Face Recognition and Clustering (arXiv:1503.03832)",
+        "url": "https://arxiv.org/abs/1503.03832"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-014",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
     "format": "fill",
     "difficulty": 2,
     "stem": "2つのデータの組を入力し、似ている組は埋め込み空間で近づけ、似ていない組は遠ざけるように学習する誤差関数を（　）という。空欄に最もよく当てはまる選択肢を1つ選べ。",
-    "choices": ["Contrastive Loss", "Triplet Loss", "カルバック・ライブラー情報量", "ソフトマックス関数"],
+    "choices": [
+      "Contrastive Loss",
+      "Triplet Loss",
+      "カルバック・ライブラー情報量",
+      "ソフトマックス関数"
+    ],
     "answer": 0,
     "explanation": "Contrastive Loss。Hadsellらは近傍を引き寄せ、近傍でないものを押し離すように関数のパラメータを学習した。",
-    "whyWrong": [null, "Triplet Lossは3つ組を使う。", "分布の違いを測る量で、ペアの距離を学ぶ誤差関数ではない。", "活性化関数で、誤差関数ではない。"],
+    "whyWrong": [
+      null,
+      "Triplet Lossは3つ組を使う。",
+      "分布の違いを測る量で、ペアの距離を学ぶ誤差関数ではない。",
+      "活性化関数で、誤差関数ではない。"
+    ],
     "memoryTip": "Contrast＝対比。ペアを見比べて近づける・離す。",
-    "concepts": ["C-04-015"],
-    "sources": [{ "title": "Hadsell, Chopra & LeCun (2006) Dimensionality Reduction by Learning an Invariant Mapping. CVPR", "url": "http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf" }],
+    "concepts": [
+      "C-04-015"
+    ],
+    "sources": [
+      {
+        "title": "Hadsell, Chopra & LeCun (2006) Dimensionality Reduction by Learning an Invariant Mapping. CVPR",
+        "url": "http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-015",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差関数"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "交差エントロピーを誤差関数とする分類モデルで、正解クラスに対する予測確率が高くなると、誤差はどうなるか。最も適切な選択肢を1つ選べ。",
-    "choices": ["小さくなる", "大きくなる", "変わらない", "必ず負の値になる"],
+    "choices": [
+      "小さくなる",
+      "大きくなる",
+      "変わらない",
+      "必ず負の値になる"
+    ],
     "answer": 0,
     "explanation": "交差エントロピーは正解の分布と予測の分布の違いを表すので、正解クラスの予測確率が1に近づくほど0に近づく。",
-    "whyWrong": [null, "逆。正解に自信を持って当てるほど誤差は小さい。", "予測確率が変われば誤差も変わる。", "交差エントロピーは0以上の値をとる。"],
+    "whyWrong": [
+      null,
+      "逆。正解に自信を持って当てるほど誤差は小さい。",
+      "予測確率が変われば誤差も変わる。",
+      "交差エントロピーは0以上の値をとる。"
+    ],
     "memoryTip": "正解に自信満々（確率1）なら誤差0、正解を確率0と言ったら誤差は限りなく大きい。",
-    "concepts": ["C-04-012"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（cross-entropy）", "url": "https://developers.google.com/machine-learning/glossary" }],
-    "status": "unverified"
+    "concepts": [
+      "C-04-012"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（cross-entropy）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-016",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "正則化"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "多数の特徴量のうち、予測にほとんど関係しない特徴量の重みをちょうど0にして、使う特徴量を自動で絞り込みたい。最も適切な正則化を1つ選べ。",
-    "choices": ["L1正則化", "L2正則化", "ドロップアウト", "バッチ正規化"],
+    "choices": [
+      "L1正則化",
+      "L2正則化",
+      "ドロップアウト",
+      "バッチ正規化"
+    ],
     "answer": 0,
     "explanation": "L1正則化は重みの絶対値の和に罰則をかけ、関係の薄い特徴量の重みを0にしやすい（スパースになる）。線形回帰に加えたものがラッソ回帰。",
-    "whyWrong": [null, "L2正則化は重み全体を小さくするが、0にはなりにくい。", "ドロップアウトは学習中にニューロンを無効にする方法で、特徴量の選択はしない。", "バッチ正規化は層の出力の尺度をそろえる処理で、正則化の罰則ではない。"],
+    "whyWrong": [
+      null,
+      "L2正則化は重み全体を小さくするが、0にはなりにくい。",
+      "ドロップアウトは学習中にニューロンを無効にする方法で、特徴量の選択はしない。",
+      "バッチ正規化は層の出力の尺度をそろえる処理で、正則化の罰則ではない。"
+    ],
     "memoryTip": "L1＝ラッソ＝投げ縄で必要なものだけ捕まえる（不要なものは0）。",
-    "concepts": ["C-04-019", "C-04-020"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（L1 regularization）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-019",
+      "C-04-020"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（L1 regularization）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-017",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "正則化"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "リッジ回帰の説明として、最も適切な選択肢を1つ選べ。",
@@ -316,15 +671,33 @@
     ],
     "answer": 0,
     "explanation": "リッジ回帰はL2正則化を加えた線形回帰。係数の大きさに罰則を課して、通常の最小二乗法の問題（係数の不安定さなど）を和らげる。",
-    "whyWrong": [null, "これはラッソ回帰。", "これはL0正則化。", "これはドロップアウト。"],
+    "whyWrong": [
+      null,
+      "これはラッソ回帰。",
+      "これはL0正則化。",
+      "これはドロップアウト。"
+    ],
     "memoryTip": "リッジ（L2）＝二乗でなめらかに縮める、ラッソ（L1）＝絶対値でばっさり0。",
-    "concepts": ["C-04-020", "C-04-019", "C-04-018"],
-    "sources": [{ "title": "scikit-learn User Guide: Linear Models（Ridge regression）", "url": "https://scikit-learn.org/stable/modules/linear_model.html" }],
+    "concepts": [
+      "C-04-020",
+      "C-04-019",
+      "C-04-018"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Linear Models（Ridge regression）",
+        "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-018",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "正則化"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "ドロップアウトの説明として、最も適切な選択肢を1つ選べ。",
@@ -336,18 +709,35 @@
     ],
     "answer": 0,
     "explanation": "ドロップアウトは学習中にユニットをランダムに落とす正則化の方法。毎回違う部分ネットワークを学ぶことになり、アンサンブルに近い効果がある。推論時はすべてのユニットを使う。",
-    "whyWrong": [null, "ドロップアウトは学習中だけ行い、推論時はすべてのニューロンを使う。", "削除するのはデータではなくネットワークのユニット。", "これは早期終了。"],
+    "whyWrong": [
+      null,
+      "ドロップアウトは学習中だけ行い、推論時はすべてのニューロンを使う。",
+      "削除するのはデータではなくネットワークのユニット。",
+      "これは早期終了。"
+    ],
     "memoryTip": "ドロップアウト＝練習のたびにメンバーを何人か休ませるチーム練習。誰か1人に頼れなくなる。",
-    "concepts": ["C-04-021"],
+    "concepts": [
+      "C-04-021"
+    ],
     "sources": [
-      { "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR", "url": "https://jmlr.org/papers/v15/srivastava14a.html" },
-      { "title": "PyTorch Documentation: torch.nn.Dropout", "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html" }
+      {
+        "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR",
+        "url": "https://jmlr.org/papers/v15/srivastava14a.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.Dropout",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-019",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "正則化"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "正則化"
+    ],
     "format": "not",
     "difficulty": 2,
     "stem": "正則化について、最も不適切な選択肢を1つ選べ。",
@@ -359,15 +749,37 @@
     ],
     "answer": 3,
     "explanation": "正則化を強くすると重みが抑えられるので、訓練データへの当てはまりはむしろ悪くなる方向に働く。強すぎると未学習になる。",
-    "whyWrong": ["適切。正則化の目的。", "適切。L0正則化の定義。", "適切。L2正則化の定義。", null],
+    "whyWrong": [
+      "適切。正則化の目的。",
+      "適切。L0正則化の定義。",
+      "適切。L2正則化の定義。",
+      null
+    ],
     "memoryTip": "正則化＝わざと手を縛る。縛りすぎると何もできない（未学習）。",
-    "concepts": ["C-04-017", "C-04-018", "C-04-020"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（L0 / L2 regularization）", "url": "https://developers.google.com/machine-learning/glossary" }],
-    "status": "unverified"
+    "concepts": [
+      "C-04-017",
+      "C-04-018",
+      "C-04-020"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（L0 / L2 regularization）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 7 Regularization for Deep Learning（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/regularization.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-020",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "誤差逆伝播法の説明として、最も適切な選択肢を1つ選べ。",
@@ -379,33 +791,72 @@
     ],
     "answer": 0,
     "explanation": "誤差逆伝播法は、合成関数の微分の法則（連鎖律）を使って、出力側から順に各層の重みの勾配を求める。求めた勾配で勾配降下法により重みを更新する。",
-    "whyWrong": [null, "これは順伝播（フォワードパス）。", "総当たりでは膨大な数の重みを扱えない。", "これはAdaGradやAdamなどの最適化手法の工夫。"],
+    "whyWrong": [
+      null,
+      "これは順伝播（フォワードパス）。",
+      "総当たりでは膨大な数の重みを扱えない。",
+      "これはAdaGradやAdamなどの最適化手法の工夫。"
+    ],
     "memoryTip": "順伝播で予測→誤差を計算→逆伝播で勾配→勾配降下で更新。",
-    "concepts": ["C-04-022", "C-04-023"],
+    "concepts": [
+      "C-04-022",
+      "C-04-023"
+    ],
     "sources": [
-      { "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature", "url": "https://www.nature.com/articles/323533a0" },
-      { "title": "Google for Developers: Machine Learning Glossary（backpropagation）", "url": "https://developers.google.com/machine-learning/glossary" }
+      {
+        "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature",
+        "url": "https://www.nature.com/articles/323533a0"
+      },
+      {
+        "title": "Google for Developers: Machine Learning Glossary（backpropagation）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-021",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
     "format": "fill",
     "difficulty": 2,
     "stem": "合成関数 y＝f(g(x)) の微分は、dy/dx＝(dy/dg)×(dg/dx) のように各関数の微分の積で表せる。この法則を（　）といい、誤差逆伝播法の原理となっている。空欄に最もよく当てはまる選択肢を1つ選べ。",
-    "choices": ["連鎖律", "最小二乗法", "ベイズの定理", "大数の法則"],
+    "choices": [
+      "連鎖律",
+      "最小二乗法",
+      "ベイズの定理",
+      "大数の法則"
+    ],
     "answer": 0,
     "explanation": "連鎖律（チェインルール）。ニューラルネットは関数の合成なので、連鎖律で出力側から微分を掛け合わせて勾配を求める。",
-    "whyWrong": [null, "誤差の二乗の和を最小にする当てはめの方法。", "条件付き確率を入れ替える定理。", "試行回数を増やすと平均が期待値に近づく法則。"],
+    "whyWrong": [
+      null,
+      "誤差の二乗の和を最小にする当てはめの方法。",
+      "条件付き確率を入れ替える定理。",
+      "試行回数を増やすと平均が期待値に近づく法則。"
+    ],
     "memoryTip": "連鎖律＝微分のバケツリレー。各層が自分の微分を掛けて次へ渡す。",
-    "concepts": ["C-04-023"],
-    "sources": [{ "title": "PyTorch Tutorials: A Gentle Introduction to torch.autograd", "url": "https://docs.pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html" }],
+    "concepts": [
+      "C-04-023"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Tutorials: A Gentle Introduction to torch.autograd",
+        "url": "https://docs.pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-022",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "勾配消失問題が起きやすくなる条件として、最も適切な選択肢を1つ選べ。",
@@ -417,51 +868,130 @@
     ],
     "answer": 0,
     "explanation": "微分の小さい活性化関数（シグモイドなど）を、深い層で何度も掛け合わせると勾配が指数的に小さくなる。",
-    "whyWrong": [null, "浅い層とReLUの組み合わせは、勾配消失が起きにくい条件。", "バッチ正規化は勾配消失を和らげる方向に働く。", "スキップ結合は勾配を浅い層へ直接伝える経路を作り、勾配消失を緩和する。"],
-    "memoryTip": "勾配消失の3点セット：深い・シグモイド・初期値が悪い。解決の3点セット：ReLU・正規化・スキップ結合。",
-    "concepts": ["C-04-024", "C-04-006"],
-    "sources": [
-      { "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
-      { "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS", "url": "https://proceedings.mlr.press/v9/glorot10a.html" }
+    "whyWrong": [
+      null,
+      "浅い層とReLUの組み合わせは、勾配消失が起きにくい条件。",
+      "バッチ正規化は勾配消失を和らげる方向に働く。",
+      "スキップ結合は勾配を浅い層へ直接伝える経路を作り、勾配消失を緩和する。"
     ],
-    "status": "unverified"
+    "memoryTip": "勾配消失の3点セット：深い・シグモイド・初期値が悪い。解決の3点セット：ReLU・正規化・スキップ結合。",
+    "concepts": [
+      "C-04-024",
+      "C-04-006"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS",
+        "url": "https://proceedings.mlr.press/v9/glorot10a.html"
+      },
+      {
+        "title": "Hochreiter (1998) The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions. IJUFKS 6(2)（著者所属機関の公開版）",
+        "url": "https://www.bioinf.jku.at/publications/older/2304.pdf"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-023",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "リカレントニューラルネットワークの学習中に勾配が極端に大きくなり、重みの更新が発散した。この問題への対策として、最も適切な選択肢を1つ選べ。",
-    "choices": ["勾配の大きさに上限を設けて切り詰める（勾配クリッピング）", "活性化関数をReLUからシグモイドに変える", "学習率を大きくする", "層をさらに深くする"],
+    "choices": [
+      "勾配の大きさに上限を設けて切り詰める（勾配クリッピング）",
+      "活性化関数をReLUからシグモイドに変える",
+      "学習率を大きくする",
+      "層をさらに深くする"
+    ],
     "answer": 0,
     "explanation": "勾配爆発問題には、勾配のノルムが一定値を超えたら縮める勾配クリッピングが有効。Pascanuらが提案した対策として知られる。",
-    "whyWrong": [null, "活性化関数をシグモイドにしても勾配爆発の直接の対策にはならず、勾配消失を招きやすくなる。", "学習率を大きくすると更新がさらに大きくなり、発散しやすくなる。", "層を深くすると掛け算が増え、勾配がさらに不安定になる。"],
+    "whyWrong": [
+      null,
+      "活性化関数をシグモイドにしても勾配爆発の直接の対策にはならず、勾配消失を招きやすくなる。",
+      "学習率を大きくすると更新がさらに大きくなり、発散しやすくなる。",
+      "層を深くすると掛け算が増え、勾配がさらに不安定になる。"
+    ],
     "memoryTip": "爆発＝クリッピング（はさみで切る）、消失＝ReLU・LSTM・スキップ結合。",
-    "concepts": ["C-04-025", "C-04-024"],
+    "concepts": [
+      "C-04-025",
+      "C-04-024"
+    ],
     "sources": [
-      { "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)", "url": "https://arxiv.org/abs/1211.5063" },
-      { "title": "Google for Developers: Machine Learning Glossary（exploding gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" }
+      {
+        "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)",
+        "url": "https://arxiv.org/abs/1211.5063"
+      },
+      {
+        "title": "Google for Developers: Machine Learning Glossary（exploding gradient problem）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-024",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
     "format": "single",
     "difficulty": 3,
     "stem": "最終的な結果（誤差や報酬）に対して、どの重みやどの行動がどれだけ寄与したのかを割り当てる問題として、最も適切な選択肢を1つ選べ。",
-    "choices": ["信用割当問題", "フレーム問題", "シンボルグラウンディング問題", "コールドスタート問題"],
+    "choices": [
+      "信用割当問題",
+      "フレーム問題",
+      "シンボルグラウンディング問題",
+      "コールドスタート問題"
+    ],
     "answer": 0,
-    "explanation": "信用割当問題。多層ネットワークでは、出力の誤差をどの隠れ層の重みに割り当てるかが課題で、誤差逆伝播法は勾配の計算によってこれに答えた。",
-    "whyWrong": [null, "関係のある事柄だけを選び出せない問題。", "記号と実世界の意味を結びつける問題。", "推薦で履歴の無い利用者に推薦できない問題。"],
+    "explanation": "信用割当問題。多層ネットワークでは、出力の誤差をどの隠れ層の重みに割り当てるかが課題になる。誤差逆伝播法は、出力の誤差に対する各重みの勾配を連鎖律で計算する。強化学習では、どの行動が後の報酬に効いたかという形で現れる。",
+    "whyWrong": [
+      null,
+      "関係のある事柄だけを選び出せない問題。",
+      "記号と実世界の意味を結びつける問題。",
+      "推薦で履歴の無い利用者に推薦できない問題。"
+    ],
     "memoryTip": "信用割当＝「この成果は誰の手柄？」。チームの成績を個人に割り振る。",
-    "concepts": ["C-04-026", "C-04-022"],
-    "sources": [{ "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }],
-    "status": "unverified"
+    "concepts": [
+      "C-04-026",
+      "C-04-022"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス 2024（第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
+        "url": "http://incompleteideas.net/book/RLbook2020.pdf"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-025",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
     "format": "not",
     "difficulty": 2,
     "stem": "勾配消失問題と勾配爆発問題について、最も不適切な選択肢を1つ選べ。",
@@ -473,18 +1003,37 @@
     ],
     "answer": 3,
     "explanation": "勾配クリッピングは勾配の大きさに上限を設ける方法で、勾配爆発の対策。勾配消失には効かない（小さい勾配を大きくはしない）。",
-    "whyWrong": ["適切。勾配消失の説明。", "適切。勾配爆発の説明。", "適切。連鎖律による掛け算が共通の原因。", null],
+    "whyWrong": [
+      "適切。勾配消失の説明。",
+      "適切。勾配爆発の説明。",
+      "適切。連鎖律による掛け算が共通の原因。",
+      null
+    ],
     "memoryTip": "クリッピング＝上を切る。小さすぎる勾配は切っても大きくならない。",
-    "concepts": ["C-04-024", "C-04-025", "C-04-023"],
+    "concepts": [
+      "C-04-024",
+      "C-04-025",
+      "C-04-023"
+    ],
     "sources": [
-      { "title": "Google for Developers: Machine Learning Glossary（vanishing / exploding gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
-      { "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)", "url": "https://arxiv.org/abs/1211.5063" }
+      {
+        "title": "Google for Developers: Machine Learning Glossary（vanishing / exploding gradient problem）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)",
+        "url": "https://arxiv.org/abs/1211.5063"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-026",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 1,
     "stem": "勾配降下法の説明として、最も適切な選択肢を1つ選べ。",
@@ -496,15 +1045,31 @@
     ],
     "answer": 0,
     "explanation": "勾配降下法は坂を下るように、勾配の逆向きへ学習率の分だけパラメータを更新する。",
-    "whyWrong": [null, "勾配の向きに進むと誤差が増える（上り坂）。", "これは総当たり（グリッドサーチに近い）。膨大なパラメータでは不可能。", "これは勾配ブースティング。"],
+    "whyWrong": [
+      null,
+      "勾配の向きに進むと誤差が増える（上り坂）。",
+      "これは総当たり（グリッドサーチに近い）。膨大なパラメータでは不可能。",
+      "これは勾配ブースティング。"
+    ],
     "memoryTip": "霧の山で足元の傾きだけを頼りに谷へ下りる。",
-    "concepts": ["C-04-027"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-027"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（gradient descent）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-027",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "勾配降下法で学習率を大きくしすぎた場合に起こりやすいこととして、最も適切な選択肢を1つ選べ。",
@@ -516,30 +1081,72 @@
     ],
     "answer": 0,
     "explanation": "学習率は一歩の大きさ。大きすぎると谷底を飛び越えて誤差が下がらず、発散することもある。",
-    "whyWrong": [null, "これは学習率が小さすぎるとき。", "学習率の大きさで大域最適解への到達は保証されない。", "学習率はパラメータ数を変えない。"],
+    "whyWrong": [
+      null,
+      "これは学習率が小さすぎるとき。",
+      "学習率の大きさで大域最適解への到達は保証されない。",
+      "学習率はパラメータ数を変えない。"
+    ],
     "memoryTip": "大股すぎ＝谷を飛び越す、小股すぎ＝いつまでも着かない。",
-    "concepts": ["C-04-028"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（learning rate）", "url": "https://developers.google.com/machine-learning/glossary" }],
-    "status": "unverified"
+    "concepts": [
+      "C-04-028"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（learning rate）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/optimization.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-028",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "訓練データが2,000件あり、バッチサイズを100にしてミニバッチ学習を行う。5エポック学習したときのイテレーション（パラメータの更新）の回数として、最も適切な選択肢を1つ選べ。",
-    "choices": ["100回", "20回", "500回", "10,000回"],
+    "choices": [
+      "100回",
+      "20回",
+      "500回",
+      "10,000回"
+    ],
     "answer": 0,
     "explanation": "1エポックのイテレーション数＝2,000÷100＝20回。5エポックなので20×5＝100回。",
-    "whyWrong": [null, "1エポック分だけの回数。", "バッチサイズ100×5で計算した誤り。", "データ数×エポック数で、1件ずつ更新した場合の回数。"],
+    "whyWrong": [
+      null,
+      "1エポック分だけの回数。",
+      "バッチサイズ100×5で計算した誤り。",
+      "データ数×エポック数で、1件ずつ更新した場合の回数。"
+    ],
     "memoryTip": "イテレーション数＝（データ数÷バッチサイズ）×エポック数。",
-    "concepts": ["C-04-033", "C-04-031"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（epoch / iteration）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-033",
+      "C-04-031"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（epoch / iteration）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-029",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "not",
     "difficulty": 2,
     "stem": "バッチ学習・ミニバッチ学習・オンライン学習について、最も不適切な選択肢を1つ選べ。",
@@ -551,30 +1158,68 @@
     ],
     "answer": 3,
     "explanation": "ミニバッチ学習は安定性と計算効率の釣り合いが良く、GPUの並列計算も活かせるため、ディープラーニングで最もよく使われる。",
-    "whyWrong": ["適切。全データで1回更新。", "適切。", "適切。", null],
+    "whyWrong": [
+      "適切。全データで1回更新。",
+      "適切。",
+      "適切。",
+      null
+    ],
     "memoryTip": "全部（重い・安定）／1件（軽い・不安定）／少しずつ（ちょうどいい）＝ミニバッチ。",
-    "concepts": ["C-04-031"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（batch size / mini-batch）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-031"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（batch size / mini-batch）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-030",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "ある方向から見ると極小だが、別の方向から見ると極大になっている点で、勾配が0になるため勾配降下法が停滞しやすい点として、最も適切な選択肢を1つ選べ。",
-    "choices": ["鞍点", "大域最適解", "局所最適解", "変曲点"],
+    "choices": [
+      "鞍点",
+      "大域最適解",
+      "局所最適解",
+      "変曲点"
+    ],
     "answer": 0,
     "explanation": "鞍点（馬の鞍の形）。高次元の最適化では、悪い局所最適解よりも鞍点の多さが学習の遅れの主な原因になると指摘されている。",
-    "whyWrong": [null, "全体で誤差が最小の点で、学習の目標そのもの。", "局所最適解はどの方向にも誤差が上がる谷底で、ある方向で極大にはならない。", "変曲点は曲線の曲がり方が変わる点で、多変数で極小と極大が混ざる点の名前ではない。"],
+    "whyWrong": [
+      null,
+      "全体で誤差が最小の点で、学習の目標そのもの。",
+      "局所最適解はどの方向にも誤差が上がる谷底で、ある方向で極大にはならない。",
+      "変曲点は曲線の曲がり方が変わる点で、多変数で極小と極大が混ざる点の名前ではない。"
+    ],
     "memoryTip": "鞍（くら）＝前後は上り、左右は下り。",
-    "concepts": ["C-04-030", "C-04-029"],
-    "sources": [{ "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)", "url": "https://arxiv.org/abs/1406.2572" }],
+    "concepts": [
+      "C-04-030",
+      "C-04-029"
+    ],
+    "sources": [
+      {
+        "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
+        "url": "https://arxiv.org/abs/1406.2572"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-031",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "fill",
     "difficulty": 2,
     "stem": "勾配降下法は今いる地点の傾きしか見ないため、全体の最小値である（ア）ではなく、周囲より小さいだけの（イ）で止まってしまうことがある。（ア）（イ）に入る組み合わせとして、最も適切な選択肢を1つ選べ。",
@@ -586,33 +1231,72 @@
     ],
     "answer": 0,
     "explanation": "全体で最小なのが大域最適解、周囲より小さいだけなのが局所最適解。",
-    "whyWrong": [null, "逆になっている。", "鞍点は最適解ではなく、（ア）の全体の最小値には当たらない。", "学習率は更新の大きさの係数で、解の種類ではない。"],
+    "whyWrong": [
+      null,
+      "逆になっている。",
+      "鞍点は最適解ではなく、（ア）の全体の最小値には当たらない。",
+      "学習率は更新の大きさの係数で、解の種類ではない。"
+    ],
     "memoryTip": "大域＝世界一、局所＝町内一。",
-    "concepts": ["C-04-029"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（convex function）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-029"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（convex function）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-032",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "直前までの更新の向きを「勢い」として今の更新に加えることで、平らな場所や鞍点でも進みやすくし、振動も抑える最適化の工夫として、最も適切な選択肢を1つ選べ。",
-    "choices": ["モーメンタム", "AdaGrad", "早期終了", "ドロップアウト"],
+    "choices": [
+      "モーメンタム",
+      "AdaGrad",
+      "早期終了",
+      "ドロップアウト"
+    ],
     "answer": 0,
     "explanation": "モーメンタムは過去の勾配の指数加重平均を使って更新する。坂を転がるボールの慣性のイメージ。",
-    "whyWrong": [null, "AdaGradはパラメータごとに学習率を調整する工夫で、勢いを加えるものではない。", "検証誤差が上がったら学習を止める方法。", "ニューロンをランダムに無効化する正則化。"],
+    "whyWrong": [
+      null,
+      "AdaGradはパラメータごとに学習率を調整する工夫で、勢いを加えるものではない。",
+      "検証誤差が上がったら学習を止める方法。",
+      "ニューロンをランダムに無効化する正則化。"
+    ],
     "memoryTip": "モーメンタム＝運動量。転がるボールは小さな窪みを越えていく。",
-    "concepts": ["C-04-034", "C-04-030"],
+    "concepts": [
+      "C-04-034",
+      "C-04-030"
+    ],
     "sources": [
-      { "title": "Google for Developers: Machine Learning Glossary（Momentum）", "url": "https://developers.google.com/machine-learning/glossary" },
-      { "title": "PyTorch Documentation: torch.optim.SGD（momentum）", "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html" }
+      {
+        "title": "Google for Developers: Machine Learning Glossary（Momentum）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "PyTorch Documentation: torch.optim.SGD（momentum）",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-033",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 3,
     "stem": "AdaGradの課題と、それを改善した手法の組み合わせとして、最も適切な選択肢を1つ選べ。",
@@ -624,18 +1308,40 @@
     ],
     "answer": 0,
     "explanation": "AdaGradは過去の勾配の二乗をすべてため込むので、学習が進むと学習率が小さくなりすぎる。RMSpropは古い勾配の影響を指数移動平均で薄めてこれを改善した。",
-    "whyWrong": [null, "AdaGradの学習率は小さくなる方向に変化し、大きくはならない。", "AdaGrad自体は勢い（モーメンタム）を持たない。", "AdaGradはパラメータごとに学習率を変える手法。勾配ブースティングは別分野のアンサンブル手法。"],
-    "memoryTip": "AdaGrad＝全部覚えている（だんだん動けなくなる）、RMSprop＝最近のことだけ覚えている。",
-    "concepts": ["C-04-035", "C-04-036"],
-    "sources": [
-      { "title": "Duchi, Hazan & Singer (2011) Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. JMLR", "url": "https://jmlr.org/papers/v12/duchi11a.html" },
-      { "title": "PyTorch Documentation: torch.optim.RMSprop", "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.RMSprop.html" }
+    "whyWrong": [
+      null,
+      "AdaGradの学習率は小さくなる方向に変化し、大きくはならない。",
+      "AdaGrad自体は勢い（モーメンタム）を持たない。",
+      "AdaGradはパラメータごとに学習率を変える手法。勾配ブースティングは別分野のアンサンブル手法。"
     ],
-    "status": "unverified"
+    "memoryTip": "AdaGrad＝全部覚えている（だんだん動けなくなる）、RMSprop＝最近のことだけ覚えている。",
+    "concepts": [
+      "C-04-035",
+      "C-04-036"
+    ],
+    "sources": [
+      {
+        "title": "Duchi, Hazan & Singer (2011) Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. JMLR",
+        "url": "https://jmlr.org/papers/v12/duchi11a.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.optim.RMSprop",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.RMSprop.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/optimization.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-034",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "Adamの説明として、最も適切な選択肢を1つ選べ。",
@@ -647,15 +1353,33 @@
     ],
     "answer": 0,
     "explanation": "Adam（KingmaとBa、2014年）は、勾配の低次モーメントの適応的な推定に基づく。モーメンタム（1次）とRMSprop（2次）の考え方を合わせたもの。",
-    "whyWrong": [null, "これはAdaBound（Adamの改良版）の説明。", "Adamは勾配に基づく手法で、ランダムな探索ではない。", "これはAdaGradの説明。"],
+    "whyWrong": [
+      null,
+      "これはAdaBound（Adamの改良版）の説明。",
+      "Adamは勾配に基づく手法で、ランダムな探索ではない。",
+      "これはAdaGradの説明。"
+    ],
     "memoryTip": "Adam＝モーメンタム（向き）＋RMSprop（歩幅）のいいとこ取り。",
-    "concepts": ["C-04-038", "C-04-034", "C-04-036"],
-    "sources": [{ "title": "Kingma & Ba (2014) Adam: A Method for Stochastic Optimization (arXiv:1412.6980)", "url": "https://arxiv.org/abs/1412.6980" }],
+    "concepts": [
+      "C-04-038",
+      "C-04-034",
+      "C-04-036"
+    ],
+    "sources": [
+      {
+        "title": "Kingma & Ba (2014) Adam: A Method for Stochastic Optimization (arXiv:1412.6980)",
+        "url": "https://arxiv.org/abs/1412.6980"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-035",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "fill",
     "difficulty": 3,
     "stem": "AdamやAMSGradの学習率に動的な上限・下限を設け、適応的な手法からSGDへなめらかに移行させる手法として、Adamの改良版の（ア）と、AMSGradの改良版の（イ）が提案された。（ア）（イ）の組み合わせとして最も適切な選択肢を1つ選べ。",
@@ -667,45 +1391,103 @@
     ],
     "answer": 0,
     "explanation": "Luoら（2019年）は、Adamの変種AdaBoundと、AMSGradの変種AMSBoundを提案した。",
-    "whyWrong": [null, "逆になっている。", "AdaDelta・AdaGradは学習率の上下限を設ける手法ではない。", "RMSpropはAdamより前の手法で、上下限の工夫は無い。"],
+    "whyWrong": [
+      null,
+      "逆になっている。",
+      "AdaDelta・AdaGradは学習率の上下限を設ける手法ではない。",
+      "RMSpropはAdamより前の手法で、上下限の工夫は無い。"
+    ],
     "memoryTip": "名前の頭がそのまま元の手法：Ada（m）＋Bound、AMS（Grad）＋Bound。",
-    "concepts": ["C-04-039"],
-    "sources": [{ "title": "Luo et al. (2019) Adaptive Gradient Methods with Dynamic Bound of Learning Rate (arXiv:1902.09843)", "url": "https://arxiv.org/abs/1902.09843" }],
+    "concepts": [
+      "C-04-039"
+    ],
+    "sources": [
+      {
+        "title": "Luo et al. (2019) Adaptive Gradient Methods with Dynamic Bound of Learning Rate (arXiv:1902.09843)",
+        "url": "https://arxiv.org/abs/1902.09843"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-036",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "学習率を手動で設定する必要が無いことを特徴として、AdaGradの改良として提案された最適化手法として、最も適切な選択肢を1つ選べ。",
-    "choices": ["AdaDelta", "モーメンタム", "SGD", "AMSBound"],
+    "choices": [
+      "AdaDelta",
+      "モーメンタム",
+      "SGD",
+      "AMSBound"
+    ],
     "answer": 0,
     "explanation": "AdaDelta（Zeiler、2012年）は、学習率の手動調整を必要とせず、勾配のノイズやモデル構造の違いにも頑健とされる。",
-    "whyWrong": [null, "モーメンタムは勢いを加える工夫で、学習率の設定は必要。", "SGDは学習率の設定が必要な基本の手法。", "AMSBoundは学習率に上下限を設ける手法で、学習率の設定を不要にすることが特徴ではない。"],
+    "whyWrong": [
+      null,
+      "モーメンタムは勢いを加える工夫で、学習率の設定は必要。",
+      "SGDは学習率の設定が必要な基本の手法。",
+      "AMSBoundは学習率に上下限を設ける手法で、学習率の設定を不要にすることが特徴ではない。"
+    ],
     "memoryTip": "AdaDelta＝学習率いらず。",
-    "concepts": ["C-04-037"],
-    "sources": [{ "title": "Zeiler (2012) ADADELTA: An Adaptive Learning Rate Method (arXiv:1212.5701)", "url": "https://arxiv.org/abs/1212.5701" }],
+    "concepts": [
+      "C-04-037"
+    ],
+    "sources": [
+      {
+        "title": "Zeiler (2012) ADADELTA: An Adaptive Learning Rate Method (arXiv:1212.5701)",
+        "url": "https://arxiv.org/abs/1212.5701"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-037",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "学習を進めると訓練誤差は下がり続けたが、検証誤差はある時点から上がり始めた。この時点で学習を打ち切る方法として、最も適切な選択肢を1つ選べ。",
-    "choices": ["早期終了", "グリッドサーチ", "データ拡張", "モーメンタム"],
+    "choices": [
+      "早期終了",
+      "グリッドサーチ",
+      "データ拡張",
+      "モーメンタム"
+    ],
     "answer": 0,
     "explanation": "早期終了は、検証データでの誤差が上がり始めた（汎化性能が悪化し始めた）時点で学習を止める正則化の方法。",
-    "whyWrong": [null, "ハイパーパラメータの組み合わせを網羅的に試す方法。", "訓練データを加工して増やす方法で、学習を止める方法ではない。", "勢いを加えて更新する最適化の工夫。"],
+    "whyWrong": [
+      null,
+      "ハイパーパラメータの組み合わせを網羅的に試す方法。",
+      "訓練データを加工して増やす方法で、学習を止める方法ではない。",
+      "勢いを加えて更新する最適化の工夫。"
+    ],
     "memoryTip": "早期終了＝「伸びしろが無くなったら練習をやめる」。やりすぎは丸暗記（過学習）。",
-    "concepts": ["C-04-040"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（early stopping）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-040"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（early stopping）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-038",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 3,
     "stem": "二重降下現象（double descent）の説明として、最も適切な選択肢を1つ選べ。",
@@ -717,30 +1499,71 @@
     ],
     "answer": 0,
     "explanation": "Nakkiranら（2019年）は、多くの深層学習タスクで、モデルの大きさを増やすと性能がいったん悪くなってから良くなる二重降下を示した。エポック数に対しても起きる。",
-    "whyWrong": [null, "従来の過学習の見方。二重降下はそれでは説明できない現象。", "学習率と誤差の関係をこのように決める法則は無い。", "このような打ち切りの規則の名前ではない。"],
+    "whyWrong": [
+      null,
+      "従来の過学習の見方。二重降下はそれでは説明できない現象。",
+      "学習率と誤差の関係をこのように決める法則は無い。",
+      "このような打ち切りの規則の名前ではない。"
+    ],
     "memoryTip": "下がって・上がって・また下がる。「谷が2つ」でダブル。",
-    "concepts": ["C-04-041"],
-    "sources": [{ "title": "Nakkiran et al. (2019) Deep Double Descent: Where Bigger Models and More Data Hurt (arXiv:1912.02292)", "url": "https://arxiv.org/abs/1912.02292" }],
+    "concepts": [
+      "C-04-041"
+    ],
+    "sources": [
+      {
+        "title": "Nakkiran et al. (2019) Deep Double Descent: Where Bigger Models and More Data Hurt (arXiv:1912.02292)",
+        "url": "https://arxiv.org/abs/1912.02292"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-039",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "fill",
     "difficulty": 2,
     "stem": "あらゆる問題に対して他より優れた性能を示す万能なアルゴリズムは存在しない、という主張を（　）という。空欄に最もよく当てはまる選択肢を1つ選べ。",
-    "choices": ["ノーフリーランチの定理", "オッカムの剃刀", "二重降下現象", "中心極限定理"],
+    "choices": [
+      "ノーフリーランチの定理",
+      "オッカムの剃刀",
+      "二重降下現象",
+      "中心極限定理"
+    ],
     "answer": 0,
     "explanation": "ノーフリーランチの定理。問題に応じて手法を選び、検証する必要があることを示す。",
-    "whyWrong": [null, "単純なモデルを優先する指針。", "モデルを大きくすると誤差が下がって上がってまた下がる現象。", "標本平均の分布が正規分布に近づくという統計の定理。"],
+    "whyWrong": [
+      null,
+      "単純なモデルを優先する指針。",
+      "モデルを大きくすると誤差が下がって上がってまた下がる現象。",
+      "標本平均の分布が正規分布に近づくという統計の定理。"
+    ],
     "memoryTip": "ただ飯（フリーランチ）は無い＝何にでも効く手法は無い。",
-    "concepts": ["C-04-042"],
-    "sources": [{ "title": "JDLA G検定シラバス 2024（第1.4版）", "url": "https://www.jdla.org/certificate/general/" }],
-    "status": "unverified"
+    "concepts": [
+      "C-04-042"
+    ],
+    "sources": [
+      {
+        "title": "JDLA G検定シラバス 2024（第1.4版）",
+        "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
+      }
+    ],
+    "status": "verified"
   },
   {
     "id": "G-04-040",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "not",
     "difficulty": 2,
     "stem": "ハイパーパラメータについて、最も不適切な選択肢を1つ選べ。",
@@ -752,15 +1575,31 @@
     ],
     "answer": 3,
     "explanation": "重みは学習によって自動的に決まるパラメータ。ハイパーパラメータは学習の前に設定する値。",
-    "whyWrong": ["適切。", "適切。", "適切。テストデータではなく検証データで調整する。", null],
+    "whyWrong": [
+      "適切。",
+      "適切。",
+      "適切。テストデータではなく検証データで調整する。",
+      null
+    ],
     "memoryTip": "パラメータ＝学習が決める、ハイパーパラメータ＝人が決める。",
-    "concepts": ["C-04-043"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（hyperparameter）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-043"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（hyperparameter）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   },
   {
     "id": "G-04-041",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "グリッドサーチと比べたランダムサーチの特徴として、最も適切な選択肢を1つ選べ。",
@@ -772,18 +1611,36 @@
     ],
     "answer": 0,
     "explanation": "BergstraとBengio（2012年）は、ランダムに選んだ試行のほうがグリッド上の試行よりハイパーパラメータ最適化に効率的であることを示した。",
-    "whyWrong": [null, "これはグリッドサーチの説明（指定した候補の中での最良）。", "組み合わせが爆発するのはグリッドサーチの弱点。", "ハイパーパラメータの探索方法で、重みの最適化手法ではない。"],
+    "whyWrong": [
+      null,
+      "これはグリッドサーチの説明（指定した候補の中での最良）。",
+      "組み合わせが爆発するのはグリッドサーチの弱点。",
+      "ハイパーパラメータの探索方法で、重みの最適化手法ではない。"
+    ],
     "memoryTip": "グリッド＝碁盤の目を全部、ランダム＝くじで回数を決めて。",
-    "concepts": ["C-04-044", "C-04-043"],
+    "concepts": [
+      "C-04-044",
+      "C-04-043"
+    ],
     "sources": [
-      { "title": "Bergstra & Bengio (2012) Random Search for Hyper-Parameter Optimization. JMLR", "url": "https://www.jmlr.org/papers/v13/bergstra12a.html" },
-      { "title": "scikit-learn User Guide: Tuning the hyper-parameters of an estimator", "url": "https://scikit-learn.org/stable/modules/grid_search.html" }
+      {
+        "title": "Bergstra & Bengio (2012) Random Search for Hyper-Parameter Optimization. JMLR",
+        "url": "https://www.jmlr.org/papers/v13/bergstra12a.html"
+      },
+      {
+        "title": "scikit-learn User Guide: Tuning the hyper-parameters of an estimator",
+        "url": "https://scikit-learn.org/stable/modules/grid_search.html"
+      }
     ],
     "status": "verified"
   },
   {
     "id": "G-04-042",
-    "syllabus": ["技術分野", "ディープラーニングの概要", "最適化手法"],
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
     "format": "single",
     "difficulty": 2,
     "stem": "確率的勾配降下法（SGD）の説明として、最も適切な選択肢を1つ選べ。",
@@ -795,10 +1652,23 @@
     ],
     "answer": 0,
     "explanation": "SGDはデータをランダムに選んで勾配を推定し、更新する。1回の更新が軽く、勾配のばらつきが局所最適解などから抜け出す助けにもなる。",
-    "whyWrong": [null, "これはバッチ学習（最急降下法）。", "SGDも勾配を使う。", "「確率的」なのはデータの選び方で、学習率ではない。"],
+    "whyWrong": [
+      null,
+      "これはバッチ学習（最急降下法）。",
+      "SGDも勾配を使う。",
+      "「確率的」なのはデータの選び方で、学習率ではない。"
+    ],
     "memoryTip": "SGDの「確率的」＝データをくじで選ぶ。",
-    "concepts": ["C-04-032", "C-04-031"],
-    "sources": [{ "title": "Google for Developers: Machine Learning Glossary（stochastic gradient descent / batch size）", "url": "https://developers.google.com/machine-learning/glossary" }],
+    "concepts": [
+      "C-04-032",
+      "C-04-031"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary（stochastic gradient descent / batch size）",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
     "status": "verified"
   }
 ]

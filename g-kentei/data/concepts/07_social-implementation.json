@@ -7,8 +7,8 @@
       "AI プロジェクトの進め方"
     ],
     "title": "AIのビジネス活用とAIプロジェクトの進め方",
-    "oneLine": "AIは「導入すること」ではなく「業務の課題を解くこと」が目的。課題とKPIを決め、データがあるかを確かめ、小さく検証（PoC）してから本開発・運用に進み、運用中も性能を監視して改善し続ける。",
-    "why": "AIの性能はデータと現場の条件に左右され、開発前に結果を確定できない。だから一度に作り切る計画ではなく、検証を挟みながら段階的に進める必要がある。",
+    "oneLine": "AIは「導入すること」ではなく「業務の課題を解くこと」が目的。解くべき課題と成功の基準を決め、データがあるかを確かめ、小さく検証（PoC）してから本開発・運用に進み、運用中も性能を監視して改善し続ける。",
+    "why": "AIの性能はデータと現場の条件に左右され、開発の初期に成果物を予測することや未知の入力に対する性能を保証することが難しい。だから一度に作り切る計画ではなく、検証を挟みながら段階的に進める必要がある。",
     "links": [
       {
         "id": "C-07-002",
@@ -43,7 +43,7 @@
         "url": "https://arxiv.org/abs/2003.05155"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-002",
@@ -187,7 +187,7 @@
         "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-006",
@@ -227,7 +227,7 @@
       "AI プロジェクトの進め方"
     ],
     "title": "MLOps",
-    "oneLine": "機械学習モデルの開発・デプロイ・運用（監視・再学習）を継続的に回すための仕組みや実践。開発（ML）と運用（Ops）を一体で扱う。",
+    "oneLine": "機械学習システムの開発（Dev）と運用（Ops）を一体にする文化と手法。統合・テスト・リリース・デプロイ・インフラ管理の各段階で自動化とモニタリングを進め、新しいデータでの再学習（継続的トレーニング：CT）も自動で回す。",
     "why": "機械学習システムは、データへの依存や外部環境の変化などにより、作った後の保守に大きな継続的コスト（技術的負債）がかかることが指摘されている。",
     "links": [
       {
@@ -251,11 +251,15 @@
     ],
     "sources": [
       {
+        "title": "Google Cloud「MLOps: 機械学習における継続的デリバリーと自動化のパイプライン」",
+        "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=ja"
+      },
+      {
         "title": "Sculley et al. (2015) Hidden Technical Debt in Machine Learning Systems (NeurIPS)",
         "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-008",
@@ -367,7 +371,7 @@
       "AI プロジェクトの進め方"
     ],
     "title": "Web API とクラウド",
-    "oneLine": "Web APIは、ネットワーク越しに他のプログラムから機能を呼び出せる窓口。学習済みモデルをWeb APIとして公開すると、さまざまなシステムから推論を使える。クラウドは計算資源やサービスをネット経由で必要な分だけ使う形態。",
+    "oneLine": "Web APIは、ネットワーク越しに他のプログラムから機能を呼び出せる窓口（2つのソフトウェアがリクエストとレスポンスで通信する取り決め）。学習済みモデルをWeb APIとして公開すると、さまざまなシステムから推論を使える。クラウドは、共用の計算資源にネットワーク経由で必要に応じてアクセスし、すばやく確保・解放できる形態。",
     "why": "大きな計算資源を自前で用意せずに学習・推論でき、AI機能を既存のシステムに組み込みやすくなる。",
     "links": [
       {
@@ -387,11 +391,19 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "AWS「API とは」",
+        "url": "https://aws.amazon.com/jp/what-is/api/"
+      },
+      {
+        "title": "NIST SP 800-145 The NIST Definition of Cloud Computing (2011)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf"
+      },
+      {
+        "title": "IPA「DX白書2023」",
+        "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-012",
@@ -401,8 +413,8 @@
       "AI プロジェクトの進め方"
     ],
     "title": "ステークホルダーのニーズとデータサイエンティスト",
-    "oneLine": "AIプロジェクトでは、利用者・現場・経営層・顧客・影響を受ける人々など関係者（ステークホルダー）の要望を確認し、合意しながら進める。データサイエンティストは、統計・機械学習・ビジネスの知識でデータから価値を引き出す専門職。",
-    "why": "技術的に高精度でも、現場で使われない・社会に受け入れられないAIは失敗する。AI事業者ガイドラインもステークホルダーとの関係を重視している。",
+    "oneLine": "AIプロジェクトでは、利用者・現場・経営層・顧客・影響を受ける人々など関係者（ステークホルダー）の懸念や要望を確認しながら進める。データサイエンティストは、事業・業務に精通し、データの解析・分析で価値を引き出す人材。",
+    "why": "技術的に高精度でも、現場で使われない・社会に受け入れられないAIは失敗する。AI事業者ガイドラインは、AIの活用で直接・間接に影響を受ける可能性がある者をステークホルダーとし、その懸念を踏まえることを求めている。",
     "links": [
       {
         "id": "C-07-001",
@@ -423,9 +435,13 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "IPA「DX白書2023」",
+        "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-013",
@@ -436,7 +452,7 @@
     ],
     "title": "オープン・イノベーション・産学連携・他企業や他業種との連携",
     "oneLine": "自社だけで完結させず、大学（産学連携）やスタートアップ、他業種の企業など外部の技術・データ・知見を取り込んで新しい価値を生み出すこと。",
-    "why": "AI開発には、専門人材・データ・計算資源のすべてが要り、1社だけでそろえるのは難しい。連携では、データや成果物の権利の扱いを契約で決めておく必要がある。",
+    "why": "AI開発には、専門人材・データ・計算資源のすべてが要り、1社だけでそろえるのは難しい。業種を超えたデータの組み合わせは新しい価値を生むと期待される一方、連携ではデータや成果物の権利の扱いを契約で決めておく必要がある。",
     "links": [
       {
         "id": "C-07-012",
@@ -455,11 +471,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-014",
@@ -489,11 +509,15 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+      },
+      {
+        "title": "産業技術総合研究所「機械学習品質マネジメントガイドライン 第3版」（2022年8月）",
+        "url": "https://www.digiarc.aist.go.jp/publication/aiqm/AIQM-Guideline-3.1.1.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-015",
@@ -503,8 +527,8 @@
       "データの収集・加工・分析・学習"
     ],
     "title": "オープンデータセットとコーパス",
-    "oneLine": "オープンデータセットは、研究や開発のために公開されているデータセット（ImageNetなど）。コーパスは、自然言語処理などのために大量の文章（や音声）を集めて整理したデータの集まり。",
-    "why": "自前でデータを集める費用を省けるが、ライセンスや利用規約で商用利用が制限されていることがあるため、使う前に条件を確かめる必要がある。",
+    "oneLine": "オープンデータセットは、研究や開発のために公開されているデータセット（ImageNetなど）。コーパスは、言語を分析するための基礎資料として書き言葉や話し言葉の資料を体系的に集め、研究用の情報を付けたデータベース。",
+    "why": "自前でデータを集める費用を省けるが、ライセンスや利用規約で商用利用が制限されていることがある（ImageNetは非営利の研究・教育目的に限る）ため、使う前に条件を確かめる必要がある。なお政府のいう「オープンデータ」は、営利・非営利を問わず二次利用でき、機械判読に適し、無償で使えるものを指す。",
     "links": [
       {
         "id": "C-07-014",
@@ -523,11 +547,19 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "国立国語研究所「言語コーパスガイダンス」",
+        "url": "https://clrd.ninjal.ac.jp/guidance.html"
+      },
+      {
+        "title": "ImageNet Download（Terms of access）",
+        "url": "https://www.image-net.org/download.php"
+      },
+      {
+        "title": "デジタル庁「オープンデータ基本指針」（令和6年7月5日改正）",
+        "url": "https://digital.go.jp/assets/contents/node/basic_page/field_ref_resources/f7fde41d-ffca-4b2a-9b25-94b8a701a037/f1e42cee/20240705_resources_data_guideline_01.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-07-016",
@@ -553,10 +585,14 @@
     ],
     "sources": [
       {
-        "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
-        "url": "https://www.jdla.org/certificate/general/"
+        "title": "scikit-learn User Guide 12. Common pitfalls and recommended practices（Data leakage）",
+        "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+      },
+      {
+        "title": "scikit-learn User Guide 3.1 Cross-validation（grouped data・time series）",
+        "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   }
 ]
