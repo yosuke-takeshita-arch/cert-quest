@@ -139,7 +139,7 @@ for (const { file: f, kind, data, syl } of loaded) {
       if (!isStr(o.memoryTip)) err(f, id, 'memoryTip が無い');
       if (!Array.isArray(o.concepts) || o.concepts.length === 0) err(f, id, 'concepts が空');
       else o.concepts.forEach((c) => { if (!conceptIndex.has(c)) err(f, id, `concepts の ${c} が用語カードに無い`); });
-      if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
+      if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿|（[ア-ンあ-ん]）/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
     } else {
       if (!/^C-\d{2}-\d{3}$/.test(id)) err(f, id, 'id が C-NN-NNN 形式でない');
