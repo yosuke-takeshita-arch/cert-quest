@@ -1,0 +1,20 @@
+{
+  "id": "dx-biz",
+  "name": "DXビジネス検定クエスト",
+  "shortName": "DXビズ",
+  "examDate": "2026-11-29",
+  "exam": { "questions": 96, "minutes": 60 },
+  "secondsPerQuestion": 40,
+  "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
+  "challenge": { "questions": 10 },
+  "officialUrl": "https://www.nextet.net/kentei/dxbiz/",
+  "officialLinks": [
+    { "title": "DXビジネス検定 公式ページ（試験情報・シラバス）", "url": "https://www.nextet.net/kentei/dxbiz/" },
+    { "title": "公式のサンプル問題", "url": "https://www.nextet.net/netkentei/howto/dx-biz/#sample" },
+    { "title": "シラバス改訂について（2026年2月）", "url": "https://www.nextet.net/netkentei/dxbiz-syllabus-update/" }
+  ],
+  "theme": {
+    "light": { "accent": "#00796b", "onAccent": "#ffffff", "accentSoft": "#dff2ef" },
+    "dark": { "accent": "#80cbc4", "onAccent": "#062b27", "accentSoft": "#163330" }
+  }
+}
