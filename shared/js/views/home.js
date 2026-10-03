@@ -4,6 +4,9 @@ import { levelFromXp, daysUntil, currentStreak, MASTERY_LABEL } from '../lib/sco
 import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
 import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
+import { dailyProgress } from '../lib/daily.js';
+import { nextGoals } from '../lib/goals.js';
+import { badgeDefs } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { cardBody } from './cards.js';
 
@@ -39,6 +42,31 @@ function challengeSpec(app) {
     backHash: '#/home',
     pick: (a) => pickQuestions(a.data.questions, a.state.qstats, (a.config.challenge && a.config.challenge.questions) || 10, a.rng),
   };
+}
+
+/** 次の目標を始める。始められない目標のときは、ホームに戻るだけ。 */
+export function startGoal(app, goal) {
+  const a = (goal && goal.action) || {};
+  if (a.kind === 'stage') {
+    const st = app.data.tree.byKey.get(a.key);
+    if (st && st.questions.length) return startSession(app, stageSpec(app, st));
+  } else if (a.kind === 'challenge') {
+    return startSession(app, challengeSpec(app));
+  } else if (a.kind === 'exam') {
+    return app.go('#/exam');
+  } else if (a.kind === 'study') {
+    const st = suggestStage(app.data.tree.stages, app.state.qstats);
+    if (st) return startSession(app, stageSpec(app, st));
+  }
+  return app.go('#/home');
+}
+
+function dailyCard(state, todayKey) {
+  const dp = dailyProgress(state, todayKey);
+  return h('div', { class: 'card daily' + (dp.done ? ' done' : '') },
+    h('div', { class: 'row-line daily-head' }, h('strong', { text: '今日の目標' }), h('span', { class: 'small muted', text: dp.answered + ' / ' + dp.goal + ' 問' })),
+    h('div', { class: 'progress', role: 'progressbar', 'aria-label': '今日の目標', 'aria-valuemin': '0', 'aria-valuemax': String(dp.goal), 'aria-valuenow': String(Math.min(dp.answered, dp.goal)) }, h('div', { class: 'progress-fill', style: { width: Math.round(dp.ratio * 100) + '%' } })),
+    h('p', { class: 'small muted daily-note', text: dp.done ? '今日の目標を達成しました！' : 'あと ' + dp.remaining + ' 問' }));
 }
 
 export function renderHome(app) {
@@ -88,6 +116,7 @@ export function renderHome(app) {
       h('p', { text: 'いま用意している最中です。できあがると、ここから学習を始められます。' }),
       data.concepts.length ? h('button', { class: 'btn primary', type: 'button', onClick: () => app.go('#/cards') }, '用語カードを見る') : null));
   } else {
+    root.appendChild(dailyCard(state, dateKey(now)));
     const next = suggestStage(data.tree.stages, state.qstats);
     if (due > 0) {
       root.appendChild(h('button', { class: 'btn primary big cta', type: 'button', onClick: () => startSession(app, reviewSpec(app)) }, '今日の復習 ', h('span', { class: 'badge-count', text: due + '問' })));
@@ -102,6 +131,15 @@ export function renderHome(app) {
     root.appendChild(h('div', { class: 'grid2' },
       h('button', { class: 'btn big tile', type: 'button', onClick: () => startSession(app, challengeSpec(app)) }, h('strong', { text: challengeName(app.config) }), h('span', { class: 'small muted', text: '本番のペースで' })),
       h('button', { class: 'btn big tile', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' }), h('span', { class: 'small muted', text: (app.config.exam ? app.config.exam.questions + '問・' + app.config.exam.minutes + '分' : '') }))));
+
+    const goals = nextGoals(data.tree, badgeDefs(data.tree, config), state, dateKey(now), 3);
+    if (goals.length) {
+      const gbox = h('div', { class: 'card next-goals' }, h('h2', { text: '次の目標' }));
+      goals.forEach((g) => gbox.appendChild(h('button', { class: 'goal-row', type: 'button', onClick: () => startGoal(app, g) },
+        h('span', { class: 'goal-text' }, h('strong', { text: g.title }), h('span', { class: 'small muted', text: g.remainText + '（' + g.label + '）' })),
+        h('div', { class: 'progress', role: 'progressbar', 'aria-label': g.title + ' までの進み具合', 'aria-valuemin': '0', 'aria-valuemax': String(g.max), 'aria-valuenow': String(g.cur) }, h('div', { class: 'progress-fill', style: { width: Math.round(g.ratio * 100) + '%' } })))));
+      root.appendChild(gbox);
+    }
 
     const untouched = data.tree.stages.filter((s) => s.questions.length && nodeProgress(s, state.qstats).level === 'none');
     const unready = data.tree.stages.filter((s) => !s.questions.length).length;

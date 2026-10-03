@@ -1,12 +1,15 @@
 // 起動・ルーティング。資格固有のことは config.json と data/ からだけ読む。
-import { h, clear, icon, toast } from './ui.js';
+import { h, clear, icon, toast, celebrate } from './ui.js';
 import { loadData } from './lib/data.js';
 import { createStorage } from './lib/storage.js';
 import { defaultState, recordAnswer } from './lib/progress.js';
 import { badgeDefs, awardBadges } from './lib/badges.js';
 import { dateKey } from './lib/srs.js';
-import { STAR_THRESHOLDS } from './lib/scoring.js';
-import { renderHome, renderMap, renderStage, renderReview } from './views/home.js';
+import { STAR_THRESHOLDS, levelFromXp } from './lib/scoring.js';
+import { awardDailyGoal, dailyProgress } from './lib/daily.js';
+import { nextGoals } from './lib/goals.js';
+import { suggestStage } from './lib/progress.js';
+import { renderHome, renderMap, renderStage, renderReview, startGoal } from './views/home.js';
 import { renderCardList, renderCard } from './views/cards.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
@@ -78,10 +81,28 @@ export async function start() {
       if (location.hash === hash) render();
       else location.hash = hash;
     },
+    // お祝いの待ち行列。問題を解いている最中は出さず、結果画面かホームに戻ったとき flushCelebrations() で順に出す
+    pending: [],
+    lastLevel: levelFromXp(storage.load().xp).level,
     commit() {
-      const got = awardBadges(app.state, defs, dateKey(new Date()));
+      const key = dateKey(new Date());
+      const lv = levelFromXp(app.state.xp).level;
+      if (lv > app.lastLevel) app.pending.push({ kind: 'level', level: lv });
+      app.lastLevel = lv;
+      awardBadges(app.state, defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc }));
+      if (awardDailyGoal(app.state, key)) app.pending.push({ kind: 'goal', goal: dailyProgress(app.state, key).goal });
       storage.save(app.state);
-      got.forEach((b) => toast('バッジ獲得: ' + b.name, 'badge'));
+    },
+    /** 星が増えたお祝いを待ち行列に足す（ステージ結果から）。 */
+    queueStars(title, n) {
+      app.pending.push({ kind: 'stars', title, stars: n });
+    },
+    flushCelebrations() {
+      if (!app.pending.length) return;
+      const events = app.pending.splice(0, app.pending.length);
+      const next = nextGoals(data.tree, defs, app.state, dateKey(new Date()), 1)[0] || null;
+      const startable = !next || next.action.kind !== 'study' || !!suggestStage(data.tree.stages, app.state.qstats);
+      celebrate(events, { settings: app.state.settings, next, startable, onStart: (g) => startGoal(app, g) });
     },
     recordAnswer(q, opts) {
       const r = recordAnswer(app.state, q, { ...opts, now: new Date() });
@@ -91,6 +112,8 @@ export async function start() {
     resetAll() {
       storage.clear();
       app.state = defaultState();
+      app.pending = [];
+      app.lastLevel = 1;
       app.session = null;
       toast('学習記録を消しました');
       app.go('#/home');
@@ -156,6 +179,8 @@ export async function start() {
     });
     window.scrollTo(0, 0);
     main.focus({ preventScroll: true });
+    // 問題の途中でない画面に来たら、たまっていたお祝いを出す
+    if (!full) app.flushCelebrations();
   }
   window.addEventListener('hashchange', render);
   if (!location.hash) history.replaceState(null, '', location.pathname + location.search + '#/home');

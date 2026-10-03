@@ -21,6 +21,8 @@ const SHARED = [
   '../shared/js/lib/data.js',
   '../shared/js/lib/progress.js',
   '../shared/js/lib/badges.js',
+  '../shared/js/lib/daily.js',
+  '../shared/js/lib/goals.js',
   '../shared/js/lib/storage.js',
   '../shared/js/views/home.js',
   '../shared/js/views/cards.js',

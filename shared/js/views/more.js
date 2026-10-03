@@ -1,6 +1,8 @@
 // 「もっと」: バッジ・設定・公式リンク・データの状態。
 import { h, externalLink, icon } from '../ui.js';
-import { badgeDefs } from '../lib/badges.js';
+import { badgeDefs, badgeProgress } from '../lib/badges.js';
+import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
+import { dateKey } from '../lib/srs.js';
 
 export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
@@ -25,13 +27,18 @@ export function renderBadges(app) {
   const got = defs.filter((d) => app.state.badges[d.id]).length;
   root.appendChild(h('p', { class: 'small muted', text: got + ' / ' + defs.length + ' 個' }));
   const grid = h('div', { class: 'badge-grid' });
+  const today = dateKey(new Date());
   for (const d of defs) {
     const date = app.state.badges[d.id];
+    const p = date ? null : badgeProgress(d, app.state, today);
     grid.appendChild(h('div', { class: 'badge' + (date ? ' got' : '') },
       h('span', { class: 'badge-ic' }, icon(date ? 'star' : 'close')),
       h('strong', { text: d.name }),
       h('span', { class: 'small', text: d.desc }),
-      h('span', { class: 'small muted', text: date ? date + ' 取得' : '未取得' })));
+      h('span', { class: 'small muted', text: date ? date + ' 取得' : '未取得' }),
+      p && p.max ? h('div', { class: 'badge-prog' },
+        h('div', { class: 'progress', role: 'progressbar', 'aria-label': d.name + ' の進み具合', 'aria-valuemin': '0', 'aria-valuemax': String(p.max), 'aria-valuenow': String(p.cur) }, h('div', { class: 'progress-fill', style: { width: Math.round(p.ratio * 100) + '%' } })),
+        h('span', { class: 'small', text: 'いま ' + p.cur + '/' + p.max + ' ' + p.unit })) : null));
   }
   root.appendChild(grid);
   return root;
@@ -56,6 +63,17 @@ export function renderSettings(app) {
   root.appendChild(h('div', { class: 'card' },
     toggle('効果音', '正解・レベルアップで鳴らします（初期はオフ）', 'sound'),
     vib ? toggle('振動', '正解・不正解で短く震えます', 'vibrate') : h('p', { class: 'small muted', text: 'この端末は振動に対応していません。' })));
+  const goalNow = normalizeDailyGoal(s.dailyGoal);
+  const goalChoices = DAILY_GOAL_CHOICES.includes(goalNow) ? DAILY_GOAL_CHOICES : [...DAILY_GOAL_CHOICES, goalNow].sort((a, b) => a - b);
+  const sel = h('select', { id: 'set-dailyGoal', class: 'select' }, goalChoices.map((n) => h('option', { value: String(n), text: n + '問' })));
+  sel.value = String(goalNow);
+  sel.addEventListener('change', () => {
+    s.dailyGoal = normalizeDailyGoal(sel.value);
+    app.commit();
+    app.flushCelebrations();
+  });
+  root.appendChild(h('div', { class: 'card' }, h('h2', { text: '1日の目標' }),
+    h('label', { class: 'row-btn', for: 'set-dailyGoal' }, h('span', { class: 'row-main' }, h('strong', { text: '1日に答える問題数' }), h('span', { class: 'small muted', text: '初期は10問（ステージ1回ぶん）。ホームに今日の進み具合が出ます' })), sel)));
   const reset = h('button', { class: 'btn danger', type: 'button', onClick: () => {
     if (confirm('学習記録（XP・復習・星・バッジ）をすべて消します。元に戻せません。よろしいですか？')) app.resetAll();
   } }, '学習記録をすべて消す');

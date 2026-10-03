@@ -118,6 +118,100 @@ export function beep(settings, kind) {
   } catch (e) { /* 音が出せなくても学習は続ける */ }
 }
 
+// ---- お祝いの画面（画面いっぱい。複数あるときは1つずつ順に） ----
+// events: { kind:'level', level } | { kind:'badge', name, desc } | { kind:'stars', stars, title } | { kind:'goal', goal }
+// opts: { settings, next, startable, onStart }
+//   next … 次の目標（title / remainText / ratio）。最後のお祝いの下にだけ出す。
+//   onStart(next) … 「これを始める」を押したとき。startable が false なら、ボタンは「ホームに戻る」になる。
+export function celebrate(events, opts = {}) {
+  if (!events || !events.length) return;
+  const { settings, next, onStart } = opts;
+  const startable = opts.startable !== false;
+  const prevFocus = document.activeElement;
+  const back = h('div', { class: 'celebrate-back' });
+  let idx = 0;
+  let confetti = null;
+
+  const close = () => {
+    back.remove();
+    document.removeEventListener('keydown', onKey);
+    if (prevFocus && prevFocus.focus) prevFocus.focus({ preventScroll: true });
+  };
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+    if (e.key !== 'Tab') return;
+    const f = Array.from(back.querySelectorAll('button')).filter((b) => !b.disabled);
+    if (!f.length) return;
+    const first = f[0];
+    const last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  };
+
+  function makeConfetti() {
+    const box = h('div', { class: 'celebrate-confetti', 'aria-hidden': 'true' });
+    for (let k = 0; k < 64; k++) {
+      const s = h('span', { class: 'confetti c' + (k % 5) });
+      s.style.left = Math.round(Math.random() * 100) + '%';
+      s.style.setProperty('--delay', (Math.random() * 0.9).toFixed(2) + 's');
+      s.style.setProperty('--dur', (1.8 + Math.random() * 1.6).toFixed(2) + 's');
+      s.style.setProperty('--sway', Math.round(Math.random() * 120 - 60) + 'px');
+      box.appendChild(s);
+    }
+    return box;
+  }
+
+  function describe(ev) {
+    if (ev.kind === 'level') return { head: 'レベルアップ！', title: 'Lv ' + ev.level, sub: 'レベル ' + ev.level + ' になりました', emblem: h('div', { class: 'celebrate-emblem lv' }, h('span', { class: 'lv-label', text: 'Lv' }), h('strong', { text: String(ev.level) })) };
+    if (ev.kind === 'badge') return { head: 'バッジ獲得！', title: ev.name, sub: ev.desc || '', emblem: h('div', { class: 'celebrate-emblem badge' }, icon('star')) };
+    if (ev.kind === 'stars') return { head: '星が増えました！', title: ev.title, sub: '星 ' + ev.stars + ' つ', emblem: h('div', { class: 'celebrate-emblem stars' }, stars(ev.stars)) };
+    return { head: '今日の目標を達成！', title: ev.goal + '問 達成', sub: '今日の目標の ' + ev.goal + '問に答えました', emblem: h('div', { class: 'celebrate-emblem goal' }, icon('check')) };
+  }
+
+  function show() {
+    clear(back);
+    const ev = events[idx];
+    const d = describe(ev);
+    const isLast = idx === events.length - 1;
+    confetti = makeConfetti();
+    back.appendChild(confetti);
+    const closeBtn = h('button', { class: 'btn ghost icon-only celebrate-close', type: 'button', 'aria-label': '閉じる', onClick: close }, icon('close'));
+    const panel = h('div', { class: 'celebrate', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'celebrate-title' },
+      closeBtn,
+      h('p', { class: 'celebrate-head', text: d.head }),
+      d.emblem,
+      h('h2', { id: 'celebrate-title', class: 'celebrate-title', text: d.title }),
+      d.sub ? h('p', { class: 'celebrate-sub', text: d.sub }) : null,
+      events.length > 1 ? h('p', { class: 'small muted', text: (idx + 1) + ' / ' + events.length }) : null);
+    let main;
+    if (!isLast) {
+      main = h('button', { class: 'btn primary big', type: 'button', onClick: () => { idx++; show(); } }, 'つぎへ');
+      panel.appendChild(main);
+    } else {
+      if (next) {
+        panel.appendChild(h('div', { class: 'celebrate-next' },
+          h('p', { class: 'celebrate-next-text' }, h('strong', { text: '次はこれ：' }), next.remainText + 'で『' + next.title + '』'),
+          h('div', { class: 'progress', 'aria-hidden': 'true' }, h('div', { class: 'progress-fill', style: { width: Math.round(next.ratio * 100) + '%' } }))));
+        main = h('button', { class: 'btn primary big', type: 'button', onClick: () => { close(); if (onStart) onStart(next); } }, startable ? 'これを始める' : 'ホームに戻る');
+        panel.appendChild(main);
+        panel.appendChild(h('button', { class: 'btn big', type: 'button', onClick: close }, 'とじる'));
+      } else {
+        main = h('button', { class: 'btn primary big', type: 'button', onClick: close }, 'とじる');
+        panel.appendChild(main);
+      }
+    }
+    back.appendChild(panel);
+    beep(settings, 'up');
+    vibrate(settings, [80, 40, 80, 40, 160]);
+    main.focus({ preventScroll: true });
+  }
+
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(back);
+  show();
+  return close;
+}
+
 // ---- 下から出るシート（用語カードを問題の途中で開く用） ----
 export function openSheet(build) {
   const prevFocus = document.activeElement;

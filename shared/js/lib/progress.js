@@ -1,5 +1,6 @@
 // 学習記録の状態と更新。localStorage には触らない（storage.js が担当）。純粋に state を更新する。
 import { applyAnswer, dayNumber, dateKey, dueIds } from './srs.js';
+import { DEFAULT_DAILY_GOAL, normalizeDailyGoal } from './daily.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -14,7 +15,8 @@ export function defaultState() {
     badges: {},
     exams: [],
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, vibrate: true },
+    settings: { sound: false, vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL },
+    goalAwarded: null,
   };
 }
 
@@ -27,6 +29,8 @@ export function mergeState(saved) {
   for (const k of ['qstats', 'daily', 'stages', 'badges']) if (!o[k] || typeof o[k] !== 'object' || Array.isArray(o[k])) o[k] = {};
   if (!Array.isArray(o.exams)) o.exams = [];
   if (!Number.isFinite(o.xp)) o.xp = 0;
+  o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
+  if (typeof o.goalAwarded !== 'string') o.goalAwarded = null;
   return o;
 }
 

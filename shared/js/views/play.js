@@ -175,7 +175,7 @@ export function renderPlay(app) {
     if (starInfo) {
       card.appendChild(h('div', { class: 'star-result' }, stars(starInfo.stars)));
       card.appendChild(h('p', { text: starInfo.stars === 0 ? 'あと少し！ 解説を読んでもう一度。' : starInfo.improved ? 'ステージクリア！ 星が増えました。' : 'ステージクリア！' }));
-      if (starInfo.stars > 0) burst(card);
+      if (starInfo.improved && starInfo.stars > 0) app.queueStars(spec.title, starInfo.stars);
     }
     if (spec.mode === 'review') card.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は、あすもう一度出ます。' }));
     root.appendChild(card);
@@ -190,6 +190,8 @@ export function renderPlay(app) {
     const back = h('button', { class: 'btn big', type: 'button', onClick: () => { app.session = null; app.go(spec.backHash || '#/home'); } }, '戻る');
     root.appendChild(h('div', { class: 'btn-row' }, retry, back));
     window.scrollTo(0, 0);
+    // 解いている間にたまったお祝い（レベルアップ・バッジ・星・1日の目標）をここで出す
+    app.flushCelebrations();
   }
 
   keyHandler = (e) => {

@@ -139,6 +139,7 @@ export function renderExam(app) {
       root.appendChild(rv);
       root.appendChild(h('div', { class: 'btn-row' }, h('button', { class: 'btn primary big', type: 'button', onClick: intro }, 'もう一度'), h('button', { class: 'btn big', type: 'button', onClick: () => app.go('#/home') }, 'ホームへ')));
       if (rate >= 70) burst(card);
+      app.flushCelebrations();
       window.scrollTo(0, 0);
     }
     draw();
