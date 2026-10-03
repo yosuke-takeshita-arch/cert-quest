@@ -45,6 +45,22 @@ export function renderHome(app) {
   const { config, state, data } = app;
   const now = new Date();
   const root = h('section', { class: 'view home' });
+  // ブラウザがインストールできると知らせてきたときだけ出す（app.js の beforeinstallprompt）
+  if (app.installPrompt) {
+    const btn = h('button', { class: 'btn primary', type: 'button', text: 'アプリとしてインストール' });
+    btn.addEventListener('click', async () => {
+      const p = app.installPrompt;
+      if (!p) return;
+      btn.disabled = true;
+      try {
+        await p.prompt();
+        await p.userChoice;
+      } catch (e) { /* 断られた・失敗したときはボタンを戻す */ }
+      app.installPrompt = null;
+      app.go('#/home');
+    });
+    root.appendChild(h('div', { class: 'card' }, h('p', { text: 'ホーム画面から開けるアプリとして入れられます。' }), btn));
+  }
   const left = daysUntil(config.examDate, now);
   const lv = levelFromXp(state.xp);
   const streak = currentStreak(state.streak, dateKey(now));

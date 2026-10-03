@@ -161,6 +161,20 @@ export async function start() {
   if (!location.hash) history.replaceState(null, '', location.pathname + location.search + '#/home');
   render();
 
+  // アプリ内の「インストール」ボタン用。Android の Chrome はメニューの「ホーム画面に追加」で、
+  // 同じオリジンにアプリが1つでも入っていると「インストール済み」と判定する（WebappRegistry.isAppInstalledForUrl）。
+  // github.io の同じオリジンに資格アプリが複数あるため、2つ目以降はメニューから入れられない。
+  // ページ側の案内（beforeinstallprompt）は start_url の範囲で判定するので、こちらからなら入れられる。
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    app.installPrompt = e;
+    if (location.hash === '#/home') render();
+  });
+  window.addEventListener('appinstalled', () => {
+    app.installPrompt = null;
+    if (location.hash === '#/home') render();
+  });
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch((e) => console.warn('service worker', e));
   }
