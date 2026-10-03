@@ -7,8 +7,8 @@
       "画像認識"
     ],
     "title": "画像認識タスクの種類（物体識別・物体検出・セグメンテーション・姿勢推定）",
-    "oneLine": "画像全体に1ラベル＝物体識別、物体の位置を矩形で囲む＝物体検出、画素ごとに塗り分ける＝セグメンテーション、関節点をつなぐ＝姿勢推定。",
-    "why": "同じ「画像を見るAI」でも出力の形が違い、使うモデルも評価方法も変わる。問題文の「何を出力するか」を読めればモデル名の選択肢を半分に絞れる。一般物体認識は、制約のない一般的な物体を認識する広いタスクを指す。",
+    "oneLine": "画像に何が写っているかをラベルで答える＝物体識別（画像分類）、物体の種類と位置を矩形（バウンディングボックス）で答える＝物体検出、画素ごとにクラスを付ける＝セグメンテーション、人の関節点（キーポイント）の位置を推定する＝姿勢推定。",
+    "why": "同じ「画像を見るAI」でも出力の形が違い、使うモデルも評価方法も変わる。問題文の「何を出力するか」を読めばモデル名の選択肢を絞れる。一般物体認識は、制約のない実世界の画像に写った物体を、計算機が一般的な名称で認識することを指す。",
     "links": [
       {
         "id": "C-06-014",
@@ -37,9 +37,21 @@
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Lin et al. (2014) Microsoft COCO: Common Objects in Context (arXiv:1405.0312)",
+        "url": "https://arxiv.org/abs/1405.0312"
+      },
+      {
+        "title": "柳井啓司（2007）一般物体認識の現状と今後（情報処理学会論文誌 コンピュータビジョンとイメージメディア 48(SIG16)）",
+        "url": "https://ipsj.ixsq.nii.ac.jp/records/17938"
+      },
+      {
+        "title": "Cao et al. (2018) OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields (arXiv:1812.08008)",
+        "url": "https://arxiv.org/abs/1812.08008"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-06-002",
@@ -961,8 +973,8 @@
       "自然言語処理"
     ],
     "title": "自然言語処理の代表的なタスク",
-    "oneLine": "形態素解析（文を最小の意味単位に分け品詞を付ける）、構文解析（語と語の係り受けなど文の構造を解析する）、感情分析、機械翻訳、質問応答、情報検索、文書要約など。",
-    "why": "日本語は単語の間に空白がないため、形態素解析が多くの処理の前段になる。タスク名と「入力→出力」を対応させて覚える。",
+    "oneLine": "形態素解析（文を単語などに区切り、品詞を付ける）、構文解析（語や文節どうしの係り受けなど、文の構造を解析する）、感情分析、機械翻訳、質問応答、情報検索、文書要約など。",
+    "why": "日本語は単語の間に空白を入れずに書くため、形態素解析が多くの処理の前段になる。タスク名と「入力→出力」を対応させて覚える（例：情報検索は利用者の問い合わせに合う文書を返す、感情分析は書き手の肯定・否定の向きを取り出す）。",
     "links": [
       {
         "id": "C-06-027",
@@ -987,9 +999,37 @@
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 2: Words and Tokens",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/2.pdf"
+      },
+      {
+        "title": "京都大学 言語メディア研究室「日本語形態素解析システム Juman++」",
+        "url": "https://nlp.ist.i.kyoto-u.ac.jp/?JUMAN%2B%2B"
+      },
+      {
+        "title": "京都大学 言語メディア研究室「日本語構文・格・照応解析システム KNP」",
+        "url": "https://nlp.ist.i.kyoto-u.ac.jp/?KNP"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Appendix B: Naive Bayes Classification（sentiment analysis）",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/B.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 13: Machine Translation",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/13.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 11: Information Retrieval and RAG",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/11.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 7: Transformers and Pretraining",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/7.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-06-027",
@@ -1561,8 +1601,8 @@
       "音声処理"
     ],
     "title": "音素と音韻",
-    "oneLine": "音素は、ある言語で語の意味を区別する最小の音の単位（例：「か」と「さ」を分ける子音/k/と/s/）。音韻は、言語の中で音素がどう体系づけられているかを扱う考え方。",
-    "why": "音声認識は音声→音素→単語→文と段階的に解釈することが多く、音素はその基本単位になる。",
+    "oneLine": "音素は、ある言語で語を区別するのに使われる音の単位。発音が少し違っても語を区別しない音どうしは、同じ音素の変異（異音）とみなす。音韻（音韻論）は、音が組み合わさって語になるときに働く規則の体系を扱う。",
+    "why": "例えば英語では、息を伴う [pʰ] と伴わない [p] で別の語にならないので同じ音素の異音だが、ヒンディー語では息の有無だけで別の語になるので別の音素になる。音声認識では、短い区間ごとの音声の特徴がどの音素にあたるかを扱い、初期には音素を認識する装置も作られた。",
     "links": [
       {
         "id": "C-06-043",
@@ -1583,9 +1623,21 @@
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "MIT OpenCourseWare 24.900 Introduction to Linguistics (Fall 2012) Phonology Summary",
+        "url": "https://ocw.mit.edu/courses/24-900-introduction-to-linguistics-fall-2012/f305bb4cff88d8643ef77a3c2ab6b92a_MIT24_900F12_Phonologysum.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 15: Phonetics and Speech Feature Extraction",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/15.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 16: Automatic Speech Recognition",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/16.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-06-043",
@@ -1705,8 +1757,8 @@
       "音声処理"
     ],
     "title": "音声認識・音声合成・話者識別・感情分析",
-    "oneLine": "音声認識＝音声を文字にする。音声合成＝文字から音声を作る。話者識別＝誰が話しているかを当てる。音声の感情分析＝声の調子から喜怒哀楽などを推定する。",
-    "why": "「何を言ったか」と「誰が言ったか」は別のタスク。入力と出力の向きで区別すると取り違えない。",
+    "oneLine": "音声認識＝音声を文字にする。音声合成＝文字から音声を作る（音声認識の逆）。話者識別＝登録された多数の話者のうち誰が話しているかを当てる。音声の感情分析＝声から話し手の感情を推定する。",
+    "why": "「何を言ったか」と「誰が言ったか」は別のタスク。入力と出力の向きで区別すると取り違えない。話者の識別や感情の推定は、音声にラベルを付ける音声分類のタスクとして扱える。",
     "links": [
       {
         "id": "C-06-045",
@@ -1721,15 +1773,35 @@
       {
         "id": "C-06-044",
         "point": "話者識別は「誰か」、音声認識は「何と言ったか」"
+      },
+      {
+        "title": "話者照合（話者検証）",
+        "point": "話者照合は「この人はXさんか」を判定する（2択）。話者識別は登録済みの多数の話者から1人を選ぶ。"
       }
     ],
     "sources": [
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 16: Automatic Speech Recognition",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/16.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 17: Text-to-Speech（17.5 Other speech tasks）",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/17.pdf"
+      },
+      {
+        "title": "Reynolds (1995) Automatic Speaker Recognition Using Gaussian Mixture Speaker Models（The Lincoln Laboratory Journal 8(2)）",
+        "url": "https://archive.ll.mit.edu/publications/journal/pdf/vol08_no2/8.2.4.speakerrecognition.pdf"
+      },
+      {
+        "title": "Hugging Face Tasks: Audio Classification",
+        "url": "https://huggingface.co/tasks/audio-classification"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-06-047",
@@ -2527,8 +2599,8 @@
       "データ生成"
     ],
     "title": "データ生成タスク（画像生成・文章生成・音声生成）",
-    "oneLine": "学習データの特徴を学んで新しいデータを作るタスク。画像生成（GAN・拡散モデル）、文章生成（大規模言語モデル）、音声生成（WaveNetなど）がある。",
-    "why": "デザイン案の作成、データ拡張、文章の下書き、音声合成など用途が広い一方、ディープフェイクのような悪用も問題になる。",
+    "oneLine": "学習データの分布をまねて新しいデータを作るタスク。画像生成（GAN・拡散モデル）、文章生成（大規模言語モデル）、音声生成（WaveNetなど）がある。",
+    "why": "GPT-3が生成したニュース記事は人が書いた記事と見分けにくいと評価され、WaveNetは音声合成で従来方式より自然だと評価された。機械翻訳では、生成した訳文を学習データに足すデータ拡張（逆翻訳）にも使われる。一方で、生成AIで作った偽の画像・動画・音声（ディープフェイク）の悪用が各国で問題になっている。",
     "links": [
       {
         "id": "C-06-063",
@@ -2557,9 +2629,33 @@
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)",
+        "url": "https://arxiv.org/abs/1406.2661"
+      },
+      {
+        "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
+        "url": "https://arxiv.org/abs/2006.11239"
+      },
+      {
+        "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
+        "url": "https://arxiv.org/abs/2005.14165"
+      },
+      {
+        "title": "van den Oord et al. (2016) WaveNet (arXiv:1609.03499)",
+        "url": "https://arxiv.org/abs/1609.03499"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 13: Machine Translation",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/13.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-06-070",

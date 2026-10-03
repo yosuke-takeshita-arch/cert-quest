@@ -199,14 +199,14 @@
       "相手の手番を無視して、自分にとって最も評価の高い手だけを続けて選ぶ"
     ],
     "answer": 2,
-    "explanation": "αβ法はMini-Max法と同じ手を選びながら、選ばれる可能性の無い枝を刈り込む（枝刈り）ことで評価する節点を減らす。",
+    "explanation": "αβ法はMini-Max法と同じ考え方で手を選びながら、選ばれる可能性の無い枝の探索を打ち切る（枝刈りする）ことで、調べる節点を減らす。最大化する側が確保できる下限をα、最小化する側が確保できる上限をβとして持ち、αがβを上回った枝はその先を調べない。",
     "whyWrong": [
-      "すべて評価するのは素朴なMini-Max法（ブルートフォース的）で、αβ法はそれを省く。",
-      "乱数で評価を見積もるのはモンテカルロ法の発想。",
+      "すべての節点を評価するのは素朴なMini-Max法で、αβ法は結果に影響しない枝を省く。",
+      "途中から終局までランダムに指して評価を見積もるのはモンテカルロ法の発想。",
       null,
       "相手の最善手を考えないと対戦ゲームでは誤った判断になる。αβ法も相手の手番を考える。"
     ],
-    "memoryTip": "αβ法＝Mini-Maxの「省エネ版」。答えは同じ、調べる量だけ減る。",
+    "memoryTip": "αβ法＝Mini-Maxの「省エネ版」。選ぶ手は同じ、調べる量だけ減る。",
     "concepts": [
       "C-02-008",
       "C-02-007"
@@ -215,9 +215,17 @@
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "MIT OpenCourseWare 6.034 Artificial Intelligence (Fall 2010) Mega-Recitation 3: Games, Minimax, Alpha-Beta（講義記録）",
+        "url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/e83131e9d1eddde294b6a86bb6580c55_hM2EAvMkhtk.pdf"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-02-007",
@@ -547,11 +555,11 @@
       "「タイヤは自動車の一種である」は is-a の関係として正しく表している"
     ],
     "answer": 3,
-    "explanation": "タイヤは自動車の「一部」であって「一種」ではない。全体と部分の関係は part-of、上位・下位概念の関係が is-a。",
+    "explanation": "タイヤは自動車の「一部」であって「一種」ではない。全体と部分の関係が part-of、上位・下位の概念の関係が is-a。",
     "whyWrong": [
-      "適切。犬は哺乳類の一種なので is-a。",
-      "適切。全体と部分なので part-of。",
-      "適切。所有・構成を表す has-a。",
+      "適切。犬は哺乳類の一種（上位・下位の関係）なので is-a。",
+      "適切。全体と部分の関係なので part-of。",
+      "適切。has（持つ）の関係は part-of の逆向きにあたる。",
       null
     ],
     "memoryTip": "is-a＝「〜の一種」、part-of＝「〜の一部」。「種」と「部」を入れ替えるのが定番のひっかけ。",
@@ -563,9 +571,17 @@
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
+      },
+      {
+        "title": "Sowa, Semantic Networks（Encyclopedia of Artificial Intelligence 掲載稿の著者改訂版）",
+        "url": "http://www.jfsowa.com/pubs/semnet.htm"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-02-016",
@@ -584,14 +600,14 @@
       "上位の概念の性質は、下位の概念に引き継がれない"
     ],
     "answer": 1,
-    "explanation": "is-aは推移律が成り立ち、上位概念の性質を下位概念が引き継ぐ（犬is-a哺乳類、哺乳類is-a動物 → 犬is-a動物）。",
+    "explanation": "is-aでは上位概念の性質が下位概念に引き継がれ（継承）、それが下位の下位にまで及ぶ（犬is-a哺乳類、哺乳類is-a動物 → 犬is-a動物）。Sowa は、上位の型に定義した性質をすべての下位の型にコピーする継承の規則を、is-a でできた階層の特徴として挙げている。",
     "whyWrong": [
       "犬は動物の一種だが、動物は犬の一種ではない。対称律は成り立たない。",
       null,
-      "is-a（一種）とpart-of（一部）は別の関係。",
-      "is-aでは性質が引き継がれる（継承）のが特徴。"
+      "is-a（上位・下位）と part-of（全体・部分）は別の関係。",
+      "is-aでは上位の性質が下位に引き継がれる（継承）のが特徴。"
     ],
-    "memoryTip": "is-aは「家系図」：親の性質は子へ、祖父→父→子へとつながる（推移）。",
+    "memoryTip": "is-aは「生き物の分類」：犬→哺乳類→動物と上へたどれ、上の性質は下へすべて引き継がれる。",
     "concepts": [
       "C-02-018"
     ],
@@ -599,9 +615,17 @@
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Sowa, Semantic Networks（Encyclopedia of Artificial Intelligence 掲載稿の著者改訂版）",
+        "url": "http://www.jfsowa.com/pubs/semnet.htm"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-02-017",
@@ -620,11 +644,11 @@
       "探索木"
     ],
     "answer": 0,
-    "explanation": "意味ネットワークは概念と関係（is-a、part-ofなど）をネットワークで表す知識表現の方法。",
+    "explanation": "意味ネットワークは、概念を節点、概念どうしの関係（is-a、part-ofなど）を辺（矢印）で結んだグラフで知識を表す方法。コリンズとキリアンは、人間の意味記憶の構造を表すモデルとして考えた。",
     "whyWrong": [
       null,
-      "名前は似ているが、ニューラルネットワークは神経細胞をまねた学習モデルで、知識を人が書く表現方法ではない。",
-      "変数間の確率的な依存関係を表すモデルで、概念の意味関係を表すものではない。",
+      "名前は似ているが、ニューラルネットワークは節点どうしの結合の重みを学習で変えていく仕組みで、概念どうしの意味の関係を書き表すための方法ではない。",
+      "命題や変数のあいだの因果や確率的な推論の関係を表すもので、概念の上位・下位や全体・部分の関係を表すためのものではない。",
       "探索木は問題の状態と操作の場合分けで、知識表現の方法ではない。"
     ],
     "memoryTip": "「意味」をつなぐ網＝意味ネットワーク。「神経」の網＝ニューラルネットワーク。",
@@ -635,9 +659,17 @@
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Sowa, Semantic Networks（Encyclopedia of Artificial Intelligence 掲載稿の著者改訂版）",
+        "url": "http://www.jfsowa.com/pubs/semnet.htm"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-02-018",
@@ -879,11 +911,11 @@
       "エキスパートシステムは、常識のような曖昧で広い知識を扱うことが得意だった"
     ],
     "answer": 3,
-    "explanation": "エキスパートシステムは特定分野の明確な知識は扱えたが、常識のような広く曖昧な知識は扱えなかった。そのためCycのように常識を知識ベース化する取り組みも生まれた。",
+    "explanation": "エキスパートシステムは、必要な情報を人がすべて記述しなければならず、扱える知識は特定の領域に限る必要があった。常識のような広い知識を書き切るのは難しく、一般常識を知識ベース化しようとしたCycプロジェクトも、長い年月をかけても書き終わらなかった。",
     "whyWrong": [
-      "適切。知識獲得のボトルネック。",
-      "適切。暗黙的な専門知識を取り出す支援。",
-      "適切。データマイニングの説明。",
+      "適切。必要な情報をすべて人が書く必要があり、それが限界になった（知識獲得のボトルネック）。",
+      "適切。インタビューは専門家から知識を獲得する有効な方法とされ、専門家の負担を減らすインタビューシステムが研究された。",
+      "適切。データマイニングは、データからパターンを取り出す処理。",
       null
     ],
     "memoryTip": "エキスパートシステム＝狭く深く。常識（広く浅く）は苦手。",
@@ -896,9 +928,21 @@
       {
         "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史",
         "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
+      },
+      {
+        "title": "松田勝志・新名博・溝口理一郎（1992）設計例の理解に基づく知識獲得インタビューシステム（人工知能学会誌 7巻6号）",
+        "url": "https://www.jstage.jst.go.jp/article/jjsai/7/6/7_1038/_article/-char/ja"
+      },
+      {
+        "title": "Fayyad, Piatetsky-Shapiro & Smyth (1996) From Data Mining to Knowledge Discovery in Databases（AI Magazine 17(3)）",
+        "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1230"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-02-025",
@@ -1067,14 +1111,14 @@
       "データが少ない問題ほど、ルールベースより機械学習が有利になる"
     ],
     "answer": 3,
-    "explanation": "機械学習はデータが少ないと十分に学べない。少量データや明確な規則がある問題では、ルールベースのほうが適することもある。",
+    "explanation": "機械学習はデータを必要とし、データが無い段階では、単純な経験則（ルール）で作ったほうが早く成果を出せることが多い。Googleの機械学習の指針も、データがそろうまでは機械学習を使わず、経験則で始めることを勧めている。",
     "whyWrong": [
-      "適切。機械学習が効果を発揮する場面。",
-      "適切。データが前提。",
-      "適切。モデルによっては理由を説明しにくい。",
+      "適切。経験則が複雑になると保守できなくなるので、データがそろえば機械学習を選ぶほうがよい。",
+      "適切。機械学習にはデータが要る。",
+      "適切。AIの判断がブラックボックスになり、仕組みを説明できなかった事例も報告されている。",
       null
     ],
-    "memoryTip": "機械学習はデータで強くなる→データが少ない・規則がはっきりしている問題ではルールベースに分がある。",
+    "memoryTip": "機械学習はデータで強くなる→データが無いうちは単純なルールから始める。",
     "concepts": [
       "C-02-028"
     ],
@@ -1082,9 +1126,17 @@
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Google for Developers: Rules of Machine Learning（Rule #1・Rule #3）",
+        "url": "https://developers.google.com/machine-learning/guides/rules-of-ml"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-02-030",

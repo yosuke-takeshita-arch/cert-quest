@@ -1221,7 +1221,7 @@
     ],
     "format": "single",
     "difficulty": 1,
-    "stem": "コールセンターの録音から「今話しているのは登録済みの顧客Aさん本人か」を判定したい。このタスクとして、最も適切なものを1つ選べ。",
+    "stem": "コールセンターの録音から、話しているのが登録済みの顧客のうち誰なのかを、声の特徴から判定したい。このタスクとして、最も適切なものを1つ選べ。",
     "choices": [
       "音声認識",
       "音声合成",
@@ -1229,12 +1229,12 @@
       "形態素解析"
     ],
     "answer": 2,
-    "explanation": "話者識別は声の特徴から「誰が話しているか」を判定するタスク。発話の内容を文字にする音声認識とは目的が違う。",
+    "explanation": "話者識別は、声の特徴から、あらかじめ登録された多数の話者のうち誰が話しているかを判定するタスク。発話の内容を文字にする音声認識とは目的が違う。なお、名乗った本人かどうか（この人はXさんか）を判定するタスクは話者照合（話者検証）と呼んで区別される。",
     "whyWrong": [
-      "音声認識は「何と言ったか」を文字にするタスク。",
-      "音声合成は文字から音声を作るタスク。",
+      "音声認識は音声の波形を文字列に対応づける（何と言ったかを文字にする）タスク。",
+      "音声合成は文字から音声を作るタスクで、音声認識の逆向き。",
       null,
-      "形態素解析はテキストを単語に分ける処理。"
+      "形態素解析はテキストを単語に区切って品詞などを付ける処理。"
     ],
     "memoryTip": "「誰が」＝話者識別、「何を」＝音声認識。",
     "concepts": [
@@ -1244,9 +1244,21 @@
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 17: Text-to-Speech（17.5 Other speech tasks）",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/17.pdf"
+      },
+      {
+        "title": "Reynolds (1995) Automatic Speaker Recognition Using Gaussian Mixture Speaker Models（The Lincoln Laboratory Journal 8(2)）",
+        "url": "https://archive.ll.mit.edu/publications/journal/pdf/vol08_no2/8.2.4.speakerrecognition.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 16: Automatic Speech Recognition",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/16.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-06-032",

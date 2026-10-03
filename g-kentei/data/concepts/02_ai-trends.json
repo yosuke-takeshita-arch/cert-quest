@@ -265,8 +265,8 @@
       "探索・推論"
     ],
     "title": "αβ法",
-    "oneLine": "Mini-Max法で、結果に影響しないと分かった枝の探索を打ち切る（枝刈りする）ことで計算量を減らす方法。αは自分側の下限、βは相手側の上限。",
-    "why": "Mini-Max法と同じ手を選びつつ、調べる節点を大きく減らせる。αカット・βカットと呼ばれる2種類の打ち切りがある。",
+    "oneLine": "Mini-Max法で、結果に影響しないと分かった枝の探索を打ち切る（枝刈りする）ことで計算量を減らす方法。αは最大化する側（自分）が確保できる下限、βは最小化する側（相手）が確保できる上限。",
+    "why": "Mini-Max法と同じ手を選びつつ、調べる節点を減らせる。探索の途中でαがβを上回ったら、その先の枝はどちらの側にも選ばれないので調べない。",
     "links": [
       {
         "id": "C-02-007",
@@ -280,16 +280,24 @@
     "confusions": [
       {
         "id": "C-02-009",
-        "point": "αβ法は結果を変えずに枝を省く。モンテカルロ法はランダムなプレイで評価を見積もる。"
+        "point": "αβ法は結果を変えずに枝を省く。モンテカルロ法は途中から終局までランダムに指して評価を見積もる。"
       }
     ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "MIT OpenCourseWare 6.034 Artificial Intelligence (Fall 2010) Mega-Recitation 3: Games, Minimax, Alpha-Beta（講義記録）",
+        "url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/e83131e9d1eddde294b6a86bb6580c55_hM2EAvMkhtk.pdf"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-02-009",
@@ -599,8 +607,8 @@
       "知識表現とエキスパートシステム"
     ],
     "title": "意味ネットワーク",
-    "oneLine": "概念を節点、概念どうしの関係を矢印（ラベル付きの辺）で結んだネットワークで知識を表す方法。",
-    "why": "「犬は動物である」「車はタイヤを持つ」のような知識を、関係の種類（is-a、part-of など）と一緒に表せる。関係をたどれば、書いていない知識（犬は生き物）も推論できる。",
+    "oneLine": "概念を節点、概念どうしの関係を矢印（ラベル付きの辺）で結んだグラフで知識を表す方法。",
+    "why": "「犬は哺乳類である」「自動車はタイヤを持つ」のような知識を、関係の種類（is-a、part-of など）と一緒に表せる。is-a の階層では上位の性質が下位に引き継がれるので、書いていない知識（犬は動物である）もたどって導ける。コリンズとキリアンは、人間の意味記憶の構造を表すモデルとして考えた。",
     "links": [
       {
         "id": "C-02-018",
@@ -614,16 +622,24 @@
     "confusions": [
       {
         "title": "ニューラルネットワーク",
-        "point": "名前は似ているが、意味ネットワークは人が知識を書く表現方法で、学習するモデルではない。"
+        "point": "名前は似ているが、ニューラルネットワークは節点どうしの結合の重みを学習で変える仕組み。意味ネットワークは概念の関係を表す知識表現。"
       }
     ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Sowa, Semantic Networks（Encyclopedia of Artificial Intelligence 掲載稿の著者改訂版）",
+        "url": "http://www.jfsowa.com/pubs/semnet.htm"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-02-018",
@@ -634,7 +650,7 @@
     ],
     "title": "is-aの関係・has-aの関係・part-ofの関係",
     "oneLine": "is-a：「AはBの一種」（上位・下位概念、継承）。has-a：「AはBを持つ」。part-of：「AはBの一部」（全体と部分）。",
-    "why": "知識表現で関係の種類を区別するための基本。is-aは推移律が成り立ち（犬is-a哺乳類、哺乳類is-a動物→犬is-a動物）、性質を上位から引き継げる。part-ofは関係の種類によって推移律が成り立たない場合がある。",
+    "why": "知識表現で関係の種類を区別するための基本。is-a の階層では、上位の型に定義した性質がすべての下位の型に引き継がれる（犬is-a哺乳類、哺乳類is-a動物→犬is-a動物）。has（持つ）の関係は part-of の逆向き。part-of は、部分の種類によって推移律が成り立たないことがある（体の一部である親指と、会議体の一員である人をつなげて「親指は会議体の一部」とは言えない）。",
     "links": [
       {
         "id": "C-02-017",
@@ -655,9 +671,17 @@
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
+      },
+      {
+        "title": "Sowa, Semantic Networks（Encyclopedia of Artificial Intelligence 掲載稿の著者改訂版）",
+        "url": "http://www.jfsowa.com/pubs/semnet.htm"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-02-019",
@@ -773,8 +797,8 @@
       "知識表現とエキスパートシステム"
     ],
     "title": "インタビューシステム",
-    "oneLine": "専門家に質問を重ねて、エキスパートシステムに入れる知識を聞き出し、整理する仕組み。",
-    "why": "専門家の知識は暗黙的で、本人も言葉にしにくい。知識を取り出す作業を支援しないと知識ベースを作れない（知識獲得のボトルネック）。",
+    "oneLine": "専門家に質問を重ねて、エキスパートシステムに入れる知識を聞き出す仕組み。",
+    "why": "知識獲得はエキスパートシステムを作るうえでのボトルネックとされた。専門家の領域知識だけでなく経験則も、専門家の負担を少なく聞き出す必要がある。インタビューは有効な知識獲得の方法だが、質問が長く答えにくくなりがちなため、質問のむだを減らす工夫も研究された。",
     "links": [
       {
         "id": "C-02-013",
@@ -788,16 +812,24 @@
     "confusions": [
       {
         "id": "C-02-016",
-        "point": "ELIZAも質問を返すが、知識を集める目的ではない会話プログラム。"
+        "point": "ELIZAも質問を返すが、対話のルールに従って応答する対話システムで、知識を集める目的ではない。"
       }
     ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "松田勝志・新名博・溝口理一郎（1992）設計例の理解に基づく知識獲得インタビューシステム（人工知能学会誌 7巻6号）",
+        "url": "https://www.jstage.jst.go.jp/article/jjsai/7/6/7_1038/_article/-char/ja"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-02-023",
@@ -807,8 +839,8 @@
       "知識表現とエキスパートシステム"
     ],
     "title": "データマイニング・ウェブマイニング",
-    "oneLine": "データマイニング：大量のデータから、有用なパターンや規則を掘り出すこと。ウェブマイニング：その対象をWebページの内容・リンク構造・利用履歴にしたもの。",
-    "why": "知識を人が書くのではなく、蓄積されたデータから見つけ出す発想。知識表現の手間を減らす方向で、機械学習の普及にもつながった。",
+    "oneLine": "データマイニング：データからパターンを取り出すこと（データから有用な知識を見つける過程の中で、アルゴリズムを当てはめる段階）。ウェブマイニング：Web上のデータを対象にしたマイニングで、Webページの内容・構造・利用の3つの方向から研究される。",
+    "why": "知識を人が書くのではなく、蓄積されたデータから見つけ出す発想。ただし統計的な配慮なしにデータを探り回ると、意味のない見かけだけのパターンを見つけてしまう危険もある。",
     "links": [
       {
         "id": "C-02-029",
@@ -833,9 +865,21 @@
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Fayyad, Piatetsky-Shapiro & Smyth (1996) From Data Mining to Knowledge Discovery in Databases（AI Magazine 17(3)）",
+        "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1230"
+      },
+      {
+        "title": "Kosala & Blockeel (2000) Web Mining Research: A Survey（SIGKDD Explorations 2(1)）",
+        "url": "https://www.kdd.org/exploration_files/kosala.pdf"
+      },
+      {
+        "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）",
+        "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-02-024",
@@ -998,7 +1042,7 @@
     ],
     "title": "ルールベースと機械学習の違い",
     "oneLine": "ルールベース：人が規則を書く。機械学習：データから規則やパターンを学ぶ。",
-    "why": "ルールベースは理由を説明しやすく少ないデータでも作れるが、規則を書き尽くせない・変化に弱い。機械学習は規則を書けない複雑な問題（画像・言語・大量の顧客データ）に強いが、データが必要で、判断理由が分かりにくいことがある。",
+    "why": "ルールベースはデータが無くても作れ、単純なものなら早く使い始められるが、規則が複雑になると保守できなくなり、必要な知識を人がすべて書き切ることも難しい。機械学習はデータが必要で、判断がブラックボックスになり理由を説明しにくいことがある一方、データがそろえば複雑な規則を書かずに済み、更新や保守もしやすい。",
     "links": [
       {
         "id": "C-02-013",
@@ -1023,9 +1067,21 @@
       {
         "title": "総務省 平成28年版 情報通信白書 代表的な研究テーマ",
         "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142130.html"
+      },
+      {
+        "title": "Google for Developers: Rules of Machine Learning（Rule #1・Rule #3）",
+        "url": "https://developers.google.com/machine-learning/guides/rules-of-ml"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
+      },
+      {
+        "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "C-02-029",

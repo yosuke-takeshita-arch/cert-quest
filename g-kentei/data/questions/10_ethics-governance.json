@@ -1162,12 +1162,12 @@
       "フィルターバブル"
     ],
     "answer": 1,
-    "explanation": "AIに任せることで人が技能を使う機会が減り、技能が失われたり継承されなくなったりする懸念をスキルの喪失という。",
+    "explanation": "AIや自動化に頼ることで、今ある技能が衰えたり、技能を身につける機会が失われたりする懸念をスキルの喪失（デスキリング）という。自動化の研究では、システムを監視し、いざというときに引き継ぐはずの人が、もうその技能を持っていないという皮肉が指摘されてきた。AI事業者ガイドラインの別添も、教育で生成AIの出力をそのまま使うと、自分で考える力を育む機会が減る可能性を挙げている。",
     "whyWrong": [
-      "労働力不足は人手が足りないことで、AIはむしろその解決策として期待される。",
+      "労働力不足は人手が足りないことで、技能が失われる懸念とは別の問題。",
       null,
       "データの偏りは学習データの問題。",
-      "フィルターバブルは情報環境の問題。"
+      "フィルターバブルは、情報や価値観の偏りが強まり、本来得られるはずの選択肢が狭まる問題。"
     ],
     "memoryTip": "使わない技能は、なくなる。",
     "concepts": [
@@ -1177,9 +1177,17 @@
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "Shukla et al. (2025) De-skilling, Cognitive Offloading, and Misplaced Responsibilities: Potential Ironies of AI-Assisted Design（CHI EA 2025, arXiv:2503.03924）",
+        "url": "https://arxiv.org/abs/2503.03924"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-032",
@@ -1234,12 +1242,12 @@
       "労働力不足"
     ],
     "answer": 0,
-    "explanation": "故人の再現では、本人が生前に望んでいたか、遺族や関係者がどう受け止めるかといった、死者への敬意が論点になる。法律だけでは答えが決まらない価値の問題である。",
+    "explanation": "故人の再現では、本人が生前にどう考えていたか、遺族や関係者がどう受け止めるかといった、死者への敬意が論点になる。総務省の学術誌に載った論文は、AIで再現された歌手について、遺族の協力を得て制作されたにもかかわらず冒涜だという批判が出た例を挙げ、法的な権利処理とは別に、故人の再生に倫理的・感情的な違和感を抱く人が少なくないと指摘している。",
     "whyWrong": [
       null,
       "インクルージョン（包摂）は、情報弱者・技術弱者を生じさせず、より多くの人がAIの恩恵を受けられるよう配慮すること。故人の再現の論点ではない。",
-      "軍事利用は、兵器など軍事目的へのAIの利用をめぐる問題で、この事例の論点ではない。",
-      "労働力不足は雇用の話で、この事例の論点ではない。"
+      "軍事利用は、人の指示や入力なしに標的を見つけて攻撃する自律型の兵器などへのAIの利用をめぐる問題で、この事例の論点ではない。",
+      "労働力不足は人手が足りないことで、この事例の論点ではない。"
     ],
     "memoryTip": "再現「できる」と、再現して「よい」は別。",
     "concepts": [
@@ -1249,9 +1257,21 @@
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
+      },
+      {
+        "title": "福井健策「よみがえる故人たち―偉人アンドロイド・作家AIと肖像権、著作権、尊厳―」（総務省 学術雑誌『情報通信政策研究』第5巻第1号、寄稿論文）",
+        "url": "https://www.soumu.go.jp/main_content/000780364.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "UNODA \"Lethal Autonomous Weapon Systems (LAWS)\"",
+        "url": "https://disarmament.unoda.org/en/our-work/emerging-challenges/lethal-autonomous-weapon-systems"
       }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "G-10-034",
