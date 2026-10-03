@@ -1457,6 +1457,10 @@
       {
         "id": "C-04-045",
         "relation": "上位概念（入力から出力まで1つのネットワークで学習する）"
+      },
+      {
+        "id": "C-06-098",
+        "relation": "学習の材料"
       }
     ],
     "confusions": [
@@ -3893,6 +3897,40 @@
       {
         "title": "Levine et al. (2020) Offline Reinforcement Learning: Tutorial, Review, and Perspectives (arXiv:2005.01643)",
         "url": "https://arxiv.org/abs/2005.01643"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-06-098",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "title": "対訳コーパス（パラレルコーパス）",
+    "oneLine": "同じ内容を2つ（以上）の言語で書いた文書を集め、文ごとに「この文の訳はこれ」と対応付けたデータ。機械翻訳を学習させる材料になる。",
+    "why": "統計的機械翻訳やニューラル機械翻訳は、人が規則を書く代わりに、対訳コーパスの「原文と訳文の組」から訳し方を学ぶ。だから組が多いほど学べることが増える。代表例は、欧州議会の議事録から作った Europarl（21言語）や、国連の6つの公用語で書かれた国連パラレルコーパス。2つの文書から文の対応を取る作業を文アライメントという。英語と組になる言語ではデータが豊富だが、多くの言語では大きな対訳コーパスが無く、それが翻訳の質の差につながっている。足りないときは、訳先の言語の単言語のデータを逆向きに機械翻訳して組を作る逆翻訳（バックトランスレーション）で補う。",
+    "links": [
+      {
+        "id": "C-06-037",
+        "relation": "使われる場面（統計的・ニューラル機械翻訳はこれから学ぶ）"
+      },
+      {
+        "id": "C-07-015",
+        "relation": "上位概念（コーパスの一種）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-07-015",
+        "point": "コーパスは文章を大量に集めたデータ全般。対訳コーパスは、そのうち2つの言語の文を訳どうしで組にしたもの。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 13: Machine Translation（13.2 parallel corpus／sentence alignment、backtranslation）",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/13.pdf"
       }
     ],
     "status": "verified"
