@@ -1,3 +1,6 @@
 # 公式の資料（著作物）は公開リポジトリに載せない。取得元URLは要件定義書に記載
 docs/sources/*.pdf
 node_modules/
+# 市販本の目次・索引の書き起こしと、それとの照合結果。本の見出し語の一覧なので公開リポジトリに載せない（2026-10-03）
+docs/sources/book-index_g.md
+docs/sources/book-gap_g.md
