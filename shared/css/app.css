@@ -20,8 +20,10 @@
   --radius: 12px;
   --nav-h: 64px;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
+/* 配色は設定（明るい／暗い／スマホに合わせる）を app.js が data-theme="light"|"dark" に解決して付ける */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] {
+    color-scheme: dark;
     --bg: #0f131a;
     --surface: #1a202b;
     --text: #e9ecf3;
@@ -37,7 +39,6 @@
     --warn: #f3c562;
     --warn-bg: #3a2e0f;
     --shadow: none;
-  }
 }
 
 * { box-sizing: border-box; }

@@ -30,7 +30,7 @@ function applyTheme(config) {
   const css = [];
   const vars = (o) => Object.entries({ '--accent': o.accent, '--on-accent': o.onAccent, '--accent-soft': o.accentSoft }).filter(([, v]) => v).map(([k, v]) => k + ':' + v + ';').join('');
   if (vars(l)) css.push(':root{' + vars(l) + '}');
-  if (vars(d)) css.push('@media (prefers-color-scheme: dark){:root{' + vars(d) + '}}');
+  if (vars(d)) css.push(':root[data-theme="dark"]{' + vars(d) + '}');
   if (css.length) document.head.appendChild(h('style', { id: 'theme' }, css.join('\n')));
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta && l.accent) meta.setAttribute('content', l.accent);
@@ -112,6 +112,7 @@ export async function start() {
     resetAll() {
       storage.clear();
       app.state = defaultState();
+      app.applyScheme();
       app.pending = [];
       app.lastLevel = 1;
       app.session = null;
@@ -148,6 +149,16 @@ export async function start() {
     ['exam', 'more', () => renderExam(app), true],
     ['play', 'home', () => renderPlay(app), true],
   ];
+
+  // 配色。設定（light / dark / auto）を data-theme="light"|"dark" に解決して付ける。auto はスマホの設定の変化にも追う
+  const darkMq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  app.applyScheme = () => {
+    const pref = app.state.settings.theme;
+    const dark = pref === 'dark' || (pref === 'auto' && !!darkMq && darkMq.matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  };
+  app.applyScheme();
+  if (darkMq && darkMq.addEventListener) darkMq.addEventListener('change', app.applyScheme);
 
   let cleanup = null;
   function render() {

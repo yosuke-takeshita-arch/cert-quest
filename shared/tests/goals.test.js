@@ -89,6 +89,14 @@ test('1日の目標: 日をまたぐと数え直し、翌日はまた1回お祝�
   assert.equal(awardDailyGoal(s, '2026-10-04'), false);
 });
 
+test('保存データ: 配色の設定は初期が light。dark / auto は残り、不正な値と古い記録は light になる', () => {
+  assert.equal(defaultState().settings.theme, 'light');
+  assert.equal(mergeState({ settings: { sound: true } }).settings.theme, 'light');
+  assert.equal(mergeState({ settings: { theme: 'dark' } }).settings.theme, 'dark');
+  assert.equal(mergeState({ settings: { theme: 'auto' } }).settings.theme, 'auto');
+  assert.equal(mergeState({ settings: { theme: 'blue' } }).settings.theme, 'light');
+});
+
 test('保存データ: 古い記録（目標の項目なし）を読んでも初期値で埋まる。不正な値も直る', () => {
   const old = { v: 1, xp: 120, totals: { answered: 12, correct: 9 }, settings: { sound: true } };
   const m = mergeState(old);

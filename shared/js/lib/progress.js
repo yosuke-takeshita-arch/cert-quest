@@ -15,10 +15,13 @@ export function defaultState() {
     badges: {},
     exams: [],
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL },
+    settings: { sound: false, vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light' },
     goalAwarded: null,
   };
 }
+
+/** 画面の配色の設定値。light＝明るい／dark＝暗い／auto＝スマホに合わせる。初期は light。 */
+export const THEMES = ['light', 'dark', 'auto'];
 
 /** 読んだ保存データを defaultState の形に合わせる（欠けた項目を補う）。 */
 export function mergeState(saved) {
@@ -30,6 +33,7 @@ export function mergeState(saved) {
   if (!Array.isArray(o.exams)) o.exams = [];
   if (!Number.isFinite(o.xp)) o.xp = 0;
   o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
+  if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
   if (typeof o.goalAwarded !== 'string') o.goalAwarded = null;
   return o;
 }

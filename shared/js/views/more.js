@@ -2,6 +2,7 @@
 import { h, externalLink, icon } from '../ui.js';
 import { badgeDefs, badgeProgress } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
+import { THEMES } from '../lib/progress.js';
 import { dateKey } from '../lib/srs.js';
 
 export function renderMore(app) {
@@ -63,6 +64,16 @@ export function renderSettings(app) {
   root.appendChild(h('div', { class: 'card' },
     toggle('効果音', '正解・レベルアップで鳴らします（初期はオフ）', 'sound'),
     vib ? toggle('振動', '正解・不正解で短く震えます', 'vibrate') : h('p', { class: 'small muted', text: 'この端末は振動に対応していません。' })));
+  const THEME_LABEL = { light: '明るい', dark: '暗い', auto: 'スマホに合わせる' };
+  const themeSel = h('select', { id: 'set-theme', class: 'select' }, THEMES.map((t) => h('option', { value: t, text: THEME_LABEL[t] })));
+  themeSel.value = s.theme;
+  themeSel.addEventListener('change', () => {
+    s.theme = themeSel.value;
+    app.commit();
+    app.applyScheme();
+  });
+  root.appendChild(h('div', { class: 'card' }, h('h2', { text: '画面の明るさ' }),
+    h('label', { class: 'row-btn', for: 'set-theme' }, h('span', { class: 'row-main' }, h('strong', { text: '配色' }), h('span', { class: 'small muted', text: '初期は「明るい」。「スマホに合わせる」はスマホのダークモードの設定に従います' })), themeSel)));
   const goalNow = normalizeDailyGoal(s.dailyGoal);
   const goalChoices = DAILY_GOAL_CHOICES.includes(goalNow) ? DAILY_GOAL_CHOICES : [...DAILY_GOAL_CHOICES, goalNow].sort((a, b) => a - b);
   const sel = h('select', { id: 'set-dailyGoal', class: 'select' }, goalChoices.map((n) => h('option', { value: String(n), text: n + '問' })));
