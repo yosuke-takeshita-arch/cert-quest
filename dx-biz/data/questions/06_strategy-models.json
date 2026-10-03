@@ -139,7 +139,7 @@
       "イネーブラーは、全ての段階を自社で抱え込み、外部の企業には一切機能を提供しない戦略である"
     ],
     "answer": 3,
-    "explanation": "イネーブラーは、他の企業が事業を行うために必要な機能（決済・物流・システムなど）を提供して、それを可能にする役割で稼ぐ戦略。外部に機能を提供するのが本質で、「一切提供しない」は逆。",
+    "explanation": "イネーブラーは、パートナーやオーケストレーターのための隠れたサプライヤーやホワイトラベル製品の提供者で、通常は自分の顧客との接点を持たずB2Bの事業に集中する（金融庁の委託調査報告書に収められたBCGの資料）。外部の企業に機能を提供するのが本質で、「一切提供しない」は逆。オーケストレーターは顧客とのインターフェースを持ち多数の製品やサービスをつなぐ存在（同資料）、特定の層に集中した企業がバリューチェーンの主導権を奪いうることはBCGの論考（1998年）が説明している。",
     "whyWrong": [
       "垂直統合の説明として適切。",
       "レイヤーマスターの説明として適切。",
@@ -149,9 +149,13 @@
     "memoryTip": "垂直統合＝全部持つ、レイヤーマスター＝1層を握る、オーケストレーター＝束ねる、イネーブラー＝支える。",
     "concepts": ["DC-06-004", "DC-06-001", "DC-06-002", "DC-06-003"],
     "sources": [
+      { "title": "金融庁「諸外国における保険会社のグループガバナンス等の調査 最終報告書 公開版」（令和3年3月31日）海外企業の事業展開戦略の最新動向 エコシステム", "url": "https://www.fsa.go.jp/common/about/research/20210517/report.pdf" },
+      { "title": "Boston Consulting Group「The Deconstruction of Value Chains」（BCG Perspectives, 1998年）", "url": "https://www.bcg.com/publications/1998/alliances-joint-ventures-business-unit-strategy-deconstruction-of-value-chains" },
+      { "title": "総務省「平成24年版 情報通信白書」ICT産業の構造とエコシステムの変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h24/html/nc122210.html" },
+      { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "D-06-007",
@@ -265,7 +269,7 @@
     "stem": "食料品店（グローサリー）とレストランを組み合わせ、店で売っている食材をその場で調理して食べられるようにした業態を何というか。",
     "choices": ["グローサラント", "サードプレイス", "ドミナント", "代行ビジネス"],
     "answer": 0,
-    "explanation": "グローサリーとレストランを組み合わせた言葉がグローサラント。食事の体験が食材の購入につながり、売れ残りそうな食材を料理に使えば食品ロスも減らせる。",
+    "explanation": "食料品店（grocery）とレストラン（restaurant）を組み合わせた造語がグローサラント。食料品店で売られている食材を使ったレストラン並みの料理を店内で楽しめる業態で、客が食べてみてから安心して食材を買えるので販売促進にもなる（Squareの解説）。",
     "whyWrong": [
       null,
       "サードプレイスは、自宅でも職場でもない第3の居場所。",
@@ -275,9 +279,12 @@
     "memoryTip": "グロサリー＋レストラン＝グローサラント。",
     "concepts": ["DC-06-024"],
     "sources": [
-      { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
+      { "title": "Square「スーパーとレストランの融合、グローサラントとは」", "url": "https://squareup.com/jp/ja/townsquare/what-is-the-grocerant" },
+      { "title": "内閣府「令和7年度 高齢者の生活と意識に関する国際比較調査」分析「家・職場に続く高齢者の『サードプレイス』の実態」", "url": "https://www8.cao.go.jp/kourei/ishiki/r07/zentai/pdf/chapter4_2.pdf" },
+      { "title": "公正取引委員会「コンビニエンスストア本部と加盟店との取引等に関する実態調査報告書（概要）」（令和2年9月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/sep/kitori0902/200902_04-2.pdf" },
+      { "title": "総務省「平成29年版 情報通信白書」シェアリング・エコノミー（C to Cサービス）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112220.html" }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "D-06-012",

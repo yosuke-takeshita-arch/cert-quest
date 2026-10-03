@@ -431,20 +431,21 @@
     "id": "DC-02-023",
     "syllabus": ["DX基礎領域", "デジタル技術", "生成AIと新しい潮流"],
     "title": "AEO（Answer／AI Engine Optimization）",
-    "oneLine": "音声アシスタントや生成AIなどの「答えを直接返す」仕組みに、自社の情報が答えとして選ばれやすくなるよう、質問と答えの形で分かりやすく情報を整えること。",
-    "why": "利用者がリンクをたどらず、AIや検索の答えだけで用を済ませる場面が増えたことが背景とされる。ただしAEOは業界の呼び名で、公的な定義や規格は無い。Googleは、AIによる概要やAIモードに表示されるための追加の要件や特別な最適化は無く、SEOのベストプラクティスが引き続き有効だとしている（Google 検索セントラル）。GEOとは重なる部分が大きい。",
+    "oneLine": "AIのアシスタントやエージェントが、自社の情報を見つけ、理解し、答えとして示しやすくなるように、コンテンツや商品情報を整えること。",
+    "why": "マイクロソフト広告の手引き（2026年1月）は、AEO（Answer/Agentic Engine Optimization）を、CopilotやChatGPTのようなAIエージェントやアシスタントが答えを見つけ、理解し、効果的に示せるようにコンテンツを最適化することとしている。また、SEOがクリックを集めることに力点を置いていたのに対し、AEOは充実した最新のデータで分かりやすさ（明確さ）を生むことに力点を置くとしている。公的な定義や規格は無く、同社が現在公開している版の手引きはGEOの語だけを使っている。Googleは、AIによる概要やAIモードに表示されるための追加の要件や特別な最適化は無く、SEOのベストプラクティスが引き続き有効だとしている（Google 検索セントラル）。",
     "links": [
       { "id": "DC-02-022", "relation": "対比" },
       { "id": "DC-02-013", "relation": "背景" }
     ],
     "confusions": [
-      { "id": "DC-02-022", "point": "どちらもAI時代の検索対策。AEOは「答え」として選ばれることに、GEOは生成AIの回答で引用されることに力点がある、と整理されることが多い。" }
+      { "id": "DC-02-022", "point": "マイクロソフトの手引きは、AEOはAIに正しく理解されるための「分かりやすさ」、GEOは権威ある発信でAIに信頼されるための「信頼性」に力点がある、と整理している。" }
     ],
     "sources": [
       { "title": "ネクストエデュケーションシンク「DXビジネス検定 シラバス改訂について」（2026年2月）", "url": "https://www.nextet.net/netkentei/dxbiz-syllabus-update/" },
+      { "title": "Microsoft Advertising「From Discovery to Influence: A Guide to AEO and GEO」（2026年1月）", "url": "https://about.ads.microsoft.com/content/dam/sites/msa-about/global/common/content-lib/pdf/from-discovery-to-influence-a-guide-to-aeo-and-geo.pdf" },
       { "title": "Google 検索セントラル「AI 機能とウェブサイト」", "url": "https://developers.google.com/search/docs/appearance/ai-features?hl=ja" }
     ],
-    "status": "unverified"
+    "status": "verified"
   },
   {
     "id": "DC-02-024",
