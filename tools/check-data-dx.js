@@ -164,6 +164,7 @@ for (const { file: f, kind, data, syl } of loaded) {
         if (!c || !(isStr(c.id) || isStr(c.title))) err(f, id, `confusions[${i}] に id も title も無い`);
         if (!c || !isStr(c.point)) err(f, id, `confusions[${i}].point が無い`);
         if (c && isStr(c.id) && !conceptIndex.has(c.id)) (strictLinks ? err : warn)(f, id, `confusions[${i}].id ${c.id} が見つからない`);
+        if (c && c.id === id) err(f, id, 'confusions が自分自身を指している');
       });
     }
     { const m = /^(?:D|DC)-(\d{2})-/.exec(id); const fm = /^(\d{2})_/.exec(path.basename(f)); if (m && fm && m[1] !== fm[1]) err(f, id, `id の章番号 ${m[1]} がファイル名の章 ${fm[1]} と違う`); }

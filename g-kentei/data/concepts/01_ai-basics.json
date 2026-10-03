@@ -454,7 +454,7 @@
     ],
     "title": "強いAIと弱いAI",
     "oneLine": "強いAI：適切にプログラムされたコンピュータは本当に心を持ち理解する、という立場。弱いAI：コンピュータは心のふるまいを模擬する道具として役に立つ、という控えめな立場。サールが区別した。",
-    "why": "「AIは本当に考えているのか」という議論を整理するための区別。サールは中国語の部屋で強いAIを否定したが、弱いAIは否定していない。",
+    "why": "「AIは本当に考えているのか」という議論を整理するための区別。サールは中国語の部屋で強いAIを否定したが、弱いAIは否定していない。似た対に「汎用型AIと特化型AI」がある。こちらは心の有無ではなく扱える課題の幅の区別で、特化型AIは画像認識や囲碁のように決まった課題だけをこなし、汎用型AIは人間のようにさまざまな課題に対応する。AI100報告書（2016）は、現在のAIはどれも特定の課題に特化して作られており、「汎用」のAIはまだ無いとしている。",
     "links": [
       {
         "id": "C-01-011",
@@ -469,6 +469,10 @@
       {
         "id": "C-01-018",
         "point": "強いAIは「心を持つか」の哲学的な立場。シンギュラリティは「人間を超える知能が出現する時点」の話で、別の論点。"
+      },
+      {
+        "title": "汎用型AIと特化型AI",
+        "point": "汎用型／特化型は「どれだけ幅広い課題をこなせるか」の区別。強いAI／弱いAIは「本当に心や理解を持つか」の区別。特化型AIでも強いAIの議論とは関係しない。"
       }
     ],
     "sources": [
@@ -479,6 +483,10 @@
       {
         "title": "Searle (1980) Minds, brains, and programs. Behavioral and Brain Sciences",
         "url": "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A"
+      },
+      {
+        "title": "Stanford University, One Hundred Year Study on Artificial Intelligence (AI100) 2016 Report: Overview",
+        "url": "https://ai100.stanford.edu/2016-report/overview"
       }
     ],
     "status": "verified"
@@ -576,7 +584,7 @@
     ],
     "title": "フレーム問題",
     "oneLine": "行動するとき、無数にある事柄の中から「今関係のあること」だけを選び出して考えることがAIには難しい、という問題。マッカーシーとヘイズが1969年に提起。",
-    "why": "処理能力が有限なAIは、行動の結果として「変わらないこと」まで全部確かめていたら動けなくなる。現実の問題に対処するうえでの根本的な難しさとして議論される。",
+    "why": "処理能力が有限なAIは、行動の結果として「変わらないこと」まで全部確かめていたら動けなくなる。現実の問題に対処するうえでの根本的な難しさとして議論される。哲学者デネット（1984）の「爆弾とロボット」の例え話が有名。時限爆弾のある部屋から予備バッテリーを台車ごと引き出したロボットR1は、爆弾も同じ台車に載っていたので一緒に持ち出してしまった。行動の副作用まで推論するよう改良したR1D1は、台車を引いても壁の色は変わらない、といった結論を導いている間に爆発に遭った。関係ない結論を見分けて無視するよう改良したR2D1は、無視すべき事柄を一つずつ判定し続けて、部屋の前から動けなかった。",
     "links": [
       {
         "id": "C-01-016",
@@ -605,6 +613,10 @@
       {
         "title": "Stanford Encyclopedia of Philosophy: The Frame Problem",
         "url": "https://plato.stanford.edu/entries/frame-problem/"
+      },
+      {
+        "title": "Dennett (1984) Cognitive Wheels: The Frame Problem of AI（Tufts Digital Library, Daniel C. Dennett papers）",
+        "url": "https://dl.tufts.edu/concern/pdfs/7d279568g"
       }
     ],
     "status": "verified"
@@ -702,7 +714,7 @@
     ],
     "title": "シンギュラリティ",
     "oneLine": "技術的特異点。人間を超える知能が生まれ、そこから先の変化を人間が予測できなくなる転換点。ヴァーナー・ヴィンジが1993年の論文で論じた。",
-    "why": "汎用的な人工知能の実現可能性と社会への影響を考える議論の中心にある概念。人間より賢い知能が自分よりさらに賢い知能を作る、という連鎖が想定されている。",
+    "why": "汎用的な人工知能の実現可能性と社会への影響を考える議論の中心にある概念。人間より賢い知能が自分よりさらに賢い知能を作る、という連鎖が想定されている。2045年という年はレイ・カーツワイルの予測による（2045年問題）。カーツワイルは、技術の進歩は一定の割合で積み上がるのではなく指数関数的に加速するという「収穫加速の法則」を唱え、集積回路のトランジスタ数が一定期間ごとに倍になるというムーアの法則を、その一例（計算機の進歩の5番目のパラダイム）と位置づけた。ムーアの法則のもとは、ゴードン・ムーアが1965年の論文で、最も安く作れる集積回路の部品数がおよそ毎年2倍のペースで増えてきたと指摘したこと。",
     "links": [
       {
         "id": "C-01-012",
@@ -723,6 +735,18 @@
       {
         "title": "Vinge (1993) The coming technological singularity (NASA Technical Reports Server)",
         "url": "https://ntrs.nasa.gov/citations/19940022856"
+      },
+      {
+        "title": "総務省「インテリジェント化が加速するICTの未来像に関する研究会」第1回 配布資料（資料4 参考資料集「シンギュラリティ（特異点）について」、平成27年2月6日）",
+        "url": "https://www.soumu.go.jp/main_content/000340305.pdf"
+      },
+      {
+        "title": "Kurzweil (2001) The Law of Accelerating Returns（著者の公式サイト writingsbyraykurzweil.com）",
+        "url": "https://www.writingsbyraykurzweil.com/the-law-of-accelerating-returns"
+      },
+      {
+        "title": "Moore (1965) Cramming more components onto integrated circuits. Electronics 38(8)（Intel 公開の原文）",
+        "url": "https://download.intel.com/newsroom/2023/manufacturing/moores-law-electronics.pdf"
       }
     ],
     "status": "verified"

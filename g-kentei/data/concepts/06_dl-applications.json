@@ -8,7 +8,7 @@
     ],
     "title": "画像認識タスクの種類（物体識別・物体検出・セグメンテーション・姿勢推定）",
     "oneLine": "画像に何が写っているかをラベルで答える＝物体識別（画像分類）、物体の種類と位置を矩形（バウンディングボックス）で答える＝物体検出、画素ごとにクラスを付ける＝セグメンテーション、人の関節点（キーポイント）の位置を推定する＝姿勢推定。",
-    "why": "同じ「画像を見るAI」でも出力の形が違い、使うモデルも評価方法も変わる。問題文の「何を出力するか」を読めばモデル名の選択肢を絞れる。一般物体認識は、制約のない実世界の画像に写った物体を、計算機が一般的な名称で認識することを指す。",
+    "why": "同じ「画像を見るAI」でも出力の形が違い、使うモデルも評価方法も変わる。問題文の「何を出力するか」を読めばモデル名の選択肢を絞れる。一般物体認識は、制約のない実世界の画像に写った物体を、計算機が一般的な名称で認識することを指す。柳井（2007）は、実世界の画像を対象にした物体認識を、データベースに登録した既知の物体を画像から見つけ出す同定（identification）と、画像中の未知の物体をそれが属する既知のクラスに分ける分類（classification）の2種類に分けている。",
     "links": [
       {
         "id": "C-06-014",
@@ -142,7 +142,7 @@
     ],
     "title": "GoogLeNet（Inception）",
     "oneLine": "複数サイズの畳み込みを並列に束ねたInceptionモジュールを重ね、計算量を抑えたまま深さと幅を増やした22層のCNN（ILSVRC 2014）。",
-    "why": "深くするだけでなく「計算資源をどう配分するか」を設計に入れた点が新しい。後の軽量化・効率重視のモデル設計につながる。",
+    "why": "深くするだけでなく「計算資源をどう配分するか」を設計に入れた点が新しい。後の軽量化・効率重視のモデル設計につながる。学習を助けるため、途中の Inception (4a)・(4d) の出力に小さな分類器（補助分類器、Auxiliary Classifier）を付けた。学習中はその損失を0.3倍して全体の損失に加え、下の層の識別力を高め、逆伝播で届く勾配の信号を増やし、正則化の効果も狙った。推論のときは補助分類器を外す。",
     "links": [
       {
         "id": "C-06-003",
@@ -564,7 +564,7 @@
     ],
     "title": "Fast R-CNN / Faster R-CNN",
     "oneLine": "Fast R-CNNは候補領域の分類を高速化したR-CNN系の検出器。Faster R-CNNは候補領域の提案もRPN（Region Proposal Network）としてネットワーク内に取り込み、畳み込み特徴を共有してほぼ無償で候補を出せるようにした。",
-    "why": "候補領域の生成が速度のボトルネックだったため、それ自体をニューラルネットで学習させた。",
+    "why": "候補領域の生成が速度のボトルネックだったため、それ自体をニューラルネットで学習させた。R-CNN 系は、物体がありそうな候補領域（Region Proposal）を先に出し、候補の領域（RoI：Region of Interest）ごとに分類と枠の補正をする2段階型。Fast R-CNN までは候補を Selective Search（手作りの低レベル特徴で小領域を貪欲に統合していく方法。CPU で1枚約2秒）で出しており、ここが速度のボトルネックだった。Fast R-CNN の RoI プーリングは、大きさの違う候補領域を H×W（例：7×7）の格子に分けてそれぞれ最大値プーリングし、決まった大きさの特徴に変える。Faster R-CNN の RPN（Region Proposal Network）は、候補の計算を1枚約10ミリ秒にした。",
     "links": [
       {
         "id": "C-06-014",
@@ -902,7 +902,7 @@
     ],
     "title": "Mask R-CNN",
     "oneLine": "Faster R-CNNに、物体ごとのマスクを予測する分岐を並列に追加したインスタンスセグメンテーションのモデル。同じ枠組みで人物のキーポイント（姿勢）推定にも拡張できる。",
-    "why": "検出（どこに何があるか）とマスク（その物体の輪郭）を1つのネットワークでほぼ追加コストなしに同時に出せる。",
+    "why": "検出（どこに何があるか）とマスク（その物体の輪郭）を1つのネットワークでほぼ追加コストなしに同時に出せる。Faster R-CNN の RoI プーリングは座標を粗く丸める（量子化する）ため、入力と特徴の位置が少しずれ、画素単位のマスクでは問題になる。Mask R-CNN は丸めを一切せず、各点の値を周りの格子点から双線形補間で求める RoIAlign に替え、マスクの精度を大きく上げた。",
     "links": [
       {
         "id": "C-06-015",
@@ -940,7 +940,7 @@
     ],
     "title": "姿勢推定とOpenPose",
     "oneLine": "姿勢推定は人の関節点（キーポイント）の位置を推定するタスク。OpenPoseは体の部位と個人の対応をPart Affinity Fields（PAF）で学習し、画像中の人数によらずリアルタイムで複数人の2次元姿勢をボトムアップに推定する。",
-    "why": "スポーツのフォーム分析や作業動作の解析、見守りなど、人の動きを数値にする用途で使われる。",
+    "why": "スポーツのフォーム分析や作業動作の解析、見守りなど、人の動きを数値にする用途で使われる。複数人の推定には、先に人を検出して1人ずつ姿勢を推定するトップダウン型と、先に画像全体から部位を見つけて人ごとに組み立てるボトムアップ型がある。トップダウン型は、人の検出に失敗するとその人の姿勢は推定できず、計算時間も人数に比例して増える。",
     "links": [
       {
         "id": "C-06-001",
@@ -987,6 +987,14 @@
       {
         "id": "C-06-033",
         "relation": "解決策"
+      },
+      {
+        "id": "C-06-094",
+        "relation": "部分（前処理）"
+      },
+      {
+        "id": "C-06-095",
+        "relation": "部分（解析の段階）"
       }
     ],
     "confusions": [
@@ -1040,7 +1048,7 @@
     ],
     "title": "ワンホットベクトル・BoW・TF-IDF・n-gram",
     "oneLine": "ワンホットベクトル＝語彙数の次元のうち該当語の位置だけ1。BoW（Bag-of-Words）＝文書を単語の出現回数で表し語順は捨てる。TF-IDF＝文書内でよく出て、他の文書ではあまり出ない語ほど重く評価する。n-gram＝連続するn個の単語（文字）の並び。",
-    "why": "単語を数値にしないと機械学習に入れられない。ただしワンホットやBoWは単語同士の意味の近さを表せない（どの2語も直交する）。この弱点が分散表現につながる。",
+    "why": "単語を数値にしないと機械学習に入れられない。ただしワンホットやBoWは単語同士の意味の近さを表せない（どの2語も直交する）。この弱点が分散表現につながる。ワンホットのように1つの要素が1つの単語に当たる表し方を局所表現と呼び、どの2つの単語も同じ距離になるので似ているかを表せない。文書や単語を、出現回数などを並べたベクトルとして扱う考え方をベクトル空間モデルといい、文書×単語の行列や、単語×文脈の行列を使う。",
     "links": [
       {
         "id": "C-06-028",
@@ -1069,6 +1077,14 @@
       {
         "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 3: N-gram Language Models",
         "url": "https://web.stanford.edu/~jurafsky/slp3/3.pdf"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 15 Representation Learning",
+        "url": "https://www.deeplearningbook.org/contents/representation.html"
+      },
+      {
+        "title": "Turney & Pantel (2010) From Frequency to Meaning: Vector Space Models of Semantics. JAIR (arXiv:1003.1141)",
+        "url": "https://arxiv.org/abs/1003.1141"
       }
     ],
     "status": "verified"
@@ -1082,7 +1098,7 @@
     ],
     "title": "分散表現（単語埋め込み）",
     "oneLine": "単語を数百次元程度の連続値ベクトルで表し、意味や使われ方が似た単語ほど近いベクトルになるようにした表現。word2vecが代表例。",
-    "why": "ワンホット表現では表せない「単語の意味の近さ」を計算できるようになり、下流タスクの精度が上がった。",
+    "why": "ワンホット表現では表せない「単語の意味の近さ」を計算できるようになり、下流タスクの精度が上がった。単語の意味を周りに出てくる語（文脈）で表す考え方には2系統ある。カウントベースの手法は、単語と文脈の共起回数を数えた行列を重み付けや次元削減で変換してベクトルにする。推論ベースの手法は、word2vec のように周りの単語を予測するようにニューラルネットを学習してベクトルを得る。Baroni ら（2014）の系統的な比較では、推論ベースが多くの課題でカウントベースを上回った。",
     "links": [
       {
         "id": "C-06-027",
@@ -1107,6 +1123,14 @@
       {
         "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
         "url": "https://arxiv.org/abs/1301.3781"
+      },
+      {
+        "title": "Baroni, Dinu & Kruszewski (2014) Don't count, predict! A systematic comparison of context-counting vs. context-predicting semantic vectors (ACL)",
+        "url": "https://aclanthology.org/P14-1023.pdf"
+      },
+      {
+        "title": "Turney & Pantel (2010) From Frequency to Meaning: Vector Space Models of Semantics. JAIR (arXiv:1003.1141)",
+        "url": "https://arxiv.org/abs/1003.1141"
       }
     ],
     "status": "verified"
@@ -1120,7 +1144,7 @@
     ],
     "title": "word2vec（CBOW・スキップグラム）",
     "oneLine": "大量のテキストから単語の分散表現を高速に学習する手法。CBOWは周囲の単語から中心の単語を予測し、スキップグラムは中心の単語から周囲の単語を予測する。",
-    "why": "16億語規模のデータでも1日足らずで高品質な単語ベクトルを学習できることを示し、分散表現を実用にした。",
+    "why": "16億語規模のデータでも1日足らずで高品質な単語ベクトルを学習できることを示し、分散表現を実用にした。予測の中心に置く単語を中心語、その前後の決まった幅にある単語を周辺語と呼ぶ。同じ考え方を文や文書に広げたのが Paragraph Vector（Le & Mikolov 2014。ライブラリ gensim の実装名から Doc2Vec とも呼ばれる）で、長さの違う文や文書を決まった長さの密なベクトルで表し、語順を捨てる BoW の弱点を補う。",
     "links": [
       {
         "id": "C-06-028",
@@ -1145,6 +1169,14 @@
       {
         "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
         "url": "https://arxiv.org/abs/1301.3781"
+      },
+      {
+        "title": "Le & Mikolov (2014) Distributed Representations of Sentences and Documents (arXiv:1405.4053)",
+        "url": "https://arxiv.org/abs/1405.4053"
+      },
+      {
+        "title": "Gensim Documentation: models.doc2vec – Doc2vec paragraph embeddings",
+        "url": "https://radimrehurek.com/gensim/models/doc2vec.html"
       }
     ],
     "status": "verified"
@@ -1349,6 +1381,10 @@
       {
         "id": "C-06-082",
         "relation": "部分"
+      },
+      {
+        "id": "C-06-096",
+        "relation": "関連（使い方の工夫）"
       }
     ],
     "confusions": [
@@ -1408,7 +1444,7 @@
     ],
     "title": "機械翻訳の変遷（ルールベース→統計的→ニューラル）",
     "oneLine": "ルールベース機械翻訳は人が書いた文法・辞書の規則で訳す。統計的機械翻訳は対訳コーパスから訳語や語順の確率を学習して訳す。その後、Seq2SeqやTransformerによるニューラル機械翻訳が主流になった。",
-    "why": "規則を書き尽くせない問題を、データから確率で学ぶ方式で乗り越え、さらにニューラルネットで文全体を一度に扱えるようになった。",
+    "why": "規則を書き尽くせない問題を、データから確率で学ぶ方式で乗り越え、さらにニューラルネットで文全体を一度に扱えるようになった。ニューラル機械翻訳（NMT）は、翻訳を入力から出力まで1つのネットワークで学習する方式で、従来のフレーズベースの統計的機械翻訳の多くの弱点を克服できる可能性がある一方、計算が重く、珍しい単語に弱いとされた。Google の GNMT（2016）は、8層のエンコーダと8層のデコーダからなる LSTM に残差接続と Attention を組み合わせ、単語を部分語（wordpiece）に分けて珍しい単語に対応し、推論では低精度の演算で速くした。",
     "links": [
       {
         "id": "C-06-032",
@@ -1417,6 +1453,10 @@
       {
         "id": "C-06-026",
         "relation": "部分"
+      },
+      {
+        "id": "C-04-045",
+        "relation": "上位概念（入力から出力まで1つのネットワークで学習する）"
       }
     ],
     "confusions": [
@@ -1441,6 +1481,10 @@
       {
         "title": "Sutskever, Vinyals & Le (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)",
         "url": "https://arxiv.org/abs/1409.3215"
+      },
+      {
+        "title": "Wu et al. (2016) Google's Neural Machine Translation System (arXiv:1609.08144)",
+        "url": "https://arxiv.org/abs/1609.08144"
       }
     ],
     "status": "verified"
@@ -1488,7 +1532,7 @@
     ],
     "title": "A-D変換とPCM（パルス符号変調）",
     "oneLine": "音声（連続的なアナログ信号）を、一定間隔で値を取る標本化、値を段階に丸める量子化、2進数にする符号化の順でデジタル化する方式。",
-    "why": "コンピュータで音声を扱う最初の段階。標本化の間隔（サンプリング周波数）が粗いと高い音が失われる。",
+    "why": "コンピュータで音声を扱う最初の段階。標本化の間隔（サンプリング周波数）が粗いと高い音が失われる。1周期の波をとらえるには最低2つの標本が要るので、記録できる最も高い周波数はサンプリング周波数の半分になる（ナイキスト周波数）。人の音声の情報の多くは10,000 Hz より下にあるので、余さず記録するには 20,000 Hz ほどのサンプリング周波数が要る。",
     "links": [
       {
         "id": "C-06-040",
@@ -1648,7 +1692,7 @@
     ],
     "title": "隠れマルコフモデル（HMM）による音声認識",
     "oneLine": "観測できない状態（音素など）が確率的に移り変わり、各状態から音声の特徴量が確率的に出てくる、とみなすモデル。ディープラーニング以前の音声認識で広く使われ、ニューラルネットと組み合わせたハイブリッド方式もある。",
-    "why": "音声は長さが伸び縮みするため、時間方向のずれを確率で吸収できるHMMが向いていた。",
+    "why": "音声は長さが伸び縮みするため、時間方向のずれを確率で吸収できるHMMが向いていた。音声認識は、音声の特徴量が音素などのどの単位にどれだけ当てはまるかを表す音響モデルと、単語の並びのもっともらしさを表す言語モデルを組み合わせる。従来は HMM で時間の伸び縮みを扱い、HMM の各状態にフレームがどれだけ当てはまるかを混合ガウスモデル（GMM）で求めていた。これを、数フレーム分の特徴量を入力して HMM の状態の事後確率を出す DNN に置き換えたのが DNN-HMM（ハイブリッド方式）で、多くの評価で GMM を上回った（Hinton ら 2012）。",
     "links": [
       {
         "id": "C-06-044",
@@ -1657,6 +1701,10 @@
       {
         "id": "C-06-041",
         "relation": "部分"
+      },
+      {
+        "id": "C-04-045",
+        "relation": "対比（工程に分けず1つのネットワークで学習する）"
       }
     ],
     "confusions": [
@@ -1677,6 +1725,10 @@
       {
         "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Appendix A: Hidden Markov Models",
         "url": "https://web.stanford.edu/~jurafsky/slp3/A.pdf"
+      },
+      {
+        "title": "Hinton et al. (2012) Deep Neural Networks for Acoustic Modeling in Speech Recognition. IEEE Signal Processing Magazine（著者公開版）",
+        "url": "https://www.cs.toronto.edu/~hinton/absps/DNN-2012-proof.pdf"
       }
     ],
     "status": "verified"
@@ -1724,7 +1776,7 @@
     ],
     "title": "WaveNet",
     "oneLine": "音声の波形（生の音声サンプル）を、それまでのサンプルを条件として1サンプルずつ予測する自己回帰型の生成モデル。音声合成で、人が聞いて従来方式より自然と評価された。",
-    "why": "従来の音声合成（素片をつなぐ方式やパラメトリック方式）より自然な音声を作れる。話者を条件として切り替えたり、音楽を生成したりもできる。",
+    "why": "従来の音声合成（素片をつなぐ方式やパラメトリック方式）より自然な音声を作れる。話者を条件として切り替えたり、音楽を生成したりもできる。従来の音声合成には、録音した音声の素片（単位）を選んでつなぐ波形接続型（concatenative。例に基づく方式）と、統計的なモデルを使うパラメトリック型（モデルに基づく方式）があり、人による評価で WaveNet は両方より自然とされた。長い時間の依存を扱うため、未来のサンプルを参照しない Causal Convolution と、入力を一定の間隔で飛ばして参照する Dilated Convolution を組み合わせ（Dilated Causal Convolution）、受容野を大きく広げた。",
     "links": [
       {
         "id": "C-06-046",
@@ -1733,6 +1785,10 @@
       {
         "id": "C-06-069",
         "relation": "部分"
+      },
+      {
+        "id": "C-05-010",
+        "relation": "部分（Dilated Convolution）"
       }
     ],
     "confusions": [
@@ -1745,6 +1801,10 @@
       {
         "title": "van den Oord et al. (2016) WaveNet (arXiv:1609.03499)",
         "url": "https://arxiv.org/abs/1609.03499"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 17: Text-to-Speech",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/17.pdf"
       }
     ],
     "status": "verified"
@@ -1812,7 +1872,7 @@
     ],
     "title": "DQN（Deep Q-Network）",
     "oneLine": "画面の画素をそのまま入力にした畳み込みニューラルネットワークで行動価値（Q値）を推定し、Q学習の変種で学習する深層強化学習の手法。Atari 2600のゲームで人間の熟練者を上回るものが出た。",
-    "why": "高次元の生の感覚入力から、直接、制御方策を学習できることを初めて示した。",
+    "why": "高次元の生の感覚入力から、直接、制御方策を学習できることを初めて示した。学習を安定させる工夫は2つ。経験再生（Experience Replay）は、経験（状態・行動・報酬・次の状態）をためておき、そこから無作為に取り出して学習することで、続けて得た経験どうしの強い相関を断ち、同じ経験を何度も使えるようにする。ターゲットネットワーク（Target Network）は、Q学習の目標値を計算するネットワークを一定の更新回数ごとに複製してその間は固定し、目標値が学習のたびに動く不安定さを減らす（Nature 2015 版で導入）。",
     "links": [
       {
         "id": "C-06-048",
@@ -1829,6 +1889,10 @@
       {
         "title": "Q学習",
         "relation": "部分"
+      },
+      {
+        "id": "C-03-063",
+        "relation": "前提（Q学習のもとになる考え方）"
       }
     ],
     "confusions": [
@@ -1841,6 +1905,10 @@
       {
         "title": "Mnih et al. (2013) Playing Atari with Deep Reinforcement Learning (arXiv:1312.5602)",
         "url": "https://arxiv.org/abs/1312.5602"
+      },
+      {
+        "title": "Mnih et al. (2015) Human-level control through deep reinforcement learning. Nature 518（Google DeepMind 公開の本文PDF）",
+        "url": "https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf"
       }
     ],
     "status": "verified"
@@ -2134,7 +2202,7 @@
     ],
     "title": "OpenAI Five と AlphaStar（ゲームAIとマルチエージェント強化学習）",
     "oneLine": "OpenAI Fiveは自己対戦の強化学習を大規模に回し、2019年4月にDota 2の世界王者チームに勝った。AlphaStarはマルチエージェント強化学習でStarCraft IIのグランドマスター級に達した。複数のエージェントが同じ環境で学習・相互作用する設定をマルチエージェント強化学習（MARL）という。",
-    "why": "長い時間の見通し、不完全情報、連続的で複雑な状態・行動空間という、現実に近い難しさを持つ課題で成果を出した。",
+    "why": "長い時間の見通し、不完全情報、連続的で複雑な状態・行動空間という、現実に近い難しさを持つ課題で成果を出した。学び方には、各エージェントが他のエージェントを環境の一部とみなして別々に学ぶ独立学習（Independent Learning）と、観測・経験・学んだ方策を互いに共有して学ぶ協調的な学習がある（Tan 1993）。独立学習では、他のエージェントの方策が学習中に変わるため、各エージェントから見た環境が非定常になり、学習が不安定になりやすい。そこで、学習のときは他のエージェントの情報も集めて使い（集中学習）、実行のときは各エージェントが自分の観測だけで動く CTDE（Centralized Training with Decentralized Execution）の枠組みが使われる（MADDPG など）。",
     "links": [
       {
         "id": "C-06-054",
@@ -2159,6 +2227,14 @@
       {
         "title": "Vinyals et al. (2019) Grandmaster level in StarCraft II using multi-agent reinforcement learning (Nature 575)",
         "url": "https://www.nature.com/articles/s41586-019-1724-z"
+      },
+      {
+        "title": "Tan (1993) Multi-Agent Reinforcement Learning: Independent vs. Cooperative Agents (ICML)",
+        "url": "https://web.media.mit.edu/~cynthiab/Readings/tan-MAS-reinfLearn.pdf"
+      },
+      {
+        "title": "Lowe et al. (2017) Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments (MADDPG) (arXiv:1706.02275)",
+        "url": "https://arxiv.org/abs/1706.02275"
       }
     ],
     "status": "verified"
@@ -2172,7 +2248,7 @@
     ],
     "title": "RLHF（人間のフィードバックによる強化学習）",
     "oneLine": "人間が出力の良し悪しを比べた評価（順位付け）からモデルの振る舞いを学び、強化学習で言語モデルなどを調整する手法。InstructGPTでは、教師ありファインチューニングの後、出力の順位データを使って強化学習でさらに調整した。",
-    "why": "言語モデルは大きくするだけでは利用者の意図に沿わず、事実と異なる・有害な出力をすることがある。人の好みを報酬にして「整列（アライメント）」させる。",
+    "why": "言語モデルは大きくするだけでは利用者の意図に沿わず、事実と異なる・有害な出力をすることがある。人の好みを報酬にして「整列（アライメント）」させる。InstructGPT の手順は3段階。①人が書いた手本で教師ありファインチューニング（SFT）をする。②同じ入力に対するモデルの出力を人が比べた順位データで、どの出力が好まれるかを予測する報酬モデル（RM）を学習する。③その報酬モデルを報酬関数として、PPO で強化学習する。",
     "links": [
       {
         "id": "C-06-035",
@@ -2185,6 +2261,10 @@
       {
         "id": "C-06-061",
         "relation": "対比"
+      },
+      {
+        "id": "C-06-097",
+        "relation": "関連（SFT は人の手本をまねる）"
       }
     ],
     "confusions": [
@@ -2223,6 +2303,10 @@
       {
         "id": "C-06-059",
         "relation": "対比"
+      },
+      {
+        "id": "C-06-097",
+        "relation": "対比"
       }
     ],
     "confusions": [
@@ -2248,17 +2332,25 @@
     ],
     "title": "オフライン強化学習",
     "oneLine": "環境と新たにやり取りせず、過去に集めたデータだけから方策を学習する強化学習。",
-    "why": "医療や自動運転のように、試行錯誤で失敗させられない分野でも、蓄積したデータから意思決定を学べる可能性がある。",
+    "why": "医療や自動運転のように、試行錯誤で失敗させられない分野でも、蓄積したデータから意思決定を学べる可能性がある。これに対し、通常の（オンライン）強化学習は、その時点で学んだ方策で環境とやり取りして経験を集め、その経験で方策を良くする、を繰り返す。ロボット・医療・自動運転などではこのやり取りに費用や危険が伴うため、オフラインの設定が求められる。オフライン強化学習のデータも、状態・行動・次の状態・報酬の組でできている。",
     "links": [
       {
         "id": "C-06-058",
         "relation": "対比"
+      },
+      {
+        "id": "C-06-097",
+        "relation": "対比（報酬を使わず手本をまねる）"
       }
     ],
     "confusions": [
       {
         "id": "C-06-058",
         "point": "オフラインは既存データだけ、sim2realはシミュレーションで試す"
+      },
+      {
+        "title": "オンライン強化学習",
+        "point": "オンライン強化学習は学習中の方策で環境とやり取りして経験を集め続ける。オフライン強化学習は集め終えたデータだけで学び、新しい経験を集めない。"
       }
     ],
     "sources": [
@@ -2536,7 +2628,7 @@
     ],
     "title": "拡散モデル（Diffusion Model）",
     "oneLine": "データに少しずつガウスノイズを加えていく過程（拡散過程）を考え、その逆にノイズから少しずつノイズを取り除いてデータを生成するように学習する生成モデル。",
-    "why": "高品質な画像生成ができ、現在の多くの画像生成AIの基盤になっている。",
+    "why": "高品質な画像生成ができ、現在の多くの画像生成AIの基盤になっている。データにノイズを加えていく方向を順過程（拡散過程）と呼び、これは学習しない固定の過程。ノイズから元に戻していく方向を逆過程と呼び、こちらをニューラルネットで学習する。Dhariwal と Nichol（2021）は、分類器の勾配で生成を目的のクラスへ導く分類器ガイダンス（Guided Diffusion）で、多様性と引き換えに忠実さを高め、画像生成の品質で当時最高の GAN を上回った。",
     "links": [
       {
         "id": "C-06-063",
@@ -2557,6 +2649,10 @@
       {
         "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
         "url": "https://arxiv.org/abs/2006.11239"
+      },
+      {
+        "title": "Dhariwal & Nichol (2021) Diffusion Models Beat GANs on Image Synthesis (arXiv:2105.05233)",
+        "url": "https://arxiv.org/abs/2105.05233"
       }
     ],
     "status": "verified"
@@ -2742,7 +2838,7 @@
     ],
     "title": "自己教師あり学習",
     "oneLine": "データそのものから疑似的な正解（教師信号）を作って学習する方法。文の一部を隠して当てる（BERTのMasked Language Model）、同じ画像を別々に加工した2枚を「同じもの」と見分ける対照学習（SimCLR）などがある。",
-    "why": "人手のラベル付けなしに大量のデータから有用な表現を学べるため、事前学習の主流になった。",
+    "why": "人手のラベル付けなしに大量のデータから有用な表現を学べるため、事前学習の主流になった。SimCLR の対照学習（Contrastive Learning）では、1枚の画像に2通りのデータ拡張をかけた組を正の組とし、同じミニバッチの他の画像から作ったものを負の例として、正の組の表現どうしの類似度（コサイン類似度）が高く、負の例とは低くなるように学ぶ。データ拡張の組み合わせ方と、大きなバッチサイズが性能に効く。",
     "links": [
       {
         "id": "C-06-071",
@@ -2886,7 +2982,7 @@
     ],
     "title": "CLIP",
     "oneLine": "インターネットから集めた4億組の画像と文章のペアで、「どの説明文がどの画像に対応するか」を当てる事前学習を行い、画像と言語を同じ空間で扱えるようにしたモデル。学習後は自然言語でクラスを指定するだけでゼロショット分類ができる。",
-    "why": "決まったクラスのラベル付きデータで学ぶ従来の画像認識より汎用的で、ImageNetの学習データを使わずに元のResNet-50と同等の精度を出した。",
+    "why": "決まったクラスのラベル付きデータで学ぶ従来の画像認識より汎用的で、ImageNetの学習データを使わずに元のResNet-50と同等の精度を出した。仕組みは、画像エンコーダ（ResNet または Vision Transformer）とテキストエンコーダ（Transformer）を同時に、ImageNet の重みなどを使わずゼロから学習し、ミニバッチの中で正しい画像と文の組の埋め込みのコサイン類似度を高く、誤った組み合わせを低くする。ゼロショット分類では、データセットのすべてのクラス名をテキストエンコーダで埋め込み、画像の埋め込みと最も似たものを答えにする。",
     "links": [
       {
         "id": "C-06-081",
@@ -2899,6 +2995,10 @@
       {
         "id": "C-06-082",
         "relation": "部分"
+      },
+      {
+        "id": "C-06-072",
+        "relation": "関連（対照学習）"
       }
     ],
     "confusions": [
@@ -2962,7 +3062,7 @@
     ],
     "title": "Image Captioning と Visual Question Answering（VQA）",
     "oneLine": "Image Captioningは画像の内容を説明する文を生成するタスク。VQAは画像とそれに関する自由形式の質問を受け取り、自然言語で答えるタスク。",
-    "why": "VQAは画像の細部や文脈まで理解して推論する必要があり、一般的な説明文の生成より難しい。視覚障害者の支援などの応用がある。",
+    "why": "VQAは画像の細部や文脈まで理解して推論する必要があり、一般的な説明文の生成より難しい。視覚障害者の支援などの応用がある。Vinyals ら（2015）の NIC（Neural Image Caption）は、画像分類で事前学習した CNN を画像のエンコーダとし、その最後の隠れ層を、文を生成する RNN（LSTM）のデコーダに入力する。機械翻訳のエンコーダ・デコーダの考え方を画像に当てはめたもの。",
     "links": [
       {
         "id": "C-06-077",
@@ -2971,6 +3071,10 @@
       {
         "id": "C-06-079",
         "relation": "部分"
+      },
+      {
+        "id": "C-05-050",
+        "relation": "具体例（画像→文のエンコーダ・デコーダ）"
       }
     ],
     "confusions": [
@@ -3148,7 +3252,7 @@
     ],
     "title": "説明可能AI（XAI）とモデルの解釈性",
     "oneLine": "モデルがなぜその予測をしたのかを、人が理解できる形で示すための技術や考え方。ディープラーニングのような複雑なモデルは高精度でも中身がブラックボックスになりやすい。",
-    "why": "医療・金融・採用など、判断の根拠を説明する責任がある場面や、誤りの原因を調べたい場面で必要になる。予測を信頼して行動に移すかどうかの判断材料になる。",
+    "why": "医療・金融・採用など、判断の根拠を説明する責任がある場面や、誤りの原因を調べたい場面で必要になる。予測を信頼して行動に移すかどうかの判断材料になる。説明には、ある1件の予測について理由を示す局所的な説明（例：LIME は、予測の周りで解釈しやすいモデルに近似して1件ずつ説明する）と、モデル全体が一般にどんなパターンで判断しているかを示す大域的な説明がある（Doshi-Velez & Kim 2017）。",
     "links": [
       {
         "id": "C-06-085",
@@ -3181,6 +3285,10 @@
       {
         "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
         "url": "https://arxiv.org/abs/1705.07874"
+      },
+      {
+        "title": "Doshi-Velez & Kim (2017) Towards A Rigorous Science of Interpretable Machine Learning (arXiv:1702.08608)",
+        "url": "https://arxiv.org/abs/1702.08608"
       }
     ],
     "status": "verified"
@@ -3228,7 +3336,7 @@
     ],
     "title": "Grad-CAM",
     "oneLine": "対象クラスの予測値の勾配を最後の畳み込み層まで逆に流し、その勾配で特徴マップを重み付けして、判断に重要だった画像の領域をヒートマップで示す手法。全結合層を持つCNNなど幅広いモデルに、構造の変更や再学習なしで使える。",
-    "why": "画像認識モデルが「どこを見て」判断したかを確認できる。誤った根拠（背景など）で判断していないかの確認に使う。",
+    "why": "画像認識モデルが「どこを見て」判断したかを確認できる。誤った根拠（背景など）で判断していないかの確認に使う。Grad-CAM のヒートマップはクラスを区別できるが粗い。一方、Guided Backpropagation のような画素単位の勾配の可視化は細かいがクラスを区別できない。両者を要素ごとの積で組み合わせたのが Guided Grad-CAM で、高解像度でクラスを区別できる可視化になる。",
     "links": [
       {
         "id": "C-06-084",
@@ -3372,7 +3480,7 @@
     ],
     "title": "エッジAIとモデル軽量化の必要性",
     "oneLine": "クラウドではなく、スマホ・カメラ・車載機器など現場の端末（エッジ）側でAIの推論を行うこと。端末は計算能力・メモリ・電力が限られるため、モデル圧縮（軽量化）が必要になる。",
-    "why": "通信の遅延をなくせる、通信が切れても動く、データを外に出さずに済むなどの利点がある。",
+    "why": "通信の遅延をなくせる、通信が切れても動く、データを外に出さずに済むなどの利点がある。端末やその近くで処理する考え方をエッジコンピューティングという。NIST の整理では、エッジはセンサーなどの末端の機器とその利用者を含む層で、その場で計算する能力を提供する。端末とクラウドの間に計算ノードを階層的に置くフォグコンピューティングとは区別される。",
     "links": [
       {
         "id": "C-06-092",
@@ -3389,12 +3497,20 @@
       {
         "id": "C-06-009",
         "relation": "解決策"
+      },
+      {
+        "id": "C-07-020",
+        "relation": "対比（クラウドで処理する形態）"
       }
     ],
     "confusions": [
       {
         "title": "クラウド",
         "point": "エッジは端末側で処理、クラウドはサーバ側で処理"
+      },
+      {
+        "title": "フォグコンピューティング",
+        "point": "エッジは末端の機器やその場での計算。フォグは端末とクラウドの間に計算ノードを階層的に置き、計算・通信に加えて保存や制御も担う。"
       }
     ],
     "sources": [
@@ -3409,6 +3525,10 @@
       {
         "title": "IPA「DX白書2023」",
         "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
+      },
+      {
+        "title": "NIST SP 500-325 (2018) Fog Computing Conceptual Model（Annex A: Fog Computing vs. Edge Computing）",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.500-325.pdf"
       }
     ],
     "status": "verified"
@@ -3422,7 +3542,7 @@
     ],
     "title": "蒸留（知識蒸留）",
     "oneLine": "大きなモデル（教師、またはアンサンブル）の知識を、小さなモデル（生徒）に移して学習させる手法。生徒は教師の出力（確率の分布）をまねるように学ぶ。",
-    "why": "多数のモデルの平均やとても大きなモデルは精度が高いが、そのまま配備するには重すぎる。小さなモデルで近い性能を出せる。",
+    "why": "多数のモデルの平均やとても大きなモデルは精度が高いが、そのまま配備するには重すぎる。小さなモデルで近い性能を出せる。大きいモデルを教師モデル、小さいモデルを生徒モデルと呼ぶ（Hinton らの原論文では cumbersome model と small model。教師・生徒の呼び方は FitNets などで使われる）。生徒は、教師が出す各クラスの確率（ソフトターゲット）を目標に学ぶ。ソフトターゲットは「この2は3に少し似ている」のような小さな確率の比に情報を含むので、正解ラベル（ハードターゲット）だけより多くの情報を生徒に渡せる。",
     "links": [
       {
         "id": "C-06-091",
@@ -3447,6 +3567,10 @@
       {
         "title": "Hinton et al. (2015) Distilling the Knowledge in a Neural Network (arXiv:1503.02531)",
         "url": "https://arxiv.org/abs/1503.02531"
+      },
+      {
+        "title": "Romero et al. (2014) FitNets: Hints for Thin Deep Nets (arXiv:1412.6550)",
+        "url": "https://arxiv.org/abs/1412.6550"
       }
     ],
     "status": "verified"
@@ -3549,6 +3673,226 @@
       {
         "title": "Frankle & Carbin (2018) The Lottery Ticket Hypothesis (arXiv:1803.03635)",
         "url": "https://arxiv.org/abs/1803.03635"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-06-094",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "title": "形態素解析と分かち書き・ストップワード",
+    "oneLine": "形態素解析は、文を単語などの単位（形態素）に区切り、それぞれに品詞などの情報を付ける処理。区切りに空白を入れて書き出したものを分かち書きという。ストップワードは、英語の and・the のように、文書の内容を表すのに役立たないとみなして取り除く語。",
+    "why": "日本語は単語の間を空白で区切らずに書くため、BoW や TF-IDF などで語を数える前に、まず語に区切る必要がある。MeCab や Juman++ などの形態素解析器が使われ、MeCab では区切りだけを出す分かち書きの出力もできる。区切った語のうち内容を表しにくい語をストップワードとして除くと、予測の手がかりと誤って扱われるのを防げる。ただし書き手の文体を分類するような課題では、そうした語が手がかりになることもある。",
+    "links": [
+      {
+        "id": "C-06-026",
+        "relation": "上位概念（自然言語処理のタスク）"
+      },
+      {
+        "id": "C-06-027",
+        "relation": "応用（区切った語を数える）"
+      },
+      {
+        "id": "C-06-095",
+        "relation": "発展形（次の段階の解析）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-027",
+        "point": "形態素解析は文を語に区切って品詞を付ける処理。BoW は区切った語を数えて文書をベクトルにする方法。"
+      },
+      {
+        "id": "C-06-095",
+        "point": "形態素解析は語の区切りと品詞まで。語や文節がどこにかかるか（係り受け）を求めるのは構文解析。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "MeCab: Yet Another Part-of-Speech and Morphological Analyzer（公式サイト）",
+        "url": "https://taku910.github.io/mecab/"
+      },
+      {
+        "title": "京都大学 言語メディア研究室「日本語形態素解析システム Juman++」",
+        "url": "https://nlp.ist.i.kyoto-u.ac.jp/?JUMAN%2B%2B"
+      },
+      {
+        "title": "scikit-learn User Guide: Feature extraction（Text feature extraction / Using stop words）",
+        "url": "https://scikit-learn.org/stable/modules/feature_extraction.html"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 2: Words and Tokens",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/2.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-06-095",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "title": "文の解析の段階（構文解析・意味解析・照応解析・談話構造解析）",
+    "oneLine": "形態素解析で区切った語をもとに、文の構造（構文解析）、文の中の意味の関係（意味解析）、文をまたいだつながり（照応解析・談話構造解析など）へと、扱う範囲を広げていく自然言語処理の解析。",
+    "why": "構文解析は、語や文節どうしの係り受けなど1文の構造を求める（京都大学の KNP は、形態素解析システム JUMAN の出力を入力にして、文節間の係り受けを出す）。意味解析は、述語に対して各語が「誰が」「何を」などのどの役割を担うかといった意味の関係を求める（意味役割の付与や KNP の格解析）。照応解析は、代名詞などの表現が前に出てきたどの物や人を指すかを決める。談話構造解析は、文と文が「理由」などのどんな関係で結びついているかを求める。照応や省略のように文をまたいで考える解析は、文脈解析とも呼ばれる。",
+    "links": [
+      {
+        "id": "C-06-026",
+        "relation": "上位概念（自然言語処理のタスク）"
+      },
+      {
+        "id": "C-06-094",
+        "relation": "前段（入力になる形態素解析）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-094",
+        "point": "形態素解析は語の区切りと品詞まで。係り受けを求めるのは構文解析。"
+      },
+      {
+        "title": "照応解析と談話構造解析",
+        "point": "照応解析は「それ」「彼女」が何を指すか（指す先）。談話構造解析は文と文が理由・対比などどんな関係でつながるか（文どうしの関係）。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "京都大学 言語メディア研究室「日本語構文・格・照応解析システム KNP」",
+        "url": "https://nlp.ist.i.kyoto-u.ac.jp/?KNP"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 20: Dependency Parsing",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/20.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 22: Semantic Role Labeling and Argument Structure",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/22.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 24: Coreference Resolution and Entity Linking",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/24.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 25: Discourse Coherence",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/25.pdf"
+      },
+      {
+        "title": "JST CREST 平成29年度 研究実施報告書「知識に基づく構造的言語処理の確立と知識インフラの構築」（黒橋グループ：知識に基づく文脈解析の実現）",
+        "url": "https://www.jst.go.jp/kisoken/crest/evaluation/nenpou/h29/JST_1111081_13416455_2017_PYR.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-06-096",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "title": "プロンプトエンジニアリング（Chain-of-Thought・システムプロンプト）",
+    "oneLine": "大規模言語モデルの重みを変えずに、入力する指示文（プロンプト）の書き方を工夫して、望む出力を引き出す技術。例を示す Few-shot、途中の推論を書かせる Chain-of-Thought（CoT）、役割や振る舞いを先に決めるシステムプロンプトなどがある。",
+    "why": "GPT-3（2020）は、重みを更新せず、課題の説明と数個の例を文章で与えるだけで多くの課題をこなせることを示した（文脈内学習）。そのため、何をどう書くかで出力の質が変わる。Wei ら（2022）は、途中の推論の手順を含む例を数個示すだけで、十分に大きなモデルの算数・常識・記号の推論の性能が上がることを示した（Chain-of-Thought プロンプティング）。システムプロンプトは会話の前に与える指示で、モデルの役割を決めると、その用途に合った振る舞いや口調に絞り込める。",
+    "links": [
+      {
+        "id": "C-06-035",
+        "relation": "前提（使う相手は大規模言語モデル）"
+      },
+      {
+        "id": "C-06-074",
+        "relation": "部分（Few-shot で例を示す）"
+      },
+      {
+        "id": "C-06-070",
+        "relation": "対比（重みを更新する）"
+      },
+      {
+        "id": "C-06-057",
+        "relation": "対比（学習で振る舞いを調整する）"
+      },
+      {
+        "id": "C-10-034",
+        "relation": "対比（プロンプトを細工して意図しない振る舞いをさせる攻撃）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-070",
+        "point": "ファインチューニングは追加のデータで重みを更新する。プロンプトエンジニアリングは重みを変えず、入力の書き方だけを工夫する。"
+      },
+      {
+        "id": "C-06-057",
+        "point": "RLHF は人の評価で学習してモデル自体の振る舞いを変える。システムプロンプトは使うときの指示で振る舞いを絞るだけで、モデルは変わらない。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
+        "url": "https://arxiv.org/abs/2005.14165"
+      },
+      {
+        "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)",
+        "url": "https://arxiv.org/abs/2201.11903"
+      },
+      {
+        "title": "Anthropic Claude Platform Docs: Prompting best practices（Give Claude a role / system prompt）",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-06-097",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "title": "模倣学習（Imitation Learning）",
+    "oneLine": "専門家が手本として示した行動（デモンストレーション）から、方策（どの状況でどう行動するか）を学ぶ方法。典型的には、専門家が出会った観測を入力、専門家がとった行動を出力として、分類や回帰で学ぶ（行動クローニング）。",
+    "why": "報酬を手がかりに試行錯誤する強化学習と違い、手本の行動そのものを正解として学ぶ。ロボットの制御や車の操縦などで成果を上げてきた。弱点は、学習者が一度間違えると手本に無かった状況に入り込み、そこでさらに間違える、と誤りが積み重なること。DAgger（2011）は、学習者自身が動いて出会った状況に専門家の行動を付け足して学び直すことで、これを抑えた。",
+    "links": [
+      {
+        "id": "C-03-036",
+        "relation": "対比（報酬で試行錯誤する）"
+      },
+      {
+        "id": "C-06-059",
+        "relation": "対比（既存データと報酬で学ぶ）"
+      },
+      {
+        "id": "C-06-058",
+        "relation": "対比（シミュレーションで試行錯誤する）"
+      },
+      {
+        "id": "C-06-057",
+        "relation": "関連（RLHF の最初の段階は人の手本をまねる）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-059",
+        "point": "オフライン強化学習は、集めたデータの報酬を使ってより良い方策を探す。模倣学習は報酬を使わず、手本の行動をまねる。"
+      },
+      {
+        "id": "C-03-036",
+        "point": "強化学習は報酬の合計が大きくなる行動を試行錯誤で探す。模倣学習は専門家の行動そのものを正解として学ぶ。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ross, Gordon & Bagnell (2011) A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning (AISTATS) (arXiv:1011.0686)",
+        "url": "https://arxiv.org/abs/1011.0686"
+      },
+      {
+        "title": "Levine et al. (2020) Offline Reinforcement Learning: Tutorial, Review, and Perspectives (arXiv:2005.01643)",
+        "url": "https://arxiv.org/abs/2005.01643"
       }
     ],
     "status": "verified"

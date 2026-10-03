@@ -130,7 +130,7 @@
     ],
     "title": "畳み込み操作",
     "oneLine": "小さな格子状の重み（フィルタ）を入力の上で少しずつずらしながら、重なった部分の要素ごとの積の和を計算していく操作。",
-    "why": "フィルタの重みが「どんな模様に反応するか」を表す。同じフィルタを画像全体で使い回す（重み共有）ので、パラメータが少なく、模様がどこに出ても検出できる。",
+    "why": "フィルタの重みが「どんな模様に反応するか」を表す。同じフィルタを画像全体で使い回す（重み共有）ので、パラメータが少なく、模様がどこに出ても検出できる。この積和の計算を畳み込み演算と呼ぶ。数学でいう畳み込みはフィルタを反転してから掛けるが、多くの機械学習ライブラリは反転しない計算（相互相関）を実装して、それを畳み込みと呼んでいる。",
     "links": [
       {
         "id": "C-05-005",
@@ -147,6 +147,10 @@
       {
         "id": "C-05-009",
         "relation": "結果"
+      },
+      {
+        "id": "C-05-049",
+        "relation": "対比（大きさを戻す側）"
       }
     ],
     "confusions": [
@@ -159,6 +163,10 @@
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
         "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks",
+        "url": "https://www.deeplearningbook.org/contents/convnets.html"
       }
     ],
     "status": "verified"
@@ -438,7 +446,7 @@
     ],
     "title": "バッチ正規化",
     "oneLine": "ミニバッチ内のデータで、各特徴（チャネル）ごとに平均0・分散1になるよう正規化し、学習可能なスケールとシフトをかける層。2015年にIoffeとSzegedyが提案。",
-    "why": "前の層のパラメータが変わるたびに層への入力の分布が変わる（内部共変量シフト）と、学習率を下げたり初期値に気を使ったりする必要があった。正規化で学習を速く安定させ、勾配消失も和らげる。ただしバッチサイズが小さいと統計が不正確になり性能が落ちる。",
+    "why": "前の層のパラメータが変わるたびに層への入力の分布が変わる（内部共変量シフト）と、学習率を下げたり初期値に気を使ったりする必要があった。正規化で学習を速く安定させ、勾配消失も和らげる。ただしバッチサイズが小さいと統計が不正確になり性能が落ちる。もともと共変量シフトは、学習するシステムへの入力の分布が変わること。論文はこの考えをネットワークの一部である各層に当てはめ、学習中に前の層の変化で層の入力分布が変わることを内部共変量シフトと呼んだ。",
     "links": [
       {
         "id": "C-05-013",
@@ -451,6 +459,14 @@
       {
         "title": "勾配消失問題",
         "relation": "解決策"
+      },
+      {
+        "id": "C-04-047",
+        "relation": "関連（初期値の工夫で学習を安定させる）"
+      },
+      {
+        "id": "C-07-022",
+        "relation": "対比（学習の前にデータに施す正規化）"
       }
     ],
     "confusions": [
@@ -1024,7 +1040,7 @@
     ],
     "title": "LSTM",
     "oneLine": "Long Short-Term Memory。誤差を一定に流し続けるセル（CEC：Constant Error Carousel）と、情報の流れを開閉するゲート（入力ゲート・出力ゲート、のちに忘却ゲート）を持つRNN。1997年にHochreiterとSchmidhuberが提案。",
-    "why": "単純なRNNは勾配消失のため長い時間差の依存関係を学べなかった。セルで誤差を保ち、ゲートで記憶の書き込み・読み出し・忘却を制御することで、長期の依存を学べるようになった。",
+    "why": "単純なRNNは勾配消失のため長い時間差の依存関係を学べなかった。セルで誤差を保ち、ゲートで記憶の書き込み・読み出し・忘却を制御することで、長期の依存を学べるようになった。原論文は、ゲートが無いと起きる2つの衝突を挙げた。入力重み衝突は、セルに入る同じ重みが、ある入力を記憶するためにも、それ以外の入力を無視するためにも使われ、更新の向きがぶつかること。出力重み衝突は、セルから出る同じ重みが、記憶した内容を読み出すためにも、読み出さずに他のユニットを乱さないためにも使われること。入力ゲートが書き込みを、出力ゲートが読み出しを、文脈に応じて開け閉めすることで、これを避けた。",
     "links": [
       {
         "id": "C-05-021",
@@ -1070,7 +1086,7 @@
     ],
     "title": "GRU",
     "oneLine": "Gated Recurrent Unit。リセットゲートと更新ゲートの2つで情報の流れを制御する、LSTMを簡略化したRNNのユニット。2014年にChoらが提案。",
-    "why": "LSTMよりゲートが少なくセルも持たないので、パラメータが少なく計算が軽い一方、長期の依存を学ぶ力はLSTMと同程度のことが多い。",
+    "why": "LSTMよりゲートが少なくセルも持たないので、パラメータが少なく計算が軽い一方、長期の依存を学ぶ力はLSTMと同程度のことが多い。リセットゲートは、それまでの隠れ状態を無視するかを決める（0に近いと、前の状態を無視して今の入力で作り直す）。更新ゲートは、隠れ状態を新しい候補の状態で更新するかを決める。",
     "links": [
       {
         "id": "C-05-027",
@@ -1201,6 +1217,10 @@
       {
         "id": "C-06-037",
         "relation": "応用"
+      },
+      {
+        "id": "C-05-050",
+        "relation": "上位概念（構造）"
       }
     ],
     "confusions": [
@@ -1314,7 +1334,7 @@
     ],
     "title": "Self-Attention",
     "oneLine": "1つの系列の中で、各位置が同じ系列の他のすべての位置との関係を計算し、文脈を反映した表現を作るAttention。クエリ・キー・バリューをすべて同じ系列からとる。",
-    "why": "離れた位置どうしの関係も1ステップで直接計算でき、時刻を順に処理するRNNと違って並列に計算できる。Transformerの中心。",
+    "why": "離れた位置どうしの関係も1ステップで直接計算でき、時刻を順に処理するRNNと違って並列に計算できる。Transformerの中心。Transformer のデコーダでは、まだ生成していない後ろの位置を参照すると答えを先に見ることになるので、後ろの位置に対応するスコアを −∞ にしてからソフトマックスをとる（Masked Self-Attention）。これで位置 i の予測は i より前の出力だけに依存し、1つずつ順に生成する自己回帰の性質が保たれる。",
     "links": [
       {
         "id": "C-05-032",
@@ -1337,6 +1357,10 @@
       {
         "id": "C-05-033",
         "point": "Self-Attentionは自分の系列の中で注目し合う。"
+      },
+      {
+        "id": "C-05-033",
+        "point": "Masked Self-Attention はデコーダの中で後ろの位置を隠して自分の系列に注目する。Source-Target Attention はデコーダからエンコーダの出力に注目する。マスクの対象は前者だけ。"
       }
     ],
     "sources": [
@@ -1356,7 +1380,7 @@
     ],
     "title": "Transformer",
     "oneLine": "RNNも畳み込みも使わず、Attention（Self-Attention、Source-Target Attention、Multi-Head Attention）だけで構成したEncoder-Decoder型のモデル。2017年の論文「Attention Is All You Need」で発表。",
-    "why": "並列に計算できるので学習が速く、長い依存関係も扱える。BERTやGPTなどの大規模言語モデル、生成AIの土台になった。語順の情報は位置エンコーディングで加える。",
+    "why": "並列に計算できるので学習が速く、長い依存関係も扱える。BERTやGPTなどの大規模言語モデル、生成AIの土台になった。語順の情報は位置エンコーディングで加える。デコーダの Self-Attention には、まだ生成していない後ろの位置を参照しないようにするマスクをかける（Masked Self-Attention）。",
     "links": [
       {
         "id": "C-05-034",
@@ -1381,6 +1405,10 @@
       {
         "title": "生成AI",
         "relation": "発展形"
+      },
+      {
+        "id": "C-05-050",
+        "relation": "上位概念（構造）"
       }
     ],
     "confusions": [
@@ -1823,8 +1851,8 @@
     ],
     "confusions": [
       {
-        "id": "C-05-046",
-        "point": "Mixup＝画像全体を半透明に重ねる、CutMix＝切り貼り。どちらもラベルも混ぜる。"
+        "id": "C-05-045",
+        "point": "Cutout・Random Erasingは領域を消すだけ。CutMixは消した領域に別の画像を貼り、ラベルも面積比で混ぜる。"
       }
     ],
     "sources": [
@@ -1893,12 +1921,7 @@
         "relation": "応用分野"
       }
     ],
-    "confusions": [
-      {
-        "id": "C-05-048",
-        "point": "paraphrasing＝言い換え（意味は保つ）。単語をランダムに消したり並べ替えたりするのはnoisingの側。"
-      }
-    ],
+    "confusions": [],
     "sources": [
       {
         "title": "Wei & Zou (2019) EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks (arXiv:1901.11196)",
@@ -1911,6 +1934,142 @@
       {
         "title": "Sennrich, Haddow & Birch (2015) Improving Neural Machine Translation Models with Monolingual Data (arXiv:1511.06709)",
         "url": "https://arxiv.org/abs/1511.06709"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-049",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "畳み込み層"
+    ],
+    "title": "アップサンプリング（逆畳み込み・逆プーリング）",
+    "oneLine": "畳み込みやプーリングで小さくなった特徴マップを、大きな解像度に戻す操作。プーリングで最大値があった位置を使って値を戻す逆プーリング（Unpooling）と、畳み込みを逆向きにたどって広げる転置畳み込み（逆畳み込み、Deconvolution）がある。",
+    "why": "セグメンテーションのように画素ごとに答えを出す課題では、縮めた特徴マップを入力と同じ大きさに戻す必要がある。逆プーリングは、最大値プーリングの際に最大値の位置（プーリング・インデックス）を記録しておき、その位置に値を置く（Zeiler & Fergus の可視化や SegNet のデコーダ）。転置畳み込みはストライドの逆数で畳み込むような操作で、FCN ではフィルタを学習させて広げ方そのものを学んだ。「逆畳み込み」と呼ばれるが、畳み込みの真の逆演算を計算するわけではない。",
+    "links": [
+      {
+        "id": "C-05-016",
+        "relation": "対比（最大値プーリングで縮める↔逆プーリングで戻す）"
+      },
+      {
+        "id": "C-05-004",
+        "relation": "対比（転置畳み込みは畳み込みを逆向きにたどる）"
+      },
+      {
+        "id": "C-05-009",
+        "relation": "部分（戻す対象）"
+      },
+      {
+        "id": "C-06-020",
+        "relation": "応用（転置畳み込みで画素ごとの出力）"
+      },
+      {
+        "id": "C-06-021",
+        "relation": "応用（プーリング・インデックスで戻す）"
+      },
+      {
+        "id": "C-05-050",
+        "relation": "部分（デコーダ側の処理）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-05-004",
+        "point": "「逆畳み込み（Deconvolution）」という名前でも、畳み込みの結果から元の入力を正確に復元する逆演算ではない。大きさを広げるための、学習できる畳み込みの一種。"
+      },
+      {
+        "id": "C-05-010",
+        "point": "Dilated Convolution はフィルタの間を空けて受容野を広げる（出力は小さくしない）。転置畳み込みは出力の解像度そのものを大きくする。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Zeiler & Fergus (2013) Visualizing and Understanding Convolutional Networks (arXiv:1311.2901)",
+        "url": "https://arxiv.org/abs/1311.2901"
+      },
+      {
+        "title": "Long, Shelhamer & Darrell (2014) Fully Convolutional Networks for Semantic Segmentation (arXiv:1411.4038)",
+        "url": "https://arxiv.org/abs/1411.4038"
+      },
+      {
+        "title": "Badrinarayanan et al. (2015) SegNet (arXiv:1511.00561)",
+        "url": "https://arxiv.org/abs/1511.00561"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.ConvTranspose2d",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-05-050",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "Attention"
+    ],
+    "title": "エンコーダ・デコーダ構造（Encoder-Decoder）",
+    "oneLine": "入力を中間の表現に変換するエンコーダと、その表現から目的の出力を作るデコーダを組み合わせた構造。入力と出力の長さや形が違う変換（翻訳・要約・セグメンテーションなど）に使う。",
+    "why": "入力と出力を別々のネットワークに担わせ、両方をまとめて学習することで、長さの違う系列どうしの変換を1つのモデルで扱えるようになった。Cho ら（2014）の RNN Encoder–Decoder は、一方の RNN が系列を固定長のベクトルにまとめ、もう一方の RNN がそのベクトルから別の系列を作った。Transformer もエンコーダ・デコーダ構造で、デコーダは前に生成した出力を入力に加えながら1つずつ出力を作る（自己回帰）。画像では SegNet のように、エンコーダで縮めた特徴をデコーダで画素ごとの出力に戻す形でも使われる。",
+    "links": [
+      {
+        "id": "C-05-031",
+        "relation": "具体例（RNN による系列変換）"
+      },
+      {
+        "id": "C-05-035",
+        "relation": "具体例（Attention だけで構成）"
+      },
+      {
+        "id": "C-05-032",
+        "relation": "発展形（デコーダがエンコーダ側に注目する）"
+      },
+      {
+        "id": "C-05-039",
+        "relation": "関連（入力自身を復元する特別な場合）"
+      },
+      {
+        "id": "C-06-021",
+        "relation": "具体例（画像のセグメンテーション）"
+      },
+      {
+        "id": "C-05-049",
+        "relation": "部分（デコーダで解像度を戻す）"
+      },
+      {
+        "id": "C-04-045",
+        "relation": "関連（入力から出力までをまとめて学習する）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-05-039",
+        "point": "オートエンコーダもエンコーダとデコーダを持つが、出力の目標は入力そのもの。エンコーダ・デコーダ構造一般は、入力を訳文やラベル画像など別の出力に変換する。"
+      },
+      {
+        "id": "C-05-031",
+        "point": "Seq2Seq はエンコーダ・デコーダ構造を RNN（LSTM）で系列変換に使った具体例。構造そのものは RNN に限らない（Transformer は Attention だけで作る）。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Cho et al. (2014) Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation (arXiv:1406.1078)",
+        "url": "https://arxiv.org/abs/1406.1078"
+      },
+      {
+        "title": "Sutskever, Vinyals & Le (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)",
+        "url": "https://arxiv.org/abs/1409.3215"
+      },
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      },
+      {
+        "title": "Badrinarayanan et al. (2015) SegNet (arXiv:1511.00561)",
+        "url": "https://arxiv.org/abs/1511.00561"
       }
     ],
     "status": "verified"

@@ -157,6 +157,7 @@ for (const { file: f, kind, data, syl } of loaded) {
         if (!c || !(isStr(c.id) || isStr(c.title))) err(f, id, `confusions[${i}] に id も title も無い`);
         if (!c || !isStr(c.point)) err(f, id, `confusions[${i}].point が無い`);
         if (c && isStr(c.id) && !conceptIndex.has(c.id)) (strictLinks ? err : warn)(f, id, `confusions[${i}].id ${c.id} が見つからない`);
+        if (c && c.id === id) err(f, id, 'confusions が自分自身を指している');
       });
     }
     checkSources(f, id, o.sources);

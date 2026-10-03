@@ -549,7 +549,8 @@
     ],
     "memoryTip": "p値は「仮説が正しいとしたら、こんな結果はどれくらい珍しいか」。",
     "concepts": [
-      "C-08-017"
+      "C-08-017",
+      "C-08-024"
     ],
     "sources": [
       {
@@ -1120,7 +1121,8 @@
     ],
     "memoryTip": "第1種＝あわてんぼう（差がないのに「ある」）、第2種＝ぼんやり（差があるのに見逃す）。片方を厳しくすると他方が増える。",
     "concepts": [
-      "C-08-017"
+      "C-08-017",
+      "C-08-023"
     ],
     "sources": [
       {
@@ -1508,6 +1510,527 @@
       {
         "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 5b Reading: Continuous Random Variables",
         "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class05-prep-b_pdf/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-041",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "新しい広告の効果を検定する。帰無仮説を「広告の前後で売上の平均は変わらない」とした。実際には広告に効果が無かったのに、検定の結果「効果がある」と結論してしまった。この誤りとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "第一種の過誤（起きる確率は有意水準αで抑える）",
+      "第二種の過誤（起きる確率βは効果の大きさで変わる）",
+      "第一種の過誤（起きる確率は検出力1−βで表す）",
+      "第二種の過誤（起きる確率は有意水準αで抑える）"
+    ],
+    "answer": 0,
+    "explanation": "帰無仮説（効果が無い）が正しいのに棄却してしまったので、第一種の過誤。その確率αが有意水準で、分析者が事前に小さく決めておく。",
+    "whyWrong": [
+      null,
+      "第二種の過誤は、本当は効果がある（帰無仮説が誤り）のに、棄却できずに見逃す誤り。",
+      "誤りの種類は合っているが、検出力1−βは、帰無仮説が誤っているときに正しく棄却できる確率。",
+      "種類が違う。有意水準αで抑えるのは第一種の過誤。"
+    ],
+    "memoryTip": "第一種＝あわてんぼう（無い差を「有る」と言う、確率α）。第二種＝ぼんやり（有る差を見逃す、確率β）。",
+    "concepts": [
+      "C-08-023",
+      "C-08-017"
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.5 Quantitative Techniques（Hypothesis Tests）",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.1.3 What are statistical tests?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-042",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "帰無仮説が誤っているときに、それを正しく棄却できる確率を検定の（　）といい、第二種の過誤の確率をβとすると 1−β で表される。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "choices": [
+      "有意水準",
+      "p値",
+      "信頼係数",
+      "検出力"
+    ],
+    "answer": 3,
+    "explanation": "NISTの解説では、帰無仮説が誤っているときに棄却する確率を検定の検出力（power）と呼び、1−βで表す。βは第二種の過誤の確率。",
+    "whyWrong": [
+      "帰無仮説が正しいのに棄却してしまう確率α（第一種の過誤の確率）。",
+      "帰無仮説が正しいとしたとき、観測以上に極端な検定統計量が出る確率。データから計算する値。",
+      "区間推定で、区間が真の値を含む確率（例：95％）。1−αで表す。",
+      null
+    ],
+    "memoryTip": "検出力＝本当に差があるときに見つけられる力＝1−β。βが小さいほど検出力は高い。",
+    "concepts": [
+      "C-08-023"
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.5 Quantitative Techniques（Hypothesis Tests）",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.2.2.1 Confidence interval approach",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc221.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-043",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "ある部品の長さの母平均は50mm、母標準偏差は4mmとされている。工程を変えた後に16個を測ると、標本平均は52.5mmだった。「母平均は50mmのまま」を帰無仮説とし、有意水準5％の両側検定（臨界値±1.96）を行う。検定統計量と結論の組み合わせとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "z＝0.625、棄却域に入らないので帰無仮説を棄却しない",
+      "z＝2.5、棄却域に入るので帰無仮説を棄却する",
+      "z＝0.156、棄却域に入らないので帰無仮説を棄却しない",
+      "z＝10、棄却域に入るので帰無仮説を棄却する"
+    ],
+    "answer": 1,
+    "explanation": "母標準偏差が分かっているときの検定統計量は z＝(標本平均−仮定した平均)÷(σ/√n)＝(52.5−50)÷(4/√16)＝2.5÷1＝2.5。両側5％の棄却域は |z|≧1.96 なので、2.5は棄却域に入り、帰無仮説を棄却する。",
+    "whyWrong": [
+      "母標準偏差4で割っており、標本の大きさを使っていない。標本平均のばらつきは σ/√n＝4/4＝1。",
+      null,
+      "16で割っている。σ/√n、つまり4÷√16＝1で割る。",
+      "σ/n＝4/16＝0.25で割っている。標本平均のばらつきは σ/√n。"
+    ],
+    "memoryTip": "z＝（ずれ）÷（標本平均のばらつき σ/√n）。|z|が1.96を超えたら両側5％で棄却。",
+    "concepts": [
+      "C-08-024",
+      "C-08-017"
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.2.2 Are the data consistent with the assumed process mean?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc22.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.7.1 Cumulative Distribution Function of the Standard Normal Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3671.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-044",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "仮説検定の判断について、最も不適切な選択肢を1つ選べ。",
+    "choices": [
+      "有意水準0.05で検定し、p値が0.03だったので、帰無仮説を棄却した",
+      "p値が有意水準より小さいことと、検定統計量が棄却域に入ることは、同じ判断を表す",
+      "有意水準は、データを見る前に決めておくのがよいとされている",
+      "p値が0.20で棄却できなかったので、帰無仮説が正しいことが示された"
+    ],
+    "answer": 3,
+    "explanation": "棄却できないのは「帰無仮説を否定する証拠が足りない」ということで、帰無仮説が正しいと示したことにはならない。データが少なくて差を示せていないだけのこともある。",
+    "whyWrong": [
+      "正しい。p値0.03は有意水準0.05より小さいので棄却する。",
+      "正しい。NISTの解説は、p値と有意水準の比較は、検定統計量と臨界値の比較とちょうど対応すると説明している。",
+      "正しい。どれだけ小さいp値なら棄却するかを、事前に決めておくのがよい習慣とされている。",
+      null
+    ],
+    "memoryTip": "棄却できない＝「無罪の証明」ではなく「有罪の証拠不十分」。",
+    "concepts": [
+      "C-08-024",
+      "C-08-017"
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.1.3.1 Critical values and p values",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc131.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.5 Quantitative Techniques（Hypothesis Tests）",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.1.3 What are statistical tests?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-045",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ある店で、天気（晴れ・雨）と傘の売れ行き（売れる・売れない）の同時確率が、P(晴れ, 売れる)＝0.1、P(晴れ, 売れない)＝0.5、P(雨, 売れる)＝0.3、P(雨, 売れない)＝0.1 だった。傘が売れる確率 P(売れる)（周辺確率）として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "0.1",
+      "0.3",
+      "0.4",
+      "0.75"
+    ],
+    "answer": 2,
+    "explanation": "周辺確率は、もう一方の変数（天気）のすべての値について同時確率を足して求める。P(売れる)＝P(晴れ, 売れる)＋P(雨, 売れる)＝0.1＋0.3＝0.4。",
+    "whyWrong": [
+      "「晴れ、かつ売れる」の同時確率だけ。雨の場合も足す。",
+      "「雨、かつ売れる」の同時確率だけ。晴れの場合も足す。",
+      null,
+      "雨の日に売れる条件付き確率 P(売れる|雨)＝0.3÷(0.3＋0.1)。周辺確率ではない。"
+    ],
+    "memoryTip": "周辺確率＝表の行（列）を足して余白に書く。条件付き確率＝同時確率÷条件の側の周辺確率。",
+    "concepts": [
+      "C-08-025",
+      "C-08-007"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-046",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "受信するメールの20％が迷惑メールである。単語「当選」は、迷惑メールの50％、通常のメールの10％に含まれる。「当選」を含むメールが迷惑メールである確率（事後確率）として、最も近いものを1つ選べ。",
+    "choices": [
+      "約10％",
+      "約20％",
+      "約50％",
+      "約56％"
+    ],
+    "answer": 3,
+    "explanation": "ベイズの定理で求める。P(当選)＝0.2×0.5＋0.8×0.1＝0.18。P(迷惑|当選)＝P(当選|迷惑)×P(迷惑)÷P(当選)＝0.10÷0.18≒0.56。",
+    "whyWrong": [
+      "迷惑メールで、かつ「当選」を含む同時確率 0.2×0.5。全体で「当選」を含む確率0.18で割る。",
+      "単語を見る前の事前確率のまま。「当選」という情報で更新していない。",
+      "迷惑メールが「当選」を含む確率 P(当選|迷惑)。求めたいのは逆向きの P(迷惑|当選)。",
+      null
+    ],
+    "memoryTip": "事後確率＝事前確率×尤度÷全体の確率。単語1つで20％から約56％へ更新される。",
+    "concepts": [
+      "C-08-026",
+      "C-08-007"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-047",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "ベイズの定理 P(θ|D)＝P(D|θ)P(θ)÷P(D) で、データDを見る前のθの確率 P(θ) を（ア）、データを見た後の P(θ|D) を（イ）という。（ア）（イ）の組み合わせとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "（ア）事後確率（イ）事前確率",
+      "（ア）事前確率（イ）事後確率",
+      "（ア）周辺確率（イ）同時確率",
+      "（ア）尤度（イ）事後確率"
+    ],
+    "answer": 1,
+    "explanation": "データを見る前の知識を表すのが事前確率（事前分布）P(θ)。データの尤度 P(D|θ) を掛けて、データを見た後の事後確率 P(θ|D) に更新する。",
+    "whyWrong": [
+      "順序が逆。データを見る前が事前、見た後が事後。",
+      null,
+      "周辺確率 P(D) は分母に当たり、同時確率は P(D, θ)＝P(D|θ)P(θ)。",
+      "尤度は P(D|θ)（θのもとでデータDが得られる確率）。P(θ)は事前確率。"
+    ],
+    "memoryTip": "事前（データ前）×尤度（データの出やすさ）→事後（データ後）。",
+    "concepts": [
+      "C-08-026",
+      "C-08-016"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-048",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "全国の世帯を対象にした調査で、標本がたまたま特定の地域に偏らないように、まず地域ごとにグループ分けし、各地域から同じ抽出率で独立に標本を選んだ。この抽出方法として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "系統抽出法",
+      "層化抽出法",
+      "単純無作為抽出法",
+      "ブートストラップ法"
+    ],
+    "answer": 1,
+    "explanation": "母集団を性質の似たグループ（層）に分け、各層で独立に抽出するのが層化抽出法。総務省統計局の解説は、地域ごとに層化してから同じ抽出率で選ぶと、ある地域が多い標本になるおそれがなくなるとしている。",
+    "whyWrong": [
+      "一連番号を付けて、等間隔に選ぶ方法。グループ分けはしない。",
+      null,
+      "グループ分けをせず、母集団全体からくじ引きのように一つずつ選ぶ方法。",
+      "手元のデータから重複を許して取り出し直す方法で、調査の標本を選ぶ方法ではない。"
+    ],
+    "memoryTip": "層化＝先にグループ（層）に分けて、層ごとに選ぶ。系統＝等間隔。単純無作為＝全体からくじ引き。",
+    "concepts": [
+      "C-08-027",
+      "C-03-020"
+    ],
+    "sources": [
+      {
+        "title": "総務省統計局「労働力調査 標本設計の解説」（平成30年4月）",
+        "url": "https://www.stat.go.jp/data/roudou/hyohon/pdf/18hyohon.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-049",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "散布図と相関について、最も不適切な選択肢を1つ選べ。",
+    "choices": [
+      "相関係数が0に近ければ、2つの変数の間には、どんな形の関係も無い",
+      "一方が大きいほど他方も大きい右上がりの関係を、正の相関という",
+      "一方が大きいほど他方が小さい右下がりの関係を、負の相関という",
+      "相関係数が−0.9の2変数は、0.3の2変数より直線的な関係が強い"
+    ],
+    "answer": 0,
+    "explanation": "相関係数は直線的な関係の強さだけを測る。Y＝X²のような曲線の関係は、強く結びついていても相関係数が0に近くなることがある。",
+    "whyWrong": [
+      null,
+      "正しい。小さいXには小さいY、大きいXには大きいYが対応する。",
+      "正しい。小さいXには大きいY、大きいXには小さいYが対応する。",
+      "正しい。関係の強さは絶対値で比べる。|−0.9|＞0.3。符号は向きを表す。"
+    ],
+    "memoryTip": "相関係数＝直線の具合だけを見るものさし。0でも曲線の関係が隠れていることがある。",
+    "concepts": [
+      "C-08-012"
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.3.26.2 Scatter Plot: Strong Linear (positive correlation) Relationship",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda33q2.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.3.26.3 Scatter Plot: Strong Linear (negative correlation) Relationship",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda33q3.htm"
+      },
+      {
+        "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 7b Reading: Covariance and Correlation",
+        "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_class07-prep-b_pdf/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-050",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "2点 (2, 1) と (7, 3) の、マンハッタン距離とチェビシェフ距離の組み合わせとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "マンハッタン距離 5、チェビシェフ距離 7",
+      "マンハッタン距離 7、チェビシェフ距離 2",
+      "マンハッタン距離 7、チェビシェフ距離 5",
+      "マンハッタン距離 約5.4、チェビシェフ距離 5"
+    ],
+    "answer": 2,
+    "explanation": "座標の差の絶対値は 5 と 2。マンハッタン距離はその和で 5＋2＝7、チェビシェフ距離はその最大値で 5。",
+    "whyWrong": [
+      "逆。和が7、最大値が5。",
+      "チェビシェフ距離は差の絶対値の最大値（5と2のうち5）。最小値ではない。",
+      null,
+      "約5.4（√29）はユークリッド距離。マンハッタン距離は差の絶対値の和 5＋2＝7。"
+    ],
+    "memoryTip": "マンハッタン＝差を足す（碁盤の目を歩く）。ユークリッド＝2乗して足して√（まっすぐ）。チェビシェフ＝一番大きい差だけ。",
+    "concepts": [
+      "C-08-019"
+    ],
+    "sources": [
+      {
+        "title": "SciPy API scipy.spatial.distance.cityblock",
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cityblock.html"
+      },
+      {
+        "title": "SciPy API scipy.spatial.distance.chebyshev",
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.chebyshev.html"
+      },
+      {
+        "title": "scikit-learn API sklearn.metrics.pairwise.euclidean_distances",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.euclidean_distances.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-051",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "10個のデータ {2, 3, 3, 4, 5, 6, 8, 9, 10, 60} について、小さい側と大きい側からそれぞれ10％ずつ除いて平均をとるトリム平均として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "5.0",
+      "5.5",
+      "6.0",
+      "11.0"
+    ],
+    "answer": 2,
+    "explanation": "10個の10％は1個。小さい側の2と大きい側の60を除き、残る8個 {3, 3, 4, 5, 6, 8, 9, 10} の合計48を8で割って6.0。外れ値60の影響を受けにくい。",
+    "whyWrong": [
+      "大きい側の60だけを除き、残り9個の合計50を10で割っている。両側から1個ずつ除き、残った8個で割る。",
+      "中央値（5と6の平均）。トリム平均は両端を除いた残りの平均。",
+      null,
+      "すべての値を使った平均。外れ値60に引っ張られている。"
+    ],
+    "memoryTip": "トリム平均＝両端を同じだけ切ってから平均。平均（外れ値に弱い）と中央値（真ん中だけ見る）の中間。",
+    "concepts": [
+      "C-08-001",
+      "C-08-002"
+    ],
+    "sources": [
+      {
+        "title": "SciPy API scipy.stats.trim_mean",
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.trim_mean.html"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.5.1 Measures of Location",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-052",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "時系列データの定常性について、最も不適切な選択肢を1つ選べ。",
+    "choices": [
+      "定常な時系列では、平均・分散・自己相関の構造が時間によって変わらない",
+      "右肩上がりの傾向（トレンド）がある売上の系列は、非定常である",
+      "非定常な系列は、前の時点との差分をとることで定常に近づけられることがある",
+      "ばらつきが時間とともに大きくなる系列でも、平均が一定なら定常とみなせる"
+    ],
+    "answer": 3,
+    "explanation": "定常であるには、平均だけでなく分散（ばらつき）も時間によって変わらない必要がある。ばらつきが変わる系列は非定常で、対数や平方根をとって分散を安定させることがある。",
+    "whyWrong": [
+      "正しい。NISTの定常性の説明。",
+      "正しい。傾向があると平均が時間とともに変わる。",
+      "正しい。差分をとる、傾向を取り除く、などで定常に近づける。",
+      null
+    ],
+    "memoryTip": "定常＝平均もばらつきも癖も時間で変わらない。トレンドは差分で、ばらつきの変化は対数で直す。",
+    "concepts": [
+      "C-08-018"
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 6.4.4.2 Stationarity",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc442.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-08-053",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "ある分布（正規分布とは限らない）の母平均が100、母標準偏差が12である。この母集団から大きさ36の標本を無作為に何度も取り出して標本平均を計算すると、中心極限定理により標本平均の分布はおおよそ正規分布になる。その標準偏差として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "12",
+      "2",
+      "1/3",
+      "72"
+    ],
+    "answer": 1,
+    "explanation": "中心極限定理によれば、標本の大きさnが大きいとき、標本平均はおおよそ平均μ・分散σ²/nの正規分布に従う。標準偏差は σ/√n＝12/√36＝12/6＝2。元の分布が平均と分散を持てば、正規分布でなくても成り立つ。",
+    "whyWrong": [
+      "元の分布の標準偏差のまま。平均をとるとばらつきは小さくなる。",
+      null,
+      "12÷36 と、nで割っている。分散がσ²/nなので、標準偏差はσ/√n。",
+      "√nを掛けている。√nで割る。"
+    ],
+    "memoryTip": "中心極限定理＝平均をとると正規分布に近づき、ばらつきは σ/√n に縮む。",
+    "concepts": [
+      "C-08-008",
+      "C-08-003"
+    ],
+    "sources": [
+      {
+        "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 6 Reading: Central Limit Theorem and the Law of Large Numbers",
+        "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_class06-prep-b.pdf"
       }
     ],
     "status": "verified"

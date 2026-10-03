@@ -950,7 +950,8 @@
     ],
     "memoryTip": "形態素＝「形」で区切る（分かち書き＋品詞）、構文＝「つながり」を見る。",
     "concepts": [
-      "C-06-026"
+      "C-06-026",
+      "C-06-094"
     ],
     "sources": [
       {
@@ -2754,6 +2755,1108 @@
       {
         "title": "IPA「DX白書2023」",
         "url": "https://www.ipa.go.jp/publish/wp-dx/dx-2023.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-070",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "「一般物体認識」の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "データベースに登録した既知の物体と照合し、その物体が画像の中にあるかを答える認識",
+      "制約のない実世界の画像に写った物体を、計算機が一般的な名称で認識すること",
+      "照明や背景を固定した検査台の上でだけ、決まった部品を見分けるように作った認識",
+      "画像の各画素がどの物体に属するかを、画素ごとに塗り分けて出力する処理"
+    ],
+    "answer": 1,
+    "explanation": "一般物体認識は、制約のない実世界の画像に対して、計算機がその中の物体を「椅子」「山」のような一般的な名称で認識すること。同じクラスでも見た目の変化が大きいので難しく、コンピュータビジョンの究極の課題の1つとされてきた。",
+    "whyWrong": [
+      "柳井（2007）は、データベースのモデルと照合して既知の物体を見つけ出す認識を同定（identification）と呼び、未知の物体をクラスに分ける分類と区別している。一般物体認識は分類の側。",
+      null,
+      "一般物体認識は「制約のない」実世界の画像が対象。撮影の条件を固定した環境に限るのは逆。",
+      "これはセグメンテーション（画素ごとにクラスを付ける）の説明。"
+    ],
+    "memoryTip": "一般物体認識＝どんな写真でも「椅子」「山」と一般名で言える。同定＝登録した「あの品」を探し出す。",
+    "concepts": [
+      "C-06-001"
+    ],
+    "sources": [
+      {
+        "title": "柳井啓司（2007）一般物体認識の現状と今後（情報処理学会論文誌 コンピュータビジョンとイメージメディア 48(SIG16)）",
+        "url": "https://ipsj.ixsq.nii.ac.jp/records/17938"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-071",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "複数の人が写った画像の姿勢推定について、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "トップダウン型は、関節点を先に画像全体から見つけ、それを人物ごとに組み立てる",
+      "ボトムアップ型は、検出した人物ごとに姿勢推定を行うので、計算時間が人数に比例する",
+      "トップダウン型は、人物の検出に失敗すると、その人物の姿勢を推定できない",
+      "OpenPose は、人物を検出してから1人ずつ関節点を推定するトップダウン型である"
+    ],
+    "answer": 2,
+    "explanation": "トップダウン型は、先に人物を検出し、検出した1人ずつに姿勢推定をかける。人物の検出に失敗すると立て直しがきかず（早い段階での決めつけ）、計算時間も人数に比例する。ボトムアップ型は、先に画像全体から部位を見つけて人に結びつけるので、人数と計算時間を切り離せる。",
+    "whyWrong": [
+      "これはボトムアップ型のやり方。トップダウン型は先に人物を検出する。",
+      "計算時間が人数に比例するのはトップダウン型。ボトムアップ型は人数によらない計算にできる。",
+      null,
+      "OpenPose は、部位の位置と、部位を個々の人に結びつける Part Affinity Fields を学習するボトムアップ型。"
+    ],
+    "memoryTip": "トップダウン＝「人を見つけてから関節」、ボトムアップ＝「関節を見つけてから人」。OpenPose はボトムアップ。",
+    "concepts": [
+      "C-06-025"
+    ],
+    "sources": [
+      {
+        "title": "Cao et al. (2018) OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields (arXiv:1812.08008)",
+        "url": "https://arxiv.org/abs/1812.08008"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-072",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "R-CNN 系の物体検出の説明として、最も不適切な選択肢を1つ選べ。",
+    "choices": [
+      "Fast R-CNN の RoI プーリングは、大きさの違う候補領域から決まった大きさの特徴を取り出す",
+      "Faster R-CNN の RPN は、検出ネットワークと畳み込み特徴を共有しながら候補領域を出す",
+      "Mask R-CNN の RoIAlign は、座標を整数に丸めずに双線形補間で特徴の値を求める",
+      "Selective Search は畳み込み特徴を学習して候補を出すため、RPN より速く動く"
+    ],
+    "answer": 3,
+    "explanation": "Selective Search は、手作りの低レベル特徴で小領域（スーパーピクセル）を貪欲に統合していく方法で、学習する方法ではない。CPU で1枚約2秒かかり、検出ネットワークより1桁遅かった。これを置き換えたのが Faster R-CNN の RPN で、候補の計算は1枚約10ミリ秒になった。",
+    "whyWrong": [
+      "適切。候補領域を H×W（例：7×7）の格子に分け、それぞれで最大値プーリングして決まった大きさにする。",
+      "適切。全体画像の畳み込み特徴を検出ネットワークと共有するので、ほぼ追加の費用なしに候補を出せる。",
+      "適切。RoI プーリングの粗い丸めによる位置のずれを無くすため、量子化をしない RoIAlign を提案した。",
+      null
+    ],
+    "memoryTip": "候補の出し方の変遷：Selective Search（手作り・遅い）→ RPN（学習・特徴を共有して速い）。取り出し方：RoI プーリング（丸める）→ RoIAlign（丸めない）。",
+    "concepts": [
+      "C-06-015",
+      "C-06-024"
+    ],
+    "sources": [
+      {
+        "title": "Ren et al. (2015) Faster R-CNN (arXiv:1506.01497)",
+        "url": "https://arxiv.org/abs/1506.01497"
+      },
+      {
+        "title": "Girshick (2015) Fast R-CNN (arXiv:1504.08083)",
+        "url": "https://arxiv.org/abs/1504.08083"
+      },
+      {
+        "title": "He et al. (2017) Mask R-CNN (arXiv:1703.06870)",
+        "url": "https://arxiv.org/abs/1703.06870"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-073",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "GoogLeNet の補助分類器（Auxiliary Classifier）の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "推論のときに主分類器の出力と多数決をとり、予測を安定させる",
+      "途中の層に付けた分類器の損失を小さな重みで全体に加え、下の層まで勾配を届きやすくする",
+      "Inception モジュールの中で、1×1 畳み込みの代わりにチャネル数を減らす",
+      "最後の全結合層の代わりに置かれ、パラメータの数を大きく減らす"
+    ],
+    "answer": 1,
+    "explanation": "GoogLeNet は、途中の Inception (4a)・(4d) の出力に小さな分類器を付け、学習中はその損失を0.3倍して全体の損失に加えた。下の層の識別力を高め、逆伝播で届く勾配の信号を増やし、正則化の効果も狙った。推論のときは補助分類器を外す。",
+    "whyWrong": [
+      "補助分類器は学習を助けるためのもので、推論のときには外す。",
+      null,
+      "チャネル数を減らす（次元削減）のは、Inception モジュールの中の 1×1 畳み込みの役割。",
+      "全結合層を減らしたのは、分類器の前に置いた平均プーリングの工夫。補助分類器の役割ではない。"
+    ],
+    "memoryTip": "補助分類器＝学習のときだけ付ける「途中の答え合わせ」。推論では外す。",
+    "concepts": [
+      "C-06-004"
+    ],
+    "sources": [
+      {
+        "title": "Szegedy et al. (2014) Going Deeper with Convolutions (arXiv:1409.4842)",
+        "url": "https://arxiv.org/abs/1409.4842"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-074",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "日本語の文「犬が庭で遊んだ」を「犬 が 庭 で 遊ん だ」のように、語の区切りに空白を入れて書き出したものの呼び名として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "分かち書き",
+      "ストップワード",
+      "係り受け",
+      "照応"
+    ],
+    "answer": 0,
+    "explanation": "日本語は語の間を空白で区切らないため、形態素解析で語に区切る。区切りに空白を入れて書き出したものを分かち書きと呼び、形態素解析器の MeCab にも分かち書きだけを出す出力形式がある。",
+    "whyWrong": [
+      null,
+      "ストップワードは「が」「で」や英語の the のように、内容を表すのに役立たないとみなして取り除く語。区切った結果の呼び名ではない。",
+      "係り受けは、区切った語や文節がどの語・文節にかかるかという関係で、構文解析で求める。",
+      "照応は、代名詞などの表現が前に出てきた何を指すかという関係。"
+    ],
+    "memoryTip": "処理の順に覚える：区切る（形態素解析・分かち書き）→ 要らない語を除く（ストップワード）→ かかり先を見る（係り受け）。",
+    "concepts": [
+      "C-06-094"
+    ],
+    "sources": [
+      {
+        "title": "MeCab: Yet Another Part-of-Speech and Morphological Analyzer（公式サイト）",
+        "url": "https://taku910.github.io/mecab/"
+      },
+      {
+        "title": "scikit-learn User Guide: Feature extraction（Text feature extraction / Using stop words）",
+        "url": "https://scikit-learn.org/stable/modules/feature_extraction.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-075",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "「太郎は花子に本を貸した。彼女はそれをすぐに読んだ。」の「彼女」が花子を、「それ」が本を指すと決める処理を（　）という。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "choices": [
+      "形態素解析",
+      "構文解析",
+      "意味解析",
+      "照応解析"
+    ],
+    "answer": 3,
+    "explanation": "代名詞などの表現が、前に出てきたどの人や物を指すかを決める処理を照応解析という。この例のように文をまたいで指す先を決める。京都大学の KNP は係り受け・格関係に加えて照応関係も出力する。",
+    "whyWrong": [
+      "形態素解析は文を語に区切って品詞を付ける処理で、語が何を指すかは決めない。",
+      "構文解析は1つの文の中で語や文節がどこにかかるか（係り受け）を求める処理。文をまたいだ指す先は扱わない。",
+      "意味解析は、文の中で各語が「誰が」「何を」などのどの役割を担うかを求める。前の文の何を指すかを決めるのは照応解析。",
+      null
+    ],
+    "memoryTip": "範囲が広がる順：語（形態素）→ 文の構造（構文）→ 文の中の役割（意味）→ 文をまたぐ（照応・談話構造）。",
+    "concepts": [
+      "C-06-095"
+    ],
+    "sources": [
+      {
+        "title": "京都大学 言語メディア研究室「日本語構文・格・照応解析システム KNP」",
+        "url": "https://nlp.ist.i.kyoto-u.ac.jp/?KNP"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 24: Coreference Resolution and Entity Linking",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/24.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-076",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "単語の分散表現（単語埋め込み）の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "語彙の数と同じ次元を持ち、その単語に当たる1か所だけが1になるベクトル",
+      "数百次元ほどの実数のベクトルで、使われ方の似た単語ほど近いベクトルになる",
+      "文書ごとに各単語の出現回数を数え、語順を捨てて並べたベクトル",
+      "文書の中でよく出て、他の文書ではあまり出ない単語ほど大きな値を与えたもの"
+    ],
+    "answer": 1,
+    "explanation": "分散表現は、単語を数百次元ほどの連続値のベクトルで表し、意味や使われ方が似た単語ほど近いベクトルになるようにしたもの。word2vec が代表例で、ワンホット表現では表せない単語どうしの近さを計算できる。",
+    "whyWrong": [
+      "これはワンホットベクトル（局所表現）。どの2つの単語も同じ距離になり、似ているかを表せない。",
+      null,
+      "これは BoW（Bag-of-Words）。文書の表し方で、単語の意味の近さは表さない。",
+      "これは TF-IDF による語の重み付け。"
+    ],
+    "memoryTip": "ワンホット＝高次元・まばら・近さなし、分散表現＝低次元・密・近さあり。",
+    "concepts": [
+      "C-06-028",
+      "C-06-027"
+    ],
+    "sources": [
+      {
+        "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 15 Representation Learning",
+        "url": "https://www.deeplearningbook.org/contents/representation.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-077",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "単語の意味をベクトルで表す手法の分け方について、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "カウントベースの手法は、ニューラルネットで周りの単語を予測しながらベクトルを学ぶ",
+      "推論ベースの手法は、単語と文脈の共起回数の表を作り、それを変換してベクトルにする",
+      "推論ベースの手法は、カウントベースの手法との系統的な比較で多くの課題で上回った",
+      "ベクトル空間モデルは単語にしか使えず、文書を1つのベクトルで表すことはできない"
+    ],
+    "answer": 2,
+    "explanation": "Baroni ら（2014）は、共起回数を数えて変換するカウントベースの手法と、word2vec のように周りの語を予測して学ぶ推論ベース（予測ベース）の手法を、多くの語彙意味の課題とパラメータ設定で比べ、推論ベースがはっきり上回ったと報告した。",
+    "whyWrong": [
+      "これは推論ベースの手法の説明。カウントベースは共起回数を数えた行列を重み付けや次元削減で変換する。",
+      "これはカウントベースの手法の説明。推論ベースは周りの単語を予測する学習でベクトルを得る。",
+      null,
+      "ベクトル空間モデルには文書×単語の行列で文書を表すものもある（Turney & Pantel 2010 は行列の種類で3つに分けている）。"
+    ],
+    "memoryTip": "カウント＝「数えてから縮める」、推論（予測）＝「当てながら覚える」。比べたら予測の勝ち（Don't count, predict!）。",
+    "concepts": [
+      "C-06-028",
+      "C-06-027"
+    ],
+    "sources": [
+      {
+        "title": "Baroni, Dinu & Kruszewski (2014) Don't count, predict! A systematic comparison of context-counting vs. context-predicting semantic vectors (ACL)",
+        "url": "https://aclanthology.org/P14-1023.pdf"
+      },
+      {
+        "title": "Turney & Pantel (2010) From Frequency to Meaning: Vector Space Models of Semantics. JAIR (arXiv:1003.1141)",
+        "url": "https://arxiv.org/abs/1003.1141"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-078",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "word2vec と Doc2Vec（Paragraph Vector）について、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "スキップグラムは、周辺語から中心語を予測するように学習する",
+      "Doc2Vec は、文や文書などの長さの違うテキストを、決まった長さのベクトルで表す",
+      "Doc2Vec は文書中の単語の出現回数を並べたものなので、語の意味の近さは扱わない",
+      "word2vec は文書全体を1つのベクトルにする手法で、単語ごとのベクトルは作らない"
+    ],
+    "answer": 1,
+    "explanation": "Le と Mikolov（2014）の Paragraph Vector（ライブラリ gensim の実装名から Doc2Vec とも呼ばれる）は、文・段落・文書のような長さの違うテキストから、決まった長さの密なベクトルを教師なしで学ぶ。語順や意味を捨てる BoW の弱点を補うことを狙った。",
+    "whyWrong": [
+      "これは CBOW。スキップグラムは中心語から周辺語を予測する。",
+      null,
+      "出現回数を並べるのは BoW。Paragraph Vector は文書の中の語を予測するように学習した密なベクトルで、BoW の弱点を補う。",
+      "word2vec は単語ごとのベクトルを学ぶ手法。文書をベクトルにするのが Paragraph Vector。"
+    ],
+    "memoryTip": "CBOW＝周り→中心、スキップグラム＝中心→周り。それを文書に広げたのが Doc2Vec。",
+    "concepts": [
+      "C-06-029"
+    ],
+    "sources": [
+      {
+        "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      },
+      {
+        "title": "Le & Mikolov (2014) Distributed Representations of Sentences and Documents (arXiv:1405.4053)",
+        "url": "https://arxiv.org/abs/1405.4053"
+      },
+      {
+        "title": "Gensim Documentation: models.doc2vec – Doc2vec paragraph embeddings",
+        "url": "https://radimrehurek.com/gensim/models/doc2vec.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-079",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "Google のニューラル機械翻訳システム GNMT（2016）の説明として、最も不適切な選択肢を1つ選べ。",
+    "choices": [
+      "8層のエンコーダと8層のデコーダからなる LSTM に、残差接続と Attention を組み合わせた",
+      "珍しい単語に対応するため、単語をよく使われる部分語（wordpiece）に分けて扱った",
+      "翻訳を速くするため、推論の計算に精度の低い数値の演算を使った",
+      "Attention も RNN も使わない、全結合層だけのネットワークで翻訳した"
+    ],
+    "answer": 3,
+    "explanation": "GNMT は、深い LSTM（エンコーダ8層・デコーダ8層）に残差接続と、デコーダからエンコーダへの Attention を組み合わせたモデル。Attention も RNN も使わないのは誤り。",
+    "whyWrong": [
+      "適切。並列化のため、Attention はデコーダの最下層とエンコーダの最上層をつないだ。",
+      "適切。文字単位の柔軟さと単語単位の効率の釣り合いをとった。",
+      "適切。推論の速度を上げるため低精度の演算を使った。",
+      null
+    ],
+    "memoryTip": "GNMT＝深い LSTM ＋ 残差 ＋ Attention ＋ wordpiece。Attention だけで RNN を捨てたのは翌年の Transformer。",
+    "concepts": [
+      "C-06-037"
+    ],
+    "sources": [
+      {
+        "title": "Wu et al. (2016) Google's Neural Machine Translation System (arXiv:1609.08144)",
+        "url": "https://arxiv.org/abs/1609.08144"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-080",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "大規模言語モデルに、答えだけでなく途中の推論の手順も書いた例をいくつか示し、モデルにも手順を書かせてから答えさせることで、算数の文章題などの正答率を上げる方法として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "Chain-of-Thought プロンプティング",
+      "標準の Few-shot プロンプティング",
+      "追加データによるファインチューニング",
+      "システムプロンプトでの役割の指定"
+    ],
+    "answer": 0,
+    "explanation": "Wei ら（2022）は、途中の推論の手順（chain of thought）を含む例を数個プロンプトに示すだけで、十分に大きな言語モデルの算数・常識・記号の推論の性能が大きく上がることを示した。モデルの重みは変えない。",
+    "whyWrong": [
+      null,
+      "例は示すが、例に書くのは問いと答えだけ（Wei らが比べる基準にした標準のプロンプト）。途中の推論の手順は書かせない。",
+      "ファインチューニングは追加のデータで重みを更新する。例をプロンプトに書くだけの方法とは違う。",
+      "システムプロンプトは会話の前に役割や振る舞いを決める指示。推論の手順を書かせる方法そのものではない。"
+    ],
+    "memoryTip": "CoT＝「途中式を見せて、途中式を書かせる」。重みは変えず、プロンプトの工夫だけ。",
+    "concepts": [
+      "C-06-096"
+    ],
+    "sources": [
+      {
+        "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)",
+        "url": "https://arxiv.org/abs/2201.11903"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-081",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "音声を 16,000 Hz（1秒間に16,000回）のサンプリング周波数で標本化するとき、記録できる最も高い周波数として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "4,000 Hz",
+      "8,000 Hz",
+      "16,000 Hz",
+      "32,000 Hz"
+    ],
+    "answer": 1,
+    "explanation": "1周期の波をとらえるには最低2つの標本が要るので、記録できる最も高い周波数はサンプリング周波数の半分（ナイキスト周波数）。16,000 ÷ 2 ＝ 8,000 Hz。",
+    "whyWrong": [
+      "サンプリング周波数の4分の1にあたる。8,000 Hz までは1周期に2つ以上の標本がとれる。",
+      null,
+      "1周期に標本が1つしかとれず、波の形をとらえられない。上限はその半分。",
+      "サンプリング周波数より高い周波数は、1周期に1つの標本もとれないので記録できない。"
+    ],
+    "memoryTip": "「1周期に2点」→ 上限はサンプリング周波数の半分。人の声（〜10,000 Hz）を余さず記録するなら 20,000 Hz ほど要る。",
+    "concepts": [
+      "C-06-039"
+    ],
+    "sources": [
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 15: Phonetics and Speech Feature Extraction",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/15.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-082",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "英語では、語頭の p を息を伴って発音しても伴わずに発音しても別の語にはならないが、ヒンディー語では息の有無だけで別の語になる。この違いの説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "英語では2つの音は同じ音素の異なる発音（異音）だが、ヒンディー語では別々の音素である",
+      "英語では2つの音は別々の音素だが、ヒンディー語では同じ音素の異なる発音である",
+      "英語でもヒンディー語でも、2つの音は同じ音素の異なる発音（異音）である",
+      "音素は言語によらず共通なので、この違いは話し手の個人差によるものである"
+    ],
+    "answer": 0,
+    "explanation": "音素は、その言語で語を区別するのに使われる音の単位。英語では息の有無で語が区別されないので、息を伴う p と伴わない p は同じ音素の異音になる（どちらで発音するかは音韻の規則で決まる）。ヒンディー語では息の有無だけで違う語になる組があるので、別々の音素になる。",
+    "whyWrong": [
+      null,
+      "逆。英語は息の有無で語を区別しないので、別の音素にはならない。",
+      "ヒンディー語では息の有無だけで別の語になるので、同じ音素とはみなせない。",
+      "音素の区別は言語ごとに違う。英語とヒンディー語の違いは個人差ではなく、言語の音韻の体系の違い。"
+    ],
+    "memoryTip": "「入れ替えて別の語になるか」で決まる。なる＝別の音素、ならない＝同じ音素の異音。答えは言語ごとに違う。",
+    "concepts": [
+      "C-06-042"
+    ],
+    "sources": [
+      {
+        "title": "MIT OpenCourseWare 24.900 Introduction to Linguistics (Fall 2012) Phonology Summary",
+        "url": "https://ocw.mit.edu/courses/24-900-introduction-to-linguistics-fall-2012/f305bb4cff88d8643ef77a3c2ab6b92a_MIT24_900F12_Phonologysum.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-083",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "音声認識の DNN-HMM（ハイブリッド方式）の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "HMM を使わず、音声の波形から文字列を直接出力する end-to-end の方式",
+      "言語モデルをディープニューラルネットワークに置き換え、単語の並びの自然さを評価する",
+      "HMM の各状態に音声の特徴がどれだけ当てはまるかを、GMM の代わりに DNN で求める",
+      "音声を合成するために、HMM の状態から波形を1サンプルずつ生成する"
+    ],
+    "answer": 2,
+    "explanation": "従来の音声認識は、時間の伸び縮みを HMM で扱い、HMM の各状態にフレームがどれだけ当てはまるかを混合ガウスモデル（GMM）で求めていた（音響モデル）。DNN-HMM は、数フレーム分の特徴量を入力して HMM の状態の事後確率を出す DNN をこの部分に使う方式で、多くの評価で GMM を上回った。",
+    "whyWrong": [
+      "DNN-HMM は HMM を残したハイブリッド方式。区切りなしで文字列を直接出すのは CTC などの方式。",
+      "DNN に置き換えたのは音響モデルの部分。言語モデルは別に学習していた。",
+      null,
+      "これは音声合成の話。WaveNet は HMM ではなく、それまでのサンプルから次のサンプルを予測する自己回帰モデル。"
+    ],
+    "memoryTip": "音声認識＝音響モデル（音→音素）＋言語モデル（単語の並び）。DNN-HMM は音響モデルの GMM を DNN に替えた。",
+    "concepts": [
+      "C-06-043"
+    ],
+    "sources": [
+      {
+        "title": "Hinton et al. (2012) Deep Neural Networks for Acoustic Modeling in Speech Recognition. IEEE Signal Processing Magazine（著者公開版）",
+        "url": "https://www.cs.toronto.edu/~hinton/absps/DNN-2012-proof.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 16: Automatic Speech Recognition",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/16.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-084",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "WaveNet は、未来のサンプルを参照しないように畳み込む（ア）Convolution と、入力を一定の間隔で飛ばして参照する（イ）Convolution を組み合わせ、受容野を大きく広げて生の音声波形を生成した。（ア）（イ）に当てはまる組み合わせとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "ア：Depthwise　イ：Transposed",
+      "ア：Transposed　イ：Dilated",
+      "ア：Causal　イ：Depthwise",
+      "ア：Causal　イ：Dilated"
+    ],
+    "answer": 3,
+    "explanation": "WaveNet の中心は Causal Convolution で、時刻 t の予測が未来のサンプルに依存しないようにする。さらに、フィルタを入力の一定の間隔ごとに当てる Dilated Convolution を重ねて、少ない層で非常に大きな受容野を得た（Dilated Causal Convolution）。",
+    "whyWrong": [
+      "Depthwise はチャネルごとに分けて畳み込む軽量化の方法（MobileNet など）、Transposed は特徴マップを大きくするアップサンプリングの方法。どちらも WaveNet の中心ではない。",
+      "イは合っているが、アが違う。Transposed（転置畳み込み）は解像度を広げる操作で、未来を見ない仕組みではない。",
+      "アは合っているが、イが違う。Depthwise は計算を軽くする方法で、受容野を広げる仕組みではない。",
+      null
+    ],
+    "memoryTip": "WaveNet＝「未来を見ない（Causal）」×「飛ばして広く見る（Dilated）」。",
+    "concepts": [
+      "C-06-045",
+      "C-05-010"
+    ],
+    "sources": [
+      {
+        "title": "van den Oord et al. (2016) WaveNet (arXiv:1609.03499)",
+        "url": "https://arxiv.org/abs/1609.03499"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-085",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "DQN（Nature 2015）が学習を安定させるために使った2つの工夫の組み合わせとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "経験再生と方策勾配法",
+      "経験再生とターゲットネットワーク",
+      "デュエリングネットワークとノイジーネットワーク",
+      "ダブルQ学習と優先度付き経験再生"
+    ],
+    "answer": 1,
+    "explanation": "経験再生は、経験をためて無作為に取り出して学ぶことで、続けて得た経験どうしの強い相関を断つ。ターゲットネットワークは、目標値を計算するネットワークを一定の更新回数ごとに複製してその間は固定し、目標値が学習のたびに動く不安定さを減らす。",
+    "whyWrong": [
+      "方策勾配法は方策を直接最適化する方法。DQN は行動価値（Q値）を学ぶ価値ベースの手法。",
+      null,
+      "どちらも DQN の後に出た改良（行動価値の分け方の工夫と、探索のための雑音入りの層）。",
+      "どちらも DQN の後に出た改良で、のちに Rainbow にまとめられた。"
+    ],
+    "memoryTip": "因果でつなぐ：相関が強い → 経験再生で混ぜる。目標が動く → ターゲットネットワークで止める。",
+    "concepts": [
+      "C-06-047"
+    ],
+    "sources": [
+      {
+        "title": "Mnih et al. (2015) Human-level control through deep reinforcement learning. Nature 518（Google DeepMind 公開の本文PDF）",
+        "url": "https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-086",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "マルチエージェント強化学習で、「学習のときは他のエージェントの情報も使い、実行のときは各エージェントが自分の観測だけで行動する」枠組みとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "独立学習（エージェントごとに学ぶ）",
+      "オフライン強化学習（記録から学ぶ）",
+      "CTDE（集中学習・分散実行）",
+      "模倣学習（手本をまねて学ぶ）"
+    ],
+    "answer": 2,
+    "explanation": "CTDE（Centralized Training with Decentralized Execution）は、学習中に限って他のエージェントの情報を使い、実行時にはその情報を使わない枠組み。MADDPG などが採用した。各エージェントが別々に学ぶ独立学習では、他のエージェントの方策が変わるため環境が非定常に見え、学習が不安定になりやすい。",
+    "whyWrong": [
+      "独立学習は、各エージェントが他を環境の一部とみなして別々に学ぶ。学習のときも他の情報を使わない。",
+      "オフライン強化学習は、環境とやり取りせず集め終えたデータだけで学ぶ方法で、エージェントの数の話ではない。",
+      null,
+      "模倣学習は専門家の手本の行動をまねて学ぶ方法。"
+    ],
+    "memoryTip": "CTDE＝練習はチームで作戦会議（集中）、本番は各自の目で動く（分散）。",
+    "concepts": [
+      "C-06-056"
+    ],
+    "sources": [
+      {
+        "title": "Lowe et al. (2017) Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments (MADDPG) (arXiv:1706.02275)",
+        "url": "https://arxiv.org/abs/1706.02275"
+      },
+      {
+        "title": "Tan (1993) Multi-Agent Reinforcement Learning: Independent vs. Cooperative Agents (ICML)",
+        "url": "https://web.media.mit.edu/~cynthiab/Readings/tan-MAS-reinfLearn.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-087",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "オンライン強化学習とオフライン強化学習の違いとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "オンラインは学習中の方策で環境とやり取りして経験を集め続け、オフラインは集め終えたデータだけで学ぶ",
+      "オンラインはインターネットにつないで学習し、オフラインは通信を切った端末の中で学習する",
+      "オンラインは報酬を使って学び、オフラインは報酬を使わずに正解の行動だけをまねて学ぶ",
+      "オンラインは方策勾配法だけを、オフラインは価値ベースの手法だけを使う方式の名前"
+    ],
+    "answer": 0,
+    "explanation": "通常の（オンライン）強化学習は、その時点の方策で環境とやり取りして経験を集め、それで方策を良くする、を繰り返す。オフライン強化学習は、もう環境とやり取りできず、集め終えた遷移のデータ（状態・行動・次の状態・報酬）だけで、できるだけ良い方策を学ぶ。",
+    "whyWrong": [
+      null,
+      "通信の有無の話ではない。環境と新たにやり取りして経験を集めるかどうかの違い。",
+      "オフライン強化学習のデータにも報酬が含まれ、報酬を使って方策を学ぶ。報酬を使わず手本の行動をまねるのは模倣学習。",
+      "手法の種類の名前ではない。どちらの設定でも価値ベース・方策ベースの手法がありうる。"
+    ],
+    "memoryTip": "オンライン＝「やりながら集める」、オフライン＝「集めた記録だけで学ぶ」。報酬を使わず真似るのは模倣学習。",
+    "concepts": [
+      "C-06-059",
+      "C-06-097"
+    ],
+    "sources": [
+      {
+        "title": "Levine et al. (2020) Offline Reinforcement Learning: Tutorial, Review, and Perspectives (arXiv:2005.01643)",
+        "url": "https://arxiv.org/abs/2005.01643"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-088",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "InstructGPT の RLHF では、同じ入力に対するモデルの出力を人が比べて順位を付けたデータから、どの出力が好まれるかを予測する（　）を学習し、それを報酬として PPO で言語モデルを調整した。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "choices": [
+      "価値ネットワーク",
+      "識別器",
+      "方策ネットワーク",
+      "報酬モデル"
+    ],
+    "answer": 3,
+    "explanation": "InstructGPT は、①人の手本での教師ありファインチューニング、②人の比較データでの報酬モデル（RM）の学習、③報酬モデルを報酬関数とした PPO による強化学習、の3段階で言語モデルを調整した。",
+    "whyWrong": [
+      "価値ネットワークは、状態からその先の価値（AlphaGo では勝敗）を予測するもの。人の好みを予測して報酬にする部品ではない。",
+      "識別器は GAN で本物と生成物を見分ける部品。",
+      "方策ネットワークは行動（ここでは出力の文）を決める側で、調整される言語モデル自体にあたる。",
+      null
+    ],
+    "memoryTip": "RLHF の3段階：まねる（SFT）→ 好みを当てる（報酬モデル）→ 好みに合わせて鍛える（PPO）。",
+    "concepts": [
+      "C-06-057"
+    ],
+    "sources": [
+      {
+        "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)",
+        "url": "https://arxiv.org/abs/2203.02155"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-089",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "模倣学習の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "報酬だけを手がかりに試行錯誤し、報酬の合計が大きくなる行動を見つける",
+      "専門家の手本の行動を記録し、その観測から専門家の行動を予測するように方策を学ぶ",
+      "正解の付いていないデータから、似たもの同士をまとめるグループを見つける",
+      "シミュレーションで学んだ方策を、条件を変えながら実機に移して使う"
+    ],
+    "answer": 1,
+    "explanation": "模倣学習は、専門家の手本（デモンストレーション）から方策を学ぶ方法。典型的には、専門家が出会った観測を入力、専門家の行動を出力として、分類や回帰で学ぶ。学習者が一度間違えると手本に無い状況に入り、誤りが積み重なる弱点があり、DAgger はこれを抑える方法として提案された。",
+    "whyWrong": [
+      "これは強化学習。模倣学習は報酬ではなく手本の行動を正解として学ぶ。",
+      null,
+      "これはクラスタリング（教師なし学習）。",
+      "これは sim2real。シミュレーションと実機の差を埋める話で、手本をまねる方法ではない。"
+    ],
+    "memoryTip": "強化学習＝「報酬で試して覚える」、模倣学習＝「手本を見てまねる」。",
+    "concepts": [
+      "C-06-097"
+    ],
+    "sources": [
+      {
+        "title": "Ross, Gordon & Bagnell (2011) A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning (AISTATS) (arXiv:1011.0686)",
+        "url": "https://arxiv.org/abs/1011.0686"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-090",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "文章生成AIの例として、GPT-3 の論文がモデルの生成したニュース記事について報告したこととして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "生成した記事は、どれも事実と一致していることが確かめられた",
+      "記事ごとに、題材に合わせた追加の学習（重みの更新）が必要だった",
+      "人の評価者は、生成した記事と人が書いた記事を見分けるのが難しかった",
+      "記事の文章とあわせて、内容に合う写真も同時に生成できた"
+    ],
+    "answer": 2,
+    "explanation": "GPT-3 の論文は、モデルが生成したニュース記事の見本について、人の評価者が人の書いた記事と見分けるのが難しかったと報告し、その社会的な影響を議論した。GPT-3 はどの課題でも重みの更新やファインチューニングをせず、課題と例を文章で与えるだけで使った。",
+    "whyWrong": [
+      "事実との一致は確かめていない。見分けにくいことは、むしろ偽情報への悪用の懸念につながる。",
+      "GPT-3 は重みを更新せず、課題の説明と例を文章で与えるだけで使った（文脈内学習）。",
+      null,
+      "GPT-3 は文章を生成する言語モデルで、画像は生成しない。"
+    ],
+    "memoryTip": "文章生成AIの力と危うさは表裏一体：人と見分けにくい → 偽情報の懸念。",
+    "concepts": [
+      "C-06-069"
+    ],
+    "sources": [
+      {
+        "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
+        "url": "https://arxiv.org/abs/2005.14165"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-091",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "拡散モデルの説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "順過程でノイズを取り除いてデータを作り、逆過程でデータにノイズを加えていく",
+      "順過程ではデータに少しずつガウスノイズを加え、学習した逆過程でノイズから少しずつデータに戻す",
+      "生成器と識別器を競わせ、識別器が見分けられないデータを生成器が作れるように学ぶ",
+      "分類器の勾配で生成を導くと、画像の忠実さは下がるかわりに多様性が上がる"
+    ],
+    "answer": 1,
+    "explanation": "拡散モデル（DDPM）では、データにガウスノイズを少しずつ加えていく順過程（拡散過程）は学習しない固定の過程で、ノイズから元に戻していく逆過程をニューラルネットで学習する。生成のときは純粋なノイズから逆過程をたどる。",
+    "whyWrong": [
+      "向きが逆。ノイズを加えるのが順過程、取り除いてデータを作るのが逆過程。",
+      null,
+      "これは GAN（敵対的生成ネットワーク）の説明。",
+      "逆。分類器ガイダンス（Guided Diffusion）は、多様性と引き換えに忠実さを上げる方法。"
+    ],
+    "memoryTip": "順過程＝「壊す（固定）」、逆過程＝「直す（学習）」。ガイダンス＝多様性を払って忠実さを買う。",
+    "concepts": [
+      "C-06-067"
+    ],
+    "sources": [
+      {
+        "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
+        "url": "https://arxiv.org/abs/2006.11239"
+      },
+      {
+        "title": "Dhariwal & Nichol (2021) Diffusion Models Beat GANs on Image Synthesis (arXiv:2105.05233)",
+        "url": "https://arxiv.org/abs/2105.05233"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-092",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "転移学習・ファインチューニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "SimCLR などの対照学習の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "人手で正解ラベルを付けた画像を使い、クラスごとの特徴を学ぶ",
+      "大きな教師モデルの出力をまねて、小さな生徒モデルを学習する",
+      "画像を少しずつ壊したものから、元の画像を復元するように学ぶ",
+      "同じ画像を別々に加工した2枚を近づけ、他の画像から作ったものとは遠ざける"
+    ],
+    "answer": 3,
+    "explanation": "SimCLR は、1枚の画像に2通りのデータ拡張をかけた組を正の組とし、同じミニバッチの他の画像から作ったものを負の例として、正の組の表現の類似度を高く、負の例とは低くなるように学ぶ。ラベルを使わない自己教師あり学習の一種。",
+    "whyWrong": [
+      "対照学習はラベルを使わない。ラベル付きで学ぶのは教師あり学習。",
+      "これは知識の蒸留。",
+      "壊したものから元に戻すのは、デノイジングオートエンコーダや拡散モデルの考え方。対照学習は「近づける・遠ざける」で学ぶ。",
+      null
+    ],
+    "memoryTip": "対照学習＝「同じものは近く、違うものは遠く」。ラベルの代わりにデータ拡張で正の組を作る。",
+    "concepts": [
+      "C-06-072"
+    ],
+    "sources": [
+      {
+        "title": "Chen et al. (2020) SimCLR (arXiv:2002.05709)",
+        "url": "https://arxiv.org/abs/2002.05709"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-093",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Show and Tell の画像キャプション生成モデル（NIC）の構成として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "画像分類で事前学習した CNN をエンコーダにし、その出力をもとに LSTM のデコーダが文を生成する",
+      "文章を Transformer で読み、その内容に合う画像を拡散モデルで生成する",
+      "画像と質問文を受け取り、質問への答えを用意された選択肢の中から選ぶ",
+      "画像を小さなパッチに分けて Transformer に入れ、画像のクラスを出力する"
+    ],
+    "answer": 0,
+    "explanation": "NIC（Neural Image Caption）は、画像分類で事前学習した CNN を画像のエンコーダとし、その最後の隠れ層を、文を生成する RNN（LSTM）のデコーダに入力する。機械翻訳のエンコーダ・デコーダの考え方を、画像から文への変換に当てはめた。",
+    "whyWrong": [
+      null,
+      "これは文章から画像を作る Text-To-Image（DALL-E など）の向き。キャプション生成は画像から文を作る。",
+      "これは VQA（視覚的質問応答）の説明。",
+      "これは Vision Transformer（ViT）による画像分類の説明。"
+    ],
+    "memoryTip": "NIC＝「翻訳の型で、画像を文に訳す」。CNN（読む）→ LSTM（書く）。",
+    "concepts": [
+      "C-06-078",
+      "C-05-050"
+    ],
+    "sources": [
+      {
+        "title": "Vinyals et al. (2014) Show and Tell: A Neural Image Caption Generator (arXiv:1411.4555)",
+        "url": "https://arxiv.org/abs/1411.4555"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-094",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "マルチモーダル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CLIP の学習の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "画像エンコーダだけを学習し、文の側には人が用意した固定の単語の一覧を使う",
+      "1枚の画像から説明文を1語ずつ生成する言語モデルを、正解の文で学習する",
+      "画像エンコーダとテキストエンコーダを同時に学習し、正しい画像と文の組を近づけ、誤った組を遠ざける",
+      "まず ImageNet の正解ラベルで画像エンコーダを事前学習し、そのあと文と組み合わせる"
+    ],
+    "answer": 2,
+    "explanation": "CLIP は、画像エンコーダ（ResNet または Vision Transformer）とテキストエンコーダ（Transformer）を同時に学習し、ミニバッチの中で正しい組の埋め込みのコサイン類似度を高く、誤った組み合わせを低くする。ImageNet の重みは使わず、ゼロから学習した。",
+    "whyWrong": [
+      "テキストエンコーダ（Transformer）も同時に学習する。",
+      "CLIP の研究では、最初に説明文を予測させる方法を試したが効率が悪く、組を当てる対照的な目的に切り替えた。",
+      null,
+      "CLIP は ImageNet の重みで初期化せず、画像と文の組だけでゼロから学習した。"
+    ],
+    "memoryTip": "CLIP＝2つのエンコーダで「この画像とこの文は組か」を当てる。生成はしない。",
+    "concepts": [
+      "C-06-076"
+    ],
+    "sources": [
+      {
+        "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
+        "url": "https://arxiv.org/abs/2103.00020"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-095",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "画像分類モデルの解釈で、「局所的な説明」にあたるものとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "このモデルは全体として、毛の模様より輪郭を重視して判定する傾向がある",
+      "この1枚の画像が「猫」と判定されたのは、主に耳の形の部分に反応したためである",
+      "検証データ全体で、どの特徴を並べ替えると精度が最も落ちるかを調べた",
+      "モデルの重みと学習の手順を公開し、第三者が同じ計算を再現できるようにした"
+    ],
+    "answer": 1,
+    "explanation": "局所的な説明は、ある1件の予測について、なぜその判断になったかを示す。大域的な説明は、モデル全体が一般にどんなパターンで判断しているかを示す（Doshi-Velez & Kim 2017）。LIME は予測の周りで解釈しやすいモデルに近似し、1件ずつの局所的な説明を作る。",
+    "whyWrong": [
+      "モデル全体の傾向を述べているので大域的な説明。",
+      null,
+      "データ全体での特徴の重要度（Permutation Importance）で、モデル全体についての大域的な説明にあたる。",
+      "これは情報の公開（透明性）の話で、個別の判断の理由を示すものではない。"
+    ],
+    "memoryTip": "局所＝「この1件はなぜ？」、大域＝「全体としてどう判断する？」。",
+    "concepts": [
+      "C-06-083"
+    ],
+    "sources": [
+      {
+        "title": "Doshi-Velez & Kim (2017) Towards A Rigorous Science of Interpretable Machine Learning (arXiv:1702.08608)",
+        "url": "https://arxiv.org/abs/1702.08608"
+      },
+      {
+        "title": "Ribeiro et al. (2016) \"Why Should I Trust You?\" (LIME) (arXiv:1602.04938)",
+        "url": "https://arxiv.org/abs/1602.04938"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-096",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "fill",
+    "difficulty": 3,
+    "stem": "Grad-CAM のヒートマップは対象のクラスを区別できるが粗い。これに、画素単位で細かいがクラスを区別できない（　）による可視化を要素ごとの積で組み合わせたのが Guided Grad-CAM で、高解像度でクラスを区別できる可視化になる。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "choices": [
+      "CAM（Class Activation Mapping）",
+      "LIME（局所的な代理モデル）",
+      "SHAP（Shapley 値）",
+      "Guided Backpropagation"
+    ],
+    "answer": 3,
+    "explanation": "Selvaraju ら（2016）は、Guided Backpropagation のような画素空間の勾配の可視化（細かいがクラスを区別しない）と、Grad-CAM（クラスを区別するが粗い）を要素ごとの積で融合し、両方の長所を持つ Guided Grad-CAM を作った。",
+    "whyWrong": [
+      "CAM は Grad-CAM の元になった手法で、グローバルアベレージプーリングを持つ構造に限られる。画素単位の勾配の可視化ではない。",
+      "LIME はモデルの中を見ず、予測の周りを解釈しやすいモデルで近似する手法。Grad-CAM と画素ごとに掛け合わせるものではない。",
+      "SHAP は各特徴の貢献を Shapley 値で配分する手法。",
+      null
+    ],
+    "memoryTip": "Guided Grad-CAM＝「どこか（Grad-CAM）」×「細かく（Guided Backpropagation）」。",
+    "concepts": [
+      "C-06-085"
+    ],
+    "sources": [
+      {
+        "title": "Selvaraju et al. (2016) Grad-CAM (arXiv:1610.02391)",
+        "url": "https://arxiv.org/abs/1610.02391"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-097",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの軽量化"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "知識の蒸留の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "大きな教師モデルが出す各クラスの確率（ソフトターゲット）を目標に、小さな生徒モデルを学習する",
+      "学習済みモデルの重みのうち、重要度の低いものを取り除いてモデルを小さくする",
+      "重みを32ビットの浮動小数点数から8ビットの整数などに置き換えて、計算を軽くする",
+      "小さな生徒モデルの出力を正解として、大きな教師モデルをもう一度学習し直す"
+    ],
+    "answer": 0,
+    "explanation": "蒸留では、大きな（または多数のモデルを平均した）教師モデルが出す各クラスの確率をソフトターゲットとして、小さな生徒モデルを学習する。ソフトターゲットは「この2は3に少し似ている」のような小さな確率の比に情報を含むので、正解ラベルだけより多くの情報を渡せる。",
+    "whyWrong": [
+      null,
+      "これはプルーニング（枝刈り）。同じモデルから重みを削る。",
+      "これは量子化。数値の表し方を粗くして軽くする。",
+      "向きが逆。知識を移す先が小さな生徒モデル。"
+    ],
+    "memoryTip": "蒸留＝先生（大）の「迷い方」まで生徒（小）に教える。削る（プルーニング）・粗くする（量子化）とは別の軽量化。",
+    "concepts": [
+      "C-06-090"
+    ],
+    "sources": [
+      {
+        "title": "Hinton, Vinyals & Dean (2015) Distilling the Knowledge in a Neural Network (arXiv:1503.02531)",
+        "url": "https://arxiv.org/abs/1503.02531"
+      },
+      {
+        "title": "Romero et al. (2014) FitNets: Hints for Thin Deep Nets (arXiv:1412.6550)",
+        "url": "https://arxiv.org/abs/1412.6550"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-098",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの軽量化"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "エッジコンピューティングの説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "データを遠くのデータセンターに集め、クラウド上でまとめて処理する方式",
+      "端末とクラウドの間に計算ノードを階層的に置き、保存や制御まで担わせる方式",
+      "センサーなどの末端の機器やその利用者に近い層で、その場で計算する方式",
+      "使っていない時間帯の多数の個人の PC を集めて、大きな計算を分担させる方式"
+    ],
+    "answer": 2,
+    "explanation": "NIST の整理では、エッジコンピューティングは末端の機器とその利用者を含む層で、センサーなどその場で計算する能力を提供する。データの発生源の近くで処理するので、通信の遅延を減らせる。",
+    "whyWrong": [
+      "これはクラウドに集中させる処理。エッジは端末側やその近くで処理する。",
+      "これはフォグコンピューティング。NIST は、エッジと混同されやすいが、階層的で保存や制御まで扱う点が違うとしている。",
+      null,
+      "これは多数の計算機で計算を分担する分散計算の話で、データの発生源の近くで処理するエッジとは別。"
+    ],
+    "memoryTip": "クラウド＝遠くに集める、フォグ＝間に階層を置く、エッジ＝その場（末端）で処理。",
+    "concepts": [
+      "C-06-089"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 500-325 (2018) Fog Computing Conceptual Model（Annex A: Fog Computing vs. Edge Computing）",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.500-325.pdf"
       }
     ],
     "status": "verified"

@@ -8,7 +8,7 @@
     ],
     "title": "平均・中央値・最頻値",
     "oneLine": "平均＝データの合計をデータ数で割った値。中央値＝小さい順に並べたときに真ん中に来る値（偶数個なら真ん中2つの平均）。最頻値＝最も多く現れる値（1つとは限らない）。",
-    "why": "データの「代表的な値」の取り方は1つではない。分布の形や外れ値の有無で、どれを使うべきかが変わる。",
+    "why": "データの「代表的な値」の取り方は1つではない。分布の形や外れ値の有無で、どれを使うべきかが変わる。 外れ値の影響を減らしながら平均の考え方を残すものに、トリム平均がある。値を並べ、小さい側と大きい側から同じ割合（例：5％ずつ）のデータを除いてから平均をとる。",
     "links": [
       {
         "id": "C-08-002",
@@ -21,6 +21,10 @@
       {
         "id": "C-08-004",
         "relation": "部分"
+      },
+      {
+        "id": "C-07-024",
+        "relation": "応用（欠損値を平均値・中央値・最頻値で補完する）"
       }
     ],
     "confusions": [
@@ -33,6 +37,10 @@
       {
         "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
         "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm"
+      },
+      {
+        "title": "SciPy API scipy.stats.trim_mean",
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.trim_mean.html"
       }
     ],
     "status": "verified"
@@ -269,8 +277,8 @@
     ],
     "confusions": [
       {
-        "id": "C-08-007",
-        "point": "P(A|B)とP(B|A)は一般に違う値になる"
+        "id": "C-08-026",
+        "point": "P(A|B)とP(B|A)は一般に違う値になる。この向きを入れ替える式がベイズの定理。"
       }
     ],
     "sources": [
@@ -430,7 +438,7 @@
     ],
     "title": "相関係数",
     "oneLine": "共分散を2つの変数の標準偏差の積で割った値で、−1から1の範囲をとり、直線的な関係の強さと向きを表す。",
-    "why": "単位によらず関係の強さを比べられる。ただし直線的でない関係は見逃すことがあり、相関があっても因果関係があるとは限らない。",
+    "why": "単位によらず関係の強さを比べられる。ただし直線的でない関係は見逃すことがあり、相関があっても因果関係があるとは限らない。 散布図で、一方が大きいほど他方も大きい右上がりの関係を正の相関（係数は正）、一方が大きいほど他方が小さい右下がりの関係を負の相関（係数は負）、直線的な関係が見られないものを無相関（係数はほぼ0）という。",
     "links": [
       {
         "id": "C-08-011",
@@ -455,6 +463,18 @@
       {
         "title": "NIST/SEMATECH e-Handbook 6.5.4.2 The Multivariate Normal Distribution",
         "url": "https://www.itl.nist.gov/div898/handbook/pmc/section5/pmc542.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.3.26.2 Scatter Plot: Strong Linear (positive correlation) Relationship",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda33q2.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.3.26.3 Scatter Plot: Strong Linear (negative correlation) Relationship",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda33q3.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.3.26.1 Scatter Plot: No Relationship",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda33q1.htm"
       }
     ],
     "status": "verified"
@@ -617,7 +637,7 @@
     ],
     "confusions": [
       {
-        "id": "C-08-017",
+        "id": "C-08-024",
         "point": "p値は「帰無仮説が正しい確率」ではない"
       }
     ],
@@ -638,11 +658,19 @@
     ],
     "title": "移動平均",
     "oneLine": "時系列データで、直近のN個の値の平均を、1時点ずつずらしながら計算していくこと。短期の変動をならして（平滑化して）傾向を見やすくする。",
-    "why": "売上や株価のような時系列データの細かな上下動を取り除き、全体の傾向をつかむのに使う。",
+    "why": "売上や株価のような時系列データの細かな上下動を取り除き、全体の傾向をつかむのに使う。 時系列の手法の多くは、平均・分散・自己相関の構造が時間によって変わらない（定常）ことを前提にする。傾向（トレンド）がある、ばらつきが変わるなどの非定常な系列は、前の時点との差分をとる・傾向を取り除く・対数をとるなどで定常に近づける。",
     "links": [
       {
         "id": "C-08-001",
         "relation": "発展形"
+      },
+      {
+        "id": "C-03-009",
+        "relation": "関連（時系列のモデル）"
+      },
+      {
+        "id": "C-07-021",
+        "relation": "関連（対数変換）"
       }
     ],
     "confusions": [
@@ -655,6 +683,10 @@
       {
         "title": "NIST/SEMATECH e-Handbook 6.4.2.1 Single Moving Average",
         "url": "https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc421.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 6.4.4.2 Stationarity",
+        "url": "https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc442.htm"
       }
     ],
     "status": "verified"
@@ -668,7 +700,7 @@
     ],
     "title": "ユークリッド距離とコサイン類似度",
     "oneLine": "ユークリッド距離＝2点の座標の差の2乗の和の平方根（いわゆる直線距離）。コサイン類似度＝2つのベクトルのなす角のコサインで、向きが同じなら1、直交なら0、逆向きなら−1。ベクトルの長さには左右されない。",
-    "why": "k近傍法やクラスタリングの近さの基準になる。文章をTF-IDFなどのベクトルで表したときの類似度には、長さよりも向きを見るコサイン類似度がよく使われる。",
+    "why": "k近傍法やクラスタリングの近さの基準になる。文章をTF-IDFなどのベクトルで表したときの類似度には、長さよりも向きを見るコサイン類似度がよく使われる。 ほかに、座標の差の絶対値を足したマンハッタン距離（碁盤の目の道を進む距離）と、座標の差の絶対値のうち最大のものをとるチェビシェフ距離もある。",
     "links": [
       {
         "id": "C-08-020",
@@ -683,6 +715,10 @@
       {
         "id": "C-08-020",
         "point": "ユークリッド距離は各軸を同じ重みで測る。マハラノビス距離は分布のばらつきと相関を考慮する"
+      },
+      {
+        "title": "マンハッタン距離・チェビシェフ距離",
+        "point": "差が (3, 4) なら、ユークリッド距離5、マンハッタン距離7（3＋4）、チェビシェフ距離4（大きい方）。足すか、2乗和の平方根か、最大値か、の違い。"
       }
     ],
     "sources": [
@@ -693,6 +729,14 @@
       {
         "title": "scikit-learn User Guide 8.8 Pairwise metrics, Affinities and Kernels（Cosine similarity）",
         "url": "https://scikit-learn.org/stable/modules/metrics.html"
+      },
+      {
+        "title": "SciPy API scipy.spatial.distance.cityblock",
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cityblock.html"
+      },
+      {
+        "title": "SciPy API scipy.spatial.distance.chebyshev",
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.chebyshev.html"
       }
     ],
     "status": "verified"
@@ -815,6 +859,236 @@
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
         "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-023",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "第一種の過誤と第二種の過誤",
+    "oneLine": "第一種の過誤＝帰無仮説が正しいのに棄却してしまう誤りで、起きる確率αを有意水準という。第二種の過誤＝帰無仮説が誤っているのに棄却できない誤りで、確率をβで表す。帰無仮説が誤っているときに正しく棄却できる確率 1−β を検出力という。",
+    "why": "検定の結論は、どちらの向きにも誤りうる。αは分析者が事前に小さく決めるが、βは自分では選べず、真の値と帰無仮説のずれの大きさで決まる（ずれが小さいほど見逃しやすくβが大きい）。αを小さくするとβは大きくなる。",
+    "links": [
+      {
+        "id": "C-08-017",
+        "relation": "前提（帰無仮説と対立仮説）"
+      },
+      {
+        "id": "C-08-024",
+        "relation": "部分（棄却するかどうかの判断）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-017",
+        "point": "第一種＝差が無いのに「差がある」と言う誤り（あわてんぼう）。第二種＝差があるのに見逃す誤り（ぼんやり）。"
+      },
+      {
+        "id": "C-08-024",
+        "point": "有意水準αは、データを見る前に決める基準（第一種の過誤の確率）。p値はデータから計算する値。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.5 Quantitative Techniques（Hypothesis Tests）",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.1.3 What are statistical tests?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-024",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "検定統計量・棄却域・有意水準・p値",
+    "oneLine": "検定統計量＝データから計算し、帰無仮説と比べるための値（例：標本平均と仮定した平均の差を、標本平均のばらつき σ/√n で割った z）。棄却域＝帰無仮説が正しければ起こりにくい、検定統計量の範囲。検定統計量が棄却域に入れば帰無仮説を棄却し、棄却域の外（採択域）なら棄却しない。",
+    "why": "棄却域の境目（臨界値）は有意水準で決まる。標準正規分布を使う両側検定で有意水準0.05なら、臨界値は±1.96。p値が有意水準より小さいことと、検定統計量が棄却域に入ることは同じ判断になる。棄却できなくても、帰無仮説が正しいと証明されたわけではない（差を示す証拠が足りないだけのことがある）。",
+    "links": [
+      {
+        "id": "C-08-017",
+        "relation": "前提（帰無仮説と対立仮説）"
+      },
+      {
+        "id": "C-08-023",
+        "relation": "関連（判断の誤り）"
+      },
+      {
+        "id": "C-08-008",
+        "relation": "部分（臨界値を正規分布から求める）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-017",
+        "point": "p値は「帰無仮説が正しい確率」ではない。帰無仮説が正しいとしたとき、観測以上に極端な検定統計量が出る確率。"
+      },
+      {
+        "id": "C-08-023",
+        "point": "「棄却しない」は「帰無仮説が正しいと証明した」ではない。本当は差があるのに棄却できない誤りが第二種の過誤。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.5 Quantitative Techniques（Hypothesis Tests）",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.1.3.1 Critical values and p values",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc131.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 7.2.2 Are the data consistent with the assumed process mean?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc22.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.7.1 Cumulative Distribution Function of the Standard Normal Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3671.htm"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-025",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "同時確率と周辺確率",
+    "oneLine": "同時確率＝2つ以上の事象が同時に起きる確率 P(X, Y)。周辺確率＝同時確率を、もう一方の変数のすべての値について足し合わせて求めた、片方だけの確率。P(X)＝Σ_y P(X, y)（連続なら積分）。",
+    "why": "同時確率の表があれば、周辺確率も条件付き確率 P(Y|X)＝P(X, Y)÷P(X) も計算できる。「周辺」の名前は、表の行を足した合計を紙の余白（margin）に書いたことに由来する。",
+    "links": [
+      {
+        "id": "C-08-007",
+        "relation": "発展形（同時確率÷周辺確率）"
+      },
+      {
+        "id": "C-08-026",
+        "relation": "部分（ベイズの定理の分母）"
+      },
+      {
+        "id": "C-08-005",
+        "relation": "前提（確率分布）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-007",
+        "point": "同時確率 P(A, B) は「AかつB」の確率。条件付き確率 P(A|B) は「Bが起きたと分かったうえでのA」の確率で、同時確率を P(B) で割る。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-026",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "ベイズの定理（事前確率・事後確率）",
+    "oneLine": "P(A|B)＝P(B|A)×P(A)÷P(B)。データBを見る前の確率（事前確率）P(A) を、データBが得られた後の確率（事後確率）P(A|B) に更新する式。P(B|A) を尤度という。",
+    "why": "原因から結果の向きの P(B|A) が分かっていれば、知りたい逆向きの P(A|B) を求められる。分母の P(B) は、すべての場合について P(B|A)P(A) を足して求める。ナイーブベイズ分類やベイズ推定の土台になる。",
+    "links": [
+      {
+        "id": "C-08-007",
+        "relation": "前提（条件付き確率）"
+      },
+      {
+        "id": "C-08-025",
+        "relation": "部分（分母は周辺確率）"
+      },
+      {
+        "id": "C-03-060",
+        "relation": "応用（ナイーブベイズ）"
+      },
+      {
+        "id": "C-08-016",
+        "relation": "対比（最尤法）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-007",
+        "point": "P(B|A) と P(A|B) は別物。まれな事象ほど差が大きい。ベイズの定理はこの向きを入れ替える式。"
+      },
+      {
+        "id": "C-08-016",
+        "point": "最尤法は尤度が最大になる1つの値を選ぶ。ベイズの考え方は事前確率を掛け、パラメータを分布（事後分布）として扱う。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/prob.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-08-027",
+    "syllabus": [
+      "技術分野",
+      "AI に必要な数理・統計知識",
+      "AI に必要な数理・統計知識"
+    ],
+    "title": "標本抽出（無作為抽出・層化抽出）",
+    "oneLine": "母集団から一部（標本）を取り出して全体を推定する標本調査での、標本の選び方。単純無作為抽出＝くじ引きのように全体から一つずつ無作為に選ぶ。層化抽出＝母集団を性質の似たグループ（層）に分け、層ごとに独立に選ぶ。系統抽出＝一連番号を付け、等間隔に選ぶ。",
+    "why": "標本が母集団の良い縮図でないと、全体を正しく推定できない。層化抽出は、ある層がたまたま多く（少なく）選ばれる偏りを防ぐ。機械学習でも、クラスの割合をそろえてデータを分ける層化k分割交差検証がある。",
+    "links": [
+      {
+        "id": "C-03-051",
+        "relation": "応用（層化k分割交差検証）"
+      },
+      {
+        "id": "C-10-011",
+        "relation": "関連（サンプリングバイアス）"
+      },
+      {
+        "id": "C-03-020",
+        "relation": "対比"
+      },
+      {
+        "id": "C-07-027",
+        "relation": "対比（層化はクラスの割合を保つ／不均衡の対処は割合を変える）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-03-020",
+        "point": "ブートストラップサンプリングは、手元のデータから重複を許して取り出し直す方法。層化抽出は、母集団を層に分けて層ごとに選ぶ方法。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "総務省統計局「労働力調査 標本設計の解説」（平成30年4月）",
+        "url": "https://www.stat.go.jp/data/roudou/hyohon/pdf/18hyohon.pdf"
+      },
+      {
+        "title": "scikit-learn User Guide: Cross-validation（Stratified k-fold）",
+        "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
       }
     ],
     "status": "verified"

@@ -1670,5 +1670,306 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-04-043",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "自動運転の研究で、前方カメラの画像の画素を入力し、ハンドルの角度を直接出力するように、1つの畳み込みニューラルネットワークを学習させた。車線の検出や経路の計画を、人が別々の工程として設計していない。このような学習の方式として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "転移学習",
+      "アンサンブル学習",
+      "強化学習",
+      "End-to-End学習"
+    ],
+    "answer": 3,
+    "explanation": "入力（画素）から出力（ハンドル角）までを、途中の工程に分けずにまとめて学習させるのがEnd-to-End学習。NVIDIAの研究では、人が運転したときのハンドル角だけを教師信号にして、道路の特徴の検出も自動で学ばれた。",
+    "whyWrong": [
+      "別のタスクで学習したモデルを、新しいタスクに流用する方法。工程を分けるかどうかとは別の話。",
+      "複数のモデルの予測を組み合わせる方法。",
+      "報酬をもとに試行錯誤で学ぶ方法。この例は、人が運転したときのハンドル角を正解として学ぶ。",
+      null
+    ],
+    "memoryTip": "End-to-End＝入口（画素）から出口（ハンドル角）まで一気通貫。途中の工程は人が作らず、ネットワークに任せる。",
+    "concepts": [
+      "C-04-045"
+    ],
+    "sources": [
+      {
+        "title": "Bojarski et al. (2016) End to End Learning for Self-Driving Cars. arXiv:1604.07316（NVIDIA）",
+        "url": "https://arxiv.org/abs/1604.07316"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-044",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ニューラルネットワークの重み（パラメータ）が5,000個ある。「バーニーおじさんのルール」に従うと、用意したい訓練データの数の目安として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "約500件",
+      "約5,000件",
+      "約50,000件",
+      "約500,000件"
+    ],
+    "answer": 2,
+    "explanation": "バーニーおじさんのルールは、訓練データの数を重みの数のおよそ10倍とする経験則なので、5,000×10＝約50,000件。BaumとHausslerは、精度90％を目指すなら重みの約10倍のデータが要るという見積もりが、Widrowの経験則と一致するとしている。あくまで目安である。",
+    "whyWrong": [
+      "重みの数の10分の1。目安は重みの約10倍。",
+      "重みの数と同じ。目安は約10倍。",
+      null,
+      "重みの約100倍。目安は約10倍。"
+    ],
+    "memoryTip": "重み1つにつき、データ10件。",
+    "concepts": [
+      "C-04-046"
+    ],
+    "sources": [
+      {
+        "title": "Baum & Haussler (1988) What Size Net Gives Valid Generalization? NeurIPS 1",
+        "url": "https://proceedings.neurips.cc/paper_files/paper/1988/file/1d7f7abc18fcb43975065399b0d1e48e-Paper.pdf"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "G-04-045",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "重みの初期値の決め方と、主に組み合わせる活性化関数の組み合わせとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "Xavierの初期値はReLU、Heの初期値はtanhと組み合わせる",
+      "Xavierの初期値はtanh、Heの初期値はReLUと組み合わせる",
+      "どちらもReLU向けで、違いは一様分布と正規分布のどちらを使うかだけ",
+      "どちらも重みを同じ値にそろえて始め、学習の中で差をつけていく"
+    ],
+    "answer": 1,
+    "explanation": "Xavierの初期値は、活性化関数が線形に近いことを前提に、前後の層のユニット数から分散を決める（tanhのネットワークで検証された）。Heの初期値は、その前提がReLUでは成り立たないことを考慮し、入力側のユニット数 n から分散 2/n で決める。",
+    "whyWrong": [
+      "逆。Heの初期値は、ReLUでは線形の前提が成り立たないことを考慮して導かれた。",
+      null,
+      "前提とする活性化関数が違う。分散の決め方も、Xavierは前後の層のユニット数、Heは入力側のユニット数を使う。",
+      "同じ値で始めると、同じ層のユニットが同じように更新され続けて区別がつかない。どちらも乱数で決める。"
+    ],
+    "memoryTip": "ReLUにはHe（2015年）、tanh・シグモイドにはXavier（2010年）。",
+    "concepts": [
+      "C-04-047",
+      "C-04-008",
+      "C-04-007"
+    ],
+    "sources": [
+      {
+        "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS",
+        "url": "https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf"
+      },
+      {
+        "title": "He et al. (2015) Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification. ICCV（arXiv:1502.01852）",
+        "url": "https://arxiv.org/abs/1502.01852"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/optimization.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-046",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "NVIDIAが2006年に発表した、グラフィックスの処理に限らず、さまざまな計算にGPUの並列処理能力を使えるようにした開発基盤として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "CUDA",
+      "TPU",
+      "ASIC",
+      "FPGA"
+    ],
+    "answer": 0,
+    "explanation": "CUDA（Compute Unified Device Architecture）は、グラフィックスのAPIを通さずに、あらゆる計算にGPUを使えるようにした。GPUを画像処理以外の汎用の計算に使うことをGPGPUという。",
+    "whyWrong": [
+      null,
+      "Googleが機械学習向けに開発した専用チップ。開発基盤ではない。",
+      "特定の用途のために設計された集積回路の総称で、TPUもその一種。",
+      "回路の構成を後から書き換えられるチップ。NVIDIAの解説は、FPGAは電力効率が高いがGPUほどプログラミングの柔軟性が無いとしている。"
+    ],
+    "memoryTip": "CUDA＝GPUを「画像以外」にも使うためのNVIDIAの道具。TPU＝Googleの専用チップ。",
+    "concepts": [
+      "C-04-004"
+    ],
+    "sources": [
+      {
+        "title": "NVIDIA CUDA Programming Guide 1.1 Introduction",
+        "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/introduction.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-047",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "正則化"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "互いに強く相関する特徴量がいくつもあるデータで、線形回帰に正則化を加えたい。不要な重みを0にしつつ、相関する特徴量のうち1つだけが任意に選ばれてしまうことは避けたい。最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "ラッソ回帰（L1正則化だけを加える）",
+      "リッジ回帰（L2正則化だけを加える）",
+      "Elastic Net（L1とL2の組み合わせ）",
+      "ドロップアウト（ユニットを無作為に無効化）"
+    ],
+    "answer": 2,
+    "explanation": "Elastic NetはL1とL2の両方の罰則を加える。ラッソのように重みを0にして特徴量を絞りつつ、相関する特徴量が複数あるとき、ラッソのように1つを任意に選ぶのではなく、両方を残しやすい。",
+    "whyWrong": [
+      "重みを0にできるが、相関する特徴量のうち1つを任意に選びがち。",
+      "重みを全体に小さくするが0にはしにくく、特徴量を絞り込めない。",
+      null,
+      "ニューラルネットワークの学習中にユニットを無作為に無効化する正則化で、線形回帰の重みを0にする方法ではない。"
+    ],
+    "memoryTip": "Elastic Net＝ラッソ（0にする）＋リッジ（安定させる）のいいとこ取り。",
+    "concepts": [
+      "C-04-019",
+      "C-04-020"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Linear Models（Elastic-Net）",
+        "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-048",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "ニューラルネットワークで、入力が隠れ層を順に通って出力（さらに誤差）が計算されるまでの前向きの計算を（　）という。これに対し、誤差の情報を出力側から入力側へ流して勾配を求めるのが誤差逆伝播法である。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "choices": [
+      "連鎖律",
+      "勾配降下",
+      "正則化",
+      "順伝播"
+    ],
+    "answer": 3,
+    "explanation": "入力の情報が隠れ層を通って出力へ流れる計算を順伝播（フォワードプロパゲーション）という。学習中は誤差（コスト）まで計算し、そこから誤差逆伝播法で勾配を求める。",
+    "whyWrong": [
+      "合成関数の微分を、各関数の微分の積で表す規則。逆伝播で勾配を計算するときの原理。",
+      "求めた勾配を使って、誤差が減る向きに重みを更新する方法。",
+      "過学習を防ぐために、罰則を加えるなどする工夫。",
+      null
+    ],
+    "memoryTip": "順伝播で答えと誤差を出す→逆伝播で勾配を出す→勾配降下で重みを直す、の3点セット。",
+    "concepts": [
+      "C-04-022",
+      "C-04-023"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-049",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "勾配降下法は「最急降下法」とも呼ばれる。この名前の由来として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "負の勾配の向きが、関数の値が最も急に減る向きだから",
+      "学習率をはじめに最も大きくとり、少しずつ小さくするから",
+      "誤差が最も大きいデータから順に、重みを更新していくから",
+      "坂の最も急な地点（勾配が最大の点）を探して止まるから"
+    ],
+    "answer": 0,
+    "explanation": "勾配は関数の値が最も急に増える向き（上り坂）を指し、負の勾配はまっすぐ下り坂を指す。その向きに少しずつ進む方法を最急降下法、または勾配降下法という。",
+    "whyWrong": [
+      null,
+      "学習率の決め方（スケジュール）の話で、名前の由来ではない。",
+      "データの順序は関係ない。勾配の向きに進むことが名前の由来。",
+      "止まるのは勾配が0（またはほぼ0）になる点。勾配が最大の点ではない。"
+    ],
+    "memoryTip": "勾配＝一番急な上り坂の向き。その逆へ下りるから最急降下。",
+    "concepts": [
+      "C-04-027"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 4 Numerical Computation（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/numerical.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-050",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "勾配クリッピング（勾配のノルムによるクリッピング）の処理として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "勾配のノルムがしきい値を下回ったら、勾配が消えないように一定の大きさまで引き伸ばす",
+      "勾配のノルムがしきい値を超えたら、向きは保ったまま、ノルムがしきい値になるよう縮める",
+      "勾配の各成分の符号だけを残し、大きさを1にそろえてから重みを更新する",
+      "勾配が大きくなった層の重みを0に戻し、その層だけ初期値から学習し直す"
+    ],
+    "answer": 1,
+    "explanation": "Pascanuらの方法では、勾配のノルムがしきい値以上になったとき、勾配に「しきい値÷ノルム」を掛けて縮める。向きは変わらず、大きさだけが上限に抑えられる。勾配の急な増大（勾配爆発）への対策で、しきい値という新たなハイパーパラメータが加わる。",
+    "whyWrong": [
+      "勾配を伸ばす処理ではない。クリッピングは大きすぎる勾配を抑える、勾配爆発への対策。",
+      null,
+      "符号だけを残す方法ではない。ノルムがしきい値未満なら、勾配はそのまま使う。",
+      "重みを初期化し直すのではなく、その更新のときの勾配の大きさだけを抑える。"
+    ],
+    "memoryTip": "クリッピング＝伸びすぎた矢印を、向きはそのまま、長さだけ上限で切る。爆発には効くが、消失には効かない。",
+    "concepts": [
+      "C-04-025",
+      "C-04-024"
+    ],
+    "sources": [
+      {
+        "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)",
+        "url": "https://arxiv.org/abs/1211.5063"
+      }
+    ],
+    "status": "verified"
   }
 ]

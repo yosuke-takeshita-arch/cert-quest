@@ -8,7 +8,7 @@
     ],
     "title": "AI倫理と価値原則",
     "oneLine": "AIの開発・提供・利用で守るべき価値（人間中心、安全性、公平性、プライバシー保護、透明性、アカウンタビリティなど）を原則として示したもの。AI事業者ガイドラインは、各主体に共通する指針として10項目を掲げる。",
-    "why": "国内外の多くのガイドラインは言葉は違っても共通の価値を挙げている。どの価値が挙がっているかを押さえると、個別の事例の判断がしやすくなる。",
+    "why": "国内外の多くのガイドラインは言葉は違っても共通の価値を挙げている。どの価値が挙がっているかを押さえると、個別の事例の判断がしやすくなる。公平性（Fairness）・説明責任（Accountability）・透明性（Transparency）の頭文字をとってFATと呼び、この分野の代表的な国際会議ACM FAccT（2018〜2020年はFAT*）は、計算機科学に法学・社会科学・人文学を交えて議論している。新しい技術を社会で使うときに生じる倫理的・法的・社会的な課題はELSI（Ethical, Legal and Social Implications/Issues）と呼ばれ、内閣府はSociety 5.0への移行でELSIに対応するには人文・社会科学も含む「総合知」が必要だとしている。",
     "links": [
       {
         "id": "C-10-002",
@@ -27,12 +27,24 @@
       {
         "id": "C-10-027",
         "point": "倫理は「何を守るか」、ガバナンスは「それをどう組織で実行するか」"
+      },
+      {
+        "title": "ELSI",
+        "point": "FATはAIの判断に求められる性質（公平・説明責任・透明）。ELSIは新技術が社会に出るときの倫理・法・社会の課題の総称"
       }
     ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "ACM Conference on Fairness, Accountability, and Transparency (ACM FAccT) 公式サイト",
+        "url": "https://facctconference.org/"
+      },
+      {
+        "title": "内閣府「Society 5.0」",
+        "url": "https://www8.cao.go.jp/cstp/society5_0/"
       }
     ],
     "status": "verified"
@@ -46,7 +58,7 @@
     ],
     "title": "AI事業者ガイドライン",
     "oneLine": "総務省と経済産業省が、AIを開発・提供・利用する事業者向けに、AIガバナンスの統一的な指針として示したガイドライン（2024年4月策定、2026年3月に第1.2版）。対象をAI開発者・AI提供者・AI利用者の3つに分け、基本理念として「人間の尊厳」「多様な背景を持つ人々が多様な幸せを追求できる社会」「持続可能な社会」を掲げる。",
-    "why": "従来の3つのガイドラインを統合したもので、非拘束的なソフトローとして事業者の自主的な取組を促す。Living Documentとして適宜更新される。",
+    "why": "従来の3つのガイドラインを統合したもので、非拘束的なソフトローとして事業者の自主的な取組を促す。Living Documentとして適宜更新される。デジタル庁は2024年5月に、政府情報システムへ生成AIを導入する行政職員を想定し、AI事業者ガイドラインなどを踏まえてテキスト生成AIに絞ってリスクと対策を整理した「テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）」を公開した（画像などの生成AIや、基盤モデル開発者・サービス利用者のリスクは対象外）。2025年6月、その内容は「行政の進化と革新のための生成AIの調達・利活用に係るガイドライン」へ統合して更新するとされた。",
     "links": [
       {
         "id": "C-10-003",
@@ -69,12 +81,20 @@
       {
         "id": "C-10-006",
         "point": "ガイドラインは法律ではない（ソフトロー）。AI推進法は法律だが罰則規定はない"
+      },
+      {
+        "title": "テキスト生成AI利活用におけるリスクへの対策ガイドブック",
+        "point": "AI事業者ガイドラインは事業者全般向け（総務省・経済産業省）。ガイドブックはデジタル庁が政府のシステムへの導入向けにテキスト生成AIに絞ったもの"
       }
     ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "デジタル庁「テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）」（2024年5月29日公開、6月10日更新）",
+        "url": "https://www.digital.go.jp/resources/generalitve-ai-guidebook"
       }
     ],
     "status": "verified"
@@ -168,7 +188,7 @@
     ],
     "title": "EUのAI法（AI Act）",
     "oneLine": "EUの法的拘束力のある規則（ハードロー）で、AIシステムのリスクを「許容できないリスク（禁止）」「高リスク」「透明性のリスク」「最小限またはリスクなし」の4段階に分けて規制する。2024年8月1日に発効した。",
-    "why": "社会的スコアリングなど許容できない用途は禁止し、採用や与信のような高リスクの用途には市場に出す前の厳しい義務を課し、チャットボットや生成物には表示などの透明性の義務を課す、というリスクベースの代表例。",
+    "why": "社会的スコアリングなど許容できない用途は禁止し、採用や与信のような高リスクの用途には市場に出す前の厳しい義務を課し、チャットボットや生成物には表示などの透明性の義務を課す、というリスクベースの代表例。禁止される行為には、人の意識の及ばないサブリミナルな技術や意図的に操作的・欺瞞的な技術を使い、十分な情報に基づいて判断する能力を損なわせて重大な害を生じさせるAIや、社会的スコアリングなどがあり、2025年2月2日から適用されている。また、幅広い異なるタスクをこなせる汎用目的AI（GPAI）モデルの提供者には透明性や著作権に関するルールがあり（2025年8月2日から適用）、学習に使った計算量が10の25乗FLOPを超えるモデルは高い影響力を持つと推定され、システミックリスクのあるGPAIとしてリスクの評価と軽減が求められる。",
     "links": [
       {
         "id": "C-10-004",
@@ -183,12 +203,24 @@
       {
         "id": "C-10-002",
         "point": "EUのAI法は罰則を伴う規則、日本のAI事業者ガイドラインは非拘束的な指針"
+      },
+      {
+        "title": "汎用目的AI（GPAI）モデル",
+        "point": "リスクの4段階はAIシステムの用途で分ける。GPAIモデルは用途を問わない基盤のモデルで、別の枠組み（提供者の義務、システミックリスク）で規律される"
       }
     ],
     "sources": [
       {
         "title": "European Commission \"AI Act\" (Shaping Europe's digital future)",
         "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+      },
+      {
+        "title": "European Commission, Commission Guidelines on prohibited artificial intelligence practices established by Regulation (EU) 2024/1689 (AI Act), C(2025) 5052 final",
+        "url": "https://digital-strategy.ec.europa.eu/en/library/commission-publishes-guidelines-prohibited-artificial-intelligence-ai-practices-defined-ai-act"
+      },
+      {
+        "title": "European Commission, Guidelines on the scope of the obligations for providers of general-purpose AI models under the AI Act, C(2025) 7719 final",
+        "url": "https://digital-strategy.ec.europa.eu/en/library/guidelines-scope-obligations-providers-general-purpose-ai-models-under-ai-act"
       }
     ],
     "status": "verified"
@@ -278,7 +310,7 @@
     ],
     "title": "プライバシー・バイ・デザイン",
     "oneLine": "プライバシー保護を、問題が起きてから対処するのではなく、システムやサービスの企画・設計の段階から組み込んでおく考え方。",
-    "why": "後から付け足す対策は抜けや手戻りが多い。AI事業者ガイドラインも、AI開発者が学習データを適正に収集する方法の例としてプライバシー・バイ・デザインを挙げている。",
+    "why": "後から付け足す対策は抜けや手戻りが多い。AI事業者ガイドラインも、AI開発者が学習データを適正に収集する方法の例としてプライバシー・バイ・デザインを挙げている。似た考え方に価値を考慮した設計（Value Sensitive Design、VSD）がある。1990年代に提唱され、ワシントン大学のVSD Labなどで研究されている方法論で、プライバシーに限らず人間の価値（その人の生活で大切なこと）を、設計の全過程で原理的・体系的に考慮する。概念・実証・技術の3種類の調査を繰り返し、直接・間接の利害関係者を分析する。",
     "links": [
       {
         "id": "C-10-007",
@@ -293,12 +325,20 @@
       {
         "id": "C-10-017",
         "point": "プライバシー・バイ・デザインはプライバシー、セキュリティ・バイ・デザインはセキュリティを設計段階から"
+      },
+      {
+        "title": "Value Sensitive Design",
+        "point": "プライバシー・バイ・デザインは守る対象がプライバシー。Value Sensitive Designは人間の価値全般を設計に組み込む方法論"
       }
     ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      },
+      {
+        "title": "University of Washington VSD Lab「Value Sensitive Design」",
+        "url": "https://vsdesign.org/vsd/"
       }
     ],
     "status": "verified"
@@ -502,7 +542,7 @@
     ],
     "title": "Adversarial Attack（敵対的攻撃・Adversarial Examples）",
     "oneLine": "人には気づけないほど小さいが、意図的に最悪になるよう作った摂動（ノイズ）を入力に加え、モデルに高い確信度で誤った判断をさせる攻撃。そのように作られた入力をAdversarial Examples（敵対的サンプル）という。",
-    "why": "自動運転の標識認識などで誤認識させられると重大な事故につながりうる。敵対的データに対する頑健性の向上・評価、入力の制限、検知技術などの対策がとられる。",
+    "why": "自動運転の標識認識などで誤認識させられると重大な事故につながりうる。敵対的データに対する頑健性の向上・評価、入力の制限、検知技術などの対策がとられる。NISTの分類では、運用中のモデルへの入力を細工して誤った予測をさせる攻撃を回避攻撃（evasion attack）と呼び、そのために作られた入力が敵対的サンプルである。",
     "links": [
       {
         "id": "C-10-015",
@@ -517,6 +557,10 @@
       {
         "id": "C-10-015",
         "point": "敵対的攻撃は推論時の入力を細工する。データ汚染は学習データを細工する"
+      },
+      {
+        "title": "回避攻撃（evasion attack）",
+        "point": "回避攻撃は運用時（推論時）の入力を細工する。学習時に細工するのはポイズニング（バックドア攻撃を含む）"
       }
     ],
     "sources": [
@@ -531,6 +575,10 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
+      },
+      {
+        "title": "NIST AI 100-2e2025 Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations (2025)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
       }
     ],
     "status": "verified"
@@ -544,7 +592,7 @@
     ],
     "title": "データ汚染とモデル汚染（ポイズニング）",
     "oneLine": "データ汚染は、学習データに不正なデータを混ぜ込み、モデルの性能を落としたり誤分類させたりする攻撃。モデル汚染は、学習済みモデルそのものに細工をして、特定の条件で意図しない動作をさせる攻撃。",
-    "why": "外部から集めたデータや他者が作ったモデルをそのまま使うと、汚染されていても気づきにくい。AI事業者ガイドラインの別添も、データポイズニング攻撃やモデルポイズニング攻撃を機械学習特有の脅威として挙げている。",
+    "why": "外部から集めたデータや他者が作ったモデルをそのまま使うと、汚染されていても気づきにくい。AI事業者ガイドラインの別添も、データポイズニング攻撃やモデルポイズニング攻撃を機械学習特有の脅威として挙げている。バックドア攻撃（バックドアポイズニング）は、学習データの一部に小さなパッチなどのトリガーを付けてラベルを書き換え、トリガーを含む入力だけを攻撃者の狙うクラスに誤分類させる。トリガーが無い入力では正常に動くため気づきにくい（NIST AI 100-2）。",
     "links": [
       {
         "id": "C-10-014",
@@ -559,6 +607,10 @@
       {
         "id": "C-10-014",
         "point": "汚染は「学習時」、敵対的サンプルは「推論時」"
+      },
+      {
+        "title": "バックドア攻撃",
+        "point": "バックドア攻撃は学習時にトリガーを仕込み、運用時にトリガー付きの入力で発動させる。仕込むのは学習時"
       }
     ],
     "sources": [
@@ -569,6 +621,10 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
+      },
+      {
+        "title": "NIST AI 100-2e2025 Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations (2025)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
       }
     ],
     "status": "verified"
@@ -582,7 +638,7 @@
     ],
     "title": "モデル窃取とデータ窃取",
     "oneLine": "モデル窃取（モデル抽出攻撃）は、公開されたAPIに多数の問い合わせを行い、その応答からモデルの機能を複製する攻撃。データ窃取は、学習データに含まれる情報（個人情報や営業秘密など）をモデルから引き出す攻撃。",
-    "why": "モデルは事業上の価値があり、学習データには機密が含まれうる。問い合わせの回数・頻度の制限などで対策する。",
+    "why": "モデルは事業上の価値があり、学習データには機密が含まれうる。問い合わせの回数・頻度の制限などで対策する。学習データの情報を狙う攻撃には、特定のデータが学習に使われたかを推定するメンバーシップ推論攻撃、モデルから学習データのクラスの代表的な姿を復元するモデル反転攻撃、他の特徴の一部を知ったうえで学習データの機微な属性を推定する属性推論攻撃などがある。モデル抽出攻撃は、問い合わせを通じてモデルの構造やパラメータの情報を引き出す（NIST AI 100-2）。",
     "links": [
       {
         "id": "C-10-015",
@@ -597,6 +653,10 @@
       {
         "id": "C-10-015",
         "point": "窃取は「盗む」、汚染は「壊す・操る」"
+      },
+      {
+        "title": "メンバーシップ推論攻撃",
+        "point": "メンバーシップ推論は「このデータが学習に使われたか」を当てる。モデル反転は学習データの姿を復元し、属性推論は機微な属性を推定する"
       }
     ],
     "sources": [
@@ -607,6 +667,10 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
+      },
+      {
+        "title": "NIST AI 100-2e2025 Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations (2025)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
       }
     ],
     "status": "verified"
@@ -831,8 +895,8 @@
     ],
     "confusions": [
       {
-        "id": "C-10-022",
-        "point": "フィルターバブル＝アルゴリズムによる情報の選別（隔離）、エコーチェンバー＝似た声の反響（増幅）"
+        "id": "C-10-019",
+        "point": "フェイクニュースは偽の内容そのもの。フィルターバブル・エコーチェンバーは、見る情報が偏り考えが強化される環境。"
       }
     ],
     "sources": [
@@ -867,12 +931,7 @@
         "relation": "原因"
       }
     ],
-    "confusions": [
-      {
-        "id": "C-10-023",
-        "point": "学習データを増やすと計算量が増え、電力消費は一般に増える"
-      }
-    ],
+    "confusions": [],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
@@ -903,8 +962,8 @@
     ],
     "confusions": [
       {
-        "id": "C-10-024",
-        "point": "「AIは仕事を奪うだけ」でも「AIは仕事を奪わない」でもない。両面の議論がある"
+        "id": "C-10-025",
+        "point": "雇用は「仕事の量と質」の話、自律は「判断する主体が人間であること」の話。"
       }
     ],
     "sources": [
@@ -1223,6 +1282,218 @@
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
         "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-033",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "国内外のガイドライン"
+    ],
+    "title": "人間中心のAI社会原則",
+    "oneLine": "日本政府が2019年3月29日に統合イノベーション戦略推進会議で決定した、AIを社会に受け入れ適正に使うための原則。「人間の尊厳が尊重される社会」「多様な背景を持つ人々が多様な幸せを追求できる社会」「持続性ある社会」の3つを基本理念とし、社会全体で実現すべきAI社会原則7つ（人間中心、教育・リテラシー、プライバシー確保、セキュリティ確保、公正競争確保、公平性・説明責任及び透明性、イノベーション）と、開発者・事業者が考慮すべきAI開発利用原則に体系化している。",
+    "why": "人間中心の原則は、AIの利用が憲法や国際的な規範の保障する基本的人権を侵してはならないとし、人がAIに過度に依存したり、AIで人の意思決定が操作されたりしないための仕組みを求める。2024年のAI事業者ガイドラインは、この原則を土台としつつOECDのAI原則などを踏まえて作られている。",
+    "links": [
+      {
+        "id": "C-10-002",
+        "relation": "発展形（土台にして作られた指針）"
+      },
+      {
+        "id": "C-10-001",
+        "relation": "具体例（価値原則）"
+      },
+      {
+        "id": "C-07-019",
+        "relation": "前提（目指す社会像 Society 5.0）"
+      },
+      {
+        "id": "C-10-003",
+        "relation": "関連（拘束力の無い原則）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-002",
+        "point": "人間中心のAI社会原則（2019年）は社会全体の原則。AI事業者ガイドライン（2024年〜）は、それを土台に事業者の取組を具体化した指針"
+      },
+      {
+        "id": "C-10-025",
+        "point": "人間中心の原則は「AIを道具として人が使いこなす」こと。AIが人を操作したり人が過度に依存したりしないようにする"
+      }
+    ],
+    "sources": [
+      {
+        "title": "統合イノベーション戦略推進会議決定「人間中心のAI社会原則」（平成31年3月29日、内閣府掲載）",
+        "url": "https://www8.cao.go.jp/cstp/ai/aigensoku.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-034",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "安全性とセキュリティ"
+    ],
+    "title": "プロンプトインジェクション",
+    "oneLine": "大規模言語モデル（LLM）への入力（プロンプト）を細工して、開発者の意図しない振る舞いや出力をさせる攻撃。利用者が直接入力する直接プロンプトインジェクションと、Webページや文書など外部の情報源に命令を紛れ込ませ、それをLLMが読み込んだときに発動させる間接プロンプトインジェクションがある。",
+    "why": "LLMはデータと命令を同じ経路で受け取るため、読み込んだデータの中の文が命令として働いてしまう。機密情報やシステムプロンプトの漏えい、有害な出力、不正な操作につながりうる。OWASPは、RAGやファインチューニングだけでは完全には防げないとし、権限を最小にする、重要な操作には人の承認を挟むなどの多層の対策を勧めている。安全上の制約をすべて外させることを狙うものはジェイルブレイクと呼ばれ、プロンプトインジェクションの一種とされる。",
+    "links": [
+      {
+        "id": "C-10-014",
+        "relation": "対比（推論時の入力を細工する点は同じ）"
+      },
+      {
+        "id": "C-10-015",
+        "relation": "対比（学習時に細工する）"
+      },
+      {
+        "id": "C-10-017",
+        "relation": "解決策（設計段階からの対策）"
+      },
+      {
+        "id": "C-06-035",
+        "relation": "対象（LLM）"
+      },
+      {
+        "id": "C-06-096",
+        "relation": "対比（意図した出力を引き出すための書き方の工夫）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-015",
+        "point": "データ汚染は学習データに細工して学習後のモデルを狂わせる。プロンプトインジェクションは学習済みのLLMに、使うときの入力で命令を紛れ込ませる"
+      },
+      {
+        "id": "C-10-014",
+        "point": "敵対的サンプルは人に気づかれない小さなノイズで誤分類させる。プロンプトインジェクションは文の命令でLLMの振る舞いを変える"
+      }
+    ],
+    "sources": [
+      {
+        "title": "OWASP Gen AI Security Project「LLM01:2025 Prompt Injection」",
+        "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+      },
+      {
+        "title": "NIST AI 100-2e2025 Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations (2025)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-035",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "安全性とセキュリティ"
+    ],
+    "title": "ハルシネーション（幻覚）",
+    "oneLine": "生成AIが、事実と異なる内容や、根拠のない内容を、もっともらしく出力する現象。自然言語生成の研究では、入力（元の文書）と矛盾する内在的（intrinsic）ハルシネーションと、入力からは正しいとも誤りとも確かめられない外在的（extrinsic）ハルシネーションに分けられる。",
+    "why": "デジタル庁のガイドブックは、学習データに無い情報を聞くと確実に起き、学習データにあっても確実に知識として学習できるとは限らないと注意している。AI事業者ガイドラインの別添は、ハルシネーションによる偽情報をめぐって開発・提供企業が名誉毀損で訴えられた例を挙げ、RAG（検索拡張生成）などで抑制が期待されるとしている。出力をそのまま使わず、人が確認することが前提になる。",
+    "links": [
+      {
+        "id": "C-06-035",
+        "relation": "原因の場（LLMの生成）"
+      },
+      {
+        "id": "C-10-019",
+        "relation": "関連（誤情報の拡散）"
+      },
+      {
+        "id": "C-09-030",
+        "relation": "関連（出力の正確性は利用者も確認）"
+      },
+      {
+        "id": "C-10-031",
+        "relation": "解決策（人間の関与）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-019",
+        "point": "フェイクニュースは人が意図して偽情報を作る場合も含む。ハルシネーションはモデルが意図なく誤った内容を生成する現象"
+      },
+      {
+        "id": "C-10-034",
+        "point": "ハルシネーションは攻撃が無くても起きる。プロンプトインジェクションは攻撃者が入力を細工して起こす"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ji et al. (2023) Survey of Hallucination in Natural Language Generation (ACM Computing Surveys, arXiv:2202.03629)",
+        "url": "https://arxiv.org/abs/2202.03629"
+      },
+      {
+        "title": "デジタル庁「テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）」（2024年5月29日公開、6月10日更新）",
+        "url": "https://www.digital.go.jp/resources/generalitve-ai-guidebook"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_3.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-036",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "その他の重要な価値"
+    ],
+    "title": "トロッコ問題と自動運転の倫理（Moral Machine）",
+    "oneLine": "暴走するトロッコの先に5人がいて、進路を切り替えれば1人が犠牲になる、というように「何人かを救うために1人を犠牲にしてよいか」を問う思考実験。進路を切り替える型（Switch）と、橋の上の人を突き落として止める型（Footbridge）などの変形がある。自動運転車が避けられない事故で誰を守るかを決める問題と重ねて論じられる。",
+    "why": "Footbridgeでは1人の死が5人を救う手段になり、人に直接力を加える必要もあるため、Switchより受け入れにくいとされる。MITなどのMoral Machine実験は、自動運転車のジレンマについて233の国・地域から4000万の判断を集め、国や文化による違いを示した。また、人々は犠牲を最小にする自動運転車を道徳的と評価しながら、自分が買うなら乗員を守る車を選びがちだという社会的ジレンマも報告されている。",
+    "links": [
+      {
+        "id": "C-10-025",
+        "relation": "関連（判断の主体）"
+      },
+      {
+        "id": "C-10-013",
+        "relation": "関連（何を公平とみなすかの選択）"
+      },
+      {
+        "id": "C-10-031",
+        "relation": "関連（人間の関与）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-013",
+        "point": "トロッコ問題には万人が合意する正解は無く、国や文化で選好の強さが違う。どの基準を採るかは技術でなく社会が決める価値の問題"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Awad et al. (2020) Universals and variations in moral decisions made in 42 countries by 70,000 participants (PNAS 117(5))",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7007553/"
+      },
+      {
+        "title": "Awad et al. (2018) The Moral Machine experiment (Nature 563)",
+        "url": "https://www.nature.com/articles/s41586-018-0637-6"
+      },
+      {
+        "title": "Bonnefon, Shariff & Rahwan (2016) The social dilemma of autonomous vehicles (Science 352, arXiv:1510.03346)",
+        "url": "https://arxiv.org/abs/1510.03346"
       }
     ],
     "status": "verified"

@@ -1570,5 +1570,162 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-02-041",
+    "syllabus": [
+      "技術分野",
+      "人工知能をめぐる動向",
+      "知識表現とエキスパートシステム"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "オントロジーの「軽量（ライトウェイト）」と「重量（ヘビーウェイト）」の違いの説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "軽量は概念を番号だけで管理し、重量は概念を自然な文章で説明する",
+      "軽量は個人が手元で使うもので、重量は組織どうしで共有するためのもの",
+      "軽量は情報処理の効率を重視し、重量は対象世界を適切に捉える考察を重視する",
+      "軽量は is-a 関係を使わず、重量だけが is-a 関係で概念の階層を作る"
+    ],
+    "answer": 2,
+    "explanation": "オントロジー工学の立場では、情報処理の効率を重視したものを軽量（ライトウェイト）、哲学的な考察に基づき対象世界を適切に捉えることを重視したものを重量（ヘビーウェイト）と分ける。重量のほうが深い知識を扱えるが作るコストが大きく、広く浅い知識を扱うときなどは軽量が好まれる。Semantic Web の分野では、公理などクラス定義の記述量で分けることも多い。",
+    "whyWrong": [
+      "軽重は、概念を何で表すかの違いではない。どちらも概念と関係を形式的に定義する。",
+      "使う人数や共有の範囲の違いではない。どちらも知識の共有・再利用のために作られる。",
+      null,
+      "逆。is-a 階層だけから成るものは、むしろ軽量オントロジーと呼ばれることがある。"
+    ],
+    "memoryTip": "軽量＝速さ優先で浅く広く、重量＝正しさ優先で深く狭く（そのぶん作るのが重い）。",
+    "concepts": [
+      "C-02-041",
+      "C-02-019"
+    ],
+    "sources": [
+      {
+        "title": "古崎・來村・溝口ほか (2007) オントロジー工学的立場から見たオントロジー利用研究の分類と考察（人工知能学会全国大会 1D3-3）",
+        "url": "https://www.ai-gakkai.or.jp/jsai2007/data/pdf/100223.pdf"
+      },
+      {
+        "title": "古崎・林・笹島・溝口 (2008) オントロジー工学的観点に基づく Semantic Web アプリケーションの傾向分析（人工知能学会全国大会 3G2-2）",
+        "url": "https://www.ai-gakkai.or.jp/jsai2008/program/pdf/100066.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-02-042",
+    "syllabus": [
+      "技術分野",
+      "人工知能をめぐる動向",
+      "知識表現とエキスパートシステム"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Linked Open Data（LOD）の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "オープンなライセンスで公開し、URIで名前を付けたデータどうしをリンクでつないだもの",
+      "検索エンジンが集めたWebページを、全文検索できるように索引にまとめたもの",
+      "契約した会員だけが、専用のキーを使って取り出せるように整えた業務データ",
+      "画像やPDFで公開された表を、人が目で読んで使うことを前提にしたデータ"
+    ],
+    "answer": 0,
+    "explanation": "Linked Data は、物や概念の名前に HTTP の URI を使い、RDF などの標準で情報を返し、他の URI へのリンクを含めるやり方。それをオープンなライセンスで公開したものが LOD。バーナーズ＝リーは、他のデータへのリンクまで備えたものを最高の星5つとする評価の仕組みも示した。",
+    "whyWrong": [
+      null,
+      "Webページの索引は検索のための仕組みで、データに URI で名前を付けて相互にリンクするものではない。",
+      "LOD はオープンなライセンスで公開することが条件で、再利用を妨げない。限られた会員だけが使えるものはオープンではない。",
+      "オープンなライセンスなら星1つのオープンデータにはなるが、機械で読める形式・URI・リンクを備えていないので Linked Data ではない。"
+    ],
+    "memoryTip": "LOD＝Open（自由に使える）＋Linked（URI で名前を付けて互いにつなぐ）。星5つ＝リンクまで張ったデータ。",
+    "concepts": [
+      "C-02-021"
+    ],
+    "sources": [
+      {
+        "title": "Berners-Lee (2006, 2010追記) Linked Data - Design Issues（W3C）",
+        "url": "https://www.w3.org/DesignIssues/LinkedData.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-02-043",
+    "syllabus": [
+      "技術分野",
+      "人工知能をめぐる動向",
+      "知識表現とエキスパートシステム"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "ELIZA は、入力文に現れる（　）を手がかりに、それに結びついた分解の型を当てはめ、型ごとの組み立て規則で入力の一部を差し込んで応答文を作った。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "choices": [
+      "構文木",
+      "単語の分散表現",
+      "単語の出現確率",
+      "キーワード"
+    ],
+    "answer": 3,
+    "explanation": "ワイゼンバウム（1966）の ELIZA は、入力文からキーワードを探し、キーワードに結びついた分解の規則（型）で文を分け、その規則に対応する組み立ての規則で応答を作る。いわゆるパターンマッチングで、文の意味は扱っていない。キーワードが無いときは中身の無い決まり文句などを返す。",
+    "whyWrong": [
+      "ELIZA は文を構文解析して意味を組み立てる仕組みではない。キーワードと型の一致だけで文を組み替える。",
+      "単語をベクトルで表す分散表現は、word2vec など2010年代に広まった手法で、ELIZA の仕組みではない。",
+      "ELIZA は確率を使わず、あらかじめ書いた規則どおりに応答する。確率で言葉を扱うのは後の統計的自然言語処理。",
+      null
+    ],
+    "memoryTip": "ELIZA＝キーワードで型を選び、型どおりに組み替えるだけ。「会話できる」と「理解している」は別、の代表例。",
+    "concepts": [
+      "C-02-016"
+    ],
+    "sources": [
+      {
+        "title": "Weizenbaum (1966) ELIZA - A Computer Program For the Study of Natural Language Communication Between Man And Machine. CACM",
+        "url": "https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-02-044",
+    "syllabus": [
+      "技術分野",
+      "人工知能をめぐる動向",
+      "ディープラーニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "AlphaGo Zero の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "プロ棋士の棋譜で教師あり学習をしてから、自己対局の強化学習で仕上げた",
+      "人間の棋譜を使わず、ルール以外の知識なしに自己対局の強化学習だけで学んだ",
+      "1つのアルゴリズムで、囲碁・チェス・将棋の3つのゲームを学んで強くなった",
+      "木探索を使わず、ニューラルネットワークの出力だけで次の手を決めていた"
+    ],
+    "answer": 1,
+    "explanation": "AlphaGo Zero（2017）は、人間のデータ・指導・ルール以外の囲碁の知識を使わず、強化学習だけで学んだ。ニューラルネットワークに自分の次の手と勝者を予測させ、それで木探索を強くし、さらに強い自己対局をする、を繰り返した。世界王者を破った従来の AlphaGo に100勝0敗した。",
+    "whyWrong": [
+      "これは最初の AlphaGo（2016）のやり方。人間の熟練者の手で教師あり学習をし、自己対局の強化学習を加えた。",
+      null,
+      "これは AlphaZero（2017）。AlphaGo Zero のやり方を一般化して、囲碁・チェス・将棋のそれぞれで学ばせた。AlphaGo Zero は囲碁だけ。",
+      "AlphaGo Zero も木探索を使う。ニューラルネットワークの予測で探索を強くし、その探索で選んだ手を次の学習に使う。"
+    ],
+    "memoryTip": "AlphaGo（棋譜＋自己対局）→ AlphaGo Zero（自己対局だけ・囲碁）→ AlphaZero（自己対局だけ・囲碁＋チェス＋将棋）。「Zero」＝人間のデータゼロ。",
+    "concepts": [
+      "C-02-039"
+    ],
+    "sources": [
+      {
+        "title": "Silver et al. (2017) Mastering the game of Go without human knowledge. Nature 550",
+        "url": "https://www.nature.com/articles/nature24270"
+      },
+      {
+        "title": "Silver et al. (2017) Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm (arXiv:1712.01815)",
+        "url": "https://arxiv.org/abs/1712.01815"
+      },
+      {
+        "title": "Silver et al. (2016) Mastering the game of Go with deep neural networks and tree search. Nature",
+        "url": "https://www.nature.com/articles/nature16961"
+      }
+    ],
+    "status": "verified"
   }
 ]

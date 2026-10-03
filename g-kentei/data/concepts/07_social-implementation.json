@@ -163,8 +163,8 @@
       "AI プロジェクトの進め方"
     ],
     "title": "ウォーターフォールとアジャイル",
-    "oneLine": "ウォーターフォールは最初に要件定義を固め、設計→実装→テストと順に進める開発方式。アジャイルは短い期間で作って確かめることを繰り返し、変更を前提に少しずつ作る方式。",
-    "why": "AIは開発初期に成果物を確定的に予測しにくいため、要件を最初に固める方式だけでは合わないことがある。経済産業省の契約ガイドラインも、ウォーターフォールと異なる試行錯誤型の「探索的段階型」を提唱している。",
+    "oneLine": "ウォーターフォールは最初に要件定義を固め、設計→実装→テストと順に進める開発方式。アジャイルは短い期間で作って確かめることを繰り返し、変更を前提に少しずつ作る方式。アジャイルの代表的な枠組みがスクラムで、1か月以内の決まった長さの「スプリント」を間を空けずに繰り返し、スプリントごとに使える成果（インクリメント）を作って、検査と適応を行う。",
+    "why": "AIは開発初期に成果物を確定的に予測しにくいため、要件を最初に固める方式だけでは合わないことがある。経済産業省の契約ガイドラインも、ウォーターフォールと異なる試行錯誤型の「探索的段階型」を提唱している。スクラムガイドは、スクラムチームをプロダクトオーナー1人・スクラムマスター1人・複数人の開発者で構成し、チームの中にサブチームや階層は置かないとしている。スプリントの期間を短くすれば学習のサイクルが増え、コストや労力のリスクを短い時間枠に収められる。",
     "links": [
       {
         "id": "C-07-004",
@@ -179,12 +179,20 @@
       {
         "id": "C-07-004",
         "point": "アジャイルでは責任範囲や成果の帰属が曖昧になりやすく、適時の合意が必要"
+      },
+      {
+        "title": "スクラム",
+        "point": "スクラムはアジャイルの枠組みの1つで、スプリントはその反復の単位（1か月以内）。スクラムが定義する責任はプロダクトオーナー・スクラムマスター・開発者の3つ"
       }
     ],
     "sources": [
       {
         "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
         "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+      },
+      {
+        "title": "Ken Schwaber & Jeff Sutherland「スクラムガイド」2020年11月版（日本語訳）",
+        "url": "https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Japanese.pdf"
       }
     ],
     "status": "verified"
@@ -232,7 +240,7 @@
     ],
     "title": "MLOps",
     "oneLine": "機械学習システムの開発（Dev）と運用（Ops）を一体にする文化と手法。統合・テスト・リリース・デプロイ・インフラ管理の各段階で自動化とモニタリングを進め、新しいデータでの再学習（継続的トレーニング：CT）も自動で回す。",
-    "why": "機械学習システムは、データへの依存や外部環境の変化などにより、作った後の保守に大きな継続的コスト（技術的負債）がかかることが指摘されている。",
+    "why": "機械学習システムは、データへの依存や外部環境の変化などにより、作った後の保守に大きな継続的コスト（技術的負債）がかかることが指摘されている。MLOpsは、ソフトウェアの開発と運用を一体にするDevOps（CI・CDで開発サイクルを短くし、信頼性の高いリリースを可能にする手法）の原則を、MLシステムに適用したもの。ただしMLでは、CIでコードに加えてデータ・データスキーマ・モデルもテスト・検証し、CDはモデル予測サービスを自動でデプロイする学習パイプラインを届けるものになり、自動で再学習するCTがML固有のものとして加わる。",
     "links": [
       {
         "id": "C-07-008",
@@ -251,6 +259,10 @@
       {
         "id": "C-07-003",
         "point": "CRISP-MLはプロセスのモデル（手順）、MLOpsはそれを回す仕組み・文化"
+      },
+      {
+        "title": "DevOps",
+        "point": "DevOpsはソフトウェア全般の開発と運用の一体化で、検査の対象は主にコード。MLOpsはデータとモデルも対象にし、CT（継続的トレーニング）が加わる"
       }
     ],
     "sources": [
@@ -274,7 +286,7 @@
     ],
     "title": "モデルのヘルスモニタリングとライフサイクル管理",
     "oneLine": "運用中のモデルの入力データや予測精度を監視し、性能が落ちたら再学習・更新し、どのモデルをいつ使ったかを管理すること。",
-    "why": "学習時と運用時でデータの性質が変わると（市場・季節・利用者の変化など）、モデルの性能は劣化する。展開して終わりにはできない。",
+    "why": "学習時と運用時でデータの性質が変わると（市場・季節・利用者の変化など）、モデルの性能は劣化する。展開して終わりにはできない。運用時の入力（特徴量）の分布が学習時から変わることをデータドリフトと呼ぶ。入力が与えられたときの正解の分布（入力と正解の関係）そのものが変わる場合はコンセプトドリフトと呼び、区別する。入力の分布の変化は正解ラベルが無くても入力の統計から検知できるが、コンセプトドリフトは入力の分布が変わらないまま起きることがあり、入力だけを見ていても気づけない。",
     "links": [
       {
         "id": "C-07-007",
@@ -289,6 +301,10 @@
       {
         "title": "過学習",
         "point": "運用中の劣化は環境の変化が原因で、学習時の過学習とは別の問題"
+      },
+      {
+        "title": "コンセプトドリフト",
+        "point": "データドリフトは入力の分布 p(X) の変化。コンセプトドリフトは入力と正解の関係 p(y|X) の変化で、入力の分布が同じでも起きる"
       }
     ],
     "sources": [
@@ -299,6 +315,14 @@
       {
         "title": "Sculley et al. (2015) Hidden Technical Debt in Machine Learning Systems (NeurIPS)",
         "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+      },
+      {
+        "title": "Google Cloud「モデル モニタリングの概要」（Vertex AI）",
+        "url": "https://cloud.google.com/vertex-ai/docs/model-monitoring/overview?hl=ja"
+      },
+      {
+        "title": "Gama et al. (2014) A Survey on Concept Drift Adaptation (ACM Computing Surveys 46(4)、著者公開版)",
+        "url": "https://www.win.tue.nl/~mpechen/publications/pubs/Gama_ACMCS_AdaptationCD_accepted.pdf"
       }
     ],
     "status": "verified"
@@ -499,10 +523,6 @@
       {
         "id": "C-07-015",
         "relation": "対比"
-      },
-      {
-        "id": "C-07-015",
-        "relation": "対比"
       }
     ],
     "confusions": [
@@ -595,6 +615,516 @@
       {
         "title": "scikit-learn User Guide 3.1 Cross-validation（grouped data・time series）",
         "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-017",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "title": "DX（デジタルトランスフォーメーション）",
+    "oneLine": "企業がデータとデジタル技術を活用して、製品・サービスやビジネスモデルを変革するとともに、業務そのもの・組織・プロセス・企業文化や風土まで変革し、競争上の優位性を確立すること（経済産業省「デジタルガバナンス・コード」の定義による）。",
+    "why": "紙を電子化する、機器を新しくするといったデジタル化だけでは、事業や組織は変わらない。ビジネス環境の激しい変化に対応するには、AIなどの技術を手段として、売り方と働き方の両方を変える必要がある。経済産業省は、経営者に求められる対応を「デジタルガバナンス・コード」にまとめている（2020年11月策定、2024年9月に3.0へ改訂）。",
+    "links": [
+      {
+        "id": "C-07-006",
+        "relation": "関連（業務プロセスの根本的な見直し）"
+      },
+      {
+        "id": "C-07-018",
+        "relation": "手段（定型作業の自動化）"
+      },
+      {
+        "id": "C-07-001",
+        "relation": "部分（AIの活用）"
+      },
+      {
+        "id": "C-07-019",
+        "relation": "関連（国が目指す社会像）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-07-006",
+        "point": "BPRは業務プロセスを根本から見直すこと。DXはデジタル技術を手段に、製品・サービスやビジネスモデルまで含めて変革すること"
+      },
+      {
+        "id": "C-07-018",
+        "point": "RPAで今の手順を自動化するだけではDXにならない。事業や組織の変革を伴うかが分かれ目"
+      }
+    ],
+    "sources": [
+      {
+        "title": "経済産業省「デジタルガバナンス・コード3.0 ～DX経営による企業価値向上に向けて～」（2024年9月19日改訂）",
+        "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf"
+      },
+      {
+        "title": "経済産業省「デジタルガバナンス・コード」",
+        "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-018",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "title": "RPA（Robotic Process Automation）とAI",
+    "oneLine": "RPAは、人がパソコンで行う定型的な操作（転記・照合・入力など）を、処理のルールを定義した「シナリオ」に沿ってソフトウェアのロボットに代行させる仕組み。決められた手順を繰り返すのが得意で、データから学習して判断するAIとは役割が違う。",
+    "why": "総務省の自治体向けガイドブックによれば、現在普及しているRPAツールはAIを含まず、その都度判断が要る非定型の作業はAIを搭載した他のツールと組み合わせて補う。代表例がAI-OCRで、紙の申請書をAI-OCRでデータ化し、RPAが業務システムに入力するという分担になる。導入の前に、その作業が本当に必要かを確かめるなど業務の見直しも勧められている。",
+    "links": [
+      {
+        "id": "C-07-006",
+        "relation": "関連（先に業務を見直す）"
+      },
+      {
+        "id": "C-07-017",
+        "relation": "関連（DXの手段の1つ）"
+      },
+      {
+        "id": "C-02-028",
+        "relation": "対比（決めた手順で動く／データから学ぶ）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-07-006",
+        "point": "RPAは決められた手順を代わりに実行する道具。手順そのものを根本から見直すのはBPR"
+      },
+      {
+        "id": "C-02-028",
+        "point": "RPAのシナリオは人が定義したルールで動く（ルールベースに近い）。データから規則を学ぶのが機械学習"
+      }
+    ],
+    "sources": [
+      {
+        "title": "総務省「自治体におけるRPA導入ガイドブック」（令和7年7月）",
+        "url": "https://www.soumu.go.jp/main_content/001069306.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-019",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "title": "Society 5.0（サイバー空間とフィジカル空間）",
+    "oneLine": "狩猟社会・農耕社会・工業社会・情報社会に続く、日本が目指す5番目の社会像。サイバー空間とフィジカル空間（現実社会）を高度に融合させたシステムにより、経済発展と社会的課題の解決を両立する人間中心の社会。第5期科学技術基本計画（2016年1月閣議決定）で初めて提唱された。",
+    "why": "内閣府は、サイバー空間で社会のあらゆる要素をデジタルツインとして構築・再構成し、それをフィジカル空間に反映して社会を変えていくと説明している。第5期科学技術基本計画の概要は、その基盤技術としてサイバーセキュリティ、IoTシステム構築、ビッグデータ解析、AIなどを挙げている。",
+    "links": [
+      {
+        "id": "C-07-017",
+        "relation": "関連（企業の変革）"
+      },
+      {
+        "id": "C-02-029",
+        "relation": "部分（ビッグデータ解析）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-07-017",
+        "point": "Society 5.0は国が目指す社会の姿。DXは企業が自らの事業・組織を変革する取り組み"
+      }
+    ],
+    "sources": [
+      {
+        "title": "内閣府「Society 5.0」",
+        "url": "https://www8.cao.go.jp/cstp/society5_0/"
+      },
+      {
+        "title": "内閣府「第5期科学技術基本計画の概要」",
+        "url": "https://www8.cao.go.jp/cstp/kihonkeikaku/5gaiyo.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-020",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "title": "クラウドのサービス形態（IaaS・PaaS・SaaS）とオンプレミス",
+    "oneLine": "オンプレミスは、動作環境（データセンタ・ハードウェア・サーバ等）を自ら準備して自らコントロールする従来型の形態。クラウドは提供される範囲で分かれ、IaaSはCPU・ストレージ・ネットワークなどの基礎的なリソース、PaaSはそれに加えてOSや開発環境・運用管理環境まで、SaaSは業務アプリケーションなどの機能そのものをサービスとして提供する。",
+    "why": "提供される範囲が広いほど利用者の管理の手間は減るが、自分で変えられる部分も減る。IaaSでは利用者がOSや任意の機能を自分で構築でき、SaaSでは利用者は限られた設定しか変えられない（NISTの定義）。オンプレミスでは納期や変えにくい構成のために余裕を持った資源を常に確保しておく必要があったが、クラウドでは必要なときに必要な量を使える。政府の情報システムも、クラウドの利用を第一候補として検討する（クラウド第一原則）。",
+    "links": [
+      {
+        "id": "C-07-011",
+        "relation": "発展元（クラウドの基本的な特徴）"
+      },
+      {
+        "id": "C-09-029",
+        "relation": "関連（SaaS型AIサービスの契約）"
+      },
+      {
+        "id": "C-06-089",
+        "relation": "対比（端末側で推論する）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-07-011",
+        "point": "IaaSは基盤だけ借りてOSから上は自分、PaaSはOS・開発環境まで借りてアプリは自分、SaaSはアプリまで借りる"
+      },
+      {
+        "id": "C-09-029",
+        "point": "ここでのSaaSは提供形態の分類。G検定の法律分野では、SaaS型のAIサービスを使う契約（利用型契約）の論点として出る"
+      }
+    ],
+    "sources": [
+      {
+        "title": "デジタル庁 デジタル社会推進標準ガイドライン DS-310「政府情報システムにおけるクラウドサービスの適切な利用に係る基本方針」（2025年5月27日）",
+        "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/a612d406/20250619_resources_standard_guidelines_guideline_08.pdf"
+      },
+      {
+        "title": "NIST SP 800-145 The NIST Definition of Cloud Computing (2011)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-021",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "title": "特徴量エンジニアリング（対数変換など）",
+    "oneLine": "モデルの学習に役立ちそうな特徴量を見定め、生データをモデルが扱いやすい特徴量に変換する作業。値の範囲をそろえる（スケーリング）、偏った分布に対数をとる（対数変換）、カテゴリを数値に変える（エンコーディング）、欠損を埋める（補完）などを含む。",
+    "why": "モデルが扱えるのは数値だけで、値の範囲や分布の形によって学習の進み方や精度が変わる。たとえば、ごく一部の値だけが極端に大きい（べき乗則に従う）特徴量は、対数をとると分布の形が変わり、学習しやすくなる。複雑な課題で特徴量を人手で設計するには多くの時間と労力がかかり、ディープラーニングなどの表現学習は、特徴量そのものをデータから学ぶことでこれを自動化する。",
+    "links": [
+      {
+        "id": "C-07-022",
+        "relation": "部分（スケーリング）"
+      },
+      {
+        "id": "C-07-023",
+        "relation": "部分（カテゴリの数値化）"
+      },
+      {
+        "id": "C-07-024",
+        "relation": "部分（欠損値の補完）"
+      },
+      {
+        "id": "C-07-016",
+        "relation": "関連（前処理の統計は学習データだけで求める）"
+      }
+    ],
+    "confusions": [
+      {
+        "title": "特徴選択",
+        "point": "特徴選択は今ある特徴量から使うものを選ぶ。特徴量エンジニアリングは特徴量を作り変える・作り出す"
+      },
+      {
+        "title": "表現学習（特徴表現学習）",
+        "point": "特徴量エンジニアリングは人が特徴量を設計する。表現学習（ディープラーニング）は特徴量そのものをデータから学ぶ"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers「Machine Learning Glossary」",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Google for Developers Machine Learning Crash Course「Numerical data: Normalization」",
+        "url": "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning 第1章 Introduction",
+        "url": "https://www.deeplearningbook.org/contents/intro.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-022",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "title": "特徴量のスケーリング（正規化と標準化）",
+    "oneLine": "特徴量どうしの値の範囲をそろえる前処理。正規化（Min-Max）は最小値と最大値を使って0〜1などの決まった範囲に収め、標準化は各値から平均を引いて標準偏差で割り、平均0・分散1にそろえる（zスコア）。",
+    "why": "範囲が大きく違う特徴量をそのまま使うと、モデルは範囲の広い特徴量を重要とみなしてしまい、学習が遅くなったり収束しなかったりする。Min-Maxの正規化は、上限と下限が安定していて外れ値が少ないデータに向く。学習時に変換した特徴量は、予測するときにも同じ変換をかける必要がある。",
+    "links": [
+      {
+        "id": "C-07-021",
+        "relation": "部分（特徴量エンジニアリングの1つ）"
+      },
+      {
+        "id": "C-05-012",
+        "relation": "対比（層の中で行う正規化）"
+      },
+      {
+        "id": "C-04-017",
+        "relation": "対比（名前が似ている別物）"
+      },
+      {
+        "id": "C-08-002",
+        "relation": "関連（外れ値に引っ張られる）"
+      },
+      {
+        "id": "C-08-003",
+        "relation": "部分（標準化は標準偏差で割る）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-04-017",
+        "point": "正則化は過学習を防ぐために誤差関数に罰則を加えること。正規化・標準化はデータの値の範囲をそろえる前処理"
+      },
+      {
+        "id": "C-05-012",
+        "point": "バッチ正規化はネットワークの層の中でミニバッチごとに行う。特徴量のスケーリングは学習の前にデータに施す"
+      }
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide「Preprocessing data」",
+        "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+      },
+      {
+        "title": "Google for Developers Machine Learning Crash Course「Numerical data: Normalization」",
+        "url": "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-023",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "title": "カテゴリカルデータのエンコーディング（ラベルエンコーディングとOne-Hot）",
+    "oneLine": "「赤・青・緑」のようなカテゴリの値を数値に変える処理。ラベルエンコーディング（順序エンコーディング）は各カテゴリに0, 1, 2…の整数を割り当てる。One-Hotエンコーディング（ダミー変数化）はカテゴリの数だけ0/1の列を作り、該当する1列だけを1にする。",
+    "why": "整数を割り当てただけで入力すると、モデルはその値を連続した数として扱い、本来ない大小関係（「6番は1番の6倍」）を読み取ってしまう。順序に意味のないカテゴリはOne-Hotにするのが基本。ただしカテゴリの数が非常に多いとOne-Hotは列が増えすぎて非効率になり、埋め込みなどが勧められる。なおscikit-learnのLabelEncoderは目的変数（正解ラベル）用で、特徴量にはOrdinalEncoderを使う。",
+    "links": [
+      {
+        "id": "C-07-021",
+        "relation": "部分（特徴量エンジニアリングの1つ）"
+      },
+      {
+        "id": "C-06-027",
+        "relation": "関連（単語のワンホットベクトル）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-027",
+        "point": "自然言語処理のワンホットベクトルは単語を表す。ここでのOne-Hotは表データのカテゴリ列を表す。0/1の列を1つだけ立てる考え方は同じ"
+      }
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide「Preprocessing data」",
+        "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+      },
+      {
+        "title": "Google for Developers Machine Learning Crash Course「Categorical data: Vocabulary and one-hot encoding」",
+        "url": "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding"
+      },
+      {
+        "title": "scikit-learn API Reference「LabelEncoder」",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-024",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "title": "データクレンジングと欠損値の補完（回帰補完）",
+    "oneLine": "データクレンジングは、表記ゆれの補正などによってデータの整合性や質を高めること。欠損値は、その行や列を捨てるか、推定した値で埋める（補完）。補完には、その列の平均値・中央値・最頻値で埋める方法や、他の特徴量から回帰モデルで予測して埋める方法（回帰補完）がある。",
+    "why": "欠損を含む行や列を捨てると、残りの価値あるデータまで失う。scikit-learnは、既知の部分から欠損値を推定して埋めるほうがよい戦略だとしている。平均値などで埋める方法はその列だけを見る（単変量）が、回帰補完は他の列との関係を使う（多変量）。",
+    "links": [
+      {
+        "id": "C-07-021",
+        "relation": "部分（特徴量エンジニアリングの1つ）"
+      },
+      {
+        "id": "C-08-002",
+        "relation": "対比（値はあるが極端）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-08-002",
+        "point": "欠損値は値がそもそも無いもの。外れ値は値はあるが他から大きく離れているもの"
+      }
+    ],
+    "sources": [
+      {
+        "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
+        "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf"
+      },
+      {
+        "title": "scikit-learn User Guide「Imputation of missing values」",
+        "url": "https://scikit-learn.org/stable/modules/impute.html"
+      },
+      {
+        "title": "Google for Developers「Machine Learning Glossary」",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-025",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "title": "構造化データと非構造化データ",
+    "oneLine": "構造化データは、POS（販売時点）データや企業内で管理する顧客データのように、決まった項目で整理されたデータ。非構造化データは、音声・映像・文章・SNSへの書き込み・センサーの信号のように、決まった形に整理されていない多種・多量のデータ。",
+    "why": "総務省の情報通信白書（平成25年版）は、ビッグデータで注目されているのは、ICTの進展で急増し、分析もできるようになった非構造化データだとし、構造化データと非構造化データを合わせたものとしてビッグデータを整理している。",
+    "links": [
+      {
+        "id": "C-02-029",
+        "relation": "部分（ビッグデータの中身）"
+      },
+      {
+        "id": "C-07-015",
+        "relation": "具体例（コーパス）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-02-029",
+        "point": "ビッグデータは構造化と非構造化の両方を含む。非構造化データだけを指すのではない"
+      }
+    ],
+    "sources": [
+      {
+        "title": "総務省「平成25年版 情報通信白書」ビッグデータの概念",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h25/html/nc113110.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-026",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "title": "クローリングとスクレイピング",
+    "oneLine": "クローリングは、クローラと呼ばれる自動のプログラムがリンクをたどってWebページを巡回すること（検索エンジンの索引づくりなど）。スクレイピングは、Webから必要なデータを自動で抜き出すこと。AIの学習データの収集にも使われる。",
+    "why": "技術的に取得できても、使ってよいとは限らない。サイトの運営者はrobots.txtでクローラにアクセスしてほしくない範囲を示せる（RFC 9309）。文化庁の考え方は、反対の意思表示それ自体では著作権法第30条の4の対象外にならないとしつつ、robots.txtなどの技術的な措置があり、データベースの著作物の将来の販売が推認される場合に、その措置を回避して収集・複製する行為はただし書に該当しうると整理している。公開されている個人情報も、多くの国・地域で個人情報保護のルールの対象になる。",
+    "links": [
+      {
+        "id": "C-09-012",
+        "relation": "関連（学習のための複製の扱い）"
+      },
+      {
+        "id": "C-07-015",
+        "relation": "関連（集めたデータの利用条件）"
+      },
+      {
+        "id": "C-10-009",
+        "relation": "関連（収集段階のプライバシー）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-09-012",
+        "point": "第30条の4で学習のための複製が広く認められても、技術的な措置を回避した収集などはただし書に当たりうる"
+      },
+      {
+        "id": "C-07-015",
+        "point": "公開されている（見られる）ことと、使ってよいことは別。利用規約・ライセンス・法令を確かめる"
+      }
+    ],
+    "sources": [
+      {
+        "title": "IETF RFC 9309 Robots Exclusion Protocol (2022)",
+        "url": "https://www.rfc-editor.org/rfc/rfc9309"
+      },
+      {
+        "title": "文化審議会著作権分科会法制度小委員会「AIと著作権に関する考え方について」（令和6年3月15日）",
+        "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf"
+      },
+      {
+        "title": "著作権法（e-Gov法令検索・令和8年6月24日施行版）",
+        "url": "https://laws.e-gov.go.jp/law/345AC0000000048"
+      },
+      {
+        "title": "Joint statement on data scraping and the protection of privacy（12の個人情報保護機関の共同声明、2023年8月24日。カナダ プライバシー・コミッショナー事務局の掲載）",
+        "url": "https://www.priv.gc.ca/en/opc-news/speeches-and-statements/2023/js-dc_20230824/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-027",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "データの収集・加工・分析・学習"
+    ],
+    "title": "不均衡データの対処（ダウンサンプリング・オーバーサンプリング・SMOTE）",
+    "oneLine": "クラスごとのデータ数が大きく偏ったデータ（例：正常品が大多数で不良品がごく少数）を学習するとき、多数派を減らす（ダウンサンプリング）、少数派を増やす（オーバーサンプリング）などで釣り合いをとる。SMOTEは、少数派のデータとその近くの少数派データとを結ぶ線分上に、新しいデータを合成して増やす手法。",
+    "why": "そのまま学習すると、モデルは多数派のことばかり学び、少数派（見逃すと損失の大きい異常など）を十分に学べない。少数派を単に複製して増やすと、少数派の判定領域が狭く特殊になりやすいとされ、SMOTEは近傍との間に新しい点を作ることで判定領域を広く一般的にする（Chawla et al. 2002）。また、不均衡なデータで学習したモデルの評価には、正解率（accuracy）は向かないことが多いとされる。",
+    "links": [
+      {
+        "id": "C-03-054",
+        "relation": "関連（正解率以外で評価する）"
+      },
+      {
+        "id": "C-05-043",
+        "relation": "対比（学習データ全体の水増し）"
+      },
+      {
+        "id": "C-03-049",
+        "relation": "関連（複製で起きやすい）"
+      },
+      {
+        "id": "C-03-059",
+        "relation": "関連（SMOTEは近傍の少数派データを使って合成する）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-05-043",
+        "point": "データ拡張は画像の反転などで学習データを水増しする。SMOTEは少数派のクラスだけを特徴空間で合成して増やす"
+      },
+      {
+        "id": "C-03-054",
+        "point": "不均衡データでは正解率が高く見えても少数派を見逃していることがある。再現率・適合率なども見る"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Chawla et al. (2002) SMOTE: Synthetic Minority Over-sampling Technique (JAIR 16, arXiv:1106.1813)",
+        "url": "https://arxiv.org/abs/1106.1813"
+      },
+      {
+        "title": "Google for Developers Machine Learning Crash Course「Datasets: Class-imbalanced datasets」",
+        "url": "https://developers.google.com/machine-learning/crash-course/overfitting/imbalanced-datasets"
+      },
+      {
+        "title": "Google for Developers「Machine Learning Glossary」",
+        "url": "https://developers.google.com/machine-learning/glossary"
       }
     ],
     "status": "verified"

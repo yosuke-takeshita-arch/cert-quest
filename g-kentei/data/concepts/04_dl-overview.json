@@ -130,7 +130,7 @@
     ],
     "title": "CPU・GPU・TPU",
     "oneLine": "CPU：汎用の計算装置で、複雑な処理を順に速くこなす。GPU：もとはグラフィックス処理用で、多数の単純な計算を並列に行うのが得意。TPU：Googleが機械学習向けに独自開発した専用チップ（ASIC）で、大規模な行列演算に特化。",
-    "why": "ディープラーニングの学習・推論は大量の行列演算の繰り返しで、並列に計算できる。だから並列処理に強いGPUや行列演算専用のTPUが向く。",
+    "why": "ディープラーニングの学習・推論は大量の行列演算の繰り返しで、並列に計算できる。だから並列処理に強いGPUや行列演算専用のTPUが向く。 画像処理以外の汎用の計算にGPUを使うことをGPGPU（General-Purpose computing on GPU）という。NVIDIAが2006年に発表したCUDA（Compute Unified Device Architecture）は、グラフィックスのAPIを通さずに、あらゆる計算にGPUの処理能力を使えるようにした。CPUは少数の処理（スレッド）を順に速くこなすよう、GPUは数千のスレッドを並列に実行するよう設計されている。",
     "links": [
       {
         "title": "ディープラーニング",
@@ -159,6 +159,10 @@
       {
         "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及（GPUの注記）",
         "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html"
+      },
+      {
+        "title": "NVIDIA CUDA Programming Guide 1.1 Introduction",
+        "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/introduction.html"
       }
     ],
     "status": "verified"
@@ -760,7 +764,7 @@
     ],
     "title": "L1正則化とラッソ回帰",
     "oneLine": "L1正則化：重みの絶対値の和に比例する罰則を加える正則化。関係の薄い特徴量の重みをちょうど0にしやすい（スパースになる）。ラッソ回帰：線形回帰にL1正則化を加えたもの。",
-    "why": "不要な変数の重みが0になるので、特徴量の選択（どの変数を使うか）を同時に行える。",
+    "why": "不要な変数の重みが0になるので、特徴量の選択（どの変数を使うか）を同時に行える。 L1とL2の両方の罰則を組み合わせたものをElastic Netという。ラッソのように一部の重みを0にしつつ、リッジの安定性も持つ。互いに相関する特徴量が複数あるとき、ラッソはそのうち1つを任意に選びがちだが、Elastic Netは両方を残しやすい。",
     "links": [
       {
         "id": "C-04-017",
@@ -779,6 +783,10 @@
       {
         "id": "C-04-020",
         "point": "ラッソ（L1）は重みを0にして変数を減らす。リッジ（L2）は重みを全体に小さくするが0にはしにくい。"
+      },
+      {
+        "title": "Elastic Net",
+        "point": "Elastic NetはL1とL2の罰則を、決めた割合で混ぜる。L1だけならラッソ、L2だけならリッジ。"
       }
     ],
     "sources": [
@@ -821,6 +829,10 @@
       {
         "id": "C-04-019",
         "point": "「特徴量を自動で選びたい（重みを0にしたい）」ならL1（ラッソ）。L2（リッジ）ではない。"
+      },
+      {
+        "title": "Elastic Net",
+        "point": "相関の強い特徴量が複数あるとき、ラッソは1つだけ残しがち。L1とL2を混ぜたElastic Netは両方を残しやすい。"
       }
     ],
     "sources": [
@@ -886,7 +898,7 @@
     ],
     "title": "誤差逆伝播法",
     "oneLine": "出力の誤差を、出力層から入力層へ向かって逆向きに伝え、各層の重みについての勾配を連鎖律で効率よく計算する方法。1986年にRumelhartらが広めた。",
-    "why": "層が多くても、すべての重みの勾配をまとめて計算できるので、多層のネットワークを勾配降下法で学習できる。隠れ層が課題に重要な特徴を表すようになる。",
+    "why": "層が多くても、すべての重みの勾配をまとめて計算できるので、多層のネットワークを勾配降下法で学習できる。隠れ層が課題に重要な特徴を表すようになる。 これに対し、入力から隠れ層を順に通って出力（さらに誤差）まで、値を前向きに計算していくことを順伝播（フォワードプロパゲーション）という。学習では、順伝播で誤差を求め、逆伝播で勾配を求めることを繰り返す。",
     "links": [
       {
         "id": "C-04-023",
@@ -913,6 +925,10 @@
       {
         "id": "C-04-027",
         "point": "誤差逆伝播法は勾配の「計算方法」、勾配降下法はその勾配で重みを「更新する方法」。"
+      },
+      {
+        "title": "順伝播",
+        "point": "順伝播は入力から出力へ値を計算する向き、誤差逆伝播は誤差から入力側へ勾配の情報を伝える向き。"
       }
     ],
     "sources": [
@@ -923,6 +939,10 @@
       {
         "title": "Google for Developers: Machine Learning Glossary（backpropagation）",
         "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
       }
     ],
     "status": "verified"
@@ -1115,8 +1135,8 @@
       "最適化手法"
     ],
     "title": "勾配降下法",
-    "oneLine": "誤差関数の勾配（傾き）を求め、誤差が小さくなる方向（勾配の逆向き）へ、学習率の分だけパラメータを少しずつ動かすことを繰り返す最適化の方法。",
-    "why": "パラメータが何百万あっても、勾配さえ分かれば誤差を下げる方向が分かる。ただし局所最適解や鞍点で止まることがあり、学習率の選び方も難しい。それを改善したのがモーメンタム・AdaGrad・RMSprop・Adamなど。",
+    "oneLine": "誤差関数の勾配（傾き）を求め、誤差が小さくなる方向（勾配の逆向き）へ、学習率の分だけパラメータを少しずつ動かすことを繰り返す最適化の方法。 最急降下法とも呼ぶ。",
+    "why": "パラメータが何百万あっても、勾配さえ分かれば誤差を下げる方向が分かる。ただし局所最適解や鞍点で止まることがあり、学習率の選び方も難しい。それを改善したのがモーメンタム・AdaGrad・RMSprop・Adamなど。 勾配は関数の値が最も急に増える向きを指すので、その逆（負の勾配の向き）が最も急に減る向きになる。勾配のすべての成分が0（またはほぼ0）になると止まる。",
     "links": [
       {
         "id": "C-04-028",
@@ -1153,6 +1173,10 @@
       {
         "title": "Google for Developers: Machine Learning Glossary（gradient descent）",
         "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 4 Numerical Computation（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/numerical.html"
       }
     ],
     "status": "verified"
@@ -1771,6 +1795,128 @@
       {
         "title": "Bergstra & Bengio (2012) Random Search for Hyper-Parameter Optimization. JMLR",
         "url": "https://www.jmlr.org/papers/v13/bergstra12a.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-045",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
+    "title": "End-to-End学習",
+    "oneLine": "入力から最終的な出力までを、途中の工程に分けずに1つのニューラルネットワークでまとめて学習させる方式。例：前方カメラの画像の画素から、ハンドルの角度を直接出力させる。",
+    "why": "処理を人が工程（車線の検出・経路の計画・制御など）に分けて作ると、各工程は人が決めた中間の基準で最適化される。End-to-Endでは、全体の性能が上がるように全工程が同時に最適化され、途中で必要な特徴（道路の輪郭など）も自動で学ばれる。NVIDIAの研究では、人が運転したときのハンドル角だけを教師信号にして、道路の特徴の検出まで学習した。",
+    "links": [
+      {
+        "id": "C-05-003",
+        "relation": "具体例（NVIDIAの研究はCNNで実現）"
+      },
+      {
+        "id": "C-04-022",
+        "relation": "関連（全体を勾配で学習）"
+      },
+      {
+        "id": "C-06-097",
+        "relation": "関連（人が運転したときの操作を正解にして学ぶ）"
+      }
+    ],
+    "confusions": [
+      {
+        "title": "パイプライン方式",
+        "point": "処理を人が工程に分け、工程ごとに作って順につなぐ方式。End-to-Endは工程を分けず、入力から出力までをまとめて学習する。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Bojarski et al. (2016) End to End Learning for Self-Driving Cars. arXiv:1604.07316（NVIDIA）",
+        "url": "https://arxiv.org/abs/1604.07316"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-046",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
+    "title": "バーニーおじさんのルール",
+    "oneLine": "ニューラルネットワークの学習に用意したい訓練データの数の目安を、ネットワークの重み（パラメータ）の数のおよそ10倍とする経験則。Bernard Widrow が示したことから、この愛称で呼ばれる。",
+    "why": "BaumとHausslerは理論的な分析から、未知のデータでの誤り率をεに抑えたいとき、必要な訓練データの数はおおよそ「重みの数÷ε」になり、ε＝0.1（精度90％）なら重みの約10倍になると述べ、これがWidrowの経験則と一致するとした。あくまで目安で、厳密な決まりではない。",
+    "links": [
+      {
+        "id": "C-03-049",
+        "relation": "関連（データが少ないと過学習しやすい）"
+      },
+      {
+        "id": "C-04-002",
+        "relation": "対象"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-03-058",
+        "point": "オッカムの剃刀は「同程度に説明できるなら単純なモデルを選ぶ」という考え方。バーニーおじさんのルールは、モデルの大きさに見合う訓練データの量の目安。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Baum & Haussler (1988) What Size Net Gives Valid Generalization? NeurIPS 1",
+        "url": "https://proceedings.neurips.cc/paper_files/paper/1988/file/1d7f7abc18fcb43975065399b0d1e48e-Paper.pdf"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-04-047",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
+    "title": "重みの初期値（Xavierの初期値・Heの初期値）",
+    "oneLine": "Xavierの初期値（GlorotとBengioが提案）：前後の層のユニット数 n_in と n_out から、分散がおよそ 2/(n_in＋n_out) になるように重みを乱数で決める。Heの初期値（Heらが提案）：ReLUを使う層向けに、平均0・分散 2/n_in の正規分布から重みを決める。",
+    "why": "初期値が小さすぎると、層を通るたびに信号や勾配が小さくなり、大きすぎると大きくなりすぎる。層ごとに分散が保たれるよう、初期値の大きさをユニット数で調整すると、深いネットワークでも学習が進みやすい。Xavierの初期値は活性化関数が線形に近いことを前提に導かれており、ReLUではその前提が成り立たないため、Heの初期値が提案された。なお、同じ層のユニットを同じ値で初期化すると同じように更新されてしまうので、初期値は乱数で決める。",
+    "links": [
+      {
+        "id": "C-04-024",
+        "relation": "解決策（勾配消失・爆発を起こしにくくする）"
+      },
+      {
+        "id": "C-04-007",
+        "relation": "組み合わせ（Xavierの初期値）"
+      },
+      {
+        "id": "C-04-008",
+        "relation": "組み合わせ（Heの初期値）"
+      },
+      {
+        "id": "C-05-012",
+        "relation": "関連（学習を安定させる別の工夫）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-04-008",
+        "point": "ReLUを使う層にはHeの初期値、tanhやシグモイドにはXavierの初期値、という組み合わせで覚える。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS",
+        "url": "https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf"
+      },
+      {
+        "title": "He et al. (2015) Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification. ICCV（arXiv:1502.01852）",
+        "url": "https://arxiv.org/abs/1502.01852"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/optimization.html"
       }
     ],
     "status": "verified"

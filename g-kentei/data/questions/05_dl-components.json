@@ -2013,5 +2013,249 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-05-054",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "畳み込み層"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "3×3の入力（1行目［1, 2, 0］、2行目［0, 1, 3］、3行目［2, 1, 1］）に、2×2のフィルタ（1行目［1, 0］、2行目［0, 1］）を、ストライド1・パディングなしで畳み込む。フィルタは反転せず、重なった要素どうしの積の和をとるものとする。出力の右上の値として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "2",
+      "5",
+      "6",
+      "1"
+    ],
+    "answer": 1,
+    "explanation": "出力は (3−2)÷1＋1＝2 で2×2になる。右上は、入力の1〜2行目・2〜3列目の［2, 0］［1, 3］とフィルタを重ね、2×1＋0×0＋1×0＋3×1＝5。多くのライブラリの畳み込み層は、このようにフィルタを反転しない積和（相互相関）を計算している。",
+    "whyWrong": [
+      "左上の値（1×1＋2×0＋0×0＋1×1＝2）。右上はフィルタを1つ右にずらした位置で計算する。",
+      null,
+      "重なった4つの値（2＋0＋1＋3）をそのまま足しただけ。フィルタの重みを掛けていない。",
+      "左下の値（0×1＋1×0＋2×0＋1×1＝1）。右上の位置ではない。"
+    ],
+    "memoryTip": "畳み込み＝「重ねて、掛けて、足す」を1マスずつずらす。出力の大きさは（入力−フィルタ＋2×パディング）÷ストライド＋1。",
+    "concepts": [
+      "C-05-004"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks",
+        "url": "https://www.deeplearningbook.org/contents/convnets.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.Conv2d",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-055",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "正規化層"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "バッチ正規化の論文が解決をめざした「内部共変量シフト」の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "訓練データとテストデータで、正解ラベルの付け方の基準が食い違っていること",
+      "ミニバッチの大きさを変えると、1エポックあたりの重みの更新回数が変わること",
+      "学習が進んでも損失関数の値が下がらず、ほぼ横ばいのまま止まってしまうこと",
+      "学習中に前の層のパラメータが変わるため、各層への入力の分布が変わり続けること"
+    ],
+    "answer": 3,
+    "explanation": "学習するシステムへの入力の分布が変わることを共変量シフトという。Ioffe と Szegedy（2015）は、これをネットワークの各層に当てはめ、学習中に前の層のパラメータが変わることで各層の入力分布が変わることを内部共変量シフトと呼んだ。層は新しい分布に合わせ続けなければならず、学習率を下げたり初期値に気を使ったりする必要が出る。バッチ正規化は層の入力の平均と分散を固定してこれを減らす。",
+    "whyWrong": [
+      "ラベル付けの基準の揺れの話で、入力の分布の変化ではない。",
+      "更新回数はデータ数÷バッチサイズで決まる計算上の話で、共変量シフトとは関係ない。",
+      "損失が下がらない現象の説明で、その原因が何かを特定していない。内部共変量シフトは各層の入力分布の変化を指す。",
+      null
+    ],
+    "memoryTip": "因果でつなぐ：前の層が変わる → 次の層の入力分布がずれる（内部共変量シフト）→ 学習が遅い → 層ごとに平均0・分散1にそろえる（バッチ正規化）。",
+    "concepts": [
+      "C-05-012"
+    ],
+    "sources": [
+      {
+        "title": "Ioffe & Szegedy (2015) Batch Normalization (arXiv:1502.03167)",
+        "url": "https://arxiv.org/abs/1502.03167"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-056",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "回帰結合層"
+    ],
+    "format": "fill",
+    "difficulty": 3,
+    "stem": "LSTM の原論文（1997）は、記憶セルへの書き込みを（ア）ゲート、読み出しを（イ）ゲートで制御し、同じ重みで「記憶すること」と「無視すること」を両立させなければならない重み衝突の問題を避けた。（ア）（イ）に当てはまる組み合わせとして、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "ア：入力　イ：出力",
+      "ア：忘却　イ：出力",
+      "ア：更新　イ：リセット",
+      "ア：入力　イ：忘却"
+    ],
+    "answer": 0,
+    "explanation": "Hochreiter と Schmidhuber（1997）は、ゲートが無いと、セルに入る重みが記憶と無視の両方に使われる入力重み衝突と、セルから出る重みが読み出しと抑制の両方に使われる出力重み衝突が起きると指摘した。入力ゲートが書き込みを、出力ゲートが読み出しを、文脈に応じて開け閉めすることで衝突を避ける。",
+    "whyWrong": [
+      null,
+      "原論文のゲートは入力ゲートと出力ゲートの2つで、忘却ゲートは後の改良で加わった。書き込みを制御するのは入力ゲート。",
+      "更新ゲートとリセットゲートは、LSTM を簡略化した GRU（2014）の2つのゲート。",
+      "アは合っているが、読み出しを制御するのは出力ゲート。忘却ゲートはセルの中身を消す役で、原論文には無い。"
+    ],
+    "memoryTip": "入力ゲート＝書き込みの扉、出力ゲート＝読み出しの扉、忘却ゲート＝後から付いた消しゴム。GRU は更新とリセットの2つ。",
+    "concepts": [
+      "C-05-027",
+      "C-05-028"
+    ],
+    "sources": [
+      {
+        "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation",
+        "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+      },
+      {
+        "title": "Cho et al. (2014) Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation (arXiv:1406.1078)",
+        "url": "https://arxiv.org/abs/1406.1078"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-057",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "畳み込み層"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "縮小した特徴マップを大きな解像度に戻すアップサンプリングの説明として、最も不適切な選択肢を1つ選べ。",
+    "choices": [
+      "逆プーリングは、最大値プーリングで最大値があった位置を記録しておき、その位置に値を戻す",
+      "転置畳み込み（逆畳み込み）のフィルタは固定せず、学習によって決めることもできる",
+      "逆畳み込みと呼ばれる層は、畳み込みの逆演算を計算して、元の入力を正確に復元する",
+      "SegNet のデコーダは、エンコーダ側のプーリングで得た位置を使ってアップサンプリングする"
+    ],
+    "answer": 2,
+    "explanation": "逆畳み込み（Deconvolution）と呼ばれる層は、実際には転置畳み込みで、畳み込みの真の逆演算を計算するものではない（PyTorch の ConvTranspose2d の説明）。大きさを広げるための、学習できる畳み込みの一種である。",
+    "whyWrong": [
+      "適切。Zeiler と Fergus（2013）は最大値の位置をスイッチとして記録し、逆プーリングでその位置に戻した。",
+      "適切。FCN（Long ら）は、逆畳み込みのフィルタを双線形補間に固定する必要はなく学習できるとした。",
+      null,
+      "適切。SegNet のデコーダは、対応するエンコーダの最大値プーリングのインデックスを使ってアップサンプリングするので、広げ方を学習する必要がない。"
+    ],
+    "memoryTip": "戻し方は2通り：逆プーリング＝「どこが最大だったか」を覚えて戻す（学習なし）／転置畳み込み＝広げ方を学習する（真の逆演算ではない）。",
+    "concepts": [
+      "C-05-049"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.ConvTranspose2d",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html"
+      },
+      {
+        "title": "Zeiler & Fergus (2013) Visualizing and Understanding Convolutional Networks (arXiv:1311.2901)",
+        "url": "https://arxiv.org/abs/1311.2901"
+      },
+      {
+        "title": "Long, Shelhamer & Darrell (2014) Fully Convolutional Networks for Semantic Segmentation (arXiv:1411.4038)",
+        "url": "https://arxiv.org/abs/1411.4038"
+      },
+      {
+        "title": "Badrinarayanan et al. (2015) SegNet (arXiv:1511.00561)",
+        "url": "https://arxiv.org/abs/1511.00561"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-058",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "Attention"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "エンコーダ・デコーダ構造の説明として、最も適切な選択肢を1つ選べ。",
+    "choices": [
+      "エンコーダが入力を中間の表現に変換し、デコーダがその表現から目的の出力を作る",
+      "エンコーダが学習データを集めて整え、デコーダが集めたデータに正解ラベルを付ける",
+      "入力と出力の系列の長さが同じ場合にしか使えず、翻訳のように長さが変わる課題には使えない",
+      "入力をそのまま復元することだけが目的の構造で、別の形の出力を作る変換には使えない"
+    ],
+    "answer": 0,
+    "explanation": "エンコーダ・デコーダ構造は、エンコーダで入力を中間の表現にし、デコーダでその表現から出力を作る。Cho ら（2014）は2つの RNN で、系列を固定長のベクトルにまとめ、そこから別の系列を作った。Transformer もこの構造で、デコーダは前に作った出力を入力に加えながら1つずつ出力する。",
+    "whyWrong": [
+      null,
+      "データの収集やラベル付けはモデルの外の作業で、エンコーダ・デコーダの役割ではない。",
+      "逆。入力と出力の長さが違ってよいことが利点で、機械翻訳で成果を出した。",
+      "入力を復元するのはオートエンコーダという特別な場合。一般には、訳文やラベル画像など入力と別の形の出力を作る。"
+    ],
+    "memoryTip": "エンコーダ＝「読んでまとめる」、デコーダ＝「まとめから書き出す」。オートエンコーダは書き出す先が入力そのもの、という特別な場合。",
+    "concepts": [
+      "C-05-050",
+      "C-05-031",
+      "C-05-039"
+    ],
+    "sources": [
+      {
+        "title": "Cho et al. (2014) Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation (arXiv:1406.1078)",
+        "url": "https://arxiv.org/abs/1406.1078"
+      },
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-059",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "Attention"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "Transformer のデコーダの Self-Attention では、各位置がそれより（　）の位置を参照しないよう、該当するスコアを −∞ にしてからソフトマックスをとる。これにより、位置 i の予測は i より前の出力だけに依存する。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "choices": [
+      "前",
+      "エンコーダ側",
+      "離れた",
+      "後ろ"
+    ],
+    "answer": 3,
+    "explanation": "Vaswani ら（2017）は、デコーダの Self-Attention で後ろの位置への参照を、ソフトマックスの入力を −∞ にすることで隠した（Masked Self-Attention）。出力の埋め込みを1つずらすことと合わせて、位置 i の予測が i より前の既知の出力だけに依存するようにし、1つずつ順に生成する自己回帰の性質を保つ。",
+    "whyWrong": [
+      "前の位置の出力は既に生成済みで、むしろ参照して次を予測する。隠すのはまだ生成していない後ろの位置。",
+      "エンコーダの出力は Source-Target Attention で参照するもので、マスクで隠す対象ではない。",
+      "距離で制限するのではない。離れた位置どうしも直接参照できることが Self-Attention の長所。",
+      null
+    ],
+    "memoryTip": "デコーダは「未来を見ない」。答えを先に見ないよう、後ろの位置を −∞ で隠す（Masked Self-Attention）。",
+    "concepts": [
+      "C-05-034",
+      "C-05-035"
+    ],
+    "sources": [
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ],
+    "status": "verified"
   }
 ]

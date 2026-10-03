@@ -183,7 +183,7 @@
       "教師あり学習"
     ],
     "title": "線形回帰",
-    "oneLine": "目的変数を説明変数の一次式（重み付きの和＋切片）で表し、予測と実測の差の二乗の和が最小になるように係数を決める回帰（最小二乗法）。",
+    "oneLine": "目的変数を説明変数の一次式（重み付きの和＋切片）で表し、予測と実測の差の二乗の和が最小になるように係数を決める回帰（最小二乗法）。 各説明変数にかける係数を回帰係数という。",
     "why": "最も基本的な回帰手法で、係数を見ればどの変数がどれだけ効くかが分かる。正則化を加えたものがリッジ回帰・ラッソ回帰。",
     "links": [
       {
@@ -213,6 +213,10 @@
       {
         "title": "scikit-learn User Guide: Linear Models",
         "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
       }
     ],
     "status": "verified"
@@ -260,7 +264,7 @@
     ],
     "title": "重回帰分析",
     "oneLine": "説明変数が2つ以上の線形回帰。例：店舗の売上を、周辺人口・店舗面積・品目数から予測する。",
-    "why": "現実の結果は複数の要因で決まる。複数の要因を同時に考慮して数値を予測できる。説明変数どうしが強く相関すると係数が不安定になる（多重共線性）。",
+    "why": "現実の結果は複数の要因で決まる。複数の要因を同時に考慮して数値を予測できる。各係数は偏回帰係数と呼び、他の説明変数の値を変えずに、その変数だけを1増やしたときの予測値の変化を表す。説明変数どうしが強く相関する（多重共線性）と、係数の推定値が観測のわずかな誤差に大きく振られて不安定になる。対処の一つは、リッジ回帰のように係数の大きさに罰則をかけること。",
     "links": [
       {
         "id": "C-03-005",
@@ -269,6 +273,10 @@
       {
         "id": "C-03-006",
         "relation": "対比"
+      },
+      {
+        "id": "C-04-020",
+        "relation": "解決策（多重共線性）"
       }
     ],
     "confusions": [
@@ -285,6 +293,10 @@
       {
         "title": "scikit-learn User Guide: Linear Models",
         "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
       }
     ],
     "status": "verified"
@@ -404,7 +416,7 @@
     ],
     "title": "サポートベクターマシン (SVM)",
     "oneLine": "クラスを分ける境界（超平面）を、境界に最も近いデータ（サポートベクター）からの距離（マージン）が最大になるように決める手法。分類にも回帰にも使える。",
-    "why": "マージンが大きいほど未知データへの汎化誤差が小さくなりやすい。カーネル関数を使えば、直線で分けられないデータも分類できる。",
+    "why": "マージンが大きいほど未知データへの汎化誤差が小さくなりやすい。カーネル関数を使えば、直線で分けられないデータも分類できる。 カーネルを使わず元の空間の超平面で分けるものを線形SVM、カーネル関数で高次元に写して直線では分けられないデータに対応するものを非線形SVMという。",
     "links": [
       {
         "id": "C-03-012",
@@ -429,6 +441,10 @@
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
         "url": "https://scikit-learn.org/stable/modules/svm.html"
+      },
+      {
+        "title": "Cortes & Vapnik (1995) Support-Vector Networks. Machine Learning 20, 273-297",
+        "url": "https://link.springer.com/article/10.1007/BF00994018"
       }
     ],
     "status": "verified"
@@ -442,7 +458,7 @@
     ],
     "title": "マージン最大化",
     "oneLine": "分類境界と、境界に最も近い各クラスのデータとの距離（マージン）を最大にするよう境界を決める考え方。SVMの基本原理。",
-    "why": "ぎりぎりの位置に境界を引くと、少し違う新データで誤分類しやすい。余裕（マージン）を大きくとると汎化しやすい。",
+    "why": "ぎりぎりの位置に境界を引くと、少し違う新データで誤分類しやすい。余裕（マージン）を大きくとると汎化しやすい。 訓練データを誤りなく分けられることを前提に、マージンの内側にデータが入ることを許さない考え方をハードマージンという。これに対しソフトマージンは、各データがマージンの境界から内側にはみ出した量（スラック変数）を導入し、はみ出しや誤分類をある程度許す。はみ出しへの罰則の強さはパラメータCで決め、Cを小さくするほど正則化が強くなる（ノイズの多いデータでは小さめにする）。",
     "links": [
       {
         "id": "C-03-011",
@@ -453,12 +469,20 @@
       {
         "title": "誤差関数",
         "point": "マージン最大化は境界の余裕を最大にする。誤差を最小化する一般的な学習と目的の書き方が違う。"
+      },
+      {
+        "id": "C-03-013",
+        "point": "ソフトマージンは「はみ出しを許す」工夫、カーネルトリックは「非線形な境界を作る」工夫。別の問題への対処で、組み合わせて使える。"
       }
     ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
         "url": "https://scikit-learn.org/stable/modules/svm.html"
+      },
+      {
+        "title": "Cortes & Vapnik (1995) Support-Vector Networks. Machine Learning 20, 273-297",
+        "url": "https://link.springer.com/article/10.1007/BF00994018"
       }
     ],
     "status": "verified"
@@ -506,7 +530,7 @@
     ],
     "title": "決定木",
     "oneLine": "「年齢が30以上か」のような条件で、データを木の形に繰り返し分けて分類・回帰する手法。",
-    "why": "判断の過程を人が読めて解釈しやすく、前処理（標準化など）もほとんど要らない。ただし木を深くすると訓練データに合わせすぎて過学習しやすいため、アンサンブルで補う。",
+    "why": "判断の過程を人が読めて解釈しやすく、前処理（標準化など）もほとんど要らない。ただし木を深くすると訓練データに合わせすぎて過学習しやすいため、アンサンブルで補う。 各ノードでは、どの特徴量をどのしきい値で分けるか（分割軸）を候補の中から選び、分けた後のノードの不純度（クラスの混ざり具合。ジニ不純度やエントロピーで測る）が最も小さくなるものを採用する。最初のノードを根、末端のノードを葉といい、葉にたどり着いたデータの割合で予測を返す。",
     "links": [
       {
         "id": "C-03-016",
@@ -666,7 +690,7 @@
     ],
     "title": "ブースティング",
     "oneLine": "モデルを1つずつ順番に（逐次）作り、前のモデルが間違えたデータを重視して次のモデルを学習させ、全体を組み合わせるアンサンブル手法。",
-    "why": "浅い決定木のような弱いモデルでも、誤りを少しずつ直すことで高精度になる。逐次なので並列化しにくく、学習に時間がかかる。",
+    "why": "ランダムな推測より少し良い程度の単純なモデル（弱学習器。浅い決定木など）でも、誤りを少しずつ直すことで高精度になる。逐次なので並列化しにくく、学習に時間がかかる。",
     "links": [
       {
         "id": "C-03-019",
@@ -1156,7 +1180,7 @@
     ],
     "title": "トピックモデル",
     "oneLine": "文書の集まりから、各文書がどんな話題（トピック）をどの割合で含むかを推定するモデル。",
-    "why": "大量の文書を読まずに、話題ごとの分類や傾向の把握ができる。1つの文書が複数の話題を持てる点が、1つのクラスタに割り当てるクラスタリングとの違い。",
+    "why": "大量の文書を読まずに、話題ごとの分類や傾向の把握ができる。1つの文書が複数の話題を持てる点が、1つのクラスタに割り当てるクラスタリングとの違い。 系譜としては、単語×文書の行列を特異値分解で低次元の「意味」の空間に写す潜在意味解析（LSA）、それを確率モデルにした確率的潜在意味解析（PLSA）、さらに文書ごとのトピックの割合にディリクレ分布を置いたLDA、と発展した。",
     "links": [
       {
         "id": "C-03-032",
@@ -1165,6 +1189,10 @@
       {
         "id": "C-06-026",
         "relation": "応用分野"
+      },
+      {
+        "id": "C-03-028",
+        "relation": "関連（LSAは特異値分解を使う）"
       }
     ],
     "confusions": [
@@ -1177,6 +1205,10 @@
       {
         "title": "Blei, Ng & Jordan (2003) Latent Dirichlet Allocation. JMLR",
         "url": "https://www.jmlr.org/papers/v3/blei03a.html"
+      },
+      {
+        "title": "scikit-learn User Guide: Decomposing signals in components（Truncated SVD and latent semantic analysis）",
+        "url": "https://scikit-learn.org/stable/modules/decomposition.html"
       }
     ],
     "status": "verified"
@@ -1190,7 +1222,7 @@
     ],
     "title": "潜在的ディリクレ配分法 (LDA)",
     "oneLine": "各文書はトピックの混合、各トピックは単語の確率分布であると考える、文書の生成確率モデル（トピックモデル）。2003年にBleiらが発表。",
-    "why": "文書の背後にある潜在的な話題を、ラベル無しで推定できる。",
+    "why": "文書の背後にある潜在的な話題を、ラベル無しで推定できる。 前身のPLSAは、学習に使った文書ごとにトピックの割合を個別のパラメータとして持つため、文書数に比例してパラメータが増えて過学習しやすく、新しい文書を扱う自然な方法も無かった。LDAはトピックの割合をディリクレ分布に従う確率変数として扱い、この2つの問題を解消した。",
     "links": [
       {
         "id": "C-03-031",
@@ -1201,6 +1233,10 @@
       {
         "title": "線形判別分析",
         "point": "略称が同じLDAでも、線形判別分析（Linear Discriminant Analysis）は教師ありの分類・次元削減。G検定の教師なし学習で出るLDAは潜在的ディリクレ配分法。"
+      },
+      {
+        "id": "C-03-028",
+        "point": "LSAは単語×文書の行列に特異値分解（SVD）を使う手法で、確率モデルではない。LDAは文書が生まれる過程を確率で表すモデル。"
       }
     ],
     "sources": [
@@ -1224,7 +1260,7 @@
     ],
     "title": "協調フィルタリング",
     "oneLine": "多くの利用者の行動履歴（評価・購買）から、利用者どうし・商品どうしの類似性を使って推薦する方法。「あなたと似た人はこれも買っています」。",
-    "why": "商品の中身の情報が無くても、意外な（セレンディピティのある）推薦ができる。ただし履歴の無い新しい利用者や新商品には推薦しにくい（コールドスタート問題）。",
+    "why": "商品の中身の情報が無くても、意外な（セレンディピティのある）推薦ができる。ただし履歴の無い新しい利用者や新商品には推薦しにくい（コールドスタート問題）。 似た利用者を探し、その人たちが買った商品を薦めるユーザーベースと、利用者が買った商品に似た商品（多くの利用者に一緒に買われる商品）を薦めるアイテムベースがある。アイテムベースは商品どうしの類似度の表を事前に（オフラインで）作っておけるので、利用者や商品が非常に多くても推薦時の計算が軽い（Amazonが2003年に発表した方式）。",
     "links": [
       {
         "id": "C-03-035",
@@ -1253,6 +1289,14 @@
       {
         "title": "Google for Developers: Recommendation Systems - Collaborative filtering summary",
         "url": "https://developers.google.com/machine-learning/recommendation/collaborative/summary"
+      },
+      {
+        "title": "Linden, Smith & York (2003) Amazon.com Recommendations: Item-to-Item Collaborative Filtering. IEEE Internet Computing 7(1)",
+        "url": "https://ieeexplore.ieee.org/document/1167344"
+      },
+      {
+        "title": "Amazon Science: The history of Amazon's recommendation algorithm",
+        "url": "https://www.amazon.science/the-history-of-amazons-recommendation-algorithm"
       }
     ],
     "status": "verified"
@@ -1300,7 +1344,7 @@
     ],
     "title": "コールドスタート問題",
     "oneLine": "推薦システムで、新しい利用者や新しい商品には履歴が無いため、うまく推薦できない問題。協調フィルタリングで特に起きる。",
-    "why": "協調フィルタリングは他の利用者の行動を手がかりにするので、データが溜まるまで役に立たない。対策は商品の特徴を使うコンテンツベースとの併用など。",
+    "why": "協調フィルタリングは他の利用者の行動を手がかりにするので、データが溜まるまで役に立たない。対策は商品の特徴を使うコンテンツベースとの併用など。 利用者の側の新規ユーザー問題（購入や評価がまだ少なく、好みの手がかりが乏しい）と、商品の側の新規アイテム問題（まだ誰にも買われたり評価されたりしておらず、学習時に見ていないので推薦の候補に乗らない）がある。",
     "links": [
       {
         "id": "C-03-033",
@@ -1321,6 +1365,10 @@
       {
         "title": "Google for Developers: Recommendation Systems - Collaborative filtering summary",
         "url": "https://developers.google.com/machine-learning/recommendation/collaborative/summary"
+      },
+      {
+        "title": "Linden, Smith & York (2003) Amazon.com Recommendations: Item-to-Item Collaborative Filtering. IEEE Internet Computing 7(1)",
+        "url": "https://ieeexplore.ieee.org/document/1167344"
       }
     ],
     "status": "verified"
@@ -1866,7 +1914,7 @@
     ],
     "title": "ホールドアウト検証",
     "oneLine": "データを訓練用とテスト用（必要に応じて検証用も）に一度だけ分け、訓練用で学習してテスト用で評価する方法。",
-    "why": "簡単で計算が軽い。ただしデータが少ないと、分け方によって評価が大きくぶれ、学習に使えるデータも減る。そのときは交差検証を使う。",
+    "why": "簡単で計算が軽い。ただしデータが少ないと、分け方によって評価が大きくぶれ、学習に使えるデータも減る。そのときは交差検証を使う。 3つに分ける場合、訓練データでパラメータを学習し、検証データでハイパーパラメータやモデルを選び、テストデータは最後に汎化性能を確かめるのに使う。テストデータをモデルやハイパーパラメータの選択に使ってはいけない。検証データは訓練用のデータの一部を分けて作る。",
     "links": [
       {
         "id": "C-03-051",
@@ -1891,6 +1939,10 @@
       {
         "title": "Google for Developers: ML Crash Course - Dividing the original dataset",
         "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
       }
     ],
     "status": "verified"
@@ -2180,6 +2232,262 @@
         "title": "JDLA G検定シラバス 2024（第1.4版）",
         "url": "https://www.jdla.org/certificate/general/"
       },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-059",
+    "syllabus": [
+      "技術分野",
+      "機械学習の概要",
+      "教師あり学習"
+    ],
+    "title": "k近傍法 (k-NN)",
+    "oneLine": "新しいデータとの距離が近い訓練データをk個選び、その多数決（回帰ならラベルの平均）で予測する手法。",
+    "why": "学習では訓練データを覚えておくだけで、予測のたびに距離を計算する。距離にはユークリッド距離がよく使われる。kを大きくするとノイズの影響は小さくなるが、クラスの境界はぼやける。次元が高いと効率が落ちる（次元の呪い）。",
+    "links": [
+      {
+        "id": "C-08-019",
+        "relation": "部分（近さの測り方）"
+      },
+      {
+        "id": "C-03-003",
+        "relation": "用途"
+      },
+      {
+        "id": "C-03-023",
+        "relation": "対比（名前が似ている）"
+      },
+      {
+        "id": "C-07-022",
+        "relation": "前提（距離を使うので特徴量の範囲をそろえる）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-03-023",
+        "point": "k近傍法のkは参照する近傍の数で、正解ラベルを使う教師あり学習。k-means法のkはクラスタの数で、ラベルを使わない教師なし学習。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Nearest Neighbors",
+        "url": "https://scikit-learn.org/stable/modules/neighbors.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-060",
+    "syllabus": [
+      "技術分野",
+      "機械学習の概要",
+      "教師あり学習"
+    ],
+    "title": "ナイーブベイズ",
+    "oneLine": "ベイズの定理を使い、「クラスが決まれば特徴量どうしは互いに独立」と単純化（ナイーブな仮定）して、事前確率と各特徴量の条件付き確率の積が最大になるクラスを選ぶ分類手法。",
+    "why": "仮定は単純すぎるが、文書分類や迷惑メールの判定でよく働く。必要な訓練データが少なく、計算も非常に速い。ただし出力する確率の値そのものは、あまり当てにならないとされる。",
+    "links": [
+      {
+        "id": "C-08-026",
+        "relation": "原理（ベイズの定理）"
+      },
+      {
+        "id": "C-08-007",
+        "relation": "部分（条件付き確率）"
+      },
+      {
+        "id": "C-03-003",
+        "relation": "用途"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-03-008",
+        "point": "どちらも確率を使って分類する。ナイーブベイズはクラスごとに特徴量の出方の確率 P(特徴量|クラス) を推定して掛け合わせる。ロジスティック回帰は特徴量の重み付き和をシグモイド関数で確率に変える。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Naive Bayes",
+        "url": "https://scikit-learn.org/stable/modules/naive_bayes.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-061",
+    "syllabus": [
+      "技術分野",
+      "機械学習の概要",
+      "強化学習"
+    ],
+    "title": "モデルフリーとモデルベース",
+    "oneLine": "モデルベース＝環境のモデル（ある状態で行動したときの次の状態や報酬の予測）を使い、実際に試す前に先を読んで行動を決める（計画する）方法。モデルフリー＝モデルを使わず、試行錯誤の経験から直接、価値や方策を学ぶ方法。",
+    "why": "環境の仕組みが分かっていれば先読みできるが、分からなければQ学習やSARSAのように経験だけから学ぶ。経験から環境のモデルを学び、それを計画にも使う、両方を組み合わせた方法もある。",
+    "links": [
+      {
+        "id": "C-03-040",
+        "relation": "具体例（モデルフリー）"
+      },
+      {
+        "id": "C-03-041",
+        "relation": "具体例（モデルフリー）"
+      },
+      {
+        "id": "C-03-062",
+        "relation": "対比（動的計画法は完全なモデルが前提）"
+      },
+      {
+        "id": "C-03-037",
+        "relation": "前提"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-03-045",
+        "point": "モデルの有無は「環境の振る舞いを予測するモデルを使うか」の区別。方策を直接学ぶか価値を学ぶか（方策ベース／価値ベース）とは別の分け方。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
+        "url": "http://incompleteideas.net/book/RLbook2020.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-062",
+    "syllabus": [
+      "技術分野",
+      "機械学習の概要",
+      "強化学習"
+    ],
+    "title": "ベルマン方程式と動的計画法",
+    "oneLine": "ベルマン方程式＝ある状態の価値を、すぐに得られる報酬と、次の状態の価値（割引率をかけたもの）の期待値で表す関係式。最適な方策の価値が満たす形をベルマン最適方程式という。動的計画法＝環境の完全なモデル（マルコフ決定過程）が分かっているときに、この関係を使って最適な方策を計算する手法の総称。",
+    "why": "価値を「今の報酬＋割引した次の状態の価値」に分解できるので、未来をすべて数え上げなくても価値を計算できる。ただし動的計画法は完全なモデルを前提とし、計算量も大きいため、そのまま使える場面は限られる。強化学習の多くの手法は、動的計画法と同じことを、より少ない計算で、完全なモデルなしに行おうとするものとみなせる。",
+    "links": [
+      {
+        "id": "C-03-039",
+        "relation": "部分（価値関数）"
+      },
+      {
+        "id": "C-03-038",
+        "relation": "部分（割引率）"
+      },
+      {
+        "id": "C-03-037",
+        "relation": "前提"
+      },
+      {
+        "id": "C-03-063",
+        "relation": "発展形（モデルなしで同じ考え方を使う）"
+      },
+      {
+        "id": "C-03-061",
+        "relation": "関連"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-03-063",
+        "point": "動的計画法は環境のモデルを使って、起こりうる次の状態すべての期待値で更新する。TD学習は実際に経験した1回の遷移だけで更新する。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
+        "url": "http://incompleteideas.net/book/RLbook2020.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-063",
+    "syllabus": [
+      "技術分野",
+      "機械学習の概要",
+      "強化学習"
+    ],
+    "title": "TD学習（時間的差分学習）",
+    "oneLine": "1ステップ進んで得た報酬と、次の状態の価値の見積もりを使って、今の状態の価値の見積もりを少しずつ直す学習。TD(0)の更新式は V(s) ← V(s)＋α［r＋γV(s′)−V(s)］。かっこの中をTD誤差という。",
+    "why": "モンテカルロ法のようにエピソードの終わりを待たず、1ステップごとに更新できる。また動的計画法のように見積もりを使って見積もりを直す（ブートストラップ）が、環境のモデルは要らない。Q学習やSARSAは、この考え方を行動価値に使ったもの。",
+    "links": [
+      {
+        "id": "C-03-040",
+        "relation": "発展形（行動価値・方策オフ）"
+      },
+      {
+        "id": "C-03-041",
+        "relation": "発展形（行動価値・方策オン）"
+      },
+      {
+        "id": "C-03-062",
+        "relation": "対比"
+      },
+      {
+        "id": "C-03-038",
+        "relation": "部分（割引率）"
+      },
+      {
+        "id": "C-06-047",
+        "relation": "応用（Q学習をニューラルネットワークで）"
+      }
+    ],
+    "confusions": [
+      {
+        "title": "モンテカルロ法",
+        "point": "モンテカルロ法はエピソードの最後まで待ち、実際に得た収益で更新する。TD学習は次のステップの報酬と価値の見積もりで、すぐに更新する。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
+        "url": "http://incompleteideas.net/book/RLbook2020.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-03-064",
+    "syllabus": [
+      "技術分野",
+      "機械学習の概要",
+      "モデルの選択・評価"
+    ],
+    "title": "バイアスとバリアンス",
+    "oneLine": "バイアス＝推定（予測）が真の値から平均的にどれだけずれているか。バリアンス＝訓練に使うデータの取り方の違いによって、推定（予測）がどれだけばらつくか。",
+    "why": "モデルを複雑にする（容量を大きくする）と、バイアスは下がりやすく、バリアンスは上がりやすい。単純すぎると未学習、複雑すぎると過学習になり、汎化誤差はU字型になる（古典的な見方）。この兼ね合いをバイアス・バリアンスのトレードオフといい、交差検証で調整するのが一般的。推定の平均二乗誤差は「バイアスの2乗＋バリアンス」に分解できる。",
+    "links": [
+      {
+        "id": "C-03-049",
+        "relation": "関連（バリアンスが大きい状態）"
+      },
+      {
+        "id": "C-03-048",
+        "relation": "目的"
+      },
+      {
+        "id": "C-03-051",
+        "relation": "解決策（調整の方法）"
+      },
+      {
+        "id": "C-04-041",
+        "relation": "発展形（U字の見方の見直し）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-03-049",
+        "point": "過学習はバリアンスが大きい状態（訓練データのわずかな違いに予測が振り回される）。バイアスが大きい状態は未学習。"
+      }
+    ],
+    "sources": [
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
         "url": "https://www.deeplearningbook.org/contents/ml.html"
