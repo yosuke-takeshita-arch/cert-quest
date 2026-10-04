@@ -14,7 +14,7 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 | `confirmation_001.ogg` | 正解 | Kenney | <https://kenney.nl/assets/interface-sounds>（Interface Sounds 1.0） | CC0 | 下の A |
 | `error_003.ogg` | 不正解 | Kenney | 同上 | CC0 | 下の A。2026-10-04 に `bong_001.ogg` から差し替え（bong は約100Hz・0.12秒でスマホのスピーカーでは聞こえなかった。error_003 は約1kHz・0.53秒）。zip を取り直し、License.txt の CC0 とファイルが zip 内のものであることを確認 |
 | `jingles_STEEL07.ogg` | レベルアップ | Kenney | <https://kenney.nl/assets/music-jingles>（Music Jingles） | CC0 | 下の B |
-| `jingles_SAX07.ogg` | バッジ獲得 | Kenney | 同上 | CC0 | 下の B |
+| `badge_new-thing-get.ogg` | バッジ獲得（約5.3秒・173,459 バイト。元のファイル名 `newthingget.ogg`） | congusbongus | https://opengameart.org/content/new-thing-get | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0、creativecommons.org/publicdomain/zero/1.0/ へのリンクあり、CC-BY の記載なし。Author 欄は congusbongus。先生が候補を聞き比べて選んだ。前の `jingles_SAX07.ogg`（Kenney）は単音で物足りなかったため差し替え |
 | `jingles_PIZZI07.ogg` | 星が増えた | Kenney | 同上 | CC0 | 下の B |
 | `jingles_NES00.ogg` | 1日の目標 | Kenney | 同上 | CC0 | 下の B |
 | `start_16bit-success.ogg` | タイトル画面の「タップしてはじめる」（開始の音。約2.3秒・58,364 バイト。元のファイル名 `sfx_-_success.ogg`） | flush | https://opengameart.org/content/16bit-success-sound | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0、creativecommons.org/publicdomain/zero/1.0/ へのリンクあり、CC-BY の記載なし。Author 欄は flush。先生が候補8つを聞き比べて選んだ。前の `jingles_NES05.ogg`（Kenney）は約100Hzの低いベースが中心で、スマホでは弱く聞こえたため差し替え |

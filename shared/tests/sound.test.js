@@ -186,7 +186,8 @@ test('音のファイル: 実在する。BGM は1曲3MB以下。ogg／mp3 だけ
     const p = join(shared, 'audio', 'sfx', f);
     assert.ok(existsSync(p), p);
     assert.match(f, /\.(ogg|mp3)$/);
-    assert.ok(statSync(p).size < 100 * 1024, f + ' は効果音にしては大きい');
+    // 効果音はインストール時に全部取るので、小さく保つ。バッジの音（約5秒・約170KB）を先生が選んだので上限を 200KB にした（2026-10-04）
+    assert.ok(statSync(p).size < 200 * 1024, f + ' は効果音にしては大きい');
     assert.ok(doc.includes(f), f + ' が audio-licenses.md に無い');
   }
   for (const t of BGM_TRACKS) {

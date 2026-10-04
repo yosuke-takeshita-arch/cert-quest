@@ -64,7 +64,7 @@ export const SFX_FILES = {
   ok: 'confirmation_001.ogg',
   ng: 'error_003.ogg', // 2026-10-04 差し替え。前の bong_001 は約100Hz・0.12秒で、スマホのスピーカーでは聞こえなかった（約1kHz・0.53秒の音にした）
   level: 'jingles_STEEL07.ogg',
-  badge: 'jingles_SAX07.ogg',
+  badge: 'badge_new-thing-get.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「New Thing Get」congusbongus、CC0）。前の jingles_SAX07 は単音で物足りなかった
   stars: 'jingles_PIZZI07.ogg',
   goal: 'jingles_NES00.ogg',
   start: 'start_16bit-success.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「16bit Success sound」flush、CC0）。前の jingles_NES05 は低いベースが中心でスマホでは弱かった

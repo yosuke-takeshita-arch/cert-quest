@@ -66,7 +66,7 @@ const SFX = [
   'confirmation_001.ogg',
   'error_003.ogg',
   'jingles_STEEL07.ogg',
-  'jingles_SAX07.ogg',
+  'badge_new-thing-get.ogg',
   'jingles_PIZZI07.ogg',
   'jingles_NES00.ogg',
   'start_16bit-success.ogg',
