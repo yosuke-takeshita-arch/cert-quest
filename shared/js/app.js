@@ -14,6 +14,7 @@ import { renderCardList, renderCard } from './views/cards.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
+import { initAudio, setBgmScene, syncBgm } from './audio.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -116,12 +117,15 @@ export async function start() {
       app.pending = [];
       app.lastLevel = 1;
       app.session = null;
+      syncBgm();
       toast('学習記録を消しました');
       app.go('#/home');
     },
   };
   // 動作確認用に外から触れるようにする（テストが状態を調べる）
   window.__app = app;
+  // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）だけで流す。ホームなどは無音
+  initAudio(() => app.state.settings);
 
   const shell = h('div', { class: 'shell' });
   const main = h('main', { id: 'main', class: 'main', tabindex: '-1' });
@@ -182,6 +186,7 @@ export async function start() {
       main.appendChild(h('div', { class: 'view' }, h('div', { class: 'card empty' }, h('p', { text: 'この画面を表示できませんでした。' }), h('button', { class: 'btn', type: 'button', onClick: () => app.go('#/home') }, 'ホームへ'))));
     }
     const full = route[3] === true;
+    setBgmScene(full);
     nav.classList.toggle('hidden', full);
     document.body.classList.toggle('no-nav', full);
     navBtns.forEach((a) => {

@@ -1,4 +1,6 @@
 // 画面部品の小さな道具。データ由来の文字は必ず textContent で入れる（innerHTML は使わない）。
+import { playSfx } from './audio.js';
+import { celebrateSfx } from './lib/sound.js';
 
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
@@ -94,28 +96,9 @@ export function vibrate(settings, pattern) {
   } catch (e) { /* 非対応端末は何もしない */ }
 }
 
-let audio = null;
+// 効果音。kind: 'ok'（正解）／'ng'（不正解）／'up'（レベルアップ）。鳴らす本体は audio.js。
 export function beep(settings, kind) {
-  if (!settings || !settings.sound) return;
-  try {
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return;
-    audio = audio || new AC();
-    const notes = kind === 'ok' ? [660, 880] : kind === 'up' ? [523, 659, 784, 1047] : [220];
-    notes.forEach((f, i) => {
-      const o = audio.createOscillator();
-      const g = audio.createGain();
-      o.frequency.value = f;
-      o.type = 'sine';
-      g.gain.setValueAtTime(0.0001, audio.currentTime + i * 0.09);
-      g.gain.exponentialRampToValueAtTime(0.15, audio.currentTime + i * 0.09 + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + i * 0.09 + 0.16);
-      o.connect(g);
-      g.connect(audio.destination);
-      o.start(audio.currentTime + i * 0.09);
-      o.stop(audio.currentTime + i * 0.09 + 0.18);
-    });
-  } catch (e) { /* 音が出せなくても学習は続ける */ }
+  playSfx(settings, kind === 'up' ? 'level' : kind);
 }
 
 // ---- お祝いの画面（画面いっぱい。複数あるときは1つずつ順に） ----
@@ -201,7 +184,7 @@ export function celebrate(events, opts = {}) {
       }
     }
     back.appendChild(panel);
-    beep(settings, 'up');
+    playSfx(settings, celebrateSfx(ev.kind));
     vibrate(settings, [80, 40, 80, 40, 160]);
     main.focus({ preventScroll: true });
   }

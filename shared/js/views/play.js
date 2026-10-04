@@ -141,7 +141,7 @@ export function renderPlay(app) {
     if (correct) {
       burst(btns[sq.answer]);
       vibrate(app.state.settings, 30);
-      beep(app.state.settings, r.leveledUp ? 'up' : 'ok');
+      beep(app.state.settings, 'ok'); // レベルアップのファンファーレは、お祝いの画面で鳴らす（二重に鳴らさない）
     } else {
       vibrate(app.state.settings, [60, 40, 60]);
       beep(app.state.settings, 'ng');

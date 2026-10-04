@@ -5,6 +5,7 @@
 // 方針
 //  - アプリ本体（HTML/JS/CSS/config/アイコン）: ネット優先。4秒で返らなければキャッシュ。→ 更新が1回で反映され、新旧が混ざらない
 //  - data/（問題・カード）: キャッシュ優先＋裏で更新。オフラインでも即開く。更新は次に開いたとき見える
+//  - audio/（効果音・BGM）: 効果音は小さいのでインストール時に取る。BGM は大きいので、最初に流したときに取ってキャッシュに入れ、以後はキャッシュ優先（オフラインでも鳴る）
 //  - 404 などの失敗応答はキャッシュしない（まだ無いデータを「無い」と覚えない）
 /* global self, caches, fetch, URL, Response */
 const CFG = self.CERT_QUEST;
@@ -15,6 +16,8 @@ const SHARED = [
   '../shared/css/app.css',
   '../shared/js/app.js',
   '../shared/js/ui.js',
+  '../shared/js/audio.js',
+  '../shared/js/lib/sound.js',
   '../shared/js/lib/srs.js',
   '../shared/js/lib/scoring.js',
   '../shared/js/lib/quiz.js',
@@ -32,12 +35,22 @@ const SHARED = [
   '../shared/js/views/more.js',
 ];
 
+// 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。
+const SFX = [
+  'confirmation_001.ogg',
+  'bong_001.ogg',
+  'jingles_STEEL07.ogg',
+  'jingles_SAX07.ogg',
+  'jingles_PIZZI07.ogg',
+  'jingles_NES00.ogg',
+].map((f) => '../shared/audio/sfx/' + f);
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
       // 本体が1つでも取れなければインストール失敗にする（中途半端なオフラインにしない）
-      await cache.addAll([...CFG.appFiles, ...SHARED].map((u) => new Request(u, { cache: 'reload' })));
+      await cache.addAll([...CFG.appFiles, ...SHARED, ...SFX].map((u) => new Request(u, { cache: 'reload' })));
       // データは有る分だけ。無い(404)ものは飛ばす
       try {
         const idxRes = await fetch('./data/index.json', { cache: 'reload' });
@@ -103,11 +116,26 @@ async function cacheFirstRevalidate(request) {
   return res || new Response('', { status: 404 });
 }
 
+// 音のファイル: キャッシュ優先。無ければネットから取って（時間切れなし）キャッシュに入れる。失敗した応答は入れない
+async function cacheFirst(request) {
+  const cache = await caches.open(CACHE);
+  const hit = await cache.match(request);
+  if (hit) return hit;
+  try {
+    const res = await fetch(request);
+    if (res && res.ok && res.status === 200) cache.put(request, res.clone());
+    return res;
+  } catch (e) {
+    return new Response('', { status: 503 });
+  }
+}
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
   if (/\/data\//.test(url.pathname)) event.respondWith(cacheFirstRevalidate(req));
+  else if (/\/shared\/audio\//.test(url.pathname)) event.respondWith(cacheFirst(req));
   else event.respondWith(networkFirst(req, 4000));
 });

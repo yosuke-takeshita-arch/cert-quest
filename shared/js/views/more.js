@@ -4,6 +4,8 @@ import { badgeDefs, badgeProgress } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
 import { dateKey } from '../lib/srs.js';
+import { normalizeVolume } from '../lib/sound.js';
+import { playSfx, preloadSfx, syncBgm, applyVolumes, setBgmPreview } from '../audio.js';
 
 export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
@@ -50,19 +52,67 @@ export function renderSettings(app) {
   root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/more') }, '← もっと'));
   root.appendChild(h('h1', { text: '設定' }));
   const s = app.state.settings;
-  const toggle = (label, hint, key) => {
+  const toggle = (label, hint, key, onChange) => {
     const id = 'set-' + key;
     const input = h('input', { type: 'checkbox', id, class: 'switch' });
     input.checked = !!s[key];
     input.addEventListener('change', () => {
       s[key] = input.checked;
       app.commit();
+      if (onChange) onChange(input.checked);
     });
     return h('label', { class: 'row-btn', for: id }, h('span', { class: 'row-main' }, h('strong', { text: label }), h('span', { class: 'small muted', text: hint })), input);
   };
+  // 音量のスライダー（0〜100）。切っている間は動かせない。動かすとその場で反映する
+  const sliders = [];
+  const slider = (label, key, onInput) => {
+    const id = 'set-' + key;
+    const val = h('span', { class: 'small muted', id: id + '-val', text: 'いま ' + s[key] });
+    const input = h('input', { type: 'range', id, class: 'slider', min: '0', max: '100', step: '5' });
+    input.value = String(s[key]);
+    input.addEventListener('input', () => {
+      s[key] = normalizeVolume(input.value, s[key]);
+      val.textContent = 'いま ' + s[key];
+      onInput();
+    });
+    input.addEventListener('change', () => app.commit());
+    sliders.push({ input, key: key === 'sfxVolume' ? 'sound' : 'bgm' });
+    return h('label', { class: 'row-btn', for: id }, h('span', { class: 'row-main' }, h('strong', { text: label }), val), input);
+  };
+  const syncSliders = () => sliders.forEach((x) => { x.input.disabled = !s[x.key]; });
+  let lastTry = 0;
+  const tryOk = () => {
+    const now = Date.now();
+    if (now - lastTry < 250) return;
+    lastTry = now;
+    playSfx(s, 'ok');
+  };
+  const previewBtn = h('button', { class: 'btn', id: 'bgm-preview', type: 'button' }, 'BGM を試しに聴く');
+  let previewing = false;
+  const setPreview = (on) => {
+    previewing = on && !!s.bgm;
+    setBgmPreview(previewing);
+    previewBtn.textContent = previewing ? '試聴をとめる' : 'BGM を試しに聴く';
+    previewBtn.disabled = !s.bgm;
+  };
+  previewBtn.addEventListener('click', () => setPreview(!previewing));
   const vib = 'vibrate' in navigator;
-  root.appendChild(h('div', { class: 'card' },
-    toggle('効果音', '正解・レベルアップで鳴らします（初期はオフ）', 'sound'),
+  root.appendChild(h('div', { class: 'card' }, h('h2', { text: '音' }),
+    toggle('効果音', '正解・不正解・お祝いで鳴らします（初期はオフ）', 'sound', (on) => {
+      if (on) { preloadSfx(); tryOk(); }
+      syncSliders();
+    }),
+    slider('効果音の音量', 'sfxVolume', tryOk),
+    toggle('BGM', '問題を解いているあいだ、静かな曲を流します（初期はオフ。ホームでは流れません）', 'bgm', () => {
+      syncBgm();
+      syncSliders();
+      setPreview(false);
+    }),
+    slider('BGM の音量', 'bgmVolume', () => applyVolumes()),
+    h('div', { class: 'row-btn plain' }, h('span', { class: 'row-main' }, h('span', { class: 'small muted', text: 'BGM をオンにしてから、ここで音の大きさを確かめられます' })), previewBtn)));
+  syncSliders();
+  setPreview(false);
+  root.appendChild(h('div', { class: 'card' }, h('h2', { text: '振動' }),
     vib ? toggle('振動', '正解・不正解で短く震えます', 'vibrate') : h('p', { class: 'small muted', text: 'この端末は振動に対応していません。' })));
   const THEME_LABEL = { light: '明るい', dark: '暗い', auto: 'スマホに合わせる' };
   const themeSel = h('select', { id: 'set-theme', class: 'select' }, THEMES.map((t) => h('option', { value: t, text: THEME_LABEL[t] })));
@@ -102,5 +152,5 @@ export function renderSettings(app) {
   }
   info.appendChild(h('p', { class: 'small muted', text: 'アプリ: ' + (app.config.name || '') + (app.sample ? '（サンプルデータ表示中）' : '') }));
   root.appendChild(info);
-  return root;
+  return { el: root, cleanup: () => setBgmPreview(false) }; // 画面を出るとき、試聴のBGMを止める
 }
