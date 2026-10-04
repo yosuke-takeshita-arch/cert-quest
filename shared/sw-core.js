@@ -49,7 +49,7 @@ const SFX = [
   'jingles_SAX07.ogg',
   'jingles_PIZZI07.ogg',
   'jingles_NES00.ogg',
-  'jingles_NES05.ogg',
+  'start_16bit-success.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
 self.addEventListener('install', (event) => {

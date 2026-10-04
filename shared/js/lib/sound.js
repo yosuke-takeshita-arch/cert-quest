@@ -67,7 +67,7 @@ export const SFX_FILES = {
   badge: 'jingles_SAX07.ogg',
   stars: 'jingles_PIZZI07.ogg',
   goal: 'jingles_NES00.ogg',
-  start: 'jingles_NES05.ogg',
+  start: 'start_16bit-success.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「16bit Success sound」flush、CC0）。前の jingles_NES05 は低いベースが中心でスマホでは弱かった
 };
 
 // BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。

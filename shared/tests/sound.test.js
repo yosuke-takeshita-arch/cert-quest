@@ -222,7 +222,7 @@ test('開始のジングル: 「タップしてはじめる」用の音が、ほ
   assert.ok(SFX_FILES.start);
   const others = Object.entries(SFX_FILES).filter(([k]) => k !== 'start').map(([, v]) => v);
   assert.ok(!others.includes(SFX_FILES.start), '開始のジングルが、ほかの効果音と同じファイル');
-  assert.match(SFX_FILES.start, /^jingles_[A-Z]+\d+\.ogg$/); // Kenney の Music Jingles（CC0）
+  assert.match(SFX_FILES.start, /\.ogg$/); // 素材とライセンスの一致は、audio-licenses.md と照らす別のテストが見る
 });
 
 test('効果音の一覧: sw-core.js のインストール時に取る一覧に、SFX_FILES の全ファイルが入っている', () => {
