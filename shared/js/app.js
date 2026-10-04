@@ -167,6 +167,7 @@ export async function start() {
       app.pending = [];
       app.lastLevel = levelFromXp(app.state.xp).level;
       app.session = null;
+      app.commit(); // 読み込んだ記録で、もう条件を満たしているバッジを付ける
       syncBgm();
       toast('学習記録を読み込みました');
       app.go('#/home');
@@ -221,6 +222,10 @@ export async function start() {
     document.documentElement.dataset.theme = isDark(app.state.settings.theme) ? 'dark' : 'light';
   };
   app.applyScheme();
+  // 起動時にもバッジの条件を見直す。付与は答えを保存するとき（commit）だけだったため、
+  // バッジを後から足した版に更新したとき、すでに条件を満たしている人（例: 星3の章）が、
+  // 次に1問答えるまで「未取得」のままになっていた（2026-10-04 先生の指摘）。お祝いはホームで出る
+  app.commit();
   if (darkMq && darkMq.addEventListener) darkMq.addEventListener('change', app.applyScheme);
 
   let cleanup = null;
