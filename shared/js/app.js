@@ -23,6 +23,7 @@ import { renderAbout } from './views/about.js';
 import { renderWeak } from './views/weak.js';
 import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
+import { normalizeTextSize } from './lib/textsize.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -82,6 +83,8 @@ export async function start() {
   const darkMq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
   const isDark = (pref) => pref === 'dark' || (pref === 'auto' && !!darkMq && darkMq.matches);
   document.documentElement.dataset.theme = isDark(storage.load().settings.theme) ? 'dark' : 'light';
+  // 文字の大きさも同じ。タイトル画面から効かせる
+  document.documentElement.dataset.text = normalizeTextSize(storage.load().settings.textSize);
 
   // タイトル画面。データを読む間、ゲージを伸ばす。読み終わっても、ボタンを押すまでここで待つ
   // （そのボタンが「最初の操作」。押した瞬間に音を使える状態にする）。URL がホーム以外でも同じで、押したあとにその画面へ進む
@@ -178,6 +181,7 @@ export async function start() {
       storage.save(state);
       app.state = storage.load();
       app.applyScheme();
+      app.applyTextSize();
       app.pending = [];
       app.lastLevel = levelFromXp(app.state.xp).level;
       app.session = null;
@@ -190,6 +194,7 @@ export async function start() {
       storage.clear();
       app.state = defaultState();
       app.applyScheme();
+      app.applyTextSize();
       app.pending = [];
       app.lastLevel = 1;
       app.session = null;
@@ -237,6 +242,11 @@ export async function start() {
     document.documentElement.dataset.theme = isDark(app.state.settings.theme) ? 'dark' : 'light';
   };
   app.applyScheme();
+  // 文字の大きさ。設定（small / normal / large / xlarge）を data-text に付ける。CSS が html の font-size を切り替える
+  app.applyTextSize = () => {
+    document.documentElement.dataset.text = normalizeTextSize(app.state.settings.textSize);
+  };
+  app.applyTextSize();
   // 起動時にもバッジの条件を見直す。付与は答えを保存するとき（commit）だけだったため、
   // バッジを後から足した版に更新したとき、すでに条件を満たしている人（例: 星3の章）が、
   // 次に1問答えるまで「未取得」のままになっていた（2026-10-04 先生の指摘）。お祝いはホームで出る

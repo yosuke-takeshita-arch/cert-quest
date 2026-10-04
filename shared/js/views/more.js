@@ -3,6 +3,7 @@ import { h, externalLink, icon, badgeBases, badgeImg } from '../ui.js';
 import { badgeDefs, badgeProgress, badgeArtName, badgeImageUrl } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
+import { TEXT_SIZES, TEXT_SIZE_LABEL, normalizeTextSize } from '../lib/textsize.js';
 import { dateKey } from '../lib/srs.js';
 import { buildSoundCard } from './sound-settings.js';
 import { buildExamDateCard } from './examdate.js';
@@ -94,6 +95,16 @@ export function renderSettings(app) {
   });
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: '画面の明るさ' }),
     h('label', { class: 'row-btn', for: 'set-theme' }, h('span', { class: 'row-main' }, h('strong', { text: '配色' }), h('span', { class: 'small muted', text: '初期は「明るい」。「スマホに合わせる」はスマホのダークモードの設定に従います' })), themeSel)));
+  const sizeSel = h('select', { id: 'set-textSize', class: 'select select-full' }, TEXT_SIZES.map((t) => h('option', { value: t, text: TEXT_SIZE_LABEL[t] })));
+  sizeSel.value = normalizeTextSize(s.textSize);
+  sizeSel.addEventListener('change', () => {
+    s.textSize = normalizeTextSize(sizeSel.value);
+    app.commit();
+    app.applyTextSize();
+  });
+  root.appendChild(h('div', { class: 'card' }, h('h2', { text: '文字の大きさ' }),
+    h('label', { class: 'row-btn row-stack', for: 'set-textSize' }, h('span', { class: 'row-main' }, h('strong', { text: '文字の大きさ' }), h('span', { class: 'small muted', text: '初期は「ふつう」。選ぶとすぐ、アプリ全体の文字が変わります' })), sizeSel),
+    h('p', { class: 'text-sample', 'data-sample': 'text', text: 'この大きさで表示します。長い問題文も、この大きさで読めます。' })));
   const goalNow = normalizeDailyGoal(s.dailyGoal);
   const goalChoices = DAILY_GOAL_CHOICES.includes(goalNow) ? DAILY_GOAL_CHOICES : [...DAILY_GOAL_CHOICES, goalNow].sort((a, b) => a - b);
   const sel = h('select', { id: 'set-dailyGoal', class: 'select' }, goalChoices.map((n) => h('option', { value: String(n), text: n + '問' })));

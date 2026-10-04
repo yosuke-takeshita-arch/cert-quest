@@ -3,6 +3,7 @@ import { applyAnswer, dayNumber, dateKey, dueIds } from './srs.js';
 import { DEFAULT_DAILY_GOAL, normalizeDailyGoal } from './daily.js';
 import { DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, normalizeSoundSettings } from './sound.js';
 import { normalizeExamSettings } from './examdate.js';
+import { DEFAULT_TEXT_SIZE, normalizeTextSize } from './textsize.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -17,7 +18,7 @@ export function defaultState() {
     badges: {},
     exams: [],
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', examDate: null, examAsked: false, introSeen: false },
+    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, examDate: null, examAsked: false, introSeen: false },
     goalAwarded: null,
   };
 }
@@ -36,6 +37,7 @@ export function mergeState(saved) {
   if (!Number.isFinite(o.xp)) o.xp = 0;
   o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
+  o.settings.textSize = normalizeTextSize(o.settings.textSize); // 文字の大きさ。ありえない値は「ふつう」
   normalizeSoundSettings(o.settings);
   normalizeExamSettings(o.settings);
   o.settings.introSeen = o.settings.introSeen === true; // 使い方の案内を見たか
