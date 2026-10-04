@@ -185,7 +185,8 @@ test('音のファイル: 実在する。BGM は1曲3MB以下。ogg／mp3 だけ
   for (const f of Object.values(SFX_FILES)) {
     const p = join(shared, 'audio', 'sfx', f);
     assert.ok(existsSync(p), p);
-    assert.match(f, /\.(ogg|mp3)$/);
+    // 効果音は ogg・mp3 に加えて wav も使う（2026-10-05 先生が選んだ星・目標の音が wav だった。変換の道具が無いのでモノラルにして小さくした）
+    assert.match(f, /\.(ogg|mp3|wav)$/);
     // 効果音はインストール時に全部取るので、小さく保つ。バッジの音（約5秒・約170KB）を先生が選んだので上限を 200KB にした（2026-10-04）
     assert.ok(statSync(p).size < 200 * 1024, f + ' は効果音にしては大きい');
     assert.ok(doc.includes(f), f + ' が audio-licenses.md に無い');
@@ -203,7 +204,7 @@ test('音のファイル: 実在する。BGM は1曲3MB以下。ogg／mp3 だけ
 test('オフライン用の一覧（sw-core.js）: 効果音は全部入っている。BGM は先に取らない。audio.js と sound.js も入っている', () => {
   const sw = readFileSync(join(shared, 'sw-core.js'), 'utf8');
   const block = sw.slice(sw.indexOf('const SFX = ['), sw.indexOf("].map((f) => '../shared/audio/sfx/'"));
-  const listed = [...block.matchAll(/'([^']+\.(?:ogg|mp3))'/g)].map((m) => m[1]).sort();
+  const listed = [...block.matchAll(/'([^']+\.(?:ogg|mp3|wav))'/g)].map((m) => m[1]).sort();
   assert.deepEqual(listed, Object.values(SFX_FILES).sort());
   for (const t of BGM_TRACKS) assert.ok(!sw.includes(t.file), t.file + ' をインストール時に取っている');
   assert.ok(sw.includes("'../shared/js/audio.js'"));

@@ -82,10 +82,10 @@ const SHARED = [
 const SFX = [
   'ok_gold-coin.ogg',
   'ng_lose-trumpet.ogg',
-  'jingles_STEEL07.ogg',
+  'level_8bit-fanfare.ogg',
   'badge_new-thing-get.ogg',
-  'jingles_PIZZI07.ogg',
-  'jingles_NES00.ogg',
+  'stars_sparkle.wav',
+  'goal_cure.wav',
   'start_16bit-success.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 

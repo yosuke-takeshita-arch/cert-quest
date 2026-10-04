@@ -63,10 +63,10 @@ export function bgmGain(volume, trim = 1) {
 export const SFX_FILES = {
   ok: 'ok_gold-coin.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Gold Coin」Aeva、CC0）。前の confirmation_001（Kenney）は単音で物足りなかった
   ng: 'ng_lose-trumpet.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Game Over Trumpet SFX」0new4y、CC0）。前の error_003（Kenney）は単音で物足りなかった
-  level: 'jingles_STEEL07.ogg',
+  level: 'level_8bit-fanfare.ogg', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「8bit fanfare jingle "The Lick"」Haley、CC0）
   badge: 'badge_new-thing-get.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「New Thing Get」congusbongus、CC0）。前の jingles_SAX07 は単音で物足りなかった
-  stars: 'jingles_PIZZI07.ogg',
-  goal: 'jingles_NES00.ogg',
+  stars: 'stars_sparkle.wav', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「Cure Magic」の Cure5、Someoneman、CC0。モノラルにした）
+  goal: 'goal_cure.wav', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「Cure Magic」の Cure2、Someoneman、CC0。モノラルにした）
   start: 'start_16bit-success.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「16bit Success sound」flush、CC0）。前の jingles_NES05 は低いベースが中心でスマホでは弱かった
 };
 
