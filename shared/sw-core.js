@@ -4,12 +4,13 @@
 //
 // 方針
 //  - アプリ本体（HTML/JS/CSS/config/アイコン）: ネット優先。4秒で返らなければキャッシュ。→ 更新が1回で反映され、新旧が混ざらない
-//  - data/（問題・カード）: キャッシュ優先＋裏で更新。オフラインでも即開く。更新は次に開いたとき見える
+//  - data/（問題・カード・図）: キャッシュ優先＋裏で更新。オフラインでも即開く。更新は次に開いたとき見える。図（data/figures/*.svg）は、問題・カードの figures が指すものをインストール時に取る
 //  - audio/（効果音・BGM）: 効果音は小さいのでインストール時に取る。BGM は大きいので、最初に流したときに取ってキャッシュに入れ、以後はキャッシュ優先（オフラインでも鳴る）
 //  - 404 などの失敗応答はキャッシュしない（まだ無いデータを「無い」と覚えない）
 /* global self, caches, fetch, URL, Response */
 const CFG = self.CERT_QUEST;
 const CACHE = 'certquest-' + CFG.appId + '-v' + CFG.version;
+const FIGURE_ID = /^fig-[a-z0-9]+(?:-[a-z0-9]+)*$/; // shared/js/lib/figures.js の FIGURE_ID_RE と同じ
 
 // shared/ の中身（sw.js から見た相対パス）。ファイルを足したらここにも足す。
 const SHARED = [
@@ -35,6 +36,8 @@ const SHARED = [
   '../shared/js/views/more.js',
   '../shared/js/views/sound-settings.js',
   '../shared/js/views/title.js',
+  '../shared/js/views/figure.js',
+  '../shared/js/lib/figures.js',
   '../shared/js/lib/loadprogress.js',
 ];
 
@@ -62,13 +65,28 @@ self.addEventListener('install', (event) => {
           const idx = await idxRes.clone().json();
           await cache.put(new URL('./data/index.json', self.location).href, idxRes);
           const files = [idx.syllabus, ...(idx.questions || []), ...(idx.concepts || [])].filter((f) => typeof f === 'string');
+          const figureIds = new Set(); // 問題・カードの figures が指す図（data/figures/<id>.svg）。オフラインでも出すため、ここで取る
           await Promise.all(
             files.map(async (f) => {
               try {
                 const u = new URL('./data/' + f, self.location).href;
                 const r = await fetch(u, { cache: 'reload' });
-                if (r.ok) await cache.put(u, r);
+                if (!r.ok) return;
+                try {
+                  const arr = await r.clone().json();
+                  if (Array.isArray(arr)) for (const o of arr) if (o && Array.isArray(o.figures)) for (const id of o.figures) if (typeof id === 'string' && FIGURE_ID.test(id)) figureIds.add(id);
+                } catch (e) { /* JSON でないもの（シラバス）は図を持たない */ }
+                await cache.put(u, r);
               } catch (e) { /* 取れないものは飛ばす */ }
+            })
+          );
+          await Promise.all(
+            [...figureIds].map(async (id) => {
+              try {
+                const u = new URL('./data/figures/' + id + '.svg', self.location).href;
+                const r = await fetch(u, { cache: 'reload' });
+                if (r.ok) await cache.put(u, r);
+              } catch (e) { /* 取れない図は飛ばす（開いたときに取れれば、そのときキャッシュに入る） */ }
             })
           );
         }

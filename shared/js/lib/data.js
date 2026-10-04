@@ -1,4 +1,5 @@
 // データの読み込みと整形。資格固有のことは書かない。
+import { normalizeFigureIds } from './figures.js';
 // 存在しないファイル(404)は飛ばす。形が崩れた問題・カードは捨てて problems に記録する。
 
 const norm = (s) => String(s == null ? '' : s).normalize('NFKC').trim().toLowerCase();
@@ -35,6 +36,7 @@ export function normalizeQuestion(q) {
     whyWrong,
     memoryTip: typeof q.memoryTip === 'string' ? q.memoryTip : '',
     concepts: Array.isArray(q.concepts) ? q.concepts : [],
+    figures: normalizeFigureIds(q.figures),
     sources: Array.isArray(q.sources) ? q.sources.filter((s) => s && typeof s.url === 'string') : [],
     status: q.status === 'verified' ? 'verified' : 'unverified',
   };
@@ -52,6 +54,7 @@ export function normalizeConcept(c) {
     why: typeof c.why === 'string' ? c.why : '',
     links: Array.isArray(c.links) ? c.links : [],
     confusions: Array.isArray(c.confusions) ? c.confusions : [],
+    figures: normalizeFigureIds(c.figures),
     sources: Array.isArray(c.sources) ? c.sources.filter((s) => s && typeof s.url === 'string') : [],
     status: c.status === 'verified' ? 'verified' : 'unverified',
   };

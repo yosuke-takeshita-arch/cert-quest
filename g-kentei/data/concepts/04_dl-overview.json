@@ -205,6 +205,9 @@
         "point": "活性化関数はニューロンの出力を作る関数。誤差関数は予測と正解のずれを測る関数。"
       }
     ],
+    "figures": [
+      "fig-g-activation"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（activation function）",
@@ -242,6 +245,9 @@
         "id": "C-04-007",
         "point": "シグモイドの出力は0〜1、tanhは−1〜1。tanhの微分の最大値は1でシグモイド（0.25）より大きい。"
       }
+    ],
+    "figures": [
+      "fig-g-activation"
     ],
     "sources": [
       {
@@ -293,6 +299,9 @@
         "point": "tanhは−1〜1、シグモイドは0〜1。"
       }
     ],
+    "figures": [
+      "fig-g-activation"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Tanh",
@@ -343,6 +352,9 @@
         "point": "ReLUは負で0（傾き0）、Leaky ReLUは負でもわずかな傾きを持つ。"
       }
     ],
+    "figures": [
+      "fig-g-activation"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.ReLU",
@@ -380,6 +392,9 @@
         "id": "C-04-008",
         "point": "Leaky＝漏れる。負の側にも少しだけ勾配が漏れる。"
       }
+    ],
+    "figures": [
+      "fig-g-activation"
     ],
     "sources": [
       {
@@ -1654,6 +1669,9 @@
         "id": "C-04-041",
         "point": "早期終了は「検証誤差が上がり始めたら止める」。二重降下現象は、さらに続けると再び誤差が下がることがあるという観察。"
       }
+    ],
+    "figures": [
+      "fig-g-overfitting"
     ],
     "sources": [
       {

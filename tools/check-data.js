@@ -17,6 +17,8 @@
 //   - syllabus のパスが syllabus.json の木に実在すること
 //   - id の形式と重複、問題の concepts が実在するカードを指すこと
 //   - sources が {title, url} で url が http(s) であること
+//   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
+//     viewBox の幅が 360 以下で、role="img"・<title>・<desc> を持つこと（要件定義書 §7-2）
 //
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか
 'use strict';
@@ -116,6 +118,67 @@ for (const d of dirs) {
   }
 }
 
+// ---- 図（要件定義書 §7-2）----
+// figures の ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG すべてが、禁止事項（script・外部参照など）を含まず、
+// viewBox の幅が 360 以下で、role="img" と <title>・<desc> を持つこと。どこからも使われない SVG は警告。
+// （SVG の禁止事項は shared/js/lib/figures.js の svgProblems と同じにしてある。片方を直したら、もう片方も直す）
+const FIGURE_ID_RE = /^fig-[a-z0-9]+(?:-[a-z0-9]+)*$/;
+function svgProblems(text) {
+  const p = [];
+  if (!/<svg[\s>]/i.test(text)) p.push('<svg> が無い');
+  if (/<script[\s>\/]/i.test(text)) p.push('<script> がある');
+  if (/<foreignObject[\s>\/]/i.test(text)) p.push('<foreignObject> がある');
+  if (/<style[\s>\/]/i.test(text)) p.push('<style> がある（色は共通CSSのクラスで付ける）');
+  if (/\sstyle\s*=/i.test(text)) p.push('style 属性がある（色は共通CSSのクラスで付ける）');
+  if (/<image[\s>\/]/i.test(text)) p.push('<image> がある');
+  if (/\son[a-z]+\s*=/i.test(text)) p.push('イベント属性（onclick など）がある');
+  for (const m of text.match(/\s(?:xlink:)?href\s*=\s*("[^"]*"|'[^']*')/gi) || []) {
+    const v = m.replace(/^[^=]*=\s*/, '').slice(1, -1).trim();
+    if (!v.startsWith('#')) p.push('# で始まらない href がある: ' + v.slice(0, 40));
+  }
+  if (/\s(?:xlink:)?href\s*=\s*[^"'\s>]/i.test(text)) p.push('引用符の無い href がある');
+  if (/url\(\s*(?!["']?\s*#)/i.test(text)) p.push('url() が # 以外を指している');
+  if (/javascript:/i.test(text)) p.push('javascript: がある');
+  if (/\bdata:/i.test(text)) p.push('data: がある');
+  if (/@import/i.test(text)) p.push('@import がある');
+  if (/(?:https?:)?\/\/[a-z0-9]/i.test(text.replace(/\sxmlns(?::[a-z]+)?\s*=\s*"http:\/\/www\.w3\.org\/[^"]*"/gi, ''))) p.push('外部のURL（http など）がある');
+  return p;
+}
+const figDirOf = (f) => path.join(path.dirname(path.dirname(path.resolve(f))), 'figures');
+const figUsed = new Map(); // figures ディレクトリ -> 使われた ID の集合
+function checkFigureRefs(f, id, figs) {
+  if (figs === undefined) return;
+  if (!Array.isArray(figs)) { err(f, id, 'figures が配列でない'); return; }
+  const dir = figDirOf(f);
+  if (!figUsed.has(dir)) figUsed.set(dir, new Set());
+  figs.forEach((x, i) => {
+    if (typeof x !== 'string' || !FIGURE_ID_RE.test(x)) { err(f, id, `figures[${i}] が図の ID の形式（fig-英小文字・数字・ハイフン）でない`); return; }
+    if (figs.indexOf(x) !== i) err(f, id, `figures に ${x} が重複している`);
+    figUsed.get(dir).add(x);
+    if (!fs.existsSync(path.join(dir, x + '.svg'))) err(f, id, `figures の ${x} に対応する SVG が無い（${path.join(path.basename(path.dirname(dir)), 'figures', x + '.svg')}）`);
+  });
+}
+function checkFigureFiles() {
+  for (const dir of new Set([...dirs].map((d) => path.join(path.dirname(d), 'figures')).concat([...figUsed.keys()]))) {
+    if (!fs.existsSync(dir)) continue;
+    for (const fn of fs.readdirSync(dir).filter((x) => x.endsWith('.svg'))) {
+      const id = fn.replace(/\.svg$/, '');
+      const text = fs.readFileSync(path.join(dir, fn), 'utf8');
+      if (!FIGURE_ID_RE.test(id)) err(fn, id, 'SVG のファイル名が図の ID の形式でない');
+      for (const m of svgProblems(text)) err(fn, id, m);
+      const vb = /<svg[^>]*\sviewBox\s*=\s*"\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([-\d.]+)[\s,]+[-\d.]+\s*"/i.exec(text);
+      if (!vb) err(fn, id, 'viewBox が無い');
+      else if (Number(vb[1]) > 360) err(fn, id, `viewBox の幅が 360 を超える: ${vb[1]}`);
+      const root = (/<svg[^>]*>/i.exec(text) || [''])[0];
+      if (!/\srole\s*=\s*"img"/.test(root)) err(fn, id, '<svg> に role="img" が無い');
+      if (!/<title[\s>]/i.test(text)) err(fn, id, '<title> が無い');
+      if (!/<desc[\s>]/i.test(text)) err(fn, id, '<desc> が無い');
+      if (!/\saria-labelledby\s*=\s*"[^"]+"/.test(root)) err(fn, id, '<svg> に aria-labelledby が無い');
+      if (!(figUsed.get(dir) || new Set()).has(id)) warn(fn, id, 'どのカード・問題の figures からも使われていない');
+    }
+  }
+}
+
 const seen = new Map();
 for (const { file: f, kind, data, syl } of loaded) {
   data.forEach((o, idx) => {
@@ -161,9 +224,12 @@ for (const { file: f, kind, data, syl } of loaded) {
       });
     }
     checkSources(f, id, o.sources);
+    checkFigureRefs(f, id, o.figures);
     if (!STATUS.has(o.status)) err(f, id, `status が不正: ${o.status}`);
   });
 }
+
+checkFigureFiles();
 
 // 集計
 for (const { file: f, kind, data } of loaded) {

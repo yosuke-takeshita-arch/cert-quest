@@ -102,6 +102,9 @@
       "C-05-006",
       "C-05-007"
     ],
+    "figures": [
+      "fig-g-conv-op"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
@@ -140,6 +143,9 @@
       "C-05-007",
       "C-05-004"
     ],
+    "figures": [
+      "fig-g-conv-op"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
@@ -175,6 +181,9 @@
     "memoryTip": "パディング＝額縁。額縁を足すと絵（出力）が小さくならない。",
     "concepts": [
       "C-05-007"
+    ],
+    "figures": [
+      "fig-g-conv-op"
     ],
     "sources": [
       {
@@ -251,6 +260,9 @@
     "memoryTip": "ストライド＝歩幅（stride）。大股で歩くと足跡（出力）が減る。",
     "concepts": [
       "C-05-006"
+    ],
+    "figures": [
+      "fig-g-conv-op"
     ],
     "sources": [
       {
@@ -438,6 +450,9 @@
     "concepts": [
       "C-05-005",
       "C-05-009"
+    ],
+    "figures": [
+      "fig-g-conv-op"
     ],
     "sources": [
       {
@@ -2041,6 +2056,9 @@
     "memoryTip": "畳み込み＝「重ねて、掛けて、足す」を1マスずつずらす。出力の大きさは（入力−フィルタ＋2×パディング）÷ストライド＋1。",
     "concepts": [
       "C-05-004"
+    ],
+    "figures": [
+      "fig-g-conv-op"
     ],
     "sources": [
       {

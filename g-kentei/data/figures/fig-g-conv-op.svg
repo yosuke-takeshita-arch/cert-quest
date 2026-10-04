@@ -1,0 +1,341 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 899" role="img" aria-labelledby="fig-g-conv-op-t fig-g-conv-op-d">
+<title id="fig-g-conv-op-t">畳み込みの計算と、出力サイズ（ストライド・パディング）</title>
+<desc id="fig-g-conv-op-d">5×5の入力に3×3のフィルタを重ね、重なった9マスの積の和を出力の1マスにする。窓を1マスずつずらすと出力は3×3。ストライド2で窓を2マスずつ飛ばすと出力は2×2。周囲を0で1マス埋める（パディング1）と出力は5×5で入力と同じ大きさ。出力の大きさは、入力に2×パディングを足してフィルタの大きさを引き、ストライドで割って1を足す。</desc>
+<text x="12" y="20" class="tb">① 窓を重ねて、掛けて、足す</text>
+<rect x="12" y="38" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="53.5" text-anchor="middle">2</text>
+<rect x="34" y="38" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="53.5" text-anchor="middle">1</text>
+<rect x="56" y="38" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="53.5" text-anchor="middle">0</text>
+<rect x="78" y="38" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="53.5" text-anchor="middle">3</text>
+<rect x="100" y="38" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="53.5" text-anchor="middle">1</text>
+<rect x="12" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="75.5" text-anchor="middle">0</text>
+<rect x="34" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="75.5" text-anchor="middle">2</text>
+<rect x="56" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="75.5" text-anchor="middle">1</text>
+<rect x="78" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="75.5" text-anchor="middle">0</text>
+<rect x="100" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="75.5" text-anchor="middle">2</text>
+<rect x="12" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="97.5" text-anchor="middle">3</text>
+<rect x="34" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="97.5" text-anchor="middle">0</text>
+<rect x="56" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="97.5" text-anchor="middle">1</text>
+<rect x="78" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="97.5" text-anchor="middle">2</text>
+<rect x="100" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="97.5" text-anchor="middle">0</text>
+<rect x="12" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="119.5" text-anchor="middle">1</text>
+<rect x="34" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="119.5" text-anchor="middle">2</text>
+<rect x="56" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="119.5" text-anchor="middle">0</text>
+<rect x="78" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="119.5" text-anchor="middle">1</text>
+<rect x="100" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="119.5" text-anchor="middle">3</text>
+<rect x="12" y="126" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="141.5" text-anchor="middle">2</text>
+<rect x="34" y="126" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="141.5" text-anchor="middle">0</text>
+<rect x="56" y="126" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="141.5" text-anchor="middle">3</text>
+<rect x="78" y="126" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="141.5" text-anchor="middle">1</text>
+<rect x="100" y="126" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="141.5" text-anchor="middle">1</text>
+<rect x="142" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="153" y="75.5" text-anchor="middle">1</text>
+<rect x="164" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="175" y="75.5" text-anchor="middle">0</text>
+<rect x="186" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="75.5" text-anchor="middle">1</text>
+<rect x="142" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="153" y="97.5" text-anchor="middle">0</text>
+<rect x="164" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="175" y="97.5" text-anchor="middle">1</text>
+<rect x="186" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="97.5" text-anchor="middle">0</text>
+<rect x="142" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="153" y="119.5" text-anchor="middle">1</text>
+<rect x="164" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="175" y="119.5" text-anchor="middle">0</text>
+<rect x="186" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="119.5" text-anchor="middle">1</text>
+<rect x="230" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="241" y="75.5" text-anchor="middle">8</text>
+<rect x="252" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="263" y="75.5" text-anchor="middle">7</text>
+<rect x="274" y="60" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="285" y="75.5" text-anchor="middle">2</text>
+<rect x="230" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="241" y="97.5" text-anchor="middle">2</text>
+<rect x="252" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="263" y="97.5" text-anchor="middle">6</text>
+<rect x="274" y="82" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="285" y="97.5" text-anchor="middle">8</text>
+<rect x="230" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="241" y="119.5" text-anchor="middle">11</text>
+<rect x="252" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="263" y="119.5" text-anchor="middle">3</text>
+<rect x="274" y="104" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="285" y="119.5" text-anchor="middle">6</text>
+<rect x="230" y="60" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="241" y="75.5" class="tb" text-anchor="middle">8</text>
+<rect x="12" y="38" width="66" height="66" class="sa" stroke-width="3"/>
+<text x="134" y="98" class="tb" text-anchor="middle">＊</text>
+<text x="218" y="98" class="tb" text-anchor="middle">＝</text>
+<text x="67" y="166" class="tm" text-anchor="middle">入力 5×5</text>
+<text x="175" y="144" class="tm" text-anchor="middle">フィルタ 3×3</text>
+<text x="263" y="144" class="tm" text-anchor="middle">出力 3×3</text>
+<text x="12" y="188" class="tb">出力の左上（色つきの窓の9マス）</text>
+<text x="12" y="208">2×1 + 1×0 + 0×1</text>
+<text x="12" y="227">＋ 0×0 + 2×1 + 1×0</text>
+<text x="12" y="246" class="tb">＋ 3×1 + 0×0 + 1×1 ＝ 8</text>
+<text x="12" y="265" class="tm">フィルタは反転せず、そのまま重ねて掛ける</text>
+<text x="12" y="299">式に当てはめる：(5＋2×0−3)÷1＋1＝3</text>
+<line x1="12" y1="307" x2="308" y2="307" class="l sb w1"/>
+<text x="12" y="333" class="tb">② ストライド 2：窓が 2マスずつ飛ぶ</text>
+<rect x="12" y="351" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="366.5" text-anchor="middle">2</text>
+<rect x="34" y="351" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="366.5" text-anchor="middle">1</text>
+<rect x="56" y="351" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="366.5" text-anchor="middle">0</text>
+<rect x="78" y="351" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="366.5" text-anchor="middle">3</text>
+<rect x="100" y="351" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="366.5" text-anchor="middle">1</text>
+<rect x="12" y="373" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="388.5" text-anchor="middle">0</text>
+<rect x="34" y="373" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="388.5" text-anchor="middle">2</text>
+<rect x="56" y="373" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="388.5" text-anchor="middle">1</text>
+<rect x="78" y="373" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="388.5" text-anchor="middle">0</text>
+<rect x="100" y="373" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="388.5" text-anchor="middle">2</text>
+<rect x="12" y="395" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="410.5" text-anchor="middle">3</text>
+<rect x="34" y="395" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="410.5" text-anchor="middle">0</text>
+<rect x="56" y="395" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="410.5" text-anchor="middle">1</text>
+<rect x="78" y="395" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="410.5" text-anchor="middle">2</text>
+<rect x="100" y="395" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="410.5" text-anchor="middle">0</text>
+<rect x="12" y="417" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="432.5" text-anchor="middle">1</text>
+<rect x="34" y="417" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="432.5" text-anchor="middle">2</text>
+<rect x="56" y="417" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="432.5" text-anchor="middle">0</text>
+<rect x="78" y="417" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="432.5" text-anchor="middle">1</text>
+<rect x="100" y="417" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="432.5" text-anchor="middle">3</text>
+<rect x="12" y="439" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="454.5" text-anchor="middle">2</text>
+<rect x="34" y="439" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="454.5" text-anchor="middle">0</text>
+<rect x="56" y="439" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="454.5" text-anchor="middle">3</text>
+<rect x="78" y="439" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="454.5" text-anchor="middle">1</text>
+<rect x="100" y="439" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="454.5" text-anchor="middle">1</text>
+<rect x="156" y="384" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="399.5" text-anchor="middle">8</text>
+<rect x="178" y="384" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="189" y="399.5" text-anchor="middle">2</text>
+<rect x="156" y="406" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="421.5" text-anchor="middle">11</text>
+<rect x="178" y="406" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="189" y="421.5" text-anchor="middle">6</text>
+<rect x="12" y="351" width="66" height="66" class="sa" stroke-width="3"/>
+<rect x="56" y="351" width="66" height="66" class="swn" stroke-width="3"/>
+<rect x="156" y="384" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="167" y="399.5" class="tb" text-anchor="middle">8</text>
+<rect x="178" y="384" width="22" height="22" class="fwn swn" stroke-width="1"/>
+<text x="189" y="399.5" class="tb" text-anchor="middle">2</text>
+<text x="134" y="404" class="tb" text-anchor="middle">→</text>
+<text x="212" y="388">青の窓の次は</text>
+<text x="212" y="407">2マス右へ</text>
+<text x="212" y="426" class="tm">（茶の窓）</text>
+<text x="67" y="479" class="tm" text-anchor="middle">入力 5×5</text>
+<text x="178" y="446" class="tm" text-anchor="middle">出力 2×2</text>
+<text x="12" y="503">式に当てはめる：(5＋2×0−3)÷2＋1＝2</text>
+<line x1="12" y1="529" x2="308" y2="529" class="l sb w1"/>
+<text x="12" y="555" class="tb">③ パディング 1：周囲を 0 で埋める</text>
+<rect x="12" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="22" y="587.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="42" y="587.5" class="tm" text-anchor="middle">0</text>
+<rect x="52" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="62" y="587.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="82" y="587.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="102" y="587.5" class="tm" text-anchor="middle">0</text>
+<rect x="112" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="122" y="587.5" class="tm" text-anchor="middle">0</text>
+<rect x="132" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="142" y="587.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="593" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="22" y="607.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="42" y="607.5" text-anchor="middle">2</text>
+<rect x="52" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="62" y="607.5" text-anchor="middle">1</text>
+<rect x="72" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="82" y="607.5" text-anchor="middle">0</text>
+<rect x="92" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="102" y="607.5" text-anchor="middle">3</text>
+<rect x="112" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="122" y="607.5" text-anchor="middle">1</text>
+<rect x="132" y="593" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="142" y="607.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="613" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="22" y="627.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="42" y="627.5" text-anchor="middle">0</text>
+<rect x="52" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="62" y="627.5" text-anchor="middle">2</text>
+<rect x="72" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="82" y="627.5" text-anchor="middle">1</text>
+<rect x="92" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="102" y="627.5" text-anchor="middle">0</text>
+<rect x="112" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="122" y="627.5" text-anchor="middle">2</text>
+<rect x="132" y="613" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="142" y="627.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="633" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="22" y="647.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="42" y="647.5" text-anchor="middle">3</text>
+<rect x="52" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="62" y="647.5" text-anchor="middle">0</text>
+<rect x="72" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="82" y="647.5" text-anchor="middle">1</text>
+<rect x="92" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="102" y="647.5" text-anchor="middle">2</text>
+<rect x="112" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="122" y="647.5" text-anchor="middle">0</text>
+<rect x="132" y="633" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="142" y="647.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="653" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="22" y="667.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="42" y="667.5" text-anchor="middle">1</text>
+<rect x="52" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="62" y="667.5" text-anchor="middle">2</text>
+<rect x="72" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="82" y="667.5" text-anchor="middle">0</text>
+<rect x="92" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="102" y="667.5" text-anchor="middle">1</text>
+<rect x="112" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="122" y="667.5" text-anchor="middle">3</text>
+<rect x="132" y="653" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="142" y="667.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="673" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="22" y="687.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="42" y="687.5" text-anchor="middle">2</text>
+<rect x="52" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="62" y="687.5" text-anchor="middle">0</text>
+<rect x="72" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="82" y="687.5" text-anchor="middle">3</text>
+<rect x="92" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="102" y="687.5" text-anchor="middle">1</text>
+<rect x="112" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="122" y="687.5" text-anchor="middle">1</text>
+<rect x="132" y="673" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="142" y="687.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="693" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="22" y="707.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="693" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="42" y="707.5" class="tm" text-anchor="middle">0</text>
+<rect x="52" y="693" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="62" y="707.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="693" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="82" y="707.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="693" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="102" y="707.5" class="tm" text-anchor="middle">0</text>
+<rect x="112" y="693" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="122" y="707.5" class="tm" text-anchor="middle">0</text>
+<rect x="132" y="693" width="20" height="20" class="fbg sb" stroke-width="1"/>
+<text x="142" y="707.5" class="tm" text-anchor="middle">0</text>
+<rect x="176" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="186" y="607.5" text-anchor="middle">4</text>
+<rect x="196" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="206" y="607.5" text-anchor="middle">2</text>
+<rect x="216" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="226" y="607.5" text-anchor="middle">2</text>
+<rect x="236" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="246" y="607.5" text-anchor="middle">6</text>
+<rect x="256" y="593" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="266" y="607.5" text-anchor="middle">1</text>
+<rect x="176" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="186" y="627.5" text-anchor="middle">1</text>
+<rect x="196" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="206" y="627.5" text-anchor="middle">8</text>
+<rect x="216" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="226" y="627.5" text-anchor="middle">7</text>
+<rect x="236" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="246" y="627.5" text-anchor="middle">2</text>
+<rect x="256" y="613" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="266" y="627.5" text-anchor="middle">7</text>
+<rect x="176" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="186" y="647.5" text-anchor="middle">7</text>
+<rect x="196" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="206" y="647.5" text-anchor="middle">2</text>
+<rect x="216" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="226" y="647.5" text-anchor="middle">6</text>
+<rect x="236" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="246" y="647.5" text-anchor="middle">8</text>
+<rect x="256" y="633" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="266" y="647.5" text-anchor="middle">1</text>
+<rect x="176" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="186" y="667.5" text-anchor="middle">1</text>
+<rect x="196" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="206" y="667.5" text-anchor="middle">11</text>
+<rect x="216" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="226" y="667.5" text-anchor="middle">3</text>
+<rect x="236" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="246" y="667.5" text-anchor="middle">6</text>
+<rect x="256" y="653" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="266" y="667.5" text-anchor="middle">6</text>
+<rect x="176" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="186" y="687.5" text-anchor="middle">4</text>
+<rect x="196" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="206" y="687.5" text-anchor="middle">1</text>
+<rect x="216" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="226" y="687.5" text-anchor="middle">6</text>
+<rect x="236" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="246" y="687.5" text-anchor="middle">4</text>
+<rect x="256" y="673" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="266" y="687.5" text-anchor="middle">2</text>
+<rect x="12" y="573" width="60" height="60" class="sa" stroke-width="3"/>
+<rect x="176" y="593" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="186" y="607.5" class="tb" text-anchor="middle">4</text>
+<text x="165" y="647" class="tb" text-anchor="middle">→</text>
+<text x="82" y="731" class="tm" text-anchor="middle">入力 7×7</text>
+<text x="226" y="711" class="tm" text-anchor="middle">出力 5×5</text>
+<text x="12" y="757">式に当てはめる：(5＋2×1−3)÷1＋1＝5</text>
+<text x="12" y="776" class="tm">入力と同じ大きさのまま</text>
+<line x1="12" y1="798" x2="308" y2="798" class="l sb w1"/>
+<text x="12" y="826" class="tb">出力の大きさ</text>
+<text x="12" y="847" class="tb">＝(入力＋2×パディング−フィルタ)</text>
+<text x="12" y="867" class="tb">　÷ストライド ＋ 1</text>
+<text x="12" y="887" class="tm">割り切れないときは小数点以下を切り捨てる</text>
+</svg>

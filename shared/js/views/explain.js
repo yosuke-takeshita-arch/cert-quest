@@ -2,6 +2,7 @@
 import { h } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { refChip, sourcesList } from './cards.js';
+import { figureBlock } from './figure.js';
 
 export const CHOICE_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
@@ -44,6 +45,8 @@ export function explanation(app, sq, chosen, open) {
   box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由'),
     h('p', { class: 'ex-answer' }, h('strong', { text: '正解: ' + CHOICE_LABELS[sq.answer] + '. ' + sq.choices[sq.answer] })),
     h('p', { text: q.explanation || '（解説は準備中です）' })));
+  const fig = figureBlock(app, q.figures, { heading: '図で確かめる', tag: 'section', className: 'ex-block' });
+  if (fig) box.appendChild(fig);
 
   const wrongs = sq.choices.map((c, i) => ({ c, i, why: sq.whyWrong[i] })).filter((x) => x.i !== sq.answer);
   const ul = h('ul', { class: 'why-wrong' });

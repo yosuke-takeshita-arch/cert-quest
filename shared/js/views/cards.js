@@ -1,6 +1,7 @@
 // 用語カードの一覧・1枚の表示・つながりをたどる表示。
 import { h, clear, externalLink } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
+import { figureBlock } from './figure.js';
 
 const RELATION_LABEL = {
   cause: '原因', causes: '原因', effect: '結果', result: '結果', leads_to: '次につながる', 'leads-to': '次につながる',
@@ -37,6 +38,8 @@ export function cardBody(app, c, open) {
   wrap.appendChild(h('p', { class: 'crumb small muted', text: c.syllabus.join(' › ') }));
   wrap.appendChild(h('h2', {}, c.title, ' ', statusChip(c.status)));
   if (c.oneLine) wrap.appendChild(h('p', { class: 'one-line', text: c.oneLine }));
+  const fig = figureBlock(app, c.figures);
+  if (fig) wrap.appendChild(fig);
   if (c.why) wrap.appendChild(h('div', { class: 'why' }, h('h3', { text: 'なぜ要るか' }), h('p', { text: c.why })));
 
   if (c.links.length || incoming.length) {

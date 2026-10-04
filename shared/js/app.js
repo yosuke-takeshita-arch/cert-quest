@@ -106,6 +106,7 @@ export async function start() {
   const app = {
     config,
     data,
+    dataBase, // data/ のURL（図の SVG を取るのに使う）
     sample,
     storage,
     state: storage.load(),

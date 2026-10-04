@@ -1847,6 +1847,9 @@
         "point": "訓練データでの成績が良くても汎化性能が高いとは限らない（過学習）。"
       }
     ],
+    "figures": [
+      "fig-g-overfitting"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - Overfitting",
@@ -1892,6 +1895,9 @@
         "title": "未学習",
         "point": "未学習は訓練データにすら合っていない状態（モデルが単純すぎる）。過学習は訓練データにだけ合っている状態。"
       }
+    ],
+    "figures": [
+      "fig-g-overfitting"
     ],
     "sources": [
       {
@@ -2011,6 +2017,9 @@
         "point": "「陽性・陰性」は予測の結果、「真・偽」は予測が当たったかどうか。偽陽性＝陽性と予測して外れた。"
       }
     ],
+    "figures": [
+      "fig-g-confusion-matrix"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Metrics and scoring（Confusion matrix）",
@@ -2045,6 +2054,9 @@
         "point": "偽陽性を減らしたい→適合率を重視。偽陰性を減らしたい→再現率を重視。"
       }
     ],
+    "figures": [
+      "fig-g-confusion-matrix"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Metrics and scoring",
@@ -2078,6 +2090,9 @@
         "id": "C-03-053",
         "point": "適合率の分母は「陽性と予測した数」、再現率の分母は「実際の陽性の数」。分母の取り違えが定番のひっかけ。"
       }
+    ],
+    "figures": [
+      "fig-g-confusion-matrix"
     ],
     "sources": [
       {
@@ -2310,6 +2325,9 @@
         "id": "C-03-008",
         "point": "どちらも確率を使って分類する。ナイーブベイズはクラスごとに特徴量の出方の確率 P(特徴量|クラス) を推定して掛け合わせる。ロジスティック回帰は特徴量の重み付き和をシグモイド関数で確率に変える。"
       }
+    ],
+    "figures": [
+      "fig-g-bayes-area"
     ],
     "sources": [
       {

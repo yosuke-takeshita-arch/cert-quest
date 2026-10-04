@@ -389,3 +389,43 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 @media (prefers-reduced-motion: reduce) {
   .title-gauge-fill { transition: width 0.25s ease-out !important; }
 }
+
+/* ---- 図（SVG）。図のファイル（data/figures/*.svg）は色を持たず、ここのクラスで色を付ける（要件定義書 §7-2）。
+   色は上の変数だけを使うので、明るい配色・暗い配色の両方で見える。文字は13px以上（幅320の図が幅300前後で出ても12px相当を切らない） ---- */
+.fig-block { margin: 0 0 16px; }
+.fig-box { margin: 0 0 16px; }
+.fig-box:last-child { margin-bottom: 0; }
+.fig { display: block; width: 100%; max-width: 360px; height: auto; margin: 0 auto; }
+.fig-cap { margin: 4px 0 0; text-align: center; }
+.fig-status { margin: 0; padding: 8px 0; }
+.fig rect, .fig circle, .fig ellipse, .fig path, .fig polygon, .fig polyline, .fig line { fill: none; stroke: none; }
+.fig text { fill: var(--text); font-size: 13px; font-family: inherit; }
+.fig .tm { fill: var(--muted); }
+.fig .tb { font-weight: 700; }
+.fig .tl { font-size: 15px; font-weight: 700; }
+.fig .ta { fill: var(--accent); }
+.fig .tok { fill: var(--ok); }
+.fig .tng { fill: var(--ng); }
+.fig .twn { fill: var(--warn); }
+.fig .ton { fill: var(--on-accent); }
+.fig .l { stroke: var(--text); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.fig .sa { stroke: var(--accent); }
+.fig .sok { stroke: var(--ok); }
+.fig .sng { stroke: var(--ng); }
+.fig .swn { stroke: var(--warn); }
+.fig .sm { stroke: var(--muted); }
+.fig .sb { stroke: var(--border); }
+.fig .w1 { stroke-width: 1; }
+.fig .w2 { stroke-width: 2.5; }
+.fig .w3 { stroke-width: 3.5; }
+.fig .dsh { stroke-dasharray: 6 4; }
+.fig .dot { stroke-dasharray: 1.5 4; }
+.fig .fs { fill: var(--surface); }
+.fig .fbg { fill: var(--bg); }
+.fig .ft { fill: var(--text); }
+.fig .fm { fill: var(--muted); }
+.fig .fa { fill: var(--accent); }
+.fig .fas { fill: var(--accent-soft); }
+.fig .fok { fill: var(--ok-bg); }
+.fig .fng { fill: var(--ng-bg); }
+.fig .fwn { fill: var(--warn-bg); }

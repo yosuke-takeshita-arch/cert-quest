@@ -159,6 +159,9 @@
         "point": "畳み込みは重みを学習して特徴を取り出す。プーリングは重みを持たず、領域の最大値や平均をとるだけ。"
       }
     ],
+    "figures": [
+      "fig-g-conv-op"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
@@ -197,6 +200,9 @@
         "point": "SVMのカーネル（類似度の関数）とは別物。CNNのカーネルは畳み込みの重み。"
       }
     ],
+    "figures": [
+      "fig-g-conv-op"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
@@ -231,6 +237,9 @@
         "point": "ストライドを大きく→出力は小さく。パディングを大きく→出力は大きく（元のサイズを保ちやすく）。"
       }
     ],
+    "figures": [
+      "fig-g-conv-op"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
@@ -264,6 +273,9 @@
         "id": "C-05-014",
         "point": "パディングの主な効果は出力サイズの調整。特徴マップを小さくするのはストライドやプーリング。"
       }
+    ],
+    "figures": [
+      "fig-g-conv-op"
     ],
     "sources": [
       {
@@ -336,6 +348,9 @@
         "id": "C-05-005",
         "point": "フィルタは重み（学習するもの）、特徴マップはその出力（計算結果）。"
       }
+    ],
+    "figures": [
+      "fig-g-conv-op"
     ],
     "sources": [
       {
