@@ -194,6 +194,52 @@ details.major > summary::-webkit-details-marker { display: none; }
 .small-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid var(--border); flex-wrap: wrap; }
 .small-row:first-of-type { border-top: 0; }
 
+/* ---- 冒険の地図 ----
+   下が最初の章、上へ進む。縦の位置は rem（文字の大きさの設定に合わせて伸び縮み）、横は幅の割合。計算は shared/js/lib/maplayout.js。
+   背景は config.json の mapImage（絵に道や印は描かない。道と印はここで重ねる）。無いときはテーマ色の縦のグラデーション。 */
+.map-switch { display: flex; gap: 4px; padding: 4px; margin: 8px 0 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; }
+.map-switch-btn { appearance: none; flex: 1; font: inherit; font-weight: 700; min-height: 48px; padding: 8px 12px; border: 0; border-radius: 999px; background: transparent; color: var(--text); cursor: pointer; }
+.map-switch-btn.on { background: var(--accent); color: var(--on-accent); }
+.map-board {
+  position: relative; height: calc(var(--map-h) * 1rem); margin-top: 12px; overflow: hidden;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--accent-soft);
+  background: linear-gradient(to top, color-mix(in srgb, var(--accent) 30%, var(--surface)) 0%, var(--accent-soft) 50%, color-mix(in srgb, var(--accent) 45%, var(--surface)) 100%);
+}
+.map-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.map-road { position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--map-h) * 1rem); pointer-events: none; }
+.map-road path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.map-road-band { stroke: var(--surface); stroke-width: 24px; opacity: 0.9; }
+.map-road-line { stroke: var(--accent); stroke-width: 4px; stroke-dasharray: 1 12; }
+.map-node, .map-major-row { position: absolute; left: 0; right: 0; top: calc(var(--y) * 1rem); height: 0; margin: 0; pointer-events: none; animation: map-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+.map-major-row { display: flex; align-items: flex-start; justify-content: center; font-size: 1rem; }
+.map-major { display: flex; flex-direction: column; align-items: center; gap: 4px; max-width: 90%; padding: 8px 16px; transform: translateY(-50%); text-align: center; line-height: 1.4; background: var(--accent); color: var(--on-accent); border: 2px solid var(--surface); border-radius: var(--radius); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
+.map-major-meta { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.map-dot {
+  appearance: none; pointer-events: auto; position: absolute; left: calc(var(--x) * 1%); top: 0; width: 4.5rem; height: 4.5rem; margin: -2.25rem 0 0 -2.25rem; padding: 0;
+  display: flex; align-items: center; justify-content: center; font: inherit; font-size: 1.375rem; font-weight: 800; color: var(--text); background: var(--surface);
+  border: 6px solid var(--border); border-radius: 50%; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); cursor: pointer; transition: transform 0.12s;
+}
+.map-dot:active { transform: scale(0.94); }
+.map-dot:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+.map-dot.m-border-weak { border-color: var(--ng); background: var(--ng-bg); }
+.map-dot.m-border-mid { border-color: var(--warn); background: var(--warn-bg); }
+.map-dot.m-border-strong { border-color: var(--ok); background: var(--ok-bg); }
+.map-node.here .map-dot { box-shadow: 0 0 0 4px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.3); animation: map-pulse 2s ease-in-out infinite; }
+.map-name {
+  position: absolute; top: 0; transform: translateY(-50%); pointer-events: auto; cursor: pointer; width: max-content;
+  display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; line-height: 1.4; overflow-wrap: anywhere;
+  background: var(--surface); background: color-mix(in srgb, var(--surface) 94%, transparent); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.map-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.map-node.side-right .map-name { left: calc(var(--x) * 1% + 2.75rem); max-width: calc(100% - var(--x) * 1% - 3.25rem); }
+.map-node.side-left .map-name { right: calc((100 - var(--x)) * 1% + 2.75rem); max-width: calc(var(--x) * 1% - 3.25rem); align-items: flex-end; text-align: right; }
+.map-node.side-left .map-meta { justify-content: flex-end; }
+.char-img.map-sunny { position: absolute; left: calc(var(--x) * 1%); top: -4.5rem; width: 3rem; height: 3rem; margin-left: -1.5rem; transform-origin: 50% 100%; animation: map-hop 1.6s ease-in-out infinite; }
+@keyframes map-pop { 0% { opacity: 0; transform: translateY(1.5rem) scale(0.8); } 100% { opacity: 1; transform: none; } }
+@keyframes map-pulse { 0%, 100% { box-shadow: 0 0 0 4px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.3); } 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--accent) 45%, transparent), 0 2px 8px rgba(0, 0, 0, 0.3); } }
+@keyframes map-hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.4rem); } }
+
 /* ---- 出題 ---- */
 .play-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
 .play-title { flex: 1; display: flex; flex-direction: column; min-width: 0; line-height: 1.4; }

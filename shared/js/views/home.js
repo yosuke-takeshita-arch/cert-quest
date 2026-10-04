@@ -1,5 +1,5 @@
 // ホーム・シラバスの地図・ステージ・復習。
-import { h, icon, stars, externalLink, badgeBases, badgeImg, mascotLine } from '../ui.js';
+import { h, icon, stars, externalLink, badgeBases, badgeImg, mascotLine, characterImg, clear } from '../ui.js';
 import { levelFromXp, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
 import { examStatus, formatExamDate } from '../lib/examdate.js';
 import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
@@ -7,6 +7,7 @@ import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
 import { nextGoals } from '../lib/goals.js';
+import { mapLayout, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
 import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
@@ -204,6 +205,8 @@ export function renderHome(app) {
 }
 
 // ---- 地図（シラバスの木） ----
+// 冒険の地図（下が最初の章、上へ進む）と、これまでの一覧を切り替えられる。どちらを選んだかは settings.mapView に保存する。
+// 道と印の位置は lib/maplayout.js。背景の絵は config.json の mapImage（無ければテーマ色のグラデーション）。要件定義書 §6「冒険の地図」。
 export function renderMap(app) {
   const { data, state } = app;
   const root = h('section', { class: 'view map' }, h('h1', { text: 'シラバスの地図' }));
@@ -211,22 +214,135 @@ export function renderMap(app) {
     root.appendChild(h('div', { class: 'empty' }, h('p', { text: 'シラバスを準備中です。' })));
     return root;
   }
+  const btns = {};
+  const choose = (mode) => {
+    state.settings.mapView = mode;
+    app.commit();
+    draw(true);
+  };
+  const sw = h('div', { class: 'map-switch', role: 'group', 'aria-label': '地図の表示' },
+    btns.map = h('button', { class: 'map-switch-btn', type: 'button', onClick: () => choose('map') }, '冒険の地図'),
+    btns.list = h('button', { class: 'map-switch-btn', type: 'button', onClick: () => choose('list') }, '一覧で見る'));
+  root.appendChild(sw);
   root.appendChild(h('p', { class: 'small muted', text: '色は「最後に解いたとき正解だった問題の割合」。ステージを選ぶと出題されます。' }));
+  const body = h('div', { class: 'map-body' });
+  root.appendChild(body);
+  function draw(toggled) {
+    const mode = normalizeMapView(state.settings.mapView);
+    for (const k of ['map', 'list']) {
+      btns[k].setAttribute('aria-pressed', k === mode ? 'true' : 'false');
+      btns[k].classList.toggle('on', k === mode);
+    }
+    clear(body);
+    if (mode === 'list') {
+      body.appendChild(mapList(app));
+      if (toggled) window.scrollTo(0, 0);
+    } else {
+      const adv = mapAdventure(app);
+      body.appendChild(adv.board);
+      // 画面に付いたあと（app.js が先頭へ戻したあと）に、いまいる章が見える位置へ動かす
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (!adv.board.isConnected) return;
+        const target = adv.here || adv.board;
+        target.scrollIntoView({ block: adv.here ? 'center' : 'end' });
+      }));
+    }
+  }
+  draw(false);
+  return root;
+}
+
+function mapList(app) {
+  const { data, state } = app;
+  const box = h('div', { class: 'map-list' });
   for (const major of data.tree.roots) {
     const mp = nodeProgress(major, state.qstats);
     const det = h('details', { class: 'major', open: major === data.tree.roots[0] ? true : null },
       h('summary', {}, h('span', { class: 'sum-name', text: major.name }), masteryChip(mp.level), h('span', { class: 'small muted', text: mp.answered + '/' + mp.total + '問' })));
     for (const st of major.children) det.appendChild(stageRow(app, st));
-    root.appendChild(det);
+    box.appendChild(det);
   }
-  return root;
+  return box;
+}
+
+function stageSub(st, p) {
+  const cards = st.concepts.length ? '・カード' + st.concepts.length : '';
+  return p.total ? p.answered + '/' + p.total + '問' + cards : '問題は準備中' + cards;
+}
+
+function mapAdventure(app) {
+  const { data, state, config } = app;
+  const roots = data.tree.roots;
+  const lay = mapLayout(roots.map((r) => ({ count: r.children.length })));
+  const flat = [];
+  for (const r of roots) for (const st of r.children) flat.push(st);
+  const here = suggestStage(data.tree.stages, state.qstats);
+  const board = h('div', { class: 'map-board' });
+  board.style.setProperty('--map-h', String(lay.height));
+  if (typeof config.mapImage === 'string' && config.mapImage) {
+    const img = h('img', { class: 'map-bg', src: config.mapImage, alt: '', 'aria-hidden': 'true', decoding: 'async', draggable: 'false' });
+    img.addEventListener('error', () => img.remove());
+    board.appendChild(img);
+  }
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('class', 'map-road');
+  svg.setAttribute('viewBox', lay.viewBox);
+  svg.setAttribute('preserveAspectRatio', 'none');
+  svg.setAttribute('aria-hidden', 'true');
+  for (const cls of ['map-road-band', 'map-road-line']) {
+    const p = document.createElementNS(NS, 'path');
+    p.setAttribute('class', cls);
+    p.setAttribute('d', lay.path);
+    svg.appendChild(p);
+  }
+  if (lay.path) board.appendChild(svg);
+
+  for (const lb of lay.labels) {
+    const major = roots[lb.group];
+    const mp = nodeProgress(major, state.qstats);
+    const row = h('h2', { class: 'map-major-row' },
+      h('span', { class: 'map-major' }, h('strong', { text: major.name }), h('span', { class: 'map-major-meta' }, masteryChip(mp.level), h('span', { class: 'small', text: mp.answered + '/' + mp.total + '問' }))));
+    row.style.setProperty('--y', String(lb.y));
+    board.appendChild(row);
+  }
+
+  let hereBtn = null;
+  for (const n of lay.nodes) {
+    const st = flat[n.index];
+    const p = nodeProgress(st, state.qstats);
+    const rec = state.stages[st.key];
+    const star = rec ? rec.stars : 0;
+    const isHere = !!here && here.key === st.key;
+    const go = () => app.go('#/stage/' + encodeURIComponent(st.key));
+    const dot = h('button', {
+      class: 'map-dot m-border-' + p.level, type: 'button', onClick: go,
+      'aria-label': (n.index + 1) + '. ' + st.name + '、星' + star + '、' + MASTERY_LABEL[p.level] + '、' + stageSub(st, p) + (isHere ? '、次に解く章' : ''),
+      'aria-current': isHere ? 'step' : null,
+    }, h('span', { class: 'map-num', 'aria-hidden': 'true', text: String(n.index + 1) }));
+    const name = h('div', { class: 'map-name', onClick: go },
+      h('strong', { text: st.name }),
+      h('span', { class: 'small muted', text: stageSub(st, p) }),
+      h('span', { class: 'map-meta' }, stars(star), masteryChip(p.level)));
+    const node = h('div', { class: 'map-node side-' + n.side + (isHere ? ' here' : '') }, dot, name);
+    node.style.setProperty('--x', String(Math.round(n.x * 10000) / 100));
+    node.style.setProperty('--y', String(n.y));
+    node.style.setProperty('--i', String(n.index));
+    if (isHere) {
+      const sunny = characterImg('shiba-cheer', 'map-sunny');
+      if (sunny) node.appendChild(sunny);
+      hereBtn = dot;
+    }
+    board.appendChild(node);
+  }
+  return { board, here: hereBtn };
 }
 
 function stageRow(app, st) {
   const p = nodeProgress(st, app.state.qstats);
   const rec = app.state.stages[st.key];
   return h('button', { class: 'stage-row m-border-' + p.level, type: 'button', onClick: () => app.go('#/stage/' + encodeURIComponent(st.key)) },
-    h('span', { class: 'row-main' }, h('strong', { text: st.name }), h('span', { class: 'small muted', text: p.total ? p.answered + '/' + p.total + '問' + (st.concepts.length ? '・カード' + st.concepts.length : '') : '問題は準備中' + (st.concepts.length ? '・カード' + st.concepts.length : '') })),
+    h('span', { class: 'row-main' }, h('strong', { text: st.name }), h('span', { class: 'small muted', text: stageSub(st, p) })),
     stars(rec ? rec.stars : 0), masteryChip(p.level));
 }
 

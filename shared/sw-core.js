@@ -72,6 +72,7 @@ const SHARED = [
   '../shared/js/lib/examdate.js',
   '../shared/js/lib/intro.js',
   '../shared/js/lib/textsize.js',
+  '../shared/js/lib/maplayout.js',
   '../shared/js/lib/weakness.js',
   '../shared/js/views/weak.js',
   '../shared/js/views/intro.js',
