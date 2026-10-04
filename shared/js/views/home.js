@@ -1,6 +1,7 @@
 // ホーム・シラバスの地図・ステージ・復習。
 import { h, icon, stars, externalLink } from '../ui.js';
-import { levelFromXp, daysUntil, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
+import { levelFromXp, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
+import { examStatus, formatExamDate } from '../lib/examdate.js';
 import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
 import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
@@ -89,7 +90,8 @@ export function renderHome(app) {
     });
     root.appendChild(h('div', { class: 'card' }, h('p', { text: 'ホーム画面から開けるアプリとして入れられます。' }), btn));
   }
-  const left = daysUntil(config.examDate, now);
+  const exam = examStatus(state.settings, now);
+  const left = exam.days;
   const lv = levelFromXp(state.xp);
   const streak = currentStreak(state.streak, dateKey(now));
   const due = dueQuestions(state, data.questionById, now).length;
@@ -99,8 +101,13 @@ export function renderHome(app) {
     left === null ? null
       : left > 0 ? h('p', { class: 'countdown' }, '受験まで あと ', h('strong', { class: 'days', text: String(left) }), ' 日')
       : left === 0 ? h('p', { class: 'countdown' }, h('strong', { text: '今日が受験日です。' }))
-      : h('p', { class: 'countdown' }, '受験日（' + config.examDate + '）は過ぎました'),
-    config.examDate ? h('p', { class: 'small', text: '受験日 ' + config.examDate }) : null));
+      : h('p', { class: 'countdown' }, '受験日（' + formatExamDate(exam.date) + '）は過ぎました'),
+    exam.date ? h('p', { class: 'small', text: '受験日 ' + formatExamDate(exam.date) }) : null));
+  if (exam.kind === 'past') {
+    root.appendChild(h('div', { class: 'card exam-past', 'data-exam-past': '1' },
+      h('p', {}, h('strong', { text: '受験日を過ぎました。' }), '次の受験日を設定しますか？'),
+      h('button', { class: 'btn primary', type: 'button', onClick: () => app.go('#/settings') }, '受験日を設定する')));
+  }
 
   const prog = h('div', { class: 'card status' },
     h('div', { class: 'lv-row' },

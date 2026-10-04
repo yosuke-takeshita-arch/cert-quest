@@ -5,13 +5,16 @@ import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
 import { dateKey } from '../lib/srs.js';
 import { buildSoundCard } from './sound-settings.js';
+import { buildExamDateCard } from './examdate.js';
+import { buildBackupCard } from './backup.js';
 
 export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
   const nav = h('div', { class: 'card menu' },
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/badges') }, h('strong', { text: 'バッジ' }), h('span', { class: 'small muted', text: Object.keys(app.state.badges).length + ' 個' })),
-    h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/settings') }, h('strong', { text: '設定' })));
+    h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/settings') }, h('strong', { text: '設定' })),
+    h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/about') }, h('strong', { text: 'このアプリについて' })));
   root.appendChild(nav);
   const links = h('div', { class: 'card' }, h('h2', { text: '公式の情報（外部サイト）' }));
   const list = app.config.officialLinks && app.config.officialLinks.length ? app.config.officialLinks : app.config.officialUrl ? [{ title: '公式の例題・試験情報', url: app.config.officialUrl }] : [];
@@ -62,6 +65,7 @@ export function renderSettings(app) {
     });
     return h('label', { class: 'row-btn', for: id }, h('span', { class: 'row-main' }, h('strong', { text: label }), h('span', { class: 'small muted', text: hint })), input);
   };
+  root.appendChild(buildExamDateCard(app));
   // 音のカード（効果音・BGM のオン／オフと音量・曲・試しに聴く）は、タイトル画面の歯車のポップアップと同じ部品
   const sound = buildSoundCard(s, () => app.commit());
   root.appendChild(sound.el);
@@ -94,6 +98,7 @@ export function renderSettings(app) {
   } }, '学習記録をすべて消す');
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: '学習記録' }),
     h('p', { class: 'small muted', text: 'この端末のブラウザの中だけに保存されています。サーバーには送っていません。' + (app.storage.persistent ? '' : '（いまは保存できない状態です）') }), reset));
+  root.appendChild(buildBackupCard(app));
   const d = app.data;
   const info = h('div', { class: 'card' }, h('h2', { text: 'データの状態' }),
     h('p', { class: 'small', text: '問題 ' + d.questions.length + '問 / 用語カード ' + d.concepts.length + '枚 / ステージ ' + d.tree.stages.length }));

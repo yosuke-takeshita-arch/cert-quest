@@ -17,6 +17,9 @@ import { renderMore, renderBadges, renderSettings } from './views/more.js';
 import { initAudio, setBgmScene, syncBgm, unlockAudio, playSfx } from './audio.js';
 import { createTitleScreen } from './views/title.js';
 import { createLoadTracker } from './lib/loadprogress.js';
+import { needsExamDateAsk, examStatus } from './lib/examdate.js';
+import { createExamDateAsk } from './views/examdate.js';
+import { renderAbout } from './views/about.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -84,7 +87,7 @@ export async function start() {
   const titleState = storage.load();
   let live = null;
   initAudio(() => (live ? live.state.settings : titleState.settings));
-  const title = createTitleScreen({ config, sound: { settings: titleState.settings, commit: () => storage.save(titleState) } });
+  const title = createTitleScreen({ config, examDate: examStatus(titleState.settings).date, sound: { settings: titleState.settings, commit: () => storage.save(titleState) } });
   clear(root);
   root.appendChild(title.el);
   const dataBase = new URL(sample ? './data/_sample/' : './data/', location.href).href;
@@ -101,6 +104,17 @@ export async function start() {
     unlockAudio(titleState.settings);
     playSfx(titleState.settings, 'start');
   });
+
+  // 受験日がまだ決まっていない（初回・古い記録）なら、ここで1回だけ聞く
+  if (needsExamDateAsk(titleState.settings)) {
+    const ask = createExamDateAsk({ config });
+    clear(root);
+    root.appendChild(ask.el);
+    const answer = await ask.done;
+    titleState.settings.examDate = answer.examDate;
+    titleState.settings.examAsked = true;
+    storage.save(titleState);
+  }
 
   const defs = badgeDefs(data.tree, config);
   const app = {
@@ -145,6 +159,18 @@ export async function start() {
       app.commit();
       return r;
     },
+    /** 書き出したファイルの記録に置き換える（読み込み）。state は parseBackup が正規化したもの。 */
+    replaceState(state) {
+      storage.save(state);
+      app.state = storage.load();
+      app.applyScheme();
+      app.pending = [];
+      app.lastLevel = levelFromXp(app.state.xp).level;
+      app.session = null;
+      syncBgm();
+      toast('学習記録を読み込みました');
+      app.go('#/home');
+    },
     resetAll() {
       storage.clear();
       app.state = defaultState();
@@ -185,6 +211,7 @@ export async function start() {
     ['more', 'more', () => renderMore(app)],
     ['badges', 'more', () => renderBadges(app)],
     ['settings', 'more', () => renderSettings(app)],
+    ['about', 'more', () => renderAbout(app)],
     ['exam', 'more', () => renderExam(app), true],
     ['play', 'home', () => renderPlay(app), true],
   ];

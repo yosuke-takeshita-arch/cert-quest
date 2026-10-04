@@ -1,5 +1,5 @@
 // タイトル画面（ブラウザ専用）。アプリを開いて最初に出す。背景・アプリ名・受験日までの日数・読み込みのゲージ、
-// 読み込みが終わったら「タップしてはじめる」。資格固有のことは config.json（name / examDate / titleImage）からだけ読む。
+// 読み込みが終わったら「タップしてはじめる」。資格固有のことは config.json（name / titleImage）からだけ読む。受験日は利用者の設定（examDate 引数）。
 import { h, icon } from '../ui.js';
 import { daysUntil } from '../lib/scoring.js';
 import { unlockAudio } from '../audio.js';
@@ -14,9 +14,10 @@ import { buildSoundCard } from './sound-settings.js';
  *   fail(message, detail) … 読み込みに失敗したとき。ゲージ・ボタンの上に、原因と「再読み込み」を出す
  */
 // sound … { settings, commit }。あれば右上に歯車を出し、押すと音の設定のポップアップを開く（変えたら commit() で保存する）
-export function createTitleScreen({ config, now = new Date(), sound = null }) {
+export function createTitleScreen({ config, examDate = null, now = new Date(), sound = null }) {
   const name = config.name || '';
-  const left = daysUntil(config.examDate, now);
+  // 受験日は利用者が決めた日（決めていなければ null＝日数を出さない）
+  const left = daysUntil(examDate, now);
   const countdown = left == null || left < 0 ? null : left === 0 ? '受験日は今日です' : '受験日まで あと ' + left + ' 日';
 
   const bg = typeof config.titleImage === 'string' && config.titleImage
@@ -30,7 +31,7 @@ export function createTitleScreen({ config, now = new Date(), sound = null }) {
   const status = h('p', { class: 'title-status', 'aria-live': 'polite', text: '読み込み中…' });
   const loading = h('div', { class: 'title-loading' }, gauge, status);
   const startBtn = h('button', { class: 'title-start hidden', type: 'button' }, 'タップしてはじめる');
-  const bottom = h('div', { class: 'title-bottom' }, loading, startBtn);
+  const bottom = h('div', { class: 'title-bottom' }, loading, startBtn, h('p', { class: 'title-unofficial', text: '非公式アプリ' }));
 
   const el = h('div', { class: 'title-screen', 'data-title': '1' },
     bg,

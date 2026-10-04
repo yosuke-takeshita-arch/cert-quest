@@ -2,6 +2,7 @@
 import { applyAnswer, dayNumber, dateKey, dueIds } from './srs.js';
 import { DEFAULT_DAILY_GOAL, normalizeDailyGoal } from './daily.js';
 import { DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, normalizeSoundSettings } from './sound.js';
+import { normalizeExamSettings } from './examdate.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -16,7 +17,7 @@ export function defaultState() {
     badges: {},
     exams: [],
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light' },
+    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', examDate: null, examAsked: false },
     goalAwarded: null,
   };
 }
@@ -36,6 +37,7 @@ export function mergeState(saved) {
   o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
   normalizeSoundSettings(o.settings);
+  normalizeExamSettings(o.settings);
   if (typeof o.goalAwarded !== 'string') o.goalAwarded = null;
   return o;
 }

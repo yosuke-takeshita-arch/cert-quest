@@ -8,6 +8,8 @@
   "secondsPerQuestion": 40,
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
   "challenge": { "questions": 10 },
+  "reportUrl": "https://github.com/yosuke-takeshita-arch/cert-quest/issues/new",
+  "about": { "examName": "G検定", "organizer": "一般社団法人日本ディープラーニング協会（JDLA）", "organizerUrl": "https://www.jdla.org/" },
   "officialUrl": "https://www.jdla.org/certificate/general/",
   "officialLinks": [
     { "title": "G検定 公式ページ（試験情報）", "url": "https://www.jdla.org/certificate/general/" },

@@ -3,6 +3,7 @@ import { h } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { refChip, sourcesList } from './cards.js';
 import { figureBlock } from './figure.js';
+import { reportButton } from './report.js';
 
 export const CHOICE_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
@@ -70,5 +71,7 @@ export function explanation(app, sq, chosen, open) {
   }
   const src = sourcesList(q.sources);
   if (src) box.appendChild(src);
+  const rep = reportButton(app, { kind: 'question', id: q.id, text: q.stem });
+  if (rep) box.appendChild(rep);
   return box;
 }

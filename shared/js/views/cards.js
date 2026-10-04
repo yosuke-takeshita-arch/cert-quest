@@ -2,6 +2,7 @@
 import { h, clear, externalLink } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { figureBlock } from './figure.js';
+import { reportButton } from './report.js';
 
 const RELATION_LABEL = {
   cause: '原因', causes: '原因', effect: '結果', result: '結果', leads_to: '次につながる', 'leads-to': '次につながる',
@@ -79,6 +80,8 @@ export function cardBody(app, c, open) {
   if (qs.length) wrap.appendChild(h('p', { class: 'small muted', text: 'このカードに関する問題: ' + qs.length + '問' }));
   const src = sourcesList(c.sources);
   if (src) wrap.appendChild(src);
+  const rep = reportButton(app, { kind: 'card', id: c.id, text: c.title + (c.oneLine ? '：' + c.oneLine : '') });
+  if (rep) wrap.appendChild(rep);
   return wrap;
 }
 

@@ -432,3 +432,23 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .fig .fok { fill: var(--ok-bg); }
 .fig .fng { fill: var(--ng-bg); }
 .fig .fwn { fill: var(--warn-bg); }
+/* ---- 受験日・このアプリについて・引き継ぎ・誤りの報告 ---- */
+.ng-text { color: var(--ng); }
+.field-label { display: block; font-weight: 700; margin: 4px 0 8px; }
+.date-input { font: inherit; width: 100%; min-height: 52px; padding: 8px 12px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); color-scheme: light dark; margin-bottom: 12px; }
+.ask-screen { max-width: 560px; margin: 0 auto; padding: calc(24px + env(safe-area-inset-top, 0px)) 16px 32px; }
+.ask-screen .btn.big { margin-bottom: 12px; }
+.title-unofficial { margin: 12px 0 0; text-align: center; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.92); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); }
+.exam-past { background: var(--warn-bg); color: var(--warn); border-color: var(--warn); }
+.exam-past .btn { margin-top: 4px; }
+.report { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 8px; }
+.report .btn { min-height: 48px; text-decoration: none; display: inline-flex; align-items: center; }
+.report p { margin: 4px 0 0; }
+.credit-list { padding-left: 20px; margin: 8px 0 0; }
+.credit-list li { margin-bottom: 8px; }
+.about .card p { margin: 8px 0; }
+[data-card=backup] .btn-row { grid-template-columns: 1fr; }
+.about-provider { display: flex; align-items: center; gap: 16px; }
+.logo-plate { background: #ffffff; border-radius: 12px; padding: 8px 12px; flex: none; line-height: 0; }
+.provider-logo { width: 160px; height: auto; max-width: 100%; display: block; }
+.provider-name { margin: 0 !important; font-weight: 700; }

@@ -8,6 +8,8 @@
   "secondsPerQuestion": 37,
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
   "challenge": { "questions": 10 },
+  "reportUrl": "https://github.com/yosuke-takeshita-arch/cert-quest/issues/new",
+  "about": { "examName": "DXビジネス検定", "organizer": "株式会社ネクストエデュケーションシンク（NET検定シリーズ）", "organizerUrl": "https://www.nextet.net/netkentei/" },
   "officialUrl": "https://www.nextet.net/netkentei/dx-biz/",
   "officialLinks": [
     { "title": "DXビジネス検定 公式ページ（試験情報・シラバス）", "url": "https://www.nextet.net/netkentei/dx-biz/" },

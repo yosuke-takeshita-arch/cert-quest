@@ -15,6 +15,7 @@ const FIGURE_ID = /^fig-[a-z0-9]+(?:-[a-z0-9]+)*$/; // shared/js/lib/figures.js 
 // shared/ の中身（sw.js から見た相対パス）。ファイルを足したらここにも足す。
 const SHARED = [
   '../shared/css/app.css',
+  '../shared/images/aisunia-logo.webp',
   '../shared/js/app.js',
   '../shared/js/ui.js',
   '../shared/js/audio.js',
@@ -36,9 +37,16 @@ const SHARED = [
   '../shared/js/views/more.js',
   '../shared/js/views/sound-settings.js',
   '../shared/js/views/title.js',
+  '../shared/js/views/examdate.js',
+  '../shared/js/views/about.js',
+  '../shared/js/views/backup.js',
+  '../shared/js/views/report.js',
   '../shared/js/views/figure.js',
   '../shared/js/lib/figures.js',
   '../shared/js/lib/loadprogress.js',
+  '../shared/js/lib/examdate.js',
+  '../shared/js/lib/backup.js',
+  '../shared/js/lib/report.js',
 ];
 
 // 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。
