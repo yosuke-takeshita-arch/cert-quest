@@ -176,5 +176,9 @@ test('サービスワーカー: 図を表示するファイルをキャッシュ
   }
   assert.ok(sw.includes('data/figures/'), '図を取る処理が無い');
   assert.equal(/const FIGURE_ID = (\/.*\/);/.exec(sw)[1], FIGURE_ID_RE.toString());
-  for (const app of APPS) assert.match(readFileSync(join(root, app, 'sw.js'), 'utf8'), /version: '13'/);
+  // 図を配った版（13）以上であること。決まった数で比べると、版を上げるたびに落ちる
+  for (const app of APPS) {
+    const v = Number(/version: '(\d+)'/.exec(readFileSync(join(root, app, 'sw.js'), 'utf8'))[1]);
+    assert.ok(v >= 13, app + ' の version が ' + v);
+  }
 });
