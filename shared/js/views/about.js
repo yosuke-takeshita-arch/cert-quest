@@ -5,7 +5,7 @@ import { reportButton } from './report.js';
 
 /** 音の素材の作者（docs/sources/audio-licenses.md と同じ。CC0 で表示の義務は無いが、作者名を出す）。 */
 export const AUDIO_CREDITS = [
-  { what: '効果音（正解・不正解・ジングルなど）', who: 'Kenney（kenney.nl）、flush・congusbongus・0new4y（OpenGameArt）' },
+  { what: '効果音（正解・不正解・ジングルなど）', who: 'Kenney（kenney.nl）、flush・congusbongus・0new4y・Aeva（OpenGameArt）' },
   { what: 'BGM', who: 'Joth、Kistol、wipics、cynicmusic、omfgdude（いずれも OpenGameArt）' },
 ];
 

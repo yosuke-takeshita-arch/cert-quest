@@ -61,7 +61,7 @@ export function bgmGain(volume, trim = 1) {
 // 効果音。キー → ファイル（shared/audio/sfx/ の中）。
 //  ok=正解 ng=不正解 level=レベルアップ badge=バッジ stars=星 goal=1日の目標 start=タイトル画面の「タップしてはじめる」
 export const SFX_FILES = {
-  ok: 'confirmation_001.ogg',
+  ok: 'ok_gold-coin.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Gold Coin」Aeva、CC0）。前の confirmation_001（Kenney）は単音で物足りなかった
   ng: 'ng_lose-trumpet.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Game Over Trumpet SFX」0new4y、CC0）。前の error_003（Kenney）は単音で物足りなかった
   level: 'jingles_STEEL07.ogg',
   badge: 'badge_new-thing-get.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「New Thing Get」congusbongus、CC0）。前の jingles_SAX07 は単音で物足りなかった

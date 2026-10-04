@@ -7,11 +7,11 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 
 ## 効果音（`shared/audio/sfx/`）
 
-配布元はどちらも Kenney（Kenney Vleugels, <https://kenney.nl>）。元のファイル名のまま置いている。
+配布元は Kenney（Kenney Vleugels, <https://kenney.nl>）と OpenGameArt（各行の配布ページ）。Kenney の素材は元のファイル名のまま置き、OpenGameArt の素材は用途が分かる名前に付け替えた（元のファイル名は各行に書いた）。
 
 | ファイル | 使う場面 | 作者 | 配布ページ | ライセンス | 確かめた箇所 |
 |---|---|---|---|---|---|
-| `confirmation_001.ogg` | 正解 | Kenney | <https://kenney.nl/assets/interface-sounds>（Interface Sounds 1.0） | CC0 | 下の A |
+| `ok_gold-coin.ogg` | 正解（約1.0秒・14,221 バイト。元のファイル名 `coin_0.ogg`） | Aeva | https://opengameart.org/content/gold-coin-6 | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0（creativecommons.org/publicdomain/zero/1.0/ へのリンク）、CC-BY の記載なし。Author 欄は Aeva。先生が候補を聞き比べて選んだ。前の `confirmation_001.ogg`（Kenney Interface Sounds、下の A）は単音で物足りなかったため差し替え |
 | `ng_lose-trumpet.ogg` | 不正解（約1.1秒・18,625 バイト。元のファイル名 `losetrumpet.ogg`） | 0new4y | https://opengameart.org/content/game-over-trumpet-sfx | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0（creativecommons.org/publicdomain/zero/1.0/ へのリンク）、CC-BY の記載なし。Author 欄は 0new4y。先生が候補を聞き比べて選んだ。前の `error_003.ogg`（Kenney。その前は bong_001）は単音で物足りなかったため差し替え |
 | `jingles_STEEL07.ogg` | レベルアップ | Kenney | <https://kenney.nl/assets/music-jingles>（Music Jingles） | CC0 | 下の B |
 | `badge_new-thing-get.ogg` | バッジ獲得（約5.3秒・173,459 バイト。元のファイル名 `newthingget.ogg`） | congusbongus | https://opengameart.org/content/new-thing-get | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0、creativecommons.org/publicdomain/zero/1.0/ へのリンクあり、CC-BY の記載なし。Author 欄は congusbongus。先生が候補を聞き比べて選んだ。前の `jingles_SAX07.ogg`（Kenney）は単音で物足りなかったため差し替え |

@@ -63,7 +63,7 @@ const SHARED = [
 
 // 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。
 const SFX = [
-  'confirmation_001.ogg',
+  'ok_gold-coin.ogg',
   'ng_lose-trumpet.ogg',
   'jingles_STEEL07.ogg',
   'badge_new-thing-get.ogg',
