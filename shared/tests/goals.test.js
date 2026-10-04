@@ -203,9 +203,9 @@ test('次の目標: 件数の上限（0・1・多すぎ）と、同じ割合な�
   assert.equal(all[0].id, 'first-answer', '全部0なら定義の先頭から');
 });
 
-test('次の目標: 星3になっていないステージ（挑戦済み）が候補に入る。未挑戦・星3・問題なしは入らない', () => {
+test('次の目標: 星3になっていないステージ（挑戦済み）が候補に入る。未挑戦・星3・問題なしは入らない（章の制覇バッジが無いときの話）', () => {
   const t = tree();
-  const defs = badgeDefs(t, {});
+  const defs = badgeDefs(t, {}).filter((d) => !d.id.startsWith('chapter:'));
   const s = defaultState();
   const k = '2026-10-03';
   s.stages.A1 = { stars: 2, best: 0.85, runs: 3 };

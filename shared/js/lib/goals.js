@@ -14,6 +14,7 @@ export const MAX_STAGE_STARS = 3;
  */
 export function nextGoals(tree, defs, state, todayKey, limit = 3) {
   const out = [];
+  const chapterIds = new Set(defs.filter((d) => typeof d.id === 'string' && d.id.startsWith('chapter:')).map((d) => d.id));
   for (const d of defs) {
     if (state.badges[d.id]) continue;
     const p = badgeProgress(d, state, todayKey);
@@ -34,6 +35,7 @@ export function nextGoals(tree, defs, state, todayKey, limit = 3) {
   for (const st of (tree && tree.stages) || []) {
     const rec = state.stages[st.key];
     if (!st.questions.length || !rec || !(rec.runs > 0) || rec.stars >= MAX_STAGE_STARS) continue;
+    if (chapterIds.has('chapter:' + st.key) && !state.badges['chapter:' + st.key]) continue; // 同じ「星3まで」は、章の制覇バッジの目標（絵つき）で出すので重ねない
     const remaining = MAX_STAGE_STARS - rec.stars;
     out.push({
       id: 'stars:' + st.key,

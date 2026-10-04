@@ -6,6 +6,8 @@ import { secondsPerQuestion } from './quiz.js';
 
 // 絵のあるバッジ。共通の12個は shared/images/badges/<id>.webp（id と同じ名前）。
 export const COMMON_BADGE_ART = Object.freeze(['first-answer', 'correct-10', 'correct-100', 'streak-3', 'streak-7', 'streak-30', 'level-5', 'level-10', 'challenge-8', 'exam-first', 'exam-70', 'exam-90']);
+// 章の制覇バッジを取る星の数（ステージの最大＝完全クリア）。
+export const CHAPTER_STARS = 3;
 const SAFE_NAME = /^[A-Za-z0-9_-]+$/;
 
 /**
@@ -80,6 +82,22 @@ export function badgeDefs(tree, config) {
         return { cur: stages.filter(cleared).length, max: stages.length, unit: 'ステージ', action: rest ? { kind: 'stage', key: rest.key } : { kind: 'study' } };
       },
     });
+  }
+  // 章（中項目＝ステージ）の制覇: その章のステージで星3（完全クリア）。大項目の制覇（星1以上で全部）とは条件が違う。
+  // 並びは、共通 → 大項目 → 章。id は 'chapter:' + ステージの key。絵の名前は 'major-<章の id>'。
+  for (const major of (tree && tree.roots) || []) {
+    for (const st of major.children) {
+      if (!st.questions.length) continue;
+      const stars = (s) => (s.stages[st.key] || { stars: 0 }).stars;
+      defs.push({
+        id: 'chapter:' + st.key,
+        art: majorArtName(st),
+        name: st.name + ' 制覇',
+        desc: '「' + st.name + '」のステージで星' + CHAPTER_STARS + 'を取る',
+        test: (s) => stars(s) >= CHAPTER_STARS,
+        progress: (s) => ({ cur: stars(s), max: CHAPTER_STARS, unit: '星', action: { kind: 'stage', key: st.key } }),
+      });
+    }
   }
   return defs;
 }
