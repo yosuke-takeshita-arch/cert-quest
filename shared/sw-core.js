@@ -33,6 +33,7 @@ const SHARED = [
   '../shared/js/views/exam.js',
   '../shared/js/views/explain.js',
   '../shared/js/views/more.js',
+  '../shared/js/views/sound-settings.js',
   '../shared/js/views/title.js',
   '../shared/js/lib/loadprogress.js',
 ];
@@ -45,6 +46,7 @@ const SFX = [
   'jingles_SAX07.ogg',
   'jingles_PIZZI07.ogg',
   'jingles_NES00.ogg',
+  'jingles_NES05.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
 self.addEventListener('install', (event) => {

@@ -14,7 +14,7 @@ import { renderCardList, renderCard } from './views/cards.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
-import { initAudio, setBgmScene, syncBgm, unlockAudio } from './audio.js';
+import { initAudio, setBgmScene, syncBgm, unlockAudio, playSfx } from './audio.js';
 import { createTitleScreen } from './views/title.js';
 import { createLoadTracker } from './lib/loadprogress.js';
 
@@ -79,7 +79,12 @@ export async function start() {
 
   // タイトル画面。データを読む間、ゲージを伸ばす。読み終わっても、ボタンを押すまでここで待つ
   // （そのボタンが「最初の操作」。押した瞬間に音を使える状態にする）。URL がホーム以外でも同じで、押したあとにその画面へ進む
-  const title = createTitleScreen({ config });
+  // タイトル画面の歯車（音の設定）が使う設定。ここで変えたら保存し、ホームに進むとき読み直す。
+  // 音の部品（initAudio）は、歯車の試し聴きのため、タイトル画面を出す前に初期化する（ホームに進んだら app.state の設定に切り替わる）
+  const titleState = storage.load();
+  let live = null;
+  initAudio(() => (live ? live.state.settings : titleState.settings));
+  const title = createTitleScreen({ config, sound: { settings: titleState.settings, commit: () => storage.save(titleState) } });
   clear(root);
   root.appendChild(title.el);
   const dataBase = new URL(sample ? './data/_sample/' : './data/', location.href).href;
@@ -91,10 +96,11 @@ export async function start() {
     return title.fail('データの読み込みで予期しない問題が起きました。', String(e.message || e));
   }
   tracker.complete();
-  await new Promise((resolve) => title.ready(() => {
-    unlockAudio(storage.load().settings);
-    resolve();
-  }));
+  // 押した瞬間に音を使える状態にし、開始のジングルを鳴らす（効果音がオンの人だけ）。演出が済んだらホームへ
+  await title.ready(() => {
+    unlockAudio(titleState.settings);
+    playSfx(titleState.settings, 'start');
+  });
 
   const defs = badgeDefs(data.tree, config);
   const app = {
@@ -152,8 +158,8 @@ export async function start() {
   };
   // 動作確認用に外から触れるようにする（テストが状態を調べる）
   window.__app = app;
-  // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）だけで流す。ホームなどは無音
-  initAudio(() => app.state.settings);
+  // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）だけで流す。ホームなどは無音（initAudio はタイトル画面の前に済んでいる）
+  live = app;
 
   const shell = h('div', { class: 'shell' });
   const main = h('main', { id: 'main', class: 'main', tabindex: '-1' });

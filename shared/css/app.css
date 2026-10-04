@@ -361,6 +361,30 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .title-error { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, 0.55); text-shadow: none; }
 .title-error .card { max-width: 480px; width: 100%; color: var(--text); }
 @keyframes title-pulse { 0%, 100% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 224, 130, 0.7); } 50% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(255, 224, 130, 0); } }
+/* 右上の歯車（音の設定）。読み込み中でも押せる。押せる大きさは48px */
+.title-gear {
+  appearance: none; position: absolute; z-index: 3; top: calc(8px + env(safe-area-inset-top, 0px)); right: 8px; width: 48px; height: 48px; padding: 0;
+  display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.5); color: #fff; text-shadow: none; cursor: pointer;
+}
+.title-gear .icon { width: 26px; height: 26px; }
+.title-gear:active { transform: scale(0.94); }
+.title-gear:focus-visible { outline: 3px solid #ffe082; outline-offset: 3px; }
+/* 音の設定のポップアップ（タイトル画面の上に重ねる。お祝いの画面と同じ作り） */
+.title-pop-back { position: fixed; inset: 0; z-index: 70; background: rgba(8, 12, 24, 0.72); display: flex; align-items: center; justify-content: center; padding: 16px; overflow: auto; animation: fade 0.2s; }
+.title-pop { position: relative; width: 100%; max-width: 480px; max-height: 100%; overflow: auto; background: var(--surface); color: var(--text); border-radius: 20px; padding: 16px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); animation: pop 0.3s; }
+.title-pop-title { font-size: 1.25rem; margin: 8px 56px 8px 8px; }
+.title-pop-close { position: absolute; top: 4px; right: 4px; }
+.title-pop .card { box-shadow: none; border: 0; background: transparent; padding: 0; margin: 0; }
+/* 「タップしてはじめる」を押したときの演出（約1秒）。ボタンが光り、輪がはじけ、画面が白く明るく抜ける。白が最も強い約0.6秒でホームに切り替わる（title.js の SWITCH_MS） */
+.title-screen.starting .title-top { animation: title-lift 0.6s ease-in both; }
+.title-start.go { opacity: 1; animation: title-go 0.55s ease-out both; }
+.title-ring { position: absolute; left: 24px; right: 24px; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); height: 64px; border-radius: 999px; border: 4px solid #ffe082; pointer-events: none; animation: title-ring 0.6s ease-out both; }
+.title-flash { position: fixed; inset: 0; z-index: 90; background: #fff; opacity: 0; pointer-events: none; animation: title-flash 1s ease-in-out both; }
+@keyframes title-go { 0% { transform: scale(1); } 40% { transform: scale(1.07); box-shadow: 0 0 36px 14px rgba(255, 224, 130, 0.95); } 100% { transform: scale(1.12); box-shadow: 0 0 70px 36px rgba(255, 255, 255, 0.9); } }
+@keyframes title-ring { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.18, 2.4); opacity: 0; } }
+@keyframes title-lift { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-12px) scale(1.06); } }
+@keyframes title-flash { 0% { opacity: 0; } 55% { opacity: 1; } 100% { opacity: 0; } }
 /* 動きを減らす設定でも、ゲージの伸びだけは残す（進み具合を伝える動きなので）。ほかのアニメーションは上の規則で止まる */
 @media (prefers-reduced-motion: reduce) {
   .title-gauge-fill { transition: width 0.25s ease-out !important; }

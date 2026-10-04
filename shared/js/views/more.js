@@ -4,8 +4,7 @@ import { badgeDefs, badgeProgress } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
 import { dateKey } from '../lib/srs.js';
-import { normalizeVolume, normalizeBgmTrack, BGM_AUTO, BGM_TRACKS } from '../lib/sound.js';
-import { playSfx, preloadSfx, syncBgm, applyVolumes, setBgmPreview } from '../audio.js';
+import { buildSoundCard } from './sound-settings.js';
 
 export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
@@ -63,69 +62,10 @@ export function renderSettings(app) {
     });
     return h('label', { class: 'row-btn', for: id }, h('span', { class: 'row-main' }, h('strong', { text: label }), h('span', { class: 'small muted', text: hint })), input);
   };
-  // 音量のスライダー（0〜100）。切っている間は動かせない。動かすとその場で反映する
-  const sliders = [];
-  const slider = (label, key, onInput) => {
-    const id = 'set-' + key;
-    const val = h('span', { class: 'small muted', id: id + '-val', text: 'いま ' + s[key] });
-    const input = h('input', { type: 'range', id, class: 'slider', min: '0', max: '100', step: '5' });
-    input.value = String(s[key]);
-    input.addEventListener('input', () => {
-      s[key] = normalizeVolume(input.value, s[key]);
-      val.textContent = 'いま ' + s[key];
-      onInput();
-    });
-    input.addEventListener('change', () => app.commit());
-    sliders.push({ input, key: key === 'sfxVolume' ? 'sound' : 'bgm' });
-    return h('label', { class: 'row-btn', for: id }, h('span', { class: 'row-main' }, h('strong', { text: label }), val), input);
-  };
-  const syncSliders = () => sliders.forEach((x) => { x.input.disabled = !s[x.key]; });
-  let lastTry = 0;
-  const tryOk = () => {
-    const now = Date.now();
-    if (now - lastTry < 250) return;
-    lastTry = now;
-    playSfx(s, 'ok');
-  };
-  // BGM の曲の選択。おまかせ（全曲を順番に）か1曲（その曲をくり返す）。選んだらすぐ保存し、試聴中ならその曲に切り替える
-  const trackSel = h('select', { id: 'set-bgmTrack', class: 'select select-full' }, [
-    h('option', { value: BGM_AUTO, text: 'おまかせ（全曲を順番に）' }),
-    ...BGM_TRACKS.map((t) => h('option', { value: t.id, text: t.name + '（' + t.mood + '）' })),
-  ]);
-  s.bgmTrack = normalizeBgmTrack(s.bgmTrack);
-  trackSel.value = s.bgmTrack;
-  trackSel.addEventListener('change', () => {
-    s.bgmTrack = normalizeBgmTrack(trackSel.value);
-    app.commit();
-    syncBgm();
-  });
-  sliders.push({ input: trackSel, key: 'bgm' });
-  const previewBtn = h('button', { class: 'btn', id: 'bgm-preview', type: 'button' }, 'BGM を試しに聴く');
-  let previewing = false;
-  const setPreview = (on) => {
-    previewing = on && !!s.bgm;
-    setBgmPreview(previewing);
-    previewBtn.textContent = previewing ? '試聴をとめる' : 'BGM を試しに聴く';
-    previewBtn.disabled = !s.bgm;
-  };
-  previewBtn.addEventListener('click', () => setPreview(!previewing));
+  // 音のカード（効果音・BGM のオン／オフと音量・曲・試しに聴く）は、タイトル画面の歯車のポップアップと同じ部品
+  const sound = buildSoundCard(s, () => app.commit());
+  root.appendChild(sound.el);
   const vib = 'vibrate' in navigator;
-  root.appendChild(h('div', { class: 'card' }, h('h2', { text: '音' }),
-    toggle('効果音', '正解・不正解・お祝いで鳴らします（初期はオフ）', 'sound', (on) => {
-      if (on) { preloadSfx(); tryOk(); }
-      syncSliders();
-    }),
-    slider('効果音の音量', 'sfxVolume', tryOk),
-    toggle('BGM', '問題を解いているあいだ、静かな曲を流します（初期はオフ。ホームでは流れません）', 'bgm', () => {
-      syncBgm();
-      syncSliders();
-      setPreview(false);
-    }),
-    slider('BGM の音量', 'bgmVolume', () => applyVolumes()),
-    h('label', { class: 'row-btn row-stack', for: 'set-bgmTrack' }, h('span', { class: 'row-main' }, h('strong', { text: 'BGM の曲' }), h('span', { class: 'small muted', text: 'おまかせは全曲を順番に流します。曲を選ぶと、その曲をくり返します' })), trackSel),
-    h('div', { class: 'row-btn plain' }, h('span', { class: 'row-main' }, h('span', { class: 'small muted', text: 'BGM をオンにしてから、ここで音の大きさを確かめられます' })), previewBtn)));
-  syncSliders();
-  setPreview(false);
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: '振動' }),
     vib ? toggle('振動', '正解・不正解で短く震えます', 'vibrate') : h('p', { class: 'small muted', text: 'この端末は振動に対応していません。' })));
   const THEME_LABEL = { light: '明るい', dark: '暗い', auto: 'スマホに合わせる' };
@@ -166,5 +106,5 @@ export function renderSettings(app) {
   }
   info.appendChild(h('p', { class: 'small muted', text: 'アプリ: ' + (app.config.name || '') + (app.sample ? '（サンプルデータ表示中）' : '') }));
   root.appendChild(info);
-  return { el: root, cleanup: () => setBgmPreview(false) }; // 画面を出るとき、試聴のBGMを止める
+  return { el: root, cleanup: sound.dispose }; // 画面を出るとき、試聴のBGMを止める
 }

@@ -217,3 +217,31 @@ test('各アプリの sw.js の version は 9 以上（新しい音のファイ�
     assert.ok(v >= 9, app + ' の version が ' + v);
   }
 });
+
+test('開始のジングル: 「タップしてはじめる」用の音が、ほかの効果音と別のファイルで決まっている', () => {
+  assert.ok(SFX_FILES.start);
+  const others = Object.entries(SFX_FILES).filter(([k]) => k !== 'start').map(([, v]) => v);
+  assert.ok(!others.includes(SFX_FILES.start), '開始のジングルが、ほかの効果音と同じファイル');
+  assert.match(SFX_FILES.start, /^jingles_[A-Z]+\d+\.ogg$/); // Kenney の Music Jingles（CC0）
+});
+
+test('効果音の一覧: sw-core.js のインストール時に取る一覧に、SFX_FILES の全ファイルが入っている', () => {
+  const sw = readFileSync(join(shared, 'sw-core.js'), 'utf8');
+  for (const f of Object.values(SFX_FILES)) assert.ok(sw.includes("'" + f + "'"), f + ' が sw-core.js の SFX に無い');
+  assert.ok(sw.includes("'../shared/js/views/sound-settings.js'"), 'sound-settings.js が sw-core.js の SHARED に無い');
+});
+
+test('音のカード: 設定画面とタイトル画面のポップアップが、同じ部品（sound-settings.js）を使う。同じ作りを2つ書かない', () => {
+  const read = (p) => readFileSync(join(shared, 'js', p), 'utf8');
+  assert.ok(existsSync(join(shared, 'js', 'views', 'sound-settings.js')));
+  assert.match(read('views/sound-settings.js'), /export function buildSoundCard\(/);
+  assert.match(read('views/more.js'), /buildSoundCard\(/);
+  assert.match(read('views/title.js'), /buildSoundCard\(/);
+  // 作りの本体（曲の選択など）は部品の中だけにある
+  assert.ok(read('views/sound-settings.js').includes("'set-bgmTrack'"));
+  assert.ok(!read('views/more.js').includes("'set-bgmTrack'"));
+  assert.ok(!read('views/title.js').includes("'set-bgmTrack'"));
+  // タイトル画面は歯車でも音を使える状態にし、ホームに進むときは開始のジングルを鳴らす
+  assert.match(read('views/title.js'), /unlockAudio\(/);
+  assert.match(read('app.js'), /playSfx\([^)]*'start'\)/);
+});

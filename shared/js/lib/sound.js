@@ -59,7 +59,7 @@ export function bgmGain(volume, trim = 1) {
 }
 
 // 効果音。キー → ファイル（shared/audio/sfx/ の中）。
-//  ok=正解 ng=不正解 level=レベルアップ badge=バッジ stars=星 goal=1日の目標
+//  ok=正解 ng=不正解 level=レベルアップ badge=バッジ stars=星 goal=1日の目標 start=タイトル画面の「タップしてはじめる」
 export const SFX_FILES = {
   ok: 'confirmation_001.ogg',
   ng: 'bong_001.ogg',
@@ -67,6 +67,7 @@ export const SFX_FILES = {
   badge: 'jingles_SAX07.ogg',
   stars: 'jingles_PIZZI07.ogg',
   goal: 'jingles_NES00.ogg',
+  start: 'jingles_NES05.ogg',
 };
 
 // BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。

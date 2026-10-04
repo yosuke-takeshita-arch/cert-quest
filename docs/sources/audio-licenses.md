@@ -17,9 +17,10 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 | `jingles_SAX07.ogg` | バッジ獲得 | Kenney | 同上 | CC0 | 下の B |
 | `jingles_PIZZI07.ogg` | 星が増えた | Kenney | 同上 | CC0 | 下の B |
 | `jingles_NES00.ogg` | 1日の目標 | Kenney | 同上 | CC0 | 下の B |
+| `jingles_NES05.ogg` | タイトル画面の「タップしてはじめる」（開始のジングル。約0.91秒・21,439 バイト） | Kenney | 同上 | CC0 | 下の B（2026-10-04 に zip を取り直して再確認） |
 
 - **A（Interface Sounds）**: 配布ページの `License` 欄が『Creative Commons CC0』、ページの説明（og:description）が『Download this package (100 assets) for free, CC0 licensed!』。ダウンロードした zip（`kenney_interface-sounds.zip`、834,536 バイト）の中の `License.txt` に『License: (Creative Commons Zero, CC0) http://creativecommons.org/publicdomain/zero/1.0/』『This content is free to use in personal, educational and commercial projects.』『Support us by crediting Kenney or www.kenney.nl (this is not mandatory)』とある。
-- **B（Music Jingles）**: 配布ページの `License` 欄が『Creative Commons CC0』、説明が『Download this package (85 assets) for free, CC0 licensed!』。zip（`kenney_music-jingles.zip`、1,239,525 バイト）の中の `License.txt` に『License (Creative Commons Zero, CC0)』『You may use these assets in personal and commercial projects.』『Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.』とある。
+- **B（Music Jingles）**: 配布ページの `License` 欄が『Creative Commons CC0』、説明が『Download this package (85 assets) for free, CC0 licensed!』。zip（`kenney_music-jingles.zip`、1,239,525 バイト）の中の `License.txt` に『License (Creative Commons Zero, CC0)』『You may use these assets in personal and commercial projects.』『Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.』とある。`jingles_NES05.ogg` を足した 2026-10-04 に、配布ページ <https://kenney.nl/assets/music-jingles> から zip（`kenney_music-jingles.zip`）を取り直し、サイズが 1,239,525 バイトで前と同じこと、中の `License.txt` が『License (Creative Commons Zero, CC0)』『You may use these assets in personal and commercial projects.』であること、`jingles_NES05.ogg` が zip の中のファイルと一致（cmp）することを確かめた。
 - Kenney は表示が要らないと明記しているが、礼儀として出どころをここに残している。
 
 ## BGM（`shared/audio/bgm/`）
