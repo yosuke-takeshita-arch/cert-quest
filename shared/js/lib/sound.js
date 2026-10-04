@@ -27,16 +27,19 @@ export function normalizeSoundSettings(settings) {
   return s;
 }
 
-// 音量の目盛りは耳に合わせて2乗にする（半分の目盛りで半分の大きさには聞こえないため）。
-// BGM は学習の邪魔にならないよう、同じ目盛りでも効果音より小さめに出す。
-export const BGM_HEADROOM = 0.7;
+// 効果音の目盛りは耳に合わせて2乗にする（半分の目盛りで半分の大きさには聞こえないため）。
 export function sfxGain(volume) {
   const v = normalizeVolume(volume, DEFAULT_SFX_VOLUME) / 100;
   return v * v;
 }
+// BGM の素材は元の音がとても小さい（実測 2026-10-04: contemplation は RMS 0.038・ピーク 0.26、jrpg-piano は RMS 0.048・ピーク 0.28。
+// 効果音は RMS 0.14〜0.27）。以前は 2乗×0.7 で、初期の 40 だと 0.11 倍になり、実機ではほぼ聞こえなかった。
+// そこで目盛りに比例させ、最大で BGM_GAIN_MAX 倍まで持ち上げる。40 で約1倍（効果音の初期より 10dB ほど小さい）、
+// 100 で 2.6 倍（ピークは 0.28×2.6＝0.72 で割れない）。素材を替えたら、ピーク×BGM_GAIN_MAX が 1 未満かを測り直す。
+export const BGM_GAIN_MAX = 2.6;
 export function bgmGain(volume) {
   const v = normalizeVolume(volume, DEFAULT_BGM_VOLUME) / 100;
-  return v * v * BGM_HEADROOM;
+  return v * BGM_GAIN_MAX;
 }
 
 // 効果音。キー → ファイル（shared/audio/sfx/ の中）。

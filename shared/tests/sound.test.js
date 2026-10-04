@@ -6,7 +6,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_HEADROOM, SFX_FILES, BGM_TRACKS,
+  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, SFX_FILES, BGM_TRACKS,
   normalizeVolume, normalizeSoundSettings, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
@@ -62,19 +62,24 @@ test('保存データ: 音の項目の不正な値は直る。正しい値は残
   assert.equal(s.sfxVolume, 70);
 });
 
-test('音量の計算: 0 は無音、100 で最大、増えるほど大きい。BGM は同じ目盛りでも小さめ', () => {
+test('音量の計算: 0 は無音、100 で最大、増えるほど大きい。BGM は素材が小さいので持ち上げる', () => {
   assert.equal(sfxGain(0), 0);
   assert.equal(sfxGain(100), 1);
   assert.equal(bgmGain(0), 0);
-  assert.equal(bgmGain(100), BGM_HEADROOM);
-  assert.ok(BGM_HEADROOM < 1);
+  assert.equal(bgmGain(100), BGM_GAIN_MAX);
+  // 素材のピークは実測 0.28（jrpg-piano）。最大でも割れない（1 未満）こと
+  assert.ok(0.28 * BGM_GAIN_MAX < 1);
+  // 初期の 40 で、素材をほぼそのままの大きさ（0.9〜1.2倍）で出す。以前の 0.11 倍では実機で聞こえなかった
+  assert.ok(bgmGain(DEFAULT_BGM_VOLUME) >= 0.9 && bgmGain(DEFAULT_BGM_VOLUME) <= 1.2);
   let prev = -1;
   for (let v = 0; v <= 100; v += 5) {
     assert.ok(sfxGain(v) > prev || v === 0);
     prev = sfxGain(v);
   }
   assert.equal(sfxGain('x'), sfxGain(DEFAULT_SFX_VOLUME));
-  assert.ok(bgmGain(100) < sfxGain(100));
+  // 倍率どうしではなく、実際に出る大きさで比べる（素材の RMS の実測: BGM は最大 0.048、効果音は最小 0.14）。
+  // 初期設定どうしでは、BGM のほうが効果音より小さく聞こえること
+  assert.ok(0.048 * bgmGain(DEFAULT_BGM_VOLUME) < 0.14 * sfxGain(DEFAULT_SFX_VOLUME));
 });
 
 test('お祝いの種類ごとに効果音が決まっていて、ファイルが実在する', () => {
