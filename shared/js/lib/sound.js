@@ -62,7 +62,7 @@ export function bgmGain(volume, trim = 1) {
 //  ok=正解 ng=不正解 level=レベルアップ badge=バッジ stars=星 goal=1日の目標 start=タイトル画面の「タップしてはじめる」
 export const SFX_FILES = {
   ok: 'confirmation_001.ogg',
-  ng: 'error_003.ogg', // 2026-10-04 差し替え。前の bong_001 は約100Hz・0.12秒で、スマホのスピーカーでは聞こえなかった（約1kHz・0.53秒の音にした）
+  ng: 'ng_lose-trumpet.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Game Over Trumpet SFX」0new4y、CC0）。前の error_003（Kenney）は単音で物足りなかった
   level: 'jingles_STEEL07.ogg',
   badge: 'badge_new-thing-get.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「New Thing Get」congusbongus、CC0）。前の jingles_SAX07 は単音で物足りなかった
   stars: 'jingles_PIZZI07.ogg',

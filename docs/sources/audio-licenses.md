@@ -12,7 +12,7 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 | ファイル | 使う場面 | 作者 | 配布ページ | ライセンス | 確かめた箇所 |
 |---|---|---|---|---|---|
 | `confirmation_001.ogg` | 正解 | Kenney | <https://kenney.nl/assets/interface-sounds>（Interface Sounds 1.0） | CC0 | 下の A |
-| `error_003.ogg` | 不正解 | Kenney | 同上 | CC0 | 下の A。2026-10-04 に `bong_001.ogg` から差し替え（bong は約100Hz・0.12秒でスマホのスピーカーでは聞こえなかった。error_003 は約1kHz・0.53秒）。zip を取り直し、License.txt の CC0 とファイルが zip 内のものであることを確認 |
+| `ng_lose-trumpet.ogg` | 不正解（約1.1秒・18,625 バイト。元のファイル名 `losetrumpet.ogg`） | 0new4y | https://opengameart.org/content/game-over-trumpet-sfx | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0（creativecommons.org/publicdomain/zero/1.0/ へのリンク）、CC-BY の記載なし。Author 欄は 0new4y。先生が候補を聞き比べて選んだ。前の `error_003.ogg`（Kenney。その前は bong_001）は単音で物足りなかったため差し替え |
 | `jingles_STEEL07.ogg` | レベルアップ | Kenney | <https://kenney.nl/assets/music-jingles>（Music Jingles） | CC0 | 下の B |
 | `badge_new-thing-get.ogg` | バッジ獲得（約5.3秒・173,459 バイト。元のファイル名 `newthingget.ogg`） | congusbongus | https://opengameart.org/content/new-thing-get | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0、creativecommons.org/publicdomain/zero/1.0/ へのリンクあり、CC-BY の記載なし。Author 欄は congusbongus。先生が候補を聞き比べて選んだ。前の `jingles_SAX07.ogg`（Kenney）は単音で物足りなかったため差し替え |
 | `jingles_PIZZI07.ogg` | 星が増えた | Kenney | 同上 | CC0 | 下の B |
