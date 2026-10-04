@@ -42,6 +42,9 @@
 }
 
 * { box-sizing: border-box; }
+/* 下に引っ張ると画面ごと再読み込みされる（ブラウザの動作）のを止める。アプリでは誤操作になるため（2026-10-04 先生の指摘）。
+   Chrome for Developers「Take control of your scroll」: body の overscroll-behavior-y: contain で pull-to-refresh を無効にできる */
+html, body { overscroll-behavior-y: contain; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
