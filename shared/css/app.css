@@ -329,3 +329,37 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
   .celebrate-confetti { display: none; }
 }
 @media (min-width: 640px) { .main { padding-top: 32px; } }
+/* ── タイトル画面 ──
+   背景は画像（無い・読めないときはテーマ色のグラデーション）。その上に暗い膜を重ね、文字は白＋影で、
+   明るい配色・暗い配色のどちらでも同じに読める（文字と膜の色は配色に依らず固定）。 */
+.title-screen {
+  position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
+  background: linear-gradient(160deg, var(--accent) 0%, #0b1b2e 100%);
+  background: linear-gradient(160deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 40%, #000) 100%);
+  color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 12px rgba(0, 0, 0, 0.55);
+}
+.title-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; user-select: none; -webkit-user-drag: none; }
+.title-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 38%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0.65) 100%); }
+.title-top, .title-bottom { position: relative; width: 100%; max-width: 560px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+.title-top { min-height: 33%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: calc(24px + env(safe-area-inset-top, 0px)); animation: fade 0.8s ease-out both; }
+.title-name { text-wrap: balance; font-size: clamp(1.75rem, 8.4vw, 3.25rem); line-height: 1.25; font-weight: 800; letter-spacing: 0.02em; margin: 0 0 12px; }
+.title-exam { font-size: 1rem; font-weight: 700; margin: 0; padding: 4px 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); }
+.title-bottom { padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); min-height: 120px; display: flex; flex-direction: column; justify-content: flex-end; }
+.title-gauge { height: 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(255, 255, 255, 0.85); overflow: hidden; }
+.title-gauge-fill { height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #ffb300, #ffe082); transition: width 0.25s ease-out; }
+.title-status { margin: 12px 0 0; text-align: center; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.04em; }
+.title-start {
+  appearance: none; font: inherit; font-size: 1.25rem; font-weight: 800; width: 100%; min-height: 64px; padding: 12px 24px; cursor: pointer;
+  border-radius: 999px; border: 3px solid #fff; background: #fff; color: #0b1b2e; text-shadow: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); animation: title-pulse 1.8s ease-in-out infinite;
+}
+.title-start:active { transform: scale(0.98); }
+.title-start:focus-visible { outline: 3px solid #ffe082; outline-offset: 3px; }
+.title-start:disabled { opacity: 0.7; animation: none; }
+.title-error { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, 0.55); text-shadow: none; }
+.title-error .card { max-width: 480px; width: 100%; color: var(--text); }
+@keyframes title-pulse { 0%, 100% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 224, 130, 0.7); } 50% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(255, 224, 130, 0); } }
+/* 動きを減らす設定でも、ゲージの伸びだけは残す（進み具合を伝える動きなので）。ほかのアニメーションは上の規則で止まる */
+@media (prefers-reduced-motion: reduce) {
+  .title-gauge-fill { transition: width 0.25s ease-out !important; }
+}

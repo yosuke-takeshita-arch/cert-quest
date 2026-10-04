@@ -33,6 +33,8 @@ const SHARED = [
   '../shared/js/views/exam.js',
   '../shared/js/views/explain.js',
   '../shared/js/views/more.js',
+  '../shared/js/views/title.js',
+  '../shared/js/lib/loadprogress.js',
 ];
 
 // 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。

@@ -14,7 +14,9 @@ import { renderCardList, renderCard } from './views/cards.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
-import { initAudio, setBgmScene, syncBgm } from './audio.js';
+import { initAudio, setBgmScene, syncBgm, unlockAudio } from './audio.js';
+import { createTitleScreen } from './views/title.js';
+import { createLoadTracker } from './lib/loadprogress.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -42,6 +44,16 @@ function showFatal(root, message, detail) {
   root.appendChild(h('div', { class: 'view' }, h('div', { class: 'card empty' }, h('h1', { text: '開けませんでした' }), h('p', { text: message }), detail ? h('p', { class: 'small muted', text: detail }) : null, h('button', { class: 'btn primary', type: 'button', onClick: () => location.reload() }, '再読み込み'))));
 }
 
+// beforeinstallprompt はタイトル画面でボタンを待っている間にも届く。start() の後半で登録すると取りこぼすので、
+// 読み込んだ時点で受け取っておき、アプリができたら渡す。
+let earlyInstallPrompt = null;
+let onInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  earlyInstallPrompt = e;
+  if (onInstallPrompt) onInstallPrompt(e);
+});
+
 export async function start() {
   const root = document.getElementById('app');
   root.textContent = '読み込み中…';
@@ -59,15 +71,31 @@ export async function start() {
   applyTheme(config);
   document.title = config.name || document.title;
 
+  // 配色は、タイトル画面から効かせる（設定は端末の記録から先に読む）
+  const storage = createStorage('certquest:' + (config.id || 'app') + (sample ? ':sample' : '') + ':v1');
+  const darkMq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  const isDark = (pref) => pref === 'dark' || (pref === 'auto' && !!darkMq && darkMq.matches);
+  document.documentElement.dataset.theme = isDark(storage.load().settings.theme) ? 'dark' : 'light';
+
+  // タイトル画面。データを読む間、ゲージを伸ばす。読み終わっても、ボタンを押すまでここで待つ
+  // （そのボタンが「最初の操作」。押した瞬間に音を使える状態にする）。URL がホーム以外でも同じで、押したあとにその画面へ進む
+  const title = createTitleScreen({ config });
+  clear(root);
+  root.appendChild(title.el);
   const dataBase = new URL(sample ? './data/_sample/' : './data/', location.href).href;
+  const tracker = createLoadTracker((s) => title.setProgress(s));
   let data;
   try {
-    data = await loadData({ dataBase });
+    data = await loadData({ dataBase, fetchFn: tracker.wrap((u) => fetch(u)) });
   } catch (e) {
-    return showFatal(root, 'データの読み込みで予期しない問題が起きました。', String(e.message || e));
+    return title.fail('データの読み込みで予期しない問題が起きました。', String(e.message || e));
   }
+  tracker.complete();
+  await new Promise((resolve) => title.ready(() => {
+    unlockAudio(storage.load().settings);
+    resolve();
+  }));
 
-  const storage = createStorage('certquest:' + (config.id || 'app') + (sample ? ':sample' : '') + ':v1');
   const defs = badgeDefs(data.tree, config);
   const app = {
     config,
@@ -155,11 +183,8 @@ export async function start() {
   ];
 
   // 配色。設定（light / dark / auto）を data-theme="light"|"dark" に解決して付ける。auto はスマホの設定の変化にも追う
-  const darkMq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
   app.applyScheme = () => {
-    const pref = app.state.settings.theme;
-    const dark = pref === 'dark' || (pref === 'auto' && !!darkMq && darkMq.matches);
-    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    document.documentElement.dataset.theme = isDark(app.state.settings.theme) ? 'dark' : 'light';
   };
   app.applyScheme();
   if (darkMq && darkMq.addEventListener) darkMq.addEventListener('change', app.applyScheme);
@@ -206,13 +231,15 @@ export async function start() {
   // 同じオリジンにアプリが1つでも入っていると「インストール済み」と判定する（WebappRegistry.isAppInstalledForUrl）。
   // github.io の同じオリジンに資格アプリが複数あるため、2つ目以降はメニューから入れられない。
   // ページ側の案内（beforeinstallprompt）は start_url の範囲で判定するので、こちらからなら入れられる。
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
+  if (earlyInstallPrompt) app.installPrompt = earlyInstallPrompt;
+  onInstallPrompt = (e) => {
     app.installPrompt = e;
     if (location.hash === '#/home') render();
-  });
+  };
+  if (app.installPrompt && location.hash === '#/home') render();
   window.addEventListener('appinstalled', () => {
     app.installPrompt = null;
+    earlyInstallPrompt = null;
     if (location.hash === '#/home') render();
   });
 

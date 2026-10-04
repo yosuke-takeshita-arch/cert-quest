@@ -231,6 +231,25 @@ export function initAudio(settingsGetter) {
   ['pointerdown', 'keydown', 'touchend'].forEach((t) => document.addEventListener(t, onGesture, { passive: true }));
 }
 
+/**
+ * 「最初の操作」（タイトル画面のボタン）の押した瞬間に呼ぶ。効果音か BGM がオンの人だけ、音を使える状態にする。
+ * AudioContext を作って動かし、無音の1サンプルを鳴らしておく（iOS の Safari は、これで以後の音が許される）。
+ * BGM そのものはここでは流さない（流す場面は問題を解く画面だけ。場面に入ったときに syncBgm が流す）。
+ * ボタンの押した処理の中で、同期的に呼ぶこと。
+ */
+export function unlockAudio(settings) {
+  if (!settings || !(settings.sound || settings.bgm)) return;
+  const c = audioCtx();
+  if (!c) return;
+  resumeCtx();
+  try {
+    const src = c.createBufferSource();
+    src.buffer = c.createBuffer(1, 1, 22050);
+    src.connect(c.destination);
+    src.start(0);
+  } catch (e) { /* 無音が鳴らせなくても、resume できていれば足りる */ }
+}
+
 /** 動作確認用: いまの BGM の状態。 */
 export function bgmStatus() {
   return {
