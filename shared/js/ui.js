@@ -41,6 +41,24 @@ const ICONS = {
   gear: 'M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z',
 };
 
+/** バッジの絵の置き場（共通＝shared/images/badges/、章の制覇＝このアプリの images/badges/）。 */
+export function badgeBases() {
+  return { sharedBase: new URL('../images/badges/', import.meta.url).href, appBase: new URL('./images/badges/', location.href).href };
+}
+
+/**
+ * バッジの絵（円形）。名前は隣に文字で出ているので、alt は空・読み上げ対象外にする（二重に読ませない）。
+ * 読み込めなかったとき（章の絵がまだ無い等）は、fallback（記号の名前）の記号に差し替える。fallback が null なら何も出さない。
+ */
+export function badgeImg(url, cls, fallback) {
+  const img = h('img', { class: 'badge-img ' + (cls || ''), src: url, alt: '', 'aria-hidden': 'true', decoding: 'async' });
+  img.addEventListener('error', () => {
+    if (fallback) img.replaceWith(icon(fallback));
+    else img.remove();
+  });
+  return img;
+}
+
 export function icon(name, cls) {
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
@@ -103,7 +121,7 @@ export function beep(settings, kind) {
 }
 
 // ---- お祝いの画面（画面いっぱい。複数あるときは1つずつ順に） ----
-// events: { kind:'level', level } | { kind:'badge', name, desc } | { kind:'stars', stars, title } | { kind:'goal', goal }
+// events: { kind:'level', level } | { kind:'badge', name, desc, image? } | { kind:'stars', stars, title } | { kind:'goal', goal }
 // opts: { settings, next, startable, onStart }
 //   next … 次の目標（title / remainText / ratio）。最後のお祝いの下にだけ出す。
 //   onStart(next) … 「これを始める」を押したとき。startable が false なら、ボタンは「ホームに戻る」になる。
@@ -147,7 +165,7 @@ export function celebrate(events, opts = {}) {
 
   function describe(ev) {
     if (ev.kind === 'level') return { head: 'レベルアップ！', title: 'Lv ' + ev.level, sub: 'レベル ' + ev.level + ' になりました', emblem: h('div', { class: 'celebrate-emblem lv' }, h('span', { class: 'lv-label', text: 'Lv' }), h('strong', { text: String(ev.level) })) };
-    if (ev.kind === 'badge') return { head: 'バッジ獲得！', title: ev.name, sub: ev.desc || '', emblem: h('div', { class: 'celebrate-emblem badge' }, icon('star')) };
+    if (ev.kind === 'badge') return { head: 'バッジ獲得！', title: ev.name, sub: ev.desc || '', emblem: ev.image ? h('div', { class: 'celebrate-emblem badge art' }, badgeImg(ev.image, 'celebrate-badge-img', 'star')) : h('div', { class: 'celebrate-emblem badge' }, icon('star')) };
     if (ev.kind === 'stars') return { head: '星が増えました！', title: ev.title, sub: '星 ' + ev.stars + ' つ', emblem: h('div', { class: 'celebrate-emblem stars' }, stars(ev.stars)) };
     return { head: '今日の目標を達成！', title: ev.goal + '問 達成', sub: '今日の目標の ' + ev.goal + '問に答えました', emblem: h('div', { class: 'celebrate-emblem goal' }, icon('check')) };
   }

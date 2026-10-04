@@ -1,6 +1,6 @@
 // 「もっと」: バッジ・設定・公式リンク・データの状態。
-import { h, externalLink, icon } from '../ui.js';
-import { badgeDefs, badgeProgress } from '../lib/badges.js';
+import { h, externalLink, icon, badgeBases, badgeImg } from '../ui.js';
+import { badgeDefs, badgeProgress, badgeArtName, badgeImageUrl } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
 import { dateKey } from '../lib/srs.js';
@@ -33,11 +33,12 @@ export function renderBadges(app) {
   root.appendChild(h('p', { class: 'small muted', text: got + ' / ' + defs.length + ' 個' }));
   const grid = h('div', { class: 'badge-grid' });
   const today = dateKey(new Date());
+  const bases = badgeBases();
   for (const d of defs) {
     const date = app.state.badges[d.id];
     const p = date ? null : badgeProgress(d, app.state, today);
     grid.appendChild(h('div', { class: 'badge' + (date ? ' got' : '') },
-      h('span', { class: 'badge-ic' }, icon(date ? 'star' : 'close')),
+      badgeIcon(d, date, bases),
       h('strong', { text: d.name }),
       h('span', { class: 'small', text: d.desc }),
       h('span', { class: 'small muted', text: date ? date + ' 取得' : '未取得' }),
@@ -47,6 +48,13 @@ export function renderBadges(app) {
   }
   root.appendChild(grid);
   return root;
+}
+
+// バッジ一覧の絵。絵があれば円形の絵（取っていなければ灰色で薄く＝CSS）、無ければ（読み込めなくても）これまでの記号。
+function badgeIcon(d, got, bases) {
+  const symbol = got ? 'star' : 'close';
+  const url = badgeImageUrl(badgeArtName(d), bases);
+  return h('span', { class: 'badge-ic' + (url ? ' art' : '') }, url ? badgeImg(url, 'badge-grid-img', symbol) : icon(symbol));
 }
 
 export function renderSettings(app) {

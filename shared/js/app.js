@@ -1,9 +1,9 @@
 // 起動・ルーティング。資格固有のことは config.json と data/ からだけ読む。
-import { h, clear, icon, toast, celebrate } from './ui.js';
+import { h, clear, icon, toast, celebrate, badgeBases } from './ui.js';
 import { loadData } from './lib/data.js';
 import { createStorage } from './lib/storage.js';
 import { defaultState, recordAnswer } from './lib/progress.js';
-import { badgeDefs, awardBadges } from './lib/badges.js';
+import { badgeDefs, awardBadges, badgeArtName, badgeImageUrl } from './lib/badges.js';
 import { dateKey } from './lib/srs.js';
 import { STAR_THRESHOLDS, levelFromXp } from './lib/scoring.js';
 import { awardDailyGoal, dailyProgress } from './lib/daily.js';
@@ -139,7 +139,7 @@ export async function start() {
       const lv = levelFromXp(app.state.xp).level;
       if (lv > app.lastLevel) app.pending.push({ kind: 'level', level: lv });
       app.lastLevel = lv;
-      awardBadges(app.state, defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc }));
+      awardBadges(app.state, defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc, image: badgeImageUrl(badgeArtName(b), badgeBases()) }));
       if (awardDailyGoal(app.state, key)) app.pending.push({ kind: 'goal', goal: dailyProgress(app.state, key).goal });
       storage.save(app.state);
     },

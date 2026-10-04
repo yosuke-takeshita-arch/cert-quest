@@ -4,6 +4,42 @@
 import { levelFromXp, totalXpForLevel, currentStreak } from './scoring.js';
 import { secondsPerQuestion } from './quiz.js';
 
+// 絵のあるバッジ。共通の12個は shared/images/badges/<id>.webp（id と同じ名前）。
+export const COMMON_BADGE_ART = Object.freeze(['first-answer', 'correct-10', 'correct-100', 'streak-3', 'streak-7', 'streak-30', 'level-5', 'level-10', 'challenge-8', 'exam-first', 'exam-70', 'exam-90']);
+const SAFE_NAME = /^[A-Za-z0-9_-]+$/;
+
+/**
+ * ファイル名に使える形にする。英数字・ _ ・ - だけならそのまま。それ以外の文字（日本語など）は _u<16進>_ に置き換える。
+ * 例: 'T-CH01' → 'T-CH01' ／ '技術' → '_u6280__u8853_'
+ */
+export function safeBadgeKey(raw) {
+  const s = String(raw == null ? '' : raw);
+  if (SAFE_NAME.test(s)) return s;
+  return Array.from(s).map((c) => (/[A-Za-z0-9-]/.test(c) ? c : '_u' + c.codePointAt(0).toString(16) + '_')).join('');
+}
+
+/** 章（大項目）の制覇バッジの絵の名前。シラバスの id（T, B, CH01 など）があればそれ、無ければ key を安全な形にしたもの。 */
+export function majorArtName(major) {
+  return 'major-' + safeBadgeKey(major && typeof major.id === 'string' && major.id ? major.id : major && major.key);
+}
+
+/** バッジ定義の絵の名前。絵が無いバッジは null。 */
+export function badgeArtName(def) {
+  if (!def) return null;
+  if (typeof def.art === 'string') return def.art;
+  return COMMON_BADGE_ART.includes(def.id) ? def.id : null;
+}
+
+/**
+ * 絵の URL。共通の12個 → sharedBase、章の制覇（major-◯◯）→ appBase。
+ * sharedBase / appBase は末尾が / の URL（shared/images/badges/ と <アプリ>/images/badges/）。絵が無い・名前が不正なら null。
+ */
+export function badgeImageUrl(art, { sharedBase, appBase } = {}) {
+  if (typeof art !== 'string' || !SAFE_NAME.test(art)) return null;
+  if (art.startsWith('major-')) return appBase ? appBase + art + '.webp' : null;
+  return COMMON_BADGE_ART.includes(art) && sharedBase ? sharedBase + art + '.webp' : null;
+}
+
 const count = (cur, max, unit) => ({ cur, max, unit, action: { kind: 'study' } });
 
 /** 模擬試験（10問以上）のうち、いちばんよかった正答率（%・整数。切り捨て）。 */
@@ -34,6 +70,7 @@ export function badgeDefs(tree, config) {
     if (!stages.length) continue;
     defs.push({
       id: 'major:' + major.key,
+      art: majorArtName(major),
       name: major.name + ' 制覇',
       desc: '「' + major.name + '」の全ステージをクリア（星1以上）',
       test: (s) => stages.every((st) => (s.stages[st.key] || { stars: 0 }).stars >= 1),

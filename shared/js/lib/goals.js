@@ -1,13 +1,14 @@
 // 「次の目標」の選び方。純粋な関数だけ。
 // 候補 = まだ取っていないバッジ ＋ 星3になっていないステージ（1回は挑戦したもの）。
 // 「近さ」は、達成までの残りの割合（1 - 進み具合）が小さい順。同じなら定義の順。
-import { badgeProgress } from './badges.js';
+import { badgeProgress, badgeArtName } from './badges.js';
 
 export const MAX_STAGE_STARS = 3;
 
 /**
  * 近い順の目標の配列を返す（最大 limit 個）。
- * 各要素: { id, kind:'badge'|'stars', title, remainText, cur, max, ratio, action, label }
+ * 各要素: { id, kind:'badge'|'stars', title, remainText, cur, max, ratio, action, label, art }
+ *   art … バッジの絵の名前（絵が無い・星の目標は null。URL は badges.js の badgeImageUrl で作る）
  *   remainText … 「あと2日」「あと40XP」「あと星1つ」
  *   label      … 棒の横に出す「いま 3/7 日」
  */
@@ -27,6 +28,7 @@ export function nextGoals(tree, defs, state, todayKey, limit = 3) {
       ratio: p.ratio,
       action: p.action,
       label: 'いま ' + p.cur + '/' + p.max + ' ' + p.unit,
+      art: badgeArtName(d),
     });
   }
   for (const st of (tree && tree.stages) || []) {
@@ -43,6 +45,7 @@ export function nextGoals(tree, defs, state, todayKey, limit = 3) {
       ratio: rec.stars / MAX_STAGE_STARS,
       action: { kind: 'stage', key: st.key },
       label: 'いま 星' + rec.stars + '/' + MAX_STAGE_STARS,
+      art: null,
     });
   }
   return out

@@ -1,5 +1,5 @@
 // ホーム・シラバスの地図・ステージ・復習。
-import { h, icon, stars, externalLink } from '../ui.js';
+import { h, icon, stars, externalLink, badgeBases, badgeImg } from '../ui.js';
 import { levelFromXp, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
 import { examStatus, formatExamDate } from '../lib/examdate.js';
 import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
@@ -7,7 +7,7 @@ import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
 import { nextGoals } from '../lib/goals.js';
-import { badgeDefs } from '../lib/badges.js';
+import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { cardBody } from './cards.js';
 
@@ -68,6 +68,12 @@ function dailyCard(state, todayKey) {
     h('div', { class: 'row-line daily-head' }, h('strong', { text: '今日の目標' }), h('span', { class: 'small muted', text: dp.answered + ' / ' + dp.goal + ' 問' })),
     h('div', { class: 'progress', role: 'progressbar', 'aria-label': '今日の目標', 'aria-valuemin': '0', 'aria-valuemax': String(dp.goal), 'aria-valuenow': String(Math.min(dp.answered, dp.goal)) }, h('div', { class: 'progress-fill', style: { width: Math.round(dp.ratio * 100) + '%' } })),
     h('p', { class: 'small muted daily-note', text: dp.done ? '今日の目標を達成しました！' : 'あと ' + dp.remaining + ' 問' }));
+}
+
+// 「次の目標」がバッジのとき、その絵を小さく出す。絵が無い・読み込めないときは何も出さない。
+function goalArt(g) {
+  const url = badgeImageUrl(g.art, badgeBases());
+  return url ? badgeImg(url, 'goal-badge-img', null) : null;
 }
 
 export function renderHome(app) {
@@ -143,7 +149,9 @@ export function renderHome(app) {
     if (goals.length) {
       const gbox = h('div', { class: 'card next-goals' }, h('h2', { text: '次の目標' }));
       goals.forEach((g) => gbox.appendChild(h('button', { class: 'goal-row', type: 'button', onClick: () => startGoal(app, g) },
-        h('span', { class: 'goal-text' }, h('strong', { text: g.title }), h('span', { class: 'small muted', text: g.remainText + '（' + g.label + '）' })),
+        h('span', { class: 'goal-head' },
+          goalArt(g),
+          h('span', { class: 'goal-text' }, h('strong', { text: g.title }), h('span', { class: 'small muted', text: g.remainText + '（' + g.label + '）' }))),
         h('div', { class: 'progress', role: 'progressbar', 'aria-label': g.title + ' までの進み具合', 'aria-valuemin': '0', 'aria-valuemax': String(g.max), 'aria-valuenow': String(g.cur) }, h('div', { class: 'progress-fill', style: { width: Math.round(g.ratio * 100) + '%' } })))));
       root.appendChild(gbox);
     }
