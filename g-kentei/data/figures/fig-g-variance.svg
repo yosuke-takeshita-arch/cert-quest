@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-g-variance-t fig-g-variance-d">
+<title id="fig-g-variance-t">分散と標準偏差：偏差の2乗の平均</title>
+<desc id="fig-g-variance-d">8個のデータ6、6、8、10、10、12、14、14を数直線に置いた例。平均は10。各データの平均からの差（偏差）は−4、−4、−2、0、0、2、4、4。偏差を1辺とする正方形の面積が偏差の2乗で、16、16、4、0、0、4、16、16。面積の平均が分散で9、その平方根が標準偏差で3。下は変換のしかた。データを2倍すると散らばりの幅が2倍になり、分散は2の2乗で4倍になる。5を足すと位置が動くだけで、散らばりは変わらず、分散も変わらない。</desc>
+<text x="12" y="20" class="tb">① 偏差の2乗の平均が分散</text>
+<line x1="12" y1="84" x2="308" y2="84" class="l sm w1"/>
+<circle cx="69.33" cy="84" r="5" class="fa"/>
+<circle cx="69.33" cy="72" r="5" class="fa"/>
+<circle cx="114.67" cy="84" r="5" class="fa"/>
+<circle cx="160" cy="84" r="5" class="fa"/>
+<circle cx="160" cy="72" r="5" class="fa"/>
+<circle cx="205.33" cy="84" r="5" class="fa"/>
+<circle cx="250.67" cy="84" r="5" class="fa"/>
+<circle cx="250.67" cy="72" r="5" class="fa"/>
+<line x1="160" y1="50" x2="160" y2="94" class="l sng w2"/>
+<text x="160" y="44" class="tb tng" text-anchor="middle">平均 10</text>
+<text x="69.33" y="112" class="tm" text-anchor="middle">6</text>
+<text x="160" y="112" class="tm" text-anchor="middle">10</text>
+<text x="250.67" y="112" class="tm" text-anchor="middle">14</text>
+<text x="12" y="138" class="tm">偏差を1辺とする正方形（面積＝偏差の2乗）</text>
+<rect x="14" y="180" width="24" height="24" class="fwn swn" stroke-width="1.5"/>
+<text x="26" y="224" class="tm" text-anchor="middle">-4</text>
+<rect x="52" y="180" width="24" height="24" class="fwn swn" stroke-width="1.5"/>
+<text x="64" y="224" class="tm" text-anchor="middle">-4</text>
+<rect x="90" y="192" width="12" height="12" class="fwn swn" stroke-width="1.5"/>
+<text x="96" y="224" class="tm" text-anchor="middle">-2</text>
+<line x1="116" y1="204" x2="119" y2="204" class="l sm w2"/>
+<text x="117.5" y="224" class="tm" text-anchor="middle">0</text>
+<line x1="134" y1="204" x2="137" y2="204" class="l sm w2"/>
+<text x="135.5" y="224" class="tm" text-anchor="middle">0</text>
+<rect x="152" y="192" width="12" height="12" class="fas sa" stroke-width="1.5"/>
+<text x="158" y="224" class="tm" text-anchor="middle">2</text>
+<rect x="178" y="180" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="190" y="224" class="tm" text-anchor="middle">4</text>
+<rect x="216" y="180" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="228" y="224" class="tm" text-anchor="middle">4</text>
+<text x="12" y="250" class="tm">面積 16・16・4・0・0・4・16・16</text>
+<text x="12" y="274" class="tb">面積の平均 ＝ 分散 ＝ 9</text>
+<text x="12" y="296" class="tb">その平方根 ＝ 標準偏差 ＝ 3</text>
+<line x1="12" y1="316" x2="308" y2="316" class="l sb w1"/>
+<text x="12" y="344" class="tb">② データを変換すると</text>
+<text x="12" y="372" class="tm">元のデータ</text>
+<line x1="120" y1="390" x2="168" y2="390" class="l sa w2"/>
+<line x1="120" y1="384" x2="120" y2="396" class="l sa w2"/>
+<line x1="168" y1="384" x2="168" y2="396" class="l sa w2"/>
+<text x="12" y="424" class="tm">2倍する</text>
+<line x1="96" y1="442" x2="192" y2="442" class="l swn w2"/>
+<line x1="96" y1="436" x2="96" y2="448" class="l swn w2"/>
+<line x1="192" y1="436" x2="192" y2="448" class="l swn w2"/>
+<text x="204" y="447" class="tb twn">幅2倍</text>
+<text x="12" y="476" class="tm">5を足す</text>
+<line x1="168" y1="494" x2="216" y2="494" class="l sok w2"/>
+<line x1="168" y1="488" x2="168" y2="500" class="l sok w2"/>
+<line x1="216" y1="488" x2="216" y2="500" class="l sok w2"/>
+<text x="228" y="499" class="tb tok">幅は同じ</text>
+<text x="12" y="524" class="tb">2倍すると、分散は 2×2＝4倍</text>
+<text x="12" y="546" class="tb">足した数は、位置を動かすだけ</text>
+<text x="12" y="568" class="tb">分散は変わらない</text>
+</svg>

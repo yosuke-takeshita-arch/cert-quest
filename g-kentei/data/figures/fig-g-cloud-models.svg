@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 468" role="img" aria-labelledby="fig-g-cloud-models-t fig-g-cloud-models-d">
+<title id="fig-g-cloud-models-t">オンプレミス・IaaS・PaaS・SaaS：利用者が管理する範囲</title>
+<desc id="fig-g-cloud-models-d">5つの層（上から、アプリケーション、ミドルウェアと開発環境、OS、ネットワークとストレージ、設備とハードウェア）を、4つの形態ごとに、利用者が管理する層と事業者が提供する層で塗り分けた表。オンプレミスは全部を利用者が用意して管理する。IaaSは設備・ハードウェアとネットワーク・ストレージなどの基礎リソースを事業者が提供し、OSから上を利用者が構築する。PaaSはOSや開発環境・運用管理環境まで事業者が提供し、利用者はアプリケーションを配備する。SaaSはアプリケーションそのものを事業者が提供し、利用者が変えられるのは限られた設定だけ。事業者の提供範囲が広いほど利用者の手間は減るが、変えられる部分も減る。</desc>
+<text x="12" y="20" class="tb">利用者が管理する層を濃く塗る</text>
+<rect x="12" y="34" width="18" height="14" class="fa"/>
+<text x="36" y="46">利用者が管理する</text>
+<rect x="12" y="58" width="18" height="14" class="fas sa" stroke-width="1"/>
+<text x="36" y="70">事業者が提供する</text>
+<rect x="12" y="82" width="18" height="14" class="fwn swn" stroke-width="1"/>
+<text x="36" y="94">利用者は限られた設定だけ</text>
+<text x="119" y="126" class="tb" text-anchor="middle">オン</text>
+<text x="119" y="143" class="tb" text-anchor="middle">プレミス</text>
+<text x="173" y="126" class="tb" text-anchor="middle">IaaS</text>
+<text x="227" y="126" class="tb" text-anchor="middle">PaaS</text>
+<text x="281" y="126" class="tb" text-anchor="middle">SaaS</text>
+<text x="12" y="171" class="tb">アプリ</text>
+<text x="12" y="188" class="tb">ケーション</text>
+<rect x="94" y="154" width="50" height="42" class="fa"/>
+<text x="119" y="180" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="148" y="154" width="50" height="42" class="fa"/>
+<text x="173" y="180" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="202" y="154" width="50" height="42" class="fa"/>
+<text x="227" y="180" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="256" y="154" width="50" height="42" class="fwn swn" stroke-width="1.5"/>
+<text x="281" y="180" text-anchor="middle">設定</text>
+<text x="12" y="217" class="tb">ミドルウェア</text>
+<text x="12" y="234" class="tb">開発環境</text>
+<rect x="94" y="200" width="50" height="42" class="fa"/>
+<text x="119" y="226" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="148" y="200" width="50" height="42" class="fa"/>
+<text x="173" y="226" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="202" y="200" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="227" y="226" text-anchor="middle">事業者</text>
+<rect x="256" y="200" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="281" y="226" text-anchor="middle">事業者</text>
+<text x="12" y="272" class="tb">OS</text>
+<rect x="94" y="246" width="50" height="42" class="fa"/>
+<text x="119" y="272" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="148" y="246" width="50" height="42" class="fa"/>
+<text x="173" y="272" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="202" y="246" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="227" y="272" text-anchor="middle">事業者</text>
+<rect x="256" y="246" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="281" y="272" text-anchor="middle">事業者</text>
+<text x="12" y="309" class="tb">ネットワーク</text>
+<text x="12" y="326" class="tb">ストレージ</text>
+<rect x="94" y="292" width="50" height="42" class="fa"/>
+<text x="119" y="318" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="148" y="292" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="173" y="318" text-anchor="middle">事業者</text>
+<rect x="202" y="292" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="227" y="318" text-anchor="middle">事業者</text>
+<rect x="256" y="292" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="281" y="318" text-anchor="middle">事業者</text>
+<text x="12" y="355" class="tb">設備・</text>
+<text x="12" y="372" class="tb">ハードウェア</text>
+<rect x="94" y="338" width="50" height="42" class="fa"/>
+<text x="119" y="364" class="tb ton" text-anchor="middle">利用者</text>
+<rect x="148" y="338" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="173" y="364" text-anchor="middle">事業者</text>
+<rect x="202" y="338" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="227" y="364" text-anchor="middle">事業者</text>
+<rect x="256" y="338" width="50" height="42" class="fas sa" stroke-width="1.5"/>
+<text x="281" y="364" text-anchor="middle">事業者</text>
+<text x="12" y="412" class="tb">右へ行くほど、事業者の提供範囲が広い</text>
+<text x="12" y="436">利用者の管理の手間は減る</text>
+<text x="12" y="456">代わりに、自分で変えられる部分も減る</text>
+</svg>

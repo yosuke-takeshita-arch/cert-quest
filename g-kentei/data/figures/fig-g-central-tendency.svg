@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 664" role="img" aria-labelledby="fig-g-central-tendency-t fig-g-central-tendency-d">
+<title id="fig-g-central-tendency-t">平均・中央値・最頻値と、外れ値の影響</title>
+<desc id="fig-g-central-tendency-d">上のヒストグラムは左右対称な山で、平均・中央値・最頻値が1か所に一致する。次のヒストグラムは右に裾が長い分布で、左から最頻値、中央値、平均の順に並ぶ。下は数直線上の10個の点の例。外れ値を1つ足すと、平均は大きく右へ動き、中央値はほとんど動かない。トリム平均は、小さい側と大きい側から同じ割合のデータを除いてから平均をとる。</desc>
+<text x="12" y="20" class="tb">① 左右対称な山</text>
+<rect x="12" y="28" width="296" height="80" class="fs sb" stroke-width="1"/>
+<rect x="13" y="103.5" width="30.89" height="4.5" class="fas sa"/>
+<rect x="45.89" y="94.5" width="30.89" height="13.5" class="fas sa"/>
+<rect x="78.78" y="76.5" width="30.89" height="31.5" class="fas sa"/>
+<rect x="111.67" y="54" width="30.89" height="54" class="fas sa"/>
+<rect x="144.56" y="36" width="30.89" height="72" class="fas sa"/>
+<rect x="177.44" y="54" width="30.89" height="54" class="fas sa"/>
+<rect x="210.33" y="76.5" width="30.89" height="31.5" class="fas sa"/>
+<rect x="243.22" y="94.5" width="30.89" height="13.5" class="fas sa"/>
+<rect x="276.11" y="103.5" width="30.89" height="4.5" class="fas sa"/>
+<line x1="160" y1="26" x2="160" y2="108" class="l sng w2"/>
+<text x="12" y="130" class="tb">平均 ＝ 中央値 ＝ 最頻値（同じ位置）</text>
+<line x1="12" y1="150" x2="308" y2="150" class="l sb w1"/>
+<text x="12" y="178" class="tb">② 右に裾が長い山（年収など）</text>
+<rect x="12" y="216" width="296" height="80" class="fs sb" stroke-width="1"/>
+<rect x="13" y="283.29" width="22.67" height="12.71" class="fas sa"/>
+<rect x="37.67" y="245.18" width="22.67" height="50.82" class="fas sa"/>
+<rect x="62.33" y="224" width="22.67" height="72" class="fas sa"/>
+<rect x="87" y="240.94" width="22.67" height="55.06" class="fas sa"/>
+<rect x="111.67" y="257.88" width="22.67" height="38.12" class="fas sa"/>
+<rect x="136.33" y="270.59" width="22.67" height="25.41" class="fas sa"/>
+<rect x="161" y="279.06" width="22.67" height="16.94" class="fas sa"/>
+<rect x="185.67" y="283.29" width="22.67" height="12.71" class="fas sa"/>
+<rect x="210.33" y="287.53" width="22.67" height="8.47" class="fas sa"/>
+<rect x="235" y="291.76" width="22.67" height="4.24" class="fas sa"/>
+<rect x="259.67" y="291.76" width="22.67" height="4.24" class="fas sa"/>
+<rect x="284.33" y="291.76" width="22.67" height="4.24" class="fas sa"/>
+<line x1="73.67" y1="214" x2="73.67" y2="296" class="l sok w2"/>
+<line x1="93.59" y1="214" x2="93.59" y2="296" class="l swn w2"/>
+<line x1="107.24" y1="214" x2="107.24" y2="296" class="l sng w2"/>
+<text x="69.67" y="208" class="tb tok" text-anchor="end">最頻値</text>
+<text x="93.59" y="208" class="tb twn" text-anchor="middle">中央値</text>
+<text x="115.24" y="208" class="tb tng">平均</text>
+<text x="12" y="318" class="tb">最頻値 ＜ 中央値 ＜ 平均 の順になる</text>
+<line x1="12" y1="338" x2="308" y2="338" class="l sb w1"/>
+<text x="12" y="366" class="tb">③ 外れ値を1つ足すと</text>
+<text x="12" y="392" class="tm">10個のデータ</text>
+<line x1="20" y1="450" x2="300" y2="450" class="l sm w1"/>
+<circle cx="31.67" cy="450" r="3.4" class="fa"/>
+<circle cx="39.44" cy="450" r="3.4" class="fa"/>
+<circle cx="43.33" cy="450" r="3.4" class="fa"/>
+<circle cx="51.11" cy="450" r="3.4" class="fa"/>
+<circle cx="56.94" cy="450" r="3.4" class="fa"/>
+<circle cx="60.83" cy="450" r="3.4" class="fa"/>
+<circle cx="70.56" cy="450" r="3.4" class="fa"/>
+<circle cx="74.44" cy="450" r="3.4" class="fa"/>
+<circle cx="82.22" cy="450" r="3.4" class="fa"/>
+<circle cx="90" cy="450" r="3.4" class="fa"/>
+<polygon points="54.06,416 66.06,416 60.06,428" class="fng sng"/>
+<polygon points="52.89,472 64.89,472 58.89,460" class="fwn swn"/>
+<text x="12" y="492" class="tm">外れ値 160 を足した11個</text>
+<line x1="20" y1="550" x2="300" y2="550" class="l sm w1"/>
+<circle cx="31.67" cy="550" r="3.4" class="fa"/>
+<circle cx="39.44" cy="550" r="3.4" class="fa"/>
+<circle cx="43.33" cy="550" r="3.4" class="fa"/>
+<circle cx="51.11" cy="550" r="3.4" class="fa"/>
+<circle cx="56.94" cy="550" r="3.4" class="fa"/>
+<circle cx="60.83" cy="550" r="3.4" class="fa"/>
+<circle cx="70.56" cy="550" r="3.4" class="fa"/>
+<circle cx="74.44" cy="550" r="3.4" class="fa"/>
+<circle cx="82.22" cy="550" r="3.4" class="fa"/>
+<circle cx="90" cy="550" r="3.4" class="fa"/>
+<circle cx="284.44" cy="550" r="3.4" class="fng sng"/>
+<polygon points="74.45,516 86.45,516 80.45,528" class="fng sng"/>
+<polygon points="54.83,572 66.83,572 60.83,560" class="fwn swn"/>
+<polygon points="18,588 30,588 24,600" class="fng sng"/>
+<text x="38" y="600" class="tb tng">平均</text>
+<polygon points="96,600 108,600 102,588" class="fwn swn"/>
+<text x="116" y="600" class="tb twn">中央値</text>
+<text x="12" y="628" class="tb">平均は大きく動き、中央値はほとんど動かない</text>
+<text x="12" y="652" class="tm">トリム平均：両端から同じ割合を除いて平均</text>
+</svg>

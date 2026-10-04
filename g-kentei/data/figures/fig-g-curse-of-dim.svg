@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 770" role="img" aria-labelledby="fig-g-curse-of-dim-t fig-g-curse-of-dim-d">
+<title id="fig-g-curse-of-dim-t">次元の呪い：同じ10個の点でも、次元が増えると空間がすかすかになる</title>
+<desc id="fig-g-curse-of-dim-d">同じ10個の点を、1次元・2次元・3次元の空間に置いた例。1次元は10マスで、点が入るマスは10個中10個。2次元は10かける10の100マスで、点が入るマスは100個中10個。3次元は10かける10かける10の1000マスで、点が入るマスは1000個中10個。次元が増えるとマスの数が指数的に増え、同じ点の数ではデータ空間がすかすかになる。そのため必要なデータ量や計算量が急増する。対策は次元削減や特徴選択。</desc>
+<text x="12" y="20" class="tb">① 1次元：10マス、点10個</text>
+<rect x="12" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="26.8" cy="49" r="5" class="fa"/>
+<rect x="41.6" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="56.4" cy="49" r="5" class="fa"/>
+<rect x="71.2" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="86" cy="49" r="5" class="fa"/>
+<rect x="100.8" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="115.6" cy="49" r="5" class="fa"/>
+<rect x="130.4" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="145.2" cy="49" r="5" class="fa"/>
+<rect x="160" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="174.8" cy="49" r="5" class="fa"/>
+<rect x="189.6" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="204.4" cy="49" r="5" class="fa"/>
+<rect x="219.2" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="234" cy="49" r="5" class="fa"/>
+<rect x="248.8" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="263.6" cy="49" r="5" class="fa"/>
+<rect x="278.4" y="34" width="29.6" height="30" class="fs sb" stroke-width="1"/>
+<circle cx="293.2" cy="49" r="5" class="fa"/>
+<text x="12" y="88" class="tb">マスの数 10、点が入るマス 10/10</text>
+<line x1="12" y1="108" x2="308" y2="108" class="l sb w1"/>
+<text x="12" y="136" class="tb">② 2次元：100マス、点10個</text>
+<rect x="60" y="150" width="200" height="200" class="fs sb" stroke-width="1"/>
+<line x1="80" y1="150" x2="80" y2="350" class="l sb w1"/>
+<line x1="60" y1="170" x2="260" y2="170" class="l sb w1"/>
+<line x1="100" y1="150" x2="100" y2="350" class="l sb w1"/>
+<line x1="60" y1="190" x2="260" y2="190" class="l sb w1"/>
+<line x1="120" y1="150" x2="120" y2="350" class="l sb w1"/>
+<line x1="60" y1="210" x2="260" y2="210" class="l sb w1"/>
+<line x1="140" y1="150" x2="140" y2="350" class="l sb w1"/>
+<line x1="60" y1="230" x2="260" y2="230" class="l sb w1"/>
+<line x1="160" y1="150" x2="160" y2="350" class="l sb w1"/>
+<line x1="60" y1="250" x2="260" y2="250" class="l sb w1"/>
+<line x1="180" y1="150" x2="180" y2="350" class="l sb w1"/>
+<line x1="60" y1="270" x2="260" y2="270" class="l sb w1"/>
+<line x1="200" y1="150" x2="200" y2="350" class="l sb w1"/>
+<line x1="60" y1="290" x2="260" y2="290" class="l sb w1"/>
+<line x1="220" y1="150" x2="220" y2="350" class="l sb w1"/>
+<line x1="60" y1="310" x2="260" y2="310" class="l sb w1"/>
+<line x1="240" y1="150" x2="240" y2="350" class="l sb w1"/>
+<line x1="60" y1="330" x2="260" y2="330" class="l sb w1"/>
+<circle cx="170" cy="200" r="5" class="fa"/>
+<circle cx="170" cy="340" r="5" class="fa"/>
+<circle cx="190" cy="260" r="5" class="fa"/>
+<circle cx="230" cy="340" r="5" class="fa"/>
+<circle cx="70" cy="340" r="5" class="fa"/>
+<circle cx="110" cy="180" r="5" class="fa"/>
+<circle cx="250" cy="160" r="5" class="fa"/>
+<circle cx="130" cy="160" r="5" class="fa"/>
+<circle cx="70" cy="280" r="5" class="fa"/>
+<circle cx="250" cy="320" r="5" class="fa"/>
+<text x="12" y="374" class="tb">マスの数 100、点が入るマス 10/100</text>
+<line x1="12" y1="394" x2="308" y2="394" class="l sb w1"/>
+<text x="12" y="422" class="tb">③ 3次元：1000マス、点10個</text>
+<polygon points="86,596 236,596 236,446 86,446" class="fs sm"/>
+<polygon points="40,492 190,492 236,446 86,446" class="fs sm"/>
+<polygon points="190,642 190,492 236,446 236,596" class="fs sm"/>
+<polygon points="40,642 190,642 190,492 40,492" class="fs sm"/>
+<polyline points="55,642 55,492" class="l sb w1"/>
+<polyline points="40,627 190,627" class="l sb w1"/>
+<polyline points="70,642 70,492" class="l sb w1"/>
+<polyline points="40,612 190,612" class="l sb w1"/>
+<polyline points="85,642 85,492" class="l sb w1"/>
+<polyline points="40,597 190,597" class="l sb w1"/>
+<polyline points="100,642 100,492" class="l sb w1"/>
+<polyline points="40,582 190,582" class="l sb w1"/>
+<polyline points="115,642 115,492" class="l sb w1"/>
+<polyline points="40,567 190,567" class="l sb w1"/>
+<polyline points="130,642 130,492" class="l sb w1"/>
+<polyline points="40,552 190,552" class="l sb w1"/>
+<polyline points="145,642 145,492" class="l sb w1"/>
+<polyline points="40,537 190,537" class="l sb w1"/>
+<polyline points="160,642 160,492" class="l sb w1"/>
+<polyline points="40,522 190,522" class="l sb w1"/>
+<polyline points="175,642 175,492" class="l sb w1"/>
+<polyline points="40,507 190,507" class="l sb w1"/>
+<circle cx="172.96" cy="594.41" r="5" class="fa"/>
+<circle cx="152.65" cy="566.15" r="5" class="fa"/>
+<circle cx="70.02" cy="519.52" r="5" class="fa"/>
+<circle cx="87.65" cy="507.5" r="5" class="fa"/>
+<circle cx="196.74" cy="491" r="5" class="fa"/>
+<circle cx="162.34" cy="608.66" r="5" class="fa"/>
+<circle cx="89.42" cy="528.5" r="5" class="fa"/>
+<circle cx="105.5" cy="514.67" r="5" class="fa"/>
+<circle cx="173.61" cy="548.25" r="5" class="fa"/>
+<circle cx="129.93" cy="537.95" r="5" class="fa"/>
+<text x="12" y="670" class="tb">マスの数 1000、点が入るマス 10/1000</text>
+<line x1="12" y1="690" x2="308" y2="690" class="l sb w1"/>
+<text x="12" y="718">次元が増える → マスが 10・100・1000 と</text>
+<text x="12" y="738">増える。点の数が同じだと、すかすかになる</text>
+<text x="12" y="758" class="tb ta">対策：次元削減（主成分分析など）</text>
+</svg>

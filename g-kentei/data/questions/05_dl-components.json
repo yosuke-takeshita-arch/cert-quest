@@ -28,6 +28,9 @@
       "C-05-002",
       "C-05-001"
     ],
+    "figures": [
+      "fig-g-neuron-mlp"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Linear",
@@ -64,6 +67,9 @@
     "concepts": [
       "C-05-001",
       "C-05-002"
+    ],
+    "figures": [
+      "fig-g-neuron-mlp"
     ],
     "sources": [
       {
@@ -225,6 +231,9 @@
     "concepts": [
       "C-05-008"
     ],
+    "figures": [
+      "fig-g-conv-params"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
@@ -302,6 +311,9 @@
       "C-05-004",
       "C-05-008"
     ],
+    "figures": [
+      "fig-g-conv-params"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks",
@@ -337,6 +349,9 @@
     "memoryTip": "Dilated＝膨らませた、Atrous＝穴あき。どちらも「すかすかのフィルタで遠くまで」。",
     "concepts": [
       "C-05-010"
+    ],
+    "figures": [
+      "fig-g-dilated-conv"
     ],
     "sources": [
       {
@@ -378,6 +393,9 @@
     "concepts": [
       "C-05-010"
     ],
+    "figures": [
+      "fig-g-dilated-conv"
+    ],
     "sources": [
       {
         "title": "Chen et al. (2016) DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (arXiv:1606.00915)",
@@ -413,6 +431,9 @@
     "memoryTip": "Depthwise Separable＝「空間」と「チャネル」を分業。スマホ向け（MobileNet）。",
     "concepts": [
       "C-05-011"
+    ],
+    "figures": [
+      "fig-g-depthwise-separable"
     ],
     "sources": [
       {
@@ -499,6 +520,9 @@
       "C-05-012",
       "C-05-014"
     ],
+    "figures": [
+      "fig-g-normalization"
+    ],
     "sources": [
       {
         "title": "Ioffe & Szegedy (2015) Batch Normalization (arXiv:1502.03167)",
@@ -535,6 +559,9 @@
     "concepts": [
       "C-05-013",
       "C-05-012"
+    ],
+    "figures": [
+      "fig-g-normalization"
     ],
     "sources": [
       {
@@ -573,6 +600,9 @@
       "C-05-014",
       "C-05-015",
       "C-05-013"
+    ],
+    "figures": [
+      "fig-g-normalization"
     ],
     "sources": [
       {
@@ -618,6 +648,9 @@
     "concepts": [
       "C-05-014"
     ],
+    "figures": [
+      "fig-g-normalization"
+    ],
     "sources": [
       {
         "title": "Ba, Kiros & Hinton (2016) Layer Normalization (arXiv:1607.06450)",
@@ -653,6 +686,9 @@
     "memoryTip": "インスタンス（1枚1枚）＝1枚ごとの画風を扱うスタイル変換。",
     "concepts": [
       "C-05-015"
+    ],
+    "figures": [
+      "fig-g-normalization"
     ],
     "sources": [
       {
@@ -690,6 +726,9 @@
     "concepts": [
       "C-05-016",
       "C-05-018"
+    ],
+    "figures": [
+      "fig-g-pooling"
     ],
     "sources": [
       {
@@ -732,6 +771,9 @@
       "C-05-017",
       "C-05-001"
     ],
+    "figures": [
+      "fig-g-pooling"
+    ],
     "sources": [
       {
         "title": "Lin, Chen & Yan (2013) Network In Network (arXiv:1312.4400)",
@@ -769,6 +811,9 @@
       "C-05-016",
       "C-05-006"
     ],
+    "figures": [
+      "fig-g-pooling"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.MaxPool2d",
@@ -804,6 +849,9 @@
     "memoryTip": "「どこにあるか」より「あるかどうか」。",
     "concepts": [
       "C-05-018"
+    ],
+    "figures": [
+      "fig-g-pooling"
     ],
     "sources": [
       {
@@ -842,6 +890,9 @@
       "C-05-020",
       "C-05-019"
     ],
+    "figures": [
+      "fig-g-skip-connection"
+    ],
     "sources": [
       {
         "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)",
@@ -878,6 +929,9 @@
     "concepts": [
       "C-05-020",
       "C-05-019"
+    ],
+    "figures": [
+      "fig-g-skip-connection"
     ],
     "sources": [
       {
@@ -916,6 +970,9 @@
       "C-05-020",
       "C-05-019"
     ],
+    "figures": [
+      "fig-g-skip-connection"
+    ],
     "sources": [
       {
         "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)",
@@ -953,6 +1010,9 @@
       "C-05-021",
       "C-05-022"
     ],
+    "figures": [
+      "fig-g-rnn-unroll"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets",
@@ -988,6 +1048,9 @@
     "memoryTip": "BPTT＝Back Propagation Through Time＝時間をさかのぼる逆伝播。",
     "concepts": [
       "C-05-025"
+    ],
+    "figures": [
+      "fig-g-rnn-unroll"
     ],
     "sources": [
       {
@@ -1025,6 +1088,9 @@
     "concepts": [
       "C-05-021",
       "C-05-027"
+    ],
+    "figures": [
+      "fig-g-rnn-unroll"
     ],
     "sources": [
       {
@@ -1066,6 +1132,9 @@
     "concepts": [
       "C-05-027",
       "C-05-029"
+    ],
+    "figures": [
+      "fig-g-lstm-gru"
     ],
     "sources": [
       {
@@ -1109,6 +1178,9 @@
       "C-05-027",
       "C-05-029"
     ],
+    "figures": [
+      "fig-g-lstm-gru"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.GRU",
@@ -1149,6 +1221,9 @@
     "concepts": [
       "C-05-023",
       "C-05-024"
+    ],
+    "figures": [
+      "fig-g-elman-jordan"
     ],
     "sources": [
       {
@@ -1194,6 +1269,9 @@
     "concepts": [
       "C-05-026"
     ],
+    "figures": [
+      "fig-g-rnn-unroll"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets",
@@ -1230,6 +1308,9 @@
     "concepts": [
       "C-05-030"
     ],
+    "figures": [
+      "fig-g-bidirectional-rnn"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10（10.3 Bidirectional RNNs）",
@@ -1265,6 +1346,9 @@
     "memoryTip": "ゲート＝0（閉）〜1（開）の蛇口。",
     "concepts": [
       "C-05-029"
+    ],
+    "figures": [
+      "fig-g-lstm-gru"
     ],
     "sources": [
       {
@@ -1307,6 +1391,9 @@
       "C-05-032",
       "C-05-031"
     ],
+    "figures": [
+      "fig-g-seq2seq-attention"
+    ],
     "sources": [
       {
         "title": "Bahdanau, Cho & Bengio (2014) Neural Machine Translation by Jointly Learning to Align and Translate (arXiv:1409.0473)",
@@ -1343,6 +1430,9 @@
     "concepts": [
       "C-05-031"
     ],
+    "figures": [
+      "fig-g-seq2seq-attention"
+    ],
     "sources": [
       {
         "title": "Sutskever, Vinyals & Le (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)",
@@ -1378,6 +1468,9 @@
     "memoryTip": "論文名「Attention Is All You Need」＝Attentionだけで十分。",
     "concepts": [
       "C-05-035"
+    ],
+    "figures": [
+      "fig-g-transformer"
     ],
     "sources": [
       {
@@ -1416,6 +1509,9 @@
       "C-05-038",
       "C-05-035"
     ],
+    "figures": [
+      "fig-g-transformer"
+    ],
     "sources": [
       {
         "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
@@ -1452,6 +1548,10 @@
     "concepts": [
       "C-05-033",
       "C-05-036"
+    ],
+    "figures": [
+      "fig-g-seq2seq-attention",
+      "fig-g-qkv"
     ],
     "sources": [
       {
@@ -1490,6 +1590,10 @@
       "C-05-034",
       "C-05-033"
     ],
+    "figures": [
+      "fig-g-transformer",
+      "fig-g-qkv"
+    ],
     "sources": [
       {
         "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
@@ -1525,6 +1629,9 @@
     "memoryTip": "Multi-Head＝何人もの読み手がそれぞれ違う観点で同じ文を読む。",
     "concepts": [
       "C-05-037"
+    ],
+    "figures": [
+      "fig-g-transformer"
     ],
     "sources": [
       {
@@ -1562,6 +1669,9 @@
     "concepts": [
       "C-05-036"
     ],
+    "figures": [
+      "fig-g-qkv"
+    ],
     "sources": [
       {
         "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
@@ -1598,6 +1708,9 @@
     "concepts": [
       "C-05-039"
     ],
+    "figures": [
+      "fig-g-autoencoder-vae"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 14 Autoencoders",
@@ -1633,6 +1746,9 @@
     "memoryTip": "積層オートエンコーダ＝1階ずつ基礎工事（事前学習）してから全体を仕上げる（ファインチューニング）。",
     "concepts": [
       "C-05-040"
+    ],
+    "figures": [
+      "fig-g-autoencoder-vae"
     ],
     "sources": [
       {
@@ -1678,6 +1794,9 @@
     "concepts": [
       "C-05-041"
     ],
+    "figures": [
+      "fig-g-autoencoder-vae"
+    ],
     "sources": [
       {
         "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)",
@@ -1714,6 +1833,9 @@
     "concepts": [
       "C-05-042"
     ],
+    "figures": [
+      "fig-g-autoencoder-vae"
+    ],
     "sources": [
       {
         "title": "van den Oord, Vinyals & Kavukcuoglu (2017) Neural Discrete Representation Learning (arXiv:1711.00937)",
@@ -1749,6 +1871,9 @@
     "memoryTip": "オートエンコーダの正解＝入力そのもの（ラベル不要）。価値は出力ではなく「真ん中」の表現にある。",
     "concepts": [
       "C-05-039"
+    ],
+    "figures": [
+      "fig-g-autoencoder-vae"
     ],
     "sources": [
       {
@@ -1794,6 +1919,9 @@
     "concepts": [
       "C-05-043"
     ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 7 Regularization（7.4 Dataset Augmentation）",
@@ -1829,6 +1957,9 @@
     "memoryTip": "Erasing＝消しゴム。CutoutもRandom Erasingも「一部を消す」仲間。",
     "concepts": [
       "C-05-045"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
     ],
     "sources": [
       {
@@ -1866,6 +1997,9 @@
     "concepts": [
       "C-05-046",
       "C-05-045"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
     ],
     "sources": [
       {
@@ -1907,6 +2041,9 @@
     "concepts": [
       "C-05-045",
       "C-05-044"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
     ],
     "sources": [
       {
@@ -1984,6 +2121,9 @@
     "concepts": [
       "C-05-047"
     ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
     "sources": [
       {
         "title": "Cubuk et al. (2019) RandAugment: Practical automated data augmentation with a reduced search space (arXiv:1909.13719)",
@@ -2020,6 +2160,9 @@
     "concepts": [
       "C-05-043",
       "C-05-044"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
     ],
     "sources": [
       {
@@ -2137,6 +2280,9 @@
       "C-05-027",
       "C-05-028"
     ],
+    "figures": [
+      "fig-g-lstm-gru"
+    ],
     "sources": [
       {
         "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation",
@@ -2176,6 +2322,9 @@
     "memoryTip": "戻し方は2通り：逆プーリング＝「どこが最大だったか」を覚えて戻す（学習なし）／転置畳み込み＝広げ方を学習する（真の逆演算ではない）。",
     "concepts": [
       "C-05-049"
+    ],
+    "figures": [
+      "fig-g-upsampling"
     ],
     "sources": [
       {
@@ -2227,6 +2376,9 @@
       "C-05-031",
       "C-05-039"
     ],
+    "figures": [
+      "fig-g-seq2seq-attention"
+    ],
     "sources": [
       {
         "title": "Cho et al. (2014) Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation (arXiv:1406.1078)",
@@ -2267,6 +2419,9 @@
     "concepts": [
       "C-05-034",
       "C-05-035"
+    ],
+    "figures": [
+      "fig-g-qkv"
     ],
     "sources": [
       {

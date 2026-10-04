@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-g-conv-params-t fig-g-conv-params-d">
+<title id="fig-g-conv-params-t">畳み込み層のパラメータ数と、全結合層との比較</title>
+<desc id="fig-g-conv-params-d">入力8チャネル、3×3のフィルタ、出力16チャネルの畳み込み層の例。フィルタ1個の重みは3×3×8で72個、バイアスが1個で73個。それが出力チャネル数の16個あるので、全部で73×16の1,168個。画像の大きさが変わっても1,168個のまま。同じ入力と出力を全結合でつなぐと、8×8の画像で525,312個、16×16の画像で8,392,704個になり、画像の大きさに応じて増える。畳み込みはフィルタを画像全体で使い回す（重みの共有）ので、画像の大きさに依存しない。</desc>
+<text x="12" y="20" class="tb">① 畳み込み層の重みの数え方</text>
+<rect x="32" y="40" width="38" height="38" class="fs sa" stroke-width="1.5"/>
+<rect x="26" y="46" width="38" height="38" class="fs sa" stroke-width="1.5"/>
+<rect x="20" y="52" width="38" height="38" class="fs sa" stroke-width="1.5"/>
+<rect x="14" y="58" width="38" height="38" class="fas sa" stroke-width="1.5"/>
+<text x="42" y="112" class="tb" text-anchor="middle">入力</text>
+<text x="42" y="130" class="tm" text-anchor="middle">8チャネル</text>
+<line x1="78" y1="66" x2="98" y2="66" class="l w2"/>
+<polyline points="91,69.85 98,66 91,62.15" class="l w2"/>
+<rect x="118" y="50" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="131" y="50" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="144" y="50" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="118" y="63" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="131" y="63" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="144" y="63" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="118" y="76" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="131" y="76" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="144" y="76" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="112" y="56" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="125" y="56" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="138" y="56" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="112" y="69" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="125" y="69" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="138" y="69" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="112" y="82" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="125" y="82" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="138" y="82" width="13" height="13" class="fs sa" stroke-width="1"/>
+<rect x="106" y="62" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="119" y="62" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="132" y="62" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="106" y="75" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="119" y="75" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="132" y="75" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="106" y="88" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="119" y="88" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="132" y="88" width="13" height="13" class="fas sa" stroke-width="1"/>
+<text x="130" y="112" class="tb" text-anchor="middle">フィルタ</text>
+<text x="130" y="130" class="tm" text-anchor="middle">3×3×8</text>
+<text x="172" y="72" class="tb ta">×16個</text>
+<line x1="214" y1="66" x2="234" y2="66" class="l w2"/>
+<polyline points="227,69.85 234,66 227,62.15" class="l w2"/>
+<rect x="260" y="40" width="38" height="38" class="fs sok" stroke-width="1.5"/>
+<rect x="254" y="46" width="38" height="38" class="fs sok" stroke-width="1.5"/>
+<rect x="248" y="52" width="38" height="38" class="fs sok" stroke-width="1.5"/>
+<rect x="242" y="58" width="38" height="38" class="fas sok" stroke-width="1.5"/>
+<text x="270" y="112" class="tb" text-anchor="middle">出力</text>
+<text x="270" y="130" class="tm" text-anchor="middle">16チャネル</text>
+<text x="12" y="164">フィルタ1個の重み（縦×横×入力ch）</text>
+<text x="308" y="164" class="tb" text-anchor="end">3×3×8＝72</text>
+<text x="12" y="190">バイアス（フィルタ1個に1つ）</text>
+<text x="308" y="190" class="tb" text-anchor="end">＋1</text>
+<text x="12" y="216">出力チャネル数ぶん（16個）</text>
+<text x="308" y="216" class="tb" text-anchor="end">(72＋1)×16</text>
+<line x1="12" y1="230" x2="308" y2="230" class="l sb w1"/>
+<text x="12" y="248" class="tb">畳み込み層のパラメータ数</text>
+<text x="308" y="248" class="tb ta" text-anchor="end">＝1,168 個</text>
+<rect x="12" y="280" width="296" height="1" class="fs sb" stroke-width="1"/>
+<text x="12" y="306" class="tb">② 全結合層でつなぐと</text>
+<text x="12" y="326" class="tm">（出力も 縦×横×16 の形にする）</text>
+<text x="12" y="350" class="tm">画像の大きさ</text>
+<text x="170" y="350" class="tb ta" text-anchor="middle">畳み込み</text>
+<text x="308" y="350" class="tb twn" text-anchor="end">全結合</text>
+<line x1="12" y1="358" x2="308" y2="358" class="l sb w1"/>
+<text x="12" y="382" class="tb">8×8</text>
+<text x="170" y="382" class="tb ta" text-anchor="middle">1,168個</text>
+<text x="308" y="382" class="tb twn" text-anchor="end">525,312個</text>
+<text x="12" y="410" class="tb">16×16</text>
+<text x="170" y="410" class="tb ta" text-anchor="middle">1,168個</text>
+<text x="308" y="410" class="tb twn" text-anchor="end">8,392,704個</text>
+<text x="12" y="438" class="tm">全結合＝(入力の数＋1)×出力の数。</text>
+<text x="12" y="458" class="tm">画像が大きくなるほど増える</text>
+<rect x="12" y="476" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="499.5" class="tb" text-anchor="middle">畳み込みは同じフィルタを画像全体で使い回す</text>
+<text x="160" y="517.5" class="tb" text-anchor="middle">（重みの共有）→ 画像の大きさに依存しない</text>
+</svg>

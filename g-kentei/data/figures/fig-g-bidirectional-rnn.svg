@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 484" role="img" aria-labelledby="fig-g-bidirectional-rnn-t fig-g-bidirectional-rnn-d">
+<title id="fig-g-bidirectional-rnn-t">双方向 RNN：前から読む RNN と、後ろから読む RNN</title>
+<desc id="fig-g-bidirectional-rnn-d">入力 x1 から x4 の上に、左から右へ読む RNN の段と、右から左へ読む RNN の段を重ねる。各時刻の出力には、前向きの段（過去の情報）と後ろ向きの段（未来の情報）の両方が入る。たとえば文中の単語の品詞を判定するとき、前の語と後ろの語の両方を使える。先の入力が必要なので、リアルタイムの逐次予測には向かない。</desc>
+<text x="12" y="20" class="tb">各時刻の出力が、前後の両方を見る</text>
+<rect x="30" y="266" width="36" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="48" y="282.5" text-anchor="middle">x1</text>
+<rect x="50" y="190" width="30" height="24" class="fwn swn" stroke-width="1.5"/>
+<text x="65" y="206.5" class="tb" text-anchor="middle">←</text>
+<rect x="16" y="134" width="30" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="31" y="150.5" class="tb" text-anchor="middle">→</text>
+<rect x="30" y="64" width="36" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="48" y="80.5" class="tb" text-anchor="middle">y1</text>
+<line x1="56" y1="266" x2="62" y2="215" class="l swn w2"/>
+<polyline points="65.01,222.4 62,215 57.36,221.5" class="l swn w2"/>
+<line x1="40" y1="266" x2="33" y2="159" class="l sa w2"/>
+<polyline points="37.3,165.73 33,159 29.62,166.24" class="l sa w2"/>
+<line x1="33" y1="134" x2="40" y2="89" class="l sa w2"/>
+<polyline points="42.73,96.51 40,89 35.12,95.33" class="l sa w2"/>
+<line x1="65" y1="190" x2="56" y2="89" class="l swn w2"/>
+<polyline points="60.46,95.63 56,89 52.79,96.31" class="l swn w2"/>
+<rect x="102" y="266" width="36" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="120" y="282.5" text-anchor="middle">x2</text>
+<rect x="122" y="190" width="30" height="24" class="fwn swn" stroke-width="1.5"/>
+<text x="137" y="206.5" class="tb" text-anchor="middle">←</text>
+<rect x="88" y="134" width="30" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="103" y="150.5" class="tb" text-anchor="middle">→</text>
+<rect x="102" y="64" width="36" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="120" y="80.5" class="tb" text-anchor="middle">y2</text>
+<line x1="128" y1="266" x2="134" y2="215" class="l swn w2"/>
+<polyline points="137.01,222.4 134,215 129.36,221.5" class="l swn w2"/>
+<line x1="112" y1="266" x2="105" y2="159" class="l sa w2"/>
+<polyline points="109.3,165.73 105,159 101.62,166.24" class="l sa w2"/>
+<line x1="105" y1="134" x2="112" y2="89" class="l sa w2"/>
+<polyline points="114.73,96.51 112,89 107.12,95.33" class="l sa w2"/>
+<line x1="137" y1="190" x2="128" y2="89" class="l swn w2"/>
+<polyline points="132.46,95.63 128,89 124.79,96.31" class="l swn w2"/>
+<rect x="174" y="266" width="36" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="192" y="282.5" text-anchor="middle">x3</text>
+<rect x="194" y="190" width="30" height="24" class="fwn swn" stroke-width="1.5"/>
+<text x="209" y="206.5" class="tb" text-anchor="middle">←</text>
+<rect x="160" y="134" width="30" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="175" y="150.5" class="tb" text-anchor="middle">→</text>
+<rect x="174" y="64" width="36" height="24" class="fok sok" stroke-width="1.5"/>
+<text x="192" y="80.5" class="tb" text-anchor="middle">y3</text>
+<line x1="200" y1="266" x2="206" y2="215" class="l swn w2"/>
+<polyline points="209.01,222.4 206,215 201.36,221.5" class="l swn w2"/>
+<line x1="184" y1="266" x2="177" y2="159" class="l sa w2"/>
+<polyline points="181.3,165.73 177,159 173.62,166.24" class="l sa w2"/>
+<line x1="177" y1="134" x2="184" y2="89" class="l sa w2"/>
+<polyline points="186.73,96.51 184,89 179.12,95.33" class="l sa w2"/>
+<line x1="209" y1="190" x2="200" y2="89" class="l swn w2"/>
+<polyline points="204.46,95.63 200,89 196.79,96.31" class="l swn w2"/>
+<rect x="246" y="266" width="36" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="264" y="282.5" text-anchor="middle">x4</text>
+<rect x="266" y="190" width="30" height="24" class="fwn swn" stroke-width="1.5"/>
+<text x="281" y="206.5" class="tb" text-anchor="middle">←</text>
+<rect x="232" y="134" width="30" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="247" y="150.5" class="tb" text-anchor="middle">→</text>
+<rect x="246" y="64" width="36" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="264" y="80.5" class="tb" text-anchor="middle">y4</text>
+<line x1="272" y1="266" x2="278" y2="215" class="l swn w2"/>
+<polyline points="281.01,222.4 278,215 273.36,221.5" class="l swn w2"/>
+<line x1="256" y1="266" x2="249" y2="159" class="l sa w2"/>
+<polyline points="253.3,165.73 249,159 245.62,166.24" class="l sa w2"/>
+<line x1="249" y1="134" x2="256" y2="89" class="l sa w2"/>
+<polyline points="258.73,96.51 256,89 251.12,95.33" class="l sa w2"/>
+<line x1="281" y1="190" x2="272" y2="89" class="l swn w2"/>
+<polyline points="276.46,95.63 272,89 268.79,96.31" class="l swn w2"/>
+<line x1="46" y1="146" x2="87" y2="146" class="l sa w2"/>
+<polyline points="80,149.85 87,146 80,142.15" class="l sa w2"/>
+<line x1="121" y1="202" x2="81" y2="202" class="l swn w2"/>
+<polyline points="88,198.15 81,202 88,205.85" class="l swn w2"/>
+<line x1="118" y1="146" x2="159" y2="146" class="l sa w2"/>
+<polyline points="152,149.85 159,146 152,142.15" class="l sa w2"/>
+<line x1="193" y1="202" x2="153" y2="202" class="l swn w2"/>
+<polyline points="160,198.15 153,202 160,205.85" class="l swn w2"/>
+<line x1="190" y1="146" x2="231" y2="146" class="l sa w2"/>
+<polyline points="224,149.85 231,146 224,142.15" class="l sa w2"/>
+<line x1="265" y1="202" x2="225" y2="202" class="l swn w2"/>
+<polyline points="232,198.15 225,202 232,205.85" class="l swn w2"/>
+<line x1="12" y1="322" x2="308" y2="322" class="l sb w1"/>
+<line x1="12" y1="346" x2="40" y2="346" class="l sa w2"/>
+<text x="48" y="351">前向き：過去の情報（左から右）</text>
+<line x1="12" y1="370" x2="40" y2="370" class="l swn w2"/>
+<text x="48" y="375">後ろ向き：未来の情報（右から左）</text>
+<text x="12" y="406" class="tb">例：文中の単語の品詞を判定する</text>
+<text x="12" y="426">前の語と、後ろの語の両方を手がかりにする</text>
+<text x="12" y="454" class="tm">先の入力が要るので、リアルタイムの</text>
+<text x="12" y="472" class="tm">逐次予測には向かない</text>
+</svg>

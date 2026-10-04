@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 432" role="img" aria-labelledby="fig-g-elman-jordan-t fig-g-elman-jordan-d">
+<title id="fig-g-elman-jordan-t">エルマンネットワークとジョルダンネットワーク：戻す元のちがい</title>
+<desc id="fig-g-elman-jordan-d">上はエルマンネットワーク（1990年）。入力層、隠れ層、出力層の3層で、隠れ層の出力を文脈ユニットにコピーし、次の時刻に入力と一緒に隠れ層へ戻す。下はジョルダンネットワーク（1986年）。出力層の出力を状態ユニットに戻し、次の時刻の入力の一部として使う。戻す元が隠れ層ならエルマン、出力層ならジョルダン。</desc>
+<text x="12" y="22" class="tb">エルマン（1990年）</text>
+<text x="12" y="42" class="tb tng">隠れ層の出力を戻す</text>
+<rect x="8" y="60" width="68" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="42" y="79.5" text-anchor="middle">入力層</text>
+<rect x="108" y="60" width="68" height="30" class="fng sng" stroke-width="1.5"/>
+<text x="142" y="79.5" text-anchor="middle">隠れ層</text>
+<rect x="208" y="60" width="68" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="242" y="79.5" text-anchor="middle">出力層</text>
+<line x1="76" y1="75" x2="108" y2="75" class="l w2"/>
+<polyline points="101,78.85 108,75 101,71.15" class="l w2"/>
+<line x1="176" y1="75" x2="208" y2="75" class="l w2"/>
+<polyline points="201,78.85 208,75 201,71.15" class="l w2"/>
+<rect x="94" y="134" width="96" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="142" y="153.5" text-anchor="middle">文脈ユニット</text>
+<line x1="130" y1="90" x2="130" y2="134" class="l sng w2"/>
+<polyline points="126.15,127 130,134 133.85,127" class="l sng w2"/>
+<text x="122" y="118" class="tb tng" text-anchor="end">コピー</text>
+<line x1="154" y1="134" x2="154" y2="92" class="l sa w2"/>
+<polyline points="157.85,99 154,92 150.15,99" class="l sa w2"/>
+<text x="162" y="118" class="tm">次の時刻へ</text>
+<text x="12" y="190" class="tm">次の時刻に、入力と一緒に隠れ層へ入る</text>
+<line x1="12" y1="208" x2="308" y2="208" class="l sb w1"/>
+<text x="12" y="232" class="tb">ジョルダン（1986年）</text>
+<text x="12" y="252" class="tb tng">出力層の出力を戻す</text>
+<rect x="8" y="270" width="68" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="42" y="289.5" text-anchor="middle">入力層</text>
+<rect x="108" y="270" width="68" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="142" y="289.5" text-anchor="middle">隠れ層</text>
+<rect x="208" y="270" width="68" height="30" class="fng sng" stroke-width="1.5"/>
+<text x="242" y="289.5" text-anchor="middle">出力層</text>
+<line x1="76" y1="285" x2="108" y2="285" class="l w2"/>
+<polyline points="101,288.85 108,285 101,281.15" class="l w2"/>
+<line x1="176" y1="285" x2="208" y2="285" class="l w2"/>
+<polyline points="201,288.85 208,285 201,281.15" class="l w2"/>
+<rect x="194" y="344" width="96" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="242" y="363.5" text-anchor="middle">状態ユニット</text>
+<line x1="242" y1="300" x2="242" y2="344" class="l sng w2"/>
+<polyline points="238.15,337 242,344 245.85,337" class="l sng w2"/>
+<text x="250" y="326" class="tb tng">戻す</text>
+<line x1="194" y1="359" x2="42" y2="359" class="l sa w2"/>
+<line x1="42" y1="359" x2="42" y2="302" class="l sa w2"/>
+<polyline points="45.85,309 42,302 38.15,309" class="l sa w2"/>
+<text x="52" y="334" class="tm">次の入力に加える</text>
+<text x="12" y="400" class="tb">戻す元が、隠れ層ならエルマン、</text>
+<text x="12" y="420" class="tb">出力層ならジョルダン</text>
+</svg>

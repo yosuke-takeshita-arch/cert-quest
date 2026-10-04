@@ -29,6 +29,9 @@
       "C-03-021",
       "C-03-036"
     ],
+    "figures": [
+      "fig-g-ml-three-types"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
@@ -66,6 +69,9 @@
       "C-03-007",
       "C-03-006",
       "C-03-009"
+    ],
+    "figures": [
+      "fig-g-least-squares"
     ],
     "sources": [
       {
@@ -105,6 +111,9 @@
       "C-03-002",
       "C-03-003"
     ],
+    "figures": [
+      "fig-g-logistic-regression"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models（Logistic regression）",
@@ -140,6 +149,9 @@
     "memoryTip": "ロジスティック回帰＝線形の和＋シグモイド。1層のニューラルネットと同じ形。",
     "concepts": [
       "C-03-008"
+    ],
+    "figures": [
+      "fig-g-logistic-regression"
     ],
     "sources": [
       {
@@ -178,6 +190,9 @@
       "C-03-011",
       "C-03-012"
     ],
+    "figures": [
+      "fig-g-svm-margin"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
@@ -215,6 +230,9 @@
       "C-03-013",
       "C-03-011"
     ],
+    "figures": [
+      "fig-g-kernel-trick"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
@@ -250,6 +268,9 @@
     "memoryTip": "決定木の長所＝読める・前処理がほぼ要らない、短所＝深くすると訓練データを覚え込む（→深さの制限やランダムフォレストで補う）。",
     "concepts": [
       "C-03-014"
+    ],
+    "figures": [
+      "fig-g-decision-tree"
     ],
     "sources": [
       {
@@ -289,6 +310,9 @@
       "C-03-018",
       "C-03-015"
     ],
+    "figures": [
+      "fig-g-bagging-boosting"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles",
@@ -325,6 +349,9 @@
     "concepts": [
       "C-03-016",
       "C-03-020"
+    ],
+    "figures": [
+      "fig-g-bagging-boosting"
     ],
     "sources": [
       {
@@ -367,6 +394,9 @@
       "C-03-020",
       "C-03-017"
     ],
+    "figures": [
+      "fig-g-bagging-boosting"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles",
@@ -404,6 +434,9 @@
       "C-03-019",
       "C-03-018"
     ],
+    "figures": [
+      "fig-g-bagging-boosting"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles（Gradient-boosted trees）",
@@ -440,6 +473,9 @@
     "concepts": [
       "C-03-010",
       "C-03-009"
+    ],
+    "figures": [
+      "fig-g-time-series-ar"
     ],
     "sources": [
       {
@@ -483,6 +519,9 @@
       "C-03-017",
       "C-03-018"
     ],
+    "figures": [
+      "fig-g-bagging-boosting"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles",
@@ -519,6 +558,9 @@
     "concepts": [
       "C-03-023",
       "C-03-051"
+    ],
+    "figures": [
+      "fig-g-kmeans"
     ],
     "sources": [
       {
@@ -557,6 +599,9 @@
       "C-03-024",
       "C-03-025"
     ],
+    "figures": [
+      "fig-g-dendrogram"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Clustering（Hierarchical clustering）",
@@ -592,6 +637,9 @@
     "memoryTip": "デンドロ＝ギリシャ語の「木」。",
     "concepts": [
       "C-03-025"
+    ],
+    "figures": [
+      "fig-g-dendrogram"
     ],
     "sources": [
       {
@@ -629,6 +677,9 @@
     "concepts": [
       "C-03-026",
       "C-03-027"
+    ],
+    "figures": [
+      "fig-g-pca"
     ],
     "sources": [
       {
@@ -668,6 +719,9 @@
       "C-03-026",
       "C-03-029",
       "C-03-030"
+    ],
+    "figures": [
+      "fig-g-pca"
     ],
     "sources": [
       {
@@ -709,6 +763,9 @@
     "concepts": [
       "C-03-029"
     ],
+    "figures": [
+      "fig-g-pca"
+    ],
     "sources": [
       {
         "title": "van der Maaten & Hinton (2008) Visualizing Data using t-SNE. JMLR",
@@ -745,6 +802,9 @@
     "concepts": [
       "C-03-032",
       "C-03-031"
+    ],
+    "figures": [
+      "fig-g-topic-model"
     ],
     "sources": [
       {
@@ -783,6 +843,9 @@
       "C-03-034",
       "C-03-033",
       "C-03-035"
+    ],
+    "figures": [
+      "fig-g-recommender"
     ],
     "sources": [
       {
@@ -825,6 +888,9 @@
       "C-03-035",
       "C-03-033"
     ],
+    "figures": [
+      "fig-g-recommender"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Recommendation Systems - Collaborative filtering summary",
@@ -861,6 +927,9 @@
     "concepts": [
       "C-03-033",
       "C-03-034"
+    ],
+    "figures": [
+      "fig-g-recommender"
     ],
     "sources": [
       {
@@ -903,6 +972,9 @@
       "C-03-021",
       "C-03-022"
     ],
+    "figures": [
+      "fig-g-ml-three-types"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
@@ -938,6 +1010,10 @@
     "memoryTip": "強化学習＝ほめられる（報酬）と伸びる。正解は教えてもらえない。",
     "concepts": [
       "C-03-036"
+    ],
+    "figures": [
+      "fig-g-rl-loop",
+      "fig-g-ml-three-types"
     ],
     "sources": [
       {
@@ -975,6 +1051,9 @@
     "concepts": [
       "C-03-038"
     ],
+    "figures": [
+      "fig-g-rl-loop"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（3.3 Returns and Episodes）",
@@ -1010,6 +1089,9 @@
     "memoryTip": "γ≒0＝今が大事（近視眼）、γ≒1＝将来も大事（遠視眼）。",
     "concepts": [
       "C-03-038"
+    ],
+    "figures": [
+      "fig-g-rl-loop"
     ],
     "sources": [
       {
@@ -1048,6 +1130,9 @@
       "C-03-040",
       "C-03-041"
     ],
+    "figures": [
+      "fig-g-q-sarsa-td"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（6.4 Sarsa / 6.5 Q-learning）",
@@ -1084,6 +1169,9 @@
     "concepts": [
       "C-03-043",
       "C-03-044"
+    ],
+    "figures": [
+      "fig-g-explore-exploit"
     ],
     "sources": [
       {
@@ -1123,6 +1211,9 @@
       "C-03-043",
       "C-03-044"
     ],
+    "figures": [
+      "fig-g-explore-exploit"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.2 Multi-armed Bandits）",
@@ -1158,6 +1249,9 @@
     "memoryTip": "UCB＝Upper（上限）。「もしかしたらすごく良いかも」の上限で選ぶ楽観主義。",
     "concepts": [
       "C-03-044"
+    ],
+    "figures": [
+      "fig-g-explore-exploit"
     ],
     "sources": [
       {
@@ -1234,6 +1328,9 @@
       "C-03-047",
       "C-03-040"
     ],
+    "figures": [
+      "fig-g-rl-taxonomy"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.6, Ch.13）",
@@ -1269,6 +1366,9 @@
     "memoryTip": "マルコフ＝「今だけ見れば次が分かる」。決定過程＝行動を選ぶ。",
     "concepts": [
       "C-03-037"
+    ],
+    "figures": [
+      "fig-g-rl-loop"
     ],
     "sources": [
       {
@@ -1469,6 +1569,9 @@
     "concepts": [
       "C-03-055"
     ],
+    "figures": [
+      "fig-g-roc-auc"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - ROC and AUC",
@@ -1504,6 +1607,9 @@
     "memoryTip": "AUC＝1が満点、0.5がコイン投げ。",
     "concepts": [
       "C-03-055"
+    ],
+    "figures": [
+      "fig-g-roc-auc"
     ],
     "sources": [
       {
@@ -1541,6 +1647,9 @@
     "concepts": [
       "C-03-056"
     ],
+    "figures": [
+      "fig-g-regression-metrics"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Metrics and scoring（Regression metrics）",
@@ -1576,6 +1685,9 @@
     "memoryTip": "二乗は大きいものをもっと大きくする→外れ値に敏感。",
     "concepts": [
       "C-03-056"
+    ],
+    "figures": [
+      "fig-g-regression-metrics"
     ],
     "sources": [
       {
@@ -1658,6 +1770,9 @@
       "C-03-051",
       "C-03-050"
     ],
+    "figures": [
+      "fig-g-validation"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Cross-validation（K-fold）",
@@ -1695,6 +1810,9 @@
       "C-03-051",
       "C-03-050",
       "C-03-048"
+    ],
+    "figures": [
+      "fig-g-validation"
     ],
     "sources": [
       {
@@ -1850,6 +1968,9 @@
       "C-03-059",
       "C-08-019"
     ],
+    "figures": [
+      "fig-g-knn"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Nearest Neighbors",
@@ -1927,6 +2048,9 @@
       "C-03-012",
       "C-03-011"
     ],
+    "figures": [
+      "fig-g-svm-margin"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
@@ -1967,6 +2091,9 @@
     "concepts": [
       "C-03-014"
     ],
+    "figures": [
+      "fig-g-decision-tree"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Decision Trees",
@@ -2003,6 +2130,9 @@
     "concepts": [
       "C-03-018",
       "C-03-019"
+    ],
+    "figures": [
+      "fig-g-bagging-boosting"
     ],
     "sources": [
       {
@@ -2162,6 +2292,9 @@
       "C-03-035",
       "C-03-034"
     ],
+    "figures": [
+      "fig-g-recommender"
+    ],
     "sources": [
       {
         "title": "Linden, Smith & York (2003) Amazon.com Recommendations: Item-to-Item Collaborative Filtering. IEEE Internet Computing 7(1)",
@@ -2207,6 +2340,9 @@
       "C-03-061",
       "C-03-040"
     ],
+    "figures": [
+      "fig-g-rl-taxonomy"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
@@ -2243,6 +2379,9 @@
     "concepts": [
       "C-03-062",
       "C-03-039"
+    ],
+    "figures": [
+      "fig-g-rl-taxonomy"
     ],
     "sources": [
       {
@@ -2281,6 +2420,9 @@
       "C-03-063",
       "C-03-038"
     ],
+    "figures": [
+      "fig-g-q-sarsa-td"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
@@ -2318,6 +2460,9 @@
       "C-03-040",
       "C-03-041",
       "C-03-043"
+    ],
+    "figures": [
+      "fig-g-q-sarsa-td"
     ],
     "sources": [
       {
@@ -2358,6 +2503,9 @@
       "C-03-037",
       "C-03-039"
     ],
+    "figures": [
+      "fig-g-rl-taxonomy"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
@@ -2394,6 +2542,9 @@
     "concepts": [
       "C-03-064",
       "C-03-049"
+    ],
+    "figures": [
+      "fig-g-bias-variance"
     ],
     "sources": [
       {
@@ -2433,7 +2584,8 @@
       "C-03-053"
     ],
     "figures": [
-      "fig-g-confusion-matrix"
+      "fig-g-confusion-matrix",
+      "fig-g-roc-auc"
     ],
     "sources": [
       {
@@ -2475,6 +2627,9 @@
     "concepts": [
       "C-03-050",
       "C-03-048"
+    ],
+    "figures": [
+      "fig-g-validation"
     ],
     "sources": [
       {

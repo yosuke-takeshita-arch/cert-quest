@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 654" role="img" aria-labelledby="fig-g-vanishing-gradient-t fig-g-vanishing-gradient-d">
+<title id="fig-g-vanishing-gradient-t">勾配消失・勾配爆発と、勾配クリッピング</title>
+<desc id="fig-g-vanishing-gradient-d">誤差逆伝播では、出力側から入力側へ向かって、層ごとの微分を掛けながら勾配が戻る。上の図は5層で、各層でシグモイドの微分（最大0.25）が掛かると、勾配は出力側の1から0.25、0.0625、0.0156、0.0039と急に小さくなり、入力側の重みがほとんど更新されない（勾配消失）。中の図は、各層で1より大きい値（例として2）が掛かると、勾配が1から2、4、8、16と急に大きくなる（勾配爆発）。下の図は勾配クリッピング。勾配ベクトルのノルムがしきい値を超えたら、向きは保ったまま、長さをしきい値まで縮める。勾配爆発に効くが、勾配消失には効かない。</desc>
+<text x="12" y="20" class="tb">① 勾配消失：小さい値を掛け続ける</text>
+<text x="12" y="40" class="tm">各層でシグモイドの微分（最大0.25）が掛かる</text>
+<rect x="18" y="128.5" width="36" height="1.5" class="fwn swn" stroke-width="1.5"/>
+<text x="36" y="122.5" class="tb" text-anchor="middle">0.0039</text>
+<rect x="74" y="128.5" width="36" height="1.5" class="fwn swn" stroke-width="1.5"/>
+<text x="92" y="122.5" class="tb" text-anchor="middle">0.0156</text>
+<rect x="130" y="125.63" width="36" height="4.38" class="fwn swn" stroke-width="1.5"/>
+<text x="148" y="119.63" class="tb" text-anchor="middle">0.0625</text>
+<rect x="186" y="112.5" width="36" height="17.5" class="fwn swn" stroke-width="1.5"/>
+<text x="204" y="106.5" class="tb" text-anchor="middle">0.25</text>
+<rect x="242" y="60" width="36" height="70" class="fas sa" stroke-width="1.5"/>
+<text x="260" y="54" class="tb" text-anchor="middle">1</text>
+<line x1="14" y1="130" x2="306" y2="130" class="l sm w1"/>
+<text x="14" y="150" class="tm">入力側</text>
+<text x="306" y="150" class="tm" text-anchor="end">出力側</text>
+<line x1="230" y1="145" x2="105.6" y2="145" class="l sm w1"/>
+<polygon points="100,145 105.6,141.5 105.6,148.5" class="fm"/>
+<text x="12" y="210" class="tb">② 勾配爆発：大きい値を掛け続ける</text>
+<text x="12" y="230" class="tm">各層で1より大きい値（例：2）が掛かる</text>
+<rect x="18" y="250" width="36" height="70" class="fwn swn" stroke-width="1.5"/>
+<text x="36" y="244" class="tb" text-anchor="middle">16</text>
+<rect x="74" y="285" width="36" height="35" class="fwn swn" stroke-width="1.5"/>
+<text x="92" y="279" class="tb" text-anchor="middle">8</text>
+<rect x="130" y="302.5" width="36" height="17.5" class="fwn swn" stroke-width="1.5"/>
+<text x="148" y="296.5" class="tb" text-anchor="middle">4</text>
+<rect x="186" y="311.25" width="36" height="8.75" class="fwn swn" stroke-width="1.5"/>
+<text x="204" y="305.25" class="tb" text-anchor="middle">2</text>
+<rect x="242" y="315.63" width="36" height="4.38" class="fas sa" stroke-width="1.5"/>
+<text x="260" y="309.63" class="tb" text-anchor="middle">1</text>
+<line x1="14" y1="320" x2="306" y2="320" class="l sm w1"/>
+<text x="14" y="340" class="tm">入力側</text>
+<text x="306" y="340" class="tm" text-anchor="end">出力側</text>
+<line x1="230" y1="335" x2="105.6" y2="335" class="l sm w1"/>
+<polygon points="100,335 105.6,331.5 105.6,338.5" class="fm"/>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="386" class="tb">③ 勾配クリッピング：長すぎる勾配を縮める</text>
+<circle cx="110" cy="510" r="56" class="sm w2 dsh"/>
+<text x="12" y="452" class="tm">しきい値</text>
+<line x1="110" y1="510" x2="231.5" y2="422.67" class="l sng w2"/>
+<polygon points="238,418 234.42,426.73 228.59,418.61" class="fm"/>
+<line x1="110" y1="510" x2="148.33" y2="482.45" class="l sa w3"/>
+<polygon points="155.47,477.32 151.54,486.92 145.12,477.99" class="fa"/>
+<circle cx="110" cy="510" r="3" class="fm"/>
+<text x="250" y="442" class="tb tng">元の勾配</text>
+<text x="170" y="518" class="tb ta">切り詰めた勾配</text>
+<text x="12" y="596">ノルムがしきい値を超えたら、向きはそのまま</text>
+<text x="12" y="616">しきい値÷ノルムを掛けて縮める</text>
+<text x="12" y="642" class="tb">勾配爆発に効く。勾配消失には効かない</text>
+</svg>

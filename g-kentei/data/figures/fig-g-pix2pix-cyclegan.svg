@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 434" role="img" aria-labelledby="fig-g-pix2pix-cyclegan-t fig-g-pix2pix-cyclegan-d">
+<title id="fig-g-pix2pix-cyclegan-t">Pix2Pix（対の画像が要る）と CycleGAN（対がいらない）</title>
+<desc id="fig-g-pix2pix-cyclegan-d">上は Pix2Pix。線画と写真のように、入力と出力が対になった画像を使い、条件付き GAN で入力画像から出力画像への変換を学ぶ。下は CycleGAN。馬の画像 x を写像 G でシマウマの画像に変え、逆向きの写像 F で馬に戻す。F(G(x)) が元の x に戻るようにするサイクル一貫性損失を加えるので、馬とシマウマの画像が対になっていなくても学べる。</desc>
+<text x="12" y="20" class="tb">Pix2Pix：対になった画像で学ぶ</text>
+<rect x="12" y="38" width="90" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="60.5" class="tb" text-anchor="middle">線画</text>
+<line x1="102" y1="56" x2="130" y2="56" class="l sa w2"/>
+<polyline points="123,59.85 130,56 123,52.15" class="l sa w2"/>
+<text x="116" y="48" class="tm" text-anchor="middle">＝</text>
+<rect x="132" y="38" width="90" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="177" y="60.5" class="tb" text-anchor="middle">写真</text>
+<text x="232" y="61" class="tm">1組</text>
+<rect x="12" y="88" width="90" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="110.5" class="tb" text-anchor="middle">線画</text>
+<line x1="102" y1="106" x2="130" y2="106" class="l sa w2"/>
+<polyline points="123,109.85 130,106 123,102.15" class="l sa w2"/>
+<text x="116" y="98" class="tm" text-anchor="middle">＝</text>
+<rect x="132" y="88" width="90" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="177" y="110.5" class="tb" text-anchor="middle">写真</text>
+<text x="232" y="111" class="tm">1組</text>
+<text x="12" y="150" class="tb tng">入力と出力が対になった画像が必要</text>
+<text x="12" y="172" class="tm">条件付き GAN で、入力 → 出力を学ぶ</text>
+<line x1="12" y1="192" x2="308" y2="192" class="l sb w1"/>
+<text x="12" y="216" class="tb">CycleGAN：対がなくてよい</text>
+<rect x="12" y="236" width="76" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="50" y="260.5" class="tb" text-anchor="middle">馬 x</text>
+<line x1="88" y1="256" x2="108" y2="256" class="l sa w2"/>
+<polyline points="101,259.85 108,256 101,252.15" class="l sa w2"/>
+<text x="98" y="246" class="tb ta" text-anchor="middle">G</text>
+<rect x="110" y="236" width="92" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="156" y="251.5" text-anchor="middle">シマウマ</text>
+<text x="156" y="269.5" text-anchor="middle">G(x)</text>
+<line x1="202" y1="256" x2="222" y2="256" class="l sa w2"/>
+<polyline points="215,259.85 222,256 215,252.15" class="l sa w2"/>
+<text x="212" y="246" class="tb ta" text-anchor="middle">F</text>
+<rect x="224" y="236" width="84" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="266" y="251.5" text-anchor="middle">馬に戻る</text>
+<text x="266" y="269.5" text-anchor="middle">F(G(x))</text>
+<polyline points="266,278 266,304 50,304 50,278" class="l sok w2"/>
+<polyline points="44,286 50,278 56,286" class="l sok w2"/>
+<text x="160" y="326" class="tb tok" text-anchor="middle">元の x に戻るように学ぶ</text>
+<text x="12" y="356" class="tm">（サイクル一貫性損失）</text>
+<line x1="12" y1="376" x2="308" y2="376" class="l sb w1"/>
+<text x="12" y="400">G：馬 → シマウマ　F：シマウマ → 馬</text>
+<text x="12" y="422" class="tb tok">馬とシマウマの画像が、対になっていなくてよい</text>
+</svg>

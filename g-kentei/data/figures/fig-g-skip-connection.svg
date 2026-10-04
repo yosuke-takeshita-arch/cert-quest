@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 680" role="img" aria-labelledby="fig-g-skip-connection-t fig-g-skip-connection-d">
+<title id="fig-g-skip-connection-t">スキップ結合：ResNet は足し算、DenseNet は連結</title>
+<desc id="fig-g-skip-connection-d">上は ResNet の残差ブロック。入力 x は、重み層、ReLU、重み層を通って F(x) になる。迂回路（スキップ結合）で x はそのまま運ばれ、足し合わされて F(x) と x の和になり、そのあと ReLU を通る。層は差分（残差）F(x) だけを学べばよい。下は DenseNet のブロック。各層が、それより前のすべての層の出力を連結して受け取る。4層なら接続は4×5÷2で10本。Wide ResNet は、層の数を減らす代わりに各層の幅（チャネル数）を広げた構造。</desc>
+<text x="12" y="20" class="tb">① ResNet：残差ブロック</text>
+<text x="112" y="48" class="tb" text-anchor="middle">入力 x</text>
+<line x1="112" y1="54" x2="112" y2="68" class="l w2"/>
+<polyline points="108.15,61 112,68 115.85,61" class="l w2"/>
+<rect x="66" y="68" width="92" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="112" y="85.5" text-anchor="middle">重み層</text>
+<line x1="112" y1="94" x2="112" y2="108" class="l w2"/>
+<polyline points="108.15,101 112,108 115.85,101" class="l w2"/>
+<rect x="66" y="108" width="92" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="112" y="125.5" text-anchor="middle">ReLU</text>
+<line x1="112" y1="134" x2="112" y2="148" class="l w2"/>
+<polyline points="108.15,141 112,148 115.85,141" class="l w2"/>
+<rect x="66" y="148" width="92" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="112" y="165.5" text-anchor="middle">重み層</text>
+<line x1="112" y1="174" x2="112" y2="195" class="l w2"/>
+<polyline points="108.15,188 112,195 115.85,188" class="l w2"/>
+<circle cx="112" cy="206" r="11" class="fas sa"/>
+<line x1="106" y1="206" x2="118" y2="206" class="l sa w2"/>
+<line x1="112" y1="200" x2="112" y2="212" class="l sa w2"/>
+<line x1="112" y1="217" x2="112" y2="232" class="l w2"/>
+<polyline points="108.15,225 112,232 115.85,225" class="l w2"/>
+<rect x="66" y="232" width="92" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="112" y="249.5" text-anchor="middle">ReLU</text>
+<line x1="112" y1="60" x2="222" y2="60" class="l sa w2"/>
+<line x1="222" y1="60" x2="222" y2="206" class="l sa w2"/>
+<line x1="222" y1="206" x2="124" y2="206" class="l sa w2"/>
+<polyline points="131,202.15 124,206 131,209.85" class="l sa w2"/>
+<text x="232" y="112" class="tb ta">スキップ結合</text>
+<text x="232" y="132" class="tm">入力 x を</text>
+<text x="232" y="150" class="tm">そのまま運ぶ</text>
+<line x1="46" y1="70" x2="46" y2="172" class="l sok w2"/>
+<text x="12" y="124" class="tb tok">F(x)</text>
+<text x="12" y="210" class="tb">F(x)＋x</text>
+<text x="12" y="286" class="tb">層は差分（残差）F(x) だけを学べばよい</text>
+<line x1="12" y1="306" x2="308" y2="306" class="l sb w1"/>
+<text x="12" y="330" class="tb">② DenseNet：全部をつなぐ</text>
+<line x1="44" y1="420" x2="80" y2="420" class="l sm w2"/>
+<polyline points="73,423.85 80,420 73,416.15" class="l sm w2"/>
+<polyline points="30,420 35,414.25 40,409 45,404.25 50,400 55,396.25 60,393 65,390.25 70,388 75,386.25 80,385 85,384.25 90,384 95,384.25 100,385 105,386.25 110,388 115,390.25 120,393 125,396.25 130,400 135,404.25 140,409 145,414.25 150,420" class="l sm w1"/>
+<polyline points="143.37,417.91 150,420 148.55,413.21" class="l sm w1"/>
+<line x1="108" y1="420" x2="144" y2="420" class="l sm w2"/>
+<polyline points="137,423.85 144,420 137,416.15" class="l sm w2"/>
+<polyline points="30,420 37.67,412.49 45.33,405.64 53,399.44 60.67,393.89 68.33,388.99 76,384.75 83.67,381.16 91.33,378.22 99,375.94 106.67,374.31 114.33,373.33 122,373 129.67,373.33 137.33,374.31 145,375.94 152.67,378.22 160.33,381.16 168,384.75 175.67,388.99 183.33,393.89 191,399.44 198.67,405.64 206.33,412.49 214,420" class="l sm w1"/>
+<polyline points="207.23,418.45 214,420 212.01,413.34" class="l sm w1"/>
+<polyline points="94,420 99,414.25 104,409 109,404.25 114,400 119,396.25 124,393 129,390.25 134,388 139,386.25 144,385 149,384.25 154,384 159,384.25 164,385 169,386.25 174,388 179,390.25 184,393 189,396.25 194,400 199,404.25 204,409 209,414.25 214,420" class="l sm w1"/>
+<polyline points="207.37,417.91 214,420 212.55,413.21" class="l sm w1"/>
+<line x1="172" y1="420" x2="208" y2="420" class="l sm w2"/>
+<polyline points="201,423.85 208,420 201,416.15" class="l sm w2"/>
+<polyline points="30,420 40.33,410.74 50.67,402.28 61,394.63 71.33,387.78 81.67,381.74 92,376.5 102.33,372.07 112.67,368.44 123,365.63 133.33,363.61 143.67,362.4 154,362 164.33,362.4 174.67,363.61 185,365.63 195.33,368.44 205.67,372.07 216,376.5 226.33,381.74 236.67,387.78 247,394.63 257.33,402.28 267.67,410.74 278,420" class="l sm w1"/>
+<polyline points="271.17,418.75 278,420 275.72,413.44" class="l sm w1"/>
+<polyline points="94,420 101.67,412.49 109.33,405.64 117,399.44 124.67,393.89 132.33,388.99 140,384.75 147.67,381.16 155.33,378.22 163,375.94 170.67,374.31 178.33,373.33 186,373 193.67,373.33 201.33,374.31 209,375.94 216.67,378.22 224.33,381.16 232,384.75 239.67,388.99 247.33,393.89 255,399.44 262.67,405.64 270.33,412.49 278,420" class="l sm w1"/>
+<polyline points="271.23,418.45 278,420 276.01,413.34" class="l sm w1"/>
+<polyline points="158,420 163,414.25 168,409 173,404.25 178,400 183,396.25 188,393 193,390.25 198,388 203,386.25 208,385 213,384.25 218,384 223,384.25 228,385 233,386.25 238,388 243,390.25 248,393 253,396.25 258,400 263,404.25 268,409 273,414.25 278,420" class="l sm w1"/>
+<polyline points="271.37,417.91 278,420 276.55,413.21" class="l sm w1"/>
+<line x1="236" y1="420" x2="272" y2="420" class="l sm w2"/>
+<polyline points="265,423.85 272,420 265,416.15" class="l sm w2"/>
+<circle cx="30" cy="420" r="14" class="fs sb"/>
+<text x="30" y="424.5" class="tb" text-anchor="middle">x</text>
+<circle cx="94" cy="420" r="14" class="fas sa"/>
+<text x="94" y="424.5" class="tb" text-anchor="middle">1</text>
+<circle cx="158" cy="420" r="14" class="fas sa"/>
+<text x="158" y="424.5" class="tb" text-anchor="middle">2</text>
+<circle cx="222" cy="420" r="14" class="fas sa"/>
+<text x="222" y="424.5" class="tb" text-anchor="middle">3</text>
+<circle cx="286" cy="420" r="14" class="fas sa"/>
+<text x="286" y="424.5" class="tb" text-anchor="middle">4</text>
+<text x="30" y="456" class="tm" text-anchor="middle">入力</text>
+<text x="222" y="456" class="tm" text-anchor="middle">層（1〜4）</text>
+<text x="12" y="486" class="tb">各層は、前の全層の出力を連結して受け取る</text>
+<text x="12" y="508">接続は 4×5÷2＝10 本（L層なら L(L＋1)÷2）</text>
+<line x1="12" y1="528" x2="308" y2="528" class="l sb w1"/>
+<text x="12" y="552" class="tb">足すか、つなげるか</text>
+<rect x="12" y="564" width="144" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="84" y="583.5" text-anchor="middle">ResNet</text>
+<text x="84" y="601.5" text-anchor="middle">足し算 F(x)＋x</text>
+<rect x="164" y="564" width="144" height="48" class="fok sok" stroke-width="1.5"/>
+<text x="236" y="583.5" text-anchor="middle">DenseNet</text>
+<text x="236" y="601.5" text-anchor="middle">連結（つなげる）</text>
+<rect x="12" y="624" width="296" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="643.5" text-anchor="middle">Wide ResNet：層を減らして、</text>
+<text x="160" y="661.5" text-anchor="middle">各層の幅（チャネル数）を広げた</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 614" role="img" aria-labelledby="fig-g-regression-metrics-t fig-g-regression-metrics-d">
+<title id="fig-g-regression-metrics-t">回帰の評価指標：MAE・MSE・RMSE</title>
+<desc id="fig-g-regression-metrics-d">予測と実測の差が3つのデータでプラス2、マイナス4、プラス3だった例。MAEは差の絶対値2、4、3の平均で3。MSEは差の二乗4、16、9の平均で約9.67。二乗の正方形は、大きな差ほど面積が急に大きくなる。RMSEはMSEの平方根で約3.11。元の単位に戻るので読みやすい。MSEとRMSEは大きな外れを強く罰し、MAEは外れ値の影響を受けにくい。</desc>
+<text x="12" y="20" class="tb">予測と実測の差（3つのデータ）</text>
+<line x1="24" y1="82" x2="300" y2="82" class="l sm w1"/>
+<text x="12" y="58" class="tm">差</text>
+<rect x="50" y="58" width="40" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="70" y="52" class="tb" text-anchor="middle">＋2</text>
+<rect x="130" y="82" width="40" height="48" class="fwn swn" stroke-width="1.5"/>
+<text x="150" y="148" class="tb" text-anchor="middle">−4</text>
+<rect x="210" y="46" width="40" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="230" y="40" class="tb" text-anchor="middle">＋3</text>
+<line x1="12" y1="158" x2="308" y2="158" class="l sb w1"/>
+<text x="12" y="182" class="tb">① MAE：絶対値の平均</text>
+<rect x="12" y="194" width="40" height="18" class="fas sa" stroke-width="1.5"/>
+<text x="60" y="208" class="tb">2</text>
+<rect x="12" y="220" width="80" height="18" class="fas sa" stroke-width="1.5"/>
+<text x="100" y="234" class="tb">4</text>
+<rect x="12" y="246" width="60" height="18" class="fas sa" stroke-width="1.5"/>
+<text x="80" y="260" class="tb">3</text>
+<text x="12" y="290" class="tb ta">(2＋4＋3)÷3 ＝ 3</text>
+<line x1="12" y1="306" x2="308" y2="306" class="l sb w1"/>
+<text x="12" y="330" class="tb">② MSE：二乗（正方形の面積）の平均</text>
+<rect x="12" y="344" width="28" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="26" y="363" class="tb" text-anchor="middle">4</text>
+<rect x="54" y="344" width="56" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="82" y="377" class="tb" text-anchor="middle">16</text>
+<rect x="124" y="344" width="42" height="42" class="fwn swn" stroke-width="1.5"/>
+<text x="145" y="370" class="tb" text-anchor="middle">9</text>
+<text x="12" y="436" class="tb twn">(4＋16＋9)÷3 ＝ 29÷3 ＝ 約 9.67</text>
+<text x="12" y="458" class="tm">大きな差ほど面積が急に大きくなる</text>
+<line x1="12" y1="484" x2="308" y2="484" class="l sb w1"/>
+<text x="12" y="508" class="tb">③ RMSE：MSE の平方根</text>
+<text x="12" y="530" class="tb tok">√9.67 ＝ 約 3.11</text>
+<text x="12" y="552" class="tm">元のデータと同じ単位で読める</text>
+<text x="12" y="582" class="tb">二乗する MSE・RMSE は大きな外れに敏感</text>
+<text x="12" y="602" class="tb">MAE は外れ値の影響を受けにくい</text>
+</svg>

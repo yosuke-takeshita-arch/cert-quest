@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 444" role="img" aria-labelledby="fig-g-metric-learning-t fig-g-metric-learning-d">
+<title id="fig-g-metric-learning-t">Contrastive Loss と Triplet Loss</title>
+<desc id="fig-g-metric-learning-d">上はContrastive Loss。2つのデータの組を使い、似ている組は埋め込み空間で近づけ、似ていない組は一定の余裕（マージン）以上に遠ざける。下はTriplet Loss。基準（アンカー）、同じ種類（ポジティブ）、違う種類（ネガティブ）の3つ組を使い、アンカーとポジティブの距離にマージンを足したものが、アンカーとネガティブの距離より小さくなるように学習する。</desc>
+<text x="12" y="20" class="tb">① Contrastive Loss：2つ組</text>
+<rect x="12" y="30" width="296" height="120" class="sb" stroke-width="1"/>
+<circle cx="40" cy="70" r="8" class="fs sa" stroke-width="2.5"/>
+<circle cx="112" cy="70" r="8" class="fs sa" stroke-width="2.5"/>
+<line x1="52" y1="70" x2="69.6" y2="70" class="l sok w2"/>
+<polygon points="76,70 69.6,74 69.6,66" class="ft"/>
+<line x1="100" y1="70" x2="86.4" y2="70" class="l sok w2"/>
+<polygon points="80,70 86.4,66 86.4,74" class="ft"/>
+<text x="76" y="110" class="tb tok" text-anchor="middle">似ている→近づける</text>
+<circle cx="180" cy="70" r="8" class="fs sa" stroke-width="2.5"/>
+<rect x="248.5" y="62.5" width="15" height="15" class="fm sm" stroke-width="1.5"/>
+<line x1="166" y1="70" x2="148.4" y2="70" class="l sng w2"/>
+<polygon points="142,70 148.4,66 148.4,74" class="ft"/>
+<line x1="270" y1="70" x2="287.6" y2="70" class="l sng w2"/>
+<polygon points="294,70 287.6,74 287.6,66" class="ft"/>
+<line x1="180" y1="96" x2="256" y2="96" class="l sng w1"/>
+<line x1="180" y1="91" x2="180" y2="101" class="l sng w1"/>
+<line x1="256" y1="91" x2="256" y2="101" class="l sng w1"/>
+<text x="220" y="118" class="tb tng" text-anchor="middle">似ていない→</text>
+<text x="220" y="138" class="tb tng" text-anchor="middle">マージン以上に遠ざける</text>
+<text x="12" y="176">2つのデータの組で、距離を学ぶ</text>
+<line x1="12" y1="192" x2="308" y2="192" class="l sb w1"/>
+<text x="12" y="216" class="tb">② Triplet Loss：3つ組</text>
+<rect x="12" y="226" width="296" height="160" class="sb" stroke-width="1"/>
+<circle cx="90" cy="266" r="0.1" class="fm"/>
+<circle cx="90" cy="290" r="8" class="fa sa"/>
+<circle cx="150" cy="290" r="8" class="fs sa" stroke-width="2.5"/>
+<rect x="242.5" y="282.5" width="15" height="15" class="fm sm" stroke-width="1.5"/>
+<text x="90" y="274" class="tb" text-anchor="middle">アンカー</text>
+<text x="150" y="256" class="tb tok" text-anchor="middle">ポジティブ</text>
+<text x="240" y="274" class="tb tng" text-anchor="middle">ネガティブ</text>
+<line x1="90" y1="314" x2="150" y2="314" class="l sok w2"/>
+<line x1="90" y1="309" x2="90" y2="319" class="l sok w2"/>
+<line x1="150" y1="309" x2="150" y2="319" class="l sok w2"/>
+<text x="120" y="336" class="tb tok" text-anchor="middle">d(A,P)</text>
+<line x1="90" y1="352" x2="250" y2="352" class="l sng w2"/>
+<line x1="90" y1="347" x2="90" y2="357" class="l sng w2"/>
+<line x1="250" y1="347" x2="250" y2="357" class="l sng w2"/>
+<text x="170" y="374" class="tb tng" text-anchor="middle">d(A,N)</text>
+<line x1="138" y1="290" x2="111.6" y2="290" class="l sok w2"/>
+<polygon points="106,290 111.6,286.5 111.6,293.5" class="ft"/>
+<line x1="264" y1="290" x2="285.6" y2="290" class="l sng w2"/>
+<polygon points="292,290 285.6,294 285.6,286" class="ft"/>
+<text x="12" y="410" class="tb">d(A,P) ＋ マージン ＜ d(A,N) になるよう動かす</text>
+<text x="12" y="432" class="tm">同じ種類は近く、違う種類はマージン分遠く</text>
+</svg>

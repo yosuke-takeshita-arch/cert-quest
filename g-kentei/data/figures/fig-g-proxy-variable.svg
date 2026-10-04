@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 412" role="img" aria-labelledby="fig-g-proxy-variable-t fig-g-proxy-variable-d">
+<title id="fig-g-proxy-variable-t">センシティブ属性を消しても、代理変数が残る</title>
+<desc id="fig-g-proxy-variable-d">特徴量の列の例。センシティブ属性の人種の列を削除しても、居住地域の列は人種と強く関係している。そのため居住地域から人種が推定され、予測の偏りが残る。センシティブ属性は人種・性別・宗教など差別につながりうる属性。代理変数は、センシティブ属性そのものではないが、それと強く関係するため、結果的にその属性を推定させてしまう変数。</desc>
+<text x="12" y="20" class="tb">特徴量の列</text>
+<rect x="12" y="32" width="70" height="36" class="fng sng" stroke-width="1.5"/>
+<text x="47" y="55" class="tb tm" text-anchor="middle">人種</text>
+<rect x="12" y="68" width="70" height="24" class="fng sng" stroke-width="1"/>
+<rect x="12" y="92" width="70" height="24" class="fng sng" stroke-width="1"/>
+<rect x="12" y="116" width="70" height="24" class="fng sng" stroke-width="1"/>
+<rect x="87" y="32" width="70" height="36" class="fwn swn" stroke-width="1.5"/>
+<text x="122" y="55" class="tb" text-anchor="middle">居住地域</text>
+<rect x="87" y="68" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="87" y="92" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="87" y="116" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="162" y="32" width="70" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="197" y="55" class="tb" text-anchor="middle">年収</text>
+<rect x="162" y="68" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="162" y="92" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="162" y="116" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="237" y="32" width="70" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="272" y="55" class="tb" text-anchor="middle">年齢</text>
+<rect x="237" y="68" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="237" y="92" width="70" height="24" class="fs sb" stroke-width="1"/>
+<rect x="237" y="116" width="70" height="24" class="fs sb" stroke-width="1"/>
+<line x1="20" y1="40" x2="74" y2="130" class="l sng w3"/>
+<line x1="74" y1="40" x2="20" y2="130" class="l sng w3"/>
+<text x="12" y="164" class="tb tng">人種の列を削除する（×）</text>
+<line x1="12" y1="184" x2="308" y2="184" class="l sb w1"/>
+<text x="12" y="212" class="tb">消しても、残るつながり</text>
+<rect x="12" y="226" width="100" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="62" y="244" class="tb" text-anchor="middle">人種</text>
+<text x="62" y="261" text-anchor="middle">（削除ずみ）</text>
+<rect x="208" y="226" width="100" height="44" class="fwn swn" stroke-width="1.5"/>
+<text x="258" y="244" class="tb" text-anchor="middle">居住地域</text>
+<text x="258" y="261" text-anchor="middle">（残っている）</text>
+<line x1="114" y1="248" x2="206" y2="248" class="l sng w2 dsh"/>
+<text x="160" y="240" class="tb tng" text-anchor="middle">強い関係</text>
+<rect x="208" y="292" width="100" height="44" class="fs sa" stroke-width="1.5"/>
+<text x="258" y="318.5" class="tb" text-anchor="middle">予測</text>
+<line x1="258" y1="271" x2="258" y2="291" class="l swn w2"/>
+<polyline points="254.7,285 258,291 261.3,285" class="l swn w2"/>
+<text x="12" y="310" class="tb">居住地域から人種が</text>
+<text x="12" y="330" class="tb">推定され、偏りが残る</text>
+<line x1="12" y1="352" x2="308" y2="352" class="l sb w1"/>
+<text x="12" y="380">代理変数：センシティブ属性と</text>
+<text x="12" y="400">強く関係し、推定させてしまう変数</text>
+</svg>

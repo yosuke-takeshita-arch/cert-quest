@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 410" role="img" aria-labelledby="fig-g-end-to-end-t fig-g-end-to-end-d">
+<title id="fig-g-end-to-end-t">End-to-End 学習と、工程ごとの処理</title>
+<desc id="fig-g-end-to-end-d">自動運転で、前方カメラの画像からハンドルの角度を出す例の比較。左は工程ごとに分ける方式で、カメラ画像、車線検出、経路計画、制御、ハンドル角と、人が工程を設計してつなぐ。右はEnd-to-End学習で、カメラ画像から1つのニューラルネットワークでハンドル角を直接出し、途中の工程に分けずにまとめて学習する。</desc>
+<text x="12" y="20" class="tb">前方カメラの画像 → ハンドルの角度</text>
+<text x="82" y="52" class="tb twn" text-anchor="middle">工程ごとに分ける</text>
+<text x="238" y="52" class="tb tok" text-anchor="middle">End-to-End</text>
+<rect x="12" y="62" width="140" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="82" y="84" class="tb" text-anchor="middle">カメラ画像</text>
+<line x1="82" y1="98" x2="82" y2="109.6" class="l sm w2"/>
+<polygon points="82,116 78,109.6 86,109.6" class="fm"/>
+<rect x="12" y="118" width="140" height="34" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="82" y="140" class="tb" text-anchor="middle">車線検出</text>
+<line x1="82" y1="154" x2="82" y2="165.6" class="l sm w2"/>
+<polygon points="82,172 78,165.6 86,165.6" class="fm"/>
+<rect x="12" y="174" width="140" height="34" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="82" y="196" class="tb" text-anchor="middle">経路計画</text>
+<line x1="82" y1="210" x2="82" y2="221.6" class="l sm w2"/>
+<polygon points="82,228 78,221.6 86,221.6" class="fm"/>
+<rect x="12" y="230" width="140" height="34" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="82" y="252" class="tb" text-anchor="middle">制御</text>
+<line x1="82" y1="266" x2="82" y2="277.6" class="l sm w2"/>
+<polygon points="82,284 78,277.6 86,277.6" class="fm"/>
+<rect x="12" y="286" width="140" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="82" y="308" class="tb" text-anchor="middle">ハンドル角</text>
+<rect x="168" y="62" width="140" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="238" y="84" class="tb" text-anchor="middle">カメラ画像</text>
+<rect x="168" y="118" width="140" height="124" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="238" y="167" class="tb" text-anchor="middle">1つの</text>
+<text x="238" y="185" class="tb" text-anchor="middle">ニューラル</text>
+<text x="238" y="203" class="tb" text-anchor="middle">ネットワーク</text>
+<line x1="238" y1="98" x2="238" y2="109.6" class="l sm w2"/>
+<polygon points="238,116 234,109.6 242,109.6" class="fm"/>
+<line x1="238" y1="244" x2="238" y2="277.6" class="l sm w2"/>
+<polygon points="238,284 234,277.6 242,277.6" class="fm"/>
+<rect x="168" y="286" width="140" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="238" y="308" class="tb" text-anchor="middle">ハンドル角</text>
+<text x="12" y="350" class="tb twn">各工程を人が設計して、つなぐ</text>
+<text x="12" y="374" class="tb tok">途中の工程に分けず、まとめて学習</text>
+<text x="12" y="398" class="tm">→ 途中で必要な特徴も自動で学ばれる</text>
+</svg>

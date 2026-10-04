@@ -63,6 +63,9 @@
     "concepts": [
       "C-06-003"
     ],
+    "figures": [
+      "fig-g-cnn-models"
+    ],
     "sources": [
       {
         "title": "Simonyan & Zisserman (2014) Very Deep Convolutional Networks for Large-Scale Image Recognition (arXiv:1409.1556)",
@@ -99,6 +102,10 @@
     "concepts": [
       "C-06-012",
       "C-06-006"
+    ],
+    "figures": [
+      "fig-g-cnn-models",
+      "fig-g-efficientnet"
     ],
     "sources": [
       {
@@ -141,6 +148,9 @@
       "C-06-008",
       "C-06-009",
       "C-06-010"
+    ],
+    "figures": [
+      "fig-g-cnn-models"
     ],
     "sources": [
       {
@@ -190,6 +200,9 @@
     "concepts": [
       "C-06-013"
     ],
+    "figures": [
+      "fig-g-vit"
+    ],
     "sources": [
       {
         "title": "Dosovitskiy et al. (2020) An Image is Worth 16x16 Words (Vision Transformer) (arXiv:2010.11929)",
@@ -227,6 +240,9 @@
       "C-06-007",
       "C-06-005",
       "C-06-006"
+    ],
+    "figures": [
+      "fig-g-skip-connection"
     ],
     "sources": [
       {
@@ -266,6 +282,9 @@
       "C-06-018",
       "C-06-016",
       "C-06-017"
+    ],
+    "figures": [
+      "fig-g-object-detection"
     ],
     "sources": [
       {
@@ -317,6 +336,9 @@
       "C-06-016",
       "C-06-017"
     ],
+    "figures": [
+      "fig-g-object-detection"
+    ],
     "sources": [
       {
         "title": "Redmon et al. (2015) You Only Look Once (arXiv:1506.02640)",
@@ -357,6 +379,9 @@
     "concepts": [
       "C-06-019"
     ],
+    "figures": [
+      "fig-g-vision-tasks"
+    ],
     "sources": [
       {
         "title": "Kirillov et al. (2018) Panoptic Segmentation (arXiv:1801.00868)",
@@ -395,6 +420,9 @@
       "C-06-015",
       "C-06-019"
     ],
+    "figures": [
+      "fig-g-object-detection"
+    ],
     "sources": [
       {
         "title": "He et al. (2017) Mask R-CNN (arXiv:1703.06870)",
@@ -431,6 +459,9 @@
     "concepts": [
       "C-06-022",
       "C-06-021"
+    ],
+    "figures": [
+      "fig-g-segmentation-nets"
     ],
     "sources": [
       {
@@ -473,6 +504,9 @@
       "C-06-023",
       "C-06-021",
       "C-06-020"
+    ],
+    "figures": [
+      "fig-g-segmentation-nets"
     ],
     "sources": [
       {
@@ -523,6 +557,9 @@
       "C-06-025",
       "C-06-024"
     ],
+    "figures": [
+      "fig-g-vision-tasks"
+    ],
     "sources": [
       {
         "title": "Cao et al. (2018) OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields (arXiv:1812.08008)",
@@ -560,6 +597,9 @@
       "C-06-006",
       "C-06-005"
     ],
+    "figures": [
+      "fig-g-skip-connection"
+    ],
     "sources": [
       {
         "title": "Zagoruyko & Komodakis (2016) Wide Residual Networks (arXiv:1605.07146)",
@@ -595,6 +635,9 @@
     "memoryTip": "CBOW＝周りを袋（Bag）に入れて真ん中を当てる。スキップグラム＝真ん中から周りへ跳ぶ。",
     "concepts": [
       "C-06-029"
+    ],
+    "figures": [
+      "fig-g-word2vec"
     ],
     "sources": [
       {
@@ -634,6 +677,9 @@
       "C-06-029",
       "C-06-030",
       "C-06-033"
+    ],
+    "figures": [
+      "fig-g-word2vec"
     ],
     "sources": [
       {
@@ -684,6 +730,9 @@
       "C-06-033",
       "C-06-072"
     ],
+    "figures": [
+      "fig-g-bert-gpt"
+    ],
     "sources": [
       {
         "title": "Devlin et al. (2018) BERT (arXiv:1810.04805)",
@@ -719,6 +768,9 @@
     "memoryTip": "Seq2Seq＝読む係（エンコーダ）と書く係（デコーダ）の2つのLSTM。間をつなぐのが固定長の1本のベクトルで、長文ではこれが詰まる→Attentionへ。",
     "concepts": [
       "C-06-032"
+    ],
+    "figures": [
+      "fig-g-seq2seq-attention"
     ],
     "sources": [
       {
@@ -793,6 +845,9 @@
     "concepts": [
       "C-06-036",
       "C-06-035"
+    ],
+    "figures": [
+      "fig-g-scaling-law"
     ],
     "sources": [
       {
@@ -872,6 +927,9 @@
       "C-06-038",
       "C-06-044"
     ],
+    "figures": [
+      "fig-g-lstm-gru"
+    ],
     "sources": [
       {
         "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory",
@@ -911,6 +969,9 @@
     "memoryTip": "TF（その文書でよく出る）×IDF（他ではあまり出ない）＝その文書らしい語。",
     "concepts": [
       "C-06-027"
+    ],
+    "figures": [
+      "fig-g-text-vectors"
     ],
     "sources": [
       {
@@ -952,6 +1013,9 @@
     "concepts": [
       "C-06-026",
       "C-06-094"
+    ],
+    "figures": [
+      "fig-g-nlp-pipeline"
     ],
     "sources": [
       {
@@ -998,6 +1062,9 @@
       "C-06-037",
       "C-06-032"
     ],
+    "figures": [
+      "fig-g-mt-history"
+    ],
     "sources": [
       {
         "title": "Sutskever et al. (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)",
@@ -1043,6 +1110,9 @@
       "C-06-044",
       "C-06-043"
     ],
+    "figures": [
+      "fig-g-hmm-ctc"
+    ],
     "sources": [
       {
         "title": "Graves et al. (2006) Connectionist Temporal Classification (ICML 2006)",
@@ -1080,6 +1150,9 @@
       "C-06-045",
       "C-06-044"
     ],
+    "figures": [
+      "fig-g-dilated-conv"
+    ],
     "sources": [
       {
         "title": "van den Oord et al. (2016) WaveNet (arXiv:1609.03499)",
@@ -1115,6 +1188,9 @@
     "memoryTip": "「ひょう・りょう・ふ」＝標本化→量子化→符号化。時間を刻んで、値を刻んで、数字にする。",
     "concepts": [
       "C-06-039"
+    ],
+    "figures": [
+      "fig-g-pcm"
     ],
     "sources": [
       {
@@ -1161,6 +1237,9 @@
       "C-06-040",
       "C-06-042"
     ],
+    "figures": [
+      "fig-g-speech-features"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
@@ -1200,6 +1279,9 @@
     "memoryTip": "メル＝耳の物差し、ケプストラム＝包絡を取り出す計算。MFCC＝耳寄りの声の形の要約。",
     "concepts": [
       "C-06-041"
+    ],
+    "figures": [
+      "fig-g-speech-features"
     ],
     "sources": [
       {
@@ -1291,6 +1373,9 @@
       "C-06-043",
       "C-06-041"
     ],
+    "figures": [
+      "fig-g-hmm-ctc"
+    ],
     "sources": [
       {
         "title": "Graves et al. (2006) Connectionist Temporal Classification (ICML 2006)",
@@ -1329,6 +1414,9 @@
       "C-06-049",
       "C-06-050"
     ],
+    "figures": [
+      "fig-g-dqn-family"
+    ],
     "sources": [
       {
         "title": "van Hasselt et al. (2015) Deep Reinforcement Learning with Double Q-learning (arXiv:1509.06461)",
@@ -1366,6 +1454,9 @@
       "C-06-049",
       "C-06-048"
     ],
+    "figures": [
+      "fig-g-dqn-family"
+    ],
     "sources": [
       {
         "title": "Wang et al. (2015) Dueling Network Architectures (arXiv:1511.06581)",
@@ -1401,6 +1492,9 @@
     "memoryTip": "虹（Rainbow）＝いろいろな改良の色を全部混ぜる。",
     "concepts": [
       "C-06-051"
+    ],
+    "figures": [
+      "fig-g-dqn-family"
     ],
     "sources": [
       {
@@ -1438,6 +1532,9 @@
     "concepts": [
       "C-06-053",
       "C-06-052"
+    ],
+    "figures": [
+      "fig-g-distributed-rl"
     ],
     "sources": [
       {
@@ -1558,6 +1655,9 @@
       "C-06-057",
       "C-06-061"
     ],
+    "figures": [
+      "fig-g-rlhf"
+    ],
     "sources": [
       {
         "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)",
@@ -1593,6 +1693,9 @@
     "memoryTip": "ランダムに揺らしておけば、現実も「揺らぎの1つ」に見える。",
     "concepts": [
       "C-06-058"
+    ],
+    "figures": [
+      "fig-g-rl-data-sources"
     ],
     "sources": [
       {
@@ -1667,6 +1770,9 @@
     "concepts": [
       "C-06-059",
       "C-06-058"
+    ],
+    "figures": [
+      "fig-g-rl-data-sources"
     ],
     "sources": [
       {
@@ -1760,6 +1866,9 @@
       "C-06-063",
       "C-06-067"
     ],
+    "figures": [
+      "fig-g-gan"
+    ],
     "sources": [
       {
         "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)",
@@ -1800,6 +1909,9 @@
     "concepts": [
       "C-06-066",
       "C-06-065"
+    ],
+    "figures": [
+      "fig-g-pix2pix-cyclegan"
     ],
     "sources": [
       {
@@ -1842,6 +1954,9 @@
       "C-06-067",
       "C-06-063"
     ],
+    "figures": [
+      "fig-g-diffusion"
+    ],
     "sources": [
       {
         "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
@@ -1877,6 +1992,9 @@
     "memoryTip": "NeRF＝Neural Radiance Fields（光の場）。視点を変えた写真を作る。",
     "concepts": [
       "C-06-068"
+    ],
+    "figures": [
+      "fig-g-nerf"
     ],
     "sources": [
       {
@@ -1915,6 +2033,9 @@
       "C-06-064",
       "C-06-063"
     ],
+    "figures": [
+      "fig-g-gan"
+    ],
     "sources": [
       {
         "title": "Radford et al. (2015) DCGAN (arXiv:1511.06434)",
@@ -1951,6 +2072,9 @@
     "concepts": [
       "C-06-075",
       "C-06-070"
+    ],
+    "figures": [
+      "fig-g-transfer-learning"
     ],
     "sources": [
       {
@@ -1989,6 +2113,9 @@
       "C-06-074",
       "C-06-070"
     ],
+    "figures": [
+      "fig-g-few-zero-shot"
+    ],
     "sources": [
       {
         "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
@@ -2026,6 +2153,9 @@
       "C-06-072",
       "C-06-073",
       "C-06-070"
+    ],
+    "figures": [
+      "fig-g-self-supervised"
     ],
     "sources": [
       {
@@ -2067,6 +2197,9 @@
     "concepts": [
       "C-06-072"
     ],
+    "figures": [
+      "fig-g-self-supervised"
+    ],
     "sources": [
       {
         "title": "Chen et al. (2020) SimCLR (arXiv:2002.05709)",
@@ -2103,6 +2236,9 @@
     "concepts": [
       "C-06-070",
       "C-06-071"
+    ],
+    "figures": [
+      "fig-g-transfer-learning"
     ],
     "sources": [
       {
@@ -2141,6 +2277,9 @@
       "C-06-076",
       "C-06-081"
     ],
+    "figures": [
+      "fig-g-clip"
+    ],
     "sources": [
       {
         "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
@@ -2178,6 +2317,10 @@
       "C-06-081",
       "C-06-076",
       "C-06-074"
+    ],
+    "figures": [
+      "fig-g-few-zero-shot",
+      "fig-g-clip"
     ],
     "sources": [
       {
@@ -2218,6 +2361,9 @@
     "memoryTip": "VQA＝画像に「質問（Question）」して「答え（Answer）」をもらう。",
     "concepts": [
       "C-06-078"
+    ],
+    "figures": [
+      "fig-g-multimodal-tasks"
     ],
     "sources": [
       {
@@ -2347,6 +2493,9 @@
       "C-06-077",
       "C-06-078"
     ],
+    "figures": [
+      "fig-g-multimodal-tasks"
+    ],
     "sources": [
       {
         "title": "Ramesh et al. (2021) Zero-Shot Text-to-Image Generation (DALL-E) (arXiv:2102.12092)",
@@ -2387,6 +2536,9 @@
     "concepts": [
       "C-06-085",
       "C-06-084"
+    ],
+    "figures": [
+      "fig-g-cam-gradcam"
     ],
     "sources": [
       {
@@ -2429,6 +2581,9 @@
       "C-06-086",
       "C-06-087"
     ],
+    "figures": [
+      "fig-g-lime-shap"
+    ],
     "sources": [
       {
         "title": "Ribeiro et al. (2016) \"Why Should I Trust You?\" (LIME) (arXiv:1602.04938)",
@@ -2469,6 +2624,9 @@
     "concepts": [
       "C-06-087"
     ],
+    "figures": [
+      "fig-g-lime-shap"
+    ],
     "sources": [
       {
         "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
@@ -2504,6 +2662,9 @@
     "memoryTip": "Permutation＝並べ替え。並べ替えて困る特徴ほど大事。",
     "concepts": [
       "C-06-088"
+    ],
+    "figures": [
+      "fig-g-lime-shap"
     ],
     "sources": [
       {
@@ -2591,6 +2752,9 @@
       "C-06-092",
       "C-06-091"
     ],
+    "figures": [
+      "fig-g-model-compression"
+    ],
     "sources": [
       {
         "title": "Jacob et al. (2017) Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference (arXiv:1712.05877)",
@@ -2626,6 +2790,9 @@
     "memoryTip": "蒸留＝先生（大きいモデル）の答え方を生徒（小さいモデル）が写す。",
     "concepts": [
       "C-06-090"
+    ],
+    "figures": [
+      "fig-g-model-compression"
     ],
     "sources": [
       {
@@ -2664,6 +2831,9 @@
       "C-06-093",
       "C-06-091"
     ],
+    "figures": [
+      "fig-g-model-compression"
+    ],
     "sources": [
       {
         "title": "Frankle & Carbin (2018) The Lottery Ticket Hypothesis (arXiv:1803.03635)",
@@ -2701,6 +2871,9 @@
       "C-06-092",
       "C-06-091",
       "C-06-089"
+    ],
+    "figures": [
+      "fig-g-model-compression"
     ],
     "sources": [
       {
@@ -2940,6 +3113,9 @@
     "concepts": [
       "C-06-094"
     ],
+    "figures": [
+      "fig-g-nlp-pipeline"
+    ],
     "sources": [
       {
         "title": "MeCab: Yet Another Part-of-Speech and Morphological Analyzer（公式サイト）",
@@ -2979,6 +3155,9 @@
     "memoryTip": "範囲が広がる順：語（形態素）→ 文の構造（構文）→ 文の中の役割（意味）→ 文をまたぐ（照応・談話構造）。",
     "concepts": [
       "C-06-095"
+    ],
+    "figures": [
+      "fig-g-nlp-pipeline"
     ],
     "sources": [
       {
@@ -3020,6 +3199,9 @@
     "concepts": [
       "C-06-028",
       "C-06-027"
+    ],
+    "figures": [
+      "fig-g-text-vectors"
     ],
     "sources": [
       {
@@ -3218,6 +3400,9 @@
     "concepts": [
       "C-06-039"
     ],
+    "figures": [
+      "fig-g-pcm"
+    ],
     "sources": [
       {
         "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 15: Phonetics and Speech Feature Extraction",
@@ -3290,6 +3475,9 @@
     "concepts": [
       "C-06-043"
     ],
+    "figures": [
+      "fig-g-hmm-ctc"
+    ],
     "sources": [
       {
         "title": "Hinton et al. (2012) Deep Neural Networks for Acoustic Modeling in Speech Recognition. IEEE Signal Processing Magazine（著者公開版）",
@@ -3331,6 +3519,9 @@
       "C-06-045",
       "C-05-010"
     ],
+    "figures": [
+      "fig-g-dilated-conv"
+    ],
     "sources": [
       {
         "title": "van den Oord et al. (2016) WaveNet (arXiv:1609.03499)",
@@ -3366,6 +3557,9 @@
     "memoryTip": "因果でつなぐ：相関が強い → 経験再生で混ぜる。目標が動く → ターゲットネットワークで止める。",
     "concepts": [
       "C-06-047"
+    ],
+    "figures": [
+      "fig-g-dqn-family"
     ],
     "sources": [
       {
@@ -3444,6 +3638,9 @@
       "C-06-059",
       "C-06-097"
     ],
+    "figures": [
+      "fig-g-rl-data-sources"
+    ],
     "sources": [
       {
         "title": "Levine et al. (2020) Offline Reinforcement Learning: Tutorial, Review, and Perspectives (arXiv:2005.01643)",
@@ -3480,6 +3677,9 @@
     "concepts": [
       "C-06-057"
     ],
+    "figures": [
+      "fig-g-rlhf"
+    ],
     "sources": [
       {
         "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)",
@@ -3515,6 +3715,9 @@
     "memoryTip": "強化学習＝「報酬で試して覚える」、模倣学習＝「手本を見てまねる」。",
     "concepts": [
       "C-06-097"
+    ],
+    "figures": [
+      "fig-g-rl-data-sources"
     ],
     "sources": [
       {
@@ -3588,6 +3791,9 @@
     "concepts": [
       "C-06-067"
     ],
+    "figures": [
+      "fig-g-diffusion"
+    ],
     "sources": [
       {
         "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
@@ -3628,6 +3834,9 @@
     "concepts": [
       "C-06-072"
     ],
+    "figures": [
+      "fig-g-self-supervised"
+    ],
     "sources": [
       {
         "title": "Chen et al. (2020) SimCLR (arXiv:2002.05709)",
@@ -3665,6 +3874,9 @@
       "C-06-078",
       "C-05-050"
     ],
+    "figures": [
+      "fig-g-multimodal-tasks"
+    ],
     "sources": [
       {
         "title": "Vinyals et al. (2014) Show and Tell: A Neural Image Caption Generator (arXiv:1411.4555)",
@@ -3701,6 +3913,9 @@
     "concepts": [
       "C-06-076"
     ],
+    "figures": [
+      "fig-g-clip"
+    ],
     "sources": [
       {
         "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
@@ -3736,6 +3951,9 @@
     "memoryTip": "局所＝「この1件はなぜ？」、大域＝「全体としてどう判断する？」。",
     "concepts": [
       "C-06-083"
+    ],
+    "figures": [
+      "fig-g-lime-shap"
     ],
     "sources": [
       {
@@ -3777,6 +3995,9 @@
     "concepts": [
       "C-06-085"
     ],
+    "figures": [
+      "fig-g-cam-gradcam"
+    ],
     "sources": [
       {
         "title": "Selvaraju et al. (2016) Grad-CAM (arXiv:1610.02391)",
@@ -3812,6 +4033,9 @@
     "memoryTip": "蒸留＝先生（大）の「迷い方」まで生徒（小）に教える。削る（プルーニング）・粗くする（量子化）とは別の軽量化。",
     "concepts": [
       "C-06-090"
+    ],
+    "figures": [
+      "fig-g-model-compression"
     ],
     "sources": [
       {

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 722" role="img" aria-labelledby="fig-g-autoencoder-vae-t fig-g-autoencoder-vae-d">
+<title id="fig-g-autoencoder-vae-t">オートエンコーダと VAE：潜在表現を点で持つか、分布で持つか</title>
+<desc id="fig-g-autoencoder-vae-d">上はオートエンコーダ。入力をエンコーダで細い潜在表現に圧縮し、デコーダで元の入力を復元する。入力そのものが正解なので、正解ラベルは要らない。中は VAE。エンコーダが平均 μ と分散 σ の2つを出し、そこからサンプリングした値をデコーダに入れる。下の2次元の図では、オートエンコーダは入力ごとに潜在空間の1点、VAE は平均と分散でぼかした円になる。円が重なってつながるので、サンプリングして新しいデータを生成できる。VQ-VAE は連続値ではなく、表の中で最も近いベクトルを選ぶ離散的な潜在表現。積層オートエンコーダは、1層ずつオートエンコーダとして学習して積む。</desc>
+<text x="12" y="20" class="tb">① オートエンコーダ</text>
+<rect x="12" y="54" width="28" height="52" class="fs sb" stroke-width="1.5"/>
+<line x1="40" y1="80" x2="48" y2="80" class="l w2"/>
+<polyline points="41,83.85 48,80 41,76.15" class="l w2"/>
+<polygon points="50,52 118,71 118,89 50,108" class="fas sa"/>
+<rect x="120" y="71" width="22" height="18" class="fok sok" stroke-width="1.5"/>
+<polygon points="144,71 212,52 212,108 144,89" class="fas sa"/>
+<line x1="212" y1="80" x2="220" y2="80" class="l w2"/>
+<polyline points="213,83.85 220,80 213,76.15" class="l w2"/>
+<rect x="222" y="54" width="28" height="52" class="fs sb" stroke-width="1.5"/>
+<text x="26" y="126" class="tm" text-anchor="middle">入力</text>
+<text x="84" y="126" class="tm" text-anchor="middle">エンコーダ</text>
+<text x="178" y="126" class="tm" text-anchor="middle">デコーダ</text>
+<text x="236" y="126" class="tm" text-anchor="middle">出力</text>
+<text x="131" y="40" class="tb tok" text-anchor="middle">潜在表現</text>
+<text x="262" y="84.5" class="tb">≒ 入力</text>
+<text x="12" y="148" class="tb">入力そのものが正解 ＝ ラベルは要らない</text>
+<line x1="12" y1="164" x2="308" y2="164" class="l sb w1"/>
+<text x="12" y="188" class="tb">② VAE：平均と分散を出す</text>
+<rect x="12" y="222" width="24" height="52" class="fs sb" stroke-width="1.5"/>
+<line x1="36" y1="248" x2="42" y2="248" class="l w2"/>
+<polyline points="35,251.85 42,248 35,244.15" class="l w2"/>
+<polygon points="44,220 98,239 98,257 44,276" class="fas sa"/>
+<rect x="104" y="224" width="30" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="119" y="239" class="tb" text-anchor="middle">μ</text>
+<rect x="104" y="252" width="30" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="119" y="267" class="tb" text-anchor="middle">σ</text>
+<line x1="136" y1="234" x2="156" y2="244" class="l w2"/>
+<polyline points="148.02,244.31 156,244 151.46,237.43" class="l w2"/>
+<line x1="136" y1="262" x2="156" y2="252" class="l w2"/>
+<polyline points="151.46,258.57 156,252 148.02,251.69" class="l w2"/>
+<circle cx="168" cy="248" r="14" class="fwn swn"/>
+<text x="168" y="252.5" class="tb" text-anchor="middle">z</text>
+<line x1="184" y1="248" x2="194" y2="248" class="l w2"/>
+<polyline points="187,251.85 194,248 187,244.15" class="l w2"/>
+<polygon points="196,239 250,220 250,276 196,257" class="fas sa"/>
+<line x1="250" y1="248" x2="258" y2="248" class="l w2"/>
+<polyline points="251,251.85 258,248 251,244.15" class="l w2"/>
+<rect x="260" y="222" width="24" height="52" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="294" class="tm" text-anchor="middle">入力</text>
+<text x="71" y="294" class="tm" text-anchor="middle">エンコーダ</text>
+<text x="223" y="294" class="tm" text-anchor="middle">デコーダ</text>
+<text x="272" y="294" class="tm" text-anchor="middle">出力</text>
+<text x="168" y="220" class="tb twn" text-anchor="middle">サンプリング</text>
+<text x="12" y="322" class="tm">μ＝平均、σ＝分散（ばらつき）</text>
+<line x1="12" y1="338" x2="308" y2="338" class="l sb w1"/>
+<text x="12" y="362" class="tb">③ 潜在空間（2次元）で見くらべる</text>
+<rect x="12" y="378" width="136" height="112" class="fs sb" stroke-width="1.5"/>
+<circle cx="50" cy="414" r="3.5" class="ft"/>
+<circle cx="82" cy="440" r="3.5" class="ft"/>
+<circle cx="118" cy="412" r="3.5" class="ft"/>
+<circle cx="66" cy="468" r="3.5" class="ft"/>
+<circle cx="122" cy="462" r="3.5" class="ft"/>
+<rect x="172" y="378" width="136" height="112" class="fs sb" stroke-width="1.5"/>
+<circle cx="210" cy="414" r="20" class="fas sa dsh"/>
+<circle cx="242" cy="440" r="20" class="fas sa dsh"/>
+<circle cx="278" cy="412" r="20" class="fas sa dsh"/>
+<circle cx="226" cy="468" r="20" class="fas sa dsh"/>
+<circle cx="282" cy="462" r="20" class="fas sa dsh"/>
+<circle cx="210" cy="414" r="3.5" class="ft"/>
+<circle cx="242" cy="440" r="3.5" class="ft"/>
+<circle cx="278" cy="412" r="3.5" class="ft"/>
+<circle cx="226" cy="468" r="3.5" class="ft"/>
+<circle cx="282" cy="462" r="3.5" class="ft"/>
+<line x1="228" y1="448" x2="240" y2="460" class="l swn w2"/>
+<line x1="240" y1="448" x2="228" y2="460" class="l swn w2"/>
+<text x="80" y="512" class="tb" text-anchor="middle">1点</text>
+<text x="240" y="512" class="tb" text-anchor="middle">円（平均と分散）</text>
+<text x="80" y="532" class="tm" text-anchor="middle">入力1つにつき点が1つ</text>
+<text x="240" y="532" class="tm" text-anchor="middle">入力1つにつき円が1つ</text>
+<text x="12" y="562" class="tb">円が重なってつながる</text>
+<text x="12" y="582" class="tb">→ サンプリングして新しいデータを生成</text>
+<text x="12" y="600" class="tm">（×印がサンプリングした点）</text>
+<line x1="12" y1="616" x2="308" y2="616" class="l sb w1"/>
+<text x="12" y="640" class="tb">VQ-VAE：表の中で、いちばん近い</text>
+<text x="12" y="660" class="tb">ベクトルを選ぶ（連続値ではなく離散）</text>
+<text x="12" y="690" class="tb">積層オートエンコーダ：1層ずつ学習して積む</text>
+<text x="12" y="710" class="tm">（その重みを初期値に、全体を微調整する）</text>
+</svg>

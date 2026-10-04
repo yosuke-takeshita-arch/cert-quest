@@ -27,6 +27,9 @@
     "concepts": [
       "C-07-002"
     ],
+    "figures": [
+      "fig-g-crisp-dm"
+    ],
     "sources": [
       {
         "title": "Studer et al. (2020) Towards CRISP-ML(Q) (arXiv:2003.05155)",
@@ -65,6 +68,9 @@
       "C-07-002",
       "C-07-008"
     ],
+    "figures": [
+      "fig-g-crisp-dm"
+    ],
     "sources": [
       {
         "title": "Studer et al. (2020) Towards CRISP-ML(Q) (arXiv:2003.05155)",
@@ -101,6 +107,9 @@
     "concepts": [
       "C-07-004",
       "C-07-001"
+    ],
+    "figures": [
+      "fig-g-dev-process"
     ],
     "sources": [
       {
@@ -175,6 +184,9 @@
       "C-07-007",
       "C-07-008"
     ],
+    "figures": [
+      "fig-g-mlops"
+    ],
     "sources": [
       {
         "title": "Sculley et al. (2015) Hidden Technical Debt in Machine Learning Systems (NeurIPS)",
@@ -215,6 +227,9 @@
     "concepts": [
       "C-07-008",
       "C-07-016"
+    ],
+    "figures": [
+      "fig-g-mlops"
     ],
     "sources": [
       {
@@ -290,6 +305,9 @@
       "C-07-009",
       "C-07-011"
     ],
+    "figures": [
+      "fig-g-docker"
+    ],
     "sources": [
       {
         "title": "Docker Docs \"What is Docker?\"",
@@ -326,6 +344,9 @@
     "concepts": [
       "C-07-005",
       "C-07-004"
+    ],
+    "figures": [
+      "fig-g-dev-process"
     ],
     "sources": [
       {
@@ -484,6 +505,9 @@
     "concepts": [
       "C-07-016"
     ],
+    "figures": [
+      "fig-g-data-leakage"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide 12. Common pitfalls and recommended practices（Data leakage）",
@@ -519,6 +543,9 @@
     "memoryTip": "「予測するとき、本当にその情報は手元にあるか？」を毎回問う。",
     "concepts": [
       "C-07-016"
+    ],
+    "figures": [
+      "fig-g-data-leakage"
     ],
     "sources": [
       {
@@ -646,6 +673,9 @@
       "C-07-005",
       "C-07-004"
     ],
+    "figures": [
+      "fig-g-dev-process"
+    ],
     "sources": [
       {
         "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
@@ -681,6 +711,9 @@
     "memoryTip": "アジャイル＝「機敏な」。小さく作って、すぐ見せて、すぐ直す。",
     "concepts": [
       "C-07-005"
+    ],
+    "figures": [
+      "fig-g-dev-process"
     ],
     "sources": [
       {
@@ -763,6 +796,9 @@
       "C-07-011",
       "C-07-020"
     ],
+    "figures": [
+      "fig-g-cloud-models"
+    ],
     "sources": [
       {
         "title": "NIST SP 800-145 The NIST Definition of Cloud Computing (2011)",
@@ -800,6 +836,9 @@
       "C-07-007",
       "C-07-008"
     ],
+    "figures": [
+      "fig-g-mlops"
+    ],
     "sources": [
       {
         "title": "Google Cloud「MLOps: 機械学習における継続的デリバリーと自動化のパイプライン」",
@@ -835,6 +874,9 @@
     "memoryTip": "技術的負債＝早く作った「つけ」。機械学習は、つけがコードの外（データ・環境）にもたまる。",
     "concepts": [
       "C-07-007"
+    ],
+    "figures": [
+      "fig-g-mlops"
     ],
     "sources": [
       {
@@ -947,6 +989,9 @@
     "memoryTip": "イメージ＝型（クッキーの型）、コンテナ＝型抜きしたクッキー。",
     "concepts": [
       "C-07-010"
+    ],
+    "figures": [
+      "fig-g-docker"
     ],
     "sources": [
       {
@@ -1128,6 +1173,9 @@
     "concepts": [
       "C-07-016"
     ],
+    "figures": [
+      "fig-g-data-leakage"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide 3.1 Cross-validation（grouped data・time series）",
@@ -1241,6 +1289,9 @@
     "concepts": [
       "C-07-019"
     ],
+    "figures": [
+      "fig-g-society50"
+    ],
     "sources": [
       {
         "title": "内閣府「Society 5.0」",
@@ -1277,6 +1328,9 @@
     "concepts": [
       "C-07-020",
       "C-07-011"
+    ],
+    "figures": [
+      "fig-g-cloud-models"
     ],
     "sources": [
       {
@@ -1317,6 +1371,9 @@
     "memoryTip": "スプリント＝1か月以内の決まった長さを、間を空けずに繰り返す。長く延ばすと「小さく作って確かめる」が崩れる。",
     "concepts": [
       "C-07-005"
+    ],
+    "figures": [
+      "fig-g-dev-process"
     ],
     "sources": [
       {
@@ -1390,6 +1447,9 @@
     "concepts": [
       "C-07-008"
     ],
+    "figures": [
+      "fig-g-mlops"
+    ],
     "sources": [
       {
         "title": "Gama et al. (2014) A Survey on Concept Drift Adaptation (ACM Computing Surveys 46(4)、著者公開版)",
@@ -1430,6 +1490,9 @@
     "concepts": [
       "C-07-021"
     ],
+    "figures": [
+      "fig-g-feature-scaling"
+    ],
     "sources": [
       {
         "title": "Google for Developers Machine Learning Crash Course「Numerical data: Normalization」",
@@ -1466,6 +1529,9 @@
     "concepts": [
       "C-07-022"
     ],
+    "figures": [
+      "fig-g-feature-scaling"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide「Preprocessing data」",
@@ -1501,6 +1567,9 @@
     "memoryTip": "順序のないカテゴリに番号を振ると「沖縄（46）は青森（1）の46倍」になる。番号ではなく席（列）を分ける＝One-Hot。",
     "concepts": [
       "C-07-023"
+    ],
+    "figures": [
+      "fig-g-categorical-encoding"
     ],
     "sources": [
       {
@@ -1662,6 +1731,9 @@
     "memoryTip": "SMOTE＝少数派の「間」に新しい点を作る。複製（同じ点を重ねる）でも間引き（多数派を減らす）でもない。",
     "concepts": [
       "C-07-027"
+    ],
+    "figures": [
+      "fig-g-imbalanced"
     ],
     "sources": [
       {

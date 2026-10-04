@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 428" role="img" aria-labelledby="fig-g-grid-random-search-t fig-g-grid-random-search-d">
+<title id="fig-g-grid-random-search-t">グリッドサーチとランダムサーチ</title>
+<desc id="fig-g-grid-random-search-d">2つのハイパーパラメータのうち、片方だけが結果に大きく効く場合の探索の比較。左のグリッドサーチは3×3の格子で9点を試すが、効くパラメータの値は3通りしか試せない。右のランダムサーチは同じ9点をランダムに選ぶので、効くパラメータの値を9通り試せる。同じ試行回数でも、効くパラメータを細かく調べられる。</desc>
+<text x="12" y="20" class="tb">同じ 9 回の試行で、何通り試せるか</text>
+<text x="82" y="50" class="tb" text-anchor="middle">グリッド</text>
+<rect x="12" y="62" width="140" height="18" class="fs sb" stroke-width="1"/>
+<line x1="35.8" y1="64" x2="35.8" y2="78" class="l sa w2"/>
+<line x1="82" y1="64" x2="82" y2="78" class="l sa w2"/>
+<line x1="128.2" y1="64" x2="128.2" y2="78" class="l sa w2"/>
+<rect x="12" y="92" width="140" height="140" class="sb" stroke-width="1"/>
+<line x1="35.8" y1="92" x2="35.8" y2="232" class="l sm w1 dot"/>
+<line x1="82" y1="92" x2="82" y2="232" class="l sm w1 dot"/>
+<line x1="128.2" y1="92" x2="128.2" y2="232" class="l sm w1 dot"/>
+<circle cx="35.8" cy="208.2" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="35.8" cy="162" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="35.8" cy="115.8" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="82" cy="208.2" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="82" cy="162" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="82" cy="115.8" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="128.2" cy="208.2" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="128.2" cy="162" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="128.2" cy="115.8" r="5" class="fs sa" stroke-width="2"/>
+<text x="82" y="252" class="tb tng" text-anchor="middle">値：3 通り</text>
+<text x="234" y="50" class="tb" text-anchor="middle">ランダム</text>
+<rect x="164" y="62" width="140" height="18" class="fs sb" stroke-width="1"/>
+<line x1="175.2" y1="64" x2="175.2" y2="78" class="l sa w2"/>
+<line x1="192" y1="64" x2="192" y2="78" class="l sa w2"/>
+<line x1="210.2" y1="64" x2="210.2" y2="78" class="l sa w2"/>
+<line x1="227" y1="64" x2="227" y2="78" class="l sa w2"/>
+<line x1="241" y1="64" x2="241" y2="78" class="l sa w2"/>
+<line x1="256.4" y1="64" x2="256.4" y2="78" class="l sa w2"/>
+<line x1="271.8" y1="64" x2="271.8" y2="78" class="l sa w2"/>
+<line x1="287.2" y1="64" x2="287.2" y2="78" class="l sa w2"/>
+<line x1="297" y1="64" x2="297" y2="78" class="l sa w2"/>
+<rect x="164" y="92" width="140" height="140" class="sb" stroke-width="1"/>
+<line x1="175.2" y1="92" x2="175.2" y2="232" class="l sm w1 dot"/>
+<line x1="192" y1="92" x2="192" y2="232" class="l sm w1 dot"/>
+<line x1="210.2" y1="92" x2="210.2" y2="232" class="l sm w1 dot"/>
+<line x1="227" y1="92" x2="227" y2="232" class="l sm w1 dot"/>
+<line x1="241" y1="92" x2="241" y2="232" class="l sm w1 dot"/>
+<line x1="256.4" y1="92" x2="256.4" y2="232" class="l sm w1 dot"/>
+<line x1="271.8" y1="92" x2="271.8" y2="232" class="l sm w1 dot"/>
+<line x1="287.2" y1="92" x2="287.2" y2="232" class="l sm w1 dot"/>
+<line x1="297" y1="92" x2="297" y2="232" class="l sm w1 dot"/>
+<circle cx="175.2" cy="145.2" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="192" cy="211" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="210.2" cy="113" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="227" cy="176" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="241" cy="101.8" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="256.4" cy="201.2" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="271.8" cy="134" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="287.2" cy="225" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="297" cy="162" r="5" class="fs sa" stroke-width="2"/>
+<text x="234" y="252" class="tb tok" text-anchor="middle">値：9 通り</text>
+<text x="12" y="290" class="tm">上の帯：効くパラメータだけを見たとき</text>
+<text x="12" y="310" class="tm">横軸＝効くパラメータ、縦軸＝効かない</text>
+<line x1="12" y1="326" x2="308" y2="326" class="l sb w1"/>
+<text x="12" y="350" class="tb">グリッド：組み合わせをすべて試す</text>
+<text x="12" y="370">　→ パラメータが増えると組み合わせが爆発</text>
+<text x="12" y="396" class="tb">ランダム：範囲から選んだ組を決めた回数</text>
+<text x="12" y="416">　→ 効くパラメータの値を多様に試せる</text>
+</svg>

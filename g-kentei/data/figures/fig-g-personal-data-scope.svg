@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 696" role="img" aria-labelledby="fig-g-personal-data-scope-t fig-g-personal-data-scope-d">
+<title id="fig-g-personal-data-scope-t">個人情報・個人データ・保有個人データの範囲と、仮名加工情報・匿名加工情報</title>
+<desc id="fig-g-personal-data-scope-d">上は3重の入れ子。外側が個人情報で、取り扱うときは利用目的をできる限り特定する。その内側が個人データで、個人情報データベース等を構成する個人情報。第三者提供の制限や安全管理措置の対象になる。いちばん内側が保有個人データで、事業者が開示・訂正・利用停止などを行う権限を持つ個人データ。本人からの開示請求への対応の対象になる。下は仮名加工情報と匿名加工情報の比較表。仮名加工情報は、他の情報と照合しない限り特定の個人を識別できないように加工したもので、社内での分析に使い、法令に基づく場合を除いて第三者提供は禁止され、同意があっても提供できない。匿名加工情報は、特定の個人を識別できず、復元もできないようにしたもので、一定のルール（加工基準に従う、項目などを公表する）に従えば、本人の同意なく第三者に提供できる。</desc>
+<text x="12" y="20" class="tb">① 3つの範囲と、かかる義務</text>
+<rect x="12" y="34" width="296" height="270" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="58" class="tb">個人情報</text>
+<text x="24" y="78">→ 利用目的の特定</text>
+<rect x="26" y="92" width="268" height="202" class="fas sa" stroke-width="1.5"/>
+<text x="38" y="116" class="tb ta">個人データ</text>
+<text x="38" y="136" class="tm">データベース等を構成する情報</text>
+<text x="38" y="156">→ 第三者提供の制限</text>
+<rect x="40" y="172" width="240" height="112" class="fa"/>
+<text x="52" y="198" class="tb ton">保有個人データ</text>
+<text x="52" y="218" class="ton">開示などの権限をもつ個人データ</text>
+<text x="52" y="240" class="tb ton">→ 開示請求への対応</text>
+<text x="12" y="326" class="tm">内側の範囲ほど、かかる義務が増える</text>
+<line x1="12" y1="346" x2="308" y2="346" class="l sb w1"/>
+<text x="12" y="374" class="tb">② 仮名加工情報と匿名加工情報</text>
+<rect x="12" y="388" width="296" height="30" class="fas sb" stroke-width="1"/>
+<text x="140" y="408" class="tb" text-anchor="middle">仮名加工情報</text>
+<text x="253" y="408" class="tb" text-anchor="middle">匿名加工情報</text>
+<rect x="12" y="418" width="296" height="54" class="fs sb" stroke-width="1"/>
+<text x="18" y="450" class="tb">識別</text>
+<text x="140" y="442" text-anchor="middle">照合しない限り</text>
+<text x="140" y="462" text-anchor="middle">識別できない</text>
+<text x="253" y="450" text-anchor="middle">識別できない</text>
+<rect x="12" y="472" width="296" height="54" class="fs sb" stroke-width="1"/>
+<text x="18" y="504" class="tb">復元</text>
+<text x="140" y="496" text-anchor="middle">復元不能にする</text>
+<text x="140" y="516" text-anchor="middle">要件はない</text>
+<text x="253" y="496" text-anchor="middle">復元できない</text>
+<text x="253" y="516" text-anchor="middle">ようにする</text>
+<rect x="12" y="526" width="296" height="54" class="fs sb" stroke-width="1"/>
+<text x="18" y="558" class="tb">第三者へ</text>
+<text x="140" y="550" text-anchor="middle">原則禁止</text>
+<text x="140" y="570" text-anchor="middle">（同意でも不可）</text>
+<text x="253" y="550" text-anchor="middle">一定のルールで</text>
+<text x="253" y="570" text-anchor="middle">同意なく可</text>
+<rect x="12" y="580" width="296" height="54" class="fs sb" stroke-width="1"/>
+<text x="18" y="612" class="tb">使い道</text>
+<text x="140" y="612" text-anchor="middle">社内の分析</text>
+<text x="253" y="612" text-anchor="middle">社外との共有</text>
+<line x1="82" y1="388" x2="82" y2="634" class="l sb w1"/>
+<line x1="198" y1="388" x2="198" y2="634" class="l sb w1"/>
+<text x="12" y="664" class="tb">外に出すなら匿名加工、</text>
+<text x="12" y="684" class="tb">中で使うなら仮名加工</text>
+</svg>

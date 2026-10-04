@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 678" role="img" aria-labelledby="fig-g-decision-tree-t fig-g-decision-tree-d">
+<title id="fig-g-decision-tree-t">決定木の分割と、ジニ不純度</title>
+<desc id="fig-g-decision-tree-d">上は2段の決定木。最初に年齢が30以上かで分け、30以上の側をさらに年収が500以上かで分ける。各葉にはクラスAとクラスBの件数を示す。中は同じデータを年齢と年収の平面に置いた図で、決定木の境界は軸に平行な線で区切った長方形になる。下はジニ不純度の計算例。クラスAが7件、Bが3件のノードは、割合が0.7と0.3で、0.7×0.3＋0.3×0.7＝0.42。1つのクラスだけなら0、2クラスが半々なら最大の0.5になる。</desc>
+<text x="12" y="20" class="tb">① 条件で順に分ける（2段）</text>
+<rect x="90" y="30" width="140" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="48" class="tb" text-anchor="middle">年齢 ≥ 30 ？</text>
+<text x="160" y="66" class="tm" text-anchor="middle">A 8 ／ B 12</text>
+<rect x="12" y="118" width="112" height="46" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="68" y="136" class="tb" text-anchor="middle">年齢 ＜ 30</text>
+<text x="68" y="154" class="tm" text-anchor="middle">A 1 ／ B 9</text>
+<rect x="170" y="118" width="138" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="239" y="136" class="tb" text-anchor="middle">年収 ≥ 500 ？</text>
+<text x="239" y="154" class="tm" text-anchor="middle">A 7 ／ B 3</text>
+<rect x="150" y="206" width="76" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="188" y="224" class="tb" text-anchor="middle">A 6</text>
+<text x="188" y="242" class="tm" text-anchor="middle">B 0</text>
+<rect x="234" y="206" width="76" height="46" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="272" y="224" class="tb" text-anchor="middle">A 1</text>
+<text x="272" y="242" class="tm" text-anchor="middle">B 3</text>
+<line x1="130" y1="76" x2="68" y2="118" class="l sm w1"/>
+<text x="76" y="100" class="tm" text-anchor="middle">いいえ</text>
+<line x1="190" y1="76" x2="239" y2="118" class="l sm w1"/>
+<text x="230" y="100" class="tm" text-anchor="middle">はい</text>
+<line x1="205" y1="164" x2="188" y2="206" class="l sm w1"/>
+<text x="176" y="190" class="tm" text-anchor="middle">はい</text>
+<line x1="270" y1="164" x2="272" y2="206" class="l sm w1"/>
+<text x="292" y="190" class="tm" text-anchor="middle">いいえ</text>
+<line x1="12" y1="272" x2="308" y2="272" class="l sb w1"/>
+<text x="12" y="296" class="tb">② 平面で見ると：軸に平行な線で区切る</text>
+<rect x="12" y="308" width="296" height="170" class="sb" stroke-width="1"/>
+<rect x="132" y="308" width="176" height="90" class="fas"/>
+<rect x="12" y="308" width="120" height="170" class="fwn"/>
+<rect x="132" y="398" width="176" height="80" class="fwn"/>
+<line x1="132" y1="308" x2="132" y2="478" class="l w2"/>
+<line x1="132" y1="398" x2="308" y2="398" class="l w2"/>
+<text x="126" y="326" class="tb" text-anchor="end">年齢 30</text>
+<text x="302" y="392" class="tb" text-anchor="end">年収 500</text>
+<rect x="31.5" y="333.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="57.5" y="353.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="37.5" y="381.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="81.5" y="339.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="99.5" y="369.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="47.5" y="413.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="77.5" y="433.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="103.5" y="403.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="65.5" y="453.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<circle cx="112" cy="448" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="162" cy="328" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="188" cy="348" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="212" cy="336" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="240" cy="356" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="266" cy="332" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="282" cy="368" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="274" cy="444" r="5" class="fs sa" stroke-width="2"/>
+<rect x="157.5" y="423.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="193.5" y="451.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<rect x="227.5" y="421.5" width="9" height="9" class="fm sm" stroke-width="1.5"/>
+<text x="302" y="498" class="tm" text-anchor="end">年齢 →</text>
+<text x="16" y="300"></text>
+<text x="12" y="498" class="tm">縦：年収　○：A　■：B</text>
+<line x1="12" y1="528" x2="308" y2="528" class="l sb w1"/>
+<text x="12" y="552" class="tb">③ ジニ不純度（混ざり具合）</text>
+<text x="12" y="574">ジニ ＝ 各クラスの p×(1−p) の合計</text>
+<text x="12" y="596">例：A 7 件・B 3 件 → p＝0.7、0.3</text>
+<text x="12" y="618" class="tb">0.7×0.3 ＋ 0.3×0.7 ＝ 0.42</text>
+<text x="12" y="642" class="tm">1クラスだけ → 0　　半々 → 最大 0.5</text>
+<text x="12" y="666" class="tb">分けた後の不純度が最小になる質問を選ぶ</text>
+</svg>

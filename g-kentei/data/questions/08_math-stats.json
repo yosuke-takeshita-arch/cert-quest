@@ -27,6 +27,9 @@
     "concepts": [
       "C-08-001"
     ],
+    "figures": [
+      "fig-g-central-tendency"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
@@ -64,6 +67,9 @@
       "C-08-001",
       "C-08-002"
     ],
+    "figures": [
+      "fig-g-central-tendency"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
@@ -99,6 +105,9 @@
     "memoryTip": "平均→偏差→2乗→平均（分散）→平方根（標準偏差）。最後に√を忘れない。",
     "concepts": [
       "C-08-003"
+    ],
+    "figures": [
+      "fig-g-variance"
     ],
     "sources": [
       {
@@ -172,6 +181,9 @@
     "concepts": [
       "C-08-009"
     ],
+    "figures": [
+      "fig-g-discrete-distributions"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 1.3.6.6.18 Binomial Distribution",
@@ -207,6 +219,9 @@
     "memoryTip": "ベルヌーイ＝1回、二項＝n回。",
     "concepts": [
       "C-08-009"
+    ],
+    "figures": [
+      "fig-g-discrete-distributions"
     ],
     "sources": [
       {
@@ -249,6 +264,9 @@
       "C-08-010",
       "C-08-009"
     ],
+    "figures": [
+      "fig-g-discrete-distributions"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 1.3.6.6.19 Poisson Distribution",
@@ -284,6 +302,9 @@
     "memoryTip": "左右対称＝左右で半分ずつ。",
     "concepts": [
       "C-08-008"
+    ],
+    "figures": [
+      "fig-g-normal-distribution"
     ],
     "sources": [
       {
@@ -362,6 +383,9 @@
       "C-08-011",
       "C-08-021"
     ],
+    "figures": [
+      "fig-g-correlation"
+    ],
     "sources": [
       {
         "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 7b Reading: Covariance and Correlation",
@@ -398,6 +422,9 @@
     "concepts": [
       "C-08-014",
       "C-08-013"
+    ],
+    "figures": [
+      "fig-g-spurious-correlation"
     ],
     "sources": [
       {
@@ -488,7 +515,10 @@
         "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3652.htm"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-least-squares"
+    ]
   },
   {
     "id": "G-08-014",
@@ -517,6 +547,9 @@
     "memoryTip": "尤（もっと）も、らしい＝最もありそうなパラメータを選ぶ。",
     "concepts": [
       "C-08-016"
+    ],
+    "figures": [
+      "fig-g-mle"
     ],
     "sources": [
       {
@@ -633,6 +666,9 @@
     "concepts": [
       "C-08-018"
     ],
+    "figures": [
+      "fig-g-moving-average"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 6.4.2.1 Single Moving Average",
@@ -668,6 +704,9 @@
     "memoryTip": "三平方の定理。3・4・5の直角三角形。",
     "concepts": [
       "C-08-019"
+    ],
+    "figures": [
+      "fig-g-distances"
     ],
     "sources": [
       {
@@ -705,6 +744,9 @@
     "concepts": [
       "C-08-019"
     ],
+    "figures": [
+      "fig-g-distances"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide 8.8 Pairwise metrics, Affinities and Kernels（Cosine similarity）",
@@ -741,6 +783,9 @@
     "concepts": [
       "C-08-020",
       "C-08-019"
+    ],
+    "figures": [
+      "fig-g-mahalanobis"
     ],
     "sources": [
       {
@@ -787,6 +832,9 @@
       "C-08-021",
       "C-08-012"
     ],
+    "figures": [
+      "fig-g-correlation"
+    ],
     "sources": [
       {
         "title": "scikit-learn API sklearn.feature_selection.mutual_info_classif",
@@ -827,6 +875,9 @@
     "concepts": [
       "C-08-005"
     ],
+    "figures": [
+      "fig-g-normal-distribution"
+    ],
     "sources": [
       {
         "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 4a Reading: Discrete Random Variables",
@@ -866,6 +917,9 @@
     "memoryTip": "度数＝何人（何個）いるか。",
     "concepts": [
       "C-08-004"
+    ],
+    "figures": [
+      "fig-g-central-tendency"
     ],
     "sources": [
       {
@@ -921,7 +975,10 @@
         "url": "https://www.deeplearningbook.org/contents/numerical.html"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-gradient-descent"
+    ]
   },
   {
     "id": "G-08-025",
@@ -951,6 +1008,9 @@
     "concepts": [
       "C-08-008",
       "C-08-003"
+    ],
+    "figures": [
+      "fig-g-normal-distribution"
     ],
     "sources": [
       {
@@ -988,6 +1048,9 @@
     "concepts": [
       "C-08-009"
     ],
+    "figures": [
+      "fig-g-discrete-distributions"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 1.3.6.6.18 Binomial Distribution",
@@ -1023,6 +1086,9 @@
     "memoryTip": "足し算は「位置をずらすだけ」、掛け算は「幅を広げる」。分散は幅の2乗。",
     "concepts": [
       "C-08-003"
+    ],
+    "figures": [
+      "fig-g-variance"
     ],
     "sources": [
       {
@@ -1098,6 +1164,9 @@
     "memoryTip": "最尤推定＝「いちばん起こりやすかったのはどのpか」。コインなら観測した割合そのもの。",
     "concepts": [
       "C-08-016"
+    ],
+    "figures": [
+      "fig-g-mle"
     ],
     "sources": [
       {
@@ -1182,7 +1251,10 @@
         "url": "https://www.itl.nist.gov/div898/handbook/pmd/section1/pmd141.htm"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-least-squares"
+    ]
   },
   {
     "id": "G-08-032",
@@ -1212,6 +1284,9 @@
     "concepts": [
       "C-08-004",
       "C-08-012"
+    ],
+    "figures": [
+      "fig-g-central-tendency"
     ],
     "sources": [
       {
@@ -1254,6 +1329,9 @@
       "C-08-013",
       "C-08-014"
     ],
+    "figures": [
+      "fig-g-spurious-correlation"
+    ],
     "sources": [
       {
         "title": "岡本安晴（日本女子大学）「偏相関係数と擬似相関」",
@@ -1291,6 +1369,9 @@
       "C-08-011",
       "C-08-012"
     ],
+    "figures": [
+      "fig-g-correlation"
+    ],
     "sources": [
       {
         "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 7b Reading: Covariance and Correlation",
@@ -1326,6 +1407,9 @@
     "memoryTip": "コサイン＝向き、ユークリッド＝位置。長さが違っても向きが同じならコサインは1。",
     "concepts": [
       "C-08-019"
+    ],
+    "figures": [
+      "fig-g-distances"
     ],
     "sources": [
       {
@@ -1367,6 +1451,9 @@
     "concepts": [
       "C-08-021",
       "C-08-012"
+    ],
+    "figures": [
+      "fig-g-correlation"
     ],
     "sources": [
       {
@@ -1413,6 +1500,9 @@
       "C-08-020",
       "C-08-019"
     ],
+    "figures": [
+      "fig-g-mahalanobis"
+    ],
     "sources": [
       {
         "title": "scikit-learn Example: Robust covariance estimation and Mahalanobis distances relevance",
@@ -1448,6 +1538,9 @@
     "memoryTip": "移動平均＝窓をずらしながら平均。ギザギザがなめらかになる。",
     "concepts": [
       "C-08-018"
+    ],
+    "figures": [
+      "fig-g-moving-average"
     ],
     "sources": [
       {
@@ -1485,6 +1578,9 @@
     "concepts": [
       "C-08-002"
     ],
+    "figures": [
+      "fig-g-central-tendency"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 1.3.5.17 Detection of Outliers",
@@ -1520,6 +1616,9 @@
     "memoryTip": "連続の確率＝面積。密度は「高さ」。",
     "concepts": [
       "C-08-005"
+    ],
+    "figures": [
+      "fig-g-normal-distribution"
     ],
     "sources": [
       {
@@ -1861,6 +1960,9 @@
       "C-08-027",
       "C-03-020"
     ],
+    "figures": [
+      "fig-g-sampling"
+    ],
     "sources": [
       {
         "title": "総務省統計局「労働力調査 標本設計の解説」（平成30年4月）",
@@ -1896,6 +1998,9 @@
     "memoryTip": "相関係数＝直線の具合だけを見るものさし。0でも曲線の関係が隠れていることがある。",
     "concepts": [
       "C-08-012"
+    ],
+    "figures": [
+      "fig-g-correlation"
     ],
     "sources": [
       {
@@ -1941,6 +2046,9 @@
     "concepts": [
       "C-08-019"
     ],
+    "figures": [
+      "fig-g-distances"
+    ],
     "sources": [
       {
         "title": "SciPy API scipy.spatial.distance.cityblock",
@@ -1985,6 +2093,9 @@
     "concepts": [
       "C-08-001",
       "C-08-002"
+    ],
+    "figures": [
+      "fig-g-central-tendency"
     ],
     "sources": [
       {
@@ -2062,6 +2173,9 @@
     "concepts": [
       "C-08-008",
       "C-08-003"
+    ],
+    "figures": [
+      "fig-g-normal-distribution"
     ],
     "sources": [
       {

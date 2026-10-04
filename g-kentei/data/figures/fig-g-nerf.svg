@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 528" role="img" aria-labelledby="fig-g-nerf-t fig-g-nerf-d">
+<title id="fig-g-nerf-t">NeRF：位置と視線方向から、密度と色を出す</title>
+<desc id="fig-g-nerf-d">少数の視点から撮った画像をもとに、場面を1つの全結合ネットワークで表す。カメラから場面へ伸びる光線の上に標本点を取り、各点の位置（x, y, z）と視線方向（θ, φ）の5つの値をネットワークに入れると、その点の密度と色が出る。光線の上の色を積み上げる（ボリュームレンダリング）と、その画素の色になる。撮影していない角度からの画像を合成できる。</desc>
+<text x="12" y="20" class="tb">① カメラから、光線を飛ばす</text>
+<polygon points="22,80 46,64 46,96" class="fas sa"/>
+<circle cx="220" cy="80" r="30" class="fs sm"/>
+<line x1="46" y1="80" x2="296" y2="80" class="l sm w1 dsh"/>
+<line x1="46" y1="70" x2="296" y2="52" class="l sb w1"/>
+<line x1="46" y1="90" x2="296" y2="108" class="l sb w1"/>
+<circle cx="110" cy="80" r="4" class="fs sm"/>
+<circle cx="150" cy="80" r="4" class="fs sm"/>
+<circle cx="190" cy="80" r="4" class="fs sm"/>
+<circle cx="230" cy="80" r="4" class="fok sok"/>
+<circle cx="270" cy="80" r="4" class="fs sm"/>
+<text x="34" y="114" class="tm" text-anchor="middle">カメラ</text>
+<text x="220" y="130" class="tm" text-anchor="middle">場面</text>
+<text x="12" y="152">光線の上に、標本点を取る（●）</text>
+<line x1="12" y1="170" x2="308" y2="170" class="l sb w1"/>
+<text x="12" y="194" class="tb">② 各点を、ネットワークに入れる</text>
+<rect x="12" y="210" width="120" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="72" y="233.5" text-anchor="middle">位置（x, y, z）</text>
+<text x="72" y="251.5" text-anchor="middle">視線方向（θ, φ）</text>
+<line x1="132" y1="238" x2="150" y2="238" class="l w2"/>
+<polyline points="143,241.85 150,238 143,234.15" class="l w2"/>
+<rect x="152" y="210" width="70" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="187" y="224.5" text-anchor="middle">全結合</text>
+<text x="187" y="242.5" text-anchor="middle">ネット</text>
+<text x="187" y="260.5" text-anchor="middle">ワーク</text>
+<line x1="222" y1="238" x2="240" y2="238" class="l w2"/>
+<polyline points="233,241.85 240,238 233,234.15" class="l w2"/>
+<rect x="242" y="210" width="66" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="275" y="233.5" class="tb" text-anchor="middle">密度</text>
+<text x="275" y="251.5" class="tb" text-anchor="middle">と色</text>
+<text x="12" y="296" class="tm">5つの値（5次元の座標）→ その点の密度と色</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="338" class="tb">③ 光線の上の色を積み上げる</text>
+<rect x="12" y="354" width="40" height="26" class="fs sb" stroke-width="1.5"/>
+<rect x="58" y="354" width="40" height="26" class="fok sb" stroke-width="1.5"/>
+<rect x="104" y="354" width="40" height="26" class="fok sb" stroke-width="1.5"/>
+<rect x="150" y="354" width="40" height="26" class="fok sb" stroke-width="1.5"/>
+<rect x="196" y="354" width="40" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="120" y="372" class="tb" text-anchor="middle">色</text>
+<line x1="160" y1="384" x2="160" y2="408" class="l w2"/>
+<polyline points="156.15,401 160,408 163.85,401" class="l w2"/>
+<rect x="100" y="410" width="120" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="430.5" class="tb" text-anchor="middle">画素の色</text>
+<text x="12" y="470" class="tb">ボリュームレンダリングで</text>
+<text x="12" y="492" class="tb">新しい視点の画像を合成する</text>
+<text x="12" y="516" class="tm">撮っていない角度からの画像も作れる</text>
+</svg>

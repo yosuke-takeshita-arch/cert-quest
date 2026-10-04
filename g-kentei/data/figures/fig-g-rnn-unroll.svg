@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 686" role="img" aria-labelledby="fig-g-rnn-unroll-t fig-g-rnn-unroll-d">
+<title id="fig-g-rnn-unroll-t">RNN：回帰結合を時間方向に展開し、誤差をさかのぼる（BPTT）と教師強制</title>
+<desc id="fig-g-rnn-unroll-d">上は RNN の回帰結合。入力 x から隠れ層 h、出力 y へ進み、h は自分自身（次の時刻）にも戻る。中は同じものを時刻 t−1、t、t+1 に展開した図。h が横につながり、状態は右へ運ばれる。学習では誤差を時刻をさかのぼって伝える（BPTT）。各時刻で同じ重みを使う。下は教師強制。学習時は次の時刻の入力に正解を与え、推論時はモデル自身の予測を入力する。</desc>
+<text x="12" y="20" class="tb">① 回帰結合：h を自分に戻す</text>
+<rect x="36" y="34" width="60" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="66" y="51.5" text-anchor="middle">y 出力</text>
+<rect x="36" y="80" width="60" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="66" y="97.5" text-anchor="middle">h 隠れ層</text>
+<rect x="36" y="126" width="60" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="66" y="143.5" text-anchor="middle">x 入力</text>
+<line x1="66" y1="126" x2="66" y2="108" class="l w2"/>
+<polyline points="69.85,115 66,108 62.15,115" class="l w2"/>
+<line x1="66" y1="80" x2="66" y2="62" class="l w2"/>
+<polyline points="69.85,69 66,62 62.15,69" class="l w2"/>
+<line x1="96" y1="87" x2="124" y2="87" class="l sa w2"/>
+<line x1="124" y1="87" x2="124" y2="99" class="l sa w2"/>
+<line x1="124" y1="99" x2="97" y2="99" class="l sa w2"/>
+<polyline points="104,95.15 97,99 104,102.85" class="l sa w2"/>
+<text x="142" y="90">前の時刻の h を</text>
+<text x="142" y="110">次の入力に戻す</text>
+<text x="142" y="132" class="tm">同じ重みを毎回使う</text>
+<line x1="12" y1="172" x2="308" y2="172" class="l sb w1"/>
+<text x="12" y="196" class="tb">② 時間方向に展開する</text>
+<text x="56" y="222" class="tm" text-anchor="middle">時刻 t−1</text>
+<rect x="26" y="232" width="60" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="56" y="248.5" text-anchor="middle">y(t−1)</text>
+<rect x="26" y="282" width="60" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="56" y="298.5" text-anchor="middle">h(t−1)</text>
+<rect x="26" y="332" width="60" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="56" y="348.5" text-anchor="middle">x(t−1)</text>
+<line x1="56" y1="332" x2="56" y2="308" class="l w2"/>
+<polyline points="59.85,315 56,308 52.15,315" class="l w2"/>
+<line x1="56" y1="282" x2="56" y2="258" class="l w2"/>
+<polyline points="59.85,265 56,258 52.15,265" class="l w2"/>
+<text x="160" y="222" class="tm" text-anchor="middle">時刻 t</text>
+<rect x="130" y="232" width="60" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="248.5" text-anchor="middle">y(t)</text>
+<rect x="130" y="282" width="60" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="298.5" text-anchor="middle">h(t)</text>
+<rect x="130" y="332" width="60" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="348.5" text-anchor="middle">x(t)</text>
+<line x1="160" y1="332" x2="160" y2="308" class="l w2"/>
+<polyline points="163.85,315 160,308 156.15,315" class="l w2"/>
+<line x1="160" y1="282" x2="160" y2="258" class="l w2"/>
+<polyline points="163.85,265 160,258 156.15,265" class="l w2"/>
+<text x="264" y="222" class="tm" text-anchor="middle">時刻 t+1</text>
+<rect x="234" y="232" width="60" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="264" y="248.5" text-anchor="middle">y(t+1)</text>
+<rect x="234" y="282" width="60" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="264" y="298.5" text-anchor="middle">h(t+1)</text>
+<rect x="234" y="332" width="60" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="264" y="348.5" text-anchor="middle">x(t+1)</text>
+<line x1="264" y1="332" x2="264" y2="308" class="l w2"/>
+<polyline points="267.85,315 264,308 260.15,315" class="l w2"/>
+<line x1="264" y1="282" x2="264" y2="258" class="l w2"/>
+<polyline points="267.85,265 264,258 260.15,265" class="l w2"/>
+<line x1="87" y1="301" x2="129" y2="301" class="l sa w2"/>
+<polyline points="122,304.85 129,301 122,297.15" class="l sa w2"/>
+<line x1="129" y1="287" x2="87" y2="287" class="l sng w2"/>
+<polyline points="94,283.15 87,287 94,290.85" class="l sng w2"/>
+<line x1="191" y1="301" x2="233" y2="301" class="l sa w2"/>
+<polyline points="226,304.85 233,301 226,297.15" class="l sa w2"/>
+<line x1="233" y1="287" x2="191" y2="287" class="l sng w2"/>
+<polyline points="198,283.15 191,287 198,290.85" class="l sng w2"/>
+<line x1="12" y1="372" x2="40" y2="372" class="l sa w2"/>
+<text x="48" y="377">状態を次の時刻へ運ぶ</text>
+<line x1="12" y1="394" x2="40" y2="394" class="l sng w2"/>
+<text x="48" y="399">誤差を時刻をさかのぼって伝える</text>
+<text x="48" y="419" class="tb tng">＝ BPTT</text>
+<text x="12" y="446" class="tm">長い系列ほど展開が深くなり、</text>
+<text x="12" y="465" class="tm">勾配消失・勾配爆発が起きやすい</text>
+<line x1="12" y1="484" x2="308" y2="484" class="l sb w1"/>
+<text x="12" y="508" class="tb">③ 教師強制：次の入力に何を入れるか</text>
+<text x="12" y="536" class="tb ta">学習時：正解を入れる</text>
+<rect x="12" y="548" width="70" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="47" y="566.5" text-anchor="middle">予測</text>
+<rect x="124" y="548" width="84" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="166" y="566.5" text-anchor="middle">次の入力</text>
+<line x1="84" y1="562" x2="122" y2="562" class="l sng w2 dsh"/>
+<text x="103" y="556" class="tb tng" text-anchor="middle">×</text>
+<rect x="238" y="548" width="70" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="273" y="566.5" text-anchor="middle">正解</text>
+<line x1="236" y1="562" x2="210" y2="562" class="l sok w2"/>
+<polyline points="217,558.15 210,562 217,565.85" class="l sok w2"/>
+<text x="12" y="598" class="tb tok">推論時：自分の予測を入れる</text>
+<rect x="12" y="610" width="70" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="47" y="628.5" text-anchor="middle">予測</text>
+<rect x="124" y="610" width="84" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="166" y="628.5" text-anchor="middle">次の入力</text>
+<line x1="84" y1="624" x2="122" y2="624" class="l w2"/>
+<polyline points="115,627.85 122,624 115,620.15" class="l w2"/>
+<rect x="238" y="610" width="70" height="28" class="fs sb" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="273" y="629" class="tm" text-anchor="middle">使えない</text>
+<text x="12" y="674" class="tm">学習時と推論時で条件がずれる問題がある</text>
+</svg>

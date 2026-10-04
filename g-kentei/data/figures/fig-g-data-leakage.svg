@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-data-leakage-t fig-g-data-leakage-d">
+<title id="fig-g-data-leakage-t">データリーケージ：同じ患者が学習用と評価用の両方に入る</title>
+<desc id="fig-g-data-leakage-d">4人の患者A、B、C、Dがそれぞれ3枚の画像を持つ例。画像を1枚ずつランダムに分けると、同じ患者の画像が学習用と評価用の両方に入る。モデルは評価の答えを見てしまっているので、評価の数値が実力以上に良く出て、未知の患者では精度が出ない。患者単位で分けると、評価用の患者は学習用に1枚も入らず、未知の患者への実力を測れる。下は、予測の時点では使えない情報、たとえば正解そのものや未来の情報を特徴量に入れるのも同じリーケージの例。</desc>
+<text x="12" y="20" class="tm">患者A〜Dが、それぞれ画像3枚</text>
+<text x="12" y="46" class="tb">① 画像を1枚ずつランダムに分ける</text>
+<text x="12" y="68" class="tb">学習用</text>
+<rect x="12" y="76" width="28" height="28" class="fa" stroke-width="1.5"/>
+<text x="26" y="95" class="tb ton" text-anchor="middle">A</text>
+<rect x="44" y="76" width="28" height="28" class="fa" stroke-width="1.5"/>
+<text x="58" y="95" class="tb ton" text-anchor="middle">A</text>
+<rect x="76" y="76" width="28" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="90" y="95" class="tb" text-anchor="middle">B</text>
+<rect x="108" y="76" width="28" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="122" y="95" class="tb" text-anchor="middle">C</text>
+<rect x="140" y="76" width="28" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="154" y="95" class="tb" text-anchor="middle">C</text>
+<rect x="172" y="76" width="28" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="186" y="95" class="tb" text-anchor="middle">D</text>
+<rect x="204" y="76" width="28" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="218" y="95" class="tb" text-anchor="middle">D</text>
+<rect x="236" y="76" width="28" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="250" y="95" class="tb" text-anchor="middle">B</text>
+<text x="12" y="128" class="tb">評価用</text>
+<rect x="12" y="136" width="28" height="28" class="fa" stroke-width="1.5"/>
+<text x="26" y="155" class="tb ton" text-anchor="middle">A</text>
+<rect x="44" y="136" width="28" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="58" y="155" class="tb" text-anchor="middle">B</text>
+<rect x="76" y="136" width="28" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="90" y="155" class="tb" text-anchor="middle">C</text>
+<rect x="108" y="136" width="28" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="122" y="155" class="tb" text-anchor="middle">D</text>
+<text x="12" y="182" class="tb tng">A〜D全員が両側にいる</text>
+<text x="12" y="202" class="tng">→ 評価が実力より高く出る</text>
+<line x1="12" y1="224" x2="308" y2="224" class="l sb w1"/>
+<text x="12" y="252" class="tb">② 患者単位で分ける</text>
+<text x="12" y="274" class="tb">学習用</text>
+<rect x="12" y="282" width="28" height="28" class="fa" stroke-width="1.5"/>
+<text x="26" y="301" class="tb ton" text-anchor="middle">A</text>
+<rect x="44" y="282" width="28" height="28" class="fa" stroke-width="1.5"/>
+<text x="58" y="301" class="tb ton" text-anchor="middle">A</text>
+<rect x="76" y="282" width="28" height="28" class="fa" stroke-width="1.5"/>
+<text x="90" y="301" class="tb ton" text-anchor="middle">A</text>
+<rect x="108" y="282" width="28" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="122" y="301" class="tb" text-anchor="middle">B</text>
+<rect x="140" y="282" width="28" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="154" y="301" class="tb" text-anchor="middle">B</text>
+<rect x="172" y="282" width="28" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="186" y="301" class="tb" text-anchor="middle">B</text>
+<rect x="204" y="282" width="28" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="218" y="301" class="tb" text-anchor="middle">C</text>
+<rect x="236" y="282" width="28" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="250" y="301" class="tb" text-anchor="middle">C</text>
+<rect x="268" y="282" width="28" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="282" y="301" class="tb" text-anchor="middle">C</text>
+<text x="12" y="334" class="tb">評価用</text>
+<rect x="12" y="342" width="28" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="26" y="361" class="tb" text-anchor="middle">D</text>
+<rect x="44" y="342" width="28" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="58" y="361" class="tb" text-anchor="middle">D</text>
+<rect x="76" y="342" width="28" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="90" y="361" class="tb" text-anchor="middle">D</text>
+<text x="12" y="388" class="tb tok">評価用の患者は、学習に1枚も入らない</text>
+<text x="12" y="408" class="tok">→ 初めて来る患者への実力を測れる</text>
+<line x1="12" y1="430" x2="308" y2="430" class="l sb w1"/>
+<text x="12" y="458" class="tb">③ 予測の時点で使えない情報も同じ</text>
+<text x="12" y="480">正解そのものや、未来の情報を</text>
+<text x="12" y="500">特徴量に入れてしまう</text>
+<text x="12" y="528" class="tm">『予測するとき、その情報は手元に</text>
+<text x="12" y="548" class="tm">あるか』を、毎回確かめる</text>
+</svg>

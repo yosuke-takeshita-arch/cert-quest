@@ -33,6 +33,9 @@
         "point": "教師なし学習は正解ラベルを使わず、特徴量だけからデータの構造を見つける。"
       }
     ],
+    "figures": [
+      "fig-g-ml-three-types"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Cross-validation（教師あり学習の評価の前提）",
@@ -167,6 +170,9 @@
         "point": "多クラス分類は1つだけ選ぶ。1つの入力に複数のラベルを同時に付けるのはマルチラベル分類。"
       }
     ],
+    "figures": [
+      "fig-g-softmax"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Multiclass and multioutput algorithms",
@@ -209,6 +215,9 @@
         "point": "線形回帰は数値を予測、ロジスティック回帰は確率を出して分類する。"
       }
     ],
+    "figures": [
+      "fig-g-least-squares"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models",
@@ -246,6 +255,9 @@
         "id": "C-03-007",
         "point": "説明変数が1つなら単回帰、2つ以上なら重回帰。目的変数の数ではない。"
       }
+    ],
+    "figures": [
+      "fig-g-least-squares"
     ],
     "sources": [
       {
@@ -289,6 +301,9 @@
         "point": "多数の項目を少数の軸にまとめるのは主成分分析（教師なし）。重回帰は目的変数を予測する。"
       }
     ],
+    "figures": [
+      "fig-g-least-squares"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models",
@@ -331,6 +346,9 @@
         "point": "「回帰」という名前に引っかけられやすい。ロジスティック回帰は分類。"
       }
     ],
+    "figures": [
+      "fig-g-logistic-regression"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models（Logistic regression）",
@@ -369,6 +387,9 @@
         "point": "ARは1つの系列、VARは複数の系列が互いに影響し合うのを扱う。"
       }
     ],
+    "figures": [
+      "fig-g-time-series-ar"
+    ],
     "sources": [
       {
         "title": "statsmodels: AutoReg (Autoregressive AR-X(p) model)",
@@ -398,6 +419,9 @@
         "id": "C-03-009",
         "point": "ARは単変量、VARは多変量。「ベクトル」＝複数の変数をまとめたもの。"
       }
+    ],
+    "figures": [
+      "fig-g-time-series-ar"
     ],
     "sources": [
       {
@@ -437,6 +461,10 @@
         "point": "ロジスティック回帰は確率を最適化、SVMはマージンを最大化。境界の決め方が違う。"
       }
     ],
+    "figures": [
+      "fig-g-svm-margin",
+      "fig-g-kernel-trick"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
@@ -474,6 +502,9 @@
         "id": "C-03-013",
         "point": "ソフトマージンは「はみ出しを許す」工夫、カーネルトリックは「非線形な境界を作る」工夫。別の問題への対処で、組み合わせて使える。"
       }
+    ],
+    "figures": [
+      "fig-g-svm-margin"
     ],
     "sources": [
       {
@@ -513,6 +544,9 @@
         "point": "CNNの「カーネル」は畳み込みのフィルタのことで、SVMのカーネル関数とは別物。同じ語に注意。"
       }
     ],
+    "figures": [
+      "fig-g-kernel-trick"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
@@ -550,6 +584,9 @@
         "title": "探索木",
         "point": "探索木は解を探す場合分け（学習しない）。決定木はデータから学ぶ予測モデル。"
       }
+    ],
+    "figures": [
+      "fig-g-decision-tree"
     ],
     "sources": [
       {
@@ -593,6 +630,9 @@
         "point": "アンサンブルは1つのタスクに複数モデル。マルチタスク学習は1つのモデルで複数タスク。"
       }
     ],
+    "figures": [
+      "fig-g-bagging-boosting"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles",
@@ -630,6 +670,9 @@
         "id": "C-03-019",
         "point": "ランダムフォレストは木を独立に作って平均（バギング）。勾配ブースティングは前の木の誤りを次の木で補う（ブースティング）。"
       }
+    ],
+    "figures": [
+      "fig-g-bagging-boosting"
     ],
     "sources": [
       {
@@ -673,6 +716,9 @@
         "point": "バギング＝並列・独立・平均。ブースティング＝逐次・前の誤りを重視。"
       }
     ],
+    "figures": [
+      "fig-g-bagging-boosting"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles（Bagging meta-estimator）",
@@ -706,6 +752,9 @@
         "id": "C-03-017",
         "point": "ブースティングは強いモデルではなく弱いモデル（浅い木）と相性がよい。"
       }
+    ],
+    "figures": [
+      "fig-g-bagging-boosting"
     ],
     "sources": [
       {
@@ -745,6 +794,9 @@
         "point": "勾配ブースティング＝木を順に足す。ランダムフォレスト＝木を並列に作って平均。"
       }
     ],
+    "figures": [
+      "fig-g-bagging-boosting"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles（Gradient-boosted trees）",
@@ -778,6 +830,9 @@
         "title": "交差検証",
         "point": "交差検証はデータを重複なく分けて評価に使う。ブートストラップは重複を許して取り出し、学習用データを作る。"
       }
+    ],
+    "figures": [
+      "fig-g-bagging-boosting"
     ],
     "sources": [
       {
@@ -816,6 +871,9 @@
         "id": "C-03-001",
         "point": "教師あり＝特徴量と正解のペアが要る。教師なし＝特徴量だけでよい。"
       }
+    ],
+    "figures": [
+      "fig-g-ml-three-types"
     ],
     "sources": [
       {
@@ -859,6 +917,10 @@
         "point": "分類は決まったラベルに当てはめる教師あり。クラスタリングはラベル無しでまとまりを見つける教師なし。"
       }
     ],
+    "figures": [
+      "fig-g-kmeans",
+      "fig-g-dendrogram"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Clustering",
@@ -896,6 +958,9 @@
         "title": "k- 分割交差検証",
         "point": "kは「データをk分割する」の意味で、クラスタ数とは別。"
       }
+    ],
+    "figures": [
+      "fig-g-kmeans"
     ],
     "sources": [
       {
@@ -935,6 +1000,9 @@
         "point": "ウォード法は階層型（クラスタ数を後から決められる）、k-means法は非階層型（kを先に決める）。"
       }
     ],
+    "figures": [
+      "fig-g-dendrogram"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Clustering（Hierarchical clustering）",
@@ -964,6 +1032,9 @@
         "title": "決定木",
         "point": "どちらも木の図だが、デンドログラムはクラスタの結合の過程、決定木は分類の条件分岐。"
       }
+    ],
+    "figures": [
+      "fig-g-dendrogram"
     ],
     "sources": [
       {
@@ -1006,6 +1077,9 @@
         "title": "重回帰分析",
         "point": "重回帰は目的変数を予測（教師あり）。PCAは目的変数なしで軸をまとめる（教師なし）。"
       }
+    ],
+    "figures": [
+      "fig-g-pca"
     ],
     "sources": [
       {
@@ -1053,6 +1127,9 @@
         "point": "特徴選択は元の変数の一部を選ぶ。次元削減の多くは元の変数を組み合わせた新しい軸を作る。"
       }
     ],
+    "figures": [
+      "fig-g-pca"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Decomposing signals in components",
@@ -1091,6 +1168,9 @@
         "point": "PCAはデータを中心化してから分解する。打ち切りSVDは中心化しなくてよい（疎な行列に向く）。"
       }
     ],
+    "figures": [
+      "fig-g-pca"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Decomposing signals in components（Truncated SVD）",
@@ -1124,6 +1204,9 @@
         "id": "C-03-030",
         "point": "MDSは点どうしの距離そのものを保つ。t-SNEは近さを確率で表し、近い点の関係を重視する。"
       }
+    ],
+    "figures": [
+      "fig-g-pca"
     ],
     "sources": [
       {
@@ -1163,6 +1246,9 @@
         "point": "PCAは分散を最大化する軸を探す。MDSは距離を保つように配置する。"
       }
     ],
+    "figures": [
+      "fig-g-pca"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Manifold learning（Multi-dimensional Scaling）",
@@ -1201,6 +1287,9 @@
         "point": "クラスタリングは1文書1グループ。トピックモデルは1文書が複数の話題を割合で持つ。"
       }
     ],
+    "figures": [
+      "fig-g-topic-model"
+    ],
     "sources": [
       {
         "title": "Blei, Ng & Jordan (2003) Latent Dirichlet Allocation. JMLR",
@@ -1238,6 +1327,9 @@
         "id": "C-03-028",
         "point": "LSAは単語×文書の行列に特異値分解（SVD）を使う手法で、確率モデルではない。LDAは文書が生まれる過程を確率で表すモデル。"
       }
+    ],
+    "figures": [
+      "fig-g-topic-model"
     ],
     "sources": [
       {
@@ -1280,6 +1372,9 @@
         "id": "C-03-034",
         "point": "協調＝他の利用者のデータを使う。コンテンツベース＝商品の特徴を使い、他の利用者のデータは使わない。"
       }
+    ],
+    "figures": [
+      "fig-g-recommender"
     ],
     "sources": [
       {
@@ -1327,6 +1422,9 @@
         "point": "リリース直後や新商品で使いやすいのはコンテンツベース。利用者が増えてから強いのは協調フィルタリング。"
       }
     ],
+    "figures": [
+      "fig-g-recommender"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Recommendation Systems - Content-based filtering",
@@ -1360,6 +1458,9 @@
         "title": "フレーム問題",
         "point": "コールドスタートはデータ不足の問題。フレーム問題は関係あることを選べない問題。"
       }
+    ],
+    "figures": [
+      "fig-g-recommender"
     ],
     "sources": [
       {
@@ -1407,6 +1508,10 @@
         "point": "教師あり学習は「正解の行動」を与える。強化学習は「行動の良し悪しの結果（報酬）」だけを与える。"
       }
     ],
+    "figures": [
+      "fig-g-rl-loop",
+      "fig-g-ml-three-types"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -1445,6 +1550,9 @@
         "point": "隠れマルコフモデルは観測できない状態の系列を推定する確率モデル（音声認識など）。マルコフ決定過程は行動と報酬を含む意思決定の定式化。"
       }
     ],
+    "figures": [
+      "fig-g-rl-loop"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.3 Finite Markov Decision Processes）",
@@ -1478,6 +1586,9 @@
         "title": "学習率",
         "point": "割引率は将来の報酬の重み。学習率はパラメータを1回にどれだけ更新するか。"
       }
+    ],
+    "figures": [
+      "fig-g-rl-loop"
     ],
     "sources": [
       {
@@ -1521,6 +1632,9 @@
         "point": "V(s)は状態だけ、Q(s,a)は状態と行動の組。Q学習の「Q」は行動価値Q(s,a)のQ。"
       }
     ],
+    "figures": [
+      "fig-g-q-sarsa-td"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -1559,6 +1673,10 @@
         "point": "Q学習＝次の状態で最大のQを使う（off-policy）。SARSA＝実際に次に選んだ行動のQを使う（on-policy）。"
       }
     ],
+    "figures": [
+      "fig-g-q-sarsa-td",
+      "fig-g-rl-taxonomy"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（6.5 Q-learning: Off-policy TD Control）",
@@ -1592,6 +1710,9 @@
         "id": "C-03-040",
         "point": "SARSAは「実際の次の行動」、Q学習は「最大の行動」。"
       }
+    ],
+    "figures": [
+      "fig-g-q-sarsa-td"
     ],
     "sources": [
       {
@@ -1631,6 +1752,9 @@
         "point": "バンディット問題は状態が変わらない（選ぶだけ）。マルコフ決定過程は行動で状態が変わる。"
       }
     ],
+    "figures": [
+      "fig-g-explore-exploit"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.2 Multi-armed Bandits）",
@@ -1665,6 +1789,9 @@
         "point": "ε-greedyは一定確率で完全にランダムに試す。UCBは試した回数が少なく不確かな選択肢を優先して試す。"
       }
     ],
+    "figures": [
+      "fig-g-explore-exploit"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.2）",
@@ -1698,6 +1825,9 @@
         "id": "C-03-043",
         "point": "UCBは不確かさを根拠に試す（狙って探索）、ε-greedyはランダムに試す。"
       }
+    ],
+    "figures": [
+      "fig-g-explore-exploit"
     ],
     "sources": [
       {
@@ -1737,6 +1867,9 @@
         "point": "Q学習は価値を学んでから行動を選ぶ（価値ベース）。方策勾配法は方策そのものを学ぶ（方策ベース）。"
       }
     ],
+    "figures": [
+      "fig-g-rl-taxonomy"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（Ch.13 Policy Gradient Methods）",
@@ -1770,6 +1903,9 @@
         "id": "C-03-047",
         "point": "REINFORCEは方策だけ、Actor-Criticは方策（Actor）と価値（Critic）の両方を持つ。"
       }
+    ],
+    "figures": [
+      "fig-g-rl-taxonomy"
     ],
     "sources": [
       {
@@ -1808,6 +1944,9 @@
         "id": "C-03-046",
         "point": "Actor-Criticは価値（Critic）も学ぶ。REINFORCEは方策だけ。"
       }
+    ],
+    "figures": [
+      "fig-g-rl-taxonomy"
     ],
     "sources": [
       {
@@ -1848,7 +1987,8 @@
       }
     ],
     "figures": [
-      "fig-g-overfitting"
+      "fig-g-overfitting",
+      "fig-g-validation"
     ],
     "sources": [
       {
@@ -1897,7 +2037,8 @@
       }
     ],
     "figures": [
-      "fig-g-overfitting"
+      "fig-g-overfitting",
+      "fig-g-bias-variance"
     ],
     "sources": [
       {
@@ -1936,6 +2077,9 @@
         "id": "C-03-051",
         "point": "ホールドアウトは1回分けるだけ。k-分割交差検証はk回入れ替えて平均する。"
       }
+    ],
+    "figures": [
+      "fig-g-validation"
     ],
     "sources": [
       {
@@ -1982,6 +2126,9 @@
         "id": "C-03-020",
         "point": "交差検証は重複なく分割、ブートストラップは重複を許して抽出。"
       }
+    ],
+    "figures": [
+      "fig-g-validation"
     ],
     "sources": [
       {
@@ -2055,7 +2202,8 @@
       }
     ],
     "figures": [
-      "fig-g-confusion-matrix"
+      "fig-g-confusion-matrix",
+      "fig-g-roc-auc"
     ],
     "sources": [
       {
@@ -2132,6 +2280,9 @@
         "point": "ROC曲線の縦軸は真陽性率（＝再現率）、横軸は偽陽性率。適合率は使わない。"
       }
     ],
+    "figures": [
+      "fig-g-roc-auc"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - ROC and AUC",
@@ -2169,6 +2320,9 @@
         "id": "C-03-054",
         "point": "MSE・RMSE・MAEは回帰の指標、正解率・適合率・再現率は分類の指標。"
       }
+    ],
+    "figures": [
+      "fig-g-regression-metrics"
     ],
     "sources": [
       {
@@ -2288,6 +2442,9 @@
         "point": "k近傍法のkは参照する近傍の数で、正解ラベルを使う教師あり学習。k-means法のkはクラスタの数で、ラベルを使わない教師なし学習。"
       }
     ],
+    "figures": [
+      "fig-g-knn"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Nearest Neighbors",
@@ -2371,6 +2528,9 @@
         "point": "モデルの有無は「環境の振る舞いを予測するモデルを使うか」の区別。方策を直接学ぶか価値を学ぶか（方策ベース／価値ベース）とは別の分け方。"
       }
     ],
+    "figures": [
+      "fig-g-rl-taxonomy"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
@@ -2416,6 +2576,9 @@
         "id": "C-03-063",
         "point": "動的計画法は環境のモデルを使って、起こりうる次の状態すべての期待値で更新する。TD学習は実際に経験した1回の遷移だけで更新する。"
       }
+    ],
+    "figures": [
+      "fig-g-rl-taxonomy"
     ],
     "sources": [
       {
@@ -2463,6 +2626,9 @@
         "point": "モンテカルロ法はエピソードの最後まで待ち、実際に得た収益で更新する。TD学習は次のステップの報酬と価値の見積もりで、すぐに更新する。"
       }
     ],
+    "figures": [
+      "fig-g-q-sarsa-td"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
@@ -2504,6 +2670,10 @@
         "id": "C-03-049",
         "point": "過学習はバリアンスが大きい状態（訓練データのわずかな違いに予測が振り回される）。バイアスが大きい状態は未学習。"
       }
+    ],
+    "figures": [
+      "fig-g-bias-variance",
+      "fig-g-double-descent"
     ],
     "sources": [
       {

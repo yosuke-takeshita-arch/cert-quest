@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 576" role="img" aria-labelledby="fig-g-rl-loop-t fig-g-rl-loop-d">
+<title id="fig-g-rl-loop-t">強化学習の枠組みと、割引累積報酬</title>
+<desc id="fig-g-rl-loop-d">上は、エージェントと環境のやり取り。エージェントが環境に行動を送り、環境が次の状態と報酬をエージェントに返す。次の状態は今の状態と行動だけで決まる（マルコフ性）。下は割引。毎回の報酬が同じでも、割引率γを掛けると遠い将来の報酬ほど小さく数える。γが0.9の例で、掛ける係数は1、0.9、0.81、0.729と小さくなる。γが1に近いと遠い将来も重視し、0に近いと目先を重視する。</desc>
+<text x="12" y="20" class="tb">① エージェントと環境のやり取り</text>
+<rect x="96" y="36" width="128" height="38" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="60" class="tb" text-anchor="middle">エージェント</text>
+<rect x="96" y="152" width="128" height="38" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="176" class="tb" text-anchor="middle">環境</text>
+<line x1="214" y1="76" x2="214" y2="142.8" class="l sa w2"/>
+<polygon points="214,150 209.5,142.8 218.5,142.8" class="fa"/>
+<text x="222" y="108" class="tb ta">行動 a</text>
+<line x1="106" y1="150" x2="106" y2="83.2" class="l sok w2"/>
+<polygon points="106,76 110.5,83.2 101.5,83.2" class="ft"/>
+<text x="12" y="106" class="tb tok">状態 s′</text>
+<text x="12" y="128" class="tb tok">報酬 r</text>
+<text x="12" y="218">マルコフ性：次の状態は、今の状態と</text>
+<text x="12" y="238">行動だけで決まる（過去は関係しない）</text>
+<line x1="12" y1="256" x2="308" y2="256" class="l sb w1"/>
+<text x="12" y="280" class="tb">② 将来の報酬を割り引く（γ＝0.9の例）</text>
+<text x="12" y="306" class="tm">毎回もらえる報酬（すべて10）</text>
+<rect x="34" y="320" width="44" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="56" y="345" class="tb" text-anchor="middle">10</text>
+<rect x="100" y="320" width="44" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="122" y="345" class="tb" text-anchor="middle">10</text>
+<rect x="166" y="320" width="44" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="188" y="345" class="tb" text-anchor="middle">10</text>
+<rect x="232" y="320" width="44" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="254" y="345" class="tb" text-anchor="middle">10</text>
+<text x="12" y="392" class="tm">γ を掛けて足す（γ⁰ γ¹ γ² γ³）</text>
+<rect x="34" y="428" width="44" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="56" y="422" class="tb tok" text-anchor="middle">10.0</text>
+<text x="56" y="488" class="tm" text-anchor="middle">×1</text>
+<rect x="100" y="432" width="44" height="36" class="fok sok" stroke-width="1.5"/>
+<text x="122" y="426" class="tb tok" text-anchor="middle">9.0</text>
+<text x="122" y="488" class="tm" text-anchor="middle">×0.9</text>
+<rect x="166" y="435.6" width="44" height="32.4" class="fok sok" stroke-width="1.5"/>
+<text x="188" y="429.6" class="tb tok" text-anchor="middle">8.1</text>
+<text x="188" y="488" class="tm" text-anchor="middle">×0.81</text>
+<rect x="232" y="438.84" width="44" height="29.16" class="fok sok" stroke-width="1.5"/>
+<text x="254" y="432.84" class="tb tok" text-anchor="middle">7.3</text>
+<text x="254" y="488" class="tm" text-anchor="middle">×0.729</text>
+<text x="12" y="520" class="tb">遠い報酬ほど小さく数える</text>
+<text x="12" y="544">γ が 1 に近い：遠い将来も重視</text>
+<text x="12" y="564">γ が 0 に近い：目先を重視</text>
+</svg>

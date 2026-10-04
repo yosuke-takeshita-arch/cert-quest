@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 438" role="img" aria-labelledby="fig-g-sampling-t fig-g-sampling-d">
+<title id="fig-g-sampling-t">無作為抽出と層化抽出</title>
+<desc id="fig-g-sampling-d">母集団は3つの地域A、B、Cに分かれた36個の点。Aは16個、Bは12個、Cは8個。左は単純無作為抽出で、全体からくじ引きのように9個を選ぶ。偶然、ある地域に偏ることがあり、この例ではCから1個も選ばれていない。右は層化抽出で、地域（層）ごとに同じ割合（4分の1）で選ぶ。Aから4個、Bから3個、Cから2個の計9個で、どの地域も入る。</desc>
+<text x="12" y="20" class="tm">母集団：A 16個、B 12個、C 8個</text>
+<text x="12" y="44" class="tb">① 単純無作為抽出</text>
+<text x="168" y="44" class="tb">② 層化抽出</text>
+<text x="12" y="94" class="tb">A</text>
+<circle cx="46" cy="64" r="4.6" class="fa"/>
+<circle cx="72" cy="64" r="4.6" class="fa"/>
+<circle cx="98" cy="64" r="4.6" class="fa"/>
+<circle cx="124" cy="64" r="3.4" class="fs sm"/>
+<circle cx="46" cy="84" r="3.4" class="fs sm"/>
+<circle cx="72" cy="84" r="4.6" class="fa"/>
+<circle cx="98" cy="84" r="3.4" class="fs sm"/>
+<circle cx="124" cy="84" r="3.4" class="fs sm"/>
+<circle cx="46" cy="104" r="3.4" class="fs sm"/>
+<circle cx="72" cy="104" r="4.6" class="fa"/>
+<circle cx="98" cy="104" r="3.4" class="fs sm"/>
+<circle cx="124" cy="104" r="3.4" class="fs sm"/>
+<circle cx="46" cy="124" r="3.4" class="fs sm"/>
+<circle cx="72" cy="124" r="3.4" class="fs sm"/>
+<circle cx="98" cy="124" r="3.4" class="fs sm"/>
+<circle cx="124" cy="124" r="3.4" class="fs sm"/>
+<text x="12" y="180" class="tb">B</text>
+<rect x="42.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="67.6" y="153.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
+<rect x="94.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="120.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="41.6" y="173.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
+<rect x="68.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="94.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="119.6" y="173.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
+<rect x="42.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="68.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="93.6" y="193.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
+<rect x="120.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<text x="12" y="246" class="tb">C</text>
+<polygon points="46,228 49.6,235 42.4,235" class="fs sm"/>
+<polygon points="72,228 75.6,235 68.4,235" class="fs sm"/>
+<polygon points="98,228 101.6,235 94.4,235" class="fs sm"/>
+<polygon points="124,228 127.6,235 120.4,235" class="fs sm"/>
+<polygon points="46,248 49.6,255 42.4,255" class="fs sm"/>
+<polygon points="72,248 75.6,255 68.4,255" class="fs sm"/>
+<polygon points="98,248 101.6,255 94.4,255" class="fs sm"/>
+<polygon points="124,248 127.6,255 120.4,255" class="fs sm"/>
+<text x="168" y="94" class="tb">A</text>
+<circle cx="202" cy="64" r="3.4" class="fs sm"/>
+<circle cx="228" cy="64" r="4.6" class="fa"/>
+<circle cx="254" cy="64" r="3.4" class="fs sm"/>
+<circle cx="280" cy="64" r="3.4" class="fs sm"/>
+<circle cx="202" cy="84" r="3.4" class="fs sm"/>
+<circle cx="228" cy="84" r="3.4" class="fs sm"/>
+<circle cx="254" cy="84" r="4.6" class="fa"/>
+<circle cx="280" cy="84" r="3.4" class="fs sm"/>
+<circle cx="202" cy="104" r="3.4" class="fs sm"/>
+<circle cx="228" cy="104" r="3.4" class="fs sm"/>
+<circle cx="254" cy="104" r="3.4" class="fs sm"/>
+<circle cx="280" cy="104" r="4.6" class="fa"/>
+<circle cx="202" cy="124" r="4.6" class="fa"/>
+<circle cx="228" cy="124" r="3.4" class="fs sm"/>
+<circle cx="254" cy="124" r="3.4" class="fs sm"/>
+<circle cx="280" cy="124" r="3.4" class="fs sm"/>
+<text x="168" y="180" class="tb">B</text>
+<rect x="198.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="224.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="249.6" y="153.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
+<rect x="276.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="198.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="223.6" y="173.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
+<rect x="250.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="276.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="198.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="223.6" y="193.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
+<rect x="250.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<rect x="276.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
+<text x="168" y="246" class="tb">C</text>
+<polygon points="202,228 205.6,235 198.4,235" class="fs sm"/>
+<polygon points="228,226.4 233,236 223,236" class="fok sok"/>
+<polygon points="254,228 257.6,235 250.4,235" class="fs sm"/>
+<polygon points="280,228 283.6,235 276.4,235" class="fs sm"/>
+<polygon points="202,248 205.6,255 198.4,255" class="fs sm"/>
+<polygon points="228,248 231.6,255 224.4,255" class="fs sm"/>
+<polygon points="254,246.4 259,256 249,256" class="fok sok"/>
+<polygon points="280,248 283.6,255 276.4,255" class="fs sm"/>
+<text x="12" y="292" class="tm">全体からくじ引き</text>
+<text x="168" y="292" class="tm">層ごとに同じ割合</text>
+<text x="12" y="314" class="tb">選んだ数 A5・B4・C0</text>
+<text x="168" y="314" class="tb">選んだ数 A4・B3・C2</text>
+<text x="12" y="336" class="tb tng">Cが0個。偶然、偏った</text>
+<text x="168" y="336" class="tb tok">どの層も入る</text>
+<line x1="12" y1="356" x2="308" y2="356" class="l sb w1"/>
+<text x="12" y="384" class="tm">色のついた印＝選ばれた点</text>
+<text x="12" y="406">層化抽出：性質の似たグループ（層）に</text>
+<text x="12" y="426">分け、層ごとに選ぶ</text>
+</svg>

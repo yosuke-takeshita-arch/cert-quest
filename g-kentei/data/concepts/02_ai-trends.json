@@ -79,6 +79,9 @@
         "point": "決定木はデータから学習する分類・回帰のモデル。探索木は解を探すための場合分けの木で、学習はしない。"
       }
     ],
+    "figures": [
+      "fig-g-search-bfs-dfs"
+    ],
     "sources": [
       {
         "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代",
@@ -112,6 +115,9 @@
         "id": "C-02-004",
         "point": "幅優先＝横に広げる・最短解が見つかる・メモリ大。深さ優先＝縦に掘る・メモリ小・最短とは限らない。"
       }
+    ],
+    "figures": [
+      "fig-g-search-bfs-dfs"
     ],
     "sources": [
       {
@@ -147,6 +153,9 @@
         "point": "最短解を保証するのは幅優先のほう。"
       }
     ],
+    "figures": [
+      "fig-g-search-bfs-dfs"
+    ],
     "sources": [
       {
         "title": "NIST Dictionary of Algorithms and Data Structures: depth-first search",
@@ -180,6 +189,9 @@
         "id": "C-02-006",
         "point": "ハノイの塔は「問題」、ブルートフォースは「解き方（総当たり）」。"
       }
+    ],
+    "figures": [
+      "fig-g-hanoi"
     ],
     "sources": [
       {
@@ -249,6 +261,9 @@
         "point": "Mini-Max法は評価のやり方、αβ法はその結果を変えずに探索を省く工夫。"
       }
     ],
+    "figures": [
+      "fig-g-minimax-alphabeta"
+    ],
     "sources": [
       {
         "title": "NIST Dictionary of Algorithms and Data Structures: minimax",
@@ -282,6 +297,9 @@
         "id": "C-02-009",
         "point": "αβ法は結果を変えずに枝を省く。モンテカルロ法は途中から終局までランダムに指して評価を見積もる。"
       }
+    ],
+    "figures": [
+      "fig-g-minimax-alphabeta"
     ],
     "sources": [
       {
@@ -324,6 +342,9 @@
         "id": "C-02-008",
         "point": "αβ法は評価関数が必要。モンテカルロ法は評価関数の代わりにランダム対局の勝率を使う。"
       }
+    ],
+    "figures": [
+      "fig-g-alphago"
     ],
     "sources": [
       {
@@ -625,6 +646,9 @@
         "point": "名前は似ているが、ニューラルネットワークは節点どうしの結合の重みを学習で変える仕組み。意味ネットワークは概念の関係を表す知識表現。"
       }
     ],
+    "figures": [
+      "fig-g-semantic-net"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
@@ -666,6 +690,9 @@
         "id": "C-02-019",
         "point": "is-a（一種）とpart-of（一部）の取り違えが典型的なひっかけ。「タイヤは車の一種」は誤りで、「タイヤは車の一部」。"
       }
+    ],
+    "figures": [
+      "fig-g-semantic-net"
     ],
     "sources": [
       {
@@ -716,6 +743,9 @@
         "id": "C-02-017",
         "point": "意味ネットワークは知識の表し方（図の形式）。オントロジーは概念の定義そのもの（何をどう呼び、どう関係づけるかの取り決め）。"
       }
+    ],
+    "figures": [
+      "fig-g-semantic-net"
     ],
     "sources": [
       {
@@ -1163,6 +1193,9 @@
         "point": "データの件数が多いのはむしろ助けになる。呪いの原因は特徴量の次元の多さ。"
       }
     ],
+    "figures": [
+      "fig-g-curse-of-dim"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Nearest Neighbors",
@@ -1375,7 +1408,10 @@
         "url": "https://link.springer.com/article/10.1007/BF00344251"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-cnn-arch"
+    ]
   },
   {
     "id": "C-02-036",
@@ -1413,7 +1449,10 @@
         "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-cnn-arch"
+    ]
   },
   {
     "id": "C-02-037",
@@ -1524,6 +1563,9 @@
         "title": "AlphaGo Zero と AlphaZero",
         "point": "AlphaGo＝人の棋譜で教師あり学習＋自己対局の強化学習。AlphaGo Zero＝人の棋譜を使わず自己対局だけ（囲碁のみ）。AlphaZero＝同じやり方を囲碁・チェス・将棋に広げた。"
       }
+    ],
+    "figures": [
+      "fig-g-alphago"
     ],
     "sources": [
       {

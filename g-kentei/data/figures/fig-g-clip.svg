@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-g-clip-t fig-g-clip-d">
+<title id="fig-g-clip-t">CLIP：画像と文を同じ空間に置く学習と、ゼロショット分類</title>
+<desc id="fig-g-clip-d">上は CLIP の学習。画像エンコーダと文章エンコーダを同時に学習する。ミニバッチの N 枚の画像と N 個の説明文について、画像と文の類似度の N×N の表を作り、対角（正しい組）を高く、それ以外（誤った組）を低くするように学ぶ。下はゼロショット分類。クラス名を文にして埋め込み、画像の埋め込みと最も似た文のクラスを答えにする。その分類タスク専用の学習例は使わない。</desc>
+<text x="12" y="20" class="tb">① 学習：正しい組を当てる</text>
+<rect x="60" y="34" width="32" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="76" y="51.5" text-anchor="middle">文1</text>
+<rect x="96" y="34" width="32" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="112" y="51.5" text-anchor="middle">文2</text>
+<rect x="132" y="34" width="32" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="148" y="51.5" text-anchor="middle">文3</text>
+<rect x="168" y="34" width="32" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="184" y="51.5" text-anchor="middle">文4</text>
+<rect x="12" y="70" width="44" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="90.5" text-anchor="middle">画像1</text>
+<rect x="60" y="70" width="32" height="32" class="fok sok" stroke-width="1.5"/>
+<rect x="96" y="70" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="132" y="70" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="168" y="70" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="106" width="44" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="126.5" text-anchor="middle">画像2</text>
+<rect x="60" y="106" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="96" y="106" width="32" height="32" class="fok sok" stroke-width="1.5"/>
+<rect x="132" y="106" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="168" y="106" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="142" width="44" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="162.5" text-anchor="middle">画像3</text>
+<rect x="60" y="142" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="96" y="142" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="132" y="142" width="32" height="32" class="fok sok" stroke-width="1.5"/>
+<rect x="168" y="142" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="178" width="44" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="198.5" text-anchor="middle">画像4</text>
+<rect x="60" y="178" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="96" y="178" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="132" y="178" width="32" height="32" class="fs sb" stroke-width="1.5"/>
+<rect x="168" y="178" width="32" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="76" y="90.5" class="tb tok" text-anchor="middle">高</text>
+<text x="112" y="126.5" class="tb tok" text-anchor="middle">高</text>
+<text x="148" y="162.5" class="tb tok" text-anchor="middle">高</text>
+<text x="184" y="198.5" class="tb tok" text-anchor="middle">高</text>
+<text x="212" y="100" class="tb tok">対角＝正しい組</text>
+<text x="212" y="120" class="tm">→ 高くする</text>
+<text x="212" y="160" class="tb">それ以外</text>
+<text x="212" y="180" class="tm">→ 低くする</text>
+<text x="12" y="232">画像エンコーダと文章エンコーダを同時に学習</text>
+<text x="12" y="252" class="tm">（ゼロから。インターネットの画像と文の組）</text>
+<line x1="12" y1="272" x2="308" y2="272" class="l sb w1"/>
+<text x="12" y="296" class="tb">② ゼロショット分類：クラス名を文にする</text>
+<rect x="12" y="314" width="78" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="51" y="338.5" class="tb" text-anchor="middle">画像</text>
+<line x1="90" y1="334" x2="112" y2="334" class="l w2"/>
+<polyline points="105,337.85 112,334 105,330.15" class="l w2"/>
+<rect x="114" y="314" width="90" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="159" y="329.5" text-anchor="middle">画像</text>
+<text x="159" y="347.5" text-anchor="middle">エンコーダ</text>
+<rect x="12" y="378" width="90" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="396.5" text-anchor="middle">犬の写真</text>
+<line x1="102" y1="392" x2="122" y2="392" class="l w2"/>
+<polyline points="115,395.85 122,392 115,388.15" class="l w2"/>
+<text x="166" y="396" class="tm" text-anchor="middle">文エンコーダ</text>
+<line x1="210" y1="392" x2="226" y2="392" class="l w2"/>
+<polyline points="219,395.85 226,392 219,388.15" class="l w2"/>
+<rect x="232" y="384" width="21" height="16" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="414" width="90" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="432.5" text-anchor="middle">猫の写真</text>
+<line x1="102" y1="428" x2="122" y2="428" class="l w2"/>
+<polyline points="115,431.85 122,428 115,424.15" class="l w2"/>
+<text x="166" y="432" class="tm" text-anchor="middle">文エンコーダ</text>
+<line x1="210" y1="428" x2="226" y2="428" class="l w2"/>
+<polyline points="219,431.85 226,428 219,424.15" class="l w2"/>
+<rect x="232" y="420" width="63" height="16" class="fok sok" stroke-width="1.5"/>
+<rect x="12" y="450" width="90" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="468.5" text-anchor="middle">鳥の写真</text>
+<line x1="102" y1="464" x2="122" y2="464" class="l w2"/>
+<polyline points="115,467.85 122,464 115,460.15" class="l w2"/>
+<text x="166" y="468" class="tm" text-anchor="middle">文エンコーダ</text>
+<line x1="210" y1="464" x2="226" y2="464" class="l w2"/>
+<polyline points="219,467.85 226,464 219,460.15" class="l w2"/>
+<rect x="232" y="456" width="31.5" height="16" class="fs sb" stroke-width="1.5"/>
+<text x="232" y="372" class="tm">類似度</text>
+<text x="12" y="506" class="tm">棒が長い ＝ 画像に似ている</text>
+<text x="12" y="528" class="tb tok">一番似た文のクラス（猫）を答える</text>
+<text x="12" y="550" class="tm">そのタスク専用の学習例は使わない</text>
+</svg>

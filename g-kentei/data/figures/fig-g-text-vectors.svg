@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 838" role="img" aria-labelledby="fig-g-text-vectors-t fig-g-text-vectors-d">
+<title id="fig-g-text-vectors-t">単語・文書の表し方：ワンホット・BoW・TF-IDF・分散表現</title>
+<desc id="fig-g-text-vectors-d">語彙が犬・猫・車・走る・好きの5語の例。ワンホットは、語彙の数の長さのベクトルで、その単語の位置だけが1。どの2語も直交し、意味の近さを表せない。BoW は、文書ごとに単語の出現回数を並べ、語順は捨てる。TF-IDF は、その文書によく出て、他の文書にあまり出ない語ほど重みが大きく、どの文書にも出る語は小さい。分散表現は、単語を数百次元ほどの連続値のベクトルで表し、意味の近い単語ほど近い。2次元の図では、犬と猫が近く、車とバスが近く、動物と乗り物は離れる。</desc>
+<text x="12" y="20" class="tb">① ワンホット：1つだけ 1</text>
+<text x="77" y="44" class="tb" text-anchor="middle">犬</text>
+<text x="107" y="44" class="tb" text-anchor="middle">猫</text>
+<text x="137" y="44" class="tb" text-anchor="middle">車</text>
+<text x="167" y="44" class="tb" text-anchor="middle">走る</text>
+<text x="197" y="44" class="tb" text-anchor="middle">好き</text>
+<text x="12" y="67.5" class="tb">犬</text>
+<rect x="62" y="52" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="77" y="67.5" class="tb ton" text-anchor="middle">1</text>
+<rect x="92" y="52" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="107" y="67.5" class="tm" text-anchor="middle">0</text>
+<rect x="122" y="52" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="67.5" class="tm" text-anchor="middle">0</text>
+<rect x="152" y="52" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="67.5" class="tm" text-anchor="middle">0</text>
+<rect x="182" y="52" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="67.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="89.5" class="tb">猫</text>
+<rect x="62" y="74" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="77" y="89.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="74" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="107" y="89.5" class="tb ton" text-anchor="middle">1</text>
+<rect x="122" y="74" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="89.5" class="tm" text-anchor="middle">0</text>
+<rect x="152" y="74" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="89.5" class="tm" text-anchor="middle">0</text>
+<rect x="182" y="74" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="89.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="111.5" class="tb">車</text>
+<rect x="62" y="96" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="77" y="111.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="96" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="107" y="111.5" class="tm" text-anchor="middle">0</text>
+<rect x="122" y="96" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="137" y="111.5" class="tb ton" text-anchor="middle">1</text>
+<rect x="152" y="96" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="111.5" class="tm" text-anchor="middle">0</text>
+<rect x="182" y="96" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="111.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="133.5" class="tb">走る</text>
+<rect x="62" y="118" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="77" y="133.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="118" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="107" y="133.5" class="tm" text-anchor="middle">0</text>
+<rect x="122" y="118" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="133.5" class="tm" text-anchor="middle">0</text>
+<rect x="152" y="118" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="167" y="133.5" class="tb ton" text-anchor="middle">1</text>
+<rect x="182" y="118" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="133.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="155.5" class="tb">好き</text>
+<rect x="62" y="140" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="77" y="155.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="140" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="107" y="155.5" class="tm" text-anchor="middle">0</text>
+<rect x="122" y="140" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="155.5" class="tm" text-anchor="middle">0</text>
+<rect x="152" y="140" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="155.5" class="tm" text-anchor="middle">0</text>
+<rect x="182" y="140" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="197" y="155.5" class="tb ton" text-anchor="middle">1</text>
+<text x="12" y="184" class="tm">どの2語も直交 ＝ 意味の近さを表せない</text>
+<line x1="12" y1="202" x2="308" y2="202" class="l sb w1"/>
+<text x="12" y="226" class="tb">② BoW：出現回数（語順は捨てる）</text>
+<text x="12" y="248" class="tm">D1：犬 犬 走る 好き</text>
+<text x="12" y="266" class="tm">D2：猫 走る 好き</text>
+<text x="12" y="284" class="tm">D3：車 走る</text>
+<text x="77" y="318" class="tb" text-anchor="middle">犬</text>
+<text x="107" y="318" class="tb" text-anchor="middle">猫</text>
+<text x="137" y="318" class="tb" text-anchor="middle">車</text>
+<text x="167" y="318" class="tb" text-anchor="middle">走る</text>
+<text x="197" y="318" class="tb" text-anchor="middle">好き</text>
+<text x="12" y="341.5" class="tb">D1</text>
+<rect x="62" y="326" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="77" y="341.5" class="tb" text-anchor="middle">2</text>
+<rect x="92" y="326" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="107" y="341.5" class="tm" text-anchor="middle">0</text>
+<rect x="122" y="326" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="341.5" class="tm" text-anchor="middle">0</text>
+<rect x="152" y="326" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="167" y="341.5" class="tb" text-anchor="middle">1</text>
+<rect x="182" y="326" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="197" y="341.5" class="tb" text-anchor="middle">1</text>
+<text x="12" y="363.5" class="tb">D2</text>
+<rect x="62" y="348" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="77" y="363.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="348" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="107" y="363.5" class="tb" text-anchor="middle">1</text>
+<rect x="122" y="348" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="363.5" class="tm" text-anchor="middle">0</text>
+<rect x="152" y="348" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="167" y="363.5" class="tb" text-anchor="middle">1</text>
+<rect x="182" y="348" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="197" y="363.5" class="tb" text-anchor="middle">1</text>
+<text x="12" y="385.5" class="tb">D3</text>
+<rect x="62" y="370" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="77" y="385.5" class="tm" text-anchor="middle">0</text>
+<rect x="92" y="370" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="107" y="385.5" class="tm" text-anchor="middle">0</text>
+<rect x="122" y="370" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="137" y="385.5" class="tb" text-anchor="middle">1</text>
+<rect x="152" y="370" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="167" y="385.5" class="tb" text-anchor="middle">1</text>
+<rect x="182" y="370" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="197" y="385.5" class="tm" text-anchor="middle">0</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="434" class="tb">③ TF-IDF：その文書に特有の語ほど大</text>
+<text x="77" y="466" class="tb" text-anchor="middle">犬</text>
+<text x="107" y="466" class="tb" text-anchor="middle">猫</text>
+<text x="137" y="466" class="tb" text-anchor="middle">車</text>
+<text x="167" y="466" class="tb" text-anchor="middle">走る</text>
+<text x="197" y="466" class="tb" text-anchor="middle">好き</text>
+<text x="12" y="489.5" class="tb">D1</text>
+<rect x="62" y="474" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="77" y="489.5" class="tb ton" text-anchor="middle">大</text>
+<rect x="92" y="474" width="30" height="22" class="fs sb" stroke-width="1"/>
+<rect x="122" y="474" width="30" height="22" class="fs sb" stroke-width="1"/>
+<rect x="152" y="474" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="489.5" class="tb" text-anchor="middle">小</text>
+<rect x="182" y="474" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="197" y="489.5" class="tb" text-anchor="middle">中</text>
+<text x="12" y="511.5" class="tb">D2</text>
+<rect x="62" y="496" width="30" height="22" class="fs sb" stroke-width="1"/>
+<rect x="92" y="496" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="107" y="511.5" class="tb ton" text-anchor="middle">大</text>
+<rect x="122" y="496" width="30" height="22" class="fs sb" stroke-width="1"/>
+<rect x="152" y="496" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="511.5" class="tb" text-anchor="middle">小</text>
+<rect x="182" y="496" width="30" height="22" class="fas sa" stroke-width="1"/>
+<text x="197" y="511.5" class="tb" text-anchor="middle">中</text>
+<text x="12" y="533.5" class="tb">D3</text>
+<rect x="62" y="518" width="30" height="22" class="fs sb" stroke-width="1"/>
+<rect x="92" y="518" width="30" height="22" class="fs sb" stroke-width="1"/>
+<rect x="122" y="518" width="30" height="22" class="fa sb" stroke-width="1"/>
+<text x="137" y="533.5" class="tb ton" text-anchor="middle">大</text>
+<rect x="152" y="518" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="167" y="533.5" class="tb" text-anchor="middle">小</text>
+<rect x="182" y="518" width="30" height="22" class="fs sb" stroke-width="1"/>
+<text x="12" y="560" class="tb">全部の文書に出る「走る」は 小</text>
+<text x="12" y="580" class="tm">数値は使わず、大・中・小で示した</text>
+<line x1="12" y1="596" x2="308" y2="596" class="l sb w1"/>
+<text x="12" y="620" class="tb">④ 分散表現：近い意味 ＝ 近い位置</text>
+<rect x="12" y="634" width="296" height="150" class="fs sb" stroke-width="1.5"/>
+<circle cx="70" cy="676" r="5" class="fa sa"/>
+<text x="79" y="680.5" class="tb">犬</text>
+<circle cx="110" cy="700" r="5" class="fa sa"/>
+<text x="119" y="704.5" class="tb">猫</text>
+<circle cx="230" cy="740" r="5" class="fok sok"/>
+<text x="239" y="744.5" class="tb">車</text>
+<circle cx="262" cy="686" r="5" class="fok sok"/>
+<text x="271" y="690.5" class="tb">バス</text>
+<text x="12" y="806" class="tm">数百次元ほどの実数ベクトル</text>
+<text x="12" y="826" class="tm">（図は2次元に縮めた）</text>
+</svg>

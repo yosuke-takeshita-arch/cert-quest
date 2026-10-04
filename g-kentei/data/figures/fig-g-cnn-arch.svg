@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 904" role="img" aria-labelledby="fig-g-cnn-arch-t fig-g-cnn-arch-d">
+<title id="fig-g-cnn-arch-t">CNN の全体構成：畳み込み → プーリング → 全結合</title>
+<desc id="fig-g-cnn-arch-d">CNN は、入力画像に畳み込みとプーリングを交互に重ね、最後に全結合層で出力する。層が進むと、プーリングで空間の大きさは小さくなり、畳み込みでチャネルの数は増える（図は一例）。浅い層ではエッジ、中ほどでは形の部品、深い層では物体のように、局所的な特徴を段階的に取り出す。源流は、特徴を取り出す層と位置のずれを吸収する層を交互に重ねたネオコグニトロン（1980年）と、畳み込みとサブサンプリングを誤差逆伝播法で学習した LeNet。</desc>
+<text x="12" y="20" class="tb">層が進むと、小さく・深くなる（一例）</text>
+<rect x="24" y="53" width="52" height="52" class="fas sb" stroke-width="1.5"/>
+<text x="112" y="77" class="tb">入力画像</text>
+<line x1="50" y1="108" x2="50" y2="120" class="l sm w2"/>
+<polyline points="46.15,113 50,120 53.85,113" class="l sm w2"/>
+<rect x="39" y="115.5" width="52" height="52" class="fs sa" stroke-width="1.5"/>
+<rect x="34" y="120.5" width="52" height="52" class="fs sa" stroke-width="1.5"/>
+<rect x="29" y="125.5" width="52" height="52" class="fs sa" stroke-width="1.5"/>
+<rect x="24" y="130.5" width="52" height="52" class="fas sa" stroke-width="1.5"/>
+<text x="112" y="147" class="tb">畳み込み</text>
+<text x="112" y="167" class="tm">局所の特徴を取り出す</text>
+<line x1="50" y1="178" x2="50" y2="190" class="l sm w2"/>
+<polyline points="46.15,183 50,190 53.85,183" class="l sm w2"/>
+<rect x="39" y="193.5" width="36" height="36" class="fs sok" stroke-width="1.5"/>
+<rect x="34" y="198.5" width="36" height="36" class="fs sok" stroke-width="1.5"/>
+<rect x="29" y="203.5" width="36" height="36" class="fs sok" stroke-width="1.5"/>
+<rect x="24" y="208.5" width="36" height="36" class="fas sok" stroke-width="1.5"/>
+<text x="112" y="217" class="tb">プーリング</text>
+<text x="112" y="237" class="tm">縮小して、ずれに強くする</text>
+<line x1="50" y1="248" x2="50" y2="260" class="l sm w2"/>
+<polyline points="46.15,253 50,260 53.85,253" class="l sm w2"/>
+<rect x="54" y="256" width="36" height="36" class="fs sa" stroke-width="1.5"/>
+<rect x="49" y="261" width="36" height="36" class="fs sa" stroke-width="1.5"/>
+<rect x="44" y="266" width="36" height="36" class="fs sa" stroke-width="1.5"/>
+<rect x="39" y="271" width="36" height="36" class="fs sa" stroke-width="1.5"/>
+<rect x="34" y="276" width="36" height="36" class="fs sa" stroke-width="1.5"/>
+<rect x="29" y="281" width="36" height="36" class="fs sa" stroke-width="1.5"/>
+<rect x="24" y="286" width="36" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="112" y="287" class="tb">畳み込み</text>
+<text x="112" y="307" class="tm">もっと複雑な特徴</text>
+<line x1="50" y1="318" x2="50" y2="330" class="l sm w2"/>
+<polyline points="46.15,323 50,330 53.85,323" class="l sm w2"/>
+<rect x="54" y="332" width="24" height="24" class="fs sok" stroke-width="1.5"/>
+<rect x="49" y="337" width="24" height="24" class="fs sok" stroke-width="1.5"/>
+<rect x="44" y="342" width="24" height="24" class="fs sok" stroke-width="1.5"/>
+<rect x="39" y="347" width="24" height="24" class="fs sok" stroke-width="1.5"/>
+<rect x="34" y="352" width="24" height="24" class="fs sok" stroke-width="1.5"/>
+<rect x="29" y="357" width="24" height="24" class="fs sok" stroke-width="1.5"/>
+<rect x="24" y="362" width="24" height="24" class="fas sok" stroke-width="1.5"/>
+<text x="112" y="357" class="tb">プーリング</text>
+<text x="112" y="377" class="tm">さらに縮小</text>
+<circle cx="40" cy="406" r="4" class="fas sa"/>
+<circle cx="40" cy="417" r="4" class="fas sa"/>
+<circle cx="40" cy="428" r="4" class="fas sa"/>
+<circle cx="40" cy="439" r="4" class="fas sa"/>
+<circle cx="40" cy="450" r="4" class="fas sa"/>
+<circle cx="40" cy="461" r="4" class="fas sa"/>
+<text x="112" y="422" class="tb">全結合</text>
+<text x="112" y="442" class="tm">特徴をまとめて判断</text>
+<line x1="40" y1="470" x2="40" y2="482" class="l sm w2"/>
+<polyline points="36.15,475 40,482 43.85,475" class="l sm w2"/>
+<circle cx="40" cy="494" r="4.5" class="fok sok"/>
+<circle cx="40" cy="508" r="4.5" class="fok sok"/>
+<circle cx="40" cy="522" r="4.5" class="fok sok"/>
+<text x="112" y="504" class="tb">出力（クラスなど）</text>
+<line x1="12" y1="550" x2="308" y2="550" class="l sb w1"/>
+<text x="12" y="576" class="tb">取り出す特徴が、深い層ほど複雑に</text>
+<rect x="12" y="602" width="88" height="60" class="fs sb" stroke-width="1.5"/>
+<line x1="26" y1="648" x2="46" y2="612" class="l sa w2"/>
+<line x1="52" y1="650" x2="86" y2="650" class="l sa w2"/>
+<line x1="64" y1="612" x2="64" y2="640" class="l sa w2"/>
+<line x1="72" y1="614" x2="90" y2="632" class="l sa w2"/>
+<text x="56" y="686" class="tb" text-anchor="middle">エッジ</text>
+<text x="56" y="704" class="tm" text-anchor="middle">浅い層</text>
+<rect x="116" y="602" width="88" height="60" class="fs sb" stroke-width="1.5"/>
+<polyline points="130,616 130,648 154,648" class="l sa w2"/>
+<circle cx="178" cy="632" r="14" class="sa w2 l"/>
+<text x="160" y="686" class="tb" text-anchor="middle">形の部品</text>
+<text x="160" y="704" class="tm" text-anchor="middle">中ほど</text>
+<rect x="220" y="602" width="88" height="60" class="fs sb" stroke-width="1.5"/>
+<rect x="242" y="628" width="44" height="28" class="fas sa" stroke-width="2"/>
+<polygon points="236,628 264,606 292,628" class="fas sa"/>
+<rect x="258" y="638" width="12" height="18" class="fa sa" stroke-width="1"/>
+<text x="264" y="686" class="tb" text-anchor="middle">物体</text>
+<text x="264" y="704" class="tm" text-anchor="middle">深い層</text>
+<line x1="12" y1="736" x2="308" y2="736" class="l sb w1"/>
+<text x="12" y="762" class="tb">源流</text>
+<text x="12" y="784" class="tb">ネオコグニトロン（1980年・福島邦彦）</text>
+<text x="12" y="804">特徴を取り出す層と、ずれを吸収する層を</text>
+<text x="12" y="824">交互に重ねる</text>
+<text x="12" y="852" class="tb">LeNet（ルカンら）</text>
+<text x="12" y="872">畳み込みとサブサンプリングを重ね、</text>
+<text x="12" y="892">誤差逆伝播法で学習した</text>
+</svg>

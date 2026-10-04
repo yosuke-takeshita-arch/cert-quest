@@ -100,6 +100,9 @@
     "concepts": [
       "C-10-004"
     ],
+    "figures": [
+      "fig-g-eu-ai-act"
+    ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
@@ -136,6 +139,9 @@
     "concepts": [
       "C-10-005",
       "C-10-004"
+    ],
+    "figures": [
+      "fig-g-eu-ai-act"
     ],
     "sources": [
       {
@@ -411,6 +417,9 @@
       "C-10-012",
       "C-10-010"
     ],
+    "figures": [
+      "fig-g-proxy-variable"
+    ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
@@ -607,6 +616,9 @@
       "C-10-014",
       "C-10-015"
     ],
+    "figures": [
+      "fig-g-ai-attacks"
+    ],
     "sources": [
       {
         "title": "Goodfellow et al. (2014) Explaining and Harnessing Adversarial Examples (arXiv:1412.6572)",
@@ -642,6 +654,9 @@
     "memoryTip": "窃取＝聞きまくって真似る。",
     "concepts": [
       "C-10-016"
+    ],
+    "figures": [
+      "fig-g-ai-attacks"
     ],
     "sources": [
       {
@@ -685,6 +700,9 @@
       "C-10-014",
       "C-10-017"
     ],
+    "figures": [
+      "fig-g-ai-attacks"
+    ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
@@ -724,6 +742,9 @@
     "memoryTip": "ポイズン＝毒。学習データに毒を混ぜる。",
     "concepts": [
       "C-10-015"
+    ],
+    "figures": [
+      "fig-g-ai-attacks"
     ],
     "sources": [
       {
@@ -953,6 +974,9 @@
     "concepts": [
       "C-10-022"
     ],
+    "figures": [
+      "fig-g-filter-bubble"
+    ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
@@ -988,6 +1012,9 @@
     "memoryTip": "バブル＝囲まれる（隔離）、チェンバー＝響く（反響・増幅）。",
     "concepts": [
       "C-10-022"
+    ],
+    "figures": [
+      "fig-g-filter-bubble"
     ],
     "sources": [
       {
@@ -1573,6 +1600,9 @@
       "C-10-005",
       "C-10-004"
     ],
+    "figures": [
+      "fig-g-eu-ai-act"
+    ],
     "sources": [
       {
         "title": "European Commission, Commission Guidelines on prohibited artificial intelligence practices established by Regulation (EU) 2024/1689 (AI Act), C(2025) 5052 final",
@@ -1762,6 +1792,9 @@
     "concepts": [
       "C-10-016"
     ],
+    "figures": [
+      "fig-g-ai-attacks"
+    ],
     "sources": [
       {
         "title": "NIST AI 100-2e2025 Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations (2025)",
@@ -1798,6 +1831,9 @@
     "concepts": [
       "C-10-015",
       "C-10-014"
+    ],
+    "figures": [
+      "fig-g-ai-attacks"
     ],
     "sources": [
       {

@@ -33,6 +33,9 @@
         "point": "物体識別は「何か」だけ、物体検出は「何がどこに」まで答える"
       }
     ],
+    "figures": [
+      "fig-g-vision-tasks"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
@@ -87,6 +90,9 @@
         "point": "AlexNetは大きめのフィルタを含む8層級、VGGは3×3を積み重ねた16〜19層"
       }
     ],
+    "figures": [
+      "fig-g-cnn-models"
+    ],
     "sources": [
       {
         "title": "Krizhevsky et al. (2012) ImageNet Classification with Deep Convolutional Neural Networks (NeurIPS)",
@@ -125,6 +131,9 @@
         "point": "同じ2014年。VGGは単純に深く、GoogLeNetはInceptionモジュールで幅も使う"
       }
     ],
+    "figures": [
+      "fig-g-cnn-models"
+    ],
     "sources": [
       {
         "title": "Simonyan & Zisserman (2014) Very Deep Convolutional Networks for Large-Scale Image Recognition (arXiv:1409.1556)",
@@ -162,6 +171,10 @@
         "id": "C-06-003",
         "point": "Inceptionモジュール＝GoogLeNet。3×3の積み重ね＝VGG"
       }
+    ],
+    "figures": [
+      "fig-g-cnn-models",
+      "fig-g-inception"
     ],
     "sources": [
       {
@@ -205,6 +218,10 @@
         "point": "ResNetは入力を「足し算」、DenseNetは前の全層の出力を「連結」"
       }
     ],
+    "figures": [
+      "fig-g-skip-connection",
+      "fig-g-cnn-models"
+    ],
     "sources": [
       {
         "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)",
@@ -238,6 +255,11 @@
         "id": "C-06-012",
         "point": "Wide ResNetは幅を広げる。EfficientNetは深さ・幅・解像度をまとめて拡大"
       }
+    ],
+    "figures": [
+      "fig-g-skip-connection",
+      "fig-g-cnn-models",
+      "fig-g-efficientnet"
     ],
     "sources": [
       {
@@ -273,6 +295,10 @@
         "point": "足し算（ResNet）か連結（DenseNet）か"
       }
     ],
+    "figures": [
+      "fig-g-skip-connection",
+      "fig-g-cnn-models"
+    ],
     "sources": [
       {
         "title": "Huang et al. (2016) Densely Connected Convolutional Networks (arXiv:1608.06993)",
@@ -306,6 +332,9 @@
         "title": "Attention",
         "point": "SEはチャネル方向の重み付け。空間位置ごとの重み付けではない"
       }
+    ],
+    "figures": [
+      "fig-g-cnn-models"
     ],
     "sources": [
       {
@@ -344,6 +373,10 @@
         "id": "C-06-092",
         "point": "MobileNetは構造（畳み込みの分解）で軽くする。量子化は数値の表現を粗くして軽くする"
       }
+    ],
+    "figures": [
+      "fig-g-depthwise-separable",
+      "fig-g-cnn-models"
     ],
     "sources": [
       {
@@ -459,6 +492,10 @@
         "point": "Wide ResNetは幅のみ、EfficientNetは深さ・幅・解像度の3つ"
       }
     ],
+    "figures": [
+      "fig-g-cnn-models",
+      "fig-g-efficientnet"
+    ],
     "sources": [
       {
         "title": "Tan & Le (2019) EfficientNet (arXiv:1905.11946)",
@@ -496,6 +533,10 @@
         "id": "C-06-005",
         "point": "ViTは畳み込みに頼らない。データが少ないとCNNに劣りやすく、大規模事前学習が前提"
       }
+    ],
+    "figures": [
+      "fig-g-cnn-models",
+      "fig-g-vit"
     ],
     "sources": [
       {
@@ -538,6 +579,9 @@
         "id": "C-06-019",
         "point": "物体検出は矩形で囲む。セグメンテーションは画素単位で塗る"
       }
+    ],
+    "figures": [
+      "fig-g-object-detection"
     ],
     "sources": [
       {
@@ -585,6 +629,9 @@
         "point": "Faster R-CNNは候補領域を出す2段階、YOLOは候補領域を出さない1段階"
       }
     ],
+    "figures": [
+      "fig-g-object-detection"
+    ],
     "sources": [
       {
         "title": "Girshick (2015) Fast R-CNN (arXiv:1504.08083)",
@@ -622,6 +669,9 @@
         "id": "C-06-017",
         "point": "どちらも1段階型。SSDは複数解像度の特徴マップ上のデフォルトボックスを使う"
       }
+    ],
+    "figures": [
+      "fig-g-object-detection"
     ],
     "sources": [
       {
@@ -661,6 +711,9 @@
         "point": "SSD＝デフォルトボックス＋複数の特徴マップ"
       }
     ],
+    "figures": [
+      "fig-g-object-detection"
+    ],
     "sources": [
       {
         "title": "Liu et al. (2015) SSD: Single Shot MultiBox Detector (arXiv:1512.02325)",
@@ -698,6 +751,9 @@
         "id": "C-06-023",
         "point": "FPNは検出向けの特徴ピラミッド、PSPNetはセグメンテーション向けのピラミッドプーリング"
       }
+    ],
+    "figures": [
+      "fig-g-object-detection"
     ],
     "sources": [
       {
@@ -737,6 +793,9 @@
         "point": "検出は矩形、セグメンテーションは画素単位"
       }
     ],
+    "figures": [
+      "fig-g-vision-tasks"
+    ],
     "sources": [
       {
         "title": "Kirillov et al. (2018) Panoptic Segmentation (arXiv:1801.00868)",
@@ -775,6 +834,9 @@
         "point": "FCNが先。U-Netは対称なエンコーダ・デコーダで細部を復元"
       }
     ],
+    "figures": [
+      "fig-g-segmentation-nets"
+    ],
     "sources": [
       {
         "title": "Long et al. (2014) Fully Convolutional Networks for Semantic Segmentation (arXiv:1411.4038)",
@@ -808,6 +870,10 @@
         "id": "C-06-022",
         "point": "SegNetはプーリングの位置を渡す、U-Netは特徴マップそのものをスキップ接続で渡す"
       }
+    ],
+    "figures": [
+      "fig-g-upsampling",
+      "fig-g-segmentation-nets"
     ],
     "sources": [
       {
@@ -847,6 +913,9 @@
         "point": "U-Net＝U字・対称・医用画像"
       }
     ],
+    "figures": [
+      "fig-g-segmentation-nets"
+    ],
     "sources": [
       {
         "title": "Ronneberger et al. (2015) U-Net (arXiv:1505.04597)",
@@ -880,6 +949,9 @@
         "id": "C-06-018",
         "point": "ピラミッドプーリング（PSPNet）と特徴ピラミッド（FPN）は別物"
       }
+    ],
+    "figures": [
+      "fig-g-segmentation-nets"
     ],
     "sources": [
       {
@@ -923,6 +995,9 @@
         "point": "FCNはセマンティック（個体を区別しない）、Mask R-CNNはインスタンス（個体ごと）"
       }
     ],
+    "figures": [
+      "fig-g-object-detection"
+    ],
     "sources": [
       {
         "title": "He et al. (2017) Mask R-CNN (arXiv:1703.06870)",
@@ -956,6 +1031,9 @@
         "id": "C-06-024",
         "point": "OpenPoseは先に部位を見つけて人に結び付けるボトムアップ型"
       }
+    ],
+    "figures": [
+      "fig-g-vision-tasks"
     ],
     "sources": [
       {
@@ -1002,6 +1080,9 @@
         "id": "C-06-027",
         "point": "形態素解析は文の分解、BoWは分解した単語の数え方"
       }
+    ],
+    "figures": [
+      "fig-g-nlp-pipeline"
     ],
     "sources": [
       {
@@ -1065,6 +1146,9 @@
         "point": "ワンホット＝高次元・疎・意味の近さなし。分散表現＝低次元・密・意味の近さあり"
       }
     ],
+    "figures": [
+      "fig-g-text-vectors"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
@@ -1119,6 +1203,10 @@
         "point": "局所表現（ワンホット）の対比として出題される"
       }
     ],
+    "figures": [
+      "fig-g-word2vec",
+      "fig-g-text-vectors"
+    ],
     "sources": [
       {
         "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
@@ -1165,6 +1253,9 @@
         "point": "word2vecは単語単位、fastTextは文字n-gramの和で単語を表す"
       }
     ],
+    "figures": [
+      "fig-g-word2vec"
+    ],
     "sources": [
       {
         "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
@@ -1202,6 +1293,9 @@
         "id": "C-06-029",
         "point": "未知語に対応できるのがfastText"
       }
+    ],
+    "figures": [
+      "fig-g-word2vec"
     ],
     "sources": [
       {
@@ -1275,6 +1369,9 @@
         "point": "Seq2SeqはLSTM、TransformerはAttentionのみで再帰を使わない"
       }
     ],
+    "figures": [
+      "fig-g-seq2seq-attention"
+    ],
     "sources": [
       {
         "title": "Sutskever et al. (2014) Sequence to Sequence Learning with Neural Networks (arXiv:1409.3215)",
@@ -1316,6 +1413,9 @@
         "id": "C-06-035",
         "point": "BERTはエンコーダで理解向け、GPT系はデコーダで次の単語を生成"
       }
+    ],
+    "figures": [
+      "fig-g-bert-gpt"
     ],
     "sources": [
       {
@@ -1427,6 +1527,9 @@
         "point": "スケーリング則は大規模化の効果を述べる経験則。過学習の説明ではない"
       }
     ],
+    "figures": [
+      "fig-g-scaling-law"
+    ],
     "sources": [
       {
         "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)",
@@ -1468,6 +1571,9 @@
         "id": "C-06-032",
         "point": "統計的機械翻訳は確率モデル、ニューラル機械翻訳はニューラルネット"
       }
+    ],
+    "figures": [
+      "fig-g-mt-history"
     ],
     "sources": [
       {
@@ -1519,6 +1625,9 @@
         "point": "CECはLSTMの「記憶の通り道」、ゲートはその出入り口"
       }
     ],
+    "figures": [
+      "fig-g-lstm-gru"
+    ],
     "sources": [
       {
         "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory",
@@ -1548,6 +1657,9 @@
         "id": "C-06-040",
         "point": "PCMは波形のデジタル化、FFTは周波数成分への分解"
       }
+    ],
+    "figures": [
+      "fig-g-pcm"
     ],
     "sources": [
       {
@@ -1591,6 +1703,9 @@
         "point": "フォルマントは包絡の山の位置、MFCCは包絡を圧縮した特徴量"
       }
     ],
+    "figures": [
+      "fig-g-speech-features"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
@@ -1628,6 +1743,9 @@
         "id": "C-06-040",
         "point": "MFCCは特徴量そのもの、FFTはそれを作る途中の計算"
       }
+    ],
+    "figures": [
+      "fig-g-speech-features"
     ],
     "sources": [
       {
@@ -1717,6 +1835,9 @@
         "point": "HMMハイブリッドはフレームと音素の対応付け（区切り）が要る。CTCは区切りなしで学習できる"
       }
     ],
+    "figures": [
+      "fig-g-hmm-ctc"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス（シラバス2024・2026年5月11日 第1.4版）",
@@ -1763,6 +1884,9 @@
         "point": "CTCは事前に区切ったデータも後処理も不要"
       }
     ],
+    "figures": [
+      "fig-g-hmm-ctc"
+    ],
     "sources": [
       {
         "title": "Graves et al. (2006) Connectionist Temporal Classification (ICML 2006)",
@@ -1800,6 +1924,9 @@
         "id": "C-06-044",
         "point": "WaveNetは音声を作る（合成）、CTCは音声を文字にする（認識）"
       }
+    ],
+    "figures": [
+      "fig-g-dilated-conv"
     ],
     "sources": [
       {
@@ -1905,6 +2032,9 @@
         "point": "DQNは価値ベース、PPOは方策を直接最適化する方策勾配法"
       }
     ],
+    "figures": [
+      "fig-g-dqn-family"
+    ],
     "sources": [
       {
         "title": "Mnih et al. (2013) Playing Atari with Deep Reinforcement Learning (arXiv:1312.5602)",
@@ -1943,6 +2073,9 @@
         "point": "ダブルDQNは過大評価対策、デュエリングは価値の分解"
       }
     ],
+    "figures": [
+      "fig-g-dqn-family"
+    ],
     "sources": [
       {
         "title": "van Hasselt et al. (2015) Deep Reinforcement Learning with Double Q-learning (arXiv:1509.06461)",
@@ -1976,6 +2109,9 @@
         "id": "C-06-048",
         "point": "デュエリングは構造の工夫、ダブルDQNは更新の仕方の工夫"
       }
+    ],
+    "figures": [
+      "fig-g-dqn-family"
     ],
     "sources": [
       {
@@ -2049,6 +2185,9 @@
         "point": "Rainbowは改良の組み合わせ、Ape-Xは分散学習の仕組み"
       }
     ],
+    "figures": [
+      "fig-g-dqn-family"
+    ],
     "sources": [
       {
         "title": "Hessel et al. (2017) Rainbow (arXiv:1710.02298)",
@@ -2082,6 +2221,9 @@
         "id": "C-06-051",
         "point": "分散の仕組み（Ape-X）と改良の組み合わせ（Rainbow）を混同しない"
       }
+    ],
+    "figures": [
+      "fig-g-distributed-rl"
     ],
     "sources": [
       {
@@ -2120,6 +2262,9 @@
         "id": "C-06-052",
         "point": "Ape-Xは優先度付き経験再生＋分散。A3Cは非同期の並列学習"
       }
+    ],
+    "figures": [
+      "fig-g-distributed-rl"
     ],
     "sources": [
       {
@@ -2277,6 +2422,9 @@
         "point": "RLHFは報酬そのものを人の評価から学ぶ"
       }
     ],
+    "figures": [
+      "fig-g-rlhf"
+    ],
     "sources": [
       {
         "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)",
@@ -2319,6 +2467,9 @@
         "point": "目的は似るが、ドメインランダマイゼーションはシミュレータの設定を変える"
       }
     ],
+    "figures": [
+      "fig-g-rl-data-sources"
+    ],
     "sources": [
       {
         "title": "Tobin et al. (2017) Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World (arXiv:1703.06907)",
@@ -2356,6 +2507,9 @@
         "title": "オンライン強化学習",
         "point": "オンライン強化学習は学習中の方策で環境とやり取りして経験を集め続ける。オフライン強化学習は集め終えたデータだけで学び、新しい経験を集めない。"
       }
+    ],
+    "figures": [
+      "fig-g-rl-data-sources"
     ],
     "sources": [
       {
@@ -2513,6 +2667,9 @@
         "point": "GANは競わせる、拡散モデルはノイズを少しずつ取り除く"
       }
     ],
+    "figures": [
+      "fig-g-gan"
+    ],
     "sources": [
       {
         "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)",
@@ -2542,6 +2699,9 @@
         "id": "C-06-065",
         "point": "DCGANは条件なしの生成、pix2pixは入力画像を条件に変換"
       }
+    ],
+    "figures": [
+      "fig-g-gan"
     ],
     "sources": [
       {
@@ -2576,6 +2736,9 @@
         "id": "C-06-066",
         "point": "Pix2Pixは対の画像が必要、CycleGANは対がなくてよい"
       }
+    ],
+    "figures": [
+      "fig-g-pix2pix-cyclegan"
     ],
     "sources": [
       {
@@ -2615,6 +2778,9 @@
         "point": "対がいる＝Pix2Pix、対がいらない＝CycleGAN"
       }
     ],
+    "figures": [
+      "fig-g-pix2pix-cyclegan"
+    ],
     "sources": [
       {
         "title": "Zhu et al. (2017) CycleGAN (arXiv:1703.10593)",
@@ -2649,6 +2815,9 @@
         "point": "拡散モデルは段階的なノイズ除去"
       }
     ],
+    "figures": [
+      "fig-g-diffusion"
+    ],
     "sources": [
       {
         "title": "Ho et al. (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)",
@@ -2682,6 +2851,9 @@
         "id": "C-06-063",
         "point": "NeRFは1つの場面を表すネットワークを最適化する。分布から多様なサンプルを作るGANとは目的が違う"
       }
+    ],
+    "figures": [
+      "fig-g-nerf"
     ],
     "sources": [
       {
@@ -2787,6 +2959,9 @@
         "point": "事前学習は土台を作る段階、ファインチューニングは目的に合わせる段階"
       }
     ],
+    "figures": [
+      "fig-g-transfer-learning"
+    ],
     "sources": [
       {
         "title": "Devlin et al. (2018) BERT (arXiv:1810.04805)",
@@ -2824,6 +2999,9 @@
         "id": "C-06-070",
         "point": "順番は事前学習→ファインチューニング"
       }
+    ],
+    "figures": [
+      "fig-g-transfer-learning"
     ],
     "sources": [
       {
@@ -2863,6 +3041,9 @@
         "point": "自己教師ありはラベルを使わない。半教師ありは少量のラベル付きと大量のラベルなしを併用"
       }
     ],
+    "figures": [
+      "fig-g-self-supervised"
+    ],
     "sources": [
       {
         "title": "Chen et al. (2020) SimCLR (arXiv:2002.05709)",
@@ -2896,6 +3077,9 @@
         "id": "C-06-072",
         "point": "半教師ありは少しのラベルを使う"
       }
+    ],
+    "figures": [
+      "fig-g-self-supervised"
     ],
     "sources": [
       {
@@ -2939,6 +3123,9 @@
         "point": "Few-shotは重みを更新しない。ファインチューニングは重みを更新する"
       }
     ],
+    "figures": [
+      "fig-g-few-zero-shot"
+    ],
     "sources": [
       {
         "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
@@ -2968,6 +3155,9 @@
         "title": "過学習",
         "point": "過学習は訓練データに合わせすぎる問題、破滅的忘却は前のタスクを忘れる問題"
       }
+    ],
+    "figures": [
+      "fig-g-transfer-learning"
     ],
     "sources": [
       {
@@ -3011,6 +3201,9 @@
         "point": "CLIPは画像と文章の対応を判定する、DALL-Eは文章から画像を生成する"
       }
     ],
+    "figures": [
+      "fig-g-clip"
+    ],
     "sources": [
       {
         "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
@@ -3049,6 +3242,9 @@
         "point": "Text-To-Imageは文→画像、Image Captioningは画像→文"
       }
     ],
+    "figures": [
+      "fig-g-multimodal-tasks"
+    ],
     "sources": [
       {
         "title": "Ramesh et al. (2021) Zero-Shot Text-to-Image Generation (DALL-E) (arXiv:2102.12092)",
@@ -3086,6 +3282,9 @@
         "id": "C-06-077",
         "point": "画像→文（Captioning）と文→画像（Text-To-Image）は向きが逆"
       }
+    ],
+    "figures": [
+      "fig-g-multimodal-tasks"
     ],
     "sources": [
       {
@@ -3197,6 +3396,10 @@
         "point": "Zero-shotは例を0件、Few-shotは数件示す"
       }
     ],
+    "figures": [
+      "fig-g-few-zero-shot",
+      "fig-g-clip"
+    ],
     "sources": [
       {
         "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
@@ -3281,6 +3484,9 @@
         "point": "解釈性はモデルの判断の根拠を示すこと。透明性はAIの利用や仕組みについての情報開示全般"
       }
     ],
+    "figures": [
+      "fig-g-lime-shap"
+    ],
     "sources": [
       {
         "title": "Ribeiro et al. (2016) \"Why Should I Trust You?\" (LIME) (arXiv:1602.04938)",
@@ -3323,6 +3529,9 @@
         "point": "CAMは構造の制約（GAP）がある。Grad-CAMは勾配を使うので構造を変えなくてよい"
       }
     ],
+    "figures": [
+      "fig-g-cam-gradcam"
+    ],
     "sources": [
       {
         "title": "Zhou et al. (2015) Learning Deep Features for Discriminative Localization (CAM) (arXiv:1512.04150)",
@@ -3357,6 +3566,9 @@
         "point": "Grad-CAMはCNNの内部（勾配）を使う。LIMEはモデルの中を見ない"
       }
     ],
+    "figures": [
+      "fig-g-cam-gradcam"
+    ],
     "sources": [
       {
         "title": "Selvaraju et al. (2016) Grad-CAM (arXiv:1610.02391)",
@@ -3390,6 +3602,9 @@
         "id": "C-06-087",
         "point": "LIMEは局所的な代理モデル、SHAPはシャープレイ値で寄与を配分"
       }
+    ],
+    "figures": [
+      "fig-g-lime-shap"
     ],
     "sources": [
       {
@@ -3429,6 +3644,9 @@
         "point": "SHAPは個々の予測ごとの寄与。Permutation Importanceはモデル全体での特徴量の重要度"
       }
     ],
+    "figures": [
+      "fig-g-lime-shap"
+    ],
     "sources": [
       {
         "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
@@ -3462,6 +3680,9 @@
         "id": "C-06-087",
         "point": "Permutation Importanceは全体の重要度"
       }
+    ],
+    "figures": [
+      "fig-g-lime-shap"
     ],
     "sources": [
       {
@@ -3567,6 +3788,9 @@
         "point": "蒸留は別の小さいモデルを学習する。プルーニングは同じモデルから重みを削る"
       }
     ],
+    "figures": [
+      "fig-g-model-compression"
+    ],
     "sources": [
       {
         "title": "Hinton et al. (2015) Distilling the Knowledge in a Neural Network (arXiv:1503.02531)",
@@ -3609,6 +3833,9 @@
         "point": "プルーニングは重みの「数」を減らす、量子化は重み1つあたりの「ビット数」を減らす"
       }
     ],
+    "figures": [
+      "fig-g-model-compression"
+    ],
     "sources": [
       {
         "title": "Han et al. (2015) Deep Compression (arXiv:1510.00149)",
@@ -3643,6 +3870,9 @@
         "point": "量子化はビット数を減らす"
       }
     ],
+    "figures": [
+      "fig-g-model-compression"
+    ],
     "sources": [
       {
         "title": "Jacob et al. (2017) Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference (arXiv:1712.05877)",
@@ -3672,6 +3902,9 @@
         "id": "C-06-090",
         "point": "宝くじ仮説はプルーニングに関する仮説で、蒸留とは別"
       }
+    ],
+    "figures": [
+      "fig-g-model-compression"
     ],
     "sources": [
       {
@@ -3714,6 +3947,9 @@
         "id": "C-06-095",
         "point": "形態素解析は語の区切りと品詞まで。語や文節がどこにかかるか（係り受け）を求めるのは構文解析。"
       }
+    ],
+    "figures": [
+      "fig-g-nlp-pipeline"
     ],
     "sources": [
       {
@@ -3764,6 +4000,9 @@
         "title": "照応解析と談話構造解析",
         "point": "照応解析は「それ」「彼女」が何を指すか（指す先）。談話構造解析は文と文が理由・対比などどんな関係でつながるか（文どうしの関係）。"
       }
+    ],
+    "figures": [
+      "fig-g-nlp-pipeline"
     ],
     "sources": [
       {
@@ -3835,6 +4074,9 @@
         "point": "RLHF は人の評価で学習してモデル自体の振る舞いを変える。システムプロンプトは使うときの指示で振る舞いを絞るだけで、モデルは変わらない。"
       }
     ],
+    "figures": [
+      "fig-g-few-zero-shot"
+    ],
     "sources": [
       {
         "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)",
@@ -3889,6 +4131,9 @@
         "point": "強化学習は報酬の合計が大きくなる行動を試行錯誤で探す。模倣学習は専門家の行動そのものを正解として学ぶ。"
       }
     ],
+    "figures": [
+      "fig-g-rl-data-sources"
+    ],
     "sources": [
       {
         "title": "Ross, Gordon & Bagnell (2011) A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning (AISTATS) (arXiv:1011.0686)",
@@ -3926,6 +4171,9 @@
         "id": "C-07-015",
         "point": "コーパスは文章を大量に集めたデータ全般。対訳コーパスは、そのうち2つの言語の文を訳どうしで組にしたもの。"
       }
+    ],
+    "figures": [
+      "fig-g-mt-history"
     ],
     "sources": [
       {

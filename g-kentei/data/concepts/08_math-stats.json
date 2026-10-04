@@ -33,6 +33,9 @@
         "point": "平均は外れ値に引っ張られる。中央値は引っ張られにくい"
       }
     ],
+    "figures": [
+      "fig-g-central-tendency"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook of Statistical Methods 1.3.5.1 Measures of Location",
@@ -74,6 +77,10 @@
         "id": "C-08-001",
         "point": "外れ値に強いのは中央値、弱いのは平均"
       }
+    ],
+    "figures": [
+      "fig-g-central-tendency",
+      "fig-g-least-squares"
     ],
     "sources": [
       {
@@ -121,6 +128,10 @@
         "point": "分散は1つの変数のばらつき、共分散は2つの変数の一緒の動き"
       }
     ],
+    "figures": [
+      "fig-g-normal-distribution",
+      "fig-g-variance"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 1.3.5.6 Measures of Scale",
@@ -154,6 +165,9 @@
         "id": "C-08-019",
         "point": "度数分布は手元のデータの集計、確率分布は確率モデル"
       }
+    ],
+    "figures": [
+      "fig-g-central-tendency"
     ],
     "sources": [
       {
@@ -201,6 +215,9 @@
         "point": "確率密度の値そのものは確率ではなく、1を超えることもある"
       }
     ],
+    "figures": [
+      "fig-g-normal-distribution"
+    ],
     "sources": [
       {
         "title": "MIT OCW 18.05 (Orloff & Bloom, Spring 2022) Class 4a Reading: Discrete Random Variables",
@@ -238,6 +255,9 @@
         "id": "C-08-001",
         "point": "期待値は確率分布の平均。手元のデータの平均（標本平均）とは区別する"
       }
+    ],
+    "figures": [
+      "fig-g-discrete-distributions"
     ],
     "sources": [
       {
@@ -322,10 +342,17 @@
         "point": "正規分布は連続値、ポアソン分布は回数（0, 1, 2, …）の離散値"
       }
     ],
+    "figures": [
+      "fig-g-normal-distribution"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 1.3.6.6.1 Normal Distribution",
         "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook 1.3.6.7.1 Cumulative Distribution Function of the Standard Normal Distribution（0〜1.0 の面積 0.34134、0〜2.0 の面積 0.47725。図の ±1σ で約68%・±2σ で約95% の根拠）",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3671.htm"
       }
     ],
     "status": "verified"
@@ -355,6 +382,9 @@
         "id": "C-08-010",
         "point": "二項分布は試行回数nが決まっている。ポアソン分布は一定時間内の発生回数"
       }
+    ],
+    "figures": [
+      "fig-g-discrete-distributions"
     ],
     "sources": [
       {
@@ -390,6 +420,9 @@
         "point": "回数の上限が決まっているなら二項分布、決まっていないならポアソン分布"
       }
     ],
+    "figures": [
+      "fig-g-discrete-distributions"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 1.3.6.6.19 Poisson Distribution",
@@ -423,6 +456,9 @@
         "id": "C-08-012",
         "point": "共分散は単位に左右される。相関係数は単位によらず−1〜1"
       }
+    ],
+    "figures": [
+      "fig-g-correlation"
     ],
     "sources": [
       {
@@ -461,6 +497,9 @@
         "id": "C-08-014",
         "point": "相関係数が大きくても、因果関係の証拠にはならない"
       }
+    ],
+    "figures": [
+      "fig-g-correlation"
     ],
     "sources": [
       {
@@ -508,6 +547,9 @@
         "point": "相関係数は他の変数の影響を含んだまま、偏相関係数は取り除いた後"
       }
     ],
+    "figures": [
+      "fig-g-spurious-correlation"
+    ],
     "sources": [
       {
         "title": "岡本安晴（日本女子大学）「偏相関係数と擬似相関」",
@@ -541,6 +583,9 @@
         "id": "C-08-012",
         "point": "相関がある≠原因と結果の関係がある"
       }
+    ],
+    "figures": [
+      "fig-g-spurious-correlation"
     ],
     "sources": [
       {
@@ -586,7 +631,10 @@
         "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd431.htm"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-least-squares"
+    ]
   },
   {
     "id": "C-08-016",
@@ -613,6 +661,9 @@
         "id": "C-08-015",
         "point": "「最も尤もらしい（もっともらしい）」パラメータを選ぶ＝最尤法"
       }
+    ],
+    "figures": [
+      "fig-g-mle"
     ],
     "sources": [
       {
@@ -685,6 +736,9 @@
         "point": "移動平均は時点をずらしながら計算する平均"
       }
     ],
+    "figures": [
+      "fig-g-moving-average"
+    ],
     "sources": [
       {
         "title": "NIST/SEMATECH e-Handbook 6.4.2.1 Single Moving Average",
@@ -726,6 +780,11 @@
         "title": "マンハッタン距離・チェビシェフ距離",
         "point": "差が (3, 4) なら、ユークリッド距離5、マンハッタン距離7（3＋4）、チェビシェフ距離4（大きい方）。足すか、2乗和の平方根か、最大値か、の違い。"
       }
+    ],
+    "figures": [
+      "fig-g-distances",
+      "fig-g-mahalanobis",
+      "fig-g-knn"
     ],
     "sources": [
       {
@@ -777,6 +836,9 @@
         "point": "相関やばらつきを考えるならマハラノビス"
       }
     ],
+    "figures": [
+      "fig-g-mahalanobis"
+    ],
     "sources": [
       {
         "title": "scikit-learn Example: Robust covariance estimation and Mahalanobis distances relevance",
@@ -810,6 +872,9 @@
         "id": "C-08-012",
         "point": "相関係数は直線的な関係だけ、相互情報量は非線形な依存も含む"
       }
+    ],
+    "figures": [
+      "fig-g-correlation"
     ],
     "sources": [
       {
@@ -867,7 +932,10 @@
         "url": "https://www.deeplearningbook.org/contents/mlp.html"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-gradient-descent"
+    ]
   },
   {
     "id": "C-08-023",
@@ -1098,6 +1166,9 @@
         "id": "C-03-020",
         "point": "ブートストラップサンプリングは、手元のデータから重複を許して取り出し直す方法。層化抽出は、母集団を層に分けて層ごとに選ぶ方法。"
       }
+    ],
+    "figures": [
+      "fig-g-sampling"
     ],
     "sources": [
       {

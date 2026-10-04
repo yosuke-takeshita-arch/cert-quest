@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 630" role="img" aria-labelledby="fig-g-cnn-models-t fig-g-cnn-models-d">
+<title id="fig-g-cnn-models-t">代表的な画像分類モデルの比べ表</title>
+<desc id="fig-g-cnn-models-d">AlexNet（2012年、8層。ReLU・GPU・ドロップアウト）、VGG（2014年、16〜19層。3×3のフィルタだけを重ねる）、GoogLeNet（2014年、22層。Inceptionモジュールと補助分類器）、ResNet（2015年、152層。スキップ結合で残差を学ぶ）、Wide ResNet（2016年。層を減らして幅を広げる）、DenseNet（2016年。前の全層の出力と連結する）、SENet（2017年。チャネルの重みを付け直す）、MobileNet（2017年。深さ方向分離畳み込みで軽量化）、EfficientNet（2019年。深さ・幅・解像度をまとめて拡大）、ViT（2020年。画像をパッチに分けて Transformer で分類）。年は各モデルの論文の年。</desc>
+<text x="12" y="20" class="tm">年は論文の年。層数は主なもの</text>
+<rect x="20" y="44" width="22" height="22" class="fs sa" stroke-width="1.5"/>
+<rect x="16" y="48" width="22" height="22" class="fs sa" stroke-width="1.5"/>
+<rect x="12" y="52" width="22" height="22" class="fas sa" stroke-width="1.5"/>
+<text x="66" y="56" class="tb">AlexNet</text>
+<text x="308" y="56" class="tm" text-anchor="end">2012年・8層</text>
+<text x="66" y="78">ReLU・GPU・ドロップアウト</text>
+<line x1="12" y1="88" x2="308" y2="88" class="l sb w1"/>
+<rect x="20" y="106" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="29" y="106" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="38" y="106" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="20" y="115" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="29" y="115" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="38" y="115" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="20" y="124" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="29" y="124" width="9" height="9" class="fas sa" stroke-width="1"/>
+<rect x="38" y="124" width="9" height="9" class="fas sa" stroke-width="1"/>
+<text x="66" y="116" class="tb">VGG</text>
+<text x="308" y="116" class="tm" text-anchor="end">2014年・16〜19層</text>
+<text x="66" y="138">3×3 のフィルタだけを重ねる</text>
+<line x1="12" y1="148" x2="308" y2="148" class="l sb w1"/>
+<rect x="16" y="164" width="14" height="8" class="fas sa" stroke-width="1.5"/>
+<rect x="16" y="175" width="24" height="8" class="fas sa" stroke-width="1.5"/>
+<rect x="16" y="186" width="34" height="8" class="fas sa" stroke-width="1.5"/>
+<text x="66" y="176" class="tb">GoogLeNet</text>
+<text x="308" y="176" class="tm" text-anchor="end">2014年・22層</text>
+<text x="66" y="198">Inception モジュール・補助分類器</text>
+<line x1="12" y1="208" x2="308" y2="208" class="l sb w1"/>
+<rect x="22" y="234" width="24" height="18" class="fas sa" stroke-width="1.5"/>
+<polyline points="14,228 14,224 54,224 54,243" class="l sok w2"/>
+<text x="66" y="236" class="tb">ResNet</text>
+<text x="308" y="236" class="tm" text-anchor="end">2015年・152層</text>
+<text x="66" y="258">スキップ結合で残差を学ぶ</text>
+<line x1="12" y1="268" x2="308" y2="268" class="l sb w1"/>
+<rect x="14" y="296" width="40" height="14" class="fas sa" stroke-width="1.5"/>
+<text x="66" y="296" class="tb">Wide ResNet</text>
+<text x="308" y="296" class="tm" text-anchor="end">2016年</text>
+<text x="66" y="318">層を減らして幅を広げる</text>
+<line x1="12" y1="328" x2="308" y2="328" class="l sb w1"/>
+<circle cx="16" cy="370" r="3.5" class="fa sa"/>
+<circle cx="28" cy="370" r="3.5" class="fa sa"/>
+<circle cx="40" cy="370" r="3.5" class="fa sa"/>
+<circle cx="52" cy="370" r="3.5" class="fa sa"/>
+<path d="M 16 366 Q 34 344 52 366" class="l sa w1"/>
+<path d="M 16 366 Q 28 352 40 366" class="l sa w1"/>
+<text x="66" y="356" class="tb">DenseNet</text>
+<text x="308" y="356" class="tm" text-anchor="end">2016年</text>
+<text x="66" y="378">前の全層の出力と連結する</text>
+<line x1="12" y1="388" x2="308" y2="388" class="l sb w1"/>
+<rect x="16" y="420" width="7" height="14" class="fas sa" stroke-width="1"/>
+<rect x="26" y="408" width="7" height="26" class="fas sa" stroke-width="1"/>
+<rect x="36" y="424" width="7" height="10" class="fas sa" stroke-width="1"/>
+<rect x="46" y="414" width="7" height="20" class="fas sa" stroke-width="1"/>
+<text x="66" y="416" class="tb">SENet</text>
+<text x="308" y="416" class="tm" text-anchor="end">2017年</text>
+<text x="66" y="438">チャネルの重みを付け直す</text>
+<line x1="12" y1="448" x2="308" y2="448" class="l sb w1"/>
+<rect x="14" y="472" width="24" height="14" class="fas sa" stroke-width="1.5"/>
+<rect x="42" y="476" width="8" height="8" class="fok sok" stroke-width="1.5"/>
+<text x="66" y="476" class="tb">MobileNet</text>
+<text x="308" y="476" class="tm" text-anchor="end">2017年</text>
+<text x="66" y="498">深さ方向分離畳み込みで軽量化</text>
+<line x1="12" y1="508" x2="308" y2="508" class="l sb w1"/>
+<rect x="20" y="530" width="22" height="22" class="fas sa" stroke-width="1.5"/>
+<line x1="44" y1="540" x2="54" y2="540" class="l sok w2"/>
+<polyline points="49,542.75 54,540 49,537.25" class="l sok w2"/>
+<line x1="30" y1="528" x2="30" y2="520" class="l sok w2"/>
+<polyline points="32.75,525 30,520 27.25,525" class="l sok w2"/>
+<text x="66" y="536" class="tb">EfficientNet</text>
+<text x="308" y="536" class="tm" text-anchor="end">2019年</text>
+<text x="66" y="558">深さ・幅・解像度をまとめて拡大</text>
+<line x1="12" y1="568" x2="308" y2="568" class="l sb w1"/>
+<rect x="15" y="592" width="8" height="8" class="fas sa" stroke-width="1"/>
+<rect x="24" y="592" width="8" height="8" class="fas sa" stroke-width="1"/>
+<rect x="33" y="592" width="8" height="8" class="fas sa" stroke-width="1"/>
+<rect x="42" y="592" width="8" height="8" class="fas sa" stroke-width="1"/>
+<rect x="15" y="601" width="8" height="8" class="fas sa" stroke-width="1"/>
+<rect x="24" y="601" width="8" height="8" class="fas sa" stroke-width="1"/>
+<rect x="33" y="601" width="8" height="8" class="fas sa" stroke-width="1"/>
+<rect x="42" y="601" width="8" height="8" class="fas sa" stroke-width="1"/>
+<text x="66" y="596" class="tb">ViT</text>
+<text x="308" y="596" class="tm" text-anchor="end">2020年</text>
+<text x="66" y="618">パッチに分けて Transformer</text>
+</svg>

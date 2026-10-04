@@ -71,6 +71,9 @@
         "point": "CRISP-DMの最後は展開。CRISP-MLは監視・保守のフェーズを別に加えた"
       }
     ],
+    "figures": [
+      "fig-g-crisp-dm"
+    ],
     "sources": [
       {
         "title": "Studer et al. (2020) Towards CRISP-ML(Q) (arXiv:2003.05155)",
@@ -108,6 +111,9 @@
         "id": "C-07-002",
         "point": "CRISP-ML＝CRISP-DM＋監視・保守＋品質保証"
       }
+    ],
+    "figures": [
+      "fig-g-crisp-dm"
     ],
     "sources": [
       {
@@ -147,6 +153,9 @@
         "point": "PoCは検証の段階のこと。アジャイルは開発の進め方の型"
       }
     ],
+    "figures": [
+      "fig-g-dev-process"
+    ],
     "sources": [
       {
         "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
@@ -184,6 +193,9 @@
         "title": "スクラム",
         "point": "スクラムはアジャイルの枠組みの1つで、スプリントはその反復の単位（1か月以内）。スクラムが定義する責任はプロダクトオーナー・スクラムマスター・開発者の3つ"
       }
+    ],
+    "figures": [
+      "fig-g-dev-process"
     ],
     "sources": [
       {
@@ -265,6 +277,9 @@
         "point": "DevOpsはソフトウェア全般の開発と運用の一体化で、検査の対象は主にコード。MLOpsはデータとモデルも対象にし、CT（継続的トレーニング）が加わる"
       }
     ],
+    "figures": [
+      "fig-g-mlops"
+    ],
     "sources": [
       {
         "title": "Google Cloud「MLOps: 機械学習における継続的デリバリーと自動化のパイプライン」",
@@ -306,6 +321,9 @@
         "title": "コンセプトドリフト",
         "point": "データドリフトは入力の分布 p(X) の変化。コンセプトドリフトは入力と正解の関係 p(y|X) の変化で、入力の分布が同じでも起きる"
       }
+    ],
+    "figures": [
+      "fig-g-mlops"
     ],
     "sources": [
       {
@@ -382,6 +400,9 @@
         "id": "C-07-009",
         "point": "Dockerは環境の持ち運び、Jupyterはコードを書いて試す場所"
       }
+    ],
+    "figures": [
+      "fig-g-docker"
     ],
     "sources": [
       {
@@ -607,6 +628,9 @@
         "point": "過学習は学習データに合わせすぎる問題。リーケージは評価そのものが当てにならなくなる問題"
       }
     ],
+    "figures": [
+      "fig-g-data-leakage"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide 12. Common pitfalls and recommended practices（Data leakage）",
@@ -737,6 +761,9 @@
         "point": "Society 5.0は国が目指す社会の姿。DXは企業が自らの事業・組織を変革する取り組み"
       }
     ],
+    "figures": [
+      "fig-g-society50"
+    ],
     "sources": [
       {
         "title": "内閣府「Society 5.0」",
@@ -782,6 +809,9 @@
         "id": "C-09-029",
         "point": "ここでのSaaSは提供形態の分類。G検定の法律分野では、SaaS型のAIサービスを使う契約（利用型契約）の論点として出る"
       }
+    ],
+    "figures": [
+      "fig-g-cloud-models"
     ],
     "sources": [
       {
@@ -832,6 +862,9 @@
         "title": "表現学習（特徴表現学習）",
         "point": "特徴量エンジニアリングは人が特徴量を設計する。表現学習（ディープラーニング）は特徴量そのものをデータから学ぶ"
       }
+    ],
+    "figures": [
+      "fig-g-feature-scaling"
     ],
     "sources": [
       {
@@ -891,6 +924,9 @@
         "point": "バッチ正規化はネットワークの層の中でミニバッチごとに行う。特徴量のスケーリングは学習の前にデータに施す"
       }
     ],
+    "figures": [
+      "fig-g-feature-scaling"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide「Preprocessing data」",
@@ -928,6 +964,9 @@
         "id": "C-06-027",
         "point": "自然言語処理のワンホットベクトルは単語を表す。ここでのOne-Hotは表データのカテゴリ列を表す。0/1の列を1つだけ立てる考え方は同じ"
       }
+    ],
+    "figures": [
+      "fig-g-categorical-encoding"
     ],
     "sources": [
       {
@@ -1112,6 +1151,9 @@
         "id": "C-03-054",
         "point": "不均衡データでは正解率が高く見えても少数派を見逃していることがある。再現率・適合率なども見る"
       }
+    ],
+    "figures": [
+      "fig-g-imbalanced"
     ],
     "sources": [
       {

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 746" role="img" aria-labelledby="fig-g-model-compression-t fig-g-model-compression-d">
+<title id="fig-g-model-compression-t">モデルの軽量化：蒸留・プルーニング・量子化</title>
+<desc id="fig-g-model-compression-d">3つの軽量化の手法。蒸留は、大きな教師モデルが出す各クラスの確率（ソフトターゲット）を、小さな生徒モデルがまねて学ぶ。プルーニングは、学習済みネットワークの重要度の低い接続を取り除いて、重みの数を減らす。量子化は、重みや計算を32ビットの浮動小数点数から8ビットの整数などの少ないビット数で表す。Deep Compression は、プルーニング、量子化、ハフマン符号化を組み合わせて、保存サイズを35〜49分の1にした。宝くじ仮説は、最初の大きなネットワークの中に、単独で学習しても同じ精度に達する小さな部分がある、という仮説。</desc>
+<text x="12" y="20" class="tb">① 蒸留：教師の確率をまねる</text>
+<rect x="12" y="36" width="82" height="62" class="fas sa" stroke-width="1.5"/>
+<text x="53" y="62.5" text-anchor="middle">大きな</text>
+<text x="53" y="80.5" text-anchor="middle">教師モデル</text>
+<line x1="94" y1="67" x2="112" y2="67" class="l w2"/>
+<polyline points="105,70.85 112,67 105,63.15" class="l w2"/>
+<rect x="120" y="45.92" width="22" height="52.08" class="fok sok" stroke-width="1.5"/>
+<text x="131" y="116" class="tm" text-anchor="middle">2</text>
+<rect x="150" y="90.56" width="22" height="7.44" class="fok sok" stroke-width="1.5"/>
+<text x="161" y="116" class="tm" text-anchor="middle">3</text>
+<rect x="180" y="95.52" width="22" height="2.48" class="fok sok" stroke-width="1.5"/>
+<text x="191" y="116" class="tm" text-anchor="middle">7</text>
+<line x1="116" y1="98" x2="210" y2="98" class="l sb w1"/>
+<line x1="214" y1="67" x2="232" y2="67" class="l w2"/>
+<polyline points="225,70.85 232,67 225,63.15" class="l w2"/>
+<rect x="234" y="52" width="74" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="271" y="63.5" text-anchor="middle">小さな</text>
+<text x="271" y="81.5" text-anchor="middle">生徒モデル</text>
+<text x="12" y="144">各クラスの確率（ソフトターゲット）をまねる</text>
+<text x="12" y="164" class="tm">「2 は 3 に少し似ている」も伝わる</text>
+<line x1="12" y1="182" x2="308" y2="182" class="l sb w1"/>
+<text x="12" y="206" class="tb">② プルーニング：つなぎを減らす</text>
+<line x1="30" y1="232" x2="100" y2="224" class="l sm w1 dot"/>
+<line x1="30" y1="232" x2="100" y2="246" class="l sm w1 dot"/>
+<line x1="30" y1="232" x2="100" y2="268" class="l sm w1 dot"/>
+<line x1="30" y1="232" x2="100" y2="290" class="l sm w1 dot"/>
+<line x1="30" y1="260" x2="100" y2="224" class="l sa w1"/>
+<line x1="30" y1="260" x2="100" y2="246" class="l sa w1"/>
+<line x1="30" y1="260" x2="100" y2="268" class="l sa w1"/>
+<line x1="30" y1="260" x2="100" y2="290" class="l sa w1"/>
+<line x1="30" y1="288" x2="100" y2="224" class="l sa w1"/>
+<line x1="30" y1="288" x2="100" y2="246" class="l sa w1"/>
+<line x1="30" y1="288" x2="100" y2="268" class="l sa w1"/>
+<line x1="30" y1="288" x2="100" y2="290" class="l sa w1"/>
+<line x1="100" y1="224" x2="170" y2="232" class="l sa w1"/>
+<line x1="100" y1="224" x2="170" y2="260" class="l sa w1"/>
+<line x1="100" y1="224" x2="170" y2="288" class="l sa w1"/>
+<line x1="100" y1="246" x2="170" y2="232" class="l sm w1 dot"/>
+<line x1="100" y1="246" x2="170" y2="260" class="l sm w1 dot"/>
+<line x1="100" y1="246" x2="170" y2="288" class="l sm w1 dot"/>
+<line x1="100" y1="268" x2="170" y2="232" class="l sa w1"/>
+<line x1="100" y1="268" x2="170" y2="260" class="l sa w1"/>
+<line x1="100" y1="268" x2="170" y2="288" class="l sa w1"/>
+<line x1="100" y1="290" x2="170" y2="232" class="l sa w1"/>
+<line x1="100" y1="290" x2="170" y2="260" class="l sa w1"/>
+<line x1="100" y1="290" x2="170" y2="288" class="l sa w1"/>
+<circle cx="30" cy="232" r="6" class="fas sa"/>
+<circle cx="30" cy="260" r="6" class="fas sa"/>
+<circle cx="30" cy="288" r="6" class="fas sa"/>
+<circle cx="100" cy="224" r="6" class="fas sa"/>
+<circle cx="100" cy="246" r="6" class="fas sa"/>
+<circle cx="100" cy="268" r="6" class="fas sa"/>
+<circle cx="100" cy="290" r="6" class="fas sa"/>
+<circle cx="170" cy="232" r="6" class="fas sa"/>
+<circle cx="170" cy="260" r="6" class="fas sa"/>
+<circle cx="170" cy="288" r="6" class="fas sa"/>
+<text x="206" y="252">消す接続は</text>
+<text x="206" y="272">点線の部分</text>
+<text x="12" y="330">重要度の低い接続（重み）を取り除く</text>
+<text x="12" y="350" class="tb">→ 重みの「数」が減る</text>
+<line x1="12" y1="368" x2="308" y2="368" class="l sb w1"/>
+<text x="12" y="392" class="tb">③ 量子化：数を粗い目盛りに</text>
+<text x="12" y="418" class="tm">32ビット浮動小数点</text>
+<line x1="12" y1="436" x2="308" y2="436" class="l sm w1"/>
+<circle cx="28" cy="436" r="3.5" class="fa sa"/>
+<circle cx="67" cy="436" r="3.5" class="fa sa"/>
+<circle cx="109" cy="436" r="3.5" class="fa sa"/>
+<circle cx="146" cy="436" r="3.5" class="fa sa"/>
+<circle cx="193" cy="436" r="3.5" class="fa sa"/>
+<circle cx="232" cy="436" r="3.5" class="fa sa"/>
+<circle cx="268" cy="436" r="3.5" class="fa sa"/>
+<line x1="160" y1="446" x2="160" y2="474" class="l w2"/>
+<polyline points="156.15,467 160,474 163.85,467" class="l w2"/>
+<text x="12" y="500" class="tm">8ビット整数（目盛りが粗い）</text>
+<line x1="14" y1="512" x2="14" y2="524" class="l sm w1"/>
+<line x1="40" y1="512" x2="40" y2="524" class="l sm w1"/>
+<line x1="66" y1="512" x2="66" y2="524" class="l sm w1"/>
+<line x1="92" y1="512" x2="92" y2="524" class="l sm w1"/>
+<line x1="118" y1="512" x2="118" y2="524" class="l sm w1"/>
+<line x1="144" y1="512" x2="144" y2="524" class="l sm w1"/>
+<line x1="170" y1="512" x2="170" y2="524" class="l sm w1"/>
+<line x1="196" y1="512" x2="196" y2="524" class="l sm w1"/>
+<line x1="222" y1="512" x2="222" y2="524" class="l sm w1"/>
+<line x1="248" y1="512" x2="248" y2="524" class="l sm w1"/>
+<line x1="274" y1="512" x2="274" y2="524" class="l sm w1"/>
+<line x1="300" y1="512" x2="300" y2="524" class="l sm w1"/>
+<line x1="14" y1="518" x2="300" y2="518" class="l sm w1"/>
+<circle cx="14" cy="518" r="3.5" class="fok sok"/>
+<circle cx="66" cy="518" r="3.5" class="fok sok"/>
+<circle cx="92" cy="518" r="3.5" class="fok sok"/>
+<circle cx="144" cy="518" r="3.5" class="fok sok"/>
+<circle cx="196" cy="518" r="3.5" class="fok sok"/>
+<circle cx="222" cy="518" r="3.5" class="fok sok"/>
+<circle cx="274" cy="518" r="3.5" class="fok sok"/>
+<text x="12" y="552" class="tb">1つの重みを表すビット数が減る</text>
+<line x1="12" y1="570" x2="308" y2="570" class="l sb w1"/>
+<text x="12" y="594" class="tb">Deep Compression</text>
+<text x="12" y="616">3つを組み合わせる：</text>
+<text x="12" y="636">プルーニング・量子化・ハフマン符号化</text>
+<text x="12" y="658" class="tb tok">保存サイズが 35〜49分の1 に</text>
+<text x="12" y="692" class="tb">宝くじ仮説</text>
+<text x="12" y="714">最初のネットワークの中に、単独で学習しても</text>
+<text x="12" y="734">同じ精度に達する小さな部分がある</text>
+</svg>

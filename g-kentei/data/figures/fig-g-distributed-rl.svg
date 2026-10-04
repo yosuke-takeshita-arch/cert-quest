@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-g-distributed-rl-t fig-g-distributed-rl-d">
+<title id="fig-g-distributed-rl-t">分散型の深層強化学習：A3C と Ape-X</title>
+<desc id="fig-g-distributed-rl-d">上は A3C。複数のワーカー（環境とネットワークの複製）が並列に動き、それぞれが非同期に、共有のパラメータを更新する。GPU を使わず、マルチコアの CPU で高速に学習できる。下は Ape-X。多数のアクターが環境と相互作用して集めた経験を、共有のリプレイメモリにため、1つのラーナーが、優先度の高い経験を取り出して学習し、更新した重みをアクターに配る。行動（データ集め）と学習を切り離すので、桁違いに多くのデータから学べる。</desc>
+<text x="12" y="20" class="tb">A3C：並列のワーカーが、非同期に更新</text>
+<rect x="100" y="36" width="120" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="56.5" class="tb" text-anchor="middle">共有パラメータ</text>
+<rect x="12" y="112" width="96" height="52" class="fs sb" stroke-width="1.5"/>
+<text x="60" y="133.5" text-anchor="middle">ワーカー 1</text>
+<text x="60" y="151.5" text-anchor="middle">環境＋複製</text>
+<line x1="52" y1="112" x2="120" y2="70" class="l sok w2"/>
+<polyline points="116.07,76.95 120,70 112.02,70.4" class="l sok w2"/>
+<line x1="132" y1="72" x2="70" y2="110" class="l sm w2"/>
+<polyline points="73.96,103.06 70,110 77.98,109.62" class="l sm w2"/>
+<rect x="112" y="112" width="96" height="52" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="133.5" text-anchor="middle">ワーカー 2</text>
+<text x="160" y="151.5" text-anchor="middle">環境＋複製</text>
+<line x1="152" y1="112" x2="150" y2="70" class="l sok w2"/>
+<polyline points="154.18,76.81 150,70 146.49,77.18" class="l sok w2"/>
+<line x1="162" y1="72" x2="170" y2="110" class="l sm w2"/>
+<polyline points="164.79,103.94 170,110 172.33,102.36" class="l sm w2"/>
+<rect x="212" y="112" width="96" height="52" class="fs sb" stroke-width="1.5"/>
+<text x="260" y="133.5" text-anchor="middle">ワーカー 3</text>
+<text x="260" y="151.5" text-anchor="middle">環境＋複製</text>
+<line x1="252" y1="112" x2="180" y2="70" class="l sok w2"/>
+<polyline points="187.99,70.2 180,70 184.11,76.85" class="l sok w2"/>
+<line x1="192" y1="72" x2="270" y2="110" class="l sm w2"/>
+<polyline points="262.02,110.4 270,110 265.39,103.47" class="l sm w2"/>
+<text x="12" y="192" class="tm">緑＝非同期に更新　灰＝最新を受け取る</text>
+<text x="12" y="214">GPU なしで、マルチコア CPU で高速</text>
+<line x1="12" y1="234" x2="308" y2="234" class="l sb w1"/>
+<text x="12" y="258" class="tb">Ape-X：集める役と、学ぶ役を分ける</text>
+<rect x="12" y="274" width="88" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="56" y="298.5" text-anchor="middle">アクター 1</text>
+<line x1="56" y1="314" x2="136" y2="342" class="l sa w2"/>
+<polyline points="128.12,343.32 136,342 130.66,336.05" class="l sa w2"/>
+<rect x="108" y="274" width="88" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="152" y="298.5" text-anchor="middle">アクター 2</text>
+<line x1="152" y1="314" x2="160" y2="342" class="l sa w2"/>
+<polyline points="154.38,336.33 160,342 161.78,334.21" class="l sa w2"/>
+<rect x="204" y="274" width="88" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="248" y="298.5" text-anchor="middle">アクター 3</text>
+<line x1="248" y1="314" x2="184" y2="342" class="l sa w2"/>
+<polyline points="188.87,335.67 184,342 191.96,342.72" class="l sa w2"/>
+<rect x="80" y="344" width="160" height="36" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="366.5" class="tb" text-anchor="middle">共有リプレイメモリ（経験）</text>
+<line x1="160" y1="380" x2="160" y2="406" class="l sok w2"/>
+<polyline points="156.15,399 160,406 163.85,399" class="l sok w2"/>
+<text x="172" y="400" class="tb tok">優先度の高い経験</text>
+<rect x="100" y="408" width="120" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="430.5" class="tb" text-anchor="middle">ラーナー（1つ）</text>
+<line x1="222" y1="426" x2="304" y2="426" class="l sm w2 dsh"/>
+<line x1="304" y1="426" x2="304" y2="294" class="l sm w2 dsh"/>
+<line x1="304" y1="294" x2="294" y2="294" class="l sm w2"/>
+<polyline points="300,290.7 294,294 300,297.3" class="l sm w2"/>
+<text x="160" y="470" class="tm" text-anchor="middle">更新した重みを、アクターに配る（点線）</text>
+<text x="12" y="506" class="tb">行動（データ集め）と学習を切り離す</text>
+<text x="12" y="528" class="tm">→ 桁違いに多くのデータから学べる</text>
+</svg>

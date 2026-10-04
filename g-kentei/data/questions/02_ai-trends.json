@@ -66,6 +66,9 @@
       "C-02-003",
       "C-02-004"
     ],
+    "figures": [
+      "fig-g-search-bfs-dfs"
+    ],
     "sources": [
       {
         "title": "NIST Dictionary of Algorithms and Data Structures: breadth-first search",
@@ -101,6 +104,9 @@
     "memoryTip": "深さ＝どんどん下へ、行き止まりで戻る（迷路で壁に手をつけて進むイメージ）。",
     "concepts": [
       "C-02-004"
+    ],
+    "figures": [
+      "fig-g-search-bfs-dfs"
     ],
     "sources": [
       {
@@ -138,6 +144,9 @@
     "concepts": [
       "C-02-005"
     ],
+    "figures": [
+      "fig-g-hanoi"
+    ],
     "sources": [
       {
         "title": "NIST Dictionary of Algorithms and Data Structures: towers of Hanoi",
@@ -173,6 +182,9 @@
     "memoryTip": "Mini-Max＝相手はMinを、自分はMaxを選ぶ。名前がそのまま手順。",
     "concepts": [
       "C-02-007"
+    ],
+    "figures": [
+      "fig-g-minimax-alphabeta"
     ],
     "sources": [
       {
@@ -210,6 +222,9 @@
     "concepts": [
       "C-02-008",
       "C-02-007"
+    ],
+    "figures": [
+      "fig-g-minimax-alphabeta"
     ],
     "sources": [
       {
@@ -255,6 +270,9 @@
     "concepts": [
       "C-02-009",
       "C-02-039"
+    ],
+    "figures": [
+      "fig-g-alphago"
     ],
     "sources": [
       {
@@ -370,6 +388,9 @@
       "C-02-003",
       "C-02-006",
       "C-02-002"
+    ],
+    "figures": [
+      "fig-g-search-bfs-dfs"
     ],
     "sources": [
       {
@@ -567,6 +588,9 @@
       "C-02-018",
       "C-02-017"
     ],
+    "figures": [
+      "fig-g-semantic-net"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
@@ -611,6 +635,9 @@
     "concepts": [
       "C-02-018"
     ],
+    "figures": [
+      "fig-g-semantic-net"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
@@ -654,6 +681,9 @@
     "memoryTip": "「意味」をつなぐ網＝意味ネットワーク。「神経」の網＝ニューラルネットワーク。",
     "concepts": [
       "C-02-017"
+    ],
+    "figures": [
+      "fig-g-semantic-net"
     ],
     "sources": [
       {
@@ -1009,6 +1039,9 @@
     "concepts": [
       "C-02-030"
     ],
+    "figures": [
+      "fig-g-curse-of-dim"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Nearest Neighbors",
@@ -1335,7 +1368,10 @@
         "url": "https://link.springer.com/article/10.1007/BF00344251"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-cnn-arch"
+    ]
   },
   {
     "id": "G-02-035",
@@ -1371,7 +1407,10 @@
         "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-cnn-arch"
+    ]
   },
   {
     "id": "G-02-036",
@@ -1401,6 +1440,9 @@
     "concepts": [
       "C-02-039",
       "C-02-009"
+    ],
+    "figures": [
+      "fig-g-alphago"
     ],
     "sources": [
       {
@@ -1554,6 +1596,9 @@
     "concepts": [
       "C-01-006",
       "C-02-034"
+    ],
+    "figures": [
+      "fig-g-ai-ml-dl"
     ],
     "sources": [
       {
@@ -1711,6 +1756,9 @@
     "memoryTip": "AlphaGo（棋譜＋自己対局）→ AlphaGo Zero（自己対局だけ・囲碁）→ AlphaZero（自己対局だけ・囲碁＋チェス＋将棋）。「Zero」＝人間のデータゼロ。",
     "concepts": [
       "C-02-039"
+    ],
+    "figures": [
+      "fig-g-alphago"
     ],
     "sources": [
       {

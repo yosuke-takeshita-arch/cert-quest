@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 530" role="img" aria-labelledby="fig-g-few-zero-shot-t fig-g-few-zero-shot-d">
+<title id="fig-g-few-zero-shot-t">Zero-shot・One-shot・Few-shot とファインチューニング</title>
+<desc id="fig-g-few-zero-shot-d">大規模言語モデルへの入力（プロンプト）の例を4つ並べる。Zero-shot は、タスクの指示だけを与え、例は示さない。One-shot は、指示に加えて例を1つだけ示す。Few-shot は、指示に加えて例を数個示す。この3つは推論時に重みを更新しない。ファインチューニングは、追加のデータで重みを更新する。</desc>
+<text x="12" y="20" class="tb">モデルに入れる文（プロンプト）の例</text>
+<text x="12" y="48" class="tb ta">Zero-shot　例：0個</text>
+<rect x="12" y="58" width="200" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="80" class="tm">指示：英語を日本語に訳す</text>
+<text x="20" y="98">問い：bird →？</text>
+<text x="12" y="140" class="tb ta">One-shot　例：1個</text>
+<rect x="12" y="150" width="200" height="68" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="172" class="tm">指示：英語を日本語に訳す</text>
+<text x="20" y="190">例　：dog → 犬</text>
+<text x="20" y="208">問い：bird →？</text>
+<text x="12" y="250" class="tb ta">Few-shot　例：数個</text>
+<rect x="12" y="260" width="200" height="104" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="282" class="tm">指示：英語を日本語に訳す</text>
+<text x="20" y="300">例　：dog → 犬</text>
+<text x="20" y="318">例　：cat → 猫</text>
+<text x="20" y="336">例　：fish → 魚</text>
+<text x="20" y="354">問い：bird →？</text>
+<line x1="222" y1="58" x2="232" y2="58" class="l sok w2"/>
+<line x1="232" y1="58" x2="232" y2="364" class="l sok w2"/>
+<line x1="222" y1="364" x2="232" y2="364" class="l sok w2"/>
+<text x="240" y="207" class="tb tok">重みは</text>
+<text x="240" y="227" class="tb tok">更新しない</text>
+<text x="12" y="396" class="tb twn">ファインチューニング</text>
+<rect x="12" y="406" width="200" height="50" class="fwn swn" stroke-width="1.5"/>
+<text x="20" y="428" class="tm">例を大量に集める</text>
+<text x="20" y="446">→ 重みを更新する</text>
+<text x="240" y="435" class="tb twn">重みを更新</text>
+<line x1="12" y1="472" x2="308" y2="472" class="l sb w1"/>
+<text x="12" y="496" class="tb">重みを変えず、指示文の書き方を工夫する</text>
+<text x="12" y="518" class="tm">＝プロンプトエンジニアリング</text>
+</svg>

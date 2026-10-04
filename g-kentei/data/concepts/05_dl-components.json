@@ -29,6 +29,9 @@
         "point": "全結合層は全部とつながる（パラメータが多い）。畳み込み層は近くだけとつながり、同じフィルタを使い回す（パラメータが少ない）。"
       }
     ],
+    "figures": [
+      "fig-g-neuron-mlp"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Linear",
@@ -66,6 +69,10 @@
         "title": "ハイパーパラメータ",
         "point": "重みは学習で決まるパラメータ。層のユニット数は人が決めるハイパーパラメータ。"
       }
+    ],
+    "figures": [
+      "fig-g-conv-params",
+      "fig-g-neuron-mlp"
     ],
     "sources": [
       {
@@ -112,6 +119,10 @@
         "id": "C-05-001",
         "point": "CNNの中心は畳み込み層。全結合層だけのネットワークはCNNとは呼ばない。"
       }
+    ],
+    "figures": [
+      "fig-g-conv-params",
+      "fig-g-cnn-arch"
     ],
     "sources": [
       {
@@ -311,6 +322,9 @@
         "point": "全結合層は入力の大きさに比例してパラメータが増える。畳み込み層は画像の大きさに関係しない。"
       }
     ],
+    "figures": [
+      "fig-g-conv-params"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Conv2d",
@@ -394,6 +408,9 @@
         "point": "Dilated/Atrousは視野を広げる工夫、Depthwise Separableは計算量とパラメータを減らす工夫。"
       }
     ],
+    "figures": [
+      "fig-g-dilated-conv"
+    ],
     "sources": [
       {
         "title": "Yu & Koltun (2015) Multi-Scale Context Aggregation by Dilated Convolutions (arXiv:1511.07122)",
@@ -439,6 +456,9 @@
         "id": "C-05-010",
         "point": "Depthwise Separableは軽くする工夫。広く見る工夫はDilated（Atrous）。"
       }
+    ],
+    "figures": [
+      "fig-g-depthwise-separable"
     ],
     "sources": [
       {
@@ -494,6 +514,9 @@
         "point": "正規化（normalization）と正則化（regularization）は別物。"
       }
     ],
+    "figures": [
+      "fig-g-normalization"
+    ],
     "sources": [
       {
         "title": "Ioffe & Szegedy (2015) Batch Normalization (arXiv:1502.03167)",
@@ -535,6 +558,9 @@
         "id": "C-05-015",
         "point": "グループ＝チャネルの束ごと、インスタンス＝チャネル1枚ごと、レイヤー＝全チャネルまとめて。"
       }
+    ],
+    "figures": [
+      "fig-g-normalization"
     ],
     "sources": [
       {
@@ -578,6 +604,9 @@
         "point": "Transformerで標準的に使われるのはレイヤー正規化。バッチ正規化ではない。"
       }
     ],
+    "figures": [
+      "fig-g-normalization"
+    ],
     "sources": [
       {
         "title": "Ba, Kiros & Hinton (2016) Layer Normalization (arXiv:1607.06450)",
@@ -611,6 +640,9 @@
         "id": "C-05-014",
         "point": "インスタンス＝チャネル1枚ずつ、レイヤー＝全チャネルまとめて。"
       }
+    ],
+    "figures": [
+      "fig-g-normalization"
     ],
     "sources": [
       {
@@ -649,6 +681,9 @@
         "id": "C-05-004",
         "point": "プーリング層には学習するパラメータが無い。畳み込み層にはある。"
       }
+    ],
+    "figures": [
+      "fig-g-pooling"
     ],
     "sources": [
       {
@@ -692,6 +727,10 @@
         "point": "平均値プーリングは小さな領域ごと、GAPは特徴マップ全体で1つの値にする。"
       }
     ],
+    "figures": [
+      "fig-g-pooling",
+      "fig-g-cam-gradcam"
+    ],
     "sources": [
       {
         "title": "Lin, Chen & Yan (2013) Network In Network (arXiv:1312.4400)",
@@ -734,6 +773,9 @@
         "point": "不変性を与えるのはプーリング。パディングは出力サイズの調整。"
       }
     ],
+    "figures": [
+      "fig-g-pooling"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks",
@@ -767,6 +809,9 @@
         "title": "ドロップアウト",
         "point": "スキップ結合は層を飛ばす「道」を足す。ドロップアウトはニューロンを学習中にランダムに消す。"
       }
+    ],
+    "figures": [
+      "fig-g-skip-connection"
     ],
     "sources": [
       {
@@ -805,6 +850,9 @@
         "title": "AlexNet",
         "point": "2012年の優勝はAlexNet、2014年はGoogLeNet、2015年はResNet。"
       }
+    ],
+    "figures": [
+      "fig-g-skip-connection"
     ],
     "sources": [
       {
@@ -851,6 +899,9 @@
         "title": "再帰的ニューラルネットワーク",
         "point": "G検定のRNNは時間方向に回帰するリカレント（recurrent）。木構造に再帰するrecursiveとは別。"
       }
+    ],
+    "figures": [
+      "fig-g-rnn-unroll"
     ],
     "sources": [
       {
@@ -920,6 +971,9 @@
         "point": "エルマン＝隠れ層の出力を戻す。ジョルダン＝出力層の出力を戻す。"
       }
     ],
+    "figures": [
+      "fig-g-elman-jordan"
+    ],
     "sources": [
       {
         "title": "JDLA G検定シラバス 2024（第1.4版）",
@@ -957,6 +1011,9 @@
         "id": "C-05-023",
         "point": "戻すのが隠れ層ならエルマン、出力層ならジョルダン。"
       }
+    ],
+    "figures": [
+      "fig-g-elman-jordan"
     ],
     "sources": [
       {
@@ -1004,6 +1061,9 @@
         "point": "BPTTは勾配の計算方法、教師強制は学習時に何を入力として与えるかの工夫。"
       }
     ],
+    "figures": [
+      "fig-g-rnn-unroll"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets",
@@ -1037,6 +1097,9 @@
         "id": "C-05-025",
         "point": "教師強制は入力の与え方、BPTTは勾配の計算方法。"
       }
+    ],
+    "figures": [
+      "fig-g-rnn-unroll"
     ],
     "sources": [
       {
@@ -1080,6 +1143,9 @@
         "point": "LSTMは入力・忘却・出力の3ゲート＋セル。GRUはリセット・更新の2ゲートでセルを持たず、パラメータが少ない。"
       }
     ],
+    "figures": [
+      "fig-g-lstm-gru"
+    ],
     "sources": [
       {
         "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation",
@@ -1117,6 +1183,9 @@
         "id": "C-05-027",
         "point": "ゲートの数：LSTM3つ、GRU2つ。"
       }
+    ],
+    "figures": [
+      "fig-g-lstm-gru"
     ],
     "sources": [
       {
@@ -1160,6 +1229,9 @@
         "point": "ゲートは「通す量」を0〜1で調整、Attentionは「どこに注目するか」を重みで配分。"
       }
     ],
+    "figures": [
+      "fig-g-lstm-gru"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.LSTM",
@@ -1197,6 +1269,9 @@
         "id": "C-05-021",
         "point": "通常のRNNは過去の情報だけ。双方向RNNは未来（後ろ）の情報も使う。"
       }
+    ],
+    "figures": [
+      "fig-g-bidirectional-rnn"
     ],
     "sources": [
       {
@@ -1243,6 +1318,9 @@
         "id": "C-05-035",
         "point": "初期のSeq2SeqはRNN（LSTM）。TransformerもEncoder-Decoder型だがRNNを使わない。"
       }
+    ],
+    "figures": [
+      "fig-g-seq2seq-attention"
     ],
     "sources": [
       {
@@ -1294,6 +1372,9 @@
         "point": "Attentionは注目先の配分、ゲート機構は情報を通す量の調整。"
       }
     ],
+    "figures": [
+      "fig-g-seq2seq-attention"
+    ],
     "sources": [
       {
         "title": "Bahdanau, Cho & Bengio (2014) Neural Machine Translation by Jointly Learning to Align and Translate (arXiv:1409.0473)",
@@ -1331,6 +1412,11 @@
         "id": "C-05-034",
         "point": "Source-Target＝クエリとキー・バリューが別の系列。Self＝同じ系列の中。"
       }
+    ],
+    "figures": [
+      "fig-g-seq2seq-attention",
+      "fig-g-transformer",
+      "fig-g-qkv"
     ],
     "sources": [
       {
@@ -1377,6 +1463,10 @@
         "id": "C-05-033",
         "point": "Masked Self-Attention はデコーダの中で後ろの位置を隠して自分の系列に注目する。Source-Target Attention はデコーダからエンコーダの出力に注目する。マスクの対象は前者だけ。"
       }
+    ],
+    "figures": [
+      "fig-g-transformer",
+      "fig-g-qkv"
     ],
     "sources": [
       {
@@ -1432,6 +1522,10 @@
         "point": "TransformerはRNNを使わない。「LSTMを改良したモデル」は誤り。"
       }
     ],
+    "figures": [
+      "fig-g-transformer",
+      "fig-g-vit"
+    ],
     "sources": [
       {
         "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
@@ -1470,6 +1564,9 @@
         "point": "Source-Target Attentionでは、クエリがデコーダ、キーとバリューがエンコーダから来る。"
       }
     ],
+    "figures": [
+      "fig-g-qkv"
+    ],
     "sources": [
       {
         "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
@@ -1503,6 +1600,9 @@
         "title": "マルチタスク学習",
         "point": "Multi-Headは1つのタスクの中で注目の仕方を複数持つ仕組み。複数タスクを学ぶマルチタスク学習とは別。"
       }
+    ],
+    "figures": [
+      "fig-g-transformer"
     ],
     "sources": [
       {
@@ -1542,6 +1642,9 @@
         "point": "RNNは順に処理するので位置情報が自然に入る。Transformerは並列処理なので位置エンコーディングが必要。"
       }
     ],
+    "figures": [
+      "fig-g-transformer"
+    ],
     "sources": [
       {
         "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
@@ -1579,6 +1682,9 @@
         "title": "主成分分析 (PCA)",
         "point": "PCAは線形の次元削減。オートエンコーダは非線形の次元削減もできる。"
       }
+    ],
+    "figures": [
+      "fig-g-autoencoder-vae"
     ],
     "sources": [
       {
@@ -1621,6 +1727,9 @@
         "title": "ファインチューニング",
         "point": "事前学習は「下準備の学習」、ファインチューニングはその後の「目的のタスクに合わせた微調整」。"
       }
+    ],
+    "figures": [
+      "fig-g-autoencoder-vae"
     ],
     "sources": [
       {
@@ -1672,6 +1781,9 @@
         "point": "通常のオートエンコーダは潜在表現が1点。VAEは分布なので生成モデルとして使える。"
       }
     ],
+    "figures": [
+      "fig-g-autoencoder-vae"
+    ],
     "sources": [
       {
         "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)",
@@ -1701,6 +1813,9 @@
         "id": "C-05-041",
         "point": "離散的な潜在表現＝VQ-VAE、KL項の重みβ＝β-VAE。"
       }
+    ],
+    "figures": [
+      "fig-g-autoencoder-vae"
     ],
     "sources": [
       {
@@ -1760,6 +1875,9 @@
         "point": "データ拡張は入力データを変える。ドロップアウトはネットワークの中のニューロンを消す。"
       }
     ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 7 Regularization（7.4 Dataset Augmentation）",
@@ -1798,6 +1916,9 @@
         "point": "Cropは一部を切り出して使う。CutoutやRandom Erasingは一部を消して（塗りつぶして）使う。"
       }
     ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torchvision Transforms",
@@ -1831,6 +1952,9 @@
         "id": "C-05-046",
         "point": "Cutout・Random Erasingは消すだけ。CutMixは消した領域に別の画像を貼り、ラベルも面積比で混ぜる。"
       }
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
     ],
     "sources": [
       {
@@ -1870,6 +1994,9 @@
         "point": "Cutout・Random Erasingは領域を消すだけ。CutMixは消した領域に別の画像を貼り、ラベルも面積比で混ぜる。"
       }
     ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
     "sources": [
       {
         "title": "Zhang et al. (2017) mixup: Beyond Empirical Risk Minimization (arXiv:1710.09412)",
@@ -1907,6 +2034,9 @@
         "id": "C-05-046",
         "point": "RandAugmentは変換の選び方の方法。Mixupは2つのデータを混ぜる方法。"
       }
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
     ],
     "sources": [
       {
@@ -1999,6 +2129,9 @@
         "point": "Dilated Convolution はフィルタの間を空けて受容野を広げる（出力は小さくしない）。転置畳み込みは出力の解像度そのものを大きくする。"
       }
     ],
+    "figures": [
+      "fig-g-upsampling"
+    ],
     "sources": [
       {
         "title": "Zeiler & Fergus (2013) Visualizing and Understanding Convolutional Networks (arXiv:1311.2901)",
@@ -2068,6 +2201,9 @@
         "id": "C-05-031",
         "point": "Seq2Seq はエンコーダ・デコーダ構造を RNN（LSTM）で系列変換に使った具体例。構造そのものは RNN に限らない（Transformer は Attention だけで作る）。"
       }
+    ],
+    "figures": [
+      "fig-g-seq2seq-attention"
     ],
     "sources": [
       {

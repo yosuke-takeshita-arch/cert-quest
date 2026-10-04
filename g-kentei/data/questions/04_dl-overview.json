@@ -28,6 +28,9 @@
       "C-04-001",
       "C-04-002"
     ],
+    "figures": [
+      "fig-g-perceptron-xor"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Neural network models (supervised)",
@@ -72,6 +75,9 @@
     "concepts": [
       "C-04-003",
       "C-04-002"
+    ],
+    "figures": [
+      "fig-g-perceptron-xor"
     ],
     "sources": [
       {
@@ -226,7 +232,8 @@
       "C-04-024"
     ],
     "figures": [
-      "fig-g-activation"
+      "fig-g-activation",
+      "fig-g-vanishing-gradient"
     ],
     "sources": [
       {
@@ -367,6 +374,9 @@
     "concepts": [
       "C-04-010"
     ],
+    "figures": [
+      "fig-g-softmax"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Softmax",
@@ -406,7 +416,8 @@
       "C-04-010"
     ],
     "figures": [
-      "fig-g-activation"
+      "fig-g-activation",
+      "fig-g-softmax"
     ],
     "sources": [
       {
@@ -458,6 +469,9 @@
       "C-04-012",
       "C-04-011"
     ],
+    "figures": [
+      "fig-g-loss-functions"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.MSELoss",
@@ -501,6 +515,9 @@
     "memoryTip": "KLは一方通行。「行き」と「帰り」で値が違う。",
     "concepts": [
       "C-04-014"
+    ],
+    "figures": [
+      "fig-g-loss-functions"
     ],
     "sources": [
       {
@@ -547,6 +564,9 @@
       "C-04-016",
       "C-04-015"
     ],
+    "figures": [
+      "fig-g-metric-learning"
+    ],
     "sources": [
       {
         "title": "Schroff, Kalenichenko & Philbin (2015) FaceNet: A Unified Embedding for Face Recognition and Clustering (arXiv:1503.03832)",
@@ -583,6 +603,9 @@
     "concepts": [
       "C-04-015"
     ],
+    "figures": [
+      "fig-g-metric-learning"
+    ],
     "sources": [
       {
         "title": "Hadsell, Chopra & LeCun (2006) Dimensionality Reduction by Learning an Invariant Mapping. CVPR",
@@ -618,6 +641,9 @@
     "memoryTip": "正解に自信満々（確率1）なら誤差0、正解を確率0と言ったら誤差は限りなく大きい。",
     "concepts": [
       "C-04-012"
+    ],
+    "figures": [
+      "fig-g-loss-functions"
     ],
     "sources": [
       {
@@ -660,6 +686,9 @@
       "C-04-019",
       "C-04-020"
     ],
+    "figures": [
+      "fig-g-l1-l2"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（L1 regularization）",
@@ -698,6 +727,9 @@
       "C-04-019",
       "C-04-018"
     ],
+    "figures": [
+      "fig-g-l1-l2"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models（Ridge regression）",
@@ -733,6 +765,9 @@
     "memoryTip": "ドロップアウト＝練習のたびにメンバーを何人か休ませるチーム練習。誰か1人に頼れなくなる。",
     "concepts": [
       "C-04-021"
+    ],
+    "figures": [
+      "fig-g-dropout"
     ],
     "sources": [
       {
@@ -817,6 +852,9 @@
       "C-04-022",
       "C-04-023"
     ],
+    "figures": [
+      "fig-g-backprop"
+    ],
     "sources": [
       {
         "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature",
@@ -857,6 +895,9 @@
     "concepts": [
       "C-04-023"
     ],
+    "figures": [
+      "fig-g-backprop"
+    ],
     "sources": [
       {
         "title": "PyTorch Tutorials: A Gentle Introduction to torch.autograd",
@@ -895,7 +936,8 @@
       "C-04-006"
     ],
     "figures": [
-      "fig-g-activation"
+      "fig-g-activation",
+      "fig-g-vanishing-gradient"
     ],
     "sources": [
       {
@@ -946,6 +988,9 @@
       "C-04-025",
       "C-04-024"
     ],
+    "figures": [
+      "fig-g-vanishing-gradient"
+    ],
     "sources": [
       {
         "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)",
@@ -986,6 +1031,9 @@
     "concepts": [
       "C-04-026",
       "C-04-022"
+    ],
+    "figures": [
+      "fig-g-backprop"
     ],
     "sources": [
       {
@@ -1033,6 +1081,9 @@
       "C-04-025",
       "C-04-023"
     ],
+    "figures": [
+      "fig-g-vanishing-gradient"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（vanishing / exploding gradient problem）",
@@ -1073,6 +1124,9 @@
     "concepts": [
       "C-04-027"
     ],
+    "figures": [
+      "fig-g-gradient-descent"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（gradient descent）",
@@ -1108,6 +1162,9 @@
     "memoryTip": "大股すぎ＝谷を飛び越す、小股すぎ＝いつまでも着かない。",
     "concepts": [
       "C-04-028"
+    ],
+    "figures": [
+      "fig-g-gradient-descent"
     ],
     "sources": [
       {
@@ -1150,6 +1207,9 @@
       "C-04-033",
       "C-04-031"
     ],
+    "figures": [
+      "fig-g-batch-epoch"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（epoch / iteration）",
@@ -1185,6 +1245,9 @@
     "memoryTip": "全部（重い・安定）／1件（軽い・不安定）／少しずつ（ちょうどいい）＝ミニバッチ。",
     "concepts": [
       "C-04-031"
+    ],
+    "figures": [
+      "fig-g-batch-epoch"
     ],
     "sources": [
       {
@@ -1223,6 +1286,9 @@
       "C-04-030",
       "C-04-029"
     ],
+    "figures": [
+      "fig-g-local-min-saddle"
+    ],
     "sources": [
       {
         "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
@@ -1258,6 +1324,9 @@
     "memoryTip": "大域＝世界一、局所＝町内一。",
     "concepts": [
       "C-04-029"
+    ],
+    "figures": [
+      "fig-g-local-min-saddle"
     ],
     "sources": [
       {
@@ -1295,6 +1364,10 @@
     "concepts": [
       "C-04-034",
       "C-04-030"
+    ],
+    "figures": [
+      "fig-g-local-min-saddle",
+      "fig-g-optimizers"
     ],
     "sources": [
       {
@@ -1336,6 +1409,9 @@
     "concepts": [
       "C-04-035",
       "C-04-036"
+    ],
+    "figures": [
+      "fig-g-optimizers"
     ],
     "sources": [
       {
@@ -1383,6 +1459,9 @@
       "C-04-034",
       "C-04-036"
     ],
+    "figures": [
+      "fig-g-optimizers"
+    ],
     "sources": [
       {
         "title": "Kingma & Ba (2014) Adam: A Method for Stochastic Optimization (arXiv:1412.6980)",
@@ -1419,6 +1498,9 @@
     "concepts": [
       "C-04-039"
     ],
+    "figures": [
+      "fig-g-optimizers"
+    ],
     "sources": [
       {
         "title": "Luo et al. (2019) Adaptive Gradient Methods with Dynamic Bound of Learning Rate (arXiv:1902.09843)",
@@ -1454,6 +1536,9 @@
     "memoryTip": "AdaGrad（勾配の二乗を全部ため込み、学習率が縮みきる）→RMSprop（最近の分だけ平均して改善）→AdaDelta（さらに学習率の手動設定も不要に）。",
     "concepts": [
       "C-04-037"
+    ],
+    "figures": [
+      "fig-g-optimizers"
     ],
     "sources": [
       {
@@ -1529,6 +1614,9 @@
     "memoryTip": "下がって・上がって・また下がる。「谷が2つ」でダブル。",
     "concepts": [
       "C-04-041"
+    ],
+    "figures": [
+      "fig-g-double-descent"
     ],
     "sources": [
       {
@@ -1643,6 +1731,9 @@
       "C-04-044",
       "C-04-043"
     ],
+    "figures": [
+      "fig-g-grid-random-search"
+    ],
     "sources": [
       {
         "title": "Bergstra & Bengio (2012) Random Search for Hyper-Parameter Optimization. JMLR",
@@ -1719,6 +1810,9 @@
     "memoryTip": "End-to-End＝入口（画素）から出口（ハンドル角）まで一気通貫。途中の工程は人が作らず、ネットワークに任せる。",
     "concepts": [
       "C-04-045"
+    ],
+    "figures": [
+      "fig-g-end-to-end"
     ],
     "sources": [
       {
@@ -1875,6 +1969,9 @@
       "C-04-019",
       "C-04-020"
     ],
+    "figures": [
+      "fig-g-l1-l2"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models（Elastic-Net）",
@@ -1912,6 +2009,9 @@
       "C-04-022",
       "C-04-023"
     ],
+    "figures": [
+      "fig-g-backprop"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
@@ -1947,6 +2047,9 @@
     "memoryTip": "勾配＝一番急な上り坂の向き。その逆へ下りるから最急降下。",
     "concepts": [
       "C-04-027"
+    ],
+    "figures": [
+      "fig-g-gradient-descent"
     ],
     "sources": [
       {
@@ -1984,6 +2087,9 @@
     "concepts": [
       "C-04-025",
       "C-04-024"
+    ],
+    "figures": [
+      "fig-g-vanishing-gradient"
     ],
     "sources": [
       {

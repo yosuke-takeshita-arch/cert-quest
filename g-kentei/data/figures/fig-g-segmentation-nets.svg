@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 706" role="img" aria-labelledby="fig-g-segmentation-nets-t fig-g-segmentation-nets-d">
+<title id="fig-g-segmentation-nets-t">セグメンテーションのモデル：デコーダへ何を渡すか（FCN・SegNet・U-Net）</title>
+<desc id="fig-g-segmentation-nets-d">3つのエンコーダ・デコーダを並べた図。FCN は全結合層を使わず畳み込み層だけで構成し、最後に学習できるフィルタでアップサンプリングして、入力と同じ大きさの画素ごとの予測を出す。SegNet は、エンコーダの最大値プーリングの位置（プーリングインデックス）だけをデコーダに渡し、その位置に値を戻してアップサンプリングする。U-Net は U 字型で、縮小側の特徴マップそのものを拡大側にコピーして連結し、医用画像などで成果を出した。PSPNet はピラミッドプーリングで文脈を集め、DeepLab は Atrous 畳み込みで受容野を広げる。</desc>
+<text x="12" y="20" class="tb">FCN：畳み込み層だけ</text>
+<rect x="12" y="34" width="76" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="220" y="34" width="76" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="50" y1="60" x2="50" y2="72" class="l w2"/>
+<polyline points="46.15,65 50,72 53.85,65" class="l w2"/>
+<line x1="258" y1="72" x2="258" y2="62" class="l w2"/>
+<polyline points="261.85,69 258,62 254.15,69" class="l w2"/>
+<rect x="24" y="72" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="232" y="72" width="52" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="50" y1="98" x2="50" y2="110" class="l w2"/>
+<polyline points="46.15,103 50,110 53.85,103" class="l w2"/>
+<line x1="258" y1="110" x2="258" y2="100" class="l w2"/>
+<polyline points="261.85,107 258,100 254.15,107" class="l w2"/>
+<rect x="36" y="110" width="28" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="244" y="110" width="28" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="64" y1="123" x2="243" y2="123" class="l w2"/>
+<polyline points="236,126.85 243,123 236,119.15" class="l w2"/>
+<text x="12" y="162">全結合層を使わない。最後にアップサンプリング</text>
+<line x1="12" y1="188" x2="308" y2="188" class="l sb w1"/>
+<text x="12" y="212" class="tb">SegNet：プーリングの位置を渡す</text>
+<rect x="12" y="226" width="76" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="220" y="226" width="76" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="50" y1="252" x2="50" y2="264" class="l w2"/>
+<polyline points="46.15,257 50,264 53.85,257" class="l w2"/>
+<line x1="258" y1="264" x2="258" y2="254" class="l w2"/>
+<polyline points="261.85,261 258,254 254.15,261" class="l w2"/>
+<rect x="24" y="264" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="232" y="264" width="52" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="50" y1="290" x2="50" y2="302" class="l w2"/>
+<polyline points="46.15,295 50,302 53.85,295" class="l w2"/>
+<line x1="258" y1="302" x2="258" y2="292" class="l w2"/>
+<polyline points="261.85,299 258,292 254.15,299" class="l w2"/>
+<rect x="36" y="302" width="28" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="244" y="302" width="28" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="64" y1="315" x2="243" y2="315" class="l w2"/>
+<polyline points="236,318.85 243,315 236,311.15" class="l w2"/>
+<line x1="90" y1="239" x2="212" y2="239" class="l swn w2 dsh"/>
+<polyline points="206,235 214,239 206,243" class="l swn w2"/>
+<line x1="78" y1="277" x2="224" y2="277" class="l swn w2 dsh"/>
+<polyline points="218,273 226,277 218,281" class="l swn w2"/>
+<text x="12" y="354">エンコーダのプーリングの位置（点線）だけ</text>
+<text x="12" y="374" class="tm">渡し、デコーダがその位置に値を戻す</text>
+<line x1="12" y1="394" x2="308" y2="394" class="l sb w1"/>
+<text x="12" y="418" class="tb">U-Net：特徴マップをコピーして連結</text>
+<rect x="12" y="432" width="76" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="220" y="432" width="76" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="50" y1="458" x2="50" y2="470" class="l w2"/>
+<polyline points="46.15,463 50,470 53.85,463" class="l w2"/>
+<line x1="258" y1="470" x2="258" y2="460" class="l w2"/>
+<polyline points="261.85,467 258,460 254.15,467" class="l w2"/>
+<rect x="24" y="470" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="232" y="470" width="52" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="50" y1="496" x2="50" y2="508" class="l w2"/>
+<polyline points="46.15,501 50,508 53.85,501" class="l w2"/>
+<line x1="258" y1="508" x2="258" y2="498" class="l w2"/>
+<polyline points="261.85,505 258,498 254.15,505" class="l w2"/>
+<rect x="36" y="508" width="28" height="26" class="fas sa" stroke-width="1.5"/>
+<rect x="244" y="508" width="28" height="26" class="fok sok" stroke-width="1.5"/>
+<line x1="64" y1="521" x2="243" y2="521" class="l w2"/>
+<polyline points="236,524.85 243,521 236,517.15" class="l w2"/>
+<line x1="90" y1="445" x2="218" y2="445" class="l sok w2"/>
+<polyline points="211,448.85 218,445 211,441.15" class="l sok w2"/>
+<line x1="78" y1="483" x2="230" y2="483" class="l sok w2"/>
+<polyline points="223,486.85 230,483 223,479.15" class="l sok w2"/>
+<text x="160" y="439"></text>
+<text x="12" y="560">縮小側の特徴マップそのもの（緑の横矢印）を</text>
+<text x="12" y="580" class="tm">拡大側にコピーして連結する。医用画像で成果</text>
+<line x1="12" y1="600" x2="308" y2="600" class="l sb w1"/>
+<text x="12" y="624">PSPNet：ピラミッドプーリングで文脈を集める</text>
+<text x="12" y="646">DeepLab：Atrous 畳み込みで受容野を広げる</text>
+<text x="12" y="674" class="tm">青＝縮小側（エンコーダ）</text>
+<text x="12" y="694" class="tm">緑＝拡大側（デコーダ）</text>
+</svg>

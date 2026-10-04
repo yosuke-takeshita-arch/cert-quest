@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 472" role="img" aria-labelledby="fig-g-kmeans-t fig-g-kmeans-d">
+<title id="fig-g-kmeans-t">k-means 法の繰り返し：割り当てと中心の更新</title>
+<desc id="fig-g-kmeans-d">k が3の例を4コマで示す。1コマ目は、点をばらまいて初期の中心を3つ置く。2コマ目は、各点を最も近い中心のグループに分ける。3コマ目は、各グループの点の平均の位置へ中心を動かす（動く前の位置は点線で残す）。4コマ目は、動いた中心で点を割り当て直す。この2つの手順を、割り当てが変わらなくなるまで繰り返す。k は事前に決める必要があり、最初の中心の置き方で結果が変わる。</desc>
+<text x="12" y="28" class="tb">① 中心を置く</text>
+<rect x="12" y="36" width="148" height="120" class="sb" stroke-width="1"/>
+<circle cx="35.56" cy="74" r="4" class="fm"/>
+<circle cx="53.2" cy="66" r="4" class="fm"/>
+<circle cx="43.4" cy="92" r="4" class="fm"/>
+<circle cx="61.04" cy="84" r="4" class="fm"/>
+<circle cx="70.84" cy="72" r="4" class="fm"/>
+<circle cx="33.6" cy="106" r="4" class="fm"/>
+<circle cx="108.08" cy="68" r="4" class="fm"/>
+<circle cx="123.76" cy="78" r="4" class="fm"/>
+<circle cx="115.92" cy="94" r="4" class="fm"/>
+<circle cx="135.52" cy="72" r="4" class="fm"/>
+<circle cx="100.24" cy="88" r="4" class="fm"/>
+<circle cx="129.64" cy="102" r="4" class="fm"/>
+<circle cx="64.96" cy="128" r="4" class="fm"/>
+<circle cx="82.6" cy="142" r="4" class="fm"/>
+<circle cx="100.24" cy="134" r="4" class="fm"/>
+<circle cx="76.72" cy="114" r="4" class="fm"/>
+<circle cx="112" cy="118" r="4" class="fm"/>
+<circle cx="53.2" cy="140" r="4" class="fm"/>
+<polygon points="105.14,88 114.14,97 105.14,106 96.14,97" class="ft sa" stroke-width="2.5"/>
+<polygon points="104.16,61 113.16,70 104.16,79 95.16,70" class="ft sok" stroke-width="2.5"/>
+<polygon points="43.4,139 52.4,148 43.4,157 34.4,148" class="ft swn" stroke-width="2.5"/>
+<text x="164" y="28" class="tb">② 近い中心へ割り当て</text>
+<rect x="164" y="36" width="148" height="120" class="sb" stroke-width="1"/>
+<rect x="182.56" y="69" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="200.2" y="61" width="10" height="10" class="sok fs" stroke-width="2"/>
+<polygon points="195.4,86 201.4,97 189.4,97" class="swn fs" stroke-width="2"/>
+<rect x="208.04" y="79" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="217.84" y="67" width="10" height="10" class="sok fs" stroke-width="2"/>
+<polygon points="185.6,100 191.6,111 179.6,111" class="swn fs" stroke-width="2"/>
+<rect x="255.08" y="63" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="270.76" y="73" width="10" height="10" class="sok fs" stroke-width="2"/>
+<circle cx="267.92" cy="94" r="5" class="sa fs" stroke-width="2"/>
+<rect x="282.52" y="67" width="10" height="10" class="sok fs" stroke-width="2"/>
+<circle cx="252.24" cy="88" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="281.64" cy="102" r="5" class="sa fs" stroke-width="2"/>
+<polygon points="216.96,122 222.96,133 210.96,133" class="swn fs" stroke-width="2"/>
+<polygon points="234.6,136 240.6,147 228.6,147" class="swn fs" stroke-width="2"/>
+<circle cx="252.24" cy="134" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="228.72" cy="114" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="264" cy="118" r="5" class="sa fs" stroke-width="2"/>
+<polygon points="205.2,134 211.2,145 199.2,145" class="swn fs" stroke-width="2"/>
+<polygon points="257.14,88 266.14,97 257.14,106 248.14,97" class="ft sa" stroke-width="2.5"/>
+<polygon points="256.16,61 265.16,70 256.16,79 247.16,70" class="ft sok" stroke-width="2.5"/>
+<polygon points="195.4,139 204.4,148 195.4,157 186.4,148" class="ft swn" stroke-width="2.5"/>
+<text x="12" y="184" class="tb">③ 中心を平均へ移す</text>
+<rect x="12" y="192" width="148" height="120" class="sb" stroke-width="1"/>
+<rect x="30.56" y="225" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="48.2" y="217" width="10" height="10" class="sok fs" stroke-width="2"/>
+<polygon points="43.4,242 49.4,253 37.4,253" class="swn fs" stroke-width="2"/>
+<rect x="56.04" y="235" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="65.84" y="223" width="10" height="10" class="sok fs" stroke-width="2"/>
+<polygon points="33.6,256 39.6,267 27.6,267" class="swn fs" stroke-width="2"/>
+<rect x="103.08" y="219" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="118.76" y="229" width="10" height="10" class="sok fs" stroke-width="2"/>
+<circle cx="115.92" cy="250" r="5" class="sa fs" stroke-width="2"/>
+<rect x="130.52" y="223" width="10" height="10" class="sok fs" stroke-width="2"/>
+<circle cx="100.24" cy="244" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="129.64" cy="258" r="5" class="sa fs" stroke-width="2"/>
+<polygon points="64.96,278 70.96,289 58.96,289" class="swn fs" stroke-width="2"/>
+<polygon points="82.6,292 88.6,303 76.6,303" class="swn fs" stroke-width="2"/>
+<circle cx="100.24" cy="290" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="76.72" cy="270" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="112" cy="274" r="5" class="sa fs" stroke-width="2"/>
+<polygon points="53.2,290 59.2,301 47.2,301" class="swn fs" stroke-width="2"/>
+<polygon points="105.14,244 114.14,253 105.14,262 96.14,253" class="sm w1 dsh"/>
+<line x1="105.14" y1="253" x2="105.39" y2="257.27" class="l sa w2"/>
+<polygon points="105.66,262.07 102.39,257.45 108.38,257.1" class="ft"/>
+<polygon points="104.16,217 113.16,226 104.16,235 95.16,226" class="sm w1 dsh"/>
+<line x1="104.16" y1="226" x2="92.76" y2="227.94" class="l sok w2"/>
+<polygon points="88.03,228.74 92.26,224.98 93.27,230.9" class="ft"/>
+<polygon points="43.4,295 52.4,304 43.4,313 34.4,304" class="sm w1 dsh"/>
+<line x1="43.4" y1="304" x2="51.11" y2="287.24" class="l swn w2"/>
+<polygon points="53.12,282.88 53.84,288.49 48.39,285.99" class="ft"/>
+<polygon points="105.79,255.33 114.79,264.33 105.79,273.33 96.79,264.33" class="ft sa" stroke-width="2.5"/>
+<polygon points="84,220.43 93,229.43 84,238.43 75,229.43" class="ft sok" stroke-width="2.5"/>
+<polygon points="55.55,268.6 64.55,277.6 55.55,286.6 46.55,277.6" class="ft swn" stroke-width="2.5"/>
+<text x="164" y="184" class="tb">④ 割り当て直す</text>
+<rect x="164" y="192" width="148" height="120" class="sb" stroke-width="1"/>
+<rect x="182.56" y="225" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="200.2" y="217" width="10" height="10" class="sok fs" stroke-width="2"/>
+<polygon points="195.4,242 201.4,253 189.4,253" class="swn fs" stroke-width="2"/>
+<rect x="208.04" y="235" width="10" height="10" class="sok fs" stroke-width="2"/>
+<rect x="217.84" y="223" width="10" height="10" class="sok fs" stroke-width="2"/>
+<polygon points="185.6,256 191.6,267 179.6,267" class="swn fs" stroke-width="2"/>
+<rect x="255.08" y="219" width="10" height="10" class="sok fs" stroke-width="2"/>
+<circle cx="275.76" cy="234" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="267.92" cy="250" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="287.52" cy="228" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="252.24" cy="244" r="5" class="sa fs" stroke-width="2"/>
+<circle cx="281.64" cy="258" r="5" class="sa fs" stroke-width="2"/>
+<polygon points="216.96,278 222.96,289 210.96,289" class="swn fs" stroke-width="2"/>
+<polygon points="234.6,292 240.6,303 228.6,303" class="swn fs" stroke-width="2"/>
+<circle cx="252.24" cy="290" r="5" class="sa fs" stroke-width="2"/>
+<polygon points="228.72,264 234.72,275 222.72,275" class="swn fs" stroke-width="2"/>
+<circle cx="264" cy="274" r="5" class="sa fs" stroke-width="2"/>
+<polygon points="205.2,290 211.2,301 199.2,301" class="swn fs" stroke-width="2"/>
+<polygon points="257.79,255.33 266.79,264.33 257.79,273.33 248.79,264.33" class="ft sa" stroke-width="2.5"/>
+<polygon points="236,220.43 245,229.43 236,238.43 227,229.43" class="ft sok" stroke-width="2.5"/>
+<polygon points="207.55,268.6 216.55,277.6 207.55,286.6 198.55,277.6" class="ft swn" stroke-width="2.5"/>
+<text x="12" y="340" class="tb">◆ ＝中心。形と線の色が同じ中心のグループ</text>
+<text x="12" y="364">②と③をくり返し、割り当てが</text>
+<text x="12" y="384">変わらなくなったら終わり</text>
+<line x1="12" y1="398" x2="308" y2="398" class="l sb w1"/>
+<text x="12" y="420" class="tb">k は事前に決める</text>
+<text x="12" y="440">最初の中心の置き方で結果が変わる</text>
+<text x="12" y="460">階層をつくらない（非階層型）</text>
+</svg>

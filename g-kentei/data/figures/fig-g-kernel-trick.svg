@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 500" role="img" aria-labelledby="fig-g-kernel-trick-t fig-g-kernel-trick-d">
+<title id="fig-g-kernel-trick-t">カーネルトリック：高次元に写すと直線で分けられる</title>
+<desc id="fig-g-kernel-trick-d">上は1次元の数直線。中央に×、両端に丸が並び、1点で区切っては分けられない。各点 x を (x, x の2乗) の2次元に写すと、丸は上、×は下に来て、水平な直線1本で分けられる。カーネルトリックは、この写像φを実際には計算せず、写した先での内積をカーネル関数で直接求める工夫である。</desc>
+<text x="12" y="20" class="tb">① 元の空間（1次元）</text>
+<line x1="20" y1="56" x2="300" y2="56" class="l sm w1"/>
+<circle cx="34" cy="56" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="59.2" cy="56" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="260.8" cy="56" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="286" cy="56" r="6" class="fs sa" stroke-width="2"/>
+<line x1="117.2" y1="51" x2="127.2" y2="61" class="l sng w2"/>
+<line x1="117.2" y1="61" x2="127.2" y2="51" class="l sng w2"/>
+<line x1="155" y1="51" x2="165" y2="61" class="l sng w2"/>
+<line x1="155" y1="61" x2="165" y2="51" class="l sng w2"/>
+<line x1="188.6" y1="51" x2="198.6" y2="61" class="l sng w2"/>
+<line x1="188.6" y1="61" x2="198.6" y2="51" class="l sng w2"/>
+<text x="12" y="88" class="tm">×が丸にはさまれ、1点では区切れない</text>
+<line x1="160" y1="100" x2="160" y2="122.8" class="l ta w2"/>
+<polygon points="160,130 155.5,122.8 164.5,122.8" class="fa"/>
+<text x="172" y="120" class="tb ta">写像 φ：x → (x, x²)</text>
+<text x="12" y="160" class="tb">② 写した空間（2次元）</text>
+<rect x="40" y="176" width="260" height="160" class="sb" stroke-width="1"/>
+<line x1="40" y1="320" x2="300" y2="320" class="l sm w1"/>
+<line x1="170" y1="176" x2="170" y2="336" class="l sm w1"/>
+<text x="296" y="314" class="tm" text-anchor="end">x</text>
+<text x="176" y="190" class="tm">x²</text>
+<polyline points="50,185 54,193.85 58,202.4 62,210.65 66,218.6 70,226.25 74,233.6 78,240.65 82,247.4 86,253.85 90,260 94,265.85 98,271.4 102,276.65 106,281.6 110,286.25 114,290.6 118,294.65 122,298.4 126,301.85 130,305 134,307.85 138,310.4 142,312.65 146,314.6 150,316.25 154,317.6 158,318.65 162,319.4 166,319.85 170,320 174,319.85 178,319.4 182,318.65 186,317.6 190,316.25 194,314.6 198,312.65 202,310.4 206,307.85 210,305 214,301.85 218,298.4 222,294.65 226,290.6 230,286.25 234,281.6 238,276.65 242,271.4 246,265.85 250,260 254,253.85 258,247.4 262,240.65 266,233.6 270,226.25 274,218.6 278,210.65 282,202.4 286,193.85 290,185" class="l sm dot"/>
+<circle cx="50" cy="185" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="74" cy="233.6" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="266" cy="233.6" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="290" cy="185" r="6" class="fs sa" stroke-width="2"/>
+<line x1="129" y1="302.85" x2="139" y2="312.85" class="l sng w2"/>
+<line x1="129" y1="312.85" x2="139" y2="302.85" class="l sng w2"/>
+<line x1="165" y1="315" x2="175" y2="325" class="l sng w2"/>
+<line x1="165" y1="325" x2="175" y2="315" class="l sng w2"/>
+<line x1="197" y1="305.4" x2="207" y2="315.4" class="l sng w2"/>
+<line x1="197" y1="315.4" x2="207" y2="305.4" class="l sng w2"/>
+<line x1="40" y1="272" x2="300" y2="272" class="l sok w2"/>
+<text x="48" y="264" class="tb tok">水平な直線で分けられる</text>
+<text x="12" y="366" class="tm">点線：放物線 y＝x²（点はこの上にのる）</text>
+<line x1="12" y1="380" x2="308" y2="380" class="l sb w1"/>
+<text x="12" y="402" class="tb">カーネルトリック</text>
+<text x="12" y="424">φ を実際には計算しない。</text>
+<text x="12" y="444">写した先の内積 φ(x)·φ(x′) を、</text>
+<text x="12" y="464">カーネル関数 K(x, x′) で直接求める。</text>
+<text x="12" y="488" class="tm">→ 計算が軽くなる</text>
+</svg>

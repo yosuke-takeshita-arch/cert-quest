@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 546" role="img" aria-labelledby="fig-g-transformer-t fig-g-transformer-d">
+<title id="fig-g-transformer-t">Transformer の構成</title>
+<desc id="fig-g-transformer-d">左にエンコーダ、右にデコーダを、それぞれN段積んだ構成図。入力の単語は、埋め込みに位置エンコーディングを足してから入る。エンコーダの各段は、Self-Attention とフィードフォワードで、それぞれに残差接続と正規化がつく。デコーダの各段は、Masked Self-Attention、Source-Target Attention、フィードフォワードの順で、エンコーダの出力は Source-Target Attention に渡される。Attention はすべてマルチヘッドで、複数のヘッドで並列に計算して連結する。RNN も畳み込みも使わないので、並列に計算できる。</desc>
+<text x="168" y="36" class="tb">デコーダ ×N</text>
+<rect x="168" y="44" width="140" height="224" class="fs sb" stroke-width="1.5"/>
+<rect x="176" y="52" width="124" height="60" class="fs sb" stroke-width="1.5"/>
+<text x="238" y="77.5" text-anchor="middle">フィードフォワード</text>
+<text x="238" y="95.5" class="tm" text-anchor="middle">＋残差・正規化</text>
+<rect x="176" y="124" width="124" height="60" class="fas sa" stroke-width="1.5"/>
+<text x="238" y="140.5" text-anchor="middle">Source-Target</text>
+<text x="238" y="158.5" text-anchor="middle">Attention</text>
+<text x="238" y="176.5" class="tm" text-anchor="middle">＋残差・正規化</text>
+<rect x="176" y="196" width="124" height="60" class="fas sa" stroke-width="1.5"/>
+<text x="238" y="212.5" text-anchor="middle">Masked</text>
+<text x="238" y="230.5" text-anchor="middle">Self-Attention</text>
+<text x="238" y="248.5" class="tm" text-anchor="middle">＋残差・正規化</text>
+<text x="12" y="112" class="tb">エンコーダ ×N</text>
+<rect x="12" y="120" width="140" height="148" class="fs sb" stroke-width="1.5"/>
+<rect x="20" y="124" width="124" height="60" class="fs sb" stroke-width="1.5"/>
+<text x="82" y="149.5" text-anchor="middle">フィードフォワード</text>
+<text x="82" y="167.5" class="tm" text-anchor="middle">＋残差・正規化</text>
+<rect x="20" y="196" width="124" height="60" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="221.5" text-anchor="middle">Self-Attention</text>
+<text x="82" y="239.5" class="tm" text-anchor="middle">＋残差・正規化</text>
+<rect x="12" y="296" width="140" height="56" class="fas sok" stroke-width="1.5"/>
+<text x="82" y="310.5" text-anchor="middle">単語の</text>
+<text x="82" y="328.5" text-anchor="middle">埋め込み＋</text>
+<text x="82" y="346.5" text-anchor="middle">位置エンコーディング</text>
+<line x1="82" y1="296" x2="82" y2="270" class="l w2"/>
+<polyline points="85.85,277 82,270 78.15,277" class="l w2"/>
+<text x="82" y="374" class="tm" text-anchor="middle">入力の単語</text>
+<rect x="168" y="296" width="140" height="56" class="fas sok" stroke-width="1.5"/>
+<text x="238" y="310.5" text-anchor="middle">単語の</text>
+<text x="238" y="328.5" text-anchor="middle">埋め込み＋</text>
+<text x="238" y="346.5" text-anchor="middle">位置エンコーディング</text>
+<line x1="238" y1="296" x2="238" y2="270" class="l w2"/>
+<polyline points="241.85,277 238,270 234.15,277" class="l w2"/>
+<text x="238" y="374" class="tm" text-anchor="middle">これまでに出した単語</text>
+<line x1="102" y1="120" x2="102" y2="90" class="l w2"/>
+<polyline points="105.85,97 102,90 98.15,97" class="l w2"/>
+<line x1="102" y1="90" x2="159" y2="90" class="l w2"/>
+<line x1="159" y1="90" x2="159" y2="154" class="l w2"/>
+<line x1="159" y1="154" x2="175" y2="154" class="l w2"/>
+<polyline points="168,157.85 175,154 168,150.15" class="l w2"/>
+<line x1="238" y1="44" x2="238" y2="24" class="l w2"/>
+<polyline points="241.85,31 238,24 234.15,31" class="l w2"/>
+<text x="12" y="62" class="tm">キー・バリュー</text>
+<text x="12" y="80" class="tm">として渡す</text>
+<line x1="12" y1="398" x2="308" y2="398" class="l sb w1"/>
+<text x="12" y="422" class="tb">RNN も畳み込みも使わない</text>
+<text x="12" y="442" class="tb">→ 並列に計算できる</text>
+<text x="12" y="468">位置エンコーディング：語順の情報を足す</text>
+<text x="12" y="488" class="tm">（元の論文は sin・cos の波）</text>
+<text x="12" y="514">Attention はすべて Multi-Head</text>
+<text x="12" y="534" class="tm">複数のヘッドで並列に計算して連結</text>
+</svg>

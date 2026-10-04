@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 712" role="img" aria-labelledby="fig-g-lstm-gru-t fig-g-lstm-gru-d">
+<title id="fig-g-lstm-gru-t">LSTM のセルとゲート、GRU との比較</title>
+<desc id="fig-g-lstm-gru-d">上は LSTM。中央を横切る太い線がセル（CEC）で、誤差を一定に流す。入力ゲートは新しい情報の書き込み、出力ゲートはセルの中身の読み出しを開け閉めする。忘却ゲートはセルの中身を消すゲートで、1997年の原論文には無く、のちに追加された。ゲートはシグモイドで0から1の値を出し、掛け算で通す量を決める。中は GRU。セルは無く、リセットゲートと更新ゲートの2つで状態を作り直す。下の表の通り、LSTM はゲート3つ・セルあり、GRU はゲート2つ・セルなしで、パラメータが少ない。</desc>
+<text x="12" y="20" class="tb">① LSTM</text>
+<text x="12" y="42" class="tb ta">セル（CEC）：誤差を一定に流す太い線</text>
+<line x1="16" y1="64" x2="296" y2="64" class="l sa w3"/>
+<polyline points="288,58 300,64 288,70" class="l sa w3"/>
+<circle cx="64" cy="64" r="9" class="fs l dsh"/>
+<text x="64" y="68.5" class="tb" text-anchor="middle">×</text>
+<circle cx="64" cy="108" r="12" class="fas sa dsh"/>
+<text x="64" y="112.5" class="tb" text-anchor="middle">σ</text>
+<line x1="64" y1="96" x2="64" y2="75" class="l w2"/>
+<polyline points="67.85,82 64,75 60.15,82" class="l w2"/>
+<circle cx="140" cy="64" r="9" class="fs l"/>
+<line x1="135" y1="64" x2="145" y2="64" class="l w2"/>
+<line x1="140" y1="59" x2="140" y2="69" class="l w2"/>
+<circle cx="140" cy="108" r="9" class="fs l"/>
+<text x="140" y="112.5" class="tb" text-anchor="middle">×</text>
+<rect x="100" y="146" width="80" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="140" y="163.5" text-anchor="middle">新しい情報</text>
+<line x1="140" y1="146" x2="140" y2="119" class="l w2"/>
+<polyline points="143.85,126 140,119 136.15,126" class="l w2"/>
+<line x1="140" y1="98" x2="140" y2="75" class="l w2"/>
+<polyline points="143.85,82 140,75 136.15,82" class="l w2"/>
+<circle cx="196" cy="108" r="12" class="fas sa"/>
+<text x="196" y="112.5" class="tb" text-anchor="middle">σ</text>
+<line x1="184" y1="108" x2="151" y2="108" class="l w2"/>
+<polyline points="158,104.15 151,108 158,111.85" class="l w2"/>
+<line x1="236" y1="64" x2="236" y2="90" class="l w2"/>
+<circle cx="236" cy="108" r="9" class="fs l"/>
+<text x="236" y="112.5" class="tb" text-anchor="middle">×</text>
+<line x1="236" y1="90" x2="236" y2="98" class="l w2"/>
+<polyline points="232.15,91 236,98 239.85,91" class="l w2"/>
+<circle cx="284" cy="108" r="12" class="fas sa"/>
+<text x="284" y="112.5" class="tb" text-anchor="middle">σ</text>
+<line x1="272" y1="108" x2="247" y2="108" class="l w2"/>
+<polyline points="254,104.15 247,108 254,111.85" class="l w2"/>
+<rect x="206" y="146" width="60" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="236" y="163.5" text-anchor="middle">出力</text>
+<line x1="236" y1="118" x2="236" y2="146" class="l w2"/>
+<polyline points="232.15,139 236,146 239.85,139" class="l w2"/>
+<text x="64" y="138" class="tb" text-anchor="middle">忘却</text>
+<text x="64" y="156" class="tm" text-anchor="middle">のちに追加</text>
+<text x="196" y="138" class="tb" text-anchor="middle">入力</text>
+<text x="284" y="138" class="tb" text-anchor="middle">出力</text>
+<text x="12" y="198" class="tm">σ：0〜1 を出す　×：通す量を掛ける</text>
+<text x="12" y="222">入力ゲート：新しい情報の書き込み</text>
+<text x="12" y="242">出力ゲート：セルの中身の読み出し</text>
+<text x="12" y="262">忘却ゲート：セルの中身を消す</text>
+<text x="12" y="284" class="tb twn">1997年の原論文は、入力と出力の2つだけ</text>
+<line x1="12" y1="304" x2="308" y2="304" class="l sb w1"/>
+<text x="12" y="328" class="tb">② GRU（セルを持たない）</text>
+<text x="70" y="346" class="tm">そのまま通る道</text>
+<line x1="43" y1="413" x2="43" y2="352" class="l sm w2"/>
+<line x1="43" y1="352" x2="236" y2="352" class="l sm w2"/>
+<line x1="236" y1="352" x2="236" y2="415" class="l sm w2"/>
+<polyline points="232.15,408 236,415 239.85,408" class="l sm w2"/>
+<rect x="12" y="413" width="62" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="43" y="430.5" text-anchor="middle">h(t−1)</text>
+<line x1="74" y1="426" x2="95" y2="426" class="l w2"/>
+<polyline points="88,429.85 95,426 88,422.15" class="l w2"/>
+<circle cx="106" cy="426" r="9" class="fs l"/>
+<text x="106" y="430.5" class="tb" text-anchor="middle">×</text>
+<line x1="116" y1="426" x2="130" y2="426" class="l w2"/>
+<polyline points="123,429.85 130,426 123,422.15" class="l w2"/>
+<circle cx="106" cy="380" r="12" class="fas sa"/>
+<text x="106" y="384.5" class="tb" text-anchor="middle">σ</text>
+<line x1="106" y1="392" x2="106" y2="416" class="l w2"/>
+<polyline points="102.15,409 106,416 109.85,409" class="l w2"/>
+<rect x="130" y="413" width="70" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="165" y="430.5" text-anchor="middle">新しい候補</text>
+<line x1="200" y1="426" x2="216" y2="426" class="l w2"/>
+<polyline points="209,429.85 216,426 209,422.15" class="l w2"/>
+<circle cx="226" cy="426" r="9" class="fs l"/>
+<text x="226" y="430.5" class="tb" text-anchor="middle">×</text>
+<line x1="236" y1="426" x2="252" y2="426" class="l w2"/>
+<polyline points="245,429.85 252,426 245,422.15" class="l w2"/>
+<circle cx="196" cy="380" r="12" class="fas sa"/>
+<text x="196" y="384.5" class="tb" text-anchor="middle">σ</text>
+<line x1="202" y1="392" x2="220" y2="418" class="l w2"/>
+<polyline points="212.85,414.44 220,418 219.18,410.05" class="l w2"/>
+<rect x="252" y="413" width="56" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="280" y="430.5" text-anchor="middle">h(t)</text>
+<text x="106" y="456" class="tb" text-anchor="middle">リセット</text>
+<text x="226" y="456" class="tb" text-anchor="middle">更新</text>
+<text x="12" y="488">リセットゲート：前の状態を無視するか</text>
+<text x="12" y="508">更新ゲート：新しい候補でどれだけ更新するか</text>
+<line x1="12" y1="528" x2="308" y2="528" class="l sb w1"/>
+<text x="12" y="552" class="tb">③ くらべる</text>
+<text x="218" y="574" class="tb ta" text-anchor="middle">LSTM</text>
+<text x="290" y="574" class="tb tok" text-anchor="middle">GRU</text>
+<line x1="12" y1="582" x2="308" y2="582" class="l sb w1"/>
+<text x="12" y="600">ゲートの数</text>
+<text x="218" y="600" class="tb" text-anchor="middle">3つ</text>
+<text x="290" y="600" class="tb" text-anchor="middle">2つ</text>
+<line x1="12" y1="608" x2="308" y2="608" class="l sb w1"/>
+<text x="12" y="626">セル</text>
+<text x="218" y="626" class="tb" text-anchor="middle">あり</text>
+<text x="290" y="626" class="tb" text-anchor="middle">なし</text>
+<line x1="12" y1="634" x2="308" y2="634" class="l sb w1"/>
+<text x="12" y="652">重みの組</text>
+<text x="218" y="652" class="tb" text-anchor="middle">4つ</text>
+<text x="290" y="652" class="tb" text-anchor="middle">3つ</text>
+<text x="12" y="678" class="tm">重みの組は PyTorch の実装での数</text>
+<text x="12" y="700" class="tb">GRU のほうがパラメータが少ない</text>
+</svg>

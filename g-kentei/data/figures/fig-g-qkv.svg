@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 774" role="img" aria-labelledby="fig-g-qkv-t fig-g-qkv-d">
+<title id="fig-g-qkv-t">Attention の計算（クエリ・キー・バリュー）と、デコーダのマスク</title>
+<desc id="fig-g-qkv-d">上は3単語の文での Attention の計算。単語1のクエリと各単語のキーの内積（類似度）をスコアとし、ソフトマックスで合計1の重みにして、その重みで各バリューを足し合わせ、単語1の新しい表現にする。検索にたとえると、クエリが検索語、キーが記事のタイトル、バリューが記事の本文。下はデコーダの Self-Attention のマスク。4×4のスコアの表で、各位置から見て後ろの位置（右上の三角）のスコアを マイナス無限大 にすると、ソフトマックスのあと重みが0になり、未来の位置を見ない。</desc>
+<text x="12" y="20" class="tb">① 重みを求めて、バリューを足す</text>
+<rect x="150" y="34" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="172" y="51.5" class="tb" text-anchor="middle">猫</text>
+<rect x="204" y="34" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="51.5" class="tb" text-anchor="middle">が</text>
+<rect x="258" y="34" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="280" y="51.5" class="tb" text-anchor="middle">好き</text>
+<text x="12" y="88.5">キー k</text>
+<rect x="154" y="73" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="172" y="88.5" class="tb" text-anchor="middle">k1</text>
+<rect x="208" y="73" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="88.5" class="tb" text-anchor="middle">k2</text>
+<rect x="262" y="73" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="280" y="88.5" class="tb" text-anchor="middle">k3</text>
+<text x="12" y="118.5">バリュー v</text>
+<rect x="154" y="103" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="172" y="118.5" class="tb" text-anchor="middle">v1</text>
+<rect x="208" y="103" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="118.5" class="tb" text-anchor="middle">v2</text>
+<rect x="262" y="103" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="280" y="118.5" class="tb" text-anchor="middle">v3</text>
+<text x="12" y="152" class="tb ta">単語1のクエリ</text>
+<rect x="104" y="141" width="36" height="22" class="fas sa" stroke-width="1.5"/>
+<text x="122" y="156" class="tb ta" text-anchor="middle">q1</text>
+<text x="12" y="194.5">q1・k の内積</text>
+<text x="172" y="194.5" class="tb" text-anchor="middle">2.0</text>
+<text x="226" y="194.5" class="tb" text-anchor="middle">0.7</text>
+<text x="280" y="194.5" class="tb" text-anchor="middle">0.0</text>
+<text x="12" y="212" class="tm">（類似度のスコア）</text>
+<text x="12" y="248.5">ソフトマックス</text>
+<text x="172" y="248.5" class="tb ta" text-anchor="middle">0.71</text>
+<rect x="158" y="256" width="28" height="6" class="fa"/>
+<text x="226" y="248.5" class="tb ta" text-anchor="middle">0.19</text>
+<rect x="212" y="256" width="7.49" height="6" class="fa"/>
+<text x="280" y="248.5" class="tb ta" text-anchor="middle">0.10</text>
+<rect x="266" y="256" width="3.94" height="6" class="fa"/>
+<text x="12" y="266" class="tm">＝重み（合計1）</text>
+<line x1="226" y1="290" x2="226" y2="306" class="l w2"/>
+<polyline points="222.15,299 226,306 229.85,299" class="l w2"/>
+<rect x="40" y="308" width="240" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="325.5" text-anchor="middle">新しい表現（単語1）</text>
+<text x="160" y="343.5" text-anchor="middle">＝ 重み × v を足し合わせる</text>
+<text x="12" y="376" class="tm">実際はスコアを √dk で割って整える</text>
+<rect x="12" y="392" width="296" height="78" class="fs sb" stroke-width="1"/>
+<text x="24" y="414" class="tb">検索にたとえると</text>
+<text x="24" y="434">q＝検索語　k＝記事のタイトル</text>
+<text x="24" y="454">v＝記事の本文</text>
+<line x1="12" y1="488" x2="308" y2="488" class="l sb w1"/>
+<text x="12" y="512" class="tb">② デコーダでは、後ろの位置を隠す</text>
+<text x="12" y="532" class="tm">行＝今の位置　列＝見る位置</text>
+<text x="90" y="552" class="tb" text-anchor="middle">スコア</text>
+<text x="236" y="552" class="tb" text-anchor="middle">ソフトマックス後</text>
+<text x="40.5" y="568" class="tm" text-anchor="middle">1</text>
+<text x="73.5" y="568" class="tm" text-anchor="middle">2</text>
+<text x="106.5" y="568" class="tm" text-anchor="middle">3</text>
+<text x="139.5" y="568" class="tm" text-anchor="middle">4</text>
+<text x="12" y="591.5" class="tm">1</text>
+<rect x="24" y="572" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="591.5" class="tb" text-anchor="middle">1.2</text>
+<rect x="170" y="572" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="591.5" class="tb" text-anchor="middle">1.00</text>
+<rect x="57" y="572" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="73.5" y="591.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="203" y="572" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="219.5" y="591.5" class="tm" text-anchor="middle">0</text>
+<rect x="90" y="572" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="106.5" y="591.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="236" y="572" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="252.5" y="591.5" class="tm" text-anchor="middle">0</text>
+<rect x="123" y="572" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="139.5" y="591.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="269" y="572" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="285.5" y="591.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="621.5" class="tm">2</text>
+<rect x="24" y="602" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="621.5" class="tb" text-anchor="middle">0.5</text>
+<rect x="170" y="602" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="621.5" class="tb" text-anchor="middle">0.27</text>
+<rect x="57" y="602" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="73.5" y="621.5" class="tb" text-anchor="middle">1.5</text>
+<rect x="203" y="602" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="219.5" y="621.5" class="tb" text-anchor="middle">0.73</text>
+<rect x="90" y="602" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="106.5" y="621.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="236" y="602" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="252.5" y="621.5" class="tm" text-anchor="middle">0</text>
+<rect x="123" y="602" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="139.5" y="621.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="269" y="602" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="285.5" y="621.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="651.5" class="tm">3</text>
+<rect x="24" y="632" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="651.5" class="tb" text-anchor="middle">0.3</text>
+<rect x="170" y="632" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="651.5" class="tb" text-anchor="middle">0.20</text>
+<rect x="57" y="632" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="73.5" y="651.5" class="tb" text-anchor="middle">0.9</text>
+<rect x="203" y="632" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="219.5" y="651.5" class="tb" text-anchor="middle">0.36</text>
+<rect x="90" y="632" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="106.5" y="651.5" class="tb" text-anchor="middle">1.1</text>
+<rect x="236" y="632" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="252.5" y="651.5" class="tb" text-anchor="middle">0.44</text>
+<rect x="123" y="632" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="139.5" y="651.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="269" y="632" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="285.5" y="651.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="681.5" class="tm">4</text>
+<rect x="24" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="681.5" class="tb" text-anchor="middle">0.8</text>
+<rect x="170" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="681.5" class="tb" text-anchor="middle">0.28</text>
+<rect x="57" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="73.5" y="681.5" class="tb" text-anchor="middle">0.2</text>
+<rect x="203" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="219.5" y="681.5" class="tb" text-anchor="middle">0.15</text>
+<rect x="90" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="106.5" y="681.5" class="tb" text-anchor="middle">0.6</text>
+<rect x="236" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="252.5" y="681.5" class="tb" text-anchor="middle">0.23</text>
+<rect x="123" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="139.5" y="681.5" class="tb" text-anchor="middle">1.0</text>
+<rect x="269" y="662" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="285.5" y="681.5" class="tb" text-anchor="middle">0.34</text>
+<line x1="158" y1="632" x2="166" y2="632" class="l w2"/>
+<polyline points="159,635.85 166,632 159,628.15" class="l w2"/>
+<text x="12" y="720" class="tb">右上（後ろの位置）は −∞ にする</text>
+<text x="12" y="742">→ ソフトマックスで重みが0になり、</text>
+<text x="12" y="762">　 未来の位置を見ない</text>
+</svg>

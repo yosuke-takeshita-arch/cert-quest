@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 474" role="img" aria-labelledby="fig-g-knn-t fig-g-knn-d">
+<title id="fig-g-knn-t">k 近傍法：k で答えが変わる</title>
+<desc id="fig-g-knn-d">平面にクラスA（丸）とクラスB（四角）の点があり、中央の星が新しいデータ。星に近い順に、1番目がA、2番目がB、3番目がB、4番目がA、5番目がA。k＝1の円には1番目だけが入り、Aなので答えはA。k＝3の円には1から3番目が入り、A1つ、B2つの多数決でB。k＝5の円には5つが入り、A3つ、B2つでA。kを変えると答えが変わる。</desc>
+<text x="12" y="20" class="tb">星を、近い k 個の多数決で決める</text>
+<rect x="12" y="28" width="296" height="264" class="sb" stroke-width="1"/>
+<circle cx="160" cy="160" r="102" class="sok w2 dot"/>
+<circle cx="160" cy="160" r="68" class="swn w2 dsh"/>
+<circle cx="160" cy="160" r="36" class="sa w2"/>
+<text x="160" y="120" class="tb ta" text-anchor="middle">k=1</text>
+<text x="160" y="88" class="tb twn" text-anchor="middle">k=3</text>
+<text x="160" y="54" class="tb tok" text-anchor="middle">k=5</text>
+<circle cx="131.81" cy="170.26" r="6" class="fs sa" stroke-width="2"/>
+<rect x="192.8" y="122.36" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<rect x="185.5" y="208.19" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<circle cx="106.01" cy="95.65" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="252.73" cy="184.85" r="6" class="fs sa" stroke-width="2"/>
+<rect x="265.38" y="114.14" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<circle cx="47.62" cy="212.4" r="6" class="fs sa" stroke-width="2"/>
+<rect x="125.51" y="262.68" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<circle cx="47.24" cy="118.96" r="6" class="fs sa" stroke-width="2"/>
+<rect x="94.09" y="57.82" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<circle cx="221" cy="265.66" r="6" class="fs sa" stroke-width="2"/>
+<polygon points="160,149 162.94,155.95 170.46,156.6 164.76,161.55 166.47,168.9 160,165 153.53,168.9 155.24,161.55 149.54,156.6 157.06,155.95" class="ft"/>
+<text x="12" y="322" class="tm">○：クラスA　■：クラスB</text>
+<text x="12" y="354" class="tb ta">k=1：A 1点・B 0点 → A</text>
+<text x="12" y="380" class="tb twn">k=3：A 1点・B 2点 → B</text>
+<text x="12" y="406" class="tb tok">k=5：A 3点・B 2点 → A</text>
+<text x="12" y="440" class="tb">k を変えると、答えが変わることがある</text>
+<text x="12" y="462" class="tm">k が大きい：ノイズに強いが、境界はぼやける</text>
+</svg>

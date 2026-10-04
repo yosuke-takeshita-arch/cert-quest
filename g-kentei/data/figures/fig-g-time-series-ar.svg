@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 448" role="img" aria-labelledby="fig-g-time-series-ar-t fig-g-time-series-ar-d">
+<title id="fig-g-time-series-ar-t">自己回帰モデル（AR）とベクトル自己回帰モデル（VAR）</title>
+<desc id="fig-g-time-series-ar-d">上は自己回帰モデル。1本の時系列の、今の値を、同じ系列の1つ前と2つ前の値（ラグ）から予測する。矢印は同じ系列の中だけを通る。下はベクトル自己回帰モデル。金利と為替の2本の時系列があり、それぞれの今の値を、自分の過去の値と相手の過去の値の両方から予測する。矢印が系列の間で交差する。</desc>
+<text x="12" y="20" class="tb">① AR：自分の過去から（1本）</text>
+<text x="64" y="46" class="tm" text-anchor="middle">2つ前</text>
+<text x="152" y="46" class="tm" text-anchor="middle">1つ前</text>
+<text x="240" y="46" class="tm" text-anchor="middle">今</text>
+<rect x="32" y="60" width="64" height="28" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="64" y="79" class="tb" text-anchor="middle">y(t−2)</text>
+<rect x="120" y="60" width="64" height="28" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="152" y="79" class="tb" text-anchor="middle">y(t−1)</text>
+<rect x="208" y="60" width="64" height="28" class="fas sa" stroke-width="1.5" rx="5"/>
+<text x="240" y="79" class="tb" text-anchor="middle">y(t)</text>
+<line x1="64" y1="88" x2="64" y2="100" class="l sa w2"/>
+<line x1="64" y1="100" x2="234" y2="100" class="l sa w2"/>
+<line x1="234" y1="100" x2="234" y2="95.6" class="l sa w2"/>
+<polygon points="234,90 237.5,95.6 230.5,95.6" class="fa"/>
+<line x1="186" y1="74" x2="199.6" y2="74" class="l sa w2"/>
+<polygon points="206,74 199.6,78 199.6,70" class="fa"/>
+<text x="12" y="128" class="tm">矢印は同じ系列の中だけを通る</text>
+<line x1="12" y1="144" x2="308" y2="144" class="l sb w1"/>
+<text x="12" y="168" class="tb">② VAR：互いの過去からも（複数本）</text>
+<text x="64" y="194" class="tm" text-anchor="middle">2つ前</text>
+<text x="152" y="194" class="tm" text-anchor="middle">1つ前</text>
+<text x="240" y="194" class="tm" text-anchor="middle">今</text>
+<text x="12" y="202" class="tb ta">金利</text>
+<rect x="32" y="208" width="64" height="28" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="64" y="227" class="tb" text-anchor="middle">a(t−2)</text>
+<rect x="120" y="208" width="64" height="28" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="152" y="227" class="tb" text-anchor="middle">a(t−1)</text>
+<rect x="208" y="208" width="64" height="28" class="fas sa" stroke-width="1.5" rx="5"/>
+<text x="240" y="227" class="tb" text-anchor="middle">a(t)</text>
+<text x="12" y="260" class="tb twn">為替</text>
+<rect x="32" y="266" width="64" height="28" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="64" y="285" class="tb" text-anchor="middle">b(t−2)</text>
+<rect x="120" y="266" width="64" height="28" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="152" y="285" class="tb" text-anchor="middle">b(t−1)</text>
+<rect x="208" y="266" width="64" height="28" class="fwn swn" stroke-width="1.5" rx="5"/>
+<text x="240" y="285" class="tb" text-anchor="middle">b(t)</text>
+<line x1="186" y1="222" x2="199.6" y2="222" class="l sa w2"/>
+<polygon points="206,222 199.6,226 199.6,218" class="fa"/>
+<line x1="186" y1="280" x2="199.6" y2="280" class="l swn w2"/>
+<polygon points="206,280 199.6,284 199.6,276" class="fm"/>
+<line x1="180" y1="234" x2="207.61" y2="263.34" class="l swn w2"/>
+<polygon points="212,268 204.7,266.08 210.53,260.6" class="fm"/>
+<line x1="180" y1="268" x2="207.61" y2="238.66" class="l sa w2"/>
+<polygon points="212,234 210.53,241.4 204.7,235.92" class="fa"/>
+<text x="12" y="332" class="tb tng">矢印が系列の間で交差する</text>
+<text x="12" y="352" class="tm">（今の値を、自分と相手の過去から予測）</text>
+<text x="12" y="372" class="tm">（VAR の図は、ラグ1つ分の矢印だけ）</text>
+<line x1="12" y1="390" x2="308" y2="390" class="l sb w1"/>
+<text x="12" y="414" class="tb">AR：1本の時系列の自分の過去から</text>
+<text x="12" y="436" class="tb">VAR：複数の時系列を、まとめて同時に</text>
+</svg>

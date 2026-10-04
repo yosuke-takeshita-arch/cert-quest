@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 564" role="img" aria-labelledby="fig-g-self-supervised-t fig-g-self-supervised-d">
+<title id="fig-g-self-supervised-t">教師あり・半教師あり・自己教師あり学習</title>
+<desc id="fig-g-self-supervised-d">教師あり学習は、すべてのデータに人が付けたラベルがある。半教師あり学習は、少量のラベル付きデータと大量のラベルなしデータを組み合わせる。自己教師あり学習は、ラベルを使わず、データそのものから疑似的な正解を作って学ぶ。例は2つ。1つは、文の一部を隠して当てる（BERT の Masked Language Model）。もう1つは対照学習（SimCLR）で、同じ画像に2通りのデータ拡張をかけた2枚の表現を近づけ、別の画像から作ったものとは遠ざける。</desc>
+<text x="12" y="20" class="tb">教師あり：全部にラベル</text>
+<rect x="12" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="41" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="53" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="70" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="99" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="111" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="128" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="140" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="157" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="169" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="186" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="198" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="215" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="227" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="244" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="256" y="49" class="tb ta" text-anchor="middle">正</text>
+<rect x="273" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="285" y="49" class="tb ta" text-anchor="middle">正</text>
+<text x="12" y="82" class="tm">すべてのデータに、人が付けた正解</text>
+<line x1="12" y1="98" x2="308" y2="98" class="l sb w1"/>
+<text x="12" y="122" class="tb">半教師あり：少しのラベル＋大量のラベルなし</text>
+<rect x="12" y="134" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="151" class="tb ta" text-anchor="middle">正</text>
+<rect x="41" y="134" width="24" height="24" class="fas sa" stroke-width="1.5"/>
+<text x="53" y="151" class="tb ta" text-anchor="middle">正</text>
+<rect x="70" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="82" y="151" class="tm" text-anchor="middle">？</text>
+<rect x="99" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="111" y="151" class="tm" text-anchor="middle">？</text>
+<rect x="128" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="140" y="151" class="tm" text-anchor="middle">？</text>
+<rect x="157" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="169" y="151" class="tm" text-anchor="middle">？</text>
+<rect x="186" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="198" y="151" class="tm" text-anchor="middle">？</text>
+<rect x="215" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="227" y="151" class="tm" text-anchor="middle">？</text>
+<rect x="244" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="256" y="151" class="tm" text-anchor="middle">？</text>
+<rect x="273" y="134" width="24" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="285" y="151" class="tm" text-anchor="middle">？</text>
+<text x="12" y="184" class="tm">ラベル付きは少量、ラベルなしは大量</text>
+<line x1="12" y1="200" x2="308" y2="200" class="l sb w1"/>
+<text x="12" y="224" class="tb">自己教師あり：正解をデータから作る</text>
+<text x="12" y="246" class="tm">ラベルは使わない。2つの例</text>
+<text x="12" y="272" class="tb ta">① 一部を隠して当てる（マスク）</text>
+<rect x="12" y="284" width="48" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="36" y="302.5" class="tb" text-anchor="middle">私</text>
+<rect x="64" y="284" width="48" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="88" y="302.5" class="tb" text-anchor="middle">は</text>
+<rect x="116" y="284" width="48" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="140" y="302.5" class="tb" text-anchor="middle">？</text>
+<rect x="168" y="284" width="48" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="192" y="302.5" class="tb" text-anchor="middle">を</text>
+<rect x="220" y="284" width="48" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="244" y="302.5" class="tb" text-anchor="middle">食べた</text>
+<text x="12" y="336" class="tm">隠した語を、まわりから当てる（BERT）</text>
+<text x="12" y="368" class="tb ta">② 同じ画像どうしを近づける（対照学習）</text>
+<rect x="12" y="402" width="70" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="47" y="426.5" class="tb" text-anchor="middle">画像 A</text>
+<line x1="82" y1="412" x2="112" y2="400" class="l w2"/>
+<polyline points="106.93,406.17 112,400 104.07,399.03" class="l w2"/>
+<line x1="82" y1="432" x2="112" y2="444" class="l w2"/>
+<polyline points="104.07,444.97 112,444 106.93,437.83" class="l w2"/>
+<rect x="114" y="386" width="76" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="152" y="404.5" text-anchor="middle">拡張 1</text>
+<rect x="114" y="432" width="76" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="152" y="450.5" text-anchor="middle">拡張 2</text>
+<line x1="152" y1="414" x2="152" y2="432" class="l sok w2"/>
+<text x="198" y="428" class="tb tok">近づける</text>
+<rect x="12" y="486" width="70" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="47" y="510.5" class="tb" text-anchor="middle">別の画像</text>
+<line x1="82" y1="506" x2="220" y2="506" class="l sng w2 dsh"/>
+<text x="228" y="511" class="tb tng">遠ざける</text>
+<text x="12" y="552" class="tm">データ拡張を2通りかけて、組を作る（SimCLR）</text>
+</svg>

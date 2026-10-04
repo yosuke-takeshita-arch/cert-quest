@@ -33,6 +33,9 @@
         "point": "AIは「考える」ことを扱う研究分野で、ロボットのような体（形態）に載っている必要はない。"
       }
     ],
+    "figures": [
+      "fig-g-ai-ml-dl"
+    ],
     "sources": [
       {
         "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは",
@@ -169,7 +172,10 @@
         "url": "http://incompleteideas.net/book/RLbook2020.pdf"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-rl-loop"
+    ]
   },
   {
     "id": "C-01-005",
@@ -204,6 +210,9 @@
         "id": "C-01-006",
         "point": "機械学習一般では特徴量を人が設計する。特徴量まで学ぶのがディープラーニング。"
       }
+    ],
+    "figures": [
+      "fig-g-ai-ml-dl"
     ],
     "sources": [
       {
@@ -246,6 +255,9 @@
         "id": "C-01-005",
         "point": "「ディープラーニング＝AIのすべて」ではない。AI ⊃ 機械学習 ⊃ ディープラーニングの包含関係。"
       }
+    ],
+    "figures": [
+      "fig-g-ai-ml-dl"
     ],
     "sources": [
       {
@@ -791,7 +803,10 @@
         "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-mt-history"
+    ]
   },
   {
     "id": "C-01-020",
@@ -829,6 +844,9 @@
         "url": "https://aclanthology.org/J90-2002.pdf"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-mt-history"
+    ]
   }
 ]

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 556" role="img" aria-labelledby="fig-g-crisp-dm-t fig-g-crisp-dm-d">
+<title id="fig-g-crisp-dm-t">CRISP-DM と CRISP-ML の工程</title>
+<desc id="fig-g-crisp-dm-d">左がCRISP-DMの6フェーズ：ビジネス理解、データ理解、データ準備、モデリング、評価、展開。前の段階に戻ることがある。右がCRISP-MLの工程：ビジネス理解とデータ理解を1つにまとめ（データがあるかが実現可能性を左右するため）、データ準備、モデリング、評価、展開に続き、最後に監視・保守を加えた（環境が変わるとモデルの性能が劣化するため）。違う箇所は色を変えて示す。</desc>
+<text x="12" y="20" class="tb">CRISP-DM</text>
+<text x="188" y="20" class="tb">CRISP-ML</text>
+<rect x="12" y="34" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="72" y="58.5" class="tb" text-anchor="middle">ビジネス理解</text>
+<rect x="12" y="86" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="72" y="110.5" class="tb" text-anchor="middle">データ理解</text>
+<rect x="12" y="138" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="72" y="162.5" class="tb" text-anchor="middle">データ準備</text>
+<rect x="12" y="190" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="72" y="214.5" class="tb" text-anchor="middle">モデリング</text>
+<rect x="12" y="242" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="72" y="266.5" class="tb" text-anchor="middle">評価</text>
+<rect x="12" y="294" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="72" y="318.5" class="tb" text-anchor="middle">展開</text>
+<line x1="72" y1="74" x2="72" y2="86" class="l sm w2"/>
+<polyline points="68.15,79 72,86 75.85,79" class="l sm w2"/>
+<line x1="72" y1="126" x2="72" y2="138" class="l sm w2"/>
+<polyline points="68.15,131 72,138 75.85,131" class="l sm w2"/>
+<line x1="72" y1="178" x2="72" y2="190" class="l sm w2"/>
+<polyline points="68.15,183 72,190 75.85,183" class="l sm w2"/>
+<line x1="72" y1="230" x2="72" y2="242" class="l sm w2"/>
+<polyline points="68.15,235 72,242 75.85,235" class="l sm w2"/>
+<line x1="72" y1="282" x2="72" y2="294" class="l sm w2"/>
+<polyline points="68.15,287 72,294 75.85,287" class="l sm w2"/>
+<rect x="188" y="34" width="120" height="92" class="fwn swn" stroke-width="1.5"/>
+<text x="248" y="75.5" class="tb" text-anchor="middle">ビジネス・データ</text>
+<text x="248" y="93.5" class="tb" text-anchor="middle">理解（1つに）</text>
+<rect x="188" y="138" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="248" y="162.5" class="tb" text-anchor="middle">データ準備</text>
+<rect x="188" y="190" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="248" y="214.5" class="tb" text-anchor="middle">モデリング</text>
+<rect x="188" y="242" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="248" y="266.5" class="tb" text-anchor="middle">評価</text>
+<rect x="188" y="294" width="120" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="248" y="318.5" class="tb" text-anchor="middle">展開</text>
+<rect x="188" y="346" width="120" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="248" y="361.5" class="tb" text-anchor="middle">監視・保守</text>
+<text x="248" y="379.5" class="tb" text-anchor="middle">（追加）</text>
+<line x1="248" y1="126" x2="248" y2="138" class="l sm w2"/>
+<polyline points="244.15,131 248,138 251.85,131" class="l sm w2"/>
+<line x1="248" y1="178" x2="248" y2="190" class="l sm w2"/>
+<polyline points="244.15,183 248,190 251.85,183" class="l sm w2"/>
+<line x1="248" y1="230" x2="248" y2="242" class="l sm w2"/>
+<polyline points="244.15,235 248,242 251.85,235" class="l sm w2"/>
+<line x1="248" y1="282" x2="248" y2="294" class="l sm w2"/>
+<polyline points="244.15,287 248,294 251.85,287" class="l sm w2"/>
+<line x1="248" y1="334" x2="248" y2="346" class="l sm w2"/>
+<polyline points="244.15,339 248,346 251.85,339" class="l sm w2"/>
+<path d="M134 244 Q154 164 134 124" class="l swn w1 dsh"/>
+<polyline points="139.63,127.89 134,124 133.73,130.84" class="l swn w1"/>
+<path d="M186 244 Q166 164 186 124" class="l swn w1 dsh"/>
+<polyline points="186.27,130.84 186,124 180.37,127.89" class="l swn w1"/>
+<line x1="12" y1="402" x2="308" y2="402" class="l sb w1"/>
+<text x="12" y="428" class="tm">点線の矢印：必要なら前の段階に戻る</text>
+<text x="12" y="456" class="tb">橙の箱が CRISP-ML で変わった所</text>
+<text x="12" y="480">・ビジネスとデータの理解を1つに</text>
+<text x="12" y="500" class="tm">　（データの有無が実現可能性を左右）</text>
+<text x="12" y="524">・最後に監視・保守を追加</text>
+<text x="12" y="544" class="tm">　（環境が変わるとモデルが劣化）</text>
+</svg>

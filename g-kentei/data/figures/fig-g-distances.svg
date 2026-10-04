@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-g-distances-t fig-g-distances-d">
+<title id="fig-g-distances-t">距離と類似度：ユークリッド・マンハッタン・チェビシェフ・コサイン</title>
+<desc id="fig-g-distances-d">方眼の上に2点（1,1）と（7,9）。座標の差は横6、縦8。ユークリッド距離は斜めの直線で、差の2乗の和の平方根、6の2乗足す8の2乗の平方根で10。マンハッタン距離は方眼に沿った階段状の道のりで、差の絶対値の和、6足す8で14。チェビシェフ距離は差の絶対値のうち最大のもので8。下はコサイン類似度。原点から出る2本のベクトルのなす角のコサインで、向きが同じなら1、直交なら0、逆向きなら−1。長さには左右されない。例では、なす角45度でコサイン類似度は約0.71。同じ向きで長さが3倍のベクトルとはコサイン類似度が1になる。</desc>
+<text x="12" y="20" class="tb">① 方眼の上の2点の距離</text>
+<rect x="14" y="50" width="160" height="200" class="fs sb" stroke-width="1"/>
+<line x1="34" y1="50" x2="34" y2="250" class="l sb w1"/>
+<line x1="54" y1="50" x2="54" y2="250" class="l sb w1"/>
+<line x1="74" y1="50" x2="74" y2="250" class="l sb w1"/>
+<line x1="94" y1="50" x2="94" y2="250" class="l sb w1"/>
+<line x1="114" y1="50" x2="114" y2="250" class="l sb w1"/>
+<line x1="134" y1="50" x2="134" y2="250" class="l sb w1"/>
+<line x1="154" y1="50" x2="154" y2="250" class="l sb w1"/>
+<line x1="14" y1="230" x2="174" y2="230" class="l sb w1"/>
+<line x1="14" y1="210" x2="174" y2="210" class="l sb w1"/>
+<line x1="14" y1="190" x2="174" y2="190" class="l sb w1"/>
+<line x1="14" y1="170" x2="174" y2="170" class="l sb w1"/>
+<line x1="14" y1="150" x2="174" y2="150" class="l sb w1"/>
+<line x1="14" y1="130" x2="174" y2="130" class="l sb w1"/>
+<line x1="14" y1="110" x2="174" y2="110" class="l sb w1"/>
+<line x1="14" y1="90" x2="174" y2="90" class="l sb w1"/>
+<line x1="14" y1="70" x2="174" y2="70" class="l sb w1"/>
+<polyline points="34,230 34,190 74,190 74,150 114,150 114,110 154,110 154,70" class="l swn w2 dsh"/>
+<line x1="24" y1="230" x2="24" y2="70" class="l sok w2"/>
+<line x1="20" y1="230" x2="28" y2="230" class="l sok w2"/>
+<line x1="20" y1="70" x2="28" y2="70" class="l sok w2"/>
+<line x1="34" y1="230" x2="154" y2="70" class="l sa w3"/>
+<circle cx="34" cy="230" r="5" class="fa"/>
+<circle cx="154" cy="70" r="5" class="fa"/>
+<text x="42" y="248" class="tb">(1, 1)</text>
+<text x="150" y="60" class="tb" text-anchor="end">(7, 9)</text>
+<line x1="184" y1="59" x2="206" y2="59" class="l sa w3"/>
+<text x="212" y="64" class="tb ta">ユークリッド</text>
+<text x="184" y="84">差の2乗和の平方根</text>
+<text x="184" y="104" class="tb">√(6²＋8²)＝10</text>
+<line x1="184" y1="129" x2="206" y2="129" class="l swn w2 dsh"/>
+<text x="212" y="134" class="tb twn">マンハッタン</text>
+<text x="184" y="154">差の絶対値の和</text>
+<text x="184" y="174" class="tb">6＋8＝14</text>
+<line x1="184" y1="199" x2="206" y2="199" class="l sok w2"/>
+<text x="212" y="204" class="tb tok">チェビシェフ</text>
+<text x="184" y="224">差の絶対値の最大</text>
+<text x="184" y="244" class="tb">大きい方 ＝ 8</text>
+<line x1="12" y1="272" x2="308" y2="272" class="l sb w1"/>
+<text x="12" y="300" class="tb">② コサイン類似度：向きだけを見る</text>
+<line x1="40" y1="444" x2="220" y2="444" class="l sa w3"/>
+<polyline points="211,448.95 220,444 211,439.05" class="l sa w3"/>
+<text x="220" y="466" class="tb ta" text-anchor="end">a</text>
+<line x1="40" y1="444" x2="73" y2="411" class="l swn w3"/>
+<polyline points="70.14,420.86 73,411 63.14,413.86" class="l swn w3"/>
+<text x="46" y="408" class="tb twn">b</text>
+<line x1="40" y1="444" x2="139" y2="345" class="l swn w2 dsh"/>
+<polyline points="136.14,354.86 139,345 129.14,347.86" class="l swn w2"/>
+<text x="147" y="345" class="tb twn">3b</text>
+<polyline points="92,444 91.89,440.6 91.56,437.21 91,433.86 90.23,430.54 89.24,427.29 88.04,424.1 86.64,421 85.03,418 83.24,415.11 81.25,412.34 79.1,409.71 76.77,407.23" class="l sm w1"/>
+<text x="98" y="432" class="tm">45°</text>
+<text x="12" y="484" class="tb">a と b：なす角 45°、cos ≈ 0.71</text>
+<text x="12" y="506" class="tb">b と 3b：同じ向きなので cos＝1</text>
+<text x="12" y="526" class="tm">（長さは関係ない）</text>
+<text x="12" y="550" class="tm">同じ向き 1、直交 0、逆向き −1</text>
+</svg>

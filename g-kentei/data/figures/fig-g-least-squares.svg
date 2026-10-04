@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 548" role="img" aria-labelledby="fig-g-least-squares-t fig-g-least-squares-d">
+<title id="fig-g-least-squares-t">最小二乗法：残差の二乗和を最小にする直線と、外れ値の影響</title>
+<desc id="fig-g-least-squares-d">上は散布図と、最小二乗法で引いた直線。各点から直線までの縦の長さが残差で、その長さを1辺とする正方形の面積の合計（残差の二乗和）が最小になるように直線を決める。下は、同じ点に外れ値を1つ足した場合。外れ値の残差の二乗は大きいので、直線は外れ値に引っ張られて傾きが変わる。破線が元の直線。単回帰はy＝ax＋bの直線、重回帰は説明変数が複数になり、平面になる。</desc>
+<text x="12" y="20" class="tb">① 残差の二乗（正方形の面積）の合計を最小に</text>
+<rect x="12" y="30" width="296" height="150" class="sb" stroke-width="1"/>
+<line x1="24" y1="153.23" x2="304" y2="49.74" class="l sa w3"/>
+<line x1="52" y1="132.6" x2="52" y2="142.88" class="l swn w2"/>
+<rect x="55" y="132.6" width="10.28" height="10.28" class="fwn swn" stroke-width="1"/>
+<line x1="80" y1="147.9" x2="80" y2="132.53" class="l swn w2"/>
+<rect x="83" y="132.53" width="15.37" height="15.37" class="fwn swn" stroke-width="1"/>
+<line x1="122" y1="110.5" x2="122" y2="117.01" class="l swn w2"/>
+<rect x="125" y="110.5" width="6.51" height="6.51" class="fwn swn" stroke-width="1"/>
+<line x1="150" y1="115.6" x2="150" y2="106.66" class="l swn w2"/>
+<rect x="153" y="106.66" width="8.94" height="8.94" class="fwn swn" stroke-width="1"/>
+<line x1="192" y1="74.8" x2="192" y2="91.13" class="l swn w2"/>
+<rect x="195" y="74.8" width="16.33" height="16.33" class="fwn swn" stroke-width="1"/>
+<line x1="234" y1="88.4" x2="234" y2="75.61" class="l swn w2"/>
+<rect x="237" y="75.61" width="12.79" height="12.79" class="fwn swn" stroke-width="1"/>
+<line x1="276" y1="56.1" x2="276" y2="60.09" class="l swn w2"/>
+<rect x="279" y="56.1" width="3.99" height="3.99" class="fwn swn" stroke-width="1"/>
+<circle cx="52" cy="132.6" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="80" cy="147.9" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="122" cy="110.5" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="150" cy="115.6" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="192" cy="74.8" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="234" cy="88.4" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="276" cy="56.1" r="5" class="fs sa" stroke-width="2"/>
+<text x="12" y="206" class="tm">線分＝残差、正方形の面積＝残差の二乗</text>
+<text x="12" y="226" class="tb">直線は、この面積の合計が最小になる位置</text>
+<line x1="12" y1="244" x2="308" y2="244" class="l sb w1"/>
+<text x="12" y="268" class="tb">② 外れ値が1つあると</text>
+<rect x="12" y="278" width="296" height="150" class="sb" stroke-width="1"/>
+<line x1="24" y1="401.23" x2="304" y2="297.74" class="l sm w2 dsh"/>
+<line x1="24" y1="387.88" x2="304" y2="332.19" class="l sa w3"/>
+<circle cx="52" cy="380.6" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="80" cy="395.9" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="122" cy="358.5" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="150" cy="363.6" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="192" cy="322.8" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="234" cy="336.4" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="276" cy="304.1" r="5" class="fs sa" stroke-width="2"/>
+<line x1="253.2" y1="401.8" x2="265.2" y2="413.8" class="l sng w3"/>
+<line x1="253.2" y1="413.8" x2="265.2" y2="401.8" class="l sng w3"/>
+<text x="251.2" y="395.8" class="tb tng" text-anchor="end">外れ値</text>
+<text x="12" y="454">破線＝元の直線。外れ値に引っ張られて</text>
+<text x="12" y="474">直線が大きく傾く（二乗なので影響が大きい）</text>
+<line x1="12" y1="492" x2="308" y2="492" class="l sb w1"/>
+<text x="12" y="516" class="tb">単回帰：y ＝ ax ＋ b（直線）</text>
+<text x="12" y="536" class="tb">重回帰：説明変数が複数（平面になる）</text>
+</svg>

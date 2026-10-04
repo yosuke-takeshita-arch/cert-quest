@@ -25,6 +25,9 @@
         "point": "単純パーセプトロンは隠れ層が無く、線形分離可能な問題しか解けない。"
       }
     ],
+    "figures": [
+      "fig-g-perceptron-xor"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Neural network models (supervised)",
@@ -75,6 +78,9 @@
         "point": "隠れ層が1つでも多層パーセプトロン。ディープラーニングはそれを何層も重ねたもの。"
       }
     ],
+    "figures": [
+      "fig-g-perceptron-xor"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Neural network models (supervised)",
@@ -108,6 +114,9 @@
         "id": "C-04-001",
         "point": "隠れ層の無いネットワークは単純パーセプトロン。"
       }
+    ],
+    "figures": [
+      "fig-g-perceptron-xor"
     ],
     "sources": [
       {
@@ -206,7 +215,8 @@
       }
     ],
     "figures": [
-      "fig-g-activation"
+      "fig-g-activation",
+      "fig-g-neuron-mlp"
     ],
     "sources": [
       {
@@ -247,7 +257,9 @@
       }
     ],
     "figures": [
-      "fig-g-activation"
+      "fig-g-activation",
+      "fig-g-vanishing-gradient",
+      "fig-g-logistic-regression"
     ],
     "sources": [
       {
@@ -438,6 +450,9 @@
         "point": "シグモイドは各出力を独立に0〜1にする（合計は1とは限らない）。ソフトマックスは全出力の合計を1にする。"
       }
     ],
+    "figures": [
+      "fig-g-softmax"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Softmax",
@@ -479,6 +494,9 @@
         "id": "C-04-005",
         "point": "誤差関数はずれを測る関数、活性化関数はニューロンの出力を作る関数。"
       }
+    ],
+    "figures": [
+      "fig-g-loss-functions"
     ],
     "sources": [
       {
@@ -522,6 +540,9 @@
         "point": "分類＝交差エントロピー、回帰＝平均二乗誤差、が基本の組み合わせ。"
       }
     ],
+    "figures": [
+      "fig-g-loss-functions"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.CrossEntropyLoss",
@@ -560,6 +581,10 @@
         "point": "確率を出す分類では交差エントロピーが基本。平均二乗誤差は回帰の基本。"
       }
     ],
+    "figures": [
+      "fig-g-regression-metrics",
+      "fig-g-loss-functions"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.MSELoss",
@@ -597,6 +622,9 @@
         "id": "C-04-012",
         "point": "KL情報量は非対称で、「PからQ」と「QからP」は一致しない。対称だとする選択肢はひっかけ。"
       }
+    ],
+    "figures": [
+      "fig-g-loss-functions"
     ],
     "sources": [
       {
@@ -640,6 +668,9 @@
         "point": "Contrastive Lossは2つ組（ペア）、Triplet Lossは3つ組（基準・似たもの・似ていないもの）。"
       }
     ],
+    "figures": [
+      "fig-g-metric-learning"
+    ],
     "sources": [
       {
         "title": "Hadsell, Chopra & LeCun (2006) Dimensionality Reduction by Learning an Invariant Mapping. CVPR",
@@ -673,6 +704,9 @@
         "id": "C-04-015",
         "point": "Triplet＝3つ組。2つ組はContrastive。"
       }
+    ],
+    "figures": [
+      "fig-g-metric-learning"
     ],
     "sources": [
       {
@@ -727,6 +761,10 @@
         "title": "正規化層",
         "point": "正則化（regularization）は過学習を防ぐ罰則、正規化（normalization）はデータや層の出力の尺度をそろえる処理。"
       }
+    ],
+    "figures": [
+      "fig-g-l1-l2",
+      "fig-g-dropout"
     ],
     "sources": [
       {
@@ -804,6 +842,9 @@
         "point": "Elastic NetはL1とL2の罰則を、決めた割合で混ぜる。L1だけならラッソ、L2だけならリッジ。"
       }
     ],
+    "figures": [
+      "fig-g-l1-l2"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（L1 regularization）",
@@ -850,6 +891,9 @@
         "point": "相関の強い特徴量が複数あるとき、ラッソは1つだけ残しがち。L1とL2を混ぜたElastic Netは両方を残しやすい。"
       }
     ],
+    "figures": [
+      "fig-g-l1-l2"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（L2 regularization）",
@@ -891,6 +935,9 @@
         "title": "データ拡張",
         "point": "ドロップアウトはネットワークの中のニューロンを消す。Cutoutなどのデータ拡張は入力画像の一部を消す。"
       }
+    ],
+    "figures": [
+      "fig-g-dropout"
     ],
     "sources": [
       {
@@ -946,6 +993,9 @@
         "point": "順伝播は入力から出力へ値を計算する向き、誤差逆伝播は誤差から入力側へ勾配の情報を伝える向き。"
       }
     ],
+    "figures": [
+      "fig-g-backprop"
+    ],
     "sources": [
       {
         "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature",
@@ -991,6 +1041,9 @@
         "id": "C-04-022",
         "point": "連鎖律は数学の法則、誤差逆伝播法はそれを使った勾配の計算手順。"
       }
+    ],
+    "figures": [
+      "fig-g-backprop"
     ],
     "sources": [
       {
@@ -1046,6 +1099,9 @@
         "point": "勾配消失＝小さくなって学習が止まる。勾配爆発＝大きくなって学習が発散する。勾配爆発の対策は勾配クリッピング。"
       }
     ],
+    "figures": [
+      "fig-g-vanishing-gradient"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）",
@@ -1088,6 +1144,9 @@
         "point": "勾配クリッピングは勾配爆発の対策。勾配消失の対策ではない。"
       }
     ],
+    "figures": [
+      "fig-g-vanishing-gradient"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（exploding gradient problem）",
@@ -1125,6 +1184,9 @@
         "id": "C-04-024",
         "point": "信用割当問題は「誰の手柄（責任）か」を決める問題。勾配消失はその割り当て（勾配）が浅い層に届かない問題。"
       }
+    ],
+    "figures": [
+      "fig-g-backprop"
     ],
     "sources": [
       {
@@ -1184,6 +1246,9 @@
         "point": "勾配ブースティングは決定木を足していくアンサンブル手法。勾配降下法はパラメータを更新する最適化手法。"
       }
     ],
+    "figures": [
+      "fig-g-gradient-descent"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（gradient descent）",
@@ -1226,6 +1291,9 @@
         "point": "学習率は更新の大きさ、割引率は強化学習で将来の報酬を割り引く係数。"
       }
     ],
+    "figures": [
+      "fig-g-gradient-descent"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（learning rate）",
@@ -1264,6 +1332,9 @@
         "point": "局所最適解はどの方向にも上り坂の谷底。鞍点はある方向では谷底だが別の方向では山頂。"
       }
     ],
+    "figures": [
+      "fig-g-local-min-saddle"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（convex function）",
@@ -1298,6 +1369,9 @@
         "point": "鞍点も勾配は0になるが、最適解ではない。"
       }
     ],
+    "figures": [
+      "fig-g-local-min-saddle"
+    ],
     "sources": [
       {
         "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
@@ -1331,6 +1405,9 @@
         "id": "C-04-033",
         "point": "バッチの大きさ（何件で1回更新するか）とエポック（全データを何周したか）は別の量。"
       }
+    ],
+    "figures": [
+      "fig-g-batch-epoch"
     ],
     "sources": [
       {
@@ -1370,6 +1447,9 @@
         "point": "SGDの「確率的」は、データをランダムに選んで使うこと。"
       }
     ],
+    "figures": [
+      "fig-g-optimizers"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（stochastic gradient descent / batch size）",
@@ -1408,6 +1488,9 @@
         "point": "イテレーション＝更新回数、エポック＝データの周回数。"
       }
     ],
+    "figures": [
+      "fig-g-batch-epoch"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（epoch / iteration）",
@@ -1445,6 +1528,10 @@
         "id": "C-04-035",
         "point": "モーメンタムは「向き（勢い）」を工夫、AdaGrad・RMSpropは「学習率（歩幅）」をパラメータごとに工夫。Adamはその両方。"
       }
+    ],
+    "figures": [
+      "fig-g-local-min-saddle",
+      "fig-g-optimizers"
     ],
     "sources": [
       {
@@ -1488,6 +1575,9 @@
         "point": "AdaGradは過去の勾配を全部ため込む（学習率が下がり続ける）。RMSpropは古い勾配を忘れる（指数移動平均）。"
       }
     ],
+    "figures": [
+      "fig-g-optimizers"
+    ],
     "sources": [
       {
         "title": "Duchi, Hazan & Singer (2011) Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. JMLR",
@@ -1526,6 +1616,9 @@
         "point": "RMSpropもAdaDeltaもAdaGradの改良。AdaDeltaは学習率そのものの手動設定も不要にした点が特徴。"
       }
     ],
+    "figures": [
+      "fig-g-optimizers"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.optim.RMSprop",
@@ -1559,6 +1652,9 @@
         "id": "C-04-036",
         "point": "「学習率の手動調整が要らない」はAdaDeltaの特徴。"
       }
+    ],
+    "figures": [
+      "fig-g-optimizers"
     ],
     "sources": [
       {
@@ -1598,6 +1694,9 @@
         "point": "Adamの改良：AdaBound（Adamの学習率に動的な上下限）、AMSBound（AMSGradに同じ工夫）。"
       }
     ],
+    "figures": [
+      "fig-g-optimizers"
+    ],
     "sources": [
       {
         "title": "Kingma & Ba (2014) Adam: A Method for Stochastic Optimization (arXiv:1412.6980)",
@@ -1631,6 +1730,9 @@
         "id": "C-04-038",
         "point": "AdaBound＝Adam＋学習率の上下限。AMSBound＝AMSGrad＋学習率の上下限。"
       }
+    ],
+    "figures": [
+      "fig-g-optimizers"
     ],
     "sources": [
       {
@@ -1707,6 +1809,9 @@
         "point": "「モデルを大きくすると性能は単調に悪くなる」は誤り。いったん悪化した後、再び良くなることがある。"
       }
     ],
+    "figures": [
+      "fig-g-double-descent"
+    ],
     "sources": [
       {
         "title": "Nakkiran et al. (2019) Deep Double Descent: Where Bigger Models and More Data Hurt (arXiv:1912.02292)",
@@ -1775,6 +1880,9 @@
         "point": "重み（パラメータ）は学習で自動的に決まる。ハイパーパラメータは学習の前に決める。"
       }
     ],
+    "figures": [
+      "fig-g-grid-random-search"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（hyperparameter）",
@@ -1804,6 +1912,9 @@
         "title": "ブルートフォース",
         "point": "グリッドサーチは候補の総当たりなので、ブルートフォースの一種とも言える。"
       }
+    ],
+    "figures": [
+      "fig-g-grid-random-search"
     ],
     "sources": [
       {
@@ -1846,6 +1957,9 @@
         "title": "パイプライン方式",
         "point": "処理を人が工程に分け、工程ごとに作って順につなぐ方式。End-to-Endは工程を分けず、入力から出力までをまとめて学習する。"
       }
+    ],
+    "figures": [
+      "fig-g-end-to-end"
     ],
     "sources": [
       {

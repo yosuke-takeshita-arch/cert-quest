@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 466" role="img" aria-labelledby="fig-g-rl-taxonomy-t fig-g-rl-taxonomy-d">
+<title id="fig-g-rl-taxonomy-t">強化学習の手法の分類</title>
+<desc id="fig-g-rl-taxonomy-d">強化学習の手法を2つの見方で整理した地図。横は何を学ぶか。左がQ学習とSARSAのような価値ベース（行動の価値を推定して選ぶ）、右がREINFORCEのような方策ベース（行動の選び方を直接学ぶ）、その間がActor-Criticで、両方を使う。Actor-CriticとREINFORCEは方策勾配法の仲間。縦は環境のモデルを使うか。上のモデルベースは、環境のモデルで先読みして計画する動的計画法など。下のモデルフリーは、モデルを使わず試行錯誤の経験だけから学ぶ。価値ベースの土台はベルマン方程式で、価値は今の報酬と割り引いた次の状態の価値で表せる。</desc>
+<text x="12" y="20" class="tb">何を学ぶか（横）× モデルを使うか（縦）</text>
+<text x="60" y="46" class="tb ta" text-anchor="middle">価値ベース</text>
+<text x="160" y="46" class="tb tok" text-anchor="middle">両方</text>
+<text x="260" y="46" class="tb twn" text-anchor="middle">方策ベース</text>
+<rect x="12" y="58" width="296" height="92" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="20" y="78" class="tb tm">モデルベース：モデルで先読み</text>
+<rect x="16" y="90" width="96" height="50" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="64" y="120" class="tb" text-anchor="middle">動的計画法</text>
+<rect x="12" y="162" width="296" height="156" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="20" y="182" class="tb tm">モデルフリー：試行錯誤だけで学ぶ</text>
+<rect x="16" y="194" width="88" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="60" y="222" class="tb" text-anchor="middle">Q学習</text>
+<rect x="16" y="250" width="88" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="60" y="278" class="tb" text-anchor="middle">SARSA</text>
+<rect x="112" y="194" width="96" height="46" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="222" class="tb" text-anchor="middle">Actor-Critic</text>
+<rect x="216" y="194" width="88" height="46" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="260" y="222" class="tb" text-anchor="middle">REINFORCE</text>
+<line x1="116" y1="264" x2="304" y2="264" class="l swn w2"/>
+<line x1="116" y1="258" x2="116" y2="264" class="l swn w2"/>
+<line x1="304" y1="258" x2="304" y2="264" class="l swn w2"/>
+<text x="210" y="288" class="tb twn" text-anchor="middle">方策勾配法の仲間</text>
+<text x="12" y="346" class="tm">横軸：価値を学ぶ ←→ 方策を直接学ぶ</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="386" class="tb">価値ベースの土台：ベルマン方程式</text>
+<text x="12" y="408">価値 ＝ 今の報酬 ＋ 割り引いた次の価値</text>
+<text x="12" y="434" class="tm">Actor-Critic：方策（Actor）と</text>
+<text x="12" y="454" class="tm">価値（Critic）の両方を学ぶ</text>
+</svg>

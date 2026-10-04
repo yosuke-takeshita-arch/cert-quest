@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 818" role="img" aria-labelledby="fig-g-minimax-alphabeta-t fig-g-minimax-alphabeta-d">
+<title id="fig-g-minimax-alphabeta-t">Mini-Max法とαβ法の枝刈り</title>
+<desc id="fig-g-minimax-alphabeta-d">3段のゲーム木の例。根は自分の手番（最大を選ぶ▲）、2段目は相手の手番（最小を選ぶ▼）が3つ、葉は各3つで合計9個。葉の評価値は左から5、9、4、3、7、8、6、2、10。Mini-Max法では9個の葉をすべて評価し、3つの相手の節点は下の最小値4、3、2をとり、根はその最大の4を選ぶ。αβ法でも選ぶ手は同じ。最初の相手の節点で4を確保した後、2つ目の相手の節点で3を見た時点で、この節点は3以下に決まって4を上回れないので残りの7と8は調べない。3つ目の相手の節点でも6の次に2を見て、2は4より小さいので残りの10は調べない。調べた葉は9個から6個に減る。</desc>
+<text x="12" y="20" class="tb">凡例</text>
+<polygon points="66,9 58,23 74,23" class="fa"/>
+<text x="80" y="20">自分の手番（最大を選ぶ）</text>
+<polygon points="16,33 32,33 24,47" class="fs sa"/>
+<text x="38" y="44">相手の手番（最小を選ぶ）</text>
+<line x1="12" y1="58" x2="308" y2="58" class="l sb w1"/>
+<text x="12" y="84" class="tb">① Mini-Max法：葉をすべて評価する</text>
+<line x1="160" y1="136" x2="61" y2="170" class="l sa w3"/>
+<line x1="61" y1="198" x2="28" y2="237" class="l sm w1"/>
+<line x1="61" y1="198" x2="61" y2="237" class="l sm w1"/>
+<line x1="61" y1="198" x2="94" y2="237" class="l sa w3"/>
+<line x1="160" y1="136" x2="160" y2="170" class="l sm w1"/>
+<line x1="160" y1="198" x2="127" y2="237" class="l sm w1"/>
+<line x1="160" y1="198" x2="160" y2="237" class="l sm w1"/>
+<line x1="160" y1="198" x2="193" y2="237" class="l sm w1"/>
+<line x1="160" y1="136" x2="259" y2="170" class="l sm w1"/>
+<line x1="259" y1="198" x2="226" y2="237" class="l sm w1"/>
+<line x1="259" y1="198" x2="259" y2="237" class="l sm w1"/>
+<line x1="259" y1="198" x2="292" y2="237" class="l sm w1"/>
+<polygon points="160,105 141,139 179,139" class="fa"/>
+<text x="160" y="132" class="tb ton" text-anchor="middle">4</text>
+<polygon points="42,167 80,167 61,201" class="fas sa"/>
+<text x="61" y="183" class="tb" text-anchor="middle">4</text>
+<polygon points="141,167 179,167 160,201" class="fs sb"/>
+<text x="160" y="183" class="tb" text-anchor="middle">3</text>
+<polygon points="240,167 278,167 259,201" class="fs sb"/>
+<text x="259" y="183" class="tb" text-anchor="middle">2</text>
+<rect x="15" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="28" y="255" class="tb" text-anchor="middle">5</text>
+<rect x="48" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="61" y="255" class="tb" text-anchor="middle">9</text>
+<rect x="81" y="237" width="26" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="94" y="255" class="tb" text-anchor="middle">4</text>
+<rect x="114" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="127" y="255" class="tb" text-anchor="middle">3</text>
+<rect x="147" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="255" class="tb" text-anchor="middle">7</text>
+<rect x="180" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="193" y="255" class="tb" text-anchor="middle">8</text>
+<rect x="213" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="255" class="tb" text-anchor="middle">6</text>
+<rect x="246" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="259" y="255" class="tb" text-anchor="middle">2</text>
+<rect x="279" y="237" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="292" y="255" class="tb" text-anchor="middle">10</text>
+<text x="12" y="286" class="tm">葉の評価値から、1段ずつさかのぼる</text>
+<text x="12" y="308">相手の節点は子の最小：4、3、2</text>
+<text x="12" y="330">自分の節点は子の最大：4 を選ぶ</text>
+<text x="12" y="354" class="tb">太線＝選ばれた道筋。調べた葉は 9 個</text>
+<line x1="12" y1="374" x2="308" y2="374" class="l sb w1"/>
+<text x="12" y="402" class="tb">② αβ法：結果に影響しない枝は見ない</text>
+<line x1="160" y1="466" x2="61" y2="500" class="l sa w3"/>
+<line x1="61" y1="528" x2="28" y2="567" class="l sm w1"/>
+<line x1="61" y1="528" x2="61" y2="567" class="l sm w1"/>
+<line x1="61" y1="528" x2="94" y2="567" class="l sa w3"/>
+<line x1="160" y1="466" x2="160" y2="500" class="l sm w1"/>
+<line x1="160" y1="528" x2="127" y2="567" class="l sm w1"/>
+<line x1="160" y1="528" x2="160" y2="567" class="l sng w1 dsh"/>
+<line x1="160" y1="528" x2="193" y2="567" class="l sng w1 dsh"/>
+<line x1="160" y1="466" x2="259" y2="500" class="l sm w1"/>
+<line x1="259" y1="528" x2="226" y2="567" class="l sm w1"/>
+<line x1="259" y1="528" x2="259" y2="567" class="l sm w1"/>
+<line x1="259" y1="528" x2="292" y2="567" class="l sng w1 dsh"/>
+<polygon points="160,435 141,469 179,469" class="fa"/>
+<text x="160" y="462" class="tb ton" text-anchor="middle">4</text>
+<polygon points="42,497 80,497 61,531" class="fas sa"/>
+<text x="61" y="513" class="tb" text-anchor="middle">4</text>
+<polygon points="141,497 179,497 160,531" class="fs sb"/>
+<text x="160" y="513" class="tb" text-anchor="middle">≤3</text>
+<polygon points="240,497 278,497 259,531" class="fs sb"/>
+<text x="259" y="513" class="tb" text-anchor="middle">≤2</text>
+<rect x="15" y="567" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="28" y="585" class="tb" text-anchor="middle">5</text>
+<rect x="48" y="567" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="61" y="585" class="tb" text-anchor="middle">9</text>
+<rect x="81" y="567" width="26" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="94" y="585" class="tb" text-anchor="middle">4</text>
+<rect x="114" y="567" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="127" y="585" class="tb" text-anchor="middle">3</text>
+<rect x="147" y="567" width="26" height="26" class="fng sng" stroke-width="1.5"/>
+<text x="160" y="585" class="tb tm" text-anchor="middle">7</text>
+<line x1="152" y1="549" x2="168" y2="561" class="l sng w2"/>
+<line x1="152" y1="561" x2="168" y2="549" class="l sng w2"/>
+<rect x="180" y="567" width="26" height="26" class="fng sng" stroke-width="1.5"/>
+<text x="193" y="585" class="tb tm" text-anchor="middle">8</text>
+<line x1="185" y1="549" x2="201" y2="561" class="l sng w2"/>
+<line x1="185" y1="561" x2="201" y2="549" class="l sng w2"/>
+<rect x="213" y="567" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="585" class="tb" text-anchor="middle">6</text>
+<rect x="246" y="567" width="26" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="259" y="585" class="tb" text-anchor="middle">2</text>
+<rect x="279" y="567" width="26" height="26" class="fng sng" stroke-width="1.5"/>
+<text x="292" y="585" class="tb tm" text-anchor="middle">10</text>
+<line x1="284" y1="549" x2="300" y2="561" class="l sng w2"/>
+<line x1="284" y1="561" x2="300" y2="549" class="l sng w2"/>
+<text x="12" y="616" class="tm">赤の点線と×＝調べずに打ち切った枝</text>
+<text x="12" y="642">α＝自分が確保できる下限</text>
+<text x="12" y="662">β＝相手が確保できる上限</text>
+<text x="12" y="690" class="tb">2つ目の相手の節点：3 を見た</text>
+<text x="12" y="710">→ 3 以下に決まる。β 3 ＜ α 4 なので</text>
+<text x="12" y="730">　7 と 8 は調べない</text>
+<text x="12" y="758" class="tb">3つ目の相手の節点：6 の次に 2 を見た</text>
+<text x="12" y="778">→ 2 ＜ α 4 なので、10 は調べない</text>
+<text x="12" y="806" class="tb">選ぶ手は同じ。調べた葉は 9 個 → 6 個</text>
+</svg>

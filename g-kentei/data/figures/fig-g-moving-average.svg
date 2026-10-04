@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 362" role="img" aria-labelledby="fig-g-moving-average-t fig-g-moving-average-d">
+<title id="fig-g-moving-average-t">移動平均：短期の変動をならす</title>
+<desc id="fig-g-moving-average-d">10時点の時系列データ14、21、15、22、16、23、18、20、22、27をぎざぎざの折れ線で、直近3点の単純移動平均を滑らかな線で重ねた図。移動平均は、窓をずらしながら直近の値の平均をとり、短期の変動をならして傾向を見やすくする。最後の時点では、直近3点の20、22、27の平均が23。</desc>
+<text x="12" y="20" class="tb">直近3点の単純移動平均</text>
+<rect x="32" y="50" width="266" height="150" class="fs sb" stroke-width="1"/>
+<rect x="226.44" y="54" width="71.56" height="142" class="fas sa" stroke-width="1.5"/>
+<polyline points="40,170 67.78,117.5 95.56,162.5 123.33,110 151.11,155 178.89,102.5 206.67,140 234.44,125 262.22,110 290,72.5" class="l sm w2 dsh"/>
+<circle cx="40" cy="170" r="3.6" class="fm"/>
+<circle cx="67.78" cy="117.5" r="3.6" class="fm"/>
+<circle cx="95.56" cy="162.5" r="3.6" class="fm"/>
+<circle cx="123.33" cy="110" r="3.6" class="fm"/>
+<circle cx="151.11" cy="155" r="3.6" class="fm"/>
+<circle cx="178.89" cy="102.5" r="3.6" class="fm"/>
+<circle cx="206.67" cy="140" r="3.6" class="fm"/>
+<circle cx="234.44" cy="125" r="3.6" class="fm"/>
+<circle cx="262.22" cy="110" r="3.6" class="fm"/>
+<circle cx="290" cy="72.5" r="3.6" class="fm"/>
+<polyline points="95.56,150 123.33,130 151.11,142.5 178.89,122.5 206.67,132.5 234.44,122.5 262.22,125 290,102.5" class="l sa w3"/>
+<circle cx="95.56" cy="150" r="3.6" class="fa"/>
+<circle cx="123.33" cy="130" r="3.6" class="fa"/>
+<circle cx="151.11" cy="142.5" r="3.6" class="fa"/>
+<circle cx="178.89" cy="122.5" r="3.6" class="fa"/>
+<circle cx="206.67" cy="132.5" r="3.6" class="fa"/>
+<circle cx="234.44" cy="122.5" r="3.6" class="fa"/>
+<circle cx="262.22" cy="125" r="3.6" class="fa"/>
+<circle cx="290" cy="102.5" r="3.6" class="fa"/>
+<text x="34" y="44" class="tm">値</text>
+<text x="298" y="220" class="tm" text-anchor="end">時間 →</text>
+<text x="230.44" y="194" class="tb ta" text-anchor="middle">直近3点</text>
+<line x1="12" y1="226" x2="308" y2="226" class="l sb w1"/>
+<line x1="12" y1="245" x2="42" y2="245" class="l sm w2 dsh"/>
+<text x="50" y="250">もとのデータ（ぎざぎざ）</text>
+<line x1="12" y1="269" x2="42" y2="269" class="l sa w3"/>
+<text x="50" y="274">移動平均（ならした線）</text>
+<text x="12" y="304" class="tb">最後の点：直近3点 20・22・27 の</text>
+<text x="12" y="324" class="tb">平均 ＝ 23</text>
+<text x="12" y="350" class="tm">窓をずらしながら平均して、傾向を見やすくする</text>
+</svg>

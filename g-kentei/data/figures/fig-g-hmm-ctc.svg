@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 624" role="img" aria-labelledby="fig-g-hmm-ctc-t fig-g-hmm-ctc-d">
+<title id="fig-g-hmm-ctc-t">HMM による音声認識と CTC</title>
+<desc id="fig-g-hmm-ctc-d">上は隠れマルコフモデル（HMM）。観測できない状態（音素など）が左から右へ確率的に移り変わり、各状態から音声の特徴量が確率的に出てくる。DNN-HMM は、各状態に特徴量がどれだけ当てはまるかを、GMM の代わりに DNN で求める。下は CTC。各時刻の出力に空白（＿）を許し、同じ文字の連続をまとめてから、空白を消す。例の c c ＿ a a ＿ t は、c ＿ a ＿ t になり、cat になる。入力の各時刻とラベルの対応を事前に区切っておく必要がない。</desc>
+<text x="12" y="20" class="tb">① HMM：隠れた状態が移り変わる</text>
+<circle cx="60" cy="84" r="20" class="fas sa"/>
+<text x="60" y="88.5" class="tb" text-anchor="middle">状態1</text>
+<path d="M 50 66 C 36 38 84 38 70 66" class="l sa w1"/>
+<polyline points="70,56 70,66 62,62" class="l sa w1"/>
+<line x1="60" y1="104" x2="60" y2="150" class="l swn w2"/>
+<polyline points="56.15,143 60,150 63.85,143" class="l swn w2"/>
+<rect x="24" y="152" width="72" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="60" y="170.5" text-anchor="middle">特徴量1</text>
+<line x1="82" y1="84" x2="138" y2="84" class="l sa w2"/>
+<polyline points="131,87.85 138,84 131,80.15" class="l sa w2"/>
+<circle cx="160" cy="84" r="20" class="fas sa"/>
+<text x="160" y="88.5" class="tb" text-anchor="middle">状態2</text>
+<path d="M 150 66 C 136 38 184 38 170 66" class="l sa w1"/>
+<polyline points="170,56 170,66 162,62" class="l sa w1"/>
+<line x1="160" y1="104" x2="160" y2="150" class="l swn w2"/>
+<polyline points="156.15,143 160,150 163.85,143" class="l swn w2"/>
+<rect x="124" y="152" width="72" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="170.5" text-anchor="middle">特徴量2</text>
+<line x1="182" y1="84" x2="238" y2="84" class="l sa w2"/>
+<polyline points="231,87.85 238,84 231,80.15" class="l sa w2"/>
+<circle cx="260" cy="84" r="20" class="fas sa"/>
+<text x="260" y="88.5" class="tb" text-anchor="middle">状態3</text>
+<path d="M 250 66 C 236 38 284 38 270 66" class="l sa w1"/>
+<polyline points="270,56 270,66 262,62" class="l sa w1"/>
+<line x1="260" y1="104" x2="260" y2="150" class="l swn w2"/>
+<polyline points="256.15,143 260,150 263.85,143" class="l swn w2"/>
+<rect x="224" y="152" width="72" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="260" y="170.5" text-anchor="middle">特徴量3</text>
+<text x="110" y="72" class="tm" text-anchor="middle">遷移</text>
+<text x="210" y="72" class="tm" text-anchor="middle">遷移</text>
+<text x="12" y="206">状態は見えない（音素など）。</text>
+<text x="12" y="226">見えるのは、音声の特徴量だけ</text>
+<text x="172" y="136" class="tb twn">← 出力確率</text>
+<text x="12" y="256" class="tm">DNN-HMM：各状態に特徴量がどれだけ</text>
+<text x="12" y="274" class="tm">当てはまるかを、GMM の代わりに DNN で求める</text>
+<line x1="12" y1="310" x2="308" y2="310" class="l sb w1"/>
+<text x="12" y="334" class="tb">② CTC：空白を使って、区切りなしで学ぶ</text>
+<text x="12" y="360" class="tm">各時刻の出力（＿は空白）</text>
+<rect x="12" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="30" y="384.5" class="tb" text-anchor="middle">c</text>
+<rect x="52" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="70" y="384.5" class="tb" text-anchor="middle">c</text>
+<rect x="92" y="366" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="110" y="384.5" class="tb" text-anchor="middle">＿</text>
+<rect x="132" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="150" y="384.5" class="tb" text-anchor="middle">a</text>
+<rect x="172" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="190" y="384.5" class="tb" text-anchor="middle">a</text>
+<rect x="212" y="366" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="230" y="384.5" class="tb" text-anchor="middle">＿</text>
+<rect x="252" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="270" y="384.5" class="tb" text-anchor="middle">t</text>
+<line x1="160" y1="396" x2="160" y2="424" class="l sa w2"/>
+<polyline points="156.15,417 160,424 163.85,417" class="l sa w2"/>
+<text x="172" y="410" class="tb">同じ文字の</text>
+<text x="172" y="428" class="tb">連続をまとめる</text>
+<text x="12" y="442" class="tm"></text>
+<rect x="12" y="448" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="30" y="466.5" class="tb" text-anchor="middle">c</text>
+<rect x="52" y="448" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="70" y="466.5" class="tb" text-anchor="middle">＿</text>
+<rect x="92" y="448" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="110" y="466.5" class="tb" text-anchor="middle">a</text>
+<rect x="132" y="448" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="150" y="466.5" class="tb" text-anchor="middle">＿</text>
+<rect x="172" y="448" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="190" y="466.5" class="tb" text-anchor="middle">t</text>
+<line x1="160" y1="478" x2="160" y2="506" class="l sa w2"/>
+<polyline points="156.15,499 160,506 163.85,499" class="l sa w2"/>
+<text x="172" y="498" class="tb">空白を消す</text>
+<text x="12" y="524" class="tm"></text>
+<rect x="12" y="530" width="36" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="30" y="548.5" class="tb" text-anchor="middle">c</text>
+<rect x="52" y="530" width="36" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="70" y="548.5" class="tb" text-anchor="middle">a</text>
+<rect x="92" y="530" width="36" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="110" y="548.5" class="tb" text-anchor="middle">t</text>
+<text x="12" y="590" class="tb">入力の各時刻とラベルの対応を</text>
+<text x="12" y="612" class="tb">事前に区切っておかなくてよい</text>
+</svg>

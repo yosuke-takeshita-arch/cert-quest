@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 488" role="img" aria-labelledby="fig-g-dendrogram-t fig-g-dendrogram-d">
+<title id="fig-g-dendrogram-t">階層的クラスタリングとデンドログラム</title>
+<desc id="fig-g-dendrogram-d">上は平面上の5点AからE。近いAとB、DとEが先に結合し、続いてCが加わり、最後に全体が1つになる。下はその結合の順と距離を木にしたデンドログラム。縦軸は結合したときの距離で、近い組ほど低い位置で結合する。水平な線で木を切ると、そこから下にある枝の数がクラスタ数になる。図の位置で切ると3クラスタ（AとB、C、DとE）。ウォード法は、結合したときのクラスタ内のばらつきの増え方が最小の組を順に結合する。</desc>
+<text x="12" y="20" class="tb">① 平面上の5点</text>
+<rect x="12" y="30" width="296" height="120" class="sb" stroke-width="1"/>
+<circle cx="52" cy="74" r="7" class="fs sa" stroke-width="2"/>
+<text x="64" y="66" class="tb">A</text>
+<circle cx="74" cy="92" r="7" class="fs sa" stroke-width="2"/>
+<text x="86" y="84" class="tb">B</text>
+<rect x="155" y="97" width="14" height="14" class="fs sok" stroke-width="2"/>
+<text x="174" y="96" class="tb">C</text>
+<polygon points="238,122 246,137 230,137" class="fs swn" stroke-width="2"/>
+<text x="216" y="136" class="tb">D</text>
+<polygon points="262,102 270,117 254,117" class="fs swn" stroke-width="2"/>
+<text x="274" y="102" class="tb">E</text>
+<text x="12" y="178" class="tb">② 結合の順と距離（デンドログラム）</text>
+<rect x="12" y="192" width="296" height="190" class="sb" stroke-width="1"/>
+<polyline points="68,352 68,336.71 122,336.71 122,352" class="l w2"/>
+<polyline points="230,352 230,335.2 284,335.2 284,352" class="l w2"/>
+<polyline points="176,352 176,296.45 257,296.45 257,335.2" class="l w2"/>
+<polyline points="95,336.71 95,218 216.5,218 216.5,296.45" class="l w2"/>
+<text x="68" y="374" class="tb" text-anchor="middle">A</text>
+<text x="122" y="374" class="tb" text-anchor="middle">B</text>
+<text x="176" y="374" class="tb" text-anchor="middle">C</text>
+<text x="230" y="374" class="tb" text-anchor="middle">D</text>
+<text x="284" y="374" class="tb" text-anchor="middle">E</text>
+<text x="20" y="210" class="tm">距離</text>
+<line x1="16" y1="315.82" x2="304" y2="315.82" class="l sng w2 dsh"/>
+<text x="20" y="287.82" class="tb tng">ここで切ると</text>
+<text x="20" y="305.82" class="tb tng">3 クラスタ</text>
+<text x="12" y="410">ウォード法：結合したとき、クラスタ内の</text>
+<text x="12" y="430">ばらつきの増え方が最小の組から結合</text>
+<text x="12" y="456" class="tb">切る高さで、クラスタ数を後から選べる</text>
+<text x="12" y="476" class="tm">（k-means は先に k を決める）</text>
+</svg>

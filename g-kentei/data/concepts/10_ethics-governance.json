@@ -167,6 +167,9 @@
         "point": "リスクベースは「どこまで対策するか」の考え方で、ハードローでもソフトローでも採り得る"
       }
     ],
+    "figures": [
+      "fig-g-eu-ai-act"
+    ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
@@ -208,6 +211,9 @@
         "title": "汎用目的AI（GPAI）モデル",
         "point": "リスクの4段階はAIシステムの用途で分ける。GPAIモデルは用途を問わない基盤のモデルで、別の枠組み（提供者の義務、システミックリスク）で規律される"
       }
+    ],
+    "figures": [
+      "fig-g-eu-ai-act"
     ],
     "sources": [
       {
@@ -491,6 +497,9 @@
         "point": "属性を消しても、代理変数が残れば偏りは残る"
       }
     ],
+    "figures": [
+      "fig-g-proxy-variable"
+    ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
@@ -563,6 +572,9 @@
         "point": "回避攻撃は運用時（推論時）の入力を細工する。学習時に細工するのはポイズニング（バックドア攻撃を含む）"
       }
     ],
+    "figures": [
+      "fig-g-ai-attacks"
+    ],
     "sources": [
       {
         "title": "Goodfellow et al. (2014) Explaining and Harnessing Adversarial Examples (arXiv:1412.6572)",
@@ -613,6 +625,9 @@
         "point": "バックドア攻撃は学習時にトリガーを仕込み、運用時にトリガー付きの入力で発動させる。仕込むのは学習時"
       }
     ],
+    "figures": [
+      "fig-g-ai-attacks"
+    ],
     "sources": [
       {
         "title": "Biggio et al. (2012) Poisoning Attacks against Support Vector Machines (arXiv:1206.6389)",
@@ -658,6 +673,9 @@
         "title": "メンバーシップ推論攻撃",
         "point": "メンバーシップ推論は「このデータが学習に使われたか」を当てる。モデル反転は学習データの姿を復元し、属性推論は機微な属性を推定する"
       }
+    ],
+    "figures": [
+      "fig-g-ai-attacks"
     ],
     "sources": [
       {
@@ -898,6 +916,9 @@
         "id": "C-10-019",
         "point": "フェイクニュースは偽の内容そのもの。フィルターバブル・エコーチェンバーは、見る情報が偏り考えが強化される環境。"
       }
+    ],
+    "figures": [
+      "fig-g-filter-bubble"
     ],
     "sources": [
       {

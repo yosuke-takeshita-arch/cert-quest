@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 626" role="img" aria-labelledby="fig-g-seq2seq-attention-t fig-g-seq2seq-attention-d">
+<title id="fig-g-seq2seq-attention-t">Seq2Seq（固定長ベクトル）と Attention</title>
+<desc id="fig-g-seq2seq-attention-d">上は Seq2Seq。エンコーダが入力文（I love cats）を順に読み、最後の状態1本（固定長ベクトル）だけをデコーダに渡して「猫が…」と出力する。長い文だと1本のベクトルに情報が入りきらず、ここが性能のボトルネックになる。下は Attention つき。デコーダが出力を作るたびに、エンコーダのすべての位置の状態に重みをつけて足し合わせる。「猫」を出すときは cats に0.8、I と love に0.1ずつの重みがかかる。Source-Target Attention では、クエリがデコーダ、キーとバリューがエンコーダから来る。</desc>
+<text x="12" y="20" class="tb">① Seq2Seq：1本のベクトルに詰める</text>
+<text x="90" y="56" class="tb" text-anchor="middle">エンコーダ</text>
+<text x="262" y="56" class="tb" text-anchor="middle">デコーダ</text>
+<rect x="12" y="110" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="127.5" class="tm" text-anchor="middle">RNN</text>
+<text x="34" y="154" class="tb" text-anchor="middle">I</text>
+<rect x="68" y="110" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="90" y="127.5" class="tm" text-anchor="middle">RNN</text>
+<text x="90" y="154" class="tb" text-anchor="middle">love</text>
+<line x1="56" y1="123" x2="68" y2="123" class="l w2"/>
+<polyline points="61,126.85 68,123 61,119.15" class="l w2"/>
+<rect x="124" y="110" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="146" y="127.5" class="tm" text-anchor="middle">RNN</text>
+<text x="146" y="154" class="tb" text-anchor="middle">cats</text>
+<line x1="112" y1="123" x2="124" y2="123" class="l w2"/>
+<polyline points="117,126.85 124,123 117,119.15" class="l w2"/>
+<line x1="168" y1="123" x2="178" y2="123" class="l w2"/>
+<polyline points="171,126.85 178,123 171,119.15" class="l w2"/>
+<rect x="178" y="94" width="24" height="58" class="fas sa" stroke-width="1.5"/>
+<text x="190" y="174" class="tb ta" text-anchor="middle">固定長ベクトル</text>
+<line x1="202" y1="123" x2="216" y2="123" class="l w2"/>
+<polyline points="209,126.85 216,123 209,119.15" class="l w2"/>
+<rect x="218" y="110" width="38" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="237" y="127.5" class="tm" text-anchor="middle">RNN</text>
+<line x1="237" y1="110" x2="237" y2="98" class="l w2"/>
+<polyline points="240.85,105 237,98 233.15,105" class="l w2"/>
+<text x="237" y="90" class="tb" text-anchor="middle">猫</text>
+<rect x="268" y="110" width="38" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="287" y="127.5" class="tm" text-anchor="middle">RNN</text>
+<line x1="287" y1="110" x2="287" y2="98" class="l w2"/>
+<polyline points="290.85,105 287,98 283.15,105" class="l w2"/>
+<text x="287" y="90" class="tb" text-anchor="middle">が</text>
+<line x1="256" y1="123" x2="268" y2="123" class="l w2"/>
+<polyline points="261,126.85 268,123 261,119.15" class="l w2"/>
+<text x="12" y="206" class="tb twn">長い文だと、1本のベクトルに</text>
+<text x="12" y="226" class="tb twn">情報が入りきらない</text>
+<line x1="12" y1="246" x2="308" y2="246" class="l sb w1"/>
+<text x="12" y="270" class="tb">② Attention：毎回、全体を見直す</text>
+<rect x="96" y="286" width="128" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="304.5" text-anchor="middle">デコーダ</text>
+<text x="232" y="296" class="tb">「猫」を</text>
+<text x="232" y="316" class="tb">出すとき</text>
+<circle cx="160" cy="360" r="11" class="fas sa"/>
+<line x1="154" y1="360" x2="166" y2="360" class="l sa w2"/>
+<line x1="160" y1="354" x2="160" y2="366" class="l sa w2"/>
+<line x1="160" y1="349" x2="160" y2="316" class="l w2"/>
+<polyline points="163.85,323 160,316 156.15,323" class="l w2"/>
+<line x1="150.1" y1="371" x2="50" y2="424" class="l sm w1"/>
+<rect x="20" y="424" width="60" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="50" y="441.5" text-anchor="middle">I</text>
+<text x="50" y="472" class="tm" text-anchor="middle">重み 0.1</text>
+<line x1="160" y1="371" x2="160" y2="424" class="l sm w1"/>
+<rect x="130" y="424" width="60" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="441.5" text-anchor="middle">love</text>
+<text x="160" y="472" class="tm" text-anchor="middle">重み 0.1</text>
+<line x1="169.9" y1="371" x2="270" y2="424" class="l sa w3"/>
+<rect x="240" y="424" width="60" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="270" y="441.5" class="tb" text-anchor="middle">cats</text>
+<text x="270" y="472" class="tb ta" text-anchor="middle">重み 0.8</text>
+<text x="12" y="508" class="tb">すべての位置の状態に重みをかけて足す</text>
+<text x="12" y="530" class="tm">（重みは合計1）</text>
+<line x1="12" y1="548" x2="308" y2="548" class="l sb w1"/>
+<text x="12" y="572" class="tb">Source-Target Attention</text>
+<text x="12" y="594">クエリ（Q）＝デコーダから</text>
+<text x="12" y="614">キー（K）・バリュー（V）＝エンコーダから</text>
+</svg>

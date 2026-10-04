@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 516" role="img" aria-labelledby="fig-g-neuron-mlp-t fig-g-neuron-mlp-d">
+<title id="fig-g-neuron-mlp-t">ニューロンの計算と、全結合層のパラメータ数</title>
+<desc id="fig-g-neuron-mlp-d">上は1つのニューロン。入力x1からx3にそれぞれ重みw1からw3をかけて足し合わせ、バイアスbを加え、活性化関数fを通して出力する。下は、入力4つ、出力3つの全結合層。入力と出力のすべての組が線でつながり、重みは4×3で12個。出力ごとにバイアスが1つずつで3個。合わせて15個で、式は（入力数＋1）×出力数。計算は入力から出力へ向かう順伝播。</desc>
+<text x="12" y="20" class="tb">① 1つのニューロンの計算</text>
+<circle cx="30" cy="56" r="14" class="fs sb" stroke-width="2"/>
+<text x="30" y="61" class="tb" text-anchor="middle">x1</text>
+<line x1="46" y1="56" x2="128" y2="86" class="l sm w1"/>
+<text x="70" y="60" class="tb ta">w1</text>
+<circle cx="30" cy="96" r="14" class="fs sb" stroke-width="2"/>
+<text x="30" y="101" class="tb" text-anchor="middle">x2</text>
+<line x1="46" y1="96" x2="128" y2="96" class="l sm w1"/>
+<text x="70" y="90" class="tb ta">w2</text>
+<circle cx="30" cy="136" r="14" class="fs sb" stroke-width="2"/>
+<text x="30" y="141" class="tb" text-anchor="middle">x3</text>
+<line x1="46" y1="136" x2="128" y2="106" class="l sm w1"/>
+<text x="70" y="142" class="tb ta">w3</text>
+<circle cx="150" cy="96" r="20" class="fas sa" stroke-width="2"/>
+<text x="150" y="101" class="tb" text-anchor="middle">Σ</text>
+<text x="150" y="58" class="tb twn" text-anchor="middle">＋ b</text>
+<line x1="150" y1="62" x2="150" y2="68.4" class="l swn w2"/>
+<polygon points="150,74 146.5,68.4 153.5,68.4" class="fm"/>
+<line x1="170" y1="96" x2="189.6" y2="96" class="l sm w2"/>
+<polygon points="196,96 189.6,100 189.6,92" class="fm"/>
+<rect x="198" y="80" width="40" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="218" y="101" class="tb tok" text-anchor="middle">f</text>
+<line x1="238" y1="96" x2="255.6" y2="96" class="l sm w2"/>
+<polygon points="262,96 255.6,100 255.6,92" class="fm"/>
+<text x="266" y="100" class="tb">出力</text>
+<text x="12" y="176">重み付きの和にバイアス b を足し、</text>
+<text x="12" y="196">活性化関数 f を通して出力する</text>
+<line x1="12" y1="212" x2="308" y2="212" class="l sb w1"/>
+<text x="12" y="236" class="tb">② 全結合層（入力4・出力3）</text>
+<line x1="46" y1="262" x2="176" y2="276" class="l sm w1"/>
+<line x1="46" y1="262" x2="176" y2="319" class="l sm w1"/>
+<line x1="46" y1="262" x2="176" y2="362" class="l sm w1"/>
+<line x1="46" y1="300" x2="176" y2="276" class="l sm w1"/>
+<line x1="46" y1="300" x2="176" y2="319" class="l sm w1"/>
+<line x1="46" y1="300" x2="176" y2="362" class="l sm w1"/>
+<line x1="46" y1="338" x2="176" y2="276" class="l sm w1"/>
+<line x1="46" y1="338" x2="176" y2="319" class="l sm w1"/>
+<line x1="46" y1="338" x2="176" y2="362" class="l sm w1"/>
+<line x1="46" y1="376" x2="176" y2="276" class="l sm w1"/>
+<line x1="46" y1="376" x2="176" y2="319" class="l sm w1"/>
+<line x1="46" y1="376" x2="176" y2="362" class="l sm w1"/>
+<circle cx="30" cy="262" r="14" class="fs sb" stroke-width="2"/>
+<text x="30" y="267" class="tb" text-anchor="middle">x1</text>
+<circle cx="30" cy="300" r="14" class="fs sb" stroke-width="2"/>
+<text x="30" y="305" class="tb" text-anchor="middle">x2</text>
+<circle cx="30" cy="338" r="14" class="fs sb" stroke-width="2"/>
+<text x="30" y="343" class="tb" text-anchor="middle">x3</text>
+<circle cx="30" cy="376" r="14" class="fs sb" stroke-width="2"/>
+<text x="30" y="381" class="tb" text-anchor="middle">x4</text>
+<circle cx="190" cy="276" r="14" class="fas sa" stroke-width="2"/>
+<rect x="232" y="268" width="16" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="240" y="281" class="tb twn" text-anchor="middle">b</text>
+<line x1="204" y1="276" x2="232" y2="276" class="l swn w1"/>
+<circle cx="190" cy="319" r="14" class="fas sa" stroke-width="2"/>
+<rect x="232" y="311" width="16" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="240" y="324" class="tb twn" text-anchor="middle">b</text>
+<line x1="204" y1="319" x2="232" y2="319" class="l swn w1"/>
+<circle cx="190" cy="362" r="14" class="fas sa" stroke-width="2"/>
+<rect x="232" y="354" width="16" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="240" y="367" class="tb twn" text-anchor="middle">b</text>
+<line x1="204" y1="362" x2="232" y2="362" class="l swn w1"/>
+<text x="300" y="276"></text>
+<text x="12" y="410" class="tb ta">重み：4×3＝12 個（線の数）</text>
+<text x="12" y="432" class="tb twn">バイアス：出力の数と同じ 3 個</text>
+<text x="12" y="456" class="tb">合計 15 個 ＝（入力数＋1）×出力数</text>
+<text x="12" y="480" class="tm">「＋1」はバイアスの分</text>
+<text x="12" y="504" class="tm">計算は、入力から出力へ（順伝播）</text>
+</svg>

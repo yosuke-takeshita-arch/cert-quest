@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 524" role="img" aria-labelledby="fig-g-normalization-t fig-g-normalization-d">
+<title id="fig-g-normalization-t">正規化の4種類：平均と分散をとる範囲のちがい</title>
+<desc id="fig-g-normalization-d">1枚のシートが1つのデータ、縦がチャネル、横が画像上の位置を表す。バッチ正規化は、同じチャネルを全データ・全位置でまとめて平均と分散を求める。レイヤー正規化は、1つのデータの全チャネル・全位置で求める。インスタンス正規化は、1つのデータの1チャネルだけで求める。グループ正規化は、1つのデータでチャネルをいくつかの束に分け、束ごとに求める。レイヤー・インスタンス・グループはバッチの方向には計算しないので、バッチの大きさに依存しない。グループが1つならレイヤー正規化、1チャネルずつならインスタンス正規化と同じになる。</desc>
+<text x="12" y="20" class="tb">見かた</text>
+<text x="12" y="40">1枚のシート＝1つのデータ</text>
+<text x="12" y="60">縦＝チャネル、横＝画像上の位置</text>
+<rect x="12" y="74" width="14" height="14" class="fa sa" stroke-width="1"/>
+<text x="32" y="86">＝平均と分散を1組とる範囲</text>
+<rect x="14" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="25" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="36" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="14" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="30.5" y="168" class="tm" text-anchor="middle">データ1</text>
+<rect x="55" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="55" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="55" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="55" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="71.5" y="168" class="tm" text-anchor="middle">データ2</text>
+<rect x="96" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="108" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="107" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="118" y="119" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="96" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="130" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="141" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="112.5" y="168" class="tm" text-anchor="middle">データ3</text>
+<text x="150" y="114" class="tb">バッチ正規化</text>
+<text x="150" y="134">同じチャネルを、</text>
+<text x="150" y="152">全データ・全位置で</text>
+<text x="150" y="170" class="tm">小バッチに弱い</text>
+<line x1="12" y1="178" x2="308" y2="178" class="l sb w1"/>
+<rect x="14" y="192" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="192" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="192" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="203" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="203" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="203" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="214" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="214" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="214" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="225" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="225" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="225" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="30.5" y="252" class="tm" text-anchor="middle">データ1</text>
+<rect x="55" y="192" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="192" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="192" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="55" y="203" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="203" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="203" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="55" y="214" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="214" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="214" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="55" y="225" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="225" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="225" width="11" height="11" class="fa sa" stroke-width="1"/>
+<text x="71.5" y="252" class="tm" text-anchor="middle">データ2</text>
+<rect x="96" y="192" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="192" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="192" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="203" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="203" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="203" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="214" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="214" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="214" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="225" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="225" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="225" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="112.5" y="252" class="tm" text-anchor="middle">データ3</text>
+<text x="150" y="198" class="tb">レイヤー正規化</text>
+<text x="150" y="218">1つのデータの</text>
+<text x="150" y="236">全チャネル・全位置</text>
+<text x="150" y="254" class="tm">RNN・Transformer</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<rect x="14" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="287" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="287" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="287" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="30.5" y="336" class="tm" text-anchor="middle">データ1</text>
+<rect x="55" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="55" y="287" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="287" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="287" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="55" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="55" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="71.5" y="336" class="tm" text-anchor="middle">データ2</text>
+<rect x="96" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="276" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="287" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="287" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="287" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="298" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="309" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="112.5" y="336" class="tm" text-anchor="middle">データ3</text>
+<text x="150" y="282" class="tb">インスタンス正規化</text>
+<text x="150" y="302">1つのデータの</text>
+<text x="150" y="320">1チャネルだけ</text>
+<text x="150" y="338" class="tm">画風変換</text>
+<line x1="12" y1="346" x2="308" y2="346" class="l sb w1"/>
+<rect x="14" y="360" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="360" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="360" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="371" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="371" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="371" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="14" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="25" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="36" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="30.5" y="420" class="tm" text-anchor="middle">データ1</text>
+<rect x="55" y="360" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="360" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="360" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="55" y="371" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="66" y="371" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="77" y="371" width="11" height="11" class="fa sa" stroke-width="1"/>
+<rect x="55" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="55" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="66" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="77" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="71.5" y="420" class="tm" text-anchor="middle">データ2</text>
+<rect x="96" y="360" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="360" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="360" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="371" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="371" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="371" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="382" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="96" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="107" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<rect x="118" y="393" width="11" height="11" class="fs sb" stroke-width="1"/>
+<text x="112.5" y="420" class="tm" text-anchor="middle">データ3</text>
+<text x="150" y="366" class="tb">グループ正規化</text>
+<text x="150" y="386">1つのデータの</text>
+<text x="150" y="404">チャネルの束ごと</text>
+<text x="150" y="422" class="tm">小バッチの検出など</text>
+<text x="12" y="470" class="tb">グループの数で、他の2つとつながる</text>
+<text x="12" y="492">グループが1つ ＝ レイヤー正規化</text>
+<text x="12" y="512">1チャネルずつ ＝ インスタンス正規化</text>
+</svg>

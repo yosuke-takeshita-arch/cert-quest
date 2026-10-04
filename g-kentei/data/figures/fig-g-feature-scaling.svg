@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 502" role="img" aria-labelledby="fig-g-feature-scaling-t fig-g-feature-scaling-d">
+<title id="fig-g-feature-scaling-t">特徴量の変換：正規化・標準化・対数変換</title>
+<desc id="fig-g-feature-scaling-d">同じデータのヒストグラムを並べて、変換で何が変わるかを見る図。元データは、中央にふくらみのある山。正規化（Min-Max）は最小値と最大値を使って0から1の範囲に収める。標準化は各値から平均を引いて標準偏差で割り、平均0・分散1にそろえる。正規化も標準化も山の形は変わらず、横軸の目盛りが変わる。下の2つは、大半の値が小さく一部だけが極端に大きい、右に長く裾を引く分布の例。対数をとると、山が中央寄りになり、偏りが小さくなる。</desc>
+<text x="12" y="20" class="tb">① 元データ</text>
+<text x="168" y="20" class="tb">② 正規化（Min-Max）</text>
+<rect x="12" y="28" width="140" height="74" class="fs sb" stroke-width="1"/>
+<rect x="13" y="95.87" width="9.67" height="2.13" class="fas sa"/>
+<rect x="24.67" y="91.37" width="9.67" height="6.63" class="fas sa"/>
+<rect x="36.33" y="81.58" width="9.67" height="16.42" class="fas sa"/>
+<rect x="48" y="65.59" width="9.67" height="32.41" class="fas sa"/>
+<rect x="59.67" y="46.98" width="9.67" height="51.02" class="fas sa"/>
+<rect x="71.33" y="34" width="9.67" height="64" class="fas sa"/>
+<rect x="83" y="34" width="9.67" height="64" class="fas sa"/>
+<rect x="94.67" y="46.98" width="9.67" height="51.02" class="fas sa"/>
+<rect x="106.33" y="65.59" width="9.67" height="32.41" class="fas sa"/>
+<rect x="118" y="81.58" width="9.67" height="16.42" class="fas sa"/>
+<rect x="129.67" y="91.37" width="9.67" height="6.63" class="fas sa"/>
+<rect x="141.33" y="95.87" width="9.67" height="2.13" class="fas sa"/>
+<line x1="12" y1="102" x2="152" y2="102" class="l sm w1"/>
+<rect x="168" y="28" width="140" height="74" class="fs sb" stroke-width="1"/>
+<rect x="169" y="95.87" width="9.67" height="2.13" class="fok sok"/>
+<rect x="180.67" y="91.37" width="9.67" height="6.63" class="fok sok"/>
+<rect x="192.33" y="81.58" width="9.67" height="16.42" class="fok sok"/>
+<rect x="204" y="65.59" width="9.67" height="32.41" class="fok sok"/>
+<rect x="215.67" y="46.98" width="9.67" height="51.02" class="fok sok"/>
+<rect x="227.33" y="34" width="9.67" height="64" class="fok sok"/>
+<rect x="239" y="34" width="9.67" height="64" class="fok sok"/>
+<rect x="250.67" y="46.98" width="9.67" height="51.02" class="fok sok"/>
+<rect x="262.33" y="65.59" width="9.67" height="32.41" class="fok sok"/>
+<rect x="274" y="81.58" width="9.67" height="16.42" class="fok sok"/>
+<rect x="285.67" y="91.37" width="9.67" height="6.63" class="fok sok"/>
+<rect x="297.33" y="95.87" width="9.67" height="2.13" class="fok sok"/>
+<line x1="168" y1="102" x2="308" y2="102" class="l sm w1"/>
+<text x="12" y="122" class="tm">20</text>
+<text x="152" y="122" class="tm" text-anchor="end">80</text>
+<text x="168" y="122" class="tm">0</text>
+<text x="308" y="122" class="tm" text-anchor="end">1</text>
+<text x="12" y="144" class="tm">値のまま</text>
+<text x="168" y="144" class="tm">0〜1の範囲に収める</text>
+<text x="12" y="170" class="tb">③ 標準化</text>
+<rect x="12" y="178" width="140" height="74" class="fs sb" stroke-width="1"/>
+<rect x="13" y="245.87" width="9.67" height="2.13" class="fwn swn"/>
+<rect x="24.67" y="241.37" width="9.67" height="6.63" class="fwn swn"/>
+<rect x="36.33" y="231.58" width="9.67" height="16.42" class="fwn swn"/>
+<rect x="48" y="215.59" width="9.67" height="32.41" class="fwn swn"/>
+<rect x="59.67" y="196.98" width="9.67" height="51.02" class="fwn swn"/>
+<rect x="71.33" y="184" width="9.67" height="64" class="fwn swn"/>
+<rect x="83" y="184" width="9.67" height="64" class="fwn swn"/>
+<rect x="94.67" y="196.98" width="9.67" height="51.02" class="fwn swn"/>
+<rect x="106.33" y="215.59" width="9.67" height="32.41" class="fwn swn"/>
+<rect x="118" y="231.58" width="9.67" height="16.42" class="fwn swn"/>
+<rect x="129.67" y="241.37" width="9.67" height="6.63" class="fwn swn"/>
+<rect x="141.33" y="245.87" width="9.67" height="2.13" class="fwn swn"/>
+<line x1="12" y1="252" x2="152" y2="252" class="l sm w1"/>
+<text x="12" y="272" class="tm">−3</text>
+<text x="82" y="272" class="tm" text-anchor="middle">0</text>
+<text x="152" y="272" class="tm" text-anchor="end">3</text>
+<text x="168" y="202">正規化も標準化も、</text>
+<text x="168" y="222">山の形は変わらない。</text>
+<text x="168" y="242" class="tb">横軸の目盛りが変わる</text>
+<text x="12" y="294" class="tm">平均0・分散1にそろえる</text>
+<line x1="12" y1="318" x2="308" y2="318" class="l sb w1"/>
+<text x="12" y="346" class="tb">④ 右に裾を引く分布</text>
+<text x="168" y="346" class="tb">⑤ 対数をとった後</text>
+<rect x="12" y="354" width="140" height="74" class="fs sb" stroke-width="1"/>
+<rect x="13" y="378.36" width="9.67" height="45.64" class="fng sng"/>
+<rect x="24.67" y="360" width="9.67" height="64" class="fng sng"/>
+<rect x="36.33" y="384.6" width="9.67" height="39.4" class="fng sng"/>
+<rect x="48" y="401.09" width="9.67" height="22.91" class="fng sng"/>
+<rect x="59.67" y="410.39" width="9.67" height="13.61" class="fng sng"/>
+<rect x="71.33" y="415.63" width="9.67" height="8.37" class="fng sng"/>
+<rect x="83" y="418.68" width="9.67" height="5.32" class="fng sng"/>
+<rect x="94.67" y="420.51" width="9.67" height="3.49" class="fng sng"/>
+<rect x="106.33" y="421.65" width="9.67" height="2.35" class="fng sng"/>
+<rect x="118" y="422.38" width="9.67" height="1.62" class="fng sng"/>
+<rect x="129.67" y="422.86" width="9.67" height="1.14" class="fng sng"/>
+<rect x="141.33" y="423.18" width="9.67" height="0.82" class="fng sng"/>
+<line x1="12" y1="428" x2="152" y2="428" class="l sm w1"/>
+<rect x="168" y="354" width="140" height="74" class="fs sb" stroke-width="1"/>
+<rect x="169" y="422.49" width="9.67" height="1.51" class="fok sok"/>
+<rect x="180.67" y="418.75" width="9.67" height="5.25" class="fok sok"/>
+<rect x="192.33" y="409.72" width="9.67" height="14.28" class="fok sok"/>
+<rect x="204" y="393.77" width="9.67" height="30.23" class="fok sok"/>
+<rect x="215.67" y="374.16" width="9.67" height="49.84" class="fok sok"/>
+<rect x="227.33" y="360" width="9.67" height="64" class="fok sok"/>
+<rect x="239" y="360" width="9.67" height="64" class="fok sok"/>
+<rect x="250.67" y="374.16" width="9.67" height="49.84" class="fok sok"/>
+<rect x="262.33" y="393.77" width="9.67" height="30.23" class="fok sok"/>
+<rect x="274" y="409.72" width="9.67" height="14.28" class="fok sok"/>
+<rect x="285.67" y="418.75" width="9.67" height="5.25" class="fok sok"/>
+<rect x="297.33" y="422.49" width="9.67" height="1.51" class="fok sok"/>
+<line x1="168" y1="428" x2="308" y2="428" class="l sm w1"/>
+<text x="12" y="448" class="tm">小</text>
+<text x="152" y="448" class="tm" text-anchor="end">大</text>
+<text x="168" y="448" class="tm">小</text>
+<text x="308" y="448" class="tm" text-anchor="end">大</text>
+<text x="12" y="470" class="tm">大半は小さく、</text>
+<text x="168" y="470" class="tm">山が中央寄りになる</text>
+<text x="12" y="490" class="tm">一部だけ極端に大きい</text>
+</svg>
