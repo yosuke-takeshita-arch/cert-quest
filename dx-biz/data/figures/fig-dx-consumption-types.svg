@@ -1,22 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 318" role="img" aria-labelledby="fig-dx-consumption-types-t fig-dx-consumption-types-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-dx-consumption-types-t fig-dx-consumption-types-d">
 <title id="fig-dx-consumption-types-t">モノ消費・コト消費・トキ消費・イミ消費</title>
-<desc id="fig-dx-consumption-types-d">4つの消費の形を、何にお金を使うかで比べた表。モノ消費は、モノ（商品）を買って所有する。コト消費は、旅行・習い事・芸術鑑賞などの機会やサービス（体験）を消費する。トキ消費は、その時その場所でしか体験できないスポーツイベントやフェスなどで、感動を他の参加者と共有し、一体感を得る。イミ消費は、買うことが社会や自分自身に良い影響を与えられるかという意味に価値を置く消費で、環境に配慮したサステナブル商品などが対象になる。トキ消費は消費者白書（令和4年版）が若者に特徴的な消費形態とし、イミ消費は令和7年版消費者白書の紹介資料が若者世代で重視されるとしている。</desc>
-<rect x="12" y="14" width="296" height="58" class="fs sb" stroke-width="1.5"/>
+<desc id="fig-dx-consumption-types-d">4つの消費の形を、お金で何を手に入れるかで比べた図。どの形も、お金を払って、何かを手に入れる流れで描いた。モノ消費は、モノ（商品）を買って所有する。コト消費は、旅行・習い事・芸術鑑賞などの機会やサービスを使って体験する。トキ消費は、その時その場所でしか体験できないスポーツイベントやフェスなどで、感動を他の参加者と共有し、一体感を得る。イミ消費は、買うことが社会や自分自身に良い影響を与えられるかという意味に価値を置く消費で、環境に配慮したサステナブル商品などが対象になる。トキ消費は消費者白書（令和4年版）が若者に特徴的な消費形態とし、イミ消費は令和7年版消費者白書の紹介資料が若者世代で重視されるとしている。</desc>
+<rect x="12" y="14" width="296" height="104" class="fs sb" stroke-width="1.5"/>
 <text x="24" y="40" class="tb">モノ消費</text>
 <text x="100" y="40" class="tm">例：商品を買う</text>
-<text x="24" y="64">モノを買って、所有する</text>
-<rect x="12" y="80" width="296" height="58" class="fas sa" stroke-width="1.5"/>
-<text x="24" y="106" class="tb">コト消費</text>
-<text x="100" y="106" class="tm">例：旅行・習い事・芸術鑑賞</text>
-<text x="24" y="130">体験・サービスにお金を使う</text>
-<rect x="12" y="146" width="296" height="78" class="fwn swn" stroke-width="1.5"/>
-<text x="24" y="172" class="tb">トキ消費</text>
-<text x="100" y="172" class="tm">例：スポーツイベント・フェス</text>
-<text x="24" y="196">その時その場所だけの体験を、</text>
-<text x="24" y="216">他の参加者と共有する</text>
-<rect x="12" y="232" width="296" height="78" class="fok sok" stroke-width="1.5"/>
-<text x="24" y="258" class="tb">イミ消費</text>
-<text x="100" y="258" class="tm">例：環境に配慮した商品</text>
-<text x="24" y="282">買うことが、社会や自分に</text>
-<text x="24" y="302">良い影響を与えるか</text>
+<circle cx="38" cy="67" r="12" class="fs sm" stroke-width="1.5"/>
+<text x="38" y="72" class="tb" text-anchor="middle">¥</text>
+<line x1="54" y1="67" x2="74" y2="67" class="l w2"/>
+<polyline points="67,70.85 74,67 67,63.15" class="l w2"/>
+<rect x="78" y="52" width="100" height="30" class="fbg sm" stroke-width="1.5"/>
+<text x="128" y="72" text-anchor="middle">モノ（商品）</text>
+<line x1="180" y1="67" x2="196" y2="67" class="l w2"/>
+<polyline points="189,70.85 196,67 189,63.15" class="l w2"/>
+<rect x="198" y="52" width="98" height="30" class="fbg sm" stroke-width="1.5"/>
+<text x="247" y="72" class="tb" text-anchor="middle">所有する</text>
+<text x="24" y="106">モノを買って、所有する</text>
+<rect x="12" y="126" width="296" height="104" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="152" class="tb">コト消費</text>
+<text x="100" y="152" class="tm">例：旅行・習い事・芸術鑑賞</text>
+<circle cx="38" cy="179" r="12" class="fs sa" stroke-width="1.5"/>
+<text x="38" y="184" class="tb" text-anchor="middle">¥</text>
+<line x1="54" y1="179" x2="74" y2="179" class="l w2"/>
+<polyline points="67,182.85 74,179 67,175.15" class="l w2"/>
+<rect x="78" y="164" width="100" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="128" y="184" text-anchor="middle">機会・サービス</text>
+<line x1="180" y1="179" x2="196" y2="179" class="l w2"/>
+<polyline points="189,182.85 196,179 189,175.15" class="l w2"/>
+<rect x="198" y="164" width="98" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="247" y="184" class="tb" text-anchor="middle">体験する</text>
+<text x="24" y="218">体験・サービスにお金を使う</text>
+<rect x="12" y="238" width="296" height="104" class="fwn swn" stroke-width="1.5"/>
+<text x="24" y="264" class="tb">トキ消費</text>
+<text x="100" y="264" class="tm">例：スポーツイベント・フェス</text>
+<circle cx="38" cy="291" r="12" class="fs swn" stroke-width="1.5"/>
+<text x="38" y="296" class="tb" text-anchor="middle">¥</text>
+<line x1="54" y1="291" x2="74" y2="291" class="l w2"/>
+<polyline points="67,294.85 74,291 67,287.15" class="l w2"/>
+<rect x="78" y="276" width="100" height="30" class="fs swn" stroke-width="1.5"/>
+<text x="128" y="296" text-anchor="middle">その時その場所</text>
+<line x1="180" y1="291" x2="196" y2="291" class="l w2"/>
+<polyline points="189,294.85 196,291 189,287.15" class="l w2"/>
+<rect x="198" y="276" width="98" height="30" class="fs swn" stroke-width="1.5"/>
+<text x="247" y="296" class="tb" text-anchor="middle">みんなと共有</text>
+<text x="24" y="330">その時その場所だけの体験を共有する</text>
+<rect x="12" y="350" width="296" height="104" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="376" class="tb">イミ消費</text>
+<text x="100" y="376" class="tm">例：環境に配慮した商品</text>
+<circle cx="38" cy="403" r="12" class="fs sok" stroke-width="1.5"/>
+<text x="38" y="408" class="tb" text-anchor="middle">¥</text>
+<line x1="54" y1="403" x2="74" y2="403" class="l w2"/>
+<polyline points="67,406.85 74,403 67,399.15" class="l w2"/>
+<rect x="78" y="388" width="100" height="30" class="fs sok" stroke-width="1.5"/>
+<text x="128" y="408" text-anchor="middle">買うこと</text>
+<line x1="180" y1="403" x2="196" y2="403" class="l w2"/>
+<polyline points="189,406.85 196,403 189,399.15" class="l w2"/>
+<rect x="198" y="388" width="98" height="30" class="fs sok" stroke-width="1.5"/>
+<text x="247" y="408" class="tb" text-anchor="middle">社会に良い影響</text>
+<text x="24" y="442">社会や自分に良い影響を与えられるか</text>
 </svg>

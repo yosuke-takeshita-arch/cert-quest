@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 370" role="img" aria-labelledby="fig-dx-crowd-t fig-dx-crowd-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 558" role="img" aria-labelledby="fig-dx-crowd-t fig-dx-crowd-d">
 <title id="fig-dx-crowd-t">クラウドソーシングとクラウドファンディング（3つの型）</title>
-<desc id="fig-dx-crowd-d">上：クラウドソーシングは、仕事を出す仕組み。発注者がWebサイトで、不特定多数の人に業務を公募し、受注者が仕事を受ける。下：クラウドファンディングは、お金を集める仕組み。多数の人から少額ずつ資金が集まる。出資者へのリターンの形で3つの型に分かれ、寄付型はリターンなし、購入型は金銭以外のリターン、投資型は金銭によるリターン。</desc>
+<desc id="fig-dx-crowd-d">上：クラウドソーシングは、仕事を出す仕組み。発注者がWebサイトで、不特定多数の人に業務を公募し、受注者が仕事を受ける。下：クラウドファンディングは、お金を集める仕組み。多数の人から少額ずつ資金が集まる。出資者へのリターンの形で3つの型に分かれる。どの型も、支援者から事業者へお金が渡る。事業者から支援者へ戻るものが違う。寄付型はリターンなし、購入型は金銭以外のリターン、投資型は金銭によるリターン。</desc>
 <text x="12" y="22" class="tb">クラウドソーシング：仕事を出す</text>
 <rect x="12" y="28" width="84" height="56" class="fwn swn" stroke-width="1.5"/>
 <text x="54" y="60.5" class="tb" text-anchor="middle">発注者</text>
@@ -14,22 +14,49 @@
 <line x1="12" y1="122" x2="308" y2="122" class="l sb w1"/>
 <text x="12" y="144" class="tb">クラウドファンディング：お金を集める</text>
 <rect x="12" y="158" width="144" height="56" class="fas sa" stroke-width="1.5"/>
-<text x="84" y="182" class="tb" text-anchor="middle">多数の人</text>
-<text x="84" y="202" text-anchor="middle">（少額ずつ）</text>
+<text x="84" y="181.5" text-anchor="middle">多数の人</text>
+<text x="84" y="199.5" text-anchor="middle">（少額ずつ）</text>
 <line x1="158" y1="186" x2="210" y2="186" class="l sa w2"/>
 <polyline points="203,189.85 210,186 203,182.15" class="l sa w2"/>
 <text x="160" y="178" class="tm">お金</text>
 <rect x="214" y="158" width="94" height="56" class="fwn swn" stroke-width="1.5"/>
-<text x="261" y="181" class="tb" text-anchor="middle">事業者</text>
-<text x="261" y="200" text-anchor="middle">プロジェクト</text>
+<text x="261" y="181.5" text-anchor="middle">事業者</text>
+<text x="261" y="199.5" text-anchor="middle">プロジェクト</text>
 <text x="12" y="236" class="tb">リターンの形で、3つの型に分かれる</text>
-<rect x="12" y="248" width="296" height="34" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="248" width="296" height="96" class="fs sb" stroke-width="1.5"/>
 <text x="24" y="270" class="tb">寄付型</text>
-<text x="100" y="270">リターンなし</text>
-<rect x="12" y="288" width="296" height="34" class="fok sok" stroke-width="1.5"/>
-<text x="24" y="310" class="tb">購入型</text>
-<text x="100" y="310">金銭以外のリターン</text>
-<rect x="12" y="328" width="296" height="34" class="fas sa" stroke-width="1.5"/>
-<text x="24" y="350" class="tb">投資型</text>
-<text x="100" y="350">金銭によるリターン</text>
+<rect x="24" y="278" width="52" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="50" y="310.5" text-anchor="middle">支援者</text>
+<rect x="244" y="278" width="52" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="270" y="310.5" text-anchor="middle">事業者</text>
+<line x1="80" y1="292" x2="240" y2="292" class="l sa w2"/>
+<polyline points="233,295.85 240,292 233,288.15" class="l sa w2"/>
+<text x="160" y="287" class="tm" text-anchor="middle">お金</text>
+<line x1="240" y1="314" x2="80" y2="314" class="l sm w2 dsh"/>
+<polyline points="87,310.15 80,314 87,317.85" class="l sm w2 dsh"/>
+<text x="160" y="332" class="tm" text-anchor="middle">リターンなし</text>
+<rect x="12" y="350" width="296" height="96" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="372" class="tb">購入型</text>
+<rect x="24" y="380" width="52" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="50" y="412.5" text-anchor="middle">支援者</text>
+<rect x="244" y="380" width="52" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="270" y="412.5" text-anchor="middle">事業者</text>
+<line x1="80" y1="394" x2="240" y2="394" class="l sa w2"/>
+<polyline points="233,397.85 240,394 233,390.15" class="l sa w2"/>
+<text x="160" y="389" class="tm" text-anchor="middle">お金</text>
+<line x1="240" y1="416" x2="80" y2="416" class="l sok w2"/>
+<polyline points="87,412.15 80,416 87,419.85" class="l sok w2"/>
+<text x="160" y="434" class="tb" text-anchor="middle">金銭以外のリターン</text>
+<rect x="12" y="452" width="296" height="96" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="474" class="tb">投資型</text>
+<rect x="24" y="482" width="52" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="50" y="514.5" text-anchor="middle">支援者</text>
+<rect x="244" y="482" width="52" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="270" y="514.5" text-anchor="middle">事業者</text>
+<line x1="80" y1="496" x2="240" y2="496" class="l sa w2"/>
+<polyline points="233,499.85 240,496 233,492.15" class="l sa w2"/>
+<text x="160" y="491" class="tm" text-anchor="middle">お金</text>
+<line x1="240" y1="518" x2="80" y2="518" class="l sa w2"/>
+<polyline points="87,514.15 80,518 87,521.85" class="l sa w2"/>
+<text x="160" y="536" class="tb" text-anchor="middle">金銭によるリターン</text>
 </svg>

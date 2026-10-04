@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 494" role="img" aria-labelledby="fig-dx-cloud-models-t fig-dx-cloud-models-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 496" role="img" aria-labelledby="fig-dx-cloud-models-t fig-dx-cloud-models-d">
 <title id="fig-dx-cloud-models-t">オンプレミスとクラウド：ハイブリッドクラウドとマルチクラウド、IaaS・PaaS・SaaS</title>
-<desc id="fig-dx-cloud-models-d">オンプレミスは自社で設備を持って運用する形、クラウドはネットワーク経由で必要なときに必要な分だけ借りる形。ハイブリッドクラウドは、オンプレミス（またはプライベートクラウド）とパブリッククラウドを組み合わせる使い方。マルチクラウドは、複数のパブリッククラウドを組み合わせる使い方。クラウドの提供形態は、IaaSがCPU・ストレージ・ネットワークなどの基礎的なリソースを提供し利用者がOSから構築する、PaaSがIaaSに加えOS・基本的機能・開発環境や運用管理環境も提供する、SaaSが業務アプリケーションなどの機能を提供する。</desc>
+<desc id="fig-dx-cloud-models-d">オンプレミスは自社で設備を持って運用する形、クラウドはネットワーク経由で必要なときに必要な分だけ借りる形。ハイブリッドクラウドは、オンプレミス（またはプライベートクラウド）とパブリッククラウドを組み合わせる使い方。マルチクラウドは、複数のパブリッククラウドを組み合わせる使い方。クラウドの提供形態は、IaaSがCPU・ストレージ・ネットワークなどの基礎的なリソースを提供し利用者がOSから構築する、PaaSがIaaSに加えOS・基本的機能・開発環境や運用管理環境も提供する、SaaSが業務アプリケーションなどの機能を提供する。下の図では、基礎的なリソース・OS・基本的機能や開発環境・業務アプリの4つの層のうち、どこまでを事業者が用意するかを濃い色で示す。IaaSは一番下の層だけ、PaaSは下から3つの層まで、SaaSは業務アプリまで全部を事業者が用意する。</desc>
 <text x="12" y="22" class="tb">ハイブリッドクラウド</text>
 <rect x="12" y="32" width="126" height="54" class="fs sa" stroke-width="1.5"/>
 <text x="75" y="54" class="tb" text-anchor="middle">オンプレミス</text>
@@ -31,18 +31,38 @@
 <text x="12" y="236">複数のパブリッククラウドを組み合わせる</text>
 <line x1="12" y1="256" x2="308" y2="256" class="l sb w1"/>
 <text x="12" y="278" class="tb">提供形態：どこまで事業者が用意するか</text>
-<rect x="12" y="294" width="56" height="65" class="fa"/>
-<text x="40" y="330.5" class="tb ton" text-anchor="middle">IaaS</text>
-<text x="78" y="312">CPU・ストレージ・</text>
-<text x="78" y="331">ネットワークを借りる</text>
-<text x="78" y="350">OSから上は利用者が構築</text>
-<rect x="12" y="367" width="56" height="65" class="fa"/>
-<text x="40" y="403.5" class="tb ton" text-anchor="middle">PaaS</text>
-<text x="78" y="385">IaaSに加えて、OS・</text>
-<text x="78" y="404">基本的機能・開発環境・</text>
-<text x="78" y="423">運用管理環境も提供される</text>
-<rect x="12" y="440" width="56" height="46" class="fa"/>
-<text x="40" y="467" class="tb ton" text-anchor="middle">SaaS</text>
-<text x="78" y="458">業務アプリなどの機能を、</text>
-<text x="78" y="477">そのまま利用する</text>
+<text x="136" y="304" class="tb" text-anchor="middle">IaaS</text>
+<text x="204" y="304" class="tb" text-anchor="middle">PaaS</text>
+<text x="272" y="304" class="tb" text-anchor="middle">SaaS</text>
+<text x="12" y="336">業務アプリ</text>
+<rect x="104" y="314" width="64" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="136" y="336" class="tm" text-anchor="middle">利用者</text>
+<rect x="172" y="314" width="64" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="204" y="336" class="tm" text-anchor="middle">利用者</text>
+<rect x="240" y="314" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="272" y="336" class="ton tb" text-anchor="middle">事業者</text>
+<text x="12" y="365">基本機能・</text>
+<text x="12" y="381">開発環境など</text>
+<rect x="104" y="350" width="64" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="136" y="372" class="tm" text-anchor="middle">利用者</text>
+<rect x="172" y="350" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="204" y="372" class="ton tb" text-anchor="middle">事業者</text>
+<rect x="240" y="350" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="272" y="372" class="ton tb" text-anchor="middle">事業者</text>
+<text x="12" y="408">OS</text>
+<rect x="104" y="386" width="64" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="136" y="408" class="tm" text-anchor="middle">利用者</text>
+<rect x="172" y="386" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="204" y="408" class="ton tb" text-anchor="middle">事業者</text>
+<rect x="240" y="386" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="272" y="408" class="ton tb" text-anchor="middle">事業者</text>
+<text x="12" y="437">CPU・ストレージ・</text>
+<text x="12" y="453">ネットワーク</text>
+<rect x="104" y="422" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="136" y="444" class="ton tb" text-anchor="middle">事業者</text>
+<rect x="172" y="422" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="204" y="444" class="ton tb" text-anchor="middle">事業者</text>
+<rect x="240" y="422" width="64" height="32" class="fa sa" stroke-width="1.5"/>
+<text x="272" y="444" class="ton tb" text-anchor="middle">事業者</text>
+<text x="12" y="482" class="tm">濃い所＝事業者が用意。白い所＝利用者が用意</text>
 </svg>

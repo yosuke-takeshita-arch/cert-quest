@@ -1,76 +1,325 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 706" role="img" aria-labelledby="fig-g-segmentation-nets-t fig-g-segmentation-nets-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1118" role="img" aria-labelledby="fig-g-segmentation-nets-t fig-g-segmentation-nets-d">
 <title id="fig-g-segmentation-nets-t">セグメンテーションのモデル：デコーダへ何を渡すか（FCN・SegNet・U-Net）</title>
-<desc id="fig-g-segmentation-nets-d">3つのエンコーダ・デコーダを並べた図。FCN は全結合層を使わず畳み込み層だけで構成し、最後に学習できるフィルタでアップサンプリングして、入力と同じ大きさの画素ごとの予測を出す。SegNet は、エンコーダの最大値プーリングの位置（プーリングインデックス）だけをデコーダに渡し、その位置に値を戻してアップサンプリングする。U-Net は U 字型で、縮小側の特徴マップそのものを拡大側にコピーして連結し、医用画像などで成果を出した。PSPNet はピラミッドプーリングで文脈を集め、DeepLab は Atrous 畳み込みで受容野を広げる。</desc>
-<text x="12" y="20" class="tb">FCN：畳み込み層だけ</text>
-<rect x="12" y="34" width="76" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="220" y="34" width="76" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="50" y1="60" x2="50" y2="72" class="l w2"/>
-<polyline points="46.15,65 50,72 53.85,65" class="l w2"/>
-<line x1="258" y1="72" x2="258" y2="62" class="l w2"/>
-<polyline points="261.85,69 258,62 254.15,69" class="l w2"/>
-<rect x="24" y="72" width="52" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="232" y="72" width="52" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="50" y1="98" x2="50" y2="110" class="l w2"/>
-<polyline points="46.15,103 50,110 53.85,103" class="l w2"/>
-<line x1="258" y1="110" x2="258" y2="100" class="l w2"/>
-<polyline points="261.85,107 258,100 254.15,107" class="l w2"/>
-<rect x="36" y="110" width="28" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="244" y="110" width="28" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="64" y1="123" x2="243" y2="123" class="l w2"/>
-<polyline points="236,126.85 243,123 236,119.15" class="l w2"/>
-<text x="12" y="162">全結合層を使わない。最後にアップサンプリング</text>
-<line x1="12" y1="188" x2="308" y2="188" class="l sb w1"/>
-<text x="12" y="212" class="tb">SegNet：プーリングの位置を渡す</text>
-<rect x="12" y="226" width="76" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="220" y="226" width="76" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="50" y1="252" x2="50" y2="264" class="l w2"/>
-<polyline points="46.15,257 50,264 53.85,257" class="l w2"/>
-<line x1="258" y1="264" x2="258" y2="254" class="l w2"/>
-<polyline points="261.85,261 258,254 254.15,261" class="l w2"/>
-<rect x="24" y="264" width="52" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="232" y="264" width="52" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="50" y1="290" x2="50" y2="302" class="l w2"/>
-<polyline points="46.15,295 50,302 53.85,295" class="l w2"/>
-<line x1="258" y1="302" x2="258" y2="292" class="l w2"/>
-<polyline points="261.85,299 258,292 254.15,299" class="l w2"/>
-<rect x="36" y="302" width="28" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="244" y="302" width="28" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="64" y1="315" x2="243" y2="315" class="l w2"/>
-<polyline points="236,318.85 243,315 236,311.15" class="l w2"/>
-<line x1="90" y1="239" x2="212" y2="239" class="l swn w2 dsh"/>
-<polyline points="206,235 214,239 206,243" class="l swn w2"/>
-<line x1="78" y1="277" x2="224" y2="277" class="l swn w2 dsh"/>
-<polyline points="218,273 226,277 218,281" class="l swn w2"/>
-<text x="12" y="354">エンコーダのプーリングの位置（点線）だけ</text>
-<text x="12" y="374" class="tm">渡し、デコーダがその位置に値を戻す</text>
-<line x1="12" y1="394" x2="308" y2="394" class="l sb w1"/>
-<text x="12" y="418" class="tb">U-Net：特徴マップをコピーして連結</text>
-<rect x="12" y="432" width="76" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="220" y="432" width="76" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="50" y1="458" x2="50" y2="470" class="l w2"/>
-<polyline points="46.15,463 50,470 53.85,463" class="l w2"/>
-<line x1="258" y1="470" x2="258" y2="460" class="l w2"/>
-<polyline points="261.85,467 258,460 254.15,467" class="l w2"/>
-<rect x="24" y="470" width="52" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="232" y="470" width="52" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="50" y1="496" x2="50" y2="508" class="l w2"/>
-<polyline points="46.15,501 50,508 53.85,501" class="l w2"/>
-<line x1="258" y1="508" x2="258" y2="498" class="l w2"/>
-<polyline points="261.85,505 258,498 254.15,505" class="l w2"/>
-<rect x="36" y="508" width="28" height="26" class="fas sa" stroke-width="1.5"/>
-<rect x="244" y="508" width="28" height="26" class="fok sok" stroke-width="1.5"/>
-<line x1="64" y1="521" x2="243" y2="521" class="l w2"/>
-<polyline points="236,524.85 243,521 236,517.15" class="l w2"/>
-<line x1="90" y1="445" x2="218" y2="445" class="l sok w2"/>
-<polyline points="211,448.85 218,445 211,441.15" class="l sok w2"/>
-<line x1="78" y1="483" x2="230" y2="483" class="l sok w2"/>
-<polyline points="223,486.85 230,483 223,479.15" class="l sok w2"/>
-<text x="160" y="439"></text>
-<text x="12" y="560">縮小側の特徴マップそのもの（緑の横矢印）を</text>
-<text x="12" y="580" class="tm">拡大側にコピーして連結する。医用画像で成果</text>
-<line x1="12" y1="600" x2="308" y2="600" class="l sb w1"/>
-<text x="12" y="624">PSPNet：ピラミッドプーリングで文脈を集める</text>
-<text x="12" y="646">DeepLab：Atrous 畳み込みで受容野を広げる</text>
-<text x="12" y="674" class="tm">青＝縮小側（エンコーダ）</text>
-<text x="12" y="694" class="tm">緑＝拡大側（デコーダ）</text>
+<desc id="fig-g-segmentation-nets-d">FCN・SegNet・U-Net が、縮小側から拡大側へ何を渡すかを、4×4の升目の例で並べた図。FCN は深い層の予測の地図を2倍に拡大し、浅い層の予測の地図を足し算して、細部を補う。全結合層は使わない。SegNet は、2×2の窓ごとの最大値の位置だけを覚えておき、拡大側ではその位置にだけ値を戻して、ほかの升目は0にする。地図そのものは渡さない。U-Net は、縮小側の地図を丸ごとコピーして、拡大側の地図と並べて連結するので、チャンネル数が増える。医用画像で成果を出した。最後に、PSPNet はピラミッドプーリングで文脈を集め、DeepLab は Atrous 畳み込みで受容野を広げる。</desc>
+<text x="12" y="20" class="tb">FCN：浅い層の予測を足し合わせる</text>
+<text x="12" y="40" class="tm">渡すもの＝予測の地図。足し算で合わせる</text>
+<text x="34" y="62" class="tm" text-anchor="middle">深い層</text>
+<text x="130" y="62" class="tm" text-anchor="middle">拡大後</text>
+<text x="234" y="62" class="tm" text-anchor="middle">浅い層</text>
+<rect x="12" y="88" width="22" height="22" class="fok sok" stroke-width="1"/>
+<text x="23" y="103.5" class="tb" text-anchor="middle">2</text>
+<rect x="34" y="88" width="22" height="22" class="fok sok" stroke-width="1"/>
+<text x="45" y="103.5" class="tb" text-anchor="middle">6</text>
+<rect x="12" y="110" width="22" height="22" class="fok sok" stroke-width="1"/>
+<text x="23" y="125.5" class="tb" text-anchor="middle">2</text>
+<rect x="34" y="110" width="22" height="22" class="fok sok" stroke-width="1"/>
+<text x="45" y="125.5" class="tb" text-anchor="middle">6</text>
+<line x1="60" y1="110" x2="84" y2="110" class="l w2"/>
+<polyline points="77,113.85 84,110 77,106.15" class="l w2"/>
+<rect x="90" y="70" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="100" y="84.5" class="tb" text-anchor="middle">2</text>
+<rect x="110" y="70" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="120" y="84.5" class="tb" text-anchor="middle">3</text>
+<rect x="130" y="70" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="140" y="84.5" class="tb" text-anchor="middle">5</text>
+<rect x="150" y="70" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="160" y="84.5" class="tb" text-anchor="middle">6</text>
+<rect x="90" y="90" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="100" y="104.5" class="tb" text-anchor="middle">2</text>
+<rect x="110" y="90" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="120" y="104.5" class="tb" text-anchor="middle">3</text>
+<rect x="130" y="90" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="140" y="104.5" class="tb" text-anchor="middle">5</text>
+<rect x="150" y="90" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="160" y="104.5" class="tb" text-anchor="middle">6</text>
+<rect x="90" y="110" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="100" y="124.5" class="tb" text-anchor="middle">2</text>
+<rect x="110" y="110" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="120" y="124.5" class="tb" text-anchor="middle">3</text>
+<rect x="130" y="110" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="140" y="124.5" class="tb" text-anchor="middle">5</text>
+<rect x="150" y="110" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="160" y="124.5" class="tb" text-anchor="middle">6</text>
+<rect x="90" y="130" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="100" y="144.5" class="tb" text-anchor="middle">2</text>
+<rect x="110" y="130" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="120" y="144.5" class="tb" text-anchor="middle">3</text>
+<rect x="130" y="130" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="140" y="144.5" class="tb" text-anchor="middle">5</text>
+<rect x="150" y="130" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="160" y="144.5" class="tb" text-anchor="middle">6</text>
+<text x="182" y="115" class="tb" text-anchor="middle">＋</text>
+<rect x="194" y="70" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="204" y="84.5" class="tm" text-anchor="middle">0</text>
+<rect x="214" y="70" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="224" y="84.5" class="ton tb" text-anchor="middle">1</text>
+<rect x="234" y="70" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="244" y="84.5" class="tm" text-anchor="middle">0</text>
+<rect x="254" y="70" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="264" y="84.5" class="tm" text-anchor="middle">0</text>
+<rect x="194" y="90" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="204" y="104.5" class="ton tb" text-anchor="middle">1</text>
+<rect x="214" y="90" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="224" y="104.5" class="tm" text-anchor="middle">0</text>
+<rect x="234" y="90" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="244" y="104.5" class="tm" text-anchor="middle">0</text>
+<rect x="254" y="90" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="264" y="104.5" class="ton tb" text-anchor="middle">1</text>
+<rect x="194" y="110" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="204" y="124.5" class="tm" text-anchor="middle">0</text>
+<rect x="214" y="110" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="224" y="124.5" class="tm" text-anchor="middle">0</text>
+<rect x="234" y="110" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="244" y="124.5" class="ton tb" text-anchor="middle">1</text>
+<rect x="254" y="110" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="264" y="124.5" class="tm" text-anchor="middle">0</text>
+<rect x="194" y="130" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="204" y="144.5" class="ton tb" text-anchor="middle">1</text>
+<rect x="214" y="130" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="224" y="144.5" class="tm" text-anchor="middle">0</text>
+<rect x="234" y="130" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="244" y="144.5" class="tm" text-anchor="middle">0</text>
+<rect x="254" y="130" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="264" y="144.5" class="ton tb" text-anchor="middle">1</text>
+<line x1="182" y1="156" x2="182" y2="176" class="l w2"/>
+<polyline points="178.15,169 182,176 185.85,169" class="l w2"/>
+<text x="192" y="172" class="tm">足し算</text>
+<rect x="142" y="180" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="152" y="194.5" class="tb" text-anchor="middle">2</text>
+<rect x="162" y="180" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="172" y="194.5" class="ton tb" text-anchor="middle">4</text>
+<rect x="182" y="180" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="192" y="194.5" class="tb" text-anchor="middle">5</text>
+<rect x="202" y="180" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="212" y="194.5" class="tb" text-anchor="middle">6</text>
+<rect x="142" y="200" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="152" y="214.5" class="ton tb" text-anchor="middle">3</text>
+<rect x="162" y="200" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="172" y="214.5" class="tb" text-anchor="middle">3</text>
+<rect x="182" y="200" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="192" y="214.5" class="tb" text-anchor="middle">5</text>
+<rect x="202" y="200" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="212" y="214.5" class="ton tb" text-anchor="middle">7</text>
+<rect x="142" y="220" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="152" y="234.5" class="tb" text-anchor="middle">2</text>
+<rect x="162" y="220" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="172" y="234.5" class="tb" text-anchor="middle">3</text>
+<rect x="182" y="220" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="192" y="234.5" class="ton tb" text-anchor="middle">6</text>
+<rect x="202" y="220" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="212" y="234.5" class="tb" text-anchor="middle">6</text>
+<rect x="142" y="240" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="152" y="254.5" class="ton tb" text-anchor="middle">3</text>
+<rect x="162" y="240" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="172" y="254.5" class="tb" text-anchor="middle">3</text>
+<rect x="182" y="240" width="20" height="20" class="fok sok" stroke-width="1"/>
+<text x="192" y="254.5" class="tb" text-anchor="middle">5</text>
+<rect x="202" y="240" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="212" y="254.5" class="ton tb" text-anchor="middle">7</text>
+<text x="232" y="214" class="tm">足した結果</text>
+<text x="12" y="288">深い層の予測を拡大し、浅い層の予測を</text>
+<text x="12" y="308" class="tm">横から足す。連結はしない</text>
+<line x1="12" y1="328" x2="308" y2="328" class="l sb w1"/>
+<text x="12" y="360" class="tb">SegNet：最大値の「位置」だけ渡す</text>
+<text x="12" y="380" class="tm">地図は渡さない。位置の印だけ渡す</text>
+<text x="52" y="402" class="tm" text-anchor="middle">縮小側</text>
+<text x="152" y="402" class="tm" text-anchor="middle">小さい地図</text>
+<text x="252" y="402" class="tm" text-anchor="middle">拡大側</text>
+<rect x="12" y="410" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="424.5" class="tm" text-anchor="middle">1</text>
+<rect x="32" y="410" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="424.5" class="tm" text-anchor="middle">3</text>
+<rect x="52" y="410" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="424.5" class="tm" text-anchor="middle">2</text>
+<rect x="72" y="410" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="424.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="430" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="22" y="444.5" class="ton tb" text-anchor="middle">5</text>
+<rect x="32" y="430" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="444.5" class="tm" text-anchor="middle">2</text>
+<rect x="52" y="430" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="444.5" class="tm" text-anchor="middle">1</text>
+<rect x="72" y="430" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="82" y="444.5" class="ton tb" text-anchor="middle">4</text>
+<rect x="12" y="450" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="464.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="450" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="464.5" class="tm" text-anchor="middle">1</text>
+<rect x="52" y="450" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="62" y="464.5" class="ton tb" text-anchor="middle">6</text>
+<rect x="72" y="450" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="464.5" class="tm" text-anchor="middle">2</text>
+<rect x="12" y="470" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="484.5" class="tm" text-anchor="middle">2</text>
+<rect x="32" y="470" width="20" height="20" class="fa sa" stroke-width="1"/>
+<text x="42" y="484.5" class="ton tb" text-anchor="middle">4</text>
+<rect x="52" y="470" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="484.5" class="tm" text-anchor="middle">3</text>
+<rect x="72" y="470" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="484.5" class="tm" text-anchor="middle">1</text>
+<line x1="52" y1="410" x2="52" y2="490" class="l sm w1"/>
+<line x1="12" y1="450" x2="92" y2="450" class="l sm w1"/>
+<line x1="98" y1="450" x2="120" y2="450" class="l w2"/>
+<polyline points="113,453.85 120,450 113,446.15" class="l w2"/>
+<rect x="128" y="426" width="24" height="24" class="fa sa" stroke-width="1"/>
+<text x="140" y="442.5" class="ton tb" text-anchor="middle">5</text>
+<rect x="152" y="426" width="24" height="24" class="fa sa" stroke-width="1"/>
+<text x="164" y="442.5" class="ton tb" text-anchor="middle">4</text>
+<rect x="128" y="450" width="24" height="24" class="fa sa" stroke-width="1"/>
+<text x="140" y="466.5" class="ton tb" text-anchor="middle">4</text>
+<rect x="152" y="450" width="24" height="24" class="fa sa" stroke-width="1"/>
+<text x="164" y="466.5" class="ton tb" text-anchor="middle">6</text>
+<line x1="182" y1="450" x2="206" y2="450" class="l w2"/>
+<polyline points="199,453.85 206,450 199,446.15" class="l w2"/>
+<rect x="212" y="410" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="222" y="424.5" class="tm" text-anchor="middle">0</text>
+<rect x="232" y="410" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="242" y="424.5" class="tm" text-anchor="middle">0</text>
+<rect x="252" y="410" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="262" y="424.5" class="tm" text-anchor="middle">0</text>
+<rect x="272" y="410" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="282" y="424.5" class="tm" text-anchor="middle">0</text>
+<rect x="212" y="430" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="222" y="444.5" class="ton tb" text-anchor="middle">5</text>
+<rect x="232" y="430" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="242" y="444.5" class="tm" text-anchor="middle">0</text>
+<rect x="252" y="430" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="262" y="444.5" class="tm" text-anchor="middle">0</text>
+<rect x="272" y="430" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="282" y="444.5" class="ton tb" text-anchor="middle">4</text>
+<rect x="212" y="450" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="222" y="464.5" class="tm" text-anchor="middle">0</text>
+<rect x="232" y="450" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="242" y="464.5" class="tm" text-anchor="middle">0</text>
+<rect x="252" y="450" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="262" y="464.5" class="ton tb" text-anchor="middle">6</text>
+<rect x="272" y="450" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="282" y="464.5" class="tm" text-anchor="middle">0</text>
+<rect x="212" y="470" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="222" y="484.5" class="tm" text-anchor="middle">0</text>
+<rect x="232" y="470" width="20" height="20" class="fa sok" stroke-width="1"/>
+<text x="242" y="484.5" class="ton tb" text-anchor="middle">4</text>
+<rect x="252" y="470" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="262" y="484.5" class="tm" text-anchor="middle">0</text>
+<rect x="272" y="470" width="20" height="20" class="fs sb" stroke-width="1"/>
+<text x="282" y="484.5" class="tm" text-anchor="middle">0</text>
+<polyline points="52,494 52,516 252,516 252,500" class="l swn w2 dsh"/>
+<polyline points="248,507 252,500 256,507" class="l swn w2"/>
+<text x="152" y="536" class="tb" text-anchor="middle">位置の印だけ渡す</text>
+<text x="12" y="566">窓ごとの最大値（濃い升目）の場所を覚え、</text>
+<text x="12" y="586" class="tm">拡大側ではその場所にだけ値を戻す</text>
+<text x="12" y="606" class="tm">（ほかの升目は0）</text>
+<line x1="12" y1="624" x2="308" y2="624" class="l sb w1"/>
+<text x="12" y="656" class="tb">U-Net：地図そのものをコピーして連結</text>
+<text x="12" y="676" class="tm">縮小側の地図を丸ごと拡大側へ渡す</text>
+<text x="52" y="698" class="tm" text-anchor="middle">縮小側</text>
+<text x="140" y="698" class="tm" text-anchor="middle">小さい地図</text>
+<rect x="12" y="706" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="720.5" class="tm" text-anchor="middle">1</text>
+<rect x="32" y="706" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="720.5" class="tm" text-anchor="middle">3</text>
+<rect x="52" y="706" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="720.5" class="tm" text-anchor="middle">2</text>
+<rect x="72" y="706" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="720.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="726" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="740.5" class="tm" text-anchor="middle">5</text>
+<rect x="32" y="726" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="740.5" class="tm" text-anchor="middle">2</text>
+<rect x="52" y="726" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="740.5" class="tm" text-anchor="middle">1</text>
+<rect x="72" y="726" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="740.5" class="tm" text-anchor="middle">4</text>
+<rect x="12" y="746" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="760.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="746" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="760.5" class="tm" text-anchor="middle">1</text>
+<rect x="52" y="746" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="760.5" class="tm" text-anchor="middle">6</text>
+<rect x="72" y="746" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="760.5" class="tm" text-anchor="middle">2</text>
+<rect x="12" y="766" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="780.5" class="tm" text-anchor="middle">2</text>
+<rect x="32" y="766" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="780.5" class="tm" text-anchor="middle">4</text>
+<rect x="52" y="766" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="780.5" class="tm" text-anchor="middle">3</text>
+<rect x="72" y="766" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="780.5" class="tm" text-anchor="middle">1</text>
+<line x1="98" y1="746" x2="112" y2="746" class="l w2"/>
+<polyline points="105,749.85 112,746 105,742.15" class="l w2"/>
+<rect x="116" y="722" width="24" height="24" class="fas sa" stroke-width="1"/>
+<text x="128" y="738.5" class="tm" text-anchor="middle">5</text>
+<rect x="140" y="722" width="24" height="24" class="fas sa" stroke-width="1"/>
+<text x="152" y="738.5" class="tm" text-anchor="middle">4</text>
+<rect x="116" y="746" width="24" height="24" class="fas sa" stroke-width="1"/>
+<text x="128" y="762.5" class="tm" text-anchor="middle">4</text>
+<rect x="140" y="746" width="24" height="24" class="fas sa" stroke-width="1"/>
+<text x="152" y="762.5" class="tm" text-anchor="middle">6</text>
+<line x1="52" y1="790" x2="52" y2="824" class="l sok w3"/>
+<polyline points="48.15,817 52,824 55.85,817" class="l sok w3"/>
+<text x="62" y="812" class="tb">コピー</text>
+<line x1="140" y1="772" x2="140" y2="824" class="l w2"/>
+<polyline points="136.15,817 140,824 143.85,817" class="l w2"/>
+<text x="150" y="802" class="tm">拡大</text>
+<rect x="12" y="828" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="842.5" class="tm" text-anchor="middle">1</text>
+<rect x="32" y="828" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="842.5" class="tm" text-anchor="middle">3</text>
+<rect x="52" y="828" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="842.5" class="tm" text-anchor="middle">2</text>
+<rect x="72" y="828" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="842.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="848" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="862.5" class="tm" text-anchor="middle">5</text>
+<rect x="32" y="848" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="862.5" class="tm" text-anchor="middle">2</text>
+<rect x="52" y="848" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="862.5" class="tm" text-anchor="middle">1</text>
+<rect x="72" y="848" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="862.5" class="tm" text-anchor="middle">4</text>
+<rect x="12" y="868" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="882.5" class="tm" text-anchor="middle">0</text>
+<rect x="32" y="868" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="882.5" class="tm" text-anchor="middle">1</text>
+<rect x="52" y="868" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="882.5" class="tm" text-anchor="middle">6</text>
+<rect x="72" y="868" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="882.5" class="tm" text-anchor="middle">2</text>
+<rect x="12" y="888" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="22" y="902.5" class="tm" text-anchor="middle">2</text>
+<rect x="32" y="888" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="42" y="902.5" class="tm" text-anchor="middle">4</text>
+<rect x="52" y="888" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="62" y="902.5" class="tm" text-anchor="middle">3</text>
+<rect x="72" y="888" width="20" height="20" class="fas sa" stroke-width="1"/>
+<text x="82" y="902.5" class="tm" text-anchor="middle">1</text>
+<rect x="100" y="828" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="120" y="828" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="140" y="828" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="160" y="828" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="100" y="848" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="120" y="848" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="140" y="848" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="160" y="848" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="100" y="868" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="120" y="868" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="140" y="868" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="160" y="868" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="100" y="888" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="120" y="888" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="140" y="888" width="20" height="20" class="fok sok" stroke-width="1"/>
+<rect x="160" y="888" width="20" height="20" class="fok sok" stroke-width="1"/>
+<polyline points="12,916 12,922 180,922 180,916" class="l sok w2"/>
+<text x="96" y="942" class="tb" text-anchor="middle">連結＝2枚を束ねる</text>
+<text x="196" y="856" class="tm">束ねると</text>
+<text x="196" y="876" class="tm">チャンネルが</text>
+<text x="196" y="896" class="tm">増える</text>
+<text x="12" y="972">縮小側の地図そのものを拡大側へコピーし、</text>
+<text x="12" y="992" class="tm">並べて連結する。医用画像で成果</text>
+<line x1="12" y1="1010" x2="308" y2="1010" class="l sb w1"/>
+<text x="12" y="1034">PSPNet：ピラミッドプーリングで文脈を集める</text>
+<text x="12" y="1056">DeepLab：Atrous 畳み込みで受容野を広げる</text>
+<text x="12" y="1084" class="tm">青＝縮小側（エンコーダ）</text>
+<text x="12" y="1104" class="tm">緑＝拡大側（デコーダ）、破線＝位置だけの受け渡し</text>
 </svg>

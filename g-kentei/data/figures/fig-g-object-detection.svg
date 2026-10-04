@@ -24,14 +24,9 @@
 <text x="53" y="256.5" text-anchor="middle">画像</text>
 <line x1="94" y1="252" x2="108" y2="252" class="l w2"/>
 <polyline points="101,255.85 108,252 101,248.15" class="l w2"/>
-<rect x="110" y="228" width="92" height="48" class="fas sa" stroke-width="1.5"/>
-<text x="156" y="247.5" text-anchor="middle">1つの</text>
-<text x="156" y="265.5" text-anchor="middle">ネットワーク</text>
-<line x1="202" y1="252" x2="216" y2="252" class="l w2"/>
-<polyline points="209,255.85 216,252 209,248.15" class="l w2"/>
-<rect x="218" y="228" width="90" height="48" class="fok sok" stroke-width="1.5"/>
-<text x="263" y="247.5" text-anchor="middle">位置とクラスを</text>
-<text x="263" y="265.5" text-anchor="middle">一度に</text>
+<rect x="110" y="228" width="198" height="48" class="fok sok" stroke-width="1.5"/>
+<text x="209" y="247.5" text-anchor="middle">1つのネットワークが</text>
+<text x="209" y="265.5" text-anchor="middle">位置とクラスを一度に</text>
 <text x="12" y="300" class="tb">YOLO</text>
 <rect x="12" y="312" width="20" height="20" class="fs sb" stroke-width="1"/>
 <rect x="32" y="312" width="20" height="20" class="fs sb" stroke-width="1"/>
