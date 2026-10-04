@@ -24,15 +24,21 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 
 ## BGM（`shared/audio/bgm/`）
 
-配布元は OpenGameArt.org。どちらも作者は Joth。ファイル名は空白を避けるため付け替えた（元の名前は下の表）。
+配布元は OpenGameArt.org。ファイル名は空白や記号を避けるため付け替えたものがある（元の名前は下の表）。曲は6曲。設定で、全曲を順番に流す「おまかせ」か、1曲を選んでくり返すかを選べる。
 
 | ファイル | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス | 確かめた箇所 |
 |---|---|---|---|---|---|---|
 | `contemplation.mp3` | `Contemplation.mp3` | 約120秒・2,405,271 バイト | Joth | <https://opengameart.org/content/contemplation-0> | CC0 | 下の C |
 | `jrpg-piano.mp3` | `JRPG Piano.mp3` | 約25秒・501,990 バイト | Joth | <https://opengameart.org/content/jrpg-piano> | CC0 | 下の C |
+| `bluebonnet.mp3` | `bluebonnet_in_b_major_looped_0.mp3` | 約109秒・2,448,600 バイト | Kistol | <https://opengameart.org/content/bluebonnet> | CC0 | 下の D |
+| `calm-loop.mp3` | `Relaxing_0.mp3` | 約19秒・314,222 バイト | wipics | <https://opengameart.org/content/calm-loop> | CC0 | 下の D |
+| `happy-lullaby.mp3` | `song17.mp3` | 約40秒・442,152 バイト | cynicmusic | <https://opengameart.org/content/happy-lullaby-song17> | CC0 | 下の D |
+| `chill-lofi.mp3` | `ChillLofiR_0.mp3`（ページ上の表示名は `ChillLofiR.mp3`） | 約123秒・2,717,205 バイト | omfgdude | <https://opengameart.org/content/chill-lofi-inspired> | CC0 | 下の D |
 
 - **C**: 各ページの投稿情報の欄に『Author: Joth』『Art Type: Music』『License(s): CC0』とある（`CC-BY` や `Attribution` の語はページに無い）。タグは Contemplation が『loop Ambient ambience calm thoughtful melancholy sad background』、JRPG Piano が『loop RPG jrpg calm piano slow』。ファイルはそれぞれのページに付いているリンクから取った。投稿日は Contemplation が 2018-07-01、JRPG Piano が 2016-05-20。
-- 流れる順は、Contemplation を1回 → JRPG Piano を4回（約100秒）→ 最初に戻る（`shared/js/lib/sound.js` の `BGM_TRACKS`）。
+- 流れる順（おまかせのとき）は、Contemplation 1回 → JRPG Piano 4回 → Bluebonnet 1回 → Calm Loop 5回 → Happy Lullaby 3回 → Chill Lofi 1回（どれも約100〜120秒）→ 最初に戻る（`shared/js/lib/sound.js` の `BGM_TRACKS`）。設定で1曲を選んだら、その曲だけをくり返す。
+- 曲ごとに元の音の大きさが違うので、曲ごとに音量の補正（`trim`）を掛けている。実測の大きさ（RMS）・ピーク・補正は `shared/js/lib/sound.js` の `BGM_TRACKS` に書いてある。
+- **D**（2026-10-04 に各ページを curl で取得して確かめた）: 各ページの投稿情報の欄に『License(s): CC0』があり、ライセンスのリンクは <https://creativecommons.org/publicdomain/zero/1.0/>（cc0 のアイコンつき）。`CC-BY` や `Attribution` を求める記載は無い。Bluebonnet は作者 Kistol・タグ『neoclassical Classical piano soft relaxing gentle … loopable looped』（「looped」版のファイルを使用）。Calm Loop は作者 wipics・タグ『relaxing loop chill Ambient calm synths percussion』・Copyright/Attribution Notice 欄が『Public Domain』。Happy Lullaby は作者 cynicmusic・タグ『lullaby happy calm relaxing Puzzle bells』。Chill Lofi Inspired は作者 omfgdude・タグ『chill lofi jazzy piano drums arrangement hip hop』・説明『You may use this however you like』。ファイルは mp3 版（ページ上の表示は `ChillLofiR.mp3`）を使用。
 
 ## 確かめていないこと
 
@@ -43,4 +49,5 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 ## 検討して使わなかったもの
 
 - Kenney の長いループ曲（`music-loops`）は、配布ページが 404（2026-10-04）で、取得できなかった。
-- OpenGameArt の Bluebonnet・Calm Loop・Lonely Night・JRPG Pack 4 Calm も、ページに CC0 とあるのを確かめたが、使っていない（聞き比べていない。長さ・大きさと、ページの説明にある calm（静か）・ambient（環境音）から、上の2曲を選んだ）。
+- OpenGameArt の Lonely Night（作者 Centurion_of_war）は、ページに CC0 とあるが、ファイルが 3,665,368 バイトで1曲3MBを超えるので使わなかった。
+- JRPG Pack 4 Calm（投稿者 SubspaceAudio、作者 Juhani Junkala。zip の `INFO.txt` に CC0 とある）は、ogg だけで mp3 が無く、古い iPhone の Safari で鳴らない恐れがあるのと、変換する道具が手元に無いので使わなかった。

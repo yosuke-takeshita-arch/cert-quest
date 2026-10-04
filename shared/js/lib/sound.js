@@ -24,7 +24,18 @@ export function normalizeSoundSettings(settings) {
   s.bgm = s.bgm === true;
   s.sfxVolume = normalizeVolume(s.sfxVolume, DEFAULT_SFX_VOLUME);
   s.bgmVolume = normalizeVolume(s.bgmVolume, DEFAULT_BGM_VOLUME);
+  s.bgmTrack = normalizeBgmTrack(s.bgmTrack);
   return s;
+}
+
+/** BGM の曲の選択。'auto'＝おまかせ（全曲を順番に）、それ以外は BGM_TRACKS の id。知らない値（古い記録・消えた曲）は 'auto'。 */
+export const BGM_AUTO = 'auto';
+export function normalizeBgmTrack(v, tracks = BGM_TRACKS) {
+  return typeof v === 'string' && tracks.some((t) => t.id === v) ? v : BGM_AUTO;
+}
+/** 選択（'auto' か id）→ 曲の番号。おまかせ・知らない値は -1。 */
+export function bgmTrackIndex(v, tracks = BGM_TRACKS) {
+  return tracks.findIndex((t) => t.id === v);
 }
 
 // 効果音の目盛りは耳に合わせて2乗にする（半分の目盛りで半分の大きさには聞こえないため）。
@@ -32,14 +43,19 @@ export function sfxGain(volume) {
   const v = normalizeVolume(volume, DEFAULT_SFX_VOLUME) / 100;
   return v * v;
 }
-// BGM の素材は元の音がとても小さい（実測 2026-10-04: contemplation は RMS 0.038・ピーク 0.26、jrpg-piano は RMS 0.048・ピーク 0.28。
-// 効果音は RMS 0.14〜0.27）。以前は 2乗×0.7 で、初期の 40 だと 0.11 倍になり、実機ではほぼ聞こえなかった。
-// そこで目盛りに比例させ、最大で BGM_GAIN_MAX 倍まで持ち上げる。40 で約1倍（効果音の初期より 10dB ほど小さい）、
-// 100 で 2.6 倍（ピークは 0.28×2.6＝0.72 で割れない）。素材を替えたら、ピーク×BGM_GAIN_MAX が 1 未満かを測り直す。
+// BGM の素材は元の音がとても小さい（効果音は RMS 0.14〜0.27）。以前は 2乗×0.7 で、初期の 40 だと 0.11 倍になり、
+// 実機ではほぼ聞こえなかった。そこで目盛りに比例させ、最大で BGM_GAIN_MAX 倍まで持ち上げる（40 で約1.04倍、100 で 2.6 倍）。
+// さらに、素材ごとに元の音の大きさが違う（RMS が 0.036〜0.256）ので、曲ごとの補正 trim を掛けて、
+// 同じ目盛りでどの曲も同じ大きさ（目盛り40で出力の RMS が約 TARGET_BGM_RMS）になるようにしている。
+// trim ＝ TARGET_BGM_RMS ÷ (その曲の rms × bgmGain(40))。
+// rms・peak は実測（2026-10-04。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// 目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（割れない）になる値にする（Bluebonnet はピークが高いので、これが目標の上限を決めた）。
+// 素材を替えたら、rms・peak を測り直して trim を出し直す。
 export const BGM_GAIN_MAX = 2.6;
-export function bgmGain(volume) {
+export const TARGET_BGM_RMS = 0.042;
+export function bgmGain(volume, trim = 1) {
   const v = normalizeVolume(volume, DEFAULT_BGM_VOLUME) / 100;
-  return v * BGM_GAIN_MAX;
+  return v * BGM_GAIN_MAX * trim;
 }
 
 // 効果音。キー → ファイル（shared/audio/sfx/ の中）。
@@ -53,10 +69,17 @@ export const SFX_FILES = {
   goal: 'jingles_NES00.ogg',
 };
 
-// BGM。順に流し、repeat 回くり返したら次へ。最後まで行ったら最初に戻る（shared/audio/bgm/ の中）。
+// BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。
+//  id … 設定に保存する名前（変えない。曲を消したら、その id を指す記録は『おまかせ』に戻る）
+//  name・mood … 設定画面に出す名前と雰囲気
+//  trim・rms・peak … 上の音量の補正と、その実測
 export const BGM_TRACKS = [
-  { file: 'contemplation.mp3', repeat: 1 },
-  { file: 'jrpg-piano.mp3', repeat: 4 },
+  { id: 'contemplation', file: 'contemplation.mp3', name: '静かな思索', mood: 'ゆったりしたアンビエント', repeat: 1, trim: 1.13, rms: 0.0356, peak: 0.26 },
+  { id: 'jrpg-piano', file: 'jrpg-piano.mp3', name: 'ピアノの小品', mood: 'やさしく静かなピアノ', repeat: 4, trim: 0.77, rms: 0.0524, peak: 0.3281 },
+  { id: 'bluebonnet', file: 'bluebonnet.mp3', name: 'ブルーボネット', mood: 'おだやかなクラシック調のピアノ', repeat: 1, trim: 0.55, rms: 0.074, peak: 0.672 },
+  { id: 'calm-loop', file: 'calm-loop.mp3', name: 'ゆるいシンセ', mood: 'ゆったりしたシンセと軽い打楽器', repeat: 5, trim: 0.158, rms: 0.2558, peak: 1.0735 },
+  { id: 'happy-lullaby', file: 'happy-lullaby.mp3', name: '子守歌のベル', mood: '鈴の音のやわらかい子守歌', repeat: 3, trim: 0.216, rms: 0.1869, peak: 1.0005 },
+  { id: 'chill-lofi', file: 'chill-lofi.mp3', name: 'ローファイ・チル', mood: 'ローファイ風のジャズっぽいピアノ', repeat: 1, trim: 0.321, rms: 0.1259, peak: 1.0009 },
 ];
 
 /** お祝いの種類 → 効果音のキー。 */
@@ -64,8 +87,13 @@ export function celebrateSfx(kind) {
   return kind === 'level' ? 'level' : kind === 'badge' ? 'badge' : kind === 'stars' ? 'stars' : 'goal';
 }
 
-/** 次に流す曲。track は今の曲の番号、plays は今の曲を何回流し終えたか。 */
-export function nextBgmPosition(track, plays, tracks = BGM_TRACKS) {
+/**
+ * 次に流す曲。track は今の曲の番号、plays は今の曲を何回流し終えたか。
+ * selected が曲の id なら、その曲をくり返す（おまかせ・知らない値なら、全曲を順番に）。
+ */
+export function nextBgmPosition(track, plays, tracks = BGM_TRACKS, selected = BGM_AUTO) {
+  const sel = bgmTrackIndex(selected, tracks);
+  if (sel >= 0) return { track: sel, plays: 0 };
   const cur = tracks[track] ? track : 0;
   if (plays < tracks[cur].repeat) return { track: cur, plays };
   return { track: (cur + 1) % tracks.length, plays: 0 };

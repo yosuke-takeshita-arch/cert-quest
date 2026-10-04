@@ -3,7 +3,7 @@
 // - BGM: 大きいので、最初に流すときに取ってきてキャッシュに入る（sw-core.js が /audio/ をキャッシュ優先で返す）
 //   音量は iOS でも効くよう WebAudio の GainNode でかける
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
-import { SFX_FILES, BGM_TRACKS, sfxGain, bgmGain, nextBgmPosition } from './lib/sound.js';
+import { SFX_FILES, BGM_TRACKS, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex } from './lib/sound.js';
 
 const SFX_BASE = new URL('../audio/sfx/', import.meta.url).href;
 const BGM_BASE = new URL('../audio/bgm/', import.meta.url).href;
@@ -137,7 +137,8 @@ function ensureEl() {
     } catch (e) { B.gainNode = null; }
   }
   el.addEventListener('ended', () => {
-    const p = nextBgmPosition(B.track, B.plays + 1);
+    const s = getSettings();
+    const p = nextBgmPosition(B.track, B.plays + 1, BGM_TRACKS, s ? s.bgmTrack : undefined);
     B.track = p.track;
     B.plays = p.plays;
     if (p.track === B.loadedTrack) {
@@ -153,9 +154,19 @@ function ensureEl() {
 
 function applyBgmVolume() {
   const s = getSettings();
-  const g = bgmGain(s ? s.bgmVolume : undefined);
+  const g = bgmGain(s ? s.bgmVolume : undefined, (BGM_TRACKS[B.track] || BGM_TRACKS[0]).trim); // 曲ごとの音の大きさの補正つき
   if (B.gainNode) B.gainNode.gain.value = g;
   else if (B.el) B.el.volume = Math.min(1, g);
+}
+
+// 設定で1曲が選ばれていて、いま流す曲と違うなら、その曲に替える（おまかせのときは、いまの順番のまま）。替えたら true
+function followSelectedTrack() {
+  const s = getSettings();
+  const idx = bgmTrackIndex(s ? s.bgmTrack : undefined);
+  if (idx < 0 || idx === B.track) return false;
+  B.track = idx;
+  B.plays = 0;
+  return true;
 }
 
 async function startBgm() {
@@ -163,13 +174,17 @@ async function startBgm() {
   B.starting = true;
   try {
     const el = ensureEl();
-    applyBgmVolume();
-    if (B.loadedTrack !== B.track) {
-      const url = await trackUrl(B.track);
+    for (;;) {
+      followSelectedTrack();
+      const want = B.track;
+      if (B.loadedTrack === want) break;
+      const url = await trackUrl(want);
       if (!wantBgm()) return; // 取っている間に切られた
+      if (B.track !== want || followSelectedTrack()) continue; // 取っている間に曲を選び直された
       el.src = url;
-      B.loadedTrack = B.track;
+      B.loadedTrack = want;
     }
+    applyBgmVolume();
     resumeCtx(); // 待たない（さわる前は、さわるまで終わらないことがある）
     await el.play();
     const c = audioCtx();
@@ -194,6 +209,8 @@ function stopBgm() {
 /** 設定・場面・画面の表裏が変わったら呼ぶ。流すべきなら流し、そうでなければ止める。 */
 export function syncBgm() {
   if (wantBgm()) {
+    // 曲を選び直されたら、鳴っている最中でもその曲に切り替える
+    if (B.el && !B.el.paused && !B.starting && followSelectedTrack()) B.el.pause();
     applyBgmVolume();
     if (!B.el || B.el.paused) startBgm();
   } else {

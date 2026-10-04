@@ -4,7 +4,7 @@ import { badgeDefs, badgeProgress } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
 import { dateKey } from '../lib/srs.js';
-import { normalizeVolume } from '../lib/sound.js';
+import { normalizeVolume, normalizeBgmTrack, BGM_AUTO, BGM_TRACKS } from '../lib/sound.js';
 import { playSfx, preloadSfx, syncBgm, applyVolumes, setBgmPreview } from '../audio.js';
 
 export function renderMore(app) {
@@ -87,6 +87,19 @@ export function renderSettings(app) {
     lastTry = now;
     playSfx(s, 'ok');
   };
+  // BGM の曲の選択。おまかせ（全曲を順番に）か1曲（その曲をくり返す）。選んだらすぐ保存し、試聴中ならその曲に切り替える
+  const trackSel = h('select', { id: 'set-bgmTrack', class: 'select select-full' }, [
+    h('option', { value: BGM_AUTO, text: 'おまかせ（全曲を順番に）' }),
+    ...BGM_TRACKS.map((t) => h('option', { value: t.id, text: t.name + '（' + t.mood + '）' })),
+  ]);
+  s.bgmTrack = normalizeBgmTrack(s.bgmTrack);
+  trackSel.value = s.bgmTrack;
+  trackSel.addEventListener('change', () => {
+    s.bgmTrack = normalizeBgmTrack(trackSel.value);
+    app.commit();
+    syncBgm();
+  });
+  sliders.push({ input: trackSel, key: 'bgm' });
   const previewBtn = h('button', { class: 'btn', id: 'bgm-preview', type: 'button' }, 'BGM を試しに聴く');
   let previewing = false;
   const setPreview = (on) => {
@@ -109,6 +122,7 @@ export function renderSettings(app) {
       setPreview(false);
     }),
     slider('BGM の音量', 'bgmVolume', () => applyVolumes()),
+    h('label', { class: 'row-btn row-stack', for: 'set-bgmTrack' }, h('span', { class: 'row-main' }, h('strong', { text: 'BGM の曲' }), h('span', { class: 'small muted', text: 'おまかせは全曲を順番に流します。曲を選ぶと、その曲をくり返します' })), trackSel),
     h('div', { class: 'row-btn plain' }, h('span', { class: 'row-main' }, h('span', { class: 'small muted', text: 'BGM をオンにしてから、ここで音の大きさを確かめられます' })), previewBtn)));
   syncSliders();
   setPreview(false);

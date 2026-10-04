@@ -6,8 +6,8 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, SFX_FILES, BGM_TRACKS,
-  normalizeVolume, normalizeSoundSettings, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
+  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BGM_TRACKS,
+  normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
 
@@ -29,12 +29,14 @@ test('音量: 0〜100 の整数に丸める。範囲外は端に寄せ、数で�
   for (const bad of [NaN, Infinity, -Infinity, 'abc', '', null, undefined, true, false, {}, []]) assert.equal(normalizeVolume(bad, f), f, String(bad));
 });
 
-test('音の初期値: 効果音オフ・BGM オフ・音量は効果音70／BGM40', () => {
+test('音の初期値: 効果音オフ・BGM オフ・音量は効果音70／BGM40・曲はおまかせ', () => {
   const s = defaultState().settings;
   assert.equal(s.sound, false);
   assert.equal(s.bgm, false);
   assert.equal(s.sfxVolume, 70);
   assert.equal(s.bgmVolume, 40);
+  assert.equal(s.bgmTrack, 'auto');
+  assert.equal(BGM_AUTO, 'auto');
   assert.equal(DEFAULT_SFX_VOLUME, 70);
   assert.equal(DEFAULT_BGM_VOLUME, 40);
 });
@@ -67,8 +69,8 @@ test('音量の計算: 0 は無音、100 で最大、増えるほど大きい。
   assert.equal(sfxGain(100), 1);
   assert.equal(bgmGain(0), 0);
   assert.equal(bgmGain(100), BGM_GAIN_MAX);
-  // 素材のピークは実測 0.28（jrpg-piano）。最大でも割れない（1 未満）こと
-  assert.ok(0.28 * BGM_GAIN_MAX < 1);
+  // どの曲も、目盛り100で（ピーク × 倍率）が 1 未満＝割れない。ピークは素材を実測した値
+  for (const t of BGM_TRACKS) assert.ok(t.peak * bgmGain(100, t.trim) < 1, t.id + ' が目盛り100で割れる');
   // 初期の 40 で、素材をほぼそのままの大きさ（0.9〜1.2倍）で出す。以前の 0.11 倍では実機で聞こえなかった
   assert.ok(bgmGain(DEFAULT_BGM_VOLUME) >= 0.9 && bgmGain(DEFAULT_BGM_VOLUME) <= 1.2);
   let prev = -1;
@@ -80,6 +82,55 @@ test('音量の計算: 0 は無音、100 で最大、増えるほど大きい。
   // 倍率どうしではなく、実際に出る大きさで比べる（素材の RMS の実測: BGM は最大 0.048、効果音は最小 0.14）。
   // 初期設定どうしでは、BGM のほうが効果音より小さく聞こえること
   assert.ok(0.048 * bgmGain(DEFAULT_BGM_VOLUME) < 0.14 * sfxGain(DEFAULT_SFX_VOLUME));
+});
+
+test('BGM の曲ごとの補正: 実測の大きさ×倍率が、どの曲も目盛り40でそろう。最大の目盛りでも割れない', () => {
+  assert.ok(BGM_TRACKS.length >= 5 && BGM_TRACKS.length <= 6);
+  for (const t of BGM_TRACKS) {
+    assert.ok(t.trim > 0 && t.rms > 0 && t.peak > 0 && t.peak <= 1.2, t.id);
+    const out40 = t.rms * bgmGain(40, t.trim); // 目盛り40での出力の大きさ（RMS）
+    assert.ok(Math.abs(out40 - TARGET_BGM_RMS) / TARGET_BGM_RMS < 0.03, t.id + ' の出力 ' + out40);
+    assert.ok(t.peak * bgmGain(100, t.trim) < 1, t.id);
+    assert.equal(bgmGain(0, t.trim), 0);
+  }
+  const outs = BGM_TRACKS.map((t) => t.rms * bgmGain(40, t.trim));
+  assert.ok(Math.max(...outs) / Math.min(...outs) < 1.07); // 曲どうしの差は 0.6dB 未満
+  assert.equal(bgmGain(40), bgmGain(40, 1)); // 補正を渡さなければ 1 倍
+  // 補正は音量の目盛りに比例（0 は無音）
+  for (const t of BGM_TRACKS) assert.ok(Math.abs(bgmGain(80, t.trim) - 2 * bgmGain(40, t.trim)) < 1e-9);
+});
+
+test('曲の id: 重複しない。名前と雰囲気がある。ファイル名と対応する', () => {
+  const ids = BGM_TRACKS.map((t) => t.id);
+  assert.equal(new Set(ids).size, ids.length);
+  assert.equal(new Set(BGM_TRACKS.map((t) => t.file)).size, ids.length);
+  for (const t of BGM_TRACKS) {
+    assert.match(t.id, /^[a-z0-9-]+$/);
+    assert.notEqual(t.id, BGM_AUTO);
+    assert.ok(t.name.length >= 2 && t.mood.length >= 2, t.id);
+  }
+});
+
+test('BGM の曲の選択の正規化: 知っている id は残り、古い記録・消えた曲・ありえない値はおまかせに戻る', () => {
+  for (const t of BGM_TRACKS) assert.equal(normalizeBgmTrack(t.id), t.id);
+  assert.equal(normalizeBgmTrack('auto'), 'auto');
+  for (const bad of [undefined, null, '', 'deleted-track', 'Contemplation', 'contemplation ', 0, 1, 2, -1, NaN, true, {}, [], ['contemplation']]) assert.equal(normalizeBgmTrack(bad), 'auto', String(bad));
+  // 曲の表を渡したときは、その表にある id だけ
+  assert.equal(normalizeBgmTrack('a', [{ id: 'a' }]), 'a');
+  assert.equal(normalizeBgmTrack('jrpg-piano', [{ id: 'a' }]), 'auto');
+  assert.equal(bgmTrackIndex('auto'), -1);
+  assert.equal(bgmTrackIndex('nope'), -1);
+  assert.equal(bgmTrackIndex(BGM_TRACKS[2].id), 2);
+});
+
+test('保存データ: BGM の曲の選択。古い記録（項目なし）はおまかせ。正しい id は残り、不正な値は直る', () => {
+  assert.equal(mergeState({ settings: { bgm: true } }).settings.bgmTrack, 'auto');
+  assert.equal(mergeState(null).settings.bgmTrack, 'auto');
+  assert.equal(mergeState({ settings: { bgmTrack: 'bluebonnet' } }).settings.bgmTrack, 'bluebonnet');
+  assert.equal(mergeState({ settings: { bgmTrack: 'gone' } }).settings.bgmTrack, 'auto');
+  assert.equal(mergeState({ settings: { bgmTrack: 3 } }).settings.bgmTrack, 'auto');
+  assert.equal(normalizeSoundSettings({ bgmTrack: 'calm-loop' }).bgmTrack, 'calm-loop');
+  assert.equal(normalizeSoundSettings({}).bgmTrack, 'auto');
 });
 
 test('お祝いの種類ごとに効果音が決まっていて、ファイルが実在する', () => {
@@ -99,7 +150,34 @@ test('BGM の順番: 回数くり返したら次の曲へ、最後は最初に�
   assert.deepEqual(nextBgmPosition(1, 2, t), { track: 1, plays: 2 });
   assert.deepEqual(nextBgmPosition(1, 3, t), { track: 0, plays: 0 });
   assert.deepEqual(nextBgmPosition(9, 1, t), { track: 1, plays: 0 });
-  assert.ok(BGM_TRACKS.length >= 1 && BGM_TRACKS.length <= 2);
+  assert.ok(BGM_TRACKS.length >= 5 && BGM_TRACKS.length <= 6);
+});
+
+test('BGM の順番: おまかせは本物の曲の表でも全曲を順に回って、最初に戻る', () => {
+  const n = BGM_TRACKS.length;
+  let pos = { track: 0, plays: 0 };
+  const seen = [];
+  for (let i = 0; i < 1000 && seen.length < n + 1; i++) {
+    const nxt = nextBgmPosition(pos.track, pos.plays + 1, BGM_TRACKS, 'auto');
+    if (nxt.track !== pos.track) seen.push(nxt.track);
+    pos = nxt;
+  }
+  assert.deepEqual(seen, [...Array(n).keys()].map((i) => (i + 1) % n).concat([1]).slice(0, n + 1));
+  // 1周は約100秒前後（1曲が長すぎる・短すぎる並びにならない）
+  for (const t of BGM_TRACKS) assert.ok(t.repeat >= 1 && t.repeat <= 8);
+  // 知らない選択は、おまかせと同じ
+  assert.deepEqual(nextBgmPosition(0, 1, BGM_TRACKS, 'gone'), nextBgmPosition(0, 1, BGM_TRACKS, 'auto'));
+  assert.deepEqual(nextBgmPosition(0, 1, BGM_TRACKS), nextBgmPosition(0, 1, BGM_TRACKS, 'auto'));
+});
+
+test('BGM の順番: 1曲を選んだら、その曲を何回流し終えてもその曲に戻る（他の曲へ進まない）', () => {
+  BGM_TRACKS.forEach((tr, i) => {
+    for (let plays = 0; plays <= 20; plays++) {
+      assert.deepEqual(nextBgmPosition(i, plays, BGM_TRACKS, tr.id), { track: i, plays: 0 }, tr.id + ' ' + plays);
+    }
+    // 別の曲を流している途中で選ばれたときも、選んだ曲に向かう
+    assert.deepEqual(nextBgmPosition((i + 1) % BGM_TRACKS.length, 99, BGM_TRACKS, tr.id), { track: i, plays: 0 });
+  });
 });
 
 test('音のファイル: 実在する。BGM は1曲3MB以下。ogg／mp3 だけ。ライセンスの記録に全部載っている', () => {
@@ -132,10 +210,10 @@ test('オフライン用の一覧（sw-core.js）: 効果音は全部入って�
   assert.ok(sw.includes(String.raw`/\/shared\/audio\//`)); // 音のファイルはキャッシュ優先で返す
 });
 
-test('各アプリの sw.js の version は 6 以上（新しい音のファイルを配るため）', () => {
+test('各アプリの sw.js の version は 9 以上（新しい音のファイルを配るため）', () => {
   for (const app of ['g-kentei', 'dx-biz']) {
     const sw = readFileSync(join(root, app, 'sw.js'), 'utf8');
     const v = Number(/version: '(\d+)'/.exec(sw)[1]);
-    assert.ok(v >= 6, app + ' の version が ' + v);
+    assert.ok(v >= 9, app + ' の version が ' + v);
   }
 });

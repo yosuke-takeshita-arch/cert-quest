@@ -16,7 +16,7 @@ export function defaultState() {
     badges: {},
     exams: [],
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light' },
+    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light' },
     goalAwarded: null,
   };
 }
