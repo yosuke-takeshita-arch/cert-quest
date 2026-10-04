@@ -21,6 +21,7 @@
     ],
     "memoryTip": "O2O＝送客（ネット→店）、OMO＝融合（区別しない）。",
     "concepts": ["DC-04-008", "DC-04-007", "DC-04-009"],
+    "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "総務省「情報通信白書 for Kids」ネットショッピングのO2O・OMOって何？", "url": "https://www.soumu.go.jp/hakusho-kids/use/economy/economy_01.html" }
     ],
@@ -43,6 +44,7 @@
     ],
     "memoryTip": "O2O＝Online to Offline。「to」が付くのは「行き来させる」から。",
     "concepts": ["DC-04-007"],
+    "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "総務省「情報通信白書 for Kids」ネットショッピングのO2O・OMOって何？", "url": "https://www.soumu.go.jp/hakusho-kids/use/economy/economy_01.html" }
     ],
@@ -70,6 +72,7 @@
     ],
     "memoryTip": "ジャーニー（旅）の主人公は「顧客」。社内の手続きではない。",
     "concepts": ["DC-04-004", "DC-04-003"],
+    "figures": ["fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" },
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
@@ -120,6 +123,7 @@
     ],
     "memoryTip": "One to One＝「1社対1人」。データがあるから一人ずつ違う提案ができる。",
     "concepts": ["DC-04-025", "DC-04-016"],
+    "figures": ["fig-dx-segment-one2one"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -142,6 +146,7 @@
     ],
     "memoryTip": "ジェネレーション＝生む（集める）、ナーチャリング＝育てる（nurture）。",
     "concepts": ["DC-04-013"],
+    "figures": ["fig-dx-lead"],
     "sources": [
       { "title": "セールスフォース・ジャパン「リードジェネレーションとは？意味や役割、代表的な9つの手法を解説」", "url": "https://www.salesforce.com/jp/marketing/lead-generation-guide/" }
     ],
@@ -169,6 +174,7 @@
     ],
     "memoryTip": "リ（再び）ターゲティング＝一度来た人をもう一度狙う。",
     "concepts": ["DC-04-015", "DC-04-014", "DC-04-016"],
+    "figures": ["fig-dx-web-ads"],
     "sources": [
       { "title": "Google 広告 ヘルプ「データ セグメントについて」", "url": "https://support.google.com/google-ads/answer/2453998?hl=ja" },
       { "title": "公正取引委員会「デジタル広告の取引実態に関する中間報告書」（令和2年4月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/apr/digital/200428betten.pdf" },
@@ -278,6 +284,7 @@
     ],
     "memoryTip": "ABテストのコツ＝「変えるのは1か所だけ」「振り分けはランダム」。",
     "concepts": ["DC-04-023", "DC-04-024"],
+    "figures": ["fig-dx-ab-test"],
     "sources": [
       { "title": "アナリティクス ヘルプ「[GA4] A/B テスト」", "url": "https://support.google.com/analytics/answer/13468470?hl=ja" }
     ],
@@ -354,6 +361,7 @@
     ],
     "memoryTip": "ペルソナ＝「架空の一人」を細かく描く。集団（セグメント）でも、道のり（ジャーニー）でもない。",
     "concepts": ["DC-04-003", "DC-04-002", "DC-04-004"],
+    "figures": ["fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" }
     ],
@@ -381,6 +389,7 @@
     ],
     "memoryTip": "As Is＝いま（現状）、To Be＝これから（あるべき姿）。まず今を描いてから、あるべき姿を描く。",
     "concepts": ["DC-04-004", "DC-04-003"],
+    "figures": ["fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" }
     ],
@@ -462,6 +471,7 @@
     ],
     "memoryTip": "One to Oneには個人のデータが要る。データが無いならセグメントでも十分に効く。",
     "concepts": ["DC-04-025", "DC-04-002"],
+    "figures": ["fig-dx-segment-one2one"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -511,6 +521,7 @@
     ],
     "memoryTip": "O2Oの起源＝米国のネットクーポン（グルーポンなど）。狭い意味は「ネットから店へ」。",
     "concepts": ["DC-04-007", "DC-04-009", "DC-04-011"],
+    "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "総務省「平成25年版 情報通信白書」新たなICTトレンドによって変わる事業活動", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h25/html/nc111320.html" }
     ],
@@ -587,6 +598,7 @@
     ],
     "memoryTip": "カゴに入れて帰った人＝関心が高い。もう一度（リ）狙う（ターゲティング）。",
     "concepts": ["DC-04-015"],
+    "figures": ["fig-dx-web-ads"],
     "sources": [
       { "title": "Google 広告 ヘルプ「データ セグメントについて」", "url": "https://support.google.com/google-ads/answer/2453998?hl=ja" }
     ],
@@ -772,6 +784,7 @@
     ],
     "memoryTip": "ABテストは「ランダムに、同時に」。時期をずらすと、時期の差が混ざる。",
     "concepts": ["DC-04-023"],
+    "figures": ["fig-dx-ab-test"],
     "sources": [
       { "title": "アナリティクス ヘルプ「[GA4] A/B テスト」", "url": "https://support.google.com/analytics/answer/13468470?hl=ja" }
     ],

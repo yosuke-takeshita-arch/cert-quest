@@ -24,6 +24,7 @@
       { "title": "自社で在庫を持つ小売", "point": "マーケットプレイスの運営者は、基本的に自ら在庫や資産を持たず、場を提供して取引をつなぐ。" },
       { "id": "DC-05-002", "point": "規模の経済は「作るほど1個あたりが安くなる」。ネットワーク外部性は「参加者が集まるほど価値が上がる」。" }
     ],
+    "figures": ["fig-dx-case-types"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス 09（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -45,6 +46,7 @@
     "confusions": [
       { "id": "DC-06-009", "point": "フリマは所有権ごと売り買いする。シェアリングは所有したまま他人に使わせる。" }
     ],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "株式会社メルカリ 公式サイト「私たちについて」", "url": "https://about.mercari.com/about/about-us/" }
     ],
@@ -106,6 +108,7 @@
     "confusions": [
       { "id": "DC-09-004", "point": "どちらも個人のスキルの取引の場。タイムチケットは「時間」を単位にしたチケットで売る点が特徴。" }
     ],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "タイムチケット 公式サイト", "url": "https://www.timeticket.jp/" }
     ],

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 442" role="img" aria-labelledby="fig-dx-ab-test-t fig-dx-ab-test-d">
+<title id="fig-dx-ab-test-t">ABテスト：1か所だけ変えて、ランダムに同時に見せて比べる</title>
+<desc id="fig-dx-ab-test-d">訪問者をランダムに2つに分け、同時に、ボタンの色だけが違うA案（緑）とB案（赤）を見せる。それぞれの購入率を比べ、高いほうを採用する。図の数値は例。条件は2つ。1か所だけ変えること、ランダムに振り分けて同時に見せること。A案を先月、B案を今月のように期間を分けると、時期による違いが混ざって、どちらが効いたか分からなくなる。</desc>
+<text x="12" y="22" class="tb">訪問者をランダムに分ける</text>
+<circle cx="40" cy="44" r="10" class="fa"/>
+<circle cx="74" cy="44" r="10" class="fa"/>
+<circle cx="108" cy="44" r="10" class="fa"/>
+<circle cx="142" cy="44" r="10" class="fa"/>
+<circle cx="176" cy="44" r="10" class="fa"/>
+<circle cx="210" cy="44" r="10" class="fa"/>
+<circle cx="244" cy="44" r="10" class="fa"/>
+<circle cx="278" cy="44" r="10" class="fa"/>
+<line x1="90" y1="64" x2="90" y2="88" class="l sa w2"/>
+<polyline points="86.15,81 90,88 93.85,81" class="l sa w2"/>
+<line x1="230" y1="64" x2="230" y2="88" class="l sa w2"/>
+<polyline points="226.15,81 230,88 233.85,81" class="l sa w2"/>
+<text x="110" y="82" class="tb">ランダム・同時に</text>
+<rect x="12" y="92" width="140" height="108" class="fs sb" stroke-width="1.5"/>
+<text x="82" y="114" class="tb" text-anchor="middle">A案</text>
+<rect x="26" y="126" width="112" height="10" class="fm"/>
+<rect x="26" y="142" width="112" height="8" class="fs sb" stroke-width="1"/>
+<rect x="42" y="158" width="80" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="82" y="177" class="tb" text-anchor="middle">ボタン緑</text>
+<rect x="168" y="92" width="140" height="108" class="fs sb" stroke-width="1.5"/>
+<text x="238" y="114" class="tb" text-anchor="middle">B案</text>
+<rect x="182" y="126" width="112" height="10" class="fm"/>
+<rect x="182" y="142" width="112" height="8" class="fs sb" stroke-width="1"/>
+<rect x="198" y="158" width="80" height="28" class="fng sng" stroke-width="1.5"/>
+<text x="238" y="177" class="tb" text-anchor="middle">ボタン赤</text>
+<line x1="82" y1="202" x2="82" y2="224" class="l sm w2"/>
+<polyline points="78.15,217 82,224 85.85,217" class="l sm w2"/>
+<line x1="238" y1="202" x2="238" y2="224" class="l sm w2"/>
+<polyline points="234.15,217 238,224 241.85,217" class="l sm w2"/>
+<text x="12" y="236" class="tb">購入率を比べる（数値は例）</text>
+<text x="12" y="265" class="tb">A案</text>
+<rect x="60" y="246" width="120" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="188" y="265" class="tb">2%</text>
+<text x="12" y="301" class="tb">B案</text>
+<rect x="60" y="282" width="190" height="28" class="fa" stroke-width="1.5"/>
+<text x="258" y="301" class="tb">3%</text>
+<text x="12" y="332" class="tb">高いほうを採用する</text>
+<line x1="12" y1="346" x2="308" y2="346" class="l sb w1"/>
+<text x="12" y="368" class="tb">守る条件</text>
+<text x="12" y="390">・変えるのは1か所だけ（色だけ）</text>
+<text x="12" y="410">・ランダムに分け、同時に見せる</text>
+<text x="12" y="430" class="tm">　（期間を分けると、時期の違いが混ざる）</text>
+</svg>

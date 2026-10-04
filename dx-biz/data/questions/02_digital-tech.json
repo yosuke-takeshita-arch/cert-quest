@@ -16,6 +16,7 @@
     ],
     "memoryTip": "LPWA＝Low Power（電池が長持ち）・Wide Area（遠くまで届く）。速さは捨てている。",
     "concepts": ["DC-02-002", "DC-02-001"],
+    "figures": ["fig-dx-network-compare"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」第3章第3節（LPWA）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/pdf/n3300000.pdf" }
     ],
@@ -43,6 +44,7 @@
     ],
     "memoryTip": "エッジは「近くで速く」、クラウドは「集めて大きく」。組み合わせて使う。",
     "concepts": ["DC-02-001", "DC-02-003"],
+    "figures": ["fig-dx-network-compare", "fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省「令和2年版 情報通信白書」5G時代に向けての各レイヤーの動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd114220.html" },
       { "title": "総務省「令和7年版 情報通信白書」エッジコンピューティング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd218300.html" }
@@ -66,6 +68,7 @@
     ],
     "memoryTip": "IoT＝モノ（Things）がネットにつながる。IoTが集め、AIが分析する。",
     "concepts": ["DC-02-004"],
+    "figures": ["fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」ユビキタスからIoTへ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc254110.html" }
     ],
@@ -93,6 +96,7 @@
     ],
     "memoryTip": "アジャイル＝「小さく作って、見せて、直す」を短い周期で回す。",
     "concepts": ["DC-02-007"],
+    "figures": ["fig-dx-agile"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部（ITシステム開発手法・技術）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -120,6 +124,7 @@
     ],
     "memoryTip": "マイクロサービスの合言葉は「疎結合」。つなぐのはAPIだけ。",
     "concepts": ["DC-02-008"],
+    "figures": ["fig-dx-microservices"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 マイクロサービスアーキテクチャー/API", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -147,6 +152,7 @@
     ],
     "memoryTip": "ハイブリッド＝種類の違うものを混ぜる（自社＋クラウド）、マルチ＝同じ種類を複数（クラウド＋クラウド）。",
     "concepts": ["DC-02-009"],
+    "figures": ["fig-dx-cloud-models"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 クラウド", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -174,6 +180,7 @@
     ],
     "memoryTip": "大きい順に「AI ＞ 機械学習 ＞ ディープラーニング」。マトリョーシカで覚える。",
     "concepts": ["DC-02-011", "DC-02-012"],
+    "figures": ["fig-dx-ai-ml-dl"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」AIに関する基本的な仕組み", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113210.html" },
       { "title": "総務省「平成28年版 情報通信白書」人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" }
@@ -251,6 +258,7 @@
     ],
     "memoryTip": "RAG＝「調べてから答える」。モデルを作り替える（ファインチューニング）とは別物。",
     "concepts": ["DC-02-019", "DC-02-017"],
+    "figures": ["fig-dx-rag"],
     "sources": [
       { "title": "Lewis ほか「Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks」（arXiv:2005.11401, 2020）", "url": "https://arxiv.org/abs/2005.11401" }
     ],
@@ -273,6 +281,7 @@
     ],
     "memoryTip": "MCP＝AIの「差し込み口」。どのAIにも同じ形でつなげる。",
     "concepts": ["DC-02-020", "DC-02-019"],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "Model Context Protocol 公式ドキュメント「What is the Model Context Protocol (MCP)?」", "url": "https://modelcontextprotocol.io/docs/getting-started/intro" }
     ],
@@ -300,6 +309,7 @@
     ],
     "memoryTip": "RPA＝手順をなぞる、AIエージェント＝目標から手順を組み立てる。",
     "concepts": ["DC-02-018", "DC-02-014"],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」AI研究開発における最近の動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }
     ],
@@ -377,6 +387,7 @@
     ],
     "memoryTip": "ブロックチェーン＝みんなで同じ台帳を持つから、1人では書き換えられない。",
     "concepts": ["DC-02-024"],
+    "figures": ["fig-dx-blockchain"],
     "sources": [
       { "title": "総務省「令和4年版 情報通信白書」仮想空間市場など", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r04/html/nd236a00.html" }
     ],
@@ -432,6 +443,7 @@
     ],
     "memoryTip": "ゼロトラスト＝「内側でも信頼ゼロ」。毎回確かめる。",
     "concepts": ["DC-02-032", "DC-02-033"],
+    "figures": ["fig-dx-mfa", "fig-dx-zero-trust"],
     "sources": [
       { "title": "デジタル庁「ゼロトラストアーキテクチャ適用方針」（2022年6月30日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/5efa5c3b/20220630_resources_standard_guidelines_guidelines_04.pdf" },
       { "title": "総務省「国民のためのサイバーセキュリティサイト」用語集（た行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" }
@@ -455,6 +467,7 @@
     ],
     "memoryTip": "CIA＝機密性（見せない）・完全性（壊さない）・可用性（止めない）。",
     "concepts": ["DC-02-035"],
+    "figures": ["fig-dx-cia"],
     "sources": [
       { "title": "JIPDEC（ISMS-AC）「ISMS適合性評価制度の概要」パンフレット", "url": "https://isms.jp/doc/ismspanf.pdf" }
     ],
@@ -554,6 +567,7 @@
     ],
     "memoryTip": "RFID＝電波で「何が」通ったか、GPS＝衛星で「どこに」いるか。",
     "concepts": ["DC-02-005", "DC-02-004"],
+    "figures": ["fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省 北陸総合通信局「RFIDについて」", "url": "https://www.soumu.go.jp/soutsu/hokuriku/denpa/about_rfid.html" },
       { "title": "内閣府 みちびき（準天頂衛星システム）「なぜ準天頂衛星システムが必要なのか」", "url": "https://qzss.go.jp/overview/services/sv02_why.html" }
@@ -582,6 +596,7 @@
     ],
     "memoryTip": "M2M（2000年頃・一部の用途）→ 部品が安く・無線が進み・クラウドが普及 → IoTとして広がる、の流れ。",
     "concepts": ["DC-02-004"],
+    "figures": ["fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」IoTの概念", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc254110.html" }
     ],
@@ -636,6 +651,7 @@
     ],
     "memoryTip": "下から順に借りる範囲が広がる：IaaS（土台）→ PaaS（＋OS・開発環境）→ SaaS（＋アプリまで）。",
     "concepts": ["DC-02-009"],
+    "figures": ["fig-dx-cloud-models"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 ITシステム開発手法・技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -658,6 +674,7 @@
     ],
     "memoryTip": "「疎＝まばら」。つながりがゆるいから、外す・付け替えるが楽。",
     "concepts": ["DC-02-008", "DC-02-007"],
+    "figures": ["fig-dx-microservices"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 ITシステム開発手法・技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -835,6 +852,7 @@
     ],
     "memoryTip": "答えるだけ＝生成AI、調べて答える＝RAG、自分で段取りして動く＝AIエージェント。",
     "concepts": ["DC-02-018", "DC-02-019", "DC-02-014"],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」AIエージェント", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }
     ],
@@ -862,6 +880,7 @@
     ],
     "memoryTip": "VR＝仮想に「入る」、AR＝現実に「足す」、MR＝現実と仮想を「混ぜて」その場で使う。",
     "concepts": ["DC-02-025", "DC-03-023"],
+    "figures": ["fig-dx-vr-ar-mr"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」レイヤー別にみる市場動向（AR/VR）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112130.html" },
       { "title": "総務省「社会課題の解決に向けた没入型技術導入の手引き2026」（令和8年7月）", "url": "https://www.soumu.go.jp/main_content/001080024.pdf" }
@@ -967,6 +986,7 @@
     ],
     "memoryTip": "「回数」より「種類」。知識＋所持、知識＋生体のように種類を変えると強い。",
     "concepts": ["DC-02-033", "DC-02-032"],
+    "figures": ["fig-dx-mfa"],
     "sources": [
       { "title": "総務省「国民のためのサイバーセキュリティサイト」用語集（た行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" },
       { "title": "総務省「国民のためのサイバーセキュリティサイト」用語集（な行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_05/" }
@@ -995,6 +1015,7 @@
     ],
     "memoryTip": "ゼロトラスト＝「内側でも信用しない。毎回・最小限で確かめる」。",
     "concepts": ["DC-02-032", "DC-02-033"],
+    "figures": ["fig-dx-zero-trust"],
     "sources": [
       { "title": "デジタル庁「ゼロトラストアーキテクチャ適用方針」（2022年6月30日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/5efa5c3b/20220630_resources_standard_guidelines_guidelines_04.pdf" }
     ],

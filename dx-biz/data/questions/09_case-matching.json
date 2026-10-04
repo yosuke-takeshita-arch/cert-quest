@@ -21,6 +21,7 @@
     ],
     "memoryTip": "マッチング型＝「持たずにつなぐ」。資源は参加者が持ってくる。",
     "concepts": ["DC-09-001", "DC-05-006"],
+    "figures": ["fig-dx-case-types"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス 09（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -77,6 +78,7 @@
     ],
     "memoryTip": "マッチングの立ち上げ＝「入口は無料、もうけは成立時」で参加者を増やす。",
     "concepts": ["DC-09-005", "DC-05-007", "DC-05-006"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "タイムチケット 公式サイト", "url": "https://www.timeticket.jp/" }
     ],
@@ -104,6 +106,7 @@
     ],
     "memoryTip": "メルカリ＝「持たずに場を出す」＋「信頼の仕組み（AI監視・入金管理）」。",
     "concepts": ["DC-09-002", "DC-06-012", "DC-09-001"],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "株式会社メルカリ 公式サイト「私たちについて」", "url": "https://about.mercari.com/about/about-us/" }
     ],
@@ -131,6 +134,7 @@
     ],
     "memoryTip": "C2Cの壁は「信用」。運営者はお金の流れと不正の見張りで信用を作る。",
     "concepts": ["DC-09-002", "DC-06-012", "DC-09-001"],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "株式会社メルカリ 公式サイト「私たちについて」", "url": "https://about.mercari.com/about/about-us/" }
     ],
@@ -266,6 +270,7 @@
     ],
     "memoryTip": "仮払い→実決済＝運営者が「お金を預かる」ことで、知らない人どうしを安心させる。",
     "concepts": ["DC-09-005", "DC-09-001", "DC-06-005"],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "タイムチケット 公式サイト", "url": "https://www.timeticket.jp/" }
     ],
@@ -320,6 +325,7 @@
     ],
     "memoryTip": "マッチングの場は「注目が集まる場所」でもある→広告で稼げる。",
     "concepts": ["DC-09-006", "DC-08-009", "DC-09-001"],
+    "figures": ["fig-dx-ad-model"],
     "sources": [
       { "title": "Instacart 公式サイト「About Us」", "url": "https://company.instacart.com/about-us" }
     ],
@@ -347,6 +353,7 @@
     ],
     "memoryTip": "規模の経済＝作るほど安くなる。ネットワーク外部性＝集まるほど価値が上がる。",
     "concepts": ["DC-09-001", "DC-05-006", "DC-06-005", "DC-05-002"],
+    "figures": ["fig-dx-network-effect", "fig-dx-case-types"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス 09（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],

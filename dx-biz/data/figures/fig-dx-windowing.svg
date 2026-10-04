@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 368" role="img" aria-labelledby="fig-dx-windowing-t fig-dx-windowing-d">
+<title id="fig-dx-windowing-t">ウィンドウイング：流通経路を時間差で並べる</title>
+<desc id="fig-dx-windowing-d">映画などのコンテンツを、映画館、配信、パッケージ、放送などの流通経路（ウインドウ）ごとに、一定の提供期間を設け、時期をずらして順に提供する図。時間の流れは上から下で、まず映画館、次に配信、パッケージ、放送の順に帯を並べる。帯は順番を表し、期間の長さではない。実際の期間は作品や契約による。早く見たい人には高い価格で、待てる人には安い価格や無料で提供し、1つの作品から得る収益を最大にする。</desc>
+<text x="12" y="22" class="tb">時間の順（上から下）に、窓を開ける</text>
+<line x1="36" y1="36" x2="36" y2="264" class="l sm w1"/>
+<line x1="36" y1="254" x2="36" y2="268" class="l sm w1"/>
+<polyline points="32.7,262 36,268 39.3,262" class="l sm w1"/>
+<rect x="48" y="40" width="116" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="58" y="65" class="tb">映画館</text>
+<rect x="96" y="96" width="116" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="106" y="121" class="tb">配信</text>
+<rect x="144" y="152" width="116" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="154" y="177" class="tb">パッケージ</text>
+<rect x="192" y="208" width="116" height="40" class="fs sm" stroke-width="1.5"/>
+<text x="202" y="233" class="tb">放送</text>
+<text x="12" y="284">早く見たい人には、高い価格で</text>
+<text x="12" y="304">待てる人には、安い価格や無料で</text>
+<text x="12" y="332" class="tb">1つの作品から得る収益を最大にする</text>
+<text x="12" y="356" class="tm">（帯は順番を表す。期間の長さではない）</text>
+</svg>

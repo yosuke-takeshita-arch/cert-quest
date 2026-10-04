@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 395" role="img" aria-labelledby="fig-dx-web-ads-t fig-dx-web-ads-d">
+<title id="fig-dx-web-ads-t">ランディングページとリターゲティング広告</title>
+<desc id="fig-dx-web-ads-d">利用者の動きの流れ。広告をクリックして、最初に着くページがランディングページ。カートに商品を入れたまま離れる。その後、別のニュースサイトなどを見ているときに、自社の広告が再び表示される。これがリターゲティング広告で、過去に自社のサイトやアプリと接点を持った人に出す。広告を見て戻り、購入する。ランディングページは広告をクリックして初めに到達するページ。</desc>
+<rect x="12" y="14" width="296" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="40" class="tl">1</text>
+<text x="50" y="40" class="tb">広告をクリック</text>
+<line x1="160" y1="56" x2="160" y2="70" class="l sa w2"/>
+<polyline points="156.7,64 160,70 163.3,64" class="l sa w2"/>
+<rect x="12" y="72" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="24" y="96" class="tl">2</text>
+<text x="50" y="96" class="tb">ランディングページ</text>
+<text x="50" y="116" class="tm">最初に着くページ</text>
+<line x1="160" y1="130" x2="160" y2="144" class="l sa w2"/>
+<polyline points="156.7,138 160,144 163.3,138" class="l sa w2"/>
+<rect x="12" y="146" width="296" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="172" class="tl">3</text>
+<text x="50" y="172" class="tb">カートに入れて離れる</text>
+<line x1="160" y1="188" x2="160" y2="202" class="l sa w2"/>
+<polyline points="156.7,196 160,202 163.3,196" class="l sa w2"/>
+<rect x="12" y="204" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="228" class="tl">4</text>
+<text x="50" y="228" class="tb">別のサイトを見ていると、</text>
+<text x="50" y="248" class="tb">自社の広告が再び表示される</text>
+<line x1="160" y1="262" x2="160" y2="276" class="l sa w2"/>
+<polyline points="156.7,270 160,276 163.3,270" class="l sa w2"/>
+<rect x="12" y="278" width="296" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="304" class="tl">5</text>
+<text x="50" y="304" class="tb">広告を見て戻り、購入</text>
+<text x="12" y="344" class="tb">リターゲティング広告</text>
+<text x="12" y="364">過去に自社のサイトやアプリと接点を</text>
+<text x="12" y="383">持った人に、別のサイトで広告を出す</text>
+</svg>

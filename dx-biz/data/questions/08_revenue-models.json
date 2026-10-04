@@ -16,6 +16,7 @@
     ],
     "memoryTip": "フリーミアム＝Free＋Premium。「基本タダ、上は有料」。",
     "concepts": ["DC-08-002"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -70,6 +71,7 @@
     ],
     "memoryTip": "サブスクは「契約がゴール」ではなく「続けてもらうこと」がゴール。",
     "concepts": ["DC-08-001", "DC-08-015"],
+    "figures": ["fig-dx-revenue-models", "fig-dx-churn-ltv"],
     "sources": [
       { "title": "総務省「平成28年版 情報通信白書」コンテンツ配信サービスの新たな潮流", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc122220.html" },
       { "title": "セールスフォース・ジャパン「LTV（Life Time Value：顧客生涯価値）とは」", "url": "https://www.salesforce.com/jp/marketing/what-is-life-time-value/" }
@@ -93,6 +95,7 @@
     ],
     "memoryTip": "レベニュー（収益）をシェア（分け合う）。初期は安く、成功したら分け前。",
     "concepts": ["DC-08-006"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -120,6 +123,7 @@
     ],
     "memoryTip": "ウィンドウイング＝窓を「1つずつ順番に」開ける。",
     "concepts": ["DC-08-008", "DC-08-007", "DC-08-005"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省「業界の現状及びアクションプラン（案）について【映画・映像】（事務局資料②）」（2025年1月30日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/entertainment_creative/pdf/004_04_02.pdf" },
       { "title": "公正取引委員会「映画の制作現場におけるクリエイターの取引環境に係る実態調査報告書」（令和7年12月）", "url": "https://www.jftc.go.jp/file/houdou/pressrelease/2025/dec/251224_eigaanime2.pdf" },
@@ -150,6 +154,7 @@
     ],
     "memoryTip": "広告モデル＝「利用者はタダ、払うのは広告主」。",
     "concepts": ["DC-08-009", "DC-06-005"],
+    "figures": ["fig-dx-ad-model"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -172,6 +177,7 @@
     ],
     "memoryTip": "検索キーワードに連動＝リスティング。過去の訪問に連動＝リターゲティング。",
     "concepts": ["DC-08-010", "DC-04-015"],
+    "figures": ["fig-dx-ad-model"],
     "sources": [
       { "title": "公正取引委員会「デジタル広告分野の取引実態に関する最終報告書（概要）」（令和3年2月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2021/feb/digital/210217_gaiyou2.pdf" }
     ],
@@ -199,6 +205,7 @@
     ],
     "memoryTip": "loyalty＝忠誠・愛着（顧客の気持ち）、royalty＝使用料（ライセンスのお金）。",
     "concepts": ["DC-08-012", "DC-08-011", "DC-08-007"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" },
       { "title": "消費者庁「令和4年版 消費者白書」COLUMN ライブ配信サービス（投げ銭等）に関する消費の動向", "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_column_03.html" },
@@ -224,6 +231,7 @@
     ],
     "memoryTip": "アドオン＝add on（付け足す）。基本は安く、オプションで稼ぐ。",
     "concepts": ["DC-08-003"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "国土交通省「平成28年度 政策レビュー結果（評価書）LCCの事業展開の促進」（平成29年3月）", "url": "https://www.mlit.go.jp/common/001179271.pdf" }
     ],
@@ -246,6 +254,7 @@
     ],
     "memoryTip": "部分所有＝「みんなで少しずつ持つ」。シェアリング＝「持っている人から借りる」。",
     "concepts": ["DC-08-004", "DC-06-009"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "タイムシェア型住宅供給研究会（国土交通省）「タイムシェア型住宅供給研究会 報告書」（平成20年8月）", "url": "https://www.mlit.go.jp/common/000022776.pdf" }
     ],
@@ -300,6 +309,7 @@
     ],
     "memoryTip": "サブスク＝「所有」ではなく「利用」に月額で払う。レンタルとリースの良いところ取り。",
     "concepts": ["DC-08-001", "DC-08-004", "DC-06-019"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省「2019年版ものづくり白書」第1部第2章第3節", "url": "https://www.meti.go.jp/report/whitepaper/mono/2019/honbun_pdf/pdf/honbun_01_02_03.pdf" }
     ],
@@ -354,6 +364,7 @@
     ],
     "memoryTip": "レベニューシェア＝「分ける収益」が測れないと始まらない。売上が見えるECは向く、後方事務の基幹系は向かない。",
     "concepts": ["DC-08-006", "DC-08-005"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -381,6 +392,7 @@
     ],
     "memoryTip": "ライセンス＝「使っていいよ」と許して使用料をもらう。作って売るのは許された側（ライセンシー）。",
     "concepts": ["DC-08-007", "DC-07-004"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "ジェトロ 貿易・投資相談Q&A「OEM契約とライセンス契約の違い：日本」", "url": "https://www.jetro.go.jp/world/qa/04A-010822.html" }
     ],
@@ -435,6 +447,7 @@
     ],
     "memoryTip": "ウィンドウ（窓）を順番に開ける。劇場→配信→放送と、窓ごとに違う客から稼ぐ。",
     "concepts": ["DC-08-008", "DC-08-007"],
+    "figures": ["fig-dx-windowing"],
     "sources": [
       { "title": "経済産業省 エンタメ・クリエイティブ産業政策研究会「業界の現状及びアクションプラン（案）について【映画・映像】」（2025年1月30日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/entertainment_creative/pdf/004_04_02.pdf" },
       { "title": "公正取引委員会「映画の制作現場におけるクリエイターの取引環境に係る実態調査報告書」（令和7年12月）", "url": "https://www.jftc.go.jp/file/houdou/pressrelease/2025/dec/251224_eigaanime2.pdf" }
@@ -463,6 +476,7 @@
     ],
     "memoryTip": "成果報酬＝「売れたら払う」。払う側のリスクが小さく、受ける側は成果を出すほど稼げる。",
     "concepts": ["DC-08-005", "DC-07-008"],
+    "figures": ["fig-dx-affiliate"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -517,6 +531,7 @@
     ],
     "memoryTip": "検索連動型（リスティング）＝探している人に、探した言葉で出す。ディスプレイ＝見ている人に、属性や興味で出す。",
     "concepts": ["DC-08-010", "DC-08-009"],
+    "figures": ["fig-dx-ad-model"],
     "sources": [
       { "title": "公正取引委員会「デジタル広告分野の取引実態に関する最終報告書（概要）」（令和3年2月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2021/feb/digital/210217_gaiyou2.pdf" }
     ],
@@ -544,6 +559,7 @@
     ],
     "memoryTip": "無料で使える＝誰か別の人（広告主）が払っている。利用者側と広告主側の「両面」で見る。",
     "concepts": ["DC-08-009", "DC-06-005"],
+    "figures": ["fig-dx-ad-model"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -566,6 +582,7 @@
     ],
     "memoryTip": "ロイヤルティ（loyalty：忠誠）と、ロイヤルティ（royalty：使用料）は別の言葉。顧客の「推し度」は loyalty。",
     "concepts": ["DC-08-012", "DC-07-010"],
+    "figures": ["fig-dx-churn-ltv"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」第6章 CRM（顧客関係管理）の方法", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" }
@@ -594,6 +611,7 @@
     ],
     "memoryTip": "縛って続けさせるのは「見かけのロイヤルティ」。好きで続けるのが本物。",
     "concepts": ["DC-08-012", "DC-08-015", "DC-07-013"],
+    "figures": ["fig-dx-churn-ltv"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" }
     ],

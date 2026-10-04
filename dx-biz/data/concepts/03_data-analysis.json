@@ -15,6 +15,7 @@
     "confusions": [
       { "id": "DC-03-012", "point": "データマイニングは大量のデータからパターンを掘り出す手法の1つ。データサイエンスはそれを含む、課題設定から意思決定までの広い営み。" }
     ],
+    "figures": ["fig-dx-ppdac"],
     "sources": [
       { "title": "AWS「データサイエンスとは?」", "url": "https://aws.amazon.com/jp/what-is/data-science/" },
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
@@ -57,6 +58,7 @@
     "confusions": [
       { "title": "広告モデル", "point": "広告モデルは広告枠で稼ぐ。データビジネスはデータやその分析結果そのものに価値を持たせる。両方を組み合わせることも多い。" }
     ],
+    "figures": ["fig-dx-info-bank"],
     "sources": [
       { "title": "総務省「令和2年版 情報通信白書」匿名加工情報のさらなる活用", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd133430.html" },
       { "title": "総務省「平成29年版 情報通信白書」新たなデータ利活用・流通モデルの進展", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc121310.html" },
@@ -99,6 +101,7 @@
     "confusions": [
       { "title": "スケールアップとスケールアウト", "point": "台数を増やすのはスケールアウト。1台を強くするのがスケールアップ。逆にしたひっかけが多い。" }
     ],
+    "figures": ["fig-dx-scale"],
     "sources": [
       { "title": "Microsoft Learn「スケールアウトのための設計」（Azure Architecture Center）", "url": "https://learn.microsoft.com/ja-jp/azure/architecture/guide/design-principles/scale-out" },
       { "title": "Microsoft Learn「スケーリングとパーティション分割のための設計に関する推奨事項」（Azure Well-Architected）", "url": "https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/scale-partition" },
@@ -119,6 +122,7 @@
     "confusions": [
       { "id": "DC-02-003", "point": "並列分散処理は「たくさんのサーバーで分けて計算」。エッジコンピューティングは「機器の近くで計算」。分ける目的が違う。" }
     ],
+    "figures": ["fig-dx-rdb-nosql"],
     "sources": [
       { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" }
     ],
@@ -138,6 +142,7 @@
     "confusions": [
       { "title": "NoSQL", "point": "NoSQLは「SQLを否定」ではなく「Not only SQL」。表形式以外の設計も使うという意味。" }
     ],
+    "figures": ["fig-dx-rdb-nosql"],
     "sources": [
       { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" }
     ],
@@ -158,6 +163,7 @@
     "confusions": [
       { "id": "DC-03-020", "point": "結合は表を「つなぐ」操作。グルーピングは行を「まとめて集計する」操作。" }
     ],
+    "figures": ["fig-dx-join"],
     "sources": [
       { "title": "PostgreSQL 16 文書「2.6. テーブル間を結合」", "url": "https://www.postgresql.jp/document/16/html/tutorial-join.html" }
     ],
@@ -178,6 +184,7 @@
     "confusions": [
       { "id": "DC-03-010", "point": "データレイク＝生のまま何でもためる。データウェアハウス＝分析しやすいよう整理・加工して統合する。" }
     ],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -198,6 +205,7 @@
     "confusions": [
       { "id": "DC-03-011", "point": "DWHは全社のデータを統合した倉庫。データマートはそこから部門・用途ごとに切り出した小さな売り場。" }
     ],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -218,6 +226,7 @@
     "confusions": [
       { "id": "DC-03-009", "point": "部門ごとに再構成したものはデータマート。データレイクは加工前の生データをためる場所で、向きが逆。" }
     ],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "AWS「データマートとは?」", "url": "https://aws.amazon.com/jp/what-is/data-mart/" }
     ],
@@ -237,6 +246,7 @@
     "confusions": [
       { "title": "データプリパレーションツール", "point": "ETLツールは主にITエンジニアが使う。データプリパレーションツールは技術スキルの無い分析者やビジネスユーザーが使う。" }
     ],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -257,6 +267,7 @@
     "confusions": [
       { "id": "DC-03-012", "point": "クレンジングはデータを「きれいにする」準備。データマイニングはきれいになったデータから「知見を掘り出す」分析。" }
     ],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" },
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
@@ -278,6 +289,7 @@
     "confusions": [
       { "id": "DC-03-018", "point": "散布図で右上がりに見えても、それは相関。原因と結果の関係（因果）とは限らない。" }
     ],
+    "figures": ["fig-dx-correlation"],
     "sources": [
       { "title": "総務省統計局「なるほど統計学園」散布図", "url": "https://www.stat.go.jp/naruhodo/9_graph/jyokyu/sanpu.html" },
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
@@ -300,6 +312,7 @@
     "confusions": [
       { "title": "BAツール", "point": "BIは整形済みデータの可視化で意思決定を助ける。BAは統計分析・予測・最適化まで行う。" }
     ],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -341,6 +354,7 @@
     "confusions": [
       { "id": "DC-03-001", "point": "データマイニングはパターンを掘り出す手法群。データサイエンスは課題設定から意思決定までを含む広い営み。" }
     ],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" },
       { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" }
@@ -363,6 +377,7 @@
     "confusions": [
       { "id": "DC-03-017", "point": "自動化は「決まった分析を仕組みで回す」、アドホック分析は「その場の問いに人が答える」。" }
     ],
+    "figures": ["fig-dx-digital-twin"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "AWS「ビジネスインテリジェンス (BI) とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/business-intelligence/" }
@@ -383,6 +398,7 @@
     "confusions": [
       { "title": "因果関係", "point": "相関＝一緒に動く。因果＝片方が原因でもう片方が起きる。相関があっても因果とは限らない。" }
     ],
+    "figures": ["fig-dx-correlation"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
       { "title": "総務省統計局「なるほど統計学園」複数の変数の関係性を見る", "url": "https://www.stat.go.jp/naruhodo/10_tokucho/hukusu.html" },
@@ -404,6 +420,7 @@
     "confusions": [
       { "id": "DC-03-018", "point": "相関分析の2つの変数は対等。回帰分析は目的変数（結果）と説明変数（要因）を分ける。" }
     ],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード（回帰分析）", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
     ],
@@ -423,6 +440,7 @@
     "confusions": [
       { "id": "DC-03-020", "point": "バスケット分析は「一緒に買われる商品」の関係を見る。クラスタリングは「似た客・似た商品」をまとめる。" }
     ],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" }
     ],
@@ -443,6 +461,7 @@
     "confusions": [
       { "title": "分類", "point": "分類は正解ラベルのある学習で、決まったグループに振り分ける。クラスタリングは正解なしで、似たもの同士をまとめる。グルーピングは人が決めた項目で分けて集計する。" }
     ],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft クラスタリング アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-clustering-algorithm?view=asallproducts-allversions" },
       { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" },
@@ -464,6 +483,7 @@
     "confusions": [
       { "id": "DC-02-025", "point": "VR・AR・MRは人が仮想空間を体験する技術。デジタルツインは現実の対象をデータで再現し、予測やシミュレーションに使う。" }
     ],
+    "figures": ["fig-dx-digital-twin"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -483,6 +503,7 @@
     "confusions": [
       { "title": "PDCAサイクル", "point": "PDCA（Plan・Do・Check・Act）は業務改善の枠組み。PPDACは問題を定めてからデータで答えを出す枠組みで、Do も Check も無い。" }
     ],
+    "figures": ["fig-dx-ppdac"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
       { "title": "総務省統計局「Data StaRt」EBPM活用塾 ゼミナール編（1）A（analysis、分析）", "url": "https://www.stat.go.jp/dstart/point/seminar1/05.html" }
@@ -502,6 +523,7 @@
     "confusions": [
       { "title": "匿名加工情報", "point": "匿名加工情報は、個人を特定できないように法令で定める加工をしたデータ。情報銀行は、本人の意思に基づいてデータを提供する仕組みで、考え方が違う。" }
     ],
+    "figures": ["fig-dx-info-bank"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」新たなデータ利活用・流通モデルの進展", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc121310.html" },
       { "title": "総務省「令和2年版 情報通信白書」匿名加工情報のさらなる活用", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd133430.html" }

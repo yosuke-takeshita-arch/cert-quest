@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 584" role="img" aria-labelledby="fig-dx-3stages-t fig-dx-3stages-d">
+<title id="fig-dx-3stages-t">DXの3つの段階：デジタイゼーション、デジタライゼーション、デジタルトランスフォーメーション</title>
+<desc id="fig-dx-3stages-d">DXを3段階で見た図。第1段階のデジタイゼーションは、アナログ・物理データをデジタルデータにすること（例：配車実績情報の電子化）で、変わる範囲はデータ。第2段階のデジタライゼーションは、個別の業務・製造プロセスのデジタル化（例：配車業務の自動化）で、変わる範囲は1つの業務。第3段階のデジタルトランスフォーメーションは、組織横断・全体の業務のデジタル化と、顧客起点の価値創出のための事業・ビジネスモデルの変革（例：配車プラットフォームの構築）で、変わる範囲は会社と事業。段階が進むほど、変わる範囲が広がる。IPAのDX白書2023は、日本企業は前の2段階で成果があがっているが、第3段階の変革は不十分としている。</desc>
+<text x="12" y="22" class="tb">段階が進むほど、変わる範囲が広がる</text>
+<rect x="12" y="40" width="90" height="12" class="fas sa" stroke-width="1.5"/>
+<text x="12" y="70" class="tm">変わる範囲：データ</text>
+<text x="12" y="92" class="tb">① デジタイゼーション</text>
+<text x="12" y="112">アナログ・物理データを、</text>
+<text x="12" y="131">デジタルデータにする</text>
+<text x="12" y="150" class="tm">例：配車実績情報の電子化</text>
+<line x1="160" y1="164" x2="160" y2="178" class="l sa w2"/>
+<polyline points="154,172 160,180 166,172" class="l sa w2"/>
+<rect x="12" y="194" width="190" height="12" class="fas sa" stroke-width="1.5"/>
+<text x="12" y="224" class="tm">変わる範囲：1つの業務</text>
+<text x="12" y="246" class="tb">② デジタライゼーション</text>
+<text x="12" y="266">個別の業務・製造プロセスを、</text>
+<text x="12" y="285">デジタル化する</text>
+<text x="12" y="304" class="tm">例：配車業務の自動化</text>
+<line x1="160" y1="318" x2="160" y2="332" class="l sa w2"/>
+<polyline points="154,326 160,334 166,326" class="l sa w2"/>
+<rect x="12" y="348" width="296" height="12" class="fa" stroke-width="1.5"/>
+<text x="12" y="378" class="tm">変わる範囲：会社と事業</text>
+<text x="12" y="400" class="tb">③ デジタルトランスフォーメーション</text>
+<text x="12" y="420">組織横断・全体の業務のデジタル化と、</text>
+<text x="12" y="439">顧客起点の価値創出のための</text>
+<text x="12" y="458">事業・ビジネスモデルの変革</text>
+<text x="12" y="477" class="tm">例：配車プラットフォームの構築</text>
+<line x1="12" y1="511" x2="308" y2="511" class="l sb w1"/>
+<text x="12" y="533" class="tb">IPAのDX白書2023の指摘</text>
+<text x="12" y="553">①②では成果があがっている</text>
+<text x="12" y="572">③の変革は、まだ不十分</text>
+</svg>

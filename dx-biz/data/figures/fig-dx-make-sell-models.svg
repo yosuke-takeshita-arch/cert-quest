@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 522" role="img" aria-labelledby="fig-dx-make-sell-models-t fig-dx-make-sell-models-d">
+<title id="fig-dx-make-sell-models-t">つくり方と売り方のモデル：ファブレス・OEM・ODM・SPA・直販・受注生産</title>
+<desc id="fig-dx-make-sell-models-d">企画・設計、製造、物流、販売の4つの段階のうち、どこをその会社が持つかを、モデルごとに塗り分けた図。ファブレスは、企画・設計と販売に集中し、製造は外部に委託する。OEMを受ける側は、製造だけを行い、相手先のブランドで販売される。ODMを受ける側は、設計から生産までを行い、委託者のブランドで販売される。SPAは、企画から生産・物流・販売までを1つの企業が一貫して管理する。直販は、卸や小売などの中間業者を通さず、メーカーが顧客に直接売る。下は、受注生産（MTO）と見込み生産（MTS）の順番の違い。MTOは注文を受けてから生産し、MTSは注文の前に作って在庫を持つ。</desc>
+<rect x="12" y="14" width="18" height="14" class="fa"/>
+<text x="36" y="26">その会社が持つ</text>
+<rect x="150" y="14" width="18" height="14" class="fas sa" stroke-width="1"/>
+<text x="174" y="26">外部に委託</text>
+<rect x="12" y="38" width="18" height="14" class="fs sb" stroke-width="1"/>
+<text x="36" y="50">対象外・指定なし（相手先など）</text>
+<text x="12" y="80" class="tb">ファブレス</text>
+<text x="150" y="80" class="tm">製造は外部に委託する</text>
+<rect x="12" y="86" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="49" y="105" class="tb ton" text-anchor="middle">企画・設計</text>
+<rect x="86" y="86" width="74" height="28" class="fas sa" stroke-width="1"/>
+<text x="123" y="105" text-anchor="middle">製造</text>
+<rect x="160" y="86" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="197" y="105" text-anchor="middle">物流</text>
+<rect x="234" y="86" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="271" y="105" class="tb ton" text-anchor="middle">販売</text>
+<text x="12" y="138" class="tb">OEM（受ける側）</text>
+<text x="150" y="138" class="tm">相手先のブランドで作る</text>
+<rect x="12" y="144" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="49" y="163" text-anchor="middle">企画・設計</text>
+<rect x="86" y="144" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="123" y="163" class="tb ton" text-anchor="middle">製造</text>
+<rect x="160" y="144" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="197" y="163" text-anchor="middle">物流</text>
+<rect x="234" y="144" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="271" y="163" text-anchor="middle">販売</text>
+<text x="12" y="196" class="tb">ODM（受ける側）</text>
+<text x="150" y="196" class="tm">設計から生産まで受ける</text>
+<rect x="12" y="202" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="49" y="221" class="tb ton" text-anchor="middle">企画・設計</text>
+<rect x="86" y="202" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="123" y="221" class="tb ton" text-anchor="middle">製造</text>
+<rect x="160" y="202" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="197" y="221" text-anchor="middle">物流</text>
+<rect x="234" y="202" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="271" y="221" text-anchor="middle">販売</text>
+<text x="12" y="254" class="tb">SPA（製造小売）</text>
+<text x="150" y="254" class="tm">企画から販売まで一貫管理</text>
+<rect x="12" y="260" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="49" y="279" class="tb ton" text-anchor="middle">企画・設計</text>
+<rect x="86" y="260" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="123" y="279" class="tb ton" text-anchor="middle">製造</text>
+<rect x="160" y="260" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="197" y="279" class="tb ton" text-anchor="middle">物流</text>
+<rect x="234" y="260" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="271" y="279" class="tb ton" text-anchor="middle">販売</text>
+<text x="12" y="312" class="tb">直販</text>
+<text x="150" y="312" class="tm">卸・小売を通さず直接売る</text>
+<rect x="12" y="318" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="49" y="337" text-anchor="middle">企画・設計</text>
+<rect x="86" y="318" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="123" y="337" class="tb ton" text-anchor="middle">製造</text>
+<rect x="160" y="318" width="74" height="28" class="fs sb" stroke-width="1"/>
+<text x="197" y="337" text-anchor="middle">物流</text>
+<rect x="234" y="318" width="74" height="28" class="fa" stroke-width="1"/>
+<text x="271" y="337" class="tb ton" text-anchor="middle">販売</text>
+<line x1="12" y1="360" x2="308" y2="360" class="l sb w1"/>
+<text x="12" y="382" class="tb">受注生産（MTO）と見込み生産（MTS）</text>
+<text x="12" y="410" class="tb">MTO</text>
+<rect x="64" y="396" width="76" height="30" class="fwn swn" stroke-width="1"/>
+<text x="102" y="416" text-anchor="middle">注文</text>
+<rect x="148" y="396" width="76" height="30" class="fa" stroke-width="1"/>
+<text x="186" y="416" class="tb ton" text-anchor="middle">生産</text>
+<rect x="232" y="396" width="76" height="30" class="fs sb" stroke-width="1"/>
+<text x="270" y="416" text-anchor="middle">納品</text>
+<text x="12" y="450" class="tb">MTS</text>
+<rect x="64" y="436" width="76" height="30" class="fa" stroke-width="1"/>
+<text x="102" y="456" class="tb ton" text-anchor="middle">生産</text>
+<rect x="148" y="436" width="76" height="30" class="fs sb" stroke-width="1"/>
+<text x="186" y="456" text-anchor="middle">在庫</text>
+<rect x="232" y="436" width="76" height="30" class="fwn swn" stroke-width="1"/>
+<text x="270" y="456" text-anchor="middle">注文</text>
+<text x="12" y="490">MTOは注文のあとに作る。</text>
+<text x="12" y="510">MTSは注文の前に作って在庫を持つ</text>
+</svg>

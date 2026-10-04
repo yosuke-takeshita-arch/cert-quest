@@ -13,6 +13,7 @@
     "confusions": [
       { "id": "DC-07-007", "point": "ファブレス＝工場を持たないメーカー（作らない）。SPA＝小売が企画から製造・販売まで一貫して管理する（作らせて自分で売る）。" }
     ],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "経済産業省「2019年版ものづくり白書」第1部第2章第3節", "url": "https://www.meti.go.jp/report/whitepaper/mono/2019/honbun_pdf/pdf/honbun_01_02_03.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -32,6 +33,7 @@
     "confusions": [
       { "title": "見込み生産（MTS）", "point": "MTO＝注文を受けてから作る（在庫が少ない・待ち時間がある）。MTS＝見込みで先に作る（すぐ渡せる・売れ残りの危険）。" }
     ],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "熊澤光正「トヨタ生産方式における生産管理の基礎」四日市大学論集 第30巻第2号（2018年）", "url": "https://www.jstage.jst.go.jp/article/jyu/30/2/30_69/_pdf" }
     ],
@@ -51,6 +53,7 @@
     "confusions": [
       { "id": "DC-07-008", "point": "直販は自社が直接売る。アフィリエイトは他人のサイトに紹介してもらい、成果に応じて報酬を払う。" }
     ],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "日本政策金融公庫総合研究所「中小企業の売る力を強化するDtoC」（日本公庫総研レポート No.2022-2、2022年3月）", "url": "https://www.jfc.go.jp/n/findings/pdf/soukenrepo_22_03_07.pdf" }
     ],
@@ -69,6 +72,7 @@
     "confusions": [
       { "title": "ODM", "point": "OEMは発注元の設計で作るのが基本。ODMは受託側が設計から行う。" }
     ],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "経済産業省「消費生活用製品安全法におけるOEM生産品・PB品の取扱いに関するガイドライン」（平成20年7月）", "url": "https://www.meti.go.jp/product_safety/producer/shouan/07_shouan_guideline_3.pdf" },
       { "title": "ジェトロ 貿易・投資相談Q&A「OEM生産とODM生産の違い」", "url": "https://www.jetro.go.jp/world/qa/04A-011247.html" },
@@ -129,6 +133,7 @@
     "confusions": [
       { "id": "DC-07-001", "point": "SPAは小売の側が製造まで取り込む。ファブレスはメーカーの側が工場を持たない。" }
     ],
+    "figures": ["fig-dx-make-sell-models", "fig-dx-zara-cycle"],
     "sources": [
       { "title": "日本繊維産業連盟「我が国繊維産業の現状」（産業構造審議会 繊維産業小委員会 資料7、令和3年11月22日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/textile_industry/pdf/001_07_00.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -148,6 +153,7 @@
     "confusions": [
       { "title": "広告主の責任", "point": "アフィリエイターが書いた広告でも、広告主が内容に関与していれば広告主の表示として扱われる。" }
     ],
+    "figures": ["fig-dx-affiliate"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -167,6 +173,7 @@
     "confusions": [
       { "id": "DC-07-016", "point": "フランチャイズは本部が主導し、加盟者が本部に対価を払う。ボランタリーチェーンは独立した店どうしが自主的に集まって共同で仕入れなどを行う。" }
     ],
+    "figures": ["fig-dx-franchise-voluntary"],
     "sources": [
       { "title": "公正取引委員会「フランチャイズ・システムに関する独占禁止法上の考え方」", "url": "https://www.jftc.go.jp/dk/guideline/unyoukijun/franchise.html" }
     ],
@@ -185,6 +192,7 @@
     "confusions": [
       { "id": "DC-07-009", "point": "主役が「本部」ならフランチャイズ、「加盟店どうし」ならボランタリーチェーン。" }
     ],
+    "figures": ["fig-dx-franchise-voluntary"],
     "sources": [
       { "title": "公正取引委員会「食品分野におけるプライベート・ブランド商品の取引に関する実態調査報告書」（平成26年6月20日）", "url": "https://www.jftc.go.jp/houdou/pressrelease/h26/jun/140620.html" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -205,6 +213,7 @@
     "confusions": [
       { "title": "製品ライフサイクル", "point": "製品ライフサイクルは製品の導入期・成長期・成熟期・衰退期。顧客ライフサイクルは一人の顧客との関係の段階。" }
     ],
+    "figures": ["fig-dx-customer-lifecycle"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
       { "title": "セールスフォース・ジャパン「LTV（Life Time Value：顧客生涯価値）とは」", "url": "https://www.salesforce.com/jp/marketing/what-is-life-time-value/" }
@@ -225,6 +234,7 @@
     "confusions": [
       { "title": "データを集めること自体", "point": "目的は集めることではなく、顧客の体験と事業の成果を良くすること。" }
     ],
+    "figures": ["fig-dx-customer-lifecycle"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」第6章 CRM（顧客関係管理）の方法", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
       { "title": "e-Gov法令検索「個人情報の保護に関する法律」第17条・第21条", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
@@ -246,6 +256,7 @@
     "confusions": [
       { "title": "アップセルとクロスセル", "point": "アップ＝上位の物に「乗り換え」、クロス＝別の物を「追加」。" }
     ],
+    "figures": ["fig-dx-upsell-crosssell"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -272,6 +283,7 @@
     "confusions": [
       { "title": "囲い込み契約", "point": "高い違約金で縛るだけでは顧客の不満が残る。ロックインの型は、顧客にとっての便利さ・愛着・学習の積み上げなどで離れにくくするもの。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "総務省「平成18年版 情報通信白書」コラム ソフトウェアのネットワーク効果とロックイン効果", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1454000.html" },
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
@@ -293,6 +305,7 @@
     "confusions": [
       { "id": "DC-07-019", "point": "インティマシーは「自分をよく分かってくれる」関係。コミュニティは「仲間がいる」場への愛着。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -310,6 +323,7 @@
     "confusions": [
       { "id": "DC-07-017", "point": "コンビニエンスは「手間がかからない」便利さ。ラーニングは「使い方を覚えた」ことの積み上げ。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -328,6 +342,7 @@
     "confusions": [
       { "id": "DC-07-015", "point": "ラーニングは「覚え直しが大変」、コンビニエンスは「手続きし直しが面倒」。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -347,6 +362,7 @@
     "confusions": [
       { "id": "DC-07-019", "point": "メンバーシップは「会員の特典」で縛る。コミュニティは「仲間とのつながり」で離れにくくする。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -366,6 +382,7 @@
     "confusions": [
       { "id": "DC-07-014", "point": "コミュニティは利用者「どうし」のつながり。インティマシーは企業と顧客の「1対1」の親密さ。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -384,6 +401,7 @@
     "confusions": [
       { "id": "DC-07-021", "point": "シリーズは「組み合わせの便利さ」で離れにくい。ブランドは「そのブランドが好き・信頼できる」という気持ちで離れにくい。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -403,6 +421,7 @@
     "confusions": [
       { "id": "DC-07-020", "point": "ブランドは気持ち（信頼・愛着）、シリーズは仕組み（連携・互換性）。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -423,6 +442,7 @@
     "confusions": [
       { "id": "DC-05-006", "point": "ネットワーク外部性＝利用者が多いほど価値が上がる（シェアの大きい財がさらに有利）。スイッチング・コスト＝乗り換えの費用（シェアの大小にかかわらず働く）。どちらもロックインを生む。" }
     ],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "総務省「平成18年版 情報通信白書」コラム ソフトウェアのネットワーク効果とロックイン効果", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1454000.html" },

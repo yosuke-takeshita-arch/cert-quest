@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 526" role="img" aria-labelledby="fig-dx-customer-lifecycle-t fig-dx-customer-lifecycle-d">
+<title id="fig-dx-customer-lifecycle-t">顧客ライフサイクルマネジメント：段階ごとに働きかけを変える</title>
+<desc id="fig-dx-customer-lifecycle-d">顧客が、知る、初めて買う、使い続ける、追加で買う、離れる（または人に勧める）までの段階ごとに、適した働きかけを行う図。働きかけの例は、知る段階は広告、初めて買う段階は初回特典、使い続ける段階は使い方の案内、追加で買う段階はアップセル・クロスセル、離れる段階は引き止め、勧める段階は紹介。一人の顧客が利用しはじめてから終わるまでにもたらす利益を顧客生涯価値（LTV）という。顧客データを集めて統合して生かすには、利用目的の特定と通知・公表など個人情報保護法のルールを守る。</desc>
+<text x="12" y="22" class="tb">段階ごとに、働きかけを変える（例）</text>
+<rect x="12" y="32" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="52" class="tb">知る</text>
+<text x="24" y="70" class="tm">広告で知ってもらう</text>
+<line x1="40" y1="78" x2="40" y2="88" class="l sa w2"/>
+<polyline points="37.8,84 40,88 42.2,84" class="l sa w2"/>
+<rect x="12" y="90" width="296" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="110" class="tb">初めて買う</text>
+<text x="24" y="128" class="tm">初回特典で買いやすくする</text>
+<line x1="40" y1="136" x2="40" y2="146" class="l sa w2"/>
+<polyline points="37.8,142 40,146 42.2,142" class="l sa w2"/>
+<rect x="12" y="148" width="296" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="168" class="tb">使い続ける</text>
+<text x="24" y="186" class="tm">使い方を案内する</text>
+<line x1="40" y1="194" x2="40" y2="204" class="l sa w2"/>
+<polyline points="37.8,200 40,204 42.2,200" class="l sa w2"/>
+<rect x="12" y="206" width="296" height="44" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="226" class="tb">追加で買う</text>
+<text x="24" y="244" class="tm">アップセル・クロスセル</text>
+<line x1="40" y1="252" x2="40" y2="262" class="l sa w2"/>
+<polyline points="37.8,258 40,262 42.2,258" class="l sa w2"/>
+<rect x="12" y="264" width="296" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="24" y="284" class="tb">離れる</text>
+<text x="24" y="302" class="tm">離れる前に声をかけ、引き止める</text>
+<line x1="40" y1="310" x2="40" y2="320" class="l sa w2"/>
+<polyline points="37.8,316 40,320 42.2,316" class="l sa w2"/>
+<rect x="12" y="322" width="296" height="44" class="fwn swn" stroke-width="1.5"/>
+<text x="24" y="342" class="tb">勧める</text>
+<text x="24" y="360" class="tm">紹介してもらう</text>
+<text x="12" y="386" class="tm">（離れる／勧めるは、最後の分かれ道）</text>
+<line x1="12" y1="402" x2="308" y2="402" class="l sb w1"/>
+<text x="12" y="424" class="tb">顧客生涯価値（LTV）</text>
+<text x="12" y="444">1人の顧客が、使い始めてから終わるまで</text>
+<text x="12" y="463">にもたらす利益</text>
+<text x="12" y="495">顧客データの活用は、利用目的を特定し、</text>
+<text x="12" y="514">通知・公表するのが前提（個人情報保護法）</text>
+</svg>

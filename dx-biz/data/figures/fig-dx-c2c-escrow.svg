@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 306" role="img" aria-labelledby="fig-dx-c2c-escrow-t fig-dx-c2c-escrow-d">
+<title id="fig-dx-c2c-escrow-t">個人間取引のエスクロー：運営会社が代金を預かる</title>
+<desc id="fig-dx-c2c-escrow-d">買い手・運営会社・売り手の3者の図。1買い手が代金を運営会社に払い、運営会社がいったん預かる。2売り手が商品を発送する。3買い手が商品を受け取って、評価する。4運営会社が売り手に代金を払う。代金の預かりをエスクローという。評価を先に求める、発送前に評価させるのは、手順が逆で、応じない。</desc>
+<rect x="12" y="14" width="84" height="60" class="fok sok" stroke-width="1.5"/>
+<text x="54" y="48.5" class="tb" text-anchor="middle">買い手</text>
+<rect x="118" y="14" width="84" height="60" class="fa" stroke-width="1.5"/>
+<text x="160" y="48.5" class="tb ton" text-anchor="middle">運営会社</text>
+<rect x="224" y="14" width="84" height="60" class="fwn swn" stroke-width="1.5"/>
+<text x="266" y="48.5" class="tb" text-anchor="middle">売り手</text>
+<line x1="98" y1="32" x2="116" y2="32" class="l sa w2"/>
+<polyline points="111,34.75 116,32 111,29.25" class="l sa w2"/>
+<circle cx="107" cy="32" r="9" class="fs sa"/>
+<text x="107" y="36.5" class="tb" text-anchor="middle">1</text>
+<line x1="116" y1="58" x2="98" y2="58" class="l sa w2"/>
+<polyline points="103,55.25 98,58 103,60.75" class="l sa w2"/>
+<circle cx="107" cy="58" r="9" class="fs sa"/>
+<text x="107" y="62.5" class="tb" text-anchor="middle">3</text>
+<line x1="204" y1="44" x2="222" y2="44" class="l sa w2"/>
+<polyline points="217,46.75 222,44 217,41.25" class="l sa w2"/>
+<circle cx="213" cy="44" r="9" class="fs sa"/>
+<text x="213" y="48.5" class="tb" text-anchor="middle">4</text>
+<line x1="266" y1="74" x2="266" y2="98" class="l sa w2"/>
+<line x1="266" y1="98" x2="54" y2="98" class="l sa w2"/>
+<line x1="54" y1="98" x2="54" y2="76" class="l sa w2"/>
+<polyline points="57.3,82 54,76 50.7,82" class="l sa w2"/>
+<circle cx="160" cy="98" r="9" class="fs sa"/>
+<text x="160" y="102.5" class="tb" text-anchor="middle">2</text>
+<text x="12" y="122">1　買い手が、代金を運営会社に払う</text>
+<text x="36" y="142" class="tm">（運営会社がいったん預かる）</text>
+<text x="12" y="168">2　売り手が、商品を発送する</text>
+<text x="12" y="196">3　買い手が、受け取って評価する</text>
+<text x="12" y="224">4　運営会社が、売り手に代金を払う</text>
+<line x1="12" y1="252" x2="308" y2="252" class="l sb w1"/>
+<text x="12" y="274" class="tb">評価を先に求める、発送前に</text>
+<text x="12" y="294" class="tb">評価させるのは、手順が逆</text>
+</svg>

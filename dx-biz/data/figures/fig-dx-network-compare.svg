@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 444" role="img" aria-labelledby="fig-dx-network-compare-t fig-dx-network-compare-d">
+<title id="fig-dx-network-compare-t">5GとLPWAの特長の違い</title>
+<desc id="fig-dx-network-compare-d">5G（第5世代移動通信システム）は、超高速・大容量、超低遅延、多数同時接続の3つの特長を持ち、用途は高精細な映像配信、自動運転や遠隔操作、大量のIoT機器。LPWA（Low Power Wide Area）は、通信速度は数kbpsから数百kbpsと遅いが、一般的な電池で数年から数十年運用できる省電力性と、数kmから数十kmの広域性を持ち、水道設備の稼働監視などインフラの見守りに使われる。速さを求めるなら5G、電池の持ちと届く距離を求めるならLPWAと使い分ける。</desc>
+<rect x="12" y="14" width="296" height="176" class="fwn swn" stroke-width="1.5"/>
+<text x="24" y="40" class="tb">5G：速さ・つながる数</text>
+<text x="24" y="70" class="tb">超高速・大容量</text>
+<text x="24" y="88" class="tm">例：高精細な映像配信</text>
+<text x="24" y="108" class="tb">超低遅延</text>
+<text x="24" y="126" class="tm">例：自動運転・遠隔操作</text>
+<text x="24" y="146" class="tb">多数同時接続</text>
+<text x="24" y="164" class="tm">例：大量のIoT機器</text>
+<rect x="12" y="204" width="296" height="176" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="230" class="tb">LPWA：電池の持ち・届く距離</text>
+<text x="24" y="260" class="tb">速度：数kbps〜数百kbps</text>
+<text x="24" y="278" class="tm">遅いが、少量のデータで足りる</text>
+<text x="24" y="298" class="tb">電池：数年〜数十年</text>
+<text x="24" y="316" class="tm">一般的な電池で動く</text>
+<text x="24" y="336" class="tb">距離：数km〜数十km</text>
+<text x="24" y="354" class="tm">例：水道設備の稼働監視</text>
+<text x="12" y="410" class="tb">使い分け：速さなら5G</text>
+<text x="12" y="432" class="tb">電池の持ちと距離ならLPWA</text>
+</svg>

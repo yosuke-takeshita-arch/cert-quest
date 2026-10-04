@@ -21,6 +21,7 @@
     ],
     "memoryTip": "SPA＝「作るところから売るところまで一気通貫」の小売。ファブレス＝「工場を持たないメーカー」。OEM＝相手のブランドで作る、ODM＝相手のブランドで設計から作る。",
     "concepts": ["DC-07-007", "DC-07-001", "DC-07-004"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "日本繊維産業連盟「我が国繊維産業の現状」（産業構造審議会 繊維産業小委員会 資料7、令和3年11月22日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/textile_industry/pdf/001_07_00.pdf" },
       { "title": "経済産業省「2019年版ものづくり白書」第1部第2章第3節", "url": "https://www.meti.go.jp/report/whitepaper/mono/2019/honbun_pdf/pdf/honbun_01_02_03.pdf" },
@@ -51,6 +52,7 @@
     ],
     "memoryTip": "直接売る＝ダイレクトセル、注文してから作る＝MTO。セットで在庫が減る。",
     "concepts": ["DC-07-003", "DC-07-002"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "日本政策金融公庫総合研究所「中小企業の売る力を強化するDtoC」（日本公庫総研レポート No.2022-2、2022年3月）", "url": "https://www.jfc.go.jp/n/findings/pdf/soukenrepo_22_03_07.pdf" },
       { "title": "熊澤光正「トヨタ生産方式における生産管理の基礎」四日市大学論集 第30巻第2号（2018年）", "url": "https://www.jstage.jst.go.jp/article/jyu/30/2/30_69/_pdf" }
@@ -106,6 +108,7 @@
     ],
     "memoryTip": "フランチャイズ＝本部が主役（看板とノウハウを貸す）、ボランタリー＝加盟店が主役（自主的に組む）。",
     "concepts": ["DC-07-009", "DC-07-016"],
+    "figures": ["fig-dx-franchise-voluntary"],
     "sources": [
       { "title": "公正取引委員会「食品分野におけるプライベート・ブランド商品の取引に関する実態調査報告書」（平成26年6月20日）", "url": "https://www.jftc.go.jp/houdou/pressrelease/h26/jun/140620.html" },
       { "title": "公正取引委員会「フランチャイズ・システムに関する独占禁止法上の考え方」", "url": "https://www.jftc.go.jp/dk/guideline/unyoukijun/franchise.html" }
@@ -134,6 +137,7 @@
     ],
     "memoryTip": "書いたのが他人でも、内容を決めたのが広告主なら、広告主の表示。",
     "concepts": ["DC-07-008"],
+    "figures": ["fig-dx-affiliate"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -161,6 +165,7 @@
     ],
     "memoryTip": "アップ＝上へ（上位機種）、クロス＝横へ（関連商品を追加）。",
     "concepts": ["DC-07-012"],
+    "figures": ["fig-dx-upsell-crosssell"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -188,6 +193,7 @@
     ],
     "memoryTip": "顧客データ＝「目的を決めて・知らせて・使う」。",
     "concepts": ["DC-07-011", "DC-07-010"],
+    "figures": ["fig-dx-customer-lifecycle"],
     "sources": [
       { "title": "e-Gov法令検索「個人情報の保護に関する法律」", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
@@ -212,6 +218,7 @@
     ],
     "memoryTip": "「面倒だから他に移らない」＝コンビニエンス（便利さ）。",
     "concepts": ["DC-07-015", "DC-07-013"],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -240,6 +247,7 @@
     ],
     "memoryTip": "ラーニング＝覚え直しが壁。コンビニエンス＝手続きし直しが壁。メンバーシップ＝ポイントが壁。シリーズ＝組み合わせが壁。",
     "concepts": ["DC-07-017", "DC-07-015", "DC-07-018", "DC-07-020", "DC-07-013"],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -312,6 +320,7 @@
     ],
     "memoryTip": "ファブ（工場）＋レス（無し）＝工場を持たないメーカー。作るのは外、考えるのは中。",
     "concepts": ["DC-07-001", "DC-07-004", "DC-06-001"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "経済産業省「2019年版ものづくり白書」第1部第2章第3節", "url": "https://www.meti.go.jp/report/whitepaper/mono/2019/honbun_pdf/pdf/honbun_01_02_03.pdf" }
     ],
@@ -339,6 +348,7 @@
     ],
     "memoryTip": "OEM＝M（Manufacturing：作る）だけ受託。ODM＝D（Design：設計）からM（作る）まで受託。どちらも売るときのブランドは発注元。",
     "concepts": ["DC-07-004", "DC-07-001"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "ジェトロ 貿易・投資相談Q&A「OEM生産とODM生産の違い」", "url": "https://www.jetro.go.jp/world/qa/04A-011247.html" },
       { "title": "ジェトロ 貿易・投資相談Q&A「OEM契約とライセンス契約の違い：日本」", "url": "https://www.jetro.go.jp/world/qa/04A-010822.html" }
@@ -394,6 +404,7 @@
     ],
     "memoryTip": "SPA＝S（専門店）P（自社ブランド）A（アパレル）。売り場のデータが、そのまま次の企画に流れる。",
     "concepts": ["DC-07-007", "DC-06-001", "DC-05-005"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "日本繊維産業連盟「我が国繊維産業の現状」（産業構造審議会 繊維産業小委員会 資料7、令和3年11月22日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/textile_industry/pdf/001_07_00.pdf" }
     ],
@@ -443,6 +454,7 @@
     ],
     "memoryTip": "フランチャイズ＝看板（商標）とノウハウを借りて、独立した事業者が自分の店を開く。対価がロイヤルティ。",
     "concepts": ["DC-07-009", "DC-07-016"],
+    "figures": ["fig-dx-franchise-voluntary"],
     "sources": [
       { "title": "公正取引委員会「フランチャイズ・システムに関する独占禁止法上の考え方」", "url": "https://www.jftc.go.jp/dk/guideline/unyoukijun/franchise.html" }
     ],
@@ -470,6 +482,7 @@
     ],
     "memoryTip": "ボランタリー＝自発的に集まる仲間。フランチャイズ＝看板を借りる加盟者。仲間か、看板か。",
     "concepts": ["DC-07-016", "DC-07-009", "DC-05-002"],
+    "figures": ["fig-dx-franchise-voluntary"],
     "sources": [
       { "title": "公正取引委員会「食品分野におけるプライベート・ブランド商品の取引に関する実態調査報告書」（平成26年6月20日）", "url": "https://www.jftc.go.jp/houdou/pressrelease/h26/jun/140620.html" },
       { "title": "公正取引委員会「フランチャイズ・システムに関する独占禁止法上の考え方」", "url": "https://www.jftc.go.jp/dk/guideline/unyoukijun/franchise.html" }
@@ -498,6 +511,7 @@
     ],
     "memoryTip": "ステマ規制で責任を負うのは「頼んだ側（広告主）」。頼まれた側ではない。",
     "concepts": ["DC-07-008", "DC-04-020"],
+    "figures": ["fig-dx-affiliate"],
     "sources": [
       { "title": "消費者庁「令和5年10月1日からステルスマーケティングは景品表示法違反となります。」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing" }
     ],
@@ -525,6 +539,7 @@
     ],
     "memoryTip": "アフィリエイト＝紹介して売れたら報酬。ロイヤルティ＝看板とノウハウを借りる対価。",
     "concepts": ["DC-07-008", "DC-07-009"],
+    "figures": ["fig-dx-affiliate"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" },
       { "title": "公正取引委員会「フランチャイズ・システムに関する独占禁止法上の考え方」", "url": "https://www.jftc.go.jp/dk/guideline/unyoukijun/franchise.html" }
@@ -553,6 +568,7 @@
     ],
     "memoryTip": "個人情報は「目的を決める（17条）→知らせる（21条）→目的の中で使う」の順。",
     "concepts": ["DC-07-011", "DC-07-010"],
+    "figures": ["fig-dx-customer-lifecycle"],
     "sources": [
       { "title": "e-Gov法令検索「個人情報の保護に関する法律」第17条・第21条", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -580,6 +596,7 @@
     ],
     "memoryTip": "ついで買い＝クロスセル（横に広げる）。もっと良いもの＝アップセル（上に上げる）。また来てもらう＝生涯価値を伸ばす。",
     "concepts": ["DC-07-012", "DC-07-010", "DC-04-016"],
+    "figures": ["fig-dx-upsell-crosssell"],
     "sources": [
       { "title": "総務省 情報通信政策研究所「行動ターゲティング広告の経済効果と利用者保護に関する調査研究 報告書」（平成22年3月）", "url": "https://www.soumu.go.jp/iicp/chousakenkyu/data/research/survey/telecom/2009/2009-I-16.pdf" },
       { "title": "セールスフォース・ジャパン「LTV（Life Time Value：顧客生涯価値）とは」", "url": "https://www.salesforce.com/jp/marketing/what-is-life-time-value/" }
@@ -608,6 +625,7 @@
     ],
     "memoryTip": "アップ＝縦（同じものの上位へ）、クロス＝横（別のものを足す）。",
     "concepts": ["DC-07-012"],
+    "figures": ["fig-dx-upsell-crosssell"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -635,6 +653,7 @@
     ],
     "memoryTip": "ライフサイクル＝顧客にも「入口・定着・成長・離脱」の季節がある。季節ごとに水やりを変える。",
     "concepts": ["DC-07-010", "DC-07-012"],
+    "figures": ["fig-dx-customer-lifecycle"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -662,6 +681,7 @@
     ],
     "memoryTip": "ロックイン＝「鍵をかけられた」ように出られない。原因は乗り換えの費用（スイッチング・コスト）。",
     "concepts": ["DC-07-013", "DC-07-022", "DC-05-006"],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "総務省「平成18年版 情報通信白書」コラム ソフトウェアのネットワーク効果とロックイン効果", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1454000.html" }
     ],
@@ -689,6 +709,7 @@
     ],
     "memoryTip": "ネットワーク外部性＝勝ち組がもっと勝つ（雪だるま）。スイッチング・コスト＝今の陣地を固める（どの会社でも効く）。",
     "concepts": ["DC-07-022", "DC-05-006", "DC-07-013"],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" }
     ],
@@ -716,6 +737,7 @@
     ],
     "memoryTip": "データが持ち出せない→ロックイン。データを持ち出せる（ポータビリティ）→鍵がゆるむ。",
     "concepts": ["DC-07-022", "DC-07-013"],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター「データと競争政策に関する検討会 報告書」（平成29年6月6日）", "url": "https://www.jftc.go.jp/cprc/conference/index_files/170606data01.pdf" }
     ],
@@ -765,6 +787,7 @@
     ],
     "memoryTip": "スイッチングコスト＝乗り換えの「壁」。互換・習熟・手続き・心理・ポイント。性能の良さは壁ではなく誘い。",
     "concepts": ["DC-07-022", "DC-07-020", "DC-07-017", "DC-07-018"],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" }
     ],
@@ -792,6 +815,7 @@
     ],
     "memoryTip": "直販は「自分で決められる」代わりに「自分で集めて売る」。中抜きの分、小売の仕事を背負う。",
     "concepts": ["DC-07-003"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "日本政策金融公庫総合研究所「中小企業の売る力を強化するDtoC」（日本公庫総研レポート No.2022-2、2022年3月）", "url": "https://www.jfc.go.jp/n/findings/pdf/soukenrepo_22_03_07.pdf" }
     ],

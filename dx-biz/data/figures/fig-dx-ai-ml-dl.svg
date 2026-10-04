@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 394" role="img" aria-labelledby="fig-dx-ai-ml-dl-t fig-dx-ai-ml-dl-d">
+<title id="fig-dx-ai-ml-dl-t">AI・機械学習・ディープラーニングの包含関係</title>
+<desc id="fig-dx-ai-ml-dl-d">入れ子の3つの楕円。一番外側が人工知能（AI）で、知的なコンピュータプログラムを作る科学と技術。その中に機械学習があり、データからパターンやルールを学んで予測や判断をする手法。さらにその中にディープラーニング（深層学習）があり、脳の神経回路を模した多層のニューラルネットワークを使い、何に着目するかの特徴量を自分で取り出す。包含関係はAIが機械学習を含み、機械学習がディープラーニングを含む。</desc>
+<ellipse cx="160" cy="118" rx="150" ry="104" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="40" class="tb" text-anchor="middle">人工知能（AI）</text>
+<ellipse cx="160" cy="146" rx="108" ry="68" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="106" class="tb" text-anchor="middle">機械学習</text>
+<ellipse cx="160" cy="158" rx="66" ry="36" class="fa"/>
+<text x="160" y="154" class="tb ton" text-anchor="middle">ディープ</text>
+<text x="160" y="172" class="tb ton" text-anchor="middle">ラーニング</text>
+<text x="12" y="250" class="tb">AI：知的なコンピュータプログラムを</text>
+<text x="12" y="270" class="tb">作る科学と技術</text>
+<text x="12" y="296">機械学習：データからパターンや</text>
+<text x="12" y="316">ルールを学び、予測や判断をする</text>
+<text x="12" y="342">ディープラーニング：多層の</text>
+<text x="12" y="362">ニューラルネットワークで、特徴量を</text>
+<text x="12" y="382">自分で取り出す</text>
+</svg>

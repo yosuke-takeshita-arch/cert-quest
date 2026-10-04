@@ -21,6 +21,7 @@
     ],
     "memoryTip": "「参加者が増える → 価値が上がる → さらに増える」。誰が参加者かで効果が消えたりはしない。",
     "concepts": ["DC-05-006", "DC-05-013"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -48,6 +49,7 @@
     ],
     "memoryTip": "巨大プラットフォームの3点セット＝「人が人を呼ぶ（ネットワーク）・量で安くなる（規模）・抜けられない（ロックイン）」。",
     "concepts": ["DC-05-006", "DC-05-002"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」プラットフォーム事業者の成長とその背景", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd113110.html" }
     ],
@@ -75,6 +77,7 @@
     ],
     "memoryTip": "規模＝量、範囲＝幅（サービスの数）、密度＝近さ。範囲の経済は「増やす」ほど効く。",
     "concepts": ["DC-05-003", "DC-05-002", "DC-05-004", "DC-05-006"],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" },
       { "title": "総務省「平成27年版 情報通信白書」第1部第3節 ICT産業の構造変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/pdf/n1300000.pdf" },
@@ -99,6 +102,7 @@
     ],
     "memoryTip": "クリティカルマス＝雪だるまが自分で転がり始める大きさ。",
     "concepts": ["DC-05-007", "DC-05-006"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「平成23年版 情報通信白書」コラム ネットワーク型サービスの背後にある考え方", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h23/html/nc232c00.html" }
     ],
@@ -121,6 +125,7 @@
     ],
     "memoryTip": "モノ（所有）→ コト（体験）→ トキ（今ここで一緒に）。",
     "concepts": ["DC-05-009", "DC-05-008", "DC-05-010"],
+    "figures": ["fig-dx-consumption-types"],
     "sources": [
       { "title": "消費者庁「令和4年版 消費者白書」第1部第2章第2節（1）若者の消費行動", "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_132.html" }
     ],
@@ -176,6 +181,7 @@
     ],
     "memoryTip": "デジタル化の向き＝「すり合わせ → 組み合わせ（モジュール）→ 層ごとの分業（レイヤー）」。",
     "concepts": ["DC-05-016", "DC-05-018", "DC-05-015"],
+    "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」第1部第3節 ICT産業の構造変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/pdf/n1300000.pdf" },
       { "title": "総務省「平成24年版 情報通信白書」ICT産業の構造とエコシステムの変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h24/html/nc122210.html" }
@@ -199,6 +205,7 @@
     ],
     "memoryTip": "1次（作る）×2次（加工する）×3次（売る）＝6次。",
     "concepts": ["DC-05-020"],
+    "figures": ["fig-dx-sixth-industry"],
     "sources": [
       { "title": "農林水産省「農山漁村での『6次産業化』とは、どのようなことですか。」", "url": "https://www.maff.go.jp/j/heya/sodan/1202/a04.html" }
     ],
@@ -226,6 +233,7 @@
     ],
     "memoryTip": "リーン＝小さく作って、早く確かめて、すぐ直す（ダメなら方向転換）。",
     "concepts": ["DC-05-021", "DC-02-007"],
+    "figures": ["fig-dx-lean-startup"],
     "sources": [
       { "title": "中小企業基盤整備機構「2022 日本のスタートアップエコシステム研究報告書」", "url": "https://www.smrj.go.jp/research_case/knowledge/fbrion0000002pv0-att/a1666247139726-2.pdf" },
       { "title": "内閣官房 IT総合戦略室「アジャイル開発実践ガイドブック」（2021年3月、デジタル庁 標準ガイドライン群）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/150a60b4/20220422_resources_standard_guidelines_guidebook_01.pdf" }
@@ -249,6 +257,7 @@
     ],
     "memoryTip": "デザイン思考の出発点は「共感」。見た目のデザインのことではない。",
     "concepts": ["DC-05-024"],
+    "figures": ["fig-dx-design-thinking"],
     "sources": [
       { "title": "IPA「DX白書2021」第4部 DXを支える手法と技術", "url": "https://www.ipa.go.jp/publish/wp-dx/qv6pgp0000000txx-att/000093702.pdf" }
     ],
@@ -327,6 +336,7 @@
     ],
     "memoryTip": "MCP＝AIと道具をつなぐ、A2A＝AIとAIをつなぐ。",
     "concepts": ["DC-05-030", "DC-02-020"],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "Google Developers Blog「Announcing the Agent2Agent Protocol (A2A)」（2025年4月）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" }
     ],
@@ -425,6 +435,7 @@
     ],
     "memoryTip": "範囲の経済＝サービスの「幅」が広いほど、データもお客も集まる。",
     "concepts": ["DC-05-003", "DC-05-006"],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -447,6 +458,7 @@
     ],
     "memoryTip": "密度の経済＝「近くにお客が多い」ほど得。サービスは運べないから効く。",
     "concepts": ["DC-05-004", "DC-05-023"],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "経済産業研究所（RIETI）「サービス業の生産性と密度の経済性－事業所データによる対個人サービス業の分析－」", "url": "https://www.rieti.go.jp/jp/publications/nts/08j008.html" }
     ],
@@ -469,6 +481,7 @@
     ],
     "memoryTip": "モノ＝持つ、コト＝体験する、トキ＝その場で盛り上がる、イミ＝社会に良いかで選ぶ。",
     "concepts": ["DC-05-010", "DC-05-008", "DC-05-009"],
+    "figures": ["fig-dx-consumption-types"],
     "sources": [
       { "title": "消費者庁「令和7年版消費者白書について」（消費者志向経営に関する連絡会資料、2025年9月）", "url": "https://www.caa.go.jp/policies/policy/consumer_partnerships/meeting_materials/assets/consumer_partnerships_cms201_0917_1.pdf" }
     ],
@@ -606,6 +619,7 @@
     ],
     "memoryTip": "デジタルは「もう1個」がタダ同然。だから無料サービスや世界規模の事業が成り立つ。",
     "concepts": ["DC-05-015", "DC-05-002"],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」2つ目のキーワード：限界費用", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd121120.html" },
       { "title": "総務省「令和元年版 情報通信白書」1つ目のキーワード：デジタルデータ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd121110.html" }
@@ -629,6 +643,7 @@
     ],
     "memoryTip": "モジュール化＝「規格どおりの部品をはめるだけ」。すり合わせ不要だから誰でも組める。",
     "concepts": ["DC-05-016"],
+    "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」第1部第3節 ICT産業の構造変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/pdf/n1300000.pdf" }
     ],
@@ -651,6 +666,7 @@
     ],
     "memoryTip": "1社がまとめて握る＝垂直統合。層ごとに別の会社＝レイヤー化（水平分業）。",
     "concepts": ["DC-05-018", "DC-06-001"],
+    "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "総務省「平成24年版 情報通信白書」ICT産業の構造とエコシステムの変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h24/html/nc122210.html" }
     ],
@@ -700,6 +716,7 @@
     ],
     "memoryTip": "BOP＝ピラミッドの底辺（Base of the Pyramid）を「お客さん」「仲間」として見る。",
     "concepts": ["DC-05-019"],
+    "figures": ["fig-dx-bop"],
     "sources": [
       { "title": "JICAバングラデシュ事務所「次世代のBOPビジネスがやってくる!」", "url": "https://www.jica.go.jp/bangladesh/bangland/reports/report21.html" },
       { "title": "JICA「協力準備調査（BOPビジネス連携促進）募集要項」（2013年3月）", "url": "https://www.jica.go.jp/Resource/announce/notice/bop/ku57pq00001iepav-att/20130315_01_ins01.pdf" }
@@ -728,6 +745,7 @@
     ],
     "memoryTip": "デザイン思考は「行ったり来たり」が前提。共感→定義→発想→試作→テスト、気付いたら戻る。",
     "concepts": ["DC-05-024", "DC-04-003"],
+    "figures": ["fig-dx-design-thinking"],
     "sources": [
       { "title": "IPA「DX白書2021」第4部 DXを支える手法と技術", "url": "https://www.ipa.go.jp/publish/wp-dx/qv6pgp0000000txx-att/000093702.pdf" }
     ],
@@ -755,6 +773,7 @@
     ],
     "memoryTip": "MVP＝「使える最小限」。全部作ってから出すのではなく、最小限で出して学ぶ。",
     "concepts": ["DC-05-021", "DC-02-007"],
+    "figures": ["fig-dx-lean-startup"],
     "sources": [
       { "title": "内閣官房 IT総合戦略室「アジャイル開発実践ガイドブック」（2021年3月、デジタル庁 標準ガイドライン群）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/150a60b4/20220422_resources_standard_guidelines_guidebook_01.pdf" }
     ],
@@ -782,6 +801,7 @@
     ],
     "memoryTip": "ドミナントは「密度の経済」の裏で「身内の客の奪い合い」。出店は原則自由、でも説明と違えば問題。",
     "concepts": ["DC-05-023", "DC-05-004", "DC-07-009"],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "公正取引委員会「コンビニエンスストア本部と加盟店との取引等に関する実態調査報告書（概要）」（令和2年9月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/sep/kitori0902/200902_04-2.pdf" }
     ],

@@ -33,6 +33,7 @@
     "confusions": [
       { "id": "DC-04-025", "point": "セグメント＝「まとまり」単位。ワントゥワン＝「一人ひとり」単位。" }
     ],
+    "figures": ["fig-dx-segment-one2one"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -52,6 +53,7 @@
     "confusions": [
       { "title": "マスマーケティング", "point": "マスマーケティングは全員に同じ訴求。ワントゥワンは一人ひとりに違う訴求。" }
     ],
+    "figures": ["fig-dx-segment-one2one"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -71,6 +73,7 @@
     "confusions": [
       { "id": "DC-04-002", "point": "セグメントは「層（グループ）」、ペルソナは「その層を代表する具体的な一人」。" }
     ],
+    "figures": ["fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" }
     ],
@@ -90,6 +93,7 @@
     "confusions": [
       { "title": "業務フロー図", "point": "業務フロー図は会社の中の作業の流れ。カスタマージャーニーは顧客の側から見た体験の流れ。" }
     ],
+    "figures": ["fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" },
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
@@ -146,6 +150,7 @@
     "confusions": [
       { "id": "DC-04-008", "point": "O2O＝オンラインとオフラインを分けたまま、行き来させる（送客）。OMO＝両者を区別せず、溶け合った体験にする。" }
     ],
+    "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "総務省「情報通信白書 for Kids」ネットショッピングのO2O・OMOって何？", "url": "https://www.soumu.go.jp/hakusho-kids/use/economy/economy_01.html" },
       { "title": "総務省「平成25年版 情報通信白書」新たなICTトレンドによって変わる事業活動", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h25/html/nc111320.html" }
@@ -166,6 +171,7 @@
     "confusions": [
       { "id": "DC-04-007", "point": "「送客」ならO2O、「融合」ならOMO。" }
     ],
+    "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "総務省「情報通信白書 for Kids」ネットショッピングのO2O・OMOって何？", "url": "https://www.soumu.go.jp/hakusho-kids/use/economy/economy_01.html" }
     ],
@@ -185,6 +191,7 @@
     "confusions": [
       { "title": "マルチチャネル", "point": "マルチチャネルは接点が複数あるだけで、ばらばらに運営されていることもある。オムニチャネルは複数の接点を統合して一貫した体験にする。" }
     ],
+    "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "総務省「平成25年版 情報通信白書」新たなICTトレンドによって変わる事業活動", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h25/html/nc111320.html" }
     ],
@@ -260,6 +267,7 @@
     "confusions": [
       { "title": "リードジェネレーションとリードナーチャリング", "point": "ジェネレーション＝集める（生み出す）、ナーチャリング＝育てる。入れ替えのひっかけに注意。" }
     ],
+    "figures": ["fig-dx-lead"],
     "sources": [
       { "title": "セールスフォース・ジャパン「リードジェネレーションとは？意味や役割、代表的な9つの手法を解説」", "url": "https://www.salesforce.com/jp/marketing/lead-generation-guide/" }
     ],
@@ -279,6 +287,7 @@
     "confusions": [
       { "title": "トップページ", "point": "トップページはサイト全体の入口。ランディングページは広告からの着地点で、1つの行動に絞る。" }
     ],
+    "figures": ["fig-dx-web-ads"],
     "sources": [
       { "title": "公正取引委員会「デジタル広告の取引実態に関する中間報告書」（令和2年4月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/apr/digital/200428betten.pdf" }
     ],
@@ -297,6 +306,7 @@
     "confusions": [
       { "title": "リスティング広告", "point": "リスティング広告は検索キーワードに連動して出る。リターゲティング広告は過去にサイトを訪れた人に出る。" }
     ],
+    "figures": ["fig-dx-web-ads"],
     "sources": [
       { "title": "Google 広告 ヘルプ「データ セグメントについて」", "url": "https://support.google.com/google-ads/answer/2453998?hl=ja" },
       { "title": "公正取引委員会「デジタル広告の取引実態に関する中間報告書」（令和2年4月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/apr/digital/200428betten.pdf" }
@@ -449,6 +459,7 @@
     "confusions": [
       { "title": "システムのテスト", "point": "ABテストはマーケティングの効果比較。システムの動作確認やデータベースの同期とは関係ない。" }
     ],
+    "figures": ["fig-dx-ab-test"],
     "sources": [
       { "title": "アナリティクス ヘルプ「[GA4] A/B テスト」", "url": "https://support.google.com/analytics/answer/13468470?hl=ja" },
       { "title": "Adobe Experience League「A/B テストの概要」（Adobe Target）", "url": "https://experienceleague.adobe.com/ja/docs/target/using/activities/abtest/test-ab" }

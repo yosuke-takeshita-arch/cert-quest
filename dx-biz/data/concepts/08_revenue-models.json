@@ -14,6 +14,7 @@
       { "id": "DC-06-023", "point": "サブスクは定額で使い放題。消耗品モデルは使った分だけ消耗品を買ってもらう（定期配送を組めばサブスクに近づく）。" },
       { "id": "DC-06-020", "point": "アズアサービスは「所有せず利用する」提供の形、サブスクリプションは「定額で継続して払う」課金の形。重なることが多い。" }
     ],
+    "figures": ["fig-dx-revenue-models", "fig-dx-churn-ltv"],
     "sources": [
       { "title": "総務省「平成28年版 情報通信白書」コンテンツ配信サービス市場", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc122220.html" }
     ],
@@ -34,6 +35,7 @@
       { "id": "DC-08-009", "point": "フリーミアムは一部の利用者が有料機能を買って支える。広告モデルは利用者を無料にして広告主から収入を得る。" },
       { "title": "無料体験期間", "point": "期間限定の無料お試しと違い、フリーミアムの基本機能はずっと無料。" }
     ],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" },
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
@@ -53,6 +55,7 @@
     "confusions": [
       { "id": "DC-07-012", "point": "アドオンは「追加の機能を別料金で売る」収益の形。アップセルは「上位の商品を勧める」販売の手法。" }
     ],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "国土交通省「平成28年度 政策レビュー結果（評価書）LCCの事業展開の促進」（平成29年3月）", "url": "https://www.mlit.go.jp/common/001179271.pdf" }
     ],
@@ -71,6 +74,7 @@
     "confusions": [
       { "id": "DC-06-009", "point": "シェアリングは主に個人の遊休資産を他人に使わせる。部分所有は資産そのものの持ち分を複数人で分けて持つ。" }
     ],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "タイムシェア型住宅供給研究会（国土交通省）「タイムシェア型住宅供給研究会 報告書」（平成20年8月）", "url": "https://www.mlit.go.jp/common/000022776.pdf" }
     ],
@@ -90,6 +94,7 @@
     "confusions": [
       { "id": "DC-08-006", "point": "成果報酬は成果に応じた「報酬」を受け取る。レベニューシェアは生まれた「収益」を事前の割合で分け合う。" }
     ],
+    "figures": ["fig-dx-affiliate", "fig-dx-revenue-models"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -108,6 +113,7 @@
     "confusions": [
       { "id": "DC-08-005", "point": "レベニューシェア＝収益を割合で分ける（共同事業）。成果報酬＝成果1件ごとに報酬（委託）。" }
     ],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -127,6 +133,7 @@
     "confusions": [
       { "id": "DC-08-012", "point": "ライセンスの使用料（ロイヤルティ）と、顧客の愛着としてのカスタマーロイヤルティは別の言葉。" }
     ],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "ジェトロ 貿易・投資相談Q&A「OEM契約とライセンス契約の違い：日本」", "url": "https://www.jetro.go.jp/world/qa/04A-010822.html" }
     ],
@@ -145,6 +152,7 @@
     "confusions": [
       { "title": "同時公開", "point": "ウィンドウイングは時期を「ずらして」順に出す。全ての経路で同時に出すのとは逆。" }
     ],
+    "figures": ["fig-dx-windowing"],
     "sources": [
       { "title": "経済産業省 エンタメ・クリエイティブ産業政策研究会「業界の現状及びアクションプラン（案）について【映画・映像】」（2025年1月30日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/entertainment_creative/pdf/004_04_02.pdf" },
       { "title": "公正取引委員会「映画の制作現場におけるクリエイターの取引環境に係る実態調査報告書」（令和7年12月）", "url": "https://www.jftc.go.jp/file/houdou/pressrelease/2025/dec/251224_eigaanime2.pdf" }
@@ -165,6 +173,7 @@
     "confusions": [
       { "id": "DC-08-002", "point": "広告モデルはお金を払うのが広告主。フリーミアムはお金を払うのが一部の利用者。" }
     ],
+    "figures": ["fig-dx-revenue-models", "fig-dx-ad-model"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" },
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
@@ -185,6 +194,7 @@
     "confusions": [
       { "id": "DC-04-015", "point": "リスティング広告は検索キーワードに連動。リターゲティング広告は過去にサイトを訪れた人に表示。" }
     ],
+    "figures": ["fig-dx-ad-model"],
     "sources": [
       { "title": "公正取引委員会「デジタル広告分野の取引実態に関する最終報告書（概要）」（令和3年2月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2021/feb/digital/210217_gaiyou2.pdf" }
     ],
@@ -204,6 +214,7 @@
     "confusions": [
       { "id": "DC-06-011", "point": "投げ銭はコンテンツへの応援をその場で送る。クラウドファンディングはこれからの計画のために資金を集める。" }
     ],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "消費者庁「令和4年版 消費者白書」COLUMN ライブ配信サービス(投げ銭等)に関する消費の動向", "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_column_03.html" },
       { "title": "消費者庁 インターネット消費者取引連絡会「クリエイターエコノミー関連サービスの動向整理」（2022年12月23日）", "url": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/internet/assets/internet_committee_230123_09.pdf" }
@@ -224,6 +235,7 @@
     "confusions": [
       { "id": "DC-08-007", "point": "カスタマーロイヤルティ（loyalty：愛着）と、ライセンスの使用料のロイヤルティ（royalty）は別の言葉。" }
     ],
+    "figures": ["fig-dx-churn-ltv"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" },
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」第6章 CRM（顧客関係管理）の方法", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
@@ -244,6 +256,7 @@
     "confusions": [
       { "title": "売上の大きさ", "point": "サブスクでは、今月の売上の大きさより、解約されずに続くかどうかが事業の伸びを決める。" }
     ],
+    "figures": ["fig-dx-churn-ltv"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTV（Life Time Value：顧客生涯価値）とは」", "url": "https://www.salesforce.com/jp/marketing/what-is-life-time-value/" }
     ],

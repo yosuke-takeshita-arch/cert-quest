@@ -13,6 +13,7 @@
     "confusions": [
       { "id": "DC-02-002", "point": "5Gは高速・低遅延・多数接続。LPWAは低速だが省電力・広域。速さを求めるか、電池の持ちと距離を求めるかで使い分ける。" }
     ],
+    "figures": ["fig-dx-network-compare"],
     "sources": [
       { "title": "総務省「令和2年版 情報通信白書」5G時代に向けての各レイヤーの動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd114220.html" }
     ],
@@ -31,6 +32,7 @@
     "confusions": [
       { "id": "DC-02-001", "point": "LPWAの強みは「省電力・広域」で、速さではない。高速・大容量が要る用途は5G。" }
     ],
+    "figures": ["fig-dx-network-compare"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」第3章第3節（LPWA）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/pdf/n3300000.pdf" }
     ],
@@ -50,6 +52,7 @@
     "confusions": [
       { "id": "DC-02-009", "point": "クラウドは集中して処理、エッジは分散して近くで処理。「遅延を小さく」「現場の近くで」が出たらエッジ。" }
     ],
+    "figures": ["fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」エッジコンピューティング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd218300.html" },
       { "title": "総務省「令和2年版 情報通信白書」5G時代に向けての各レイヤーの動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd114220.html" }
@@ -71,6 +74,7 @@
     "confusions": [
       { "title": "M2M", "point": "M2Mは機器どうしの通信そのもの。IoTはモノがインターネットにつながり、データを集めて活用する仕組み全体。" }
     ],
+    "figures": ["fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」ユビキタスからIoTへ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc254110.html" }
     ],
@@ -91,6 +95,7 @@
     "confusions": [
       { "title": "バーコード", "point": "バーコードは1つずつ光で読む。RFIDは電波で、離れた場所から複数を一度に読める。" }
     ],
+    "figures": ["fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省 北陸総合通信局「RFIDについて」", "url": "https://www.soumu.go.jp/soutsu/hokuriku/denpa/about_rfid.html" },
       { "title": "内閣府 みちびき（準天頂衛星システム）「なぜ準天頂衛星システムが必要なのか」", "url": "https://qzss.go.jp/overview/services/sv02_why.html" },
@@ -130,6 +135,7 @@
     "confusions": [
       { "title": "ウォーターフォール型開発", "point": "ウォーターフォールは要件定義→設計→開発→テストを順に一度ずつ。アジャイルは短い周期で何度も回す。" }
     ],
+    "figures": ["fig-dx-agile"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部（ITシステム開発手法・技術）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }
@@ -150,6 +156,7 @@
     "confusions": [
       { "title": "モノリシック", "point": "1つの大きなかたまりで作るのがモノリシック。マイクロサービスは小さく分けてAPIでつなぐ。" }
     ],
+    "figures": ["fig-dx-microservices"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 マイクロサービスアーキテクチャー/API", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -169,6 +176,7 @@
     "confusions": [
       { "title": "ハイブリッドクラウドとマルチクラウド", "point": "ハイブリッド＝オンプレミス（またはプライベート）とパブリックの組み合わせ。マルチ＝複数のパブリッククラウドの組み合わせ。" }
     ],
+    "figures": ["fig-dx-cloud-models"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 クラウド", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -207,6 +215,7 @@
     "confusions": [
       { "id": "DC-02-012", "point": "包含関係は AI ⊃ 機械学習 ⊃ ディープラーニング。逆にしたひっかけに注意。" }
     ],
+    "figures": ["fig-dx-ai-ml-dl"],
     "sources": [
       { "title": "総務省「平成28年版 情報通信白書」人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" }
     ],
@@ -226,6 +235,7 @@
     "confusions": [
       { "id": "DC-02-011", "point": "ディープラーニング⊂機械学習⊂AI。「ディープラーニングの一種が機械学習」は逆。" }
     ],
+    "figures": ["fig-dx-ai-ml-dl"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」AIに関する基本的な仕組み", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113210.html" },
       { "title": "総務省「平成28年版 情報通信白書」ICTの進化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc111210.html" }
@@ -345,6 +355,7 @@
     "confusions": [
       { "id": "DC-02-014", "point": "RPAは人が決めた手順をそのまま再現する。AIエージェントは目標から手順を自分で決める。" }
     ],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」AI研究開発における最近の動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }
     ],
@@ -363,6 +374,7 @@
     "confusions": [
       { "title": "ファインチューニング", "point": "ファインチューニングはモデル自体を追加学習させて変える。RAGはモデルは変えずに、答えるたびに外部の文書を検索して参照する。" }
     ],
+    "figures": ["fig-dx-agent-mcp-a2a", "fig-dx-rag"],
     "sources": [
       { "title": "Lewis ほか「Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks」（arXiv:2005.11401, 2020）", "url": "https://arxiv.org/abs/2005.11401" }
     ],
@@ -383,6 +395,7 @@
       { "id": "DC-02-019", "point": "RAGは「検索して参照する」回答の作り方。MCPは「AIと外部システムをつなぐ」共通の規格。" },
       { "id": "DC-05-030", "point": "MCPはAIとツール・データをつなぐ。A2AはAIエージェントどうしをつなぐ。" }
     ],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "Model Context Protocol 公式ドキュメント「What is the Model Context Protocol (MCP)?」", "url": "https://modelcontextprotocol.io/docs/getting-started/intro" },
       { "title": "Anthropic「Introducing the Model Context Protocol」（2024年11月）", "url": "https://www.anthropic.com/news/model-context-protocol" }
@@ -459,6 +472,7 @@
     "confusions": [
       { "title": "中央集権型データベース", "point": "通常のデータベースは管理者が1つの台帳を持つ。ブロックチェーンは参加者が同じ台帳を分散して持つ。" }
     ],
+    "figures": ["fig-dx-blockchain"],
     "sources": [
       { "title": "総務省「令和4年版 情報通信白書」仮想空間市場など", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r04/html/nd236a00.html" }
     ],
@@ -479,6 +493,7 @@
     "confusions": [
       { "title": "VRとAR", "point": "VRは現実を見えなくして仮想に入る。ARは現実を見たまま情報を足す。MRは足した仮想の物と現実がやり取りできる。" }
     ],
+    "figures": ["fig-dx-vr-ar-mr"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」レイヤー別にみる市場動向（AR/VR）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112130.html" },
       { "title": "総務省「社会課題の解決に向けた没入型技術導入の手引き2026」（令和8年7月）", "url": "https://www.soumu.go.jp/main_content/001080024.pdf" }
@@ -612,6 +627,7 @@
     "confusions": [
       { "title": "境界型セキュリティ", "point": "境界型＝内側は信頼、外側だけ防ぐ。ゼロトラスト＝内側も信頼せず、アクセスごとに確認する。" }
     ],
+    "figures": ["fig-dx-zero-trust"],
     "sources": [
       { "title": "デジタル庁「ゼロトラストアーキテクチャ適用方針」（2022年6月30日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/5efa5c3b/20220630_resources_standard_guidelines_guidelines_04.pdf" }
     ],
@@ -630,6 +646,7 @@
     "confusions": [
       { "title": "同じ要素の重ねがけ", "point": "多要素認証で数えるのは確認の「回数」ではなく「種類」。知識情報を2つ重ねても1種類のまま。" }
     ],
+    "figures": ["fig-dx-mfa"],
     "sources": [
       { "title": "総務省「国民のためのサイバーセキュリティサイト」用語集（た行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" },
       { "title": "総務省「国民のためのサイバーセキュリティサイト」社員・職員全般の情報セキュリティ対策", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/staff/06/" }
@@ -668,6 +685,7 @@
     "confusions": [
       { "title": "可用性と完全性", "point": "使いたいときに使える＝可用性。中身が正しく改ざんされていない＝完全性。" }
     ],
+    "figures": ["fig-dx-cia"],
     "sources": [
       { "title": "JIPDEC（ISMS-AC）「ISMS適合性評価制度の概要」パンフレット", "url": "https://isms.jp/doc/ismspanf.pdf" }
     ],
@@ -707,6 +725,7 @@
     "confusions": [
       { "id": "DC-01-007", "point": "「個別最適を避けて全社最適」はDX推進ガイドライン（2018年）にもコード3.0にも出てくる。どちらも複雑化・ブラックボックス化を防ぐ考え方。" }
     ],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2020年11月9日策定・2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],

@@ -21,6 +21,7 @@
     ],
     "memoryTip": "見えないDX＝「お客さんは気づかないが、店はもっと良く・速くなっている」。",
     "concepts": ["DC-12-001"],
+    "figures": ["fig-dx-case-types"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス 12（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -48,6 +49,7 @@
     ],
     "memoryTip": "SPA＋データ＝「売れたものを、速く、少しずつ」。",
     "concepts": ["DC-12-004", "DC-07-007", "DC-05-005"],
+    "figures": ["fig-dx-make-sell-models", "fig-dx-zara-cycle"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス 12（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" },
       { "title": "Inditex Annual Report 2023「Strategy（Business model and strategy）」", "url": "https://static.inditex.com/annual_report_2023/en/Strategy.pdf" }
@@ -103,6 +105,7 @@
     ],
     "memoryTip": "ZARAの速さの源＝「毎日の店の声」×「近くで少しずつ作る」×「RFIDで在庫を一元管理」。",
     "concepts": ["DC-12-004", "DC-07-007", "DC-05-005", "DC-02-005"],
+    "figures": ["fig-dx-zara-cycle"],
     "sources": [
       { "title": "Inditex Annual Report 2023「Strategy（Business model and strategy）」", "url": "https://static.inditex.com/annual_report_2023/en/Strategy.pdf" }
     ],
@@ -130,6 +133,7 @@
     ],
     "memoryTip": "RFID＝「どこに何があるか」を一瞬で知る道具。客は気づかないが、探す時間が消える。",
     "concepts": ["DC-12-004", "DC-02-005", "DC-12-001"],
+    "figures": ["fig-dx-zara-cycle"],
     "sources": [
       { "title": "Inditex Annual Report 2023「Strategy（Business model and strategy）」", "url": "https://static.inditex.com/annual_report_2023/en/Strategy.pdf" }
     ],
@@ -157,6 +161,7 @@
     ],
     "memoryTip": "H&M＝工場は持たない。でも「何をどれだけ作るか」はAIとRFIDで自分で決める。",
     "concepts": ["DC-12-005", "DC-07-007", "DC-07-001", "DC-02-011"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "H&M Group 公式サイト「About us」", "url": "https://hmgroup.com/about-us/" },
       { "title": "H&M Group 公式サイト「Supply chain」", "url": "https://hmgroup.com/sustainability/leading-the-change/supply-chain/" },
@@ -186,6 +191,7 @@
     ],
     "memoryTip": "供給網の速さは客には見えない。見えるのは「欲しい服が、ちょうどある」こと。",
     "concepts": ["DC-12-005", "DC-05-005", "DC-12-001"],
+    "figures": ["fig-dx-zara-cycle"],
     "sources": [
       { "title": "H&M Group「Annual and Sustainability Report 2025」", "url": "https://hmgroup.com/wp-content/uploads/2026/03/HM-Group-Annual-and-sustainability-report-2025.pdf" }
     ],
@@ -267,6 +273,7 @@
     ],
     "memoryTip": "在庫の見える化＝店の裏側の情報を、客にも同じタイミングで見せる。",
     "concepts": ["DC-12-002", "DC-12-001", "DC-04-009"],
+    "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "IKEA 公式サイト「在庫の確認と在庫状況」", "url": "https://www.ikea.com/jp/ja/customer-service/stock-availability/" }
     ],
@@ -322,6 +329,7 @@
     ],
     "memoryTip": "マザーハウス＝「素材から店まで自分たちで」。生産国の可能性をブランドにする。",
     "concepts": ["DC-12-006", "DC-07-007", "DC-06-001"],
+    "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "マザーハウス 公式サイト「ABOUT US」", "url": "https://www.motherhouse.co.jp/pages/about" }
     ],

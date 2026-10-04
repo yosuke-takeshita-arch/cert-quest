@@ -31,6 +31,7 @@
     "confusions": [
       { "id": "DC-05-003", "point": "規模の経済＝同じものを「たくさん」作って安くする。範囲の経済＝「いろいろなもの」を一緒に扱って安くする。" }
     ],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」プラットフォーム事業者の成長とその背景", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd113110.html" }
     ],
@@ -49,6 +50,7 @@
     "confusions": [
       { "id": "DC-05-002", "point": "範囲（スコープ）＝品ぞろえ・事業の幅。規模（スケール）＝量。" }
     ],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -67,6 +69,7 @@
     "confusions": [
       { "id": "DC-05-002", "point": "規模の経済は量を増やす、密度の経済は特定の地域に集中させる。" }
     ],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "経済産業研究所（RIETI）「サービス業の生産性と密度の経済性－事業所データによる対個人サービス業の分析－」", "url": "https://www.rieti.go.jp/jp/publications/nts/08j008.html" }
     ],
@@ -85,6 +88,7 @@
     "confusions": [
       { "id": "DC-05-002", "point": "速度の経済は「速さ」で稼ぐ。量（規模）や幅（範囲）で稼ぐのとは別の考え方。" }
     ],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -105,6 +109,7 @@
     "confusions": [
       { "title": "参加企業が増えると効果が消える", "point": "複数の企業が参加するサービスでも、利用者や投稿が増えれば価値は高まる。参加者の種類によって効果が消えるわけではない。" }
     ],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" },
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
@@ -124,6 +129,7 @@
     "confusions": [
       { "title": "損益分岐点", "point": "損益分岐点は売上と費用が等しくなる点。クリティカルマスは普及が自走し始める利用者数の点。" }
     ],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「平成23年版 情報通信白書」コラム ネットワーク型サービスの背後にある考え方", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h23/html/nc232c00.html" }
     ],
@@ -143,6 +149,7 @@
     "confusions": [
       { "id": "DC-05-009", "point": "コト消費＝体験そのものにお金を使う。トキ消費＝「その時・その場所」でしか味わえない体験に、参加者として加わる。" }
     ],
+    "figures": ["fig-dx-consumption-types"],
     "sources": [
       { "title": "消費者庁「令和4年版 消費者白書」第1部第2章第2節（1）若者の消費行動", "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_132.html" }
     ],
@@ -162,6 +169,7 @@
     "confusions": [
       { "id": "DC-05-008", "point": "いつでも受けられる体験（習い事など）はコト消費。「今しかない・その場にいる」がトキ消費。" }
     ],
+    "figures": ["fig-dx-consumption-types"],
     "sources": [
       { "title": "消費者庁「令和4年版 消費者白書」第1部第2章第2節（1）若者の消費行動", "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_132.html" }
     ],
@@ -180,6 +188,7 @@
     "confusions": [
       { "id": "DC-05-008", "point": "コト消費は体験に、イミ消費は社会的な意味に、お金を払う。" }
     ],
+    "figures": ["fig-dx-consumption-types"],
     "sources": [
       { "title": "消費者庁「令和7年版消費者白書について」（消費者志向経営に関する連絡会資料、2025年9月）", "url": "https://www.caa.go.jp/policies/policy/consumer_partnerships/meeting_materials/assets/consumer_partnerships_cms201_0917_1.pdf" }
     ],
@@ -276,6 +285,7 @@
     "confusions": [
       { "id": "DC-01-001", "point": "デジタル化（ツールや情報の置き換え）だけではDXではない。DXはビジネスモデルや組織まで変える。" }
     ],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」1つ目のキーワード：デジタルデータ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd121110.html" },
       { "title": "総務省「令和元年版 情報通信白書」2つ目のキーワード：限界費用", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd121120.html" },
@@ -297,6 +307,7 @@
     "confusions": [
       { "title": "インテグラル型", "point": "インテグラル（すり合わせ）型は部品どうしを調整しながら一体で作る。モジュール型は決まった規格の部品を組み合わせる。" }
     ],
+    "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」第1部第3節 ICT産業の構造変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/pdf/n1300000.pdf" }
     ],
@@ -335,6 +346,7 @@
     "confusions": [
       { "title": "垂直統合", "point": "レイヤー化は層ごとに別の企業が担う水平分業。垂直統合は1社が複数の層をまとめて持つ。" }
     ],
+    "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "総務省「平成24年版 情報通信白書」ICT産業の構造とエコシステムの変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h24/html/nc122210.html" },
       { "title": "総務省「令和2年版 情報通信白書」5G時代に向けての各レイヤーの動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd114220.html" }
@@ -354,6 +366,7 @@
     "confusions": [
       { "title": "寄付・援助", "point": "BOPは援助ではなく、持続する事業として収益をあげる。" }
     ],
+    "figures": ["fig-dx-bop"],
     "sources": [
       { "title": "JICAバングラデシュ事務所「次世代のBOPビジネスがやってくる!」", "url": "https://www.jica.go.jp/bangladesh/bangland/reports/report21.html" },
       { "title": "JICA「協力準備調査（BOPビジネス連携促進）募集要項」（2013年3月）", "url": "https://www.jica.go.jp/Resource/announce/notice/bop/ku57pq00001iepav-att/20130315_01_ins01.pdf" }
@@ -373,6 +386,7 @@
     "confusions": [
       { "title": "足し算", "point": "6は1＋2＋3ではなく、1×2×3のかけ算と説明される（どちらも6になるが、農林水産省は「かけ算」としている）。" }
     ],
+    "figures": ["fig-dx-sixth-industry"],
     "sources": [
       { "title": "農林水産省「農山漁村での『6次産業化』とは、どのようなことですか。」", "url": "https://www.maff.go.jp/j/heya/sodan/1202/a04.html" }
     ],
@@ -392,6 +406,7 @@
     "confusions": [
       { "id": "DC-01-009", "point": "PoCは概念が成り立つかの検証。MVPは実際に顧客に使ってもらって学ぶための最小の製品。" }
     ],
+    "figures": ["fig-dx-lean-startup"],
     "sources": [
       { "title": "中小企業基盤整備機構「2022 日本のスタートアップエコシステム研究報告書」", "url": "https://www.smrj.go.jp/research_case/knowledge/fbrion0000002pv0-att/a1666247139726-2.pdf" },
       { "title": "内閣官房 IT総合戦略室「アジャイル開発実践ガイドブック」（2021年3月、デジタル庁 標準ガイドライン群）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/150a60b4/20220422_resources_standard_guidelines_guidebook_01.pdf" }
@@ -430,6 +445,7 @@
     "confusions": [
       { "title": "全国一斉出店", "point": "ドミナントは「地域を絞って密に」出す。広く薄く全国に出すのとは逆。" }
     ],
+    "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "公正取引委員会「コンビニエンスストア本部と加盟店との取引等に関する実態調査報告書（概要）」（令和2年9月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/sep/kitori0902/200902_04-2.pdf" }
     ],
@@ -450,6 +466,7 @@
     "confusions": [
       { "title": "見た目のデザイン", "point": "デザイン思考は色や形を整えることではなく、利用者中心に課題を見つけて解く進め方。" }
     ],
+    "figures": ["fig-dx-design-thinking"],
     "sources": [
       { "title": "IPA「DX白書2021」第4部 DXを支える手法と技術", "url": "https://www.ipa.go.jp/publish/wp-dx/qv6pgp0000000txx-att/000093702.pdf" }
     ],
@@ -566,6 +583,7 @@
       { "id": "DC-02-020", "point": "MCPはAIアプリと外部のツール・データをつなぐ。A2AはAIエージェントどうしをつなぐ。" },
       { "title": "B2BやC2C", "point": "A2AはAgent to Agent。企業間取引（B2B）や個人間取引（C2C）のような取引の形の名前ではない。" }
     ],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "Google Developers Blog「Announcing the Agent2Agent Protocol (A2A)」（2025年4月）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
       { "title": "A2A Protocol 公式サイト", "url": "https://a2a-protocol.org/latest/" }

@@ -21,6 +21,7 @@
     ],
     "memoryTip": "流れで覚える：生データの湖（レイク）→ 整えて倉庫（ウェアハウス）→ 用途ごとの売り場（マート）。",
     "concepts": ["DC-03-011", "DC-03-009", "DC-03-010", "DC-03-013", "DC-03-014"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "AWS「データマートとは?」", "url": "https://aws.amazon.com/jp/what-is/data-mart/" },
@@ -45,6 +46,7 @@
     ],
     "memoryTip": "レイク（湖）＝川から流れ込んだ水をそのままためる。加工はあとで。",
     "concepts": ["DC-03-009", "DC-03-004"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -72,6 +74,7 @@
     ],
     "memoryTip": "E（取り出す）→ T（整える）→ L（積み込む）。",
     "concepts": ["DC-03-013"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -121,6 +124,7 @@
     ],
     "memoryTip": "アウト＝横に広げる（台数）、アップ＝縦に伸ばす（1台の強さ）。",
     "concepts": ["DC-03-005"],
+    "figures": ["fig-dx-scale"],
     "sources": [
       { "title": "Microsoft Learn「スケールアウトのための設計」（Azure Architecture Center）", "url": "https://learn.microsoft.com/ja-jp/azure/architecture/guide/design-principles/scale-out" },
       { "title": "Microsoft Learn「スケーリングとパーティション分割のための設計に関する推奨事項」（Azure Well-Architected）", "url": "https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/scale-partition" },
@@ -150,6 +154,7 @@
     ],
     "memoryTip": "NoSQL＝Not only SQL（SQL以外もアリ）。否定ではなく「ほかの選択肢」。",
     "concepts": ["DC-03-007", "DC-03-006"],
+    "figures": ["fig-dx-rdb-nosql"],
     "sources": [
       { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" }
     ],
@@ -172,6 +177,7 @@
     ],
     "memoryTip": "JOIN＝「仲間に入れる」＝表と表をつなぐ。",
     "concepts": ["DC-03-008", "DC-03-020"],
+    "figures": ["fig-dx-join"],
     "sources": [
       { "title": "PostgreSQL 16 文書「2.6. テーブル間を結合」", "url": "https://www.postgresql.jp/document/16/html/tutorial-join.html" },
       { "title": "PostgreSQL 16 文書「2.7. 集約関数」", "url": "https://www.postgresql.jp/document/16/html/tutorial-agg.html" }
@@ -195,6 +201,7 @@
     ],
     "memoryTip": "BI＝見える化（今を知る）、BA＝分析・予測（先を読む）。",
     "concepts": ["DC-03-016", "DC-03-015"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -245,6 +252,7 @@
     ],
     "memoryTip": "相関は「一緒に動く」だけ。「だから原因」と言った選択肢は疑う。",
     "concepts": ["DC-03-018", "DC-03-015"],
+    "figures": ["fig-dx-correlation"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード（相関分析）", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
     ],
@@ -272,6 +280,7 @@
     ],
     "memoryTip": "相関を見たら「第三の犯人（共通の原因）はいないか？」を探す。",
     "concepts": ["DC-03-018"],
+    "figures": ["fig-dx-correlation"],
     "sources": [
       { "title": "総務省統計局「事例から学ぶビジネスパーソン向け統計データ利活用セミナー」受講者からの質問事項及び講師の回答", "url": "https://www.stat.go.jp/rikatsuyou/pdf/2025_qa.pdf" },
       { "title": "総務省統計局「なるほど統計学園」複数の変数の関係性を見る", "url": "https://www.stat.go.jp/naruhodo/10_tokucho/hukusu.html" },
@@ -296,6 +305,7 @@
     ],
     "memoryTip": "回帰＝「要因 → 結果」を式にする。単回帰は要因1つ、重回帰は2つ以上。",
     "concepts": ["DC-03-022"],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード（回帰分析）", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
     ],
@@ -318,6 +328,7 @@
     ],
     "memoryTip": "バスケット＝買い物かご。かごの中に一緒に入る物を探す。",
     "concepts": ["DC-03-019", "DC-03-012"],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" },
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
@@ -346,6 +357,7 @@
     ],
     "memoryTip": "クラスタリング＝データに「似た者同士」を見つけさせる。グルーピング＝人が「この項目で分けて」と決める。",
     "concepts": ["DC-03-020"],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft クラスタリング アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-clustering-algorithm?view=asallproducts-allversions" },
       { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" },
@@ -402,6 +414,7 @@
     ],
     "memoryTip": "頭文字で「問題 → 計画 → データ → 分析 → 結論」。PDCAと混ぜない（PPDACには Do も Check も無い）。",
     "concepts": ["DC-03-024", "DC-03-001"],
+    "figures": ["fig-dx-ppdac"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
     ],
@@ -429,6 +442,7 @@
     ],
     "memoryTip": "個人データで稼ぐなら「加工する・本人が関与する・法令に従う」の3点セット。「自社のデータだから自由」は誤り。",
     "concepts": ["DC-03-003", "DC-03-025", "DC-03-002"],
+    "figures": ["fig-dx-info-bank"],
     "sources": [
       { "title": "総務省「令和2年版 情報通信白書」匿名加工情報のさらなる活用", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd133430.html" },
       { "title": "総務省「平成29年版 情報通信白書」新たなデータ利活用・流通モデルの進展", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc121310.html" },
@@ -512,6 +526,7 @@
     ],
     "memoryTip": "「台数を増やせば何でも速くなる」は言い過ぎ。詰まっている所（ボトルネック）を先に探す。",
     "concepts": ["DC-03-005", "DC-03-006"],
+    "figures": ["fig-dx-scale"],
     "sources": [
       { "title": "Microsoft Learn「スケールアウトのための設計」（Azure Architecture Center）", "url": "https://learn.microsoft.com/ja-jp/azure/architecture/guide/design-principles/scale-out" },
       { "title": "Microsoft Learn「スケーリングとパーティション分割のための設計に関する推奨事項」（Azure Well-Architected）", "url": "https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/scale-partition" }
@@ -535,6 +550,7 @@
     ],
     "memoryTip": "RDB（表）を操る言葉がSQL。NoSQLは「SQLを使わない言語」ではなく、データベースの種類。",
     "concepts": ["DC-03-007"],
+    "figures": ["fig-dx-rdb-nosql"],
     "sources": [
       { "title": "AWS「SQL とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/sql/" },
       { "title": "AWS「NoSQL とは」", "url": "https://aws.amazon.com/jp/nosql/" },
@@ -564,6 +580,7 @@
     ],
     "memoryTip": "厳密に整合させたい取引＝RDB（ACID）。形がばらばらで量が急増するデータ＝NoSQL（柔軟なスキーマ・スケールアウト）。",
     "concepts": ["DC-03-007", "DC-03-005"],
+    "figures": ["fig-dx-scale", "fig-dx-rdb-nosql"],
     "sources": [
       { "title": "AWS「NoSQL とは」", "url": "https://aws.amazon.com/jp/nosql/" },
       { "title": "AWS「リレーショナルデータベースとは」", "url": "https://aws.amazon.com/jp/relational-database/" }
@@ -587,6 +604,7 @@
     ],
     "memoryTip": "倉庫（ウェアハウス）＝全社、売り場（マート）＝部門ごと、湖（レイク）＝生のまま。",
     "concepts": ["DC-03-011", "DC-03-010", "DC-03-009"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "AWS「データマートとは?」", "url": "https://aws.amazon.com/jp/what-is/data-mart/" }
     ],
@@ -609,6 +627,7 @@
     ],
     "memoryTip": "クレンジング＝洗う。重複・欠損・表記ゆれを洗い落としてから分析する。",
     "concepts": ["DC-03-014", "DC-03-012"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" }
     ],
@@ -636,6 +655,7 @@
     ],
     "memoryTip": "レイク＝「とりあえず全部そのまま」。構造化してから入れるのはウェアハウス側の発想。",
     "concepts": ["DC-03-009", "DC-03-010", "DC-03-013"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -663,6 +683,7 @@
     ],
     "memoryTip": "デジタルツイン＝現実の双子をデジタルに作る → そこで「もしも」を試す（シミュレーション）→ 現実に戻す。",
     "concepts": ["DC-03-021", "DC-03-023", "DC-02-004"],
+    "figures": ["fig-dx-digital-twin"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -690,6 +711,7 @@
     ],
     "memoryTip": "数字（相関係数）とグラフ（散布図）はセットで見る。どちらか一方で決めつけない。",
     "concepts": ["DC-03-015", "DC-03-018"],
+    "figures": ["fig-dx-correlation"],
     "sources": [
       { "title": "総務省統計局「Data StaRt」EBPM活用塾 ゼミナール編（1）A（analysis、分析）", "url": "https://www.stat.go.jp/dstart/point/seminar1/05.html" },
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
@@ -714,6 +736,7 @@
     ],
     "memoryTip": "マイニング＝採掘。データの山から知見という鉱石を掘り出す。",
     "concepts": ["DC-03-012", "DC-03-019", "DC-03-020"],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" }
     ],
@@ -741,6 +764,7 @@
     ],
     "memoryTip": "定型の処理は仕組み（ETL）に任せ、人は問いを立てて結果を読む。",
     "concepts": ["DC-03-021", "DC-03-013", "DC-03-016"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "AWS「ビジネスインテリジェンス (BI) とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/business-intelligence/" }
@@ -769,6 +793,7 @@
     ],
     "memoryTip": "「組み合わせ＝バスケット」「似た者まとめ＝クラスタリング」「数式で予測＝回帰」「2つの動きの関係＝相関」。説明をずらすひっかけに注意。",
     "concepts": ["DC-03-018", "DC-03-022", "DC-03-019", "DC-03-020"],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
       { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" },
@@ -798,6 +823,7 @@
     ],
     "memoryTip": "グルーピング＝人が切り口を決めて「分ける・比べる」。クラスタリング＝データに切り口を見つけさせる。",
     "concepts": ["DC-03-020", "DC-03-008"],
+    "figures": ["fig-dx-join", "fig-dx-analysis-methods"],
     "sources": [
       { "title": "PostgreSQL 16 文書「2.7. 集約関数」", "url": "https://www.postgresql.jp/document/16/html/tutorial-agg.html" },
       { "title": "総務省統計局「Data StaRt」EBPM活用塾 ゼミナール編（1）A（analysis、分析）", "url": "https://www.stat.go.jp/dstart/point/seminar1/05.html" },

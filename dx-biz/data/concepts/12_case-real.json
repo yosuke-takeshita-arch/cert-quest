@@ -20,6 +20,7 @@
       { "title": "目に見えるデジタルサービス", "point": "この章のDXは、アプリなどの新サービスよりも、裏側の仕組み（在庫・開発・供給・意思決定）の高度化が中心。" },
       { "id": "DC-11-001", "point": "11章は既存資産にデジタルの体験を重ねる（顧客がアプリを使う）。12章は顧客が意識しない裏側で効く。" }
     ],
+    "figures": ["fig-dx-case-types"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス 12（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -82,6 +83,7 @@
     "confusions": [
       { "id": "DC-07-001", "point": "ファブレスは、工場を持たないメーカーが製造を外部に委託する形。SPAは、小売が企画から販売までを一貫して管理する形で、生産そのものは外部の工場に任せることも多い（H&Mも自社工場を持たない）。" }
     ],
+    "figures": ["fig-dx-zara-cycle"],
     "sources": [
       { "title": "Inditex Annual Report 2023「Strategy（Business model and strategy）」", "url": "https://static.inditex.com/annual_report_2023/en/Strategy.pdf" },
       { "title": "Inditex「FY2025 Results（2025年2月1日〜2026年1月31日）」", "url": "https://www.inditex.com/itxcomweb/api/media/1da2c9d1-dbca-49fb-9563-982a8a27fae6/INDITEXFullYear2025.pdf" },
@@ -105,6 +107,7 @@
     "confusions": [
       { "id": "DC-12-004", "point": "どちらもSPA型のファストファッションの事例。個社の細かな違いより、データで売れ行きを素早く供給に反映する構造を押さえる。" }
     ],
+    "figures": ["fig-dx-zara-cycle"],
     "sources": [
       { "title": "H&M Group 公式サイト「About us」", "url": "https://hmgroup.com/about-us/" },
       { "title": "H&M Group 公式サイト「Supply chain」", "url": "https://hmgroup.com/sustainability/leading-the-change/supply-chain/" },

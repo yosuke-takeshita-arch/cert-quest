@@ -49,6 +49,7 @@
     ],
     "memoryTip": "crowd（群衆）に、sourcing＝仕事を頼む／funding＝お金を集める。",
     "concepts": ["DC-06-010", "DC-06-011"],
+    "figures": ["fig-dx-crowd"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」クラウドソーシング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc243120.html" },
       { "title": "金融庁 金融審議会ワーキング・グループ 事務局説明資料（2013年6月26日）", "url": "https://www.fsa.go.jp/singi/singi_kinyu/risk_money/siryou/20130626/03.pdf" }
@@ -72,6 +73,7 @@
     ],
     "memoryTip": "リターンで分ける：なし＝寄付型、モノ・体験＝購入型、お金＝投資型。",
     "concepts": ["DC-06-011"],
+    "figures": ["fig-dx-crowd"],
     "sources": [
       { "title": "金融庁 金融審議会ワーキング・グループ 事務局説明資料（2013年6月26日）", "url": "https://www.fsa.go.jp/singi/singi_kinyu/risk_money/siryou/20130626/03.pdf" }
     ],
@@ -94,6 +96,7 @@
     ],
     "memoryTip": "両面市場＝プラットフォームを挟んで「売り手」と「買い手」が向き合う市場。",
     "concepts": ["DC-06-005", "DC-05-006"],
+    "figures": ["fig-dx-network-effect", "fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -121,6 +124,7 @@
     ],
     "memoryTip": "基盤型＝上に「載せる」土台（OS・クラウド）、媒介型＝間に「入る」仲介（マッチング）。",
     "concepts": ["DC-06-006", "DC-06-005"],
+    "figures": ["fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -148,6 +152,7 @@
     ],
     "memoryTip": "垂直統合＝全部持つ、レイヤーマスター＝1層を握る、オーケストレーター＝束ねる、イネーブラー＝支える。",
     "concepts": ["DC-06-004", "DC-06-001", "DC-06-002", "DC-06-003"],
+    "figures": ["fig-dx-value-chain-roles"],
     "sources": [
       { "title": "金融庁「諸外国における保険会社のグループガバナンス等の調査 最終報告書 公開版」（令和3年3月31日）海外企業の事業展開戦略の最新動向 エコシステム", "url": "https://www.fsa.go.jp/common/about/research/20210517/report.pdf" },
       { "title": "Boston Consulting Group「The Deconstruction of Value Chains」（BCG Perspectives, 1998年）", "url": "https://www.bcg.com/publications/1998/alliances-joint-ventures-business-unit-strategy-deconstruction-of-value-chains" },
@@ -174,6 +179,7 @@
     ],
     "memoryTip": "恐竜のしっぽ（テール）は細いが長い。長さの合計が効く。",
     "concepts": ["DC-06-013", "DC-04-016"],
+    "figures": ["fig-dx-long-tail"],
     "sources": [
       { "title": "総務省「平成18年版 情報通信白書」コンテンツとロングテール現象", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1911000.html" }
     ],
@@ -226,6 +232,7 @@
     ],
     "memoryTip": "稼働保証＝「機械を売る」から「動いている時間を売る」へ。",
     "concepts": ["DC-06-022", "DC-06-019", "DC-02-004"],
+    "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省 製造産業局「我が国航空機産業の今後の方向性について」（2024年3月27日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/kokuki_uchu/pdf/2023_001_02_00.pdf" },
       { "title": "経済産業省「2020年版ものづくり白書」第1部第1章第2節 不確実性の高まる世界の現状と競争力強化", "url": "https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/101021_2.html" }
@@ -254,6 +261,7 @@
     ],
     "memoryTip": "サービス化＝売った後こそ始まり。製品のデータで、使い続けてもらうサービスを作る。",
     "concepts": ["DC-06-019", "DC-06-018", "DC-06-021", "DC-06-020"],
+    "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省「2020年版ものづくり白書」第1部第1章第2節 不確実性の高まる世界の現状と競争力強化", "url": "https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/101021_2.html" },
       { "title": "AWS ドキュメント「Amazon Personalize とは」", "url": "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html" },
@@ -308,6 +316,7 @@
     ],
     "memoryTip": "場の運営者は「売らない」。売るのは個人、運営者は手数料で稼ぐ。",
     "concepts": ["DC-06-012", "DC-06-005", "DC-05-006"],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」シェアリング・エコノミー（C to Cサービス）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112220.html" },
       { "title": "国民生活センター「相談急増！フリマサービスでのトラブルにご注意」（2018年2月22日）", "url": "https://www.kokusen.go.jp/pdf/n-20180222_1.pdf" },
@@ -337,6 +346,7 @@
     ],
     "memoryTip": "垂直統合＝全部自前で重い。共通の土台（プラットフォーム）があれば、上に載せるだけで参入できる。",
     "concepts": ["DC-06-001", "DC-06-006", "DC-05-018"],
+    "figures": ["fig-dx-modular-layer", "fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -364,6 +374,7 @@
     ],
     "memoryTip": "両面市場は「最初の小さな差」が雪だるま式に大きくなる。",
     "concepts": ["DC-06-005", "DC-05-006"],
+    "figures": ["fig-dx-network-effect", "fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -386,6 +397,7 @@
     ],
     "memoryTip": "エコシステム＝プラットフォームを真ん中に、多くの会社が「持ちつ持たれつ」で育つ生態系。",
     "concepts": ["DC-06-007", "DC-06-006"],
+    "figures": ["fig-dx-platform-types"],
     "sources": [
       { "title": "経済産業省「通商白書2016」第Ⅰ部第3章第2節 プラットフォーム化と産業構造の変化", "url": "https://www.meti.go.jp/report/tsuhaku2016/2016honbun/i1320000.html" }
     ],
@@ -440,6 +452,7 @@
     ],
     "memoryTip": "フリマの安心は「代金の預かり」と「受け取ってから評価」の順番で成り立つ。順番を崩さない。",
     "concepts": ["DC-06-012"],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "国民生活センター「相談急増！フリマサービスでのトラブルにご注意」（2018年2月22日）", "url": "https://www.kokusen.go.jp/pdf/n-20180222_1.pdf" }
     ],
@@ -462,6 +475,7 @@
     ],
     "memoryTip": "エスクロー＝お金をいったん「第三者が預かる」。届いてから支払う。",
     "concepts": ["DC-06-012"],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "総務省「上手にネットと付き合おう！」テーマ4 フリマなどネットを介した取引によるトラブル", "url": "https://www.soumu.go.jp/use_the_internet_wisely/trouble/case/fleamarket.html" }
     ],
@@ -489,6 +503,7 @@
     ],
     "memoryTip": "テレワーク＝「どこで働くか」。クラウドソーシング＝「誰にどう頼むか」。",
     "concepts": ["DC-06-010"],
+    "figures": ["fig-dx-crowd"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」クラウドソーシング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc243120.html" }
     ],
@@ -516,6 +531,7 @@
     ],
     "memoryTip": "ニーズが多様化＝しっぽ（テール）が長く太くなる。無形のデジタルなら在庫も棚もいらない。",
     "concepts": ["DC-06-013", "DC-04-016"],
+    "figures": ["fig-dx-long-tail"],
     "sources": [
       { "title": "総務省「平成18年版 情報通信白書」コンテンツとロングテール現象", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1911000.html" }
     ],
@@ -538,6 +554,7 @@
     ],
     "memoryTip": "リバース＝逆。ふつうは先進国→途上国、リバースは途上国→先進国。",
     "concepts": ["DC-06-015", "DC-05-019"],
+    "figures": ["fig-dx-bop"],
     "sources": [
       { "title": "国土交通政策研究所紀要 第79号（2021年）「新興国・都市におけるリープフロッグに関する調査研究」", "url": "https://www.mlit.go.jp/pri/kikanshi/pdf/2021/79_1.pdf" }
     ],
@@ -631,6 +648,7 @@
     ],
     "memoryTip": "ものづくり → ことづくり。売った製品のデータが、次のサービスの材料になる。",
     "concepts": ["DC-06-019", "DC-06-022"],
+    "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省「2020年版ものづくり白書」第1部第1章第2節 不確実性の高まる世界の現状と競争力強化", "url": "https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/101021_2.html" }
     ],
@@ -658,6 +676,7 @@
     ],
     "memoryTip": "稼働保証＝「動いた時間」に払う。壊れて部品を替えるほど儲かる、の逆。",
     "concepts": ["DC-06-022", "DC-06-019"],
+    "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省 製造産業局「我が国航空機産業の今後の方向性について」（2024年3月27日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/kokuki_uchu/pdf/2023_001_02_00.pdf" }
     ],
@@ -712,6 +731,7 @@
     ],
     "memoryTip": "パーソナライズ＝「あなた向け」。全員同じは、ただの一斉表示。",
     "concepts": ["DC-06-021", "DC-04-016", "DC-04-025"],
+    "figures": ["fig-dx-segment-one2one"],
     "sources": [
       { "title": "AWS ドキュメント「Amazon Personalize とは」", "url": "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html" }
     ],

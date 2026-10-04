@@ -14,6 +14,7 @@
     "confusions": [
       { "id": "DC-01-002", "point": "ペーパーレス化や個別業務の自動化は、DXの手前の段階（デジタイゼーション・デジタライゼーション）。定義の核心は、ビジネスモデルや企業文化まで変えて競争優位を作ること。" }
     ],
+    "figures": ["fig-dx-3stages"],
     "sources": [
       { "title": "経済産業省「DX推進ガイドライン Ver.1.0」（2018年12月）", "url": "https://www.meti.go.jp/press/2018/12/20181212004/20181212004-1.pdf" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2020年11月策定・2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
@@ -35,6 +36,7 @@
     "confusions": [
       { "id": "DC-01-001", "point": "スペルが似ている。Digitization（データ）→ Digitalization（プロセス）→ Transformation（ビジネスモデル）。対象が「データ→業務→事業」と広がる。" }
     ],
+    "figures": ["fig-dx-3stages"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）図5-8", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" },
       { "title": "IPA「DX白書2023」（2023年）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
@@ -75,6 +77,7 @@
     "confusions": [
       { "title": "技術的負債", "point": "2025年の崖は、レガシーシステムが残ることによる経済損失の警告。技術的負債は、短期的な開発で将来の保守・運用費がかさむ状態（DX推進ガイドラインの注記）。" }
     ],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「DXレポート～ITシステム「2025年の崖」の克服とDXの本格的な展開～」（2018年9月7日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/digital_transformation/pdf/20180907_03.pdf" }
     ],
@@ -94,6 +97,7 @@
     "confusions": [
       { "title": "DX認定", "point": "DX認定はデジタルガバナンス・コードの「基本的事項」を満たした事業者を認定する制度。DX銘柄はDXの優良事例を選んで広く波及させる制度で、「望ましい方向性」が基準になる。" }
     ],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "経済産業省「DX銘柄／攻めのIT経営銘柄」ページ（2026年版の掲載）", "url": "https://www.meti.go.jp/policy/it_policy/investment/keiei_meigara/dx_meigara.html" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
@@ -115,6 +119,7 @@
     "confusions": [
       { "id": "DC-01-004", "point": "守り＝業務効率化・コスト削減（SoR）、攻め＝製品・サービス強化やビジネスモデル変革（SoE）。「効率化」が出たら守り。" }
     ],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」ICT投資の状況", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" }
     ],
@@ -154,6 +159,7 @@
     "confusions": [
       { "title": "個別最適", "point": "部門ごとに使いやすいシステムを作るのは個別最適。ガイドラインが求めるのは、データを全社でつなげる全社最適。" }
     ],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「DX推進ガイドライン Ver.1.0」（2018年12月）", "url": "https://www.meti.go.jp/press/2018/12/20181212004/20181212004-1.pdf" }
     ],
@@ -288,6 +294,7 @@
     "confusions": [
       { "title": "競争領域", "point": "共通化するのは協調領域。差別化の源泉である競争領域は、むしろ自社でアジャイルに開発して磨く。" }
     ],
+    "figures": ["fig-dx-coop-compete"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）4.3・5", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" },
       { "title": "経済産業省「DX推進ガイドライン Ver.1.0」（2018年12月）", "url": "https://www.meti.go.jp/press/2018/12/20181212004/20181212004-1.pdf" }
@@ -366,6 +373,7 @@
     "confusions": [
       { "id": "DC-01-019", "point": "全社員の底上げ（DSS-L）と、推進する専門人材の育成（DSS-P）は両方要る。どちらか一方だけでは足りない。" }
     ],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
@@ -387,6 +395,7 @@
     "confusions": [
       { "id": "DC-01-020", "point": "L＝Literacy（全員）、P＝Promotion（推進する専門人材）。対象者が違う。" }
     ],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -407,6 +416,7 @@
     "confusions": [
       { "id": "DC-01-019", "point": "DSS-Pは推進する専門人材向け。全社員の基礎はDSS-L。" }
     ],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" },
       { "title": "IPA「DX推進スキル標準（DSS-P）概要」ページ", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/about_dss-p.html" }
@@ -426,6 +436,7 @@
     "confusions": [
       { "id": "DC-01-020", "point": "補記が入ったのは全員向けのDXリテラシー標準（DSS-L）の「マインド・スタンス」。" }
     ],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -445,6 +456,7 @@
     "confusions": [
       { "id": "DC-01-005", "point": "ラン・ザ・ビジネス＝現行ビジネスの維持・運営（守り）。バリューアップ＝サービスの創造・革新（攻め）。" }
     ],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "経済産業省「DXレポート2.2（概要）」（2022年7月）", "url": "https://www.meti.go.jp/policy/it_policy/dx/002_05_00.pdf" },
       { "title": "総務省「令和元年版 情報通信白書」ICT投資の状況", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" }
@@ -506,6 +518,7 @@
     "confusions": [
       { "id": "DC-01-006", "point": "DX推進ガイドライン（2018年12月）は経営者が押さえるべき事項を「経営のあり方・仕組み」と「ITシステムの構築」に分けたもの。デジタルガバナンス・コード（2020年11月策定）は経営者が実践すべき事柄を柱立てで示し、DX認定やDX銘柄の基準にもなる。3.0の副題は「DX経営による企業価値向上に向けて」。" }
     ],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2020年11月9日策定・2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -525,6 +538,7 @@
     "confusions": [
       { "title": "IT部門の中期計画", "point": "DX戦略は経営ビジョンの実現に向けた戦略そのもの。IT部門だけで作る計画ではない。" }
     ],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -545,6 +559,7 @@
     "confusions": [
       { "title": "情報の非公開", "point": "DX戦略は社外に向けても発信し、対話するもの。社内だけで閉じるのはコードの考え方と逆。" }
     ],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],

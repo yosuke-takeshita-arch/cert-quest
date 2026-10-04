@@ -13,6 +13,7 @@
     "confusions": [
       { "id": "DC-05-016", "point": "垂直統合は1社が複数の段階を抱える。モジュール化・レイヤー化は段階ごとに別の会社に分かれる。" }
     ],
+    "figures": ["fig-dx-modular-layer", "fig-dx-value-chain-roles"],
     "sources": [
       { "title": "総務省「平成24年版 情報通信白書」ICT産業の構造とエコシステムの変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h24/html/nc122210.html" },
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
@@ -33,6 +34,7 @@
     "confusions": [
       { "id": "DC-06-001", "point": "垂直統合は複数の層を自社で持つ。レイヤーマスターは1つの層に絞って支配する。" }
     ],
+    "figures": ["fig-dx-value-chain-roles"],
     "sources": [
       { "title": "Boston Consulting Group「The Deconstruction of Value Chains」（BCG Perspectives, 1998年）", "url": "https://www.bcg.com/publications/1998/alliances-joint-ventures-business-unit-strategy-deconstruction-of-value-chains" },
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
@@ -53,6 +55,7 @@
     "confusions": [
       { "id": "DC-06-004", "point": "オーケストレーターは他社の力を束ねて自分が価値を提供する。イネーブラーは他社が価値を提供するのを裏方として支える。" }
     ],
+    "figures": ["fig-dx-value-chain-roles"],
     "sources": [
       { "title": "Boston Consulting Group「The Deconstruction of Value Chains」（BCG Perspectives, 1998年）", "url": "https://www.bcg.com/publications/1998/alliances-joint-ventures-business-unit-strategy-deconstruction-of-value-chains" },
       { "title": "金融庁「諸外国における保険会社のグループガバナンス等の調査 最終報告書 公開版」（令和3年3月31日）海外企業の事業展開戦略の最新動向 エコシステム", "url": "https://www.fsa.go.jp/common/about/research/20210517/report.pdf" }
@@ -73,6 +76,7 @@
     "confusions": [
       { "id": "DC-06-003", "point": "イネーブラー＝他社を可能にする裏方。オーケストレーター＝他社を束ねて前に立つ。" }
     ],
+    "figures": ["fig-dx-value-chain-roles"],
     "sources": [
       { "title": "金融庁「諸外国における保険会社のグループガバナンス等の調査 最終報告書 公開版」（令和3年3月31日）海外企業の事業展開戦略の最新動向 エコシステム", "url": "https://www.fsa.go.jp/common/about/research/20210517/report.pdf" }
     ],
@@ -92,6 +96,7 @@
     "confusions": [
       { "id": "DC-06-006", "point": "媒介型＝人と人（売り手と買い手）をつなぐ場。基盤型＝他社が製品やサービスを作るための土台。" }
     ],
+    "figures": ["fig-dx-network-effect", "fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -111,6 +116,7 @@
     "confusions": [
       { "id": "DC-06-005", "point": "基盤型は「上に載せる」土台、媒介型は「間に入る」仲介。" }
     ],
+    "figures": ["fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -130,6 +136,7 @@
     "confusions": [
       { "title": "自前主義", "point": "エコシステムは他社と補い合う前提。全部を自社で抱える自前主義とは逆。" }
     ],
+    "figures": ["fig-dx-platform-types"],
     "sources": [
       { "title": "経済産業省「通商白書2016」第Ⅰ部第3章第2節 プラットフォーム化と産業構造の変化", "url": "https://www.meti.go.jp/report/tsuhaku2016/2016honbun/i1320000.html" }
     ],
@@ -149,6 +156,7 @@
     "confusions": [
       { "title": "連鎖販売取引", "point": "DXの文脈のネットワークビジネスは「つながりが価値になる事業」。一方、大阪府の消費生活相談のFAQは、会員が次の会員を勧誘して紹介料などを得る仕組みの連鎖販売取引（マルチ商法）を、ネットワークビジネスと呼ばれることもあるとしている。同じ語で意味が違うので、文脈で見分ける。" }
     ],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" },
       { "title": "大阪府「「化粧品を買って会員になり、友人を誘って商品を販売するだけで簡単にお金がもうかる」といわれたが大丈夫か。」", "url": "https://www.pref.osaka.lg.jp/faq/o070120/faq_002094.html" }
@@ -189,6 +197,7 @@
       { "id": "DC-06-011", "point": "クラウドソーシング＝群衆に「仕事」を頼む。クラウドファンディング＝群衆から「お金」を集める。" },
       { "title": "クラウドコンピューティング", "point": "クラウドソーシングのクラウドはcrowd（群衆）。クラウドコンピューティングのクラウドはcloud（雲）。" }
     ],
+    "figures": ["fig-dx-crowd"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」クラウドソーシング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc243120.html" }
     ],
@@ -208,6 +217,7 @@
     "confusions": [
       { "title": "投げ銭モデル", "point": "クラウドファンディングは計画への資金集め。投げ銭は配信などへの応援として、その場で送る少額のお金。" }
     ],
+    "figures": ["fig-dx-crowd"],
     "sources": [
       { "title": "金融庁 金融審議会「新規・成長企業へのリスクマネーの供給のあり方等に関するワーキング・グループ」事務局説明資料（2013年6月26日）", "url": "https://www.fsa.go.jp/singi/singi_kinyu/risk_money/siryou/20130626/03.pdf" }
     ],
@@ -226,6 +236,7 @@
     "confusions": [
       { "title": "B2CとB2B", "point": "B2C＝企業から消費者、B2B＝企業どうし、C2C＝消費者どうし。" }
     ],
+    "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」シェアリング・エコノミー（C to Cサービス）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112220.html" },
       { "title": "国民生活センター「相談急増！フリマサービスでのトラブルにご注意」（2018年2月22日）", "url": "https://www.kokusen.go.jp/pdf/n-20180222_1.pdf" },
@@ -246,6 +257,7 @@
     "confusions": [
       { "title": "パレートの法則", "point": "「売上の8割は2割の商品から」というパレートの考え方はヘッドに注目する。ロングテールはテールの合計に注目する。" }
     ],
+    "figures": ["fig-dx-long-tail"],
     "sources": [
       { "title": "総務省「平成18年版 情報通信白書」コンテンツとロングテール現象", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1911000.html" }
     ],
@@ -281,6 +293,7 @@
     "confusions": [
       { "title": "グローバル展開", "point": "普通のグローバル展開は先進国→新興国。リバースイノベーションは新興国→先進国の逆向き。" }
     ],
+    "figures": ["fig-dx-bop"],
     "sources": [
       { "title": "国土交通政策研究所紀要 第79号（2021年）「新興国・都市におけるリープフロッグに関する調査研究」", "url": "https://www.mlit.go.jp/pri/kikanshi/pdf/2021/79_1.pdf" }
     ],
@@ -355,6 +368,7 @@
     "confusions": [
       { "title": "アフターサービス", "point": "売った後の修理対応（アフターサービス）は売り切りの付属。サービス化は「使えること」そのものを売り物にする。" }
     ],
+    "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省「2020年版ものづくり白書」第1部第1章第2節 不確実性の高まる世界の現状と競争力強化", "url": "https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/101021_2.html" }
     ],
@@ -374,6 +388,7 @@
     "confusions": [
       { "title": "所有", "point": "アズアサービスは「持たずに使う」。買って所有するのとは逆。" }
     ],
+    "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "国土交通省「日本版MaaSの推進」", "url": "https://www.mlit.go.jp/sogoseisaku/japanmaas/promotion/" }
@@ -394,6 +409,7 @@
     "confusions": [
       { "id": "DC-06-018", "point": "パーソナライゼーションは情報・サービスの個別化。マスカスタマイゼーションは製品そのものの個別生産。" }
     ],
+    "figures": ["fig-dx-segment-one2one"],
     "sources": [
       { "title": "AWS ドキュメント「Amazon Personalize とは」", "url": "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html" }
     ],
@@ -414,6 +430,7 @@
     "confusions": [
       { "id": "DC-06-023", "point": "稼働保証モデルは「動き続けること」に課金。消耗品モデルは本体を安くして消耗品で稼ぐ。" }
     ],
+    "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省 製造産業局「我が国航空機産業の今後の方向性について」（2024年3月27日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/kokuki_uchu/pdf/2023_001_02_00.pdf" },
       { "title": "経済産業省「2020年版ものづくり白書」第1部第1章第2節 不確実性の高まる世界の現状と競争力強化", "url": "https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/101021_2.html" }

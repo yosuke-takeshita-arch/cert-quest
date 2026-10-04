@@ -21,6 +21,7 @@
     ],
     "memoryTip": "定義は「ニーズ起点 → モデルも文化も変える → 競争優位」。ツールの話しかしていない選択肢は外れ。",
     "concepts": ["DC-01-001", "DC-01-013"],
+    "figures": ["fig-dx-3stages"],
     "sources": [
       { "title": "経済産業省「DX推進ガイドライン Ver.1.0」（2018年12月）", "url": "https://www.meti.go.jp/press/2018/12/20181212004/20181212004-1.pdf" },
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }
@@ -49,6 +50,7 @@
     ],
     "memoryTip": "対象が広がる順に「データ（イゼーション）→ 業務（ライゼーション）→ 事業（トランスフォーメーション）」。",
     "concepts": ["DC-01-002"],
+    "figures": ["fig-dx-3stages"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）図5-8", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" },
       { "title": "IPA「DX白書2023」（2023年）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
@@ -104,6 +106,7 @@
     ],
     "memoryTip": "2025年の崖＝「古いシステムを放置すると崖から落ちる（年12兆円）」。だから刷新とDXを同時に。",
     "concepts": ["DC-01-027"],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「DXレポート～ITシステム「2025年の崖」の克服とDXの本格的な展開～」（2018年9月7日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/digital_transformation/pdf/20180907_03.pdf" }
     ],
@@ -131,6 +134,7 @@
     ],
     "memoryTip": "Record（記録する）＝社内の守り、Engagement（つながる）＝顧客との攻め。",
     "concepts": ["DC-01-005", "DC-01-004"],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」ICT投資の状況", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" }
     ],
@@ -158,6 +162,7 @@
     ],
     "memoryTip": "攻めのIT経営銘柄（2015〜）→ DX銘柄（2020〜）。どちらも「攻め」を評価する。",
     "concepts": ["DC-01-004", "DC-01-023"],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「DX銘柄／攻めのIT経営銘柄」ページ（2026年版の掲載）", "url": "https://www.meti.go.jp/policy/it_policy/investment/keiei_meigara/dx_meigara.html" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
@@ -213,6 +218,7 @@
     ],
     "memoryTip": "部門ごとにバラバラ＝個別最適＝ブラックボックス化のもと。",
     "concepts": ["DC-01-007"],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「DX推進ガイドライン Ver.1.0」（2018年12月）", "url": "https://www.meti.go.jp/press/2018/12/20181212004/20181212004-1.pdf" }
     ],
@@ -294,6 +300,7 @@
     ],
     "memoryTip": "協調領域は「みんなで・既製品で・安く」、競争領域は「自社で・素早く・磨く」。",
     "concepts": ["DC-01-014", "DC-01-013"],
+    "figures": ["fig-dx-coop-compete"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）4.3", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }
     ],
@@ -376,6 +383,7 @@
     ],
     "memoryTip": "DSS-L＝全員（Literacy）、DSS-P＝推進役（Promotion）。両輪。",
     "concepts": ["DC-01-019", "DC-01-020", "DC-01-018"],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -403,6 +411,7 @@
     ],
     "memoryTip": "生成AIの3姿勢＝「掛け合わせて使う・疑って確かめる・学び続ける」。",
     "concepts": ["DC-01-028", "DC-01-019"],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -457,6 +466,7 @@
     ],
     "memoryTip": "コード3.0の合言葉＝「DXはコストでなく投資」「IT部門でなく経営の役割」。",
     "concepts": ["DC-01-023", "DC-01-025", "DC-01-026"],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2020年11月9日策定・2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -484,6 +494,7 @@
     ],
     "memoryTip": "Run（回す）＝維持、Value-up（価値を上げる）＝攻め。日本は8：2で「回す」に偏り。",
     "concepts": ["DC-01-021", "DC-01-005"],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」ICT投資の状況", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" },
       { "title": "経済産業省「DXレポート2.2（概要）」（2022年7月）", "url": "https://www.meti.go.jp/policy/it_policy/dx/002_05_00.pdf" }
@@ -567,6 +578,7 @@
     ],
     "memoryTip": "「データにする → 業務を変える → 事業を変える」の3段。紙をPDFにしただけは1段目。",
     "concepts": ["DC-01-002", "DC-01-001"],
+    "figures": ["fig-dx-3stages"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -594,6 +606,7 @@
     ],
     "memoryTip": "日本は「デジタル化（1・2段目）は進んだが、変革（3段目）はこれから」。",
     "concepts": ["DC-01-002", "DC-01-012"],
+    "figures": ["fig-dx-3stages"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -621,6 +634,7 @@
     ],
     "memoryTip": "Records（記録）＝守り、Engagement（つながり）＝攻め、Insight（洞察）＝データで気づく。",
     "concepts": ["DC-01-005", "DC-01-004"],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」我が国のICT投資の状況（「守り」のICT投資が中心）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" }
     ],
@@ -648,6 +662,7 @@
     ],
     "memoryTip": "分け目は「新しさ」ではなく「向き」。社内を効率化＝守り、顧客とつながり稼ぐ＝攻め。",
     "concepts": ["DC-01-005", "DC-01-004"],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」我が国のICT投資の状況（「守り」のICT投資が中心）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" }
     ],
@@ -702,6 +717,7 @@
     ],
     "memoryTip": "守りと攻めは「どちらか」ではなく補い合う関係。問題は配分の偏り（8対2）。",
     "concepts": ["DC-01-005", "DC-01-021"],
+    "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」我が国のICT投資の状況（「守り」のICT投資が中心）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" },
       { "title": "経済産業省「DXレポート2.2（概要）」（2022年7月）", "url": "https://www.meti.go.jp/policy/it_policy/dx/002_05_00.pdf" }
@@ -730,6 +746,7 @@
     ],
     "memoryTip": "DX投資は「コスト」ではなく「投資」。確実な案件しか通さない仕組みでは挑戦が生まれない。",
     "concepts": ["DC-01-006", "DC-01-025"],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -757,6 +774,7 @@
     ],
     "memoryTip": "「全社最適」の反対語は「個別最適」。部門ごとの最適の寄せ集めは、ブラックボックス化のもと。",
     "concepts": ["DC-01-007", "DC-02-037", "DC-01-027"],
+    "figures": ["fig-dx-dgc", "fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -784,6 +802,7 @@
     ],
     "memoryTip": "計画は全社で作り、実行は各部門が「自分ごと（オーナーシップ）」で進める。",
     "concepts": ["DC-01-008", "DC-01-007"],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -866,6 +885,7 @@
     ],
     "memoryTip": "L＝Literacy（全員の素養）、P＝Promotion（推進する専門家）。",
     "concepts": ["DC-01-019", "DC-01-020"],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA・経済産業省「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -893,6 +913,7 @@
     ],
     "memoryTip": "Why（なぜ）→ What（何を知る）→ How（どう使う）。手を動かすのはHow。",
     "concepts": ["DC-01-019", "DC-01-028"],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA・経済産業省「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -920,6 +941,7 @@
     ],
     "memoryTip": "育てる・採る・借りる・動かす、に加えて「評価して報いる」までがセット。",
     "concepts": ["DC-01-018", "DC-01-017", "DC-01-019"],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -947,6 +969,7 @@
     ],
     "memoryTip": "生成AIは「掛け合わせて使う・疑って確かめる・学び続ける」。",
     "concepts": ["DC-01-028", "DC-01-019", "DC-02-017"],
+    "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA・経済産業省「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -1001,6 +1024,7 @@
     ],
     "memoryTip": "3つの視点は「つなぐ（連動）・測る（ギャップ）・根づかせる（文化）」。対話は柱のほう。",
     "concepts": ["DC-01-023", "DC-01-025", "DC-01-026"],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -1028,6 +1052,7 @@
     ],
     "memoryTip": "対話の主役は経営者。「経営者は関与しない」は真逆。",
     "concepts": ["DC-01-026", "DC-01-023"],
+    "figures": ["fig-dx-dgc"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
