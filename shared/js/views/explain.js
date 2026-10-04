@@ -1,9 +1,10 @@
 // 解説4点セットと、間違えたときの「つまずきポイント」。問題画面と模試の見直しで共通に使う。
-import { h } from '../ui.js';
+import { h, characterImg } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { refChip, sourcesList } from './cards.js';
 import { figureBlock } from './figure.js';
 import { reportButton } from './report.js';
+import { explainSensei, TIP_SENSEI } from '../lib/characters.js';
 
 export const CHOICE_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
@@ -39,11 +40,13 @@ export function stumbleBlock(app, q, open) {
 
 /**
  * 解説4点セット。sq は shuffleChoices の結果、chosen は選んだ位置（時間切れ・未回答は null）。
+ * opts.sensei=false なら先生の絵を出さない（同じ画面に別のキャラクターがいるとき・結果の見直しの一覧のとき。1画面に1人まで）。
  */
-export function explanation(app, sq, chosen, open) {
+export function explanation(app, sq, chosen, open, opts = {}) {
   const q = sq.q;
+  const sensei = opts.sensei !== false;
   const box = h('div', { class: 'explain' });
-  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由'),
+  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由', sensei ? characterImg(explainSensei(chosen !== null && chosen === sq.answer), 'sensei-mini') : null),
     h('p', { class: 'ex-answer' }, h('strong', { text: '正解: ' + CHOICE_LABELS[sq.answer] + '. ' + sq.choices[sq.answer] })),
     h('p', { text: q.explanation || '（解説は準備中です）' })));
   const fig = figureBlock(app, q.figures, { heading: '図で確かめる', tag: 'section', className: 'ex-block' });
@@ -59,7 +62,7 @@ export function explanation(app, sq, chosen, open) {
   }
   box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '2'), '誤答がなぜ違うか'), ul));
 
-  if (q.memoryTip) box.appendChild(h('section', { class: 'ex-block tip' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '3'), '覚え方'), h('p', { text: q.memoryTip })));
+  if (q.memoryTip) box.appendChild(h('section', { class: 'ex-block tip' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '3'), '覚え方', sensei ? characterImg(TIP_SENSEI, 'sensei-mini') : null), h('p', { text: q.memoryTip })));
 
   const cs = conceptsOf(app, q);
   const unresolved = q.concepts.filter((x) => !resolveRef(x, app.data.conceptIndex).concept);

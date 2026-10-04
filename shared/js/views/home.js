@@ -1,5 +1,5 @@
 // ホーム・シラバスの地図・ステージ・復習。
-import { h, icon, stars, externalLink, badgeBases, badgeImg } from '../ui.js';
+import { h, icon, stars, externalLink, badgeBases, badgeImg, mascotLine } from '../ui.js';
 import { levelFromXp, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
 import { examStatus, formatExamDate } from '../lib/examdate.js';
 import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
@@ -7,6 +7,7 @@ import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
 import { nextGoals } from '../lib/goals.js';
+import { homeMascot } from '../lib/characters.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { cardBody } from './cards.js';
@@ -101,6 +102,7 @@ export function renderHome(app) {
   const lv = levelFromXp(state.xp);
   const streak = currentStreak(state.streak, dateKey(now));
   const due = dueQuestions(state, data.questionById, now).length;
+  const mascot = homeMascot(state, dateKey(now));
 
   root.appendChild(h('header', { class: 'hero' },
     h('p', { class: 'hero-name', text: config.name }),
@@ -108,7 +110,8 @@ export function renderHome(app) {
       : left > 0 ? h('p', { class: 'countdown' }, '受験まで あと ', h('strong', { class: 'days', text: String(left) }), ' 日')
       : left === 0 ? h('p', { class: 'countdown' }, h('strong', { text: '今日が受験日です。' }))
       : h('p', { class: 'countdown' }, '受験日（' + formatExamDate(exam.date) + '）は過ぎました'),
-    exam.date ? h('p', { class: 'small', text: '受験日 ' + formatExamDate(exam.date) }) : null));
+    exam.date ? h('p', { class: 'small', text: '受験日 ' + formatExamDate(exam.date) }) : null,
+    mascotLine(mascot.art, mascot.text, 'home-mascot')));
   if (exam.kind === 'past') {
     root.appendChild(h('div', { class: 'card exam-past', 'data-exam-past': '1' },
       h('p', {}, h('strong', { text: '受験日を過ぎました。' }), '次の受験日を設定しますか？'),

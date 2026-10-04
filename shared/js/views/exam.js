@@ -1,6 +1,7 @@
 // 模擬試験。本番の問題数・制限時間に合わせる（問題が足りない間は有る分で縮小版）。
 // 本番と同じく、途中では解説を出さない。終わってから大項目別の正答率と見直しを出す。
-import { h, clear, burst, toast } from '../ui.js';
+import { h, clear, burst, toast, mascotLine } from '../ui.js';
+import { examMascot } from '../lib/characters.js';
 import { shuffle, shuffleChoices, examPlan, byMajor, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
@@ -113,11 +114,13 @@ export function renderExam(app) {
     function result(results, ok, majors, auto) {
       clear(root);
       const rate = Math.round((ok / Math.max(1, results.length)) * 100);
+      const em = examMascot(rate);
       const card = h('div', { class: 'card result' },
         h('h1', { text: '模擬試験 結果' }),
         auto ? h('p', { class: 'note', text: '時間切れで自動採点しました。' }) : null,
         h('p', { class: 'score' }, h('strong', { class: 'big-num', text: rate + '%' }), '　' + ok + ' / ' + results.length + ' 正解'),
-        plan.reduced ? h('p', { class: 'small muted', text: '縮小版（' + plan.count + '問）の結果です。' }) : null);
+        plan.reduced ? h('p', { class: 'small muted', text: '縮小版（' + plan.count + '問）の結果です。' }) : null,
+        mascotLine(em.art, em.text, 'exam-mascot'));
       root.appendChild(card);
       const mc = h('div', { class: 'card' }, h('h2', { text: '大項目別の正答率' }));
       majors.sort((a, b) => a.rate - b.rate).forEach((m) => {
@@ -132,7 +135,7 @@ export function renderExam(app) {
       const open = (id) => openCardSheet(app, id);
       const rv = h('div', { class: 'card' }, h('h2', { text: wrong.length ? 'まちがえた問題（' + wrong.length + '）' : '全問正解！' }));
       wrong.forEach((r) => {
-        const body = h('div', {}, r.chosen === null ? h('p', { class: 'small muted', text: '（未回答）' }) : null, stumbleBlock(app, r.q, open), explanation(app, r.sq, r.chosen, open));
+        const body = h('div', {}, r.chosen === null ? h('p', { class: 'small muted', text: '（未回答）' }) : null, stumbleBlock(app, r.q, open), explanation(app, r.sq, r.chosen, open, { sensei: false }));
         rv.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), body));
       });
       if (wrong.length) rv.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は「復習」に入りました。' }));

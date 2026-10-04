@@ -1,5 +1,6 @@
 // 出題画面。ステージ・復習・秒数つきチャレンジで共通（mode で挙動が少し変わる）。
-import { h, clear, icon, stars, burst, vibrate, beep, toast } from '../ui.js';
+import { h, clear, icon, stars, burst, vibrate, beep, toast, mascotLine } from '../ui.js';
+import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.js';
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
@@ -130,6 +131,7 @@ export function renderPlay(app) {
       else if (i === chosen) mark.textContent = '✗';
     });
     const open = (id) => openCardSheet(app, id);
+    let cheer = false;
     const verdict = h('div', { class: 'verdict ' + (correct ? 'ok' : 'ng'), role: 'status' },
       h('strong', { text: correct ? '正解！' : chosen === null ? '時間切れ' : '残念…' }),
       correct ? h('span', { class: 'xp', text: '+' + r.xp + ' XP' }) : null,
@@ -145,10 +147,13 @@ export function renderPlay(app) {
     } else {
       vibrate(app.state.settings, [60, 40, 60]);
       beep(app.state.settings, 'ng');
+      // 3問続けて不正解のときは、柴犬が応援する（このとき先生の絵は出さない。1画面に1人まで）
+      cheer = shouldCheer(S.results.map((r) => r.correct));
+      if (cheer) after.appendChild(mascotLine('shiba-cheer', CHARACTER_TEXT.cheer, 'cheer'));
       const sb = stumbleBlock(app, sq.q, open);
       if (sb) after.appendChild(sb);
     }
-    after.appendChild(explanation(app, sq, chosen, open));
+    after.appendChild(explanation(app, sq, chosen, open, { sensei: !cheer }));
     const last = S.idx === S.items.length - 1;
     const next = h('button', { class: 'btn primary big next', type: 'button', onClick: () => { S.idx++; draw(); } }, last ? '結果を見る' : '次の問題へ');
     after.appendChild(h('div', { class: 'sticky-bar' }, next));
@@ -182,7 +187,7 @@ export function renderPlay(app) {
     if (wrong.length) {
       const l = h('div', { class: 'card' }, h('h2', { text: 'まちがえた問題（' + wrong.length + '）' }));
       wrong.forEach((r) => {
-        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), explanation(app, r.sq, r.chosen, (id) => openCardSheet(app, id))));
+        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), explanation(app, r.sq, r.chosen, (id) => openCardSheet(app, id), { sensei: false })));
       });
       root.appendChild(l);
     }

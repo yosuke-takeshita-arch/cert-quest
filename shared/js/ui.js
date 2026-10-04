@@ -1,6 +1,7 @@
 // 画面部品の小さな道具。データ由来の文字は必ず textContent で入れる（innerHTML は使わない）。
 import { playSfx } from './audio.js';
 import { celebrateSfx } from './lib/sound.js';
+import { characterImageUrl, celebrationMascot } from './lib/characters.js';
 
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
@@ -57,6 +58,27 @@ export function badgeImg(url, cls, fallback) {
     else img.remove();
   });
   return img;
+}
+
+/** キャラクターの絵の置き場（shared/images/characters/）。 */
+export function characterBase() {
+  return new URL('../images/characters/', import.meta.url).href;
+}
+
+/** キャラクターの絵。飾りなので alt は空・読み上げ対象外（意味のある言葉は文字で出す）。知らない名前は null。読み込めなかったら消える。 */
+export function characterImg(name, cls) {
+  const url = characterImageUrl(name, characterBase());
+  if (!url) return null;
+  const img = h('img', { class: 'char-img ' + (cls || ''), src: url, alt: '', 'aria-hidden': 'true', 'data-char': name, width: '96', height: '96', decoding: 'async' });
+  img.addEventListener('error', () => img.remove());
+  return img;
+}
+
+/** 絵と一言の並び（吹き出し）。絵が無い名前なら何も出さない。text が無ければ絵だけ。 */
+export function mascotLine(art, text, cls) {
+  const img = characterImg(art, 'mascot-img');
+  if (!img) return null;
+  return h('div', { class: 'mascot-line ' + (cls || '') }, img, text ? h('p', { class: 'mascot-say', text }) : null);
 }
 
 export function icon(name, cls) {
@@ -181,7 +203,7 @@ export function celebrate(events, opts = {}) {
     const panel = h('div', { class: 'celebrate', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'celebrate-title' },
       closeBtn,
       h('p', { class: 'celebrate-head', text: d.head }),
-      d.emblem,
+      h('div', { class: 'celebrate-stage' }, d.emblem, characterImg(celebrationMascot(ev.kind), 'celebrate-mascot')),
       h('h2', { id: 'celebrate-title', class: 'celebrate-title', text: d.title }),
       d.sub ? h('p', { class: 'celebrate-sub', text: d.sub }) : null,
       events.length > 1 ? h('p', { class: 'small muted', text: (idx + 1) + ' / ' + events.length }) : null);

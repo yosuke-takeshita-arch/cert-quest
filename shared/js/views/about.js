@@ -1,6 +1,7 @@
 // 「このアプリについて」: 非公式であること・合格の保証をしないこと・問題の誤り・公式の情報・音の素材。
 // 団体名などは資格ごとに違うので config.json の about から読む（examName / organizer / organizerUrl）。
-import { h, externalLink } from '../ui.js';
+import { h, externalLink, mascotLine } from '../ui.js';
+import { CHARACTER_TEXT } from '../lib/characters.js';
 import { reportButton } from './report.js';
 
 /** 音の素材の作者（docs/sources/audio-licenses.md と同じ。CC0 で表示の義務は無いが、作者名を出す）。 */
@@ -21,7 +22,8 @@ export function renderAbout(app) {
   // 提供者（屋号 Aisunia）とロゴ。ロゴは赤い文字なので、暗い配色でも読めるよう白い台に載せる
   root.appendChild(h('div', { class: 'card about-provider', 'data-about': 'provider' },
     h('span', { class: 'logo-plate' }, h('img', { class: 'provider-logo', src: new URL('../../images/aisunia-logo.webp', import.meta.url).href, alt: 'Aisunia', width: '160', height: '62', decoding: 'async' })),
-    h('p', { class: 'provider-name', text: '提供：Aisunia' })));
+    h('p', { class: 'provider-name', text: '提供：Aisunia' }),
+    mascotLine('shiba-hello', CHARACTER_TEXT.aboutShiba, 'about-mascot')));
 
   root.appendChild(h('div', { class: 'card', 'data-about': 'unofficial' },
     h('h2', { text: '非公式のアプリです' }),

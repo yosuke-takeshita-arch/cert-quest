@@ -462,3 +462,31 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .logo-plate { background: #ffffff; border-radius: 12px; padding: 8px 12px; flex: none; line-height: 0; }
 .provider-logo { width: 160px; height: auto; max-width: 100%; display: block; }
 .provider-name { margin: 0 !important; font-weight: 700; }
+/* ---- キャラクター（柴犬と先生）。飾りの絵で、押せない（タップを邪魔しない）。1画面に1人まで ---- */
+.char-img { display: block; flex: none; width: 64px; height: 64px; object-fit: contain; pointer-events: none; user-select: none; }
+.mascot-line { display: flex; align-items: center; gap: 12px; }
+.mascot-img { width: 72px; height: 72px; }
+.mascot-say { position: relative; flex: 1; min-width: 0; margin: 0; padding: 8px 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-weight: 700; overflow-wrap: anywhere; }
+.mascot-say::before { content: ""; position: absolute; left: -6px; top: calc(50% - 5px); width: 10px; height: 10px; background: var(--surface); border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); transform: rotate(45deg); }
+.hero .mascot-line { margin-top: 12px; }
+.mascot-line.cheer { background: var(--warn-bg); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; }
+.result .mascot-line { margin-top: 12px; }
+.about-provider { flex-wrap: wrap; }
+.about-provider .mascot-line { flex-basis: 100%; }
+.ex-block h3 .sensei-mini { width: 48px; height: 48px; margin: -8px 0 -8px auto; }
+.celebrate-stage { position: relative; }
+.celebrate-mascot { position: absolute; right: 0; bottom: 0; width: 68px; height: 68px; }
+/* 出るときは、ぴょこんと飛び出す（下から跳ね上がって、ぽよんと弾んで止まる）。出たあとは、2〜3px だけゆっくり上下して、ときどき小さく傾く。
+   動きを減らす設定では、下の prefers-reduced-motion の規則で全部止まり、そのままの姿で出る */
+.char-img { animation: char-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both, char-idle 4s ease-in-out 0.6s infinite; transform-origin: 50% 90%; }
+[data-char="shiba-cheer"] { animation: char-hop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both, char-idle 3s ease-in-out 0.6s infinite; }
+[data-char="shiba-banzai"], [data-char="shiba-clap"] { animation: char-big 0.6s cubic-bezier(0.3, 1.8, 0.5, 1) 0.2s both, char-idle 3s ease-in-out 0.9s infinite; }
+[data-char="sensei-comfort"], [data-char="shiba-sleepy"] { animation: char-soft 0.6s ease-out both, char-idle 5s ease-in-out 0.7s infinite; }
+.mascot-say { animation: bubble-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both; transform-origin: 0 50%; }
+@keyframes char-pop { 0% { transform: translateY(24px) scale(0.5); opacity: 0; } 55% { transform: translateY(-8px) scale(1.08); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-hop { 0% { transform: translateY(36px) scale(0.6, 0.5); opacity: 0; } 45% { transform: translateY(-16px) scale(0.95, 1.1); opacity: 1; } 70% { transform: translateY(3px) scale(1.06, 0.94); } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-big { 0% { transform: translateY(20px) scale(0.3); opacity: 0; } 50% { transform: translateY(-14px) scale(1.18); opacity: 1; } 75% { transform: translateY(2px) scale(0.96); } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-soft { 0% { transform: translateY(10px) scale(0.9); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-idle { 0%, 100% { transform: translateY(0) rotate(0); } 40% { transform: translateY(-3px) rotate(0); } 80% { transform: translateY(0) rotate(0); } 86% { transform: translateY(0) rotate(-4deg); } 93% { transform: translateY(0) rotate(3deg); } }
+@keyframes bubble-pop { 0% { transform: scale(0.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@media (min-width: 480px) { .celebrate-mascot { width: 88px; height: 88px; } }
