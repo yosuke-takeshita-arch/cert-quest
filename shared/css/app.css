@@ -491,3 +491,21 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 @keyframes char-idle { 0%, 100% { transform: translateY(0) rotate(0); } 40% { transform: translateY(-3px) rotate(0); } 80% { transform: translateY(0) rotate(0); } 86% { transform: translateY(0) rotate(-4deg); } 93% { transform: translateY(0) rotate(3deg); } }
 @keyframes bubble-pop { 0% { transform: scale(0.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 @media (min-width: 480px) { .celebrate-mascot { width: 88px; height: 88px; } }
+/* ---- 使い方の案内（初めて開いたとき・「もっと」の「使い方」）。画面いっぱいに重ねる。絵は大きめに、ぴょこんと出る（動きは上のキャラクターの規則に乗る） ---- */
+.intro-screen { position: fixed; inset: 0; z-index: 75; display: flex; flex-direction: column; background: var(--bg); color: var(--text); overflow: auto; padding: env(safe-area-inset-top, 0px) 16px calc(16px + env(safe-area-inset-bottom, 0px)); }
+.intro-top { display: flex; justify-content: flex-end; flex: none; padding-top: 8px; }
+.intro-skip { min-width: 72px; }
+.intro-stage { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 480px; margin: 0 auto; touch-action: pan-y; }
+.intro-slide { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 8px 0; }
+.char-img.intro-img { width: 144px; height: 144px; margin-bottom: 12px; }
+.intro-say { flex: none; width: 100%; margin-bottom: 16px; padding: 12px 16px; text-align: left; line-height: 1.7; transform-origin: 50% 0; }
+.intro-say::before { left: calc(50% - 5px); top: -6px; border-left: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 0; transform: rotate(45deg); }
+.intro-title { margin: 0 0 4px; font-size: 1.25rem; }
+.intro-step { margin: 0; }
+.intro-bottom { flex: none; width: 100%; max-width: 480px; margin: 0 auto; }
+.intro-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.intro-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+.intro-dot.on { background: var(--accent); }
+.intro-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; }
+.intro-actions.single { grid-template-columns: 1fr; }
+.intro-actions .btn.big { margin-bottom: 0; }

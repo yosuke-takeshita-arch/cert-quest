@@ -20,6 +20,8 @@ import { createLoadTracker } from './lib/loadprogress.js';
 import { needsExamDateAsk, examStatus } from './lib/examdate.js';
 import { createExamDateAsk } from './views/examdate.js';
 import { renderAbout } from './views/about.js';
+import { createIntro } from './views/intro.js';
+import { needsIntro } from './lib/intro.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -113,6 +115,17 @@ export async function start() {
     const answer = await ask.done;
     titleState.settings.examDate = answer.examDate;
     titleState.settings.examAsked = true;
+    storage.save(titleState);
+  }
+
+  // 初めて使う人（まだ案内を見ていなくて、学習記録が空）には、使い方の案内を出す。見たら（とばしても）もう出さない。
+  // すでに記録がある人には出さない。あとで「もっと」の「使い方」から見直せる
+  if (needsIntro(titleState)) {
+    const intro = createIntro();
+    clear(root);
+    root.appendChild(intro.el);
+    await intro.done;
+    titleState.settings.introSeen = true;
     storage.save(titleState);
   }
 

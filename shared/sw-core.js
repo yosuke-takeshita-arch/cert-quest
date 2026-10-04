@@ -70,6 +70,8 @@ const SHARED = [
   '../shared/js/lib/figures.js',
   '../shared/js/lib/loadprogress.js',
   '../shared/js/lib/examdate.js',
+  '../shared/js/lib/intro.js',
+  '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',
 ];

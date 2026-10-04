@@ -7,6 +7,8 @@ import { dateKey } from '../lib/srs.js';
 import { buildSoundCard } from './sound-settings.js';
 import { buildExamDateCard } from './examdate.js';
 import { buildBackupCard } from './backup.js';
+import { openIntro } from './intro.js';
+import { INTRO_TEXT } from '../lib/intro.js';
 
 export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
@@ -14,6 +16,7 @@ export function renderMore(app) {
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/badges') }, h('strong', { text: 'バッジ' }), h('span', { class: 'small muted', text: Object.keys(app.state.badges).length + ' 個' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/settings') }, h('strong', { text: '設定' })),
+    h('button', { class: 'row-btn', type: 'button', 'data-menu': 'howto', onClick: () => openIntro() }, h('strong', { text: INTRO_TEXT.menu })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/about') }, h('strong', { text: 'このアプリについて' })));
   root.appendChild(nav);
   const links = h('div', { class: 'card' }, h('h2', { text: '公式の情報（外部サイト）' }));

@@ -17,7 +17,7 @@ export function defaultState() {
     badges: {},
     exams: [],
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', examDate: null, examAsked: false },
+    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', examDate: null, examAsked: false, introSeen: false },
     goalAwarded: null,
   };
 }
@@ -38,6 +38,7 @@ export function mergeState(saved) {
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
   normalizeSoundSettings(o.settings);
   normalizeExamSettings(o.settings);
+  o.settings.introSeen = o.settings.introSeen === true; // 使い方の案内を見たか
   if (typeof o.goalAwarded !== 'string') o.goalAwarded = null;
   return o;
 }
