@@ -6,7 +6,7 @@ import { readFileSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  CHARACTER_ART, CHARACTER_TEXT, AWAY_DAYS, isCharacterArt, characterImageUrl, daysSinceLastStudy, homeMascot,
+  CHARACTER_ART, CHARACTER_TEXT, CHARACTER_NAMES, characterName, AWAY_DAYS, isCharacterArt, characterImageUrl, daysSinceLastStudy, homeMascot,
   trailingWrong, shouldCheer, explainSensei, TIP_SENSEI, examMascot, celebrationMascot,
 } from '../js/lib/characters.js';
 
@@ -140,6 +140,16 @@ test('決まりが返す絵は、全部が素材の一覧にある。文言に�
   for (const a of arts) assert.ok(isCharacterArt(a), a);
   for (const [k, v] of Object.entries(CHARACTER_TEXT)) {
     assert.ok(v.length > 0, k);
-    assert.ok(!/先生|柴犬|しば/.test(v), k + ' に名前の言葉が入っている');
+    // 種類の呼び方（先生・柴犬）は使わず、名前で呼ぶ。名前は CHARACTER_NAMES のものだけ
+    assert.ok(!/柴犬|しば/.test(v.replace(CHARACTER_NAMES.sensei, '')), k + ' に種類の呼び方が入っている');
   }
+});
+
+test('名前: 柴犬はサニー、先生はあい先生。知らない絵は空', () => {
+  assert.equal(characterName('shiba-hello'), 'サニー');
+  assert.equal(characterName('sensei-ok'), 'あい先生');
+  assert.equal(characterName('x'), '');
+  assert.equal(characterName(null), '');
+  assert.equal(CHARACTER_NAMES.shiba, 'サニー');
+  assert.equal(CHARACTER_NAMES.sensei, 'あい先生');
 });

@@ -1,6 +1,6 @@
 // キャラクター（柴犬と先生）: どの場面でどの絵を出すかの決まり。純粋な関数だけ（画面の部品は ui.js の characterImg / mascotLine）。
 // 柴犬＝お祝いと応援。先生＝解説の案内。1画面に1人まで（要件定義書 §6）。
-// キャラクターの名前はまだ無い。名前を出す文言は作らない。後で決まったら、下の CHARACTER_TEXT だけを直す。
+// 名前は 2026-10-05 に先生が決めた（柴犬＝サニー、先生＝あい先生）。名前と一言は、下の CHARACTER_NAMES と CHARACTER_TEXT の1か所にまとめる。
 import { keyDiff } from './scoring.js';
 
 /** 素材（shared/images/characters/ の .webp の名前）。sw-core.js の SHARED にも同じものを入れる。 */
@@ -9,6 +9,17 @@ export const CHARACTER_ART = [
   'sensei-hello', 'sensei-point', 'sensei-ok', 'sensei-comfort', 'sensei-think', 'sensei-clap',
 ];
 
+/** キャラクターの名前。吹き出しの上に小さく出す。 */
+export const CHARACTER_NAMES = { shiba: 'サニー', sensei: 'あい先生' };
+
+/** 絵の名前から、話している人の名前。知らない絵は空。 */
+export function characterName(art) {
+  if (typeof art !== 'string') return '';
+  if (art.startsWith('shiba-')) return CHARACTER_NAMES.shiba;
+  if (art.startsWith('sensei-')) return CHARACTER_NAMES.sensei;
+  return '';
+}
+
 /** キャラクターが言う一言。文言はここ1か所にまとめる。 */
 export const CHARACTER_TEXT = {
   homeHello: '今日もいっしょにがんばろう！',
@@ -16,7 +27,7 @@ export const CHARACTER_TEXT = {
   cheer: 'ここで覚えれば本番で取れる！',
   examHigh: 'よくできました！ この調子！',
   examLow: 'だいじょうぶ。まちがえたところが伸びしろだよ',
-  aboutShiba: 'Aisunia のマスコットです',
+  aboutShiba: 'Aisunia のマスコット、サニーだよ！ 解説では、あい先生が案内してくれるよ',
 };
 
 /** 何日あいたら「おかえり」にするか。最後に学習した日の差がこの日数以上（＝1日まるごと休んだ）。 */

@@ -1,7 +1,7 @@
 // 画面部品の小さな道具。データ由来の文字は必ず textContent で入れる（innerHTML は使わない）。
 import { playSfx } from './audio.js';
 import { celebrateSfx } from './lib/sound.js';
-import { characterImageUrl, celebrationMascot } from './lib/characters.js';
+import { characterImageUrl, celebrationMascot, characterName } from './lib/characters.js';
 
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
@@ -78,7 +78,9 @@ export function characterImg(name, cls) {
 export function mascotLine(art, text, cls) {
   const img = characterImg(art, 'mascot-img');
   if (!img) return null;
-  return h('div', { class: 'mascot-line ' + (cls || '') }, img, text ? h('p', { class: 'mascot-say', text }) : null);
+  const name = characterName(art);
+  return h('div', { class: 'mascot-line ' + (cls || '') }, img,
+    text ? h('p', { class: 'mascot-say' }, name ? h('span', { class: 'mascot-name', text: name }) : null, text) : null);
 }
 
 export function icon(name, cls) {

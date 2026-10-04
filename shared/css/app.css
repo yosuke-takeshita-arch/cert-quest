@@ -467,6 +467,7 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .mascot-line { display: flex; align-items: center; gap: 12px; }
 .mascot-img { width: 72px; height: 72px; }
 .mascot-say { position: relative; flex: 1; min-width: 0; margin: 0; padding: 8px 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-weight: 700; overflow-wrap: anywhere; }
+.mascot-name { display: block; font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
 .mascot-say::before { content: ""; position: absolute; left: -6px; top: calc(50% - 5px); width: 10px; height: 10px; background: var(--surface); border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); transform: rotate(45deg); }
 .hero .mascot-line { margin-top: 12px; }
 .mascot-line.cheer { background: var(--warn-bg); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; }
