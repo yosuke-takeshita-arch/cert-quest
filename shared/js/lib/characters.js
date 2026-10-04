@@ -28,6 +28,8 @@ export const CHARACTER_TEXT = {
   examHigh: 'よくできました！ この調子！',
   examLow: 'だいじょうぶ。まちがえたところが伸びしろだよ',
   aboutShiba: 'Aisunia のマスコット、サニーだよ！ 解説では、あい先生が案内してくれるよ',
+  weakFound: 'ここから解くと、いちばん伸びるよ',
+  weakClear: '苦手と言える所は、いまのところ無いよ。この調子！',
 };
 
 /** 何日あいたら「おかえり」にするか。最後に学習した日の差がこの日数以上（＝1日まるごと休んだ）。 */
@@ -91,6 +93,14 @@ export const TIP_SENSEI = 'sensei-point';
 export function examMascot(rate) {
   if (Number.isFinite(rate) && rate >= EXAM_HIGH_RATE) return { art: 'sensei-clap', text: CHARACTER_TEXT.examHigh };
   return { art: 'sensei-comfort', text: CHARACTER_TEXT.examLow };
+}
+
+/** 苦手の分析の先生。state は weakness.js の analyze の state。remaining は『あと何問で判定できるか』。分析できない（none）ときは出さない（null）。 */
+export function weakMascot(state, remaining) {
+  if (state === 'weak') return { art: 'sensei-point', text: CHARACTER_TEXT.weakFound };
+  if (state === 'clear') return { art: 'sensei-ok', text: CHARACTER_TEXT.weakClear };
+  if (state === 'learning' && Number.isFinite(remaining) && remaining > 0) return { art: 'sensei-think', text: 'あと' + remaining + '問、同じ項目の問題に答えると、苦手が分かるよ' };
+  return null;
 }
 
 /** お祝いの柴犬。レベルアップと1日の目標＝バンザイ、バッジと星＝拍手。知らない種類は出さない。 */

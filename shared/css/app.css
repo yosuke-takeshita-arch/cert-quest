@@ -509,3 +509,21 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .intro-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; }
 .intro-actions.single { grid-template-columns: 1fr; }
 .intro-actions .btn.big { margin-bottom: 0; }
+
+/* ---- 苦手の分析（もっと › 苦手の分析）と、ホームの一行 ---- */
+.weak-mascot { margin: 8px 0 16px; }
+.weak-row { display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-top: 1px solid var(--border); }
+.weak-row:first-of-type { border-top: 0; padding-top: 4px; }
+.weak-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.weak-rate { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.weak-row.weak .weak-rate { color: var(--ng); }
+.weak-row.strong .weak-rate { color: var(--ok); }
+.weak-bar { height: 8px; }
+.weak-row.weak .progress-fill { background: var(--ng); }
+.weak-bar.ok .progress-fill { background: var(--ok); }
+.weak-note { margin: 0; }
+.weak-row.untouched { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+.weak-row .btn.small-btn { width: 100%; }
+.weak-row.untouched .btn.small-btn { width: auto; min-width: 72px; flex: none; }
+.weak-line { padding: 4px 16px; border-left: 6px solid var(--ng); }
+.weak-line-btn { appearance: none; width: 100%; font: inherit; font-weight: 700; text-align: left; color: var(--text); background: none; border: 0; padding: 12px 0; min-height: 56px; cursor: pointer; overflow-wrap: anywhere; }

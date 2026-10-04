@@ -8,6 +8,7 @@ import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
 import { nextGoals } from '../lib/goals.js';
 import { homeMascot } from '../lib/characters.js';
+import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { cardBody } from './cards.js';
@@ -25,6 +26,19 @@ function stageSpec(app, stage, small) {
     small: !!small,
     backHash: '#/stage/' + encodeURIComponent(stage.key),
     pick: (a) => pickQuestions(pool, a.state.qstats, a.config.stage && a.config.stage.size ? a.config.stage.size : 10, a.rng),
+  };
+}
+
+/** 苦手の分析の「ここを解く」。分析の単位（小項目、または章）の問題で、未回答→前回まちがえた→前回正解の順に出す。 */
+export function weakSpec(app, unit, backHash) {
+  const size = app.config.stage && app.config.stage.size ? app.config.stage.size : 10;
+  return {
+    mode: 'stage',
+    title: unit.name,
+    stageKey: unit.stage.key,
+    small: unit.partial, // 章の一部だけのときは、章の星を付けない
+    backHash: backHash || '#/home',
+    pick: (a) => pickQuestions(unit.questions, a.state.qstats, size, a.rng),
   };
 }
 
@@ -157,6 +171,14 @@ export function renderHome(app) {
           h('span', { class: 'goal-text' }, h('strong', { text: g.title }), h('span', { class: 'small muted', text: g.remainText + '（' + g.label + '）' }))),
         h('div', { class: 'progress', role: 'progressbar', 'aria-label': g.title + ' までの進み具合', 'aria-valuemin': '0', 'aria-valuemax': String(g.max), 'aria-valuenow': String(g.cur) }, h('div', { class: 'progress-fill', style: { width: Math.round(g.ratio * 100) + '%' } })))));
       root.appendChild(gbox);
+    }
+
+    // 苦手がはっきりしている（正答率が低い）ときだけ、一行で入口を出す。ふだんは出さない
+    const hw = homeWeak(analyze(data.tree, state.qstats));
+    if (hw) {
+      root.appendChild(h('div', { class: 'card weak-line', 'data-home-weak': hw.unit.key },
+        h('button', { class: 'weak-line-btn', type: 'button', onClick: () => startSession(app, weakSpec(app, hw.unit, '#/home')) }, homeWeakText(hw)),
+        h('button', { class: 'link-btn', type: 'button', onClick: () => app.go('#/weak') }, '苦手の分析を見る')));
     }
 
     const untouched = data.tree.stages.filter((s) => s.questions.length && nodeProgress(s, state.qstats).level === 'none');
