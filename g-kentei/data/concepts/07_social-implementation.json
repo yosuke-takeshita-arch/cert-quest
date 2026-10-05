@@ -54,7 +54,7 @@
     ],
     "title": "CRISP-DM",
     "oneLine": "データマイニングのプロジェクトを、ビジネス理解→データ理解→データ準備→モデリング→評価→展開（デプロイ）の6つのフェーズで進める標準的なプロセスモデル。各フェーズは行きつ戻りつする。",
-    "why": "産業界で広く支持されてきた手順で、最初に「ビジネスとして何を達成したいか」を確認する点が重要。ただし機械学習特有の運用（監視・保守）は十分に扱っていない。",
+    "why": "CRoss-Industry Standard Process for Data Mining の略（大文字の CR・I・S・P と、Data Mining の D・M をつないで CRISP-DM）。意味は『業界を問わず使える、データマイニングの標準の進め方』。特定の業界や用途に寄らない進め方として作られた。産業界で広く支持されてきた手順で、最初に「ビジネスとして何を達成したいか」を確認する点が重要。ただし機械学習特有の運用（監視・保守）は十分に扱っていない。",
     "links": [
       {
         "id": "C-07-003",
@@ -78,6 +78,10 @@
       {
         "title": "Studer et al. (2020) Towards CRISP-ML(Q) (arXiv:2003.05155)",
         "url": "https://arxiv.org/abs/2003.05155"
+      },
+      {
+        "title": "IBM SPSS Modeler CRISP-DM Guide（IBM）",
+        "url": "https://public.dhe.ibm.com/software/analytics/spss/documentation/modeler/18.0/en/ModelerCRISPDM.pdf"
       }
     ],
     "status": "verified"
@@ -91,7 +95,7 @@
     ],
     "title": "CRISP-ML（CRISP-ML(Q)）",
     "oneLine": "CRISP-DMを機械学習向けに拡張したプロセスモデル。ビジネス理解とデータ理解を1つのフェーズにまとめ（データがあるかが実現可能性を左右するため）、最後に監視・保守のフェーズを加え、各作業に品質保証の方法を付けた。",
-    "why": "変化する環境ではモデルの性能が劣化するおそれが大きく、展開して終わりにできないため。",
+    "why": "CRoss-Industry Standard Process model for the development of Machine Learning applications with Quality assurance methodology の略。意味は『業界を問わず使える、機械学習アプリケーションを開発するための標準の進め方（品質保証の方法つき）』。末尾の (Q) は Quality assurance（品質保証）の Q。前半を CRISP-DM とそろえた名前にしたのは、CRISP-DM との互換性を示すため。変化する環境ではモデルの性能が劣化するおそれが大きく、展開して終わりにできないため。",
     "links": [
       {
         "id": "C-07-002",

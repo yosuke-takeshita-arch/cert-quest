@@ -16,7 +16,7 @@
       "ビジネス理解→モデリング→データ準備→データ理解→展開→評価"
     ],
     "answer": 2,
-    "explanation": "CRISP-DMはビジネス理解・データ理解・データ準備・モデリング・評価・展開の6フェーズからなる。最初にビジネス上の目的と成功基準を決めることが重要。",
+    "explanation": "CRISP-DM（CRoss-Industry Standard Process for Data Mining の略。業界を問わず使える、データマイニングの標準の進め方）はビジネス理解・データ理解・データ準備・モデリング・評価・展開の6フェーズからなる。最初にビジネス上の目的と成功基準を決めることが重要。",
     "whyWrong": [
       "モデリングを最初に置くのは誤り。",
       "データ準備の前に、何を解くか（ビジネス理解）とデータの中身（データ理解）を確かめる。",
@@ -34,6 +34,10 @@
       {
         "title": "Studer et al. (2020) Towards CRISP-ML(Q) (arXiv:2003.05155)",
         "url": "https://arxiv.org/abs/2003.05155"
+      },
+      {
+        "title": "IBM SPSS Modeler CRISP-DM Guide（IBM）",
+        "url": "https://public.dhe.ibm.com/software/analytics/spss/documentation/modeler/18.0/en/ModelerCRISPDM.pdf"
       }
     ],
     "status": "verified"
@@ -55,7 +59,7 @@
       "ビジネス理解とデータ理解を1つにまとめ、監視・保守のフェーズを加えた。"
     ],
     "answer": 3,
-    "explanation": "CRISP-ML(Q)の論文は、データの有無が実現可能性を左右するためビジネス理解とデータ理解を統合し、変化する環境でのモデル劣化に備えて監視・保守のフェーズを加えたと説明している。",
+    "explanation": "CRISP-ML(Q)（CRoss-Industry Standard Process model for the development of Machine Learning applications with Quality assurance methodology の略。(Q) は Quality assurance＝品質保証）の論文は、データの有無が実現可能性を左右するためビジネス理解とデータ理解を統合し、変化する環境でのモデル劣化に備えて監視・保守のフェーズを加えたと説明している。",
     "whyWrong": [
       "ビジネス理解は最初の作業として重視されている。",
       "評価は残っている。",
@@ -216,7 +220,7 @@
       "評価用データを学習データに混ぜて、評価の数値を良くする。"
     ],
     "answer": 2,
-    "explanation": "環境の変化でデータの性質が変わるとモデルは劣化する。CRISP-MLが監視・保守のフェーズを加えたのはこのため。",
+    "explanation": "環境の変化でデータの性質が変わるとモデルは劣化する。CRISP-ML（正式には CRISP-ML(Q)。CRoss-Industry Standard Process model for the development of Machine Learning applications with Quality assurance methodology の略）が監視・保守のフェーズを加えたのはこのため。",
     "whyWrong": [
       "導入時に精度が良くても、環境の変化で劣化する。",
       "データを減らしても環境の変化には対応できない。",
