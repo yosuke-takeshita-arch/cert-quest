@@ -8,7 +8,7 @@
     ],
     "title": "人工知能（AI）",
     "oneLine": "知的な機械、特に知的なコンピュータプログラムを作る科学と技術。研究者の間で統一された定義は無い。",
-    "why": "「知性」そのものの定義が無いため、AIの定義も研究者ごとに異なる。だから試験では「定義は一つに定まっていない」こと自体が問われる。1956年のダートマス会議でジョン・マッカーシーが命名した。",
+    "why": "AI は Artificial Intelligence の略（Artificial＝人工の、Intelligence＝知能）。意味は『人が作った知能』。「知性」そのものの定義が無いため、AIの定義も研究者ごとに異なる。だから試験では「定義は一つに定まっていない」こと自体が問われる。1956年のダートマス会議でジョン・マッカーシーが命名した。",
     "links": [
       {
         "id": "C-01-008",
@@ -40,6 +40,10 @@
       {
         "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは",
         "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html"
+      },
+      {
+        "title": "McCarthy et al. A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence (1955)",
+        "url": "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf"
       }
     ],
     "status": "verified"
