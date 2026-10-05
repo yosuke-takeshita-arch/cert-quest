@@ -915,7 +915,7 @@
       "BoW（Bag-of-Words）"
     ],
     "answer": 1,
-    "explanation": "Hochreiter & Schmidhuber（1997）は、特別なユニット内の「constant error carrousel」で一定の誤差の流れを保ち、乗算的なゲートがその出入りを開閉すると説明している。",
+    "explanation": "CECはLSTMの中の1部品で、セルの状態が自分自身へ重み1でつながる道。Hochreiter & Schmidhuber（1997）は、この constant error carrousel で誤差の流れを一定に保ち、乗算的なゲートがその出入りを開け閉めすると説明している。",
     "whyWrong": [
       "CTCは区切りのない系列にラベルを付けるための学習法（音声認識など）。略語が似ているので注意。",
       null,
@@ -928,7 +928,7 @@
       "C-06-044"
     ],
     "figures": [
-      "fig-g-lstm-gru"
+      "fig-g-cec"
     ],
     "sources": [
       {

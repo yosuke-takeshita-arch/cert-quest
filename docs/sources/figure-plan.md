@@ -493,6 +493,13 @@
 - 使うカード（4）：C-05-027（LSTM）、C-05-028（GRU）、C-05-029（ゲート機構）、C-06-038（CEC（Constant Error Carousel））
 - 使う問題（5）：G-05-028、G-05-029、G-05-033、G-05-056、G-06-022
 - 描く前に確かめること：原論文（1997）の LSTM は入力ゲートと出力ゲートのみ。忘却ゲートは後の追加であることを図でも区別する（C-05-027 の記述どおり）。
+- 2026-10-06 描き直し：先生から「どれがゲートでどれが重みか分からない」と指摘。冒頭に図の見方（σ＝ゲート、×＝掛け算、W＝重みの組、オレンジ＝CEC）を置き、LSTM に W1〜W4、GRU に W1〜W3 を付けた。表は ゲート／候補／重みの組／セル の4行（重みの組＝ゲート＋候補、PyTorch の weight_ih の数え方）。
+
+#### 2026-10-06 以降に足した図（計画外。先生の指摘から作った）
+
+- fig-g-cec：CEC が LSTM の中のどこか（セルの線だけ色付き）、1997年の重み1の自己ループ、誤差が ×0.5 で消える／×1 で残る比較、2000年の忘却ゲートで 1→f。使う所：C-05-027、C-05-029、C-06-038、G-05-028、G-05-056、G-06-022。根拠：Hochreiter & Schmidhuber (1997)、Gers et al. (2000) 要旨、PyTorch torch.nn.LSTM。
+- fig-g-neocognitron-lenet：ネオコグニトロンと LeNet を 学習のしかた・層の名前・年・人 で左右に比べる。使う所：C-02-035、C-02-036、G-02-034、G-02-035。根拠：Fukushima (1980) 要旨、LeCun et al. (1989)・(1998)。
+- fig-g-sample-mean：母集団→36個取り出して平均→くり返す→平均の分布は 12÷√36＝2 に細くなる。使う所：C-08-008、G-08-053。根拠：MIT OCW 18.05 Class 6。
 - 根拠にする一次情報（カードの sources から。括弧内はその出典を持つカード）：
   - [Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation](https://www.bioinf.jku.at/publications/older/2604.pdf)（C-05-027、C-06-038）
   - [PyTorch Documentation: torch.nn.LSTM](https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html)（C-05-027、C-05-029）

@@ -1607,31 +1607,52 @@
       "自然言語処理"
     ],
     "title": "CEC（Constant Error Carousel）",
-    "oneLine": "LSTMのセルの中で誤差を一定に保ったまま流し続ける仕組み。ゲートが流れへの出入りを開け閉めし、1000ステップを超える長い時間差の依存関係を学習できる。",
-    "why": "通常のRNNは誤差が時間をさかのぼるうちに消えたり発散したりする。CECはその流れを一定に保つことで長期記憶を可能にした。",
+    "oneLine": "LSTMの中の1部品。セルの状態が自分自身へ重み1でつながり、値と誤差を次の時刻へ減らさずに渡し続ける道。Constant Error Carousel の略（原論文の綴りは carrousel）。",
+    "why": "LSTMは「CEC＋ゲート」でできている。ふつうのRNNは、時刻をさかのぼるたびに誤差に1より小さい（または大きい）数が掛かり、誤差が消えたり発散したりする。CECは自分へのつながりの重みを1に固定するので、さかのぼっても1が掛かるだけで誤差の大きさが変わらない。これで1000ステップを超える時間差も学べるようになった。ただ、何でもそのまま流れ込むと困るので、入力ゲート（書き込み）と出力ゲート（読み出し）がCECへの出入りを開け閉めする。1997年の原論文のゲートはこの2つだけ。のちにGersら（2000）が、区切りの無い長い入力では状態が増え続けて壊れる弱点を見つけ、中身を消す忘却ゲートを加えた。今のLSTM（PyTorchの式など）では、前のセルの値に忘却ゲートの値 f（0〜1）を掛ける。f が1に近い間はCECと同じく誤差が残り、0に近づくと中身が消える。",
     "links": [
       {
-        "title": "LSTM",
+        "id": "C-05-027",
         "relation": "部分"
       },
       {
-        "title": "勾配消失問題",
+        "id": "C-05-029",
+        "relation": "対比"
+      },
+      {
+        "id": "C-04-024",
         "relation": "解決策"
       }
     ],
     "confusions": [
       {
-        "title": "LSTM",
-        "point": "CECはLSTMの「記憶の通り道」、ゲートはその出入り口"
+        "id": "C-05-027",
+        "point": "LSTMはモデル全体、CECはその中の「自分へ重み1で戻る道」。ゲート（入力・出力・忘却）はCECではなく、その出入り口。"
+      },
+      {
+        "id": "C-05-029",
+        "point": "CECは値を減らさずに渡す道（重みは1で固定）、ゲートは0〜1の値で通す量を変える係。忘却ゲートが付くと、その道に掛かる数が1からゲートの値になる。"
+      },
+      {
+        "id": "C-06-044",
+        "point": "CTCは区切りの無い系列にラベルを付ける学習法（音声認識など）。略語が似ているだけで別物。"
       }
     ],
     "figures": [
+      "fig-g-cec",
       "fig-g-lstm-gru"
     ],
     "sources": [
       {
         "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory",
         "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+      },
+      {
+        "title": "Gers, Schmidhuber & Cummins (2000) Learning to Forget: Continual Prediction with LSTM. Neural Computation 12(10)（SONAR 収録の書誌・要旨）",
+        "url": "https://sonar.ch/global/documents/133388"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.LSTM",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html"
       }
     ],
     "status": "verified"

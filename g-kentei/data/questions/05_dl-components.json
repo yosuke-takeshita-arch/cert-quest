@@ -1121,20 +1121,22 @@
       "系列を前からと後ろからの両方で読み、各位置で前後の文脈を使うRNN"
     ],
     "answer": 1,
-    "explanation": "LSTM（Hochreiter & Schmidhuber、1997年）は、constant error carouselと呼ぶセルで誤差を保ち、乗算的なゲートで流れを制御する。のちに忘却ゲートが加わった。",
+    "explanation": "LSTM（Hochreiter & Schmidhuber、1997年）は2つの部品でできている。1つはCEC（constant error carrousel）で、セルの状態が自分自身へ重み1でつながり、誤差を減らさずに流す道。もう1つはゲートで、入力ゲートが書き込みを、出力ゲートが読み出しを開け閉めする。忘却ゲートはのち（2000年）に加わった。",
     "whyWrong": [
       "これはGRU。",
       null,
       "これはTransformer。",
       "これは双方向RNN。"
     ],
-    "memoryTip": "LSTM＝メモ帳（セル）＋3つの扉（入力・忘却・出力ゲート）。",
+    "memoryTip": "LSTM＝CEC（記憶の道）＋ゲート（その出入り口）。ゲートは今は入力・忘却・出力の3つ。",
     "concepts": [
       "C-05-027",
-      "C-05-029"
+      "C-05-029",
+      "C-06-038"
     ],
     "figures": [
-      "fig-g-lstm-gru"
+      "fig-g-lstm-gru",
+      "fig-g-cec"
     ],
     "sources": [
       {
@@ -1165,7 +1167,7 @@
       "GRUはLSTMよりゲートの数が多く、パラメータも多い"
     ],
     "answer": 3,
-    "explanation": "GRUはLSTMを簡略化したもので、ゲートの数が少なく（2つ）、セルも持たないため、パラメータはLSTMより少ない。",
+    "explanation": "GRUはLSTMを簡略化したもので、ゲートの数が少なく（2つ）、セルも持たないため、パラメータはLSTMより少ない。重みの組で数えると、LSTMは3ゲート＋新しい候補の4組、GRUは2ゲート＋新しい候補の3組（PyTorchの実装）。",
     "whyWrong": [
       "適切。",
       "適切。",
@@ -1336,7 +1338,7 @@
       "スキップ結合"
     ],
     "answer": 2,
-    "explanation": "ゲート機構は、記憶への書き込み・忘却・読み出しをデータに応じて制御する。",
+    "explanation": "ゲート機構は、記憶への書き込み・忘却・読み出しをデータに応じて制御する。ゲートが出す0〜1の値は入力ごとに変わり、その値を計算するための重みは学習で決まる（ゲートごとに1組）。",
     "whyWrong": [
       "Transformerで語順の情報を加える仕組み。",
       "CNNで特徴マップを縮小する層。",
@@ -2281,6 +2283,7 @@
       "C-05-028"
     ],
     "figures": [
+      "fig-g-cec",
       "fig-g-lstm-gru"
     ],
     "sources": [

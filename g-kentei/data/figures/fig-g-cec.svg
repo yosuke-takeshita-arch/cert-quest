@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1064" role="img" aria-labelledby="fig-g-cec-t fig-g-cec-d">
+<title id="fig-g-cec-t">CEC：LSTM の中の、重み1で自分へ戻る記憶の道</title>
+<desc id="fig-g-cec-d">① LSTM の図のうち、上を横切るオレンジの太い線（セルの状態 c の道）が CEC。灰色で描いたゲート（σ）と候補（tanh）は CEC ではなく、CEC への出入りを開け閉めする係。② 1997年の原論文の記憶セル：セルが自分自身へ重み1（固定）でつながり、値がそのまま次の時刻へ渡る。このつながりが CEC。入力ゲートが書き込みを、出力ゲートが読み出しを開け閉めする。③ 誤差が消えないわけ：ふつうの RNN では時刻をさかのぼるたびに1より小さい数（例 0.5）が掛かり、誤差が 32、16、8、4 と小さくなる。CEC では毎回1が掛かるので 32 のまま変わらない。④ 2000年に忘却ゲートが加わり、前のセルの値に掛ける数が固定の1から忘却ゲートの値 f（0から1）になった。f が1に近い間は CEC と同じく誤差が残り、0に近いとセルの中身を消せる。1997年の形は中身を消せないため、区切りの無い長い入力では値が増え続けて壊れた。まとめ：LSTM は CEC（記憶の道）とゲート（その出入り口）でできている。</desc>
+<text x="12" y="20" class="tb">① CEC は LSTM の中のここ</text>
+<text x="115" y="48" class="tb twn" text-anchor="middle">ここが CEC</text>
+<text x="304" y="50" class="tm" text-anchor="end">セルの状態 c</text>
+<line x1="16" y1="62" x2="300" y2="62" class="l swn w3"/>
+<polyline points="297,65.85 304,62 297,58.15" class="l swn w3"/>
+<circle cx="70" cy="62" r="10" class="fs sm"/>
+<text x="70" y="66.5" class="tb tm" text-anchor="middle">×</text>
+<circle cx="160" cy="62" r="10" class="fs sm"/>
+<text x="160" y="66.5" class="tb tm" text-anchor="middle">+</text>
+<line x1="250" y1="64" x2="250" y2="80" class="l sm w2"/>
+<circle cx="250" cy="90" r="10" class="fs sm"/>
+<text x="250" y="94.5" class="tb tm" text-anchor="middle">×</text>
+<circle cx="70" cy="124" r="12" class="fbg sm"/>
+<text x="70" y="128.5" class="tb tm" text-anchor="middle">σ</text>
+<line x1="70" y1="112" x2="70" y2="72" class="l sm w2"/>
+<circle cx="125" cy="124" r="12" class="fbg sm"/>
+<text x="125" y="128.5" class="tb tm" text-anchor="middle">σ</text>
+<line x1="131" y1="113" x2="155" y2="71" class="l sm w2"/>
+<rect x="173" y="112" width="44" height="24" rx="4" class="fbg sm" stroke-width="1.5"/>
+<text x="195" y="128.5" class="tm" text-anchor="middle">tanh</text>
+<line x1="186" y1="112" x2="165" y2="71" class="l sm w2"/>
+<circle cx="250" cy="124" r="12" class="fbg sm"/>
+<text x="250" y="128.5" class="tb tm" text-anchor="middle">σ</text>
+<line x1="250" y1="112" x2="250" y2="100" class="l sm w2"/>
+<text x="12" y="160">灰色（ゲートと候補）は CEC ではない。</text>
+<text x="12" y="180">CEC への出入りを開け閉めする係</text>
+<line x1="12" y1="198" x2="308" y2="198" class="l sb w1"/>
+<text x="12" y="222" class="tb">② 1997年：自分へ重み 1 で戻る</text>
+<polyline points="184,282 184,256 136,256 136,275" class="l swn w3"/>
+<polyline points="132.15,275 136,282 139.85,275" class="l swn w3"/>
+<text x="128" y="260.5" class="tb twn" text-anchor="end">ここが CEC</text>
+<text x="192" y="260.5" class="tb twn">重み 1（固定）</text>
+<rect x="124" y="282" width="72" height="36" rx="6" class="fwn swn" stroke-width="2"/>
+<text x="160" y="304.5" class="tb" text-anchor="middle">セル</text>
+<line x1="16" y1="300" x2="50" y2="300" class="l w2"/>
+<polyline points="43,303.85 50,300 43,296.15" class="l w2"/>
+<circle cx="60" cy="300" r="10" class="fs l"/>
+<text x="60" y="304.5" class="tb" text-anchor="middle">×</text>
+<line x1="70" y1="300" x2="124" y2="300" class="l w2"/>
+<polyline points="117,303.85 124,300 117,296.15" class="l w2"/>
+<line x1="196" y1="300" x2="240" y2="300" class="l w2"/>
+<polyline points="233,303.85 240,300 233,296.15" class="l w2"/>
+<circle cx="250" cy="300" r="10" class="fs l"/>
+<text x="250" y="304.5" class="tb" text-anchor="middle">×</text>
+<line x1="260" y1="300" x2="304" y2="300" class="l w2"/>
+<polyline points="297,303.85 304,300 297,296.15" class="l w2"/>
+<circle cx="60" cy="346" r="12" class="fas sa"/>
+<text x="60" y="350.5" class="tb" text-anchor="middle">σ</text>
+<line x1="60" y1="334" x2="60" y2="310" class="l w2"/>
+<polyline points="63.85,317 60,310 56.15,317" class="l w2"/>
+<circle cx="250" cy="346" r="12" class="fas sa"/>
+<text x="250" y="350.5" class="tb" text-anchor="middle">σ</text>
+<line x1="250" y1="334" x2="250" y2="310" class="l w2"/>
+<polyline points="253.85,317 250,310 246.15,317" class="l w2"/>
+<text x="60" y="378" class="tb" text-anchor="middle">入力ゲート</text>
+<text x="250" y="378" class="tb" text-anchor="middle">出力ゲート</text>
+<text x="12" y="404">セルの値は、次の時刻へそのまま渡る</text>
+<text x="12" y="424" class="tm">（自分へのつながりの重みが 1 だから）</text>
+<line x1="12" y1="440" x2="308" y2="440" class="l sb w1"/>
+<text x="12" y="464" class="tb">③ 誤差が消えないわけ</text>
+<text x="12" y="494" class="tb">ふつうの RNN（例：毎回 ×0.5）</text>
+<rect x="40" y="514" width="30" height="32" class="fng sng" stroke-width="1.5"/>
+<text x="55" y="562" class="tm" text-anchor="middle">t</text>
+<text x="90" y="538" class="tm" text-anchor="middle">×0.5</text>
+<rect x="110" y="530" width="30" height="16" class="fng sng" stroke-width="1.5"/>
+<text x="125" y="562" class="tm" text-anchor="middle">t−1</text>
+<text x="160" y="538" class="tm" text-anchor="middle">×0.5</text>
+<rect x="180" y="538" width="30" height="8" class="fng sng" stroke-width="1.5"/>
+<text x="195" y="562" class="tm" text-anchor="middle">t−2</text>
+<text x="230" y="538" class="tm" text-anchor="middle">×0.5</text>
+<rect x="250" y="542" width="30" height="4" class="fng sng" stroke-width="1.5"/>
+<text x="265" y="562" class="tm" text-anchor="middle">t−3</text>
+<text x="12" y="582" class="tb">CEC（毎回 ×1）</text>
+<rect x="40" y="602" width="30" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="55" y="650" class="tm" text-anchor="middle">t</text>
+<text x="90" y="626" class="tm" text-anchor="middle">×1</text>
+<rect x="110" y="602" width="30" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="125" y="650" class="tm" text-anchor="middle">t−1</text>
+<text x="160" y="626" class="tm" text-anchor="middle">×1</text>
+<rect x="180" y="602" width="30" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="195" y="650" class="tm" text-anchor="middle">t−2</text>
+<text x="230" y="626" class="tm" text-anchor="middle">×1</text>
+<rect x="250" y="602" width="30" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="265" y="650" class="tm" text-anchor="middle">t−3</text>
+<text x="12" y="674" class="tm">右へ行くほど、時刻をさかのぼった所</text>
+<text x="12" y="692" class="tm">に届く誤差の大きさ</text>
+<text x="12" y="716">1 より小さい数を掛け続けると消え、</text>
+<text x="12" y="734">1 より大きいと爆発する。1 なら変わらない</text>
+<line x1="12" y1="750" x2="308" y2="750" class="l sb w1"/>
+<text x="12" y="774" class="tb">④ 2000年：忘却ゲートが 1 を可変に</text>
+<polyline points="184,848 184,836" class="l swn w3"/>
+<polyline points="184,816 184,804 136,804 136,841" class="l swn w3"/>
+<polyline points="132.15,841 136,848 139.85,841" class="l swn w3"/>
+<circle cx="184" cy="826" r="10" class="fs l"/>
+<text x="184" y="830.5" class="tb" text-anchor="middle">×</text>
+<circle cx="240" cy="826" r="12" class="fas sa"/>
+<text x="240" y="830.5" class="tb" text-anchor="middle">σ</text>
+<line x1="228" y1="826" x2="194" y2="826" class="l w2"/>
+<polyline points="201,822.15 194,826 201,829.85" class="l w2"/>
+<text x="240" y="856" class="tb" text-anchor="middle">忘却ゲート</text>
+<text x="128" y="808.5" class="tb twn" text-anchor="end">重み 1 → f</text>
+<rect x="124" y="848" width="72" height="36" rx="6" class="fwn swn" stroke-width="2"/>
+<text x="160" y="870.5" class="tb" text-anchor="middle">セル</text>
+<text x="12" y="906">f は 0〜1。前のセルの値に f を掛ける</text>
+<text x="12" y="928">f が 1 に近い間：CEC と同じく残る</text>
+<text x="12" y="948">f が 0 に近いと：セルの中身を消せる</text>
+<text x="12" y="972" class="tm">1997年の形は中身を消せず、区切りの無い</text>
+<text x="12" y="990" class="tm">長い入力では値が増え続けて壊れた</text>
+<line x1="12" y1="1006" x2="308" y2="1006" class="l sb w1"/>
+<text x="12" y="1030" class="tb">LSTM ＝ CEC ＋ ゲート</text>
+<text x="12" y="1050" class="tm">CEC＝記憶の道　ゲート＝その出入り口</text>
+</svg>
