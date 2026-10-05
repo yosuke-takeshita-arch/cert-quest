@@ -1,5 +1,5 @@
 // 起動・ルーティング。資格固有のことは config.json と data/ からだけ読む。
-import { h, clear, icon, toast, celebrate, badgeBases } from './ui.js';
+import { h, clear, icon, toast, celebrate, badgeBases, setTapHost } from './ui.js';
 import { loadData } from './lib/data.js';
 import { createStorage } from './lib/storage.js';
 import { defaultState, recordAnswer } from './lib/progress.js';
@@ -203,6 +203,8 @@ export async function start() {
       app.go('#/home');
     },
   };
+  // キャラクターをタップする遊び: 回数の記録先と効果音（音の設定に従う）
+  setTapHost({ state: () => app.state, save: () => storage.save(app.state), sfx: (name) => playSfx(app.state.settings, name) });
   // 動作確認用に外から触れるようにする（テストが状態を調べる）
   window.__app = app;
   // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）だけで流す。ホームなどは無音（initAudio はタイトル画面の前に済んでいる）

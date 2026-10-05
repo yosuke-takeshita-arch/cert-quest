@@ -5,6 +5,7 @@ import { DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, normalizeSoundSettings } from '
 import { normalizeExamSettings } from './examdate.js';
 import { DEFAULT_TEXT_SIZE, normalizeTextSize } from './textsize.js';
 import { DEFAULT_MAP_VIEW, normalizeMapView } from './maplayout.js';
+import { normalizeCharTaps } from './characters.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -21,6 +22,7 @@ export function defaultState() {
     challenge: { runs: 0, best: 0 },
     settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
     goalAwarded: null,
+    charTaps: { shiba: 0, sensei: 0 },
   };
 }
 
@@ -44,6 +46,7 @@ export function mergeState(saved) {
   normalizeExamSettings(o.settings);
   o.settings.introSeen = o.settings.introSeen === true; // 使い方の案内を見たか
   if (typeof o.goalAwarded !== 'string') o.goalAwarded = null;
+  o.charTaps = normalizeCharTaps(o.charTaps); // キャラクターをタップした回数
   return o;
 }
 

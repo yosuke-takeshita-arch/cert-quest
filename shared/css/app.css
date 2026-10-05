@@ -543,6 +543,16 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 @keyframes char-idle { 0%, 100% { transform: translateY(0) rotate(0); } 40% { transform: translateY(-3px) rotate(0); } 80% { transform: translateY(0) rotate(0); } 86% { transform: translateY(0) rotate(-4deg); } 93% { transform: translateY(0) rotate(3deg); } }
 @keyframes bubble-pop { 0% { transform: scale(0.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 @media (min-width: 480px) { .celebrate-mascot { width: 88px; height: 88px; } }
+/* キャラクターをタップする遊び: 絵を包む button。見た目は絵のまま（大きさも変えない）。タップで小さく跳ねる（動きを減らす設定では止まる）。節目の一言は吹き出しに入る。吹き出しが無い所は、絵の下に一時的に出す */
+.char-tap-wrap { position: relative; display: block; flex: none; }
+.char-tap { appearance: none; display: block; padding: 0; margin: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; border-radius: 12px; -webkit-tap-highlight-color: transparent; }
+.char-tap .char-img { margin: 0; }
+.char-tap.hop { animation: char-tap 0.35s ease-out; }
+@keyframes char-tap { 0% { transform: none; } 35% { transform: translateY(-10px) scale(1.08); } 70% { transform: translateY(0) scale(0.96, 1.04); } 100% { transform: none; } }
+.char-temp-say { position: absolute; right: 100%; top: 50%; translate: 0 -50%; margin-right: 8px; width: max-content; max-width: 11rem; z-index: 5; pointer-events: none; text-align: left; transform-origin: 100% 50%; }
+.char-temp-say::before { display: none; }
+.ex-block h3 .char-tap-wrap { margin: -8px 0 -8px auto; }
+.ex-block h3 .char-tap-wrap .sensei-mini { margin: 0; }
 /* ---- 使い方の案内（初めて開いたとき・「もっと」の「使い方」）。画面いっぱいに重ねる。絵は大きめに、ぴょこんと出る（動きは上のキャラクターの規則に乗る） ---- */
 .intro-screen { position: fixed; inset: 0; z-index: 75; display: flex; flex-direction: column; background: var(--bg); color: var(--text); overflow: auto; padding: env(safe-area-inset-top, 0px) 16px calc(16px + env(safe-area-inset-bottom, 0px)); }
 .intro-top { display: flex; justify-content: flex-end; flex: none; padding-top: 8px; }

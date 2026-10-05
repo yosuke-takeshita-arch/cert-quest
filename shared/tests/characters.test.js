@@ -211,3 +211,73 @@ test('名前: 柴犬はサニー、先生はあい先生。知らない絵は空
   assert.equal(CHARACTER_NAMES.shiba, 'サニー');
   assert.equal(CHARACTER_NAMES.sensei, 'あい先生');
 });
+
+// ---- タップの隠しセリフ ----
+import { CHARACTER_TAP_TEXT, tapLine, tapWho, normalizeCharTaps, recordTap } from '../js/lib/characters.js';
+import { defaultState, mergeState } from '../js/lib/progress.js';
+
+test('タップ: 節目の境界（9/10/11、19/20、29/30、49/50、99/100/101、199/200/201）', () => {
+  for (const who of ['shiba', 'sensei']) {
+    const T = CHARACTER_TAP_TEXT[who];
+    assert.equal(tapLine(who, 9), null);
+    assert.equal(tapLine(who, 10), T[10]);
+    assert.equal(tapLine(who, 11), null);
+    assert.equal(tapLine(who, 20), T[20]);
+    assert.equal(tapLine(who, 30), T[30]);
+    assert.equal(tapLine(who, 49), null);
+    assert.equal(tapLine(who, 50), T[50]);
+    assert.equal(tapLine(who, 99), null);
+    assert.equal(tapLine(who, 100), T[100]);
+    assert.equal(tapLine(who, 101), null);
+    assert.equal(tapLine(who, 199), null);
+    assert.equal(tapLine(who, 200), T[100]);
+    assert.equal(tapLine(who, 201), null);
+    assert.equal(tapLine(who, 300), T[100]);
+    assert.equal(tapLine(who, 150), null);
+  }
+});
+
+test('タップ: 文言は指定どおり。ありえない回数・知らないキャラは null', () => {
+  assert.equal(CHARACTER_TAP_TEXT.shiba[10], 'くすぐったいよ〜！');
+  assert.equal(CHARACTER_TAP_TEXT.sensei[50], '…休憩も、学習のうちですよ');
+  for (const n of [0, -1, 1.5, NaN, Infinity, '10', null, undefined]) assert.equal(tapLine('shiba', n), null, String(n));
+  assert.equal(tapLine('dog', 10), null);
+  assert.equal(tapLine(undefined, 10), null);
+});
+
+test('タップ: キャラごとに数え、混ざらない。節目の回だけ文が返る', () => {
+  const st = defaultState();
+  let last;
+  for (let i = 0; i < 10; i++) last = recordTap(st, 'shiba');
+  assert.equal(last.count, 10);
+  assert.equal(last.line, CHARACTER_TAP_TEXT.shiba[10]);
+  assert.equal(st.charTaps.sensei, 0);
+  const r = recordTap(st, 'sensei');
+  assert.deepEqual(r, { count: 1, line: null });
+  assert.equal(st.charTaps.shiba, 10);
+  assert.equal(recordTap(st, 'dog'), null);
+  assert.equal(recordTap(null, 'shiba'), null);
+});
+
+test('タップ: 記録が空・壊れた値でも落ちず、0から数える', () => {
+  for (const bad of [undefined, null, 5, 'x', [], { shiba: -3, sensei: 'a' }, { shiba: NaN }, { shiba: Infinity }]) {
+    const st = { charTaps: bad };
+    assert.deepEqual(normalizeCharTaps(bad).sensei, 0);
+    const r = recordTap(st, 'shiba');
+    assert.ok(r && Number.isInteger(r.count) && r.count >= 1, JSON.stringify(bad));
+  }
+  assert.deepEqual(normalizeCharTaps({ shiba: 9.9, sensei: 3 }), { shiba: 9, sensei: 3 });
+  assert.equal(recordTap({}, 'sensei').count, 1);
+  assert.equal(tapWho('shiba-hello'), 'shiba');
+  assert.equal(tapWho('sensei-ok'), 'sensei');
+  assert.equal(tapWho('x'), null);
+});
+
+test('タップ: mergeState で既存の記録が消えず、壊れた値は正される', () => {
+  assert.deepEqual(defaultState().charTaps, { shiba: 0, sensei: 0 });
+  const m = mergeState({ xp: 50, charTaps: { shiba: 42, sensei: 7 } });
+  assert.equal(m.xp, 50);
+  assert.deepEqual(m.charTaps, { shiba: 42, sensei: 7 });
+  assert.deepEqual(mergeState({ xp: 5 }).charTaps, { shiba: 0, sensei: 0 });
+  assert.deepEqual(mergeState({ charTaps: 'oops' }).charTaps, { shiba: 0, sensei: 0 });
+});

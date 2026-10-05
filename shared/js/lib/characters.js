@@ -150,3 +150,65 @@ export function celebrationMascot(kind) {
   if (kind === 'badge' || kind === 'stars') return 'shiba-clap';
   return null;
 }
+
+// ---- キャラクターをタップする遊び（隠しセリフ）。要件定義書 §6 キャラクター。回数はキャラごとに数え、記録（state.charTaps）に残す ----
+/** タップ回数を数えるキャラ。 */
+export const TAP_WHO = ['shiba', 'sensei'];
+
+/** 隠しセリフが出る回数と、その文言。文言はここ1か所にまとめる。 */
+export const CHARACTER_TAP_TEXT = {
+  shiba: {
+    10: 'くすぐったいよ〜！',
+    20: 'わん！ わんわん！',
+    30: 'そんなに押したら、目が回るよ〜',
+    50: '…もしかして、ぼくのこと好き？',
+    100: '100回！ その根気、勉強にも使っちゃおう！',
+  },
+  sensei: {
+    10: 'はい、なんでしょう？',
+    20: '質問は、解説を読んでからにしましょうね',
+    30: '先生をつついても、点数は上がりませんよ',
+    50: '…休憩も、学習のうちですよ',
+    100: '100回…。その集中力、本番で見せてくださいね',
+  },
+};
+
+/** 数え上げの上限（壊れた値が入っても、桁があふれないように）。 */
+export const TAP_MAX = 1000000;
+
+/** 絵の名前から、タップを数えるキャラ（shiba／sensei）。知らない絵は null。 */
+export function tapWho(art) {
+  if (typeof art !== 'string') return null;
+  if (art.startsWith('shiba-')) return 'shiba';
+  if (art.startsWith('sensei-')) return 'sensei';
+  return null;
+}
+
+/** 保存されたタップ回数を {shiba, sensei} の形に直す。欠け・負・小数・文字・NaN は0か切り捨てで正す。 */
+export function normalizeCharTaps(v) {
+  const o = v && typeof v === 'object' && !Array.isArray(v) ? v : {};
+  const out = {};
+  for (const k of TAP_WHO) {
+    const n = o[k];
+    out[k] = typeof n === 'number' && Number.isFinite(n) && n > 0 ? Math.min(Math.floor(n), TAP_MAX) : 0;
+  }
+  return out;
+}
+
+/** この回数ちょうどで出す隠しセリフ。節目でなければ null。100回のあとは100回ごと（200, 300…）に100回の文。 */
+export function tapLine(who, count) {
+  const lines = CHARACTER_TAP_TEXT[who];
+  if (!lines || !Number.isInteger(count) || count < 1) return null;
+  if (lines[count]) return lines[count];
+  if (count > 100 && count % 100 === 0) return lines[100];
+  return null;
+}
+
+/** 1回タップしたことを記録に足す。state.charTaps を直接更新し、{ count, line } を返す（line は節目のときだけ文、それ以外は null）。知らないキャラは null。 */
+export function recordTap(state, who) {
+  if (!state || typeof state !== 'object' || !TAP_WHO.includes(who)) return null;
+  const taps = normalizeCharTaps(state.charTaps);
+  taps[who] = Math.min(taps[who] + 1, TAP_MAX);
+  state.charTaps = taps;
+  return { count: taps[who], line: tapLine(who, taps[who]) };
+}

@@ -1,5 +1,5 @@
 // 解説4点セットと、間違えたときの「つまずきポイント」。問題画面と模試の見直しで共通に使う。
-import { h, characterImg } from '../ui.js';
+import { h, characterImg, tappable } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { refChip, sourcesList } from './cards.js';
 import { figureBlock } from './figure.js';
@@ -46,7 +46,7 @@ export function explanation(app, sq, chosen, open, opts = {}) {
   const q = sq.q;
   const sensei = opts.sensei !== false;
   const box = h('div', { class: 'explain' });
-  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由', sensei ? characterImg(explainSensei(chosen !== null && chosen === sq.answer), 'sensei-mini') : null),
+  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由', sensei ? tappable(characterImg(explainSensei(chosen !== null && chosen === sq.answer), 'sensei-mini')) : null),
     h('p', { class: 'ex-answer' }, h('strong', { text: '正解: ' + CHOICE_LABELS[sq.answer] + '. ' + sq.choices[sq.answer] })),
     h('p', { text: q.explanation || '（解説は準備中です）' })));
   const fig = figureBlock(app, q.figures, { heading: '図で確かめる', tag: 'section', className: 'ex-block' });
@@ -62,7 +62,7 @@ export function explanation(app, sq, chosen, open, opts = {}) {
   }
   box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '2'), '誤答がなぜ違うか'), ul));
 
-  if (q.memoryTip) box.appendChild(h('section', { class: 'ex-block tip' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '3'), '覚え方', sensei ? characterImg(TIP_SENSEI, 'sensei-mini') : null), h('p', { text: q.memoryTip })));
+  if (q.memoryTip) box.appendChild(h('section', { class: 'ex-block tip' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '3'), '覚え方', sensei ? tappable(characterImg(TIP_SENSEI, 'sensei-mini')) : null), h('p', { text: q.memoryTip })));
 
   const cs = conceptsOf(app, q);
   const unresolved = q.concepts.filter((x) => !resolveRef(x, app.data.conceptIndex).concept);

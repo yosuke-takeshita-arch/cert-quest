@@ -1,7 +1,7 @@
 // 画面部品の小さな道具。データ由来の文字は必ず textContent で入れる（innerHTML は使わない）。
 import { playSfx } from './audio.js';
 import { celebrateSfx } from './lib/sound.js';
-import { characterImageUrl, celebrationMascot, characterName } from './lib/characters.js';
+import { characterImageUrl, celebrationMascot, characterName, tapWho, recordTap, CHARACTER_NAMES } from './lib/characters.js';
 
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
@@ -74,13 +74,52 @@ export function characterImg(name, cls) {
   return img;
 }
 
-/** 絵と一言の並び（吹き出し）。絵が無い名前なら何も出さない。text が無ければ絵だけ。 */
+// ---- キャラクターをタップする遊び（要件定義書 §6）。app.js が setTapHost で記録の置き場と効果音を教える ----
+let tapHost = null;
+/** host = { state(): いまの保存データ, save(): 保存, sfx(name): 効果音 }。 */
+export function setTapHost(host) { tapHost = host || null; }
+
+/** 絵を、押せるもの（button）で包む。タップで小さく跳ね、回数を記録に足し、節目だけ隠しセリフに変える。say は吹き出しの p（無ければ、その場に一時的な吹き出しを出す）。
+ *  絵は飾りのまま（alt 空・読み上げ対象外）。ボタンには名前だけ付ける。知らない絵・絵が無いときは、そのまま返す。 */
+export function tappable(img, say) {
+  const who = img ? tapWho(img.getAttribute('data-char')) : null;
+  if (!who) return img;
+  const btn = h('button', { class: 'char-tap', type: 'button', 'aria-label': CHARACTER_NAMES[who] }, img);
+  const wrap = h('span', { class: 'char-tap-wrap' }, btn);
+  let hopTimer = null;
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    btn.classList.remove('hop');
+    void btn.offsetWidth; // 続けて押しても、毎回はじめから跳ねる
+    btn.classList.add('hop');
+    clearTimeout(hopTimer);
+    hopTimer = setTimeout(() => btn.classList.remove('hop'), 400);
+    const st = tapHost && tapHost.state();
+    const r = recordTap(st, who);
+    if (!r) return;
+    tapHost.save();
+    if (!r.line) return;
+    tapHost.sfx('stars');
+    if (say && say.isConnected) {
+      const t = Array.from(say.childNodes).reverse().find((n) => n.nodeType === 3);
+      if (t) t.textContent = r.line; else say.appendChild(document.createTextNode(r.line));
+    } else {
+      let tmp = wrap.querySelector('.char-temp-say');
+      if (!tmp) { tmp = h('p', { class: 'mascot-say char-temp-say' }, h('span', { class: 'mascot-name', text: CHARACTER_NAMES[who] }), ''); wrap.appendChild(tmp); }
+      tmp.lastChild.textContent = r.line;
+    }
+  });
+  return wrap;
+}
+
+/** 絵と一言の並び（吹き出し）。絵が無い名前なら何も出さない。text が無ければ絵だけ。絵はタップできる（隠しセリフ）。 */
 export function mascotLine(art, text, cls) {
   const img = characterImg(art, 'mascot-img');
   if (!img) return null;
   const name = characterName(art);
-  return h('div', { class: 'mascot-line ' + (cls || '') }, img,
-    text ? h('p', { class: 'mascot-say' }, name ? h('span', { class: 'mascot-name', text: name }) : null, text) : null);
+  const say = text ? h('p', { class: 'mascot-say' }, name ? h('span', { class: 'mascot-name', text: name }) : null, text) : null;
+  return h('div', { class: 'mascot-line ' + (cls || '') }, tappable(img, say), say);
 }
 
 export function icon(name, cls) {
