@@ -6,7 +6,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BGM_TRACKS,
+  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BGM_TRACKS, TITLE_BGM,
   normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
@@ -246,4 +246,83 @@ test('音のカード: 設定画面とタイトル画面のポップアップが
   // タイトル画面は歯車でも音を使える状態にし、ホームに進むときは開始のジングルを鳴らす
   assert.match(read('views/title.js'), /unlockAudio\(/);
   assert.match(read('app.js'), /playSfx\([^)]*'start'\)/);
+});
+
+// 関数の本体（波括弧の対応で切り出す。文字数の窓は使わない）。無ければ例外
+function functionBody(src, name) {
+  const m = new RegExp('function ' + name + '\\(').exec(src);
+  if (!m) throw new Error('関数が見つからない: ' + name);
+  const open = src.indexOf('{', src.indexOf(')', m.index));
+  let depth = 0;
+  for (let i = open; i < src.length; i++) {
+    if (src[i] === '{') depth++;
+    else if (src[i] === '}' && --depth === 0) return src.slice(open, i + 1);
+  }
+  throw new Error('閉じ括弧が無い: ' + name);
+}
+
+test('タイトル曲: BGM_TRACKS（設定の一覧・おまかせ）には入らない。ファイルが実在し、3MB以下で、ライセンスの記録にある', () => {
+  assert.ok(!BGM_TRACKS.some((t) => t.id === TITLE_BGM.id || t.file === TITLE_BGM.file));
+  assert.equal(normalizeBgmTrack(TITLE_BGM.id), 'auto'); // 設定の選択肢にならない
+  const p = join(shared, 'audio', 'bgm', TITLE_BGM.file);
+  assert.ok(existsSync(p));
+  assert.match(TITLE_BGM.file, /\.(ogg|mp3)$/);
+  assert.ok(statSync(p).size <= 3 * 1024 * 1024);
+  const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
+  assert.ok(doc.includes(TITLE_BGM.file) && doc.includes('TAD'));
+  // おまかせの順番を何周しても、タイトル曲の番号は出てこない（表に無いので当然だが、順番の関数が表以外を返さないことも確かめる）
+  let pos = { track: 0, plays: 0 };
+  for (let i = 0; i < 200; i++) { pos = nextBgmPosition(pos.track, pos.plays + 1, BGM_TRACKS, 'auto'); assert.ok(BGM_TRACKS[pos.track]); }
+  // sw-core.js はインストール時に取らない（BGM と同じ。オンの人だけ初めて流すときに取る）
+  assert.ok(!readFileSync(join(shared, 'sw-core.js'), 'utf8').includes(TITLE_BGM.file));
+});
+
+test('タイトル曲の補正: 実測の大きさ×倍率が、ほかの BGM と同じ目盛り40の大きさ。目盛り100でも割れない', () => {
+  const t = TITLE_BGM;
+  assert.ok(t.trim > 0 && t.rms > 0 && t.peak > 0 && t.peak <= 1.2 && t.fadeSec > 0 && t.fadeSec <= 1);
+  assert.ok(Math.abs(t.rms * bgmGain(40, t.trim) - TARGET_BGM_RMS) / TARGET_BGM_RMS < 0.03);
+  assert.ok(t.peak * bgmGain(100, t.trim) < 1);
+  assert.equal(bgmGain(0, t.trim), 0);
+});
+
+test('タイトル曲の鳴らし方: audio.js が BGM の設定に従い、タップで小さくして止め、app.js が結線している', () => {
+  const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
+  const app = readFileSync(join(shared, 'js', 'app.js'), 'utf8');
+  // BGM がオンのときだけ（初期オフなら鳴らない）。試し聴きの間は、重ならないよう止める
+  assert.match(functionBody(au, 'wantTitle'), /s\.bgm/);
+  assert.match(functionBody(au, 'wantTitle'), /!B\.preview/);
+  assert.match(functionBody(au, 'wantTitle'), /document\.hidden/);
+  // 切れ目なくくり返す（loop）／音量は BGM の音量と曲の補正
+  assert.match(functionBody(au, 'startTitle'), /\.loop = true/);
+  assert.match(functionBody(au, 'applyTitleVolume'), /bgmGain\([^)]*TITLE_BGM\.trim/);
+  // 歯車で BGM をオンにしたら（syncBgm）その場で流れ始める。音量の変更にも従う
+  assert.match(functionBody(au, 'syncBgm'), /syncTitle\(\)/);
+  assert.match(functionBody(au, 'applyVolumes'), /applyTitleVolume\(\)/);
+  // 『はじめる』を押したら小さくして止める。そのあと流れない（scene を false に）
+  assert.match(functionBody(au, 'endTitleBgm'), /T\.scene = false/);
+  assert.match(functionBody(au, 'endTitleBgm'), /linearRampToValueAtTime\(0,/);
+  // app.js: タイトル画面を出す前に結線し、押した処理の中で止める
+  assert.match(app, /setTitleBgm\(true\)/);
+  assert.match(app, /title\.ready\(\(\) => \{[^}]*endTitleBgm\(\)[^}]*\}\)/);
+  // ホームに進んだあとは、タイトル曲を戻さない（setTitleBgm(true) はタイトル画面を出すとき1回だけ）
+  assert.equal(app.split('setTitleBgm(true)').length, 2);
+});
+
+test('キャラのタップ音: tap は drop_001.ogg。タップのたびに鳴らし、節目でお祝いの stars は鳴らさない', () => {
+  assert.equal(SFX_FILES.tap, 'drop_001.ogg');
+  const ui = readFileSync(join(shared, 'js', 'ui.js'), 'utf8').replace(/\r\n/g, '\n');
+  const i = ui.indexOf('const r = recordTap(');
+  const body = ui.slice(i, ui.indexOf('return wrap;', i));
+  assert.match(body, /tapHost\.sfx\('tap'\)/);
+  assert.ok(!/sfx\('stars'\)/.test(body));
+  // 毎回鳴らす: 節目の判定（if (!r.line) return）より前に鳴らす
+  assert.ok(body.indexOf("sfx('tap')") < body.indexOf('if (!r.line) return'));
+  // 本体は playSfx（効果音の設定に従う）につながっている
+  assert.match(readFileSync(join(shared, 'js', 'app.js'), 'utf8'), /sfx: \(name\) => playSfx\(app\.state\.settings, name\)/);
+  assert.ok(!Object.values(SFX_FILES).some((f, _, a) => a.filter((x) => x === f).length > 1));
+});
+
+test('このアプリについて: タイトル曲の作者 TAD を載せる', () => {
+  const about = readFileSync(join(shared, 'js', 'views', 'about.js'), 'utf8');
+  assert.match(about, /TAD/);
 });

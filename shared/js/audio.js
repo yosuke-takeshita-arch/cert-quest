@@ -3,7 +3,7 @@
 // - BGM: 大きいので、最初に流すときに取ってきてキャッシュに入る（sw-core.js が /audio/ をキャッシュ優先で返す）
 //   音量は iOS でも効くよう WebAudio の GainNode でかける
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
-import { SFX_FILES, BGM_TRACKS, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex } from './lib/sound.js';
+import { SFX_FILES, BGM_TRACKS, TITLE_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex } from './lib/sound.js';
 
 const SFX_BASE = new URL('../audio/sfx/', import.meta.url).href;
 const BGM_BASE = new URL('../audio/bgm/', import.meta.url).href;
@@ -55,7 +55,7 @@ async function sfxBuffer(name, c) {
 
 // ファイルが使えないときの代わりの音（昔の beep と同じ）
 function synthBeep(c, name, gain) {
-  const notes = name === 'ok' ? [660, 880] : name === 'ng' ? [220] : [523, 659, 784, 1047];
+  const notes = name === 'ok' ? [660, 880] : name === 'ng' ? [220] : name === 'tap' ? [440] : [523, 659, 784, 1047];
   notes.forEach((f, i) => {
     const o = c.createOscillator();
     const g = c.createGain();
@@ -206,8 +206,117 @@ function stopBgm() {
   if (B.el && !B.el.paused) B.el.pause();
 }
 
+// ---- タイトル曲 ----
+// タイトル画面だけで流す1曲。BGM の設定（オン／オフ・音量）に従う。曲の一覧（BGM_TRACKS）とは別の仕組み。
+// 切れ目なくくり返すため、<audio> ではなく、読み込んで展開した音（AudioBuffer）を loop で流す。
+// 音を出せない状態（画面をさわる前）でも start() は予約として受け付けられ、さわって resume されたところから鳴り始める。
+const T = {
+  scene: false, // タイトル画面にいるか
+  buf: null, // 展開した音（Promise<AudioBuffer|null>）
+  src: null, // 鳴らしている音の源
+  gainNode: null,
+  loading: false,
+  fading: false,
+};
+
+function wantTitle() {
+  const s = getSettings();
+  return !!(s && s.bgm && T.scene && !B.preview && !document.hidden);
+}
+
+function titleBuffer(c) {
+  if (!T.buf) {
+    T.buf = fetch(BGM_BASE + TITLE_BGM.file)
+      .then((r) => { if (!r.ok) throw new Error('title bgm ' + r.status); return r.arrayBuffer(); })
+      .then((bytes) => c.decodeAudioData(bytes))
+      .catch(() => null); // 取れない・読めないときは、鳴らさないだけ
+  }
+  return T.buf;
+}
+
+function applyTitleVolume() {
+  const s = getSettings();
+  if (T.gainNode && !T.fading) T.gainNode.gain.value = bgmGain(s ? s.bgmVolume : undefined, TITLE_BGM.trim);
+}
+
+function dropTitleSource() {
+  if (T.src) { try { T.src.stop(); } catch (e) { /* もう止まっている */ } try { T.src.disconnect(); } catch (e) { /* 同上 */ } }
+  if (T.gainNode) { try { T.gainNode.disconnect(); } catch (e) { /* 同上 */ } }
+  T.src = null;
+  T.gainNode = null;
+}
+
+async function startTitle() {
+  if (T.src || T.loading || !wantTitle()) return;
+  const c = audioCtx();
+  if (!c) return;
+  T.loading = true;
+  try {
+    const buf = await titleBuffer(c);
+    if (!buf || T.src || !wantTitle()) return; // 取れなかった／取っている間に切られた
+    const src = c.createBufferSource();
+    const g = c.createGain();
+    src.buffer = buf;
+    src.loop = true;
+    src.connect(g);
+    g.connect(c.destination);
+    T.src = src;
+    T.gainNode = g;
+    T.fading = false;
+    applyTitleVolume();
+    src.start(0);
+    resumeCtx(); // さわる前なら、さわるまで待つ（さわった瞬間に鳴り始める）
+  } catch (e) {
+    dropTitleSource(); // 音が出せなくても学習は続ける
+  } finally {
+    T.loading = false;
+  }
+}
+
+function syncTitle() {
+  if (wantTitle()) {
+    if (T.src) applyTitleVolume();
+    else startTitle();
+  } else if (!T.fading) {
+    dropTitleSource();
+  }
+}
+
+/** タイトル画面にいる間だけ true にする。タイトル曲は BGM がオンのときに流れる。 */
+export function setTitleBgm(on) {
+  T.scene = !!on;
+  if (!T.scene) T.buf = null; // 展開した音（約10MB）を手放す
+  syncTitle();
+}
+
+/** 『タップしてはじめる』を押したとき。タイトル曲を短く小さくして止める。そのあとは流れない。 */
+export function endTitleBgm() {
+  T.scene = false;
+  const c = audioCtx();
+  const src = T.src;
+  const g = T.gainNode;
+  if (!src || !g || !c || T.fading) { dropTitleSource(); T.buf = null; return; }
+  T.fading = true;
+  const t = c.currentTime;
+  try {
+    g.gain.cancelScheduledValues(t);
+    g.gain.setValueAtTime(g.gain.value, t);
+    g.gain.linearRampToValueAtTime(0, t + TITLE_BGM.fadeSec);
+  } catch (e) { /* 小さくできなくても、止まりはする */ }
+  setTimeout(() => {
+    if (T.src === src) { dropTitleSource(); T.fading = false; }
+    T.buf = null;
+  }, TITLE_BGM.fadeSec * 1000 + 100);
+}
+
+/** 動作確認用: いまのタイトル曲の状態。 */
+export function titleBgmStatus() {
+  return { scene: T.scene, playing: !!T.src, fading: T.fading, volume: T.gainNode ? T.gainNode.gain.value : null };
+}
+
 /** 設定・場面・画面の表裏が変わったら呼ぶ。流すべきなら流し、そうでなければ止める。 */
 export function syncBgm() {
+  syncTitle();
   if (wantBgm()) {
     // 曲を選び直されたら、鳴っている最中でもその曲に切り替える
     if (B.el && !B.el.paused && !B.starting && followSelectedTrack()) B.el.pause();
@@ -233,6 +342,7 @@ export function setBgmPreview(on) {
 /** 音量を変えたとき（BGM は鳴っている最中にそのまま変わる）。 */
 export function applyVolumes() {
   applyBgmVolume();
+  applyTitleVolume();
 }
 
 /** 起動時に1回。getSettings は「いまの設定」を返す関数（学習記録を消すと設定の入れ物が替わるため）。 */

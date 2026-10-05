@@ -18,6 +18,7 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 | `stars_sparkle.wav` | 星が増えた（約1.6秒・143,532 バイト。元は zip 内の `Cure5.wav`。ステレオをモノラルにした。周波数は元の 44.1kHz のまま） | Someoneman | https://opengameart.org/content/cure-magic | CC0 | 2026-10-05 確認。配布ページの License(s) 欄が CC0（creativecommons.org/publicdomain/zero/1.0/ へのリンク）、CC-BY の記載なし。先生が候補を聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかったため差し替え。Author 欄は Someoneman |
 | `goal_cure.wav` | 1日の目標（約1.2秒・102,952 バイト。元は zip 内の `Cure2.wav`。ステレオをモノラルにした） | Someoneman | https://opengameart.org/content/cure-magic | CC0 | 2026-10-05 確認。配布ページの License(s) 欄が CC0（creativecommons.org/publicdomain/zero/1.0/ へのリンク）、CC-BY の記載なし。先生が候補を聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかったため差し替え。Author 欄は Someoneman |
 | `start_16bit-success.ogg` | タイトル画面の「タップしてはじめる」（開始の音。約2.3秒・58,364 バイト。元のファイル名 `sfx_-_success.ogg`） | flush | https://opengameart.org/content/16bit-success-sound | CC0 | 2026-10-04 確認。配布ページの License(s) 欄が CC0、creativecommons.org/publicdomain/zero/1.0/ へのリンクあり、CC-BY の記載なし。Author 欄は flush。先生が候補8つを聞き比べて選んだ。前の `jingles_NES05.ogg`（Kenney）は約100Hzの低いベースが中心で、スマホでは弱く聞こえたため差し替え |
+| `drop_001.ogg` | キャラクター（サニー・あい先生）の絵をタップしたとき（『ポンッ』。約0.11秒・5,859 バイト。元のファイル名のまま） | Kenney | https://kenney.nl/assets/interface-sounds | CC0 | 2026-10-06 に、2026-10-04 に取った zip（`kenney_interface-sounds.zip`、834,536 バイト）の中の `Audio/drop_001.ogg` を使用。同じ zip の `License.txt` が『License: (Creative Commons Zero, CC0)』（下の A）。先生が候補を聞き比べて選んだ |
 
 - **A（Interface Sounds）**: 配布ページの `License` 欄が『Creative Commons CC0』、ページの説明（og:description）が『Download this package (100 assets) for free, CC0 licensed!』。ダウンロードした zip（`kenney_interface-sounds.zip`、834,536 バイト）の中の `License.txt` に『License: (Creative Commons Zero, CC0) http://creativecommons.org/publicdomain/zero/1.0/』『This content is free to use in personal, educational and commercial projects.』『Support us by crediting Kenney or www.kenney.nl (this is not mandatory)』とある。
 - **B（Music Jingles）**: 配布ページの `License` 欄が『Creative Commons CC0』、説明が『Download this package (85 assets) for free, CC0 licensed!』。zip（`kenney_music-jingles.zip`、1,239,525 バイト）の中の `License.txt` に『License (Creative Commons Zero, CC0)』『You may use these assets in personal and commercial projects.』『Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.』とある。`jingles_NES05.ogg` を足した 2026-10-04 に、配布ページ <https://kenney.nl/assets/music-jingles> から zip（`kenney_music-jingles.zip`）を取り直し、サイズが 1,239,525 バイトで前と同じこと、中の `License.txt` が『License (Creative Commons Zero, CC0)』『You may use these assets in personal and commercial projects.』であること、`jingles_NES05.ogg` が zip の中のファイルと一致（cmp）することを確かめた。
@@ -40,6 +41,14 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 - 流れる順（おまかせのとき）は、Contemplation 1回 → JRPG Piano 4回 → Bluebonnet 1回 → Calm Loop 5回 → Happy Lullaby 3回 → Chill Lofi 1回（どれも約100〜120秒）→ 最初に戻る（`shared/js/lib/sound.js` の `BGM_TRACKS`）。設定で1曲を選んだら、その曲だけをくり返す。
 - 曲ごとに元の音の大きさが違うので、曲ごとに音量の補正（`trim`）を掛けている。実測の大きさ（RMS）・ピーク・補正は `shared/js/lib/sound.js` の `BGM_TRACKS` に書いてある。
 - **D**（2026-10-04 に各ページを curl で取得して確かめた）: 各ページの投稿情報の欄に『License(s): CC0』があり、ライセンスのリンクは <https://creativecommons.org/publicdomain/zero/1.0/>（cc0 のアイコンつき）。`CC-BY` や `Attribution` を求める記載は無い。Bluebonnet は作者 Kistol・タグ『neoclassical Classical piano soft relaxing gentle … loopable looped』（「looped」版のファイルを使用）。Calm Loop は作者 wipics・タグ『relaxing loop chill Ambient calm synths percussion』・Copyright/Attribution Notice 欄が『Public Domain』。Happy Lullaby は作者 cynicmusic・タグ『lullaby happy calm relaxing Puzzle bells』。Chill Lofi Inspired は作者 omfgdude・タグ『chill lofi jazzy piano drums arrangement hip hop』・説明『You may use this however you like』。ファイルは mp3 版（ページ上の表示は `ChillLofiR.mp3`）を使用。
+
+### タイトル曲（`shared/audio/bgm/` に置く。`BGM_TRACKS`（設定の曲の一覧・おまかせ）には入れない。`sound.js` の `TITLE_BGM`）
+
+| ファイル | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス | 確かめた箇所 |
+|---|---|---|---|---|---|---|
+| `title_once-upon-a-time.mp3` | `once_upon_a_time_loop.mp3`（「Once Upon a Time (loop)」） | 約58秒・923,596 バイト（元は 256kbps・1,848,968 バイト。ffmpeg で 128kbps に変換した、先生が聞いた版） | TAD | <https://opengameart.org/content/once-upon-a-time-loop> | CC0 | 下の E |
+
+- **E**（2026-10-06 に配布ページを curl で取得して確かめた）: 投稿情報の欄に『Author: TAD』『License(s): CC0』（リンクは <http://creativecommons.org/publicdomain/zero/1.0/>）があり、`CC-BY` や `Attribution` を求める記載は無い。ファイルはページの mp3 のリンク（`https://opengameart.org/sites/default/files/once_upon_a_time_loop.mp3`）から取り、手元の原本（1,848,968 バイト）と cmp で一致することを確かめた。タイトル画面だけで流す（BGM の設定に従う）。先生が7つの候補を聞き比べて F を選んだ（2026-10-06）。
 
 ## 確かめていないこと
 

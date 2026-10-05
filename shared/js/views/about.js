@@ -8,6 +8,7 @@ import { reportButton } from './report.js';
 export const AUDIO_CREDITS = [
   { what: '効果音（正解・不正解・ジングルなど）', who: 'Kenney（kenney.nl）、flush・congusbongus・0new4y・Aeva・Haley・Someoneman（OpenGameArt）' },
   { what: 'BGM', who: 'Joth、Kistol、wipics、cynicmusic、omfgdude（いずれも OpenGameArt）' },
+  { what: 'タイトル画面の曲', who: 'TAD（OpenGameArt「Once Upon a Time (loop)」）' },
 ];
 
 export function renderAbout(app) {

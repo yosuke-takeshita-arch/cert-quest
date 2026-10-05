@@ -14,7 +14,7 @@ import { renderCardList, renderCard } from './views/cards.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
-import { initAudio, setBgmScene, syncBgm, unlockAudio, playSfx } from './audio.js';
+import { initAudio, setBgmScene, syncBgm, unlockAudio, playSfx, setTitleBgm, endTitleBgm } from './audio.js';
 import { createTitleScreen } from './views/title.js';
 import { createLoadTracker } from './lib/loadprogress.js';
 import { needsExamDateAsk, examStatus } from './lib/examdate.js';
@@ -93,6 +93,7 @@ export async function start() {
   const titleState = storage.load();
   let live = null;
   initAudio(() => (live ? live.state.settings : titleState.settings));
+  setTitleBgm(true); // タイトル曲（BGM がオンの人だけ。『タップしてはじめる』で小さくして止める）
   const title = createTitleScreen({ config, examDate: examStatus(titleState.settings).date, sound: { settings: titleState.settings, commit: () => storage.save(titleState) } });
   clear(root);
   root.appendChild(title.el);
@@ -108,6 +109,7 @@ export async function start() {
   // 押した瞬間に音を使える状態にし、開始のジングルを鳴らす（効果音がオンの人だけ）。演出が済んだらホームへ
   await title.ready(() => {
     unlockAudio(titleState.settings);
+    endTitleBgm(); // タイトル曲は、開始のジングルとかさねて小さくして止める
     playSfx(titleState.settings, 'start');
   });
 

@@ -99,8 +99,8 @@ export function tappable(img, say) {
     const r = recordTap(st, who);
     if (!r) return;
     tapHost.save();
+    tapHost.sfx('tap'); // タップのたびに毎回『ポンッ』（節目でも同じ音だけ）
     if (!r.line) return;
-    tapHost.sfx('stars');
     if (say && say.isConnected) {
       const t = Array.from(say.childNodes).reverse().find((n) => n.nodeType === 3);
       if (t) t.textContent = r.line; else say.appendChild(document.createTextNode(r.line));

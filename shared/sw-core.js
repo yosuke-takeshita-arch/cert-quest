@@ -89,6 +89,7 @@ const SFX = [
   'stars_sparkle.wav',
   'goal_cure.wav',
   'start_16bit-success.ogg',
+  'drop_001.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
 self.addEventListener('install', (event) => {

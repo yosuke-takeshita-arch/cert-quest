@@ -59,7 +59,7 @@ export function bgmGain(volume, trim = 1) {
 }
 
 // 効果音。キー → ファイル（shared/audio/sfx/ の中）。
-//  ok=正解 ng=不正解 level=レベルアップ badge=バッジ stars=星 goal=1日の目標 start=タイトル画面の「タップしてはじめる」
+//  ok=正解 ng=不正解 level=レベルアップ badge=バッジ stars=星 goal=1日の目標 start=タイトル画面の「タップしてはじめる」 tap=キャラクターの絵をタップ
 export const SFX_FILES = {
   ok: 'ok_gold-coin.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Gold Coin」Aeva、CC0）。前の confirmation_001（Kenney）は単音で物足りなかった
   ng: 'ng_lose-trumpet.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Game Over Trumpet SFX」0new4y、CC0）。前の error_003（Kenney）は単音で物足りなかった
@@ -67,6 +67,7 @@ export const SFX_FILES = {
   badge: 'badge_new-thing-get.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「New Thing Get」congusbongus、CC0）。前の jingles_SAX07 は単音で物足りなかった
   stars: 'stars_sparkle.wav', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「Cure Magic」の Cure5、Someoneman、CC0。モノラルにした）
   goal: 'goal_cure.wav', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「Cure Magic」の Cure2、Someoneman、CC0。モノラルにした）
+  tap: 'drop_001.ogg', // 2026-10-06 先生が聞き比べて選んだ。キャラクターの絵をタップするたびに鳴る『ポンッ』（Kenney Interface Sounds の drop_001、CC0。元のファイル名のまま）
   start: 'start_16bit-success.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「16bit Success sound」flush、CC0）。前の jingles_NES05 は低いベースが中心でスマホでは弱かった
 };
 
@@ -82,6 +83,12 @@ export const BGM_TRACKS = [
   { id: 'happy-lullaby', file: 'happy-lullaby.mp3', name: '子守歌のベル', mood: '鈴の音のやわらかい子守歌', repeat: 3, trim: 0.216, rms: 0.1869, peak: 1.0005 },
   { id: 'chill-lofi', file: 'chill-lofi.mp3', name: 'ローファイ・チル', mood: 'ローファイ風のジャズっぽいピアノ', repeat: 1, trim: 0.321, rms: 0.1259, peak: 1.0009 },
 ];
+
+// タイトル画面だけで流す曲（2026-10-06 先生が聞き比べて選んだ。OpenGameArt「Once Upon a Time (loop)」TAD、CC0）。
+// 設定の曲の一覧（BGM_TRACKS）・おまかせの順番には入れない。BGM の設定（オン／オフ・音量）に従う。
+// trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-06。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.955）。
+export const TITLE_BGM = { id: 'title', file: 'title_once-upon-a-time.mp3', name: 'Once Upon a Time', trim: 0.4, rms: 0.101, peak: 0.9182, fadeSec: 0.6 };
 
 /** お祝いの種類 → 効果音のキー。 */
 export function celebrateSfx(kind) {
