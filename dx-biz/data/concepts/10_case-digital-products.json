@@ -75,7 +75,7 @@
     "syllabus": ["DXビジネス事例", "事例：デジタル商材", "使われ続ける前提の設計"],
     "title": "Mazrica Sales（営業支援SFA/CRM）",
     "oneLine": "営業の案件や顧客の情報を管理し、蓄積された組織の営業データからAIが次のアクションを示唆する、営業支援（SFA）・顧客管理（CRM）のクラウドサービス（マツリカ）。",
-    "why": "営業担当者が入力した案件や顧客のデータが組織に蓄積され、それがAIの示唆という次の価値を生む（公式サイト）。マツリカは、SFA/CRMは導入して終わりではなく運用してこそ価値が出るとし、運用がうまくいかない大きな原因に「現場の入力負担」と「現場へのメリット欠如」を挙げる。使われ続けてデータがたまることが価値の前提で、顧客データ活用や顧客ライフサイクルマネジメントを支える道具でもある。",
+    "why": "SFA は Sales Force Automation の略で、意味は『営業部隊（セールスフォース）の活動の自動化』。CRM は Customer Relationship Management の略で、意味は『顧客との関係の管理』。営業担当者が入力した案件や顧客のデータが組織に蓄積され、それがAIの示唆という次の価値を生む（公式サイト）。マツリカは、SFA/CRMは導入して終わりではなく運用してこそ価値が出るとし、運用がうまくいかない大きな原因に「現場の入力負担」と「現場へのメリット欠如」を挙げる。使われ続けてデータがたまることが価値の前提で、顧客データ活用や顧客ライフサイクルマネジメントを支える道具でもある。",
     "links": [
       { "id": "DC-10-001", "relation": "共通構造" },
       { "id": "DC-07-011", "relation": "支える活動" },
@@ -88,7 +88,9 @@
     ],
     "sources": [
       { "title": "株式会社マツリカ 公式サイト", "url": "https://mazrica.com/" },
-      { "title": "株式会社マツリカ 公式サイト「BUSINESS」", "url": "https://mazrica.com/business/" }
+      { "title": "株式会社マツリカ 公式サイト「BUSINESS」", "url": "https://mazrica.com/business/" },
+      { "title": "セールスフォース・ジャパン「SFAとは？主な機能や効果的な活用方法、活用事例を解説」", "url": "https://www.salesforce.com/jp/sales/sales-force-automation-software-sfa/" },
+      { "title": "セールスフォース・ジャパン「CRMとは」", "url": "https://www.salesforce.com/jp/crm/what-is-crm/" }
     ],
     "status": "verified"
   },

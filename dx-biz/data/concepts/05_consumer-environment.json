@@ -555,7 +555,7 @@
     "syllabus": ["DXビジネスモデル", "消費者の状況とビジネス環境", "X-Techと社会課題"],
     "title": "SDGs（持続可能な開発目標）",
     "oneLine": "2015年9月の国連サミットで全会一致で採択された「持続可能な開発のための2030アジェンダ」に記載された、2030年までの国際目標。17のゴール・169のターゲットからなり、「誰一人取り残さない」ことを誓う。",
-    "why": "途上国だけでなく先進国も取り組む普遍的な目標（外務省）。企業にとっては、社会課題の解決を事業機会にする視点や、取引先・投資家・消費者から選ばれる条件になっている。2001年に策定されたミレニアム開発目標（MDGs）の後継。",
+    "why": "Sustainable Development Goals の略（末尾の s は Goals の複数形）。意味は『持続可能な開発の目標』。途上国だけでなく先進国も取り組む普遍的な目標（外務省）。企業にとっては、社会課題の解決を事業機会にする視点や、取引先・投資家・消費者から選ばれる条件になっている。2001年に策定されたミレニアム開発目標（MDGs）の後継。",
     "links": [
       { "id": "DC-05-028", "relation": "関連" },
       { "id": "DC-05-010", "relation": "関連" },
@@ -565,7 +565,8 @@
       { "title": "MDGs", "point": "MDGsは2001年策定の前身（主に途上国向け）。SDGsは2015年採択で、先進国も含む全ての国が対象。" }
     ],
     "sources": [
-      { "title": "外務省 JAPAN SDGs Action Platform「SDGsとは？」", "url": "https://www.mofa.go.jp/mofaj/gaiko/oda/sdgs/about/index.html" }
+      { "title": "外務省 JAPAN SDGs Action Platform「SDGsとは？」", "url": "https://www.mofa.go.jp/mofaj/gaiko/oda/sdgs/about/index.html" },
+      { "title": "United Nations, Department of Economic and Social Affairs \"THE 17 GOALS | Sustainable Development\"", "url": "https://sdgs.un.org/goals" }
     ],
     "status": "verified"
   },
@@ -574,7 +575,7 @@
     "syllabus": ["DXビジネスモデル", "消費者の状況とビジネス環境", "生成AIがもたらす変化"],
     "title": "A2A（Agent2Agent Protocol）",
     "oneLine": "異なる会社やフレームワークで作られたAIエージェントどうしが、互いの内部を共有しなくても、安全に情報をやり取りし、協力して作業を進めるためのオープンなプロトコル。2025年4月にGoogleが発表した。",
-    "why": "企業の中では、経費・在庫・顧客対応など、別々のAIエージェントが動くようになる。それらがつながって分担できれば、複雑な業務を自動で進められる。発表では、A2AはAIにツールやデータを提供するMCPを補完するものと位置づけられた。MCP＝AIと道具をつなぐ、A2A＝AIとAIをつなぐ。",
+    "why": "Agent2Agent の略（2 は英語の to と同じ音）。意味は『エージェントからエージェントへ』で、AIエージェントどうしをつなぐ取り決めを表す。企業の中では、経費・在庫・顧客対応など、別々のAIエージェントが動くようになる。それらがつながって分担できれば、複雑な業務を自動で進められる。発表では、A2AはAIにツールやデータを提供するMCPを補完するものと位置づけられた。MCP＝AIと道具をつなぐ、A2A＝AIとAIをつなぐ。",
     "links": [
       { "id": "DC-02-018", "relation": "つなぐ対象" },
       { "id": "DC-02-020", "relation": "補完" }
