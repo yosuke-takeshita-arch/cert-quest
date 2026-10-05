@@ -1,7 +1,11 @@
 // キャラクター（柴犬と先生）: どの場面でどの絵を出すかの決まり。純粋な関数だけ（画面の部品は ui.js の characterImg / mascotLine）。
 // 柴犬＝お祝いと応援。先生＝解説の案内。1画面に1人まで（要件定義書 §6）。
 // 名前は 2026-10-05 に先生が決めた（柴犬＝サニー、先生＝あい先生）。名前と一言は、下の CHARACTER_NAMES と CHARACTER_TEXT の1か所にまとめる。
-import { keyDiff } from './scoring.js';
+import { keyDiff, currentStreak } from './scoring.js';
+import { dateKey } from './srs.js';
+import { examStatus } from './examdate.js';
+import { dailyProgress } from './daily.js';
+import { recordIsEmpty } from './intro.js';
 
 /** 素材（shared/images/characters/ の .webp の名前）。sw-core.js の SHARED にも同じものを入れる。 */
 export const CHARACTER_ART = [
@@ -23,6 +27,18 @@ export function characterName(art) {
 /** キャラクターが言う一言。文言はここ1か所にまとめる。 */
 export const CHARACTER_TEXT = {
   homeHello: '今日もいっしょにがんばろう！',
+  homeFirst: 'はじめまして！ サニーだよ。まずは1問、解いてみよう！',
+  homeExamToday: '今日は本番！ 落ち着いていけば大丈夫。応援してるよ！',
+  homeExamTomorrow: 'いよいよ明日が本番！ 今日は軽く見直して、早めに休もう',
+  homeGoalDone: '今日の目標、達成！ えらい！',
+  homeLate: 'こんな時間まで…！ 寝るのも大事だよ',
+  homeExamNear: (n) => '本番まであと' + n + '日！ ラストスパート！',
+  homeStreak: (n) => n + '日連続！ その調子！',
+  homeMorning: 'おはよう！ 朝の1問からはじめよう',
+  homeNoon: 'お昼休みに、ちょっとだけ解いていこう',
+  homeEvening: 'おつかれさま！ 今日の分、少しずつ進めよう',
+  homeNight: '夜もがんばってるね。キリのいいところで休もう',
+  homeWeekend: 'お休みの日も、いっしょにがんばろう！',
   homeBack: 'おかえり！ また会えてうれしいよ',
   cheer: 'ここで覚えれば本番で取れる！',
   examHigh: 'よくできました！ この調子！',
@@ -34,6 +50,10 @@ export const CHARACTER_TEXT = {
 
 /** 何日あいたら「おかえり」にするか。最後に学習した日の差がこの日数以上（＝1日まるごと休んだ）。 */
 export const AWAY_DAYS = 2;
+/** 受験日まで何日以内なら「ラストスパート」にするか（2日前〜この日数）。 */
+export const EXAM_NEAR_DAYS = 7;
+/** 連続日数がこの日数以上なら、ほめる。 */
+export const STREAK_PRAISE_DAYS = 3;
 /** 不正解が何問続いたら応援を出すか。 */
 export const CHEER_RUN = 3;
 /** 模擬試験の正答率（%）がこれ以上なら、ほめる。 */
@@ -58,11 +78,32 @@ export function daysSinceLastStudy(state, todayKey) {
   return Number.isFinite(d) ? Math.max(0, d) : null;
 }
 
-/** ホームの柴犬。しばらく休んでいたら、うとうとして「おかえり」。 */
-export function homeMascot(state, todayKey) {
-  const away = daysSinceLastStudy(state, todayKey);
-  if (away !== null && away >= AWAY_DAYS) return { art: 'shiba-sleepy', text: CHARACTER_TEXT.homeBack };
-  return { art: 'shiba-hello', text: CHARACTER_TEXT.homeHello };
+/** ホームの柴犬。状況と時間帯で一言が変わる。上から順に、最初に当てはまった1つだけ（要件定義書 §6 キャラクター）。
+ *  now は Date（端末の時刻）。同じ日・同じ時間帯なら、開き直しても同じ一言（乱数は使わない）。 */
+export function homeMascot(state, now = new Date()) {
+  const T = CHARACTER_TEXT;
+  const s = state && typeof state === 'object' ? state : {};
+  const ok = now instanceof Date && !Number.isNaN(now.getTime());
+  if (!ok) return { art: 'shiba-hello', text: T.homeHello };
+  const key = dateKey(now);
+  const hour = now.getHours();
+  if (state && recordIsEmpty(state)) return { art: 'shiba-hello', text: T.homeFirst };
+  const away = daysSinceLastStudy(s, key);
+  if (away !== null && away >= AWAY_DAYS) return { art: 'shiba-sleepy', text: T.homeBack };
+  const days = examStatus(s.settings, now).days;
+  if (days === 0) return { art: 'shiba-cheer', text: T.homeExamToday };
+  if (days === 1) return { art: 'shiba-cheer', text: T.homeExamTomorrow };
+  if (dailyProgress(s, key).done) return { art: 'shiba-banzai', text: T.homeGoalDone };
+  if (hour < 5) return { art: 'shiba-sleepy', text: T.homeLate };
+  if (days !== null && days >= 2 && days <= EXAM_NEAR_DAYS) return { art: 'shiba-cheer', text: T.homeExamNear(days) };
+  const streak = currentStreak(s.streak, key);
+  if (streak >= STREAK_PRAISE_DAYS) return { art: 'shiba-clap', text: T.homeStreak(streak) };
+  if (hour >= 5 && hour <= 10) return { art: 'shiba-hello', text: T.homeMorning };
+  if (hour >= 11 && hour <= 13) return { art: 'shiba-hello', text: T.homeNoon };
+  if (hour >= 17 && hour <= 20) return { art: 'shiba-hello', text: T.homeEvening };
+  if (hour >= 21) return { art: 'shiba-hello', text: T.homeNight };
+  const weekend = now.getDay() === 0 || now.getDay() === 6;
+  return { art: 'shiba-hello', text: weekend ? T.homeWeekend : T.homeHello };
 }
 
 /** いま不正解が何問続いているか。corrects は答えた順の正誤（true＝正解）。 */

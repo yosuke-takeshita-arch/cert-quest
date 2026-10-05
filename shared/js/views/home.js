@@ -117,7 +117,7 @@ export function renderHome(app) {
   const lv = levelFromXp(state.xp);
   const streak = currentStreak(state.streak, dateKey(now));
   const due = dueQuestions(state, data.questionById, now).length;
-  const mascot = homeMascot(state, dateKey(now));
+  const mascot = homeMascot(state, now);
 
   root.appendChild(h('header', { class: 'hero' },
     h('p', { class: 'hero-name', text: config.name }),
