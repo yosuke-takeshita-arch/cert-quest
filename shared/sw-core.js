@@ -78,6 +78,8 @@ const SHARED = [
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',
+  '../shared/js/lib/legal.js',
+  '../shared/js/views/legal.js',
 ];
 
 // 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。

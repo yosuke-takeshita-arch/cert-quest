@@ -3,6 +3,7 @@
 import { h, externalLink, mascotLine } from '../ui.js';
 import { CHARACTER_TEXT } from '../lib/characters.js';
 import { reportButton } from './report.js';
+import { legalMenuCard } from './legal.js';
 
 /** 音の素材の作者（docs/sources/audio-licenses.md と同じ。CC0 で表示の義務は無いが、作者名を出す）。 */
 export const AUDIO_CREDITS = [
@@ -55,5 +56,6 @@ export function renderAbout(app) {
   AUDIO_CREDITS.forEach((x) => ul.appendChild(h('li', {}, h('strong', { text: x.what }), h('span', { class: 'small', text: '：' + x.who }))));
   credits.appendChild(ul);
   root.appendChild(credits);
+  root.appendChild(legalMenuCard(app));
   return root;
 }
