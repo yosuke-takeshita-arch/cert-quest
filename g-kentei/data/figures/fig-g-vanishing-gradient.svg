@@ -1,52 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 654" role="img" aria-labelledby="fig-g-vanishing-gradient-t fig-g-vanishing-gradient-d">
-<title id="fig-g-vanishing-gradient-t">勾配消失・勾配爆発と、勾配クリッピング</title>
-<desc id="fig-g-vanishing-gradient-d">誤差逆伝播では、出力側から入力側へ向かって、層ごとの微分を掛けながら勾配が戻る。上の図は5層で、各層でシグモイドの微分（最大0.25）が掛かると、勾配は出力側の1から0.25、0.0625、0.0156、0.0039と急に小さくなり、入力側の重みがほとんど更新されない（勾配消失）。中の図は、各層で1より大きい値（例として2）が掛かると、勾配が1から2、4、8、16と急に大きくなる（勾配爆発）。下の図は勾配クリッピング。勾配ベクトルのノルムがしきい値を超えたら、向きは保ったまま、長さをしきい値まで縮める。勾配爆発に効くが、勾配消失には効かない。</desc>
-<text x="12" y="20" class="tb">① 勾配消失：小さい値を掛け続ける</text>
-<text x="12" y="40" class="tm">各層でシグモイドの微分（最大0.25）が掛かる</text>
-<rect x="18" y="128.5" width="36" height="1.5" class="fwn swn" stroke-width="1.5"/>
-<text x="36" y="122.5" class="tb" text-anchor="middle">0.0039</text>
-<rect x="74" y="128.5" width="36" height="1.5" class="fwn swn" stroke-width="1.5"/>
-<text x="92" y="122.5" class="tb" text-anchor="middle">0.0156</text>
-<rect x="130" y="125.63" width="36" height="4.38" class="fwn swn" stroke-width="1.5"/>
-<text x="148" y="119.63" class="tb" text-anchor="middle">0.0625</text>
-<rect x="186" y="112.5" width="36" height="17.5" class="fwn swn" stroke-width="1.5"/>
-<text x="204" y="106.5" class="tb" text-anchor="middle">0.25</text>
-<rect x="242" y="60" width="36" height="70" class="fas sa" stroke-width="1.5"/>
-<text x="260" y="54" class="tb" text-anchor="middle">1</text>
-<line x1="14" y1="130" x2="306" y2="130" class="l sm w1"/>
-<text x="14" y="150" class="tm">入力側</text>
-<text x="306" y="150" class="tm" text-anchor="end">出力側</text>
-<line x1="230" y1="145" x2="105.6" y2="145" class="l sm w1"/>
-<polygon points="100,145 105.6,141.5 105.6,148.5" class="fm"/>
-<text x="12" y="210" class="tb">② 勾配爆発：大きい値を掛け続ける</text>
-<text x="12" y="230" class="tm">各層で1より大きい値（例：2）が掛かる</text>
-<rect x="18" y="250" width="36" height="70" class="fwn swn" stroke-width="1.5"/>
-<text x="36" y="244" class="tb" text-anchor="middle">16</text>
-<rect x="74" y="285" width="36" height="35" class="fwn swn" stroke-width="1.5"/>
-<text x="92" y="279" class="tb" text-anchor="middle">8</text>
-<rect x="130" y="302.5" width="36" height="17.5" class="fwn swn" stroke-width="1.5"/>
-<text x="148" y="296.5" class="tb" text-anchor="middle">4</text>
-<rect x="186" y="311.25" width="36" height="8.75" class="fwn swn" stroke-width="1.5"/>
-<text x="204" y="305.25" class="tb" text-anchor="middle">2</text>
-<rect x="242" y="315.63" width="36" height="4.38" class="fas sa" stroke-width="1.5"/>
-<text x="260" y="309.63" class="tb" text-anchor="middle">1</text>
-<line x1="14" y1="320" x2="306" y2="320" class="l sm w1"/>
-<text x="14" y="340" class="tm">入力側</text>
-<text x="306" y="340" class="tm" text-anchor="end">出力側</text>
-<line x1="230" y1="335" x2="105.6" y2="335" class="l sm w1"/>
-<polygon points="100,335 105.6,331.5 105.6,338.5" class="fm"/>
-<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
-<text x="12" y="386" class="tb">③ 勾配クリッピング：長すぎる勾配を縮める</text>
-<circle cx="110" cy="510" r="56" class="sm w2 dsh"/>
-<text x="12" y="452" class="tm">しきい値</text>
-<line x1="110" y1="510" x2="231.5" y2="422.67" class="l sng w2"/>
-<polygon points="238,418 234.42,426.73 228.59,418.61" class="fm"/>
-<line x1="110" y1="510" x2="148.33" y2="482.45" class="l sa w3"/>
-<polygon points="155.47,477.32 151.54,486.92 145.12,477.99" class="fa"/>
-<circle cx="110" cy="510" r="3" class="fm"/>
-<text x="250" y="442" class="tb tng">元の勾配</text>
-<text x="170" y="518" class="tb ta">切り詰めた勾配</text>
-<text x="12" y="596">ノルムがしきい値を超えたら、向きはそのまま</text>
-<text x="12" y="616">しきい値÷ノルムを掛けて縮める</text>
-<text x="12" y="642" class="tb">勾配爆発に効く。勾配消失には効かない</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1142" role="img" aria-labelledby="fig-g-vanishing-gradient-t fig-g-vanishing-gradient-d">
+<title id="fig-g-vanishing-gradient-t">勾配消失：なぜ掛け算になり、なぜ小さくなるのか</title>
+<desc id="fig-g-vanishing-gradient-d">① なぜ掛け算になるのか：勾配は、重みを少し動かしたとき誤差がどれだけ動くかを表す。誤差逆伝播では、誤差から層4、層3、層2、層1へと1層戻るたびに、その層の傾き（微分）を掛ける。どの層でも0.25が掛かると、層1に届く勾配は0.25×0.25×0.25×0.25でおよそ0.0039（256分の1）。たとえ：歯車を4段つなぎ、どの段も前の歯車が1回ると0.25回だけ回るなら、最後の歯車は0.0039回しか回らない。正確には各段で傾き×重みが掛かるが、この図では傾きだけを見る。② なぜ0.25なのか：シグモイド関数の曲線に、その点での傾きを短い直線（接線）で描く。x＝0でいちばん急で傾き0.25、x＝4ではほぼ平らで傾き0.018。傾きだけを縦に拡大して描くと山の形で、頂上はx＝0の0.25、x＝2で0.10、x＝4で0.02。傾きはσ×(1−σ)で、σは0から1なので、σ＝0.5のとき0.5×0.5＝0.25が最大。だから1層ごとに4分の1以下に縮む。入力が大きい・小さいと傾きはほぼ0（飽和）。③ 勾配消失：届く勾配の棒グラフ。誤差の所を1として、層4で0.25、層3で0.0625、層2で0.0156、層1で0.0039。層1の重みはほとんど動かず、出力側の層しか学ばない。④ 防ぎ方：ReLUは正の側の傾きが1なので縮まない。LSTMのCECはさかのぼっても1が掛かる。スキップ結合は足し算の近道で勾配が直接届く。重みの初期値は層ごとに大きさが保たれる値を選ぶ。バッチ正規化は入力を飽和しにくい範囲に保つ。勾配クリッピングは勾配爆発の対策で、小さい勾配は大きくならない。</desc>
+<text x="12" y="20" class="tb">① なぜ掛け算になるのか</text>
+<text x="12" y="40" class="tm">勾配＝重みを少し動かしたとき誤差が動く量</text>
+<rect x="12" y="54" width="36" height="28" rx="4" class="fas sa" stroke-width="1.5"/>
+<text x="30" y="72.5" class="tb" text-anchor="middle">層1</text>
+<rect x="77" y="54" width="36" height="28" rx="4" class="fas sa" stroke-width="1.5"/>
+<text x="95" y="72.5" class="tb" text-anchor="middle">層2</text>
+<rect x="142" y="54" width="36" height="28" rx="4" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="72.5" class="tb" text-anchor="middle">層3</text>
+<rect x="207" y="54" width="36" height="28" rx="4" class="fas sa" stroke-width="1.5"/>
+<text x="225" y="72.5" class="tb" text-anchor="middle">層4</text>
+<rect x="272" y="54" width="36" height="28" rx="4" class="fwn swn" stroke-width="1.5"/>
+<text x="290" y="72.5" class="tb" text-anchor="middle">誤差</text>
+<line x1="87" y1="98" x2="38" y2="98" class="l swn w2"/>
+<polyline points="45,94.15 38,98 45,101.85" class="l swn w2"/>
+<text x="62.5" y="116" class="tb twn" text-anchor="middle">×0.25</text>
+<line x1="152" y1="98" x2="103" y2="98" class="l swn w2"/>
+<polyline points="110,94.15 103,98 110,101.85" class="l swn w2"/>
+<text x="127.5" y="116" class="tb twn" text-anchor="middle">×0.25</text>
+<line x1="217" y1="98" x2="168" y2="98" class="l swn w2"/>
+<polyline points="175,94.15 168,98 175,101.85" class="l swn w2"/>
+<text x="192.5" y="116" class="tb twn" text-anchor="middle">×0.25</text>
+<line x1="282" y1="98" x2="233" y2="98" class="l swn w2"/>
+<polyline points="240,94.15 233,98 240,101.85" class="l swn w2"/>
+<text x="257.5" y="116" class="tb twn" text-anchor="middle">×0.25</text>
+<text x="12" y="138">1層戻るたびに、その層の傾き（微分）を掛ける</text>
+<text x="12" y="158" class="tb">層1に届く勾配 ＝ 0.25×0.25×0.25×0.25</text>
+<text x="12" y="178" class="tb twn">≈ 0.0039（256分の1）</text>
+<rect x="12" y="192" width="296" height="70" rx="6" class="fbg sb" stroke-width="1"/>
+<text x="22" y="212" class="tb">たとえ：歯車を4段つなぐ</text>
+<text x="22" y="232">どの段も「前が1回ると0.25回」なら、</text>
+<text x="22" y="250">最後の歯車は0.0039回しか回らない</text>
+<text x="12" y="282" class="tm">正確には各段で「傾き×重み」が掛かる。</text>
+<text x="12" y="300" class="tm">この図では、主役の傾きだけを見ている</text>
+<line x1="12" y1="316" x2="308" y2="316" class="l sb w1"/>
+<text x="12" y="340" class="tb">② なぜ 0.25 なのか（シグモイドの傾き）</text>
+<rect x="40" y="352" width="264" height="100" class="sb fs" stroke-width="1"/>
+<line x1="40" y1="447" x2="304" y2="447" class="l sm w1"/>
+<line x1="172" y1="352" x2="172" y2="452" class="l sm w1"/>
+<text x="35" y="451.5" class="tm" text-anchor="end">0</text>
+<text x="35" y="406.5" class="tm" text-anchor="end">0.5</text>
+<text x="35" y="361.5" class="tm" text-anchor="end">1</text>
+<polyline points="40,446.78 43.3,446.74 46.6,446.7 49.9,446.65 53.2,446.6 56.5,446.53 59.8,446.45 63.1,446.37 66.4,446.27 69.7,446.15 73,446.01 76.3,445.85 79.6,445.67 82.9,445.46 86.2,445.21 89.5,444.93 92.8,444.61 96.1,444.23 99.4,443.8 102.7,443.3 106,442.73 109.3,442.08 112.6,441.33 115.9,440.48 119.2,439.51 122.5,438.42 125.8,437.18 129.1,435.79 132.4,434.23 135.7,432.5 139,430.58 142.3,428.47 145.6,426.17 148.9,423.67 152.2,420.99 155.5,418.13 158.8,415.11 162.1,411.96 165.4,408.7 168.7,405.37 172,402 175.3,398.63 178.6,395.3 181.9,392.04 185.2,388.89 188.5,385.87 191.8,383.01 195.1,380.33 198.4,377.83 201.7,375.53 205,373.42 208.3,371.5 211.6,369.77 214.9,368.21 218.2,366.82 221.5,365.58 224.8,364.49 228.1,363.52 231.4,362.67 234.7,361.92 238,361.27 241.3,360.7 244.6,360.2 247.9,359.77 251.2,359.39 254.5,359.07 257.8,358.79 261.1,358.54 264.4,358.33 267.7,358.15 271,357.99 274.3,357.85 277.6,357.73 280.9,357.63 284.2,357.55 287.5,357.47 290.8,357.4 294.1,357.35 297.4,357.3 300.7,357.26 304,357.22" class="l sa w2"/>
+<line x1="136.8" y1="438" x2="207.2" y2="366" class="l swn w2"/>
+<circle cx="172" cy="402" r="3.5" class="fa"/>
+<line x1="238" y1="360.21" x2="282" y2="357.03" class="l swn w2"/>
+<circle cx="260" cy="358.62" r="3.5" class="fa"/>
+<text x="44" y="370" class="tb twn">いちばん急 0.25</text>
+<line x1="260" y1="364.62" x2="260" y2="380" class="l sm w1"/>
+<text x="302" y="394" class="tb twn" text-anchor="end">ほぼ平ら 0.018</text>
+<text x="40" y="470" class="tm" text-anchor="middle">−6</text>
+<text x="172" y="470" class="tm" text-anchor="middle">0</text>
+<text x="304" y="470" class="tm" text-anchor="middle">6</text>
+<text x="12" y="488" class="tm">曲線がシグモイド σ(x)。短い直線がその点の傾き</text>
+<text x="12" y="514">傾きだけを縦に拡大して描くと、頂上が 0.25</text>
+<rect x="40" y="524" width="264" height="80" class="sb fs" stroke-width="1"/>
+<line x1="40" y1="599" x2="304" y2="599" class="l sm w1"/>
+<line x1="172" y1="524" x2="172" y2="604" class="l sm w1"/>
+<text x="35" y="603.5" class="tm" text-anchor="end">0</text>
+<text x="35" y="533.5" class="tm" text-anchor="end">0.25</text>
+<polyline points="40,598.31 43.3,598.2 46.6,598.07 49.9,597.92 53.2,597.75 56.5,597.55 59.8,597.31 63.1,597.04 66.4,596.73 69.7,596.37 73,595.96 76.3,595.48 79.6,594.92 82.9,594.29 86.2,593.55 89.5,592.71 92.8,591.75 96.1,590.65 99.4,589.39 102.7,587.97 106,586.35 109.3,584.53 112.6,582.48 115.9,580.19 119.2,577.65 122.5,574.85 125.8,571.79 129.1,568.47 132.4,564.92 135.7,561.16 139,557.24 142.3,553.22 145.6,549.19 148.9,545.23 152.2,541.46 155.5,537.99 158.8,534.94 162.1,532.43 165.4,530.55 168.7,529.39 172,529 175.3,529.39 178.6,530.55 181.9,532.43 185.2,534.94 188.5,537.99 191.8,541.46 195.1,545.23 198.4,549.19 201.7,553.22 205,557.24 208.3,561.16 211.6,564.92 214.9,568.47 218.2,571.79 221.5,574.85 224.8,577.65 228.1,580.19 231.4,582.48 234.7,584.53 238,586.35 241.3,587.97 244.6,589.39 247.9,590.65 251.2,591.75 254.5,592.71 257.8,593.55 261.1,594.29 264.4,594.92 267.7,595.48 271,595.96 274.3,596.37 277.6,596.73 280.9,597.04 284.2,597.31 287.5,597.55 290.8,597.75 294.1,597.92 297.4,598.07 300.7,598.2 304,598.31" class="l swn w2 dsh"/>
+<line x1="40" y1="529" x2="304" y2="529" class="l sm w1 dot"/>
+<circle cx="216" cy="569.6" r="3.5" class="fa"/>
+<text x="224" y="563.6" class="tb twn">0.10</text>
+<circle cx="260" cy="594.05" r="3.5" class="fa"/>
+<text x="268" y="588.05" class="tb twn">0.02</text>
+<text x="40" y="622" class="tm" text-anchor="middle">−6</text>
+<text x="172" y="622" class="tm" text-anchor="middle">0</text>
+<text x="304" y="622" class="tm" text-anchor="middle">6</text>
+<text x="12" y="640">傾き ＝ σ×(1−σ)。σ は 0〜1 なので</text>
+<text x="12" y="658">σ＝0.5（x＝0）のとき 0.5×0.5＝0.25 が最大</text>
+<text x="12" y="678" class="tb">→ 1層ごとに 1/4 以下に縮む</text>
+<text x="12" y="696" class="tm">入力が大きい・小さいと、傾きはほぼ 0（飽和）</text>
+<line x1="12" y1="712" x2="308" y2="712" class="l sb w1"/>
+<text x="12" y="736" class="tb">③ 勾配消失：入力側の層が学ばない</text>
+<text x="12" y="756" class="tm">層ごとに届く勾配（誤差の所を1とする）</text>
+<rect x="12" y="848.5" width="36" height="1.5" class="fwn swn" stroke-width="1.5"/>
+<text x="30" y="842.5" class="tb" text-anchor="middle">0.0039</text>
+<rect x="77" y="848.5" width="36" height="1.5" class="fwn swn" stroke-width="1.5"/>
+<text x="95" y="842.5" class="tb" text-anchor="middle">0.0156</text>
+<rect x="142" y="845.63" width="36" height="4.38" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="839.63" class="tb" text-anchor="middle">0.0625</text>
+<rect x="207" y="832.5" width="36" height="17.5" class="fwn swn" stroke-width="1.5"/>
+<text x="225" y="826.5" class="tb" text-anchor="middle">0.25</text>
+<rect x="272" y="780" width="36" height="70" class="fas sa" stroke-width="1.5"/>
+<text x="290" y="774" class="tb" text-anchor="middle">1</text>
+<line x1="10" y1="850" x2="310" y2="850" class="l sm w1"/>
+<text x="30" y="868" class="tm" text-anchor="middle">層1</text>
+<text x="95" y="868" class="tm" text-anchor="middle">層2</text>
+<text x="160" y="868" class="tm" text-anchor="middle">層3</text>
+<text x="225" y="868" class="tm" text-anchor="middle">層4</text>
+<text x="290" y="868" class="tm" text-anchor="middle">誤差</text>
+<line x1="280" y1="880" x2="40" y2="880" class="l sm w1"/>
+<polyline points="47,876.15 40,880 47,883.85" class="l sm w1"/>
+<text x="160" y="896" class="tm" text-anchor="middle">出力側から入力側へ戻る（逆伝播）</text>
+<text x="12" y="922" class="tb">層1の重みはほとんど動かない</text>
+<text x="12" y="942">→ 出力側の層しか学ばず、深くした意味が無い</text>
+<line x1="12" y1="958" x2="308" y2="958" class="l sb w1"/>
+<text x="12" y="982" class="tb">④ 防ぎ方：掛かる数を 1 に近づける</text>
+<text x="12" y="1004">ReLU：正の側の傾きは 1。×1 なら縮まない</text>
+<text x="12" y="1024">LSTM の CEC：さかのぼっても ×1</text>
+<text x="12" y="1044">スキップ結合：足し算の近道で直接届く</text>
+<text x="12" y="1064">重みの初期値：層ごとに大きさが保たれる値</text>
+<text x="12" y="1084">バッチ正規化：飽和しにくい範囲に保つ</text>
+<text x="12" y="1110" class="tb tng">勾配クリッピングは爆発の対策。</text>
+<text x="12" y="1128" class="tb tng">小さい勾配は大きくならない</text>
 </svg>

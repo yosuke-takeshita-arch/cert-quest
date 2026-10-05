@@ -370,6 +370,7 @@
   - [Goodfellow, Bengio & Courville "Deep Learning" Chapter 3 Probability and Information Theory（著者公開版）](https://www.deeplearningbook.org/contents/prob.html)（C-04-006）
   - [Hochreiter (1998) The Vanishing Gradient Problem During Learning Recurrent Neural Nets and Problem Solutions. IJUFKS 6(2)（著者所属機関の公開版）](https://www.bioinf.jku.at/publications/older/2304.pdf)（C-04-006）
   - [Goodfellow, Bengio & Courville "Deep Learning" Chapter 6 Deep Feedforward Networks（著者公開版）](https://www.deeplearningbook.org/contents/mlp.html)（C-04-006）
+- 2026-10-06 描き直し：先生から「なぜ勾配が小さくなるのか腑に落ちない」と指摘。勾配消失だけの図にし、①なぜ掛け算か（層1〜層4・誤差を ×0.25 で逆向きにたどる鎖と歯車のたとえ）②なぜ 0.25 か（シグモイドの接線と、傾きの山 σ(1−σ) の頂上 0.25）③棒グラフ ④防ぎ方 の順にした。勾配爆発とクリッピングは fig-g-exploding-gradient に分けた（使う所：C-04-025、C-04-024、G-04-023、G-04-025、G-04-050）。根拠に Hochreiter (1998)（要旨：シグモイドの f' の最大は 0.25 なので、|w|<4 なら f'·w<1）を足した。
 
 #### fig-g-gradient-descent　勾配降下法と学習率の大きさ
 

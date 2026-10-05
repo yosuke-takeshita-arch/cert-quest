@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 542" role="img" aria-labelledby="fig-g-exploding-gradient-t fig-g-exploding-gradient-d">
+<title id="fig-g-exploding-gradient-t">勾配爆発と、勾配クリッピング</title>
+<desc id="fig-g-exploding-gradient-d">① 勾配爆発：掛け算の仕組みは勾配消失と同じで、誤差逆伝播で1層戻るたびに値が掛かる。各層で1より大きい値（例として2）が掛かると、勾配は誤差の所の1から、層4で2、層3で4、層2で8、層1で16と急に大きくなり、重みが一度に大きく動いて学習が発散する。② 勾配クリッピング：勾配ベクトルのノルムがしきい値を超えたら、向きは保ったまま、しきい値÷ノルムを掛けて長さをしきい値まで縮める。勾配爆発に効くが、勾配消失には効かない。</desc>
+<text x="12" y="20" class="tb">① 勾配爆発：大きい値を掛け続ける</text>
+<text x="12" y="40" class="tm">掛け算の仕組みは勾配消失と同じ。</text>
+<text x="12" y="58" class="tm">各層で1より大きい値（例：2）が掛かる</text>
+<rect x="12" y="92" width="36" height="70" class="fwn swn" stroke-width="1.5"/>
+<text x="30" y="86" class="tb" text-anchor="middle">16</text>
+<rect x="77" y="127" width="36" height="35" class="fwn swn" stroke-width="1.5"/>
+<text x="95" y="121" class="tb" text-anchor="middle">8</text>
+<rect x="142" y="144.5" width="36" height="17.5" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="138.5" class="tb" text-anchor="middle">4</text>
+<rect x="207" y="153.25" width="36" height="8.75" class="fwn swn" stroke-width="1.5"/>
+<text x="225" y="147.25" class="tb" text-anchor="middle">2</text>
+<rect x="272" y="157.63" width="36" height="4.38" class="fas sa" stroke-width="1.5"/>
+<text x="290" y="151.63" class="tb" text-anchor="middle">1</text>
+<line x1="10" y1="162" x2="310" y2="162" class="l sm w1"/>
+<text x="30" y="180" class="tm" text-anchor="middle">層1</text>
+<text x="95" y="180" class="tm" text-anchor="middle">層2</text>
+<text x="160" y="180" class="tm" text-anchor="middle">層3</text>
+<text x="225" y="180" class="tm" text-anchor="middle">層4</text>
+<text x="290" y="180" class="tm" text-anchor="middle">誤差</text>
+<line x1="280" y1="192" x2="40" y2="192" class="l sm w1"/>
+<polyline points="47,188.15 40,192 47,195.85" class="l sm w1"/>
+<text x="160" y="208" class="tm" text-anchor="middle">出力側から入力側へ戻る（逆伝播）</text>
+<text x="12" y="234" class="tb">重みが一度に大きく動き、学習が発散する</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="274" class="tb">② 勾配クリッピング：長すぎる勾配を縮める</text>
+<circle cx="110" cy="398" r="56" class="sm w2 dsh"/>
+<text x="12" y="340" class="tm">しきい値</text>
+<line x1="110" y1="398" x2="231.5" y2="310.67" class="l sng w2"/>
+<polygon points="238,306 234.42,314.73 228.59,306.61" class="fm"/>
+<line x1="110" y1="398" x2="148.33" y2="370.45" class="l sa w3"/>
+<polygon points="155.47,365.32 151.54,374.92 145.12,365.99" class="fa"/>
+<circle cx="110" cy="398" r="3" class="fm"/>
+<text x="250" y="330" class="tb tng">元の勾配</text>
+<text x="170" y="406" class="tb ta">切り詰めた勾配</text>
+<text x="12" y="484">ノルムがしきい値を超えたら、向きはそのまま</text>
+<text x="12" y="504">しきい値÷ノルムを掛けて縮める</text>
+<text x="12" y="530" class="tb">勾配爆発に効く。勾配消失には効かない</text>
+</svg>

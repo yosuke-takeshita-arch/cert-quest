@@ -219,7 +219,7 @@
       "入力が負のときに出力も微分も必ず0になるため"
     ],
     "answer": 2,
-    "explanation": "シグモイドの微分はσ(x)(1−σ(x))で、x＝0のとき最大の0.25。入力の絶対値が大きいとほぼ0になる。誤差逆伝播では各層の微分を掛け合わせるので、層が深いほど勾配が小さくなる。",
+    "explanation": "シグモイドの微分はσ(x)(1−σ(x))。σは0〜1なので、σ＝0.5（x＝0）のとき 0.5×0.5＝0.25 が最大。入力の絶対値が大きいとほぼ0になる。誤差逆伝播では各層の微分を掛け合わせるので、層が深いほど勾配が小さくなる。",
     "whyWrong": [
       "−1〜1はtanhの出力範囲。シグモイドは0〜1。",
       "微分が正の領域で1になるのはReLU。",
@@ -989,7 +989,7 @@
       "C-04-024"
     ],
     "figures": [
-      "fig-g-vanishing-gradient"
+      "fig-g-exploding-gradient"
     ],
     "sources": [
       {
@@ -1082,7 +1082,8 @@
       "C-04-023"
     ],
     "figures": [
-      "fig-g-vanishing-gradient"
+      "fig-g-vanishing-gradient",
+      "fig-g-exploding-gradient"
     ],
     "sources": [
       {
@@ -2089,7 +2090,7 @@
       "C-04-024"
     ],
     "figures": [
-      "fig-g-vanishing-gradient"
+      "fig-g-exploding-gradient"
     ],
     "sources": [
       {
