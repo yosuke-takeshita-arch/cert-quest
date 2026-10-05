@@ -4,7 +4,6 @@ import { h, icon } from '../ui.js';
 import { daysUntil } from '../lib/scoring.js';
 import { unlockAudio } from '../audio.js';
 import { buildSoundCard } from './sound-settings.js';
-import { DOC_TITLE, PAGE_FILE } from '../lib/legal.js';
 
 /**
  * 返すもの:
@@ -32,12 +31,7 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
   const status = h('p', { class: 'title-status', 'aria-live': 'polite', text: '読み込み中…' });
   const loading = h('div', { class: 'title-loading' }, gauge, status);
   const startBtn = h('button', { class: 'title-start hidden', type: 'button' }, 'タップしてはじめる');
-  // 規約を契約の内容にすることを、使いはじめる前に表示する（民法 548条の2 第1項2号）。単独ページ（アプリの scope の外）を別タブで開く
-  const legalLink = (kind) => h('a', { class: 'title-legal-link', href: new URL('../' + PAGE_FILE[kind], location.href).href, target: '_blank', rel: 'noopener noreferrer', 'data-legal-link': kind, text: DOC_TITLE[kind] });
-  const legal = h('div', { class: 'title-legal', 'data-title-legal': '1' },
-    h('p', { class: 'title-legal-note', text: 'はじめると、次の内容に同意したものとします。' }),
-    h('p', { class: 'title-legal-links' }, legalLink('terms'), legalLink('privacy')));
-  const bottom = h('div', { class: 'title-bottom' }, loading, startBtn, h('p', { class: 'title-unofficial', text: '非公式アプリ' }), legal);
+  const bottom = h('div', { class: 'title-bottom' }, loading, startBtn, h('p', { class: 'title-unofficial', text: '非公式アプリ' }));
 
   const el = h('div', { class: 'title-screen', 'data-title': '1' },
     bg,
