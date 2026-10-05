@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 484" role="img" aria-labelledby="fig-g-neocognitron-lenet-t fig-g-neocognitron-lenet-d">
+<title id="fig-g-neocognitron-lenet-t">ネオコグニトロンと LeNet の見分け方</title>
+<desc id="fig-g-neocognitron-lenet-d">2つは構造が似ている。どちらも、特徴を取り出す層と、位置のずれを吸収する層を交互に重ねる。違いは学習のしかたで、ネオコグニトロンは正解を教えない自己組織化（教師なし学習）、LeNet は誤差逆伝播法で正解に合わせる教師あり学習。層の名前は、ネオコグニトロンが S細胞（特徴を取り出す）と C細胞（ずれを吸収）、LeNet-5 が C（畳み込み）と S（サブサンプリング）で、同じ文字が逆の役になる。ネオコグニトロンは1980年・福島邦彦。LeNet はルカンらで、1989年に郵便番号の手書き数字の認識を示し、1998年の論文で LeNet-5 を示した。</desc>
+<text x="12" y="20" class="tb">構造は似ている。違いは学習のしかた</text>
+<text x="84" y="48" class="tb" text-anchor="middle">ネオコグニトロン</text>
+<text x="236" y="48" class="tb" text-anchor="middle">LeNet</text>
+<text x="12" y="76" class="tm">学習のしかた（ここが分かれ目）</text>
+<rect x="12" y="84" width="144" height="66" class="fas sa" stroke-width="1.5"/>
+<text x="84" y="104" text-anchor="middle">正解を教えない</text>
+<text x="84" y="122" text-anchor="middle" class="tb">自己組織化</text>
+<text x="84" y="140" text-anchor="middle">（教師なし）</text>
+<rect x="164" y="84" width="144" height="66" class="fok sok" stroke-width="1.5"/>
+<text x="236" y="104" text-anchor="middle" class="tb">誤差逆伝播法</text>
+<text x="236" y="122" text-anchor="middle">で正解に合わせる</text>
+<text x="236" y="140" text-anchor="middle">（教師あり）</text>
+<text x="12" y="176" class="tm">層の名前（同じ文字が逆の役）</text>
+<rect x="12" y="184" width="144" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="84" y="204" text-anchor="middle">S細胞＝特徴を取る</text>
+<text x="84" y="222" text-anchor="middle">C細胞＝ずれを吸収</text>
+<rect x="164" y="184" width="144" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="236" y="204" text-anchor="middle">C＝畳み込み</text>
+<text x="236" y="222" text-anchor="middle">S＝サブサンプリング</text>
+<text x="12" y="258" class="tm">年</text>
+<rect x="12" y="266" width="144" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="84" y="295" text-anchor="middle">1980年</text>
+<rect x="164" y="266" width="144" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="236" y="286" text-anchor="middle">1989年 郵便番号</text>
+<text x="236" y="304" text-anchor="middle">1998年 LeNet-5</text>
+<text x="12" y="340" class="tm">作った人</text>
+<rect x="12" y="348" width="144" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="84" y="369" text-anchor="middle">福島邦彦</text>
+<rect x="164" y="348" width="144" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="236" y="369" text-anchor="middle">ルカンら</text>
+<line x1="12" y1="400" x2="308" y2="400" class="l sb w1"/>
+<text x="12" y="424" class="tb">共通点：CNN の原型になった構造</text>
+<text x="12" y="446">特徴を取り出す層と、ずれを吸収する層を</text>
+<text x="12" y="466">交互に重ねる（ネオコグニトロン→LeNet）</text>
+</svg>

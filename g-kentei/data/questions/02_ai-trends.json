@@ -1350,14 +1350,14 @@
       "ネオコグニトロン"
     ],
     "answer": 3,
-    "explanation": "ネオコグニトロンはヒューベルとウィーゼルの視覚モデルに近い階層構造を持ち、CNNの原型とされる。",
+    "explanation": "ネオコグニトロンは、特徴を取り出すS細胞の層と位置のずれを吸収するC細胞の層を交互に重ねた、ヒューベルとウィーゼルの視覚モデルに近い階層構造を持ち、CNNの原型とされる。正解を教えない自己組織化（教師なし学習）で学ぶ。",
     "whyWrong": [
       "単純パーセプトロンは入力層と出力層だけのモデルで、位置ずれへの対応の仕組みは持たない。",
-      "LeNetはルカンらの手書き文字認識のCNNで、誤差逆伝播法で学習する。",
+      "LeNetはルカンらのCNN（LeNet-5は1998年）。構造は似ているが、誤差逆伝播法による教師あり学習で学ぶ点が違う。",
       "AlexNetは2012年のILSVRC優勝モデル。",
       null
     ],
-    "memoryTip": "日本発CNNの元祖＝ネオコグニトロン（福島）。米国で実用化＝LeNet（ルカン）。",
+    "memoryTip": "1980年・福島邦彦・自己組織化（教師なし）＝ネオコグニトロン。1989〜1998年・ルカン・誤差逆伝播法（教師あり）＝LeNet。",
     "concepts": [
       "C-02-035",
       "C-02-036"
@@ -1370,6 +1370,7 @@
     ],
     "status": "verified",
     "figures": [
+      "fig-g-neocognitron-lenet",
       "fig-g-cnn-arch"
     ]
   },
@@ -1393,15 +1394,20 @@
     "explanation": "LeNet（LeNet-5など）は文書認識に使われたCNNで、畳み込み→サブサンプリング（プーリング）→全結合の基本形を示した。",
     "whyWrong": [
       null,
-      "ネオコグニトロンは福島邦彦のモデルで、誤差逆伝播法を使わない。",
+      "ネオコグニトロンは福島邦彦の1980年のモデルで、構造は似ているが誤差逆伝播法を使わず、正解を教えない自己組織化で学ぶ。",
       "ResNetはスキップ結合を持つ2015年のモデル。",
       "TransformerはAttentionを中心とした系列のモデルで、畳み込みを重ねるものではない。"
     ],
     "memoryTip": "LeNet＝LeCun（ルカン）のNet。どちらもCNNの祖先だが、ネオコグニトロン（福島）は誤差逆伝播法を使わず、LeNetは誤差逆伝播法で学習した、が分かれ目。",
     "concepts": [
-      "C-02-036"
+      "C-02-036",
+      "C-02-035"
     ],
     "sources": [
+      {
+        "title": "LeCun et al. (1989) Backpropagation Applied to Handwritten Zip Code Recognition. Neural Computation",
+        "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf"
+      },
       {
         "title": "LeCun et al. (1998) Gradient-Based Learning Applied to Document Recognition",
         "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf"
@@ -1409,6 +1415,7 @@
     ],
     "status": "verified",
     "figures": [
+      "fig-g-neocognitron-lenet",
       "fig-g-cnn-arch"
     ]
   },
