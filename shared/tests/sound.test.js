@@ -371,6 +371,39 @@ test('場面の切り替え: タイトル→ホーム→問題→ホームで、
   assert.equal(at(true).track, at(false).track);
 });
 
+test('タイトル画面はタイトル曲で固定。出たあとは『それ以外』で選んだ曲。オフなら無音', () => {
+  const S = (o) => normalizeSoundSettings({ ...o });
+  for (const pick of ['bluebonnet', 'auto', 'title', 'chill-lofi']) {
+    const s = S({ bgmHome: true, bgmHomeTrack: pick });
+    assert.deepEqual(bgmPlan(s, { inTitle: true }), { scene: 'title', track: 'title' }, 'タイトル画面は選択にかかわらずタイトル曲: ' + pick);
+    assert.equal(bgmPlan(s, { inTitle: false }).track, pick, 'タイトル画面を出たあとは選んだ曲: ' + pick);
+  }
+  // オフならタイトル画面も無音（問題中がオンでも、タイトル画面には効かない）
+  assert.equal(bgmPlan(S({ bgm: true, bgmHome: false }), { inTitle: true }), null);
+  assert.equal(bgmPlan(S({ bgmHome: false }), { inTitle: false }), null);
+  // 問題を解いている間・問題中の試し聴きが最優先（タイトル画面の歯車での試し聴きは、その曲）
+  const both = S({ bgm: true, bgmHome: true, bgmTrack: 'jrpg-piano', bgmHomeTrack: 'bluebonnet' });
+  assert.deepEqual(bgmPlan(both, { inTitle: true, preview: true }), { scene: 'quiz', track: 'jrpg-piano' });
+  assert.equal(bgmPlan(both, { inTitle: true, hidden: true }), null);
+  // 流れ: タイトル(さわった後)→ホーム→問題→ホーム
+  const at = (o) => bgmPlan(both, o).track;
+  assert.deepEqual([at({ inTitle: true }), at({}), at({ inQuiz: true }), at({})], ['title', 'bluebonnet', 'jrpg-piano', 'bluebonnet']);
+  // タイトル曲を選んでいれば、タイトル画面からホームへ進んでも同じ曲（切らずに続けられる）
+  both.bgmHomeTrack = 'title';
+  assert.equal(at({ inTitle: true }), at({}));
+  // 既存の保存値（bgmHomeTrack）はそのまま読める
+  assert.equal(normalizeSoundSettings({ bgmHome: true, bgmHomeTrack: 'bluebonnet' }).bgmHomeTrack, 'bluebonnet');
+});
+
+test('タイトル画面の判定の結線: audio.js の plan が inTitle を渡し、app.js が『はじめる』のあとに出たと伝える', () => {
+  const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
+  const app = readFileSync(join(shared, 'js', 'app.js'), 'utf8');
+  assert.match(functionBody(au, 'plan'), /inTitle: B\.title/);
+  assert.match(functionBody(au, 'setBgmTitle'), /B\.title = !!on/);
+  assert.match(functionBody(au, 'setBgmTitle'), /syncBgm\(\)/);
+  assert.match(app, /await title\.ready\([\s\S]*?\}\);\s*setBgmTitle\(false\)/);
+});
+
 test('BGM の鳴らし方: audio.js が場面の plan に従い、場面が変わるときは小さくして切り替え、app.js が結線している', () => {
   const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
   const app = readFileSync(join(shared, 'js', 'app.js'), 'utf8');

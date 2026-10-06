@@ -17,7 +17,7 @@ export function normalizeVolume(v, fallback) {
  *  sound … 効果音のオン／オフ（これまでの項目をそのまま引き継ぐ。古い記録でオンの人はオンのまま）
  *  sfxVolume / bgmVolume … 0〜100
  *  bgm … 問題を解いているあいだの BGM のオン／オフ（初期オフ）。bgmTrack … その曲
- *  bgmHome … それ以外（タイトル・ホーム・地図など）の BGM のオン／オフ（初期オフ）。bgmHomeTrack … その曲（初期はタイトル曲）
+ *  bgmHome … それ以外（タイトル画面・ホーム・地図など）の BGM のオン／オフ（初期オフ。タイトル画面にも効く）。bgmHomeTrack … タイトル画面を出たあとの曲（初期はタイトル曲。タイトル画面はこの値にかかわらずタイトル曲）
  *  bgmVolume … BGM の音量（2つの場面で共通）
  * 古い記録（bgmHome が無い）の移行は mergeState がやる（bgm がオンだった人は bgmHome もオン。ここでは見分けられない）。
  */
@@ -40,13 +40,18 @@ export function normalizeHomeTrack(v, tracks = BGM_TRACKS) {
 }
 
 /**
- * いま流すべき BGM（流さないなら null）。場面は、問題を解いている（inQuiz）か問題中の曲を試し聴き中（preview）なら問題中、それ以外はそれ以外。
+ * いま流すべき BGM（流さないなら null）。場面は3つ。
+ *  quiz … 問題を解いている（inQuiz）か、問題中の曲を試し聴き中（preview）。問題中のオン／オフ（bgm）と曲（bgmTrack）に従う
+ *  title … タイトル画面（inTitle）。『それ以外』のオン／オフ（bgmHome）に従い、曲は選択にかかわらずいつもタイトル曲で固定
+ *  other … それ以外（ホーム・地図・カード・設定など）。『それ以外』のオン／オフと曲（bgmHomeTrack）に従う
+ * 問題中の判定が最優先（タイトル画面の歯車で問題中の曲を試し聴きしている間は、その曲）。
  * その場面のオン／オフが切れている・アプリが裏に回っている（hidden）なら null。
- * 返すもの: { scene: 'quiz' | 'other', track: 'auto' | 'title' | BGM_TRACKS の id }
+ * 返すもの: { scene: 'quiz' | 'title' | 'other', track: 'auto' | 'title' | BGM_TRACKS の id }
  */
-export function bgmPlan(s, { inQuiz = false, preview = false, hidden = false } = {}) {
+export function bgmPlan(s, { inQuiz = false, preview = false, inTitle = false, hidden = false } = {}) {
   if (!s || hidden) return null;
   if (inQuiz || preview) return s.bgm ? { scene: 'quiz', track: normalizeBgmTrack(s.bgmTrack) } : null;
+  if (inTitle) return s.bgmHome ? { scene: 'title', track: TITLE_BGM.id } : null;
   return s.bgmHome ? { scene: 'other', track: normalizeHomeTrack(s.bgmHomeTrack) } : null;
 }
 

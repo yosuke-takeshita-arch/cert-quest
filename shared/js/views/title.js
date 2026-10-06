@@ -57,7 +57,7 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
     popupOpen = true;
     // 歯車を押すことも「最初の操作」。ここで音を使える状態にして、ポップアップの中の効果音・試し聴きがすぐ鳴るようにする
     unlockAudio({ sound: true, bgm: true });
-    const card = buildSoundCard(sound.settings, sound.commit, { heading: false });
+    const card = buildSoundCard(sound.settings, sound.commit, { heading: false, inTitle: true });
     const closeBtn = h('button', { class: 'btn ghost icon-only title-pop-close', type: 'button', 'aria-label': '閉じる' }, icon('close'));
     const panel = h('div', { class: 'title-pop', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'title-pop-h' },
       closeBtn, h('h2', { id: 'title-pop-h', class: 'title-pop-title', text: '音の設定' }), card.el);

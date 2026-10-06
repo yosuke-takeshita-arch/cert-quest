@@ -102,6 +102,7 @@ const FADE_SEC = TITLE_BGM.fadeSec;
 
 const B = {
   scene: false, // 問題を解いている画面にいるか
+  title: true, // タイトル画面にいるか（起動時は true。『タップしてはじめる』で出たら setBgmTitle(false)）
   preview: false, // 設定画面の「試しに聴く」（問題中の曲）
   el: null,
   gainNode: null,
@@ -115,7 +116,7 @@ const B = {
 };
 
 function plan() {
-  return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, hidden: document.hidden });
+  return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, inTitle: B.title, hidden: document.hidden });
 }
 
 // 設定が選んでいる曲（BGM_TRACKS の番号。おまかせ・タイトル曲・流さないときは -1）
@@ -334,7 +335,7 @@ function fadeOutTitle() {
 /** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */
 export function titleAudioLocked() {
   const p = plan();
-  return !!p && p.scene === 'other' && !!ctx && ctx.state !== 'running';
+  return !!p && p.scene !== 'quiz' && !!ctx && ctx.state !== 'running';
 }
 
 /** 動作確認用: いまのタイトル曲の状態。 */
@@ -367,7 +368,13 @@ export function syncBgm() {
   }
   // 展開した音（約10MB）は、タイトル曲を使う設定でなければ手放す
   const s = getSettings();
-  if (!T.src && !T.loading && !(s && s.bgmHome && s.bgmHomeTrack === TITLE_BGM.id)) T.buf = null;
+  if (!T.src && !T.loading && !(s && s.bgmHome && (B.title || s.bgmHomeTrack === TITLE_BGM.id))) T.buf = null;
+}
+
+/** タイトル画面にいるかどうかを伝える（出たら false。タイトル画面はタイトル曲で固定、出たあとは『それ以外』の曲）。 */
+export function setBgmTitle(on) {
+  B.title = !!on;
+  syncBgm();
 }
 
 /** 問題を解いている画面にいるかどうかを伝える。 */

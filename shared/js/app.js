@@ -14,7 +14,7 @@ import { renderCardList, renderCard } from './views/cards.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
-import { initAudio, setBgmScene, syncBgm, unlockAudio, playSfx } from './audio.js';
+import { initAudio, setBgmScene, setBgmTitle, syncBgm, unlockAudio, playSfx } from './audio.js';
 import { createTitleScreen } from './views/title.js';
 import { createLoadTracker } from './lib/loadprogress.js';
 import { needsExamDateAsk, examStatus } from './lib/examdate.js';
@@ -111,6 +111,7 @@ export async function start() {
     unlockAudio(titleState.settings);
     playSfx(titleState.settings, 'start');
   });
+  setBgmTitle(false); // タイトル画面を出た。ここから『それ以外』で選んだ曲（タイトル曲を選んでいれば、切らずに続く）
 
   // 受験日がまだ決まっていない（初回・古い記録）なら、ここで1回だけ聞く
   if (needsExamDateAsk(titleState.settings)) {

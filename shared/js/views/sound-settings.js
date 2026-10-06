@@ -7,10 +7,11 @@ import { playSfx, preloadSfx, syncBgm, applyVolumes, setBgmPreview } from '../au
 /**
  * settings … 設定の入れ物（変えるとそのまま書き換わる）
  * commit()  … 変えたあとの保存（設定画面は app.commit、タイトル画面は storage.save）
+ * inTitle   … タイトル画面のポップアップか（説明文を、この場で曲が変わらないことが分かる形にする）
  * heading   … カードの見出し「音」を出すか（ポップアップは自前の見出しがあるので false）
  * 返すもの: { el, dispose }。dispose() … 画面を出る・ポップアップを閉じるとき。試し聴きの BGM を止める
  */
-export function buildSoundCard(settings, commit, { heading = true } = {}) {
+export function buildSoundCard(settings, commit, { heading = true, inTitle = false } = {}) {
   const s = settings;
   const toggle = (label, hint, key, onChange) => {
     const id = 'set-' + key;
@@ -85,11 +86,11 @@ export function buildSoundCard(settings, commit, { heading = true } = {}) {
     }),
     trackRow('問題中の曲', 'おまかせは全曲を順番に流します。曲を選ぶと、その曲をくり返します', 'bgmTrack',
       [{ value: BGM_AUTO, text: 'おまかせ（全曲を順番に）' }, ...trackOptions], normalizeBgmTrack, quizOn),
-    toggle('BGM（それ以外）', 'タイトル・ホーム・地図・カードなど、問題を解いていないときに流します。オンにすると、この画面でもすぐ流れます（初期はオフ）', 'bgmHome', () => {
+    toggle('BGM（それ以外）', (inTitle ? 'タイトル画面・ホーム・地図・カードなど、問題を解いていないときに流します。タイトル画面ではタイトル曲です（初期はオフ）' : 'タイトル画面・ホーム・地図・カードなど、問題を解いていないときに流します。タイトル画面ではタイトル曲、ほかの画面では下で選んだ曲です（初期はオフ）'), 'bgmHome', () => {
       syncBgm();
       syncGated();
     }),
-    trackRow('それ以外の曲', '選ぶと、その曲に切り替わります（この画面でも聞こえます）', 'bgmHomeTrack',
+    trackRow(inTitle ? '「はじめる」のあとの曲' : 'それ以外の曲', (inTitle ? 'タイトル画面ではタイトル曲のままです。ここで選んだ曲は、『タップしてはじめる』のあと、ホームなどで流れます' : 'タイトル画面を出たあと（この画面を含む）に流す曲です。選ぶと、その曲に切り替わります'), 'bgmHomeTrack',
       [{ value: TITLE_BGM.id, text: TITLE_BGM.name + '（タイトル曲）' }, { value: BGM_AUTO, text: 'おまかせ（全曲を順番に）' }, ...trackOptions], normalizeHomeTrack, homeOn),
     slider('BGM の音量（どちらの場面も共通）', 'bgmVolume', () => quizOn() || homeOn(), () => applyVolumes()),
     h('div', { class: 'row-btn plain' }, h('span', { class: 'row-main' }, h('span', { class: 'small muted', text: '問題中の BGM をオンにしてから、ここで曲と音の大きさを確かめられます' })), previewBtn));
