@@ -5,7 +5,6 @@ import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.j
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, CHOICE_LABELS } from './explain.js';
-import { stemHelpBlock } from './stemhelp.js';
 
 /**
  * spec: { mode:'stage'|'review'|'challenge', title, pick(app)->質問の配列, stageKey?, backHash }
@@ -86,8 +85,6 @@ export function renderPlay(app) {
       card.appendChild(left);
     }
     card.appendChild(h('p', { class: 'stem', text: q.stem }));
-    const help = stemHelpBlock(app, q, sq.choices, (id) => openCardSheet(app, id)); // 模擬試験（exam.js）には置かない
-    if (help) card.appendChild(help);
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
     const btns = sq.choices.map((c, i) => {
       const b = h('button', { class: 'choice', type: 'button', onClick: () => answer(i) },

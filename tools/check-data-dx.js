@@ -21,7 +21,7 @@
 //   - 用語カード: id, syllabus, title, oneLine, why, links, confusions, sources, status
 //   - syllabus のパスが syllabus.json の木に実在すること
 //   - id の形式と重複、問題の concepts が実在するカードを指すこと
-//   - stemPlain（任意）が、空でない文字列・200文字以内・問題文と別の文・選択肢の文をそのまま含まないこと（要件定義書 §7-3）
+//   - stemPlain（任意）が、空でない文字列・200文字以内・問題文と別の文であること（要件定義書 §7-3）
 //   - sources が {title, url} で url が http(s) であること
 //   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
 //     viewBox の幅が 360 以下で、role="img"・<title>・<desc> を持つこと（要件定義書 §7-2）
@@ -187,8 +187,8 @@ function checkFigureFiles() {
   }
 }
 
-// 任意の欄 stemPlain（問題文を専門用語を使わずに言い直した文。要件定義書 §7-3）。答えの手がかりになってはいけない。
-const STEM_PLAIN_MAX = 200; // shared/js/lib/stemhelp.js の STEM_PLAIN_MAX と同じ値
+// 任意の欄 stemPlain（問題文を専門用語を使わずに言い直した文。要件定義書 §7-3。回答後の解説に出すので、選択肢の文を含んでもよい）。
+const STEM_PLAIN_MAX = 200;
 const nfkc = (s) => String(s).normalize('NFKC').replace(/\s/g, '').toLowerCase();
 function checkStemPlain(f, id, o) {
   if (!('stemPlain' in o)) return;
@@ -197,11 +197,6 @@ function checkStemPlain(f, id, o) {
   if (sp !== sp.trim()) err(f, id, 'stemPlain の前後に空白・改行がある');
   if (sp.length > STEM_PLAIN_MAX) err(f, id, `stemPlain が長すぎる（${sp.length} 文字。上限 ${STEM_PLAIN_MAX}）`);
   if (nfkc(sp) === nfkc(o.stem || '')) err(f, id, 'stemPlain が問題文と同じ（言い直しになっていない）');
-  const spn = nfkc(sp);
-  (o.choices || []).forEach((c, i) => {
-    const cn = nfkc(c);
-    if (cn.length >= 4 && spn.includes(cn)) err(f, id, `stemPlain に選択肢${i}の文がそのまま入っている（答えの手がかりになる）`);
-  });
 }
 
 const seen = new Map();

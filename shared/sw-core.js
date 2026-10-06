@@ -75,8 +75,6 @@ const SHARED = [
   '../shared/js/lib/maplayout.js',
   '../shared/js/lib/weakness.js',
   '../shared/js/views/weak.js',
-  '../shared/js/lib/stemhelp.js',
-  '../shared/js/views/stemhelp.js',
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',

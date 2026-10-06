@@ -46,6 +46,8 @@ export function explanation(app, sq, chosen, open, opts = {}) {
   const q = sq.q;
   const sensei = opts.sensei !== false;
   const box = h('div', { class: 'explain' });
+  // 問題文の意味（要件定義書 §7-3）。解説の4点は、問題文の意味が分かっている前提で読むので、先頭に置く。stemPlain が無い問題には出さない
+  if (q.stemPlain) box.appendChild(h('section', { class: 'ex-block stem-plain' }, h('h3', { text: '問題文の意味' }), h('p', { text: q.stemPlain })));
   box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由', sensei ? tappable(characterImg(explainSensei(chosen !== null && chosen === sq.answer), 'sensei-mini')) : null),
     h('p', { class: 'ex-answer' }, h('strong', { text: '正解: ' + CHOICE_LABELS[sq.answer] + '. ' + sq.choices[sq.answer] })),
     h('p', { text: q.explanation || '（解説は準備中です）' })));
