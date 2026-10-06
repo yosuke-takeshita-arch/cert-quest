@@ -689,5 +689,49 @@
       { "title": "Oracle「Oracle Database SQL言語リファレンス 19c」Types of SQL Statements", "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html" }
     ],
     "status": "verified"
+  },
+  {
+    "id": "DC-09-111",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "最新事例＆トレンド"],
+    "title": "地図データの共通基盤（国の3次元地図・オープンな地図データ）",
+    "oneLine": "多くの地図サービスや分析の土台として、国や複数の企業が共通に使える形で整備・提供する地図データ。利用する側は、その土台に自社のデータやサービスを重ねる。",
+    "why": "国土地理院は2026年4月から、全国の様々な地図の基礎となる電子国土基本図のうち、建物・道路（道路中心線）・鉄道（軌道の中心線）に高さを持たせた3次元電子国土基本図の提供を始め、令和10年度末の全国整備を目指している。全国統一の規格で整備することで、より高度な解析ができるなど利活用の幅が広がるとし、防災シミュレーション、景観を考えたまちづくり、ドローンの飛行ルートの検討などを挙げている。民間では、AWS・Meta・Microsoft・TomTom が2022年12月に Overture Maps Foundation を立ち上げ、互いにつなげて使えるオープンな地図データを共有の資産として作るとした。AWS は、正確で網羅的な地図データを維持し続けるのは費用がかかりすぎて複雑だとし、TomTom は、Overture の土台の地図と自社のデータを組み合わせて顧客に提供するとしている。異なるデータの中の同じ実在物を同じIDで結ぶ仕組み（GERS）も用意している。競合する企業どうしが、差がつきにくい土台は共同で作り、その上のサービスで競う形である。",
+    "links": [
+      { "id": "DC-01-014", "relation": "考え方" },
+      { "id": "DC-03-023", "relation": "使い道" },
+      { "id": "DC-09-101", "relation": "関連" },
+      { "id": "DC-08-110", "relation": "使い道" }
+    ],
+    "confusions": [
+      { "id": "DC-09-101", "point": "データエコシステム（データスペース）は、組織をまたいでデータを安全にやり取りする仕組み全般。地図データの共通基盤は、その中でも、多くの組織が同じ地図を土台として使うために共同で整える例。" }
+    ],
+    "sources": [
+      { "title": "国土地理院「３次元電子国土基本図の提供を開始！～全国の地図を３次元化しデジタル社会に貢献～」（2026年3月25日）", "url": "https://www.gsi.go.jp/kibanjoho/kibanjoho61008.html" },
+      { "title": "Linux Foundation（Joint Development Foundation）「Joint Development Foundation Announces Overture Maps Foundation to Build Interoperable Open Map Data」（2022年12月）", "url": "https://www.linuxfoundation.org/press/linux-foundation-announces-overture-maps-foundation-to-build-interoperable-open-map-data" },
+      { "title": "Overture Maps Foundation 公式サイト", "url": "https://overturemaps.org/about/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-112",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "最新事例＆トレンド"],
+    "title": "行動ビッグデータの分析サービス（検索データから関心を読む）",
+    "oneLine": "検索や人の流れなど、多くの利用者の行動から集まったビッグデータを統計化し、企業や自治体が人々の関心や隠れたニーズを調べられるようにする分析サービス。",
+    "why": "LINEヤフーは、多様なサービスから得られる行動ビッグデータを使う事業者向けの分析サービスを提供し、検索・人流データから人々の興味・関心を分析できる調査用のツールを出している。ある語と一緒に検索されている語（共起キーワード）を地図のように並べて示し、生成AIがそのつながりから隠れたニーズを提案する機能を試験導入した（例：「マスク」と「ファンデーション」から、マスクに付きにくいファンデーションを探すニーズ）。生成AIが、分析の前工程となるデータクレンジングや分類・考察の作業を短くし、分析の負荷を下げるとしている（データの分析作業の自動化の例）。生成AIの事業者には統計化したデータだけを送るとしている。また、同社の利用ガイドラインは、個人が特定される可能性があるため、対象のユーザー数が少ないデータを使う分析やターゲティングを禁じている。対象を細かく絞るほど具体的に読めるが、人数が減って個人が特定されるおそれが高まる。",
+    "links": [
+      { "id": "DC-03-004", "relation": "材料" },
+      { "id": "DC-03-021", "relation": "関連" },
+      { "id": "DC-03-014", "relation": "自動化の対象" },
+      { "id": "DC-09-106", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-03-019", "point": "バスケット分析は、同じ買い物かごに一緒に入る商品の組み合わせを調べる。共起キーワードの分析は、一緒に検索される語の組み合わせから関心やニーズを読む。どちらも「一緒に現れるもの」を見るが、材料が購買か検索かが違う。" }
+    ],
+    "sources": [
+      { "title": "LINEヤフー プレスリリース「ヤフー・データソリューション、「DS.INSIGHT」に3つの生成AI機能を連続で試験導入」", "url": "https://www.lycorp.co.jp/ja/news/release/007784/" },
+      { "title": "LINEヤフー プレスリリース「ヤフー・データソリューション、データ結果の仮説設計や分析を生成AIがサポートする機能を試験導入」", "url": "https://www.lycorp.co.jp/ja/news/release/000910" },
+      { "title": "ヤフー・データソリューション「DATA SOLUTION利用ガイドライン」", "url": "https://ds.yahoo.co.jp/guideline/" }
+    ],
+    "status": "verified"
   }
 ]
