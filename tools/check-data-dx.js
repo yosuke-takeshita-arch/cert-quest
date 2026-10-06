@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // cert-quest DXビジネス検定版 データ検査（tools/check-data.js の写し。id 形式だけ D-NN-NNN / DC-NN-NNN に変えた）
-// 追加: id の章番号とファイル名の章番号（NN_）の一致／--coverage でシラバスのキーワードの扱い漏れを数える
+// 追加: 学会シラバスの章立て（2026-10-06）・出題の型 qtype・補足の印（下の「DX の章立て」）／--coverage でシラバスのキーワードの扱い漏れを数える
 // 使い方:
 //   node tools/check-data-dx.js <ファイル...>
 //   node tools/check-data-dx.js dx-biz/data/questions/01_dx-basics.json dx-biz/data/concepts/01_dx-basics.json --coverage
@@ -26,7 +26,19 @@
 //   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
 //     viewBox の幅が 360 以下で、role="img"・<title>・<desc> を持つこと（要件定義書 §7-2）
 //
-// 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか
+// DX の章立て（要件定義書 §7-4。2026-10-06 学会シラバスに合わせた）
+//   - syllabus.json の木が 領域 ＞ 分類（＝章・ステージ）＞ 知識区分 の3段であること
+//   - 領域は、補足でないものがちょうど4つ、補足（"supplement": true）がちょうど1つ。supplement は領域だけに付け、値は true だけ
+//   - 補足でない領域の分類は、それぞれ id が「章番号2桁＋分類の記号」（例 01A）で、
+//     子がちょうど「基本概念／応用事例／最新事例＆トレンド」の3つ（この順）。章番号は全体で重ならず、補足でない分類は計12
+//   - 補足の分類も id は「章番号2桁＋記号」で、章番号は補足でない章より後
+//   - 木に知識項目の一覧を入れない（keywords があれば空。シラバスは再配布しない＝先生決定 2026-10-06）
+//   - 問題・カードの syllabus は3段（領域・分類・知識区分）で、ファイル名の章番号（NN_）がその分類の章番号と同じ
+//   - 問題の qtype が term / relation / causal / loop / tradeoff / interdep / miscon のどれか（必須）
+//   - id の番号が 101 以上（作り直し後に足したもの）は、id の章番号がファイル名の章番号と同じ。
+//     100 以下は旧章立ての ID をそのまま残しているので見ない（学習記録が問題 ID で保存されているため、ID は変えない）
+//
+// 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか・qtype が問題の中身に合っているか（人が読む）
 'use strict';
 
 const fs = require('fs');
@@ -75,6 +87,57 @@ function loadSyllabusPaths(p) {
   return set;
 }
 
+// ---- DX の章立て（領域＞分類＞知識区分・補足の印）----
+const CATS = ['基本概念', '応用事例', '最新事例＆トレンド'];
+const BODY_DOMAINS = 4;
+const BODY_STAGES = 12;
+const STAGE_ID_RE = /^(\d{2})[A-Z]$/;
+// 木の形を見て、問題を記録し、「領域 > 分類」→ 章番号 の対応を返す
+function dxStructure(p, problems) {
+  const tree = readJson(p);
+  const stageCh = new Map();
+  if (!Array.isArray(tree)) { problems.push('ルートが配列でない'); return stageCh; }
+  const body = tree.filter((d) => d && d.supplement !== true);
+  const supp = tree.filter((d) => d && d.supplement === true);
+  if (body.length !== BODY_DOMAINS) problems.push(`補足でない領域が ${body.length} 個（${BODY_DOMAINS} 個であるべき）`);
+  if (supp.length !== 1) problems.push(`補足の領域（"supplement": true）が ${supp.length} 個（1 個であるべき）`);
+  const seenCh = new Set();
+  let nBodyStages = 0; let maxBodyCh = 0; const suppChs = [];
+  const noKeywords = (n, where) => { if (n && 'keywords' in n && !(Array.isArray(n.keywords) && n.keywords.length === 0)) problems.push(`${where}: keywords に知識項目が入っている（木には名前までしか入れない）`); };
+  const noSuppFlag = (n, where) => { if (n && 'supplement' in n) problems.push(`${where}: supplement は領域にだけ付ける`); };
+  tree.forEach((d, i) => {
+    const dn = d && d.title ? d.title : `#${i}`;
+    if (!d || !isStr(d.id) || !isStr(d.title)) problems.push(`領域 ${dn}: id・title が無い`);
+    if (d && 'supplement' in d && d.supplement !== true) problems.push(`領域 ${dn}: supplement の値は true だけ（補足でなければ欄ごと省く）`);
+    noKeywords(d, `領域 ${dn}`);
+    const isSupp = d && d.supplement === true;
+    const stages = d && Array.isArray(d.children) ? d.children : [];
+    if (!stages.length) problems.push(`領域 ${dn}: 分類（章）が無い`);
+    for (const s of stages) {
+      const sn = `${dn} > ${s && s.title}`;
+      noKeywords(s, sn); noSuppFlag(s, sn);
+      const m = s && typeof s.id === 'string' ? STAGE_ID_RE.exec(s.id) : null;
+      if (!m || !isStr(s.title)) { problems.push(`分類 ${sn}: id が「章番号2桁＋記号」（例 01A）でない、または title が無い`); continue; }
+      const ch = m[1];
+      if (seenCh.has(ch)) problems.push(`分類 ${sn}: 章番号 ${ch} が重なる`);
+      seenCh.add(ch);
+      stageCh.set(`${d.title} > ${s.title}`, ch);
+      const cats = Array.isArray(s.children) ? s.children : [];
+      for (const c of cats) { noKeywords(c, `${sn} > ${c && c.title}`); noSuppFlag(c, `${sn} > ${c && c.title}`); if (c && Array.isArray(c.children) && c.children.length) problems.push(`${sn} > ${c.title}: 知識区分の下に子がある（木は3段まで）`); }
+      if (isSupp) { suppChs.push(Number(ch)); if (!cats.length) problems.push(`分類 ${sn}: 小項目が無い`); continue; }
+      nBodyStages++;
+      maxBodyCh = Math.max(maxBodyCh, Number(ch));
+      const titles = cats.map((c) => c && c.title);
+      if (titles.join('|') !== CATS.join('|')) problems.push(`分類 ${sn}: 子が「${CATS.join('／')}」の3つ（この順）でない: ${titles.join('／')}`);
+    }
+  });
+  if (nBodyStages !== BODY_STAGES) problems.push(`補足でない分類（章）が ${nBodyStages} 個（${BODY_STAGES} 個であるべき）`);
+  for (const ch of suppChs) if (ch <= maxBodyCh) problems.push(`補足の章番号 ${String(ch).padStart(2, '0')} が、補足でない章（最大 ${maxBodyCh}）より前にある`);
+  return stageCh;
+}
+
+const QTYPES = new Set(['term', 'relation', 'causal', 'loop', 'tradeoff', 'interdep', 'miscon']);
+
 const isStr = (v) => typeof v === 'string' && v.trim().length > 0;
 const QFMT = new Set(['single', 'not', 'fill', 'scenario']);
 const STATUS = new Set(['verified', 'unverified']);
@@ -101,6 +164,7 @@ function kindOf(f, data) {
 
 const loaded = []; // {file, kind, data}
 const sylCache = {};
+const stageChCache = {};
 for (const f of files) {
   let data;
   try { data = readJson(f); } catch (e) { err(f, null, `JSON として読めない: ${e.message}`); continue; }
@@ -108,8 +172,13 @@ for (const f of files) {
   const sp = syllabusPath || path.join(path.dirname(path.dirname(path.resolve(f))), 'syllabus.json');
   if (!(sp in sylCache)) {
     try { sylCache[sp] = loadSyllabusPaths(sp); } catch (e) { sylCache[sp] = null; warn(f, null, `syllabus.json を読めない（パス照合を飛ばす）: ${e.message}`); }
+    if (sylCache[sp]) {
+      const problems = [];
+      try { stageChCache[sp] = dxStructure(sp, problems); } catch (e) { problems.push(e.message); stageChCache[sp] = new Map(); }
+      for (const pr of problems) err(sp, null, `章立て: ${pr}`);
+    } else stageChCache[sp] = null;
   }
-  loaded.push({ file: f, kind: kindOf(f, data), data, syl: sylCache[sp] });
+  loaded.push({ file: f, kind: kindOf(f, data), data, syl: sylCache[sp], stageCh: stageChCache[sp] });
 }
 
 // 他章も含めたカード索引（同じ data ディレクトリの concepts/*.json を全部読む）
@@ -200,7 +269,7 @@ function checkStemPlain(f, id, o) {
 }
 
 const seen = new Map();
-for (const { file: f, kind, data, syl } of loaded) {
+for (const { file: f, kind, data, syl, stageCh } of loaded) {
   data.forEach((o, idx) => {
     const id = o && o.id ? o.id : `#${idx}`;
     if (seen.has(id)) err(f, id, `id が重複（${seen.get(id)} にもある）`); else seen.set(id, path.basename(f));
@@ -244,7 +313,20 @@ for (const { file: f, kind, data, syl } of loaded) {
         if (c && c.id === id) err(f, id, 'confusions が自分自身を指している');
       });
     }
-    { const m = /^(?:D|DC)-(\d{2})-/.exec(id); const fm = /^(\d{2})_/.exec(path.basename(f)); if (m && fm && m[1] !== fm[1]) err(f, id, `id の章番号 ${m[1]} がファイル名の章 ${fm[1]} と違う`); }
+    // DX の章立て: syllabus は3段、ファイルの章番号＝分類の章番号、新しい ID（101 以上）の章番号＝ファイルの章番号
+    {
+      const fm = /^(\d{2})_/.exec(path.basename(f));
+      if (!fm) err(f, id, 'ファイル名が「章番号2桁_」で始まらない');
+      if (Array.isArray(o.syllabus) && o.syllabus.length !== 3) err(f, id, `syllabus が3段（領域・分類・知識区分）でない: ${o.syllabus.join(' > ')}`);
+      if (stageCh && Array.isArray(o.syllabus) && o.syllabus.length >= 2) {
+        const ch = stageCh.get(o.syllabus.slice(0, 2).join(' > '));
+        if (ch === undefined) err(f, id, `syllabus の分類が木に無い: ${o.syllabus.slice(0, 2).join(' > ')}`);
+        else if (fm && ch !== fm[1]) err(f, id, `分類の章番号 ${ch} がファイル名の章 ${fm[1]} と違う（${o.syllabus[1]}）`);
+      }
+      const m = /^(?:D|DC)-(\d{2})-(\d{3})$/.exec(id);
+      if (m && Number(m[2]) >= 101 && fm && m[1] !== fm[1]) err(f, id, `新しい ID（101 以上）の章番号 ${m[1]} がファイル名の章 ${fm[1]} と違う`);
+    }
+    if (kind === 'questions' && !QTYPES.has(o.qtype)) err(f, id, `qtype が無い・不正: ${o.qtype}（${[...QTYPES].join(' / ')} のどれか）`);
     checkSources(f, id, o.sources);
     checkFigureRefs(f, id, o.figures);
     if (!STATUS.has(o.status)) err(f, id, `status が不正: ${o.status}`);
@@ -257,6 +339,16 @@ checkFigureFiles();
 for (const { file: f, kind, data } of loaded) {
   const v = data.filter((o) => o.status === 'verified').length;
   console.log(`${path.basename(path.dirname(f))}/${path.basename(f)}: ${kind} ${data.length}件（verified ${v} / unverified ${data.length - v}）`);
+}
+// 領域ごとの問題数と qtype の内訳（模試は補足でない領域から選ぶ）
+{
+  const byDomain = new Map();
+  for (const { kind, data } of loaded) if (kind === 'questions') for (const o of data) {
+    const d = Array.isArray(o.syllabus) ? o.syllabus[0] : '?';
+    if (!byDomain.has(d)) byDomain.set(d, {});
+    const e = byDomain.get(d); e[o.qtype] = (e[o.qtype] || 0) + 1;
+  }
+  for (const [d, e] of byDomain) console.log(`QTYPE ${d}: ${Object.values(e).reduce((a, b) => a + b, 0)}問 ${Object.entries(e).map(([k, n]) => k + ' ' + n).join(' / ')}`);
 }
 // キーワードの扱い漏れ（--coverage）
 if (coverage && loaded.length) {

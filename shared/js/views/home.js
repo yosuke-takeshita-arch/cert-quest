@@ -393,7 +393,7 @@ export function renderReview(app) {
   const root = h('section', { class: 'view review' }, h('h1', { text: '復習' }));
   const today = dayNumber(new Date());
   const due = dueQuestions(app.state, app.data.questionById, new Date());
-  const up = upcoming(app.state.qstats, today);
+  const up = upcoming(app.state.qstats, today, app.data.questionById);
   root.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は、翌日・3日後・7日後・14日後に出ます。正解で次の間隔へ、まちがえると最初に戻ります。' }));
   if (due.length) {
     root.appendChild(h('div', { class: 'card' }, h('p', {}, h('strong', { class: 'big-num', text: due.length + '問' }), ' が復習の日です'), h('button', { class: 'btn primary big', type: 'button', onClick: () => startSession(app, reviewSpec(app)) }, '復習を始める' + (due.length > 20 ? '（まず20問）' : ''))));

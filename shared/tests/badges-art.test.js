@@ -173,10 +173,10 @@ test('次の目標: 章の制覇バッジは絵つきで出て、同じ「星3�
   assert.equal(goals.some((x) => x.id === 'stars:T|C1'), false);
 });
 
-test('章の制覇: 実データ（G検定10・DX12）の章が全部バッジになり、id・絵の名前が重ならない。G検定は絵が全部ある', async () => {
+test('章の制覇: 実データ（G検定10・DX13＝12分類＋補足）の章が全部バッジになり、id・絵の名前が重ならない。G検定は絵が全部ある', async () => {
   const { buildTree } = await import('../js/lib/data.js');
   const repo = join(shared, '..');
-  const expected = { 'g-kentei': 10, 'dx-biz': 12 };
+  const expected = { 'g-kentei': 10, 'dx-biz': 13 };
   for (const app of ['g-kentei', 'dx-biz']) {
     const syl = JSON.parse(readFileSync(join(repo, app, 'data', 'syllabus.json'), 'utf8'));
     const qs = [];

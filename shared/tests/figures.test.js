@@ -113,16 +113,20 @@ function fixture(mutate) {
   const d = join(dir, 'data');
   for (const k of ['concepts', 'questions', 'figures']) mkdirSync(join(d, k), { recursive: true });
   const src = [{ title: 't', url: 'https://example.com/a' }];
-  writeFileSync(join(d, 'syllabus.json'), JSON.stringify([{ title: 'A', children: [{ title: 'B' }] }]));
   const concept = { id: 'C-01-001', syllabus: ['A', 'B'], title: 't', oneLine: 'o', why: 'w', links: [], confusions: [], figures: ['fig-t-a'], sources: src, status: 'verified' };
   const question = { id: 'G-01-001', syllabus: ['A', 'B'], format: 'single', difficulty: 1, stem: 's', choices: ['x', 'y'], answer: 0, explanation: 'e', whyWrong: [null, 'w'], memoryTip: 'm', concepts: ['C-01-001'], figures: ['fig-t-a'], sources: src, status: 'verified' };
   const ctx = { concept, question, svg: GOOD, svgName: 'fig-t-a.svg' };
   if (mutate) mutate(ctx);
+  writeFileSync(join(d, 'syllabus.json'), JSON.stringify(ctx.syllabus || [{ title: 'A', children: [{ title: 'B' }] }]));
   writeFileSync(join(d, 'concepts', '01_x.json'), JSON.stringify([ctx.concept], null, 2) + '\n');
   writeFileSync(join(d, 'questions', '01_x.json'), JSON.stringify([ctx.question], null, 2) + '\n');
   if (ctx.svg !== null) writeFileSync(join(d, 'figures', ctx.svgName), ctx.svg);
   return { dir, files: [join(d, 'questions', '01_x.json'), join(d, 'concepts', '01_x.json')] };
 }
+// DX 版の検査は、学会のシラバスの木（4領域＋補足×12分類＋補足の章）と qtype を求める。その形の最小の固定データ
+const DX_SYL = [1, 2, 3, 4].map((d) => ({ id: 'D' + d, title: '領域' + d, children: [1, 2, 3].map((k) => { const ch = String((d - 1) * 3 + k).padStart(2, '0'); return { id: ch + 'A', title: '分類' + ch, children: ['基本概念', '応用事例', '最新事例＆トレンド'].map((t) => ({ title: t })) }; }) }))
+  .concat([{ id: 'S', title: '補足', supplement: true, children: [{ id: '13S', title: '補足', children: [{ title: 'その他' }] }] }]);
+const dxFix = (c) => { c.concept.id = 'DC-01-001'; c.question.id = 'D-01-001'; c.question.concepts = ['DC-01-001']; c.question.qtype = 'term'; c.syllabus = DX_SYL; c.concept.syllabus = ['領域1', '分類01', '基本概念']; c.question.syllabus = ['領域1', '分類01', '基本概念']; };
 function run(tool, mutate) {
   const fx = fixture(mutate);
   try {
@@ -135,13 +139,13 @@ const TOOLS = ['check-data.js', 'check-data-dx.js'];
 for (const tool of TOOLS) {
   test(`${tool}: 図が決まりどおりなら OK（そのまま通ることを先に確かめる）`, () => {
     // dx 版は id の形式が違う（D-NN-NNN / DC-NN-NNN）ので、その形に直した固定データで確かめる
-    const mut = tool === 'check-data-dx.js' ? (c) => { c.concept.id = 'DC-01-001'; c.question.id = 'D-01-001'; c.question.concepts = ['DC-01-001']; } : null;
+    const mut = tool === 'check-data-dx.js' ? dxFix : null;
     const r = run(tool, mut);
     assert.equal(r.code, 0, r.out);
     assert.match(r.out, /結果: OK/);
   });
 
-  const dxFix = (c) => { if (tool === 'check-data-dx.js') { c.concept.id = 'DC-01-001'; c.question.id = 'D-01-001'; c.question.concepts = ['DC-01-001']; } };
+  const fixFor = (c) => { if (tool === 'check-data-dx.js') dxFix(c); };
   const cases = [
     ['対応する SVG が無い', (c) => { c.svg = null; }, /対応する SVG が無い/],
     ['ID の形式が不正', (c) => { c.question.figures = ['../x']; }, /ID の形式/],
@@ -160,7 +164,7 @@ for (const tool of TOOLS) {
   ];
   for (const [name, mut, re, okExit] of cases) {
     test(`${tool}: ${name}`, () => {
-      const r = run(tool, (c) => { dxFix(c); mut(c); });
+      const r = run(tool, (c) => { fixFor(c); mut(c); });
       assert.equal(r.code, okExit ? 0 : 1, r.out);
       assert.match(r.out, re);
     });

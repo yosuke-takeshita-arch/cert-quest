@@ -1,7 +1,7 @@
 // ブラウザ無しで node から叩く。実行: cd shared && node --test tests/
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { applyAnswer, newRecord, isDue, dueIds, dayNumber, dateKey, INTERVALS } from '../js/lib/srs.js';
+import { applyAnswer, newRecord, isDue, dueIds, upcoming, dayNumber, dateKey, INTERVALS } from '../js/lib/srs.js';
 import { answerXp, levelFromXp, totalXpForLevel, updateStreak, currentStreak, daysUntil, starsFor, masteryLevel } from '../js/lib/scoring.js';
 import { shuffle, shuffleChoices, pickQuestions, examPlan, byMajor, secondsPerQuestion, challengeName } from '../js/lib/quiz.js';
 import { badgeDefs } from '../js/lib/badges.js';
@@ -294,4 +294,18 @@ test('秒数の表示は config から作る（キー無し・不正値は40秒�
   const b = badgeDefs({ roots: [] }, { secondsPerQuestion: 37 }).find((d) => d.id === 'challenge-8');
   assert.equal(b.name, '37秒の達人');
   assert.equal(b.desc, '37秒チャレンジで8問以上正解');
+});
+
+test('復習の予定: validIds を渡すと、データに無い問題（外した問題）の記録は数えない。記録そのものは変えない', () => {
+  const qstats = {
+    a: { seen: 1, correct: 0, lastOk: false, step: 0, due: 10 },
+    gone: { seen: 1, correct: 0, lastOk: false, step: 0, due: 9 },
+    b: { seen: 1, correct: 0, lastOk: false, step: 0, due: 11 },
+    c: { seen: 1, correct: 0, lastOk: false, step: 1, due: 20 },
+    done: { seen: 3, correct: 3, lastOk: true, step: -1, due: null },
+  };
+  assert.deepEqual(upcoming(qstats, 10), { now: 2, tomorrow: 1, later: 1 });
+  assert.deepEqual(upcoming(qstats, 10, new Map([['a', 1], ['b', 1], ['c', 1]])), { now: 1, tomorrow: 1, later: 1 });
+  assert.deepEqual(upcoming(qstats, 10, new Set()), { now: 0, tomorrow: 0, later: 0 });
+  assert.equal(Object.keys(qstats).length, 5);
 });

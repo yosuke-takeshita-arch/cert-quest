@@ -16,7 +16,7 @@ export function renderMore(app) {
   const nav = h('div', { class: 'card menu' },
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' })),
     h('button', { class: 'row-btn', type: 'button', 'data-menu': 'weak', onClick: () => app.go('#/weak') }, h('strong', { text: '苦手の分析' })),
-    h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/badges') }, h('strong', { text: 'バッジ' }), h('span', { class: 'small muted', text: Object.keys(app.state.badges).length + ' 個' })),
+    h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/badges') }, h('strong', { text: 'バッジ' }), h('span', { class: 'small muted', text: badgeDefs(app.data.tree, app.config).filter((d) => app.state.badges[d.id]).length + ' 個' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/settings') }, h('strong', { text: '設定' })),
     h('button', { class: 'row-btn', type: 'button', 'data-menu': 'howto', onClick: () => openIntro() }, h('strong', { text: INTRO_TEXT.menu })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/about') }, h('strong', { text: 'このアプリについて' })));

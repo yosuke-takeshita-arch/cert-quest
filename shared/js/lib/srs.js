@@ -56,10 +56,14 @@ export function dueIds(qstats, today) {
     .sort((a, b) => qstats[a].due - qstats[b].due);
 }
 
-/** 今後の復習件数を「今日／明日／あさって以降」で数える。 */
-export function upcoming(qstats, today) {
+/**
+ * 今後の復習件数を「今日／明日／あさって以降」で数える。
+ * validIds（Map か Set。has(id) を持つもの）を渡すと、そこに無い問題ID（データから外した問題の記録）は数えない。記録は消さない。
+ */
+export function upcoming(qstats, today, validIds) {
   let now = 0, tomorrow = 0, later = 0;
   for (const id of Object.keys(qstats || {})) {
+    if (validIds && !validIds.has(id)) continue;
     const r = qstats[id];
     if (!r || r.step < 0 || r.due === null) continue;
     if (r.due <= today) now++;

@@ -1,0 +1,253 @@
+[
+  {
+    "id": "DC-02-011",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "AI（人工知能）",
+    "oneLine": "研究者の間で統一された定義はない。情報通信白書は「知的な機械、特に、知的なコンピュータプログラムを作る科学と技術」と一般的に説明している。",
+    "why": "Artificial Intelligence の略。意味は『人工の知能』。研究領域は、機械学習やディープラーニングのような基礎分野と、画像認識・音声認識・自然言語処理のような応用分野に分かれる。DXの文脈では、IoTが集めたデータをAIが分析・予測し、人の判断や作業を助ける、という役割で出てくることが多い。",
+    "links": [
+      { "id": "DC-02-012", "relation": "部分" },
+      { "id": "DC-02-013", "relation": "部分" },
+      { "id": "DC-02-004", "relation": "組み合わせ" },
+      { "id": "DC-02-016", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "DC-02-012", "point": "包含関係は AI ⊃ 機械学習 ⊃ ディープラーニング。逆にしたひっかけに注意。" }
+    ],
+    "figures": ["fig-dx-ai-ml-dl"],
+    "sources": [
+      { "title": "総務省「平成28年版 情報通信白書」人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" },
+      { "title": "総務省「令和元年版 情報通信白書」AIに関する動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113200.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-012",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "機械学習とディープラーニング",
+    "oneLine": "機械学習は、データからパターンやルールを学び、予測や判断をする手法。ディープラーニングはその一種で、脳の神経回路を模した多層のネットワークを使い、特徴を自動で取り出す。",
+    "why": "ルールを人が全部書く代わりに、データからパターンやルールを発見させ、新しいデータの識別や予測に当てはめる。深層学習は多数の層から成るニューラルネットワークを用いる機械学習で、何に着目するか（特徴量）を自ら抽出できる点が大きなブレークスルーとされる。一方で、AIがどのような根拠で判断したかを人が理解しにくいという指摘もある（情報通信白書 令和元年版）。",
+    "links": [
+      { "id": "DC-02-011", "relation": "部分" },
+      { "id": "DC-02-017", "relation": "発展形" },
+      { "id": "DC-02-016", "relation": "先の議論" }
+    ],
+    "confusions": [
+      { "id": "DC-02-011", "point": "ディープラーニング⊂機械学習⊂AI。「ディープラーニングの一種が機械学習」は逆。" }
+    ],
+    "figures": ["fig-dx-ai-ml-dl"],
+    "sources": [
+      { "title": "総務省「令和元年版 情報通信白書」AIに関する基本的な仕組み", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113210.html" },
+      { "title": "総務省「平成28年版 情報通信白書」ICTの進化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc111210.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-013",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "自然言語処理（NLP）・チャットボット・スマートスピーカー",
+    "oneLine": "自然言語処理は、コンピューターが人間の言語を解釈・操作・理解できるようにする技術。これを使って音声や文字で会話するプログラムがチャットボット、AIのアシスタント機能を使い話しかけて使う端末がスマートスピーカー（AIスピーカー）。",
+    "why": "NLP は Natural Language Processing の略。意味は『自然言語（人がふだん使う言葉）の処理』。どれも「人の言葉が入口になる」技術。チャットボットは従来、事前に定義したルールで台本どおりに答えていたが、現代のものは自然言語処理でユーザーの言葉を理解し、人間の担当者に引き継ぐ前に問い合わせに回答しようとする（AWS）。スマートスピーカーは、生活の場面で取得するデータとAIのアシスタント機能が生む価値を取り込もうと、GoogleやAmazonが先行して市場に参入した（情報通信白書 平成30年版）。",
+    "links": [
+      { "id": "DC-02-011", "relation": "部分" },
+      { "id": "DC-02-017", "relation": "発展形" },
+      { "id": "DC-01-013", "relation": "具体例" },
+      { "id": "DC-02-018", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "DC-02-014", "point": "チャットボットは会話で人に応える。RPAは画面操作を代行する。会話か、操作か。" }
+    ],
+    "sources": [
+      { "title": "AWS「自然言語処理 (NLP) とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/nlp/" },
+      { "title": "AWS「チャットボットとは」", "url": "https://aws.amazon.com/jp/what-is/chatbot/" },
+      { "title": "総務省「平成30年版 情報通信白書」端末（AIスピーカー・ドローン）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h30/html/nd111350.html" },
+      { "title": "総務省「平成28年版 情報通信白書」人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" },
+      { "title": "AWS \"What is Natural Language Processing (NLP)?\"", "url": "https://aws.amazon.com/what-is/nlp/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-015",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "顔認証",
+    "oneLine": "顔の画像から、骨格や目・鼻・口の位置や形などの特徴を数値化した「顔特徴データ」を作り、登録済みのデータと照合して本人かどうかを判定する技術。",
+    "why": "手ぶらで本人確認でき、入退室や決済、来店者の把握に使われる。ただし顔特徴データは特定の個人を識別できる個人情報で、利用目的をできる限り特定し、その範囲で使う必要がある。個人情報保護委員会は、顔識別機能付きカメラシステムの利用について注意点をまとめている。",
+    "links": [
+      { "id": "DC-02-033", "relation": "部分" },
+      { "id": "DC-02-011", "relation": "応用" }
+    ],
+    "confusions": [
+      { "title": "防犯カメラの録画", "point": "ただの録画と違い、顔識別は特徴データを登録して照合する。個人情報の扱いがより重くなる。" }
+    ],
+    "sources": [
+      { "title": "個人情報保護委員会「犯罪予防や安全確保のための顔識別機能付きカメラシステムの利用について」（2023年3月）", "url": "https://www.ppc.go.jp/files/pdf/kaoshikibetsu_camera_system.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-017",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "生成AI",
+    "oneLine": "学習データをもとに、文章・画像などを自動で生成できるAI。2022年に本格的に流行し始めた。",
+    "why": "文章作成・要約、情報収集、アイデア出しなど、ホワイトカラーの業務そのものに使える点が従来のAIと違う。一方で、期待しない（事実と違う）出力、著作権等の権利侵害、情報漏洩などのリスクがある。外部の文書を参照させるRAGや、自分でタスクを進めるAIエージェントへと発展している。",
+    "links": [
+      { "id": "DC-02-012", "relation": "基盤" },
+      { "id": "DC-02-019", "relation": "発展形" },
+      { "id": "DC-02-018", "relation": "発展形" },
+      { "id": "DC-01-028", "relation": "使い方の指針" }
+    ],
+    "confusions": [
+      { "title": "検索エンジン", "point": "検索は既存のページを探して並べる。生成AIは学習したパターンから新しい文を作るので、もっともらしい誤りも出る。" }
+    ],
+    "sources": [
+      { "title": "総務省「令和7年版 情報通信白書」AI技術", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd227300.html" },
+      { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-05-031",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "動画／音声生成AI",
+    "oneLine": "文章の指示などから、動画や人の声、音楽を自動で作り出す生成AI。",
+    "why": "広告動画やナレーション、多言語の吹き替えを短時間で作れるようになり、コンテンツ制作のあり方が変わる。一方、情報通信白書（令和6年版）は、生成AIの進歩で非常に高品質なテキスト・画像・音声・動画を作れるようになり、実在する人物が言っていないことを話しているかのような動画も簡単に作れるとし、こうしたディープフェイク（ディープラーニングとフェイクを組み合わせた造語。AIで合成された音声・画像・動画）による情報操作や犯罪利用が世界で増えているとしている。",
+    "links": [
+      { "id": "DC-02-017", "relation": "部分" },
+      { "id": "DC-05-032", "relation": "リスク" },
+      { "id": "DC-05-012", "relation": "使う場" }
+    ],
+    "confusions": [
+      { "title": "編集ソフト", "point": "従来の編集ソフトは人が素材を加工する。動画／音声生成AIは素材そのものをAIが新しく作る。" }
+    ],
+    "sources": [
+      { "title": "総務省「令和6年版 情報通信白書」偽・誤情報の流通・拡散等の課題及び対策", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-018",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "最新事例＆トレンド"],
+    "title": "生成AIエージェント（AIエージェント）",
+    "oneLine": "設定された目標や自然言語の指示に対して、自動的にタスクを決め（必要なら細かく分け）、処理を実行する機能を持つもの。",
+    "why": "生成AIが「答える」だけでなく「行動する」段階に進んだ。例えば、調べる・ツールを使う・結果をまとめる、を自分で順に進める。定義は開発企業によって異なる（情報通信白書 令和7年版）。外部のツールやデータにつなぐ仕組みとしてMCP、エージェントどうしをつなぐ仕組みとしてA2Aがある。",
+    "links": [
+      { "id": "DC-02-017", "relation": "発展形" },
+      { "id": "DC-02-020", "relation": "つなぐ仕組み" },
+      { "id": "DC-05-030", "relation": "つなぐ仕組み" }
+    ],
+    "confusions": [
+      { "id": "DC-02-014", "point": "RPAは人が決めた手順をそのまま再現する。AIエージェントは目標から手順を自分で決める。" }
+    ],
+    "figures": ["fig-dx-agent-mcp-a2a"],
+    "sources": [
+      { "title": "総務省「令和7年版 情報通信白書」AI研究開発における最近の動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-020",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "最新事例＆トレンド"],
+    "title": "MCP（Model Context Protocol）",
+    "oneLine": "AIアプリケーションを外部のシステム（ファイルやデータベースなどのデータ、検索などのツール、決まった手順のワークフロー）につなぐためのオープンな標準。",
+    "why": "Model Context Protocol の略。意味は『AIモデルに文脈（外部のデータや道具の情報）を渡すための取り決め』。AIとデータを個別に1つずつつなぐと、つなぎ方がばらばらで広がらない。共通の規格があれば、一度作れば多くのAIアプリで使える。公式ドキュメントは「AIアプリケーションのためのUSB-Cポートのようなもの」とたとえている。2024年11月にAnthropicが公開した。",
+    "links": [
+      { "id": "DC-02-018", "relation": "つなぐ仕組み" },
+      { "id": "DC-02-008", "relation": "考え方が近い" },
+      { "id": "DC-02-006", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-02-019", "point": "RAGは「検索して参照する」回答の作り方。MCPは「AIと外部システムをつなぐ」共通の規格。" },
+      { "id": "DC-05-030", "point": "MCPはAIとツール・データをつなぐ。A2AはAIエージェントどうしをつなぐ。" }
+    ],
+    "figures": ["fig-dx-agent-mcp-a2a"],
+    "sources": [
+      { "title": "Model Context Protocol 公式ドキュメント「What is the Model Context Protocol (MCP)?」", "url": "https://modelcontextprotocol.io/docs/getting-started/intro" },
+      { "title": "Anthropic「Introducing the Model Context Protocol」（2024年11月）", "url": "https://www.anthropic.com/news/model-context-protocol" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-05-030",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "最新事例＆トレンド"],
+    "title": "A2A（Agent2Agent Protocol）",
+    "oneLine": "異なる会社やフレームワークで作られたAIエージェントどうしが、互いの内部を共有しなくても、安全に情報をやり取りし、協力して作業を進めるためのオープンなプロトコル。2025年4月にGoogleが発表した。",
+    "why": "Agent2Agent の略（2 は英語の to と同じ音）。意味は『エージェントからエージェントへ』で、AIエージェントどうしをつなぐ取り決めを表す。企業の中では、経費・在庫・顧客対応など、別々のAIエージェントが動くようになる。それらがつながって分担できれば、複雑な業務を自動で進められる。発表では、A2AはAIにツールやデータを提供するMCPを補完するものと位置づけられた。MCP＝AIと道具をつなぐ、A2A＝AIとAIをつなぐ。",
+    "links": [
+      { "id": "DC-02-018", "relation": "つなぐ対象" },
+      { "id": "DC-02-020", "relation": "補完" }
+    ],
+    "confusions": [
+      { "id": "DC-02-020", "point": "MCPはAIアプリと外部のツール・データをつなぐ。A2AはAIエージェントどうしをつなぐ。" },
+      { "title": "B2BやC2C", "point": "A2AはAgent to Agent。企業間取引（B2B）や個人間取引（C2C）のような取引の形の名前ではない。" }
+    ],
+    "figures": ["fig-dx-agent-mcp-a2a"],
+    "sources": [
+      { "title": "Google Developers Blog「Announcing the Agent2Agent Protocol (A2A)」（2025年4月）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
+      { "title": "A2A Protocol 公式サイト", "url": "https://a2a-protocol.org/latest/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-07-101",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "基盤モデル（Foundation Model）",
+    "oneLine": "膨大な量のデータで事前に学習しておき、さまざまなタスクに当てはめて使える汎用のAIモデル。大規模言語モデル（LLM）はその代表。",
+    "why": "情報通信白書（令和6年版）は、膨大なデータで学習し様々なタスクに適用できる知識を獲得した基盤モデルやLLMの登場で、新しいタスクのたびにモデルを学習し直す必要がなくなり、開発や利用が大幅に容易になったとしている。名付け元の論文（Bommasaniほか、2021年）は、幅広いデータで大規模に学習し、多様な下流のタスクに適応できるモデルと定義した。同じ論文は、多くのモデルが1つの基盤モデルから作られる「均質化」は強い梃子になる一方、基盤モデルの欠陥がそこから作られたすべてのモデルに引き継がれるので注意が要る、とも指摘している。",
+    "links": [
+      { "id": "DC-02-012", "relation": "基盤" },
+      { "id": "DC-02-017", "relation": "使い道" },
+      { "id": "DC-07-102", "relation": "発展形" },
+      { "id": "DC-02-019", "relation": "組み合わせ" }
+    ],
+    "confusions": [
+      { "id": "DC-02-017", "point": "基盤モデルは「多くの用途の土台になる」という作り方・使われ方の呼び名。生成AIは「文章や画像を生み出す」という働きの呼び名。LLMはその両方に当たる。" }
+    ],
+    "sources": [
+      { "title": "総務省「令和6年版 情報通信白書」生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" },
+      { "title": "Bommasani ほか「On the Opportunities and Risks of Foundation Models」（arXiv:2108.07258, 2021）", "url": "https://arxiv.org/abs/2108.07258" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-07-102",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "マルチモーダルAI",
+    "oneLine": "テキスト・画像・音声・動画など、種類（モード）の違う複数のデータをまとめて扱えるAI。",
+    "why": "情報通信白書（令和7年版）は、テキスト・画像・音声・動画など複数のデータ形式を統合的に処理できるマルチモーダルAIや推論モデルなど、LLMの進化によってAIがより複雑なタスクをこなせるようになりつつあるとしている。令和6年版は、高い汎用性とマルチモーダル機能によって、AIが単一のタスクに限られず、様々なデータ形式や入力に対応し、多様なタスクを同時に処理できるようになったことで、有用性が一層高まったとしている。例えば、現場の写真と作業者の音声メモをまとめて読み取り、報告の下書きを作る、といった使い方が考えられる。",
+    "links": [
+      { "id": "DC-07-101", "relation": "前提" },
+      { "id": "DC-02-013", "relation": "対比" },
+      { "id": "DC-05-031", "relation": "具体例" },
+      { "id": "DC-02-017", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-02-013", "point": "自然言語処理は「言葉」を扱う分野。マルチモーダルは、言葉・画像・音声のように種類の違うデータを組み合わせて扱うこと。" }
+    ],
+    "sources": [
+      { "title": "総務省「令和7年版 情報通信白書」AI研究開発における最近の動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" },
+      { "title": "総務省「令和6年版 情報通信白書」生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-07-103",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "基本概念"],
+    "title": "強化学習",
+    "oneLine": "どう行動すれば得られる報酬（数値の評価）が最大になるかを、試行錯誤から学ぶ機械学習の方法。",
+    "why": "教科書（Sutton & Barto）によれば、学習する側はどの行動を取るべきかを教えられず、試してみて、どの行動が最も多くの報酬を生むかを自分で見つけなければならない。正解の例を与えて学ぶ教師あり学習とはここが違う。強化学習に特有の難しさが「探索と活用のトレードオフ」で、報酬を得るには効果が分かっている行動を選ぶ（活用）必要があるが、よりよい行動を見つけるには、まだ試していない行動も選ぶ（探索）必要がある。教科書はチェスの指し手や、移動ロボットの判断などを例に挙げる。また、報酬（目的）の決め方を誤ると、設計者の意図とずれた振る舞い（副作用や報酬ハッキング）を学ぶおそれがある（Amodeiほか、2016年）。",
+    "links": [
+      { "id": "DC-02-012", "relation": "部分" },
+      { "id": "DC-02-018", "relation": "関連" },
+      { "id": "DC-07-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "教師あり学習", "point": "教師あり学習は正解の付いた例から学ぶ。強化学習は正解を教わらず、行動の結果として返ってくる報酬から学ぶ。" }
+    ],
+    "sources": [
+      { "title": "Sutton & Barto「Reinforcement Learning: An Introduction」1.1 Reinforcement Learning", "url": "http://incompleteideas.net/book/ebook/node7.html" },
+      { "title": "Sutton & Barto「Reinforcement Learning: An Introduction」1.2 Examples", "url": "http://incompleteideas.net/book/ebook/node8.html" },
+      { "title": "Amodei ほか「Concrete Problems in AI Safety」（arXiv:1606.06565, 2016）", "url": "https://arxiv.org/abs/1606.06565" }
+    ],
+    "status": "verified"
+  }
+]
