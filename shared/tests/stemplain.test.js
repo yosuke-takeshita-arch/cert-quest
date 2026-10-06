@@ -23,7 +23,7 @@ class FakeEl {
 }
 globalThis.document = { createElement: (t) => new FakeEl(t), createTextNode: (s) => ({ text: s }) };
 globalThis.location = { href: 'http://localhost/g-kentei/' };
-const { explanation } = await import('../js/views/explain.js');
+const { explanation, stemPlainBlock } = await import('../js/views/explain.js');
 
 const concepts = [normalizeConcept({ id: 'C-01-001', title: '過学習', oneLine: '訓練データに合わせすぎること。', why: 'w', syllabus: ['a'] })];
 const app = { data: { concepts, conceptIndex: buildConceptIndex(concepts), figures: {} }, state: { settings: {} } };
@@ -36,26 +36,39 @@ test('stemPlain: データの整形で残る（前後の空白は削る・無け
   assert.equal(mkQ({ stemPlain: 5 }).stemPlain, '');
 });
 
-test('解説: stemPlain があれば、先頭に「問題文の意味」の欄が出て、中身は stemPlain の文', () => {
-  const box = draw(mkQ({ stemPlain: '過学習の特徴を選ぶ問題です。' }));
-  const first = box.children[0];
-  assert.ok(first.className.includes('stem-plain'), '先頭の欄');
-  assert.equal(first.children[0].textContent, '問題文の意味');
-  assert.equal(first.children[1].textContent, '過学習の特徴を選ぶ問題です。');
-  assert.equal(box.find((e) => e.className.includes('stem-plain')).length, 1);
+test('欄: stemPlain があれば「問題文の意味」の欄を返し、中身は stemPlain の文。無い問題は null（空の欄を置かない）', () => {
+  const el = stemPlainBlock(mkQ({ stemPlain: '過学習の特徴を選ぶ問題です。' }));
+  assert.ok(el.className.includes('stem-plain'));
+  assert.equal(el.children[0].textContent, '問題文の意味');
+  assert.equal(el.children[1].textContent, '過学習の特徴を選ぶ問題です。');
+  assert.equal(stemPlainBlock(mkQ({})), null);
 });
 
-test('解説: stemPlain が無い問題には欄を出さない（空の欄を置かない）', () => {
-  const box = draw(mkQ({}));
+test('解説(explanation)の中には欄を置かない（呼ぶ側が先に置くので二重にならない）', () => {
+  const box = explanation(app, { q: mkQ({ stemPlain: 'x' }), choices: ['a', 'b'], answer: 0, whyWrong: [null, 'w'] }, 1, () => {}, { sensei: false });
   assert.equal(box.find((e) => e.className.includes('stem-plain')).length, 0);
-  assert.ok(box.children[0].className.includes('ex-block')); // 正解の理由が先頭のまま
 });
 
-test('結線: 問題を解く画面(play.js)に「問題文の意味」のボタンを置かない。解説は play.js・exam.js から共通の explanation を使う', () => {
+test('順序: どの画面でも、問題文の意味 → まず用語を確認しよう → 解説。stumbleBlock を呼ぶ所は必ず直前に stemPlainBlock がある', () => {
+  const play = src('js/views/play.js');
+  // 出題画面で答えたあと（間違い）: 意味の追加が stumbleBlock の呼び出しより前、explanation より前
+  const iMeaning = play.indexOf('if (meaning) after.appendChild(meaning); //');
+  const iStumble = play.indexOf('stumbleBlock(app, sq.q, open)');
+  const iExplain = play.indexOf('after.appendChild(explanation(app, sq');
+  assert.ok(iMeaning > 0 && iMeaning < iStumble && iStumble < iExplain, '出題画面: 意味 → 用語 → 解説');
+  // 正解のときも解説より前（正解の枝の先頭で追加している）
+  assert.ok(/if \(correct\) \{\s*if \(meaning\) after\.appendChild\(meaning\);/.test(play));
+  // 結果画面の一覧（用語の欄は無い）: 意味 → 解説
+  assert.ok(play.includes('stemPlainBlock(r.q), explanation('));
+  // 模擬試験の見直し: 意味 → 用語 → 解説
+  assert.ok(src('js/views/exam.js').includes('stemPlainBlock(r.q), stumbleBlock(app, r.q, open), explanation('));
+});
+
+test('結線: 出題画面(play.js)に「問題文の意味」のボタンを置かない。解説は play.js・exam.js から共通の explanation を使う', () => {
   const play = src('js/views/play.js');
   assert.ok(!/stemhelp|stemHelp|stem-help/.test(play));
-  assert.ok(/explanation\(app, sq, chosen/.test(play));
-  assert.ok(/explanation\(app, r\.sq/.test(src('js/views/exam.js')));
+  assert.ok(play.includes('explanation(app, sq, chosen'));
+  assert.ok(src('js/views/exam.js').includes('explanation(app, r.sq'));
 });
 
 test('撤去: 問答の前に出す仕組み(stemhelp)が残っていない。sw-core.js の一覧・CSS からも消えている。2つのアプリの sw.js の version がそろっている', () => {

@@ -4,7 +4,7 @@ import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.js';
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stumbleBlock, CHOICE_LABELS } from './explain.js';
+import { explanation, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
 
 /**
  * spec: { mode:'stage'|'review'|'challenge', title, pick(app)->質問の配列, stageKey?, backHash }
@@ -140,7 +140,9 @@ export function renderPlay(app) {
         : null,
       r.leveledUp ? h('span', { class: 'levelup', text: 'レベルアップ！ Lv ' + r.levelAfter }) : null);
     after.appendChild(verdict);
+    const meaning = stemPlainBlock(sq.q);
     if (correct) {
+      if (meaning) after.appendChild(meaning);
       burst(btns[sq.answer]);
       vibrate(app.state.settings, 30);
       beep(app.state.settings, 'ok'); // レベルアップのファンファーレは、お祝いの画面で鳴らす（二重に鳴らさない）
@@ -150,6 +152,7 @@ export function renderPlay(app) {
       // 3問続けて不正解のときは、柴犬が応援する（このとき先生の絵は出さない。1画面に1人まで）
       cheer = shouldCheer(S.results.map((r) => r.correct));
       if (cheer) after.appendChild(mascotLine('shiba-cheer', CHARACTER_TEXT.cheer, 'cheer'));
+      if (meaning) after.appendChild(meaning); // 用語の確認より前（問題の意味が分かってから用語を見る）
       const sb = stumbleBlock(app, sq.q, open);
       if (sb) after.appendChild(sb);
     }
@@ -187,7 +190,7 @@ export function renderPlay(app) {
     if (wrong.length) {
       const l = h('div', { class: 'card' }, h('h2', { text: 'まちがえた問題（' + wrong.length + '）' }));
       wrong.forEach((r) => {
-        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), explanation(app, r.sq, r.chosen, (id) => openCardSheet(app, id), { sensei: false })));
+        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), stemPlainBlock(r.q), explanation(app, r.sq, r.chosen, (id) => openCardSheet(app, id), { sensei: false })));
       });
       root.appendChild(l);
     }
