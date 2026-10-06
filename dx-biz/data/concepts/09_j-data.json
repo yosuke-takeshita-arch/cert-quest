@@ -650,5 +650,44 @@
       { "title": "国土交通省「官民ビッグデータによる災害通行実績データシステム」", "url": "https://www.mlit.go.jp/road/ITS/j-html/etc2/pdf/17.pdf" }
     ],
     "status": "verified"
+  },
+  {
+    "id": "DC-09-109",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "ビッグデータの特性（3V：量・速度・多様性）",
+    "oneLine": "ビッグデータを特徴づける性質。データの量（Volume）、流れ込む速さ（Velocity）、種類の多さ（Variety）の3つのV。NISTはこれに変動性（Variability）を加えて説明している。",
+    "why": "米国国立標準技術研究所（NIST）のビッグデータ相互運用性フレームワーク第1巻（定義）は、ビッグデータを『主に量・速度・多様性・変動性の特性を持つ大規模なデータの集まりで、効率よく保存・処理・分析するには拡張できる（スケーラブルな）構成が要るもの』と定義する。量はデータの大きさ、速度はデータが流れ込む速さ、多様性はデータの出どころ・分野・種類の多さ、変動性は流れる速さ・形式・意味・品質が変わること。定義が『データの性質』と『それを扱う仕組みの必要』を組にしている点が要で、NISTは、部品を改良して1台の性能を上げる（垂直スケーリング）だけでなく、資源を足して並列に処理する（水平スケーリング）ことがビッグデータの変化の中心にあると述べる。",
+    "links": [
+      { "id": "DC-03-004", "relation": "詳しく" },
+      { "id": "DC-03-006", "relation": "扱う仕組み" },
+      { "id": "DC-03-005", "relation": "扱う仕組み" },
+      { "id": "DC-11-105", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-03-004", "point": "3Vは性質の分け方。形が決まっていない非構造化データは、そのうち多様性（Variety）に当たる。" }
+    ],
+    "figures": ["fig-dx-scale"],
+    "sources": [
+      { "title": "NIST SP 1500-1r2「NIST Big Data Interoperability Framework: Volume 1, Definitions」（2019年10月）", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-1r2.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-110",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "SQLの命令の種類（DDLとDML）",
+    "oneLine": "SQLの命令は役割で分けられる。DDL（データ定義言語）は表などの入れ物を作る・変える・消す命令、DML（データ操作言語）は入れ物の中のデータを読み書きする命令。データを取り出す問い合わせ（クエリ）のSELECTはDMLに含まれる。",
+    "why": "オラクルのSQLリファレンス（Oracle Database 19c）は、DDLを、表などのスキーマ・オブジェクトの作成・変更・削除や、権限の付与・取り消しを行う命令とし、CREATE・ALTER・DROPには対象への排他的なアクセスが要ると説明する。例えば、他の利用者がその表で確定していない処理（トランザクション）を開いているとALTER TABLEは失敗する。また同データベースでは、DDLの前後でそれまでの処理が自動的に確定（コミット）される。DMLはINSERT・UPDATE・DELETE・SELECTなどで、既にある表のデータを扱う。SELECTはデータを読むだけで、データベースに保存された中身は書き換えない。",
+    "links": [
+      { "id": "DC-03-007", "relation": "部分" },
+      { "id": "DC-03-008", "relation": "具体例" }
+    ],
+    "confusions": [
+      { "id": "DC-03-008", "point": "JOINは複数の表のデータを結び付けて取り出す問い合わせ（DMLのSELECTの使い方）。表の形を変えるDDLではない。" }
+    ],
+    "sources": [
+      { "title": "Oracle「Oracle Database SQL言語リファレンス 19c」Types of SQL Statements", "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html" }
+    ],
+    "status": "verified"
   }
 ]

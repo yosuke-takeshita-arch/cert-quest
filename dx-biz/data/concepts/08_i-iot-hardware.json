@@ -279,5 +279,24 @@
       { "title": "Google Research「Quantum Supremacy Using a Programmable Superconducting Processor」（2019年10月23日）", "url": "https://research.google/blog/quantum-supremacy-using-a-programmable-superconducting-processor/" }
     ],
     "status": "verified"
+  },
+  {
+    "id": "DC-08-108",
+    "syllabus": ["DX技術イノベーション領域", "I IoT技術/ハードウェア技術", "基本概念"],
+    "title": "Massive MIMO（超多素子アンテナ）",
+    "oneLine": "基地局に数十〜数百のアンテナ素子を並べ、電波を狙った方向へ絞って送ったり、複数の利用者へ同時に送り分けたりする5Gの無線技術。",
+    "why": "MIMOは、同じ時間・同じ周波数で複数の送受信アンテナを使い、通信の品質と周波数の使い方の効率を上げる技術（NTTドコモ テクニカル・ジャーナル Vol.23 No.4）。5Gは広い帯域を取るために高い周波数帯を使うが、高い周波数ほど電波が届く途中で弱まる（伝搬損失が大きい）。そこで多数の素子で鋭いビームを作り（ビームフォーミング）、弱まりを補う。同じ到達距離を得るには、周波数が高いほど多くの素子が要る。素子の数が決まっているときは、ビームを強めることと、多くの利用者や信号の流れを同時に送ること（ユーザ多重・空間多重）とで素子を分け合うので、同時に送る数を増やすとビームの効果は下がる。高い周波数帯は、建物や人の体にさえぎられたときの損失も大きい。",
+    "links": [
+      { "id": "DC-02-001", "relation": "部分" },
+      { "id": "DC-08-103", "relation": "関連" },
+      { "id": "DC-02-002", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-02-002", "point": "LPWAは、少ない電力で遠くまで、ゆっくり少しずつ送る。Massive MIMOは、5Gの高い周波数で速く大容量に送るための技術。" }
+    ],
+    "sources": [
+      { "title": "NTTドコモ「5Gマルチアンテナ技術」（NTT DOCOMOテクニカル・ジャーナル Vol.23 No.4）", "url": "https://www.docomo.ne.jp/binary/pdf/corporate/technology/rd/technical_journal/bn/vol23_4/vol23_4_005jp.pdf" }
+    ],
+    "status": "verified"
   }
 ]

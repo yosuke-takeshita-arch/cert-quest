@@ -230,5 +230,28 @@
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
     "status": "verified"
+  },
+  {
+    "id": "DC-04-107",
+    "syllabus": ["DX戦略イノベーション領域", "C プロセス・イノベーション", "基本概念"],
+    "title": "ERP（統合基幹業務システム）",
+    "oneLine": "会計・調達・製造・販売・人事など、会社の基幹業務を共通のデータベースの上でつなぐシステム（パッケージ）。Enterprise Resource Planning の略で、企業資源計画とも訳す。",
+    "why": "部門ごとに別々のシステムで同じ取引を入力していると、データが重複し、部門の間で数字が食い違う。オラクルの解説は、ERPは共通のデータベースと単一のデータ構造を中心に作られ、複数の業務プロセスを結んでデータを流し、重複を除いた『単一の信頼できるソース』を提供するとしている。つまりERPは、部門ごとの局所最適を全体最適に近づける道具になる。入れ方には、自社の業務に合わせて追加開発（アドオン）する方法と、アドオンをせず業務を標準機能に合わせる『Fit to Standard』がある（IPA「DX白書2023」の用語説明）。オラクルの解説も、ERPの利用者は高い費用と複雑さを、自社向けに作り込む機能や柔軟さとどう釣り合わせるかに苦労してきたと述べている。",
+    "links": [
+      { "id": "DC-04-105", "relation": "目的" },
+      { "id": "DC-04-104", "relation": "組み合わせ" },
+      { "id": "DC-04-103", "relation": "前の段階" },
+      { "id": "DC-03-007", "relation": "土台" },
+      { "id": "DC-06-102", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-06-102", "point": "ERPは社内の基幹業務（会計・調達・製造など）のデータを共通の土台にまとめる。CRMは顧客との関係（接点・購買の記録・働きかけ）を管理する。" }
+    ],
+    "sources": [
+      { "title": "オラクル「ERPとは」", "url": "https://www.oracle.com/jp/erp/what-is-erp/" },
+      { "title": "IPA「DX白書2023」（2023年2月）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
+      { "title": "IPA「ITパスポート試験 シラバス Ver.6.4」", "url": "https://www.ipa.go.jp/shiken/syllabus/nl10bi0000007sxy-att/syllabus_ip_ver6_4.pdf" }
+    ],
+    "status": "verified"
   }
 ]

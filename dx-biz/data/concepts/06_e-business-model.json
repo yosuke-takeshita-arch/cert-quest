@@ -300,5 +300,28 @@
       { "title": "デジタル庁「DS-100 デジタル・ガバメント推進標準ガイドライン」（2026年6月12日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/54d8725e/20260715_resources_standard_guidelines_guideline_01.pdf" }
     ],
     "status": "verified"
+  },
+  {
+    "id": "DC-06-102",
+    "syllabus": ["DX戦略イノベーション領域", "E ビジネスモデル・イノベーション", "基本概念"],
+    "title": "CRM（顧客関係管理）",
+    "oneLine": "顧客との信頼関係を深め、購入した人をリピーターに、リピーターをファンに育てていくための経営の考え方と、それを支える仕組み。Customer Relationship Management の略。",
+    "why": "観光庁のマーケティングガイドブックは、CRMを、データに基づいて顧客との関係を管理し、関係づくりを通じて利益の最大化などを目指す総合的な経営手法と説明する。働きは3つに分けられる。①さまざまな顧客接点で顧客データを集める ②集めたデータを一元的に管理・分析し、マーケティングの打ち手への示唆を出す ③分析に基づき、自らのチャネルを通じて顧客に働きかける。それを実現するシステムを『CRMシステム』『CRMツール』と呼び、ツールまで含めてCRMと呼ぶこともある。ITパスポート試験のシラバスは、CRMを経営管理システムの用語に挙げている。",
+    "links": [
+      { "id": "DC-07-010", "relation": "関連" },
+      { "id": "DC-07-011", "relation": "部分" },
+      { "id": "DC-06-101", "relation": "関連" },
+      { "id": "DC-06-021", "relation": "打ち手" },
+      { "id": "DC-04-107", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-04-107", "point": "CRMは顧客との関係を管理する。ERPは会計・調達・製造など社内の基幹業務のデータを共通の土台にまとめる。" }
+    ],
+    "figures": ["fig-dx-customer-lifecycle"],
+    "sources": [
+      { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
+      { "title": "IPA「ITパスポート試験 シラバス Ver.6.4」", "url": "https://www.ipa.go.jp/shiken/syllabus/nl10bi0000007sxy-att/syllabus_ip_ver6_4.pdf" }
+    ],
+    "status": "verified"
   }
 ]

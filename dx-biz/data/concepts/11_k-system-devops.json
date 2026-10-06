@@ -178,5 +178,26 @@
       { "title": "DORA（Google Cloud）「DORA’s software delivery performance metrics」", "url": "https://dora.dev/guides/dora-metrics/" }
     ],
     "status": "verified"
+  },
+  {
+    "id": "DC-11-105",
+    "syllabus": ["社会実装イノベーション領域", "K システム基盤技術・開発運用", "基本概念"],
+    "title": "スケーラビリティ（拡張性）",
+    "oneLine": "処理するデータや利用者が増えたときに、資源を足すことで処理を受け止め、性能を保ったり伸ばしたりできる性質。",
+    "why": "NISTのビッグデータ相互運用性フレームワーク第1巻は、スケーラブルとは『増えた負荷を、資源を足して扱えること』とし、理想は、データが2倍になっても資源を2倍にすれば同じ時間で処理できることだと述べる（計算機を2倍にすれば2倍のデータを同じ時間で処理できる状態を線形スケーラビリティと呼ぶ）。伸ばし方には2つあり、垂直スケーリングはアルゴリズム・処理装置・メモリ・記憶装置・接続を改良して性能を上げること、水平スケーリングは資源を足して出力の能力を増やすこと。NISTは、部品の改良による性能向上は物理的な限界に近づいてきたとし、資源を足して並列に処理する水平スケーリングがデータを大量に扱う処理の中心だとしている。",
+    "links": [
+      { "id": "DC-03-005", "relation": "実現する方法" },
+      { "id": "DC-03-006", "relation": "実現する方法" },
+      { "id": "DC-09-109", "relation": "求められる理由" },
+      { "id": "DC-11-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-03-005", "point": "スケーラビリティは『足して伸ばせる性質』。スケールアップ（1台を強くする）とスケールアウト（台数を増やす）は、それを実現する2つの方法。" }
+    ],
+    "figures": ["fig-dx-scale"],
+    "sources": [
+      { "title": "NIST SP 1500-1r2「NIST Big Data Interoperability Framework: Volume 1, Definitions」（2019年10月）", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-1r2.pdf" }
+    ],
+    "status": "verified"
   }
 ]
