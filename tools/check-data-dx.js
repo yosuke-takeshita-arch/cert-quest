@@ -49,6 +49,13 @@
 //   見ていないもの: 一覧に無い言い回し（言い換えれば素通りする）・意味（「互いに関係が無い」も相互依存の語として数える）・
 //   誤答が別の語で関係を述べているか（正解「両方」・誤答「どちらも」は A になる）。良い形は D-11-127（正解と誤答が同じ要素を並べ、1点だけ違う）
 //
+// 選択肢の語の偏り（WARN のみ。2026-10-06 追加。下の CUE_WORDS）
+//   qtype・format を問わず、誤答が2つ以上ある全問題で、CUE_WORDS の語ごとに次のどちらかなら WARN（ID と語を出す）。CUE 行に件数を出す
+//   - 誤答のすべてに含まれ、正解には含まれない（例: 誤答3つだけが「ただし」で要素を崩す。点検 review-1006d の D-01-125 ほか）
+//   - 正解にだけ含まれ、誤答のどれにも含まれない（例: format が not の問題で、正解＝不適切な文だけが「必ず」「一切」と言い切る）
+//   見ていないもの: 一覧に無い語（言い換えれば素通りする）・意味（否定の「だけでは足りない」も「だけ」として数える）・
+//   語が出る位置（文頭の「ただし」も文中も同じに数える）・誤答の一部だけに偏る形（4択のうち2つだけ等）・選択肢以外の欄（問題文と正解の語の重なりは見ない）
+//
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか・qtype が問題の中身に合っているか（人が読む）
 'use strict';
 
@@ -68,6 +75,15 @@ const INTERDEP_DISMISS = [
   /足りる/, /ればよい/, /ればよく/, /関わらない/, /関わらず/, /関われず/, /関係が無い/, /関係の無い/, /関係なく/, /関係しない/,
   /別の話/, /自然に/, /単独で/, /後から/, /後で/, /一方的/, /一方向/, /完結/, /影響し合わ/, /無くてもよい/, /要らない/,
   /必要は無い/, /必要はない/, /なくてよい/, /済む/, /切り離/, /結び付かない/, /結びつかない/,
+];
+
+// 選択肢の語の偏りを見る語の一覧（2026-10-06。点検 review-1006d で、誤答3つにだけ「ただし」が入る型が見つかった）。
+// 但し書き・限定・対比・言い切りの短い語。部分一致で見る（正規表現。表記ゆれは列挙したものだけ）。
+// 誤検出を潰すための除外: 「だけでなく／だけではなく」（限定ではなく追加）、「どれだけ／それだけ／これだけ／同じだけ」（量の言い方）、
+// 「異常に／非常に／正常に／日常に／通常に」（「常に」を含む別の語）
+const CUE_WORDS = [
+  /ただし/, /しかし/, /のみ/, /(?<!どれ|それ|これ|同じ)だけ(?!でなく|ではなく)/, /ではなく/, /一方で/,
+  /必ず/, /(?<!異|非|正|日|通)常に/, /すべて|全て/, /まったく|全く/, /一切/,
 ];
 
 const args = process.argv.slice(2);
@@ -335,6 +351,26 @@ function checkInterdepWording(f, id, o) {
   warn(f, id, `interdep: ${reasons.join('。')}。問いの型だけで正解が選べる（誤答にも同じ要素の関係を書き、1点だけ違える。例 D-11-127）`);
 }
 
+// 選択肢の語の偏り（2026-10-06 追加。語の一覧はファイル先頭の CUE_WORDS）
+const cueStats = { n: 0, flagged: 0 };
+function checkCueWords(f, id, o) {
+  if (!Array.isArray(o.choices) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
+  const right = String(o.choices[o.answer]);
+  const wrongs = o.choices.filter((_, i) => i !== o.answer).map(String);
+  if (wrongs.length < 2) return;
+  cueStats.n++;
+  const reasons = [];
+  for (const re of CUE_WORDS) {
+    const inRight = re.test(right);
+    const inWrong = wrongs.map((w) => re.test(w));
+    if (!inRight && inWrong.every(Boolean)) reasons.push(`「${wrongs[0].match(re)[0]}」が誤答のすべてにあり、正解に無い`);
+    else if (inRight && !inWrong.some(Boolean)) reasons.push(`「${right.match(re)[0]}」が正解にだけあり、誤答のどれにも無い`);
+  }
+  if (!reasons.length) return;
+  cueStats.flagged++;
+  warn(f, id, `cue: ${reasons.join('。')}。語だけで正解が選べる（同じ語を正解と誤答の両方に使うか、どちらからも外し、別の書き方で1点だけ違える）`);
+}
+
 const seen = new Map();
 for (const { file: f, kind, data, syl, stageCh } of loaded) {
   data.forEach((o, idx) => {
@@ -361,6 +397,7 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
       else o.concepts.forEach((c) => { if (!conceptIndex.has(c)) err(f, id, `concepts の ${c} が用語カードに無い`); });
       checkAnswerLength(f, id, o);
       checkInterdepWording(f, id, o);
+      checkCueWords(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
     } else {
@@ -434,6 +471,8 @@ for (const { file: f, kind, data } of loaded) {
 }
 // 相互依存の問題の言い回しの偏り（全体）
 if (interdepStats.n) console.log(`INTERDEP 全体: 言い回しの偏りがある ${interdepStats.flagged}/${interdepStats.n}`);
+// 選択肢の語の偏り（全体）
+if (cueStats.n) console.log(`CUE 全体: 語の偏りがある ${cueStats.flagged}/${cueStats.n}`);
 // キーワードの扱い漏れ（--coverage）
 if (coverage && loaded.length) {
   const cnorm = (s) => String(s).normalize('NFKC').toLowerCase().replace(/[\s　()「」『』、。,.・\-－ー]/g, '');
