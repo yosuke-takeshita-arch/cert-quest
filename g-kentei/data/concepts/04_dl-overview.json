@@ -2254,5 +2254,55 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "C-04-052",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "title": "プラトー（学習の停滞）",
+    "oneLine": "誤差関数の、勾配がほぼ0の平らな領域。勾配降下法は勾配の大きさに応じて進むので、ここに入ると誤差がなかなか下がらず、学習が止まったように見える。",
+    "why": "Dauphin ら（2014）は、高次元の誤差関数では鞍点が非常に多く、その周りを誤差の高いプラトーが囲むことが多いため、学習が大きく遅れ、局所最適解に捕まったかのように見えると指摘した。誤差がしばらく下がらず、その後に急に下がる学習曲線は、プラトーを抜けたときに見られる。一般の最適化問題では、平らな領域が目的関数の高い値の所にあることもある（凸な問題なら平らな領域はすべて大域最適解）。モーメンタムは、小さいが向きのそろった勾配を積み重ねて進むので、こうした所で学習を速める助けになる。",
+    "links": [
+      {
+        "id": "C-04-030",
+        "relation": "関連（鞍点の周りにできやすい）"
+      },
+      {
+        "id": "C-04-029",
+        "relation": "対比（見分けにくい）"
+      },
+      {
+        "id": "C-04-027",
+        "relation": "前提"
+      },
+      {
+        "id": "C-04-034",
+        "relation": "対策（勢いで進む）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-04-029",
+        "point": "局所最適解は周りより低い谷底で、そこから下る道は無い。プラトーは平らなだけで、その先に誤差が下がる道があり、停滞は一時的なことがある。"
+      },
+      {
+        "id": "C-04-030",
+        "point": "鞍点は勾配が0になる1点。プラトーは勾配がほぼ0の広い平らな領域。鞍点の周りにプラトーが広がっていることが多い。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
+        "url": "https://arxiv.org/abs/1406.2572"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville, Deep Learning, Chapter 8 Optimization for Training Deep Models（8.2.3 Plateaus, Saddle Points and Other Flat Regions／8.3.2 Momentum）",
+        "url": "https://www.deeplearningbook.org/contents/optimization.html"
+      }
+    ],
+    "status": "verified"
   }
 ]

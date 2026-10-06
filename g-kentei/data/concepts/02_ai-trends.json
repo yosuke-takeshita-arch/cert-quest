@@ -8,7 +8,7 @@
     ],
     "title": "第1次AIブーム",
     "oneLine": "1950年代後半〜1960年代。コンピュータによる「推論」と「探索」で、特定の問題に解を示せるようになったことによるブーム。",
-    "why": "迷路や定理証明のようなトイ・プロブレムは解けたが、要因が絡み合う現実の問題は解けないと分かり、冬の時代を迎えた。冷戦下の米国では機械翻訳にも力が注がれた。",
+    "why": "迷路や定理証明のようなトイ・プロブレムは解けたが、要因が絡み合う現実の問題は解けないと分かり、冬の時代を迎えた。冷戦下の米国では機械翻訳にも力が注がれた。前史として、1946年に米国ペンシルベニア大学で、汎用の電子計算機 ENIAC（エニアック）が発表されている。定理証明の早い例が、ニューウェルとサイモンが1956年に発表したロジック・セオリスト（Logic Theory Machine）で、記号論理の定理の証明を、人の問題解決に似たヒューリスティックな方法で探す。",
     "links": [
       {
         "title": "ダートマス会議",
@@ -41,6 +41,14 @@
       {
         "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代",
         "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html"
+      },
+      {
+        "title": "University of Pennsylvania School of Engineering and Applied Science: Celebrating Penn Engineering History: ENIAC",
+        "url": "https://www.seas.upenn.edu/about/history-heritage/eniac/"
+      },
+      {
+        "title": "Newell & Simon (1956) The Logic Theory Machine: A Complex Information Processing System. RAND Corporation, P-868",
+        "url": "https://www.rand.org/pubs/papers/P868.html"
       }
     ],
     "status": "verified"
@@ -599,7 +607,7 @@
     ],
     "title": "イライザ（ELIZA）",
     "oneLine": "1960年代にMITのワイゼンバウムが作った対話プログラム。入力文のキーワードに反応し、あらかじめ用意した規則で文を組み替えて応答する。",
-    "why": "名前の ELIZA は略語ではなく、劇『ピグマリオン』の娘イライザにちなむ。ワイゼンバウムは、使う人（先生役）が言葉の力を少しずつ伸ばせることを強調するためにこの名前を選び、ピグマリオンのイライザのように、もっと洗練されて見せることもできる、ただし見かけと実際の関係は劇作家の領分だ、と書いている。文の意味を理解する仕組みを持たず、キーワードと組み替え規則だけで会話らしく見せた。言葉のやり取りが自然に見えることと理解していることは別だ、という論点の具体例になる。後のチャットボットの原型。仕組みはパターンマッチング。入力文からキーワードを探し、そのキーワードに結びついた分解の型（例：「私は〇〇です」）に当てはまるかを調べ、当てはまれば、型に対応する組み立ての規則で〇〇の部分をそのまま差し込んで応答を作る（例：「いつから〇〇なのですか」）。〇〇の意味は一切見ていない。キーワードが見つからないときは、中身の無い決まり文句などを返す。",
+    "why": "名前の ELIZA は略語ではなく、劇『ピグマリオン』の娘イライザにちなむ。ワイゼンバウムは、使う人（先生役）が言葉の力を少しずつ伸ばせることを強調するためにこの名前を選び、ピグマリオンのイライザのように、もっと洗練されて見せることもできる、ただし見かけと実際の関係は劇作家の領分だ、と書いている。文の意味を理解する仕組みを持たず、キーワードと組み替え規則だけで会話らしく見せた。言葉のやり取りが自然に見えることと理解していることは別だ、という論点の具体例になる。後のチャットボットの原型。仕組みはパターンマッチング。入力文からキーワードを探し、そのキーワードに結びついた分解の型（例：「私は〇〇です」）に当てはまるかを調べ、当てはまれば、型に対応する組み立ての規則で〇〇の部分をそのまま差し込んで応答を作る（例：「いつから〇〇なのですか」）。〇〇の意味は一切見ていない。キーワードが見つからないときは、中身の無い決まり文句などを返す。ワイゼンバウムは、被験者の中には ELIZA が人間ではないと納得させるのがとても難しい人がいたこと、ごく少ない仕組みで理解しているような錯覚を保てることを報告している。コンピュータがつないだ言葉に、実際以上の理解を読み取ってしまう人の傾向はイライザ効果（ELIZA効果）と呼ばれ、ホフスタッター（1995）がこの名で定義している。",
     "links": [
       {
         "title": "チューリングテスト",
@@ -620,6 +628,10 @@
       {
         "title": "Weizenbaum (1966) ELIZA - A Computer Program For the Study of Natural Language Communication Between Man And Machine. CACM",
         "url": "https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf"
+      },
+      {
+        "title": "University of Cambridge, talks.cam: 'The Ineradicable Eliza Effect and Its Dangers': Weizenbaum, Pygmalion and the implications of gendering AI（講演要旨。Hofstadter 1995 の定義を引用）",
+        "url": "https://talks.cam.ac.uk/talk/index/132031"
       }
     ],
     "status": "verified"
@@ -1689,6 +1701,51 @@
       {
         "title": "古崎・林・笹島・溝口 (2008) オントロジー工学的観点に基づく Semantic Web アプリケーションの傾向分析（人工知能学会全国大会 3G2-2）",
         "url": "https://www.ai-gakkai.or.jp/jsai2008/program/pdf/100066.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-02-042",
+    "syllabus": [
+      "技術分野",
+      "人工知能をめぐる動向",
+      "探索・推論"
+    ],
+    "title": "αカット・βカット",
+    "oneLine": "αβ法の2種類の枝刈り。αカットは、相手（最小化する側）の節点で、子の値が上の自分の側が確保済みの値α以下になったら、その節点の残りの子を調べない。βカットは、自分（最大化する側）の節点で、子の値が上の相手の側が抑え込める値β以上になったら、残りの子を調べない。",
+    "why": "相手の節点の値がα以下と決まれば、上にいる自分はその枝を選ばない（もっと良い手をすでに持っている）。自分の節点の値がβ以上と決まれば、上にいる相手はその枝を選ばない。どちらも、選ばれないと分かった枝の残りを省くだけなので、選ぶ手は Mini-Max法と変わらない。αカットは相手（MIN）の節点で、βカットは自分（MAX）の節点で起きる、と節点の側で覚える。",
+    "links": [
+      {
+        "id": "C-02-008",
+        "relation": "全体（αβ法の中身）"
+      },
+      {
+        "id": "C-02-007",
+        "relation": "前提"
+      },
+      {
+        "id": "C-02-002",
+        "relation": "前提（ゲーム木）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-02-008",
+        "point": "αカットは相手（MIN）の節点で、値がα以下になったときに起きる。βカットは自分（MAX）の節点で、値がβ以上になったときに起きる。節点の側と不等号の向きを取り違えやすい。"
+      }
+    ],
+    "figures": [
+      "fig-g-minimax-alphabeta"
+    ],
+    "sources": [
+      {
+        "title": "Tsan-sheng Hsu, Alpha-Beta Pruning: Algorithm and Analysis（中央研究院 資訊科學研究所／Theory of Computer Games 講義資料, 2025）",
+        "url": "https://homepage.iis.sinica.edu.tw/~tshsu/tcg/2025/slides/slide6.pdf"
+      },
+      {
+        "title": "MIT OpenCourseWare 6.034 Artificial Intelligence (Fall 2010) Mega-Recitation 3: Games, Minimax, Alpha-Beta（講義記録）",
+        "url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/e83131e9d1eddde294b6a86bb6580c55_hM2EAvMkhtk.pdf"
       }
     ],
     "status": "verified"

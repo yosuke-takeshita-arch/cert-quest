@@ -2307,5 +2307,48 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-04-055",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ニューラルネットワークを勾配降下法で学習させたところ、訓練誤差が長い間ほとんど下がらず、しばらくしてから急に下がり始めた。この停滞の説明として、最も適切な選択肢を1つ選べ。",
+    "stemPlain": "学習の途中で、誤差がしばらく止まったように下がらず、その後で急に下がった。その間に何が起きていたかを選ぶ問題。",
+    "choices": [
+      "誤差関数の大域最適解に達して、それ以上は誤差が下がらない状態にいたため",
+      "訓練データに過剰に適合し、検証データに対する誤差が上がっていたため",
+      "学習率が大きすぎて、更新のたびに谷を飛び越えて行き来していたため",
+      "勾配がほぼ0の平らな領域（プラトー）にいて、更新の幅が小さかったため"
+    ],
+    "answer": 3,
+    "explanation": "勾配がほぼ0の平らな領域をプラトーと呼ぶ。勾配降下法は勾配の大きさに応じて進むので、プラトーでは更新が小さく、誤差がなかなか下がらない。抜けると勾配が大きくなり、誤差が急に下がる。高次元では鞍点の周りにプラトーが広がっていることが多く、局所最適解に捕まったように見えることもある（Dauphin ら, 2014）。",
+    "whyWrong": [
+      "大域最適解に達していたなら、その後に誤差がさらに下がることはない。後で急に下がったので、最適解ではなかった。",
+      "過学習は検証データの誤差の話。問題文は訓練誤差が下がらなかった場面で、過学習とは別。",
+      "学習率が大きすぎると誤差が振動したり発散したりする。ほとんど動かない停滞とは様子が違う。",
+      null
+    ],
+    "memoryTip": "plateau＝高原。平らで坂が無いので、ボールが転がらず止まって見える。",
+    "concepts": [
+      "C-04-052",
+      "C-04-030",
+      "C-04-029"
+    ],
+    "sources": [
+      {
+        "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
+        "url": "https://arxiv.org/abs/1406.2572"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville, Deep Learning, Chapter 8 Optimization for Training Deep Models（8.2.3 Plateaus, Saddle Points and Other Flat Regions）",
+        "url": "https://www.deeplearningbook.org/contents/optimization.html"
+      }
+    ],
+    "status": "verified"
   }
 ]

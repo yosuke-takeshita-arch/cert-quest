@@ -4527,5 +4527,123 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "C-06-107",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "title": "Convolutional Pose Machines（CPM）",
+    "oneLine": "畳み込みネットワークを何段も直列に重ね、各段が体の部位ごとの位置の信頼度マップ（belief map）を出し、次の段がそれを画像の特徴と一緒に受け取って推定を磨いていく姿勢推定の手法（Wei ら, 2016）。",
+    "why": "頭や肩のように見つけやすい部位の信頼度マップが、肘や手首のように見つけにくい部位の手がかりになる。離れた部位どうしの関係をとらえるため、後の段は受容野を大きくしている。段を重ねると層が深くなって勾配消失が起きやすいので、各段の出力にも損失をつける中間教師（intermediate supervision）で勾配を補う。CPM は1人分の姿勢を推定する手法で、人が近くに重なる場面を苦手とした。複数人をまとめて扱う OpenPose は、この段を重ねて中間教師をつける構成を受け継ぎ、部位のつながりを表す PAF を加えた。",
+    "links": [
+      {
+        "id": "C-06-025",
+        "relation": "発展形（OpenPose が構成を受け継ぐ）"
+      },
+      {
+        "id": "C-06-001",
+        "relation": "全体（姿勢推定タスク）"
+      },
+      {
+        "id": "C-04-024",
+        "relation": "課題（中間教師で補う）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-025",
+        "point": "CPM は段を重ねて部位の信頼度マップを磨く1人用の手法。OpenPose はその構成に PAF を加え、画像中の複数人をボトムアップに組み立てる。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Wei et al. (2016) Convolutional Pose Machines (arXiv:1602.00134)",
+        "url": "https://arxiv.org/abs/1602.00134"
+      },
+      {
+        "title": "Cao et al. (2017) Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields (arXiv:1611.08050)",
+        "url": "https://arxiv.org/abs/1611.08050"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-06-108",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "title": "Bag-of-n-grams",
+    "oneLine": "文書を、連続する n 個の語の並び（n-gram）の出現の集まりとして表す方法。語の順番を見ない BoW に、隣り合う語の並びという局所的な語順の情報を加えられる。",
+    "why": "BoW は語の順番を無視するので、たとえば『犬が猫を追う』と『猫が犬を追う』は同じ語の集まりになって区別できない。2語ずつの並び（バイグラム）にすると『犬が』と『猫が』で違いが出る。語順を明示的に扱うモデルは計算が重いが、bag of n-grams なら安く済む。fastText の文書分類（Joulin ら, 2016）は、bag of n-grams を追加の特徴として使い、n-gram はハッシュで決まった数の入れ物に割り当ててメモリを節約した。",
+    "links": [
+      {
+        "id": "C-06-027",
+        "relation": "発展形（BoW に n-gram を加える）"
+      },
+      {
+        "id": "C-06-030",
+        "relation": "使われる場面（fastText の文書分類）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-030",
+        "point": "fastText の単語ベクトルで使う文字 n-gram は、単語の中の文字の並びで、未知語にもベクトルを作るため。bag of n-grams は文の中の語の並びで、語順の情報を補うため。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Joulin et al. (2016) Bag of Tricks for Efficient Text Classification (arXiv:1607.01759)",
+        "url": "https://arxiv.org/abs/1607.01759"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-06-109",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "title": "分布仮説",
+    "oneLine": "似た文脈（周りに出てくる語）で使われる語は、似た意味を持つという考え方。語の意味の違いは、その語が現れる環境（分布）の違いと対応する。",
+    "why": "言語学者ハリスは1954年の論文で、意味の違いが大きい語どうしほど、現れる環境の違いも大きいことが多いと述べ、oculist（眼科医）と eye-doctor（目医者）はほぼ同じ環境に現れる類義語、oculist と lawyer（弁護士）は環境が一部しか重ならない、という例を挙げた。ファースの言葉 You shall know a word by the company it keeps（1957）も同じ系統の考え方としてよく引かれる。単語の意味を周りの語で表す分散表現（word2vec など）の働きは、この考え方に支えられている。",
+    "links": [
+      {
+        "id": "C-06-028",
+        "relation": "応用（この考え方で単語をベクトルにする）"
+      },
+      {
+        "id": "C-06-029",
+        "relation": "応用（周りの語を予測して学ぶ）"
+      },
+      {
+        "id": "C-06-027",
+        "relation": "対比（局所表現は意味の近さを持たない）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-06-028",
+        "point": "分布仮説は『意味は現れる文脈で決まる』という考え方。分散表現は、その考え方を使って単語を連続値のベクトルにした表現そのもの。『分布』と『分散』の字も取り違えやすい。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Harris (1954) Distributional Structure. WORD 10(2-3)",
+        "url": "https://doi.org/10.1080/00437956.1954.11659520"
+      },
+      {
+        "title": "Brunila & LaViolette (2022) What company do words keep? Revisiting the distributional semantics of J.R. Firth & Zellig Harris (arXiv:2205.07750)",
+        "url": "https://arxiv.org/abs/2205.07750"
+      }
+    ],
+    "status": "verified"
   }
 ]
