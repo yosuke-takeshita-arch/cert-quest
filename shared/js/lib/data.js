@@ -30,6 +30,7 @@ export function normalizeQuestion(q) {
     format: ['single', 'not', 'fill', 'scenario'].includes(q.format) ? q.format : 'single',
     difficulty: Number.isFinite(q.difficulty) ? q.difficulty : null,
     stem: q.stem,
+    stemPlain: typeof q.stemPlain === 'string' ? q.stemPlain.trim() : '', // 問題文の言い直し（任意。無ければ ''）
     choices: q.choices,
     answer: q.answer,
     explanation: typeof q.explanation === 'string' ? q.explanation : '',
