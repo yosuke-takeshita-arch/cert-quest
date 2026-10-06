@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/core.test.js tests/goals.test.js tests/manifest.test.js tests/sound.test.js tests/loadprogress.test.js tests/figures.test.js tests/examdate.test.js tests/backup.test.js tests/report.test.js tests/badges-art.test.js tests/characters.test.js tests/intro.test.js tests/weakness.test.js tests/textsize.test.js tests/maplayout.test.js tests/stemplain.test.js tests/exambp.test.js"
+    "test": "node --test tests/core.test.js tests/goals.test.js tests/manifest.test.js tests/sound.test.js tests/loadprogress.test.js tests/figures.test.js tests/examdate.test.js tests/backup.test.js tests/report.test.js tests/badges-art.test.js tests/characters.test.js tests/intro.test.js tests/weakness.test.js tests/textsize.test.js tests/maplayout.test.js tests/stemplain.test.js tests/exambp.test.js tests/interdep.test.js"
   }
 }

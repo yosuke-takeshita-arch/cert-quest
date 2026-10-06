@@ -42,11 +42,33 @@
 //   - 問題ごと: 正解の文字数が最も長い誤答の2倍以上なら WARN（ID を出す）
 //   - ファイルごと・全体で「正解がいちばん長い問題の割合」を LENGTH 行に出し、全体で 40% を超えたら WARN
 //
+// 相互依存の問題の言い回しの偏り（WARN のみ。2026-10-06 追加。下の INTERDEP_LINK / INTERDEP_DISMISS）
+//   qtype が interdep の問題（format が not のものは除く）で、次のどちらかなら WARN（ID を出す）。INTERDEP 行に件数を出す
+//   - A: 正解が相互依存の言い回し（INTERDEP_LINK）を1つ以上含み、誤答のどれも1つも含まない
+//   - B: 誤答のすべてが片づけの言い回し（INTERDEP_DISMISS）を含み、正解は1つも含まない
+//   見ていないもの: 一覧に無い言い回し（言い換えれば素通りする）・意味（「互いに関係が無い」も相互依存の語として数える）・
+//   誤答が別の語で関係を述べているか（正解「両方」・誤答「どちらも」は A になる）。良い形は D-11-127（正解と誤答が同じ要素を並べ、1点だけ違う）
+//
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか・qtype が問題の中身に合っているか（人が読む）
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
+
+// 相互依存の問題（qtype: interdep）の言い回しの偏りを見る語の一覧（2026-10-06。点検 review-1006b・1006c で2回続けて見つかった型）。
+// 実データの正解・誤答を見て作った。部分一致で見る（正規表現。表記ゆれは列挙したものだけ）。
+// 意味は見ない。否定（「互いに関係が無い」）も数える。ただし「連携」は「連携しない／せず」を除く（誤答が連携を否定する形があるため）
+const INTERDEP_LINK = [
+  /互いに/, /互いの/, /互いが/, /相互に/, /前提にな/, /相手の前提/, /はじめて/, /初めて/, /欠けても/, /欠けると/,
+  /両方/, /ともに/, /支え合/, /補い合/, /結びつけ/, /結び付け/, /一体で/, /一体と/, /かみ合/, /組み合わさ/,
+  /がそろ/, /にそろ/, /そろわ/, /つながっ/, /連携(?!しな|せず|は無|はな)/,
+];
+// 片づけの言い回し（要素を切り離す・後回しにする・1つで足りるとする）
+const INTERDEP_DISMISS = [
+  /足りる/, /ればよい/, /ればよく/, /関わらない/, /関わらず/, /関われず/, /関係が無い/, /関係の無い/, /関係なく/, /関係しない/,
+  /別の話/, /自然に/, /単独で/, /後から/, /後で/, /一方的/, /一方向/, /完結/, /影響し合わ/, /無くてもよい/, /要らない/,
+  /必要は無い/, /必要はない/, /なくてよい/, /済む/, /切り離/, /結び付かない/, /結びつかない/,
+];
 
 const args = process.argv.slice(2);
 let syllabusPath = null;
@@ -293,6 +315,26 @@ function checkAnswerLength(f, id, o) {
   if (maxWrong > 0 && L[o.answer] >= LEN_RATIO_WARN * maxWrong) warn(f, id, `正解（${L[o.answer]}字）が最も長い誤答（${maxWrong}字）の ${LEN_RATIO_WARN} 倍以上。長さだけで正解が分かる`);
 }
 
+// 相互依存の問題の言い回しの偏り（2026-10-06 追加。語の一覧はファイル先頭の INTERDEP_LINK / INTERDEP_DISMISS）
+const interdepStats = { n: 0, flagged: 0 };
+function checkInterdepWording(f, id, o) {
+  if (o.qtype !== 'interdep' || o.format === 'not') return;
+  if (!Array.isArray(o.choices) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
+  const hits = (s, list) => list.filter((re) => re.test(String(s))).map((re) => String(s).match(re)[0]);
+  const right = o.choices[o.answer];
+  const wrongs = o.choices.filter((_, i) => i !== o.answer);
+  if (!wrongs.length) return;
+  interdepStats.n++;
+  const reasons = [];
+  const rl = hits(right, INTERDEP_LINK);
+  if (rl.length && wrongs.every((w) => !hits(w, INTERDEP_LINK).length)) reasons.push(`相互依存の言い回し（${rl.join('・')}）が正解にだけあり、誤答のどれにも無い`);
+  const wd = wrongs.map((w) => hits(w, INTERDEP_DISMISS));
+  if (!hits(right, INTERDEP_DISMISS).length && wd.every((h) => h.length)) reasons.push(`誤答のすべてが片づけの言い回し（${[...new Set(wd.flat())].join('・')}）を含み、正解には無い`);
+  if (!reasons.length) return;
+  interdepStats.flagged++;
+  warn(f, id, `interdep: ${reasons.join('。')}。問いの型だけで正解が選べる（誤答にも同じ要素の関係を書き、1点だけ違える。例 D-11-127）`);
+}
+
 const seen = new Map();
 for (const { file: f, kind, data, syl, stageCh } of loaded) {
   data.forEach((o, idx) => {
@@ -318,6 +360,7 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
       if (!Array.isArray(o.concepts) || o.concepts.length === 0) err(f, id, 'concepts が空');
       else o.concepts.forEach((c) => { if (!conceptIndex.has(c)) err(f, id, `concepts の ${c} が用語カードに無い`); });
       checkAnswerLength(f, id, o);
+      checkInterdepWording(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
     } else {
@@ -389,6 +432,8 @@ for (const { file: f, kind, data } of loaded) {
     if (longest / n > LONGEST_SHARE_WARN) warns.push(`WARN 全体 -: 正解がいちばん長い問題が ${pct(longest, n)}（${longest}/${n}）で ${LONGEST_SHARE_WARN * 100}% を超える。長さで正解が当たりやすい`);
   }
 }
+// 相互依存の問題の言い回しの偏り（全体）
+if (interdepStats.n) console.log(`INTERDEP 全体: 言い回しの偏りがある ${interdepStats.flagged}/${interdepStats.n}`);
 // キーワードの扱い漏れ（--coverage）
 if (coverage && loaded.length) {
   const cnorm = (s) => String(s).normalize('NFKC').toLowerCase().replace(/[\s　()「」『』、。,.・\-－ー]/g, '');
