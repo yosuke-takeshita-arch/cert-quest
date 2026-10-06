@@ -326,3 +326,19 @@ test('このアプリについて: タイトル曲の作者 TAD を載せる', (
   const about = readFileSync(join(shared, 'js', 'views', 'about.js'), 'utf8');
   assert.match(about, /TAD/);
 });
+
+test('タイトル曲: 画面のどこをさわっても音を使える状態にし、鳴らせないあいだは一言を出す', () => {
+  const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
+  const ti = readFileSync(join(shared, 'js', 'views', 'title.js'), 'utf8');
+  const body = functionBody(au, 'initAudio');
+  // document 全体で受ける（ボタンに限らない）。iOS 用に click も
+  assert.match(body, /document\.addEventListener\(t, onGesture/);
+  for (const ev of ['pointerdown', 'touchend', 'click']) assert.ok(body.includes("'" + ev + "'"), ev);
+  // 効果音か BGM がオンのときだけ unlockAudio（両方オフなら何もしない）
+  assert.match(body, /s\.sound \|\| s\.bgm[^)]*\)[^;]*unlockAudio\(s\)/);
+  // 一言: 鳴らせない状態の判定は audio.js、表示は title.js。鳴り始めたら消す（毎回 toggle で出し入れ）
+  assert.match(functionBody(au, 'titleAudioLocked'), /wantTitle\(\)/);
+  assert.match(functionBody(au, 'titleAudioLocked'), /state !== 'running'/);
+  assert.match(ti, /画面をさわると音楽が流れます/);
+  assert.match(ti, /toggle\('hidden', !titleAudioLocked\(\)\)/);
+});

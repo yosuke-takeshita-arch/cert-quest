@@ -309,6 +309,11 @@ export function endTitleBgm() {
   }, TITLE_BGM.fadeSec * 1000 + 100);
 }
 
+/** タイトル曲を流したいのに、画面をまださわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */
+export function titleAudioLocked() {
+  return wantTitle() && !!ctx && ctx.state !== 'running';
+}
+
 /** 動作確認用: いまのタイトル曲の状態。 */
 export function titleBgmStatus() {
   return { scene: T.scene, playing: !!T.src, fading: T.fading, volume: T.gainNode ? T.gainNode.gain.value : null };
@@ -352,10 +357,14 @@ export function initAudio(settingsGetter) {
   if (s && s.sound) preloadSfx();
   document.addEventListener('visibilitychange', syncBgm);
   const onGesture = () => {
-    resumeCtx();
+    // 画面のどこをさわっても（ボタン以外の背景も）、効果音か BGM がオンなら音を使える状態にする。
+    // ブラウザは、さわるまで音を出させない。タイトル曲は、さわった瞬間から鳴り始める（iOS の Safari は click でも許す）
+    const s = getSettings();
+    if (s && (s.sound || s.bgm) && ctx && ctx.state !== 'running') unlockAudio(s);
+    else resumeCtx();
     if (B.waitingGesture || (wantBgm() && (!B.el || B.el.paused))) startBgm();
   };
-  ['pointerdown', 'keydown', 'touchend'].forEach((t) => document.addEventListener(t, onGesture, { passive: true }));
+  ['pointerdown', 'keydown', 'touchend', 'click'].forEach((t) => document.addEventListener(t, onGesture, { passive: true }));
 }
 
 /**

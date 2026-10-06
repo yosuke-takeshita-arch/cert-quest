@@ -2,7 +2,7 @@
 // 読み込みが終わったら「タップしてはじめる」。資格固有のことは config.json（name / titleImage）からだけ読む。受験日は利用者の設定（examDate 引数）。
 import { h, icon } from '../ui.js';
 import { daysUntil } from '../lib/scoring.js';
-import { unlockAudio } from '../audio.js';
+import { unlockAudio, titleAudioLocked } from '../audio.js';
 import { buildSoundCard } from './sound-settings.js';
 
 /**
@@ -31,7 +31,9 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
   const status = h('p', { class: 'title-status', 'aria-live': 'polite', text: '読み込み中…' });
   const loading = h('div', { class: 'title-loading' }, gauge, status);
   const startBtn = h('button', { class: 'title-start hidden', type: 'button' }, 'タップしてはじめる');
-  const bottom = h('div', { class: 'title-bottom' }, loading, startBtn, h('p', { class: 'title-unofficial', text: '非公式アプリ' }));
+  // BGM がオンで、まだ画面をさわっていなくて曲を鳴らせないあいだだけ出す一言（鳴り始めたら消える）
+  const soundHint = h('p', { class: 'title-unofficial title-sound-hint hidden', 'aria-live': 'polite', text: '画面をさわると音楽が流れます' });
+  const bottom = h('div', { class: 'title-bottom' }, loading, startBtn, soundHint, h('p', { class: 'title-unofficial', text: '非公式アプリ' }));
 
   const el = h('div', { class: 'title-screen', 'data-title': '1' },
     bg,
@@ -41,6 +43,11 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
       countdown ? h('p', { class: 'title-exam', text: countdown }) : null),
     bottom,
     sound ? h('button', { class: 'title-gear', type: 'button', 'aria-label': '音の設定', 'aria-haspopup': 'dialog', onClick: (e) => openSoundPopup(e.currentTarget) }, icon('gear')) : null);
+
+  const hintTimer = setInterval(() => {
+    if (!el.isConnected && Date.now() - shownAt > 2000) { clearInterval(hintTimer); return; }
+    soundHint.classList.toggle('hidden', !titleAudioLocked());
+  }, 300);
 
   // 音の設定のポップアップ。閉じる（ボタン・背景・Esc）。開いている間は Tab がポップアップの中だけを回り、うしろの画面は触れない
   const FOCUSABLE = 'button, input, select, [tabindex]:not([tabindex="-1"])';
