@@ -18,6 +18,7 @@ export function defaultState() {
     stages: {},
     badges: {},
     exams: [],
+    examSeen: {}, // 模試で最後に出た時刻（問題ID → ミリ秒）。次の模試で、まだ出ていない問題・古く出た問題を優先するのに使う
     challenge: { runs: 0, best: 0 },
     settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
     goalAwarded: null,
@@ -35,6 +36,12 @@ export function mergeState(saved) {
   for (const k of ['totals', 'streak', 'settings', 'challenge']) o[k] = { ...d[k], ...(saved[k] && typeof saved[k] === 'object' ? saved[k] : {}) };
   for (const k of ['qstats', 'daily', 'stages', 'badges']) if (!o[k] || typeof o[k] !== 'object' || Array.isArray(o[k])) o[k] = {};
   if (!Array.isArray(o.exams)) o.exams = [];
+  // 模試で出た時刻。壊れた値（数でないもの）は捨てて「まだ出ていない」扱いにする
+  const seen = {};
+  if (saved.examSeen && typeof saved.examSeen === 'object' && !Array.isArray(saved.examSeen)) {
+    for (const [id, t] of Object.entries(saved.examSeen)) if (typeof t === 'number' && Number.isFinite(t)) seen[id] = t;
+  }
+  o.examSeen = seen;
   if (!Number.isFinite(o.xp)) o.xp = 0;
   o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
@@ -84,6 +91,13 @@ export function recordStageResult(state, stageKey, correct, total, th = STAR_THR
 export function recordExam(state, entry, now = new Date()) {
   state.exams.push({ ...entry, date: dateKey(now), ts: now.getTime() });
   if (state.exams.length > 50) state.exams.shift();
+}
+
+/** 模試に出した問題の「最後に出た時刻」を記録する（次の模試の優先づけに使う）。 */
+export function recordExamSeen(state, ids, now = new Date()) {
+  if (!state.examSeen || typeof state.examSeen !== 'object') state.examSeen = {};
+  const t = now.getTime();
+  for (const id of ids) state.examSeen[id] = t;
 }
 
 export function recordChallenge(state, correct) {

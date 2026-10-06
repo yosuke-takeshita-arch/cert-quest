@@ -119,13 +119,21 @@ export function blueprintCells(blueprint, rootCount) {
  * 戻り値 { items: 並びをシャッフル済みの問題, filled: 型を満たせず別の型で補った数, perRoot, groupCounts }
  * 足りない数は乱数に依らない（rng は選ぶ問題と並びだけを変える）。
  */
-export function pickExamByBlueprint(questions, blueprint, roots, rng = Math.random) {
+export function pickExamByBlueprint(questions, blueprint, roots, rng = Math.random, examSeen = null) {
   const groups = blueprint.qtypeGroups;
   const groupOf = new Map();
   groups.forEach((g, i) => g.types.forEach((t) => groupOf.set(t, i)));
   const cells = blueprintCells(blueprint, roots.length);
   const rootIdx = new Map(roots.map((r, i) => [r, i]));
-  const pool = shuffle(questions.filter((q) => rootIdx.has(q.syllabus[0])), rng);
+  // 各枠の中の優先: 模試でまだ出ていない → 模試で出たのが古い順。同じ順位の中はランダム（安定ソートなので shuffle の順が残る）。
+  const seenAt = (q) => {
+    const t = examSeen && typeof examSeen === 'object' ? examSeen[q.id] : undefined;
+    return typeof t === 'number' && Number.isFinite(t) ? t : -Infinity;
+  };
+  const pool = shuffle(questions.filter((q) => rootIdx.has(q.syllabus[0])), rng).sort((a, b) => {
+    const x = seenAt(a), y = seenAt(b);
+    return x === y ? 0 : x < y ? -1 : 1;
+  });
   const used = new Set();
   const picked = [];
   const take = (q) => { used.add(q.id); picked.push(q); };

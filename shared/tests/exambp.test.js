@@ -102,3 +102,55 @@ test('byQtype: 型別に集計し、型の順に並べる', () => {
   assert.equal(r[0].total, 2);
   assert.equal(r[0].rate, 0.5);
 });
+
+// ── 模試で出た問題の優先づけ（まだ出ていない → 古く出た順） ──
+import { mergeState, recordExamSeen, defaultState } from '../js/lib/progress.js';
+const idsOf = (r) => new Set(r.items.map((q) => q.id));
+
+test('模試の優先: 出た記録があるとき、各枠でまだ出ていない問題が先に選ばれる', () => {
+  const qs = make(20); // 各領域×各型20問。足りる枠では重ならずに出せる
+  const first = pickExamByBlueprint(qs, BP, ROOTS, lcg(1));
+  const seen = {};
+  first.items.forEach((q) => { seen[q.id] = 1000; });
+  const second = pickExamByBlueprint(qs, BP, ROOTS, lcg(2), seen);
+  assert.equal(second.items.length, 100);
+  assert.equal(count(second.items, (q) => seen[q.id] !== undefined), 0);
+  ROOTS.forEach((root) => assert.equal(count(second.items, (q) => q.syllabus[0] === root), 25)); // 配分は同じ
+  [25, 50, 25].forEach((n, g) => assert.equal(count(second.items, (q) => groupOf(q.qtype) === g), n));
+});
+
+test('模試の優先: 全部出た後は古く出た順に使われる', () => {
+  const qs = make(20);
+  const seen = {};
+  qs.forEach((q, i) => { seen[q.id] = 1000 + (i % 20); }); // 各枠で 0..19 番目が古い順
+  const r = pickExamByBlueprint(qs, BP, ROOTS, lcg(4), seen);
+  assert.equal(r.items.length, 100);
+  // 各 領域×型 では、選ばれた問題の時刻が、選ばれなかった問題の時刻より新しくない
+  for (const root of ROOTS) for (const t of TYPES) {
+    const cell = qs.filter((q) => q.syllabus[0] === root && q.qtype === t);
+    const chosen = cell.filter((q) => idsOf(r).has(q.id));
+    const rest = cell.filter((q) => !idsOf(r).has(q.id));
+    if (chosen.length && rest.length) assert.ok(Math.max(...chosen.map((q) => seen[q.id])) <= Math.min(...rest.map((q) => seen[q.id])));
+  }
+});
+
+test('模試の優先: 記録が無い・壊れているときも配分どおり100問', () => {
+  const qs = make(20);
+  for (const bad of [undefined, null, {}, [], 'x', 5, { 'R1-term-0': 'abc', 'R1-term-1': NaN, 'R1-term-2': null }]) {
+    const r = pickExamByBlueprint(qs, BP, ROOTS, lcg(8), bad);
+    assert.equal(r.items.length, 100);
+    assert.equal(r.filled, 0);
+    [25, 50, 25].forEach((n, g) => assert.equal(count(r.items, (q) => groupOf(q.qtype) === g), n));
+    assert.equal(new Set(r.items.map((q) => q.id)).size, 100);
+  }
+});
+
+test('模試の記録: recordExamSeen で入り、壊れた保存値・無い保存値でも mergeState が動く', () => {
+  const st = defaultState();
+  assert.deepEqual(st.examSeen, {});
+  recordExamSeen(st, ['a', 'b'], new Date(5000));
+  assert.equal(st.examSeen.a, 5000);
+  assert.deepEqual(mergeState({ examSeen: { a: 1, b: 'x', c: null } }).examSeen, { a: 1 });
+  assert.deepEqual(mergeState({ examSeen: [1] }).examSeen, {});
+  assert.deepEqual(mergeState({ xp: 3 }).examSeen, {}); // 古い保存データ（キー無し）
+});

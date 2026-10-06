@@ -3,7 +3,7 @@
 import { h, clear, burst, toast, mascotLine } from '../ui.js';
 import { examMascot } from '../lib/characters.js';
 import { shuffle, shuffleChoices, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
-import { recordAnswer, recordExam } from '../lib/progress.js';
+import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
 
@@ -25,7 +25,7 @@ export function renderExam(app) {
   const roots = blueprint ? app.data.tree.roots.filter((r) => !r.supplement).map((r) => r.name) : [];
   const pickAll = () => {
     if (!blueprint) return { items: shuffle(app.data.questions, app.rng), filled: 0 };
-    return pickExamByBlueprint(app.data.questions, blueprint, roots, app.rng);
+    return pickExamByBlueprint(app.data.questions, blueprint, roots, app.rng, app.state.examSeen);
   };
   const preview = pickAll();
   const plan = examPlan(cfg, blueprint ? preview.items.length : app.data.questions.length);
@@ -74,6 +74,7 @@ export function renderExam(app) {
       });
       const ok = results.filter((r) => r.correct).length;
       const majors = byMajor(results);
+      recordExamSeen(app.state, S.items.map((sq) => sq.q.id));
       recordExam(app.state, { total: results.length, correct: ok, reduced: plan.reduced, minutes: Math.round((Date.now() - S.t0) / 60000), byMajor: majors.map((m) => ({ major: m.major, total: m.total, correct: m.correct })) });
       app.commit();
       result(results, ok, majors, auto);
