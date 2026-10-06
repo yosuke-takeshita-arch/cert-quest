@@ -47,7 +47,7 @@
 <text x="168" y="220" class="tb twn" text-anchor="middle">サンプリング</text>
 <text x="12" y="322" class="tm">μ＝平均、σ＝分散（ばらつき）</text>
 <line x1="12" y1="338" x2="308" y2="338" class="l sb w1"/>
-<text x="12" y="362" class="tb">③ 潜在空間（2次元）で見くらべる</text>
+<text x="12" y="362" class="tb">③ 潜在空間（2次元）：左が①、右が②</text>
 <rect x="12" y="378" width="136" height="112" class="fs sb" stroke-width="1.5"/>
 <circle cx="50" cy="414" r="3.5" class="ft"/>
 <circle cx="82" cy="440" r="3.5" class="ft"/>
@@ -67,8 +67,8 @@
 <circle cx="282" cy="462" r="3.5" class="ft"/>
 <line x1="228" y1="448" x2="240" y2="460" class="l swn w2"/>
 <line x1="240" y1="448" x2="228" y2="460" class="l swn w2"/>
-<text x="80" y="512" class="tb" text-anchor="middle">1点</text>
-<text x="240" y="512" class="tb" text-anchor="middle">円（平均と分散）</text>
+<text x="80" y="512" class="tb" text-anchor="middle">① 1点</text>
+<text x="240" y="512" class="tb" text-anchor="middle">② 円（平均と分散）</text>
 <text x="80" y="532" class="tm" text-anchor="middle">入力1つにつき点が1つ</text>
 <text x="240" y="532" class="tm" text-anchor="middle">入力1つにつき円が1つ</text>
 <text x="12" y="562" class="tb">円が重なってつながる</text>

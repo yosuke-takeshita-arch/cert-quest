@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 646" role="img" aria-labelledby="fig-g-bias-variance-t fig-g-bias-variance-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 696" role="img" aria-labelledby="fig-g-bias-variance-t fig-g-bias-variance-d">
 <title id="fig-g-bias-variance-t">バイアスとバリアンスのトレードオフ</title>
-<desc id="fig-g-bias-variance-d">上のグラフは、横軸がモデルの複雑さ、縦軸が誤差。バイアス（二乗）は複雑になるほど下がり、バリアンスは上がる。2つを足した汎化誤差はU字になり、最も低い点が最適な複雑さ。それより単純だと未学習、複雑だと過学習。下は的当ての4枚。的の中心からのずれがバイアス、当たりのばらつきがバリアンスで、バイアスもバリアンスも小さいのが理想。</desc>
+<desc id="fig-g-bias-variance-d">上のグラフは、横軸がモデルの複雑さ、縦軸が誤差。バイアス（二乗）は複雑になるほど下がり、バリアンスは上がる。2つを足した汎化誤差はU字になり、最も低い点が最適な複雑さ。それより単純だと未学習、複雑だと過学習。下は的当ての4枚で、複雑にしすぎた過学習は右上（バイアス小・バリアンス大）、単純すぎる未学習は左下（バイアス大・バリアンス小）の的で、色は上のグラフの区分と同じ。的の中心からのずれがバイアス、当たりのばらつきがバリアンスで、バイアスもバリアンスも小さいのが理想。</desc>
 <text x="12" y="20" class="tb">① モデルを複雑にすると</text>
 <rect x="40" y="56" width="122.5" height="170" class="fwn"/>
 <rect x="162.5" y="56" width="141.5" height="170" class="fng"/>
@@ -25,11 +25,11 @@
 <line x1="12" y1="315" x2="40" y2="315" class="l w3"/>
 <text x="48" y="320" class="tb">合計（汎化誤差）：U字</text>
 <line x1="12" y1="344" x2="308" y2="344" class="l sb w1"/>
-<text x="12" y="372" class="tb">② 的当てで見る</text>
+<text x="12" y="372" class="tb">② 的当てで見る（①の両端の姿）</text>
 <text x="136" y="402" class="tb" text-anchor="middle">バリアンス小</text>
 <text x="246" y="402" class="tb" text-anchor="middle">バリアンス大</text>
 <text x="12" y="462" class="tb">バイアス小</text>
-<text x="12" y="556" class="tb">バイアス大</text>
+<text x="246" y="514" class="tb tng" text-anchor="middle">過学習（①の右端）</text>
 <circle cx="136" cy="458" r="40" class="fs sb"/>
 <circle cx="136" cy="458" r="27" class="sb w1"/>
 <circle cx="136" cy="458" r="13" class="sb w1"/>
@@ -50,6 +50,8 @@
 <circle cx="271" cy="470" r="4" class="fa sa"/>
 <circle cx="242" cy="480" r="4" class="fa sa"/>
 <circle cx="266" cy="455" r="4" class="fa sa"/>
+<g transform="translate(0,24)">
+<text x="12" y="556" class="tb">バイアス大</text>
 <circle cx="136" cy="552" r="40" class="fs sb"/>
 <circle cx="136" cy="552" r="27" class="sb w1"/>
 <circle cx="136" cy="552" r="13" class="sb w1"/>
@@ -70,6 +72,8 @@
 <circle cx="276" cy="572" r="4" class="fa sa"/>
 <circle cx="258" cy="564" r="4" class="fa sa"/>
 <circle cx="268" cy="580" r="4" class="fa sa"/>
-<text x="12" y="614" class="tm">中心からのずれ＝バイアス</text>
-<text x="12" y="634" class="tm">当たりのばらつき＝バリアンス</text>
+</g>
+<text x="136" y="634" class="tb twn" text-anchor="middle">未学習（①の左端）</text>
+<text x="12" y="664" class="tm">中心からのずれ＝バイアス</text>
+<text x="12" y="684" class="tm">当たりのばらつき＝バリアンス</text>
 </svg>
