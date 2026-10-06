@@ -117,7 +117,7 @@
     "qtype": "term",
     "difficulty": 1,
     "stem": "AIのパーソナルアシスタンス機能を活用し、話しかけて使うスピーカー型の端末で、情報通信白書（平成30年版）がGoogleやAmazonが先行して市場に参入したと紹介しているものとして、最も適切なものを選びなさい。",
-    "choices": ["スマートスピーカー（AIスピーカー）", "チャットボット", "RFIDリーダー", "ドローン"],
+    "choices": ["スマートスピーカー（AIスピーカー）", "チャットボット（対話型のプログラム）", "RFIDリーダー（無線タグの読取装置）", "ドローン（無人で飛ぶ機体）"],
     "answer": 0,
     "explanation": "白書は、AIの発達を受けて、AIのパーソナルアシスタンス機能を活用したAIスピーカー（スマートスピーカー）の利用が始まっていること、GoogleやAmazonが生活のあらゆる場面で取得するデータとAIの機能が生む経済価値の取り込みを目的に開発し、先行して市場に参入したことを紹介している。",
     "whyWrong": [
@@ -163,7 +163,7 @@
     "qtype": "term",
     "difficulty": 2,
     "stem": "AIアプリケーションを、ファイルやデータベース、検索などのツール、決まった手順のワークフローといった外部のシステムにつなぐためのオープンな標準で、「AIアプリケーションのためのUSB-Cポート」にたとえられるものはどれか。",
-    "choices": ["MCP（Model Context Protocol）", "RAG", "GEO", "RPA"],
+    "choices": ["MCP（Model Context Protocol）", "RAG（Retrieval-Augmented Generation）", "GEO（Generative Engine Optimization）", "RPA（Robotic Process Automation）"],
     "answer": 0,
     "explanation": "MCPは、AIアプリケーションを外部のシステムにつなぐためのオープンな標準。公式ドキュメントは、USB-Cが電子機器をつなぐ標準になったように、MCPはAIアプリと外部システムをつなぐ標準の方法を提供する、とたとえている。",
     "whyWrong": [
