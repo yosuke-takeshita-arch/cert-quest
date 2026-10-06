@@ -205,8 +205,9 @@ export async function start() {
       app.go('#/home');
     },
   };
-  // キャラクターをタップする遊び: 回数の記録先と効果音（音の設定に従う）
-  setTapHost({ state: () => app.state, save: () => storage.save(app.state), sfx: (name) => playSfx(app.state.settings, name) });
+  // キャラクターをタップする遊び: 回数はこの起動の間だけ数える（保存しない。起動ごとに0から）と、効果音（音の設定に従う）
+  const tapSession = { charTaps: { shiba: 0, sensei: 0 } };
+  setTapHost({ state: () => tapSession, save: () => {}, sfx: (name) => playSfx(app.state.settings, name) });
   // 動作確認用に外から触れるようにする（テストが状態を調べる）
   window.__app = app;
   // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）だけで流す。ホームなどは無音（initAudio はタイトル画面の前に済んでいる）

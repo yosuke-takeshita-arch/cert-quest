@@ -273,11 +273,12 @@ test('タップ: 記録が空・壊れた値でも落ちず、0から数える',
   assert.equal(tapWho('x'), null);
 });
 
-test('タップ: mergeState で既存の記録が消えず、壊れた値は正される', () => {
-  assert.deepEqual(defaultState().charTaps, { shiba: 0, sensei: 0 });
+test('タップ: 回数は保存しない（起動ごとに0から。2026-10-06 先生の指示）。古い保存データの charTaps は捨てる', () => {
+  assert.equal('charTaps' in defaultState(), false);
   const m = mergeState({ xp: 50, charTaps: { shiba: 42, sensei: 7 } });
   assert.equal(m.xp, 50);
-  assert.deepEqual(m.charTaps, { shiba: 42, sensei: 7 });
-  assert.deepEqual(mergeState({ xp: 5 }).charTaps, { shiba: 0, sensei: 0 });
-  assert.deepEqual(mergeState({ charTaps: 'oops' }).charTaps, { shiba: 0, sensei: 0 });
+  assert.equal('charTaps' in m, false);
+  const app = readFileSync(new URL('../js/app.js', import.meta.url), 'utf8');
+  assert.match(app, /const tapSession = \{ charTaps: \{ shiba: 0, sensei: 0 \} \};/);
+  assert.match(app, /setTapHost\(\{ state: \(\) => tapSession, save: \(\) => \{\}/);
 });
