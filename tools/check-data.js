@@ -20,6 +20,7 @@
 //   - sources が {title, url} で url が http(s) であること
 //   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
 //     viewBox の幅が 360 以下で、role="img"・<title>・<desc> を持つこと（要件定義書 §7-2）
+//   - 正解の長さの偏り（WARN）: 正解が最も長い誤答の2倍以上の問題／全体で正解がいちばん長い問題が40%を超えること
 //
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか
 'use strict';
@@ -192,6 +193,27 @@ function checkStemPlain(f, id, o) {
   if (nfkc(sp) === nfkc(o.stem || '')) err(f, id, 'stemPlain が問題文と同じ（言い直しになっていない）');
 }
 
+// 正解の長さの偏り。正解だけが目立って長いと、中身を知らなくても長いものを選べば当たる。
+// 1問ごとに、正解が最も長い誤答の LEN_RATIO_WARN 倍以上なら WARN。
+// ファイルごと・全体で「正解がいちばん長い問題」の割合を出し、全体で LONGEST_SHARE_WARN を超えたら WARN（4択の偶然なら 25%）。
+// （tools/check-data-dx.js の checkAnswerLength と同じ。片方を直したら、もう片方も直す）
+const LEN_RATIO_WARN = 2;
+const LONGEST_SHARE_WARN = 0.4;
+const lenStats = new Map(); // ファイル名 -> { n, longest }
+function checkAnswerLength(f, id, o) {
+  if (!Array.isArray(o.choices) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
+  const L = o.choices.map((c) => String(c).length);
+  const others = L.filter((_, i) => i !== o.answer);
+  if (!others.length) return;
+  const maxWrong = Math.max(...others);
+  const key = path.basename(f);
+  if (!lenStats.has(key)) lenStats.set(key, { n: 0, longest: 0 });
+  const st = lenStats.get(key);
+  st.n++;
+  if (L[o.answer] > maxWrong) st.longest++;
+  if (maxWrong > 0 && L[o.answer] >= LEN_RATIO_WARN * maxWrong) warn(f, id, `正解（${L[o.answer]}字）が最も長い誤答（${maxWrong}字）の ${LEN_RATIO_WARN} 倍以上。長さだけで正解が分かる`);
+}
+
 const seen = new Map();
 for (const { file: f, kind, data, syl } of loaded) {
   data.forEach((o, idx) => {
@@ -216,6 +238,7 @@ for (const { file: f, kind, data, syl } of loaded) {
       checkStemPlain(f, id, o);
       if (!Array.isArray(o.concepts) || o.concepts.length === 0) err(f, id, 'concepts が空');
       else o.concepts.forEach((c) => { if (!conceptIndex.has(c)) err(f, id, `concepts の ${c} が用語カードに無い`); });
+      checkAnswerLength(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿|（[ア-ンあ-ん]）/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
     } else {
@@ -249,6 +272,19 @@ checkFigureFiles();
 for (const { file: f, kind, data } of loaded) {
   const v = data.filter((o) => o.status === 'verified').length;
   console.log(`${path.basename(path.dirname(f))}/${path.basename(f)}: ${kind} ${data.length}件（verified ${v} / unverified ${data.length - v}）`);
+}
+// 正解の長さの偏り（ファイルごと・全体）
+{
+  let n = 0; let longest = 0;
+  const pct = (a, b) => (b ? (100 * a / b).toFixed(0) : '0') + '%';
+  for (const [fn, st] of lenStats) {
+    n += st.n; longest += st.longest;
+    console.log(`LENGTH ${fn}: 正解がいちばん長い ${st.longest}/${st.n}（${pct(st.longest, st.n)}）`);
+  }
+  if (n) {
+    console.log(`LENGTH 全体: 正解がいちばん長い ${longest}/${n}（${pct(longest, n)}）`);
+    if (longest / n > LONGEST_SHARE_WARN) warns.push(`WARN 全体 -: 正解がいちばん長い問題が ${pct(longest, n)}（${longest}/${n}）で ${LONGEST_SHARE_WARN * 100}% を超える。長さで正解が当たりやすい`);
+  }
 }
 warns.forEach((w) => console.log(w));
 errors.forEach((e) => console.log(e));
