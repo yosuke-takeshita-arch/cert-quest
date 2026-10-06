@@ -28,6 +28,7 @@ export function normalizeQuestion(q) {
     id: q.id,
     syllabus: q.syllabus,
     format: ['single', 'not', 'fill', 'scenario'].includes(q.format) ? q.format : 'single',
+    qtype: ['term', 'relation', 'causal', 'loop', 'tradeoff', 'interdep', 'miscon'].includes(q.qtype) ? q.qtype : '', // 出題の型（任意。模試の配分に使う）
     difficulty: Number.isFinite(q.difficulty) ? q.difficulty : null,
     stem: q.stem,
     stemPlain: typeof q.stemPlain === 'string' ? q.stemPlain.trim() : '', // 問題文の言い直し（任意。無ければ ''）
@@ -92,7 +93,7 @@ export function buildTree(syllabusRaw, questions, concepts) {
     const key = path.join('|');
     let n = byKey.get(key);
     if (n) return n;
-    n = { name: path[path.length - 1], depth: path.length - 1, path: path.slice(), key, children: [], parent: null, questions: [], concepts: [], keywords: [], id: null };
+    n = { name: path[path.length - 1], depth: path.length - 1, path: path.slice(), key, children: [], parent: null, questions: [], concepts: [], keywords: [], id: null, supplement: false };
     byKey.set(key, n);
     if (path.length === 1) roots.push(n);
     else {
@@ -109,6 +110,7 @@ export function buildTree(syllabusRaw, questions, concepts) {
       const n = ensure([...path, name]);
       if (x && typeof x === 'object') {
         if (typeof x.id === 'string') n.id = x.id;
+        if (depth === 0 && x.supplement === true) n.supplement = true; // 補足の領域（模試に出さない）
         if (Array.isArray(x.keywords)) n.keywords = x.keywords.filter((k) => typeof k === 'string');
       }
       if (depth < 2) walk(nodeChildren(x), n.path, depth + 1);

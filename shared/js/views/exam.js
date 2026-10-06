@@ -2,7 +2,7 @@
 // 本番と同じく、途中では解説を出さない。終わってから大項目別の正答率と見直しを出す。
 import { h, clear, burst, toast, mascotLine } from '../ui.js';
 import { examMascot } from '../lib/characters.js';
-import { shuffle, shuffleChoices, examPlan, byMajor, secondsPerQuestion } from '../lib/quiz.js';
+import { shuffle, shuffleChoices, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -20,7 +20,15 @@ export function renderExam(app) {
     timer = null;
   };
   const cfg = app.config.exam || { questions: 100, minutes: 60 };
-  const plan = examPlan(cfg, app.data.questions.length);
+  // 設計図（config.exam.blueprint）がある資格は、補足でない領域ごと・型ごとに本番の配分で選ぶ。無い資格は従来どおり全体からランダム。
+  const blueprint = readBlueprint(cfg);
+  const roots = blueprint ? app.data.tree.roots.filter((r) => !r.supplement).map((r) => r.name) : [];
+  const pickAll = () => {
+    if (!blueprint) return { items: shuffle(app.data.questions, app.rng), filled: 0 };
+    return pickExamByBlueprint(app.data.questions, blueprint, roots, app.rng);
+  };
+  const preview = pickAll();
+  const plan = examPlan(cfg, blueprint ? preview.items.length : app.data.questions.length);
 
   function intro() {
     cleanup();
@@ -33,6 +41,8 @@ export function renderExam(app) {
     const card = h('div', { class: 'card' },
       h('p', {}, h('strong', { class: 'big-num', text: plan.count + '問' }), '　', h('strong', { class: 'big-num', text: plan.minutes + '分' })),
       h('p', { class: 'small muted', text: '本番は ' + plan.fullCount + '問・' + plan.fullMinutes + '分です。' }));
+    if (blueprint && plan.count && roots.length) card.appendChild(h('p', { class: 'small muted', text: '本番と同じ配分で出します：' + roots.length + '領域から各' + blueprint.perRoot + '問、問題の型の割合も本番に合わせます。' }));
+    if (blueprint && preview.filled) card.appendChild(h('p', { class: 'small muted exam-fill-note', text: '構造型の問題がまだ少ないため、一部を用語・関係など別の型の問題で補っています（' + preview.filled + '問）。' }));
     if (plan.reduced) card.appendChild(h('p', { class: 'note', text: '問題数が本番に足りないため、いまある ' + plan.count + '問の縮小版です（時間も ' + plan.minutes + '分に縮めています）。' }));
     card.appendChild(h('ul', { class: 'plain' }, h('li', { text: '途中では正解も解説も出ません。終わってからまとめて見られます。' }), h('li', { text: '時間になると自動で終了します。' }), h('li', { text: '答えていない問題は不正解になります。' })));
     card.appendChild(h('button', { class: 'btn primary big', type: 'button', onClick: start }, '試験を始める'));
@@ -46,7 +56,7 @@ export function renderExam(app) {
   }
 
   function start() {
-    const items = shuffle(app.data.questions, app.rng).slice(0, plan.count).map((q) => shuffleChoices(q, app.rng));
+    const items = pickAll().items.slice(0, plan.count).map((q) => shuffleChoices(q, app.rng));
     const S = { items, answers: items.map(() => null), cur: 0, deadline: Date.now() + plan.minutes * 60000, t0: Date.now(), grid: false, done: false };
 
     function finish(auto) {
@@ -60,7 +70,7 @@ export function renderExam(app) {
         const chosen = S.answers[i];
         const correct = chosen !== null && chosen === sq.answer;
         recordAnswer(app.state, sq.q, { correct, seconds: null, sessionStreak: 0, exam: true, now: new Date(), limit: secondsPerQuestion(app.config) });
-        return { sq, q: sq.q, chosen, correct, major: sq.q.syllabus[0] };
+        return { sq, q: sq.q, chosen, correct, major: sq.q.syllabus[0], qtype: sq.q.qtype };
       });
       const ok = results.filter((r) => r.correct).length;
       const majors = byMajor(results);
@@ -122,15 +132,28 @@ export function renderExam(app) {
         plan.reduced ? h('p', { class: 'small muted', text: '縮小版（' + plan.count + '問）の結果です。' }) : null,
         mascotLine(em.art, em.text, 'exam-mascot'));
       root.appendChild(card);
-      const mc = h('div', { class: 'card' }, h('h2', { text: '大項目別の正答率' }));
+      const mc = h('div', { class: 'card' }, h('h2', { text: blueprint ? '領域別の正答率' : '大項目別の正答率' }));
       majors.sort((a, b) => a.rate - b.rate).forEach((m) => {
         const pct = Math.round(m.rate * 100);
         mc.appendChild(h('div', { class: 'bar-row' },
           h('div', { class: 'bar-label' }, h('span', { text: m.major }), h('strong', { text: pct + '%（' + m.correct + '/' + m.total + '）' })),
           h('div', { class: 'bar', role: 'img', 'aria-label': m.major + ' 正答率' + pct + '%' }, h('div', { class: 'bar-fill ' + (pct >= 80 ? 'strong' : pct >= 40 ? 'mid' : 'weak'), style: { width: pct + '%' } }))));
       });
-      mc.appendChild(h('p', { class: 'small muted', text: '一番低い大項目から見直すのがおすすめです。' }));
+      mc.appendChild(h('p', { class: 'small muted', text: blueprint ? '一番低い領域から見直すのがおすすめです。' : '一番低い大項目から見直すのがおすすめです。' }));
       root.appendChild(mc);
+      const types = blueprint ? byQtype(results).filter((t) => t.qtype) : [];
+      if (types.length) {
+        const tc = h('div', { class: 'card exam-qtypes' }, h('h2', { text: '問題の型別の正答率' }));
+        types.forEach((t) => {
+          const pct = Math.round(t.rate * 100);
+          const name = QTYPE_LABEL[t.qtype];
+          tc.appendChild(h('div', { class: 'bar-row' },
+            h('div', { class: 'bar-label' }, h('span', { text: name }), h('strong', { text: pct + '%（' + t.correct + '/' + t.total + '）' })),
+            h('div', { class: 'bar', role: 'img', 'aria-label': name + ' 正答率' + pct + '%' }, h('div', { class: 'bar-fill ' + (pct >= 80 ? 'strong' : pct >= 40 ? 'mid' : 'weak'), style: { width: pct + '%' } }))));
+        });
+        tc.appendChild(h('p', { class: 'small muted', text: '低い型の問題は、ステージや復習で重点的に解くのがおすすめです。' }));
+        root.appendChild(tc);
+      }
       const wrong = results.filter((r) => !r.correct);
       const open = (id) => openCardSheet(app, id);
       const rv = h('div', { class: 'card' }, h('h2', { text: wrong.length ? 'まちがえた問題（' + wrong.length + '）' : '全問正解！' }));

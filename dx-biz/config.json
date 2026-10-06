@@ -5,7 +5,17 @@
   "examDate": "2026-11-12",
   "titleImage": "images/title.webp",
   "mapImage": "images/map.webp",
-  "exam": { "questions": 100, "minutes": 80 },
+  "exam": {
+    "questions": 100, "minutes": 80,
+    "blueprint": {
+      "perRoot": 25,
+      "qtypeGroups": [
+        { "types": ["term", "relation"], "count": 25 },
+        { "types": ["causal", "loop"], "count": 50 },
+        { "types": ["tradeoff", "interdep", "miscon"], "count": 25 }
+      ]
+    }
+  },
   "secondsPerQuestion": 48,
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
   "challenge": { "questions": 10 },
