@@ -22,6 +22,14 @@
 //     viewBox の幅が 360 以下で、role="img"・<title>・<desc> を持つこと（要件定義書 §7-2）
 //   - 正解の長さの偏り（WARN）: 正解が最も長い誤答の2倍以上の問題／全体で正解がいちばん長い問題が40%を超えること
 //
+// 選択肢の語の偏り（WARN のみ。2026-10-06 追加。下の CUE_WORDS。tools/check-data-dx.js の checkCueWords と同じ判定・同じ語の一覧）
+//   format を問わず、誤答が2つ以上ある全問題で、CUE_WORDS の語ごとに次のどちらかなら WARN（ID と語を出す）。CUE 行に件数を出す
+//   - 誤答のすべてに含まれ、正解には含まれない（例: 誤答3つだけが「ただし」で要素を崩す）
+//   - 正解にだけ含まれ、誤答のどれにも含まれない（例: format が not の問題で、正解＝不適切な文だけが「必ず」「一切」と言い切る）
+//   見ていないもの: 一覧に無い語（言い換えれば素通りする）・意味（否定の「だけでは足りない」も「だけ」として数える）・
+//   語が出る位置（文頭の「ただし」も文中も同じに数える）・誤答の一部だけに偏る形（4択のうち2つだけ等）・選択肢以外の欄（問題文と正解の語の重なりは見ない）
+//   （語の一覧と判定は DX 版の写し。片方を直したら、もう片方も直す。検査が別ファイルの実行スクリプトなので、共有の部品にはしていない）
+//
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか
 'use strict';
 
@@ -214,6 +222,33 @@ function checkAnswerLength(f, id, o) {
   if (maxWrong > 0 && L[o.answer] >= LEN_RATIO_WARN * maxWrong) warn(f, id, `正解（${L[o.answer]}字）が最も長い誤答（${maxWrong}字）の ${LEN_RATIO_WARN} 倍以上。長さだけで正解が分かる`);
 }
 
+// 選択肢の語の偏り（2026-10-06 追加。tools/check-data-dx.js の CUE_WORDS・checkCueWords の写し。片方を直したら、もう片方も直す）。
+// 但し書き・限定・対比・言い切りの短い語。部分一致で見る（正規表現。表記ゆれは列挙したものだけ）。
+// 誤検出を潰すための除外: 「だけでなく／だけではなく」（限定ではなく追加）、「どれだけ／それだけ／これだけ／同じだけ」（量の言い方）、
+// 「異常に／非常に／正常に／日常に／通常に」（「常に」を含む別の語）
+const CUE_WORDS = [
+  /ただし/, /しかし/, /のみ/, /(?<!どれ|それ|これ|同じ)だけ(?!でなく|ではなく)/, /ではなく/, /一方で/,
+  /必ず/, /(?<!異|非|正|日|通)常に/, /すべて|全て/, /まったく|全く/, /一切/,
+];
+const cueStats = { n: 0, flagged: 0 };
+function checkCueWords(f, id, o) {
+  if (!Array.isArray(o.choices) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
+  const right = String(o.choices[o.answer]);
+  const wrongs = o.choices.filter((_, i) => i !== o.answer).map(String);
+  if (wrongs.length < 2) return;
+  cueStats.n++;
+  const reasons = [];
+  for (const re of CUE_WORDS) {
+    const inRight = re.test(right);
+    const inWrong = wrongs.map((w) => re.test(w));
+    if (!inRight && inWrong.every(Boolean)) reasons.push(`「${wrongs[0].match(re)[0]}」が誤答のすべてにあり、正解に無い`);
+    else if (inRight && !inWrong.some(Boolean)) reasons.push(`「${right.match(re)[0]}」が正解にだけあり、誤答のどれにも無い`);
+  }
+  if (!reasons.length) return;
+  cueStats.flagged++;
+  warn(f, id, `cue: ${reasons.join('。')}。語だけで正解が選べる（同じ語を正解と誤答の両方に使うか、どちらからも外し、別の書き方で1点だけ違える）`);
+}
+
 const seen = new Map();
 for (const { file: f, kind, data, syl } of loaded) {
   data.forEach((o, idx) => {
@@ -239,6 +274,7 @@ for (const { file: f, kind, data, syl } of loaded) {
       if (!Array.isArray(o.concepts) || o.concepts.length === 0) err(f, id, 'concepts が空');
       else o.concepts.forEach((c) => { if (!conceptIndex.has(c)) err(f, id, `concepts の ${c} が用語カードに無い`); });
       checkAnswerLength(f, id, o);
+      checkCueWords(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿|（[ア-ンあ-ん]）/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
     } else {
@@ -286,6 +322,8 @@ for (const { file: f, kind, data } of loaded) {
     if (longest / n > LONGEST_SHARE_WARN) warns.push(`WARN 全体 -: 正解がいちばん長い問題が ${pct(longest, n)}（${longest}/${n}）で ${LONGEST_SHARE_WARN * 100}% を超える。長さで正解が当たりやすい`);
   }
 }
+// 選択肢の語の偏り（全体）
+if (cueStats.n) console.log(`CUE 全体: 語の偏りがある ${cueStats.flagged}/${cueStats.n}`);
 warns.forEach((w) => console.log(w));
 errors.forEach((e) => console.log(e));
 console.log(errors.length ? `結果: NG ${errors.length}件` : '結果: OK');
