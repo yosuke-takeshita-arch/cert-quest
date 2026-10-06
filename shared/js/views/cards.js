@@ -41,7 +41,7 @@ export function cardBody(app, c, open) {
   if (c.oneLine) wrap.appendChild(h('p', { class: 'one-line', text: c.oneLine }));
   const fig = figureBlock(app, c.figures);
   if (fig) wrap.appendChild(fig);
-  if (c.why) wrap.appendChild(h('div', { class: 'why' }, h('h3', { text: 'なぜ要るか' }), h('p', { text: c.why })));
+  if (c.why) wrap.appendChild(h('div', { class: 'why' }, h('h3', { text: '背景とポイント' }), h('p', { text: c.why })));
 
   if (c.links.length || incoming.length) {
     const g = h('div', { class: 'tie' }, h('h3', { text: 'つながり' }));
