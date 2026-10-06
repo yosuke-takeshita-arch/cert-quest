@@ -2098,5 +2098,161 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "C-04-048",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
+    "title": "Parametric ReLU と Randomized ReLU",
+    "oneLine": "どちらも、入力が負のときにも小さな傾きを持たせた ReLU の仲間。Parametric ReLU（PReLU）は負の側の傾きを学習で決めるパラメータにし、Randomized ReLU（RReLU）は学習中に負の側の傾きを一様分布から乱数で選ぶ。",
+    "why": "He ら（2015）は PReLU を提案し、増えるパラメータはチャネル数ぶん（全チャネル共通にすれば層ごとに1つ）だけで、ほぼ計算量を増やさずに精度を上げた。Xu ら（2015）は ReLU・Leaky ReLU・PReLU・RReLU を比べ、負の側に0でない傾きを持たせると結果が良くなること、小さなデータでは傾きを固定・学習するより乱数で選ぶ RReLU のほうが過学習しにくいことを報告した。RReLU はテスト時には、ドロップアウトと同じ考え方で、学習時の傾きの平均を使う。",
+    "links": [
+      {
+        "id": "C-04-008",
+        "relation": "発展形（負の側に傾きを持たせる）"
+      },
+      {
+        "id": "C-04-009",
+        "relation": "対比（Leaky ReLU は傾きを固定の小さな値にする）"
+      },
+      {
+        "id": "C-04-005",
+        "relation": "上位概念（活性化関数）"
+      },
+      {
+        "id": "C-04-021",
+        "relation": "関連（RReLU のテスト時の扱いはドロップアウトと同じ考え方）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-04-009",
+        "point": "Leaky ReLU は負の側の傾きを 0.01 などの固定値にする。PReLU はその傾きを学習し、RReLU は学習中に乱数で選ぶ。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "He et al. (2015) Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (arXiv:1502.01852)",
+        "url": "https://arxiv.org/abs/1502.01852"
+      },
+      {
+        "title": "Xu et al. (2015) Empirical Evaluation of Rectified Activations in Convolutional Network (arXiv:1505.00853)",
+        "url": "https://arxiv.org/abs/1505.00853"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-049",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
+    "title": "JSダイバージェンス（イェンセン・シャノン情報量）",
+    "oneLine": "2つの確率分布の違いを測る量。2つの分布を半分ずつ混ぜた分布を作り、それぞれの分布からその混合分布への KL ダイバージェンスを平均して求める。値は0以上で、0になるのは2つの分布が等しいときだけ。",
+    "why": "KL ダイバージェンスは2つの分布を入れ替えると値が変わるが、JS ダイバージェンスは混合分布を間に挟むので入れ替えても同じ値になる。Goodfellow ら（2014）は、識別器が最適なとき GAN の生成器が最小化する量が、データの分布と生成した分布の JS ダイバージェンス（に定数を足したもの）になることを示した。",
+    "links": [
+      {
+        "id": "C-04-014",
+        "relation": "発展形（KL を組み合わせて作る）"
+      },
+      {
+        "id": "C-06-063",
+        "relation": "関連（GAN の目的関数が最小化する量）"
+      },
+      {
+        "id": "C-04-012",
+        "relation": "関連（分布の違いに基づく誤差）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-04-014",
+        "point": "KL ダイバージェンスは向きによって値が変わる（非対称）。JS ダイバージェンスは混合分布を挟むので向きによらない（対称）。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)",
+        "url": "https://arxiv.org/abs/1406.2661"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-050",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "title": "ベイズ最適化",
+    "oneLine": "ハイパーパラメータと汎化性能の関係を確率モデル（ガウス過程など）で表し、これまでに試した結果から、次に試すと良さそうな値を獲得関数（期待改善量 EI など）で選んで探索する方法。",
+    "why": "1回の学習に時間がかかると、試せる組み合わせは限られる。グリッドサーチやランダムサーチは試す点を前の結果と無関係に決めるが、ベイズ最適化は過去の結果を使って次の点を選ぶので、少ない試行で良い値に近づきやすい。Snoek ら（2012）は、ガウス過程を使ったベイズ最適化で、機械学習アルゴリズムの調整が専門家の手作業と同等以上になることを示した。",
+    "links": [
+      {
+        "id": "C-04-044",
+        "relation": "対比（前の結果を使わずに試す点を決める）"
+      },
+      {
+        "id": "C-04-043",
+        "relation": "関連（探索する対象）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-04-044",
+        "point": "グリッドサーチは格子状の全組み合わせ、ランダムサーチは乱数で選んだ組み合わせを試す。どちらも前の結果を次の選び方に使わない。ベイズ最適化は使う。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Snoek, Larochelle & Adams (2012) Practical Bayesian Optimization of Machine Learning Algorithms (arXiv:1206.2944)",
+        "url": "https://arxiv.org/abs/1206.2944"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-04-051",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
+    "title": "深層距離学習（Siamese Network・Triplet Network）",
+    "oneLine": "似たデータどうしは近く、似ていないデータどうしは遠くなるような特徴の空間を、ニューラルネットワークで学ぶこと（距離学習）。重みを共有した同じネットワークを2つ並べてペアを比べる Siamese Network と、3つ並べて3つ組を比べる Triplet Network が代表例。",
+    "why": "クラスを当てるのではなく「どれだけ似ているか」を学ぶので、顔の照合や類似画像の検索、学習時に無かったクラスの比較にも使える。Siamese Network はペアに Contrastive Loss をかけて学習する。Hoffer と Ailon（2014）は、基準・同じ種類・違う種類の3つを同じネットワークに通し、2つの距離を比べる Triplet Network を示した。",
+    "links": [
+      {
+        "id": "C-04-015",
+        "relation": "部分（Siamese Network の学習に使う誤差関数）"
+      },
+      {
+        "id": "C-04-016",
+        "relation": "部分（Triplet Network の学習に使う誤差関数）"
+      },
+      {
+        "id": "C-06-072",
+        "relation": "関連（似たものを近づける学び方を、自己教師あり学習の対照学習でも使う）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-04-016",
+        "point": "Triplet Loss は誤差関数の名前、Triplet Network はそれで学習するネットワークの構成（同じネットワークを3つ並べ、重みを共有する）。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Hoffer & Ailon (2014) Deep metric learning using Triplet network (arXiv:1412.6622)",
+        "url": "https://arxiv.org/abs/1412.6622"
+      }
+    ],
+    "status": "verified"
   }
 ]

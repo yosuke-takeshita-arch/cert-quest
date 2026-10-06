@@ -1522,5 +1522,253 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "C-10-037",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "国内外のガイドライン"
+    ],
+    "title": "NIST AI リスクマネジメントフレームワーク（AI RMF）",
+    "oneLine": "米国の国立標準技術研究所（NIST）が2023年1月に公表した、AI のリスクを管理するための枠組み（AI RMF 1.0）。中核（Core）を GOVERN・MAP・MEASURE・MANAGE の4つの機能で構成する。",
+    "why": "2020年の国家 AI イニシアティブ法に基づき、AI システムを設計・開発・導入・利用する組織が AI のリスクを管理し、信頼できる AI を進めるための資源として作られた。任意（voluntary）で使う枠組みで、分野や用途を問わない。GOVERN は組織のリスク管理の全段階に関わり、MAP・MEASURE・MANAGE は個々の AI システムの文脈やライフサイクルの段階ごとに使う。日本の AI セーフティ・インスティテュート（AISI）は、AI 事業者ガイドラインと AI RMF の対応表（クロスウォーク）を作っている。",
+    "links": [
+      {
+        "id": "C-10-004",
+        "relation": "関連（リスクに応じて管理する考え方）"
+      },
+      {
+        "id": "C-10-002",
+        "relation": "対比（日本の事業者向けの指針）"
+      },
+      {
+        "id": "C-10-003",
+        "relation": "関連（任意で使うソフトロー）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-005",
+        "point": "EU の AI 法は罰則のある規則で、リスクの大きさで AI を分類して義務を課す。NIST の AI RMF は組織が任意で使う管理の枠組み。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "NIST (2023) Artificial Intelligence Risk Management Framework (AI RMF 1.0), NIST AI 100-1",
+        "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-038",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "国内外のガイドライン"
+    ],
+    "title": "OECD AI 原則（AI に関する理事会勧告）",
+    "oneLine": "OECD の「人工知能に関する理事会勧告（Recommendation of the Council on Artificial Intelligence）」に含まれる原則。2019年5月に採択され、2024年5月に改訂された。信頼できる AI のための価値に基づく原則として、包摂的な成長・持続可能な開発・幸福／人権と民主的価値（公平性とプライバシーを含む）／透明性と説明可能性／頑健性・セキュリティ・安全性／アカウンタビリティの5つを掲げ、政策立案者への勧告も示す。",
+    "why": "勧告には AI システムとそのライフサイクルの定義も含まれ、各国が政策や規制の枠組みを作るときの共通の土台として使われている。広島 AI プロセスの国際行動規範も、既存の OECD AI 原則を基礎とする文書とされている。",
+    "links": [
+      {
+        "id": "C-10-001",
+        "relation": "具体例（国際的な AI の価値原則）"
+      },
+      {
+        "id": "C-10-040",
+        "relation": "関連（国際行動規範の基礎）"
+      },
+      {
+        "id": "C-10-042",
+        "relation": "関連（2024年に OECD と統合した国際連携）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-033",
+        "point": "人間中心の AI 社会原則は日本政府（統合イノベーション戦略推進会議）の原則。OECD AI 原則は OECD の理事会勧告に含まれる国際的な原則。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "OECD.AI「OECD AI Principles overview」",
+        "url": "https://oecd.ai/en/ai-principles"
+      },
+      {
+        "title": "OECD Legal Instruments「Recommendation of the Council on Artificial Intelligence」（OECD/LEGAL/0449）",
+        "url": "https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0449"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-039",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "国内外のガイドライン"
+    ],
+    "title": "EU の「信頼できる AI のための倫理ガイドライン」",
+    "oneLine": "欧州委員会が設けた AI に関するハイレベル専門家グループ（AI HLEG）が2019年4月8日に公表したガイドライン（Ethics guidelines for trustworthy AI）。信頼できる AI は、合法的（lawful）・倫理的（ethical）・頑健（robust）の3つを満たすべきだとした。",
+    "why": "信頼できると見なされるために AI システムが満たすべき7つの主要な要件として、人間の主体性と監督、技術的な頑健性と安全性、プライバシーとデータガバナンス、透明性、多様性・無差別・公平性、社会と環境の幸福、アカウンタビリティを挙げた。要件の実践を確かめる評価リストも示し、試行を経て自己評価のチェックリストにまとめた。AI システムをリスクの大きさで分類して義務を課すのは、後に成立した EU の AI 法（規則）である。",
+    "links": [
+      {
+        "id": "C-10-005",
+        "relation": "対比（EU の拘束力のある規則）"
+      },
+      {
+        "id": "C-10-001",
+        "relation": "具体例（AI の価値原則）"
+      },
+      {
+        "id": "C-10-031",
+        "relation": "関連（要件の1つ「人間の主体性と監督」）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-005",
+        "point": "倫理ガイドライン（2019年）は信頼できる AI の要件を示した指針。リスクを4段階に分けて禁止や義務を定めたのは EU の AI 法（規則）。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "European Commission「Ethics guidelines for trustworthy AI」（2019年4月8日）",
+        "url": "https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-040",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "国内外のガイドライン"
+    ],
+    "title": "広島 AI プロセス",
+    "oneLine": "2023年5月の G7 広島サミットの結果を受け、生成 AI について議論するために立ち上がった国際的な枠組み。2023年12月に、「全ての AI 関係者向けの広島プロセス国際指針」と「高度な AI システムを開発する組織向けの広島プロセス国際行動規範」などからなる「広島 AI プロセス包括的政策枠組み」がまとまり、G7 首脳に承認された。",
+    "why": "国際行動規範は、最も高度な AI システムを開発する組織の行動のための自主的な手引きで、リスクベースのアプローチに沿って従うべきものとされ、既存の OECD AI 原則を基礎とする生きた文書として更新される。2024年12月には行動規範の遵守状況を報告する枠組みが G7 で合意され、各組織の回答は OECD のサイトで公表されている。日本の AI 事業者ガイドラインは、全ての AI 関係者が国際指針に即して行動すべきだとしている。",
+    "links": [
+      {
+        "id": "C-10-002",
+        "relation": "関連（国内のガイドラインが国際指針を取り込む）"
+      },
+      {
+        "id": "C-10-038",
+        "relation": "関連（行動規範の基礎になる原則）"
+      },
+      {
+        "id": "C-10-004",
+        "relation": "関連（リスクベースのアプローチ）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-005",
+        "point": "広島 AI プロセスの国際行動規範は自主的な手引き。EU の AI 法は罰則のある規則。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "総務省「広島AIプロセス」",
+        "url": "https://www.soumu.go.jp/hiroshimaaiprocess/"
+      },
+      {
+        "title": "総務省「広島AIプロセス 成果文書」",
+        "url": "https://www.soumu.go.jp/hiroshimaaiprocess/documents.html"
+      },
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-041",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "国内外のガイドライン"
+    ],
+    "title": "米国の AI 政策文書（AI 権利章典の青写真・大統領令14110号）",
+    "oneLine": "「AI 権利章典の青写真（Blueprint for an AI Bill of Rights）」は、米国ホワイトハウスの科学技術政策局（OSTP）が2022年10月に公表した、自動化システムから人々を守るための5つの原則（安全で効果的なシステム／アルゴリズムによる差別からの保護／データプライバシー／通知と説明／人間による代替・配慮・フォールバック）。大統領令14110号（2023年10月30日署名）は、AI の安全・安心で信頼できる開発と利用を定めた大統領令。",
+    "why": "青写真は文書自体に、拘束力が無く米国政府の政策を成すものでもないと書かれている。大統領令14110号は、2025年1月20日に署名された大統領令14148号で取り消された。どちらも、制定・公表された時期と現在の扱いを分けて覚える必要がある。",
+    "links": [
+      {
+        "id": "C-10-037",
+        "relation": "関連（同じ米国の、NIST によるリスク管理の枠組み）"
+      },
+      {
+        "id": "C-10-003",
+        "relation": "関連（拘束力の無い文書）"
+      },
+      {
+        "id": "C-10-005",
+        "relation": "対比（EU の規則）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-005",
+        "point": "EU の AI 法は議会と理事会が定めた規則で拘束力がある。米国の青写真は拘束力の無い原則で、大統領令14110号は2025年に取り消された。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "The White House (OSTP)「Blueprint for an AI Bill of Rights」（2022年10月、アーカイブ）",
+        "url": "https://bidenwhitehouse.archives.gov/ostp/ai-bill-of-rights/"
+      },
+      {
+        "title": "Federal Register「Executive Order 14110: Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence」",
+        "url": "https://www.federalregister.gov/documents/2023/11/01/2023-24283/safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence"
+      },
+      {
+        "title": "Federal Register「Executive Order 14148: Initial Rescissions of Harmful Executive Orders and Actions」",
+        "url": "https://www.federalregister.gov/documents/2025/01/28/2025-01901/initial-rescissions-of-harmful-executive-orders-and-actions"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-10-042",
+    "syllabus": [
+      "法律・倫理分野",
+      "AI倫理・AIガバナンス",
+      "国内外のガイドライン"
+    ],
+    "title": "GPAI（AI に関するグローバル・パートナーシップ）",
+    "oneLine": "人間中心の考え方に立ち、「責任ある AI」の開発・利用をプロジェクトベースの取組で進めるための、政府・国際機関・産業界・有識者・市民社会などによる国際連携イニシアティブ（The Global Partnership on Artificial Intelligence）。2020年に設立された。",
+    "why": "2024年7月に OECD との統合パートナーシップ体制へ移行した。同月、日本は GPAI の専門家の研究やプロジェクトを支える「GPAI 東京専門家支援センター」を情報通信研究機構（NICT）に設置した。EU の AI 法でいう汎用目的 AI（General-Purpose AI）も同じく GPAI と略されるので、文脈で区別する。",
+    "links": [
+      {
+        "id": "C-10-038",
+        "relation": "関連（2024年に OECD と統合）"
+      },
+      {
+        "id": "C-10-040",
+        "relation": "関連（広島 AI プロセスの推進にも協力）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-10-005",
+        "point": "EU の AI 法の GPAI は汎用目的 AI（モデル）のこと。国際連携の GPAI は Global Partnership on AI。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）本編」（令和8年3月31日）脚注12",
+        "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf"
+      }
+    ],
+    "status": "verified"
   }
 ]

@@ -2250,5 +2250,47 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "C-05-051",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "回帰結合層"
+    ],
+    "title": "露出バイアス（exposure bias）",
+    "oneLine": "系列を生成するモデルを、前の時刻の正解を入力にして（教師強制で）学習すると、学習中は正解の系列にしか触れない（露出しない）。推論では自分の予測を次の入力にするため、学習時と推論時で入力の分布がずれ、途中の誤りが後ろへ積み重なる。このずれを露出バイアスと呼ぶ。",
+    "why": "Ranzato ら（2015）がこの呼び名で問題を整理し、学習中にもモデル自身の予測を使い、BLEU などの評価指標を系列全体で直接最適化する方法を示した。Bengio ら（2015）の Scheduled Sampling は、学習の初めは正解を入力にし、だんだんモデル自身の予測を入力にする割合を増やしていくことで、このずれを和らげる。",
+    "links": [
+      {
+        "id": "C-05-026",
+        "relation": "原因（教師強制で学習すると起きる）"
+      },
+      {
+        "id": "C-05-021",
+        "relation": "関連（系列を1つずつ生成するモデル）"
+      },
+      {
+        "id": "C-05-031",
+        "relation": "関連（系列変換で生じる）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-05-026",
+        "point": "教師強制は学習の方法（前の時刻の正解を入力にする）。露出バイアスはその結果として推論時に生じる問題。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ranzato et al. (2015) Sequence Level Training with Recurrent Neural Networks (arXiv:1511.06732)",
+        "url": "https://arxiv.org/abs/1511.06732"
+      },
+      {
+        "title": "Bengio et al. (2015) Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks (arXiv:1506.03099)",
+        "url": "https://arxiv.org/abs/1506.03099"
+      }
+    ],
+    "status": "verified"
   }
 ]

@@ -2147,5 +2147,165 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-04-051",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Parametric ReLU（PReLU）の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "ReLU（負の入力を0にする関数）を改良した PReLU という活性化関数が、どういうものかを選ぶ問題。",
+    "choices": [
+      "入力が負のときの傾きを、学習によって決まるパラメータとして持つ。",
+      "入力が負のときの傾きを、学習中に一様分布から乱数で選ぶ。",
+      "入力が負のときの傾きを、0.01 などの小さな固定値にする。",
+      "入力が正のときの傾きを、学習によって決まるパラメータとして持つ。"
+    ],
+    "answer": 0,
+    "explanation": "He ら（2015）の PReLU は、負の側を a×x とし、傾き a を誤差逆伝播で学習する。a が0なら ReLU、小さな固定値なら Leaky ReLU にあたる。増えるパラメータはチャネル数ぶん程度で、計算量はほとんど増えない。",
+    "whyWrong": [
+      null,
+      "これは Randomized ReLU（RReLU）。学習中は傾きを乱数で選び、テスト時はその平均を使う。",
+      "これは Leaky ReLU。PReLU は傾きを固定せず、学習で決める。",
+      "変えるのは負の側。正の側は ReLU と同じく入力をそのまま出す。"
+    ],
+    "memoryTip": "Leaky＝傾き固定、Parametric＝傾きを学習、Randomized＝傾きを乱数。どれも「負の側」の話。",
+    "concepts": [
+      "C-04-048",
+      "C-04-009",
+      "C-04-008"
+    ],
+    "sources": [
+      {
+        "title": "He et al. (2015) Delving Deep into Rectifiers (arXiv:1502.01852)",
+        "url": "https://arxiv.org/abs/1502.01852"
+      },
+      {
+        "title": "Xu et al. (2015) Empirical Evaluation of Rectified Activations in Convolutional Network (arXiv:1505.00853)",
+        "url": "https://arxiv.org/abs/1505.00853"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-052",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "JS ダイバージェンス（イェンセン・シャノン情報量）に関する説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "2つの確率の分布がどれだけ違うかを測る『JS ダイバージェンス』という量について、正しい説明を選ぶ問題。",
+    "choices": [
+      "2つの分布を入れ替えると値が変わり、どちらを基準にするかで結果が違う。",
+      "2つの分布を半分ずつ混ぜた分布への KL ダイバージェンスを平均して求める。",
+      "2つの分布が等しいときに最大になり、離れるほど小さくなる。",
+      "識別器が最適なとき、VAE の学習が最小化する量として導かれる。"
+    ],
+    "answer": 1,
+    "explanation": "JS ダイバージェンスは、2つの分布 P と Q を半分ずつ混ぜた分布 M を作り、P から M、Q から M への KL ダイバージェンスを平均したもの。入れ替えても同じ値になり、0以上で、0になるのは2つが等しいときだけ。Goodfellow ら（2014）は、識別器が最適なとき GAN の生成器の目的関数が JS ダイバージェンスを使って表せることを示した。",
+    "whyWrong": [
+      "これは KL ダイバージェンスの性質（非対称）。JS ダイバージェンスは混合分布を挟むので、入れ替えても値は同じ。",
+      null,
+      "向きが逆。違いを測る量なので、等しいときに最小の0になる。",
+      "識別器が出てくるのは GAN。GAN の目的関数が JS ダイバージェンスで表される。VAE は識別器を持たない。"
+    ],
+    "memoryTip": "KL は一方通行、JS は真ん中（混合分布）で待ち合わせるので対称。GAN の目的は JS。",
+    "concepts": [
+      "C-04-049",
+      "C-04-014",
+      "C-06-063"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)",
+        "url": "https://arxiv.org/abs/1406.2661"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-053",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ハイパーパラメータの探索方法のうち、ベイズ最適化の特徴として、最も適切なものを1つ選べ。",
+    "stemPlain": "学習の前に人が決める設定値（ハイパーパラメータ）を探すやり方のうち、『ベイズ最適化』の特徴を選ぶ問題。",
+    "choices": [
+      "候補の値を格子状に並べ、全ての組み合わせを順に試す。",
+      "試す値を乱数で選び、前の試行の結果とは関係なく次を決める。",
+      "誤差関数の勾配を使い、ハイパーパラメータを重みと同時に更新する。",
+      "それまでの試行の結果を確率モデルで表し、次に試す値を選ぶ。"
+    ],
+    "answer": 3,
+    "explanation": "ベイズ最適化は、ハイパーパラメータと汎化性能の関係をガウス過程などの確率モデルで表し、過去の試行の結果から、期待改善量（EI）などの獲得関数が最大になる点を次に試す。前の結果を使うので、1回の学習が重いときに少ない試行で良い値に近づきやすい。",
+    "whyWrong": [
+      "これはグリッドサーチ。組み合わせが増えると試行の回数が急に増える。",
+      "これはランダムサーチ。ベイズ最適化は逆に、前の結果を使って次を選ぶ。",
+      "ハイパーパラメータは重みのように誤差逆伝播で更新するものではなく、学習の外側で選ぶ。",
+      null
+    ],
+    "memoryTip": "グリッド＝全部、ランダム＝くじ引き、ベイズ＝これまでの結果から「次はここが良さそう」と狙う。",
+    "concepts": [
+      "C-04-050",
+      "C-04-044",
+      "C-04-043"
+    ],
+    "sources": [
+      {
+        "title": "Snoek, Larochelle & Adams (2012) Practical Bayesian Optimization of Machine Learning Algorithms (arXiv:1206.2944)",
+        "url": "https://arxiv.org/abs/1206.2944"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-054",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "似たデータを近く、似ていないデータを遠くに写す特徴の空間を学ぶ深層距離学習では、重みを共有した同じネットワークを2つ並べてデータのペアを比べる（ア）や、3つ並べて3つ組を比べる（イ）が使われる。（ア）（イ）の組み合わせとして、最も適切なものを1つ選べ。",
+    "stemPlain": "『似ているものは近く、違うものは遠く』に並ぶように特徴を学ぶ方法（深層距離学習）で使う2つのネットワークの名前を選ぶ問題。（ア）は同じネットワークを2つ並べてペアを比べるもの、（イ）は3つ並べて3つ組を比べるもの。",
+    "choices": [
+      "（ア）Triplet Network（イ）Siamese Network",
+      "（ア）Siamese Network（イ）Triplet Network",
+      "（ア）Siamese Network（イ）Transformer",
+      "（ア）Encoder-Decoder（イ）Triplet Network"
+    ],
+    "answer": 1,
+    "explanation": "Siamese Network は重みを共有した同じネットワークに2つのデータを通し、似たペアは近く、似ていないペアは遠くなるよう Contrastive Loss などで学習する。Triplet Network は同じネットワークを3つ並べ（重みは共有）、基準と同じ種類の距離が、基準と違う種類の距離より小さくなるよう学習する（Hoffer と Ailon, 2014）。",
+    "whyWrong": [
+      "（ア）と（イ）が逆。2つ並べるのが Siamese、3つ並べるのが Triplet。",
+      null,
+      "Transformer は Attention で系列を扱うモデルで、3つ組を比べて距離を学ぶ構成の名前ではない。",
+      "Encoder-Decoder は入力を別の出力へ変換する構造で、ペアの距離を比べるネットワークではない。"
+    ],
+    "memoryTip": "Siamese（シャム双生児）＝2つ、Triplet（三つ子）＝3つ。",
+    "concepts": [
+      "C-04-051",
+      "C-04-015",
+      "C-04-016"
+    ],
+    "sources": [
+      {
+        "title": "Hoffer & Ailon (2014) Deep metric learning using Triplet network (arXiv:1412.6622)",
+        "url": "https://arxiv.org/abs/1412.6622"
+      }
+    ],
+    "status": "verified"
   }
 ]
