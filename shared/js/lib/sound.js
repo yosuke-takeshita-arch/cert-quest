@@ -16,16 +16,38 @@ export function normalizeVolume(v, fallback) {
  * settings の音の項目を、正しい形に直して返す（settings 自体を書き換える）。
  *  sound … 効果音のオン／オフ（これまでの項目をそのまま引き継ぐ。古い記録でオンの人はオンのまま）
  *  sfxVolume / bgmVolume … 0〜100
- *  bgm … BGM のオン／オフ（初期オフ）
+ *  bgm … 問題を解いているあいだの BGM のオン／オフ（初期オフ）。bgmTrack … その曲
+ *  bgmHome … それ以外（タイトル・ホーム・地図など）の BGM のオン／オフ（初期オフ）。bgmHomeTrack … その曲（初期はタイトル曲）
+ *  bgmVolume … BGM の音量（2つの場面で共通）
+ * 古い記録（bgmHome が無い）の移行は mergeState がやる（bgm がオンだった人は bgmHome もオン。ここでは見分けられない）。
  */
 export function normalizeSoundSettings(settings) {
   const s = settings;
   s.sound = s.sound === true;
   s.bgm = s.bgm === true;
+  s.bgmHome = s.bgmHome === true;
   s.sfxVolume = normalizeVolume(s.sfxVolume, DEFAULT_SFX_VOLUME);
   s.bgmVolume = normalizeVolume(s.bgmVolume, DEFAULT_BGM_VOLUME);
   s.bgmTrack = normalizeBgmTrack(s.bgmTrack);
+  s.bgmHomeTrack = normalizeHomeTrack(s.bgmHomeTrack);
   return s;
+}
+
+/** それ以外の場面の曲の選択。'title'＝タイトル曲（初期）、'auto'＝おまかせ（BGM_TRACKS を順番に）、それ以外は BGM_TRACKS の id。知らない値は 'title'。 */
+export function normalizeHomeTrack(v, tracks = BGM_TRACKS) {
+  if (v === TITLE_BGM.id || v === BGM_AUTO) return v;
+  return typeof v === 'string' && tracks.some((t) => t.id === v) ? v : TITLE_BGM.id;
+}
+
+/**
+ * いま流すべき BGM（流さないなら null）。場面は、問題を解いている（inQuiz）か問題中の曲を試し聴き中（preview）なら問題中、それ以外はそれ以外。
+ * その場面のオン／オフが切れている・アプリが裏に回っている（hidden）なら null。
+ * 返すもの: { scene: 'quiz' | 'other', track: 'auto' | 'title' | BGM_TRACKS の id }
+ */
+export function bgmPlan(s, { inQuiz = false, preview = false, hidden = false } = {}) {
+  if (!s || hidden) return null;
+  if (inQuiz || preview) return s.bgm ? { scene: 'quiz', track: normalizeBgmTrack(s.bgmTrack) } : null;
+  return s.bgmHome ? { scene: 'other', track: normalizeHomeTrack(s.bgmHomeTrack) } : null;
 }
 
 /** BGM の曲の選択。'auto'＝おまかせ（全曲を順番に）、それ以外は BGM_TRACKS の id。知らない値（古い記録・消えた曲）は 'auto'。 */

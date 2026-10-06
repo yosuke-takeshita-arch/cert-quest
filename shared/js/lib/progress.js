@@ -20,7 +20,7 @@ export function defaultState() {
     exams: [],
     examSeen: {}, // 模試で最後に出た時刻（問題ID → ミリ秒）。次の模試で、まだ出ていない問題・古く出た問題を優先するのに使う
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
+    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
     goalAwarded: null,
   };
 }
@@ -47,6 +47,10 @@ export function mergeState(saved) {
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
   o.settings.textSize = normalizeTextSize(o.settings.textSize); // 文字の大きさ。ありえない値は「ふつう」
   o.settings.mapView = normalizeMapView(o.settings.mapView); // 地図の表示（地図／一覧）。ありえない値は地図
+  // BGM は「問題中（bgm・bgmTrack）」と「それ以外（bgmHome・bgmHomeTrack）」の2つの場面に分けた。
+  // それ以外の項目が無い古い記録は、これまでの BGM のオン／オフを引き継ぐ（オンだった人は両方オン。曲は問題中が bgmTrack のまま、それ以外はタイトル曲）
+  const savedSet = saved.settings && typeof saved.settings === 'object' ? saved.settings : {};
+  if (typeof savedSet.bgmHome !== 'boolean') o.settings.bgmHome = savedSet.bgm === true;
   normalizeSoundSettings(o.settings);
   normalizeExamSettings(o.settings);
   o.settings.introSeen = o.settings.introSeen === true; // 使い方の案内を見たか

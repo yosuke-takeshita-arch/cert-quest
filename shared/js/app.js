@@ -14,7 +14,7 @@ import { renderCardList, renderCard } from './views/cards.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
-import { initAudio, setBgmScene, syncBgm, unlockAudio, playSfx, setTitleBgm, endTitleBgm } from './audio.js';
+import { initAudio, setBgmScene, syncBgm, unlockAudio, playSfx } from './audio.js';
 import { createTitleScreen } from './views/title.js';
 import { createLoadTracker } from './lib/loadprogress.js';
 import { needsExamDateAsk, examStatus } from './lib/examdate.js';
@@ -93,7 +93,7 @@ export async function start() {
   const titleState = storage.load();
   let live = null;
   initAudio(() => (live ? live.state.settings : titleState.settings));
-  setTitleBgm(true); // タイトル曲（BGM がオンの人だけ。『タップしてはじめる』で小さくして止める）
+  // 『それ以外』の BGM（タイトル・ホームなど）は initAudio の中で流れ始める（オンの人だけ。『タップしてはじめる』でも止めず、ホームでも続く）
   const title = createTitleScreen({ config, examDate: examStatus(titleState.settings).date, sound: { settings: titleState.settings, commit: () => storage.save(titleState) } });
   clear(root);
   root.appendChild(title.el);
@@ -109,7 +109,6 @@ export async function start() {
   // 押した瞬間に音を使える状態にし、開始のジングルを鳴らす（効果音がオンの人だけ）。演出が済んだらホームへ
   await title.ready(() => {
     unlockAudio(titleState.settings);
-    endTitleBgm(); // タイトル曲は、開始のジングルとかさねて小さくして止める
     playSfx(titleState.settings, 'start');
   });
 
@@ -210,7 +209,7 @@ export async function start() {
   setTapHost({ state: () => tapSession, save: () => {}, sfx: (name) => playSfx(app.state.settings, name) });
   // 動作確認用に外から触れるようにする（テストが状態を調べる）
   window.__app = app;
-  // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）だけで流す。ホームなどは無音（initAudio はタイトル画面の前に済んでいる）
+  // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）では問題中の曲、それ以外（ホームなど）では『それ以外』の曲（initAudio はタイトル画面の前に済んでいる）
   live = app;
 
   const shell = h('div', { class: 'shell' });

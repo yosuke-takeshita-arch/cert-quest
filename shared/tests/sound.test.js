@@ -7,7 +7,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BGM_TRACKS, TITLE_BGM,
-  normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
+  normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, normalizeHomeTrack, bgmPlan, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
 
@@ -36,6 +36,8 @@ test('音の初期値: 効果音オフ・BGM オフ・音量は効果音70／BGM
   assert.equal(s.sfxVolume, 70);
   assert.equal(s.bgmVolume, 40);
   assert.equal(s.bgmTrack, 'auto');
+  assert.equal(s.bgmHome, false); // それ以外の場面の BGM も初期オフ
+  assert.equal(s.bgmHomeTrack, 'title'); // 曲の初期はタイトル曲
   assert.equal(BGM_AUTO, 'auto');
   assert.equal(DEFAULT_SFX_VOLUME, 70);
   assert.equal(DEFAULT_BGM_VOLUME, 40);
@@ -240,7 +242,7 @@ test('音のカード: 設定画面とタイトル画面のポップアップが
   assert.match(read('views/more.js'), /buildSoundCard\(/);
   assert.match(read('views/title.js'), /buildSoundCard\(/);
   // 作りの本体（曲の選択など）は部品の中だけにある
-  assert.ok(read('views/sound-settings.js').includes("'set-bgmTrack'"));
+  assert.ok(read('views/sound-settings.js').includes("'bgmTrack'") && read('views/sound-settings.js').includes("'bgmHomeTrack'"));
   assert.ok(!read('views/more.js').includes("'set-bgmTrack'"));
   assert.ok(!read('views/title.js').includes("'set-bgmTrack'"));
   // タイトル画面は歯車でも音を使える状態にし、ホームに進むときは開始のジングルを鳴らす
@@ -285,28 +287,131 @@ test('タイトル曲の補正: 実測の大きさ×倍率が、ほかの BGM �
   assert.equal(bgmGain(0, t.trim), 0);
 });
 
-test('タイトル曲の鳴らし方: audio.js が BGM の設定に従い、タップで小さくして止め、app.js が結線している', () => {
+test('BGM の移行: 『それ以外』の項目が無い古い記録は、これまでの BGM を引き継ぐ（オンだった人は両方オン）', () => {
+  const on = mergeState({ settings: { bgm: true, bgmTrack: 'bluebonnet', bgmVolume: 55 } }).settings;
+  assert.deepEqual([on.bgm, on.bgmTrack, on.bgmHome, on.bgmHomeTrack, on.bgmVolume], [true, 'bluebonnet', true, 'title', 55]);
+  const off = mergeState({ settings: { bgm: false, bgmTrack: 'calm-loop' } }).settings;
+  assert.deepEqual([off.bgm, off.bgmTrack, off.bgmHome, off.bgmHomeTrack], [false, 'calm-loop', false, 'title']);
+  // 何も無い・設定が無い・壊れた設定は、初期値（両方オフ）
+  for (const st of [null, {}, { settings: null }, { settings: 'x' }, { settings: [] }]) {
+    const d = mergeState(st).settings;
+    assert.deepEqual([d.bgm, d.bgmHome, d.bgmTrack, d.bgmHomeTrack], [false, false, 'auto', 'title'], JSON.stringify(st));
+  }
+  // bgm が真偽値でない壊れた値（1・'true'）はオンと見なさない（normalizeSoundSettings と同じ）
+  assert.equal(mergeState({ settings: { bgm: 1 } }).settings.bgmHome, false);
+  assert.equal(mergeState({ settings: { bgm: 'true' } }).settings.bgmHome, false);
+});
+
+test('BGM の移行: 『それ以外』の項目がある記録（新しい記録・書き出しファイル）は、その値のまま。bgm に引きずられない', () => {
+  const a = mergeState({ settings: { bgm: true, bgmHome: false, bgmHomeTrack: 'jrpg-piano' } }).settings;
+  assert.deepEqual([a.bgm, a.bgmHome, a.bgmHomeTrack], [true, false, 'jrpg-piano']);
+  const b = mergeState({ settings: { bgm: false, bgmHome: true, bgmHomeTrack: 'auto' } }).settings;
+  assert.deepEqual([b.bgm, b.bgmHome, b.bgmHomeTrack], [false, true, 'auto']);
+  // 2回通しても変わらない（読み込み直し・バックアップの往復）
+  const again = mergeState(JSON.parse(JSON.stringify(mergeState({ settings: { bgm: true } })))).settings;
+  assert.deepEqual([again.bgm, again.bgmHome], [true, true]);
+  const off2 = mergeState(JSON.parse(JSON.stringify({ settings: b }))).settings;
+  assert.deepEqual([off2.bgm, off2.bgmHome, off2.bgmHomeTrack], [false, true, 'auto']);
+  // bgmHome が真偽値でない壊れた値は、bgm から作り直す
+  assert.equal(mergeState({ settings: { bgm: true, bgmHome: 'yes' } }).settings.bgmHome, true);
+});
+
+test('それ以外の曲の選択: タイトル曲・おまかせ・BGM_TRACKS の id だけ。知らない値はタイトル曲', () => {
+  assert.equal(normalizeHomeTrack('title'), 'title');
+  assert.equal(normalizeHomeTrack(TITLE_BGM.id), 'title');
+  assert.equal(normalizeHomeTrack('auto'), 'auto');
+  for (const t of BGM_TRACKS) assert.equal(normalizeHomeTrack(t.id), t.id);
+  for (const bad of [undefined, null, '', 'gone', 'Title', 'title ', 0, 1, NaN, true, {}, [], ['title']]) assert.equal(normalizeHomeTrack(bad), 'title', String(bad));
+  assert.equal(mergeState({ settings: { bgmHomeTrack: 'gone' } }).settings.bgmHomeTrack, 'title');
+  assert.equal(mergeState({ settings: { bgmHomeTrack: 'bluebonnet' } }).settings.bgmHomeTrack, 'bluebonnet');
+  // 問題中の選択肢にタイトル曲は入らない（おまかせにも混ざらない）
+  assert.equal(normalizeBgmTrack('title'), 'auto');
+});
+
+test('場面ごとに流すか: 問題中は bgm・bgmTrack、それ以外は bgmHome・bgmHomeTrack。切っている場面は無音。裏に回ったら全部止める', () => {
+  const S = (o) => normalizeSoundSettings({ ...o });
+  const both = S({ bgm: true, bgmHome: true, bgmTrack: 'calm-loop', bgmHomeTrack: 'title' });
+  assert.deepEqual(bgmPlan(both, { inQuiz: true }), { scene: 'quiz', track: 'calm-loop' });
+  assert.deepEqual(bgmPlan(both, { inQuiz: false }), { scene: 'other', track: 'title' });
+  assert.deepEqual(bgmPlan(both), { scene: 'other', track: 'title' }); // 何も言わなければ、それ以外
+  // 片方だけオン: オフの場面は無音
+  const quizOnly = S({ bgm: true, bgmHome: false });
+  assert.deepEqual(bgmPlan(quizOnly, { inQuiz: true }), { scene: 'quiz', track: 'auto' });
+  assert.equal(bgmPlan(quizOnly, { inQuiz: false }), null);
+  const homeOnly = S({ bgm: false, bgmHome: true, bgmHomeTrack: 'auto' });
+  assert.equal(bgmPlan(homeOnly, { inQuiz: true }), null);
+  assert.deepEqual(bgmPlan(homeOnly, { inQuiz: false }), { scene: 'other', track: 'auto' });
+  // 両方オフ（初期）は、どこでも無音
+  const none = defaultState().settings;
+  for (const inQuiz of [true, false]) for (const preview of [true, false]) assert.equal(bgmPlan(none, { inQuiz, preview }), null);
+  // 試し聴き（問題中の曲）: どの場面でも、問題中がオンのときだけ。問題中がオフなら、それ以外の曲に化けず無音
+  assert.deepEqual(bgmPlan(both, { preview: true }), { scene: 'quiz', track: 'calm-loop' });
+  assert.deepEqual(bgmPlan(quizOnly, { preview: true }), { scene: 'quiz', track: 'auto' });
+  assert.equal(bgmPlan(homeOnly, { preview: true }), null);
+  // 裏に回ったら、両方とも止める
+  for (const inQuiz of [true, false]) assert.equal(bgmPlan(both, { inQuiz, hidden: true }), null);
+  assert.equal(bgmPlan(null, { inQuiz: true }), null);
+  assert.equal(bgmPlan(undefined), null);
+  // 壊れた選択（保存データを通さない生の値）は、場面ごとの初期の曲に直す
+  assert.equal(bgmPlan({ bgm: true, bgmTrack: 'gone' }, { inQuiz: true }).track, 'auto');
+  assert.equal(bgmPlan({ bgmHome: true, bgmHomeTrack: 'gone' }).track, 'title');
+});
+
+test('場面の切り替え: タイトル→ホーム→問題→ホームで、流す曲が場面の設定どおりに替わる', () => {
+  const s = normalizeSoundSettings({ bgm: true, bgmHome: true, bgmTrack: 'jrpg-piano', bgmHomeTrack: 'title' });
+  const at = (inQuiz) => bgmPlan(s, { inQuiz });
+  const seq = [false, false, true, false].map((q) => at(q).track); // タイトル・ホーム・問題・ホーム
+  assert.deepEqual(seq, ['title', 'title', 'jrpg-piano', 'title']);
+  // それ以外の曲を BGM_TRACKS の1曲にすると、タイトル画面からその曲（タイトル曲は鳴らない）
+  s.bgmHomeTrack = 'bluebonnet';
+  assert.deepEqual([false, true, false].map((q) => at(q).track), ['bluebonnet', 'jrpg-piano', 'bluebonnet']);
+  // 両方おまかせなら、場面が変わっても同じ選択（鳴っている曲を切らずに続けられる）
+  s.bgmTrack = 'auto';
+  s.bgmHomeTrack = 'auto';
+  assert.equal(at(true).track, at(false).track);
+});
+
+test('BGM の鳴らし方: audio.js が場面の plan に従い、場面が変わるときは小さくして切り替え、app.js が結線している', () => {
   const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
   const app = readFileSync(join(shared, 'js', 'app.js'), 'utf8');
-  // BGM がオンのときだけ（初期オフなら鳴らない）。試し聴きの間は、重ならないよう止める
-  assert.match(functionBody(au, 'wantTitle'), /s\.bgm/);
-  assert.match(functionBody(au, 'wantTitle'), /!B\.preview/);
-  assert.match(functionBody(au, 'wantTitle'), /document\.hidden/);
+  // タイトル曲を流すのは、plan の曲がタイトル曲のとき。BGM_TRACKS の曲は、それ以外のとき。両方とも plan を通す（設定を直に見ない）
+  assert.match(functionBody(au, 'plan'), /bgmPlan\(/);
+  assert.match(functionBody(au, 'plan'), /inQuiz: B\.scene/);
+  assert.match(functionBody(au, 'plan'), /preview: B\.preview/);
+  assert.match(functionBody(au, 'plan'), /document\.hidden/);
+  assert.match(functionBody(au, 'wantTitle'), /TITLE_BGM\.id/);
+  assert.match(functionBody(au, 'wantBgm'), /!== TITLE_BGM\.id/);
+  assert.ok(!/s\.bgm\b/.test(functionBody(au, 'wantTitle')) && !/s\.bgm\b/.test(functionBody(au, 'wantBgm')));
   // 切れ目なくくり返す（loop）／音量は BGM の音量と曲の補正
   assert.match(functionBody(au, 'startTitle'), /\.loop = true/);
   assert.match(functionBody(au, 'applyTitleVolume'), /bgmGain\([^)]*TITLE_BGM\.trim/);
-  // 歯車で BGM をオンにしたら（syncBgm）その場で流れ始める。音量の変更にも従う
-  assert.match(functionBody(au, 'syncBgm'), /syncTitle\(\)/);
   assert.match(functionBody(au, 'applyVolumes'), /applyTitleVolume\(\)/);
-  // 『はじめる』を押したら小さくして止める。そのあと流れない（scene を false に）
-  assert.match(functionBody(au, 'endTitleBgm'), /T\.scene = false/);
-  assert.match(functionBody(au, 'endTitleBgm'), /linearRampToValueAtTime\(0,/);
-  // app.js: タイトル画面を出す前に結線し、押した処理の中で止める
-  assert.match(app, /setTitleBgm\(true\)/);
-  assert.match(app, /title\.ready\(\(\) => \{[^}]*endTitleBgm\(\)[^}]*\}\)/);
-  // ホームに進んだあとは、タイトル曲を戻さない（setTitleBgm(true) はタイトル画面を出すとき1回だけ）
-  assert.equal(app.split('setTitleBgm(true)').length, 2);
+  // 場面が変わって流す曲が変わるときは、鳴っているほうを小さくして止める（タイトル曲も BGM_TRACKS の曲も）
+  assert.match(functionBody(au, 'fadeOutTitle'), /linearRampToValueAtTime\(0,/);
+  assert.match(functionBody(au, 'fadeOutBgm'), /linearRampToValueAtTime\(0,/);
+  const sync = functionBody(au, 'syncBgm');
+  assert.match(sync, /fadeOutTitle\(\)/);
+  assert.match(sync, /fadeOutBgm\(\)/);
+  assert.match(sync, /!wantT && T\.src/); // タイトル曲を流さない場面になったら止める
+  assert.match(sync, /!wantB \|\|/); // BGM_TRACKS の曲を流さない場面になったら止める
+  assert.match(sync, /selectedIndex\(\) !== B\.track/); // 同じ B でも、選んだ曲が違えば替える
+  // 小さくしている間は、次を始めない（かさならない）。止まったら syncBgm でもう一度
+  assert.match(functionBody(au, 'startBgm'), /B\.fading \|\| T\.fading/);
+  assert.match(functionBody(au, 'startTitle'), /T\.fading \|\| B\.fading/);
+  assert.match(functionBody(au, 'fadeOutTitle'), /syncBgm\(\)/);
+  assert.match(functionBody(au, 'fadeOutBgm'), /syncBgm\(\)/);
+  // タイトル曲の展開した音は、使う設定でなければ手放す
+  assert.match(sync, /T\.buf = null/);
+  // 『タップしてはじめる』では止めない（それ以外がオンなら、ホームでも続く）。タイトル専用の入り口は無い
+  assert.ok(!/export function (setTitleBgm|endTitleBgm)/.test(au));
+  assert.ok(!/setTitleBgm|endTitleBgm/.test(app));
+  assert.match(app, /title\.ready\(\(\) => \{[^}]*playSfx\([^)]*'start'\)[^}]*\}\)/);
+  // 起動時に、それ以外の曲を流す準備をする（さわる前は予約。さわったところから鳴る）
+  assert.match(functionBody(au, 'initAudio'), /syncBgm\(\)/);
+  // 問題を解く画面の出入りで場面を知らせる（画面を変えるたびに）
+  assert.match(app, /setBgmScene\(full\)/);
 });
+
 
 test('キャラのタップ音: tap は drop_001.ogg。タップのたびに鳴らし、節目でお祝いの stars は鳴らさない', () => {
   assert.equal(SFX_FILES.tap, 'drop_001.ogg');
@@ -337,7 +442,7 @@ test('タイトル曲: 画面のどこをさわっても音を使える状態に
   // 効果音か BGM がオンのときだけ unlockAudio（両方オフなら何もしない）
   assert.match(body, /s\.sound \|\| s\.bgm[^)]*\)[^;]*unlockAudio\(s\)/);
   // 一言: 鳴らせない状態の判定は audio.js、表示は title.js。鳴り始めたら消す（毎回 toggle で出し入れ）
-  assert.match(functionBody(au, 'titleAudioLocked'), /wantTitle\(\)/);
+  assert.match(functionBody(au, 'titleAudioLocked'), /plan\(\)/);
   assert.match(functionBody(au, 'titleAudioLocked'), /state !== 'running'/);
   assert.match(ti, /画面をさわると音楽が流れます/);
   assert.match(ti, /toggle\('hidden', !titleAudioLocked\(\)\)/);

@@ -3,7 +3,7 @@
 // - BGM: 大きいので、最初に流すときに取ってきてキャッシュに入る（sw-core.js が /audio/ をキャッシュ優先で返す）
 //   音量は iOS でも効くよう WebAudio の GainNode でかける
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
-import { SFX_FILES, BGM_TRACKS, TITLE_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex } from './lib/sound.js';
+import { SFX_FILES, BGM_TRACKS, BGM_AUTO, TITLE_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
 
 const SFX_BASE = new URL('../audio/sfx/', import.meta.url).href;
 const BGM_BASE = new URL('../audio/bgm/', import.meta.url).href;
@@ -95,9 +95,14 @@ export function playSfx(settings, name) {
 }
 
 // ---- BGM ----
+// BGM は2つの場面に分ける（設定は bgm・bgmTrack＝問題中、bgmHome・bgmHomeTrack＝それ以外）。どちらを流すかは bgmPlan（lib/sound.js）が決める。
+// 曲の鳴らし方は2通り: B＝BGM_TRACKS の曲（<audio>）、T＝タイトル曲（AudioBuffer の loop）。plan の track が 'title' なら T、それ以外は B。
+// 場面が変わって流す曲が変わるときは、鳴っているほうを短く小さくして止めてから、新しいほうを流す（小さくしている間は新しいほうを始めない）。
+const FADE_SEC = TITLE_BGM.fadeSec;
+
 const B = {
-  scene: false, // BGM を流す場面（問題を解いている画面）にいるか
-  preview: false, // 設定画面の「試しに聴く」
+  scene: false, // 問題を解いている画面にいるか
+  preview: false, // 設定画面の「試しに聴く」（問題中の曲）
   el: null,
   gainNode: null,
   track: 0,
@@ -106,11 +111,23 @@ const B = {
   urls: new Map(), // 曲の番号 → blob の URL
   starting: false,
   waitingGesture: false,
+  fading: false,
 };
 
+function plan() {
+  return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, hidden: document.hidden });
+}
+
+// 設定が選んでいる曲（BGM_TRACKS の番号。おまかせ・タイトル曲・流さないときは -1）
+function selectedIndex() {
+  const p = plan();
+  return p ? bgmTrackIndex(p.track) : -1;
+}
+
+// B（BGM_TRACKS の曲）を流したいか
 function wantBgm() {
-  const s = getSettings();
-  return !!(s && s.bgm && (B.scene || B.preview) && !document.hidden);
+  const p = plan();
+  return !!p && p.track !== TITLE_BGM.id;
 }
 
 async function trackUrl(i) {
@@ -137,11 +154,11 @@ function ensureEl() {
     } catch (e) { B.gainNode = null; }
   }
   el.addEventListener('ended', () => {
-    const s = getSettings();
-    const p = nextBgmPosition(B.track, B.plays + 1, BGM_TRACKS, s ? s.bgmTrack : undefined);
-    B.track = p.track;
-    B.plays = p.plays;
-    if (p.track === B.loadedTrack) {
+    const p = plan();
+    const next = nextBgmPosition(B.track, B.plays + 1, BGM_TRACKS, p ? p.track : BGM_AUTO);
+    B.track = next.track;
+    B.plays = next.plays;
+    if (next.track === B.loadedTrack) {
       el.currentTime = 0;
       if (wantBgm()) el.play().catch(() => {});
     } else {
@@ -153,6 +170,7 @@ function ensureEl() {
 }
 
 function applyBgmVolume() {
+  if (B.fading) return; // 小さくしている最中は触らない
   const s = getSettings();
   const g = bgmGain(s ? s.bgmVolume : undefined, (BGM_TRACKS[B.track] || BGM_TRACKS[0]).trim); // 曲ごとの音の大きさの補正つき
   if (B.gainNode) B.gainNode.gain.value = g;
@@ -161,8 +179,7 @@ function applyBgmVolume() {
 
 // 設定で1曲が選ばれていて、いま流す曲と違うなら、その曲に替える（おまかせのときは、いまの順番のまま）。替えたら true
 function followSelectedTrack() {
-  const s = getSettings();
-  const idx = bgmTrackIndex(s ? s.bgmTrack : undefined);
+  const idx = selectedIndex();
   if (idx < 0 || idx === B.track) return false;
   B.track = idx;
   B.plays = 0;
@@ -170,7 +187,7 @@ function followSelectedTrack() {
 }
 
 async function startBgm() {
-  if (B.starting || !wantBgm()) return;
+  if (B.starting || B.fading || T.fading || !wantBgm()) return;
   B.starting = true;
   try {
     const el = ensureEl();
@@ -206,12 +223,32 @@ function stopBgm() {
   if (B.el && !B.el.paused) B.el.pause();
 }
 
+// 鳴っている BGM_TRACKS の曲を短く小さくして止める。止まったら syncBgm をもう一度呼ぶ（次に流すものがあれば、そこで始まる）
+function fadeOutBgm() {
+  const el = B.el;
+  if (!el || el.paused || B.fading) return;
+  const c = audioCtx();
+  if (!B.gainNode || !c) { el.pause(); return; }
+  B.fading = true;
+  const t = c.currentTime;
+  try {
+    const g = B.gainNode.gain;
+    g.cancelScheduledValues(t);
+    g.setValueAtTime(g.value, t);
+    g.linearRampToValueAtTime(0, t + FADE_SEC);
+  } catch (e) { /* 小さくできなくても、止まりはする */ }
+  setTimeout(() => {
+    B.fading = false;
+    if (!el.paused) el.pause();
+    syncBgm();
+  }, FADE_SEC * 1000 + 80);
+}
+
 // ---- タイトル曲 ----
-// タイトル画面だけで流す1曲。BGM の設定（オン／オフ・音量）に従う。曲の一覧（BGM_TRACKS）とは別の仕組み。
+// 『それ以外』の曲がタイトル曲のときだけ流す1曲（曲の一覧 BGM_TRACKS とは別の仕組み）。
 // 切れ目なくくり返すため、<audio> ではなく、読み込んで展開した音（AudioBuffer）を loop で流す。
 // 音を出せない状態（画面をさわる前）でも start() は予約として受け付けられ、さわって resume されたところから鳴り始める。
 const T = {
-  scene: false, // タイトル画面にいるか
   buf: null, // 展開した音（Promise<AudioBuffer|null>）
   src: null, // 鳴らしている音の源
   gainNode: null,
@@ -220,8 +257,8 @@ const T = {
 };
 
 function wantTitle() {
-  const s = getSettings();
-  return !!(s && s.bgm && T.scene && !B.preview && !document.hidden);
+  const p = plan();
+  return !!p && p.track === TITLE_BGM.id;
 }
 
 function titleBuffer(c) {
@@ -247,7 +284,7 @@ function dropTitleSource() {
 }
 
 async function startTitle() {
-  if (T.src || T.loading || !wantTitle()) return;
+  if (T.src || T.loading || T.fading || B.fading || !wantTitle()) return;
   const c = audioCtx();
   if (!c) return;
   T.loading = true;
@@ -273,72 +310,73 @@ async function startTitle() {
   }
 }
 
-function syncTitle() {
-  if (wantTitle()) {
-    if (T.src) applyTitleVolume();
-    else startTitle();
-  } else if (!T.fading) {
-    dropTitleSource();
-  }
-}
-
-/** タイトル画面にいる間だけ true にする。タイトル曲は BGM がオンのときに流れる。 */
-export function setTitleBgm(on) {
-  T.scene = !!on;
-  if (!T.scene) T.buf = null; // 展開した音（約10MB）を手放す
-  syncTitle();
-}
-
-/** 『タップしてはじめる』を押したとき。タイトル曲を短く小さくして止める。そのあとは流れない。 */
-export function endTitleBgm() {
-  T.scene = false;
+// タイトル曲を短く小さくして止める。止まったら syncBgm をもう一度呼ぶ
+function fadeOutTitle() {
   const c = audioCtx();
   const src = T.src;
   const g = T.gainNode;
-  if (!src || !g || !c || T.fading) { dropTitleSource(); T.buf = null; return; }
+  if (!src || !g || !c) { dropTitleSource(); return; }
+  if (T.fading) return;
   T.fading = true;
   const t = c.currentTime;
   try {
     g.gain.cancelScheduledValues(t);
     g.gain.setValueAtTime(g.gain.value, t);
-    g.gain.linearRampToValueAtTime(0, t + TITLE_BGM.fadeSec);
+    g.gain.linearRampToValueAtTime(0, t + FADE_SEC);
   } catch (e) { /* 小さくできなくても、止まりはする */ }
   setTimeout(() => {
-    if (T.src === src) { dropTitleSource(); T.fading = false; }
-    T.buf = null;
-  }, TITLE_BGM.fadeSec * 1000 + 100);
+    if (T.src === src) dropTitleSource();
+    T.fading = false;
+    syncBgm();
+  }, FADE_SEC * 1000 + 100);
 }
 
-/** タイトル曲を流したいのに、画面をまださわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */
+/** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */
 export function titleAudioLocked() {
-  return wantTitle() && !!ctx && ctx.state !== 'running';
+  const p = plan();
+  return !!p && p.scene === 'other' && !!ctx && ctx.state !== 'running';
 }
 
 /** 動作確認用: いまのタイトル曲の状態。 */
 export function titleBgmStatus() {
-  return { scene: T.scene, playing: !!T.src, fading: T.fading, volume: T.gainNode ? T.gainNode.gain.value : null };
+  return { playing: !!T.src, fading: T.fading, volume: T.gainNode ? T.gainNode.gain.value : null };
 }
 
-/** 設定・場面・画面の表裏が変わったら呼ぶ。流すべきなら流し、そうでなければ止める。 */
+/**
+ * 設定・場面・画面の表裏が変わったら呼ぶ。流すべきものを流し、そうでなければ止める。
+ * 流す曲が変わるとき（場面が変わった・曲を選び直した）は、鳴っているほうを小さくして止めてから、新しいほうを流す。
+ */
 export function syncBgm() {
-  syncTitle();
-  if (wantBgm()) {
-    // 曲を選び直されたら、鳴っている最中でもその曲に切り替える
-    if (B.el && !B.el.paused && !B.starting && followSelectedTrack()) B.el.pause();
+  const p = plan();
+  const hidden = document.hidden;
+  const wantT = !!p && p.track === TITLE_BGM.id;
+  const wantB = !!p && !wantT;
+  // 止める側（アプリが裏に回ったときは、すぐ止める）
+  if (!wantT && T.src && !T.fading) { if (hidden) dropTitleSource(); else fadeOutTitle(); }
+  if (B.el && !B.el.paused && !B.fading && (!wantB || (selectedIndex() >= 0 && selectedIndex() !== B.track))) {
+    if (hidden) stopBgm(); else fadeOutBgm();
+  }
+  // 流す側
+  if (wantT) {
+    if (T.src) applyTitleVolume();
+    else startTitle();
+  }
+  if (wantB) {
     applyBgmVolume();
     if (!B.el || B.el.paused) startBgm();
-  } else {
-    stopBgm();
   }
+  // 展開した音（約10MB）は、タイトル曲を使う設定でなければ手放す
+  const s = getSettings();
+  if (!T.src && !T.loading && !(s && s.bgmHome && s.bgmHomeTrack === TITLE_BGM.id)) T.buf = null;
 }
 
-/** BGM を流す場面（問題を解いている画面）にいるかどうかを伝える。 */
+/** 問題を解いている画面にいるかどうかを伝える。 */
 export function setBgmScene(on) {
   B.scene = !!on;
   syncBgm();
 }
 
-/** 設定画面の「試しに聴く」。場面と関係なく、BGM がオンのときだけ鳴る。 */
+/** 設定画面の「試しに聴く」（問題中の曲）。場面と関係なく、問題中の BGM がオンのときだけ鳴る。 */
 export function setBgmPreview(on) {
   B.preview = !!on;
   syncBgm();
@@ -358,23 +396,24 @@ export function initAudio(settingsGetter) {
   document.addEventListener('visibilitychange', syncBgm);
   const onGesture = () => {
     // 画面のどこをさわっても（ボタン以外の背景も）、効果音か BGM がオンなら音を使える状態にする。
-    // ブラウザは、さわるまで音を出させない。タイトル曲は、さわった瞬間から鳴り始める（iOS の Safari は click でも許す）
+    // ブラウザは、さわるまで音を出させない。タイトル画面の曲は、さわった瞬間から鳴り始める（iOS の Safari は click でも許す）
     const s = getSettings();
-    if (s && (s.sound || s.bgm) && ctx && ctx.state !== 'running') unlockAudio(s);
+    if (s && (s.sound || s.bgm || s.bgmHome) && ctx && ctx.state !== 'running') unlockAudio(s);
     else resumeCtx();
     if (B.waitingGesture || (wantBgm() && (!B.el || B.el.paused))) startBgm();
   };
   ['pointerdown', 'keydown', 'touchend', 'click'].forEach((t) => document.addEventListener(t, onGesture, { passive: true }));
+  syncBgm(); // 『それ以外』がオンなら、タイトル画面の前から流す準備（さわる前は予約。さわったところから鳴る）
 }
 
 /**
  * 「最初の操作」（タイトル画面のボタン）の押した瞬間に呼ぶ。効果音か BGM がオンの人だけ、音を使える状態にする。
  * AudioContext を作って動かし、無音の1サンプルを鳴らしておく（iOS の Safari は、これで以後の音が許される）。
- * BGM そのものはここでは流さない（流す場面は問題を解く画面だけ。場面に入ったときに syncBgm が流す）。
+ * BGM そのものはここでは流さない（場面に入ったとき・設定が変わったときに syncBgm が流す）。
  * ボタンの押した処理の中で、同期的に呼ぶこと。
  */
 export function unlockAudio(settings) {
-  if (!settings || !(settings.sound || settings.bgm)) return;
+  if (!settings || !(settings.sound || settings.bgm || settings.bgmHome)) return;
   const c = audioCtx();
   if (!c) return;
   resumeCtx();
@@ -386,14 +425,18 @@ export function unlockAudio(settings) {
   } catch (e) { /* 無音が鳴らせなくても、resume できていれば足りる */ }
 }
 
-/** 動作確認用: いまの BGM の状態。 */
+/** 動作確認用: いまの BGM の状態。playingId … いま鳴っている曲の id（タイトル曲は 'title'。鳴っていなければ null）。 */
 export function bgmStatus() {
+  const bPlaying = !!(B.el && !B.el.paused);
   return {
     scene: B.scene,
-    playing: !!(B.el && !B.el.paused),
+    plan: plan(),
+    playing: bPlaying,
+    playingId: T.src ? TITLE_BGM.id : bPlaying ? (BGM_TRACKS[B.track] || BGM_TRACKS[0]).id : null,
     track: B.track,
     plays: B.plays,
     volume: B.gainNode ? B.gainNode.gain.value : B.el ? B.el.volume : null,
     waitingGesture: B.waitingGesture,
+    fading: B.fading || T.fading,
   };
 }
