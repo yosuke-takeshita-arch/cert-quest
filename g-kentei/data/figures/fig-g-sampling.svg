@@ -1,95 +1,428 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 438" role="img" aria-labelledby="fig-g-sampling-t fig-g-sampling-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 452" role="img" aria-labelledby="fig-g-sampling-t fig-g-sampling-d">
 <title id="fig-g-sampling-t">無作為抽出と層化抽出</title>
-<desc id="fig-g-sampling-d">母集団は3つの地域A、B、Cに分かれた36個の点。Aは16個、Bは12個、Cは8個。左は単純無作為抽出で、全体からくじ引きのように9個を選ぶ。偶然、ある地域に偏ることがあり、この例ではCから1個も選ばれていない。右は層化抽出で、地域（層）ごとに同じ割合（4分の1）で選ぶ。Aから4個、Bから3個、Cから2個の計9個で、どの地域も入る。</desc>
-<text x="12" y="20" class="tm">母集団：A 16個、B 12個、C 8個</text>
-<text x="12" y="44" class="tb">① 単純無作為抽出</text>
-<text x="168" y="44" class="tb">② 層化抽出</text>
-<text x="12" y="94" class="tb">A</text>
-<circle cx="46" cy="64" r="4.6" class="fa"/>
-<circle cx="72" cy="64" r="4.6" class="fa"/>
-<circle cx="98" cy="64" r="4.6" class="fa"/>
-<circle cx="124" cy="64" r="3.4" class="fs sm"/>
-<circle cx="46" cy="84" r="3.4" class="fs sm"/>
-<circle cx="72" cy="84" r="4.6" class="fa"/>
-<circle cx="98" cy="84" r="3.4" class="fs sm"/>
-<circle cx="124" cy="84" r="3.4" class="fs sm"/>
-<circle cx="46" cy="104" r="3.4" class="fs sm"/>
-<circle cx="72" cy="104" r="4.6" class="fa"/>
-<circle cx="98" cy="104" r="3.4" class="fs sm"/>
-<circle cx="124" cy="104" r="3.4" class="fs sm"/>
-<circle cx="46" cy="124" r="3.4" class="fs sm"/>
-<circle cx="72" cy="124" r="3.4" class="fs sm"/>
-<circle cx="98" cy="124" r="3.4" class="fs sm"/>
-<circle cx="124" cy="124" r="3.4" class="fs sm"/>
-<text x="12" y="180" class="tb">B</text>
-<rect x="42.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="67.6" y="153.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
-<rect x="94.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="120.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="41.6" y="173.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
-<rect x="68.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="94.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="119.6" y="173.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
-<rect x="42.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="68.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="93.6" y="193.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
-<rect x="120.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<text x="12" y="246" class="tb">C</text>
-<polygon points="46,228 49.6,235 42.4,235" class="fs sm"/>
-<polygon points="72,228 75.6,235 68.4,235" class="fs sm"/>
-<polygon points="98,228 101.6,235 94.4,235" class="fs sm"/>
-<polygon points="124,228 127.6,235 120.4,235" class="fs sm"/>
-<polygon points="46,248 49.6,255 42.4,255" class="fs sm"/>
-<polygon points="72,248 75.6,255 68.4,255" class="fs sm"/>
-<polygon points="98,248 101.6,255 94.4,255" class="fs sm"/>
-<polygon points="124,248 127.6,255 120.4,255" class="fs sm"/>
-<text x="168" y="94" class="tb">A</text>
-<circle cx="202" cy="64" r="3.4" class="fs sm"/>
-<circle cx="228" cy="64" r="4.6" class="fa"/>
-<circle cx="254" cy="64" r="3.4" class="fs sm"/>
-<circle cx="280" cy="64" r="3.4" class="fs sm"/>
-<circle cx="202" cy="84" r="3.4" class="fs sm"/>
-<circle cx="228" cy="84" r="3.4" class="fs sm"/>
-<circle cx="254" cy="84" r="4.6" class="fa"/>
-<circle cx="280" cy="84" r="3.4" class="fs sm"/>
-<circle cx="202" cy="104" r="3.4" class="fs sm"/>
-<circle cx="228" cy="104" r="3.4" class="fs sm"/>
-<circle cx="254" cy="104" r="3.4" class="fs sm"/>
-<circle cx="280" cy="104" r="4.6" class="fa"/>
-<circle cx="202" cy="124" r="4.6" class="fa"/>
-<circle cx="228" cy="124" r="3.4" class="fs sm"/>
-<circle cx="254" cy="124" r="3.4" class="fs sm"/>
-<circle cx="280" cy="124" r="3.4" class="fs sm"/>
-<text x="168" y="180" class="tb">B</text>
-<rect x="198.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="224.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="249.6" y="153.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
-<rect x="276.8" y="154.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="198.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="223.6" y="173.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
-<rect x="250.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="276.8" y="174.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="198.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="223.6" y="193.6" width="8.8" height="8.8" class="fwn swn" stroke-width="1.8"/>
-<rect x="250.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<rect x="276.8" y="194.8" width="6.4" height="6.4" class="fs sm" stroke-width="1"/>
-<text x="168" y="246" class="tb">C</text>
-<polygon points="202,228 205.6,235 198.4,235" class="fs sm"/>
-<polygon points="228,226.4 233,236 223,236" class="fok sok"/>
-<polygon points="254,228 257.6,235 250.4,235" class="fs sm"/>
-<polygon points="280,228 283.6,235 276.4,235" class="fs sm"/>
-<polygon points="202,248 205.6,255 198.4,255" class="fs sm"/>
-<polygon points="228,248 231.6,255 224.4,255" class="fs sm"/>
-<polygon points="254,246.4 259,256 249,256" class="fok sok"/>
-<polygon points="280,248 283.6,255 276.4,255" class="fs sm"/>
-<text x="12" y="292" class="tm">全体からくじ引き</text>
-<text x="168" y="292" class="tm">層ごとに同じ割合</text>
-<text x="12" y="314" class="tb">選んだ数 A5・B4・C0</text>
-<text x="168" y="314" class="tb">選んだ数 A4・B3・C2</text>
-<text x="12" y="336" class="tb tng">Cが0個。偶然、偏った</text>
-<text x="168" y="336" class="tb tok">どの層も入る</text>
-<line x1="12" y1="356" x2="308" y2="356" class="l sb w1"/>
-<text x="12" y="384" class="tm">色のついた印＝選ばれた点</text>
-<text x="12" y="406">層化抽出：性質の似たグループ（層）に</text>
-<text x="12" y="426">分け、層ごとに選ぶ</text>
+<desc id="fig-g-sampling-d">母集団はA地域4,000世帯とB地域6,000世帯の計1万世帯。1マスを100世帯として、10×10のマス（A地域40マス、B地域60マス）で描いている。ここから100世帯（抽出率1％）を選ぶ。左は単純無作為抽出で、1万世帯全体からくじ引きで100世帯を選ぶ。偶然、地域の割合がずれることがあり、この例ではA地域が55世帯、B地域が45世帯になった（全体の割合どおりならA40、B60）。右は層化抽出で、先に地域（層）で分け、同じ抽出率1％でA地域から40世帯、B地域から60世帯を選ぶ。地域の割合が全体とそろう。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">母集団＝1万世帯（1マス＝100世帯）</text>
+<text x="12" y="46" class="tb">① 単純無作為抽出</text>
+<text x="38" y="68" class="tm" text-anchor="middle">A地域</text>
+<text x="103" y="68" class="tm" text-anchor="middle">B地域</text>
+<rect x="12" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="12" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="25" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="38" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="51" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="64" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="64" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="77" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="90" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="103" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="129" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<circle cx="57.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="57.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="106.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="112.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="119.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="125.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="54" cy="106" r="2.4" class="ft"/>
+<circle cx="61" cy="106" r="2.4" class="ft"/>
+<circle cx="57.5" cy="112" r="2.4" class="ft"/>
+<circle cx="57.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="57.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="135.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="54" cy="80" r="2.4" class="ft"/>
+<circle cx="61" cy="80" r="2.4" class="ft"/>
+<circle cx="57.5" cy="86" r="2.4" class="ft"/>
+<circle cx="70.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="132.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="138.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="70.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="15" cy="106" r="2.4" class="ft"/>
+<circle cx="22" cy="106" r="2.4" class="ft"/>
+<circle cx="18.5" cy="112" r="2.4" class="ft"/>
+<circle cx="18.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="106.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="112.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="44.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="83.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="28.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="34.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="132.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="138.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="80.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="86.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="54" cy="197" r="2.4" class="ft"/>
+<circle cx="61" cy="197" r="2.4" class="ft"/>
+<circle cx="57.5" cy="203" r="2.4" class="ft"/>
+<circle cx="57.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="44.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="57.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="15" cy="119" r="2.4" class="ft"/>
+<circle cx="22" cy="119" r="2.4" class="ft"/>
+<circle cx="18.5" cy="125" r="2.4" class="ft"/>
+<circle cx="70.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="41.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="47.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="83.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="83.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="119.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="125.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="41.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="47.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="93.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="99.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="15" cy="132" r="2.4" class="ft"/>
+<circle cx="22" cy="132" r="2.4" class="ft"/>
+<circle cx="18.5" cy="138" r="2.4" class="ft"/>
+<circle cx="135.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="15.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="21.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="96.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="70.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="106.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="112.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="41.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="47.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="70.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="122.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="28.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="34.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="15.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="21.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="122.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="41.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="47.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="54.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="60.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="80.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="86.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="109.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="15.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="21.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="135.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="122.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="109.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="44.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="83.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="132.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="138.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="96.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="31.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="18.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="70.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="31.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="18.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="96.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="18.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="96.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="96.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="18.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="57.5" cy="160.5" r="2.4" class="ft"/>
+<text x="168" y="46" class="tb">② 層化抽出</text>
+<text x="194" y="68" class="tm" text-anchor="middle">A地域</text>
+<text x="259" y="68" class="tm" text-anchor="middle">B地域</text>
+<rect x="168" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="168" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="181" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="194" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="76" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="89" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="102" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="115" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="128" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="141" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="154" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="167" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="180" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="207" y="193" width="13" height="13" class="fas sa" stroke-width="1"/>
+<rect x="220" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="220" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="233" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="246" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="259" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="272" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="76" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="89" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="102" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="115" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="128" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="141" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="154" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="167" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="180" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<rect x="285" y="193" width="13" height="13" class="fwn swn" stroke-width="1"/>
+<circle cx="174.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="187.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="184" cy="132" r="2.4" class="ft"/>
+<circle cx="191" cy="132" r="2.4" class="ft"/>
+<circle cx="187.5" cy="138" r="2.4" class="ft"/>
+<circle cx="187.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="187.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="171.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="177.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="197.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="203.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="213.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="174.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="171.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="177.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="210.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="216.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="187.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="200.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="200.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="184.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="190.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="187.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="200.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="171.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="177.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="197.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="203.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="213.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="171" cy="93" r="2.4" class="ft"/>
+<circle cx="178" cy="93" r="2.4" class="ft"/>
+<circle cx="174.5" cy="99" r="2.4" class="ft"/>
+<circle cx="187.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="200.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="174.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="213.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="213.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="213.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="213.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="174.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="236.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="242.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="252.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="265.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="262.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="268.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="275" cy="106" r="2.4" class="ft"/>
+<circle cx="282" cy="106" r="2.4" class="ft"/>
+<circle cx="278.5" cy="112" r="2.4" class="ft"/>
+<circle cx="278.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="236" cy="145" r="2.4" class="ft"/>
+<circle cx="243" cy="145" r="2.4" class="ft"/>
+<circle cx="239.5" cy="151" r="2.4" class="ft"/>
+<circle cx="239.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="239.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="291.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="236" cy="119" r="2.4" class="ft"/>
+<circle cx="243" cy="119" r="2.4" class="ft"/>
+<circle cx="239.5" cy="125" r="2.4" class="ft"/>
+<circle cx="249" cy="197" r="2.4" class="ft"/>
+<circle cx="256" cy="197" r="2.4" class="ft"/>
+<circle cx="252.5" cy="203" r="2.4" class="ft"/>
+<circle cx="223" cy="132" r="2.4" class="ft"/>
+<circle cx="230" cy="132" r="2.4" class="ft"/>
+<circle cx="226.5" cy="138" r="2.4" class="ft"/>
+<circle cx="226.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="226.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="226.5" cy="134.5" r="2.4" class="ft"/>
+<circle cx="275.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="281.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="262.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="268.5" cy="199.5" r="2.4" class="ft"/>
+<circle cx="226.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="249" cy="145" r="2.4" class="ft"/>
+<circle cx="256" cy="145" r="2.4" class="ft"/>
+<circle cx="252.5" cy="151" r="2.4" class="ft"/>
+<circle cx="278.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="291.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="236" cy="197" r="2.4" class="ft"/>
+<circle cx="243" cy="197" r="2.4" class="ft"/>
+<circle cx="239.5" cy="203" r="2.4" class="ft"/>
+<circle cx="291.5" cy="95.5" r="2.4" class="ft"/>
+<circle cx="265.5" cy="147.5" r="2.4" class="ft"/>
+<circle cx="226.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="291.5" cy="82.5" r="2.4" class="ft"/>
+<circle cx="239.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="265.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="288.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="294.5" cy="160.5" r="2.4" class="ft"/>
+<circle cx="265.5" cy="108.5" r="2.4" class="ft"/>
+<circle cx="249.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="255.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="262.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="268.5" cy="173.5" r="2.4" class="ft"/>
+<circle cx="291.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="223.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="229.5" cy="186.5" r="2.4" class="ft"/>
+<circle cx="265.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="226.5" cy="121.5" r="2.4" class="ft"/>
+<circle cx="239.5" cy="160.5" r="2.4" class="ft"/>
+<text x="12" y="226" class="tm">全体からくじ引き</text>
+<text x="168" y="226" class="tm">地域ごとに1％ずつ</text>
+<text x="12" y="250" class="tb">A 55 世帯・B 45 世帯</text>
+<text x="168" y="250" class="tb">A 40 世帯・B 60 世帯</text>
+<text x="12" y="272" class="tb tng">A が多め。40のはず</text>
+<text x="168" y="272" class="tb tok">割合がそろう（4：6）</text>
+<line x1="12" y1="292" x2="308" y2="292" class="l sb w1"/>
+<rect x="12" y="308" width="16" height="16" class="fas sa" stroke-width="1"/>
+<text x="36" y="321">A地域 4,000世帯（40マス）</text>
+<rect x="12" y="332" width="16" height="16" class="fwn swn" stroke-width="1"/>
+<text x="36" y="345">B地域 6,000世帯（60マス）</text>
+<circle cx="20" cy="364" r="3.4" class="ft"/>
+<text x="36" y="369">選ばれた1世帯（計100世帯＝1％）</text>
+<line x1="12" y1="386" x2="308" y2="386" class="l sb w1"/>
+<text x="12" y="410">層化抽出：地域（層）に分け、層ごとに</text>
+<text x="12" y="430">同じ抽出率で選ぶ → 割合が全体と同じ</text>
+<text x="12" y="448" class="tm">（数は説明のための例）</text>
 </svg>

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 664" role="img" aria-labelledby="fig-g-central-tendency-t fig-g-central-tendency-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 932" role="img" aria-labelledby="fig-g-central-tendency-t fig-g-central-tendency-d">
 <title id="fig-g-central-tendency-t">平均・中央値・最頻値と、外れ値の影響</title>
-<desc id="fig-g-central-tendency-d">上のヒストグラムは左右対称な山で、平均・中央値・最頻値が1か所に一致する。次のヒストグラムは右に裾が長い分布で、左から最頻値、中央値、平均の順に並ぶ。下は数直線上の10個の点の例。外れ値を1つ足すと、平均は大きく右へ動き、中央値はほとんど動かない。トリム平均は、小さい側と大きい側から同じ割合のデータを除いてから平均をとる。</desc>
+<desc id="fig-g-central-tendency-d">上のヒストグラムは左右対称な山で、平均・中央値・最頻値が1か所に一致する。次のヒストグラムは右に裾が長い分布で、左から最頻値、中央値、平均の順に並ぶ。下は5人のテストの点40、60、60、70、120点を数直線に並べた例。平均は350÷5で70点、中央値は小さい順に並べた3番目の60点、最頻値は2人いる60点。120点の人が70点だったとすると、平均は300÷5で60点に下がるが、中央値は60点のまま動かない。トリム平均は、小さい側と大きい側から同じ割合のデータを除いてから平均をとる。上の5人で両端から1人ずつ除くと(60＋60＋70)÷3で約63.3点。数は説明のための例。</desc>
 <text x="12" y="20" class="tb">① 左右対称な山</text>
 <rect x="12" y="28" width="296" height="80" class="fs sb" stroke-width="1"/>
 <rect x="13" y="103.5" width="30.89" height="4.5" class="fas sa"/>
@@ -37,40 +37,58 @@
 <text x="115.24" y="208" class="tb tng">平均</text>
 <text x="12" y="318" class="tb">最頻値 ＜ 中央値 ＜ 平均 の順になる</text>
 <line x1="12" y1="338" x2="308" y2="338" class="l sb w1"/>
-<text x="12" y="366" class="tb">③ 外れ値を1つ足すと</text>
-<text x="12" y="392" class="tm">10個のデータ</text>
-<line x1="20" y1="450" x2="300" y2="450" class="l sm w1"/>
-<circle cx="31.67" cy="450" r="3.4" class="fa"/>
-<circle cx="39.44" cy="450" r="3.4" class="fa"/>
-<circle cx="43.33" cy="450" r="3.4" class="fa"/>
-<circle cx="51.11" cy="450" r="3.4" class="fa"/>
-<circle cx="56.94" cy="450" r="3.4" class="fa"/>
-<circle cx="60.83" cy="450" r="3.4" class="fa"/>
-<circle cx="70.56" cy="450" r="3.4" class="fa"/>
-<circle cx="74.44" cy="450" r="3.4" class="fa"/>
-<circle cx="82.22" cy="450" r="3.4" class="fa"/>
-<circle cx="90" cy="450" r="3.4" class="fa"/>
-<polygon points="54.06,416 66.06,416 60.06,428" class="fng sng"/>
-<polygon points="52.89,472 64.89,472 58.89,460" class="fwn swn"/>
-<text x="12" y="492" class="tm">外れ値 160 を足した11個</text>
-<line x1="20" y1="550" x2="300" y2="550" class="l sm w1"/>
-<circle cx="31.67" cy="550" r="3.4" class="fa"/>
-<circle cx="39.44" cy="550" r="3.4" class="fa"/>
-<circle cx="43.33" cy="550" r="3.4" class="fa"/>
-<circle cx="51.11" cy="550" r="3.4" class="fa"/>
-<circle cx="56.94" cy="550" r="3.4" class="fa"/>
-<circle cx="60.83" cy="550" r="3.4" class="fa"/>
-<circle cx="70.56" cy="550" r="3.4" class="fa"/>
-<circle cx="74.44" cy="550" r="3.4" class="fa"/>
-<circle cx="82.22" cy="550" r="3.4" class="fa"/>
-<circle cx="90" cy="550" r="3.4" class="fa"/>
-<circle cx="284.44" cy="550" r="3.4" class="fng sng"/>
-<polygon points="74.45,516 86.45,516 80.45,528" class="fng sng"/>
-<polygon points="54.83,572 66.83,572 60.83,560" class="fwn swn"/>
-<polygon points="18,588 30,588 24,600" class="fng sng"/>
-<text x="38" y="600" class="tb tng">平均</text>
-<polygon points="96,600 108,600 102,588" class="fwn swn"/>
-<text x="116" y="600" class="tb twn">中央値</text>
-<text x="12" y="628" class="tb">平均は大きく動き、中央値はほとんど動かない</text>
-<text x="12" y="652" class="tm">トリム平均：両端から同じ割合を除いて平均</text>
+<text x="12" y="366" class="tb">③ 5人の点数で比べる</text>
+<text x="12" y="392" class="tm">5人のテストの点：40、60、60、70、120</text>
+<line x1="20" y1="470" x2="300" y2="470" class="l sm w1"/>
+<line x1="48" y1="468" x2="48" y2="474" class="l sm w1"/>
+<text x="48" y="492" class="tm" text-anchor="middle">40</text>
+<line x1="104" y1="468" x2="104" y2="474" class="l sm w1"/>
+<text x="104" y="492" class="tm" text-anchor="middle">60</text>
+<line x1="132" y1="468" x2="132" y2="474" class="l sm w1"/>
+<text x="132" y="492" class="tm" text-anchor="middle">70</text>
+<line x1="272" y1="468" x2="272" y2="474" class="l sm w1"/>
+<text x="272" y="492" class="tm" text-anchor="middle">120</text>
+<circle cx="48" cy="470" r="3.4" class="fa"/>
+<circle cx="104" cy="470" r="3.4" class="fa"/>
+<circle cx="104" cy="456" r="3.4" class="fa"/>
+<circle cx="132" cy="470" r="3.4" class="fa"/>
+<circle cx="272" cy="470" r="3.4" class="fng sng"/>
+<ellipse cx="104" cy="463" rx="9" ry="17" class="l sok w2"/>
+<polygon points="126,440 138,440 132,452" class="fng sng"/>
+<polygon points="98,516 110,516 104,504" class="fwn swn"/>
+<polygon points="12,538 24,538 18,550" class="fng sng"/>
+<text x="32" y="550" class="tb tng">平均 ＝ 350÷5 ＝ 70点</text>
+<polygon points="12,574 24,574 18,562" class="fwn swn"/>
+<text x="32" y="574" class="tb twn">中央値 ＝ 3番目 ＝ 60点</text>
+<ellipse cx="18" cy="592" rx="6" ry="8" class="l sok w2"/>
+<text x="32" y="598" class="tb tok">最頻値 ＝ 60点（2人）</text>
+<line x1="12" y1="622" x2="308" y2="622" class="l sb w1"/>
+<text x="12" y="648" class="tb">120点の人が70点だったら</text>
+<line x1="20" y1="722" x2="300" y2="722" class="l sm w1"/>
+<line x1="48" y1="720" x2="48" y2="726" class="l sm w1"/>
+<text x="48" y="744" class="tm" text-anchor="middle">40</text>
+<line x1="104" y1="720" x2="104" y2="726" class="l sm w1"/>
+<text x="104" y="744" class="tm" text-anchor="middle">60</text>
+<line x1="132" y1="720" x2="132" y2="726" class="l sm w1"/>
+<text x="132" y="744" class="tm" text-anchor="middle">70</text>
+<line x1="272" y1="720" x2="272" y2="726" class="l sm w1"/>
+<text x="272" y="744" class="tm" text-anchor="middle">120</text>
+<circle cx="48" cy="722" r="3.4" class="fa"/>
+<circle cx="104" cy="722" r="3.4" class="fa"/>
+<circle cx="104" cy="708" r="3.4" class="fa"/>
+<circle cx="132" cy="722" r="3.4" class="fa"/>
+<circle cx="132" cy="708" r="3.4" class="fng sng"/>
+<circle cx="272" cy="722" r="3.4" class="fs sm"/>
+<path d="M 268 714 Q 212 660 140 702" class="l sng w1"/>
+<polyline points="149,698 140,702 144,691" class="l sng w1"/>
+<text x="208" y="672" class="tm" text-anchor="middle">120 → 70</text>
+<polygon points="98,684 110,684 104,696" class="fng sng"/>
+<polygon points="98,768 110,768 104,756" class="fwn swn"/>
+<text x="12" y="792" class="tb tng">平均 ＝ 300÷5 ＝ 60点（70から下がる）</text>
+<text x="12" y="814" class="tb twn">中央値 ＝ 60点のまま（動かない）</text>
+<line x1="12" y1="832" x2="308" y2="832" class="l sb w1"/>
+<text x="12" y="858" class="tb">平均は引っぱられ、中央値は動かない</text>
+<text x="12" y="888" class="tb">トリム平均：両端から1人ずつ除くと</text>
+<text x="12" y="908">(60＋60＋70)÷3 ≒ 63.3点</text>
+<text x="12" y="928" class="tm">（数は説明のための例）</text>
 </svg>

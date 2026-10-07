@@ -1,29 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 508" role="img" aria-labelledby="fig-g-ip-map-t fig-g-ip-map-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 770" role="img" aria-labelledby="fig-g-ip-map-t fig-g-ip-map-d">
 <title id="fig-g-ip-map-t">知的財産権の全体像</title>
-<desc id="fig-g-ip-map-d">知的財産権は3つのグループに分けて見ると整理しやすい。産業財産権は特許権・実用新案権・意匠権・商標権で、このうち特許権は設定の登録により発生し、存続期間は原則として出願の日から20年、出願から1年6月で出願公開される。著作権は創作の時に手続なしで発生し、原則として著作者の死後70年まで存続する。営業秘密と限定提供データは、権利を登録するのではなく、不正競争防止法で不正な取得や使用から保護される。営業秘密は秘密管理性・有用性・非公知性の3要件、限定提供データは限定提供性・相当蓄積性・電磁的管理性が必要。</desc>
+<desc id="fig-g-ip-map-d">知的財産権は3つのグループに分けて見ると整理しやすい。産業財産権は特許権・実用新案権・意匠権・商標権で、このうち特許権は設定の登録により発生し、存続期間は原則として出願の日から20年、出願から1年6月で出願公開される。著作権は創作の時に手続なしで発生し、原則として著作者の死後70年まで存続する。営業秘密と限定提供データは、権利を登録するのではなく、不正競争防止法で不正な取得や使用から保護される。営業秘密は秘密管理性・有用性・非公知性の3要件、限定提供データは限定提供性・相当蓄積性・電磁的管理性が必要。AI開発の成果物との対応の例（不良品検出AI）：新しい学習手法は特許、製品の名前は商標、ソースコードは著作権、学習済みモデルのパラメータや前処理のノウハウは秘密として管理すれば営業秘密、IDとパスワードで有料提供する検査画像のデータは限定提供データ。データの多くは創作性が無く、秘密にも管理されていなければどの制度にも当てはまらないことがあるので、使い方は契約で決める。</desc>
 <rect x="12" y="20" width="296" height="40" class="fa" stroke-width="1.5"/>
 <text x="160" y="44.5" class="tb ton" text-anchor="middle">知的財産権</text>
-<rect x="40" y="78" width="268" height="124" class="fas sa" stroke-width="1.5"/>
+<rect x="40" y="78" width="268" height="172" class="fas sa" stroke-width="1.5"/>
 <text x="52" y="104" class="tb">産業財産権</text>
 <text x="52" y="128">特許権・実用新案権</text>
 <text x="52" y="148">意匠権・商標権</text>
 <text x="52" y="168" class="tb">特許権：登録で発生</text>
 <text x="52" y="188">出願から20年、1年6月で公開</text>
-<rect x="40" y="216" width="268" height="84" class="fok sok" stroke-width="1.5"/>
-<text x="52" y="242" class="tb">著作権</text>
-<text x="52" y="266" class="tb">創作の時に発生（登録不要）</text>
-<text x="52" y="286">著作者の死後70年まで</text>
-<rect x="40" y="314" width="268" height="144" class="fwn swn" stroke-width="1.5"/>
-<text x="52" y="340" class="tb">不正競争防止法で保護</text>
-<text x="52" y="364">営業秘密：秘密管理性・</text>
-<text x="52" y="384">有用性・非公知性の3要件</text>
-<text x="52" y="404">限定提供データ：限定提供性・</text>
-<text x="52" y="424">相当蓄積性・電磁的管理性</text>
-<text x="52" y="444" class="tb">→ 権利を登録するのではない</text>
-<line x1="24" y1="60" x2="24" y2="334" class="l sm w2"/>
+<text x="52" y="214" class="tb ta">AIの例：新しい学習手法＝特許</text>
+<text x="52" y="234" class="tb ta">　　　製品の名前＝商標</text>
+<rect x="40" y="264" width="268" height="112" class="fok sok" stroke-width="1.5"/>
+<text x="52" y="290" class="tb">著作権</text>
+<text x="52" y="314" class="tb">創作の時に発生（登録不要）</text>
+<text x="52" y="334">著作者の死後70年まで</text>
+<text x="52" y="360" class="tb tok">AIの例：ソースコード＝著作権</text>
+<rect x="40" y="390" width="268" height="262" class="fwn swn" stroke-width="1.5"/>
+<text x="52" y="416" class="tb">不正競争防止法で保護</text>
+<text x="52" y="440">営業秘密：秘密管理性・</text>
+<text x="52" y="460">有用性・非公知性の3要件</text>
+<text x="52" y="480">限定提供データ：限定提供性・</text>
+<text x="52" y="500">相当蓄積性・電磁的管理性</text>
+<text x="52" y="524" class="tb">→ 権利を登録するのではない</text>
+<text x="52" y="552" class="tb twn">AIの例：学習済みモデルのパラ</text>
+<text x="52" y="572" class="tb twn">　メータ・前処理のノウハウ</text>
+<text x="52" y="592" class="tb twn">　（秘密として管理）＝営業秘密</text>
+<text x="52" y="618" class="tb twn">ID・パスワードで有料提供する</text>
+<text x="52" y="636" class="tb twn">　検査画像＝限定提供データ</text>
+<line x1="24" y1="60" x2="24" y2="410" class="l sm w2"/>
 <line x1="24" y1="98" x2="40" y2="98" class="l sm w2"/>
-<line x1="24" y1="236" x2="40" y2="236" class="l sm w2"/>
-<line x1="24" y1="334" x2="40" y2="334" class="l sm w2"/>
-<text x="12" y="476" class="tb">どの制度で守られるかで、</text>
-<text x="12" y="496" class="tb">登録の要否と保護の期間が変わる</text>
+<line x1="24" y1="284" x2="40" y2="284" class="l sm w2"/>
+<line x1="24" y1="410" x2="40" y2="410" class="l sm w2"/>
+<text x="12" y="684" class="tb">どの制度で守られるかで、</text>
+<text x="12" y="704" class="tb">登録の要否と保護の期間が変わる</text>
+<text x="12" y="730" class="tm">データは、どの制度にも当てはまらないことも</text>
+<text x="12" y="750" class="tm">ある。使い方は契約で決める</text>
 </svg>
