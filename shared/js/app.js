@@ -21,6 +21,7 @@ import { needsExamDateAsk, examStatus } from './lib/examdate.js';
 import { createExamDateAsk } from './views/examdate.js';
 import { renderAbout } from './views/about.js';
 import { renderWeak } from './views/weak.js';
+import { renderListen } from './views/listen.js';
 import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
@@ -236,6 +237,7 @@ export async function start() {
     ['more', 'more', () => renderMore(app)],
     ['badges', 'more', () => renderBadges(app)],
     ['weak', 'more', () => renderWeak(app)],
+    ['listen', 'more', () => renderListen(app)],
     ['settings', 'more', () => renderSettings(app)],
     ['about', 'more', () => renderAbout(app)],
     ['exam', 'more', () => renderExam(app), true],

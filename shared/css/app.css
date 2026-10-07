@@ -592,3 +592,12 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .weak-line { padding: 4px 16px; border-left: 6px solid var(--ng); }
 .text-sample { margin: 8px 0 0; padding: 12px 16px; border-radius: var(--radius); background: var(--accent-soft); line-height: 1.8; overflow-wrap: anywhere; }
 .weak-line-btn { appearance: none; width: 100%; font: inherit; font-weight: 700; text-align: left; color: var(--text); background: none; border: 0; padding: 12px 0; min-height: 56px; cursor: pointer; overflow-wrap: anywhere; }
+
+/* 聞き流し（耳だけで学ぶ。views/listen.js） */
+.listen-player { position: sticky; top: 0; z-index: 5; }
+.listen-title { font-size: 1.125rem; font-weight: 700; line-height: 1.5; margin: 0 0 4px; min-height: 3em; overflow-wrap: anywhere; }
+.listen-controls { display: grid; grid-template-columns: 1fr 1.4fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+.listen-controls .btn { min-height: 56px; width: 100%; }
+.listen-play .icon { width: 32px; height: 32px; }
+.listen-kinds { margin-bottom: 8px; }
+.listen .btn.big .icon { margin-right: 8px; }

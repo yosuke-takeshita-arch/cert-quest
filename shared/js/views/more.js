@@ -15,6 +15,7 @@ export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
   const nav = h('div', { class: 'card menu' },
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' })),
+    h('button', { class: 'row-btn', type: 'button', 'data-menu': 'listen', onClick: () => app.go('#/listen') }, h('span', { class: 'row-main' }, h('strong', { text: '聞き流し' }), h('span', { class: 'small muted', text: '耳だけで学ぶ（読み上げ）' }))),
     h('button', { class: 'row-btn', type: 'button', 'data-menu': 'weak', onClick: () => app.go('#/weak') }, h('strong', { text: '苦手の分析' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/badges') }, h('strong', { text: 'バッジ' }), h('span', { class: 'small muted', text: badgeDefs(app.data.tree, app.config).filter((d) => app.state.badges[d.id]).length + ' 個' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/settings') }, h('strong', { text: '設定' })),
