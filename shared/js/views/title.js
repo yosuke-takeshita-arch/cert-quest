@@ -33,7 +33,9 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
   const startBtn = h('button', { class: 'title-start hidden', type: 'button' }, 'タップしてはじめる');
   // BGM がオンで、まだ画面をさわっていなくて曲を鳴らせないあいだだけ出す一言（鳴り始めたら消える）
   const soundHint = h('p', { class: 'title-unofficial title-sound-hint hidden', 'aria-live': 'polite', text: '画面をさわると音楽が流れます' });
-  const bottom = h('div', { class: 'title-bottom' }, loading, startBtn, soundHint, h('p', { class: 'title-unofficial', text: '非公式アプリ' }));
+  // 輪はボタンを包む枠の中に出す（枠の大きさ＝ボタンの大きさなので、位置・形がボタンに必ず重なる）
+  const startWrap = h('div', { class: 'title-start-wrap' }, startBtn);
+  const bottom = h('div', { class: 'title-bottom' }, loading, startWrap, soundHint, h('p', { class: 'title-unofficial', text: '非公式アプリ' }));
 
   const el = h('div', { class: 'title-screen', 'data-title': '1' },
     bg,
@@ -133,7 +135,7 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
           if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { resolve(); return; }
           el.classList.add('starting');
           startBtn.classList.add('go');
-          bottom.appendChild(h('span', { class: 'title-ring', 'aria-hidden': 'true' }));
+          startWrap.appendChild(h('span', { class: 'title-ring', 'aria-hidden': 'true' }));
           const flash = h('div', { class: 'title-flash', 'aria-hidden': 'true' });
           document.body.appendChild(flash);
           setTimeout(() => flash.remove(), FLASH_MS + 200);
