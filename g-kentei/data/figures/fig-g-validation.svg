@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 558" role="img" aria-labelledby="fig-g-validation-t fig-g-validation-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 756" role="img" aria-labelledby="fig-g-validation-t fig-g-validation-d">
 <title id="fig-g-validation-t">ホールドアウト検証とk-分割交差検証</title>
-<desc id="fig-g-validation-d">上はホールドアウト検証。データを訓練用・検証用・テスト用に一度だけ分ける。訓練用で学習し、検証用でモデルやハイパーパラメータを選び、テスト用は最後に一度だけ汎化性能の確認に使う。下はk-分割交差検証（k=5）。テスト用を取り分けたうえで、残りを5つに分け、評価用の1区画を毎回ずらして5回学習と評価を繰り返す。どの区画も1回は評価に使われ、5回のスコアの平均を結果とする。テストデータはモデル選びに使わない。</desc>
+<desc id="fig-g-validation-d">上はホールドアウト検証。データを訓練用・検証用・テスト用に一度だけ分ける。訓練用で学習し、検証用でモデルやハイパーパラメータを選び、テスト用は最後に一度だけ汎化性能の確認に使う。下はk-分割交差検証（k=5）。上の図の訓練と検証を合わせた範囲を5組に分け、上の図と同じ列に並べている。テストは上の図と同じ列で、別に取り分けたまま。各回、色の濃い1組を評価用（上の図の検証と同じ色）、残り4組を学習用（上の図の訓練と同じ色）にし、評価用の組を1つずつずらして5回くり返す。各回の評価の例は0.81、0.84、0.79、0.83、0.85で、その平均の約0.82をこのモデルの成績とする。数は説明のための例。候補のモデルや設定ごとにこの平均を比べて選ぶ。テストデータはモデル選びに使わない。</desc>
 <text x="12" y="20" class="tb">① ホールドアウト：一度だけ分ける</text>
-<rect x="12" y="34" width="160" height="40" class="fas sa" stroke-width="1.5"/>
-<text x="92" y="59" class="tb" text-anchor="middle">訓練</text>
+<rect x="52" y="34" width="120" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="112" y="59" class="tb" text-anchor="middle">訓練</text>
 <rect x="172" y="34" width="70" height="40" class="fwn swn" stroke-width="1.5"/>
 <text x="207" y="59" class="tb" text-anchor="middle">検証</text>
 <rect x="246" y="34" width="62" height="40" class="fng sng" stroke-width="1.5"/>
@@ -12,56 +12,68 @@
 <text x="12" y="118" class="twn">検証：モデルやハイパーパラメータを選ぶ</text>
 <text x="12" y="138" class="tng">テスト：最後に一度だけ確かめる</text>
 <text x="12" y="160" class="tm">（割合は一例）</text>
-<line x1="12" y1="176" x2="308" y2="176" class="l sb w1"/>
-<text x="12" y="202" class="tb">② k-分割交差検証（k＝5）</text>
-<text x="12" y="240" class="tm">1回</text>
-<rect x="52" y="216" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
-<text x="71" y="238" class="tb twn" text-anchor="middle">0.81</text>
-<rect x="90" y="216" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="128" y="216" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="166" y="216" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="204" y="216" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="246" y="216" width="62" height="34" class="fng sng" stroke-width="1.5"/>
-<text x="277" y="238" class="tm" text-anchor="middle">テスト</text>
-<text x="12" y="284" class="tm">2回</text>
-<rect x="52" y="260" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="90" y="260" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
-<text x="109" y="282" class="tb twn" text-anchor="middle">0.84</text>
-<rect x="128" y="260" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="166" y="260" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="204" y="260" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="246" y="260" width="62" height="34" class="fng sng" stroke-width="1.5"/>
-<text x="277" y="282" class="tm" text-anchor="middle">テスト</text>
-<text x="12" y="328" class="tm">3回</text>
-<rect x="52" y="304" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="90" y="304" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="128" y="304" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
-<text x="147" y="326" class="tb twn" text-anchor="middle">0.79</text>
-<rect x="166" y="304" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="204" y="304" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="246" y="304" width="62" height="34" class="fng sng" stroke-width="1.5"/>
-<text x="277" y="326" class="tm" text-anchor="middle">テスト</text>
-<text x="12" y="372" class="tm">4回</text>
-<rect x="52" y="348" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="90" y="348" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="128" y="348" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="166" y="348" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
-<text x="185" y="370" class="tb twn" text-anchor="middle">0.83</text>
-<rect x="204" y="348" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="246" y="348" width="62" height="34" class="fng sng" stroke-width="1.5"/>
-<text x="277" y="370" class="tm" text-anchor="middle">テスト</text>
-<text x="12" y="416" class="tm">5回</text>
-<rect x="52" y="392" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="90" y="392" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="128" y="392" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="166" y="392" width="38" height="34" class="fas sa" stroke-width="1.5"/>
-<rect x="204" y="392" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
-<text x="223" y="414" class="tb twn" text-anchor="middle">0.85</text>
-<rect x="246" y="392" width="62" height="34" class="fng sng" stroke-width="1.5"/>
-<text x="277" y="414" class="tm" text-anchor="middle">テスト</text>
-<text x="12" y="456">数字の区画が評価用。残りで学習</text>
-<text x="12" y="476">どの区画も1回は評価に使われる</text>
-<text x="12" y="502" class="tb">5回のスコアの平均 ＝ 0.82</text>
-<line x1="12" y1="520" x2="308" y2="520" class="l sb w1"/>
-<text x="12" y="546" class="tb tng">テストデータは、モデル選びに使わない</text>
+<polyline points="52,168 52,176 242,176 242,168" class="l sm w1"/>
+<text x="12" y="198" class="tb">②では、この範囲（訓練＋検証）を</text>
+<text x="12" y="216" class="tb">5組に分け、交代で検証に使う</text>
+<line x1="12" y1="230" x2="308" y2="230" class="l sb w1"/>
+<text x="12" y="256" class="tb">② k-分割交差検証（k＝5）</text>
+<text x="71" y="279" class="tm" text-anchor="middle">1組</text>
+<text x="109" y="279" class="tm" text-anchor="middle">2組</text>
+<text x="147" y="279" class="tm" text-anchor="middle">3組</text>
+<text x="185" y="279" class="tm" text-anchor="middle">4組</text>
+<text x="223" y="279" class="tm" text-anchor="middle">5組</text>
+<text x="277" y="279" class="tm" text-anchor="middle">テスト</text>
+<text x="12" y="310" class="tm">1回</text>
+<rect x="52" y="288" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
+<text x="71" y="310" class="tb twn" text-anchor="middle">0.81</text>
+<rect x="90" y="288" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="128" y="288" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="166" y="288" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="204" y="288" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="246" y="288" width="62" height="34" class="fng sng" stroke-width="1.5"/>
+<text x="12" y="354" class="tm">2回</text>
+<rect x="52" y="332" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="90" y="332" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
+<text x="109" y="354" class="tb twn" text-anchor="middle">0.84</text>
+<rect x="128" y="332" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="166" y="332" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="204" y="332" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="246" y="332" width="62" height="34" class="fng sng" stroke-width="1.5"/>
+<text x="12" y="398" class="tm">3回</text>
+<rect x="52" y="376" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="90" y="376" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="128" y="376" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
+<text x="147" y="398" class="tb twn" text-anchor="middle">0.79</text>
+<rect x="166" y="376" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="204" y="376" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="246" y="376" width="62" height="34" class="fng sng" stroke-width="1.5"/>
+<text x="12" y="442" class="tm">4回</text>
+<rect x="52" y="420" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="90" y="420" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="128" y="420" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="166" y="420" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
+<text x="185" y="442" class="tb twn" text-anchor="middle">0.83</text>
+<rect x="204" y="420" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="246" y="420" width="62" height="34" class="fng sng" stroke-width="1.5"/>
+<text x="12" y="486" class="tm">5回</text>
+<rect x="52" y="464" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="90" y="464" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="128" y="464" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="166" y="464" width="38" height="34" class="fas sa" stroke-width="1.5"/>
+<rect x="204" y="464" width="38" height="34" class="fwn swn" stroke-width="1.5"/>
+<text x="223" y="486" class="tb twn" text-anchor="middle">0.85</text>
+<rect x="246" y="464" width="62" height="34" class="fng sng" stroke-width="1.5"/>
+<rect x="12" y="511" width="16" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="36" y="524">評価用の組（数字＝その回の評価）</text>
+<rect x="12" y="535" width="16" height="16" class="fas sa" stroke-width="1.5"/>
+<text x="36" y="548">学習用の組（残りの4組）</text>
+<text x="12" y="574">評価用の組を1つずつずらして5回</text>
+<text x="12" y="594">→ どの組もちょうど1回だけ評価に使う</text>
+<text x="12" y="622" class="tb">5回の評価の平均</text>
+<text x="12" y="642">(0.81+0.84+0.79+0.83+0.85)÷5</text>
+<text x="12" y="662" class="tb">≒ 0.82 → このモデルの成績</text>
+<text x="12" y="682" class="tm">（数は説明のための例）</text>
+<text x="12" y="704">候補ごとにこの平均を比べて選ぶ</text>
+<line x1="12" y1="720" x2="308" y2="720" class="l sb w1"/>
+<text x="12" y="744" class="tb tng">テストは別に取り分け、モデル選びに使わない</text>
 </svg>
