@@ -5,7 +5,6 @@ import { DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, normalizeSoundSettings } from '
 import { normalizeExamSettings } from './examdate.js';
 import { DEFAULT_TEXT_SIZE, normalizeTextSize } from './textsize.js';
 import { DEFAULT_MAP_VIEW, normalizeMapView } from './maplayout.js';
-import { DEFAULT_LISTEN_RATE, DEFAULT_LISTEN_PAUSE, normalizeListenSettings } from './listen.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -21,7 +20,7 @@ export function defaultState() {
     exams: [],
     examSeen: {}, // 模試で最後に出た時刻（問題ID → ミリ秒）。次の模試で、まだ出ていない問題・古く出た問題を優先するのに使う
     challenge: { runs: 0, best: 0 },
-    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false, listenRate: DEFAULT_LISTEN_RATE, listenPause: DEFAULT_LISTEN_PAUSE, listenKeepAwake: false },
+    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
     goalAwarded: null,
   };
 }
@@ -54,7 +53,6 @@ export function mergeState(saved) {
   if (typeof savedSet.bgmHome !== 'boolean') o.settings.bgmHome = savedSet.bgm === true;
   normalizeSoundSettings(o.settings);
   normalizeExamSettings(o.settings);
-  normalizeListenSettings(o.settings); // 聞き流しの設定（速さ・考える間・画面を消さない）。古い記録（項目なし）は初期値
   o.settings.introSeen = o.settings.introSeen === true; // 使い方の案内を見たか
   if (typeof o.goalAwarded !== 'string') o.goalAwarded = null;
   delete o.charTaps; // キャラクターのタップ回数は起動ごとに数え直す（保存しない）。古い保存データの値は捨てる

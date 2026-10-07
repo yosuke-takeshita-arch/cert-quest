@@ -163,8 +163,6 @@ export function renderHome(app) {
       h('button', { class: 'btn big tile', type: 'button', onClick: () => startSession(app, challengeSpec(app)) }, h('strong', { text: challengeName(app.config) }), h('span', { class: 'small muted', text: '本番のペースで' })),
       h('button', { class: 'btn big tile', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' }), h('span', { class: 'small muted', text: (app.config.exam ? app.config.exam.questions + '問・' + app.config.exam.minutes + '分' : '') }))));
 
-    root.appendChild(h('button', { class: 'btn big', type: 'button', 'data-home': 'listen', onClick: () => app.go('#/listen') }, icon('headphones'), ' 聞き流し（耳だけで学ぶ）'));
-
     const goals = nextGoals(data.tree, badgeDefs(data.tree, config), state, dateKey(now), 3);
     if (goals.length) {
       const gbox = h('div', { class: 'card next-goals' }, h('h2', { text: '次の目標' }));

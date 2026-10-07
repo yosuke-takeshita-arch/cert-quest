@@ -104,7 +104,6 @@ const B = {
   scene: false, // 問題を解いている画面にいるか
   title: true, // タイトル画面にいるか（起動時は true。『タップしてはじめる』で出たら setBgmTitle(false)）
   preview: false, // 設定画面の「試しに聴く」（問題中の曲）
-  suppressed: false, // 聞き流し（読み上げ）の再生中。声と重なるので BGM は流さない
   el: null,
   gainNode: null,
   track: 0,
@@ -117,7 +116,6 @@ const B = {
 };
 
 function plan() {
-  if (B.suppressed) return null;
   return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, inTitle: B.title, hidden: document.hidden });
 }
 
@@ -382,12 +380,6 @@ export function setBgmTitle(on) {
 /** 問題を解いている画面にいるかどうかを伝える。 */
 export function setBgmScene(on) {
   B.scene = !!on;
-  syncBgm();
-}
-
-/** 聞き流しの再生中は BGM を止める（声と重なって聞き取れなくなるため）。終わったら false で元の設定に戻る。 */
-export function setBgmSuppressed(on) {
-  B.suppressed = !!on;
   syncBgm();
 }
 
