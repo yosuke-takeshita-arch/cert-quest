@@ -10,6 +10,7 @@ import { buildExamDateCard } from './examdate.js';
 import { buildBackupCard } from './backup.js';
 import { openIntro } from './intro.js';
 import { INTRO_TEXT } from '../lib/intro.js';
+import { CHARACTER_PAGE_TEXT } from '../lib/characters.js';
 
 export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
@@ -19,6 +20,7 @@ export function renderMore(app) {
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/badges') }, h('strong', { text: 'バッジ' }), h('span', { class: 'small muted', text: badgeDefs(app.data.tree, app.config).filter((d) => app.state.badges[d.id]).length + ' 個' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/settings') }, h('strong', { text: '設定' })),
     h('button', { class: 'row-btn', type: 'button', 'data-menu': 'howto', onClick: () => openIntro() }, h('strong', { text: INTRO_TEXT.menu })),
+    h('button', { class: 'row-btn', type: 'button', 'data-menu': 'characters', onClick: () => app.go('#/characters') }, h('strong', { text: CHARACTER_PAGE_TEXT.menu })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/about') }, h('strong', { text: 'このアプリについて' })));
   root.appendChild(nav);
   const links = h('div', { class: 'card' }, h('h2', { text: '公式の情報（外部サイト）' }));

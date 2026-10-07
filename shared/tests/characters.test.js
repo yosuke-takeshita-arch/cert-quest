@@ -282,3 +282,32 @@ test('タップ: 回数は保存しない（起動ごとに0から。2026-10-06 
   assert.match(app, /const tapSession = \{ charTaps: \{ shiba: 0, sensei: 0 \} \};/);
   assert.match(app, /setTapHost\(\{ state: \(\) => tapSession, save: \(\) => \{\}/);
 });
+
+test('キャラクター紹介: 2人ぶんの中身が揃い、絵は素材にあり、名前の由来は載せない', async () => {
+  const m = await import('../js/lib/characters.js');
+  assert.deepEqual(m.CHARACTER_PROFILE_ORDER, ['shiba', 'sensei']);
+  for (const who of m.CHARACTER_PROFILE_ORDER) {
+    const p = m.CHARACTER_PROFILE[who];
+    assert.ok(m.isCharacterArt(p.art), who + ' の絵');
+    assert.ok(p.hello.length > 0 && p.where.length > 0);
+    const labels = p.rows.map((r) => r.label);
+    for (const l of ['役目', '見た目', '年齢', '苦手なもの']) assert.ok(labels.includes(l), who + ' に ' + l);
+    assert.equal(new Set(labels).size, labels.length, who + ' の項目が重複');
+    assert.ok(!JSON.stringify(p).includes('由来'));
+  }
+  assert.ok(m.CHARACTER_PROFILE.sensei.rows.some((r) => r.label === 'スリーサイズ' && r.text === 'ひみつ'));
+  assert.ok(m.CHARACTER_PROFILE.shiba.rows.find((r) => r.label === '年齢').note.includes('AKC'));
+  assert.equal(m.CHARACTER_PAGE_TEXT.secretHint, '2人を何回もタップすると……？');
+});
+
+test('キャラクター紹介: 「もっと」に項目があり、経路・オフライン登録・「このアプリについて」の入口が揃っている', () => {
+  const rd = (p) => readFileSync(join(shared, p), 'utf8');
+  assert.match(rd('js/views/more.js'), /'#\/characters'/);
+  assert.match(rd('js/views/more.js'), /CHARACTER_PAGE_TEXT\.menu/);
+  assert.match(rd('js/app.js'), /\['characters', 'more', \(k\) => renderCharacters\(app, k\)\]/);
+  assert.ok(rd('sw-core.js').includes("'../shared/js/views/characters.js'"));
+  assert.match(rd('js/views/about.js'), /'#\/characters'/);
+  const v = rd('js/views/characters.js');
+  assert.ok(v.includes('tappable('), '絵は隠しセリフのタップに乗る');
+  assert.ok(!v.includes('innerHTML'));
+});

@@ -576,6 +576,23 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .intro-actions.single { grid-template-columns: 1fr; }
 .intro-actions .btn.big { margin-bottom: 0; }
 
+/* ---- キャラクター紹介（もっと › キャラクター）。1人ずつ切り替える ---- */
+.char-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.char-tab { min-height: 48px; margin: 0; }
+.char-tab.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.char-hero { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 16px; }
+.char-img.char-intro-img { width: 144px; height: 144px; }
+.char-intro-say { width: 100%; text-align: left; line-height: 1.7; transform-origin: 50% 0; }
+.char-intro-say::before { left: calc(50% - 5px); top: -6px; border-left: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 0; transform: rotate(45deg); }
+.char-facts { margin: 0; }
+.char-fact { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.char-fact:last-child { border-bottom: 0; }
+.char-fact dt { font-size: 0.875rem; font-weight: 700; color: var(--accent); }
+.char-fact dd { margin: 0; overflow-wrap: anywhere; }
+.char-note { display: block; }
+.char-where { margin: 0; padding-left: 1.25rem; }
+.char-where li { margin: 4px 0; overflow-wrap: anywhere; }
+
 /* ---- 苦手の分析（もっと › 苦手の分析）と、ホームの一行 ---- */
 .weak-mascot { margin: 8px 0 16px; }
 .weak-row { display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-top: 1px solid var(--border); }

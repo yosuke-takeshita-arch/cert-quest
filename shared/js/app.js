@@ -20,6 +20,7 @@ import { createLoadTracker } from './lib/loadprogress.js';
 import { needsExamDateAsk, examStatus } from './lib/examdate.js';
 import { createExamDateAsk } from './views/examdate.js';
 import { renderAbout } from './views/about.js';
+import { renderCharacters } from './views/characters.js';
 import { renderWeak } from './views/weak.js';
 import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
@@ -238,6 +239,7 @@ export async function start() {
     ['weak', 'more', () => renderWeak(app)],
     ['settings', 'more', () => renderSettings(app)],
     ['about', 'more', () => renderAbout(app)],
+    ['characters', 'more', (k) => renderCharacters(app, k)],
     ['exam', 'more', () => renderExam(app), true],
     ['play', 'home', () => renderPlay(app), true],
   ];

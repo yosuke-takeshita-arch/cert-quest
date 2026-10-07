@@ -64,6 +64,7 @@ const SHARED = [
   '../shared/js/views/title.js',
   '../shared/js/views/examdate.js',
   '../shared/js/views/about.js',
+  '../shared/js/views/characters.js',
   '../shared/js/views/backup.js',
   '../shared/js/views/report.js',
   '../shared/js/views/figure.js',
