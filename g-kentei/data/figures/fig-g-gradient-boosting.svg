@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 700" role="img" aria-labelledby="fig-g-gradient-boosting-t fig-g-gradient-boosting-d">
+<title id="fig-g-gradient-boosting-t">勾配ブースティング：残りの誤差を次の木に当てさせて少しずつ足す</title>
+<desc id="fig-g-gradient-boosting-d">例は家の価格の予測で、単位は万円、正解は3,000。木1の予測は2,600で、残りの誤差は3,000−2,600＝400。木2は、この残り400を当てるように学ぶ。木2の予測をそのまま全部足さず、学習率0.1を掛けた0.1×400＝40だけ足して、新しい予測は2,600＋40＝2,640、残りは360。木3は残り360を当てるように学び、0.1×360＝36を足して、新しい予測は2,640＋36＝2,676、残りは324。これを何百回もくり返して正解に近づく。棒は2,500から3,000の範囲を拡大して描き、青がいまの予測、赤が残りの誤差。ことばの式は、新しい予測＝いまの予測＋学習率×次の木の予測。一度に全部足さないのは訓練データに合わせすぎるのを防ぐため。木の予測はちょうど残りを当てたとした例。下は AdaBoost との違い。AdaBoost は答え（正解）はそのままで、間違えたデータの重みを上げて次のモデルに渡す。勾配ブースティングは、答えを残りの誤差に置き換えて次の木に渡す。残りの誤差は、二乗誤差の半分を損失にしたときの損失の負の勾配で、名前の勾配はここから来る。</desc>
+<text x="12" y="20" class="tb">勾配ブースティング：残りを次の木が当てる</text>
+<text x="12" y="44" class="tm">例：家の価格の予測（単位は万円）。正解は 3,000</text>
+<rect x="12" y="62" width="296" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="83" class="tb">木1の予測：2,600</text>
+<rect x="40" y="104" width="50" height="16" class="fas sa" stroke-width="1"/>
+<rect x="90" y="104" width="200" height="16" class="fng sng" stroke-width="1"/>
+<text x="190" y="117" class="tb tng" text-anchor="middle">残り 3,000−2,600＝400</text>
+<text x="40" y="136" class="tm" text-anchor="middle">2,500</text>
+<text x="90" y="136" class="ta" text-anchor="middle">2,600</text>
+<text x="290" y="136" class="tm" text-anchor="middle">3,000</text>
+<line x1="160" y1="142" x2="160" y2="150.4" class="l sm w1"/>
+<polygon points="160,156 156.5,150.4 163.5,150.4" class="fm"/>
+<rect x="12" y="158" width="296" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="178" class="tb">木2：残りの 400 を当てるように学ぶ</text>
+<text x="24" y="198" class="tm">足すのは 0.1 倍だけ：0.1×400＝40</text>
+<text x="24" y="218" class="tb ta">新しい予測：2,600＋40＝2,640</text>
+<rect x="40" y="238" width="70" height="16" class="fas sa" stroke-width="1"/>
+<rect x="110" y="238" width="180" height="16" class="fng sng" stroke-width="1"/>
+<text x="200" y="251" class="tb tng" text-anchor="middle">残り 360</text>
+<text x="40" y="270" class="tm" text-anchor="middle">2,500</text>
+<text x="110" y="270" class="ta" text-anchor="middle">2,640</text>
+<text x="290" y="270" class="tm" text-anchor="middle">3,000</text>
+<line x1="160" y1="276" x2="160" y2="284.4" class="l sm w1"/>
+<polygon points="160,290 156.5,284.4 163.5,284.4" class="fm"/>
+<rect x="12" y="292" width="296" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="312" class="tb">木3：残りの 360 を当てるように学ぶ</text>
+<text x="24" y="332" class="tm">足すのは 0.1 倍だけ：0.1×360＝36</text>
+<text x="24" y="352" class="tb ta">新しい予測：2,640＋36＝2,676</text>
+<rect x="40" y="372" width="88" height="16" class="fas sa" stroke-width="1"/>
+<rect x="128" y="372" width="162" height="16" class="fng sng" stroke-width="1"/>
+<text x="209" y="385" class="tb tng" text-anchor="middle">残り 324</text>
+<text x="40" y="404" class="tm" text-anchor="middle">2,500</text>
+<text x="128" y="404" class="ta" text-anchor="middle">2,676</text>
+<text x="290" y="404" class="tm" text-anchor="middle">3,000</text>
+<text x="12" y="430" class="tm">…何百回もくり返して、正解に近づく</text>
+<text x="12" y="452" class="tm">青＝いまの予測、赤＝残りの誤差</text>
+<text x="12" y="472" class="tm">（棒は 2,500〜3,000 を拡大して描いた）</text>
+<text x="12" y="496" class="tm">ことばの式：新しい予測＝いまの予測</text>
+<text x="12" y="516" class="tm">　＋学習率（例 0.1）×次の木の予測</text>
+<text x="12" y="536" class="tm">全部足さないのは、合わせすぎを防ぐため</text>
+<text x="12" y="556" class="tm">木はちょうど残りを当てたとした例</text>
+<line x1="12" y1="570" x2="308" y2="570" class="l sb w1"/>
+<text x="12" y="594" class="tb">AdaBoost との違い：次に何を渡すか</text>
+<rect x="12" y="606" width="142" height="62" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="83" y="626" class="tb" text-anchor="middle">AdaBoost</text>
+<text x="83" y="645" class="tm" text-anchor="middle">答えはそのまま。</text>
+<text x="83" y="662" class="tm" text-anchor="middle">誤った点の重みを上げる</text>
+<rect x="166" y="606" width="142" height="62" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="237" y="626" class="tb tok" text-anchor="middle">勾配ブースティング</text>
+<text x="237" y="645" class="tok" text-anchor="middle">答えを残りの誤差に</text>
+<text x="237" y="662" class="tok" text-anchor="middle">置き換える（例 400）</text>
+<text x="12" y="688" class="tm">残り＝損失（二乗誤差の半分）の負の勾配</text>
+</svg>

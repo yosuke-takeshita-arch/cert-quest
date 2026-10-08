@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 650" role="img" aria-labelledby="fig-g-adaptive-learning-rate-t fig-g-adaptive-learning-rate-d">
+<title id="fig-g-adaptive-learning-rate-t">最適化手法ごとの学習率（1回に動かす幅）の変わり方</title>
+<desc id="fig-g-adaptive-learning-rate-d">同じ大きさの勾配が毎回来るパラメータで、学習が進むにつれて学習率（1回に動かす幅）がどう変わるかを、手法ごとに並べた図。横は更新の回数で、1回・100回・1万回を等間隔に置いた。点線は人が手で決めた、もとの学習率。青い線が実際の学習率。SGD は手で決めた値のままで、全パラメータ同じ。AdaGrad は勾配の2乗を足し続けた合計の平方根で割るので、勾配1が毎回来ると100回で√100＝10で割って10分の1、1万回で√10,000＝100で割って100分の1になり、下がり続けて更新が止まりかける。RMSprop は最近の勾配の2乗の平均（指数移動平均）で割るので、勾配1が毎回来ると平均は1に近づいて止まり、√1＝1で割るので、もとの学習率から下がり続けない（最初の数回は除く）。勾配2が毎回来るパラメータは平均が4、√4＝2で割って2分の1になり、最近の勾配が大きいパラメータほど小さく動かす。AdaDelta は、手で決めるもとの学習率（点線）を持たず、過去の更新の大きさの平均と、最近の勾配の2乗の平均から、一歩の大きさを自動で決める。Adam は、進む向きをモーメンタムと同じく勾配の平均（勢い）で決め、幅を RMSprop と同じく勾配の2乗の平均で割って決める。最初は平均が0から始まって小さく偏るのを補正するので、勾配1が毎回来ると1回目から1倍で動き、下がらない。AdaBound は学習率に上限と下限（赤い線）を付け、その幅を学習が進むにつれて狭め、最後は SGD と同じ1つの値（点線）にする。学習率は幅の中に収まり、初めは Adam のように動き、終わりは SGD のように動く。AMSBound は Adam の改良版の AMSGrad に同じことをしたもの。</desc>
+<text x="12" y="20" class="tb">学習率（1回に動かす幅）の変わり方</text>
+<text x="12" y="42" class="tm">例：同じ大きさの勾配が毎回来るとき</text>
+<text x="12" y="62" class="tm">横＝更新の回数（1・100・1万回）</text>
+<text x="12" y="80" class="tm">点線＝手で決めた値　青い線＝学習率</text>
+<text x="12" y="116" class="tb">SGD</text>
+<line x1="110" y1="92" x2="110" y2="132" class="l sm w1"/>
+<line x1="110" y1="132" x2="308" y2="132" class="l sm w1"/>
+<line x1="110" y1="102" x2="308" y2="102" class="l sm w1 dsh"/>
+<line x1="110" y1="104" x2="308" y2="104" class="l sa w2"/>
+<text x="12" y="150" class="tm">手で決めた値のまま。全パラメータ同じ</text>
+<text x="12" y="188" class="tb">AdaGrad</text>
+<line x1="110" y1="164" x2="110" y2="204" class="l sm w1"/>
+<line x1="110" y1="204" x2="308" y2="204" class="l sm w1"/>
+<line x1="110" y1="174" x2="308" y2="174" class="l sm w1 dsh"/>
+<polyline points="110,174 122,181.4 134.75,187.1 147,191.3 159.5,194.5 172,196.9 184.25,198.7 209,201 233.75,202.3 258.5,203.05 308,203.7" class="l sa w2"/>
+<text x="213" y="194" class="ta">1/10</text>
+<text x="306" y="194" class="ta" text-anchor="end">1/100</text>
+<text x="110" y="220" class="tm" text-anchor="middle">1回</text>
+<text x="209" y="220" class="tm" text-anchor="middle">100回</text>
+<text x="308" y="220" class="tm" text-anchor="end">1万回</text>
+<text x="12" y="240" class="tm">勾配の2乗を足し続けて割るので、</text>
+<text x="12" y="258" class="tng">下がり続けて、更新が止まりかける</text>
+<text x="12" y="294" class="tb">RMSprop</text>
+<line x1="110" y1="270" x2="110" y2="312" class="l sm w1"/>
+<line x1="110" y1="312" x2="308" y2="312" class="l sm w1"/>
+<line x1="110" y1="282" x2="308" y2="282" class="l sm w1 dsh"/>
+<line x1="110" y1="284" x2="308" y2="284" class="l sa w2"/>
+<line x1="110" y1="298" x2="308" y2="298" class="l sa w2"/>
+<text x="306" y="278" class="ta" text-anchor="end">勾配1：もとのまま</text>
+<text x="306" y="309" class="ta" text-anchor="end">勾配2：1/2</text>
+<text x="12" y="332" class="tm">最近の勾配の平均で割り、足し続けない</text>
+<text x="12" y="350" class="tok">→ 下がり続けない（大きい勾配は小さく）</text>
+<text x="12" y="368" class="tm">（最初の数回を除く。勾配2は√4＝2で割る）</text>
+<text x="12" y="400" class="tb">AdaDelta</text>
+<text x="110" y="400" class="tm">点線（手で決める値）が無い。</text>
+<text x="110" y="418" class="tm">過去の更新の大きさと、最近の</text>
+<text x="110" y="436" class="tm">勾配の平均から、一歩を自動で決める</text>
+<text x="12" y="474" class="tb">Adam</text>
+<rect x="110" y="452" width="92" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="156" y="468" class="tb" text-anchor="middle">モーメンタム</text>
+<text x="156" y="485" class="tm" text-anchor="middle">向き（勢い）</text>
+<text x="208" y="477" class="tb" text-anchor="middle">＋</text>
+<rect x="214" y="452" width="94" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="261" y="468" class="tb" text-anchor="middle">RMSprop</text>
+<text x="261" y="485" class="tm" text-anchor="middle">1回の幅</text>
+<text x="12" y="512" class="tm">平均が0から始まる偏りを補正するので、</text>
+<text x="12" y="530" class="tm">勾配1なら1回目から1倍で動く（下がらない）</text>
+<text x="12" y="574" class="tb">AdaBound</text>
+<text x="12" y="592" class="tm">AMSBound</text>
+<line x1="110" y1="548" x2="110" y2="602" class="l sm w1"/>
+<line x1="110" y1="602" x2="308" y2="602" class="l sm w1"/>
+<line x1="110" y1="575" x2="308" y2="575" class="l sm w1 dsh"/>
+<path d="M110 550 Q175 553 262 575" class="l sng w1"/>
+<path d="M110 600 Q175 597 262 575" class="l sng w1"/>
+<polyline points="110,556 124,592 140,558 156,588 172,563 190,584 208,568 226,580 244,572 262,575 308,575" class="l sa w2"/>
+<text x="12" y="622" class="tm">赤＝上限と下限。幅を狭め、最後は</text>
+<text x="12" y="640" class="tm">SGD と同じ1つの値（点線）で動く</text>
+</svg>

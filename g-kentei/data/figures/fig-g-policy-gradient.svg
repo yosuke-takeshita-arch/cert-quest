@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-policy-gradient-t fig-g-policy-gradient-d">
+<title id="fig-g-policy-gradient-t">価値ベースと方策勾配法：何を学んで行動を選ぶか</title>
+<desc id="fig-g-policy-gradient-d">例：ロボットが部屋Aにいて、右へか左へを選ぶ。①は価値ベース（Q学習など）。まず行動ごとの価値を見積もる。部屋Aで右へのQは4、左へのQは0。そのあと、見積もりがいちばん大きい右へを選ぶ。価値を見積もってから選ぶので、行動が関節を何度曲げるかのように連続して無数にあると、全部のQを比べられない。②は方策勾配法（方策ベース）。行動の選び方そのもの、つまり部屋Aで右へを選ぶ確率と左へを選ぶ確率を、調整できる数（パラメータ）を持つ式で表す。はじめは右へ0.5・左へ0.5。右へを選んだ回で報酬が多かったので、パラメータを報酬の合計が増える向き（勾配）へ動かし、右へを選ぶ確率を0.6、さらに0.7へ上げる。そのぶん左へは0.4、0.3に下がる。価値の見積もりを経由せず、確率を直接動かす。REINFORCE と Actor-Critic は②の仲間で、いつ確率を直すかが違う。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">何を学んで、行動を選ぶか</text>
+<text x="12" y="42" class="tm">例：部屋Aで、右へか左へを選ぶ</text>
+<text x="12" y="70" class="tb">① 価値ベース（Q学習など）</text>
+<text x="12" y="90" class="tm">先に価値を見積もり、それから選ぶ</text>
+<rect x="12" y="102" width="70" height="56" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="47" y="135" class="tb ta" text-anchor="middle">部屋A</text>
+<line x1="82" y1="115" x2="106.4" y2="115" class="l sm w1"/>
+<polygon points="112,115 106.4,118.5 106.4,111.5" class="fm"/>
+<rect x="114" y="102" width="86" height="26" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="157" y="120" class="tb" text-anchor="middle">右へ Q＝4</text>
+<line x1="82" y1="145" x2="106.4" y2="145" class="l sm w1"/>
+<polygon points="112,145 106.4,148.5 106.4,141.5" class="fm"/>
+<rect x="114" y="132" width="86" height="26" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="157" y="150" class="tb" text-anchor="middle">左へ Q＝0</text>
+<line x1="200" y1="130" x2="218.4" y2="130" class="l sm w1"/>
+<polygon points="224,130 218.4,133.5 218.4,126.5" class="fm"/>
+<rect x="226" y="102" width="82" height="56" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="267" y="125" class="tok" text-anchor="middle">大きいほう</text>
+<text x="267" y="145" class="tb tok" text-anchor="middle">右へ</text>
+<text x="12" y="182" class="tm">行動が連続して無数にある（関節を何度</text>
+<text x="12" y="202" class="tm">曲げるか）と、全部の Q を比べられない</text>
+<line x1="12" y1="218" x2="308" y2="218" class="l sb w1"/>
+<text x="12" y="244" class="tb">② 方策勾配法（方策ベース）</text>
+<text x="12" y="264" class="tm">選ぶ確率そのものを持ち、直接動かす</text>
+<text x="12" y="288" class="tm">はじめ</text>
+<rect x="60" y="276" width="124" height="18" class="fok sok" stroke-width="1"/>
+<rect x="184" y="276" width="124" height="18" class="fs sb" stroke-width="1"/>
+<text x="122" y="290" class="tb tok" text-anchor="middle">右へ 0.5</text>
+<text x="246" y="290" class="tm" text-anchor="middle">左へ 0.5</text>
+<text x="12" y="320" class="tng">右へを選んだ回で、報酬が多かった</text>
+<text x="12" y="340" class="tm">→ 報酬が増える向き（勾配）へ</text>
+<text x="12" y="360" class="tm">　パラメータを少し動かす</text>
+<text x="12" y="388" class="tm">1回目</text>
+<rect x="60" y="376" width="149" height="18" class="fok sok" stroke-width="1"/>
+<rect x="209" y="376" width="99" height="18" class="fs sb" stroke-width="1"/>
+<text x="134" y="390" class="tb tok" text-anchor="middle">右へ 0.6</text>
+<text x="258" y="390" class="tm" text-anchor="middle">左へ 0.4</text>
+<text x="12" y="418" class="tm">2回目</text>
+<rect x="60" y="406" width="174" height="18" class="fok sok" stroke-width="1"/>
+<rect x="234" y="406" width="74" height="18" class="fs sb" stroke-width="1"/>
+<text x="147" y="420" class="tb tok" text-anchor="middle">右へ 0.7</text>
+<text x="271" y="420" class="tm" text-anchor="middle">左へ 0.3</text>
+<text x="12" y="450" class="tm">価値の見積もりを通らない。確率の形なので</text>
+<text x="12" y="470" class="tm">連続した行動も表しやすい</text>
+<line x1="12" y1="486" x2="308" y2="486" class="l sb w1"/>
+<text x="12" y="510" class="tm">REINFORCE・Actor-Critic は②の仲間。</text>
+<text x="12" y="530" class="tm">違いは、いつ確率を直すか（別の図）</text>
+<text x="12" y="552" class="tm">数は説明のための例</text>
+</svg>
