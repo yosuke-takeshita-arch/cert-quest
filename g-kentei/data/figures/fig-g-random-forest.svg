@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-g-random-forest-t fig-g-random-forest-d">
+<title id="fig-g-random-forest-t">ランダムフォレスト：決定木をたくさん作って多数決</title>
+<desc id="fig-g-random-forest-d">特徴量が年齢・収入・地域・職業の4つある元データから、3本の決定木を作る。木ごとに、使うデータを重複ありで取り直す。どの木も、枝分かれのたびに4つの特徴量から2つをくじ引きし、その2つのうちよく分けられるほうで分ける。木1は最初に年齢と収入を引いて収入で分け、次に地域と職業を引いて地域で分け、買うと答える。木2は最初に職業と地域を引いて職業で分け、次に年齢と収入を引いて年齢で分け、買うと答える。木3は最初に収入と地域を引いて地域で分け、次に年齢と職業を引いて年齢で分け、買わないと答える。最後に3本の答えを多数決し、買う2票・買わない1票で、買うと予測する。回帰なら多数決のかわりに平均をとる。</desc>
+<text x="12" y="20" class="tb">ランダムフォレスト：木を作って多数決</text>
+<rect x="30" y="32" width="260" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="52" class="tb" text-anchor="middle">元データ：年齢・収入・地域・職業</text>
+<line x1="160" y1="62" x2="160" y2="72" class="l sm w1"/>
+<line x1="58" y1="72" x2="262" y2="72" class="l sm w1"/>
+<line x1="58" y1="72" x2="58" y2="80.4" class="l sm w1"/>
+<polygon points="58,86 54.5,80.4 61.5,80.4" class="fm"/>
+<line x1="160" y1="72" x2="160" y2="80.4" class="l sm w1"/>
+<polygon points="160,86 156.5,80.4 163.5,80.4" class="fm"/>
+<line x1="262" y1="72" x2="262" y2="80.4" class="l sm w1"/>
+<polygon points="262,86 258.5,80.4 265.5,80.4" class="fm"/>
+<text x="58" y="102" class="tb" text-anchor="middle">木1</text>
+<text x="160" y="102" class="tb" text-anchor="middle">木2</text>
+<text x="262" y="102" class="tb" text-anchor="middle">木3</text>
+<rect x="12" y="110" width="92" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="58" y="128" class="tm" text-anchor="middle">年齢・収入</text>
+<text x="58" y="146" class="tb ta" text-anchor="middle">→ 収入</text>
+<rect x="114" y="110" width="92" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="128" class="tm" text-anchor="middle">職業・地域</text>
+<text x="160" y="146" class="tb ta" text-anchor="middle">→ 職業</text>
+<rect x="216" y="110" width="92" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="262" y="128" class="tm" text-anchor="middle">収入・地域</text>
+<text x="262" y="146" class="tb ta" text-anchor="middle">→ 地域</text>
+<line x1="28" y1="154" x2="18" y2="168" class="l sm w1 dsh"/>
+<line x1="130" y1="154" x2="120" y2="168" class="l sm w1 dsh"/>
+<line x1="232" y1="154" x2="222" y2="168" class="l sm w1 dsh"/>
+<line x1="58" y1="154" x2="58" y2="166.4" class="l sm w1"/>
+<polygon points="58,172 54.5,166.4 61.5,166.4" class="fm"/>
+<line x1="160" y1="154" x2="160" y2="166.4" class="l sm w1"/>
+<polygon points="160,172 156.5,166.4 163.5,166.4" class="fm"/>
+<line x1="262" y1="154" x2="262" y2="166.4" class="l sm w1"/>
+<polygon points="262,172 258.5,166.4 265.5,166.4" class="fm"/>
+<rect x="12" y="174" width="92" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="58" y="192" class="tm" text-anchor="middle">地域・職業</text>
+<text x="58" y="210" class="tb ta" text-anchor="middle">→ 地域</text>
+<rect x="114" y="174" width="92" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="192" class="tm" text-anchor="middle">年齢・収入</text>
+<text x="160" y="210" class="tb ta" text-anchor="middle">→ 年齢</text>
+<rect x="216" y="174" width="92" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="262" y="192" class="tm" text-anchor="middle">年齢・職業</text>
+<text x="262" y="210" class="tb ta" text-anchor="middle">→ 年齢</text>
+<line x1="28" y1="218" x2="18" y2="232" class="l sm w1 dsh"/>
+<line x1="130" y1="218" x2="120" y2="232" class="l sm w1 dsh"/>
+<line x1="232" y1="218" x2="222" y2="232" class="l sm w1 dsh"/>
+<line x1="58" y1="218" x2="58" y2="230.4" class="l sm w1"/>
+<polygon points="58,236 54.5,230.4 61.5,230.4" class="fm"/>
+<line x1="160" y1="218" x2="160" y2="230.4" class="l sm w1"/>
+<polygon points="160,236 156.5,230.4 163.5,230.4" class="fm"/>
+<line x1="262" y1="218" x2="262" y2="230.4" class="l sm w1"/>
+<polygon points="262,236 258.5,230.4 265.5,230.4" class="fm"/>
+<rect x="12" y="238" width="92" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="58" y="258" class="tb tok" text-anchor="middle">買う</text>
+<rect x="114" y="238" width="92" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="258" class="tb tok" text-anchor="middle">買う</text>
+<rect x="216" y="238" width="92" height="30" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="262" y="258" class="tb tng" text-anchor="middle">買わない</text>
+<line x1="58" y1="268" x2="58" y2="282" class="l sm w1"/>
+<line x1="160" y1="268" x2="160" y2="282" class="l sm w1"/>
+<line x1="262" y1="268" x2="262" y2="282" class="l sm w1"/>
+<line x1="58" y1="282" x2="262" y2="282" class="l sm w1"/>
+<line x1="160" y1="282" x2="160" y2="296.4" class="l sm w1"/>
+<polygon points="160,302 156.5,296.4 163.5,296.4" class="fm"/>
+<rect x="12" y="304" width="296" height="48" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="324" class="tb tok" text-anchor="middle">多数決 → 買う</text>
+<text x="160" y="343" class="tok" text-anchor="middle">買う2票・買わない1票</text>
+<text x="12" y="380" class="tm">箱の上の行＝その枝分かれで、4つから</text>
+<text x="12" y="400" class="tm">くじ引きした2つの特徴量</text>
+<text x="12" y="420" class="tm">箱の下の行（→）＝2つのうち、よく分けるほう</text>
+<text x="12" y="444" class="tm">同じ木でも、枝分かれのたびに引き直す</text>
+<text x="12" y="464" class="tm">木ごとに使うデータも重複ありで取り直す</text>
+<text x="12" y="484" class="tm">点線＝省いた枝</text>
+<text x="12" y="504" class="tm">回帰なら、多数決のかわりに平均をとる</text>
+</svg>
