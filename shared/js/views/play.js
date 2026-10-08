@@ -50,11 +50,12 @@ export function renderPlay(app) {
     if (keyHandler) document.removeEventListener('keydown', keyHandler);
   };
 
-  function header() {
+  function header(q) {
     const n = S.items.length;
     return h('div', { class: 'play-head' },
       h('button', { class: 'btn ghost icon-only', type: 'button', 'aria-label': '終了する', onClick: onExit }, icon('close')),
       h('div', { class: 'play-title' }, h('strong', { text: spec.title }), h('span', { class: 'small muted', text: Math.min(S.idx + 1, n) + ' / ' + n })),
+      q ? laterButton(app, q, { compact: true }) : null, // 答える前から印を付けられる（迷った問題に）。選択肢と見間違えないよう見出しに置く
       h('div', { class: 'progress', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(n), 'aria-valuenow': String(S.idx) }, h('div', { class: 'progress-fill', style: { width: (S.idx / n) * 100 + '%' } })));
   }
 
@@ -72,7 +73,7 @@ export function renderPlay(app) {
     const sq = S.items[S.idx];
     const q = sq.q;
     S.answered = false;
-    root.appendChild(header());
+    root.appendChild(header(q));
     const card = h('div', { class: 'card q-card' });
     const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: q.syllabus.slice(1, 3).join(' › ') || q.syllabus[0] }), statusChip(q.status));
     if (q.format === 'not') tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
@@ -92,7 +93,6 @@ export function renderPlay(app) {
       return b;
     });
     card.appendChild(choices);
-    card.appendChild(h('div', { class: 'later-row' }, laterButton(app, q))); // 答える前から印を付けられる（迷った問題に）
     root.appendChild(card);
     const after = h('div', { class: 'after' });
     root.appendChild(after);

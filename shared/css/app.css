@@ -616,6 +616,10 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .later-row { margin-top: 16px; }
 .btn.later-btn { min-height: 48px; width: 100%; font-size: 0.9375rem; }
 .btn.later-btn.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.btn.later-btn .icon { width: 20px; height: 20px; }
+/* 問題の画面の見出しに置く小さい形（選択肢と見間違えないよう、枠を付けず幅も取らない） */
+.btn.later-btn.compact { width: auto; min-height: 48px; padding: 8px 12px; border-color: transparent; background: none; color: var(--accent); font-size: 0.875rem; }
+.btn.later-btn.compact.on { background: var(--accent-soft); border-color: var(--accent); }
 .explain > .later-btn { margin-top: 4px; margin-bottom: 12px; }
 .later-list { padding: 0 16px; }
 .later-item { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-bottom: 1px solid var(--border); padding: 12px 0; min-height: 64px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; overflow-wrap: anywhere; }

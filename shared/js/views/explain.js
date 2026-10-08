@@ -1,5 +1,5 @@
 // 解説4点セットと、間違えたときの「つまずきポイント」。問題画面と模試の見直しで共通に使う。
-import { h, characterImg, tappable } from '../ui.js';
+import { h, icon, characterImg, tappable } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { isLater, toggleLater } from '../lib/later.js';
 import { refChip, sourcesList } from './cards.js';
@@ -13,22 +13,30 @@ function laterLabel(on) {
   return on ? 'あとで見る ✓' : 'あとで見る';
 }
 
+function laterContent(b, on, compact) {
+  b.textContent = '';
+  if (compact) b.appendChild(icon(on ? 'bookmark' : 'bookmarkOff')); // 見出しの小さい形だけ、しおりの絵を添える
+  b.appendChild(h('span', { text: laterLabel(on) }));
+}
+
 /**
  * 「あとで見る」の印のボタン（押すごとにオン／オフ。要件定義書 §3-4）。
  * 同じ問題のボタンが画面に複数あっても（問題の画面と解説など）、押したら全部そろえる。
+ * compact: 問題の画面の見出しに置く小さい形（選択肢の並びに置くと、選択肢の1つに見えるため）。
  */
-export function laterButton(app, q) {
+export function laterButton(app, q, opts = {}) {
   const on = isLater(app.state, q.id);
-  const b = h('button', { class: 'btn later-btn' + (on ? ' on' : ''), type: 'button', 'data-later': q.id, 'aria-pressed': String(on), onClick: () => {
+  const b = h('button', { class: 'btn later-btn' + (opts.compact ? ' compact' : '') + (on ? ' on' : ''), type: 'button', 'data-later': q.id, 'aria-pressed': String(on), onClick: () => {
     const now = toggleLater(app.state, q.id, new Date());
     app.commit();
     document.querySelectorAll('.later-btn').forEach((x) => {
       if (x.getAttribute('data-later') !== q.id) return;
       x.classList.toggle('on', now);
       x.setAttribute('aria-pressed', String(now));
-      x.textContent = laterLabel(now);
+      laterContent(x, now, x.classList.contains('compact'));
     });
-  } }, laterLabel(on));
+  } });
+  laterContent(b, on, opts.compact);
   return b;
 }
 
