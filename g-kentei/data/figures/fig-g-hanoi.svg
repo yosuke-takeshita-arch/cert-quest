@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1010" role="img" aria-labelledby="fig-g-hanoi-t fig-g-hanoi-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1126" role="img" aria-labelledby="fig-g-hanoi-t fig-g-hanoi-d">
 <title id="fig-g-hanoi-t">ハノイの塔：円盤3枚の7手と、最少手数の考え方</title>
-<desc id="fig-g-hanoi-d">3本の柱AとBとCと大きさの違う円盤3枚（小・中・大）。小さい円盤の上に大きい円盤を置かずに、Aの3枚をCへ移す7手：手1 小をAからC、手2 中をAからB、手3 小をCからB、手4 大をAからC、手5 小をBからA、手6 中をBからC、手7 小をAからC。円盤n枚の移し方は、上のn−1枚を別の柱へ退避、いちばん大きい1枚を移す、n−1枚を戻す、の3段。手数Tは T(n)＝2T(n−1)＋1 となり、最少手数は2のn乗−1。n＝1、2、3、4のとき手数は1、3、7、15。</desc>
+<desc id="fig-g-hanoi-d">3本の柱AとBとCと大きさの違う円盤3枚（小・中・大）。小さい円盤の上に大きい円盤を置かずに、Aの3枚をCへ移す7手：手1 小をAからC、手2 中をAからB、手3 小をCからB、手4 大をAからC、手5 小をBからA、手6 中をBからC、手7 小をAからC。円盤n枚の移し方は、上のn−1枚を別の柱へ退避、いちばん大きい1枚を移す、n−1枚を戻す、の3段。手数は、①の手数と1と③の手数の和で、①と③はどちらもn−1枚を移す手数なので、n−1枚の手数×2＋1になる（手数をT(n)と書くと T(n)＝2T(n−1)＋1）。n＝1、2、3、4のとき手数は1、1×2＋1＝3、3×2＋1＝7、7×2＋1＝15。手数に1を足すと2、4、8、16と倍々になり、2をn回掛けた2のn乗なので、最少手数は2のn乗−1。</desc>
 <text x="12" y="20" class="tb">① 3枚をAからCへ移す7手</text>
 <text x="12" y="42" class="tm">小・中・大の円盤。小の上に大は置けない</text>
 <text x="12" y="72" class="tb">はじめ</text>
@@ -146,7 +146,12 @@
 <text x="144" y="872" class="tb">③ n−1 枚を</text>
 <text x="144" y="892">B から C へ戻す</text>
 <line x1="12" y1="918" x2="308" y2="918" class="l sb w1"/>
-<text x="12" y="950" class="tb">手数 T(n)＝T(n−1)＋1＋T(n−1)</text>
-<text x="12" y="974" class="tb">　　　　＝2T(n−1)＋1</text>
-<text x="12" y="998" class="tb ta">→ 最少手数は 2のn乗−1</text>
+<text x="12" y="950" class="tb">手数＝①の手数＋1＋③の手数</text>
+<text x="12" y="972">①と③は、どちらも n−1 枚を移す手数</text>
+<text x="12" y="996" class="tb">→ 手数＝（n−1枚の手数）×2＋1</text>
+<text x="12" y="1020">例：1×2＋1＝3、3×2＋1＝7、7×2＋1＝15</text>
+<text x="12" y="1044">手数に1を足すと 2・4・8・16 と倍々</text>
+<text x="12" y="1066">＝ 2を n 回掛けた数（2のn乗）</text>
+<text x="12" y="1090" class="tb ta">→ 最少手数は 2のn乗−1</text>
+<text x="12" y="1114" class="tm">（手数を T(n) と書くと T(n)＝2T(n−1)＋1）</text>
 </svg>
