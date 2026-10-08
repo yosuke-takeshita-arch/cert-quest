@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 944" role="img" aria-labelledby="fig-g-q-sarsa-td-t fig-g-q-sarsa-td-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1640" role="img" aria-labelledby="fig-g-q-sarsa-td-t fig-g-q-sarsa-td-d">
 <title id="fig-g-q-sarsa-td-t">Q学習の見積もりの直し方と、SARSA との違い（3つの部屋の例）</title>
-<desc id="fig-g-q-sarsa-td-d">例：ロボットが部屋A・部屋B・部屋Cを右へ左へ動き、ゴールの部屋Cに着くと報酬10、それ以外は報酬0。Q表は部屋と行動の組ごとに「この部屋でこの行動をとると、この先どれくらい得をするか」の見積もりを持つ。例の数は、部屋Aで右へが4、左へが0、部屋Bで右へが8（青）、左へが2（茶）。①はQ学習で1歩分の見積もりを直す様子。部屋Aで右へ動いて部屋Bに着き、報酬は0。目標は報酬0に、割引率0.9を掛けた部屋Bでいちばん大きいQ値8を足した7.2。いまの見積もり4との差3.2がTD誤差で、学習率0.5を掛けた分だけ目標へ近づけ、更新後は5.6になる。記号は、s′が次の状態（例では部屋B）、γが割引率、αが学習率。②は次の部屋の値の選び方の違い。Q学習は実際に選んだ行動と関係なく部屋Bでいちばん大きい8（青）を使い、更新後5.6。SARSAはε-greedyで実際に選んだ左への2（茶）を使い、目標1.8、更新後2.9。Q学習は方策オフ型、SARSAは方策オン型。</desc>
+<desc id="fig-g-q-sarsa-td-d">例：ロボットが部屋A・部屋B・部屋Cを右へ左へ動き、ゴールの部屋Cに着くと報酬10、それ以外は報酬0。Q表は部屋と行動の組ごとに「この部屋でこの行動をとると、この先どれくらい得をするか」の見積もりを持つ。例の数は、部屋Aで右へが4、左へが0、部屋Bで右へが8（青）、左へが2（茶）。①はQ学習で1歩分の見積もりを直す様子を3つの手順で示す。部屋Aで右へ動いて部屋Bに着き、報酬は0。直すのは部屋Aの右への見積もり4。手順1は目標を作る。ことばの式は、目標＝もらった報酬＋割引率×次の部屋の最大の見積もり。報酬を足すのは、この先の得が、いまもらった分と次の部屋から先でもらえる分の合計だから。割引率を掛けるのは、次の部屋の分は1歩先の得なので少し小さく数えるため。数を入れると0.9×8＝7.2、目標＝0＋7.2＝7.2。手順2はずれを測る。ずれ＝目標−いまの見積もり＝7.2−4＝3.2で、これをTD誤差と呼ぶ。手順3はずれの一部だけ動く。1回の経験はたまたまのことがあるので、目標へ一気に飛ばず少しずつ動くと、何回分もの経験をならした値に近づく。ことばの式は、新しい見積もり＝いまの見積もり＋学習率×ずれ。学習率0.5なら0.5×3.2＝1.6、4＋1.6＝5.6で、4と7.2のちょうど真ん中。数直線に、いま4、新しい見積もり5.6、目標7.2を示す。記号では Q(s,a) ← Q(s,a)＋α［r＋γ max Q(s′,a′)−Q(s,a)］で、αが学習率、γが割引率、rがもらった報酬、s′が次の状態、［ ］の中がずれ。②は次の部屋の値の選び方の違い。Q学習は実際に選んだ行動と関係なく部屋Bでいちばん大きい8（青）を使い、目標7.2、新しい見積もり5.6（方策オフ型）。SARSAはε-greedyで実際に選んだ左への2（茶）を使い、0.9×2＝1.8で目標1.8、ずれ1.8−4＝−2.2、0.5×（−2.2）＝−1.1、新しい見積もり4−1.1＝2.9（方策オン型）。</desc>
 <text x="12" y="20" class="tb">例：ロボットが3つの部屋を動く</text>
 <rect x="12" y="34" width="72" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="48" y="59" class="tb" text-anchor="middle">部屋A</text>
@@ -37,54 +37,89 @@
 <text x="12" y="308" class="tm">（数は例。学習の途中の見積もり）</text>
 <line x1="12" y1="326" x2="308" y2="326" class="l sb w1"/>
 <text x="12" y="350" class="tb">① 1歩動いて、見積もりを少し直す</text>
-<text x="12" y="372">部屋Aで右へ動き、部屋Bに着いた</text>
-<text x="12" y="390" class="tm">（このときの報酬は0）</text>
-<text x="12" y="414" class="tb ta">目標 ＝ 報酬0 ＋ 0.9 × 8 ＝ 7.2</text>
-<text x="12" y="434" class="ta">8 ＝ 部屋Bでいちばん大きいQ値</text>
-<line x1="136" y1="462" x2="225.6" y2="462" class="l sm w1"/>
-<line x1="136" y1="457" x2="136" y2="467" class="l sm w1"/>
-<line x1="225.6" y1="457" x2="225.6" y2="467" class="l sm w1"/>
-<text x="180.8" y="454" class="tb" text-anchor="middle">差 3.2（TD誤差）</text>
-<line x1="24" y1="490" x2="304" y2="490" class="l sm w1"/>
-<text x="24" y="510" class="tm" text-anchor="middle">0</text>
-<text x="304" y="510" class="tm" text-anchor="middle">10</text>
-<line x1="24" y1="486" x2="24" y2="494" class="l sm w1"/>
-<line x1="304" y1="486" x2="304" y2="494" class="l sm w1"/>
-<polygon points="225.6,481 233.6,490 225.6,499 217.6,490" class="fas sa" stroke-width="2"/>
-<line x1="144" y1="490" x2="168" y2="490" class="l sa w2"/>
-<polygon points="174,490 167,486 167,494" class="fa"/>
-<circle cx="136" cy="490" r="7" class="fm sm"/>
-<circle cx="180.8" cy="490" r="7" class="fa sa"/>
-<text x="130" y="516" class="tm" text-anchor="middle">いま4</text>
-<text x="180.8" y="516" class="tb ta" text-anchor="middle">5.6</text>
-<text x="236" y="516" class="ta" text-anchor="middle">目標7.2</text>
-<text x="12" y="542" class="tb">更新後 ＝ 4 ＋ 0.5 × 3.2 ＝ 5.6</text>
-<text x="12" y="560" class="tm">差を全部は埋めず、半分だけ近づける</text>
-<text x="12" y="588" class="tb">記号のことば</text>
-<text x="12" y="608">s′：次の状態（例では部屋B）</text>
-<text x="12" y="626">γ 割引率 0.9：1歩先の得を少し割り引く</text>
-<text x="12" y="644">α 学習率 0.5：差のどれだけを動くか</text>
-<text x="12" y="662">TD誤差：目標 − いまの見積もり</text>
-<line x1="12" y1="680" x2="308" y2="680" class="l sb w1"/>
-<text x="12" y="704" class="tb">② 次の部屋の値の選び方が違う</text>
-<circle cx="44" cy="760" r="26" class="fs sb" stroke-width="1.5"/>
-<text x="44" y="765" class="tb" text-anchor="middle">部屋B</text>
-<line x1="70" y1="750" x2="146" y2="736" class="l sm w1"/>
-<text x="104" y="732" class="tm" text-anchor="middle">右へ</text>
-<rect x="146" y="720" width="64" height="32" class="fas sa" stroke-width="2.5" rx="6"/>
-<text x="178" y="741" class="tb ta" text-anchor="middle">Q＝8</text>
-<line x1="70" y1="770" x2="146" y2="784" class="l sm w1"/>
-<text x="104" y="798" class="tm" text-anchor="middle">左へ</text>
-<rect x="146" y="768" width="64" height="32" class="fwn swn" stroke-width="2.5" rx="6"/>
-<text x="178" y="789" class="tb twn" text-anchor="middle">Q＝2</text>
-<text x="218" y="734" class="tb ta">Q学習</text>
-<text x="218" y="752" class="ta">最大を使う</text>
-<text x="218" y="782" class="tb twn">SARSA</text>
-<text x="218" y="800" class="twn">選んだ方</text>
-<text x="12" y="828" class="tm">ε-greedy（ときどき別の行動を試す</text>
-<text x="12" y="846" class="tm">選び方）で、実際は左へを選んだ</text>
-<text x="12" y="874" class="tb ta">Q学習：目標 7.2 → 更新後 5.6</text>
-<text x="12" y="892" class="ta">　実際の行動と関係なく最大 → 方策オフ型</text>
-<text x="12" y="912" class="tb twn">SARSA：目標 0＋0.9×2＝1.8 → 2.9</text>
-<text x="12" y="932" class="twn">　実際に選んだ行動の値 → 方策オン型</text>
+<text x="12" y="372">部屋Aで右へ動き、部屋Bに着いた（報酬0）</text>
+<text x="12" y="390" class="tm">直すのは、部屋Aの右への見積もり（いま4）</text>
+<text x="12" y="418" class="tb ta">手順1　目標を作る</text>
+<text x="12" y="438">目標＝1歩動いた結果から見直した、</text>
+<text x="12" y="456">　部屋Aで右へ動くことの値</text>
+<rect x="12" y="466" width="296" height="46" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="485" class="tb">目標 ＝ もらった報酬</text>
+<text x="22" y="503" class="tb">　＋ 割引率 × 次の部屋の最大の見積もり</text>
+<text x="12" y="532" class="tm">足すわけ：この先の得 ＝ いまもらった分</text>
+<text x="12" y="550" class="tm">　＋ 次の部屋から先でもらえる分</text>
+<text x="12" y="570" class="tm">割り引くわけ：次の部屋の分は1歩先の</text>
+<text x="12" y="588" class="tm">　得なので、少し小さく数える（×0.9）</text>
+<text x="12" y="612" class="ta">例の数：報酬0、割引率0.9、</text>
+<text x="12" y="630" class="ta">　部屋Bの最大の見積もり8（右への8）</text>
+<text x="12" y="652" class="tb">0.9 × 8 ＝ 7.2</text>
+<text x="12" y="672" class="tb">目標 ＝ 0 ＋ 7.2 ＝ 7.2</text>
+<text x="12" y="700" class="tb ta">手順2　ずれを測る</text>
+<text x="12" y="720">ずれ ＝ 目標 − いまの見積もり</text>
+<text x="12" y="740" class="tb">7.2 − 4 ＝ 3.2</text>
+<text x="12" y="758" class="tm">このずれを TD誤差 と呼ぶ</text>
+<text x="12" y="786" class="tb ta">手順3　ずれの一部だけ動く</text>
+<text x="12" y="806">1回の経験は、たまたまのことがある</text>
+<text x="12" y="824">（同じ動きでも、次は違う結果かも）。</text>
+<text x="12" y="842">目標へ一気に飛ばず少しずつ動くと、</text>
+<text x="12" y="860">何回分もの経験をならした値に近づく</text>
+<rect x="12" y="870" width="296" height="46" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="889" class="tb">新しい見積もり ＝ いまの見積もり</text>
+<text x="22" y="907" class="tb">　＋ 学習率 × ずれ</text>
+<text x="12" y="936" class="ta">例の数：学習率0.5（ずれの半分だけ動く）</text>
+<text x="12" y="958" class="tb">0.5 × 3.2 ＝ 1.6</text>
+<text x="12" y="978" class="tb">新しい見積もり ＝ 4 ＋ 1.6 ＝ 5.6</text>
+<text x="180.8" y="1004" class="tb" text-anchor="middle">ずれ 3.2（TD誤差）</text>
+<line x1="136" y1="1012" x2="225.6" y2="1012" class="l sm w1"/>
+<line x1="136" y1="1007" x2="136" y2="1017" class="l sm w1"/>
+<line x1="225.6" y1="1007" x2="225.6" y2="1017" class="l sm w1"/>
+<text x="158" y="1032" class="ta" text-anchor="middle">＋1.6</text>
+<line x1="24" y1="1046" x2="304" y2="1046" class="l sm w1"/>
+<text x="24" y="1066" class="tm" text-anchor="middle">0</text>
+<text x="304" y="1066" class="tm" text-anchor="middle">10</text>
+<line x1="24" y1="1042" x2="24" y2="1050" class="l sm w1"/>
+<line x1="304" y1="1042" x2="304" y2="1050" class="l sm w1"/>
+<polygon points="225.6,1037 233.6,1046 225.6,1055 217.6,1046" class="fas sa" stroke-width="2"/>
+<line x1="144" y1="1046" x2="168" y2="1046" class="l sa w2"/>
+<polygon points="174,1046 167,1042 167,1050" class="fa"/>
+<circle cx="136" cy="1046" r="7" class="fm sm"/>
+<circle cx="180.8" cy="1046" r="7" class="fa sa"/>
+<text x="126" y="1074" class="tm" text-anchor="middle">いま4</text>
+<text x="180.8" y="1074" class="tb ta" text-anchor="middle">5.6</text>
+<text x="240" y="1074" class="ta" text-anchor="middle">目標7.2</text>
+<text x="12" y="1100" class="tb">5.6 は、4 と 7.2 のちょうど真ん中</text>
+<text x="12" y="1118" class="tm">学習率が小さいほど、1回に動く幅が小さい</text>
+<text x="12" y="1146" class="tb">記号で書くと（Q学習）</text>
+<text x="12" y="1166">Q(s,a) ← Q(s,a)</text>
+<text x="12" y="1184">　＋ α［r ＋ γ max Q(s′,a′) − Q(s,a)］</text>
+<text x="12" y="1204" class="tm">α＝学習率（0.5）、γ＝割引率（0.9）</text>
+<text x="12" y="1222" class="tm">r＝もらった報酬、s′＝次の状態（部屋B）</text>
+<text x="12" y="1240" class="tm">［ ］の中＝ずれ（TD誤差）、←＝書き換える</text>
+<line x1="12" y1="1258" x2="308" y2="1258" class="l sb w1"/>
+<text x="12" y="1282" class="tb">② 次の部屋の値の選び方が違う</text>
+<circle cx="44" cy="1338" r="26" class="fs sb" stroke-width="1.5"/>
+<text x="44" y="1343" class="tb" text-anchor="middle">部屋B</text>
+<line x1="70" y1="1328" x2="146" y2="1314" class="l sm w1"/>
+<text x="104" y="1310" class="tm" text-anchor="middle">右へ</text>
+<rect x="146" y="1298" width="64" height="32" class="fas sa" stroke-width="2.5" rx="6"/>
+<text x="178" y="1319" class="tb ta" text-anchor="middle">Q＝8</text>
+<line x1="70" y1="1348" x2="146" y2="1362" class="l sm w1"/>
+<text x="104" y="1376" class="tm" text-anchor="middle">左へ</text>
+<rect x="146" y="1346" width="64" height="32" class="fwn swn" stroke-width="2.5" rx="6"/>
+<text x="178" y="1367" class="tb twn" text-anchor="middle">Q＝2</text>
+<text x="218" y="1312" class="tb ta">Q学習</text>
+<text x="218" y="1330" class="ta">最大を使う</text>
+<text x="218" y="1360" class="tb twn">SARSA</text>
+<text x="218" y="1378" class="twn">選んだ方</text>
+<text x="12" y="1406" class="tm">ε-greedy（ときどき別の行動を試す</text>
+<text x="12" y="1424" class="tm">選び方）で、実際は左へを選んだ</text>
+<text x="12" y="1452" class="tb ta">Q学習：最大の8を使う</text>
+<text x="12" y="1470" class="ta">　目標7.2 → 新しい見積もり5.6（①と同じ）</text>
+<text x="12" y="1488" class="ta">　実際の行動と関係なく最大 → 方策オフ型</text>
+<text x="12" y="1516" class="tb twn">SARSA：実際に選んだ左への2を使う</text>
+<text x="12" y="1536" class="twn">　0.9 × 2 ＝ 1.8、目標 ＝ 0 ＋ 1.8 ＝ 1.8</text>
+<text x="12" y="1554" class="twn">　ずれ ＝ 1.8 − 4 ＝ −2.2</text>
+<text x="12" y="1572" class="twn">　0.5 ×（−2.2）＝ −1.1</text>
+<text x="12" y="1590" class="twn">　新しい見積もり ＝ 4 − 1.1 ＝ 2.9</text>
+<text x="12" y="1608" class="twn">　実際に選んだ行動の値 → 方策オン型</text>
+<text x="12" y="1630" class="tm">ずれが負（目標より上にいた）なので下がる</text>
 </svg>

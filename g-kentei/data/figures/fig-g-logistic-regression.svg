@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 478" role="img" aria-labelledby="fig-g-logistic-regression-t fig-g-logistic-regression-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 586" role="img" aria-labelledby="fig-g-logistic-regression-t fig-g-logistic-regression-d">
 <title id="fig-g-logistic-regression-t">ロジスティック回帰：重み付き和からシグモイドで確率にして分類する</title>
-<desc id="fig-g-logistic-regression-d">入力x1、x2に重みをかけて足した値zを求める。zをシグモイド関数に通すと0から1の確率pになる。zが0のときpは0.5で、zが大きいほど1に、小さいほど0に近づく。pがしきい値0.5以上なら陽性、未満なら陰性と判定する。名前は回帰だが、使い道は分類である。</desc>
+<desc id="fig-g-logistic-regression-d">入力x1、x2に重みをかけて足し、切片を足した値zを求める。ことばの式は z＝重み1×入力1＋重み2×入力2＋切片。例として重み0.5・入力2、重み1・入力1.5、切片−0.5なら、0.5×2＋1×1.5＋（−0.5）＝1＋1.5−0.5＝2。zをシグモイド関数に通すと0から1の確率pになる。zが0のときpは0.5、例のzが2のときpは約0.88で、zが大きいほど1に、小さいほど0に近づく。pがしきい値0.5以上なら陽性、未満なら陰性と判定する。名前は回帰だが、使い道は分類である。</desc>
 <text x="12" y="20" class="tb">① 重み付き和 z を出す</text>
 <rect x="12" y="32" width="44" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="34" y="52" class="tb" text-anchor="middle">x1</text>
@@ -9,7 +9,13 @@
 <line x1="110" y1="47" x2="123.6" y2="47" class="l sm w2"/>
 <polygon points="130,47 123.6,51 123.6,43" class="fm"/>
 <rect x="134" y="32" width="174" height="30" class="fas sa" stroke-width="1.5" rx="6"/>
-<text x="221" y="52" class="tb" text-anchor="middle">z＝w1x1＋w2x2＋b</text>
+<text x="221" y="52" class="tb" text-anchor="middle">重み付き和 z</text>
+<text x="12" y="86">入力ごとに重みを掛けて足し、切片を足す</text>
+<text x="12" y="104" class="tb">z ＝ 重み1×入力1 ＋ 重み2×入力2 ＋ 切片</text>
+<text x="12" y="124" class="ta">例：0.5×2 ＋ 1×1.5 ＋（−0.5）</text>
+<text x="12" y="142" class="ta">　＝ 1 ＋ 1.5 − 0.5 ＝ 2</text>
+<text x="12" y="160" class="tm">記号：z＝w1x1＋w2x2＋b（w＝重み、b＝切片）</text>
+<g transform="translate(0,108)">
 <line x1="160" y1="66" x2="160" y2="83.6" class="l sm w2"/>
 <polygon points="160,90 156,83.6 164,83.6" class="fm"/>
 <text x="12" y="112" class="tb">② シグモイドで確率 p にする</text>
@@ -28,7 +34,7 @@
 <text x="48" y="150" class="tb">陰性側</text>
 <text x="288" y="150" class="tb tok" text-anchor="end">陽性側</text>
 <text x="14" y="142" class="tb">p</text>
-<text x="12" y="322" class="tm">z＝0 のとき p＝0.5</text>
+<text x="12" y="322" class="tm">z＝0 のとき p＝0.5、例の z＝2 なら p≒0.88</text>
 <line x1="160" y1="334" x2="160" y2="347.6" class="l sm w2"/>
 <polygon points="160,354 156,347.6 164,347.6" class="fm"/>
 <text x="12" y="378" class="tb">③ しきい値 0.5 で分ける</text>
@@ -38,4 +44,5 @@
 <text x="238" y="412" class="tb" text-anchor="middle">p ＜ 0.5 → 陰性</text>
 <line x1="12" y1="442" x2="308" y2="442" class="l sb w1"/>
 <text x="12" y="466" class="tb">名前は「回帰」、使い道は分類</text>
+</g>
 </svg>

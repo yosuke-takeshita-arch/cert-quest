@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 466" role="img" aria-labelledby="fig-g-rl-taxonomy-t fig-g-rl-taxonomy-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 506" role="img" aria-labelledby="fig-g-rl-taxonomy-t fig-g-rl-taxonomy-d">
 <title id="fig-g-rl-taxonomy-t">強化学習の手法の分類</title>
-<desc id="fig-g-rl-taxonomy-d">強化学習の手法を2つの見方で整理した地図。横は何を学ぶか。左がQ学習とSARSAのような価値ベース（行動の価値を推定して選ぶ）、右がREINFORCEのような方策ベース（行動の選び方を直接学ぶ）、その間がActor-Criticで、両方を使う。Actor-CriticとREINFORCEは方策勾配法の仲間。縦は環境のモデルを使うか。上のモデルベースは、環境のモデルで先読みして計画する動的計画法など。下のモデルフリーは、モデルを使わず試行錯誤の経験だけから学ぶ。価値ベースの土台はベルマン方程式で、価値は今の報酬と割り引いた次の状態の価値で表せる。</desc>
+<desc id="fig-g-rl-taxonomy-d">強化学習の手法を2つの見方で整理した地図。横は何を学ぶか。左がQ学習とSARSAのような価値ベース（行動の価値を推定して選ぶ）、右がREINFORCEのような方策ベース（行動の選び方を直接学ぶ）、その間がActor-Criticで、両方を使う。Actor-CriticとREINFORCEは方策勾配法の仲間。縦は環境のモデルを使うか。上のモデルベースは、環境のモデルで先読みして計画する動的計画法など。下のモデルフリーは、モデルを使わず試行錯誤の経験だけから学ぶ。価値ベースの土台はベルマン方程式で、価値は今の報酬と割り引いた次の状態の価値で表せる。ことばの式は、価値＝今の報酬＋割引率×次の価値。例として部屋Aで報酬0、次の部屋Bの価値10、割引率0.9なら、0.9×10＝9、0＋9＝9。</desc>
 <text x="12" y="20" class="tb">何を学ぶか（横）× モデルを使うか（縦）</text>
 <text x="60" y="46" class="tb ta" text-anchor="middle">価値ベース</text>
 <text x="160" y="46" class="tb tok" text-anchor="middle">両方</text>
@@ -26,7 +26,9 @@
 <text x="12" y="346" class="tm">横軸：価値を学ぶ ←→ 方策を直接学ぶ</text>
 <line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
 <text x="12" y="386" class="tb">価値ベースの土台：ベルマン方程式</text>
-<text x="12" y="408">価値 ＝ 今の報酬 ＋ 割り引いた次の価値</text>
-<text x="12" y="434" class="tm">Actor-Critic：方策（Actor）と</text>
-<text x="12" y="454" class="tm">価値（Critic）の両方を学ぶ</text>
+<text x="12" y="408">価値 ＝ 今の報酬 ＋ 割引率 × 次の価値</text>
+<text x="12" y="428" class="ta">例：部屋A（報酬0、次の部屋Bの価値10、</text>
+<text x="12" y="446" class="ta">　割引率0.9）→ 0.9×10＝9、0＋9＝9</text>
+<text x="12" y="474" class="tm">Actor-Critic：方策（Actor）と</text>
+<text x="12" y="494" class="tm">価値（Critic）の両方を学ぶ</text>
 </svg>

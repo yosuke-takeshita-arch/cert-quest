@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 576" role="img" aria-labelledby="fig-g-rl-loop-t fig-g-rl-loop-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 670" role="img" aria-labelledby="fig-g-rl-loop-t fig-g-rl-loop-d">
 <title id="fig-g-rl-loop-t">強化学習の枠組みと、割引累積報酬</title>
-<desc id="fig-g-rl-loop-d">上は、エージェントと環境のやり取り。エージェントが環境に行動を送り、環境が次の状態と報酬をエージェントに返す。次の状態は今の状態と行動だけで決まる（マルコフ性）。下は割引。毎回の報酬が同じでも、割引率γを掛けると遠い将来の報酬ほど小さく数える。γが0.9の例で、掛ける係数は1、0.9、0.81、0.729と小さくなる。γが1に近いと遠い将来も重視し、0に近いと目先を重視する。</desc>
+<desc id="fig-g-rl-loop-d">上は、エージェントと環境のやり取り。エージェントが環境に行動を送り、環境が次の状態と報酬をエージェントに返す。次の状態は今の状態と行動だけで決まる（マルコフ性）。下は割引。毎回の報酬が同じでも、割引率γを掛けると遠い将来の報酬ほど小さく数える。何歩先かの回数だけγを掛けてから足す。γが0.9の例で、掛ける係数は今が1、1歩先が0.9、2歩先が0.9×0.9＝0.81、3歩先が0.81×0.9＝0.729と小さくなり、報酬10はそれぞれ10、9、8.1、7.29として数える。γが1に近いと遠い将来も重視し、0に近いと目先を重視する。</desc>
 <text x="12" y="20" class="tb">① エージェントと環境のやり取り</text>
 <rect x="96" y="36" width="128" height="38" class="fas sa" stroke-width="1.5" rx="6"/>
 <text x="160" y="60" class="tb" text-anchor="middle">エージェント</text>
@@ -26,7 +26,11 @@
 <text x="188" y="345" class="tb" text-anchor="middle">10</text>
 <rect x="232" y="320" width="44" height="40" class="fas sa" stroke-width="1.5"/>
 <text x="254" y="345" class="tb" text-anchor="middle">10</text>
-<text x="12" y="392" class="tm">γ を掛けて足す（γ⁰ γ¹ γ² γ³）</text>
+<text x="56" y="378" class="tm" text-anchor="middle">今</text>
+<text x="122" y="378" class="tm" text-anchor="middle">1歩先</text>
+<text x="188" y="378" class="tm" text-anchor="middle">2歩先</text>
+<text x="254" y="378" class="tm" text-anchor="middle">3歩先</text>
+<text x="12" y="400" class="tm">何歩先かの回数だけ γ を掛けてから足す</text>
 <rect x="34" y="428" width="44" height="40" class="fok sok" stroke-width="1.5"/>
 <text x="56" y="422" class="tb tok" text-anchor="middle">10.0</text>
 <text x="56" y="488" class="tm" text-anchor="middle">×1</text>
@@ -37,9 +41,15 @@
 <text x="188" y="429.6" class="tb tok" text-anchor="middle">8.1</text>
 <text x="188" y="488" class="tm" text-anchor="middle">×0.81</text>
 <rect x="232" y="438.84" width="44" height="29.16" class="fok sok" stroke-width="1.5"/>
-<text x="254" y="432.84" class="tb tok" text-anchor="middle">7.3</text>
+<text x="254" y="432.84" class="tb tok" text-anchor="middle">7.29</text>
 <text x="254" y="488" class="tm" text-anchor="middle">×0.729</text>
-<text x="12" y="520" class="tb">遠い報酬ほど小さく数える</text>
-<text x="12" y="544">γ が 1 に近い：遠い将来も重視</text>
-<text x="12" y="564">γ が 0 に近い：目先を重視</text>
+<text x="188" y="506" class="tm" text-anchor="middle">0.9×0.9</text>
+<text x="254" y="506" class="tm" text-anchor="middle">0.81×0.9</text>
+<text x="12" y="536" class="tb">遠い報酬ほど小さく数える</text>
+<text x="12" y="556">今の値打ち ＝ 報酬 ×</text>
+<text x="12" y="574">　（γ を何歩先かの回数だけ掛けた数）</text>
+<text x="12" y="594" class="ta">例：2歩先 0.9×0.9＝0.81、10×0.81＝8.1</text>
+<text x="12" y="612" class="tm">記号 γ⁰ γ¹ γ² γ³ の右上の数＝掛ける回数</text>
+<text x="12" y="638">γ が 1 に近い：遠い将来も重視</text>
+<text x="12" y="658">γ が 0 に近い：目先を重視</text>
 </svg>

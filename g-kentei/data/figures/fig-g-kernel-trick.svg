@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 500" role="img" aria-labelledby="fig-g-kernel-trick-t fig-g-kernel-trick-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 690" role="img" aria-labelledby="fig-g-kernel-trick-t fig-g-kernel-trick-d">
 <title id="fig-g-kernel-trick-t">カーネルトリック：高次元に写すと直線で分けられる</title>
-<desc id="fig-g-kernel-trick-d">上は1次元の数直線。中央に×、両端に丸が並び、1点で区切っては分けられない。各点 x を (x, x の2乗) の2次元に写すと、丸は上、×は下に来て、水平な直線1本で分けられる。カーネルトリックは、この写像φを実際には計算せず、写した先での内積をカーネル関数で直接求める工夫である。</desc>
+<desc id="fig-g-kernel-trick-d">上は1次元の数直線。中央に×、両端に丸が並び、1点で区切っては分けられない。各点 x を (x, x の2乗) の2次元に写すと、丸は上、×は下に来て、水平な直線1本で分けられる。例えば丸の x＝3 は 3×3＝9 で (3, 9) に、×の x＝0.8 は 0.8×0.8＝0.64 で (0.8, 0.64) に写り、高さ約3.2の線で分かれる。カーネルトリックは、この写像φを実際には計算せず、写した先での内積（座標どうしを掛けて足した、似ている度合い）をカーネル関数で直接求める工夫である。写した先の内積は 3×0.8＋9×0.64＝2.4＋5.76＝8.16。カーネル関数 K(x, x′)＝x×x′＋(x×x′)² なら、x×x′＝2.4 から 2.4＋2.4×2.4＝8.16 と同じ値が、写さずに求まる。</desc>
 <text x="12" y="20" class="tb">① 元の空間（1次元）</text>
 <line x1="20" y1="56" x2="300" y2="56" class="l sm w1"/>
 <circle cx="34" cy="56" r="6" class="fs sa" stroke-width="2"/>
@@ -37,10 +37,20 @@
 <line x1="40" y1="272" x2="300" y2="272" class="l sok w2"/>
 <text x="48" y="264" class="tb tok">水平な直線で分けられる</text>
 <text x="12" y="366" class="tm">点線：放物線 y＝x²（点はこの上にのる）</text>
-<line x1="12" y1="380" x2="308" y2="380" class="l sb w1"/>
-<text x="12" y="402" class="tb">カーネルトリック</text>
-<text x="12" y="424">φ を実際には計算しない。</text>
-<text x="12" y="444">写した先の内積 φ(x)·φ(x′) を、</text>
-<text x="12" y="464">カーネル関数 K(x, x′) で直接求める。</text>
-<text x="12" y="488" class="tm">→ 計算が軽くなる</text>
+<text x="12" y="390">写像 φ：各点 x に、2つ目の座標として</text>
+<text x="12" y="408">　x²（x を2回掛けた値）を足す</text>
+<text x="12" y="428" class="ta">例：丸 x＝3 → 3×3＝9 で (3, 9)</text>
+<text x="12" y="446" class="ta">　× x＝0.8 → 0.8×0.8＝0.64 で (0.8, 0.64)</text>
+<text x="12" y="464" class="tm">丸は高く×は低いので、高さ約3.2の線で分かれる</text>
+<line x1="12" y1="480" x2="308" y2="480" class="l sb w1"/>
+<text x="12" y="502" class="tb">カーネルトリック</text>
+<text x="12" y="522">SVM に要るのは、写した先の内積</text>
+<text x="12" y="540">（座標どうしを掛けて足した、似ている度合い）</text>
+<text x="12" y="560">φ(3)·φ(0.8) ＝ 3×0.8 ＋ 9×0.64</text>
+<text x="12" y="578">　＝ 2.4 ＋ 5.76 ＝ 8.16</text>
+<text x="12" y="600" class="tb">カーネル関数なら、写さずに求まる</text>
+<text x="12" y="620">K(x, x′) ＝ x×x′ ＋ (x×x′)²</text>
+<text x="12" y="638">x×x′ ＝ 3×0.8 ＝ 2.4</text>
+<text x="12" y="656">2.4 ＋ 2.4×2.4 ＝ 2.4 ＋ 5.76 ＝ 8.16（同じ）</text>
+<text x="12" y="678" class="tm">→ φ を計算しないので、次元が大きくても軽い</text>
 </svg>

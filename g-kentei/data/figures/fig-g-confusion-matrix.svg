@@ -1,24 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 612" role="img" aria-labelledby="fig-g-confusion-matrix-t fig-g-confusion-matrix-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 862" role="img" aria-labelledby="fig-g-confusion-matrix-t fig-g-confusion-matrix-d">
 <title id="fig-g-confusion-matrix-t">混同行列と、正解率・適合率・再現率・F値</title>
-<desc id="fig-g-confusion-matrix-d">200件の検査結果の例。行が実際（陽性か陰性か）、列が予測。真陽性28、偽陰性（見逃し）12、偽陽性（誤検知）21、真陰性139。正解率は当たった（真陽性と真陰性）の割合で0.835。適合率は予測が陽性の列のうち真陽性の割合で約0.57。再現率は実際が陽性の行のうち見つけられた割合で0.70。F値は適合率と再現率の調和平均で約0.63。</desc>
-<text x="12" y="30" class="tm">例 200件</text>
+<desc id="fig-g-confusion-matrix-d">100人の検査結果の例。行が実際（陽性か陰性か）、列が予測。真陽性15、偽陰性（見逃し）5、偽陽性（誤検知）10、真陰性70。予測が陽性は25人、実際が陽性は20人。正解率は全体のうち当たった割合で、当たった数÷全体＝(15＋70)÷100＝85÷100＝0.85。適合率は陽性と予測したうち本当に陽性だった割合で、15÷(15＋10)＝15÷25＝0.6。再現率は本当の陽性のうち見つけた割合で、15÷(15＋5)＝15÷20＝0.75。F値は適合率と再現率の調和平均。調和平均は、それぞれの逆数（1÷その数）を平均してもう一度逆数に戻した平均で、小さいほうに強く引っ張られる。1÷0.6≒1.667、1÷0.75≒1.333、平均は3÷2＝1.5、1÷1.5≒0.67。同じ手順を1つの式にすると2×適合率×再現率÷(適合率＋再現率)で、2×0.6×0.75÷(0.6＋0.75)＝0.9÷1.35≒0.67。</desc>
+<text x="12" y="30" class="tm">例 100人</text>
 <text x="139" y="36" class="tb" text-anchor="middle">予測：陽性</text>
 <text x="249" y="36" class="tb" text-anchor="middle">予測：陰性</text>
 <text x="12" y="92" class="tb">実際：陽性</text>
 <text x="12" y="162" class="tb">実際：陰性</text>
 <rect x="84" y="52" width="110" height="70" class="fok sb" stroke-width="1.5"/>
 <text x="139" y="80" class="tb" text-anchor="middle">TP 真陽性</text>
-<text x="139" y="100" text-anchor="middle">28 件</text>
+<text x="139" y="100" text-anchor="middle">15 人</text>
 <rect x="194" y="52" width="110" height="70" class="fng sb" stroke-width="1.5"/>
 <text x="249" y="80" class="tb" text-anchor="middle">FN 偽陰性</text>
-<text x="249" y="100" text-anchor="middle">見逃し 12 件</text>
+<text x="249" y="100" text-anchor="middle">見逃し 5 人</text>
 <rect x="84" y="122" width="110" height="70" class="fng sb" stroke-width="1.5"/>
 <text x="139" y="150" class="tb" text-anchor="middle">FP 偽陽性</text>
-<text x="139" y="170" text-anchor="middle">誤検知 21 件</text>
+<text x="139" y="170" text-anchor="middle">誤検知 10 人</text>
 <rect x="194" y="122" width="110" height="70" class="fok sb" stroke-width="1.5"/>
 <text x="249" y="150" class="tb" text-anchor="middle">TN 真陰性</text>
-<text x="249" y="170" text-anchor="middle">139 件</text>
-<text x="12" y="216" class="tm">予測が陽性 49 件、実際が陽性 40 件、全体 200 件</text>
+<text x="249" y="170" text-anchor="middle">70 人</text>
+<text x="12" y="216" class="tm">予測が陽性 25 人、実際が陽性 20 人、全体 100 人</text>
 <text x="12" y="252" class="tb">4つの指標：色のついたセルを使う</text>
 <rect x="12" y="268" width="18" height="14" class="fa sa" stroke-width="1"/>
 <text x="36" y="280">分子（当たり）</text>
@@ -32,43 +32,58 @@
 <text x="27" y="348" class="tb" text-anchor="middle">FP</text>
 <rect x="42" y="328" width="30" height="30" class="fa sa" stroke-width="1.5"/>
 <text x="57" y="348" class="tb ton" text-anchor="middle">TN</text>
-<text x="86" y="312" class="tb">正解率＝(TP+TN)÷全体</text>
-<text x="86" y="332">＝(28+139)÷200＝0.835</text>
-<text x="86" y="352" class="tm">全部のうち、当たった割合</text>
-<line x1="12" y1="368" x2="308" y2="368" class="l sb w1"/>
-<rect x="12" y="380" width="30" height="30" class="fa sa" stroke-width="1.5"/>
-<text x="27" y="400" class="tb ton" text-anchor="middle">TP</text>
-<rect x="42" y="380" width="30" height="30" class="fs sb" stroke-width="1.5"/>
-<text x="57" y="400" class="tm" text-anchor="middle">FN</text>
-<rect x="12" y="410" width="30" height="30" class="fas sa" stroke-width="1.5"/>
-<text x="27" y="430" class="tb" text-anchor="middle">FP</text>
-<rect x="42" y="410" width="30" height="30" class="fs sb" stroke-width="1.5"/>
-<text x="57" y="430" class="tm" text-anchor="middle">TN</text>
-<text x="86" y="394" class="tb">適合率＝TP÷(TP+FP)</text>
-<text x="86" y="414">＝28÷49≒0.57</text>
-<text x="86" y="434" class="tm">予測が陽性の列だけを見る</text>
-<line x1="12" y1="450" x2="308" y2="450" class="l sb w1"/>
-<rect x="12" y="462" width="30" height="30" class="fa sa" stroke-width="1.5"/>
-<text x="27" y="482" class="tb ton" text-anchor="middle">TP</text>
-<rect x="42" y="462" width="30" height="30" class="fas sa" stroke-width="1.5"/>
-<text x="57" y="482" class="tb" text-anchor="middle">FN</text>
-<rect x="12" y="492" width="30" height="30" class="fs sb" stroke-width="1.5"/>
-<text x="27" y="512" class="tm" text-anchor="middle">FP</text>
-<rect x="42" y="492" width="30" height="30" class="fs sb" stroke-width="1.5"/>
-<text x="57" y="512" class="tm" text-anchor="middle">TN</text>
-<text x="86" y="476" class="tb">再現率＝TP÷(TP+FN)</text>
-<text x="86" y="496">＝28÷40＝0.70</text>
-<text x="86" y="516" class="tm">実際が陽性の行だけを見る</text>
-<line x1="12" y1="532" x2="308" y2="532" class="l sb w1"/>
-<rect x="12" y="544" width="30" height="30" class="fa sa" stroke-width="1.5"/>
-<text x="27" y="564" class="tb ton" text-anchor="middle">TP</text>
-<rect x="42" y="544" width="30" height="30" class="fas sa" stroke-width="1.5"/>
-<text x="57" y="564" class="tb" text-anchor="middle">FN</text>
-<rect x="12" y="574" width="30" height="30" class="fas sa" stroke-width="1.5"/>
-<text x="27" y="594" class="tb" text-anchor="middle">FP</text>
-<rect x="42" y="574" width="30" height="30" class="fs sb" stroke-width="1.5"/>
-<text x="57" y="594" class="tm" text-anchor="middle">TN</text>
-<text x="86" y="558" class="tb">F値＝2×P×R÷(P+R)</text>
-<text x="86" y="578">＝2×0.57×0.70÷1.27≒0.63</text>
-<text x="86" y="598" class="tm">P＝適合率、R＝再現率</text>
+<text x="86" y="312" class="tb">正解率：全体のうち当たった割合</text>
+<text x="86" y="330">当たった数 ÷ 全体</text>
+<text x="86" y="348">＝(15＋70)÷100</text>
+<text x="86" y="366">＝85÷100＝0.85</text>
+<text x="86" y="384" class="tm">記号：(TP＋TN)÷全体</text>
+<line x1="12" y1="396" x2="308" y2="396" class="l sb w1"/>
+<rect x="12" y="408" width="30" height="30" class="fa sa" stroke-width="1.5"/>
+<text x="27" y="428" class="tb ton" text-anchor="middle">TP</text>
+<rect x="42" y="408" width="30" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="428" class="tm" text-anchor="middle">FN</text>
+<rect x="12" y="438" width="30" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="27" y="458" class="tb" text-anchor="middle">FP</text>
+<rect x="42" y="438" width="30" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="458" class="tm" text-anchor="middle">TN</text>
+<text x="86" y="422" class="tb">適合率：陽性と予測したうち</text>
+<text x="86" y="440" class="tb">　本当に陽性だった割合</text>
+<text x="86" y="458">当たった陽性 ÷ 陽性と予測した数</text>
+<text x="86" y="476">＝15÷(15＋10)＝15÷25＝0.6</text>
+<text x="86" y="494" class="tm">記号：TP÷(TP＋FP)。列だけを見る</text>
+<line x1="12" y1="506" x2="308" y2="506" class="l sb w1"/>
+<rect x="12" y="518" width="30" height="30" class="fa sa" stroke-width="1.5"/>
+<text x="27" y="538" class="tb ton" text-anchor="middle">TP</text>
+<rect x="42" y="518" width="30" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="57" y="538" class="tb" text-anchor="middle">FN</text>
+<rect x="12" y="548" width="30" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="27" y="568" class="tm" text-anchor="middle">FP</text>
+<rect x="42" y="548" width="30" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="568" class="tm" text-anchor="middle">TN</text>
+<text x="86" y="532" class="tb">再現率：本当の陽性のうち</text>
+<text x="86" y="550" class="tb">　見つけた割合</text>
+<text x="86" y="568">見つけた陽性 ÷ 本当の陽性の数</text>
+<text x="86" y="586">＝15÷(15＋5)＝15÷20＝0.75</text>
+<text x="86" y="604" class="tm">記号：TP÷(TP＋FN)。行だけを見る</text>
+<line x1="12" y1="616" x2="308" y2="616" class="l sb w1"/>
+<rect x="12" y="628" width="30" height="30" class="fa sa" stroke-width="1.5"/>
+<text x="27" y="648" class="tb ton" text-anchor="middle">TP</text>
+<rect x="42" y="628" width="30" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="57" y="648" class="tb" text-anchor="middle">FN</text>
+<rect x="12" y="658" width="30" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="27" y="678" class="tb" text-anchor="middle">FP</text>
+<rect x="42" y="658" width="30" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="678" class="tm" text-anchor="middle">TN</text>
+<text x="86" y="642" class="tb">F値：適合率と再現率の調和平均</text>
+<text x="86" y="660" class="tm">小さいほうに強く引っ張られる平均</text>
+<text x="86" y="678">逆数（1÷その数）を平均し、</text>
+<text x="86" y="696">もう一度逆数に戻す</text>
+<text x="86" y="714">1÷0.6≒1.667、1÷0.75≒1.333</text>
+<text x="86" y="732">(1.667＋1.333)÷2＝3÷2＝1.5</text>
+<text x="86" y="750" class="tb">1÷1.5≒0.67</text>
+<text x="86" y="774" class="tm">同じ手順を1つの式にすると</text>
+<text x="86" y="792">2×P×R÷(P＋R)</text>
+<text x="86" y="810">＝2×0.6×0.75÷(0.6＋0.75)</text>
+<text x="86" y="828">＝0.9÷1.35≒0.67</text>
+<text x="86" y="846" class="tm">P＝適合率、R＝再現率</text>
 </svg>
