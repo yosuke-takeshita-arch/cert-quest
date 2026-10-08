@@ -66,7 +66,9 @@ export function explanation(app, sq, chosen, open, opts = {}) {
       h('span', { class: 'why', text: w.why || '（理由は準備中です）' }),
       w.i === chosen ? h('span', { class: 'chip you' }, 'あなたの回答') : null));
   }
-  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '2'), '誤答がなぜ違うか'), ul));
+  // 「適切でないもの」を選ぶ問題では、ほかの選択肢は正しい文なので「誤答」と呼ばない
+  const othersHeading = q.format === 'not' ? 'ほかの選択肢がなぜ答えにならないか' : '誤答がなぜ違うか';
+  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '2'), othersHeading), ul));
 
   if (q.memoryTip) box.appendChild(h('section', { class: 'ex-block tip' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '3'), '覚え方', sensei ? tappable(characterImg(TIP_SENSEI, 'sensei-mini')) : null), h('p', { text: q.memoryTip })));
 
