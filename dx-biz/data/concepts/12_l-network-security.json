@@ -265,7 +265,7 @@
     "syllabus": ["社会実装イノベーション領域", "L インターネット技術・サイバーセキュリティ", "応用事例"],
     "title": "量子暗号通信（量子鍵配送：QKD）",
     "oneLine": "暗号の鍵の情報を光の粒（光子）に載せて送り、量子の物理的な性質によって盗聴を確実に見つけられるようにした、暗号の鍵の配送技術と、それを使う通信。",
-    "why": "情報通信白書（令和7年版・令和8年版）は、量子コンピューターの実用化で現在広く使われている暗号が危うくなる（危殆化する）ことが懸念されるとし、量子の物理的特性から盗聴を確実に検知できる量子暗号通信の研究開発や社会実装が国内外で加速しているとする。量子暗号通信は光子に暗号鍵の情報を載せて送る「量子鍵配送（QKD）」を使い、通信速度の高速化と、伝送距離の長距離化・広域化が課題で、総務省は2020年度から地上系の長距離リンク技術や中継技術の研究開発に取り組んできた。NICTは2010年に「東京QKDネットワーク」を作り、その長期運用の実績から作った機器の基本仕様は2020年に国際標準（ITU-T Y.3800シリーズ）になった。別の備えとして、量子コンピューターでも解きにくい別の数学の問題に基づく耐量子計算機暗号（PQC）への移行も進んでいる（NISTは2024年に最初の3つの標準を確定。政府は2026年度中に移行の工程表を作るとしている）。",
+    "why": "QKD は Quantum Key Distribution の略（NICT の表記）。意味は『量子（Quantum）を使った鍵（Key）の配送（Distribution）』。情報通信白書（令和7年版・令和8年版）は、量子コンピューターの実用化で現在広く使われている暗号が危うくなる（危殆化する）ことが懸念されるとし、量子の物理的特性から盗聴を確実に検知できる量子暗号通信の研究開発や社会実装が国内外で加速しているとする。量子暗号通信は光子に暗号鍵の情報を載せて送る「量子鍵配送（QKD）」を使い、通信速度の高速化と、伝送距離の長距離化・広域化が課題で、総務省は2020年度から地上系の長距離リンク技術や中継技術の研究開発に取り組んできた。NICTは2010年に「東京QKDネットワーク」を作り、その長期運用の実績から作った機器の基本仕様は2020年に国際標準（ITU-T Y.3800シリーズ）になった。別の備えとして、量子コンピューターでも解きにくい別の数学の問題に基づく耐量子計算機暗号（PQC）への移行も進んでいる（NISTは2024年に最初の3つの標準を確定。政府は2026年度中に移行の工程表を作るとしている）。",
     "links": [
       { "id": "DC-02-028", "relation": "背景" },
       { "id": "DC-11-108", "relation": "混同注意" },
@@ -279,7 +279,8 @@
       { "title": "総務省「令和7年版 情報通信白書」量子暗号通信技術等に関する研究開発", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd227420.html" },
       { "title": "総務省「令和8年版 情報通信白書」量子通信技術に関する取組", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r08/html/nd227420.html" },
       { "title": "総務省「令和8年版 情報通信白書」量子計算機時代に対応した暗号技術の高度化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r08/html/nd225310.html" },
-      { "title": "NIST「NIST Releases First 3 Finalized Post-Quantum Encryption Standards」（2024年8月13日）", "url": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards" }
+      { "title": "NIST「NIST Releases First 3 Finalized Post-Quantum Encryption Standards」（2024年8月13日）", "url": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards" },
+      { "title": "NICT「Inauguration of the Tokyo QKD Network」（2010年10月14日）", "url": "https://www.nict.go.jp/en/quantum/topics/20101014.html" }
     ],
     "status": "verified"
   },
@@ -288,7 +289,7 @@
     "syllabus": ["社会実装イノベーション領域", "L インターネット技術・サイバーセキュリティ", "応用事例"],
     "title": "パスキー（FIDO2によるパスワードレス認証）",
     "oneLine": "パスワードの代わりに、端末に保存された暗号の鍵を使い、スマートフォンやパソコンのロック解除と同じ操作（指紋・顔・PINなど）だけでサインインできる仕組み。FIDO2（WebAuthnとCTAP）の標準に基づく。",
-    "why": "FIDO Alliance は、パスキーを、パスワードを暗号の鍵の組（キーペア）に置き換え、サイトやアプリの利用者のアカウントに結び付けられた認証情報だと説明する。パスワードと違い、フィッシングに強く、常に強力で、利用者とサービスが同じ秘密を持ち合わない設計なので、盗まれるパスワードも、攻撃に使えるサインインのデータも無い。指紋などの生体の情報と処理は端末の中にとどまり、サーバーは確認に成功したという結果だけを受け取る。パスキーには、クラウドの仕組み（パスキー・プロバイダー）を通じて利用者の端末どうしで同期されるもの（新しい端末でもすぐ使える）と、1台の端末から出ないもの（セキュリティキーなど）がある。FIDO Allianceは、ワンタイムパスワードやスマートフォンでの承認といった広く使われる2つ目の要素は不便なうえフィッシングされうるとし、パスキーは単独でも「パスワード＋ワンタイムパスワード」より安全だとしている。",
+    "why": "FIDO2 の中身は2つの標準で、WebAuthn は W3C の Web Authentication（ウェブでの認証）の規格、CTAP は Client to Authenticator Protocol（端末側のソフトと認証器をつなぐ取り決め）の略。FIDO Alliance は、パスキーを、パスワードを暗号の鍵の組（キーペア）に置き換え、サイトやアプリの利用者のアカウントに結び付けられた認証情報だと説明する。パスワードと違い、フィッシングに強く、常に強力で、利用者とサービスが同じ秘密を持ち合わない設計なので、盗まれるパスワードも、攻撃に使えるサインインのデータも無い。指紋などの生体の情報と処理は端末の中にとどまり、サーバーは確認に成功したという結果だけを受け取る。パスキーには、クラウドの仕組み（パスキー・プロバイダー）を通じて利用者の端末どうしで同期されるもの（新しい端末でもすぐ使える）と、1台の端末から出ないもの（セキュリティキーなど）がある。FIDO Allianceは、ワンタイムパスワードやスマートフォンでの承認といった広く使われる2つ目の要素は不便なうえフィッシングされうるとし、パスキーは単独でも「パスワード＋ワンタイムパスワード」より安全だとしている。",
     "links": [
       { "id": "DC-02-033", "relation": "発展形" },
       { "id": "DC-02-032", "relation": "関連" },
@@ -298,7 +299,9 @@
       { "id": "DC-02-033", "point": "多要素認証は、知識・所持・生体の要素を2つ以上組み合わせる考え方。パスキーは、端末の鍵（所持）を生体やPINで使う仕組みで、パスワード＋ワンタイムパスワードの組合せよりフィッシングに強い。" }
     ],
     "sources": [
-      { "title": "FIDO Alliance「Passkeys」", "url": "https://fidoalliance.org/passkeys/" }
+      { "title": "FIDO Alliance「Passkeys」", "url": "https://fidoalliance.org/passkeys/" },
+      { "title": "W3C「Web Authentication: An API for accessing Public Key Credentials Level 3」", "url": "https://www.w3.org/TR/webauthn-3/" },
+      { "title": "FIDO Alliance「Client to Authenticator Protocol (CTAP)」Proposed Standard（2021年6月15日）", "url": "https://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-20210615.html" }
     ],
     "status": "verified"
   },

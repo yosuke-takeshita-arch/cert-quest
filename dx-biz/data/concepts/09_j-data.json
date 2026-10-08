@@ -109,7 +109,7 @@
     "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
     "title": "RDB・SQL・NoSQL",
     "oneLine": "RDB（リレーショナルデータベース）はデータを行と列の表で管理するデータベースで、SQLはその表を操作する言語。NoSQLは表形式のRDBとは異なる設計のデータベースの総称。",
-    "why": "RDBは定型データを正確に扱う業務システムに向く。NoSQL（Not only SQL）は、センサーやソーシャルメディアなどの非定型データを含む多様なデータを大量に扱うのに使われる（総務省資料）。整った表で厳密に管理したいならRDB、形の決まらない大量のデータを柔軟に速く扱いたいならNoSQL。",
+    "why": "RDB は Relational Database の略で、1970年にコッドが論文『A Relational Model of Data for Large Shared Data Banks』で示した関係モデル（relational model）に基づくデータベース。SQL は Structured Query Language の略で、IBM がこのモデルを使うために作った言語 SEQUEL（Structured English Query Language）がのちに SQL になった（Oracle の SQL リファレンス）。RDBは定型データを正確に扱う業務システムに向く。NoSQL（Not only SQL）は、センサーやソーシャルメディアなどの非定型データを含む多様なデータを大量に扱うのに使われる（総務省資料）。整った表で厳密に管理したいならRDB、形の決まらない大量のデータを柔軟に速く扱いたいならNoSQL。",
     "links": [
       { "id": "DC-03-008", "relation": "操作" },
       { "id": "DC-03-004", "relation": "対象" },
@@ -120,7 +120,8 @@
     ],
     "figures": ["fig-dx-rdb-nosql"],
     "sources": [
-      { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" }
+      { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" },
+      { "title": "Oracle「Oracle Database SQL言語リファレンス 19c」History of SQL", "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/History-of-SQL.html" }
     ],
     "status": "verified"
   },
@@ -343,7 +344,7 @@
     "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
     "title": "PPDACサイクル",
     "oneLine": "問題（Problem）→計画（Plan）→データ（Data）→分析（Analysis）→結論（Conclusion）の5つのフェーズで、データを使って問題を解決する枠組み。",
-    "why": "統計やデータを活用して、科学的・協働的に問題を解決するときに力を発揮する（総務省統計局）。データを集める前に「何を解くか」を決めるのが出発点。分析のフェーズでは、全体を見渡す・分ける比べる・変化や関係を探る・予測する、という視点で進め、理解を促すための可視化が特に重要になる。",
+    "why": "PPDAC は、5つのフェーズの英語の頭文字（Problem・Plan・Data・Analysis・Conclusion）を順に並べた名前。統計やデータを活用して、科学的・協働的に問題を解決するときに力を発揮する（総務省統計局）。データを集める前に「何を解くか」を決めるのが出発点。分析のフェーズでは、全体を見渡す・分ける比べる・変化や関係を探る・予測する、という視点で進め、理解を促すための可視化が特に重要になる。",
     "links": [
       { "id": "DC-03-001", "relation": "上位の営み" },
       { "id": "DC-03-015", "relation": "分析で使う" },
@@ -364,7 +365,7 @@
     "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
     "title": "RAG（Retrieval-Augmented Generation：検索拡張生成）",
     "oneLine": "生成AIが答える前に、外部の文書やデータベースを検索し、見つけた内容を参照して回答を作る仕組み。",
-    "why": "生成AIは学習していない社内情報や最新情報を知らない。モデルを再学習させなくても、社内マニュアルやFAQを検索させれば、根拠のある回答を作りやすい。原論文（Lewis ほか, 2020）は、事前学習済みの生成モデルと、検索で引ける外部の知識（Wikipediaの索引）を組み合わせたモデルとしてRAGを示した。",
+    "why": "RAG は Retrieval-Augmented Generation の略。意味は『検索（Retrieval）で補強した（Augmented）生成（Generation）』。原論文（Lewis ほか, 2020）がこの呼び方と略称 RAG を使っている。生成AIは学習していない社内情報や最新情報を知らない。モデルを再学習させなくても、社内マニュアルやFAQを検索させれば、根拠のある回答を作りやすい。原論文（Lewis ほか, 2020）は、事前学習済みの生成モデルと、検索で引ける外部の知識（Wikipediaの索引）を組み合わせたモデルとしてRAGを示した。",
     "links": [
       { "id": "DC-02-017", "relation": "発展形" },
       { "id": "DC-02-020", "relation": "関連" }
@@ -677,7 +678,7 @@
     "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
     "title": "SQLの命令の種類（DDLとDML）",
     "oneLine": "SQLの命令は役割で分けられる。DDL（データ定義言語）は表などの入れ物を作る・変える・消す命令、DML（データ操作言語）は入れ物の中のデータを読み書きする命令。データを取り出す問い合わせ（クエリ）のSELECTはDMLに含まれる。",
-    "why": "オラクルのSQLリファレンス（Oracle Database 19c）は、DDLを、表などのスキーマ・オブジェクトの作成・変更・削除や、権限の付与・取り消しを行う命令とし、CREATE・ALTER・DROPには対象への排他的なアクセスが要ると説明する。例えば、他の利用者がその表で確定していない処理（トランザクション）を開いているとALTER TABLEは失敗する。また同データベースでは、DDLの前後でそれまでの処理が自動的に確定（コミット）される。DMLはINSERT・UPDATE・DELETE・SELECTなどで、既にある表のデータを扱う。SELECTはデータを読むだけで、データベースに保存された中身は書き換えない。",
+    "why": "DDL は Data Definition Language（データ定義言語）、DML は Data Manipulation Language（データ操作言語）の略（Oracle の SQL リファレンス）。Definition は『定義』、Manipulation は『操作』の意味。オラクルのSQLリファレンス（Oracle Database 19c）は、DDLを、表などのスキーマ・オブジェクトの作成・変更・削除や、権限の付与・取り消しを行う命令とし、CREATE・ALTER・DROPには対象への排他的なアクセスが要ると説明する。例えば、他の利用者がその表で確定していない処理（トランザクション）を開いているとALTER TABLEは失敗する。また同データベースでは、DDLの前後でそれまでの処理が自動的に確定（コミット）される。DMLはINSERT・UPDATE・DELETE・SELECTなどで、既にある表のデータを扱う。SELECTはデータを読むだけで、データベースに保存された中身は書き換えない。",
     "links": [
       { "id": "DC-03-007", "relation": "部分" },
       { "id": "DC-03-008", "relation": "具体例" }
