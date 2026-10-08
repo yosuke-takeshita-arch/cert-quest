@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 914" role="img" aria-labelledby="fig-g-bayes-area-t fig-g-bayes-area-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1002" role="img" aria-labelledby="fig-g-bayes-area-t fig-g-bayes-area-d">
 <title id="fig-g-bayes-area-t">ベイズの定理を面積で見る（陽性のうち、実際に病気の人の割合）</title>
-<desc id="fig-g-bayes-area-d">1万人を1つの長方形とし、縦に「病気2%」と「病気でない98%」で切り、それぞれを横に陽性と陰性で切った面積図。病気の人の80%が陽性で160人、病気でない人の10%が陽性で980人。陽性の人は合わせて1140人で、そのうち病気は160人なので約14%。病気の割合が小さいと、陽性でも病気である確率は低い。下に、ベイズの定理の式と、同時確率・周辺確率の表を並べる。</desc>
+<desc id="fig-g-bayes-area-d">1万人を1つの長方形とし、縦に「病気2%」と「病気でない98%」で切り、それぞれを横に陽性と陰性で切った面積図。病気の人の80%が陽性で160人、病気でない人の10%が陽性で980人。陽性の人は合わせて1140人で、そのうち病気は160人なので約14%。病気の割合が小さいと、陽性でも病気である確率は低い。下に、ベイズの定理をことばの式（陽性の人が病気である確率＝病気で陽性の人÷陽性の人すべて）と記号の式で書き、同時確率・周辺確率の表を並べる。</desc>
 <text x="12" y="20" class="tb">1万人で考える（自作の例）</text>
 <text x="12" y="52" class="tb">病気 2%</text>
 <text x="308" y="52" class="tb" text-anchor="end">病気でない 98%</text>
@@ -30,44 +30,48 @@
 <text x="12" y="408" class="tm">病気の人が少ないと、陽性でも病気とは限らない</text>
 <line x1="12" y1="430" x2="308" y2="430" class="l sb w1"/>
 <text x="12" y="458" class="tb">ベイズの定理</text>
-<text x="12" y="482" class="tl">P(A|B) ＝ P(B|A) × P(A) ÷ P(B)</text>
-<text x="12" y="504" class="tm">A＝病気である、B＝陽性と出る</text>
-<text x="12" y="528">P(A)＝0.02（病気の人の割合）</text>
-<text x="12" y="548">P(B|A)＝0.8（病気の人が陽性になる割合）</text>
-<text x="12" y="568">病気でない人が陽性になる割合＝0.1</text>
-<rect x="12" y="584" width="16" height="14" class="fa l" stroke-width="1.5"/>
-<text x="36" y="596">分子 P(B|A)P(A)＝0.8×0.02＝0.016</text>
-<rect x="12" y="608" width="16" height="14" class="fa l" stroke-width="1.5"/>
-<rect x="32" y="608" width="16" height="14" class="fwn l" stroke-width="1.5"/>
-<text x="56" y="620">分母 P(B)＝0.016＋0.098＝0.114</text>
-<text x="56" y="642" class="tm">（①＋②。陽性になる人すべて）</text>
-<text x="12" y="666" class="tb">P(A|B)＝0.016÷0.114 ≒ 0.14</text>
-<line x1="12" y1="688" x2="308" y2="688" class="l sb w1"/>
-<text x="12" y="716" class="tb">同時確率と周辺確率（同じ例を確率で書いた表）</text>
-<text x="131" y="752" class="tb" text-anchor="middle">陽性</text>
-<text x="201" y="752" class="tb" text-anchor="middle">陰性</text>
-<text x="271" y="752" class="tb" text-anchor="middle">計</text>
-<text x="12" y="783" class="tb">病気</text>
-<rect x="96" y="762" width="70" height="32" class="fa sb" stroke-width="1"/>
-<text x="131" y="783" class="tb ton" text-anchor="middle">0.016</text>
-<rect x="166" y="762" width="70" height="32" class="fs sb" stroke-width="1"/>
-<text x="201" y="783" class="tb" text-anchor="middle">0.004</text>
-<rect x="236" y="762" width="70" height="32" class="fbg sb" stroke-width="1"/>
-<text x="271" y="783" class="tb" text-anchor="middle">0.02</text>
-<text x="12" y="815" class="tb">病気でない</text>
-<rect x="96" y="794" width="70" height="32" class="fwn sb" stroke-width="1"/>
-<text x="131" y="815" class="tb" text-anchor="middle">0.098</text>
-<rect x="166" y="794" width="70" height="32" class="fs sb" stroke-width="1"/>
-<text x="201" y="815" class="tb" text-anchor="middle">0.882</text>
-<rect x="236" y="794" width="70" height="32" class="fbg sb" stroke-width="1"/>
-<text x="271" y="815" class="tb" text-anchor="middle">0.98</text>
-<text x="12" y="847" class="tb">計</text>
-<rect x="96" y="826" width="70" height="32" class="fbg sb" stroke-width="1"/>
-<text x="131" y="847" class="tb" text-anchor="middle">0.114</text>
-<rect x="166" y="826" width="70" height="32" class="fbg sb" stroke-width="1"/>
-<text x="201" y="847" class="tb" text-anchor="middle">0.886</text>
-<rect x="236" y="826" width="70" height="32" class="fbg sb" stroke-width="1"/>
-<text x="271" y="847" class="tb" text-anchor="middle">1</text>
-<text x="12" y="882" class="tm">色つき＝上の ① と ②（同時確率）</text>
-<text x="12" y="902" class="tm">「計」＝足し合わせた周辺確率</text>
+<text x="12" y="482">ことばの式：陽性の人が病気である確率</text>
+<text x="12" y="504">＝ 病気で陽性の人 ÷ 陽性の人すべて</text>
+<text x="12" y="526">＝ ① ÷（① ＋ ②）＝ 160 ÷ 1,140</text>
+<text x="12" y="548" class="tm">これを確率の記号で書くと、次の式になる</text>
+<text x="12" y="570" class="tl">P(A|B) ＝ P(B|A) × P(A) ÷ P(B)</text>
+<text x="12" y="592" class="tm">A＝病気である、B＝陽性と出る</text>
+<text x="12" y="616">P(A)＝0.02（病気の人の割合）</text>
+<text x="12" y="636">P(B|A)＝0.8（病気の人が陽性になる割合）</text>
+<text x="12" y="656">病気でない人が陽性になる割合＝0.1</text>
+<rect x="12" y="672" width="16" height="14" class="fa l" stroke-width="1.5"/>
+<text x="36" y="684">分子 P(B|A)P(A)＝0.8×0.02＝0.016</text>
+<rect x="12" y="696" width="16" height="14" class="fa l" stroke-width="1.5"/>
+<rect x="32" y="696" width="16" height="14" class="fwn l" stroke-width="1.5"/>
+<text x="56" y="708">分母 P(B)＝0.016＋0.98×0.1</text>
+<text x="56" y="730" class="tm">＝0.016＋0.098＝0.114（①＋②）</text>
+<text x="12" y="754" class="tb">P(A|B)＝0.016÷0.114 ≒ 0.14</text>
+<line x1="12" y1="776" x2="308" y2="776" class="l sb w1"/>
+<text x="12" y="804" class="tb">同時確率と周辺確率（同じ例を確率で書いた表）</text>
+<text x="131" y="840" class="tb" text-anchor="middle">陽性</text>
+<text x="201" y="840" class="tb" text-anchor="middle">陰性</text>
+<text x="271" y="840" class="tb" text-anchor="middle">計</text>
+<text x="12" y="871" class="tb">病気</text>
+<rect x="96" y="850" width="70" height="32" class="fa sb" stroke-width="1"/>
+<text x="131" y="871" class="tb ton" text-anchor="middle">0.016</text>
+<rect x="166" y="850" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="201" y="871" class="tb" text-anchor="middle">0.004</text>
+<rect x="236" y="850" width="70" height="32" class="fbg sb" stroke-width="1"/>
+<text x="271" y="871" class="tb" text-anchor="middle">0.02</text>
+<text x="12" y="903" class="tb">病気でない</text>
+<rect x="96" y="882" width="70" height="32" class="fwn sb" stroke-width="1"/>
+<text x="131" y="903" class="tb" text-anchor="middle">0.098</text>
+<rect x="166" y="882" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="201" y="903" class="tb" text-anchor="middle">0.882</text>
+<rect x="236" y="882" width="70" height="32" class="fbg sb" stroke-width="1"/>
+<text x="271" y="903" class="tb" text-anchor="middle">0.98</text>
+<text x="12" y="935" class="tb">計</text>
+<rect x="96" y="914" width="70" height="32" class="fbg sb" stroke-width="1"/>
+<text x="131" y="935" class="tb" text-anchor="middle">0.114</text>
+<rect x="166" y="914" width="70" height="32" class="fbg sb" stroke-width="1"/>
+<text x="201" y="935" class="tb" text-anchor="middle">0.886</text>
+<rect x="236" y="914" width="70" height="32" class="fbg sb" stroke-width="1"/>
+<text x="271" y="935" class="tb" text-anchor="middle">1</text>
+<text x="12" y="970" class="tm">色つき＝上の ① と ②（同時確率）</text>
+<text x="12" y="990" class="tm">「計」＝足し合わせた周辺確率</text>
 </svg>

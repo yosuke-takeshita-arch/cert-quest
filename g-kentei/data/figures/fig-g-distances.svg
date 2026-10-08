@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-g-distances-t fig-g-distances-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 608" role="img" aria-labelledby="fig-g-distances-t fig-g-distances-d">
 <title id="fig-g-distances-t">距離と類似度：ユークリッド・マンハッタン・チェビシェフ・コサイン</title>
-<desc id="fig-g-distances-d">方眼の上に2点（1,2）と（4,6）。座標の差は横3、縦4。ユークリッド距離は斜めの直線で、差の2乗の和の平方根、3の2乗足す4の2乗の平方根で5。マンハッタン距離は方眼に沿った階段状の道のりで、差の絶対値の和、3足す4で7。チェビシェフ距離は差の絶対値のうち最大のもので4。下はコサイン類似度。原点から出る2本のベクトルのなす角のコサインで、向きが同じなら1、直交なら0、逆向きなら−1。長さには左右されない。例では、なす角45度でコサイン類似度は約0.71。同じ向きで長さが3倍のベクトルとはコサイン類似度が1になる。</desc>
+<desc id="fig-g-distances-d">方眼の上に2点（1,2）と（4,6）。座標の差は横3、縦4。ユークリッド距離は斜めの直線で、差の2乗の和の平方根、3の2乗足す4の2乗、つまり9足す16で25、その平方根で5。マンハッタン距離は方眼に沿った階段状の道のりで、差の絶対値の和、3足す4で7。チェビシェフ距離は差の絶対値のうち最大のもので4。下はコサイン類似度。原点から出る2本のベクトルのなす角のコサインで、向きが同じなら1、直交なら0、逆向きなら−1。長さには左右されない。例では、なす角45度でコサイン類似度は約0.71。同じ向きで長さが3倍のベクトルとはコサイン類似度が1になる。</desc>
 <text x="12" y="20" class="tb">① 方眼の上の2点の距離</text>
 <rect x="18" y="50" width="156" height="182" class="fs sb" stroke-width="1"/>
 <line x1="44" y1="50" x2="44" y2="232" class="l sb w1"/>
@@ -24,6 +24,8 @@
 <text x="52" y="200" class="tb">(1, 2)</text>
 <text x="112" y="66" class="tb" text-anchor="end">(4, 6)</text>
 <text x="12" y="254" class="tb">差：横 3、縦 4</text>
+<text x="12" y="278" class="ta">ユークリッド：3² ＋ 4² ＝ 9 ＋ 16 ＝ 25</text>
+<text x="12" y="300" class="ta">√25 ＝ 5（5×5＝25 だから。三平方の定理）</text>
 <line x1="190" y1="59" x2="212" y2="59" class="l sa w3"/>
 <text x="218" y="64" class="tb ta">ユークリッド</text>
 <text x="190" y="84">差の2乗和の平方根</text>
@@ -36,21 +38,21 @@
 <text x="218" y="204" class="tb tok">チェビシェフ</text>
 <text x="190" y="224">差の絶対値の最大</text>
 <text x="190" y="244" class="tb">大きい方 ＝ 4</text>
-<line x1="12" y1="272" x2="308" y2="272" class="l sb w1"/>
-<text x="12" y="300" class="tb">② コサイン類似度：向きだけを見る</text>
-<line x1="40" y1="444" x2="220" y2="444" class="l sa w3"/>
-<polyline points="211,448.95 220,444 211,439.05" class="l sa w3"/>
-<text x="220" y="466" class="tb ta" text-anchor="end">a</text>
-<line x1="40" y1="444" x2="73" y2="411" class="l swn w3"/>
-<polyline points="70.14,420.86 73,411 63.14,413.86" class="l swn w3"/>
-<text x="46" y="408" class="tb twn">b</text>
-<line x1="40" y1="444" x2="139" y2="345" class="l swn w2 dsh"/>
-<polyline points="136.14,354.86 139,345 129.14,347.86" class="l swn w2"/>
-<text x="147" y="345" class="tb twn">3b</text>
-<polyline points="92,444 91.89,440.6 91.56,437.21 91,433.86 90.23,430.54 89.24,427.29 88.04,424.1 86.64,421 85.03,418 83.24,415.11 81.25,412.34 79.1,409.71 76.77,407.23" class="l sm w1"/>
-<text x="98" y="432" class="tm">45°</text>
-<text x="12" y="484" class="tb">a と b：なす角 45°、cos ≈ 0.71</text>
-<text x="12" y="506" class="tb">b と 3b：同じ向きなので cos＝1</text>
-<text x="12" y="526" class="tm">（長さは関係ない）</text>
-<text x="12" y="550" class="tm">同じ向き 1、直交 0、逆向き −1</text>
+<line x1="12" y1="318" x2="308" y2="318" class="l sb w1"/>
+<text x="12" y="346" class="tb">② コサイン類似度：向きだけを見る</text>
+<line x1="40" y1="490" x2="220" y2="490" class="l sa w3"/>
+<polyline points="211,494.95 220,490 211,485.05" class="l sa w3"/>
+<text x="220" y="512" class="tb ta" text-anchor="end">a</text>
+<line x1="40" y1="490" x2="73" y2="457" class="l swn w3"/>
+<polyline points="70.14,466.86 73,457 63.14,459.86" class="l swn w3"/>
+<text x="46" y="454" class="tb twn">b</text>
+<line x1="40" y1="490" x2="139" y2="391" class="l swn w2 dsh"/>
+<polyline points="136.14,400.86 139,391 129.14,393.86" class="l swn w2"/>
+<text x="147" y="391" class="tb twn">3b</text>
+<polyline points="92,490 91.89,486.6 91.56,483.21 91,479.86 90.23,476.54 89.24,473.29 88.04,470.1 86.64,467 85.03,464 83.24,461.11 81.25,458.34 79.1,455.71 76.77,453.23" class="l sm w1"/>
+<text x="98" y="478" class="tm">45°</text>
+<text x="12" y="530" class="tb">a と b：なす角 45°、cos ≈ 0.71</text>
+<text x="12" y="552" class="tb">b と 3b：同じ向きなので cos＝1</text>
+<text x="12" y="572" class="tm">（長さは関係ない）</text>
+<text x="12" y="596" class="tm">同じ向き 1、直交 0、逆向き −1</text>
 </svg>

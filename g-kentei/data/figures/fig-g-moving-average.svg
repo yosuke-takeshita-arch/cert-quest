@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 456" role="img" aria-labelledby="fig-g-moving-average-t fig-g-moving-average-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 478" role="img" aria-labelledby="fig-g-moving-average-t fig-g-moving-average-d">
 <title id="fig-g-moving-average-t">移動平均：短期の変動をならす</title>
-<desc id="fig-g-moving-average-d">5日間の売上10、14、12、16、18万円をぎざぎざの折れ線で、直近3日の単純移動平均を滑らかな線で重ねた図。移動平均は、窓をずらしながら直近の値の平均をとり、短期の変動をならして傾向を見やすくする。3日目は(10＋14＋12)÷3＝12、4日目は(14＋12＋16)÷3＝14、5日目は(12＋16＋18)÷3≒15.3。元の値は14から12へ下がる日があるが、移動平均は12、14、15.3と上がり、増える傾向がつかめる。数は説明のための例。</desc>
+<desc id="fig-g-moving-average-d">5日間の売上10、14、12、16、18万円をぎざぎざの折れ線で、直近3日の単純移動平均を滑らかな線で重ねた図。移動平均は、窓をずらしながら直近の値の平均（直近3日の合計を3で割った値）をとり、短期の変動をならして傾向を見やすくする。3日目は(10＋14＋12)÷3＝12、4日目は(14＋12＋16)÷3＝14、5日目は(12＋16＋18)÷3≒15.3。元の値は14から12へ下がる日があるが、移動平均は12、14、15.3と上がり、増える傾向がつかめる。数は説明のための例。</desc>
 <text x="12" y="20" class="tb">直近3日の単純移動平均</text>
 <rect x="32" y="46" width="266" height="164" class="fs sb" stroke-width="1"/>
 <rect x="147" y="50" width="149" height="156" class="fas sa" stroke-width="1.5"/>
@@ -34,11 +34,12 @@
 <text x="50" y="272">もとの売上（ぎざぎざ）</text>
 <line x1="12" y1="291" x2="42" y2="291" class="l sa w3"/>
 <text x="50" y="296">移動平均（ならした線）</text>
-<text x="12" y="326" class="tb">3日目：(10＋14＋12)÷3 ＝ 12</text>
-<text x="12" y="348" class="tb">4日目：(14＋12＋16)÷3 ＝ 14</text>
-<text x="12" y="370" class="tb">5日目：(12＋16＋18)÷3 ≒ 15.3</text>
-<line x1="12" y1="388" x2="308" y2="388" class="l sb w1"/>
-<text x="12" y="412">元の値は 14 → 12 と下がる日がある</text>
-<text x="12" y="432" class="tb ta">移動平均は 12 → 14 → 15.3 と上がる</text>
-<text x="12" y="450" class="tm">（数は説明のための例）</text>
+<text x="12" y="326" class="tb">移動平均 ＝ 直近3日の合計 ÷ 3</text>
+<text x="12" y="348" class="tb">3日目：(10＋14＋12)÷3 ＝ 36÷3 ＝ 12</text>
+<text x="12" y="370" class="tb">4日目：(14＋12＋16)÷3 ＝ 42÷3 ＝ 14</text>
+<text x="12" y="392" class="tb">5日目：(12＋16＋18)÷3 ＝ 46÷3 ≒ 15.3</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="434">元の値は 14 → 12 と下がる日がある</text>
+<text x="12" y="454" class="tb ta">移動平均は 12 → 14 → 15.3 と上がる</text>
+<text x="12" y="472" class="tm">（数は説明のための例）</text>
 </svg>
