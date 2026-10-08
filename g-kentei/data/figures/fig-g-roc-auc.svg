@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 924" role="img" aria-labelledby="fig-g-roc-auc-t fig-g-roc-auc-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1046" role="img" aria-labelledby="fig-g-roc-auc-t fig-g-roc-auc-d">
 <title id="fig-g-roc-auc-t">ROC 曲線と AUC</title>
-<desc id="fig-g-roc-auc-d">上は病気の検査の例。点数が基準（しきい値）以上なら陽性と判定する。基準が厳しい①は病気の人10人中5人を見つけ、健康な人10人中1人を誤検知する。ふつうの②は8人を見つけ3人を誤検知、甘い③は9人を見つけ6人を誤検知する。基準を甘くするほど、見つかる病気も誤検知も増える。下はその3つの基準を点にして結んだROC曲線で、縦軸は病気の人のうち見つけた割合（真陽性率）、横軸は健康な人のうち誤検知した割合（偽陽性率）。点の番号は上の番号と同じで、基準を甘くすると点は右上へ動く。左上の角は見逃しも誤検知もない理想で、AUCは1。点線は当てずっぽう（コイン投げと同じ）で、AUCは0.5。曲線の下の面積がAUCで、1に近いほど良い。</desc>
+<desc id="fig-g-roc-auc-d">上は病気の検査の例。点数が基準（しきい値）以上なら陽性と判定する。基準が厳しい①は病気の人10人中5人を見つけ、健康な人10人中1人を誤検知する。ふつうの②は8人を見つけ3人を誤検知、甘い③は9人を見つけ6人を誤検知する。基準を甘くするほど、見つかる病気も誤検知も増える。下はその3つの基準を点にして結んだROC曲線で、縦軸は病気の人のうち見つけた割合（真陽性率）、横軸は健康な人のうち誤検知した割合（偽陽性率）。点の番号は上の番号と同じで、基準を甘くすると点は右上へ動く。左上の角は見逃しも誤検知もない理想で、AUCは1。点線は当てずっぽう（コイン投げと同じ）で、AUCは0.5。曲線の下の面積がAUCで、1に近いほど良い。いちばん下は名前のもとの英語。ROCは Receiver Operating Characteristic（受信機の動作特性。第二次世界大戦のレーダーの用語の名残）、AUCは Area Under the Curve（曲線の下の面積）の略。</desc>
 <text x="12" y="20" class="tb">① 基準（しきい値）を変えると</text>
 <text x="12" y="40" class="tm">病気の検査。点数が基準以上なら「陽性」</text>
 <rect x="12" y="52" width="296" height="196" class="sb" stroke-width="1"/>
@@ -63,4 +63,10 @@
 <line x1="12" y1="866" x2="308" y2="866" class="l sb w1"/>
 <text x="12" y="890" class="tb ta">AUC＝曲線の下の面積</text>
 <text x="12" y="910" class="tb">1に近いほど良く、0.5は当てずっぽう</text>
+<line x1="12" y1="926" x2="308" y2="926" class="l sb w1"/>
+<text x="12" y="950" class="tb">名前のもとの英語</text>
+<text x="12" y="972" class="tb">ROC＝Receiver Operating Characteristic</text>
+<text x="12" y="990" class="tm">受信機の動作特性（レーダーの用語の名残）</text>
+<text x="12" y="1014" class="tb">AUC＝Area Under the Curve</text>
+<text x="12" y="1032" class="tm">曲線の下の面積</text>
 </svg>
