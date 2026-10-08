@@ -44,7 +44,7 @@
     "syllabus": ["コアDXBzイノベーション領域", "B ビジネスイノベーション/トレンド/人財", "基本概念"],
     "title": "CIO／CDOの役割再定義",
     "oneLine": "DX推進のために経営資源の配分について経営トップと対等に対話し、デジタルを戦略的に活用する提案や施策をリードする経営層（CIO／CDXO。CDOを含む）の役割・権限を明確にすること。",
-    "why": "CIO は Chief Information Officer の略で、意味は『最高情報責任者』（ITの統括責任者）。CDO は Chief Digital Officer の略で、意味は『最高デジタル責任者』（DXの推進をミッションとする責任者）。デジタルガバナンス・コード3.0は、これとは別にデータに関する責任者（Chief Data Officer）も挙げており、頭文字はどちらも CDO になるので、どちらを指すかは文脈で見分ける。DXレポート2は、DXをけん引する役員が経営層にいない企業が多いことを課題とし、CxOが担う役割やガバナンスの対象を再定義するとした。役割と権限が決まって初めて、適切な人材を配置できる。",
+    "why": "名前：CIO は Chief Information Officer の略で、意味は『最高情報責任者』（ITの統括責任者）。CDO は Chief Digital Officer の略で、意味は『最高デジタル責任者』（DXの推進をミッションとする責任者）。デジタルガバナンス・コード3.0は、これとは別にデータに関する責任者（Chief Data Officer）も挙げており、頭文字はどちらも CDO になるので、どちらを指すかは文脈で見分ける。DXレポート2は、DXをけん引する役員が経営層にいない企業が多いことを課題とし、CxOが担う役割やガバナンスの対象を再定義するとした。役割と権限が決まって初めて、適切な人材を配置できる。",
     "links": [
       { "id": "DC-01-011", "relation": "並列" },
       { "id": "DC-01-018", "relation": "関連" },
@@ -143,7 +143,7 @@
     "syllabus": ["コアDXBzイノベーション領域", "B ビジネスイノベーション/トレンド/人財", "最新事例＆トレンド"],
     "title": "DSS-P（DX推進スキル標準）",
     "oneLine": "デジタルスキル標準のうち、企業がDXを推進する専門性を持った人材を確保・育成するための指針。人材の「類型」と、その下位区分の「ロール」、全類型に共通の共通スキルリストからなる。",
-    "why": "類型はビジネスアーキテクト・デザイナー・データサイエンティスト・ソフトウェアエンジニア・サイバーセキュリティなど。ver.2.0（2026年4月）は6つの類型からなり、改訂でデータマネジメントのロールとスキルが追加された。各類型は指示する・される関係ではなく、つながりを作って互いを巻き込み、助け合うことが重要とされる。",
+    "why": "名前：DSS-P は、IPA の英語版（ver.1.2）の題名では Digital Skill Standards for DX Promotion の略。DSS は Digital Skill Standards（デジタルスキル標準）で、日本語の名前は DX推進スキル標準。類型はビジネスアーキテクト・デザイナー・データサイエンティスト・ソフトウェアエンジニア・サイバーセキュリティなど。ver.2.0（2026年4月）は6つの類型からなり、改訂でデータマネジメントのロールとスキルが追加された。各類型は指示する・される関係ではなく、つながりを作って互いを巻き込み、助け合うことが重要とされる。",
     "links": [
       { "id": "DC-01-019", "relation": "対比" },
       { "id": "DC-01-017", "relation": "関連" },
@@ -156,7 +156,8 @@
     "figures": ["fig-dx-dss"],
     "sources": [
       { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" },
-      { "title": "IPA「DX推進スキル標準（DSS-P）概要」ページ", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/about_dss-p.html" }
+      { "title": "IPA「DX推進スキル標準（DSS-P）概要」ページ", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/about_dss-p.html" },
+      { "title": "IPA「The Digital Skill Standards ver.1.2」（英語版、2024年7月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/eid2eo00000087hx-att/eiyaku.pdf" }
     ],
     "status": "verified"
   },
