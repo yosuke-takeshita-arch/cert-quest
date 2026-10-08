@@ -22,6 +22,7 @@ import { createExamDateAsk } from './views/examdate.js';
 import { renderAbout } from './views/about.js';
 import { renderCharacters } from './views/characters.js';
 import { renderWeak } from './views/weak.js';
+import { renderLater } from './views/later.js';
 import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
@@ -237,6 +238,7 @@ export async function start() {
     ['more', 'more', () => renderMore(app)],
     ['badges', 'more', () => renderBadges(app)],
     ['weak', 'more', () => renderWeak(app)],
+    ['later', 'more', (k) => renderLater(app, k)],
     ['settings', 'more', () => renderSettings(app)],
     ['about', 'more', () => renderAbout(app)],
     ['characters', 'more', (k) => renderCharacters(app, k)],

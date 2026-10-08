@@ -611,3 +611,18 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .weak-line { padding: 4px 16px; border-left: 6px solid var(--ng); }
 .text-sample { margin: 8px 0 0; padding: 12px 16px; border-radius: var(--radius); background: var(--accent-soft); line-height: 1.8; overflow-wrap: anywhere; }
 .weak-line-btn { appearance: none; width: 100%; font: inherit; font-weight: 700; text-align: left; color: var(--text); background: none; border: 0; padding: 12px 0; min-height: 56px; cursor: pointer; overflow-wrap: anywhere; }
+
+/* ---- あとで見る（要件定義書 §3-4） ---- */
+.later-row { margin-top: 16px; }
+.btn.later-btn { min-height: 48px; width: 100%; font-size: 0.9375rem; }
+.btn.later-btn.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.explain > .later-btn { margin-top: 4px; margin-bottom: 12px; }
+.later-list { padding: 0 16px; }
+.later-item { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-bottom: 1px solid var(--border); padding: 12px 0; min-height: 64px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; overflow-wrap: anywhere; }
+.later-item:last-child { border-bottom: 0; }
+.later-stem { font-weight: 600; line-height: 1.6; }
+.read-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.read-choice { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 2px solid var(--border); border-radius: var(--radius); line-height: 1.6; background: var(--surface); }
+.read-choice.ok { border-color: var(--ok); background: var(--ok-bg); }
+.read-choice .mark { flex: none; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--accent-soft); font-weight: 700; }
+.read-choice .ctext { flex: 1; min-width: 0; overflow-wrap: anywhere; }

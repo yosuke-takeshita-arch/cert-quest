@@ -1,12 +1,36 @@
 // 解説4点セットと、間違えたときの「つまずきポイント」。問題画面と模試の見直しで共通に使う。
 import { h, characterImg, tappable } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
+import { isLater, toggleLater } from '../lib/later.js';
 import { refChip, sourcesList } from './cards.js';
 import { figureBlock } from './figure.js';
 import { reportButton } from './report.js';
 import { explainSensei, TIP_SENSEI } from '../lib/characters.js';
 
 export const CHOICE_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+function laterLabel(on) {
+  return on ? 'あとで見る ✓' : 'あとで見る';
+}
+
+/**
+ * 「あとで見る」の印のボタン（押すごとにオン／オフ。要件定義書 §3-4）。
+ * 同じ問題のボタンが画面に複数あっても（問題の画面と解説など）、押したら全部そろえる。
+ */
+export function laterButton(app, q) {
+  const on = isLater(app.state, q.id);
+  const b = h('button', { class: 'btn later-btn' + (on ? ' on' : ''), type: 'button', 'data-later': q.id, 'aria-pressed': String(on), onClick: () => {
+    const now = toggleLater(app.state, q.id, new Date());
+    app.commit();
+    document.querySelectorAll('.later-btn').forEach((x) => {
+      if (x.getAttribute('data-later') !== q.id) return;
+      x.classList.toggle('on', now);
+      x.setAttribute('aria-pressed', String(now));
+      x.textContent = laterLabel(now);
+    });
+  } }, laterLabel(on));
+  return b;
+}
 
 /** 問題に紐づく用語カード（解決できたものだけ）。 */
 export function conceptsOf(app, q) {
@@ -82,6 +106,7 @@ export function explanation(app, sq, chosen, open, opts = {}) {
   }
   const src = sourcesList(q.sources);
   if (src) box.appendChild(src);
+  if (opts.later !== false) box.appendChild(laterButton(app, q));
   const rep = reportButton(app, { kind: 'question', id: q.id, text: q.stem });
   if (rep) box.appendChild(rep);
   return box;

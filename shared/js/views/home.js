@@ -6,6 +6,7 @@ import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
 import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
+import { laterCount } from '../lib/later.js';
 import { nextGoals } from '../lib/goals.js';
 import { mapLayout, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
@@ -404,5 +405,9 @@ export function renderReview(app) {
     h('p', { class: 'row-line' }, '今日以前: ', h('strong', { text: up.now + '問' })),
     h('p', { class: 'row-line' }, '明日: ', h('strong', { text: up.tomorrow + '問' })),
     h('p', { class: 'row-line' }, 'あさって以降: ', h('strong', { text: up.later + '問' }))));
+  // 「あとで見る」へ入る（ゆっくり理解したい問題に自分で付けた印。復習の予定とは別）
+  root.appendChild(h('div', { class: 'card' }, h('h2', { text: 'あとで見る' }),
+    h('p', { class: 'small muted', text: '自分で印を付けた問題を、まとめて読み返せます。' }),
+    h('button', { class: 'btn', type: 'button', 'data-review-later': '1', onClick: () => app.go('#/later') }, 'あとで見る（' + laterCount(app.state, app.data.questions) + '問）')));
   return root;
 }

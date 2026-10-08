@@ -4,7 +4,7 @@ import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.js';
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
+import { explanation, laterButton, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
 
 /**
  * spec: { mode:'stage'|'review'|'challenge', title, pick(app)->質問の配列, stageKey?, backHash }
@@ -84,8 +84,7 @@ export function renderPlay(app) {
       card.appendChild(h('div', { class: 'timer', 'aria-hidden': 'true' }, fill));
       card.appendChild(left);
     }
-    card.appendChild(h('p', { class: 'stem', text: q.stem }));
-    const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
+    card.appendChild(h('p', { class: 'stem', text: q.stem }));    const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
     const btns = sq.choices.map((c, i) => {
       const b = h('button', { class: 'choice', type: 'button', onClick: () => answer(i) },
         h('span', { class: 'mark', 'aria-hidden': 'true', text: CHOICE_LABELS[i] }), h('span', { class: 'ctext', text: c }));
@@ -93,6 +92,7 @@ export function renderPlay(app) {
       return b;
     });
     card.appendChild(choices);
+    card.appendChild(h('div', { class: 'later-row' }, laterButton(app, q))); // 答える前から印を付けられる（迷った問題に）
     root.appendChild(card);
     const after = h('div', { class: 'after' });
     root.appendChild(after);
@@ -177,7 +177,7 @@ export function renderPlay(app) {
     app.commit();
     const wrong = S.results.filter((r) => !r.correct);
     const card = h('div', { class: 'card result' },
-      h('h1', { text: spec.mode === 'review' ? '復習おわり' : spec.mode === 'challenge' ? challengeName(app.config) + ' 結果' : 'ステージ結果' }),
+      h('h1', { text: spec.mode === 'review' ? '復習おわり' : spec.mode === 'later' ? 'あとで見る おわり' : spec.mode === 'challenge' ? challengeName(app.config) + ' 結果' : 'ステージ結果' }),
       h('p', { class: 'score' }, h('strong', { text: ok + ' / ' + total }), ' 正解（' + Math.round((ok / Math.max(1, total)) * 100) + '%）'),
       h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
     if (starInfo) {

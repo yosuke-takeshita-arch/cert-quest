@@ -5,6 +5,7 @@ import { DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, normalizeSoundSettings } from '
 import { normalizeExamSettings } from './examdate.js';
 import { DEFAULT_TEXT_SIZE, normalizeTextSize } from './textsize.js';
 import { DEFAULT_MAP_VIEW, normalizeMapView } from './maplayout.js';
+import { normalizeLater } from './later.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -19,6 +20,7 @@ export function defaultState() {
     badges: {},
     exams: [],
     examSeen: {}, // 模試で最後に出た時刻（問題ID → ミリ秒）。次の模試で、まだ出ていない問題・古く出た問題を優先するのに使う
+    later: {}, // 「あとで見る」の印（問題ID → 印を付けた時刻のミリ秒）
     challenge: { runs: 0, best: 0 },
     settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
     goalAwarded: null,
@@ -42,6 +44,7 @@ export function mergeState(saved) {
     for (const [id, t] of Object.entries(saved.examSeen)) if (typeof t === 'number' && Number.isFinite(t)) seen[id] = t;
   }
   o.examSeen = seen;
+  o.later = normalizeLater(saved.later); // 「あとで見る」。古い記録（項目なし）は空、数でない値は捨てる
   if (!Number.isFinite(o.xp)) o.xp = 0;
   o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
