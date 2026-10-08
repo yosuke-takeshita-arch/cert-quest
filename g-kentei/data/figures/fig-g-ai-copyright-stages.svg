@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 728" role="img" aria-labelledby="fig-g-ai-copyright-stages-t fig-g-ai-copyright-stages-d">
+<title id="fig-g-ai-copyright-stages-t">AIと著作権：学習・生成と利用・生成物の3つに分けて考える</title>
+<desc id="fig-g-ai-copyright-stages-d">①学習の段階（著作権法第30条の4）。ネットの記事を集めて学習に使うのは、単語の並びなどを解析するためで、作品を楽しむ（享受する）ためではないので、必要な限度で許諾なく使える。1人の漫画家の絵だけで追加学習し、その絵をそっくり出力させるのは、楽しませる目的も併せ持つので使えない。権利者の利益を不当に害する場合も使えない。利用規約で学習が禁止されていれば、契約の問題は別に残る。②生成物を使う段階。2行2列の表で、類似性（既存の作品と似ている）と依拠性（既存の作品をもとにした）の両方がある場合だけが侵害になり、どちらかが無ければ侵害ではない。学習データにその作品が入っていれば、利用者が知らなくても通常は依拠性が推認される。作風や画風が似るだけでは類似性は無い。③生成物が守られるか（著作物性）。AIが自律的に作ったものは著作物でない。「猫の絵」と入力して選んだだけなら著作物と認められにくく、構図や色を具体的に指示し直したり人が加筆したりすれば、その人の著作物になりうる。②は他人の権利を侵すか、③は自分の作品が守られるかで、別の問題。</desc>
+<text x="12" y="20" class="tb">AIと著作権：段階に分けて考える</text>
+<text x="12" y="44" class="tb ta">① 学習の段階（第30条の4）</text>
+<rect x="12" y="56" width="296" height="68" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="76">ネットの記事を集めて学習に使う</text>
+<text x="22" y="94" class="tm">目的：単語の並びなどを解析する</text>
+<text x="22" y="114" class="tb tok">→ 許諾なく使える（必要な限度で）</text>
+<rect x="12" y="132" width="296" height="68" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="152">1人の漫画家の絵だけで追加学習</text>
+<text x="22" y="170" class="tm">目的：その絵をそっくり出力させる</text>
+<text x="22" y="190" class="tb tng">→ 楽しませる目的もあり、使えない</text>
+<text x="12" y="220" class="tm">権利者の利益を不当に害する場合も使えない</text>
+<text x="12" y="240" class="tm">利用規約で禁止なら、契約の問題は別に残る</text>
+<line x1="12" y1="256" x2="308" y2="256" class="l sb w1"/>
+<text x="12" y="280" class="tb ta">② 生成物を使う段階（侵害か）</text>
+<text x="12" y="300" class="tm">類似性と依拠性が両方そろうと侵害</text>
+<rect x="12" y="310" width="296" height="128" class="fs sb" stroke-width="1.5"/>
+<rect x="108" y="354" width="100" height="42" class="fng"/>
+<rect x="208" y="354" width="100" height="42" class="fok"/>
+<rect x="108" y="396" width="100" height="42" class="fok"/>
+<rect x="208" y="396" width="100" height="42" class="fok"/>
+<line x1="108" y1="310" x2="108" y2="438" class="l sb w1"/>
+<line x1="208" y1="310" x2="208" y2="438" class="l sb w1"/>
+<line x1="12" y1="354" x2="308" y2="354" class="l sb w1"/>
+<line x1="12" y1="396" x2="308" y2="396" class="l sb w1"/>
+<text x="158" y="328" class="tb" text-anchor="middle">類似性あり</text>
+<text x="158" y="346" class="tm" text-anchor="middle">似ている</text>
+<text x="258" y="328" class="tb" text-anchor="middle">類似性なし</text>
+<text x="258" y="346" class="tm" text-anchor="middle">似ていない</text>
+<text x="60" y="371" class="tb" text-anchor="middle">依拠性あり</text>
+<text x="60" y="389" class="tm" text-anchor="middle">もとにした</text>
+<text x="60" y="413" class="tb" text-anchor="middle">依拠性なし</text>
+<text x="60" y="431" class="tm" text-anchor="middle">もとにしない</text>
+<text x="158" y="380" class="tb tng" text-anchor="middle">侵害になる</text>
+<text x="258" y="380" class="tok" text-anchor="middle">侵害でない</text>
+<text x="158" y="422" class="tok" text-anchor="middle">侵害でない</text>
+<text x="258" y="422" class="tok" text-anchor="middle">侵害でない</text>
+<text x="12" y="460" class="tm">依拠性：学習データに入っていれば、利用者</text>
+<text x="12" y="480" class="tm">が知らなくても、通常は推認される</text>
+<text x="12" y="500" class="tm">作風・画風が似るだけでは、類似性は無い</text>
+<line x1="12" y1="516" x2="308" y2="516" class="l sb w1"/>
+<text x="12" y="540" class="tb ta">③ 生成物は守られるか（著作物性）</text>
+<text x="12" y="560" class="tm">AIが自律的に作ったもの → 著作物でない</text>
+<rect x="12" y="570" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="590">「猫の絵」と入れ、選んだだけ</text>
+<text x="22" y="608" class="tb tng">→ 著作物と認められにくい</text>
+<rect x="12" y="626" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="646">構図や色を具体的に指示し直す・加筆</text>
+<text x="22" y="664" class="tb tok">→ その人の著作物になりうる</text>
+<text x="12" y="696" class="tb">②は他人の権利を侵すか</text>
+<text x="12" y="716" class="tb">③は自分の作品が守られるか（別の問題）</text>
+</svg>

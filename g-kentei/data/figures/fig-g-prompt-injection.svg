@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-g-prompt-injection-t fig-g-prompt-injection-d">
+<title id="fig-g-prompt-injection-t">プロンプトインジェクション：入力の文章に命令を紛れ込ませる</title>
+<desc id="fig-g-prompt-injection-d">上の枠は、LLMが受け取るもの。開発者の指示、利用者の質問、読み込んだ文書の3つを、どれも同じ文章として受け取るので、文書の中の1文が指示として働いてしまう。①直接型：利用者が自分で細工した入力を打ち込み、LLMに渡す。②間接型の例：攻撃者が共有フォルダの資料に白い文字で命令を書き込む。社員がチャットボットに質問すると、チャットボットは検索でその資料を読み込み、社員への回答に不審なURLを付けてしまう。対策は、権限を最小にする、重要な操作には人の承認を挟むなどで、RAGやファインチューニングだけでは完全には防げない。混同しやすいもの：データ汚染は学習データに細工する。敵対的サンプルは小さなノイズで誤分類させる。</desc>
+<text x="12" y="20" class="tb">プロンプトインジェクション</text>
+<rect x="12" y="32" width="296" height="66" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="52" class="tb ta">LLMが受け取るもの（どれも文章）</text>
+<rect x="20" y="62" width="88" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="64" y="81" text-anchor="middle">開発者の指示</text>
+<rect x="116" y="62" width="88" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="160" y="81" text-anchor="middle">利用者の質問</text>
+<rect x="212" y="62" width="88" height="28" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="256" y="81" class="tng" text-anchor="middle">読んだ文書</text>
+<text x="12" y="118" class="tm">文書の中の1文が、指示として働いてしまう</text>
+<line x1="12" y1="134" x2="308" y2="134" class="l sb w1"/>
+<text x="12" y="158" class="tb ta">① 直接型：利用者が自分で打つ</text>
+<rect x="12" y="170" width="90" height="34" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="57" y="192" class="tng" text-anchor="middle">利用者</text>
+<text x="145" y="182" class="tm" text-anchor="middle">細工した入力</text>
+<line x1="102" y1="190" x2="182.4" y2="190" class="l sm w1"/>
+<polygon points="188,190 182.4,186.5 182.4,193.5" class="fm"/>
+<rect x="188" y="170" width="120" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="248" y="192" class="tb" text-anchor="middle">LLM</text>
+<line x1="12" y1="220" x2="308" y2="220" class="l sb w1"/>
+<text x="12" y="244" class="tb ta">② 間接型：文書を経由する（例）</text>
+<rect x="12" y="256" width="90" height="34" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="57" y="278" class="tng" text-anchor="middle">攻撃者</text>
+<text x="145" y="266" class="tm" text-anchor="middle">命令を書く</text>
+<line x1="102" y1="274" x2="182.4" y2="274" class="l sm w1"/>
+<polygon points="188,274 182.4,270.5 182.4,277.5" class="fm"/>
+<rect x="188" y="256" width="120" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="248" y="276" text-anchor="middle">共有の資料</text>
+<text x="248" y="296" class="tng" text-anchor="middle">白い文字の命令</text>
+<line x1="248" y1="306" x2="248" y2="326.4" class="l sm w1"/>
+<polygon points="248,332 244.5,326.4 251.5,326.4" class="fm"/>
+<text x="240" y="324" class="tm" text-anchor="end">検索で読み込む</text>
+<rect x="12" y="332" width="90" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="57" y="354" text-anchor="middle">社員</text>
+<text x="145" y="344" class="tm" text-anchor="middle">質問</text>
+<line x1="102" y1="352" x2="182.4" y2="352" class="l sm w1"/>
+<polygon points="188,352 182.4,348.5 182.4,355.5" class="fm"/>
+<rect x="188" y="332" width="120" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="248" y="354" class="tb" text-anchor="middle">チャットボット</text>
+<line x1="248" y1="366" x2="248" y2="380.4" class="l sm w1"/>
+<polygon points="248,386 244.5,380.4 251.5,380.4" class="fm"/>
+<rect x="188" y="386" width="120" height="50" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="248" y="406" class="tng" text-anchor="middle">回答に</text>
+<text x="248" y="426" class="tb tng" text-anchor="middle">不審なURL</text>
+<line x1="188" y1="411" x2="57" y2="411" class="l sng"/>
+<line x1="57" y1="411" x2="57" y2="371.6" class="l sng"/>
+<polygon points="57,366 53.5,371.6 60.5,371.6" class="fm"/>
+<text x="122" y="404" class="tng" text-anchor="middle">社員に届く</text>
+<text x="12" y="466" class="tm">対策：権限を最小に・重要な操作は人が承認</text>
+<text x="12" y="486" class="tm">RAGやファインチューニングだけでは防げない</text>
+<text x="12" y="514" class="tb">混同しやすいもの</text>
+<text x="12" y="534" class="tm">データ汚染：学習データに細工する</text>
+<text x="12" y="554" class="tm">敵対的サンプル：小さなノイズで誤分類させる</text>
+</svg>

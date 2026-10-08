@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 712" role="img" aria-labelledby="fig-g-conditional-probability-t fig-g-conditional-probability-d">
+<title id="fig-g-conditional-probability-t">条件付き確率：分かった条件の中だけを新しい全体にする</title>
+<desc id="fig-g-conditional-probability-d">点1つを社員1人として、社員100人を10行10列の点で描く。塗った点は英語が話せる人で20人、緑の枠で囲んだ3列は営業部で30人、営業部で英語も話せる人は12人。全体100人の中で両方に当たる割合は12÷100＝0.12で、これは同時確率。②営業部の人だと分かったら、営業部の30人だけを新しい全体として並べ直す。その中で英語が話せる人は12人なので、P(英語｜営業)＝12÷30＝0.4。③英語が話せる人だと分かったら、英語が話せる20人だけを新しい全体にする。その中で営業部の人は12人なので、P(営業｜英語)＝12÷20＝0.6。条件付き確率は、AとBが両方起きる人数を、条件Bに当たる人数で割る。条件を入れ替えると、割る相手が30人か20人かで変わるので、値も変わる。</desc>
+<text x="12" y="20" class="tb">条件付き確率：条件の中だけで割合を見る</text>
+<text x="12" y="44" class="tb">① 社員100人（点1つ＝1人）</text>
+<circle cx="32" cy="64" r="5" class="fa"/> <circle cx="48" cy="64" r="5" class="fa"/> <circle cx="64" cy="64" r="5" class="fa"/> <circle cx="80" cy="64" r="5" class="fa"/> <circle cx="96" cy="64" r="5" class="fa"/> <circle cx="112" cy="64" r="4.5" class="l sm w1"/> <circle cx="128" cy="64" r="4.5" class="l sm w1"/> <circle cx="144" cy="64" r="4.5" class="l sm w1"/> <circle cx="160" cy="64" r="4.5" class="l sm w1"/> <circle cx="176" cy="64" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="80" r="5" class="fa"/> <circle cx="48" cy="80" r="5" class="fa"/> <circle cx="64" cy="80" r="5" class="fa"/> <circle cx="80" cy="80" r="5" class="fa"/> <circle cx="96" cy="80" r="5" class="fa"/> <circle cx="112" cy="80" r="4.5" class="l sm w1"/> <circle cx="128" cy="80" r="4.5" class="l sm w1"/> <circle cx="144" cy="80" r="4.5" class="l sm w1"/> <circle cx="160" cy="80" r="4.5" class="l sm w1"/> <circle cx="176" cy="80" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="96" r="5" class="fa"/> <circle cx="48" cy="96" r="5" class="fa"/> <circle cx="64" cy="96" r="5" class="fa"/> <circle cx="80" cy="96" r="5" class="fa"/> <circle cx="96" cy="96" r="5" class="fa"/> <circle cx="112" cy="96" r="4.5" class="l sm w1"/> <circle cx="128" cy="96" r="4.5" class="l sm w1"/> <circle cx="144" cy="96" r="4.5" class="l sm w1"/> <circle cx="160" cy="96" r="4.5" class="l sm w1"/> <circle cx="176" cy="96" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="112" r="5" class="fa"/> <circle cx="48" cy="112" r="5" class="fa"/> <circle cx="64" cy="112" r="5" class="fa"/> <circle cx="80" cy="112" r="5" class="fa"/> <circle cx="96" cy="112" r="5" class="fa"/> <circle cx="112" cy="112" r="4.5" class="l sm w1"/> <circle cx="128" cy="112" r="4.5" class="l sm w1"/> <circle cx="144" cy="112" r="4.5" class="l sm w1"/> <circle cx="160" cy="112" r="4.5" class="l sm w1"/> <circle cx="176" cy="112" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="128" r="4.5" class="l sm w1"/> <circle cx="48" cy="128" r="4.5" class="l sm w1"/> <circle cx="64" cy="128" r="4.5" class="l sm w1"/> <circle cx="80" cy="128" r="4.5" class="l sm w1"/> <circle cx="96" cy="128" r="4.5" class="l sm w1"/> <circle cx="112" cy="128" r="4.5" class="l sm w1"/> <circle cx="128" cy="128" r="4.5" class="l sm w1"/> <circle cx="144" cy="128" r="4.5" class="l sm w1"/> <circle cx="160" cy="128" r="4.5" class="l sm w1"/> <circle cx="176" cy="128" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="144" r="4.5" class="l sm w1"/> <circle cx="48" cy="144" r="4.5" class="l sm w1"/> <circle cx="64" cy="144" r="4.5" class="l sm w1"/> <circle cx="80" cy="144" r="4.5" class="l sm w1"/> <circle cx="96" cy="144" r="4.5" class="l sm w1"/> <circle cx="112" cy="144" r="4.5" class="l sm w1"/> <circle cx="128" cy="144" r="4.5" class="l sm w1"/> <circle cx="144" cy="144" r="4.5" class="l sm w1"/> <circle cx="160" cy="144" r="4.5" class="l sm w1"/> <circle cx="176" cy="144" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="160" r="4.5" class="l sm w1"/> <circle cx="48" cy="160" r="4.5" class="l sm w1"/> <circle cx="64" cy="160" r="4.5" class="l sm w1"/> <circle cx="80" cy="160" r="4.5" class="l sm w1"/> <circle cx="96" cy="160" r="4.5" class="l sm w1"/> <circle cx="112" cy="160" r="4.5" class="l sm w1"/> <circle cx="128" cy="160" r="4.5" class="l sm w1"/> <circle cx="144" cy="160" r="4.5" class="l sm w1"/> <circle cx="160" cy="160" r="4.5" class="l sm w1"/> <circle cx="176" cy="160" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="176" r="4.5" class="l sm w1"/> <circle cx="48" cy="176" r="4.5" class="l sm w1"/> <circle cx="64" cy="176" r="4.5" class="l sm w1"/> <circle cx="80" cy="176" r="4.5" class="l sm w1"/> <circle cx="96" cy="176" r="4.5" class="l sm w1"/> <circle cx="112" cy="176" r="4.5" class="l sm w1"/> <circle cx="128" cy="176" r="4.5" class="l sm w1"/> <circle cx="144" cy="176" r="4.5" class="l sm w1"/> <circle cx="160" cy="176" r="4.5" class="l sm w1"/> <circle cx="176" cy="176" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="192" r="4.5" class="l sm w1"/> <circle cx="48" cy="192" r="4.5" class="l sm w1"/> <circle cx="64" cy="192" r="4.5" class="l sm w1"/> <circle cx="80" cy="192" r="4.5" class="l sm w1"/> <circle cx="96" cy="192" r="4.5" class="l sm w1"/> <circle cx="112" cy="192" r="4.5" class="l sm w1"/> <circle cx="128" cy="192" r="4.5" class="l sm w1"/> <circle cx="144" cy="192" r="4.5" class="l sm w1"/> <circle cx="160" cy="192" r="4.5" class="l sm w1"/> <circle cx="176" cy="192" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="208" r="4.5" class="l sm w1"/> <circle cx="48" cy="208" r="4.5" class="l sm w1"/> <circle cx="64" cy="208" r="4.5" class="l sm w1"/> <circle cx="80" cy="208" r="4.5" class="l sm w1"/> <circle cx="96" cy="208" r="4.5" class="l sm w1"/> <circle cx="112" cy="208" r="4.5" class="l sm w1"/> <circle cx="128" cy="208" r="4.5" class="l sm w1"/> <circle cx="144" cy="208" r="4.5" class="l sm w1"/> <circle cx="160" cy="208" r="4.5" class="l sm w1"/> <circle cx="176" cy="208" r="4.5" class="l sm w1"/>
+<rect x="22" y="54" width="52" height="164" rx="4" class="l sok"/>
+<circle cx="202" cy="64" r="5" class="fa"/>
+<text x="212" y="69">英語を話す</text>
+<text x="212" y="87" class="tb">20人</text>
+<circle cx="202" cy="110" r="4.5" class="l sm w1"/>
+<text x="212" y="115">話さない</text>
+<text x="212" y="133" class="tb">80人</text>
+<rect x="196" y="150" width="12" height="12" rx="2" class="l sok"/>
+<text x="212" y="161" class="tok">営業部</text>
+<text x="212" y="179" class="tb tok">30人</text>
+<text x="196" y="203" class="tm">枠の中の</text>
+<text x="196" y="221" class="tm">塗った点＝12人</text>
+<text x="12" y="246">両方に当たる人：100人中12人</text>
+<text x="12" y="266" class="tm">12÷100＝0.12（同時確率）</text>
+<line x1="12" y1="284" x2="308" y2="284" class="l sb w1"/>
+<text x="12" y="308" class="tb">② 営業部の人だと分かったら</text>
+<text x="12" y="328" class="tm">営業部の30人だけを新しい全体にする</text>
+<circle cx="32" cy="350" r="5" class="fa"/> <circle cx="48" cy="350" r="5" class="fa"/> <circle cx="64" cy="350" r="5" class="fa"/> <circle cx="80" cy="350" r="5" class="fa"/> <circle cx="96" cy="350" r="4.5" class="l sm w1"/> <circle cx="112" cy="350" r="4.5" class="l sm w1"/> <circle cx="128" cy="350" r="4.5" class="l sm w1"/> <circle cx="144" cy="350" r="4.5" class="l sm w1"/> <circle cx="160" cy="350" r="4.5" class="l sm w1"/> <circle cx="176" cy="350" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="366" r="5" class="fa"/> <circle cx="48" cy="366" r="5" class="fa"/> <circle cx="64" cy="366" r="5" class="fa"/> <circle cx="80" cy="366" r="5" class="fa"/> <circle cx="96" cy="366" r="4.5" class="l sm w1"/> <circle cx="112" cy="366" r="4.5" class="l sm w1"/> <circle cx="128" cy="366" r="4.5" class="l sm w1"/> <circle cx="144" cy="366" r="4.5" class="l sm w1"/> <circle cx="160" cy="366" r="4.5" class="l sm w1"/> <circle cx="176" cy="366" r="4.5" class="l sm w1"/>
+<circle cx="32" cy="382" r="5" class="fa"/> <circle cx="48" cy="382" r="5" class="fa"/> <circle cx="64" cy="382" r="5" class="fa"/> <circle cx="80" cy="382" r="5" class="fa"/> <circle cx="96" cy="382" r="4.5" class="l sm w1"/> <circle cx="112" cy="382" r="4.5" class="l sm w1"/> <circle cx="128" cy="382" r="4.5" class="l sm w1"/> <circle cx="144" cy="382" r="4.5" class="l sm w1"/> <circle cx="160" cy="382" r="4.5" class="l sm w1"/> <circle cx="176" cy="382" r="4.5" class="l sm w1"/>
+<rect x="22" y="340" width="164" height="52" rx="4" class="l sok"/>
+<text x="196" y="362" class="tm">①の枠の</text>
+<text x="196" y="380" class="tm">30人を並べ直した</text>
+<text x="12" y="416">英語を話す人は、30人中12人</text>
+<text x="12" y="438" class="tb ta">P(英語｜営業)＝12÷30＝0.4</text>
+<line x1="12" y1="456" x2="308" y2="456" class="l sb w1"/>
+<text x="12" y="480" class="tb">③ 英語を話す人だと分かったら</text>
+<text x="12" y="500" class="tm">英語の20人だけを新しい全体にする</text>
+<circle cx="32" cy="522" r="5" class="fa"/> <circle cx="48" cy="522" r="5" class="fa"/> <circle cx="64" cy="522" r="5" class="fa"/> <circle cx="80" cy="522" r="5" class="fa"/> <circle cx="96" cy="522" r="5" class="fa"/> <circle cx="112" cy="522" r="5" class="fa"/> <circle cx="128" cy="522" r="5" class="fa"/> <circle cx="144" cy="522" r="5" class="fa"/> <circle cx="160" cy="522" r="5" class="fa"/> <circle cx="176" cy="522" r="5" class="fa"/>
+<circle cx="32" cy="538" r="5" class="fa"/> <circle cx="48" cy="538" r="5" class="fa"/> <circle cx="64" cy="538" r="5" class="fa"/> <circle cx="80" cy="538" r="5" class="fa"/> <circle cx="96" cy="538" r="5" class="fa"/> <circle cx="112" cy="538" r="5" class="fa"/> <circle cx="128" cy="538" r="5" class="fa"/> <circle cx="144" cy="538" r="5" class="fa"/> <circle cx="160" cy="538" r="5" class="fa"/> <circle cx="176" cy="538" r="5" class="fa"/>
+<rect x="22" y="512" width="100" height="36" rx="4" class="l sok"/>
+<text x="196" y="526" class="tm">緑の枠＝</text>
+<text x="196" y="544" class="tm">営業部の12人</text>
+<text x="12" y="572">営業部の人は、20人中12人</text>
+<text x="12" y="594" class="tb ta">P(営業｜英語)＝12÷20＝0.6</text>
+<line x1="12" y1="612" x2="308" y2="612" class="l sb w1"/>
+<text x="12" y="636" class="tb">ことばの式</text>
+<text x="12" y="656">Bのときの Aの確率＝両方の数÷Bの数</text>
+<text x="12" y="680" class="tm">条件を入れ替えると、割る相手（30人</text>
+<text x="12" y="700" class="tm">か20人か）が変わり、値も変わる</text>
+</svg>

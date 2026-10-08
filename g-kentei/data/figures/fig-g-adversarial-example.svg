@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 448" role="img" aria-labelledby="fig-g-adversarial-example-t fig-g-adversarial-example-d">
+<title id="fig-g-adversarial-example-t">敵対的サンプル：小さな細工で、AIが自信満々に間違える</title>
+<desc id="fig-g-adversarial-example-d">上の段は、ふだんの止まれの標識（一時停止の標識）。認識AIに入れると一時停止と答え、確信度の棒はほぼいっぱい。下の段は、同じ標識に、人の目にはただの汚れにしか見えない細工のシールを貼ったもの。AIは速度制限と答え、確信度の棒はやはりほぼいっぱいで、自信満々に間違える。人の目には、どちらも同じ標識に見える。ポイント：学習データには何もせず、使う時の入力だけを細工する推論時の攻撃。細工は、AIが最も誤りやすくなるよう計算して作った小さなノイズ（摂動）。学習データに細工するのはポイズニングで、別の攻撃。対策は、頑健性の向上と評価、入力の制限、検知など。</desc>
+<text x="12" y="20" class="tb">敵対的サンプル：自信満々に間違える</text>
+<polygon points="24,40 104,40 64,108" class="fng sng" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="64" y="64" class="tb tng" text-anchor="middle">止まれ</text>
+<text x="64" y="126" class="tm" text-anchor="middle">ふだんの標識</text>
+<line x1="108" y1="74" x2="130.4" y2="74" class="l sm w1"/>
+<polygon points="136,74 130.4,70.5 130.4,77.5" class="fm"/>
+<rect x="136" y="56" width="56" height="36" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="164" y="79" class="tb" text-anchor="middle">AI</text>
+<line x1="192" y1="74" x2="210.4" y2="74" class="l sm w1"/>
+<polygon points="216,74 210.4,70.5 210.4,77.5" class="fm"/>
+<rect x="216" y="44" width="92" height="62" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="262" y="66" class="tb tok" text-anchor="middle">一時停止</text>
+<text x="226" y="88" class="tm">確信度</text>
+<rect x="226" y="93" width="72" height="7" class="l sb w1"/>
+<rect x="226" y="93" width="66" height="7" class="fa"/>
+<polygon points="24,152 104,152 64,220" class="fng sng" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="64" y="176" class="tb tng" text-anchor="middle">止まれ</text>
+<rect x="88" y="157" width="8" height="5" class="ft"/>
+<rect x="49" y="185" width="9" height="5" class="ft"/>
+<rect x="68" y="192" width="7" height="5" class="ft"/>
+<text x="64" y="238" class="tm" text-anchor="middle">細工のシール</text>
+<line x1="108" y1="186" x2="130.4" y2="186" class="l sm w1"/>
+<polygon points="136,186 130.4,182.5 130.4,189.5" class="fm"/>
+<rect x="136" y="168" width="56" height="36" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="164" y="191" class="tb" text-anchor="middle">AI</text>
+<line x1="192" y1="186" x2="210.4" y2="186" class="l sm w1"/>
+<polygon points="216,186 210.4,182.5 210.4,189.5" class="fm"/>
+<rect x="216" y="156" width="92" height="62" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="262" y="178" class="tb tng" text-anchor="middle">速度制限</text>
+<text x="226" y="200" class="tm">確信度</text>
+<rect x="226" y="205" width="72" height="7" class="l sb w1"/>
+<rect x="226" y="205" width="66" height="7" class="fa"/>
+<text x="12" y="266" class="tb">人の目には、どちらも同じ標識</text>
+<text x="12" y="286" class="tb tng">AIだけが、自信満々に間違える</text>
+<line x1="12" y1="302" x2="308" y2="302" class="l sb w1"/>
+<text x="12" y="326" class="tb">使う時の入力だけを細工する</text>
+<text x="12" y="346" class="tm">学習データには何もしない（推論時の攻撃）</text>
+<text x="12" y="370" class="tb">細工＝計算して作った小さなノイズ</text>
+<text x="12" y="390" class="tm">AIが最も誤りやすくなる向きに作る（摂動）</text>
+<text x="12" y="414" class="tm">学習データへの細工はポイズニング（別物）</text>
+<text x="12" y="434" class="tm">対策：頑健性の向上と評価・入力の制限・検知</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 696" role="img" aria-labelledby="fig-g-personal-info-t fig-g-personal-info-d">
+<title id="fig-g-personal-info-t">個人情報に当たるか：2つの入口</title>
+<desc id="fig-g-personal-info-d">最初の問いは、生きている人についての情報か。いいえなら当たらない（亡くなった人の情報など）。はいなら入口が2つある。①氏名・生年月日などの記述で誰か分かるもの。他の情報と照らし合わせて誰か分かるものも含む（第2条第1項第1号）。②個人識別符号を含むもの。それだけで1人を指せる符号で、顔の特徴量データや旅券番号など（第2号）。どちらかに当たれば個人情報。例1：通販サイトの購買履歴「会員番号A123、1月5日に靴を購入」の1行だけでは誰か分からないが、同じ会社の会員名簿でA123＝山田花子と引けるなら、容易に照合して誰か分かるので、①の入口で個人情報に当たる。例2：顔の特徴量データ、旅券番号・運転免許証番号は②に当たる。電話番号や会員IDは個人識別符号の一覧に入っていないが、名簿と照合して誰か分かれば①で当たる。</desc>
+<text x="12" y="20" class="tb">個人情報に当たるか：2つの入口</text>
+<rect x="12" y="32" width="140" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="82" y="54" class="tb" text-anchor="middle">生きている人</text>
+<text x="82" y="72" class="tb" text-anchor="middle">の情報？</text>
+<text x="174" y="52" class="tm" text-anchor="middle">いいえ</text>
+<line x1="152" y1="62" x2="192.4" y2="62" class="l sm w1"/>
+<polygon points="198,62 192.4,58.5 192.4,65.5" class="fm"/>
+<rect x="200" y="32" width="108" height="50" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="254" y="54" class="tb tng" text-anchor="middle">当たらない</text>
+<text x="254" y="72" class="tng" text-anchor="middle">亡くなった人</text>
+<line x1="82" y1="82" x2="82" y2="100" class="l sm w1"/>
+<text x="90" y="96" class="tm">はい</text>
+<line x1="84" y1="100" x2="236" y2="100" class="l sm w1"/>
+<line x1="82" y1="100" x2="84" y2="100" class="l sm w1"/>
+<line x1="84" y1="100" x2="84" y2="106.4" class="l sm w1"/>
+<polygon points="84,112 80.5,106.4 87.5,106.4" class="fm"/>
+<line x1="236" y1="100" x2="236" y2="106.4" class="l sm w1"/>
+<polygon points="236,112 232.5,106.4 239.5,106.4" class="fm"/>
+<rect x="12" y="112" width="144" height="124" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="134" class="tb ta">① 記述で分かる</text>
+<text x="22" y="156">氏名・生年月日</text>
+<text x="22" y="176">などで誰か分かる</text>
+<text x="22" y="200" class="tm">他の情報と照らして</text>
+<text x="22" y="220" class="tm">分かるものも含む</text>
+<rect x="164" y="112" width="144" height="124" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="174" y="134" class="tb ta">② 識別符号を含む</text>
+<text x="174" y="156">それだけで1人を</text>
+<text x="174" y="176">指せる符号</text>
+<text x="174" y="200" class="tm">顔の特徴量データ</text>
+<text x="174" y="220" class="tm">旅券番号など</text>
+<line x1="84" y1="236" x2="84" y2="250.4" class="l sm w1"/>
+<polygon points="84,256 80.5,250.4 87.5,250.4" class="fm"/>
+<line x1="236" y1="236" x2="236" y2="250.4" class="l sm w1"/>
+<polygon points="236,256 232.5,250.4 239.5,250.4" class="fm"/>
+<rect x="12" y="256" width="296" height="34" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="278" class="tb tok" text-anchor="middle">どちらかに当たれば、個人情報</text>
+<text x="12" y="312" class="tm">①は第2条第1項第1号、②は第2号</text>
+<line x1="12" y1="328" x2="308" y2="328" class="l sb w1"/>
+<text x="12" y="352" class="tb">例1：購買履歴の1行（①の入口）</text>
+<rect x="12" y="362" width="296" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="382" text-anchor="middle">会員番号A123、1月5日に靴を購入</text>
+<text x="160" y="410" class="tb" text-anchor="middle">＋</text>
+<rect x="12" y="418" width="296" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="438" text-anchor="middle">同じ会社の会員名簿：A123＝山田花子</text>
+<line x1="160" y1="448" x2="160" y2="462.4" class="l sm w1"/>
+<polygon points="160,468 156.5,462.4 163.5,462.4" class="fm"/>
+<rect x="12" y="468" width="296" height="34" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="490" class="tb tok" text-anchor="middle">照らし合わせて誰か分かる → 当たる</text>
+<text x="12" y="524" class="tm">上の1行だけでは誰か分からない。</text>
+<text x="12" y="544" class="tm">名簿と容易に引けるので、個人情報になる</text>
+<line x1="12" y1="562" x2="308" y2="562" class="l sb w1"/>
+<text x="12" y="586" class="tb">例2：個人識別符号か（②の入口）</text>
+<text x="12" y="612">顔の特徴量データ</text>
+<text x="308" y="612" class="tb tok" text-anchor="end">②に当たる</text>
+<text x="12" y="636">旅券番号・運転免許証番号</text>
+<text x="308" y="636" class="tb tok" text-anchor="end">②に当たる</text>
+<text x="12" y="660">電話番号・会員ID</text>
+<text x="308" y="660" class="tb twn" text-anchor="end">符号ではない</text>
+<text x="12" y="684" class="tm">→ 名簿と照らして誰か分かれば①で当たる</text>
+</svg>
