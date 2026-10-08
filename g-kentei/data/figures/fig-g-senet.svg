@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 430" role="img" aria-labelledby="fig-g-senet-t fig-g-senet-d">
+<title id="fig-g-senet-t">SENet：チャネルごとに 0〜1 の重みを掛け直す</title>
+<desc id="fig-g-senet-d">犬の画像の特徴マップのうち、縦の線・毛並み・空の色に反応する3つのチャネルを描いた。Squeeze（絞る）：各チャネルの面を縦横に平均して1つの数にする。Excitation（重みを出す）：3つの数をまとめて小さな全結合層2つに通し、チャネルごとに0〜1の重みを出す。縦の線は0.5、毛並みは0.9、空の色は0.1。最後に各チャネルの面全体にその重みを掛ける。毛並みの面はほぼそのまま残り、空の色の面はほとんど消える。重みはチャネルに1つで、同じ面の中はどの場所も同じ重み。実際は64チャネルなどで、3つだけ描いた。数は説明用の作り例。</desc>
+<text x="12" y="20" class="tb">SENet：チャネルごとに重みを掛け直す</text>
+<text x="76" y="48" class="tm" text-anchor="middle">面</text>
+<text x="128" y="48" class="tm" text-anchor="middle">絞る</text>
+<text x="212" y="48" class="tm" text-anchor="middle">重みを出す</text>
+<text x="288" y="48" class="tm" text-anchor="middle">掛ける</text>
+<text x="128" y="66" class="tb ta" text-anchor="middle">Squeeze</text>
+<text x="212" y="66" class="tb ta" text-anchor="middle">Excitation</text>
+<text x="12" y="103">縦の線</text>
+<rect x="58" y="80" width="36" height="36" class="fs sm" stroke-width="1"/>
+<line x1="68" y1="86" x2="68" y2="110" class="l"/>
+<line x1="76" y1="86" x2="76" y2="110" class="l"/>
+<line x1="84" y1="86" x2="84" y2="110" class="l"/>
+<text x="12" y="153">毛並み</text>
+<rect x="58" y="130" width="36" height="36" class="fs sm" stroke-width="1"/>
+<polyline points="64,140 68,136 72,140 76,136 80,140 84,136 88,140" class="l"/>
+<polyline points="64,150 68,146 72,150 76,146 80,150 84,146 88,150" class="l"/>
+<polyline points="64,160 68,156 72,160 76,156 80,160 84,156 88,160" class="l"/>
+<text x="12" y="203">空の色</text>
+<rect x="58" y="180" width="36" height="36" class="fs sm" stroke-width="1"/>
+<rect x="63" y="185" width="26" height="26" class="fa"/>
+<line x1="94" y1="98" x2="110" y2="98" class="l sm w1"/>
+<line x1="94" y1="148" x2="110" y2="148" class="l sm w1"/>
+<line x1="94" y1="198" x2="110" y2="198" class="l sm w1"/>
+<rect x="110" y="86" width="36" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="128" y="103" class="ta" text-anchor="middle">平均</text>
+<rect x="110" y="136" width="36" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="128" y="153" class="ta" text-anchor="middle">平均</text>
+<rect x="110" y="186" width="36" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="128" y="203" class="ta" text-anchor="middle">平均</text>
+<line x1="146" y1="98" x2="162" y2="148" class="l sm w1"/>
+<line x1="146" y1="148" x2="162" y2="148" class="l sm w1"/>
+<line x1="146" y1="198" x2="162" y2="148" class="l sm w1"/>
+<rect x="162" y="96" width="46" height="104" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="185" y="132" class="ta" text-anchor="middle">全結合</text>
+<text x="185" y="152" class="ta" text-anchor="middle">2つ</text>
+<text x="185" y="172" class="tm" text-anchor="middle">まとめて</text>
+<line x1="208" y1="148" x2="222" y2="98" class="l sm w1"/>
+<line x1="208" y1="148" x2="222" y2="148" class="l sm w1"/>
+<line x1="208" y1="148" x2="222" y2="198" class="l sm w1"/>
+<rect x="222" y="86" width="36" height="24" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="240" y="103" class="tb tok" text-anchor="middle">0.5</text>
+<rect x="222" y="136" width="36" height="24" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="240" y="153" class="tb tok" text-anchor="middle">0.9</text>
+<rect x="222" y="186" width="36" height="24" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="240" y="203" class="tb tok" text-anchor="middle">0.1</text>
+<text x="264" y="103" class="tm" text-anchor="middle">×</text>
+<text x="264" y="153" class="tm" text-anchor="middle">×</text>
+<text x="264" y="203" class="tm" text-anchor="middle">×</text>
+<rect x="272" y="80" width="36" height="36" class="fs sm" stroke-width="1"/>
+<g opacity="0.5">
+<line x1="282" y1="86" x2="282" y2="110" class="l"/>
+<line x1="290" y1="86" x2="290" y2="110" class="l"/>
+<line x1="298" y1="86" x2="298" y2="110" class="l"/>
+</g>
+<rect x="272" y="130" width="36" height="36" class="fs sm" stroke-width="1"/>
+<g opacity="0.9">
+<polyline points="278,140 282,136 286,140 290,136 294,140 298,136 302,140" class="l"/>
+<polyline points="278,150 282,146 286,150 290,146 294,150 298,146 302,150" class="l"/>
+<polyline points="278,160 282,156 286,160 290,156 294,160 298,156 302,160" class="l"/>
+</g>
+<rect x="272" y="180" width="36" height="36" class="fs sm" stroke-width="1"/>
+<rect x="277" y="185" width="26" height="26" class="fa" opacity="0.1"/>
+<text x="12" y="246" class="tb">犬の画像なら：毛並みを強く、空の色を弱く</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<text x="12" y="286" class="tm">Squeeze＝各チャネルの面を縦横に平均して</text>
+<text x="12" y="304" class="tm">1つの数に絞る</text>
+<text x="12" y="326" class="tm">Excitation＝全チャネルの数をまとめて見て、</text>
+<text x="12" y="344" class="tm">チャネルごとに0〜1の重みを出す</text>
+<text x="12" y="368" class="tng">重みはチャネルに1つ。同じ面の中は</text>
+<text x="12" y="386" class="tng">どの場所も同じ重み（場所ごとではない）</text>
+<text x="12" y="412" class="tm">実際は64チャネルなど。3つだけ描いた作り例</text>
+</svg>

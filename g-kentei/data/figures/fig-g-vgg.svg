@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 460" role="img" aria-labelledby="fig-g-vgg-t fig-g-vgg-d">
+<title id="fig-g-vgg-t">VGG：3×3 の小さなフィルタを重ねて深くする</title>
+<desc id="fig-g-vgg-d">①3×3 の畳み込みを2回重ねると、2層目の出力の1点は、1層目の出力の 3×3 を見ており、その1マスずつが入力の 3×3 を見ているので、合わせて入力の 5×5 を見る。左上の1マスが見る入力の範囲を青い枠で示す。3層重ねると 7×7 になる（1層ごとに幅が2広がる）。②同じ 7×7 の範囲を見るときの重みの数を、入力・出力のチャネル数がどちらも10の例で比べる。7×7 を1層なら 7×7×10×10＝4,900 個。3×3 を3層なら 900×3＝2,700 個。7×7 のほうが約81%多い（49 対 27）。さらに層の間に ReLU が3回入るので、1層より複雑な判断ができる。</desc>
+<text x="12" y="20" class="tb">VGG：3×3 を重ねて深くする</text>
+<text x="12" y="46" class="tb">① 3×3 を2回で、5×5 を見る</text>
+<rect x="12" y="60" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="30" y="60" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="48" y="60" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="66" y="60" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="84" y="60" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="12" y="78" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="30" y="78" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="48" y="78" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="66" y="78" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="84" y="78" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="12" y="96" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="30" y="96" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="48" y="96" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="66" y="96" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="84" y="96" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="12" y="114" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="30" y="114" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="48" y="114" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="66" y="114" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="84" y="114" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="12" y="132" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="30" y="132" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="48" y="132" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="66" y="132" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="84" y="132" width="18" height="18" class="fs sm" stroke-width="1"/>
+<rect x="12" y="60" width="54" height="54" class="l sa w2"/>
+<rect x="150" y="78" width="18" height="18" class="fas sa" stroke-width="2"/>
+<rect x="168" y="78" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="186" y="78" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="150" y="96" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="168" y="96" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="186" y="96" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="150" y="114" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="168" y="114" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="186" y="114" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="252" y="96" width="18" height="18" class="fwn swn" stroke-width="1.5"/>
+<line x1="150" y1="78" x2="102" y2="60" class="l sm w1 dsh"/>
+<line x1="150" y1="132" x2="102" y2="150" class="l sm w1 dsh"/>
+<line x1="252" y1="96" x2="204" y2="78" class="l sm w1 dsh"/>
+<line x1="252" y1="114" x2="204" y2="132" class="l sm w1 dsh"/>
+<text x="57" y="172" text-anchor="middle">入力</text>
+<text x="57" y="190" class="tb" text-anchor="middle">5×5</text>
+<text x="177" y="172" class="tok" text-anchor="middle">1層目の出力</text>
+<text x="177" y="190" class="tb tok" text-anchor="middle">3×3</text>
+<text x="261" y="172" class="twn" text-anchor="middle">2層目の出力</text>
+<text x="261" y="190" class="tb twn" text-anchor="middle">1点</text>
+<text x="12" y="216" class="ta">青い枠＝1層目の左上の1マスが見る範囲</text>
+<text x="12" y="238">2層目の1点 → 1層目の3×3 → 入力の5×5</text>
+<text x="12" y="256">3層重ねると 7×7（1層ごとに幅が2広がる）</text>
+<line x1="12" y1="274" x2="308" y2="274" class="l sb w1"/>
+<text x="12" y="298" class="tb">② 7×7 を見るのに要る重みの数</text>
+<text x="12" y="318" class="tm">入力・出力のチャネル数がどちらも10の例</text>
+<text x="12" y="346">7×7 を1層</text>
+<rect x="100" y="332" width="150" height="20" class="fng sng" stroke-width="1.5"/>
+<text x="256" y="347" class="tb tng">4,900</text>
+<text x="12" y="380">3×3 を3層</text>
+<rect x="100" y="366" width="27.6" height="20" class="fok sok" stroke-width="1.5"/>
+<rect x="127.6" y="366" width="27.6" height="20" class="fok sok" stroke-width="1.5"/>
+<rect x="155.2" y="366" width="27.6" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="190" y="381" class="tb tok">900×3＝2,700</text>
+<text x="12" y="410">7×7 のほうが約81%多い（49 対 27）</text>
+<text x="12" y="430" class="tm">さらに層の間に ReLU が3回入るので、</text>
+<text x="12" y="448" class="tm">1層より複雑な判断ができる</text>
+</svg>

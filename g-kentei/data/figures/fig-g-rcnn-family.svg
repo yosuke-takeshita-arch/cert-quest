@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-g-rcnn-family-t fig-g-rcnn-family-d">
+<title id="fig-g-rcnn-family-t">R-CNN・Fast R-CNN・Faster R-CNN の違い</title>
+<desc id="fig-g-rcnn-family-d">2段階型の物体検出 R-CNN 系の3つを、候補を出す・CNN をかける・分類する、の3つの役目に分けて並べた図。R-CNN は、選択的探索で候補を約2000個出し、候補ごとに CNN を2000回かけ直すので、1枚に47秒かかる（GPU、VGG16）。Fast R-CNN は、CNN を画像全体に1回だけかけ、できた特徴マップから候補の場所を切り出して分類する。推論は R-CNN の213倍速くなったが、候補出しの選択的探索は CPU で1枚約2秒かかり、遅いまま残った。Faster R-CNN は、候補を出す部分もネットワーク（RPN）にし、CNN の特徴を共有させて、候補出しを1枚約10ミリ秒にした。候補は約300個で、全体で毎秒5枚。色の付いた枠は、前の段から変えたところ。</desc>
+<text x="12" y="20" class="tb">R-CNN → Fast → Faster：何を変えたか</text>
+<text x="59" y="46" class="tm" text-anchor="middle">候補を出す</text>
+<text x="160" y="46" class="tm" text-anchor="middle">CNNをかける</text>
+<text x="261" y="46" class="tm" text-anchor="middle">分類する</text>
+<text x="12" y="74" class="tb">① R-CNN</text>
+<rect x="12" y="82" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="59" y="106" text-anchor="middle">選択的探索</text>
+<text x="59" y="126" class="tm" text-anchor="middle">約2000個</text>
+<rect x="113" y="82" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="128" y="88" width="34" height="18" class="fs sm" stroke-width="1"/>
+<rect x="124" y="92" width="34" height="18" class="fs sm" stroke-width="1"/>
+<rect x="120" y="96" width="34" height="18" class="fs sm" stroke-width="1"/>
+<text x="137" y="110" class="tm" text-anchor="middle">CNN</text>
+<text x="186" y="110" class="tb tng" text-anchor="middle">×2000</text>
+<text x="160" y="134" text-anchor="middle">候補ごとに</text>
+<rect x="214" y="82" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="261" y="106" text-anchor="middle">候補ごとに</text>
+<text x="261" y="126" text-anchor="middle">分類と枠の補正</text>
+<text x="12" y="162" class="tng">1枚に47秒。CNN を2000回かけ直すのが重い</text>
+<text x="12" y="196" class="tb">② Fast R-CNN</text>
+<rect x="12" y="204" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="59" y="228" text-anchor="middle">選択的探索</text>
+<text x="59" y="248" class="tm" text-anchor="middle">約2000個</text>
+<rect x="113" y="204" width="94" height="60" class="fas sa" stroke-width="1.5" rx="6"/>
+<rect x="128" y="214" width="34" height="18" class="fs sa" stroke-width="1"/>
+<text x="145" y="228" class="ta" text-anchor="middle">CNN</text>
+<text x="186" y="228" class="tb ta" text-anchor="middle">×1</text>
+<text x="160" y="254" text-anchor="middle">画像全体に</text>
+<rect x="214" y="204" width="94" height="60" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="261" y="228" text-anchor="middle">特徴マップから</text>
+<text x="261" y="248" text-anchor="middle">切り出して分類</text>
+<text x="12" y="284" class="tok">推論が R-CNN の213倍速くなった</text>
+<text x="12" y="304" class="tng">残った重さ：選択的探索が CPU で1枚約2秒</text>
+<text x="12" y="338" class="tb">③ Faster R-CNN</text>
+<rect x="12" y="346" width="94" height="60" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="59" y="370" text-anchor="middle">RPN（網）</text>
+<text x="59" y="390" class="tm" text-anchor="middle">約300個</text>
+<rect x="113" y="346" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="128" y="356" width="34" height="18" class="fs sm" stroke-width="1"/>
+<text x="145" y="370" class="tm" text-anchor="middle">CNN</text>
+<text x="186" y="370" class="tb" text-anchor="middle">×1</text>
+<text x="160" y="396" text-anchor="middle">画像全体に</text>
+<rect x="214" y="346" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="261" y="370" text-anchor="middle">特徴マップから</text>
+<text x="261" y="390" text-anchor="middle">切り出して分類</text>
+<line x1="160" y1="406" x2="160" y2="416" class="l sa w1"/>
+<line x1="160" y1="416" x2="59" y2="416" class="l sa w1"/>
+<line x1="59" y1="416" x2="59" y2="412" class="l sa w1"/>
+<polygon points="59,406 55.5,412 62.5,412" class="fa"/>
+<text x="168" y="430" class="ta">CNN の特徴を RPN も使う</text>
+<text x="12" y="452" class="tok">候補出しが1枚約10ミリ秒、全体で毎秒5枚</text>
+<line x1="12" y1="470" x2="308" y2="470" class="l sb w1"/>
+<text x="12" y="492" class="tm">色の付いた枠＝前の段から変えたところ</text>
+<text x="12" y="512" class="tm">選択的探索＝人が決めた特徴の似た小さな</text>
+<text x="12" y="530" class="tm">領域を順にまとめていく、学習しない方法</text>
+<text x="12" y="550" class="tm">RPN＝候補を出す役を学習するネットワーク</text>
+<text x="12" y="570" class="tm">CNN はどれも VGG16 の場合</text>
+</svg>

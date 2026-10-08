@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 628" role="img" aria-labelledby="fig-g-pspnet-deeplab-t fig-g-pspnet-deeplab-d">
+<title id="fig-g-pspnet-deeplab-t">PSPNet と DeepLab：広い範囲の文脈を集める2つのやり方</title>
+<desc id="fig-g-pspnet-deeplab-d">①PSPNet：特徴マップを、1×1・2×2・3×3・6×6 の区画に分け、区画ごとにプーリングして1つの値にまとめる。1×1 は画像全体の要約、6×6 は細かい区画ごとの様子になる。それぞれを元の大きさに戻し、元の特徴と並べて連結する。たとえば川に浮かぶボートを、見た目だけで車と取り違える誤りを、周りが川だという文脈で防ぐ。②DeepLab の Atrous 畳み込み：3×3 のフィルタの重み9個の間に隙間を空ける。rate＝1 は隙間なしで 3×3 を見る。rate＝2 は隙間1マスで 3＋2×1＝5、5×5 を見る。rate＝3 は隙間2マスで 3＋2×2＝7、7×7 を見る。重みはどれも9個のまま。rate は重みどうしの間隔。rate の違うものを並べたのが ASPP。区画に分けてまとめるのが PSPNet、間を空けて畳み込むのが DeepLab。</desc>
+<text x="12" y="20" class="tb">PSPNet と DeepLab：広く見る2つの工夫</text>
+<text x="12" y="46" class="tb">① PSPNet：区画に分けてまとめる</text>
+<text x="12" y="66" class="tm">区画ごとに1つの値にまとめる（プーリング）</text>
+<rect x="12" y="78" width="62" height="62" class="fas sa" stroke-width="1.5"/>
+<text x="43" y="160" class="tb ta" text-anchor="middle">1×1</text>
+<rect x="90" y="78" width="62" height="62" class="fas sa" stroke-width="1.5"/>
+<line x1="121" y1="78" x2="121" y2="140" class="l sa w1"/>
+<line x1="90" y1="109" x2="152" y2="109" class="l sa w1"/>
+<text x="121" y="160" class="tb ta" text-anchor="middle">2×2</text>
+<rect x="168" y="78" width="62" height="62" class="fas sa" stroke-width="1.5"/>
+<line x1="188.67000000000002" y1="78" x2="188.67000000000002" y2="140" class="l sa w1"/>
+<line x1="168" y1="98.67" x2="230" y2="98.67" class="l sa w1"/>
+<line x1="209.32999999999998" y1="78" x2="209.32999999999998" y2="140" class="l sa w1"/>
+<line x1="168" y1="119.33" x2="230" y2="119.33" class="l sa w1"/>
+<text x="199" y="160" class="tb ta" text-anchor="middle">3×3</text>
+<rect x="246" y="78" width="62" height="62" class="fas sa" stroke-width="1.5"/>
+<line x1="256.33" y1="78" x2="256.33" y2="140" class="l sa w1"/>
+<line x1="246" y1="88.33" x2="308" y2="88.33" class="l sa w1"/>
+<line x1="266.67" y1="78" x2="266.67" y2="140" class="l sa w1"/>
+<line x1="246" y1="98.67" x2="308" y2="98.67" class="l sa w1"/>
+<line x1="277" y1="78" x2="277" y2="140" class="l sa w1"/>
+<line x1="246" y1="109" x2="308" y2="109" class="l sa w1"/>
+<line x1="287.33" y1="78" x2="287.33" y2="140" class="l sa w1"/>
+<line x1="246" y1="119.33" x2="308" y2="119.33" class="l sa w1"/>
+<line x1="297.67" y1="78" x2="297.67" y2="140" class="l sa w1"/>
+<line x1="246" y1="129.67000000000002" x2="308" y2="129.67000000000002" class="l sa w1"/>
+<text x="277" y="160" class="tb ta" text-anchor="middle">6×6</text>
+<text x="43" y="180" class="tm" text-anchor="middle">全体の要約</text>
+<text x="277" y="180" class="tm" text-anchor="middle">細かい様子</text>
+<line x1="160" y1="190" x2="160" y2="200.4" class="l sm w1"/>
+<polygon points="160,206 156.5,200.4 163.5,200.4" class="fm"/>
+<rect x="12" y="208" width="296" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="228" text-anchor="middle">元の大きさに戻し、元の特徴と連結</text>
+<text x="12" y="262">例：川に浮かぶボートを、見た目だけだと</text>
+<text x="12" y="280">「車」と取り違える → 周りが川だという</text>
+<text x="12" y="298">文脈を使えば防げる</text>
+<line x1="12" y1="316" x2="308" y2="316" class="l sb w1"/>
+<text x="12" y="340" class="tb">② DeepLab：間を空けて畳み込む</text>
+<text x="12" y="360" class="tm">3×3 のフィルタ（重み9個）の間に隙間</text>
+<rect x="12" y="372" width="84" height="84" class="fs sm" stroke-width="1"/>
+<line x1="24" y1="372" x2="24" y2="456" class="l sb w1"/>
+<line x1="12" y1="384" x2="96" y2="384" class="l sb w1"/>
+<line x1="36" y1="372" x2="36" y2="456" class="l sb w1"/>
+<line x1="12" y1="396" x2="96" y2="396" class="l sb w1"/>
+<line x1="48" y1="372" x2="48" y2="456" class="l sb w1"/>
+<line x1="12" y1="408" x2="96" y2="408" class="l sb w1"/>
+<line x1="60" y1="372" x2="60" y2="456" class="l sb w1"/>
+<line x1="12" y1="420" x2="96" y2="420" class="l sb w1"/>
+<line x1="72" y1="372" x2="72" y2="456" class="l sb w1"/>
+<line x1="12" y1="432" x2="96" y2="432" class="l sb w1"/>
+<line x1="84" y1="372" x2="84" y2="456" class="l sb w1"/>
+<line x1="12" y1="444" x2="96" y2="444" class="l sb w1"/>
+<rect x="36" y="396" width="36" height="36" class="l sok w2 dsh"/>
+<rect x="37" y="397" width="10" height="10" class="fa"/>
+<rect x="37" y="409" width="10" height="10" class="fa"/>
+<rect x="37" y="421" width="10" height="10" class="fa"/>
+<rect x="49" y="397" width="10" height="10" class="fa"/>
+<rect x="49" y="409" width="10" height="10" class="fa"/>
+<rect x="49" y="421" width="10" height="10" class="fa"/>
+<rect x="61" y="397" width="10" height="10" class="fa"/>
+<rect x="61" y="409" width="10" height="10" class="fa"/>
+<rect x="61" y="421" width="10" height="10" class="fa"/>
+<text x="54" y="478" class="tb" text-anchor="middle">rate＝1</text>
+<text x="54" y="496" class="tok" text-anchor="middle">3×3 を見る</text>
+<rect x="118" y="372" width="84" height="84" class="fs sm" stroke-width="1"/>
+<line x1="130" y1="372" x2="130" y2="456" class="l sb w1"/>
+<line x1="118" y1="384" x2="202" y2="384" class="l sb w1"/>
+<line x1="142" y1="372" x2="142" y2="456" class="l sb w1"/>
+<line x1="118" y1="396" x2="202" y2="396" class="l sb w1"/>
+<line x1="154" y1="372" x2="154" y2="456" class="l sb w1"/>
+<line x1="118" y1="408" x2="202" y2="408" class="l sb w1"/>
+<line x1="166" y1="372" x2="166" y2="456" class="l sb w1"/>
+<line x1="118" y1="420" x2="202" y2="420" class="l sb w1"/>
+<line x1="178" y1="372" x2="178" y2="456" class="l sb w1"/>
+<line x1="118" y1="432" x2="202" y2="432" class="l sb w1"/>
+<line x1="190" y1="372" x2="190" y2="456" class="l sb w1"/>
+<line x1="118" y1="444" x2="202" y2="444" class="l sb w1"/>
+<rect x="130" y="384" width="60" height="60" class="l sok w2 dsh"/>
+<rect x="131" y="385" width="10" height="10" class="fa"/>
+<rect x="131" y="409" width="10" height="10" class="fa"/>
+<rect x="131" y="433" width="10" height="10" class="fa"/>
+<rect x="155" y="385" width="10" height="10" class="fa"/>
+<rect x="155" y="409" width="10" height="10" class="fa"/>
+<rect x="155" y="433" width="10" height="10" class="fa"/>
+<rect x="179" y="385" width="10" height="10" class="fa"/>
+<rect x="179" y="409" width="10" height="10" class="fa"/>
+<rect x="179" y="433" width="10" height="10" class="fa"/>
+<text x="160" y="478" class="tb" text-anchor="middle">rate＝2</text>
+<text x="160" y="496" class="tok" text-anchor="middle">5×5 を見る</text>
+<rect x="224" y="372" width="84" height="84" class="fs sm" stroke-width="1"/>
+<line x1="236" y1="372" x2="236" y2="456" class="l sb w1"/>
+<line x1="224" y1="384" x2="308" y2="384" class="l sb w1"/>
+<line x1="248" y1="372" x2="248" y2="456" class="l sb w1"/>
+<line x1="224" y1="396" x2="308" y2="396" class="l sb w1"/>
+<line x1="260" y1="372" x2="260" y2="456" class="l sb w1"/>
+<line x1="224" y1="408" x2="308" y2="408" class="l sb w1"/>
+<line x1="272" y1="372" x2="272" y2="456" class="l sb w1"/>
+<line x1="224" y1="420" x2="308" y2="420" class="l sb w1"/>
+<line x1="284" y1="372" x2="284" y2="456" class="l sb w1"/>
+<line x1="224" y1="432" x2="308" y2="432" class="l sb w1"/>
+<line x1="296" y1="372" x2="296" y2="456" class="l sb w1"/>
+<line x1="224" y1="444" x2="308" y2="444" class="l sb w1"/>
+<rect x="224" y="372" width="84" height="84" class="l sok w2 dsh"/>
+<rect x="225" y="373" width="10" height="10" class="fa"/>
+<rect x="225" y="409" width="10" height="10" class="fa"/>
+<rect x="225" y="445" width="10" height="10" class="fa"/>
+<rect x="261" y="373" width="10" height="10" class="fa"/>
+<rect x="261" y="409" width="10" height="10" class="fa"/>
+<rect x="261" y="445" width="10" height="10" class="fa"/>
+<rect x="297" y="373" width="10" height="10" class="fa"/>
+<rect x="297" y="409" width="10" height="10" class="fa"/>
+<rect x="297" y="445" width="10" height="10" class="fa"/>
+<text x="266" y="478" class="tb" text-anchor="middle">rate＝3</text>
+<text x="266" y="496" class="tok" text-anchor="middle">7×7 を見る</text>
+<text x="12" y="522">重みはどれも9個のまま。見る幅は</text>
+<text x="12" y="540">3＋2×1＝5（rate＝2）、3＋2×2＝7（rate＝3）</text>
+<text x="12" y="562" class="tm">ASPP：rate の違うものを並べ、大きさの</text>
+<text x="12" y="580" class="tm">違う物体の文脈を同時にとらえる</text>
+<text x="12" y="602" class="tm">青い四角＝重み、緑の点線＝見る範囲</text>
+<text x="12" y="620" class="tm">rate＝重みどうしの間隔（1なら隙間なし）</text>
+</svg>

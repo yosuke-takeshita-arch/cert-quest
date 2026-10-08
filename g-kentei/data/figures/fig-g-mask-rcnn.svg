@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 630" role="img" aria-labelledby="fig-g-mask-rcnn-t fig-g-mask-rcnn-d">
+<title id="fig-g-mask-rcnn-t">Mask R-CNN：枠に加えて物体ごとの形（マスク）を出す</title>
+<desc id="fig-g-mask-rcnn-d">①Faster R-CNN と同じく、画像に CNN をかけて特徴マップを作り、RPN で候補の領域を出し、候補ごとに切り出す（Mask R-CNN では RoIAlign）。そこから2つの分岐に分かれる。左は元からある、クラスと枠を出す分岐で、人を枠で囲む。右は足した分岐で、候補ごとに0か1のマスクを出し、人の形を画素単位で塗る。②RoI プーリングの丸めと RoIAlign の違い。特徴マップが入力の16分の1の大きさなら、入力の x＝100 は特徴マップでは 100÷16＝6.25。RoI プーリングは丸めて6にするので、0.25マス、つまり 0.25×16＝4画素ずれる。RoIAlign は 6.25 のまま使い、値は周りの格子点（6と7）から双線形補間で求める。これでマスクの精度が相対で10〜50%上がった。数は説明用の作り例（10〜50%は原論文の値）。</desc>
+<text x="12" y="20" class="tb">Mask R-CNN：枠に加えて形も出す</text>
+<text x="12" y="44" class="tb">① Faster R-CNN に分岐を1つ足す</text>
+<rect x="40" y="54" width="240" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="73" text-anchor="middle">画像に CNN → 特徴マップ</text>
+<line x1="160" y1="82" x2="160" y2="90.4" class="l sm w1"/>
+<polygon points="160,96 156.5,90.4 163.5,90.4" class="fm"/>
+<rect x="40" y="96" width="240" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="115" text-anchor="middle">RPN：候補の領域を出す</text>
+<line x1="160" y1="124" x2="160" y2="132.4" class="l sm w1"/>
+<polygon points="160,138 156.5,132.4 163.5,132.4" class="fm"/>
+<rect x="40" y="138" width="240" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="157" text-anchor="middle">RoIAlign：候補ごとに切り出す</text>
+<line x1="160" y1="166" x2="160" y2="174" class="l sm w1"/>
+<line x1="84" y1="174" x2="236" y2="174" class="l sm w1"/>
+<line x1="84" y1="174" x2="84" y2="182.4" class="l sm w1"/>
+<polygon points="84,188 80.5,182.4 87.5,182.4" class="fm"/>
+<line x1="236" y1="174" x2="236" y2="182.4" class="l sm w1"/>
+<polygon points="236,188 232.5,182.4 239.5,182.4" class="fm"/>
+<rect x="12" y="188" width="144" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="207" class="tb" text-anchor="middle">クラスと枠</text>
+<text x="84" y="226" class="tm" text-anchor="middle">元からある分岐</text>
+<rect x="164" y="188" width="144" height="46" class="fas sa" stroke-width="2" rx="6"/>
+<text x="236" y="207" class="tb ta" text-anchor="middle">マスク（0か1）</text>
+<text x="236" y="226" class="ta" text-anchor="middle">足した分岐</text>
+<rect x="40" y="244" width="88" height="80" class="fs sb" stroke-width="1" rx="4"/>
+<circle cx="84" cy="264" r="8" class="l sm w1"/>
+<rect x="72" y="274" width="24" height="40" rx="6" class="l sm w1"/>
+<rect x="64" y="252" width="40" height="66" class="l sok w2"/>
+<text x="108" y="266" class="tb tok">人</text>
+<rect x="192" y="244" width="88" height="80" class="fs sb" stroke-width="1" rx="4"/>
+<circle cx="236" cy="264" r="8" class="fa"/>
+<rect x="224" y="274" width="24" height="40" rx="6" class="fa"/>
+<text x="84" y="344" class="tok" text-anchor="middle">枠で囲む</text>
+<text x="236" y="344" class="ta" text-anchor="middle">形を画素で塗る</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="386" class="tb">② 切り出すときの丸めをやめる</text>
+<text x="12" y="408" class="tm">例：特徴マップが入力の16分の1の大きさ。</text>
+<text x="12" y="426" class="tm">入力の x＝100 は、100÷16＝6.25 に当たる</text>
+<text x="60" y="450" class="tm" text-anchor="middle">6</text>
+<text x="220" y="450" class="tm" text-anchor="middle">7</text>
+<line x1="30" y1="462" x2="290" y2="462" class="l sm w1"/>
+<line x1="60" y1="455" x2="60" y2="469" class="l sm w1"/>
+<line x1="220" y1="455" x2="220" y2="469" class="l sm w1"/>
+<circle cx="100" cy="462" r="5" class="fa"/>
+<text x="100" y="450" class="tb ta" text-anchor="middle">6.25</text>
+<line x1="100" y1="484" x2="64" y2="484" class="l sng w2"/>
+<polyline points="71,487.85 64,484 71,480.15" class="l sng w2"/>
+<text x="110" y="489" class="tng">丸めると 6</text>
+<text x="12" y="518" class="tb tng">RoI プーリング：6 に丸める</text>
+<text x="12" y="536" class="tng">0.25マス×16画素＝4画素ずれる</text>
+<text x="12" y="562" class="tb tok">RoIAlign：6.25 のまま使う</text>
+<text x="12" y="580" class="tok">値は 6 と 7 の格子点から補間（双線形補間）</text>
+<text x="12" y="604" class="tm">マスクの精度が相対で10〜50%上がった</text>
+<text x="12" y="622" class="tm">（16分の1 と x＝100 は作り例）</text>
+</svg>

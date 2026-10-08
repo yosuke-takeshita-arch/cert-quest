@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 624" role="img" aria-labelledby="fig-g-positional-encoding-t fig-g-positional-encoding-d">
+<title id="fig-g-positional-encoding-t">位置エンコーディング：埋め込みに位置のベクトルを足す</title>
+<desc id="fig-g-positional-encoding-d">①足さないと：文A「犬 が 人 を 噛んだ」と文B「人 が 犬 を 噛んだ」で、「犬」のベクトルはどちらも同じ。Self-Attention は語の組を比べるだけで並び順を見ないので、2つの「犬」を区別できない。②位置のベクトルを足す：文Aの「犬」は1番目なので、犬の埋め込みに1番目の位置のベクトルを足す。文Bの「犬」は3番目なので、3番目の位置のベクトルを足す。足した結果の棒の形が違うので、同じ「犬」でも何番目かが分かる。③位置のベクトルの作り方：速く変わる波と、ゆっくり変わる波の値を、何番目かの位置で読み取って並べる。1番目では速い波が高く遅い波は中くらい、3番目では速い波が低く遅い波が高い。この2つの値が②の緑の棒1と棒2の高さになる。元の論文は sin と cos を次元ごとに周期を変えて使う。棒の高さと波は2つに減らした作り例。</desc>
+<text x="12" y="20" class="tb">位置エンコーディング：語順を足す</text>
+<text x="12" y="46" class="tb">① 足さないと、順番が分からない</text>
+<text x="12" y="75">文A</text>
+<rect x="48" y="56" width="40" height="26" class="fas sa" stroke-width="2" rx="4"/>
+<text x="68" y="74" class="tb ta" text-anchor="middle">犬</text>
+<rect x="92" y="56" width="40" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="112" y="74" text-anchor="middle">が</text>
+<rect x="136" y="56" width="40" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="156" y="74" text-anchor="middle">人</text>
+<rect x="180" y="56" width="40" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="200" y="74" text-anchor="middle">を</text>
+<rect x="224" y="56" width="60" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="254" y="74" text-anchor="middle">噛んだ</text>
+<text x="12" y="111">文B</text>
+<rect x="48" y="92" width="40" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="68" y="110" text-anchor="middle">人</text>
+<rect x="92" y="92" width="40" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="112" y="110" text-anchor="middle">が</text>
+<rect x="136" y="92" width="40" height="26" class="fas sa" stroke-width="2" rx="4"/>
+<text x="156" y="110" class="tb ta" text-anchor="middle">犬</text>
+<rect x="180" y="92" width="40" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="200" y="110" text-anchor="middle">を</text>
+<rect x="224" y="92" width="60" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="254" y="110" text-anchor="middle">噛んだ</text>
+<text x="12" y="142" class="tng">2つの「犬」は同じベクトル。Self-Attention</text>
+<text x="12" y="160" class="tng">は語の組を比べるだけで並び順を見ない</text>
+<text x="12" y="178" class="tng">→ 2つの「犬」を区別できない</text>
+<text x="12" y="212" class="tb">② 位置のベクトルを足す</text>
+<text x="42" y="236" class="tm" text-anchor="middle">埋め込み</text>
+<text x="130" y="236" class="tm" text-anchor="middle">位置</text>
+<text x="218" y="236" class="tm" text-anchor="middle">足した結果</text>
+<text x="12" y="256">文Aの「犬」</text>
+<rect x="12" y="262" width="60" height="44" class="fs sb" stroke-width="1" rx="4"/>
+<rect x="26" y="286" width="12" height="16" class="fas sa" stroke-width="1"/>
+<rect x="46" y="292" width="12" height="10" class="fas sa" stroke-width="1"/>
+<text x="86" y="289" class="tb" text-anchor="middle">＋</text>
+<rect x="100" y="262" width="60" height="44" class="fs sb" stroke-width="1" rx="4"/>
+<rect x="114" y="282" width="12" height="20" class="fok sok" stroke-width="1"/>
+<rect x="134" y="287" width="12" height="15" class="fok sok" stroke-width="1"/>
+<text x="174" y="289" class="tb" text-anchor="middle">＝</text>
+<rect x="188" y="262" width="60" height="44" class="fs sb" stroke-width="1" rx="4"/>
+<rect x="202" y="286" width="12" height="16" class="fas sa" stroke-width="1"/>
+<rect x="202" y="266" width="12" height="20" class="fok sok" stroke-width="1"/>
+<rect x="222" y="292" width="12" height="10" class="fas sa" stroke-width="1"/>
+<rect x="222" y="277" width="12" height="15" class="fok sok" stroke-width="1"/>
+<text x="258" y="289" class="tok">1番目</text>
+<text x="12" y="332">文Bの「犬」</text>
+<rect x="12" y="338" width="60" height="44" class="fs sb" stroke-width="1" rx="4"/>
+<rect x="26" y="362" width="12" height="16" class="fas sa" stroke-width="1"/>
+<rect x="46" y="368" width="12" height="10" class="fas sa" stroke-width="1"/>
+<text x="86" y="365" class="tb" text-anchor="middle">＋</text>
+<rect x="100" y="338" width="60" height="44" class="fs sb" stroke-width="1" rx="4"/>
+<rect x="114" y="372" width="12" height="6" class="fok sok" stroke-width="1"/>
+<rect x="134" y="359" width="12" height="19" class="fok sok" stroke-width="1"/>
+<text x="174" y="365" class="tb" text-anchor="middle">＝</text>
+<rect x="188" y="338" width="60" height="44" class="fs sb" stroke-width="1" rx="4"/>
+<rect x="202" y="362" width="12" height="16" class="fas sa" stroke-width="1"/>
+<rect x="202" y="356" width="12" height="6" class="fok sok" stroke-width="1"/>
+<rect x="222" y="368" width="12" height="10" class="fas sa" stroke-width="1"/>
+<rect x="222" y="349" width="12" height="19" class="fok sok" stroke-width="1"/>
+<text x="258" y="365" class="tok">3番目</text>
+<text x="12" y="406" class="tok">足した結果の形が違う → 何番目かが分かる</text>
+<text x="12" y="438" class="tb">③ 位置のベクトルの作り方</text>
+<text x="12" y="466" class="tm">速い波</text>
+<polyline points="61.6,452.1 66.8,452 72.0,452.3 77.2,453 82.4,454 87.6,455.4 92.8,457 98.0,458.9 103.2,460.9 108.4,463 113.6,465.2 118.8,467.3 124.0,469.3 129.2,471.2 134.4,472.8 139.6,474.1 144.8,475.1 150.0,475.7 155.2,476 160.4,475.9 165.6,475.4 170.8,474.5 176.0,473.3 181.2,471.8 186.4,470 191.6,468 196.8,465.9 202.0,463.8 207.2,461.7 212.4,459.6 217.6,457.7 222.8,455.9 228.0,454.5 233.2,453.3 238.4,452.5 243.6,452.1 248.8,452 254.0,452.4 259.2,453.1 264.4,454.1 269.6,455.5 274.8,457.2 280.0,459.1 285.2,461.1 290.4,463.2 295.6,465.4 300.8,467.5" class="l sm w1"/>
+<text x="12" y="502" class="tm">遅い波</text>
+<polyline points="61.6,502.7 66.8,502.3 72.0,501.9 77.2,501.5 82.4,501.1 87.6,500.7 92.8,500.4 98.0,500 103.2,499.6 108.4,499.3 113.6,498.9 118.8,498.6 124.0,498.3 129.2,498 134.4,497.6 139.6,497.4 144.8,497.1 150.0,496.8 155.2,496.5 160.4,496.3 165.6,496 170.8,495.8 176.0,495.6 181.2,495.4 186.4,495.2 191.6,495 196.8,494.9 202.0,494.7 207.2,494.6 212.4,494.5 217.6,494.3 222.8,494.3 228.0,494.2 233.2,494.1 238.4,494.1 243.6,494 248.8,494 254.0,494 259.2,494 264.4,494 269.6,494.1 274.8,494.1 280.0,494.2 285.2,494.3 290.4,494.4 295.6,494.5 300.8,494.6" class="l sm w1"/>
+<line x1="72" y1="446" x2="72" y2="512" class="l sok w1 dsh"/>
+<line x1="176" y1="446" x2="176" y2="512" class="l sok w1 dsh"/>
+<circle cx="72" cy="452.3" r="4" class="fok sok" stroke-width="1.5"/>
+<circle cx="72" cy="501.9" r="4" class="fok sok" stroke-width="1.5"/>
+<circle cx="176" cy="473.3" r="4" class="fok sok" stroke-width="1.5"/>
+<circle cx="176" cy="495.6" r="4" class="fok sok" stroke-width="1.5"/>
+<text x="12" y="530" class="tm">何番目</text>
+<text x="72" y="530" class="tb tok" text-anchor="middle">1</text>
+<text x="124" y="530" class="tm" text-anchor="middle">2</text>
+<text x="176" y="530" class="tb tok" text-anchor="middle">3</text>
+<text x="228" y="530" class="tm" text-anchor="middle">4</text>
+<text x="280" y="530" class="tm" text-anchor="middle">5</text>
+<text x="12" y="556" class="tm">緑の点の高さ＝②の緑の棒（左が速い波、</text>
+<text x="12" y="574" class="tm">右が遅い波）。時計の秒針と時針の組で</text>
+<text x="12" y="592" class="tm">時刻を表すのと似た考え方</text>
+<text x="12" y="614" class="tm">元の論文は sin・cos を次元ごとに使う。棒と波は作り例</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-multi-head-attention-t fig-g-multi-head-attention-d">
+<title id="fig-g-multi-head-attention-t">Multi-Head Attention：注目の仕方を複数持つ</title>
+<desc id="fig-g-multi-head-attention-d">「犬 が 骨 を かじった」という文で、「かじった」がどの語に注目するかを、3つのヘッドで別々に計算する例。ヘッド1は、だれがにあたる「犬」に強く注目する。ヘッド2は、何をにあたる「骨」に強く注目する。ヘッド3は、すぐ前の語「を」に強く注目する。注目先は説明のための例。各ヘッドの結果（原論文では64次元ずつ）を、同じ色の区画としてつなぎ、8ヘッドで 64×8＝512次元にする。つないだものをもう一度線形変換して出力にする。ヘッドごとにクエリ・キー・バリューを別の重みで作るので、見る相手がヘッドごとに分かれる。1つのヘッドの次元が小さいので、計算量は大きなヘッド1つとほぼ同じ。</desc>
+<text x="12" y="20" class="tb">Multi-Head Attention：見方を複数持つ</text>
+<text x="12" y="44" class="tm">文「犬 が 骨 を かじった」で、</text>
+<text x="12" y="62" class="tm">「かじった」がどの語を見るか（例）</text>
+<text x="12" y="88" class="tb ta">ヘッド1：だれが？ → 犬</text>
+<rect x="12" y="96" width="44" height="26" class="fas sa" stroke-width="2" rx="4"/>
+<text x="34" y="114" class="tb ta" text-anchor="middle">犬</text>
+<rect x="60" y="96" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="82" y="114" class="tm" text-anchor="middle">が</text>
+<rect x="108" y="96" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="130" y="114" class="tm" text-anchor="middle">骨</text>
+<rect x="156" y="96" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="178" y="114" class="tm" text-anchor="middle">を</text>
+<rect x="204" y="96" width="70" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="239" y="114" class="tm" text-anchor="middle">かじった</text>
+<text x="12" y="146" class="tb tok">ヘッド2：何を？ → 骨</text>
+<rect x="12" y="154" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="34" y="172" class="tm" text-anchor="middle">犬</text>
+<rect x="60" y="154" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="82" y="172" class="tm" text-anchor="middle">が</text>
+<rect x="108" y="154" width="44" height="26" class="fok sok" stroke-width="2" rx="4"/>
+<text x="130" y="172" class="tb tok" text-anchor="middle">骨</text>
+<rect x="156" y="154" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="178" y="172" class="tm" text-anchor="middle">を</text>
+<rect x="204" y="154" width="70" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="239" y="172" class="tm" text-anchor="middle">かじった</text>
+<text x="12" y="204" class="tb twn">ヘッド3：すぐ前の語 → を</text>
+<rect x="12" y="212" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="34" y="230" class="tm" text-anchor="middle">犬</text>
+<rect x="60" y="212" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="82" y="230" class="tm" text-anchor="middle">が</text>
+<rect x="108" y="212" width="44" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="130" y="230" class="tm" text-anchor="middle">骨</text>
+<rect x="156" y="212" width="44" height="26" class="fwn swn" stroke-width="2" rx="4"/>
+<text x="178" y="230" class="tb twn" text-anchor="middle">を</text>
+<rect x="204" y="212" width="70" height="26" class="fs sb" stroke-width="1" rx="4"/>
+<text x="239" y="230" class="tm" text-anchor="middle">かじった</text>
+<text x="12" y="268">各ヘッドの結果をつなぐ（連結）</text>
+<rect x="12" y="278" width="60" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="42" y="297" class="tb ta" text-anchor="middle">1</text>
+<rect x="72" y="278" width="60" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="102" y="297" class="tb tok" text-anchor="middle">2</text>
+<rect x="132" y="278" width="60" height="28" class="fwn swn" stroke-width="1.5"/>
+<text x="162" y="297" class="tb twn" text-anchor="middle">3</text>
+<rect x="192" y="278" width="116" height="28" class="fs sm dsh" stroke-width="1"/>
+<text x="250" y="297" class="tm" text-anchor="middle">… 8 まで</text>
+<text x="12" y="328" class="tm">原論文：64次元×8ヘッド＝512次元</text>
+<line x1="160" y1="336" x2="160" y2="346.4" class="l sm w1"/>
+<polygon points="160,352 156.5,346.4 163.5,346.4" class="fm"/>
+<rect x="12" y="354" width="296" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="374" class="tb" text-anchor="middle">もう一度、線形変換して出力</text>
+<line x1="12" y1="402" x2="308" y2="402" class="l sb w1"/>
+<text x="12" y="424" class="tm">同じ色＝同じヘッド（上の行と連結の区画）</text>
+<text x="12" y="448" class="tm">ヘッドごとにクエリ・キー・バリューを</text>
+<text x="12" y="466" class="tm">別の重みで作る → 見る相手が分かれる</text>
+<text x="12" y="490" class="tm">1つのヘッドが小さい（64次元）ので、</text>
+<text x="12" y="508" class="tm">計算量は大きなヘッド1つとほぼ同じ</text>
+<text x="12" y="532" class="tm">注目先と、ヘッドを3つだけ描いたのは</text>
+<text x="12" y="550" class="tm">説明のための例</text>
+</svg>
