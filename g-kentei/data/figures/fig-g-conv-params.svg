@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-g-conv-params-t fig-g-conv-params-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 576" role="img" aria-labelledby="fig-g-conv-params-t fig-g-conv-params-d">
 <title id="fig-g-conv-params-t">畳み込み層のパラメータ数と、全結合層との比較</title>
-<desc id="fig-g-conv-params-d">入力8チャネル、3×3のフィルタ、出力16チャネルの畳み込み層の例。フィルタ1個の重みは3×3×8で72個、バイアスが1個で73個。それが出力チャネル数の16個あるので、全部で73×16の1,168個。画像の大きさが変わっても1,168個のまま。同じ入力と出力を全結合でつなぐと、8×8の画像で525,312個、16×16の画像で8,392,704個になり、画像の大きさに応じて増える。畳み込みはフィルタを画像全体で使い回す（重みの共有）ので、画像の大きさに依存しない。</desc>
+<desc id="fig-g-conv-params-d">入力8チャネル、3×3のフィルタ、出力16チャネルの畳み込み層の例。フィルタ1個の重みは3×3×8で72個、バイアスが1個で73個。それが出力チャネル数の16個あるので、全部で73×16の1,168個。画像の大きさが変わっても1,168個のまま。同じ入力と出力を全結合でつなぐと、8×8の画像で525,312個（入力が8×8×8で512個、出力が8×8×16で1,024個なので、(512＋1)×1,024）、16×16の画像で8,392,704個になり、画像の大きさに応じて増える。畳み込みはフィルタを画像全体で使い回す（重みの共有）ので、画像の大きさに依存しない。</desc>
 <text x="12" y="20" class="tb">① 畳み込み層の重みの数え方</text>
 <rect x="32" y="40" width="38" height="38" class="fs sa" stroke-width="1.5"/>
 <rect x="26" y="46" width="38" height="38" class="fs sa" stroke-width="1.5"/>
@@ -70,9 +70,11 @@
 <text x="12" y="410" class="tb">16×16</text>
 <text x="170" y="410" class="tb ta" text-anchor="middle">1,168個</text>
 <text x="308" y="410" class="tb twn" text-anchor="end">8,392,704個</text>
-<text x="12" y="438" class="tm">全結合＝(入力の数＋1)×出力の数。</text>
-<text x="12" y="458" class="tm">画像が大きくなるほど増える</text>
-<rect x="12" y="476" width="296" height="56" class="fas sa" stroke-width="1.5"/>
-<text x="160" y="499.5" class="tb" text-anchor="middle">畳み込みは同じフィルタを画像全体で使い回す</text>
-<text x="160" y="517.5" class="tb" text-anchor="middle">（重みの共有）→ 画像の大きさに依存しない</text>
+<text x="12" y="438" class="tm">全結合＝(入力の数＋1)×出力の数</text>
+<text x="12" y="456" class="tm">8×8なら 入力 8×8×8＝512個、</text>
+<text x="12" y="474" class="tm">出力 8×8×16＝1,024個 → 513×1,024</text>
+<text x="12" y="492" class="tm">画像が大きくなるほど増える</text>
+<rect x="12" y="512" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="535.5" class="tb" text-anchor="middle">畳み込みは同じフィルタを画像全体で使い回す</text>
+<text x="160" y="553.5" class="tb" text-anchor="middle">（重みの共有）→ 画像の大きさに依存しない</text>
 </svg>

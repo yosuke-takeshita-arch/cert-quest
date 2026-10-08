@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 620" role="img" aria-labelledby="fig-g-loss-functions-t fig-g-loss-functions-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 660" role="img" aria-labelledby="fig-g-loss-functions-t fig-g-loss-functions-d">
 <title id="fig-g-loss-functions-t">誤差関数：交差エントロピー・二乗誤差・KL 情報量</title>
-<desc id="fig-g-loss-functions-d">上は分類で使う交差エントロピーのグラフ。横軸が正解クラスの予測確率p、縦軸が誤差。pが1に近いと誤差は0に近づき、pが0に近づくと誤差は急に大きくなる。中は回帰で使う二乗誤差のグラフ。予測と正解の差が大きいほど、二乗で急に大きくなる放物線。下はKL情報量で、2つの確率分布PとQの違いを表す。同じ分布なら0。PからQへ測る値とQからPへ測る値は違う（非対称）。例ではそれぞれ約0.37と約0.51。</desc>
+<desc id="fig-g-loss-functions-d">上は分類で使う交差エントロピーのグラフ。横軸が正解クラスの予測確率p、縦軸が誤差。pが1に近いと誤差は0に近づき、pが0に近づくと誤差は急に大きくなる。中は回帰で使う二乗誤差のグラフ。予測と正解の差が大きいほど、二乗で急に大きくなる放物線。下はKL情報量で、2つの確率分布PとQの違いを表す。同じ分布なら0。PからQへ測る値とQからPへ測る値は違う（非対称）。例はPが0.5と0.5、Qが0.9と0.1。PからQへは、各値でPの確率に、PをQで割った値の自然対数を掛けて足し、0.5×log(0.5÷0.9)＋0.5×log(0.5÷0.1)で約0.51。QからPへは約0.37。</desc>
 <text x="12" y="20" class="tb">① 分類：交差エントロピー</text>
 <rect x="40" y="32" width="256" height="118" class="sb" stroke-width="1"/>
 <line x1="40" y1="150" x2="296" y2="150" class="l sm w1"/>
@@ -22,24 +22,28 @@
 <text x="168" y="228" class="tb twn" text-anchor="middle">差が大きいほど急に増える</text>
 <text x="296" y="334" class="tm" text-anchor="end">予測 − 正解 →</text>
 <text x="12" y="366" class="tb">③ KL 情報量：分布の違い（P から Q へ）</text>
-<text x="52" y="394" class="tb" text-anchor="middle">P</text>
-<rect x="20" y="406" width="18" height="54" class="fs sa" stroke-width="1.5"/>
-<rect x="42" y="457" width="18" height="3" class="fs sa" stroke-width="1.5"/>
-<rect x="64" y="457" width="18" height="3" class="fs sa" stroke-width="1.5"/>
+<text x="52" y="388" class="tb" text-anchor="middle">P</text>
+<rect x="26" y="430" width="22" height="30" class="fs sa" stroke-width="1.5"/>
+<rect x="56" y="430" width="22" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="37" y="424" class="tm" text-anchor="middle">0.5</text>
+<text x="67" y="424" class="tm" text-anchor="middle">0.5</text>
 <line x1="12" y1="460" x2="92" y2="460" class="l sm w1"/>
-<text x="152" y="394" class="tb" text-anchor="middle">Q</text>
-<rect x="120" y="430" width="18" height="30" class="fs swn" stroke-width="1.5"/>
-<rect x="142" y="445" width="18" height="15" class="fs swn" stroke-width="1.5"/>
-<rect x="164" y="445" width="18" height="15" class="fs swn" stroke-width="1.5"/>
+<text x="152" y="388" class="tb" text-anchor="middle">Q</text>
+<rect x="126" y="406" width="22" height="54" class="fs swn" stroke-width="1.5"/>
+<rect x="156" y="454" width="22" height="6" class="fs swn" stroke-width="1.5"/>
+<text x="137" y="402" class="tm" text-anchor="middle">0.9</text>
+<text x="167" y="448" class="tm" text-anchor="middle">0.1</text>
 <line x1="112" y1="460" x2="192" y2="460" class="l sm w1"/>
 <text x="206" y="420" class="tb">KL(P→Q)</text>
-<text x="206" y="440" class="tb ta">≒ 0.37</text>
+<text x="206" y="440" class="tb ta">≒ 0.51</text>
 <text x="206" y="462" class="tb">KL(Q→P)</text>
-<text x="206" y="482" class="tb twn">≒ 0.51</text>
-<text x="12" y="506" class="tb">同じ分布なら 0。入れ替えると値が変わる</text>
-<text x="12" y="526" class="tm">（非対称。距離ではない）</text>
-<line x1="12" y1="542" x2="308" y2="542" class="l sb w1"/>
-<text x="12" y="566" class="tb">使い分け</text>
-<text x="12" y="588">分類 → 交差エントロピー</text>
-<text x="12" y="608">回帰 → 二乗誤差（平均二乗誤差）</text>
+<text x="206" y="482" class="tb twn">≒ 0.37</text>
+<text x="12" y="506" class="tm">P→Q：各値で P×log(P÷Q) を足す</text>
+<text x="12" y="526" class="tm">0.5×log(0.5÷0.9)＋0.5×log(0.5÷0.1)≒0.51</text>
+<text x="12" y="546" class="tb">同じ分布なら 0。入れ替えると値が変わる</text>
+<text x="12" y="566" class="tm">（非対称。距離ではない）</text>
+<line x1="12" y1="582" x2="308" y2="582" class="l sb w1"/>
+<text x="12" y="606" class="tb">使い分け</text>
+<text x="12" y="628">分類 → 交差エントロピー</text>
+<text x="12" y="648">回帰 → 二乗誤差（平均二乗誤差）</text>
 </svg>

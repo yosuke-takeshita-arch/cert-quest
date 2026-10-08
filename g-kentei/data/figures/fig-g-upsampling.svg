@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 542" role="img" aria-labelledby="fig-g-upsampling-t fig-g-upsampling-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-upsampling-t fig-g-upsampling-d">
 <title id="fig-g-upsampling-t">アップサンプリング：逆プーリングと転置畳み込み</title>
-<desc id="fig-g-upsampling-d">上は逆プーリング。最大値プーリングで、各2×2の窓の最大値の位置を記録しておく。小さくなった特徴マップの値を、記録した位置に戻し、ほかのマスは0にして4×4に広げる。下は転置畳み込み。2×2の入力の各値に2×2のフィルタを掛け、ストライド2でずらして並べると、4×4の出力になる。フィルタの値は学習で決められる。逆畳み込みと呼ばれるが、畳み込みの真の逆演算ではない。</desc>
+<desc id="fig-g-upsampling-d">上は逆プーリング。最大値プーリングで、各2×2の窓の最大値の位置を記録しておく。小さくなった特徴マップの値を、記録した位置に戻し、ほかのマスは0にして4×4に広げる。下は転置畳み込み。2×2の入力の各値に2×2のフィルタを掛け、ストライド2でずらして並べると、4×4の出力になる。2つ目の値は1つ目から2マス先に置かれ、そこからフィルタの2マスぶん広がるので、2＋2で4マス。フィルタの値は学習で決められる。逆畳み込みと呼ばれるが、畳み込みの真の逆演算ではない。</desc>
 <text x="12" y="20" class="tb">① 逆プーリング：位置を覚えておく</text>
 <text x="48" y="48" class="tm" text-anchor="middle">入力</text>
 <text x="150" y="48" class="tm" text-anchor="middle">縮小</text>
@@ -145,9 +145,10 @@
 <text x="290" y="368.5" class="tb" text-anchor="middle">12</text>
 <text x="12" y="396">入力の各値にフィルタを掛け、</text>
 <text x="12" y="416">ストライド2ずつずらして並べる</text>
-<text x="12" y="444" class="tm">出力の大きさ＝(2−1)×2＋2＝4</text>
-<line x1="12" y1="462" x2="308" y2="462" class="l sb w1"/>
-<text x="12" y="486" class="tb">フィルタの値は学習で決められる</text>
-<text x="12" y="510">「逆畳み込み」と呼ばれるが、</text>
-<text x="12" y="530" class="tb twn">畳み込みの真の逆演算ではない</text>
+<text x="12" y="440" class="tm">最後の値は (2−1)×2＝2マス先に置かれ、</text>
+<text x="12" y="458" class="tm">そこへフィルタの2マスで 2＋2＝4マス</text>
+<line x1="12" y1="480" x2="308" y2="480" class="l sb w1"/>
+<text x="12" y="504" class="tb">フィルタの値は学習で決められる</text>
+<text x="12" y="528">「逆畳み込み」と呼ばれるが、</text>
+<text x="12" y="548" class="tb twn">畳み込みの真の逆演算ではない</text>
 </svg>

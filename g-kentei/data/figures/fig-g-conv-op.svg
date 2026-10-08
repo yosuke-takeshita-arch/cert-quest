@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 899" role="img" aria-labelledby="fig-g-conv-op-t fig-g-conv-op-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 939" role="img" aria-labelledby="fig-g-conv-op-t fig-g-conv-op-d">
 <title id="fig-g-conv-op-t">畳み込みの計算と、出力サイズ（ストライド・パディング）</title>
-<desc id="fig-g-conv-op-d">5×5の入力に3×3のフィルタを重ね、重なった9マスの積の和を出力の1マスにする。窓を1マスずつずらすと出力は3×3。ストライド2で窓を2マスずつ飛ばすと出力は2×2。周囲を0で1マス埋める（パディング1）と出力は5×5で入力と同じ大きさ。出力の大きさは、入力に2×パディングを足してフィルタの大きさを引き、ストライドで割って1を足す。</desc>
+<desc id="fig-g-conv-op-d">5×5の入力に3×3のフィルタを重ね、重なった9マスの積の和を出力の1マスにする。窓を1マスずつずらすと出力は3×3。ストライド2で窓を2マスずつ飛ばすと出力は2×2。周囲を0で1マス埋める（パディング1）と出力は5×5で入力と同じ大きさ。出力の大きさは、窓の置き場所の数で決まる。①では窓が5−3で2マス動けるので、最初の1か所を足して3か所。②では動ける2マスを2マスずつ進むので1回で、最初の1か所を足して2か所。③では周りを埋めて7マスになり、7−3で4マス動けるので5か所。まとめると、入力に2×パディングを足してフィルタの大きさを引き（窓が動ける距離）、ストライドで割って（何回動けるか）1を足す（最初の1か所）。</desc>
 <text x="12" y="20" class="tb">① 窓を重ねて、掛けて、足す</text>
 <rect x="12" y="38" width="22" height="22" class="fs sb" stroke-width="1"/>
 <text x="23" y="53.5" text-anchor="middle">2</text>
@@ -101,7 +101,7 @@
 <text x="12" y="227">＋ 0×0 + 2×1 + 1×0</text>
 <text x="12" y="246" class="tb">＋ 3×1 + 0×0 + 1×1 ＝ 8</text>
 <text x="12" y="265" class="tm">フィルタは反転せず、そのまま重ねて掛ける</text>
-<text x="12" y="299">式に当てはめる：(5＋2×0−3)÷1＋1＝3</text>
+<text x="12" y="299">置き場所：5−3＝2マス動ける＋最初の1か所＝3</text>
 <line x1="12" y1="307" x2="308" y2="307" class="l sb w1"/>
 <text x="12" y="333" class="tb">② ストライド 2：窓が 2マスずつ飛ぶ</text>
 <rect x="12" y="351" width="22" height="22" class="fs sb" stroke-width="1"/>
@@ -174,7 +174,7 @@
 <text x="212" y="426" class="tm">（茶の窓）</text>
 <text x="67" y="479" class="tm" text-anchor="middle">入力 5×5</text>
 <text x="178" y="446" class="tm" text-anchor="middle">出力 2×2</text>
-<text x="12" y="503">式に当てはめる：(5＋2×0−3)÷2＋1＝2</text>
+<text x="12" y="503">動ける2マスを2ずつ：2÷2＝1回＋最初の1か所＝2</text>
 <line x1="12" y1="529" x2="308" y2="529" class="l sb w1"/>
 <text x="12" y="555" class="tb">③ パディング 1：周囲を 0 で埋める</text>
 <rect x="12" y="573" width="20" height="20" class="fbg sb" stroke-width="1"/>
@@ -331,11 +331,13 @@
 <text x="165" y="647" class="tb" text-anchor="middle">→</text>
 <text x="82" y="731" class="tm" text-anchor="middle">入力 7×7</text>
 <text x="226" y="711" class="tm" text-anchor="middle">出力 5×5</text>
-<text x="12" y="757">式に当てはめる：(5＋2×1−3)÷1＋1＝5</text>
+<text x="12" y="757">埋めて 5＋2×1＝7マス：7−3＝4マス動ける＋1＝5</text>
 <text x="12" y="776" class="tm">入力と同じ大きさのまま</text>
 <line x1="12" y1="798" x2="308" y2="798" class="l sb w1"/>
 <text x="12" y="826" class="tb">出力の大きさ</text>
 <text x="12" y="847" class="tb">＝(入力＋2×パディング−フィルタ)</text>
 <text x="12" y="867" class="tb">　÷ストライド ＋ 1</text>
-<text x="12" y="887" class="tm">割り切れないときは小数点以下を切り捨てる</text>
+<text x="12" y="887" class="tm">＝窓が動ける距離÷1回に動く幅＋最初の1か所</text>
+<text x="12" y="907" class="tm">①なら (5＋2×0−3)÷1＋1＝2÷1＋1＝3</text>
+<text x="12" y="927" class="tm">割り切れないときは小数点以下を切り捨てる</text>
 </svg>

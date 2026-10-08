@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 542" role="img" aria-labelledby="fig-g-exploding-gradient-t fig-g-exploding-gradient-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-g-exploding-gradient-t fig-g-exploding-gradient-d">
 <title id="fig-g-exploding-gradient-t">勾配爆発と、勾配クリッピング</title>
-<desc id="fig-g-exploding-gradient-d">① 勾配爆発：掛け算の仕組みは勾配消失と同じで、誤差逆伝播で1層戻るたびに値が掛かる。各層で1より大きい値（例として2）が掛かると、勾配は誤差の所の1から、層4で2、層3で4、層2で8、層1で16と急に大きくなり、重みが一度に大きく動いて学習が発散する。② 勾配クリッピング：勾配ベクトルのノルムがしきい値を超えたら、向きは保ったまま、しきい値÷ノルムを掛けて長さをしきい値まで縮める。勾配爆発に効くが、勾配消失には効かない。</desc>
+<desc id="fig-g-exploding-gradient-d">① 勾配爆発：掛け算の仕組みは勾配消失と同じで、誤差逆伝播で1層戻るたびに値が掛かる。各層で1より大きい値（例として2）が掛かると、勾配は誤差の所の1から、層4で2、層3で4、層2で8、層1で16と急に大きくなり、重みが一度に大きく動いて学習が発散する。② 勾配クリッピング：勾配ベクトルのノルムがしきい値を超えたら、向きは保ったまま、しきい値÷ノルムを掛けて長さをしきい値まで縮める。例として長さ10、しきい値5なら、5÷10で0.5を掛けて長さを5にする。勾配爆発に効くが、勾配消失には効かない。</desc>
 <text x="12" y="20" class="tb">① 勾配爆発：大きい値を掛け続ける</text>
 <text x="12" y="40" class="tm">掛け算の仕組みは勾配消失と同じ。</text>
 <text x="12" y="58" class="tm">各層で1より大きい値（例：2）が掛かる</text>
@@ -35,7 +35,8 @@
 <circle cx="110" cy="398" r="3" class="fm"/>
 <text x="250" y="330" class="tb tng">元の勾配</text>
 <text x="170" y="406" class="tb ta">切り詰めた勾配</text>
-<text x="12" y="484">ノルムがしきい値を超えたら、向きはそのまま</text>
-<text x="12" y="504">しきい値÷ノルムを掛けて縮める</text>
-<text x="12" y="530" class="tb">勾配爆発に効く。勾配消失には効かない</text>
+<text x="12" y="484">ノルム（勾配の長さ）がしきい値を超えたら、</text>
+<text x="12" y="504">向きは保ち、しきい値÷ノルムを掛けて縮める</text>
+<text x="12" y="524" class="tm">例：長さ10・しきい値5 → 5÷10＝0.5 を掛けて長さ5</text>
+<text x="12" y="550" class="tb">勾配爆発に効く。勾配消失には効かない</text>
 </svg>

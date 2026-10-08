@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 934" role="img" aria-labelledby="fig-g-activation-t fig-g-activation-d">
 <title id="fig-g-activation-t">活性化関数のグラフと微分（シグモイド・tanh・ReLU・Leaky ReLU）</title>
-<desc id="fig-g-activation-d">横軸を同じ（−5から5）にして、4つの活性化関数を縦に並べたグラフ。実線が関数、破線がその微分。シグモイドは0から1までのS字で、微分の最大は0.25。tanhは−1から1までで原点対称、微分の最大は1。ReLUは0以下で0、正でそのまま、微分は0か1。Leaky ReLUは負の側に0.01の小さな傾きがあり、微分は0.01か1。</desc>
+<desc id="fig-g-activation-d">横軸を同じ（−5から5）にして、4つの活性化関数を縦に並べたグラフ。実線が関数、破線がその微分。シグモイドは1を(1＋eのマイナスx乗)で割った値で、xが0なら1を2で割って0.5。0から1までのS字で、微分の最大は0.25。tanhは−1から1までで原点対称で、xが0なら0、1なら約0.76、3なら約0.995。微分の最大は1。ReLUは0とxの大きいほうを出すので、−2なら0、3なら3。微分は0か1。Leaky ReLUは負の側でxに0.01を掛けるので、−3なら−0.03。微分は0.01か1。</desc>
 <line x1="12" y1="14" x2="40" y2="14" class="l sa w2"/>
 <text x="46" y="19" class="tb">関数</text>
 <line x1="100" y1="14" x2="128" y2="14" class="l swn w2 dsh"/>
 <text x="134" y="19" class="tb">微分（その点での傾き）</text>
 <text x="12" y="40" class="tm">横軸はどのグラフも入力 x（−5〜5）</text>
 <text x="12" y="68" class="tb">① シグモイド</text>
-<text x="12" y="87" class="tm">σ(x) = 1/(1+e^(−x))</text>
+<text x="12" y="87" class="tm">1÷(1＋e^(−x))：x＝0 なら 1÷(1＋1)＝0.5</text>
 <rect x="40" y="98" width="264" height="100" class="sb fs" stroke-width="1"/>
 <line x1="40" y1="189.67" x2="304" y2="189.67" class="l sm w1"/>
 <line x1="172" y1="98" x2="172" y2="198" class="l sm w1"/>
@@ -24,7 +24,7 @@
 <text x="12" y="234">出力は 0〜1（確率として使える）</text>
 <text x="12" y="253" class="tm">弱点: 微分が小さく、深い層で勾配消失</text>
 <text x="12" y="291" class="tb">② tanh</text>
-<text x="12" y="310" class="tm">tanh(x) = (e^x−e^(−x))/(e^x+e^(−x))</text>
+<text x="12" y="310" class="tm">例：x＝0 で 0、x＝1 で約 0.76、x＝3 で約 0.995</text>
 <rect x="40" y="321" width="264" height="100" class="sb fs" stroke-width="1"/>
 <line x1="40" y1="371" x2="304" y2="371" class="l sm w1"/>
 <line x1="172" y1="321" x2="172" y2="421" class="l sm w1"/>
@@ -41,7 +41,7 @@
 <text x="12" y="457">出力は −1〜1、原点を中心に対称</text>
 <text x="12" y="476" class="tm">弱点: 入力が大きいと平ら（飽和）</text>
 <text x="12" y="514" class="tb">③ ReLU</text>
-<text x="12" y="533" class="tm">max(0, x)</text>
+<text x="12" y="533" class="tm">max(0, x)＝0 と x の大きいほう（−2→0、3→3）</text>
 <rect x="40" y="544" width="264" height="100" class="sb fs" stroke-width="1"/>
 <line x1="40" y1="634.32" x2="304" y2="634.32" class="l sm w1"/>
 <line x1="172" y1="544" x2="172" y2="644" class="l sm w1"/>
@@ -59,7 +59,7 @@
 <text x="12" y="680">正の側は微分が 1 で、勾配が小さくなりにくい</text>
 <text x="12" y="699" class="tm">弱点: 負の側は微分 0（学習しなくなることも）</text>
 <text x="12" y="737" class="tb">④ Leaky ReLU</text>
-<text x="12" y="756" class="tm">x≥0 で x、x&lt;0 で 0.01x</text>
+<text x="12" y="756" class="tm">x≥0 で x、x&lt;0 で 0.01×x（−3→−0.03）</text>
 <rect x="40" y="767" width="264" height="100" class="sb fs" stroke-width="1"/>
 <line x1="40" y1="857.32" x2="304" y2="857.32" class="l sm w1"/>
 <line x1="172" y1="767" x2="172" y2="867" class="l sm w1"/>
