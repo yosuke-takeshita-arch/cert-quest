@@ -362,7 +362,7 @@
     ],
     "title": "Python と Jupyter Notebook",
     "oneLine": "Pythonは機械学習・データ分析のライブラリが豊富で、AI開発で広く使われるプログラミング言語。Jupyter Notebookは、コード・実行結果・説明文を1つの文書にまとめて作成・共有できるWebアプリケーションで、Pythonを含む40以上の言語に対応する。",
-    "why": "困りごと：データ分析は、少し書いて実行し、結果の表やグラフを見て、また直す、の繰り返しになる。プログラム・結果・考えたことが別々のファイルに散らばると、後で他の人がたどれない。 例：Jupyter Notebook では、1つの文書の中に『データを読み込むコード→その下に表示された表→平均を計算するコード→その下のグラフ→「売上は12月に多い」というメモ』を上から順に並べ、そのまま同僚に渡せる。 何に使うか：Python は、NumPy（数値計算）や scikit-learn（機械学習）などのライブラリ（すぐ使える部品の集まり）がそろっていて、AI開発で広く使われる言語。Jupyter Notebook は、Python を含む40以上の言語に対応する、試しながら分析して共有するための Web アプリケーション。 混同しやすい点：Jupyter はコードを書いて試す場所、Docker は実行環境を丸ごと持ち運ぶ仕組み。",
+    "why": "名前：Python は、作者の Guido van Rossum が実装を始めたころ、1970年代の英国BBCのコメディ番組『Monty Python's Flying Circus』の台本を読んでいて、短く、ほかと重ならず、少し謎めいた名前がほしいと考えて付けた（Python の公式 FAQ）。Jupyter は、最初に対応した3つのプログラミング言語 Julia（ju）・Python（pyt）・R（r）から付けた名前（Jupyter の公式ドキュメント）。 困りごと：データ分析は、少し書いて実行し、結果の表やグラフを見て、また直す、の繰り返しになる。プログラム・結果・考えたことが別々のファイルに散らばると、後で他の人がたどれない。 例：Jupyter Notebook では、1つの文書の中に『データを読み込むコード→その下に表示された表→平均を計算するコード→その下のグラフ→「売上は12月に多い」というメモ』を上から順に並べ、そのまま同僚に渡せる。 何に使うか：Python は、NumPy（数値計算）や scikit-learn（機械学習）などのライブラリ（すぐ使える部品の集まり）がそろっていて、AI開発で広く使われる言語。Jupyter Notebook は、Python を含む40以上の言語に対応する、試しながら分析して共有するための Web アプリケーション。 混同しやすい点：Jupyter はコードを書いて試す場所、Docker は実行環境を丸ごと持ち運ぶ仕組み。",
     "links": [
       {
         "id": "C-07-010",
@@ -379,6 +379,14 @@
       {
         "title": "Project Jupyter 公式サイト",
         "url": "https://jupyter.org/"
+      },
+      {
+        "title": "Python 公式 FAQ（Why is it called Python?）",
+        "url": "https://docs.python.org/3/faq/general.html"
+      },
+      {
+        "title": "Jupyter 公式ドキュメント What is Jupyter?",
+        "url": "https://docs.jupyter.org/en/latest/what_is_jupyter.html"
       }
     ],
     "status": "verified"
