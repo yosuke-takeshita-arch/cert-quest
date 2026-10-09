@@ -44,12 +44,14 @@ export function normalizeHomeTrack(v, tracks = BGM_TRACKS) {
  *  quiz … 問題を解いている（inQuiz）か、問題中の曲を試し聴き中（preview）。問題中のオン／オフ（bgm）と曲（bgmTrack）に従う
  *  title … タイトル画面（inTitle）。『それ以外』のオン／オフ（bgmHome）に従い、曲は選択にかかわらずいつもタイトル曲で固定
  *  other … それ以外（ホーム・地図・カード・設定など）。『それ以外』のオン／オフと曲（bgmHomeTrack）に従う
- * 問題中の判定が最優先（タイトル画面の歯車で問題中の曲を試し聴きしている間は、その曲）。
+ *  boss … 章のボス戦の間（inBoss）。問題中のオン／オフ（bgm）に従い、曲はいつもボス戦の曲（プログラムで鳴らす。BGM_TRACKS には入れない）。最優先
+ * 次に、問題中の判定（タイトル画面の歯車で問題中の曲を試し聴きしている間は、その曲）。
  * その場面のオン／オフが切れている・アプリが裏に回っている（hidden）なら null。
- * 返すもの: { scene: 'quiz' | 'title' | 'other', track: 'auto' | 'title' | BGM_TRACKS の id }
+ * 返すもの: { scene: 'boss' | 'quiz' | 'title' | 'other', track: 'boss' | 'auto' | 'title' | BGM_TRACKS の id }
  */
-export function bgmPlan(s, { inQuiz = false, preview = false, inTitle = false, hidden = false } = {}) {
+export function bgmPlan(s, { inQuiz = false, preview = false, inTitle = false, hidden = false, inBoss = false } = {}) {
   if (!s || hidden) return null;
+  if (inBoss) return s.bgm ? { scene: 'boss', track: BOSS_BGM.id } : null;
   if (inQuiz || preview) return s.bgm ? { scene: 'quiz', track: normalizeBgmTrack(s.bgmTrack) } : null;
   if (inTitle) return s.bgmHome ? { scene: 'title', track: TITLE_BGM.id } : null;
   return s.bgmHome ? { scene: 'other', track: normalizeHomeTrack(s.bgmHomeTrack) } : null;
@@ -116,6 +118,10 @@ export const BGM_TRACKS = [
 // trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-06。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
 // trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.955）。
 export const TITLE_BGM = { id: 'title', file: 'title_once-upon-a-time.mp3', name: 'Once Upon a Time', trim: 0.4, rms: 0.101, peak: 0.9182, fadeSec: 0.6 };
+
+// ボス戦の曲（プログラムで鳴らす矩形波・三角波。楽譜は lib/bossmusic.js）。BGM の設定（オン／オフ・音量）に従う。
+// trim … 素材の曲と同じ考え方の音量の補正。矩形波は振幅が一定なので、素材の目標 RMS（TARGET_BGM_RMS=0.042）から見積もった（耳で聞き比べて決めた値ではない）。
+export const BOSS_BGM = { id: 'boss', trim: 0.04 };
 
 /** お祝いの種類 → 効果音のキー。 */
 export function celebrateSfx(kind) {

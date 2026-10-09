@@ -662,10 +662,11 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .fc-dot { fill: var(--accent); }
 .fc-trend-cap { margin: 4px 0 0; }
 
-/* 章のボス戦（要件定義書 §3-7）。色は既存の変数だけ（暗い配色でもそのまま読める）。ボスの絵は .boss-art の中に入る（無いときは記号） */
+/* 章のボス戦（要件定義書 §3-7 作り直し）。小さな丸のボス（章の画面・地図・復習の一覧）は、色は既存の変数だけ（暗い配色でもそのまま読める）。
+   ボスの絵は .boss-art の中に入る（無いときは記号）。全身の絵は、JS（faceCrop）が --zoom --tx --ty を付けて、顔だけが丸に入るようにする */
 .boss-art { flex: none; width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; background: var(--ng-bg); border: 2px solid var(--ng); color: var(--ng); }
 .boss-art .boss-sym { font-size: 1.75rem; font-weight: 700; line-height: 1; }
-.boss-art .boss-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.boss-art .boss-img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: translate(calc(var(--tx, 0) * 100%), calc(var(--ty, 0) * 100%)) scale(var(--zoom, 1)); transform-origin: 0 0; display: block; }
 .boss-art.off { background: var(--bg); border-color: var(--border); color: var(--muted); }
 .boss-art.down { opacity: 0.55; filter: grayscale(1); }
 .boss-place { border-left: 6px solid var(--border); }
@@ -679,45 +680,87 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .boss-list h2 { margin-top: 0; }
 .boss-row { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-top: 1px solid var(--border); padding: 12px 0; min-height: 64px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
 .boss-row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
-.boss-battle { display: flex; flex-direction: column; gap: 12px; }
-.boss-foe { display: flex; align-items: center; gap: 12px; }
-.boss-foe-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; overflow-wrap: anywhere; }
-.boss-hp { height: 16px; border-radius: 999px; background: var(--border); overflow: hidden; }
-.boss-hp-fill { height: 100%; background: var(--ng); border-radius: 999px; transition: width 0.5s ease-out; }
-.boss-me { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.boss-hearts { display: inline-flex; gap: 4px; }
-.boss-hearts .icon.heart { width: 32px; height: 32px; }
-.boss-hearts .icon.heart.on { color: var(--ng); }
-.boss-hearts .icon.heart.off { color: var(--muted); opacity: 0.4; }
-.boss-rule { margin: 0 0 12px; }
+.boss-row-go { margin-left: auto; flex: none; color: var(--accent); font-weight: 700; }
 .boss-result { text-align: center; }
 .boss-result-art { display: flex; justify-content: center; margin-bottom: 8px; }
 .boss-result-art .boss-art { width: 88px; height: 88px; }
 .boss-result-art .boss-art .boss-sym { font-size: 2.75rem; }
 .boss-result.win { border-color: var(--ok); }
 .btn-row.one { grid-template-columns: 1fr; }
-@media (prefers-reduced-motion: reduce) { .boss-hp-fill { transition: none; } }
-/* ボス戦の演出（要件定義書 §3-7）。どれも1秒以内。動きを減らす設定では上の全体の規則で動きが止まり、下の静的な色だけが残る */
-@keyframes boss-hit { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-5px) rotate(-4deg); } 40% { transform: translateX(5px) rotate(4deg); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
-@keyframes boss-glow { 0%, 100% { filter: none; box-shadow: none; } 25% { filter: brightness(1.5) saturate(2); box-shadow: 0 0 0 4px var(--ng), 0 0 16px 6px var(--ng); } }
-@keyframes boss-quake { 0%, 100% { transform: translate(0, 0); } 20% { transform: translate(-4px, 2px); } 40% { transform: translate(4px, -2px); } 60% { transform: translate(-3px, 1px); } 80% { transform: translate(2px, -1px); } }
-@keyframes boss-heart-break { 0% { transform: scale(1.35) rotate(0); opacity: 1; color: var(--ng); } 30% { transform: scale(1.35) rotate(-14deg); } 55% { transform: scale(1.1) rotate(12deg); } 100% { transform: scale(1) rotate(0); opacity: 0.4; color: var(--muted); } }
-@keyframes boss-defeat { 0% { transform: scale(1); opacity: 1; filter: none; } 30% { transform: scale(1.12); opacity: 1; filter: brightness(2.2) saturate(0.4); box-shadow: 0 0 20px 10px #fff8c4; } 100% { transform: scale(0); opacity: 0; filter: brightness(2.2); box-shadow: 0 0 20px 10px #fff8c4; } }
-@keyframes boss-star { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; } 100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.1) rotate(200deg); opacity: 0; } }
-.boss-art.hit { animation: boss-hit 0.45s ease-out, boss-glow 0.6s ease-out; }
-.boss.quake { animation: boss-quake 0.35s ease-out; }
-.boss-hearts .icon.heart.crack { animation: boss-heart-break 0.6s ease-out; }
-.boss-art.defeat { animation: boss-defeat 0.9s ease-in forwards; }
-.boss-foe { position: relative; }
-.boss-stars { position: absolute; left: 28px; top: 50%; width: 0; height: 0; pointer-events: none; }
-.boss-star { position: absolute; left: 0; top: 0; font-size: 1.25rem; line-height: 1; color: #f9a825; animation: boss-star 0.9s ease-out forwards; }
-@media (prefers-reduced-motion: reduce) {
-  .boss-art.hit { background: var(--ng); color: var(--surface); }
-  .boss-art.defeat { opacity: 0.3; filter: grayscale(1); }
-  .boss-hearts .icon.heart.crack { color: var(--ng); }
-  .boss-stars { display: none; }
+
+/* ---- 戦いの画面（昔の家庭用ゲーム機の RPG 風）。黒い背景・白い縁の窓・ボスの全身。
+   中の部品が使う色の変数を、黒い背景に合わせて決め直す（明るい配色・暗い配色のどちらで開いても同じ見た目。文字は白で、黒との比は 4.5:1 を超える） ---- */
+body.boss-on { background: #000; }
+.boss-rpg {
+  --bg: #000; --surface: #000; --text: #ffffff; --muted: #c9d0de; --border: #98a1b5;
+  --accent: #90caf9; --on-accent: #0b1b2e; --accent-soft: #1d2d42;
+  --ok: #72d48e; --ok-bg: #16301f; --ng: #ff9a92; --ng-bg: #3b1c1a; --warn: #f3c562; --warn-bg: #3a2e0f; --shadow: none;
+  background: #000; color: #fff;
 }
-/* 答えたあとに解説まで下へ進んでも、体力が見えるよう、体力の枠は上に貼り付ける */
-.boss-battle { position: sticky; top: 8px; z-index: 6; margin-bottom: 12px; padding: 12px 16px; gap: 8px; }
-.boss .after { scroll-margin-top: 152px; }
-.boss-row-go { margin-left: auto; flex: none; color: var(--accent); font-weight: 700; }
+.boss-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.boss-chapter { color: var(--muted); min-width: 0; overflow-wrap: anywhere; }
+.boss-scene { margin-bottom: 12px; }
+.boss-stage { position: relative; height: clamp(180px, 34vh, 300px); background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; }
+.boss-fig { height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+.boss-fig .boss-img { height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; }
+.boss-fig-sym { display: flex; align-items: center; justify-content: center; height: 86%; aspect-ratio: 3 / 4; font-size: 4.5rem; font-weight: 700; line-height: 1; color: #fff; background: #111; border: 4px solid var(--boss-color, #c62828); border-radius: 12px; }
+.boss-fig.unseen { visibility: hidden; }
+.boss-fig.gone { visibility: hidden; }
+.boss-fig.down { opacity: 0.25; filter: grayscale(1); }
+.boss-fig.blinkoff { opacity: 0.08; }
+.boss-fig.glow .boss-img, .boss-fig.glow .boss-fig-sym { filter: brightness(2.6) saturate(0.25) drop-shadow(0 0 14px #fff); }
+.boss-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+.boss-flash.on { opacity: 1; }
+.boss-fx { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.boss-bit { position: absolute; background-repeat: no-repeat; filter: brightness(2.2) saturate(0.3); animation: boss-bit 1.15s ease-in var(--delay, 0s) forwards; }
+.boss-confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; display: none; }
+.boss-confetti.on { display: block; }
+.boss-confetti .confetti { top: -16px; width: 12px; height: 16px; animation: boss-rain var(--dur, 2s) linear var(--delay, 0s) infinite; }
+.boss-window { border: 3px solid #fff; border-radius: 8px; background: #000; padding: 12px 16px; min-height: 10.5rem; box-shadow: inset 0 0 0 2px #000, inset 0 0 0 3px #7b8499; transition: opacity 0.3s; }
+.boss-stage.dark + .boss-window { opacity: 0; }
+.boss-win-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.boss-win-name { font-size: 1.0625rem; overflow-wrap: anywhere; }
+.boss-win-hp { display: inline-flex; align-items: center; gap: 8px; flex: none; }
+.boss-hp-label { font-weight: 700; font-variant-numeric: tabular-nums; }
+.boss-hearts { display: inline-flex; gap: 2px; }
+.boss-hearts .icon.heart { width: 24px; height: 24px; }
+.boss-hearts .icon.heart.on { color: var(--ng); }
+.boss-hearts .icon.heart.off { color: var(--muted); opacity: 0.4; }
+.boss-win-text { font-size: 1.0625rem; line-height: 1.9; letter-spacing: 0.04em; min-height: 5.8em; overflow-wrap: anywhere; }
+.boss-line { margin: 0; }
+.boss-win-text.typed .boss-line:last-child::after { content: ' ▼'; animation: boss-caret 1s steps(2, jump-none) infinite; }
+.boss-win-extra:empty { display: none; }
+.boss-xp { margin: 4px 0 0; font-weight: 700; font-size: 1.125rem; font-variant-numeric: tabular-nums; color: #ffe082; }
+.boss-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.boss-skip { width: 100%; margin-bottom: 12px; }
+.boss-qhead { margin-bottom: 4px; }
+.boss-round { flex: 1; }
+.boss-rule { margin: 0 0 12px; }
+.boss-rpg .card { border: 2px solid #fff; border-radius: 8px; background: #000; }
+.boss-rpg .boss-result.win { border-color: var(--ok); }
+.boss-rpg .sticky-bar { position: fixed; left: 0; right: 0; bottom: 0; max-width: 560px; margin: 0 auto; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(to top, #000 75%, transparent); z-index: 20; }
+.boss-rpg .after { padding-bottom: 72px; }
+
+/* 戦いの演出（要件定義書 §3-7）。動きを減らす設定では、下の規則で動きを止め、色の変化だけにする */
+@keyframes boss-appear { 0% { opacity: 0; transform: scale(0.7); } 40% { opacity: 1; transform: scale(1.05) translateX(-6px); } 55% { transform: scale(1.02) translateX(6px); } 70% { transform: translateX(-4px); } 100% { opacity: 1; transform: none; } }
+@keyframes boss-hit { 0% { opacity: 1; transform: translateX(0); } 10% { opacity: 0.15; transform: translateX(-8px); } 20% { opacity: 1; transform: translateX(8px); } 30% { opacity: 0.15; transform: translateX(-6px); } 40% { opacity: 1; transform: translateX(6px); } 55% { opacity: 0.4; transform: translateX(-3px); } 100% { opacity: 1; transform: none; } }
+@keyframes boss-quake { 0%, 100% { transform: translate(0, 0); } 20% { transform: translate(-5px, 2px); } 40% { transform: translate(5px, -2px); } 60% { transform: translate(-4px, 1px); } 80% { transform: translate(3px, -1px); } }
+@keyframes boss-flash-out { 0% { opacity: 0.85; } 100% { opacity: 0; } }
+@keyframes boss-heart-break { 0% { transform: scale(1.35) rotate(0); opacity: 1; color: var(--ng); } 30% { transform: scale(1.35) rotate(-14deg); } 55% { transform: scale(1.1) rotate(12deg); } 100% { transform: scale(1) rotate(0); opacity: 0.4; color: var(--muted); } }
+@keyframes boss-bit { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.3); opacity: 0; } }
+@keyframes boss-rain { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--sway, 0px), 340px) rotate(540deg); opacity: 0.9; } }
+@keyframes boss-caret { 0% { opacity: 1; } 100% { opacity: 0; } }
+.boss-fig.appear { animation: boss-appear 0.7s ease-out; }
+.boss-fig.hit { animation: boss-hit 0.65s linear; }
+.boss-scene.quake { animation: boss-quake 0.4s ease-out; }
+.boss-stage.crit .boss-flash { animation: boss-flash-out 0.45s ease-out; }
+.boss-stage.hurt .boss-flash { background: #e53935; animation: boss-flash-out 0.5s ease-out; }
+.boss-hearts .icon.heart.crack { animation: boss-heart-break 0.6s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .boss-fig.hit { filter: sepia(1) saturate(4) hue-rotate(-50deg) brightness(1.2); }
+  .boss-stage.hurt { box-shadow: inset 0 0 0 6px var(--ng); }
+  .boss-stage.crit { box-shadow: inset 0 0 0 6px #fff; }
+  .boss-hearts .icon.heart.crack { color: var(--ng); }
+  .boss-fx, .boss-confetti, .boss-confetti.on { display: none; }
+  .boss-flash.on { opacity: 0; }
+}

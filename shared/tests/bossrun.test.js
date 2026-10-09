@@ -166,5 +166,40 @@ test('負けたあと: 正解した問題は「最後に正解」になり、間
   const info = bossInfo(chapter, qstats);
   assert.equal(info.missed, 4); // Q2・Q3・Q4・Q5（Q5 は出なかったので間違えたまま）
   assert.equal(info.available, true);
-  assert.deepEqual(bossQuestions(chapter, qstats).map((q) => q.id).sort(), ['Q2', 'Q3', 'Q4', 'Q5']);
+  // 出す問題は、答えたことのある問題を全部（正解率の低い順）。Q1 は正解したので「最後に正解」だが、答えたことはあるので並ぶ
+  assert.deepEqual(bossQuestions(chapter, qstats).map((q) => q.id).sort(), ['Q1', 'Q2', 'Q3', 'Q4', 'Q5']);
+});
+
+test('ボスの体力は渡した数（省くと問題の数）。問題の数より大きくは出来ない（倒せなくなるため）。壊れた値は問題の数', () => {
+  assert.equal(newRun(qs(12), 7).battle.boss, 7);
+  assert.equal(newRun(qs(12), 7).battle.bossMax, 7);
+  assert.equal(newRun(qs(4), 9).battle.boss, 4); // 出す問題は4問なので、体力も4まで
+  for (const bad of [0, -2, 2.5, NaN, undefined, null, '5']) assert.equal(newRun(qs(6), bad).battle.boss, 6, String(bad));
+  assert.equal(newRun([], 8).battle.boss, 0);
+});
+
+test('体力が問題の数より少ないと、答えた問題が残ったまま勝つ（残りの問題は出ない）', () => {
+  const { run, asked } = play(newRun(qs(12), 5), [true, true, true, true, true, true]);
+  assert.equal(runResult(run), 'win');
+  assert.deepEqual(asked, ['Q1', 'Q2', 'Q3', 'Q4', 'Q5']); // 5問正解で勝ち。6問目は出ない
+});
+
+test('会心の一撃（damage 2）で、正解1回がボスの体力2ぶんになる。間違えたとき damage は効かない', () => {
+  let r = newRun(qs(12), 6);
+  r = answerRun(r, true, 2);
+  assert.equal(r.battle.boss, 4);
+  r = answerRun(r, false, 2);
+  assert.equal(r.battle.boss, 4);
+  assert.equal(r.battle.player, PLAYER_HP - 1);
+  r = answerRun(r, true, 2);
+  r = answerRun(r, true, 2);
+  assert.equal(runResult(r), 'win');
+  assert.equal(r.asked, 4); // 6 を 2+2+2 で削るので、正解3回＋間違い1回の4問
+});
+
+test('体力が問題の数と同じでも、間違えた問題を最後に並べ直して勝てる（体力 ≤ 問題の数なら、必ず勝ち筋が残る）', () => {
+  // 3問・体力3・1問目を間違える → 並べ直しで Q1 がもう一度出て、勝つ
+  const { run } = play(newRun(qs(3), 3), [false, true, true, true]);
+  assert.equal(runResult(run), 'win');
+  assert.equal(run.round, 2);
 });

@@ -257,7 +257,9 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
     });
   });
 
-  return finish({ indexFound: true, syllabusRaw, questions, concepts, problems, missing });
+  // ボスの名前・せりふのファイル（無くてもよい。読むのは app.js。ここでは読み込みの進み具合に数えないよう、名前だけ返す）
+  const bossesFile = typeof idx.json.bosses === 'string' && idx.json.bosses ? idx.json.bosses : 'bosses.json';
+  return finish({ indexFound: true, syllabusRaw, questions, concepts, problems, missing, bossesFile });
 
   function finish(d) {
     const tree = buildTree(d.syllabusRaw, d.questions, d.concepts);
@@ -272,6 +274,8 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
       tree,
       problems: d.problems,
       missing: d.missing,
+      bossesFile: d.bossesFile || 'bosses.json',
+      bosses: [], // app.js が bosses.json を読んで入れる（章のボスの名前・せりふ。lib/bossdata.js）
     };
   }
 }

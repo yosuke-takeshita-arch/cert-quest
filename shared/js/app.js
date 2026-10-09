@@ -1,6 +1,7 @@
 // 起動・ルーティング。資格固有のことは config.json と data/ からだけ読む。
 import { h, clear, icon, toast, celebrate, badgeBases, setTapHost } from './ui.js';
 import { loadData } from './lib/data.js';
+import { loadBosses } from './lib/bossdata.js';
 import { createStorage } from './lib/storage.js';
 import { defaultState, recordAnswer } from './lib/progress.js';
 import { badgeDefs, awardBadges, badgeArtName, badgeImageUrl } from './lib/badges.js';
@@ -111,6 +112,8 @@ export async function start() {
     return title.fail('データの読み込みで予期しない問題が起きました。', String(e.message || e));
   }
   tracker.complete();
+  // 章のボスの名前・せりふ。無い・壊れているときは空（ボスは汎用の名前とせりふで動く）。読み込みの進み具合には数えない
+  data.bosses = (await loadBosses(new URL(data.bossesFile, dataBase).href)).bosses;
   // 押した瞬間に音を使える状態にし、開始のジングルを鳴らす（効果音がオンの人だけ）。演出が済んだらホームへ
   await title.ready(() => {
     unlockAudio(titleState.settings);

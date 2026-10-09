@@ -3,7 +3,8 @@
 // - BGM: 大きいので、最初に流すときに取ってきてキャッシュに入る（sw-core.js が /audio/ をキャッシュ優先で返す）
 //   音量は iOS でも効くよう WebAudio の GainNode でかける
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
-import { SFX_FILES, BGM_TRACKS, BGM_AUTO, TITLE_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
+import { SFX_FILES, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
+import { bossTheme, SYNTH_SFX } from './lib/bossmusic.js';
 
 const SFX_BASE = new URL('../audio/sfx/', import.meta.url).href;
 const BGM_BASE = new URL('../audio/bgm/', import.meta.url).href;
@@ -104,6 +105,7 @@ const B = {
   scene: false, // 問題を解いている画面にいるか
   title: true, // タイトル画面にいるか（起動時は true。『タップしてはじめる』で出たら setBgmTitle(false)）
   preview: false, // 設定画面の「試しに聴く」（問題中の曲）
+  boss: false, // 章のボス戦の間か（ほかの BGM の代わりに、ボス戦の曲だけを流す）
   el: null,
   gainNode: null,
   track: 0,
@@ -116,7 +118,7 @@ const B = {
 };
 
 function plan() {
-  return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, inTitle: B.title, hidden: document.hidden });
+  return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, inTitle: B.title, hidden: document.hidden, inBoss: B.boss });
 }
 
 // 設定が選んでいる曲（BGM_TRACKS の番号。おまかせ・タイトル曲・流さないときは -1）
@@ -128,7 +130,7 @@ function selectedIndex() {
 // B（BGM_TRACKS の曲）を流したいか
 function wantBgm() {
   const p = plan();
-  return !!p && p.track !== TITLE_BGM.id;
+  return !!p && p.track !== TITLE_BGM.id && p.track !== BOSS_BGM.id;
 }
 
 async function trackUrl(i) {
@@ -332,10 +334,141 @@ function fadeOutTitle() {
   }, FADE_SEC * 1000 + 100);
 }
 
+// ---- ボス戦の曲と効果音（プログラムで鳴らす） ----
+// 曲は BGM の設定（オン／オフ・音量）、効果音（ファンファーレなど）は効果音の設定に従う。音のファイルは使わない（楽譜は lib/bossmusic.js）。
+// 曲: 8小節を1周として、少し先まで予約していく（M.loopAt が次の周の始まり）。止めるときは小さくして、予約済みの音は聞こえないまま終わる。
+const M = {
+  armed: false, // 曲を鳴らしてよい合図（ボスが現れたとき startBossTheme が立て、倒した・負けたとき stopBossTheme が下ろす）
+  running: false,
+  gain: null,
+  timer: null,
+  loopAt: 0,
+  theme: null,
+};
+
+function bossGainValue() {
+  const s = getSettings();
+  return bgmGain(s ? s.bgmVolume : undefined, BOSS_BGM.trim);
+}
+
+function applyBossVolume() {
+  if (M.gain && M.running) M.gain.gain.value = bossGainValue();
+}
+
+// 音の並びを、時刻 t0 から先へ予約する。dest はつなぎ先。wave・gain・freq・to（滑らせる先）を使う
+function scheduleEvents(c, dest, events, t0, extraGain = 1) {
+  events.forEach((e) => {
+    if (!e.freq) return;
+    try {
+      const o = c.createOscillator();
+      const g = c.createGain();
+      const t = t0 + e.t;
+      const end = t + Math.max(0.03, e.dur);
+      o.type = e.wave;
+      o.frequency.setValueAtTime(e.freq, t);
+      if (e.to) o.frequency.linearRampToValueAtTime(e.to, end);
+      const peak = Math.max(0.0002, (e.gain || 0.5) * extraGain);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(peak, t + 0.008);
+      g.gain.setValueAtTime(peak, Math.max(t + 0.008, end - 0.025));
+      g.gain.linearRampToValueAtTime(0.0001, end);
+      o.connect(g);
+      g.connect(dest);
+      o.start(t);
+      o.stop(end + 0.02);
+    } catch (err) { /* 1音が鳴らせなくても続ける */ }
+  });
+}
+
+function scheduleThemeAhead() {
+  const c = ctx;
+  if (!c || !M.running || !M.gain) return;
+  if (!M.theme) M.theme = bossTheme();
+  while (M.loopAt < c.currentTime + 2) {
+    M.theme.voices.forEach((v) => scheduleEvents(c, M.gain, v.events.map((e) => ({ ...e, wave: v.wave, gain: v.gain })), M.loopAt));
+    M.loopAt += M.theme.loopSec;
+  }
+}
+
+function startBossMusic() {
+  const c = audioCtx();
+  if (!c || M.running) return;
+  const s = getSettings();
+  if (!s || !s.bgm) return;
+  resumeCtx();
+  try {
+    M.gain = c.createGain();
+    M.gain.gain.value = bossGainValue();
+    M.gain.connect(c.destination);
+  } catch (e) { M.gain = null; return; }
+  M.running = true;
+  M.loopAt = c.currentTime + 0.08;
+  scheduleThemeAhead();
+  M.timer = setInterval(scheduleThemeAhead, 300);
+}
+
+// 曲を小さくして止める（immediate なら、すぐ）。止まったら syncBgm をもう一度呼ぶ（次に流すものがあれば、そこで始まる）
+function stopBossMusic(immediate) {
+  if (!M.running) return;
+  const g = M.gain;
+  const c = ctx;
+  M.running = false;
+  clearInterval(M.timer);
+  M.timer = null;
+  M.gain = null;
+  if (g && c) {
+    try {
+      if (immediate) g.gain.value = 0;
+      else {
+        const t = c.currentTime;
+        g.gain.cancelScheduledValues(t);
+        g.gain.setValueAtTime(g.gain.value, t);
+        g.gain.linearRampToValueAtTime(0, t + 0.3);
+      }
+    } catch (e) { /* 小さくできなくても、あとで切る */ }
+    setTimeout(() => { try { g.disconnect(); } catch (e) { /* もう外れている */ } syncBgm(); }, immediate ? 0 : 380);
+  }
+}
+
+/** ボス戦の画面に入った・出た。入っている間は、ほかの BGM は鳴らさない（BGM がオンのときだけ。曲そのものは startBossTheme で始まる）。 */
+export function setBgmBoss(on) {
+  B.boss = !!on;
+  if (!on) M.armed = false;
+  syncBgm();
+}
+
+/** ボスが現れた。ボス戦の曲を鳴らす（BGM がオフなら何もしない）。 */
+export function startBossTheme() {
+  M.armed = true;
+  syncBgm();
+}
+
+/** ボスを倒した・負けた。ボス戦の曲を止める（ほかの BGM は、ボス戦の画面を出るまで戻らない）。 */
+export function stopBossTheme() {
+  M.armed = false;
+  if (M.running) stopBossMusic(false);
+}
+
+/** プログラムで鳴らす効果音（SYNTH_SFX のキー）。効果音がオンのときだけ、効果音の音量で。 */
+export function playSynth(settings, name) {
+  if (!settings || !settings.sound || !SYNTH_SFX[name]) return;
+  const c = audioCtx();
+  if (!c) return;
+  const gain = sfxGain(settings.sfxVolume);
+  if (gain <= 0) return;
+  resumeCtx();
+  try {
+    const g = c.createGain();
+    g.gain.value = 0.25 * gain;
+    g.connect(c.destination);
+    scheduleEvents(c, g, SYNTH_SFX[name], c.currentTime + 0.02);
+  } catch (e) { /* 音が出せなくても学習は続ける */ }
+}
+
 /** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */
 export function titleAudioLocked() {
   const p = plan();
-  return !!p && p.scene !== 'quiz' && !!ctx && ctx.state !== 'running';
+  return !!p && p.scene !== 'quiz' && p.scene !== 'boss' && !!ctx && ctx.state !== 'running';
 }
 
 /** 動作確認用: いまのタイトル曲の状態。 */
@@ -351,13 +484,17 @@ export function syncBgm() {
   const p = plan();
   const hidden = document.hidden;
   const wantT = !!p && p.track === TITLE_BGM.id;
-  const wantB = !!p && !wantT;
+  const wantBoss = !!p && p.track === BOSS_BGM.id;
+  const wantB = !!p && !wantT && !wantBoss;
   // 止める側（アプリが裏に回ったときは、すぐ止める）
+  if (!wantBoss && M.running) stopBossMusic(hidden);
   if (!wantT && T.src && !T.fading) { if (hidden) dropTitleSource(); else fadeOutTitle(); }
   if (B.el && !B.el.paused && !B.fading && (!wantB || (selectedIndex() >= 0 && selectedIndex() !== B.track))) {
     if (hidden) stopBgm(); else fadeOutBgm();
   }
   // 流す側
+  if (wantBoss && M.armed && !M.running && !B.fading && !T.fading) startBossMusic();
+  if (wantBoss && M.running) applyBossVolume();
   if (wantT) {
     if (T.src) applyTitleVolume();
     else startTitle();
@@ -393,6 +530,7 @@ export function setBgmPreview(on) {
 export function applyVolumes() {
   applyBgmVolume();
   applyTitleVolume();
+  applyBossVolume();
 }
 
 /** 起動時に1回。getSettings は「いまの設定」を返す関数（学習記録を消すと設定の入れ物が替わるため）。 */
@@ -445,5 +583,6 @@ export function bgmStatus() {
     volume: B.gainNode ? B.gainNode.gain.value : B.el ? B.el.volume : null,
     waitingGesture: B.waitingGesture,
     fading: B.fading || T.fading,
+    boss: { on: B.boss, armed: M.armed, playing: M.running, volume: M.gain ? M.gain.gain.value : null },
   };
 }

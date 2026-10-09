@@ -1,44 +1,72 @@
-// 章のボス戦（要件定義書 §3-7）。その章で最後に間違えた問題を最大10問、ボスの体力＝問題の数、自分の体力＝3で戦う。
-// 計算は lib/boss.js（体力・出す問題・撃破の記録）と lib/bossrun.js（1回の戦いの進み方）。ここは画面だけ。
+// 章のボス戦（要件定義書 §3-7 作り直し）。昔の家庭用ゲーム機の RPG 風の戦闘（黒い背景・白い縁の窓・1文字ずつ出る文・ボスの全身の絵）。
+// 特定のゲームの名前・音楽・画面をまねない。計算は lib/boss.js（出す問題・隠れた体力・会心の一撃・様子の文）と lib/bossrun.js（1回の戦いの進み方）、
+// ボスの名前・せりふは lib/bossdata.js（data/bosses.json。無ければ汎用）、曲は lib/bossmusic.js（プログラムで鳴らす）。ここは画面と演出の順番だけ。
 // 答えはふつうの出題と同じに問題の記録（qstats・復習の予定・XP）に入る（復習そのものなので）。
-import { h, clear, icon, burst, vibrate, beep, toast, mascotLine } from '../ui.js';
+// 動きを減らす設定（prefers-reduced-motion）では、点滅・揺れ・崩れる動きをやめ、色の変化と文だけにする（CSS と reduced() の両方で）。
+import { h, clear, icon, vibrate, beep, toast, mascotLine } from '../ui.js';
 import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
-import { bossInfo, bossQuestions, recordBossWin, isFlawlessWin, bossWins, BOSS_MIN } from '../lib/boss.js';
+import { bossInfo, bossQuestions, recordBossWin, isFlawlessWin, bossWins, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, BOSS_MIN, CRIT_DAMAGE } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
+import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
+import { setBgmBoss, startBossTheme, stopBossTheme, playSynth } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, laterButton, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
 
-// ボスの見た目。絵がまだ無いので、記号と名前で出す。
-// 絵を足すとき: <アプリ>/images/bosses/boss-<番号>.webp を置く（番号＝地図の章の番号。1から。bossImageUrl を見る）。置くだけで記号と入れ替わる。
+// ボスの見た目。絵が無い（読み込めない）あいだは記号で出す。
+// 絵を足すとき: <アプリ>/images/bosses/boss-<番号>.webp を置く（番号＝bosses.json の no。無い章は地図の章の並び＝1から）。置くだけで記号と入れ替わる。
+// 全身の絵（縦長でもよい）。戦いの画面は object-fit: contain で全体を出し、章の画面・地図の小さな丸は faceCrop（lib/bossdata.js）で顔を切り抜く。
 export const BOSS_SYMBOL = '魔';
 
-/** ボスの名前。 */
-export function bossName(stage) {
-  return stage.name + 'の章のボス';
+/** その章のボスの姿（名前・せりふ・色）。bosses.json に無ければ汎用。 */
+export function bossProfileOf(app, stage) {
+  return bossProfile(app.data && app.data.bosses, stage);
 }
 
-/** ボスの絵の URL。番号は地図の章の並び（data.tree.stages の順）。 */
+/** ボスの名前。 */
+export function bossName(app, stage) {
+  return bossProfileOf(app, stage).name;
+}
+
+/** ボスの絵の URL。番号は bosses.json の no、無ければ地図の章の並び（data.tree.stages の順）。 */
 export function bossImageUrl(app, stage) {
-  const n = app.data.tree.stages.indexOf(stage) + 1;
+  const p = bossProfileOf(app, stage);
+  const n = p.no || app.data.tree.stages.indexOf(stage) + 1;
   return n > 0 ? new URL('./images/bosses/boss-' + n + '.webp', location.href).href : null;
 }
 
-/** ボスの姿（円の中の記号）。絵のファイルがあれば、読み込めたときだけ絵に入れ替える。飾りなので読み上げない。 */
+/** 絵を読み込んで、読めたときだけ wrap の中身を絵に入れ替える。onLoad(img) は入れ替えたあと。 */
+function loadBossImage(url, wrap, onLoad) {
+  if (!url) return;
+  const img = new Image();
+  img.className = 'boss-img';
+  img.alt = '';
+  img.decoding = 'async';
+  img.addEventListener('load', () => {
+    clear(wrap);
+    wrap.appendChild(img);
+    if (onLoad) onLoad(img);
+  });
+  img.src = url;
+}
+
+/** 小さな丸のボス（章の画面・地図・復習の一覧）。絵の上のほう（顔）を切り抜く。飾りなので読み上げない。 */
 export function bossArt(app, stage, cls) {
   const wrap = h('span', { class: 'boss-art ' + (cls || ''), 'aria-hidden': 'true' }, h('span', { class: 'boss-sym', text: BOSS_SYMBOL }));
-  const url = bossImageUrl(app, stage);
-  if (url) {
-    const img = new Image();
-    img.className = 'boss-img';
-    img.alt = '';
-    img.decoding = 'async';
-    img.addEventListener('load', () => {
-      clear(wrap);
-      wrap.appendChild(img);
-    });
-    img.src = url;
-  }
+  loadBossImage(bossImageUrl(app, stage), wrap, (img) => {
+    const c = faceCrop(img.naturalWidth, img.naturalHeight);
+    img.style.setProperty('--zoom', String(c.zoom));
+    img.style.setProperty('--tx', String(c.tx));
+    img.style.setProperty('--ty', String(c.ty));
+  });
+  return wrap;
+}
+
+/** 戦いの画面の大きなボス（全身。縦長のまま全体を出す）。 */
+function bossFigure(app, stage, profile) {
+  const wrap = h('div', { class: 'boss-fig', 'aria-hidden': 'true', 'data-boss-fig': '1' }, h('span', { class: 'boss-fig-sym', text: BOSS_SYMBOL }));
+  wrap.style.setProperty('--boss-color', profile.color);
+  loadBossImage(bossImageUrl(app, stage), wrap, () => wrap.classList.add('has-img'));
   return wrap;
 }
 
@@ -61,7 +89,7 @@ export function availableBosses(app) {
 /** 章の画面に置くボスの場所。現れていれば目立たせて挑めるように、まだなら条件を出す。 */
 export function bossPlace(app, stage, back) {
   const { info, wins } = bossState(app, stage);
-  const name = bossName(stage);
+  const name = bossName(app, stage);
   if (!info.available) {
     return h('div', { class: 'card boss-place off', 'data-boss-place': 'off' },
       h('div', { class: 'boss-place-head' }, bossArt(app, stage, 'off'),
@@ -69,14 +97,15 @@ export function bossPlace(app, stage, back) {
           h('span', { class: 'small muted', text: '間違えた問題が' + BOSS_MIN + '問たまると現れます（あと ' + info.need + ' 問）' }),
           wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + wins + ' 回' }) : null)));
   }
-  const n = Math.min(info.missed, 10);
   return h('div', { class: 'card boss-place on', 'data-boss-place': 'on' },
     h('div', { class: 'boss-place-head' }, bossArt(app, stage, 'on'),
-      h('div', { class: 'boss-place-text' }, h('strong', { text: name + 'が現れた！' }),
-        h('span', { class: 'small', text: '間違えた問題 ' + info.missed + ' 問に挑めます（1回に最大10問）' }),
+      h('div', { class: 'boss-place-text' }, h('strong', { text: name + ' が あらわれた！' }),
+        h('span', { class: 'small', text: '間違えた問題 ' + info.missed + ' 問が、ボスになりました' }),
         wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + wins + ' 回' }) : null)),
-    h('button', { class: 'btn primary big', type: 'button', 'data-boss-go': stage.key, onClick: () => openBoss(app, stage, back) }, 'ボスに挑む（' + n + '問）'));
+    h('button', { class: 'btn primary big', type: 'button', 'data-boss-go': stage.key, onClick: () => openBoss(app, stage, back) }, 'ボスに挑む'));
 }
+
+const rand = (a, b) => a + Math.random() * (b - a);
 
 export function renderBoss(app, key) {
   const root = h('section', { class: 'view boss' });
@@ -88,20 +117,36 @@ export function renderBoss(app, key) {
     return root;
   }
   const limit = secondsPerQuestion(app.config);
-  const name = bossName(stage);
-  let S = null;
+  const profile = bossProfileOf(app, stage);
+  const name = profile.name;
+  const reduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  let S = null; // 戦いの状態
+  let ui = null; // 画面の部品
   let keyHandler = null;
+  let timers = [];
+  let typing = null; // いま出している文（{ finish }）
+
+  const later = (fn, ms) => {
+    const id = setTimeout(() => { timers = timers.filter((x) => x !== id); fn(); }, ms);
+    timers.push(id);
+    return id;
+  };
+  const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
 
   const cleanup = () => {
+    clearTimers();
+    typing = null;
     if (keyHandler) document.removeEventListener('keydown', keyHandler);
     keyHandler = null;
+    document.body.classList.remove('boss-on');
+    setBgmBoss(false); // ほかの BGM に戻す
   };
 
-  // 戦いを始める。まだ現れていない（間違えた問題が足りない）ときは false
+  // 戦いを始める。まだ現れていない（間違えた問題が足りない）ときは false。ボスの体力は 5〜10 のどれか（出す問題の数まで）を隠したまま決める
   function begin() {
     const qs = bossQuestions(stage.questions, app.state.qstats);
     if (!qs.length) return false;
-    S = { run: newRun(qs), items: [], idx: 0, streak: 0, xp: 0, log: [], answered: false, t0: 0, recorded: false, wins: 0, ui: null };
+    S = { run: newRun(qs, rollBossHp(app.rng, qs.length)), streak: 0, xp: 0, log: [], answered: false, t0: 0, recorded: false, wins: 0, phase: 'intro', appeared: false, item: null, skipFx: null };
     return true;
   }
 
@@ -115,79 +160,166 @@ export function renderBoss(app, key) {
     leave();
   }
 
-  // ---- 体力の表示 ----
-  // crackAt: いま割れる（減った）ハートの番号。割れる動きを付ける
-  function hearts(b, crackAt) {
-    const w = h('span', { class: 'boss-hearts', role: 'img', 'aria-label': 'あなたの体力 ' + b.player + '／' + b.playerMax });
-    for (let i = 0; i < b.playerMax; i++) w.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off') + (i === crackAt ? ' crack' : '')));
-    return w;
+  // ---- 1文字ずつ出る文（窓の中）。lines を順に出す。skip（finish）で残りを一度に出す ----
+  function say(lines, opts = {}) {
+    if (typing) typing.finish();
+    if (!opts.keep) clear(ui.text);
+    const list = lines.filter(Boolean).map((l) => Array.from(l));
+    ui.live.textContent = lines.filter(Boolean).join(' '); // 読み上げは全文を1度に（1文字ずつ読まれないよう、窓の文字は読み上げから外してある）
+    let li = 0;
+    let ci = 0;
+    let p = null;
+    let tid = null;
+    let ended = false;
+    const end = () => {
+      if (ended) return;
+      ended = true;
+      if (typing === me) typing = null;
+      ui.text.classList.add('typed');
+      if (opts.onDone) opts.onDone();
+    };
+    const me = {
+      finish() {
+        clearTimeout(tid);
+        for (; li < list.length; li++, ci = 0, p = null) {
+          if (!p) { p = h('p', { class: 'boss-line' }); ui.text.appendChild(p); }
+          p.textContent = list[li].join('');
+        }
+        end();
+      },
+    };
+    typing = me;
+    ui.text.classList.remove('typed');
+    if (opts.instant || reduced()) { me.finish(); return; }
+    const step = () => {
+      if (li >= list.length) { end(); return; }
+      if (!p) { p = h('p', { class: 'boss-line' }); ui.text.appendChild(p); }
+      ci++;
+      p.textContent = list[li].slice(0, ci).join('');
+      if (ci >= list[li].length) { li++; ci = 0; p = null; tid = setTimeout(step, 200); } else tid = setTimeout(step, 26);
+    };
+    tid = setTimeout(step, 26);
   }
 
-  // ---- 動き（要件定義書 §3-7 演出）。長さは全部1秒以内。動きを減らす設定では CSS が動きを止め、色の変化だけが残る ----
-  // 押せないようにするものは無い（答えは answered で1回きり。次へ進むボタンは動きを待たずにすぐ押せる）
+  // ---- 体力の表示（自分の体力だけ。ボスの体力は出さない） ----
+  function paintHp(b, crackAt) {
+    clear(ui.hp);
+    const hearts = h('span', { class: 'boss-hearts', role: 'img', 'aria-label': 'あなたの体力 ' + b.player + '／' + b.playerMax });
+    for (let i = 0; i < b.playerMax; i++) hearts.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off') + (i === crackAt ? ' crack' : '')));
+    ui.hp.appendChild(h('span', { class: 'boss-hp-label', 'aria-hidden': 'true', text: 'HP ' + b.player }));
+    ui.hp.appendChild(hearts);
+  }
+
+  // 同じ動きをもう一度最初から（クラスを付け直す）
   function flash(el, cls, ms) {
     if (!el) return;
     el.classList.remove(cls);
-    void el.offsetWidth; // 同じ動きをもう一度最初から
+    void el.offsetWidth;
     el.classList.add(cls);
-    setTimeout(() => el.classList.remove(cls), ms);
+    later(() => el.classList.remove(cls), ms);
   }
 
-  function defeatFx(u) {
-    if (!u.art) return;
-    u.art.classList.add('defeat'); // 光って縮んで消える（0.9秒）。消えたまま残す
-    const stars = h('span', { class: 'boss-stars', 'aria-hidden': 'true' });
-    for (let i = 0; i < 8; i++) {
-      const a = (Math.PI * 2 * i) / 8;
-      const d = 44 + (i % 2) * 18;
-      const s = h('span', { class: 'boss-star', text: '★' });
-      s.style.setProperty('--dx', Math.round(Math.cos(a) * d) + 'px');
-      s.style.setProperty('--dy', Math.round(Math.sin(a) * d) + 'px');
-      stars.appendChild(s);
+  // ---- 画面の骨組み（戦いの間は、問題の入れ替えでも作り直さない） ----
+  function buildScreen() {
+    clear(root);
+    root.classList.add('boss-rpg');
+    document.body.classList.add('boss-on');
+    const fig = bossFigure(app, stage, profile);
+    const fx = h('div', { class: 'boss-fx', 'aria-hidden': 'true' });
+    const confetti = h('div', { class: 'boss-confetti', 'aria-hidden': 'true' });
+    const flashEl = h('div', { class: 'boss-flash', 'aria-hidden': 'true' });
+    const stageEl = h('div', { class: 'boss-stage', 'data-boss-stage': '1', onClick: onTap }, fig, fx, confetti, flashEl);
+    stageEl.style.setProperty('--boss-color', profile.color);
+    const text = h('div', { class: 'boss-win-text', 'aria-hidden': 'true' });
+    const live = h('p', { class: 'boss-sr', role: 'status' });
+    const hp = h('span', { class: 'boss-win-hp' });
+    const extra = h('div', { class: 'boss-win-extra' });
+    const win = h('div', { class: 'boss-window', 'data-boss-window': '1', onClick: onTap },
+      h('div', { class: 'boss-win-head' }, h('strong', { class: 'boss-win-name', text: name }), hp), text, extra, live);
+    const top = h('div', { class: 'boss-top' },
+      h('button', { class: 'btn ghost icon-only', type: 'button', 'aria-label': '終了する', 'data-boss-exit': '1', onClick: onExit }, icon('close')),
+      h('span', { class: 'small boss-chapter', text: stage.name }));
+    const qarea = h('div', { class: 'boss-qarea' });
+    const after = h('div', { class: 'after' });
+    const scene = h('div', { class: 'boss-scene' }, stageEl, win);
+    [top, scene, qarea, after].forEach((n) => root.appendChild(n));
+    for (let k = 0; k < 56; k++) {
+      const s = h('span', { class: 'confetti c' + (k % 5) });
+      s.style.left = Math.round(Math.random() * 100) + '%';
+      s.style.setProperty('--delay', (Math.random() * 0.9).toFixed(2) + 's');
+      s.style.setProperty('--dur', (1.6 + Math.random() * 1.4).toFixed(2) + 's');
+      s.style.setProperty('--sway', Math.round(Math.random() * 120 - 60) + 'px');
+      confetti.appendChild(s);
     }
-    u.foe.appendChild(stars);
-    setTimeout(() => stars.remove(), 1000);
+    ui = { scene, stage: stageEl, fig, fx, confetti, flash: flashEl, text, live, hp, extra, win, qarea, after, btns: [] };
+    paintHp(S.run.battle);
   }
 
-  function battlePanel(b) {
-    const fill = h('div', { class: 'boss-hp-fill' });
-    fill.style.width = (b.bossMax ? (b.boss / b.bossMax) * 100 : 0) + '%';
-    const hpText = h('strong', { class: 'boss-hp-text', text: 'ボスの体力 ' + b.boss + ' / ' + b.bossMax });
-    const bar = h('div', { class: 'boss-hp', role: 'progressbar', 'aria-label': 'ボスの体力', 'aria-valuemin': '0', 'aria-valuemax': String(b.bossMax), 'aria-valuenow': String(b.boss) }, fill);
-    const heartBox = h('div', { class: 'boss-me-hearts' }, hearts(b));
-    const panel = h('div', { class: 'card boss-battle', 'data-boss-battle': '1' },
-      h('div', { class: 'boss-foe' }, bossArt(app, stage, 'on'), h('div', { class: 'boss-foe-info' }, h('span', { class: 'small muted', text: name }), hpText, bar)),
-      h('div', { class: 'boss-me' }, h('span', { class: 'small muted', text: 'あなたの体力' }), heartBox));
-    return { panel, fill, hpText, bar, heartBox, foe: panel.querySelector('.boss-foe'), art: panel.querySelector('.boss-art') };
+  // 画面や窓をタップしたとき: 登場・撃破の演出はとばす。文が出ている途中なら、残りを一度に出す
+  function onTap() {
+    if (!S) return;
+    if (S.phase === 'intro') finishIntro();
+    else if (S.phase === 'defeat' && S.skipFx) S.skipFx();
+    else if (typing) typing.finish();
   }
 
-  function paintBattle(b, crackAt) {
-    const u = S.ui;
-    u.fill.style.width = (b.bossMax ? (b.boss / b.bossMax) * 100 : 0) + '%';
-    u.hpText.textContent = 'ボスの体力 ' + b.boss + ' / ' + b.bossMax;
-    u.bar.setAttribute('aria-valuenow', String(b.boss));
-    clear(u.heartBox);
-    u.heartBox.appendChild(hearts(b, crackAt));
+  // ---- 登場の演出（暗転 → 数回点滅 → ボスが現れて揺れる → 「あらわれた！」と登場のせりふ。2〜3秒。タップでとばせる） ----
+  function startIntro() {
+    S.phase = 'intro';
+    S.appeared = false;
+    ui.stage.classList.add('dark');
+    ui.fig.classList.add('unseen');
+    clear(ui.qarea);
+    ui.qarea.appendChild(h('button', { class: 'btn small-btn boss-skip', type: 'button', 'data-boss-skip': '1', onClick: finishIntro }, 'とばす（タップでもとばせます）'));
+    setBgmBoss(true); // ここから、ほかの BGM は小さくなって止まる（BGM がオンの人だけ）
+    if (reduced()) {
+      later(appear, 250);
+      return;
+    }
+    [500, 750, 1000].forEach((t) => {
+      later(() => ui.flash.classList.add('on'), t);
+      later(() => ui.flash.classList.remove('on'), t + 110);
+    });
+    later(appear, 1300);
+  }
+
+  function appear(instant) {
+    if (S.appeared) return;
+    S.appeared = true;
+    ui.stage.classList.remove('dark');
+    ui.fig.classList.remove('unseen');
+    ui.flash.classList.remove('on');
+    if (!instant && !reduced()) flash(ui.fig, 'appear', 700);
+    if (!instant) playSynth(app.state.settings, 'appear');
+    startBossTheme();
+    say([name + ' が あらわれた！', quoted(pickLine(profile, 'appear', app.rng))], { instant, onDone: () => { if (S.phase === 'intro') later(finishIntro, 300); } });
+  }
+
+  function finishIntro() {
+    if (!S || S.phase !== 'intro') return;
+    S.phase = 'question';
+    clearTimers();
+    appear(true); // まだ現れていなければ、いま現れる
+    if (typing) typing.finish();
+    ui.fig.classList.remove('appear');
+    drawQuestion();
   }
 
   // ---- 1問 ----
-  function draw() {
-    clear(root);
+  function drawQuestion() {
+    clear(ui.qarea);
+    clear(ui.after);
     const q0 = currentQuestion(S.run);
-    if (!q0) return drawResult();
+    if (!q0) { endBattle(); return; }
     const sq = shuffleChoices(q0, app.rng);
     S.item = sq;
     S.answered = false;
+    S.phase = 'question';
     const q = sq.q;
-    const b = S.run.battle;
-    root.appendChild(h('div', { class: 'play-head' },
-      h('button', { class: 'btn ghost icon-only', type: 'button', 'aria-label': '終了する', onClick: onExit }, icon('close')),
-      h('div', { class: 'play-title' }, h('strong', { text: name }), h('span', { class: 'small muted', text: S.run.round > 1 ? 'もう一度出す問題（' + S.run.round + '回目）' : '章の復習' })),
+    ui.qarea.appendChild(h('div', { class: 'play-head boss-qhead' },
+      h('span', { class: 'small muted boss-round', text: S.run.round > 1 ? 'もう一度出す問題（' + S.run.round + '回目）' : '章の復習' }),
       laterButton(app, q, { compact: true })));
-    const bp = battlePanel(b);
-    S.ui = { fill: bp.fill, hpText: bp.hpText, bar: bp.bar, heartBox: bp.heartBox, foe: bp.foe, art: bp.art, panel: bp.panel };
-    root.appendChild(bp.panel);
-    if (!S.log.length) root.appendChild(h('p', { class: 'small muted boss-rule', text: '正解でボスの体力が1減ります。間違えるとハートが1つ減り、その問題は最後にもう一度出ます。' }));
+    if (!S.log.length) ui.qarea.appendChild(h('p', { class: 'small muted boss-rule', text: '正解でボスにダメージ。何問で倒せるかは分かりません。間違えるとハートが1つ減り（3つなくなると負け）、その問題は最後にもう一度出ます。10秒以内に正解すると、会心の一撃が出ることがあります。' }));
     const card = h('div', { class: 'card q-card' });
     const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: q.syllabus.slice(1, 3).join(' › ') || q.syllabus[0] }), statusChip(q.status));
     if (q.format === 'not') tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
@@ -195,24 +327,20 @@ export function renderBoss(app, key) {
     card.appendChild(tags);
     card.appendChild(h('p', { class: 'stem', text: q.stem }));
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
-    const btns = sq.choices.map((c, i) => {
+    ui.btns = sq.choices.map((c, i) => {
       const bt = h('button', { class: 'choice', type: 'button', 'data-boss-choice': String(i), onClick: () => answer(i) },
         h('span', { class: 'mark', 'aria-hidden': 'true', text: CHOICE_LABELS[i] }), h('span', { class: 'ctext', text: c }));
       choices.appendChild(bt);
       return bt;
     });
     card.appendChild(choices);
-    root.appendChild(card);
-    const after = h('div', { class: 'after' });
-    root.appendChild(after);
-    S.ui.btns = btns;
-    S.ui.after = after;
+    ui.qarea.appendChild(card);
     S.t0 = Date.now();
-    window.scrollTo(0, 0);
+    if (S.log.length) window.scrollTo(0, 0);
   }
 
   function answer(chosen) {
-    if (!S || S.answered) return;
+    if (!S || S.phase !== 'question' || S.answered) return;
     S.answered = true;
     const sq = S.item;
     const correct = chosen !== null && chosen === sq.answer;
@@ -221,18 +349,13 @@ export function renderBoss(app, key) {
     const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit });
     S.xp += r.xp;
     S.log.push({ q: sq.q, sq, correct, chosen });
+    const crit = isCritical(correct, seconds, app.rng); // 10秒以内の正解で、4回に1回
     const heartsBefore = S.run.battle.player;
-    S.run = answerRun(S.run, correct);
+    S.run = answerRun(S.run, correct, crit ? CRIT_DAMAGE : 1);
     const b = S.run.battle;
     const lost = b.player < heartsBefore;
-    paintBattle(b, lost ? b.player : -1);
-    if (correct) {
-      if (b.result === 'win') defeatFx(S.ui);
-      else flash(S.ui.art, 'hit', 600);
-    } else if (lost) {
-      flash(root, 'quake', 400);
-    }
-    const { btns, after } = S.ui;
+    paintHp(b, lost ? b.player : -1);
+    const { btns, after } = ui;
     btns.forEach((bt, i) => {
       bt.disabled = true;
       bt.classList.toggle('ok', i === sq.answer);
@@ -244,7 +367,7 @@ export function renderBoss(app, key) {
     const open = (id) => openCardSheet(app, id);
     let cheer = false;
     const note = correct
-      ? 'ボスの体力 -1'
+      ? (crit ? '会心の一撃！' : 'ボスに ダメージ')
       : b.result === 'lose' ? 'ハートがなくなりました' : 'ハートが1つ減りました。この問題は最後にもう一度出ます';
     after.appendChild(h('div', { class: 'verdict ' + (correct ? 'ok' : 'ng'), role: 'status', 'data-boss-verdict': correct ? 'ok' : 'ng' },
       h('strong', { text: correct ? '正解！' : '残念…' }),
@@ -254,8 +377,7 @@ export function renderBoss(app, key) {
     const meaning = stemPlainBlock(sq.q);
     if (correct) {
       if (meaning) after.appendChild(meaning);
-      burst(btns[sq.answer]);
-      vibrate(app.state.settings, 30);
+      vibrate(app.state.settings, crit ? [30, 30, 60] : 30);
       beep(app.state.settings, 'ok');
     } else {
       vibrate(app.state.settings, [60, 40, 60]);
@@ -267,26 +389,168 @@ export function renderBoss(app, key) {
       if (sb) after.appendChild(sb);
     }
     after.appendChild(explanation(app, sq, chosen, open, { sensei: !cheer }));
-    const next = h('button', { class: 'btn primary big next', type: 'button', 'data-boss-next': '1', onClick: draw }, b.result ? '結果を見る' : '次の問題へ');
-    after.appendChild(h('div', { class: 'sticky-bar' }, next));
-    after.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    next.focus({ preventScroll: true });
+    const next = h('button', { class: 'btn primary big next', type: 'button', 'data-boss-next': '1', onClick: () => { if (typing) typing.finish(); if (b.result) endBattle(); else drawQuestion(); } }, b.result ? '結果を見る' : '次の問題へ');
+    const bar = h('div', { class: 'sticky-bar' }, next);
+    after.appendChild(bar);
+
+    // 戦いの演出（ボスの反応と窓の文）
+    if (correct && b.result === 'win') {
+      bar.classList.add('hidden'); // 撃破の演出が終わるまで、先へ進むボタンは出さない（タップでとばせる）
+      defeatSequence(bar, next);
+    } else if (correct) {
+      flash(ui.fig, 'hit', 700);
+      if (crit) { flash(ui.stage, 'crit', 450); playSynth(app.state.settings, 'crit'); }
+      const mood = bossMood(b);
+      say(crit
+        ? ['会心の一撃！', name + ' に ダメージ！', BOSS_MOOD_TEXT[mood]]
+        : [name + ' に ダメージ！', quoted(pickLine(profile, 'hurt', app.rng)), BOSS_MOOD_TEXT[mood]]);
+    } else {
+      flash(ui.stage, 'hurt', 500);
+      flash(ui.scene, 'quake', 450);
+      say([name + ' の こうげき！', quoted(pickLine(profile, 'attack', app.rng)), b.result === 'lose' ? 'あなたは たおれてしまった…' : 'あなたは ダメージを うけた！']);
+      if (b.result === 'lose') stopBossTheme();
+    }
+    if (!bar.classList.contains('hidden')) next.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: reduced() ? 'auto' : 'smooth' });
+  }
+
+  // ---- 撃破の演出（白く光る → 点滅 → 細かい粒に崩れて消える → 「たおした！」とせりふ・ファンファーレ・紙吹雪 → XP が数え上がる。4〜5秒。タップで最後まで飛ばせる） ----
+  function defeatSequence(bar, next) {
+    S.phase = 'defeat';
+    stopBossTheme();
+    const R = reduced();
+    const xpEl = h('p', { class: 'boss-xp', 'data-boss-xp': '1', text: 'XP +0' });
+    ui.extra.appendChild(xpEl);
+    const lines = [name + ' を たおした！', quoted(pickLine(profile, 'defeat', app.rng))];
+    let done = false;
+    let said = false; // 「たおした！」の文を出したか
+    const showFinal = () => {
+      xpEl.textContent = 'XP +' + S.xp;
+      xpEl.classList.add('final');
+    };
+    const finish = () => {
+      if (done) return;
+      done = true;
+      clearTimers();
+      ui.fx.textContent = '';
+      ui.fig.classList.remove('glow', 'blinkoff');
+      ui.fig.classList.add(R ? 'down' : 'gone');
+      if (said && typing) typing.finish();
+      else if (!said) say(lines, { instant: true });
+      if (!R) ui.confetti.classList.add('on');
+      showFinal();
+      S.phase = 'won';
+      S.skipFx = null;
+      bar.classList.remove('hidden');
+      next.focus({ preventScroll: true });
+    };
+    S.skipFx = finish;
+    if (R) {
+      ui.fig.classList.add('down');
+      playSynth(app.state.settings, 'fanfare');
+      say(lines, { instant: true });
+      showFinal();
+      S.phase = 'won';
+      S.skipFx = null;
+      done = true;
+      bar.classList.remove('hidden');
+      return;
+    }
+    ui.fig.classList.add('glow');
+    [350, 620, 890, 1160].forEach((t) => {
+      later(() => ui.fig.classList.add('blinkoff'), t);
+      later(() => ui.fig.classList.remove('blinkoff'), t + 120);
+    });
+    later(() => {
+      crumble();
+      ui.fig.classList.add('gone');
+      playSynth(app.state.settings, 'fanfare');
+      vibrate(app.state.settings, [40, 30, 40, 30, 80]);
+    }, 1350);
+    later(() => { said = true; say(lines); }, 1450);
+    later(() => ui.confetti.classList.add('on'), 1500);
+    later(() => countUp(xpEl, S.xp, 1300), 2800);
+    later(finish, 4500);
+  }
+
+  // 絵を細かい粒（小さな四角）に分けて、散らして落とす。絵が無ければ、ボスの色の粒
+  function crumble() {
+    const fig = ui.fig;
+    const img = fig.querySelector('img');
+    const st = ui.stage.getBoundingClientRect();
+    let x; let y; let w; let hh; let url = null;
+    if (img && img.naturalWidth) {
+      const ir = img.getBoundingClientRect();
+      const sc = Math.min(ir.width / img.naturalWidth, ir.height / img.naturalHeight);
+      w = img.naturalWidth * sc;
+      hh = img.naturalHeight * sc;
+      x = ir.left - st.left + (ir.width - w) / 2;
+      y = ir.top - st.top + (ir.height - hh) / 2;
+      url = img.currentSrc || img.src;
+    } else {
+      const fr = fig.getBoundingClientRect();
+      x = fr.left - st.left; y = fr.top - st.top; w = fr.width; hh = fr.height;
+    }
+    if (!(w > 0) || !(hh > 0)) return;
+    const cols = 10;
+    const rows = Math.max(6, Math.min(16, Math.round((cols * hh) / w)));
+    const bw = w / cols;
+    const bh = hh / rows;
+    const frag = document.createDocumentFragment();
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const bit = h('span', { class: 'boss-bit' });
+        bit.style.left = x + c * bw + 'px';
+        bit.style.top = y + r * bh + 'px';
+        bit.style.width = bw + 1 + 'px';
+        bit.style.height = bh + 1 + 'px';
+        if (url) {
+          bit.style.backgroundImage = 'url("' + url + '")';
+          bit.style.backgroundSize = w + 'px ' + hh + 'px';
+          bit.style.backgroundPosition = -c * bw + 'px ' + -r * bh + 'px';
+        } else {
+          bit.style.backgroundColor = profile.color;
+        }
+        bit.style.setProperty('--dx', Math.round((c - cols / 2 + rand(-0.5, 0.5)) * 16) + 'px');
+        bit.style.setProperty('--dy', Math.round(rand(60, 200)) + 'px');
+        bit.style.setProperty('--rot', Math.round(rand(-200, 200)) + 'deg');
+        bit.style.setProperty('--delay', ((r / rows) * 0.45 + rand(0, 0.25)).toFixed(2) + 's');
+        frag.appendChild(bit);
+      }
+    }
+    ui.fx.appendChild(frag);
+  }
+
+  // 数を 0 から to まで数え上げる
+  function countUp(el, to, ms) {
+    const t0 = Date.now();
+    const tick = () => {
+      const k = Math.min(1, (Date.now() - t0) / ms);
+      el.textContent = 'XP +' + Math.round(to * k);
+      if (k < 1) later(tick, 40);
+    };
+    tick();
   }
 
   // ---- 勝ち・負け ----
-  function drawResult() {
+  function endBattle() {
+    if (!S) return;
+    clearTimers();
+    if (typing) typing.finish();
     clear(root);
-    cleanup();
+    document.body.classList.add('boss-on');
+    setBgmBoss(false); // ここでふつうの BGM に戻る
     const win = S.run.battle.result === 'win';
     if (win && !S.recorded) {
       S.recorded = true;
       S.wins = recordBossWin(app.state, stage.key, isFlawlessWin(S.run.battle));
     }
     app.commit();
+    S.phase = 'result';
     const ok = S.log.filter((x) => x.correct).length;
     const card = h('div', { class: 'card result boss-result ' + (win ? 'win' : 'lose'), 'data-boss-result': win ? 'win' : 'lose' },
       h('div', { class: 'boss-result-art' }, bossArt(app, stage, win ? 'down' : 'on')),
-      h('h1', { text: win ? name + 'をたおした！' : '負けてしまった…' }),
+      h('h1', { text: win ? name + ' を たおした！' : '負けてしまった…' }),
       win
         ? h('p', { class: 'score' }, 'この章のボスを ', h('strong', { text: S.wins + ' 回' }), ' たおしました')
         : h('p', { text: 'ハートがなくなりました。解説を読んで、もう一度挑みましょう。' }),
@@ -316,7 +580,7 @@ export function renderBoss(app, key) {
     }
     const row = h('div', { class: 'btn-row' });
     if (info.available) {
-      row.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-boss-again': '1', onClick: () => { if (begin()) { bindKeys(); draw(); } else toast('いまはボスが現れていません', 'warn'); } }, 'もう一度挑む'));
+      row.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-boss-again': '1', onClick: again }, 'もう一度挑む'));
     }
     row.appendChild(h('button', { class: 'btn big', type: 'button', 'data-boss-back': '1', onClick: leave }, '戻る'));
     if (!info.available) row.classList.add('one');
@@ -325,11 +589,15 @@ export function renderBoss(app, key) {
     app.flushCelebrations();
   }
 
+  function again() {
+    if (begin()) { bindKeys(); buildScreen(); startIntro(); } else toast('いまはボスが現れていません', 'warn');
+  }
+
   function bindKeys() {
-    cleanup();
+    if (keyHandler) document.removeEventListener('keydown', keyHandler);
     keyHandler = (e) => {
       if (document.querySelector('.sheet-back')) return;
-      if (S && !S.answered && S.item && /^[1-8]$/.test(e.key)) {
+      if (S && S.phase === 'question' && !S.answered && S.item && /^[1-8]$/.test(e.key)) {
         const i = Number(e.key) - 1;
         if (i < S.item.choices.length) answer(i);
       }
@@ -347,6 +615,7 @@ export function renderBoss(app, key) {
     return root;
   }
   bindKeys();
-  draw();
+  buildScreen();
+  startIntro();
   return { el: root, cleanup };
 }

@@ -84,6 +84,8 @@ const SHARED = [
   '../shared/js/lib/forecast.js',
   '../shared/js/lib/boss.js',
   '../shared/js/lib/bossrun.js',
+  '../shared/js/lib/bossdata.js',
+  '../shared/js/lib/bossmusic.js',
   '../shared/js/views/boss.js',
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
@@ -130,6 +132,12 @@ self.addEventListener('install', (event) => {
               } catch (e) { /* 取れないものは飛ばす */ }
             })
           );
+          // 章のボスの名前・せりふ（data/bosses.json。index.json の bosses で名前を変えてもよい）。無い(404)ときは飛ばす（ボスは汎用の名前とせりふで動く）
+          try {
+            const bu = new URL('./data/' + (typeof idx.bosses === 'string' && idx.bosses ? idx.bosses : 'bosses.json'), self.location).href;
+            const br = await fetch(bu, { cache: 'reload' });
+            if (br.ok) await cache.put(bu, br);
+          } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
           await Promise.all(
             [...figureIds].map(async (id) => {
               try {
