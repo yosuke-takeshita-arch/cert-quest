@@ -181,7 +181,7 @@ function dxStructure(p, problems) {
 const QTYPES = new Set(['term', 'relation', 'causal', 'loop', 'tradeoff', 'interdep', 'miscon']);
 
 const isStr = (v) => typeof v === 'string' && v.trim().length > 0;
-const QFMT = new Set(['single', 'not', 'fill', 'scenario']);
+const QFMT = new Set(['single', 'not', 'fill', 'scenario', 'combo']);
 const STATUS = new Set(['verified', 'unverified']);
 
 function checkSources(f, id, s) {

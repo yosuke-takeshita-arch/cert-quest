@@ -27,7 +27,7 @@ export function normalizeQuestion(q) {
   return {
     id: q.id,
     syllabus: q.syllabus,
-    format: ['single', 'not', 'fill', 'scenario'].includes(q.format) ? q.format : 'single',
+    format: ['single', 'not', 'fill', 'scenario', 'combo'].includes(q.format) ? q.format : 'single',
     qtype: ['term', 'relation', 'causal', 'loop', 'tradeoff', 'interdep', 'miscon'].includes(q.qtype) ? q.qtype : '', // 出題の型（任意。模試の配分に使う）
     difficulty: Number.isFinite(q.difficulty) ? q.difficulty : null,
     stem: q.stem,

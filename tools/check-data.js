@@ -78,7 +78,7 @@ function loadSyllabusPaths(p) {
 }
 
 const isStr = (v) => typeof v === 'string' && v.trim().length > 0;
-const QFMT = new Set(['single', 'not', 'fill', 'scenario']);
+const QFMT = new Set(['single', 'not', 'fill', 'scenario', 'combo']);
 const STATUS = new Set(['verified', 'unverified']);
 
 function checkSources(f, id, s) {
@@ -277,6 +277,12 @@ for (const { file: f, kind, data, syl } of loaded) {
       checkCueWords(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿|（[ア-ンあ-ん]）/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
+      // combo: 問題文に空欄（ア）があり、どの選択肢も（ア）から始まる語の組（要件定義書 §7 の format）。並べ替えても崩れないよう、選択肢どうしを番号で指さない
+      if (o.format === 'combo') {
+        if (!/（ア）/.test(o.stem) || !/（イ）/.test(o.stem)) err(f, id, 'combo なのに問題文に空欄（ア）（イ）が無い');
+        if (Array.isArray(o.choices) && o.choices.some((c) => typeof c !== 'string' || !/^（ア）/.test(c.trim()) || !/（イ）/.test(c))) err(f, id, 'combo の選択肢が「（ア）〇〇　（イ）△△」の形でない');
+        if (Array.isArray(o.choices) && new Set(o.choices.map((c) => String(c).replace(/\s+/g, ''))).size !== o.choices.length) err(f, id, 'combo の選択肢に同じ組がある');
+      }
     } else {
       if (!/^C-\d{2}-\d{3}$/.test(id)) err(f, id, 'id が C-NN-NNN 形式でない');
       checkSyllabus(f, id, o.syllabus, syl);

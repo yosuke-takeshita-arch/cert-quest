@@ -93,6 +93,7 @@ function renderLaterOne(app, id) {
   const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: chapterOf(q) }), statusChip(q.status));
   if (q.format === 'not') tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
   if (q.format === 'scenario') tags.appendChild(h('span', { class: 'chip', text: '場面問題' }));
+  if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
   card.appendChild(tags);
   card.appendChild(h('p', { class: 'stem', text: q.stem }));
   const ul = h('ul', { class: 'read-choices' });

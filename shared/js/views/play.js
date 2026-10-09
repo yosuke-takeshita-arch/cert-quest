@@ -78,6 +78,7 @@ export function renderPlay(app) {
     const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: q.syllabus.slice(1, 3).join(' › ') || q.syllabus[0] }), statusChip(q.status));
     if (q.format === 'not') tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
     if (q.format === 'scenario') tags.appendChild(h('span', { class: 'chip', text: '場面問題' }));
+    if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
     card.appendChild(tags);
     if (timed) {
       var fill = h('div', { class: 'timer-fill' });

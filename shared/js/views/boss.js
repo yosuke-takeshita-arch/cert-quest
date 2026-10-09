@@ -381,6 +381,7 @@ export function renderBoss(app, key) {
     const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: q.syllabus.slice(1, 3).join(' › ') || q.syllabus[0] }), statusChip(q.status));
     if (q.format === 'not') tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
     if (q.format === 'scenario') tags.appendChild(h('span', { class: 'chip', text: '場面問題' }));
+    if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
     card.appendChild(tags);
     card.appendChild(h('p', { class: 'stem', text: q.stem }));
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
