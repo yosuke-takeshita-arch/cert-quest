@@ -105,10 +105,24 @@ export function normalizeBoss(raw) {
   return out;
 }
 
-/** 撃破を1回記録する。戻り値は記録後の回数。 */
-export function recordBossWin(state, key) {
+/** 読んだ保存データの bossFlawless（ハートを1つも減らさずに倒した回数）を正しい形にする。古い記録（項目なし）・正の整数でないものは0。 */
+export function normalizeBossFlawless(raw) {
+  return Number.isInteger(raw) && raw > 0 ? raw : 0;
+}
+
+/** ハートを1つも減らさずに勝ったか（要件定義書 §3-8）。 */
+export function isFlawlessWin(battle) {
+  return !!battle && battle.result === 'win' && battle.player === battle.playerMax;
+}
+
+/**
+ * 撃破を1回記録する。戻り値は記録後の回数。
+ * flawless が true（ハートを減らさずに勝った）なら、state.bossFlawless も1増やす。
+ */
+export function recordBossWin(state, key, flawless = false) {
   state.boss = normalizeBoss(state.boss);
   state.boss[key] = (state.boss[key] || 0) + 1;
+  state.bossFlawless = normalizeBossFlawless(state.bossFlawless) + (flawless ? 1 : 0);
   return state.boss[key];
 }
 

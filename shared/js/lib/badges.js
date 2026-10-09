@@ -3,8 +3,12 @@
 //   action は、その目標を始めるときの行き先（study=次のステージ／challenge／exam／stage=key のステージ）。
 import { levelFromXp, totalXpForLevel, currentStreak } from './scoring.js';
 import { secondsPerQuestion } from './quiz.js';
+import { DOCHI_ROUNDS, normalizeDochi } from './dochi.js';
+import { normalizeBoss, normalizeBossFlawless } from './boss.js';
 
 // 絵のあるバッジ。共通の12個は shared/images/badges/<id>.webp（id と同じ名前）。
+// 「どっち？」とボス戦の5つ（dochi-perfect・dochi-combo-10・boss-first・boss-all・boss-flawless）は絵がまだ無く、記号の表示。
+// 絵を置くときは、ここの配列に5つの id を足し、shared/sw-core.js の SHARED に './images/badges/<id>.webp' の行を足す。
 export const COMMON_BADGE_ART = Object.freeze(['first-answer', 'correct-10', 'correct-100', 'streak-3', 'streak-7', 'streak-30', 'level-5', 'level-10', 'challenge-8', 'exam-first', 'exam-70', 'exam-90']);
 // 章の制覇バッジを取る星の数（ステージの最大＝完全クリア）。
 export const CHAPTER_STARS = 3;
@@ -51,8 +55,15 @@ function bestExamPercent(s) {
   return best;
 }
 
+/** 章のボスを倒した回数の合計。 */
+function bossTotal(s) {
+  return Object.values(normalizeBoss(s.boss)).reduce((a, b) => a + b, 0);
+}
+
 export function badgeDefs(tree, config) {
   const sec = secondsPerQuestion(config);
+  // 「全章のボス撃破」の全部の章＝問題のある章（地図の章。ボスが出られる章。DX の補足の章もボスが出るので数える）
+  const bossStages = ((tree && tree.stages) || []).filter((st) => st.questions.length);
   const defs = [
     { id: 'first-answer', name: 'はじめの一歩', desc: '最初の1問に答えた', test: (s) => s.totals.answered >= 1, progress: (s) => count(s.totals.answered, 1, '問') },
     { id: 'correct-10', name: '10問正解', desc: '通算10問正解', test: (s) => s.totals.correct >= 10, progress: (s) => count(s.totals.correct, 10, '問') },
@@ -66,7 +77,23 @@ export function badgeDefs(tree, config) {
     { id: 'exam-first', name: '模試デビュー', desc: '模擬試験を1回受けた', test: (s) => s.exams.length >= 1, progress: (s) => ({ cur: s.exams.length, max: 1, unit: '回', action: { kind: 'exam' } }) },
     { id: 'exam-70', name: '模試7割', desc: '模擬試験で正答率70%以上', test: (s) => s.exams.some((e) => e.total >= 10 && e.correct / e.total >= 0.7), progress: (s) => ({ cur: bestExamPercent(s), max: 70, unit: '%', action: { kind: 'exam' } }) },
     { id: 'exam-90', name: '模試9割', desc: '模擬試験で正答率90%以上', test: (s) => s.exams.some((e) => e.total >= 10 && e.correct / e.total >= 0.9), progress: (s) => ({ cur: bestExamPercent(s), max: 90, unit: '%', action: { kind: 'exam' } }) },
+    // 「どっち？」とボス戦（要件定義書 §3-8）。「どっち？」は問題の記録を通らないので、結果の画面（app.commit）で判定される
+    { id: 'dochi-perfect', name: 'どっち？パーフェクト', desc: '「どっち？」の1回で' + DOCHI_ROUNDS + '問すべて正解', test: (s) => normalizeDochi(s.dochi).best >= DOCHI_ROUNDS, progress: (s) => ({ cur: normalizeDochi(s.dochi).best, max: DOCHI_ROUNDS, unit: '問', action: { kind: 'dochi' } }) },
+    { id: 'dochi-combo-10', name: 'コンボ10', desc: '「どっち？」でコンボ（連続正解）10', test: (s) => normalizeDochi(s.dochi).bestCombo >= 10, progress: (s) => ({ cur: normalizeDochi(s.dochi).bestCombo, max: 10, unit: 'コンボ', action: { kind: 'dochi' } }) },
+    { id: 'boss-first', name: 'はじめての撃破', desc: '章のボスを初めて倒す', test: (s) => bossTotal(s) >= 1, progress: (s) => ({ cur: bossTotal(s), max: 1, unit: '回', action: { kind: 'boss' } }) },
+    { id: 'boss-flawless', name: 'ノーダメージ', desc: 'ハートを1つも減らさずにボスを倒す', test: (s) => normalizeBossFlawless(s.bossFlawless) >= 1, progress: (s) => ({ cur: normalizeBossFlawless(s.bossFlawless), max: 1, unit: '回', action: { kind: 'boss' } }) },
   ];
+  // 問題のある章が1つも無いときは作らない（every が空で true になり、何もしなくても取れてしまうため）
+  if (bossStages.length) {
+    const beaten = (s) => bossStages.filter((st) => normalizeBoss(s.boss)[st.key] >= 1).length;
+    defs.splice(defs.findIndex((d) => d.id === 'boss-flawless'), 0, {
+      id: 'boss-all',
+      name: '全章のボス撃破',
+      desc: '問題のある全' + bossStages.length + '章のボスを、1回以上倒す',
+      test: (s) => beaten(s) >= bossStages.length,
+      progress: (s) => ({ cur: beaten(s), max: bossStages.length, unit: '章', action: { kind: 'boss' } }),
+    });
+  }
   for (const major of (tree && tree.roots) || []) {
     const stages = major.children.filter((st) => st.questions.length);
     if (!stages.length) continue;

@@ -75,6 +75,10 @@ export function startGoal(app, goal) {
     return startSession(app, challengeSpec(app));
   } else if (a.kind === 'exam') {
     return app.go('#/exam');
+  } else if (a.kind === 'dochi') {
+    return app.go('#/dochi');
+  } else if (a.kind === 'boss') {
+    return app.go('#/review'); // 章のボスの一覧がある画面
   } else if (a.kind === 'study') {
     const st = suggestStage(app.data.tree.stages, app.state.qstats);
     if (st) return startSession(app, stageSpec(app, st));

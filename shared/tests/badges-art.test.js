@@ -57,20 +57,25 @@ test('badgeImageUrl: 共通→shared、major-◯◯→アプリ、不正・未�
   assert.equal(badgeImageUrl('streak-7'), null);
 });
 
-test('badgeDefs: 共通12個は絵あり、章の制覇は major-◯◯ の絵の名前（シラバス id 優先）', () => {
+// 共通のバッジ＝12個（絵あり）＋「どっち？」とボス戦の5つ（絵は未作成。絵が届いたら COMMON_BADGE_ART に足す）
+const PENDING_ART = ['dochi-perfect', 'dochi-combo-10', 'boss-first', 'boss-all', 'boss-flawless'];
+
+test('badgeDefs: 共通12個は絵あり、5つは絵なし、章の制覇は major-◯◯ の絵の名前（シラバス id 優先）', () => {
   const defs = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 });
   const common = defs.filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:'));
-  assert.equal(common.length, 12);
-  for (const d of common) assert.equal(badgeArtName(d), d.id, d.id);
+  assert.equal(common.length, 17);
+  for (const d of common) assert.equal(badgeArtName(d), PENDING_ART.includes(d.id) ? null : d.id, d.id);
   const majors = defs.filter((d) => d.id.startsWith('major:'));
   assert.deepEqual(majors.map((d) => badgeArtName(d)), ['major-T', 'major-_u6cd5__u30fb__u502b__u7406__u20__u5206__u91ce_']);
 });
 
 test('絵の素材: 共通の12個が全部 shared/images/badges/ にあり、各 badgeDefs の id と一致し、オフライン登録（sw-core.js）にも入っている', () => {
-  assert.equal(COMMON_BADGE_ART.length, 12);
-  assert.equal(new Set(COMMON_BADGE_ART).size, 12);
+  assert.ok(COMMON_BADGE_ART.length >= 12);
+  assert.equal(new Set(COMMON_BADGE_ART).size, COMMON_BADGE_ART.length);
   const ids = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 }).filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:')).map((d) => d.id);
-  assert.deepEqual([...COMMON_BADGE_ART].sort(), [...ids].sort());
+  // 絵のあるものは、全部が定義の id にある。定義の id で絵が無いものは、絵待ちの5つだけ
+  assert.deepEqual(COMMON_BADGE_ART.filter((a) => !ids.includes(a)), []);
+  assert.deepEqual(ids.filter((i) => !COMMON_BADGE_ART.includes(i)).sort(), PENDING_ART.filter((i) => !COMMON_BADGE_ART.includes(i)).sort());
   const sw = readFileSync(join(shared, 'sw-core.js'), 'utf8');
   for (const id of COMMON_BADGE_ART) {
     const p = join(shared, 'images', 'badges', id + '.webp');
@@ -118,8 +123,9 @@ test('章の制覇: id は chapter:<ステージの key>、絵は major-<章の 
 test('章の制覇: 並びは 共通12個 → 大項目 → 章。既存の12個と大項目の id は変わらない', () => {
   const defs = defsOf(twoChapterTree());
   const ids = defs.map((d) => d.id);
-  assert.deepEqual([...ids.slice(0, 12)].sort(), [...COMMON_BADGE_ART].sort());
-  assert.deepEqual(ids.slice(12), ['major:T', 'major:L', 'chapter:T|C1', 'chapter:T|C2', 'chapter:L|D1']);
+  assert.deepEqual([...ids.slice(0, 12)].sort(), [...COMMON_BADGE_ART.slice(0, 12)].sort());
+  assert.deepEqual(ids.slice(12, 17), PENDING_ART);
+  assert.deepEqual(ids.slice(17), ['major:T', 'major:L', 'chapter:T|C1', 'chapter:T|C2', 'chapter:L|D1']);
 });
 
 test('章の制覇: 星2では取れない・星3で取れる・ほかの章の星3では取れない', () => {

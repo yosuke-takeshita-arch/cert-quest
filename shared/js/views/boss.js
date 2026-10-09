@@ -4,7 +4,7 @@
 import { h, clear, icon, burst, vibrate, beep, toast, mascotLine } from '../ui.js';
 import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
-import { bossInfo, bossQuestions, recordBossWin, bossWins, BOSS_MIN } from '../lib/boss.js';
+import { bossInfo, bossQuestions, recordBossWin, isFlawlessWin, bossWins, BOSS_MIN } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, laterButton, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -245,7 +245,7 @@ export function renderBoss(app, key) {
     const win = S.run.battle.result === 'win';
     if (win && !S.recorded) {
       S.recorded = true;
-      S.wins = recordBossWin(app.state, stage.key);
+      S.wins = recordBossWin(app.state, stage.key, isFlawlessWin(S.run.battle));
     }
     app.commit();
     const ok = S.log.filter((x) => x.correct).length;

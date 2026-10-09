@@ -8,7 +8,7 @@ import { DEFAULT_MAP_VIEW, normalizeMapView } from './maplayout.js';
 import { normalizeLater } from './later.js';
 import { normalizeDochi } from './dochi.js';
 import { normalizeForecast } from './forecast.js';
-import { normalizeBoss } from './boss.js';
+import { normalizeBoss, normalizeBossFlawless } from './boss.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -29,6 +29,7 @@ export function defaultState() {
     settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
     forecast: {}, // 合格予想の日ごとの記録（'YYYY-MM-DD' → 点。最大60日）
     boss: {}, // 章のボスの撃破回数（章のキー → 回数）
+    bossFlawless: 0, // ハートを1つも減らさずにボスを倒した回数（バッジ「ノーダメージ」用）
     goalAwarded: null,
   };
 }
@@ -54,6 +55,7 @@ export function mergeState(saved) {
   o.dochi = normalizeDochi(saved.dochi); // 「どっち？」早押し。古い記録（項目なし）は0、数でない値は0
   o.forecast = normalizeForecast(saved.forecast); // 合格予想の推移。古い記録（項目なし）は空、日付でないキー・範囲外の値は捨てる
   o.boss = normalizeBoss(saved.boss); // 章のボスの撃破回数。古い記録（項目なし）は空
+  o.bossFlawless = normalizeBossFlawless(saved.bossFlawless); // ノーダメージで倒した回数。古い記録（項目なし）・壊れた値は0
   if (!Number.isFinite(o.xp)) o.xp = 0;
   o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
