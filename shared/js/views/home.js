@@ -15,6 +15,7 @@ import { homeMascot } from '../lib/characters.js';
 import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
+import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss } from './boss.js';
 import { cardBody } from './cards.js';
 
 export function masteryChip(level) {
@@ -332,7 +333,7 @@ function mapAdventure(app) {
     const name = h('div', { class: 'map-name', onClick: go },
       h('strong', { text: st.name }),
       h('span', { class: 'small muted', text: stageSub(st, p) }),
-      h('span', { class: 'map-meta' }, stars(star), masteryChip(p.level)));
+      h('span', { class: 'map-meta' }, stars(star), masteryChip(p.level), bossChip(app, st)));
     const node = h('div', { class: 'map-node side-' + n.side + (isHere ? ' here' : '') }, dot, name);
     node.style.setProperty('--x', String(Math.round(n.x * 10000) / 100));
     node.style.setProperty('--y', String(n.y));
@@ -352,7 +353,12 @@ function stageRow(app, st) {
   const rec = app.state.stages[st.key];
   return h('button', { class: 'stage-row m-border-' + p.level, type: 'button', onClick: () => app.go('#/stage/' + encodeURIComponent(st.key)) },
     h('span', { class: 'row-main' }, h('strong', { text: st.name }), h('span', { class: 'small muted', text: stageSub(st, p) })),
-    stars(rec ? rec.stars : 0), masteryChip(p.level));
+    stars(rec ? rec.stars : 0), bossChip(app, st), masteryChip(p.level));
+}
+
+/** 章のボスが現れているときだけの目印（地図・一覧）。 */
+function bossChip(app, st) {
+  return bossState(app, st).info.available ? h('span', { class: 'chip boss-chip', 'data-boss-chip': '1', text: 'ボス出現' }) : null;
 }
 
 // ---- ステージ ----
@@ -376,6 +382,8 @@ export function renderStage(app, key) {
   } else {
     root.appendChild(h('div', { class: 'empty' }, h('p', { text: 'このステージの問題は準備中です。' })));
   }
+  // 章のボス（最後に間違えた問題が3問以上たまると現れる。要件定義書 §3-7）
+  if (p.total) root.appendChild(bossPlace(app, st, '#/stage/' + encodeURIComponent(st.key)));
   if (st.children.length) {
     const box = h('div', { class: 'card' }, h('h2', { text: '小項目' }));
     for (const sm of st.children) {
@@ -413,6 +421,19 @@ export function renderReview(app) {
     h('p', { class: 'row-line' }, '今日以前: ', h('strong', { text: up.now + '問' })),
     h('p', { class: 'row-line' }, '明日: ', h('strong', { text: up.tomorrow + '問' })),
     h('p', { class: 'row-line' }, 'あさって以降: ', h('strong', { text: up.later + '問' }))));
+  // 章のボス。最後に間違えた問題が3問以上たまった章に現れる（要件定義書 §3-7）
+  const bosses = availableBosses(app);
+  const bbox = h('div', { class: 'card boss-list', 'data-review-boss': '1' }, h('h2', { text: '章のボス' }));
+  if (bosses.length) {
+    bbox.appendChild(h('p', { class: 'small muted', text: '間違えた問題がたまった章に現れます。ボスをたおすと、その問題の復習になります。' }));
+    bosses.forEach((b) => bbox.appendChild(h('button', { class: 'boss-row', type: 'button', 'data-boss-go': b.stage.key, onClick: () => openBoss(app, b.stage, '#/review') },
+      bossArt(app, b.stage, 'on'),
+      h('span', { class: 'boss-row-text' }, h('strong', { text: bossName(b.stage) }), h('span', { class: 'small muted', text: '間違えた問題 ' + b.info.missed + ' 問' + (b.wins ? '・たおした回数 ' + b.wins + ' 回' : '') }))
+      , h('span', { class: 'boss-row-go', 'aria-hidden': 'true', text: '挑む ›' }))));
+  } else {
+    bbox.appendChild(h('p', { class: 'small muted', text: 'いまは現れていません。章ごとに、最後に間違えた問題が3問たまると、その章のボスが現れます。' }));
+  }
+  root.appendChild(bbox);
   // 「あとで見る」へ入る（ゆっくり理解したい問題に自分で付けた印。復習の予定とは別）
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: 'あとで見る' }),
     h('p', { class: 'small muted', text: '自分で印を付けた問題を、まとめて読み返せます。' }),

@@ -83,6 +83,8 @@ const SHARED = [
   '../shared/js/views/forecast.js',
   '../shared/js/lib/forecast.js',
   '../shared/js/lib/boss.js',
+  '../shared/js/lib/bossrun.js',
+  '../shared/js/views/boss.js',
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',

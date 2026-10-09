@@ -25,6 +25,7 @@ import { renderCharacters } from './views/characters.js';
 import { renderWeak } from './views/weak.js';
 import { renderLater } from './views/later.js';
 import { renderDochi } from './views/dochi.js';
+import { renderBoss } from './views/boss.js';
 import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
@@ -249,6 +250,7 @@ export async function start() {
     ['exam', 'more', () => renderExam(app), true],
     ['play', 'home', () => renderPlay(app), true],
     ['dochi', 'home', () => renderDochi(app), true], // 出題の遊びなので、下のメニューを隠し、BGM も問題中の設定に従う
+    ['boss', 'map', (k) => renderBoss(app, k), true], // 章のボス戦。問題を解く画面なので同じく下のメニューを隠す
   ];
 
   // 配色。設定（light / dark / auto）を data-theme="light"|"dark" に解決して付ける。auto はスマホの設定の変化にも追う
