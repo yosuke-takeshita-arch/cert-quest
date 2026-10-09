@@ -1,42 +1,96 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-g-exploding-gradient-t fig-g-exploding-gradient-d">
-<title id="fig-g-exploding-gradient-t">勾配爆発と、勾配クリッピング</title>
-<desc id="fig-g-exploding-gradient-d">① 勾配爆発：掛け算の仕組みは勾配消失と同じで、誤差逆伝播で1層戻るたびに値が掛かる。各層で1より大きい値（例として2）が掛かると、勾配は誤差の所の1から、層4で2、層3で4、層2で8、層1で16と急に大きくなり、重みが一度に大きく動いて学習が発散する。② 勾配クリッピング：勾配ベクトルのノルムがしきい値を超えたら、向きは保ったまま、しきい値÷ノルムを掛けて長さをしきい値まで縮める。例として長さ10、しきい値5なら、5÷10で0.5を掛けて長さを5にする。勾配爆発に効くが、勾配消失には効かない。</desc>
-<text x="12" y="20" class="tb">① 勾配爆発：大きい値を掛け続ける</text>
-<text x="12" y="40" class="tm">掛け算の仕組みは勾配消失と同じ。</text>
-<text x="12" y="58" class="tm">各層で1より大きい値（例：2）が掛かる</text>
-<rect x="12" y="92" width="36" height="70" class="fwn swn" stroke-width="1.5"/>
-<text x="30" y="86" class="tb" text-anchor="middle">16</text>
-<rect x="77" y="127" width="36" height="35" class="fwn swn" stroke-width="1.5"/>
-<text x="95" y="121" class="tb" text-anchor="middle">8</text>
-<rect x="142" y="144.5" width="36" height="17.5" class="fwn swn" stroke-width="1.5"/>
-<text x="160" y="138.5" class="tb" text-anchor="middle">4</text>
-<rect x="207" y="153.25" width="36" height="8.75" class="fwn swn" stroke-width="1.5"/>
-<text x="225" y="147.25" class="tb" text-anchor="middle">2</text>
-<rect x="272" y="157.63" width="36" height="4.38" class="fas sa" stroke-width="1.5"/>
-<text x="290" y="151.63" class="tb" text-anchor="middle">1</text>
-<line x1="10" y1="162" x2="310" y2="162" class="l sm w1"/>
-<text x="30" y="180" class="tm" text-anchor="middle">層1</text>
-<text x="95" y="180" class="tm" text-anchor="middle">層2</text>
-<text x="160" y="180" class="tm" text-anchor="middle">層3</text>
-<text x="225" y="180" class="tm" text-anchor="middle">層4</text>
-<text x="290" y="180" class="tm" text-anchor="middle">誤差</text>
-<line x1="280" y1="192" x2="40" y2="192" class="l sm w1"/>
-<polyline points="47,188.15 40,192 47,195.85" class="l sm w1"/>
-<text x="160" y="208" class="tm" text-anchor="middle">出力側から入力側へ戻る（逆伝播）</text>
-<text x="12" y="234" class="tb">重みが一度に大きく動き、学習が発散する</text>
-<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
-<text x="12" y="274" class="tb">② 勾配クリッピング：長すぎる勾配を縮める</text>
-<circle cx="110" cy="398" r="56" class="sm w2 dsh"/>
-<text x="12" y="340" class="tm">しきい値</text>
-<line x1="110" y1="398" x2="231.5" y2="310.67" class="l sng w2"/>
-<polygon points="238,306 234.42,314.73 228.59,306.61" class="fm"/>
-<line x1="110" y1="398" x2="148.33" y2="370.45" class="l sa w3"/>
-<polygon points="155.47,365.32 151.54,374.92 145.12,365.99" class="fa"/>
-<circle cx="110" cy="398" r="3" class="fm"/>
-<text x="250" y="330" class="tb tng">元の勾配</text>
-<text x="170" y="406" class="tb ta">切り詰めた勾配</text>
-<text x="12" y="484">ノルム（勾配の長さ）がしきい値を超えたら、</text>
-<text x="12" y="504">向きは保ち、しきい値÷ノルムを掛けて縮める</text>
-<text x="12" y="524" class="tm">例：長さ10・しきい値5 → 5÷10＝0.5 を掛けて長さ5</text>
-<text x="12" y="550" class="tb">勾配爆発に効く。勾配消失には効かない</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1268" role="img" aria-labelledby="fig-g-exploding-gradient-t fig-g-exploding-gradient-d">
+<title id="fig-g-exploding-gradient-t">勾配爆発：なぜ大きくなり、なぜ学習が壊れるのか。勾配クリッピング</title>
+<desc id="fig-g-exploding-gradient-d">① 勾配とは：重みを少し動かしたとき誤差が動く量で、大きいほどその重みを大きく直す。② なぜ層ごとに大きくなるのか：誤差逆伝播では1層戻るたびに、その層の重み×活性化関数の傾きを掛ける。例としてどの層でもこれが2とすると、誤差の所の勾配を1として、層4で2、層3で4、層2で8、層1で16。棒と棒の間に×2を書いてある。層1に届く勾配は2×2×2×2で16。層が10なら2を10回掛けて1024。③ 大きな勾配で直すと行き過ぎる：新しい重み＝いまの重み−学習率×勾配。いまの重み0.5、学習率0.01とする。ふつう（勾配2）なら0.5−0.01×2＝0.5−0.02＝0.48。爆発（勾配1024）なら0.5−0.01×1024＝0.5−10.24＝−9.74。数直線の上で、0.5のまわりの囲み（勾配の向きが当てはまる近く）から、−9.74まで一歩で10.24も飛ぶ矢印。勾配が分かるのはすぐ近くの下り坂の向きだけなので、遠くへ飛ぶと誤差がかえって大きくなる。くり返すと、重みが大きく飛び、掛かる数も大きくなり、次の勾配がさらに大きくなってもっと飛ぶ（例から導いた流れ）。数が扱える範囲を超えるとInf（無限大）やNaN（数でない値）になり、学習が壊れる（発散）。④ 勾配クリッピング：勾配の長さ（ノルム）がしきい値を超えたら、向きは保ち、しきい値÷長さを掛けて縮める。例として長さ1024・しきい値5なら5÷1024でおよそ0.0049を掛けて長さ5。重みの直しは0.5−0.01×5＝0.5−0.05＝0.45と小さな一歩で済む。勾配爆発に効くが、小さい勾配を大きくはしないので勾配消失には効かない。</desc>
+<text x="12" y="20" class="tb">① 勾配＝重みを直す量</text>
+<text x="12" y="40">勾配＝重みを少し動かしたとき誤差が動く量</text>
+<text x="12" y="58" class="tm">大きいほど、その重みを大きく直す</text>
+<line x1="12" y1="74" x2="308" y2="74" class="l sb w1"/>
+<text x="12" y="98" class="tb">② なぜ層ごとに大きくなるのか</text>
+<text x="12" y="118">逆伝播では、1層戻るたびに数を掛ける</text>
+<text x="12" y="136">掛かる数＝その層の重み×活性化関数の傾き</text>
+<text x="12" y="154" class="tm">例として、どの層でもこれが 2 とする</text>
+<rect x="12" y="184" width="36" height="96" class="fwn swn" stroke-width="1.5"/>
+<text x="30" y="178" class="tb" text-anchor="middle">16</text>
+<rect x="77" y="232" width="36" height="48" class="fwn swn" stroke-width="1.5"/>
+<text x="95" y="226" class="tb" text-anchor="middle">8</text>
+<rect x="142" y="256" width="36" height="24" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="250" class="tb" text-anchor="middle">4</text>
+<rect x="207" y="268" width="36" height="12" class="fwn swn" stroke-width="1.5"/>
+<text x="225" y="262" class="tb" text-anchor="middle">2</text>
+<rect x="272" y="274" width="36" height="6" class="fas sa" stroke-width="1.5"/>
+<text x="290" y="268" class="tb" text-anchor="middle">1</text>
+<line x1="10" y1="280" x2="310" y2="280" class="l sm w1"/>
+<text x="30" y="298" class="tm" text-anchor="middle">層1</text>
+<text x="95" y="298" class="tm" text-anchor="middle">層2</text>
+<text x="160" y="298" class="tm" text-anchor="middle">層3</text>
+<text x="225" y="298" class="tm" text-anchor="middle">層4</text>
+<text x="290" y="298" class="tm" text-anchor="middle">誤差</text>
+<line x1="87" y1="312" x2="38" y2="312" class="l swn w2"/>
+<polyline points="45,308.15 38,312 45,315.85" class="l swn w2"/>
+<text x="62.5" y="330" class="tb twn" text-anchor="middle">×2</text>
+<line x1="152" y1="312" x2="103" y2="312" class="l swn w2"/>
+<polyline points="110,308.15 103,312 110,315.85" class="l swn w2"/>
+<text x="127.5" y="330" class="tb twn" text-anchor="middle">×2</text>
+<line x1="217" y1="312" x2="168" y2="312" class="l swn w2"/>
+<polyline points="175,308.15 168,312 175,315.85" class="l swn w2"/>
+<text x="192.5" y="330" class="tb twn" text-anchor="middle">×2</text>
+<line x1="282" y1="312" x2="233" y2="312" class="l swn w2"/>
+<polyline points="240,308.15 233,312 240,315.85" class="l swn w2"/>
+<text x="257.5" y="330" class="tb twn" text-anchor="middle">×2</text>
+<text x="160" y="350" class="tm" text-anchor="middle">出力側から入力側へ戻る（誤差の所を1とする）</text>
+<text x="12" y="374" class="tb">層1に届く勾配 ＝ 2×2×2×2 ＝ 16</text>
+<text x="12" y="394" class="tb tng">層が10なら 2を10回掛けて 1024</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="434" class="tb">③ 大きな勾配で直すと、行き過ぎる</text>
+<text x="12" y="454">新しい重み＝いまの重み−学習率×勾配</text>
+<text x="12" y="472" class="tm">学習率＝勾配の何倍だけ動かすか（例 0.01）</text>
+<text x="12" y="490" class="tm">いまの重みを 0.5 とする</text>
+<text x="12" y="514" class="tb tok">ふつう（勾配 2）</text>
+<text x="12" y="532">0.5−0.01×2＝0.5−0.02＝0.48</text>
+<text x="12" y="556" class="tb tng">爆発（勾配 1024）</text>
+<text x="12" y="574">0.5−0.01×1024＝0.5−10.24＝−9.74</text>
+<path d="M291,648 Q161,586 31,648" class="l sng w2"/>
+<polyline points="38.5,638.6 31,648 42.6,650.2" class="l sng w2"/>
+<text x="161" y="606" class="tb tng" text-anchor="middle">一歩で 10.24 も飛ぶ</text>
+<rect x="268" y="642" width="40" height="20" rx="4" class="fok sok" stroke-width="1.5"/>
+<line x1="16" y1="660" x2="310" y2="660" class="l sm w1"/>
+<line x1="151" y1="656" x2="151" y2="664" class="l sm w1"/>
+<line x1="278.5" y1="656" x2="278.5" y2="664" class="l sm w1"/>
+<circle cx="291" cy="660" r="4" class="fa"/>
+<circle cx="31" cy="660" r="4" class="fm"/>
+<text x="16" y="680" class="tb tng">−9.74</text>
+<text x="151" y="680" class="tm" text-anchor="middle">−5</text>
+<text x="272" y="680" class="tm" text-anchor="middle">0</text>
+<text x="300" y="680" class="tb ta" text-anchor="middle">0.5</text>
+<text x="12" y="704" class="tm">重みの数直線。0.5 のまわりの囲み＝</text>
+<text x="12" y="722" class="tm">勾配の向きが当てはまる近く</text>
+<text x="12" y="746">勾配が分かるのは、すぐ近くの下り坂の向きだけ</text>
+<text x="12" y="766" class="tb">遠くへ飛ぶと、誤差がかえって大きくなる</text>
+<text x="12" y="792" class="tm">くり返すと（例から導いた流れ）</text>
+<text x="12" y="812">重みが大きく飛ぶ → 掛かる数も大きくなる</text>
+<text x="12" y="832">→ 次の勾配がさらに大きい → もっと飛ぶ</text>
+<text x="12" y="854" class="tb tng">数が扱える範囲を超え、Inf や NaN に</text>
+<text x="12" y="872" class="tm">（Inf＝無限大、NaN＝数でない値）</text>
+<text x="12" y="892" class="tb tng">→ 学習が壊れる（発散）</text>
+<line x1="12" y1="908" x2="308" y2="908" class="l sb w1"/>
+<text x="12" y="932" class="tb">④ 勾配クリッピング：長すぎる勾配を縮める</text>
+<circle cx="110" cy="1038" r="56" class="sm w2 dsh"/>
+<text x="12" y="980" class="tm">しきい値</text>
+<line x1="110" y1="1038" x2="231.5" y2="950.67" class="l sng w2"/>
+<polygon points="238,946 234.42,954.73 228.59,946.61" class="fm"/>
+<line x1="110" y1="1038" x2="148.33" y2="1010.45" class="l sa w3"/>
+<polygon points="155.47,1005.32 151.54,1014.92 145.12,1005.99" class="fa"/>
+<circle cx="110" cy="1038" r="3" class="fm"/>
+<text x="246" y="964" class="tb tng">元の勾配</text>
+<text x="246" y="982" class="tb tng">長さ1024</text>
+<text x="170" y="1038" class="tb ta">縮めた勾配</text>
+<text x="170" y="1056" class="tb ta">長さ5</text>
+<text x="12" y="1114" class="tm">（矢印の長さは見やすく縮めて描いた）</text>
+<text x="12" y="1136">長さ（ノルム）がしきい値を超えたら、</text>
+<text x="12" y="1154">向きは保ち、しきい値÷長さを掛けて縮める</text>
+<text x="12" y="1174" class="tm">例：5÷1024≈0.0049 を掛けて長さ5</text>
+<text x="12" y="1194">0.5−0.01×5＝0.5−0.05＝0.45</text>
+<text x="12" y="1212" class="tm">→ 向きはそのまま、小さな一歩で済む</text>
+<text x="12" y="1238" class="tb">勾配爆発に効く。勾配消失には効かない</text>
+<text x="12" y="1256" class="tm">（小さい勾配を大きくはしないため）</text>
 </svg>
