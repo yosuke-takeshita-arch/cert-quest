@@ -54,7 +54,7 @@ function loadBossImage(url, wrap, onLoad) {
 export function bossArt(app, stage, cls) {
   const wrap = h('span', { class: 'boss-art ' + (cls || ''), 'aria-hidden': 'true' }, h('span', { class: 'boss-sym', text: BOSS_SYMBOL }));
   loadBossImage(bossImageUrl(app, stage), wrap, (img) => {
-    const c = faceCrop(img.naturalWidth, img.naturalHeight);
+    const c = faceCrop(img.naturalWidth, img.naturalHeight, bossProfileOf(app, stage).face);
     img.style.setProperty('--zoom', String(c.zoom));
     img.style.setProperty('--tx', String(c.tx));
     img.style.setProperty('--ty', String(c.ty));

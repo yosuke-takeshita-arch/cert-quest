@@ -93,6 +93,15 @@ test('丸の切り抜き: 正方形の全身は幅250%・左へ75%・上へ7.5%�
   for (const [w, h] of [[0, 100], [100, 0], [NaN, 5], [-1, 5], [undefined, undefined]]) assert.deepEqual(faceCrop(w, h), { zoom: 1, tx: 0, ty: 0 });
 });
 
+test('顔の位置: bosses.json の face があれば、その点が丸の真ん中に来る。0〜1 でない・欠けた値は使わず既定の位置', () => {
+  const c = faceCrop(512, 512, { x: 0.38, y: 0.27 });
+  assert.ok(Math.abs(0.38 * c.zoom + c.tx - 0.5) < 1e-3 && Math.abs(0.27 * c.zoom + c.ty - 0.5) < 1e-3);
+  for (const bad of [null, {}, { x: 0.4 }, { x: 0, y: 0.3 }, { x: 1, y: 0.3 }, { x: '0.4', y: 0.3 }, { x: NaN, y: 0.3 }]) assert.deepEqual(faceCrop(512, 512, bad), faceCrop(512, 512));
+  assert.deepEqual(normalizeBosses([B({ face: { x: 0.38, y: 0.27 } })])[0].face, { x: 0.38, y: 0.27 });
+  assert.equal(normalizeBosses([B({ face: { x: 2, y: 0.27 } })])[0].face, null);
+  assert.equal(normalizeBosses([B()])[0].face, null);
+});
+
 test('読み込み: 404・通信エラー・壊れた JSON は空配列（落ちない）。壊れた JSON だけ理由が付く', async () => {
   const ok = (v) => async () => ({ ok: true, json: async () => v });
   assert.equal((await loadBosses('u', ok([B()]))).bosses.length, 1);

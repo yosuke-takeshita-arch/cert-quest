@@ -36,6 +36,7 @@ export function normalizeBosses(raw) {
       title: typeof b.title === 'string' ? b.title.trim() : '',
       color: typeof b.color === 'string' && HEX.test(b.color) ? b.color : null,
       lines,
+      face: normalizeFace(b.face),
     });
   }
   return out;
@@ -79,11 +80,22 @@ export const FACE_Y = 0.23; // 同じく、上から何割のところか（顔�
  * 戻り値 { zoom, tx, ty }: tx・ty は丸の大きさに対する割合（CSS の translate の % に掛ける）。
  * 正方形（全身）は zoom 2.5（幅250%・左へ75%・上へ7.5%）。縦長の絵ほど、少し大きく（上限 3.5）。寸法が壊れていれば拡大しない。
  */
-export function faceCrop(width, height) {
+export function faceCrop(width, height, face) {
   if (!(width > 0) || !(height > 0)) return { zoom: 1, tx: 0, ty: 0 };
   const r = height / width;
   const zoom = r <= 1.15 ? 2.5 : Math.min(3.5, Math.round((2.5 + (r - 1.15) * 1.5) * 100) / 100);
-  return { zoom, tx: Math.round((0.5 - FACE_X * zoom) * 1000) / 1000, ty: Math.round((0.5 - FACE_Y * zoom) * 1000) / 1000 };
+  const f = normalizeFace(face) || { x: FACE_X, y: FACE_Y };
+  return { zoom, tx: Math.round((0.5 - f.x * zoom) * 1000) / 1000, ty: Math.round((0.5 - f.y * zoom) * 1000) / 1000 };
+}
+
+/**
+ * 顔の中心の位置（絵の幅・高さに対する割合）。bosses.json の "face": { "x": 0.38, "y": 0.27 }。
+ * 絵ごとに顔の位置が違うとき（顔が真ん中に無い竜など）に、小さな丸の切り抜きを合わせる。0〜1 の数でなければ無し（既定の位置）。
+ */
+export function normalizeFace(v) {
+  if (!v || typeof v !== 'object') return null;
+  const ok = (n) => typeof n === 'number' && n > 0 && n < 1;
+  return ok(v.x) && ok(v.y) ? { x: v.x, y: v.y } : null;
 }
 
 /** ボスのデータを読む。失敗（404・壊れた JSON・通信エラー）は空配列。404 は黙って、壊れた形（JSON の読み込みに失敗）だけ reason を返す。 */
