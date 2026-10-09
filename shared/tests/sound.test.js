@@ -6,7 +6,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BGM_TRACKS, TITLE_BGM, BOSS_BGM,
+  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BOSS_SFX, BGM_TRACKS, TITLE_BGM, BOSS_BGM,
   normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, normalizeHomeTrack, bgmPlan, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
@@ -528,4 +528,35 @@ test('ボス戦の曲の鳴らし方: ファイルをくり返し、取れなけ
   // 効果音（ファンファーレなど）は今までどおりプログラム
   assert.match(functionBody(au, 'playSynth'), /SYNTH_SFX\[name\]/);
   assert.match(functionBody(au, 'bgmStatus'), /mode: M\.mode/);
+});
+
+test('ボス戦の効果音: 倒した・当たったはファイル（audio-licenses.md に載っている）。もらったはまだ無い。ファイルが読めなければプログラムの音に戻る', () => {
+  const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
+  assert.equal(SFX_FILES.bosshit, 'boss-hit_snare.ogg');
+  assert.equal(SFX_FILES.bosswin, 'boss-win_victory.mp3');
+  assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['hit', 'hurt', 'win']);
+  assert.equal(BOSS_SFX.hit.key, 'bosshit');
+  assert.equal(BOSS_SFX.win.key, 'bosswin');
+  assert.equal(BOSS_SFX.hurt, null); // ボスからもらうダメージの音は、先生がまだ選んでいない（ファイルを足して差し替える）
+  for (const k of ['bosshit', 'bosswin']) {
+    assert.ok(doc.includes(SFX_FILES[k]), SFX_FILES[k] + ' が audio-licenses.md に無い');
+    assert.ok(doc.includes('先生が候補を聞き比べて選んだ'));
+    assert.ok(statSync(join(shared, 'audio', 'sfx', SFX_FILES[k])).size < 200 * 1024);
+  }
+  assert.ok(doc.includes('celestialghost8') && doc.includes('Spring Spring'));
+  // 鳴らす側: 効果音の設定（playSfx）に従い、読めなければ SYNTH_SFX の音に戻る
+  const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
+  const body = functionBody(au, 'playBossSfx');
+  assert.match(body, /BOSS_SFX\[kind\]/);
+  assert.match(body, /playSfx\(settings, e\.key,/);
+  assert.match(body, /playSynth\(settings, e\.synth\)/);
+  assert.match(functionBody(au, 'playSfx'), /onMissing \? onMissing\(\)/);
+  assert.match(functionBody(au, 'playSfx'), /!settings\.sound/);
+  // 呼ぶ場所: 正解の直後（戻りきってから）に当たった音、倒したときにファンファーレ。ファンファーレをプログラムで直接鳴らさない
+  const bo = readFileSync(join(shared, 'js', 'views', 'boss.js'), 'utf8');
+  assert.match(bo, /if \(correct\) playBossSfx\(app\.state\.settings, 'hit'\)/);
+  assert.equal((bo.match(/playBossSfx\(app\.state\.settings, 'win'\)/g) || []).length, 2); // 動きを減らす設定のときと、ふつうの演出
+  assert.ok(!/playSynth\(app\.state\.settings, 'fanfare'\)/.test(bo));
+  assert.match(bo, /playSynth\(app\.state\.settings, 'crit'\)/); // 会心・登場はプログラムのまま
+  assert.match(bo, /playSynth\(app\.state\.settings, 'appear'\)/);
 });

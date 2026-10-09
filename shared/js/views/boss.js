@@ -9,7 +9,7 @@ import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
 import { bossInfo, bossQuestions, recordBossWin, isFlawlessWin, bossWins, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, BOSS_MIN, CRIT_DAMAGE } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
 import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
-import { setBgmBoss, startBossTheme, stopBossTheme, playSynth } from '../audio.js';
+import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, laterButton, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
 
@@ -456,6 +456,7 @@ export function renderBoss(app, key) {
     else next.focus({ preventScroll: true });
     const perform = () => {
       if (!S || S.item !== sq || !ui || !ui.stage.isConnected) return; // 戻っている間に次の問題へ進んだ・画面が替わったときは何もしない
+      if (correct) playBossSfx(app.state.settings, 'hit'); // ボスに当たった音（とどめの一撃でも鳴らす）
       if (winNow) {
         defeatSequence(bar, next);
       } else if (correct) {
@@ -466,6 +467,7 @@ export function renderBoss(app, key) {
           ? ['会心の一撃！', name + ' に ダメージ！', BOSS_MOOD_TEXT[mood]]
           : [name + ' に ダメージ！', quoted(pickLine(profile, 'hurt', app.rng)), BOSS_MOOD_TEXT[mood]]);
       } else {
+        playBossSfx(app.state.settings, 'hurt'); // ボスからダメージをもらった音（ファイルがまだ無いので、いまは鳴らない）
         if (lost) paintHp(b, b.player); // ハートが割れる動きも、戻りきってから
         flash(ui.stage, 'hurt', 500);
         flash(ui.mini, 'hurt', 500);
@@ -510,7 +512,7 @@ export function renderBoss(app, key) {
     S.skipFx = finish;
     if (R) {
       figClass('add', 'down');
-      playSynth(app.state.settings, 'fanfare');
+      playBossSfx(app.state.settings, 'win');
       say(lines, { instant: true });
       showFinal();
       S.phase = 'won';
@@ -527,7 +529,7 @@ export function renderBoss(app, key) {
     later(() => {
       crumble();
       figClass('add', 'gone');
-      playSynth(app.state.settings, 'fanfare');
+      playBossSfx(app.state.settings, 'win');
       vibrate(app.state.settings, [40, 30, 40, 30, 80]);
     }, 1350);
     later(() => { said = true; say(lines); }, 1450);

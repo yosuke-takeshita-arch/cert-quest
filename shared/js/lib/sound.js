@@ -98,6 +98,18 @@ export const SFX_FILES = {
   goal: 'goal_cure.wav', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「Cure Magic」の Cure2、Someoneman、CC0。モノラルにした）
   tap: 'drop_001.ogg', // 2026-10-06 先生が聞き比べて選んだ。キャラクターの絵をタップするたびに鳴る『ポンッ』（Kenney Interface Sounds の drop_001、CC0。元のファイル名のまま）
   start: 'start_16bit-success.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「16bit Success sound」flush、CC0）。前の jingles_NES05 は低いベースが中心でスマホでは弱かった
+  bosshit: 'boss-hit_snare.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で正解して、ボスに当たったとき（OpenGameArt「8-bit/Lo-Fi Snare Drum Sound」Spring Spring、CC0）
+  bosswin: 'boss-win_victory.mp3', // 2026-10-09 先生が聞き比べて選んだ。ボスを倒したときのファンファーレ（OpenGameArt「Victory」celestialghost8、CC0。後ろの無音を 4.0 秒で切った）
+};
+
+// ボス戦で鳴らす効果音。種類 → SFX_FILES のキー。値が null の種類は、まだ音のファイルが無い（何も鳴らさない。
+// ボスからダメージをもらったときの音は、先生がまだ選んでいない。選んだら shared/audio/sfx/ にファイルを置き、
+// SFX_FILES に 'bosshurt' を足して、ここを 'bosshurt' に替える）。
+// synth … ファイルが取れない・読めないときに、代わりに鳴らすプログラムの音（lib/bossmusic.js の SYNTH_SFX のキー）。
+export const BOSS_SFX = {
+  hit: { key: 'bosshit', synth: 'hit' },
+  win: { key: 'bosswin', synth: 'fanfare' },
+  hurt: null,
 };
 
 // BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。

@@ -3,7 +3,7 @@
 // - BGM: 大きいので、最初に流すときに取ってきてキャッシュに入る（sw-core.js が /audio/ をキャッシュ優先で返す）
 //   音量は iOS でも効くよう WebAudio の GainNode でかける
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
-import { SFX_FILES, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
+import { SFX_FILES, BOSS_SFX, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
 import { bossTheme, SYNTH_SFX } from './lib/bossmusic.js';
 
 const SFX_BASE = new URL('../audio/sfx/', import.meta.url).href;
@@ -73,8 +73,8 @@ function synthBeep(c, name, gain) {
   });
 }
 
-/** 効果音を1回鳴らす。settings.sound が false なら何もしない。name は SFX_FILES のキー。 */
-export function playSfx(settings, name) {
+/** 効果音を1回鳴らす。settings.sound が false なら何もしない。name は SFX_FILES のキー。onMissing … ファイルが取れない・読めないときに、昔の「ピッ」の代わりに呼ぶ関数。 */
+export function playSfx(settings, name, onMissing) {
   if (!settings || !settings.sound || !SFX_FILES[name]) return;
   const c = audioCtx();
   if (!c) return;
@@ -83,7 +83,7 @@ export function playSfx(settings, name) {
   resumeCtx();
   sfxBuffer(name, c).then((buf) => {
     try {
-      if (!buf) return synthBeep(c, name, gain);
+      if (!buf) return onMissing ? onMissing() : synthBeep(c, name, gain);
       const src = c.createBufferSource();
       const g = c.createGain();
       src.buffer = buf;
@@ -524,6 +524,13 @@ export function playSynth(settings, name) {
     g.connect(c.destination);
     scheduleEvents(c, g, SYNTH_SFX[name], c.currentTime + 0.02);
   } catch (e) { /* 音が出せなくても学習は続ける */ }
+}
+
+/** ボス戦の効果音（BOSS_SFX の種類: hit＝ボスに当たった・win＝倒した・hurt＝ダメージをもらった）。効果音の設定に従う。ファイルが無い種類は何も鳴らさず、ファイルが読めなかったときはプログラムの音に戻る。 */
+export function playBossSfx(settings, kind) {
+  const e = BOSS_SFX[kind];
+  if (!e || !SFX_FILES[e.key]) return;
+  playSfx(settings, e.key, e.synth ? () => playSynth(settings, e.synth) : undefined);
 }
 
 /** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */
