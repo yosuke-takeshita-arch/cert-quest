@@ -7,6 +7,7 @@ import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
 import { laterCount } from '../lib/later.js';
+import { dochiPairs } from './dochi.js';
 import { nextGoals } from '../lib/goals.js';
 import { mapLayout, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
@@ -163,6 +164,11 @@ export function renderHome(app) {
     root.appendChild(h('div', { class: 'grid2' },
       h('button', { class: 'btn big tile', type: 'button', onClick: () => startSession(app, challengeSpec(app)) }, h('strong', { text: challengeName(app.config) }), h('span', { class: 'small muted', text: '本番のペースで' })),
       h('button', { class: 'btn big tile', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' }), h('span', { class: 'small muted', text: (app.config.exam ? app.config.exam.questions + '問・' + app.config.exam.minutes + '分' : '') }))));
+    // 似た2つの語の早押し。40秒チャレンジの近く（出せる組があるときだけ）
+    if (dochiPairs(app).length) {
+      root.appendChild(h('button', { class: 'btn big tile dochi-tile', type: 'button', 'data-home-dochi': '1', onClick: () => app.go('#/dochi') },
+        h('strong', { text: 'どっち？早押し' }), h('span', { class: 'small muted', text: '似た2つの語を5秒で見分ける' })));
+    }
 
     const goals = nextGoals(data.tree, badgeDefs(data.tree, config), state, dateKey(now), 3);
     if (goals.length) {

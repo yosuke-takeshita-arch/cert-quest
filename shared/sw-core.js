@@ -78,6 +78,8 @@ const SHARED = [
   '../shared/js/views/weak.js',
   '../shared/js/views/later.js',
   '../shared/js/lib/later.js',
+  '../shared/js/views/dochi.js',
+  '../shared/js/lib/dochi.js',
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',

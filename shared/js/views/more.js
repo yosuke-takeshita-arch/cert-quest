@@ -6,6 +6,7 @@ import { THEMES } from '../lib/progress.js';
 import { TEXT_SIZES, TEXT_SIZE_LABEL, normalizeTextSize } from '../lib/textsize.js';
 import { dateKey } from '../lib/srs.js';
 import { laterCount } from '../lib/later.js';
+import { dochiPairs } from './dochi.js';
 import { buildSoundCard } from './sound-settings.js';
 import { buildExamDateCard } from './examdate.js';
 import { buildBackupCard } from './backup.js';
@@ -17,6 +18,7 @@ export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
   const nav = h('div', { class: 'card menu' },
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' })),
+    dochiPairs(app).length ? h('button', { class: 'row-btn', type: 'button', 'data-menu': 'dochi', onClick: () => app.go('#/dochi') }, h('strong', { text: 'どっち？早押し' }), h('span', { class: 'small muted', text: '似た2つの語を見分ける' })) : null,
     h('button', { class: 'row-btn', type: 'button', 'data-menu': 'weak', onClick: () => app.go('#/weak') }, h('strong', { text: '苦手の分析' })),
     h('button', { class: 'row-btn', type: 'button', 'data-menu': 'later', onClick: () => app.go('#/later') }, h('strong', { text: 'あとで見る' }), h('span', { class: 'small muted', text: laterCount(app.state, app.data.questions) + ' 問' })),
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/badges') }, h('strong', { text: 'バッジ' }), h('span', { class: 'small muted', text: badgeDefs(app.data.tree, app.config).filter((d) => app.state.badges[d.id]).length + ' 個' })),
