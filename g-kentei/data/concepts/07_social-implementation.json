@@ -277,6 +277,7 @@
         "point": "CRISP-MLはプロセスのモデル（手順）、MLOpsはそれを回す仕組み・文化"
       },
       {
+        "id": "C-07-028",
         "title": "DevOps",
         "point": "DevOpsはソフトウェア全般の開発と運用の一体化で、検査の対象は主にコード。MLOpsはデータとモデルも対象にし、CT（継続的トレーニング）が加わる"
       }
@@ -883,6 +884,7 @@
         "point": "特徴選択は今ある特徴量から使うものを選ぶ。特徴量エンジニアリングは特徴量を作り変える・作り出す"
       },
       {
+        "id": "C-01-006",
         "title": "表現学習（特徴表現学習）",
         "point": "特徴量エンジニアリングは人が特徴量を設計する。表現学習（ディープラーニング）は特徴量そのものをデータから学ぶ"
       }
@@ -1191,6 +1193,48 @@
       {
         "title": "Google for Developers「Machine Learning Glossary」",
         "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-07-028",
+    "syllabus": [
+      "技術分野",
+      "AI の社会実装に向けて",
+      "AI プロジェクトの進め方"
+    ],
+    "title": "DevOps",
+    "oneLine": "ソフトウェアを作る人（開発）と動かし続ける人（運用）が分かれずに協力し、変更を小さく速く、確実に出し続けるための考え方とやり方。中心の道具は、変更のたびに自動でテストする仕組み（CI）と、いつでも出せる状態に保つ仕組み（CD）。",
+    "why": "名前：Dev は開発（development）、Ops は運用（operations）。AWS の説明は、DevOps を、もともと別々に分かれていた開発と運用の2つのチームの壁を取り除くこと、としている。 困りごと：開発チームは新しい機能を早く出したい。運用チームは止まらないことを優先し、変更を嫌う。両者が分かれていると、作ったものを渡してから問題が見つかり、出すまでに時間がかかる。 例（説明のための例）：ネットショップの「おすすめ」の画面を直すとき。従来は、開発が数か月分の変更をまとめて運用に渡し、運用が手作業で入れ替えていた。DevOps では、開発者がコードを直すたびに共通の置き場に入れ、自動でビルド（動く形に組み立てること）とテストが走る。これが継続的インテグレーション（Continuous Integration、CI）。通ったものは、自動で本番に出せる状態にまで準備される。これが継続的デリバリー（Continuous Delivery、CD）。1回の変更が小さいので、問題が出ても原因を絞りやすい。 押さえどころ：Google Cloud の資料は、DevOps を大規模なソフトウェアの開発と運用で広く使われるやり方とし、開発のサイクルを短くし、デプロイ（本番に出すこと）を速くし、確実なリリースにする利点があり、そのために CI と CD を取り入れる、と説明している。 混同しやすい点：MLOps は、DevOps の考えを機械学習のシステムに当てはめたもの。Google Cloud の資料によれば、違いは、CI で検査する対象にデータやモデルも加わること、そして新しいデータでモデルを自動で学習し直す CT（Continuous Training、継続的トレーニング）が加わること。DevOps の CI が検査するのは主にコードと部品。",
+    "links": [
+      {
+        "id": "C-07-007",
+        "relation": "発展（機械学習に当てはめたもの）"
+      },
+      {
+        "id": "C-07-005",
+        "relation": "関連（開発の進め方）"
+      },
+      {
+        "id": "C-07-008",
+        "relation": "関連（運用中の監視）"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "C-07-007",
+        "point": "DevOpsの検査の対象は主にコード。MLOpsはデータとモデルも対象にし、モデルを自動で学習し直すCT（継続的トレーニング）が加わる。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "AWS「What is DevOps?」",
+        "url": "https://aws.amazon.com/devops/what-is-devops/"
+      },
+      {
+        "title": "Google Cloud \"MLOps: Continuous delivery and automation pipelines in machine learning\"",
+        "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning?hl=en"
       }
     ],
     "status": "verified"
