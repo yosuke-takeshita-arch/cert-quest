@@ -2533,5 +2533,714 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-05-061",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "プーリング層"
+    ],
+    "format": "combo",
+    "difficulty": 1,
+    "stem": "特徴マップのある 2×2 の窓に、2・10・6・8 の4つの値が入っている。この窓に最大値プーリングをかけた出力は（ア）、平均値プーリングをかけた出力は（イ）になる。（ア）（イ）に当てはまる組み合わせとして、最も適切なものを1つ選べ。",
+    "stemPlain": "縦2×横2のマスに 2・10・6・8 の数が入っている。この4つを1つの数にまとめるとき、いちばん大きい数を取る方法（最大値プーリング）と、平均を取る方法（平均値プーリング）で、それぞれいくつになるかを答える問題。",
+    "choices": [
+      "（ア）10　（イ）26",
+      "（ア）10　（イ）6.5",
+      "（ア）6.5　（イ）10",
+      "（ア）10　（イ）7"
+    ],
+    "answer": 1,
+    "explanation": "最大値プーリングは窓の中のいちばん大きい値を、平均値プーリングは窓の中の値の平均を出力する。最大値：2・10・6・8 のうち最大は 10。平均値：まず足す 2＋10＋6＋8＝26、それを値の個数 4 で割る 26÷4＝6.5。どちらも学習する重みは使わず、決まった計算で窓を1つの値にまとめる。",
+    "whyWrong": [
+      "（ア）は合っているが、（イ）の 26 は4つの値を足しただけの合計。平均は合計を個数で割った値なので、26÷4＝6.5 になる。",
+      null,
+      "（ア）と（イ）が逆。最大値プーリングは最大の値 10 を、平均値プーリングは平均の 6.5 を出す。",
+      "（ア）は合っているが、（イ）の 7 は、値を小さい順に並べた 2・6・8・10 の真ん中の2つ（6 と 8）の平均で、中央値にあたる。平均値プーリングは中央値ではなく、4つ全部を足して4で割った平均 6.5 を出す。"
+    ],
+    "memoryTip": "最大値プーリング＝窓の『いちばん』、平均値プーリング＝窓の『ならし』（合計÷個数）。",
+    "concepts": [
+      "C-05-016"
+    ],
+    "figures": [
+      "fig-g-pooling"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.MaxPool2d",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks",
+        "url": "https://www.deeplearningbook.org/contents/convnets.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-062",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "プーリング層"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "CNN のプーリング層（最大値プーリング・平均値プーリング）に関する説明として、最も不適切なものを1つ選べ。",
+    "stemPlain": "画像を扱うネットワーク（CNN）で、特徴マップを小さくまとめる層（プーリング層）について書いた文から、【間違っているもの（ふさわしくないもの）】を1つ選ぶ問題。",
+    "choices": [
+      "プーリング層は、窓の中の最大や平均を取る決まった計算をするだけで、学習で更新する重みを持たない",
+      "2×2 の窓・ストライド2 で区切ると、特徴マップの縦と横がそれぞれ半分になり、後の層の計算が軽くなる",
+      "複数のチャネルの値をまとめて1つにするので、出力のチャネル数は入力のチャネル数より少なくなる",
+      "入力の特徴の位置が少しずれても、窓の中の最大や平均は変わりにくく、出力がほとんど変わらなくなる"
+    ],
+    "answer": 2,
+    "explanation": "プーリングは、チャネル（特徴の種類ごとの面）ごとに別々に、縦横の窓を1つの値にまとめる。チャネルどうしは混ぜないので、出力のチャネル数は入力と同じ。PyTorch の MaxPool2d も、入力 (N, C, H, W) に対して出力 (N, C, Hout, Wout) で、チャネル数 C は変わらない。例：縦8×横8×チャネル16 の特徴マップに 2×2・ストライド2 の最大値プーリングをかけると、縦4×横4×チャネル16 になる。チャネル数を減らしたいときは、1×1 の畳み込みなどを使う。",
+    "whyWrong": [
+      "適切。最大値プーリングは窓の最大を、平均値プーリングは窓の平均を出すだけで、畳み込み層のフィルタのような学習する重みは無い。",
+      "適切。2×2 の窓を2つずつずらして重ならないように当てると、縦横それぞれ半分の数の窓になる。例：縦4×横6 なら 縦2×横3 になる。",
+      null,
+      "適切。Deep Learning（Goodfellow ら）は、プーリングが表現を入力の小さな平行移動に対しておおよそ不変にする、と説明している。例：窓の中で最大の値の位置が1マスずれても、同じ窓の中なら最大値は同じ。"
+    ],
+    "memoryTip": "プーリングは『縦横を縮める』だけ。チャネル（奥行き）はそのまま。奥行きを変えるのは 1×1 畳み込み。",
+    "concepts": [
+      "C-05-016",
+      "C-05-018"
+    ],
+    "figures": [
+      "fig-g-pooling"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.MaxPool2d",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 9 Convolutional Networks",
+        "url": "https://www.deeplearningbook.org/contents/convnets.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-063",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "プーリング層"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "グローバルアベレージプーリング（GAP）を、CNN の出力の全結合層の代わりに使うことについて、最も不適切なものを1つ選べ。",
+    "stemPlain": "特徴マップ1枚ごとに全体の平均を取って1つの数にする方法（GAP）を、ネットワークの最後の層の代わりに使うことについて書いた文から、【間違っているもの（ふさわしくないもの）】を1つ選ぶ問題。",
+    "choices": [
+      "GAP そのものには最適化するパラメータが無いので、全結合層を置くよりも、その層での過学習を避けやすい",
+      "特徴マップとクラスが1対1に対応しやすくなり、特徴マップをクラスごとの確信度の地図として読み取りやすくなる",
+      "特徴マップの中で最も強く反応した1か所の値を取り出すので、小さくても強い反応を見落とさずに済む",
+      "空間の情報を平均で1つにまとめるので、入力の中で物体の位置がずれても、出力が変わりにくくなる"
+    ],
+    "answer": 2,
+    "explanation": "GAP は、特徴マップ1枚の全部の値の平均を1つの値にする。最も強い1か所を取り出すのは、最大値を取るプーリング（特徴マップ全体なら global max pooling）の働きで、GAP ではない。Network In Network の論文（Lin ら, 2013）は、GAP を全結合層の代わりに使う利点として、①特徴マップとカテゴリの対応が強まり、特徴マップをカテゴリの確信度の地図として解釈しやすい、②最適化するパラメータが無く、その層での過学習が避けられる、③空間の情報を足し合わせるので、入力の空間的なずれに強い、を挙げている。",
+    "whyWrong": [
+      "適切。論文は GAP に最適化するパラメータが無いことを利点に挙げている。例：縦7×横7×512 の特徴マップを全結合層で1000クラスにつなぐと、重みが 7×7×512×1000＝約2500万個要るが、GAP は重みを持たない。",
+      "適切。論文は、最後の層でカテゴリごとに特徴マップを1枚ずつ作り、その平均を出力にすることで、特徴マップがカテゴリの確信度の地図として読めると述べている。CAM（判断の根拠を示すヒートマップ）もこの性質を使う。",
+      null,
+      "適切。論文は、GAP が空間の情報を足し合わせて消すので、入力の空間的な平行移動に対してより頑健になると述べている。"
+    ],
+    "memoryTip": "GAP＝『1枚まるごと平均』。強い1点を拾うのは max。GAP の利点は『重み0個・位置ずれに強い・地図として読める』。",
+    "concepts": [
+      "C-05-017",
+      "C-05-016"
+    ],
+    "figures": [
+      "fig-g-pooling"
+    ],
+    "sources": [
+      {
+        "title": "Lin, Chen & Yan (2013) Network In Network (arXiv:1312.4400)",
+        "url": "https://arxiv.org/abs/1312.4400"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-064",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "プーリング層"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "画像分類の CNN で、最後の畳み込み層の出力が「縦7×横7×チャネル512」の特徴マップだった。これにグローバルアベレージプーリング（GAP）をかけた出力として、最も適切なものを1つ選べ。",
+    "stemPlain": "縦7マス×横7マスの面が512枚重なったデータに、『1枚ごとに全体の平均を取って1つの数にする』処理（GAP）をすると、どんな形の出力になるかを選ぶ問題。",
+    "choices": [
+      "長さ49のベクトル（縦横の位置ごとに、512個の値を平均した1つの値）",
+      "長さ512のベクトル（チャネルごとに、7×7の値を平均した1つの値）",
+      "縦7×横7の特徴マップ1枚（512枚のチャネルを重ねて平均したもの）",
+      "長さ25088のベクトル（7×7×512 の値をすべてそのまま1列に並べたもの）"
+    ],
+    "answer": 1,
+    "explanation": "GAP は、特徴マップ1枚（1つのチャネル）ごとに、縦横すべての値の平均を1つの値にする。チャネルが512枚あるので、出力は512個の値が並んだ長さ512のベクトルになる。計算の例：1枚の中の 7×7＝49 個の値を足して 49 で割ると、その1枚の平均が1つ出る。これを512枚それぞれで行う。Network In Network（Lin ら, 2013）は、特徴マップごとに平均を取り、その結果のベクトルを直接ソフトマックスの層に入れた。",
+    "whyWrong": [
+      "長さ49は、7×7 の位置ごとに、チャネル方向の512個を平均した場合の数。GAP はチャネルをまたいで平均せず、1枚の中の縦横を平均するので、位置ごとではなくチャネルごとに1つの値になる。",
+      null,
+      "チャネル方向に平均して縦7×横7 の1枚にするのは、GAP とは平均する向きが逆。GAP は縦横の位置をまとめて消し、チャネルの数（512）を残す。",
+      "25088（＝7×7×512）は、特徴マップを平らに並べ替えた（flatten した）ときの長さで、全結合層につなぐ従来の方法。GAP は平均を取るので、値の数は512まで減る。"
+    ],
+    "memoryTip": "GAP の出力の長さ＝チャネル数。縦横（位置）は平均で消え、奥行き（チャネル）が残る。",
+    "concepts": [
+      "C-05-017"
+    ],
+    "figures": [
+      "fig-g-pooling"
+    ],
+    "sources": [
+      {
+        "title": "Lin, Chen & Yan (2013) Network In Network (arXiv:1312.4400)",
+        "url": "https://arxiv.org/abs/1312.4400"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-065",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "Attention"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "Transformer の Scaled Dot-Product Attention では、（ア）の内積でスコアを求め、それを（イ）で割ってからソフトマックスで合計1の重みにし、その重みで（ウ）を足し合わせて出力する。（ア）（イ）（ウ）に当てはまる組み合わせとして、最も適切なものを1つ選べ。",
+    "stemPlain": "Transformer の中心の計算（Attention）の手順を答える問題。（ア）どの2つを掛け合わせて『どれだけ関係があるか』の点数を出すか、（イ）その点数を何で割るか、（ウ）出た重みでどの情報を足し合わせるか。",
+    "choices": [
+      "（ア）クエリとバリュー　（イ）キーの次元数の平方根　（ウ）キー",
+      "（ア）クエリとキー　（イ）系列の長さ　（ウ）バリュー",
+      "（ア）クエリとキー　（イ）キーの次元数の平方根　（ウ）クエリ",
+      "（ア）クエリとキー　（イ）キーの次元数の平方根　（ウ）バリュー"
+    ],
+    "answer": 3,
+    "explanation": "原論文（Vaswani ら, 2017）の式は Attention(Q, K, V) ＝ softmax(QKᵀ／√dk)V。ことばにすると『クエリ（探したいもの）とキー（見出し）の内積で関係の強さを出し、キーの次元数 dk の平方根で割ってからソフトマックスで重みにし、その重みでバリュー（中身）を足し合わせる』。割る理由：dk が大きいと内積の値が大きくなり、ソフトマックスが勾配のとても小さい領域に入ってしまうため。例：dk＝64 なら √64＝8 で割る。",
+    "whyWrong": [
+      "クエリとバリューの内積ではない。バリューは最後に重みを掛けて足し合わせる『中身』で、関係の強さを測る相手はキー（各語の見出し）。（ウ）も、足し合わせるのはキーではなくバリュー。",
+      "（イ）が違う。割るのは系列の長さではなく、キーの次元数 dk の平方根。系列の長さで割っても、次元が大きいと内積が大きくなる問題は解消しない。（ア）（ウ）は合っている。",
+      "（ウ）が違う。重みで足し合わせるのはバリュー。クエリは『いま何を探しているか』を表す側で、重みを決めるのに使われるが、足し合わされる中身ではない。（ア）（イ）は合っている。",
+      null
+    ],
+    "memoryTip": "Q と K で『どれに注目するか』を決め、V を『その割合で混ぜる』。√dk で割るのはスコアが大きくなりすぎないため（Scaled の由来）。",
+    "concepts": [
+      "C-05-036",
+      "C-05-032",
+      "C-05-035"
+    ],
+    "figures": [
+      "fig-g-qkv"
+    ],
+    "sources": [
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-066",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "Attention"
+    ],
+    "format": "combo",
+    "difficulty": 3,
+    "stem": "原論文の Transformer は、表現の次元 dmodel＝512 を h＝（ア）個のヘッドに分けて Multi-Head Attention を行い、各ヘッドのキーとバリューの次元を 512÷（ア）＝（イ）にした。（ア）（イ）に当てはまる組み合わせとして、最も適切なものを1つ選べ。",
+    "stemPlain": "Transformer の元の論文で、注目の計算を何個に分けて同時に行ったか（ヘッドの数）と、そのとき1つのヘッドが扱う数の並びの長さ（次元）がいくつだったかを答える問題。",
+    "choices": [
+      "（ア）8　（イ）64",
+      "（ア）8　（イ）512",
+      "（ア）64　（イ）8",
+      "（ア）16　（イ）32"
+    ],
+    "answer": 0,
+    "explanation": "原論文は h＝8 個の並列の Attention の層（ヘッド）を使い、各ヘッドで dk＝dv＝dmodel÷h＝512÷8＝64 とした。各ヘッドの次元を小さくしたので、全体の計算量は、全次元のまま1つのヘッドで計算する場合とほぼ同じになる、と論文は述べている。ヘッドを分ける理由は、ヘッドごとに別の部分空間で、別の位置どうしの関係に注目できるため（例：あるヘッドは『誰が』、別のヘッドは『何を』に注目する）。",
+    "whyWrong": [
+      null,
+      "（ア）は合っているが、（イ）が違う。各ヘッドの次元を512のままにすると、ヘッドを8個並べた分だけ計算が約8倍になる。原論文は 512÷8＝64 に縮め、全体の計算量を1ヘッドのときとほぼ同じに保った。",
+      "（ア）と（イ）が逆。512÷64＝8 という割り算としては成り立つが、原論文のヘッドの数は8で、各ヘッドの次元が64。64個のヘッドに8次元ずつ、という構成ではない。",
+      "512÷16＝32 で割り算としては成り立つが、原論文の設定ではない。原論文はヘッドの数 h＝8、各ヘッドの次元 64 とした。"
+    ],
+    "memoryTip": "Transformer の基本の数：512 を 8 人（ヘッド）で分けて、1人 64。",
+    "concepts": [
+      "C-05-037",
+      "C-05-035"
+    ],
+    "sources": [
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-067",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "Attention"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "Self-Attention の層を、RNN（再帰型）の層と比べた説明として、最も不適切なものを1つ選べ。ただし、n は系列の長さ、d は表現の次元とする。",
+    "stemPlain": "文の中の語どうしの関係を一度に計算するしくみ（Self-Attention）を、語を1つずつ順に処理するしくみ（RNN）と比べた文から、【間違っているもの（ふさわしくないもの）】を1つ選ぶ問題。",
+    "choices": [
+      "Self-Attention の1層では、系列のどの2つの位置も1回の計算で直接つながるので、離れた語どうしの関係を学びやすい",
+      "RNN は前の時刻の計算が終わるのを待って次を計算するが、Self-Attention は全部の位置をまとめて並列に計算できる",
+      "Self-Attention の1層の計算量は系列の長さ n に比例して増え、n が2倍になると計算量もおよそ2倍になる",
+      "系列の長さ n が表現の次元 d より小さいときは、Self-Attention の層のほうが RNN の層より計算が少なくて済む"
+    ],
+    "answer": 2,
+    "explanation": "原論文の表1は、1層あたりの計算量を Self-Attention で O(n²·d)、RNN で O(n·d²) としている。Self-Attention は全部の位置の組（n×n 通り）について関係を計算するので、計算量は n の2乗に比例する。例：n が 100 から 200 に2倍になると、組の数は 100×100＝10,000 から 200×200＝40,000 へ4倍になる。そのため、とても長い系列では計算が重くなり、論文は近くの位置だけを見る制限付きの Self-Attention にも触れている。",
+    "whyWrong": [
+      "適切。表1の最大の経路の長さは、Self-Attention が O(1)、RNN が O(n)。RNN では離れた語の情報が何段も受け渡されて届くが、Self-Attention は1回でつながる。",
+      "適切。表1の『順番に行う必要のある計算の数』は、Self-Attention が O(1)、RNN が O(n)。RNN は時刻ごとに前の結果を待つので、並列にしにくい。",
+      null,
+      "適切。論文は、系列の長さ n が表現の次元 d より小さいとき（機械翻訳の文の表現では多くがそう）は、Self-Attention の層が RNN の層より速いと述べている。O(n²·d) と O(n·d²) を比べると、n＜d なら前者が小さい。"
+    ],
+    "memoryTip": "Self-Attention は『全員と全員』で握手するので n²。長い文ほど重い、が、並列にでき遠くにも1歩で届く。",
+    "concepts": [
+      "C-05-034",
+      "C-05-035"
+    ],
+    "figures": [
+      "fig-g-transformer"
+    ],
+    "sources": [
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-068",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "Attention"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "Transformer の位置エンコーディングについて、原論文の説明として最も不適切なものを1つ選べ。",
+    "stemPlain": "Transformer で語の並び順を教えるしくみ（位置エンコーディング）について、元の論文に書かれた内容として【間違っているもの（ふさわしくないもの）】を1つ選ぶ問題。",
+    "choices": [
+      "Self-Attention は語の並び順を区別できないので、各語の埋め込みに、系列の中の位置を表すベクトルを足して入力する",
+      "位置を表すベクトルは、周波数の異なる正弦波（sin）と余弦波（cos）を使って作った",
+      "学習で求める位置の埋め込みも試したところ、正弦波を使う方式とほぼ同じ結果になったと報告した",
+      "正弦波の方式を選んだのは、学習のときより短い系列に限って使えるので、過学習を防ぎやすいからだと述べた"
+    ],
+    "answer": 3,
+    "explanation": "原論文は、学習で求める位置の埋め込み（learned positional embeddings）と正弦波の方式の結果がほぼ同じだったうえで、正弦波の方式を選んだ理由を『学習のときに出会った長さより長い系列にも外挿できる（延長して使える）かもしれないから』と書いている。短い系列に限る、過学習を防ぐ、という理由ではない。",
+    "whyWrong": [
+      "適切。Transformer は RNN も畳み込みも使わないので、そのままでは『犬が人を噛んだ』と『人が犬を噛んだ』の語の順の違いを区別できない。そこで埋め込みに位置のベクトルを足す（掛けたりつなげたりではなく、足す）。",
+      "適切。原論文は、次元ごとに周波数の違う sin と cos を使って位置を表した。",
+      "適切。原論文は学習した位置の埋め込みも試し、2つの方式はほぼ同じ結果だった（表3の行(E)）と報告している。",
+      null
+    ],
+    "memoryTip": "正弦波を選んだ理由は『もっと長い文にも伸ばせるかも』（外挿）。結果は学習で決める方式とほぼ同じ。",
+    "concepts": [
+      "C-05-038",
+      "C-05-035"
+    ],
+    "figures": [
+      "fig-g-positional-encoding"
+    ],
+    "sources": [
+      {
+        "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-069",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "画像の一部の領域を加工するデータ拡張のうち、ランダムな位置の正方形の領域を0で隠すのは（ア）、大きさと縦横比もランダムな長方形の領域をランダムな値で塗りつぶすのは（イ）、切り取った領域に別の画像の同じ場所を貼り、ラベルも面積の比で混ぜるのは（ウ）である。（ア）（イ）（ウ）に当てはまる組み合わせとして、最も適切なものを1つ選べ。",
+    "stemPlain": "学習用の画像の一部を加工して水増しする3つの方法の名前を答える問題。（ア）正方形を黒く隠す、（イ）大きさも形もばらばらの長方形をでたらめな色で塗る、（ウ）別の画像の一部を貼って、正解のラベルも貼った広さの割合で混ぜる。",
+    "choices": [
+      "（ア）Random Erasing　（イ）Cutout　（ウ）CutMix",
+      "（ア）Cutout　（イ）Random Erasing　（ウ）Mixup",
+      "（ア）Cutout　（イ）Random Crop　（ウ）CutMix",
+      "（ア）Cutout　（イ）Random Erasing　（ウ）CutMix"
+    ],
+    "answer": 3,
+    "explanation": "Cutout（DeVries & Taylor, 2017）は、ランダムな位置に正方形のマスクを置き、その中を0にして完全に隠す（形より大きさが大事と分かったので正方形にした）。Random Erasing（Zhong ら, 2017）は、大きさも縦横比もランダムな長方形を選び、その中の画素をランダムな値で塗る。CutMix（Yun ら, 2019）は、取り除いた領域に別の訓練画像の同じ場所のパッチを貼り、正解のラベルも混ぜた画素の数の比で混ぜる。Cutout と Random Erasing はラベルを変えないが、CutMix はラベルも混ぜる。",
+    "whyWrong": [
+      "（ア）と（イ）が逆。Cutout は大きさを決めた正方形を0で隠す方法、Random Erasing は大きさと縦横比もランダムな長方形をランダムな値で塗る方法。（ウ）は合っている。",
+      "（ウ）が違う。Mixup は2枚の画像の全体を同じ比率で重ね合わせ、ラベルも同じ比率で混ぜる方法で、一部の領域を切り取って貼るのではない。領域を貼り替えるのが CutMix。",
+      "（イ）が違う。Random Crop は画像のランダムな位置から一部を切り出して使う方法で、領域を塗りつぶすのではない。長方形をランダムな値で塗るのは Random Erasing。",
+      null
+    ],
+    "memoryTip": "Cutout＝正方形で隠す。Random Erasing＝ランダムな長方形をランダムな値で塗る。CutMix＝隠した所に別の画像を貼り、ラベルも混ぜる。",
+    "concepts": [
+      "C-05-045",
+      "C-05-046"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "DeVries & Taylor (2017) Improved Regularization of Convolutional Neural Networks with Cutout (arXiv:1708.04552)",
+        "url": "https://arxiv.org/abs/1708.04552"
+      },
+      {
+        "title": "Zhong et al. (2017) Random Erasing Data Augmentation (arXiv:1708.04896)",
+        "url": "https://arxiv.org/abs/1708.04896"
+      },
+      {
+        "title": "Yun et al. (2019) CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features (arXiv:1905.04899)",
+        "url": "https://arxiv.org/abs/1905.04899"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-070",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "Mixup は、訓練データから取り出した2つの例について、入力の画像を比率 λ で（ア）、正解のラベルを（イ）ことで、新しい訓練の例を作る。（ア）（イ）に当てはまる組み合わせとして、最も適切なものを1つ選べ。",
+    "stemPlain": "2枚の学習用の画像を混ぜて新しい画像を作る Mixup という方法で、（ア）画像をどう混ぜるか、（イ）正解のラベルをどう扱うか、を答える問題。",
+    "choices": [
+      "（ア）画像全体を重ね合わせ　（イ）元の画像のラベルのまま残す",
+      "（ア）一部の領域だけを貼り替え　（イ）貼った面積の比で混ぜる",
+      "（ア）画像全体を重ね合わせ　（イ）同じ比率 λ で混ぜる",
+      "（ア）一部をランダムな値で塗り　（イ）元の画像のラベルのまま残す"
+    ],
+    "answer": 2,
+    "explanation": "Mixup（Zhang ら, 2017）は、2つの例 (xi, yi) と (xj, yj) から、x̃＝λxi＋(1−λ)xj、ỹ＝λyi＋(1−λ)yj を作る。ことばにすると『画像全体を λ と 1−λ の割合で重ね合わせ、ラベルも同じ割合で混ぜる』。λ はベータ分布 Beta(α, α) から取り出す。例：λ＝0.7 で犬の画像と猫の画像を混ぜると、画素ごとに 犬の値×0.7＋猫の値×0.3 の画像ができ、ラベルは『犬0.7・猫0.3』になる。",
+    "whyWrong": [
+      "（ア）は合っているが、（イ）が違う。Mixup はラベルも画像と同じ比率で混ぜる。2枚が重なった画像に元の1つのラベルを付けたままにするのではない。",
+      "これは CutMix。CutMix は1枚の画像の一部の領域を切り取り、別の画像の同じ場所を貼って、ラベルを貼った面積の比で混ぜる。Mixup は一部ではなく画像全体を重ね合わせる。",
+      null,
+      "これは Random Erasing。Random Erasing はランダムな長方形をランダムな値で塗るだけで、2枚目の画像は使わず、ラベルも変えない。Mixup は2枚を重ねてラベルも混ぜる。"
+    ],
+    "memoryTip": "Mixup＝『全体を半透明で重ねる』＋『ラベルも同じ割合』。CutMix＝『一部を貼る』＋『ラベルは面積の割合』。",
+    "concepts": [
+      "C-05-046",
+      "C-05-045"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "Zhang et al. (2017) mixup: Beyond Empirical Risk Minimization (arXiv:1710.09412)",
+        "url": "https://arxiv.org/abs/1710.09412"
+      },
+      {
+        "title": "Yun et al. (2019) CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features (arXiv:1905.04899)",
+        "url": "https://arxiv.org/abs/1905.04899"
+      },
+      {
+        "title": "Zhong et al. (2017) Random Erasing Data Augmentation (arXiv:1708.04896)",
+        "url": "https://arxiv.org/abs/1708.04896"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-071",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "画像の中の一部の領域（正方形や長方形）を選んで加工するデータ拡張として、最も不適切なものを1つ選べ。",
+    "stemPlain": "学習用の画像の『一部分だけ』を選んで加工する水増しの方法として、【当てはまらないもの】を1つ選ぶ問題。",
+    "choices": [
+      "Cutout",
+      "Random Erasing",
+      "Mixup",
+      "CutMix"
+    ],
+    "answer": 2,
+    "explanation": "Mixup は、2枚の画像の全体を比率 λ で重ね合わせ、ラベルも同じ比率で混ぜる。画像の中の一部の領域を選ぶ操作は無い。CutMix の論文は、Cutout のように領域を取り除く方法を『regional dropout（領域を落とす方法）』と呼び、CutMix をその改良として、全体を混ぜる Mixup と比べている。",
+    "whyWrong": [
+      "一部の領域を加工する方法。Cutout は、ランダムな位置に置いた正方形の中を0にして隠す。",
+      "一部の領域を加工する方法。Random Erasing は、大きさと縦横比がランダムな長方形を選び、その中の画素をランダムな値で塗りつぶす。",
+      null,
+      "一部の領域を加工する方法。CutMix は、選んだ長方形の領域に別の画像の同じ場所を貼り、ラベルを貼った面積の比で混ぜる。"
+    ],
+    "memoryTip": "『一部を触る』組＝Cutout・Random Erasing・CutMix。『全体を混ぜる』のが Mixup。",
+    "concepts": [
+      "C-05-046",
+      "C-05-045"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "Zhang et al. (2017) mixup: Beyond Empirical Risk Minimization (arXiv:1710.09412)",
+        "url": "https://arxiv.org/abs/1710.09412"
+      },
+      {
+        "title": "Yun et al. (2019) CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features (arXiv:1905.04899)",
+        "url": "https://arxiv.org/abs/1905.04899"
+      },
+      {
+        "title": "DeVries & Taylor (2017) Improved Regularization of Convolutional Neural Networks with Cutout (arXiv:1708.04552)",
+        "url": "https://arxiv.org/abs/1708.04552"
+      },
+      {
+        "title": "Zhong et al. (2017) Random Erasing Data Augmentation (arXiv:1708.04896)",
+        "url": "https://arxiv.org/abs/1708.04896"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-072",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "画像のデータ拡張の手法に関する説明として、最も不適切なものを1つ選べ。",
+    "stemPlain": "学習用の画像を加工して水増しする方法について書いた文から、【間違っているもの（ふさわしくないもの）】を1つ選ぶ問題。",
+    "choices": [
+      "Random Crop は、画像のランダムな位置から決めた大きさの領域を切り出し、それを学習に使う",
+      "Random Erasing は、学習中の画像ごとに、長方形の領域を消すか元のままにするかを確率で決めて使う",
+      "RandAugment は、小さな代理のタスクで変換の組み合わせを別に探索し、その結果を本番の学習に使う",
+      "Cutout の論文は、隠す領域は形より大きさが大事だと分かったので、正方形を使ったと述べている"
+    ],
+    "answer": 2,
+    "explanation": "RandAugment（Cubuk ら, 2019）は、それまでの自動データ拡張が『小さな代理のタスクで方針を別に探索してから大きなタスクに移す』形だったことを問題にし、別の探索の段階を要らなくした方法。探索する値を、ランダムに選ぶ変換の数 N と、共通の強さ M の2つまで大きく減らしたので、本番のタスクで単純なグリッドサーチ（候補を総当たりで試すこと）をするだけで済む。3つ目の文は、RandAugment がなくした『別の探索の段階』をその方法の中身として書いているので誤り。",
+    "whyWrong": [
+      "適切。PyTorch の RandomCrop は、与えた画像をランダムな位置で切り抜く（Crop the given image at a random location）。物体の位置のずれに強くなる。",
+      "適切。Random Erasing の論文は、ミニバッチの中の画像は、そのまま残すか、ランダムな長方形を消すかの2つの操作のどちらかを確率で受ける、と書いている。",
+      null,
+      "適切。Cutout の論文は、隠す領域の大きさのほうが形より大事なハイパーパラメータだと分かったので、簡単のため正方形のパッチを使った、と述べている。"
+    ],
+    "memoryTip": "RandAugment の売りは『別の探索なし』。調整するのは N（何個）と M（どれだけ強く）の2つだけ。",
+    "concepts": [
+      "C-05-047",
+      "C-05-044",
+      "C-05-045"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "Cubuk et al. (2019) RandAugment: Practical automated data augmentation with a reduced search space (arXiv:1909.13719)",
+        "url": "https://arxiv.org/abs/1909.13719"
+      },
+      {
+        "title": "PyTorch Documentation: torchvision.transforms.RandomCrop",
+        "url": "https://docs.pytorch.org/vision/stable/generated/torchvision.transforms.RandomCrop.html"
+      },
+      {
+        "title": "Zhong et al. (2017) Random Erasing Data Augmentation (arXiv:1708.04896)",
+        "url": "https://arxiv.org/abs/1708.04896"
+      },
+      {
+        "title": "DeVries & Taylor (2017) Improved Regularization of Convolutional Neural Networks with Cutout (arXiv:1708.04552)",
+        "url": "https://arxiv.org/abs/1708.04552"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-073",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "Cutout・CutMix・Mixup・Random Erasing の性質に関する説明として、最も不適切なものを1つ選べ。",
+    "stemPlain": "画像の一部を隠したり、2枚を混ぜたりする4つの水増しの方法について書いた文から、【間違っているもの（ふさわしくないもの）】を1つ選ぶ問題。",
+    "choices": [
+      "CutMix の論文は、Cutout で隠した画素は情報を持たないので、その分だけ学習の効率が落ちると指摘した",
+      "CutMix の論文は、Mixup で混ぜた画像は局所的にあいまいで不自然になり、モデルを混乱させると述べた",
+      "Cutout は、隠した正方形に別の画像の同じ大きさの部分を貼り、ラベルも貼った面積の比で混ぜる",
+      "Random Erasing では、塗る値をランダムな値にしても画素の平均値にしても、ほぼ同じ性能だった"
+    ],
+    "answer": 2,
+    "explanation": "3つ目の文は CutMix の説明を Cutout に付けている。Cutout は正方形の領域を0にして隠すだけで、別の画像は貼らず、ラベルも元のまま。CutMix の論文は、Cutout のように画素を取り除くと情報のない画素が残る点を改め、取り除いた領域に別の画像のパッチを貼ってラベルを画素の数の比で混ぜることで、情報のない画素を無くした。",
+    "whyWrong": [
+      "適切。CutMix の論文は、Cutout は物体の目立たない部分にも注目させる効果はあるが、使われない画素があるので非効率だと述べている。",
+      "適切。CutMix の論文は、Mixup のサンプルは局所的にあいまいで不自然になり、とくに物体の位置の特定でモデルを混乱させると述べている。",
+      null,
+      "適切。Random Erasing の論文は、ランダムな値で塗っても ImageNet の画素の平均値で塗っても、おおよそ同じ性能になったと報告している。"
+    ],
+    "memoryTip": "『貼る』のは CutMix だけ。Cutout は隠すだけ（ラベルはそのまま）。",
+    "concepts": [
+      "C-05-045",
+      "C-05-046"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "Yun et al. (2019) CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features (arXiv:1905.04899)",
+        "url": "https://arxiv.org/abs/1905.04899"
+      },
+      {
+        "title": "DeVries & Taylor (2017) Improved Regularization of Convolutional Neural Networks with Cutout (arXiv:1708.04552)",
+        "url": "https://arxiv.org/abs/1708.04552"
+      },
+      {
+        "title": "Zhong et al. (2017) Random Erasing Data Augmentation (arXiv:1708.04896)",
+        "url": "https://arxiv.org/abs/1708.04896"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-074",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "工場で部品を撮影して種類を見分けるモデルを作る。現場では、手前にある別の部品や作業者の手で、写したい部品の一部が隠れることがよくある。この「一部が隠れた画像」にも強いモデルにするために、学習時に使うデータ拡張として最も適切なものを1つ選べ。",
+    "stemPlain": "部品の写真で種類を見分けるAIを作る。本番では部品の一部が手や他の物で隠れて写ることが多い。隠れていても見分けられるよう、学習用の画像をどう加工して水増しするのがよいかを選ぶ問題。",
+    "choices": [
+      "Brightness（画像全体の明るさをランダムに変える）",
+      "Random Flip（画像をランダムに左右に反転する）",
+      "Mixup（2枚の画像の全体を、決めた比率で半透明に重ね合わせる）",
+      "Random Erasing（画像の一部の長方形をランダムな値で塗る）"
+    ],
+    "answer": 3,
+    "explanation": "Random Erasing の論文（Zhong ら, 2017）は、学習時に画像のランダムな長方形の領域をランダムな値で消すことで、いろいろな程度に一部が隠れた（遮蔽された）画像を作り、過学習の危険を減らし、隠れ（オクルージョン）に強いモデルにすると述べている。問題文の『手前の物で一部が隠れる』状況は、この遮蔽に当たる。同じく一部を隠す Cutout も同じねらいで使える。",
+    "whyWrong": [
+      "Brightness は、画像全体の明るさを変えて、照明の違いに強くする変換。一部が物で隠れた状態は作れないので、隠れへの強さを直接は学ばせられない。",
+      "Random Flip は、画像を左右（上下）に反転して、向きの違いに強くする変換。部品のどこも隠れないので、隠れへの強さは学ばせられない。",
+      "Mixup は、2枚の画像の全体を重ね合わせ、ラベルも同じ比率で混ぜる。画像全体が半透明に重なるだけで、ある部分がはっきり隠れた画像にはならない。",
+      null
+    ],
+    "memoryTip": "『隠れに強く』したいなら『わざと隠して学ばせる』（Random Erasing・Cutout）。明るさ・反転は照明・向きへの強さ。",
+    "concepts": [
+      "C-05-045",
+      "C-05-044",
+      "C-05-046"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "Zhong et al. (2017) Random Erasing Data Augmentation (arXiv:1708.04896)",
+        "url": "https://arxiv.org/abs/1708.04896"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-075",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "学習のたびに、画像のランダムな位置から決めた大きさの領域を切り出し、それを学習用の画像として使うデータ拡張として、最も適切なものを1つ選べ。",
+    "stemPlain": "学習用の画像から、毎回ちがう場所を同じ大きさで切り取って使う水増しの方法の名前を選ぶ問題。",
+    "choices": [
+      "Cutout",
+      "Random Crop",
+      "Random Erasing",
+      "Rotate"
+    ],
+    "answer": 1,
+    "explanation": "Random Crop（シラバスのキーワードでは Crop）は、画像のランダムな位置で一部を切り抜く変換（PyTorch の RandomCrop の説明は『Crop the given image at a random location』）。例：縦256×横256 の画像から、毎回ちがう位置の 縦224×横224 を切り出す。物体が画面のどこに写っていても見分けられるよう、位置のずれに強くする。切り出した部分は残し、それ以外を捨てる。",
+    "whyWrong": [
+      "Cutout は、ランダムな位置の正方形を0で隠す方法。画像の大きさはそのままで一部を隠すので、切り出した部分だけを使う問題文の操作とは逆。",
+      null,
+      "Random Erasing は、ランダムな長方形をランダムな値で塗りつぶす方法。塗った部分以外も含めて画像全体を使うので、一部を切り出すのとは違う。",
+      "Rotate は、画像を回転させる変換。向きの違いに強くするもので、領域を切り出す操作ではない。"
+    ],
+    "memoryTip": "Crop＝『切り取って、そこだけ使う』。Cutout＝『切り取って、そこを隠す』。",
+    "concepts": [
+      "C-05-044",
+      "C-05-045"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torchvision.transforms.RandomCrop",
+        "url": "https://docs.pytorch.org/vision/stable/generated/torchvision.transforms.RandomCrop.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-05-076",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの要素技術",
+      "データ拡張"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CutMix で、縦100×横100画素の「犬」の画像に、「猫」の画像から切り取った縦20×横30画素の部分を貼った。ラベルを貼った画素の数の比で混ぜるとき、新しい画像のラベルとして最も適切なものを1つ選べ。",
+    "stemPlain": "犬の写真の一部に猫の写真の一部を貼った。貼った広さの割合に合わせて正解のラベルも『犬が何割・猫が何割』と混ぜるとき、その割合を計算する問題。",
+    "choices": [
+      "犬 0.8・猫 0.2",
+      "犬 0.7・猫 0.3",
+      "犬 0.94・猫 0.06",
+      "犬 1.0・猫 0.0"
+    ],
+    "answer": 2,
+    "explanation": "CutMix の論文は、正解のラベルを、混ぜた画像の画素の数に比例して混ぜる、と書いている。したいこと：画像の中で猫の部分が占める割合を出し、ラベルをその割合で分ける。ことばの式：猫の割合＝貼った部分の画素の数÷画像全体の画素の数、犬の割合＝1−猫の割合。数を当てはめる：貼った部分＝20×30＝600画素、全体＝100×100＝10000画素。計算：600÷10000＝0.06 なので猫 0.06、犬は 1−0.06＝0.94。意味：画像の94%は犬、6%は猫なので、ラベルも 0.94 対 0.06 にする。長さの比（20÷100 や 30÷100）ではなく、面積の比で決まるので、貼った部分は思ったより小さな割合になる。なお論文の実験では、切り取る長方形の縦横比を元の画像に合わせているが、ここでは計算の例として 20×30 にした。",
+    "whyWrong": [
+      "0.2 は、縦の長さだけで 20÷100 を割合とした値。割合は長さではなく面積（画素の数）で決まるので、縦と横を掛けた 20×30＝600 を全体の 10000 で割って 0.06 になる。",
+      "0.3 は、横の長さだけで 30÷100 を割合とした値。面積で考えると、貼った部分は全体の 0.06（6%）しかない。",
+      null,
+      "ラベルを元の犬のまま変えないのは Cutout や Random Erasing の扱い。CutMix は貼った部分の面積に応じて、ラベルにも猫を混ぜる。"
+    ],
+    "memoryTip": "CutMix のラベル＝面積の割合。長さ×長さ を 全体の面積 で割る。",
+    "concepts": [
+      "C-05-046"
+    ],
+    "figures": [
+      "fig-g-data-augmentation"
+    ],
+    "sources": [
+      {
+        "title": "Yun et al. (2019) CutMix: Regularization Strategy to Train Strong Classifiers with Localizable Features (arXiv:1905.04899)",
+        "url": "https://arxiv.org/abs/1905.04899"
+      }
+    ],
+    "status": "verified"
   }
 ]
