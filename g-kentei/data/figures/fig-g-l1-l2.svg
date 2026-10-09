@@ -1,8 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 568" role="img" aria-labelledby="fig-g-l1-l2-t fig-g-l1-l2-d">
-<title id="fig-g-l1-l2-t">L1 正則化と L2 正則化：なぜ L1 は重みを 0 にするか</title>
-<desc id="fig-g-l1-l2-d">2つの重みw1、w2の平面。誤差が等しい点を結んだ楕円（誤差の等高線）の中心が、罰則なしで誤差が最小になる重み。罰則は、重みの大きさに上限をつける領域として描ける。L1は絶対値の和の上限で、領域はひし形。楕円は軸の上にあるひし形の角で接し、そこでは一方の重みがちょうど0になる。L2は二乗の和の上限で、領域は円。楕円は軸から外れた点で接し、重みは小さくなるが0にはなりにくい。L1とL2を組み合わせたものがElastic Net。</desc>
-<text x="12" y="20" class="tb">重みの平面：楕円＝誤差の等高線</text>
-<text x="12" y="44" class="tb">① L1：ひし形の領域</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 818" role="img" aria-labelledby="fig-g-l1-l2-t fig-g-l1-l2-d">
+<title id="fig-g-l1-l2-t">L1 正則化と L2 正則化：2つの重みの平面で比べる</title>
+<desc id="fig-g-l1-l2-d">横軸を重みw1、縦軸を重みw2とした平面。十字の印は、罰則なしで誤差がいちばん小さくなる重み。楕円は、誤差が同じになる重みの組を結んだ線で、点線の楕円のほうが誤差は小さい。青い領域は、罰則で許される重みの範囲。赤い丸は、範囲の中で誤差がいちばん小さい点で、これが選ばれる重み。L1の範囲はひし形で、角が軸の上に突き出ている。楕円を外へ広げていくと先に角に触れやすく、角ではw1がちょうど0になる。L2の範囲は円で角が無いので、楕円は軸から外れた点で触れ、w1もw2も0にならない。1枚目の図の、L1は小さい重みを0まで押し、L2は0まで押さないことを、2つの重みで見たもの。L1とL2を組み合わせたものがElastic Net。</desc>
+<text x="12" y="20" class="tb">L1 と L2 を、2つの重みの平面で比べる</text>
+<text x="12" y="40" class="tm">横軸＝重み w1、縦軸＝重み w2</text>
+<line x1="16" y1="58" x2="26" y2="58" class="l w1"/>
+<line x1="21" y1="53" x2="21" y2="63" class="l w1"/>
+<text x="36" y="63" class="tm">＝誤差がいちばん小さい重み（罰則なし）</text>
+<ellipse cx="21" cy="82" rx="9" ry="5" class="l swn w2"/>
+<text x="36" y="87" class="tm">＝誤差が同じになる重みの組</text>
+<text x="36" y="105" class="tm">（点線の楕円のほうが誤差は小さい）</text>
+<polygon points="21,118 29,126 21,134 13,126" class="fas sa" stroke-width="2"/>
+<text x="36" y="131" class="tm">＝罰則で許される重みの範囲</text>
+<circle cx="21" cy="150" r="5" class="fs sng" stroke-width="3"/>
+<text x="36" y="155" class="tm">＝範囲の中で誤差がいちばん小さい点</text>
+<text x="36" y="173" class="tb">＝選ばれる重み</text>
+<line x1="12" y1="186" x2="308" y2="186" class="l sb w1"/>
+<g transform="translate(0,166)">
+<text x="12" y="44" class="tb">① L1：ひし形の範囲</text>
 <rect x="12" y="52" width="296" height="160" class="sb" stroke-width="1"/>
 <line x1="16" y1="164" x2="304" y2="164" class="l sm w1"/>
 <line x1="102" y1="56" x2="102" y2="208" class="l sm w1"/>
@@ -14,8 +28,14 @@
 <line x1="154" y1="108" x2="162" y2="108" class="l w1"/>
 <line x1="158" y1="104" x2="158" y2="112" class="l w1"/>
 <circle cx="102" cy="122" r="5" class="fs sng" stroke-width="3"/>
-<text x="12" y="238" class="tb">軸の上の角で接する → 重みがちょうど 0</text>
-<text x="12" y="274" class="tb">② L2：円の領域</text>
+<text x="94" y="118" class="tb tng" text-anchor="end">w1＝0</text>
+<text x="12" y="238" class="tb">縦軸の上の角で触れる → w1 がちょうど 0</text>
+<text x="12" y="258" class="tm">ひし形は角が軸の上に突き出ているので、</text>
+<text x="12" y="276" class="tm">楕円を外へ広げると先に角に触れやすい</text>
+<text x="12" y="294" class="tm">（楕円を広げる＝誤差を少しずつ許していく）</text>
+</g>
+<g transform="translate(0,224)">
+<text x="12" y="274" class="tb">② L2：円の範囲</text>
 <rect x="12" y="282" width="296" height="160" class="sb" stroke-width="1"/>
 <line x1="16" y1="394" x2="304" y2="394" class="l sm w1"/>
 <line x1="102" y1="286" x2="102" y2="438" class="l sm w1"/>
@@ -27,9 +47,12 @@
 <line x1="154" y1="338" x2="162" y2="338" class="l w1"/>
 <line x1="158" y1="334" x2="158" y2="342" class="l w1"/>
 <circle cx="120.86" cy="356.47" r="5" class="fs sng" stroke-width="3"/>
-<text x="12" y="468" class="tb">軸から外れた点で接する → 0 にはなりにくい</text>
-<line x1="12" y1="486" x2="308" y2="486" class="l sb w1"/>
-<text x="12" y="510" class="tm">青い領域＝罰則で許される重みの範囲</text>
-<text x="12" y="530" class="tm">赤い丸＝楕円と領域が接する点（解）</text>
-<text x="12" y="556" class="tb">Elastic Net ＝ L1 と L2 の組み合わせ</text>
+<text x="12" y="468" class="tb">軸から外れた点で触れる → 0 になりにくい</text>
+<text x="12" y="488" class="tm">円には角が無いので、w1 も w2 も 0 でない</text>
+<text x="12" y="506" class="tm">点で触れることが多い</text>
+</g>
+<line x1="12" y1="744" x2="308" y2="744" class="l sb w1"/>
+<text x="12" y="766" class="tm">カードの1枚目の図（重み1つずつの縮み方）</text>
+<text x="12" y="784" class="tm">を、重み2つの平面で見たもの</text>
+<text x="12" y="808" class="tb">Elastic Net ＝ L1 と L2 の組み合わせ</text>
 </svg>

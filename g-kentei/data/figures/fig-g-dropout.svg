@@ -1,141 +1,181 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 378" role="img" aria-labelledby="fig-g-dropout-t fig-g-dropout-d">
-<title id="fig-g-dropout-t">ドロップアウト：学習時と推論時</title>
-<desc id="fig-g-dropout-d">同じネットワーク（入力4、隠れ5、隠れ5、出力2）を2つ並べた図。左は学習時で、隠れ層のユニットのいくつかを無効にし、そのユニットにつながる線を消す。どのユニットを消すかは更新のたびにランダムに変わる。右は推論時で、すべてのユニットを使う。</desc>
-<text x="12" y="20" class="tb">同じネットワークを2つの場面で</text>
-<text x="84" y="50" class="tb tng" text-anchor="middle">学習時</text>
-<text x="236" y="50" class="tb tok" text-anchor="middle">推論時</text>
-<rect x="12" y="58" width="144" height="152" class="sb" stroke-width="1"/>
-<rect x="164" y="58" width="144" height="152" class="sb" stroke-width="1"/>
-<line x1="26" y1="98" x2="62" y2="86" class="l sm w1"/>
-<line x1="26" y1="98" x2="62" y2="134" class="l sm w1"/>
-<line x1="26" y1="98" x2="62" y2="182" class="l sm w1"/>
-<line x1="26" y1="122" x2="62" y2="86" class="l sm w1"/>
-<line x1="26" y1="122" x2="62" y2="134" class="l sm w1"/>
-<line x1="26" y1="122" x2="62" y2="182" class="l sm w1"/>
-<line x1="26" y1="146" x2="62" y2="86" class="l sm w1"/>
-<line x1="26" y1="146" x2="62" y2="134" class="l sm w1"/>
-<line x1="26" y1="146" x2="62" y2="182" class="l sm w1"/>
-<line x1="26" y1="170" x2="62" y2="86" class="l sm w1"/>
-<line x1="26" y1="170" x2="62" y2="134" class="l sm w1"/>
-<line x1="26" y1="170" x2="62" y2="182" class="l sm w1"/>
-<line x1="62" y1="86" x2="98" y2="86" class="l sm w1"/>
-<line x1="62" y1="86" x2="98" y2="110" class="l sm w1"/>
-<line x1="62" y1="86" x2="98" y2="158" class="l sm w1"/>
-<line x1="62" y1="86" x2="98" y2="182" class="l sm w1"/>
-<line x1="62" y1="134" x2="98" y2="86" class="l sm w1"/>
-<line x1="62" y1="134" x2="98" y2="110" class="l sm w1"/>
-<line x1="62" y1="134" x2="98" y2="158" class="l sm w1"/>
-<line x1="62" y1="134" x2="98" y2="182" class="l sm w1"/>
-<line x1="62" y1="182" x2="98" y2="86" class="l sm w1"/>
-<line x1="62" y1="182" x2="98" y2="110" class="l sm w1"/>
-<line x1="62" y1="182" x2="98" y2="158" class="l sm w1"/>
-<line x1="62" y1="182" x2="98" y2="182" class="l sm w1"/>
-<line x1="98" y1="86" x2="134" y2="122" class="l sm w1"/>
-<line x1="98" y1="86" x2="134" y2="146" class="l sm w1"/>
-<line x1="98" y1="110" x2="134" y2="122" class="l sm w1"/>
-<line x1="98" y1="110" x2="134" y2="146" class="l sm w1"/>
-<line x1="98" y1="158" x2="134" y2="122" class="l sm w1"/>
-<line x1="98" y1="158" x2="134" y2="146" class="l sm w1"/>
-<line x1="98" y1="182" x2="134" y2="122" class="l sm w1"/>
-<line x1="98" y1="182" x2="134" y2="146" class="l sm w1"/>
-<circle cx="26" cy="98" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="26" cy="122" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="26" cy="146" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="26" cy="170" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="62" cy="86" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="62" cy="110" r="7" class="fs sng dsh w1"/>
-<line x1="57.5" y1="105.5" x2="66.5" y2="114.5" class="l sng w2"/>
-<line x1="57.5" y1="114.5" x2="66.5" y2="105.5" class="l sng w2"/>
-<circle cx="62" cy="134" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="62" cy="158" r="7" class="fs sng dsh w1"/>
-<line x1="57.5" y1="153.5" x2="66.5" y2="162.5" class="l sng w2"/>
-<line x1="57.5" y1="162.5" x2="66.5" y2="153.5" class="l sng w2"/>
-<circle cx="62" cy="182" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="98" cy="86" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="98" cy="110" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="98" cy="134" r="7" class="fs sng dsh w1"/>
-<line x1="93.5" y1="129.5" x2="102.5" y2="138.5" class="l sng w2"/>
-<line x1="93.5" y1="138.5" x2="102.5" y2="129.5" class="l sng w2"/>
-<circle cx="98" cy="158" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="98" cy="182" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="134" cy="122" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="134" cy="146" r="7" class="fs sb" stroke-width="1.8"/>
-<line x1="178" y1="98" x2="214" y2="86" class="l sm w1"/>
-<line x1="178" y1="98" x2="214" y2="110" class="l sm w1"/>
-<line x1="178" y1="98" x2="214" y2="134" class="l sm w1"/>
-<line x1="178" y1="98" x2="214" y2="158" class="l sm w1"/>
-<line x1="178" y1="98" x2="214" y2="182" class="l sm w1"/>
-<line x1="178" y1="122" x2="214" y2="86" class="l sm w1"/>
-<line x1="178" y1="122" x2="214" y2="110" class="l sm w1"/>
-<line x1="178" y1="122" x2="214" y2="134" class="l sm w1"/>
-<line x1="178" y1="122" x2="214" y2="158" class="l sm w1"/>
-<line x1="178" y1="122" x2="214" y2="182" class="l sm w1"/>
-<line x1="178" y1="146" x2="214" y2="86" class="l sm w1"/>
-<line x1="178" y1="146" x2="214" y2="110" class="l sm w1"/>
-<line x1="178" y1="146" x2="214" y2="134" class="l sm w1"/>
-<line x1="178" y1="146" x2="214" y2="158" class="l sm w1"/>
-<line x1="178" y1="146" x2="214" y2="182" class="l sm w1"/>
-<line x1="178" y1="170" x2="214" y2="86" class="l sm w1"/>
-<line x1="178" y1="170" x2="214" y2="110" class="l sm w1"/>
-<line x1="178" y1="170" x2="214" y2="134" class="l sm w1"/>
-<line x1="178" y1="170" x2="214" y2="158" class="l sm w1"/>
-<line x1="178" y1="170" x2="214" y2="182" class="l sm w1"/>
-<line x1="214" y1="86" x2="250" y2="86" class="l sm w1"/>
-<line x1="214" y1="86" x2="250" y2="110" class="l sm w1"/>
-<line x1="214" y1="86" x2="250" y2="134" class="l sm w1"/>
-<line x1="214" y1="86" x2="250" y2="158" class="l sm w1"/>
-<line x1="214" y1="86" x2="250" y2="182" class="l sm w1"/>
-<line x1="214" y1="110" x2="250" y2="86" class="l sm w1"/>
-<line x1="214" y1="110" x2="250" y2="110" class="l sm w1"/>
-<line x1="214" y1="110" x2="250" y2="134" class="l sm w1"/>
-<line x1="214" y1="110" x2="250" y2="158" class="l sm w1"/>
-<line x1="214" y1="110" x2="250" y2="182" class="l sm w1"/>
-<line x1="214" y1="134" x2="250" y2="86" class="l sm w1"/>
-<line x1="214" y1="134" x2="250" y2="110" class="l sm w1"/>
-<line x1="214" y1="134" x2="250" y2="134" class="l sm w1"/>
-<line x1="214" y1="134" x2="250" y2="158" class="l sm w1"/>
-<line x1="214" y1="134" x2="250" y2="182" class="l sm w1"/>
-<line x1="214" y1="158" x2="250" y2="86" class="l sm w1"/>
-<line x1="214" y1="158" x2="250" y2="110" class="l sm w1"/>
-<line x1="214" y1="158" x2="250" y2="134" class="l sm w1"/>
-<line x1="214" y1="158" x2="250" y2="158" class="l sm w1"/>
-<line x1="214" y1="158" x2="250" y2="182" class="l sm w1"/>
-<line x1="214" y1="182" x2="250" y2="86" class="l sm w1"/>
-<line x1="214" y1="182" x2="250" y2="110" class="l sm w1"/>
-<line x1="214" y1="182" x2="250" y2="134" class="l sm w1"/>
-<line x1="214" y1="182" x2="250" y2="158" class="l sm w1"/>
-<line x1="214" y1="182" x2="250" y2="182" class="l sm w1"/>
-<line x1="250" y1="86" x2="286" y2="122" class="l sm w1"/>
-<line x1="250" y1="86" x2="286" y2="146" class="l sm w1"/>
-<line x1="250" y1="110" x2="286" y2="122" class="l sm w1"/>
-<line x1="250" y1="110" x2="286" y2="146" class="l sm w1"/>
-<line x1="250" y1="134" x2="286" y2="122" class="l sm w1"/>
-<line x1="250" y1="134" x2="286" y2="146" class="l sm w1"/>
-<line x1="250" y1="158" x2="286" y2="122" class="l sm w1"/>
-<line x1="250" y1="158" x2="286" y2="146" class="l sm w1"/>
-<line x1="250" y1="182" x2="286" y2="122" class="l sm w1"/>
-<line x1="250" y1="182" x2="286" y2="146" class="l sm w1"/>
-<circle cx="178" cy="98" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="178" cy="122" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="178" cy="146" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="178" cy="170" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="214" cy="86" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="214" cy="110" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="214" cy="134" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="214" cy="158" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="214" cy="182" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="250" cy="86" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="250" cy="110" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="250" cy="134" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="250" cy="158" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="250" cy="182" r="7" class="fas sa" stroke-width="1.8"/>
-<circle cx="286" cy="122" r="7" class="fs sb" stroke-width="1.8"/>
-<circle cx="286" cy="146" r="7" class="fs sb" stroke-width="1.8"/>
-<text x="12" y="236">赤い×：その回は使わないユニット</text>
-<text x="12" y="260" class="tb tng">学習時：毎回ランダムに選んで休ませる</text>
-<text x="12" y="280">　→ 毎回ちがう部分ネットワークを学ぶ</text>
-<text x="12" y="306" class="tb tok">推論時：すべてのユニットを使う</text>
-<line x1="12" y1="322" x2="308" y2="322" class="l sb w1"/>
-<text x="12" y="346">特定のユニットに頼れなくなり、</text>
-<text x="12" y="366">過学習が抑えられる（正則化の一つ）</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 664" role="img" aria-labelledby="fig-g-dropout-t fig-g-dropout-d">
+<title id="fig-g-dropout-t">ドロップアウト：学習の1回ごとに、くじで一部のユニットを休ませる</title>
+<desc id="fig-g-dropout-d">入力3、隠れ層5（AからE）、出力2の小さなネットワーク。学習の1回目はBとD、2回目はAとE、3回目はCとDが休み、休んだユニットはその回は出力が0で、つながる線も使わない。休むユニットは1回ごとにくじで決まり、毎回ちがう。なぜ過学習が減るかのたとえ：いつも同じエースに頼るチームは、エースが休むと崩れる。毎回くじで誰かが休む練習をすると、全員が自分で働けるようになる。ユニットがメンバーにあたる。特定の相手に頼って訓練データの癖だけを覚えることが起きにくくなり、新しいデータでも崩れにくい、つまり過学習が減る。推論時（予測するとき）は休みなしでAからEの全員を使う。そのぶん出力が大きくなりすぎないよう、各ユニットが出す重みに残す確率pを掛ける（pが0.5なら半分）。これは原論文 Srivastava ら 2014 の方法。</desc>
+<text x="12" y="20" class="tb">ドロップアウト：くじで一部を休ませて学習</text>
+<text x="12" y="44" class="tb">① 学習中（休むユニットは毎回ちがう）</text>
+<rect x="12" y="54" width="88" height="168" class="sb" stroke-width="1" rx="6"/>
+<text x="56" y="72" class="tb" text-anchor="middle">1回目</text>
+<line x1="24" y1="118" x2="56" y2="94" class="l sm w1"/>
+<line x1="24" y1="142" x2="56" y2="94" class="l sm w1"/>
+<line x1="24" y1="166" x2="56" y2="94" class="l sm w1"/>
+<line x1="56" y1="94" x2="88" y2="130" class="l sm w1"/>
+<line x1="56" y1="94" x2="88" y2="154" class="l sm w1"/>
+<line x1="24" y1="118" x2="56" y2="142" class="l sm w1"/>
+<line x1="24" y1="142" x2="56" y2="142" class="l sm w1"/>
+<line x1="24" y1="166" x2="56" y2="142" class="l sm w1"/>
+<line x1="56" y1="142" x2="88" y2="130" class="l sm w1"/>
+<line x1="56" y1="142" x2="88" y2="154" class="l sm w1"/>
+<line x1="24" y1="118" x2="56" y2="190" class="l sm w1"/>
+<line x1="24" y1="142" x2="56" y2="190" class="l sm w1"/>
+<line x1="24" y1="166" x2="56" y2="190" class="l sm w1"/>
+<line x1="56" y1="190" x2="88" y2="130" class="l sm w1"/>
+<line x1="56" y1="190" x2="88" y2="154" class="l sm w1"/>
+<circle cx="24" cy="118" r="6" class="fs l"/>
+<circle cx="24" cy="142" r="6" class="fs l"/>
+<circle cx="24" cy="166" r="6" class="fs l"/>
+<circle cx="88" cy="130" r="6" class="fs l"/>
+<circle cx="88" cy="154" r="6" class="fs l"/>
+<circle cx="56" cy="94" r="10" class="fas l sa"/>
+<text x="56" y="99" class="tb ta" text-anchor="middle">A</text>
+<circle cx="56" cy="118" r="10" class="fng l sng w1 dsh"/>
+<line x1="50" y1="112" x2="62" y2="124" class="l sng w2"/>
+<line x1="50" y1="124" x2="62" y2="112" class="l sng w2"/>
+<text x="69" y="123" class="tb tng">B</text>
+<circle cx="56" cy="142" r="10" class="fas l sa"/>
+<text x="56" y="147" class="tb ta" text-anchor="middle">C</text>
+<circle cx="56" cy="166" r="10" class="fng l sng w1 dsh"/>
+<line x1="50" y1="160" x2="62" y2="172" class="l sng w2"/>
+<line x1="50" y1="172" x2="62" y2="160" class="l sng w2"/>
+<text x="69" y="171" class="tb tng">D</text>
+<circle cx="56" cy="190" r="10" class="fas l sa"/>
+<text x="56" y="195" class="tb ta" text-anchor="middle">E</text>
+<text x="56" y="214" class="tb tng" text-anchor="middle">休み B・D</text>
+<rect x="116" y="54" width="88" height="168" class="sb" stroke-width="1" rx="6"/>
+<text x="160" y="72" class="tb" text-anchor="middle">2回目</text>
+<line x1="128" y1="118" x2="160" y2="118" class="l sm w1"/>
+<line x1="128" y1="142" x2="160" y2="118" class="l sm w1"/>
+<line x1="128" y1="166" x2="160" y2="118" class="l sm w1"/>
+<line x1="160" y1="118" x2="192" y2="130" class="l sm w1"/>
+<line x1="160" y1="118" x2="192" y2="154" class="l sm w1"/>
+<line x1="128" y1="118" x2="160" y2="142" class="l sm w1"/>
+<line x1="128" y1="142" x2="160" y2="142" class="l sm w1"/>
+<line x1="128" y1="166" x2="160" y2="142" class="l sm w1"/>
+<line x1="160" y1="142" x2="192" y2="130" class="l sm w1"/>
+<line x1="160" y1="142" x2="192" y2="154" class="l sm w1"/>
+<line x1="128" y1="118" x2="160" y2="166" class="l sm w1"/>
+<line x1="128" y1="142" x2="160" y2="166" class="l sm w1"/>
+<line x1="128" y1="166" x2="160" y2="166" class="l sm w1"/>
+<line x1="160" y1="166" x2="192" y2="130" class="l sm w1"/>
+<line x1="160" y1="166" x2="192" y2="154" class="l sm w1"/>
+<circle cx="128" cy="118" r="6" class="fs l"/>
+<circle cx="128" cy="142" r="6" class="fs l"/>
+<circle cx="128" cy="166" r="6" class="fs l"/>
+<circle cx="192" cy="130" r="6" class="fs l"/>
+<circle cx="192" cy="154" r="6" class="fs l"/>
+<circle cx="160" cy="94" r="10" class="fng l sng w1 dsh"/>
+<line x1="154" y1="88" x2="166" y2="100" class="l sng w2"/>
+<line x1="154" y1="100" x2="166" y2="88" class="l sng w2"/>
+<text x="173" y="99" class="tb tng">A</text>
+<circle cx="160" cy="118" r="10" class="fas l sa"/>
+<text x="160" y="123" class="tb ta" text-anchor="middle">B</text>
+<circle cx="160" cy="142" r="10" class="fas l sa"/>
+<text x="160" y="147" class="tb ta" text-anchor="middle">C</text>
+<circle cx="160" cy="166" r="10" class="fas l sa"/>
+<text x="160" y="171" class="tb ta" text-anchor="middle">D</text>
+<circle cx="160" cy="190" r="10" class="fng l sng w1 dsh"/>
+<line x1="154" y1="184" x2="166" y2="196" class="l sng w2"/>
+<line x1="154" y1="196" x2="166" y2="184" class="l sng w2"/>
+<text x="173" y="195" class="tb tng">E</text>
+<text x="160" y="214" class="tb tng" text-anchor="middle">休み A・E</text>
+<rect x="220" y="54" width="88" height="168" class="sb" stroke-width="1" rx="6"/>
+<text x="264" y="72" class="tb" text-anchor="middle">3回目</text>
+<line x1="232" y1="118" x2="264" y2="94" class="l sm w1"/>
+<line x1="232" y1="142" x2="264" y2="94" class="l sm w1"/>
+<line x1="232" y1="166" x2="264" y2="94" class="l sm w1"/>
+<line x1="264" y1="94" x2="296" y2="130" class="l sm w1"/>
+<line x1="264" y1="94" x2="296" y2="154" class="l sm w1"/>
+<line x1="232" y1="118" x2="264" y2="118" class="l sm w1"/>
+<line x1="232" y1="142" x2="264" y2="118" class="l sm w1"/>
+<line x1="232" y1="166" x2="264" y2="118" class="l sm w1"/>
+<line x1="264" y1="118" x2="296" y2="130" class="l sm w1"/>
+<line x1="264" y1="118" x2="296" y2="154" class="l sm w1"/>
+<line x1="232" y1="118" x2="264" y2="190" class="l sm w1"/>
+<line x1="232" y1="142" x2="264" y2="190" class="l sm w1"/>
+<line x1="232" y1="166" x2="264" y2="190" class="l sm w1"/>
+<line x1="264" y1="190" x2="296" y2="130" class="l sm w1"/>
+<line x1="264" y1="190" x2="296" y2="154" class="l sm w1"/>
+<circle cx="232" cy="118" r="6" class="fs l"/>
+<circle cx="232" cy="142" r="6" class="fs l"/>
+<circle cx="232" cy="166" r="6" class="fs l"/>
+<circle cx="296" cy="130" r="6" class="fs l"/>
+<circle cx="296" cy="154" r="6" class="fs l"/>
+<circle cx="264" cy="94" r="10" class="fas l sa"/>
+<text x="264" y="99" class="tb ta" text-anchor="middle">A</text>
+<circle cx="264" cy="118" r="10" class="fas l sa"/>
+<text x="264" y="123" class="tb ta" text-anchor="middle">B</text>
+<circle cx="264" cy="142" r="10" class="fng l sng w1 dsh"/>
+<line x1="258" y1="136" x2="270" y2="148" class="l sng w2"/>
+<line x1="258" y1="148" x2="270" y2="136" class="l sng w2"/>
+<text x="277" y="147" class="tb tng">C</text>
+<circle cx="264" cy="166" r="10" class="fng l sng w1 dsh"/>
+<line x1="258" y1="160" x2="270" y2="172" class="l sng w2"/>
+<line x1="258" y1="172" x2="270" y2="160" class="l sng w2"/>
+<text x="277" y="171" class="tb tng">D</text>
+<circle cx="264" cy="190" r="10" class="fas l sa"/>
+<text x="264" y="195" class="tb ta" text-anchor="middle">E</text>
+<text x="264" y="214" class="tb tng" text-anchor="middle">休み C・D</text>
+<g transform="translate(0,8)">
+<text x="12" y="236" class="tm">1回ごとに、くじで半分くらいを休ませる（例）</text>
+<text x="12" y="256" class="tm">休んだユニットは、その回は出力 0（線も使わない）</text>
+<line x1="12" y1="270" x2="308" y2="270" class="l sb w1"/>
+<text x="12" y="294" class="tb">② なぜ過学習が減るか（たとえ）</text>
+<rect x="12" y="302" width="296" height="92" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="22" y="322" class="twn">いつも同じエースに頼るチームは、</text>
+<text x="22" y="340" class="twn">エースが休むと崩れる</text>
+<text x="22" y="364" class="tb twn">毎回くじで誰かが休む練習をすると、</text>
+<text x="22" y="382" class="tb twn">全員が自分で働けるようになる</text>
+<text x="12" y="416" class="tm">ユニット＝メンバー（A〜E）。特定の相手に</text>
+<text x="12" y="434" class="tm">頼って訓練データの癖だけ覚える、が起きにくい</text>
+<text x="12" y="456" class="tb tok">→ 新しいデータでも崩れにくい＝過学習が減る</text>
+<line x1="12" y1="470" x2="308" y2="470" class="l sb w1"/>
+<text x="12" y="494" class="tb">③ 推論時（予測するとき）は全員が出る</text>
+<rect x="12" y="504" width="88" height="148" class="sb" stroke-width="1" rx="6"/>
+<text x="56" y="522" class="tb" text-anchor="middle">休みなし</text>
+<line x1="24" y1="566" x2="56" y2="542" class="l sm w1"/>
+<line x1="24" y1="590" x2="56" y2="542" class="l sm w1"/>
+<line x1="24" y1="614" x2="56" y2="542" class="l sm w1"/>
+<line x1="56" y1="542" x2="88" y2="578" class="l sm w1"/>
+<line x1="56" y1="542" x2="88" y2="602" class="l sm w1"/>
+<line x1="24" y1="566" x2="56" y2="566" class="l sm w1"/>
+<line x1="24" y1="590" x2="56" y2="566" class="l sm w1"/>
+<line x1="24" y1="614" x2="56" y2="566" class="l sm w1"/>
+<line x1="56" y1="566" x2="88" y2="578" class="l sm w1"/>
+<line x1="56" y1="566" x2="88" y2="602" class="l sm w1"/>
+<line x1="24" y1="566" x2="56" y2="590" class="l sm w1"/>
+<line x1="24" y1="590" x2="56" y2="590" class="l sm w1"/>
+<line x1="24" y1="614" x2="56" y2="590" class="l sm w1"/>
+<line x1="56" y1="590" x2="88" y2="578" class="l sm w1"/>
+<line x1="56" y1="590" x2="88" y2="602" class="l sm w1"/>
+<line x1="24" y1="566" x2="56" y2="614" class="l sm w1"/>
+<line x1="24" y1="590" x2="56" y2="614" class="l sm w1"/>
+<line x1="24" y1="614" x2="56" y2="614" class="l sm w1"/>
+<line x1="56" y1="614" x2="88" y2="578" class="l sm w1"/>
+<line x1="56" y1="614" x2="88" y2="602" class="l sm w1"/>
+<line x1="24" y1="566" x2="56" y2="638" class="l sm w1"/>
+<line x1="24" y1="590" x2="56" y2="638" class="l sm w1"/>
+<line x1="24" y1="614" x2="56" y2="638" class="l sm w1"/>
+<line x1="56" y1="638" x2="88" y2="578" class="l sm w1"/>
+<line x1="56" y1="638" x2="88" y2="602" class="l sm w1"/>
+<circle cx="24" cy="566" r="6" class="fs l"/>
+<circle cx="24" cy="590" r="6" class="fs l"/>
+<circle cx="24" cy="614" r="6" class="fs l"/>
+<circle cx="88" cy="578" r="6" class="fs l"/>
+<circle cx="88" cy="602" r="6" class="fs l"/>
+<circle cx="56" cy="542" r="10" class="fas l sa"/>
+<text x="56" y="547" class="tb ta" text-anchor="middle">A</text>
+<circle cx="56" cy="566" r="10" class="fas l sa"/>
+<text x="56" y="571" class="tb ta" text-anchor="middle">B</text>
+<circle cx="56" cy="590" r="10" class="fas l sa"/>
+<text x="56" y="595" class="tb ta" text-anchor="middle">C</text>
+<circle cx="56" cy="614" r="10" class="fas l sa"/>
+<text x="56" y="619" class="tb ta" text-anchor="middle">D</text>
+<circle cx="56" cy="638" r="10" class="fas l sa"/>
+<text x="56" y="643" class="tb ta" text-anchor="middle">E</text>
+<text x="112" y="526" class="tb">A〜E の全員を使う</text>
+<text x="112" y="552" class="tm">学習中は半分しか出て</text>
+<text x="112" y="570" class="tm">いなかったので、そのまま</text>
+<text x="112" y="588" class="tm">だと出力が大きすぎる</text>
+<text x="112" y="612" class="tm">→ 出す重みに残す確率 p</text>
+<text x="112" y="630" class="tm">を掛ける（p＝0.5 なら半分）</text>
+</g>
 </svg>
