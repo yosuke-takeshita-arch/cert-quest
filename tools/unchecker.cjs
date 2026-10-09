@@ -19,6 +19,20 @@ const { chromium } = require('playwright-core'); const fs = require('fs');
     while (st.length) { const k = st.pop(); if (seen[k]) continue; seen[k] = 1; if (!bg(k * 4)) continue; d[k * 4 + 3] = 0; n++;
       const x = k % W, y = (k - x) / W;
       if (x > 0) st.push(k - 1); if (x < W - 1) st.push(k + 1); if (y > 0) st.push(k - W); if (y < H - 1) st.push(k + W); }
+    // 2回目: 外周につながっていない、閉じたます目の残り（腕と葉の間など）。白と薄い灰色の2色がまざった、ほぼ無彩色の大きな塊だけを消す
+    // （ひげ・紙の札のような、色の付いた明るい部分は残す。2026-10-09 boss-3 で残った）
+    const seen2 = new Uint8Array(W * H);
+    for (let s = 0; s < W * H; s++) {
+      if (seen2[s] || d[s * 4 + 3] === 0 || !bg(s * 4)) continue;
+      const comp = []; const st2 = [s]; seen2[s] = 1;
+      while (st2.length) { const k = st2.pop(); comp.push(k); const x = k % W, y = (k - x) / W;
+        for (const nk of [x > 0 ? k - 1 : -1, x < W - 1 ? k + 1 : -1, y > 0 ? k - W : -1, y < H - 1 ? k + W : -1]) {
+          if (nk < 0 || seen2[nk] || d[nk * 4 + 3] === 0 || !bg(nk * 4)) continue; seen2[nk] = 1; st2.push(nk); } }
+      if (comp.length < 300) continue;
+      let gray = 0, lo = 0, hi = 0;
+      for (const k of comp) { const r = d[k*4], gg = d[k*4+1], bb = d[k*4+2]; if (Math.max(r, gg, bb) - Math.min(r, gg, bb) < 8) gray++; const v = (r + gg + bb) / 3; if (v < 246) lo++; else if (v > 250) hi++; }
+      if (gray / comp.length > 0.9 && lo / comp.length > 0.15 && hi / comp.length > 0.15) { for (const k of comp) d[k * 4 + 3] = 0; n += comp.length; }
+    }
     // 縁の白いにじみ: 透過に接する明るい無彩色の画素を半透明にする
     const d2 = new Uint8ClampedArray(d);
     for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { const k = y * W + x; if (d[k * 4 + 3] === 0) continue;
