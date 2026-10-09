@@ -227,3 +227,18 @@ test('バックアップ: dochi の無い古いファイルは0で読める', ()
   assert.equal(r.ok, true);
   assert.deepEqual(r.state.dochi, { runs: 0, best: 0, bestCombo: 0 });
 });
+
+test('一行目に相手の題名が書いてある組は出さない（全角半角・大文字小文字・題名の分けた語・別名も同じ見方）', () => {
+  const cs = [
+    C('p', 'P学習', 'P学習は、教師あり学習とは違い正解を与えない。', [{ id: 'q', point: 'x' }]),
+    C('q', '教師あり学習', '正解つきで学ぶ。', []),
+    C('r', 'R法', 'R法は、ｓｖｍとは別の手法。', [{ id: 's', point: 'x' }]),
+    C('s', 'SVM', '境界を引く。', []),
+    C('t', 'T法', 'T法は、深層学習を使う。', [{ id: 'u', point: 'x' }]),
+    C('u', 'ディープラーニング（深層学習）', '層を重ねる。', []),
+    C('v', 'V法', 'V法は、別の手法と比べて速い。', [{ id: 'q', point: 'x' }]),
+  ];
+  const { pairs, skipped } = buildPairs(cs, buildConceptIndex(cs));
+  assert.deepEqual(pairs.map((p) => p.key), ['v>q']);
+  assert.equal(skipped.oppInText, 3);
+});

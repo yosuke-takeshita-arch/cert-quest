@@ -62,20 +62,25 @@ export function maskOneLine(title, oneLine) {
       return DOCHI_MASK;
     });
   }
-  const check = norm(text);
-  const leaked = terms.some((term) => termRegex(norm(term), 'i').test(check));
+  const leaked = hasTerm(text, terms);
   return { ok: !leaked && text.trim().length > 0, text, masked };
+}
+
+/** 文の中に、語のどれかが（全角半角・大文字小文字を揃えて）残っているか。 */
+export function hasTerm(text, terms) {
+  const check = norm(text);
+  return terms.some((term) => termRegex(norm(term), 'i').test(check));
 }
 
 /**
  * 出せる組を全部作る。カード1枚の confusions の1件ごとに1組。
- * 出さないもの: 一行目が空／相手が見つからない／相手が自分自身／2つの題名が同じ／伏せきれないカード
- * 戻り値: { pairs, skipped:{ noOneLine, noOpponent, sameTitle, leak } }
+ * 出さないもの: 一行目が空／相手が見つからない／相手が自分自身／2つの題名が同じ／伏せきれないカード／一行目に相手の題名が書いてある組
+ * 戻り値: { pairs, skipped:{ noOneLine, noOpponent, sameTitle, leak, oppInText } }
  */
 export function buildPairs(concepts, index) {
   const pairs = [];
   const seen = new Set();
-  const skipped = { noOneLine: 0, noOpponent: 0, sameTitle: 0, leak: 0 };
+  const skipped = { noOneLine: 0, noOpponent: 0, sameTitle: 0, leak: 0, oppInText: 0 };
   for (const c of concepts) {
     const conf = Array.isArray(c.confusions) ? c.confusions : [];
     for (const ref of conf) {
@@ -98,6 +103,11 @@ export function buildPairs(concepts, index) {
       const m = maskOneLine(c.title, c.oneLine);
       if (!m.ok) {
         skipped.leak++;
+        continue;
+      }
+      // 一行目に相手の題名がそのまま書いてあると、選ばなくても消去で答えが分かる
+      if (hasTerm(m.text, titleTerms(r.concept.title))) {
+        skipped.oppInText++;
         continue;
       }
       pairs.push({ key, id: c.id, oppId: r.concept.id, title: c.title, oppTitle: r.concept.title, text: m.text, point: r.point || '' });

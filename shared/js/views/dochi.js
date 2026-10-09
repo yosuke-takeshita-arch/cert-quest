@@ -116,7 +116,7 @@ export function renderDochi(app) {
     root.appendChild(card);
     const after = h('div', { class: 'after' });
     root.appendChild(after);
-    S.ui = { btns, after, combo };
+    S.ui = { btns, after, combo, left };
     S.t0 = Date.now();
     S.timer = setInterval(() => {
       const rest = Math.max(0, DOCHI_SECONDS - (Date.now() - S.t0) / 1000);
@@ -146,6 +146,7 @@ export function renderDochi(app) {
       if (i === item.answer) mark.textContent = '✓';
       else if (i === chosen) mark.textContent = '✗';
     });
+    S.ui.left.textContent = '';
     const goNext = () => {
       S.idx++;
       drawQuestion();
