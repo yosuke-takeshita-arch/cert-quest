@@ -530,30 +530,36 @@ test('ボス戦の曲の鳴らし方: ファイルをくり返し、取れなけ
   assert.match(functionBody(au, 'bgmStatus'), /mode: M\.mode/);
 });
 
-test('ボス戦の効果音: 倒した・当たったはファイル（audio-licenses.md に載っている）。もらったはまだ無い。ファイルが読めなければプログラムの音に戻る', () => {
+test('ボス戦の効果音: 倒した・当たったはファイル（audio-licenses.md に載っている）。もらったもファイル。ボス戦の不正解は ng の代わりにこれを鳴らす。ファイルが読めなければプログラムの音に戻る', () => {
   const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
   assert.equal(SFX_FILES.bosshit, 'boss-hit_snare.ogg');
   assert.equal(SFX_FILES.bosswin, 'boss-win_victory.mp3');
   assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['hit', 'hurt', 'win']);
   assert.equal(BOSS_SFX.hit.key, 'bosshit');
   assert.equal(BOSS_SFX.win.key, 'bosswin');
-  assert.equal(BOSS_SFX.hurt, null); // ボスからもらうダメージの音は、先生がまだ選んでいない（ファイルを足して差し替える）
-  for (const k of ['bosshit', 'bosswin']) {
+  assert.equal(SFX_FILES.bosshurt, 'boss-hurt_explosion02.ogg');
+  assert.equal(BOSS_SFX.hurt.key, 'bosshurt');
+  assert.equal(BOSS_SFX.hurt.sfx, 'ng'); // ファイルが読めないときは、ふつうの不正解の音に戻る
+  for (const k of ['bosshit', 'bosswin', 'bosshurt']) {
     assert.ok(doc.includes(SFX_FILES[k]), SFX_FILES[k] + ' が audio-licenses.md に無い');
     assert.ok(doc.includes('先生が候補を聞き比べて選んだ'));
     assert.ok(statSync(join(shared, 'audio', 'sfx', SFX_FILES[k])).size < 200 * 1024);
   }
-  assert.ok(doc.includes('celestialghost8') && doc.includes('Spring Spring'));
+  assert.ok(doc.includes('celestialghost8') && doc.includes('Spring Spring') && doc.includes('crazyduckgames'));
   // 鳴らす側: 効果音の設定（playSfx）に従い、読めなければ SYNTH_SFX の音に戻る
   const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
   const body = functionBody(au, 'playBossSfx');
   assert.match(body, /BOSS_SFX\[kind\]/);
   assert.match(body, /playSfx\(settings, e\.key,/);
   assert.match(body, /playSynth\(settings, e\.synth\)/);
+  assert.match(body, /playSfx\(settings, e\.sfx\)/);
   assert.match(functionBody(au, 'playSfx'), /onMissing \? onMissing\(\)/);
   assert.match(functionBody(au, 'playSfx'), /!settings\.sound/);
   // 呼ぶ場所: 正解の直後（戻りきってから）に当たった音、倒したときにファンファーレ。ファンファーレをプログラムで直接鳴らさない
   const bo = readFileSync(join(shared, 'js', 'views', 'boss.js'), 'utf8');
+  // 間違えたとき: ふつうの不正解の音（beep ng）は鳴らさず、戻りきってから（perform の else 側で）hurt を鳴らす
+  assert.ok(!/beep\(app\.state\.settings, 'ng'\)/.test(bo));
+  assert.match(bo, /\} else \{\n\s+playBossSfx\(app\.state\.settings, 'hurt'\)/);
   assert.match(bo, /if \(correct\) playBossSfx\(app\.state\.settings, 'hit'\)/);
   assert.equal((bo.match(/playBossSfx\(app\.state\.settings, 'win'\)/g) || []).length, 2); // 動きを減らす設定のときと、ふつうの演出
   assert.ok(!/playSynth\(app\.state\.settings, 'fanfare'\)/.test(bo));

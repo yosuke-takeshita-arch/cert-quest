@@ -530,7 +530,7 @@ export function playSynth(settings, name) {
 export function playBossSfx(settings, kind) {
   const e = BOSS_SFX[kind];
   if (!e || !SFX_FILES[e.key]) return;
-  playSfx(settings, e.key, e.synth ? () => playSynth(settings, e.synth) : undefined);
+  playSfx(settings, e.key, e.synth ? () => playSynth(settings, e.synth) : e.sfx ? () => playSfx(settings, e.sfx) : undefined);
 }
 
 /** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */

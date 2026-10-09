@@ -437,8 +437,7 @@ export function renderBoss(app, key) {
       vibrate(app.state.settings, crit ? [30, 30, 60] : 30);
       beep(app.state.settings, 'ok');
     } else {
-      vibrate(app.state.settings, [60, 40, 60]);
-      beep(app.state.settings, 'ng');
+      vibrate(app.state.settings, [60, 40, 60]); // 不正解の音（ng）は、ここでは鳴らさない。戻りきってから、ハートが割れるのと同時に『ドン』（bosshurt）を鳴らす。ファイルが読めないときだけ ng に戻る
       cheer = shouldCheer(S.log.map((x) => x.correct));
       if (cheer) after.appendChild(mascotLine('shiba-cheer', CHARACTER_TEXT.cheer, 'cheer'));
       if (meaning) after.appendChild(meaning);
@@ -467,7 +466,7 @@ export function renderBoss(app, key) {
           ? ['会心の一撃！', name + ' に ダメージ！', BOSS_MOOD_TEXT[mood]]
           : [name + ' に ダメージ！', quoted(pickLine(profile, 'hurt', app.rng)), BOSS_MOOD_TEXT[mood]]);
       } else {
-        playBossSfx(app.state.settings, 'hurt'); // ボスからダメージをもらった音（ファイルがまだ無いので、いまは鳴らない）
+        playBossSfx(app.state.settings, 'hurt'); // ボスからダメージをもらった音（ふつうの不正解の音の代わり。ハートが割れる動きと同時）
         if (lost) paintHp(b, b.player); // ハートが割れる動きも、戻りきってから
         flash(ui.stage, 'hurt', 500);
         flash(ui.mini, 'hurt', 500);

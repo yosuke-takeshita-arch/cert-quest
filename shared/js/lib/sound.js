@@ -100,16 +100,17 @@ export const SFX_FILES = {
   start: 'start_16bit-success.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「16bit Success sound」flush、CC0）。前の jingles_NES05 は低いベースが中心でスマホでは弱かった
   bosshit: 'boss-hit_snare.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で正解して、ボスに当たったとき（OpenGameArt「8-bit/Lo-Fi Snare Drum Sound」Spring Spring、CC0）
   bosswin: 'boss-win_victory.mp3', // 2026-10-09 先生が聞き比べて選んだ。ボスを倒したときのファンファーレ（OpenGameArt「Victory」celestialghost8、CC0。後ろの無音を 4.0 秒で切った）
+  bosshurt: 'boss-hurt_explosion02.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で間違えて、ボスからダメージをもらったとき（OpenGameArt「Soundpack 03」crazyduckgames の explosion02、CC0。元の ogg のまま）
 };
 
-// ボス戦で鳴らす効果音。種類 → SFX_FILES のキー。値が null の種類は、まだ音のファイルが無い（何も鳴らさない。
-// ボスからダメージをもらったときの音は、先生がまだ選んでいない。選んだら shared/audio/sfx/ にファイルを置き、
-// SFX_FILES に 'bosshurt' を足して、ここを 'bosshurt' に替える）。
+// ボス戦で鳴らす効果音。種類 → SFX_FILES のキー。値が null の種類は、音のファイルが無い（何も鳴らさない）。
 // synth … ファイルが取れない・読めないときに、代わりに鳴らすプログラムの音（lib/bossmusic.js の SYNTH_SFX のキー）。
+// sfx … 同じく、代わりに鳴らす効果音（SFX_FILES のキー）。hurt は、ふつうの出題の不正解の音（ng）に戻る。
+// hurt を鳴らす場面（ボス戦で間違えた）では、ふつうの不正解の音（ng）は鳴らさない（この「ドン」に置き換える）。
 export const BOSS_SFX = {
   hit: { key: 'bosshit', synth: 'hit' },
   win: { key: 'bosswin', synth: 'fanfare' },
-  hurt: null,
+  hurt: { key: 'bosshurt', sfx: 'ng' },
 };
 
 // BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。
