@@ -8,6 +8,7 @@ import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
 import { laterCount } from '../lib/later.js';
 import { dochiPairs } from './dochi.js';
+import { forecastCard } from './forecast.js';
 import { nextGoals } from '../lib/goals.js';
 import { mapLayout, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
@@ -149,6 +150,7 @@ export function renderHome(app) {
       h('p', { text: 'いま用意している最中です。できあがると、ここから学習を始められます。' }),
       data.concepts.length ? h('button', { class: 'btn primary', type: 'button', onClick: () => app.go('#/cards') }, '用語カードを見る') : null));
   } else {
+    root.appendChild(forecastCard(app));
     root.appendChild(dailyCard(state, dateKey(now)));
     const next = suggestStage(data.tree.stages, state.qstats);
     if (due > 0) {

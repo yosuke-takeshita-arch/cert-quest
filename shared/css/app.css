@@ -641,3 +641,23 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .dochi-pair { overflow-wrap: anywhere; }
 .dochi-newrec { margin: 8px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--ok-bg); color: var(--ok); font-weight: 700; }
 .dochi-miss { min-height: 64px; }
+
+/* 合格予想メーター（要件定義書 §3-6）。色は既存の変数だけ（暗い配色でもそのまま読める） */
+.card.forecast h2 { margin-top: 0; }
+.fc-score { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 8px; }
+.fc-num { font-size: 2.75rem; line-height: 1.2; color: var(--accent); }
+.fc-unit { font-size: 1.25rem; font-weight: 700; }
+.fc-full { margin-left: 4px; }
+.fc-meter { height: 16px; margin-bottom: 12px; }
+.fc-note { margin: 0 0 8px; padding: 8px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); line-height: 1.6; overflow-wrap: anywhere; }
+.fc-sub { font-size: 1rem; margin: 16px 0 4px; }
+.fc-gains { display: flex; flex-direction: column; }
+.fc-gain { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-top: 1px solid var(--border); padding: 12px 0; min-height: 56px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.fc-gain:first-child { border-top: 0; }
+.fc-gain-name { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
+.fc-gain-pt { flex: none; font-weight: 700; color: var(--accent); }
+.fc-chart { display: block; width: 100%; height: auto; }
+.fc-base { stroke: var(--border); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.fc-line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.fc-dot { fill: var(--accent); }
+.fc-trend-cap { margin: 4px 0 0; }

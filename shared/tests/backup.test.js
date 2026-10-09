@@ -49,6 +49,23 @@ test('書き出し → 読み込み: 同じ記録に戻る', () => {
   assert.equal(r.state.settings.examDate, '2026-11-06');
 });
 
+test('書き出し → 読み込み: 合格予想の推移とボスの撃破回数が残る（古い・壊れた値は直る）', () => {
+  const s = sample();
+  s.forecast = { '2026-10-03': 41.5, '2026-10-04': 47 };
+  s.boss = { 'AとB|C': 2 };
+  const r = parseBackup(serializeBackup('g-kentei', s), 'g-kentei');
+  assert.equal(r.ok, true);
+  assert.deepEqual(r.state.forecast, { '2026-10-03': 41.5, '2026-10-04': 47 });
+  assert.deepEqual(r.state.boss, { 'AとB|C': 2 });
+  assert.ok('forecast' in buildBackup('g-kentei', s).state && 'boss' in buildBackup('g-kentei', s).state);
+  // 項目の無い古い記録は空で補う。日付でないキー・範囲外の点・回数が正の整数でないものは捨てる
+  assert.deepEqual(mergeState({}).forecast, {});
+  assert.deepEqual(mergeState({}).boss, {});
+  const bad = mergeState({ forecast: { x: 5, '2026-10-05': 120, '2026-10-06': 'a', '2026-10-07': 60 }, boss: { a: 0, b: 1.5, c: 3 } });
+  assert.deepEqual(bad.forecast, { '2026-10-07': 60 });
+  assert.deepEqual(bad.boss, { c: 3 });
+});
+
 test('読み込み: 別の資格のファイルは断る', () => {
   assert.deepEqual(parseBackup(serializeBackup('dx-biz', sample()), 'g-kentei'), { ok: false, reason: 'otherApp' });
 });

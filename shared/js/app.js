@@ -5,6 +5,7 @@ import { createStorage } from './lib/storage.js';
 import { defaultState, recordAnswer } from './lib/progress.js';
 import { badgeDefs, awardBadges, badgeArtName, badgeImageUrl } from './lib/badges.js';
 import { dateKey } from './lib/srs.js';
+import { forecast as calcForecast, recordForecast } from './lib/forecast.js';
 import { STAR_THRESHOLDS, levelFromXp } from './lib/scoring.js';
 import { awardDailyGoal, dailyProgress } from './lib/daily.js';
 import { nextGoals } from './lib/goals.js';
@@ -161,6 +162,8 @@ export async function start() {
       const lv = levelFromXp(app.state.xp).level;
       if (lv > app.lastLevel) app.pending.push({ kind: 'level', level: lv });
       app.lastLevel = lv;
+      // 合格予想の推移。今日 1問でも答えていれば、その日の予想を記録する（1日1件、同じ日は上書き）
+      if (app.state.daily[key]) recordForecast(app.state, key, calcForecast(data.questions, app.state.qstats).score);
       awardBadges(app.state, defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc, image: badgeImageUrl(badgeArtName(b), badgeBases()) }));
       if (awardDailyGoal(app.state, key)) app.pending.push({ kind: 'goal', goal: dailyProgress(app.state, key).goal });
       storage.save(app.state);
