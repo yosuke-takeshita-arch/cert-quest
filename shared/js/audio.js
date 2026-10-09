@@ -334,21 +334,28 @@ function fadeOutTitle() {
   }, FADE_SEC * 1000 + 100);
 }
 
-// ---- ボス戦の曲と効果音（プログラムで鳴らす） ----
-// 曲は BGM の設定（オン／オフ・音量）、効果音（ファンファーレなど）は効果音の設定に従う。音のファイルは使わない（楽譜は lib/bossmusic.js）。
-// 曲: 8小節を1周として、少し先まで予約していく（M.loopAt が次の周の始まり）。止めるときは小さくして、予約済みの音は聞こえないまま終わる。
+// ---- ボス戦の曲と効果音 ----
+// 曲は BGM の設定（オン／オフ・音量）、効果音（ファンファーレなど）は効果音の設定に従う。
+// 曲は2通り。mode 'file' … BOSS_BGM.file（OpenGameArt の曲）を <audio> でくり返す。mode 'synth' … ファイルが取れない・鳴らせないときの代わり。
+// プログラムで鳴らす昔のゲーム機風の曲（楽譜は lib/bossmusic.js）: 8小節を1周として、少し先まで予約していく（M.loopAt が次の周の始まり）。
+// どちらも止めるときは小さくして止める（予約済みの音は聞こえないまま終わる）。効果音（ファンファーレ・登場・会心・ヒット）は今までどおりプログラム。
 const M = {
   armed: false, // 曲を鳴らしてよい合図（ボスが現れたとき startBossTheme が立て、倒した・負けたとき stopBossTheme が下ろす）
   running: false,
+  mode: null, // null（ファイルを取っている最中）| 'file' | 'synth'
+  token: 0, // 曲を始めるたびに増やす。取っている間に止められた・始め直されたかの目印
   gain: null,
   timer: null,
   loopAt: 0,
   theme: null,
+  el: null, // ファイルの曲の <audio>（1つを使い回す）
+  elSource: null, // el をつなぐ音の源（createMediaElementSource は1つの el に1回しか作れない）
+  url: null, // 取ったファイルの blob の URL
 };
 
 function bossGainValue() {
   const s = getSettings();
-  return bgmGain(s ? s.bgmVolume : undefined, BOSS_BGM.trim);
+  return bgmGain(s ? s.bgmVolume : undefined, M.mode === 'synth' ? BOSS_BGM.synthTrim : BOSS_BGM.trim);
 }
 
 function applyBossVolume() {
@@ -390,6 +397,52 @@ function scheduleThemeAhead() {
   }
 }
 
+// プログラムで鳴らす曲を始める（ファイルの曲が使えないときの代わり）
+function startBossSynth() {
+  const c = audioCtx();
+  if (!c || !M.running || !M.gain) return;
+  M.mode = 'synth';
+  applyBossVolume();
+  M.loopAt = c.currentTime + 0.08;
+  scheduleThemeAhead();
+  M.timer = setInterval(scheduleThemeAhead, 300);
+}
+
+async function bossFileUrl() {
+  if (M.url) return M.url;
+  const res = await fetch(BGM_BASE + BOSS_BGM.file);
+  if (!res.ok) throw new Error('boss bgm ' + res.status);
+  M.url = URL.createObjectURL(await res.blob());
+  return M.url;
+}
+
+// ファイルの曲を鳴らす。鳴らせたら true、取れない・鳴らせないなら false（呼んだ側がプログラムの曲に替える）
+async function startBossFile(token) {
+  const c = audioCtx();
+  try {
+    const url = await bossFileUrl();
+    if (token !== M.token || !M.running) return true; // 取っている間に止められた・始め直された（何もしない）
+    if (!M.el) {
+      M.el = new Audio();
+      M.el.preload = 'auto';
+      M.el.loop = true; // 約134秒の曲をくり返す
+    }
+    if (!M.elSource) M.elSource = c.createMediaElementSource(M.el);
+    try { M.elSource.disconnect(); } catch (e) { /* まだどこにもつながっていない */ }
+    M.elSource.connect(M.gain);
+    if (M.el.src !== url) M.el.src = url;
+    M.el.currentTime = 0;
+    M.mode = 'file';
+    applyBossVolume();
+    await M.el.play();
+    if (token !== M.token || !M.running) { M.el.pause(); return true; }
+    return true;
+  } catch (e) {
+    if (M.el && !M.el.paused) M.el.pause();
+    return false;
+  }
+}
+
 function startBossMusic() {
   const c = audioCtx();
   if (!c || M.running) return;
@@ -398,13 +451,14 @@ function startBossMusic() {
   resumeCtx();
   try {
     M.gain = c.createGain();
-    M.gain.gain.value = bossGainValue();
+    M.gain.gain.value = bgmGain(s.bgmVolume, BOSS_BGM.trim);
     M.gain.connect(c.destination);
   } catch (e) { M.gain = null; return; }
   M.running = true;
-  M.loopAt = c.currentTime + 0.08;
-  scheduleThemeAhead();
-  M.timer = setInterval(scheduleThemeAhead, 300);
+  M.mode = null;
+  const token = ++M.token;
+  // ファイルを取っている間は、まだ鳴らさない（取れなければプログラムの曲）
+  startBossFile(token).then((ok) => { if (!ok && token === M.token && M.running) startBossSynth(); });
 }
 
 // 曲を小さくして止める（immediate なら、すぐ）。止まったら syncBgm をもう一度呼ぶ（次に流すものがあれば、そこで始まる）
@@ -413,9 +467,12 @@ function stopBossMusic(immediate) {
   const g = M.gain;
   const c = ctx;
   M.running = false;
+  M.mode = null;
+  M.token++;
   clearInterval(M.timer);
   M.timer = null;
   M.gain = null;
+  if (!g || !c) { if (M.el && !M.el.paused) M.el.pause(); }
   if (g && c) {
     try {
       if (immediate) g.gain.value = 0;
@@ -426,7 +483,11 @@ function stopBossMusic(immediate) {
         g.gain.linearRampToValueAtTime(0, t + 0.3);
       }
     } catch (e) { /* 小さくできなくても、あとで切る */ }
-    setTimeout(() => { try { g.disconnect(); } catch (e) { /* もう外れている */ } syncBgm(); }, immediate ? 0 : 380);
+    setTimeout(() => {
+      try { g.disconnect(); } catch (e) { /* もう外れている */ }
+      if (!M.running && M.el && !M.el.paused) M.el.pause(); // 小さくし終わってから止める（その間に始め直されていたら止めない）
+      syncBgm();
+    }, immediate ? 0 : 380);
   }
 }
 
@@ -583,6 +644,10 @@ export function bgmStatus() {
     volume: B.gainNode ? B.gainNode.gain.value : B.el ? B.el.volume : null,
     waitingGesture: B.waitingGesture,
     fading: B.fading || T.fading,
-    boss: { on: B.boss, armed: M.armed, playing: M.running, volume: M.gain ? M.gain.gain.value : null },
+    boss: {
+      on: B.boss, armed: M.armed, playing: M.running, volume: M.gain ? M.gain.gain.value : null,
+      mode: M.mode, // 'file'＝ファイルの曲／'synth'＝プログラムの曲／null＝鳴らしていない（ファイルを取っている最中を含む）
+      file: M.el ? { src: M.el.src, paused: M.el.paused, loop: M.el.loop, currentTime: M.el.currentTime, volume: M.el.volume } : null,
+    },
   };
 }

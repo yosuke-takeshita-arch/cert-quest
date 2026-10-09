@@ -6,7 +6,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BGM_TRACKS, TITLE_BGM,
+  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BGM_TRACKS, TITLE_BGM, BOSS_BGM,
   normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, normalizeHomeTrack, bgmPlan, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
@@ -479,4 +479,53 @@ test('タイトル曲: 画面のどこをさわっても音を使える状態に
   assert.match(functionBody(au, 'titleAudioLocked'), /state !== 'running'/);
   assert.match(ti, /画面をさわると音楽が流れます/);
   assert.match(ti, /toggle\('hidden', !titleAudioLocked\(\)\)/);
+});
+
+test('ボス戦の曲（ファイル）: BGM_TRACKS に入らず、ファイルが実在して3MB以下で、ライセンスの記録にある。sw-core.js はインストール時に取らない', () => {
+  assert.ok(!BGM_TRACKS.some((t) => t.id === BOSS_BGM.id || t.file === BOSS_BGM.file));
+  assert.equal(normalizeBgmTrack(BOSS_BGM.id), 'auto');
+  const p = join(shared, 'audio', 'bgm', BOSS_BGM.file);
+  assert.ok(existsSync(p));
+  assert.match(BOSS_BGM.file, /\.(ogg|mp3)$/);
+  assert.ok(statSync(p).size <= 3 * 1024 * 1024);
+  const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
+  assert.ok(doc.includes(BOSS_BGM.file) && doc.includes('HydroGene') && doc.includes('8-bit-danger-strong-boss'));
+  assert.ok(!readFileSync(join(shared, 'sw-core.js'), 'utf8').includes(BOSS_BGM.file)); // 使ったときに取ってキャッシュに入れる（タイトル曲と同じ）
+  // 場面の判定は今までどおり: ボス戦はいつもボス戦の曲、BGM がオフなら流さない
+  assert.deepEqual(bgmPlan({ bgm: true, bgmHome: false }, { inBoss: true, inQuiz: true }), { scene: 'boss', track: 'boss' });
+  assert.equal(bgmPlan({ bgm: false, bgmHome: true }, { inBoss: true }), null);
+});
+
+test('ボス戦の曲の補正: 実測の大きさ×倍率が、ほかの BGM と同じ目盛り40の大きさ。目盛り100でも割れない。プログラムの曲の補正は別', () => {
+  const t = BOSS_BGM;
+  assert.ok(t.trim > 0 && t.rms > 0 && t.peak > 0 && t.peak <= 1.2 && t.synthTrim > 0 && t.synthTrim < 1);
+  assert.ok(Math.abs(t.rms * bgmGain(40, t.trim) - TARGET_BGM_RMS) / TARGET_BGM_RMS < 0.03);
+  assert.ok(t.peak * bgmGain(100, t.trim) < 1);
+  assert.equal(bgmGain(0, t.trim), 0);
+});
+
+test('ボス戦の曲の鳴らし方: ファイルをくり返し、取れなければプログラムの曲に戻る。止めるときは小さくしてから止める', () => {
+  const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
+  const file = functionBody(au, 'startBossFile');
+  assert.match(file, /BGM_BASE|bossFileUrl\(\)/);
+  assert.match(functionBody(au, 'bossFileUrl'), /BGM_BASE \+ BOSS_BGM\.file/);
+  assert.match(file, /M\.el\.loop = true/);
+  assert.match(file, /M\.elSource\.connect\(M\.gain\)/); // 音量は M.gain（BGM の音量と曲の補正）を通る
+  assert.match(file, /M\.mode = 'file'/);
+  assert.match(file, /catch \(e\)[\s\S]*return false/); // 取れない・鳴らせない → false
+  const start = functionBody(au, 'startBossMusic');
+  assert.match(start, /startBossFile\(token\)/);
+  assert.match(start, /!ok[\s\S]*startBossSynth\(\)/); // 失敗したらプログラムの曲
+  assert.match(start, /!s \|\| !s\.bgm/); // 問題中の BGM がオフなら流さない
+  assert.match(functionBody(au, 'startBossSynth'), /M\.mode = 'synth'/);
+  assert.match(functionBody(au, 'bossGainValue'), /synthTrim/);
+  assert.match(functionBody(au, 'bossGainValue'), /bgmGain\(s \? s\.bgmVolume/);
+  // 止める: 小さくしてから el を止める。止めたあとにファイルの曲が残らない
+  const stop = functionBody(au, 'stopBossMusic');
+  assert.match(stop, /linearRampToValueAtTime\(0,/);
+  assert.match(stop, /M\.el\.pause\(\)/);
+  assert.match(stop, /M\.token\+\+/);
+  // 効果音（ファンファーレなど）は今までどおりプログラム
+  assert.match(functionBody(au, 'playSynth'), /SYNTH_SFX\[name\]/);
+  assert.match(functionBody(au, 'bgmStatus'), /mode: M\.mode/);
 });

@@ -50,6 +50,14 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 
 - **E**（2026-10-06 に配布ページを curl で取得して確かめた）: 投稿情報の欄に『Author: TAD』『License(s): CC0』（リンクは <http://creativecommons.org/publicdomain/zero/1.0/>）があり、`CC-BY` や `Attribution` を求める記載は無い。ファイルはページの mp3 のリンク（`https://opengameart.org/sites/default/files/once_upon_a_time_loop.mp3`）から取り、手元の原本（1,848,968 バイト）と cmp で一致することを確かめた。タイトル画面だけで流す（BGM の設定に従う）。先生が7つの候補を聞き比べて F を選んだ（2026-10-06）。
 
+### ボス戦の曲（`shared/audio/bgm/` に置く。`BGM_TRACKS`（設定の曲の一覧・おまかせ）には入れない。`sound.js` の `BOSS_BGM`）
+
+| ファイル | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス | 確かめた箇所 |
+|---|---|---|---|---|---|---|
+| `boss_8-bit-danger-strong-boss.mp3` | `8-bit_danger_strong_boss_0.mp3`（「8-bit Danger!! Strong Boss」。ページ上のファイル名は `8-bit_danger_strong_boss.mp3`） | 約133.7秒・2,140,413 バイト（元は 320kbps・5,348,902 バイト。ffmpeg で 128kbps に変換した版。先生が聞いたのは元の 320kbps の原本で、曲は同じ） | HydroGene | <https://opengameart.org/content/8-bit-danger-strong-boss> | CC0 | 下の F |
+
+- **F**（2026-10-09 に配布ページを curl で取得して確かめた）: 投稿情報の欄に『Author: HydroGene』『License(s): CC0』（リンクは <http://creativecommons.org/publicdomain/zero/1.0/>、ページ内のライセンスのリンクはこの1種類だけ）があり、`CC-BY` を求める記載は無い。Copyright/Attribution Notice 欄は『credits are NOT mandatory, but I'm curious to know what you will do with it, so don't hesitate to share :)』（表示は必須でない）。ファイルはページの mp3 のリンク（`https://opengameart.org/sites/default/files/8-bit_danger_strong_boss_0.mp3`、ページに `length=5348902`）から取り直し、手元の原本（5,348,902 バイト）と cmp で一致することを確かめた。先生が8曲を聞き比べて選んだ（2026-10-09）。章のボス戦の間だけ流す（問題中の BGM の設定に従う）。ファイルが取れない・鳴らせないときは、プログラムで鳴らす昔のゲーム機風の曲（`lib/bossmusic.js`。素材を使わない）に戻る。
+
 ## 確かめていないこと
 
 - 音そのものは聞いていない（ライセンスとファイルの大きさ・長さを確かめただけ）。曲・効果音の「合っているか」は、実機で先生が聞いて決める。差し替えるときは `shared/js/lib/sound.js` の表と `shared/sw-core.js` の `SFX` と、この表を直す。

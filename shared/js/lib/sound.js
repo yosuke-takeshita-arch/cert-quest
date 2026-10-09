@@ -119,9 +119,13 @@ export const BGM_TRACKS = [
 // trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.955）。
 export const TITLE_BGM = { id: 'title', file: 'title_once-upon-a-time.mp3', name: 'Once Upon a Time', trim: 0.4, rms: 0.101, peak: 0.9182, fadeSec: 0.6 };
 
-// ボス戦の曲（プログラムで鳴らす矩形波・三角波。楽譜は lib/bossmusic.js）。BGM の設定（オン／オフ・音量）に従う。
-// trim … 素材の曲と同じ考え方の音量の補正。矩形波は振幅が一定なので、素材の目標 RMS（TARGET_BGM_RMS=0.042）から見積もった（耳で聞き比べて決めた値ではない）。
-export const BOSS_BGM = { id: 'boss', trim: 0.04 };
+// ボス戦の曲（2026-10-09 先生が8曲を聞き比べて選んだ。OpenGameArt「8-bit Danger!! Strong Boss」HydroGene、CC0）。BGM の設定（オン／オフ・音量）に従う。
+// 設定の曲の一覧（BGM_TRACKS）・おまかせには入れない。ボス戦の間だけ、このファイルをくり返す。
+// ファイルが取れない・鳴らせないとき（オフラインで、まだ一度も取っていない等）は、プログラムで鳴らす昔のゲーム機風の曲（楽譜は lib/bossmusic.js）に戻る。
+// trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-09。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.539）。
+// synthTrim … 戻り先のプログラムの曲の補正。矩形波は振幅が一定なので、素材の目標 RMS から見積もった（耳で聞き比べて決めた値ではない）。
+export const BOSS_BGM = { id: 'boss', file: 'boss_8-bit-danger-strong-boss.mp3', name: '8-bit Danger!! Strong Boss', trim: 0.212, rms: 0.1902, peak: 0.976, synthTrim: 0.04 };
 
 /** お祝いの種類 → 効果音のキー。 */
 export function celebrateSfx(kind) {
