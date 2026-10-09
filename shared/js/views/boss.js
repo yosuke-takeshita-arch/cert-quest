@@ -116,10 +116,37 @@ export function renderBoss(app, key) {
   }
 
   // ---- 体力の表示 ----
-  function hearts(b) {
+  // crackAt: いま割れる（減った）ハートの番号。割れる動きを付ける
+  function hearts(b, crackAt) {
     const w = h('span', { class: 'boss-hearts', role: 'img', 'aria-label': 'あなたの体力 ' + b.player + '／' + b.playerMax });
-    for (let i = 0; i < b.playerMax; i++) w.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off')));
+    for (let i = 0; i < b.playerMax; i++) w.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off') + (i === crackAt ? ' crack' : '')));
     return w;
+  }
+
+  // ---- 動き（要件定義書 §3-7 演出）。長さは全部1秒以内。動きを減らす設定では CSS が動きを止め、色の変化だけが残る ----
+  // 押せないようにするものは無い（答えは answered で1回きり。次へ進むボタンは動きを待たずにすぐ押せる）
+  function flash(el, cls, ms) {
+    if (!el) return;
+    el.classList.remove(cls);
+    void el.offsetWidth; // 同じ動きをもう一度最初から
+    el.classList.add(cls);
+    setTimeout(() => el.classList.remove(cls), ms);
+  }
+
+  function defeatFx(u) {
+    if (!u.art) return;
+    u.art.classList.add('defeat'); // 光って縮んで消える（0.9秒）。消えたまま残す
+    const stars = h('span', { class: 'boss-stars', 'aria-hidden': 'true' });
+    for (let i = 0; i < 8; i++) {
+      const a = (Math.PI * 2 * i) / 8;
+      const d = 44 + (i % 2) * 18;
+      const s = h('span', { class: 'boss-star', text: '★' });
+      s.style.setProperty('--dx', Math.round(Math.cos(a) * d) + 'px');
+      s.style.setProperty('--dy', Math.round(Math.sin(a) * d) + 'px');
+      stars.appendChild(s);
+    }
+    u.foe.appendChild(stars);
+    setTimeout(() => stars.remove(), 1000);
   }
 
   function battlePanel(b) {
@@ -131,16 +158,16 @@ export function renderBoss(app, key) {
     const panel = h('div', { class: 'card boss-battle', 'data-boss-battle': '1' },
       h('div', { class: 'boss-foe' }, bossArt(app, stage, 'on'), h('div', { class: 'boss-foe-info' }, h('span', { class: 'small muted', text: name }), hpText, bar)),
       h('div', { class: 'boss-me' }, h('span', { class: 'small muted', text: 'あなたの体力' }), heartBox));
-    return { panel, fill, hpText, bar, heartBox };
+    return { panel, fill, hpText, bar, heartBox, foe: panel.querySelector('.boss-foe'), art: panel.querySelector('.boss-art') };
   }
 
-  function paintBattle(b) {
+  function paintBattle(b, crackAt) {
     const u = S.ui;
     u.fill.style.width = (b.bossMax ? (b.boss / b.bossMax) * 100 : 0) + '%';
     u.hpText.textContent = 'ボスの体力 ' + b.boss + ' / ' + b.bossMax;
     u.bar.setAttribute('aria-valuenow', String(b.boss));
     clear(u.heartBox);
-    u.heartBox.appendChild(hearts(b));
+    u.heartBox.appendChild(hearts(b, crackAt));
   }
 
   // ---- 1問 ----
@@ -158,7 +185,7 @@ export function renderBoss(app, key) {
       h('div', { class: 'play-title' }, h('strong', { text: name }), h('span', { class: 'small muted', text: S.run.round > 1 ? 'もう一度出す問題（' + S.run.round + '回目）' : '章の復習' })),
       laterButton(app, q, { compact: true })));
     const bp = battlePanel(b);
-    S.ui = { fill: bp.fill, hpText: bp.hpText, bar: bp.bar, heartBox: bp.heartBox };
+    S.ui = { fill: bp.fill, hpText: bp.hpText, bar: bp.bar, heartBox: bp.heartBox, foe: bp.foe, art: bp.art, panel: bp.panel };
     root.appendChild(bp.panel);
     if (!S.log.length) root.appendChild(h('p', { class: 'small muted boss-rule', text: '正解でボスの体力が1減ります。間違えるとハートが1つ減り、その問題は最後にもう一度出ます。' }));
     const card = h('div', { class: 'card q-card' });
@@ -194,9 +221,17 @@ export function renderBoss(app, key) {
     const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit });
     S.xp += r.xp;
     S.log.push({ q: sq.q, sq, correct, chosen });
+    const heartsBefore = S.run.battle.player;
     S.run = answerRun(S.run, correct);
     const b = S.run.battle;
-    paintBattle(b);
+    const lost = b.player < heartsBefore;
+    paintBattle(b, lost ? b.player : -1);
+    if (correct) {
+      if (b.result === 'win') defeatFx(S.ui);
+      else flash(S.ui.art, 'hit', 600);
+    } else if (lost) {
+      flash(root, 'quake', 400);
+    }
     const { btns, after } = S.ui;
     btns.forEach((bt, i) => {
       bt.disabled = true;
