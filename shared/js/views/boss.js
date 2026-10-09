@@ -125,6 +125,8 @@ export function renderBoss(app, key) {
   let keyHandler = null;
   let timers = [];
   let typing = null; // いま出している文（{ finish }）
+  let miniWatch = null; // 全身の絵の見え方を見るもの（IntersectionObserver）
+  let textWatch = null; // 窓の文が変わったら、上の帯の一言も変える（MutationObserver）
 
   const later = (fn, ms) => {
     const id = setTimeout(() => { timers = timers.filter((x) => x !== id); fn(); }, ms);
@@ -136,6 +138,10 @@ export function renderBoss(app, key) {
   const cleanup = () => {
     clearTimers();
     typing = null;
+    if (miniWatch) miniWatch.disconnect();
+    miniWatch = null;
+    if (textWatch) textWatch.disconnect();
+    textWatch = null;
     if (keyHandler) document.removeEventListener('keydown', keyHandler);
     keyHandler = null;
     document.body.classList.remove('boss-on');
@@ -203,11 +209,14 @@ export function renderBoss(app, key) {
 
   // ---- 体力の表示（自分の体力だけ。ボスの体力は出さない） ----
   function paintHp(b, crackAt) {
-    clear(ui.hp);
-    const hearts = h('span', { class: 'boss-hearts', role: 'img', 'aria-label': 'あなたの体力 ' + b.player + '／' + b.playerMax });
-    for (let i = 0; i < b.playerMax; i++) hearts.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off') + (i === crackAt ? ' crack' : '')));
-    ui.hp.appendChild(h('span', { class: 'boss-hp-label', 'aria-hidden': 'true', text: 'HP ' + b.player }));
-    ui.hp.appendChild(hearts);
+    [ui.hp, ui.miniHp].forEach((box) => {
+      if (!box) return;
+      clear(box);
+      const hearts = h('span', { class: 'boss-hearts', role: 'img', 'aria-label': 'あなたの体力 ' + b.player + '／' + b.playerMax });
+      for (let i = 0; i < b.playerMax; i++) hearts.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off') + (i === crackAt ? ' crack' : '')));
+      box.appendChild(h('span', { class: 'boss-hp-label', 'aria-hidden': 'true', text: 'HP ' + b.player }));
+      box.appendChild(hearts);
+    });
   }
 
   // 同じ動きをもう一度最初から（クラスを付け直す）
@@ -217,6 +226,40 @@ export function renderBoss(app, key) {
     void el.offsetWidth;
     el.classList.add(cls);
     later(() => el.classList.remove(cls), ms);
+  }
+
+  // ボスの絵（全身）と、上の帯の中の顔の丸に、同じ動き・同じ光り方をさせる
+  function figFlash(cls, ms) {
+    flash(ui.fig, cls, ms);
+    flash(ui.miniArt, cls, ms);
+  }
+  function figClass(op, ...names) {
+    [ui.fig, ui.miniArt].forEach((el) => { if (el) el.classList[op](...names); });
+  }
+
+  // 一番上へ戻って、戻りきってから fn を始める（演出が画面の外で終わらないように）。動きを減らす設定では一瞬で戻る。戻りきらなくても 1.5 秒で始める
+  function atTop(fn) {
+    if (reduced()) { window.scrollTo(0, 0); fn(); return; }
+    if (window.scrollY <= 1) { fn(); return; }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const t0 = Date.now();
+    const poll = () => { if (window.scrollY <= 1 || Date.now() - t0 > 1500) fn(); else later(poll, 30); };
+    later(poll, 30);
+  }
+
+  // ---- 上の帯（全身の絵が画面から外れそうになったら、画面の上に貼り付く。顔の丸・名前・ハート・最新の一言。押せない） ----
+  function miniSync() {
+    if (!ui || !ui.miniText) return;
+    const last = ui.text.lastElementChild;
+    if (last && last.textContent) ui.miniText.textContent = last.textContent;
+  }
+  function watchStage() {
+    if (typeof IntersectionObserver !== 'function') return;
+    miniWatch = new IntersectionObserver((entries) => {
+      const e = entries[entries.length - 1];
+      ui.mini.classList.toggle('on', e.intersectionRatio < 0.5);
+    }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+    miniWatch.observe(ui.stage);
   }
 
   // ---- 画面の骨組み（戦いの間は、問題の入れ替えでも作り直さない） ----
@@ -242,7 +285,14 @@ export function renderBoss(app, key) {
     const qarea = h('div', { class: 'boss-qarea' });
     const after = h('div', { class: 'after' });
     const scene = h('div', { class: 'boss-scene' }, stageEl, win);
-    [top, scene, qarea, after].forEach((n) => root.appendChild(n));
+    const miniArt = bossArt(app, stage, 'mini');
+    const miniHp = h('span', { class: 'boss-mini-hp' });
+    const miniTextEl = h('span', { class: 'boss-mini-text' });
+    const mini = h('div', { class: 'boss-mini', 'data-boss-mini': '1', 'aria-hidden': 'true' }, miniArt,
+      h('div', { class: 'boss-mini-body' }, h('div', { class: 'boss-mini-row' }, h('strong', { class: 'boss-mini-name', text: name }), miniHp), miniTextEl),
+      h('span', { class: 'boss-mini-flash' }));
+    mini.style.setProperty('--boss-color', profile.color);
+    [top, scene, qarea, after, mini].forEach((n) => root.appendChild(n));
     for (let k = 0; k < 56; k++) {
       const s = h('span', { class: 'confetti c' + (k % 5) });
       s.style.left = Math.round(Math.random() * 100) + '%';
@@ -251,8 +301,15 @@ export function renderBoss(app, key) {
       s.style.setProperty('--sway', Math.round(Math.random() * 120 - 60) + 'px');
       confetti.appendChild(s);
     }
-    ui = { scene, stage: stageEl, fig, fx, confetti, flash: flashEl, text, live, hp, extra, win, qarea, after, btns: [] };
+    ui = { scene, stage: stageEl, fig, fx, confetti, flash: flashEl, text, live, hp, extra, win, qarea, after, btns: [], mini, miniArt, miniHp, miniText: miniTextEl };
     paintHp(S.run.battle);
+    if (miniWatch) miniWatch.disconnect();
+    if (textWatch) textWatch.disconnect();
+    watchStage();
+    if (typeof MutationObserver === 'function') {
+      textWatch = new MutationObserver(miniSync);
+      textWatch.observe(text, { childList: true, characterData: true, subtree: true });
+    }
   }
 
   // 画面や窓をタップしたとき: 登場・撃破の演出はとばす。文が出ている途中なら、残りを一度に出す
@@ -354,7 +411,7 @@ export function renderBoss(app, key) {
     S.run = answerRun(S.run, correct, crit ? CRIT_DAMAGE : 1);
     const b = S.run.battle;
     const lost = b.player < heartsBefore;
-    paintHp(b, lost ? b.player : -1);
+    paintHp(b, -1); // 割れる動きは、いちばん上へ戻ってから（下の perform）
     const { btns, after } = ui;
     btns.forEach((bt, i) => {
       bt.disabled = true;
@@ -393,25 +450,31 @@ export function renderBoss(app, key) {
     const bar = h('div', { class: 'sticky-bar' }, next);
     after.appendChild(bar);
 
-    // 戦いの演出（ボスの反応と窓の文）
-    if (correct && b.result === 'win') {
-      bar.classList.add('hidden'); // 撃破の演出が終わるまで、先へ進むボタンは出さない（タップでとばせる）
-      defeatSequence(bar, next);
-    } else if (correct) {
-      flash(ui.fig, 'hit', 700);
-      if (crit) { flash(ui.stage, 'crit', 450); playSynth(app.state.settings, 'crit'); }
-      const mood = bossMood(b);
-      say(crit
-        ? ['会心の一撃！', name + ' に ダメージ！', BOSS_MOOD_TEXT[mood]]
-        : [name + ' に ダメージ！', quoted(pickLine(profile, 'hurt', app.rng)), BOSS_MOOD_TEXT[mood]]);
-    } else {
-      flash(ui.stage, 'hurt', 500);
-      flash(ui.scene, 'quake', 450);
-      say([name + ' の こうげき！', quoted(pickLine(profile, 'attack', app.rng)), b.result === 'lose' ? 'あなたは たおれてしまった…' : 'あなたは ダメージを うけた！']);
-      if (b.result === 'lose') stopBossTheme();
-    }
-    if (!bar.classList.contains('hidden')) next.focus({ preventScroll: true });
-    window.scrollTo({ top: 0, behavior: reduced() ? 'auto' : 'smooth' });
+    // 戦いの演出（ボスの反応と窓の文）。いちばん上へ戻りきってから始める（全身の絵が見えているところで演出を見せる）
+    const winNow = correct && b.result === 'win';
+    if (winNow) bar.classList.add('hidden'); // 撃破の演出が終わるまで、先へ進むボタンは出さない（タップでとばせる）
+    else next.focus({ preventScroll: true });
+    const perform = () => {
+      if (!S || S.item !== sq || !ui || !ui.stage.isConnected) return; // 戻っている間に次の問題へ進んだ・画面が替わったときは何もしない
+      if (winNow) {
+        defeatSequence(bar, next);
+      } else if (correct) {
+        figFlash('hit', 700);
+        if (crit) { flash(ui.stage, 'crit', 450); flash(ui.mini, 'crit', 450); playSynth(app.state.settings, 'crit'); }
+        const mood = bossMood(b);
+        say(crit
+          ? ['会心の一撃！', name + ' に ダメージ！', BOSS_MOOD_TEXT[mood]]
+          : [name + ' に ダメージ！', quoted(pickLine(profile, 'hurt', app.rng)), BOSS_MOOD_TEXT[mood]]);
+      } else {
+        if (lost) paintHp(b, b.player); // ハートが割れる動きも、戻りきってから
+        flash(ui.stage, 'hurt', 500);
+        flash(ui.mini, 'hurt', 500);
+        flash(ui.scene, 'quake', 450);
+        say([name + ' の こうげき！', quoted(pickLine(profile, 'attack', app.rng)), b.result === 'lose' ? 'あなたは たおれてしまった…' : 'あなたは ダメージを うけた！']);
+        if (b.result === 'lose') stopBossTheme();
+      }
+    };
+    atTop(perform);
   }
 
   // ---- 撃破の演出（白く光る → 点滅 → 細かい粒に崩れて消える → 「たおした！」とせりふ・ファンファーレ・紙吹雪 → XP が数え上がる。4〜5秒。タップで最後まで飛ばせる） ----
@@ -433,8 +496,8 @@ export function renderBoss(app, key) {
       done = true;
       clearTimers();
       ui.fx.textContent = '';
-      ui.fig.classList.remove('glow', 'blinkoff');
-      ui.fig.classList.add(R ? 'down' : 'gone');
+      figClass('remove', 'glow', 'blinkoff');
+      figClass('add', R ? 'down' : 'gone');
       if (said && typing) typing.finish();
       else if (!said) say(lines, { instant: true });
       if (!R) ui.confetti.classList.add('on');
@@ -446,7 +509,7 @@ export function renderBoss(app, key) {
     };
     S.skipFx = finish;
     if (R) {
-      ui.fig.classList.add('down');
+      figClass('add', 'down');
       playSynth(app.state.settings, 'fanfare');
       say(lines, { instant: true });
       showFinal();
@@ -456,14 +519,14 @@ export function renderBoss(app, key) {
       bar.classList.remove('hidden');
       return;
     }
-    ui.fig.classList.add('glow');
+    figClass('add', 'glow');
     [350, 620, 890, 1160].forEach((t) => {
-      later(() => ui.fig.classList.add('blinkoff'), t);
-      later(() => ui.fig.classList.remove('blinkoff'), t + 120);
+      later(() => figClass('add', 'blinkoff'), t);
+      later(() => figClass('remove', 'blinkoff'), t + 120);
     });
     later(() => {
       crumble();
-      ui.fig.classList.add('gone');
+      figClass('add', 'gone');
       playSynth(app.state.settings, 'fanfare');
       vibrate(app.state.settings, [40, 30, 40, 30, 80]);
     }, 1350);

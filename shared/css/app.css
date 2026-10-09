@@ -750,6 +750,24 @@ body.boss-on { background: #000; }
 @keyframes boss-bit { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.3); opacity: 0; } }
 @keyframes boss-rain { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--sway, 0px), 340px) rotate(540deg); opacity: 0.9; } }
 @keyframes boss-caret { 0% { opacity: 1; } 100% { opacity: 0; } }
+/* 上の帯: 全身の絵が半分より外れたら、画面の上に貼り付く（顔の丸・名前・ハート・最新の一言）。押せない（タップは下へ通す） */
+.boss-mini { position: fixed; top: 0; left: 0; right: 0; max-width: 560px; margin: 0 auto; z-index: 20; display: flex; align-items: center; gap: 10px; padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 8px; background: #000; border-bottom: 2px solid #fff; overflow: hidden; pointer-events: none; transform: translateY(-110%); visibility: hidden; transition: transform 0.16s ease-out, visibility 0s linear 0.16s; }
+.boss-mini.on { transform: none; visibility: visible; transition: transform 0.16s ease-out, visibility 0s; }
+.boss-mini .boss-art { width: 44px; height: 44px; border-color: var(--boss-color, var(--ng)); }
+.boss-mini .boss-art .boss-sym { font-size: 1.375rem; }
+.boss-mini-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.boss-mini-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.boss-mini-name { font-size: 0.9375rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.boss-mini-hp { display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.boss-mini .boss-hearts .icon.heart { width: 20px; height: 20px; }
+.boss-mini-text { font-size: 0.875rem; line-height: 1.4; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.boss-mini-flash { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: #fff; }
+.boss-mini.crit .boss-mini-flash { animation: boss-flash-out 0.45s ease-out; }
+.boss-mini.hurt .boss-mini-flash { background: #e53935; animation: boss-flash-out 0.5s ease-out; }
+.boss-art.hit { animation: boss-hit 0.65s linear; }
+.boss-art.glow .boss-img, .boss-art.glow .boss-sym { filter: brightness(2.6) saturate(0.25) drop-shadow(0 0 6px #fff); }
+.boss-art.blinkoff { opacity: 0.08; }
+.boss-art.gone { visibility: hidden; }
 .boss-fig.appear { animation: boss-appear 0.7s ease-out; }
 .boss-fig.hit { animation: boss-hit 0.65s linear; }
 .boss-scene.quake { animation: boss-quake 0.4s ease-out; }
@@ -757,7 +775,10 @@ body.boss-on { background: #000; }
 .boss-stage.hurt .boss-flash { background: #e53935; animation: boss-flash-out 0.5s ease-out; }
 .boss-hearts .icon.heart.crack { animation: boss-heart-break 0.6s ease-out; }
 @media (prefers-reduced-motion: reduce) {
-  .boss-fig.hit { filter: sepia(1) saturate(4) hue-rotate(-50deg) brightness(1.2); }
+  .boss-fig.hit, .boss-art.hit { filter: sepia(1) saturate(4) hue-rotate(-50deg) brightness(1.2); }
+  .boss-mini, .boss-mini.on { transition: none; }
+  .boss-mini.hurt { box-shadow: inset 0 0 0 4px var(--ng); }
+  .boss-mini.crit { box-shadow: inset 0 0 0 4px #fff; }
   .boss-stage.hurt { box-shadow: inset 0 0 0 6px var(--ng); }
   .boss-stage.crit { box-shadow: inset 0 0 0 6px #fff; }
   .boss-hearts .icon.heart.crack { color: var(--ng); }
