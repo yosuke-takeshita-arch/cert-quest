@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 682" role="img" aria-labelledby="fig-g-outlier-t fig-g-outlier-d">
+<title id="fig-g-outlier-t">外れ値：通勤時間に300分が1つ混じると、平均は30分から75分に動き、中央値は32.5分でほとんど動かない</title>
+<desc id="fig-g-outlier-d">例は通勤時間（分）で、数は説明のための例。①5人の通勤時間が20、25、30、35、40分。平均は(20＋25＋30＋35＋40)÷5＝150÷5＝30分。中央値は小さい順で真ん中の3番目で30分。②300分の人が1人加わる。30分の打ち間違いかもしれないし、本当に遠い人かもしれない。平均は(150＋300)÷6＝450÷6＝75分で、30分から大きく上がる。中央値は3番目と4番目の平均で(30＋35)÷2＝65÷2＝32.5分で、ほとんど動かない。③数直線（0から300分）。5人のときは平均も中央値も30の位置。6人のときは、右端の300分の点に引っ張られて平均（赤の三角）が30から75へ動き、中央値（緑の三角）は32.5でほぼそのまま。どうするか：入力ミスなど誤りと分かれば除くか直す。分からなければ安易に捨てず、中央値のような外れ値に強い指標や手法を使う。外れ値は値はあるが他から大きく離れているもの、欠損値は値がそもそも無いもの。</desc>
+<text x="12" y="20" class="tb">外れ値：1つ混じるだけで平均が大きく動く</text>
+<text x="12" y="42" class="tm">例：通勤時間（分）。数は説明のための例</text>
+<text x="12" y="68" class="tb">① 5人</text>
+<rect x="12" y="78" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="32" y="97" class="tb" text-anchor="middle">20</text>
+<rect x="60" y="78" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="80" y="97" class="tb" text-anchor="middle">25</text>
+<rect x="108" y="78" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="128" y="97" class="tb" text-anchor="middle">30</text>
+<rect x="156" y="78" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="176" y="97" class="tb" text-anchor="middle">35</text>
+<rect x="204" y="78" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="224" y="97" class="tb" text-anchor="middle">40</text>
+<text x="12" y="128" class="tm">平均＝(20＋25＋30＋35＋40)÷5</text>
+<text x="12" y="146" class="tb">　　＝150÷5＝30分</text>
+<text x="12" y="166" class="tm">中央値＝小さい順で真ん中（3番目）＝30分</text>
+<text x="12" y="196" class="tb">② 300分の人が1人加わる（30分の打ち間違い</text>
+<text x="12" y="214" class="tm">　かもしれないし、本当に遠い人かもしれない）</text>
+<rect x="12" y="224" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="32" y="243" class="tb" text-anchor="middle">20</text>
+<rect x="60" y="224" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="80" y="243" class="tb" text-anchor="middle">25</text>
+<rect x="108" y="224" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="128" y="243" class="tb" text-anchor="middle">30</text>
+<rect x="156" y="224" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="176" y="243" class="tb" text-anchor="middle">35</text>
+<rect x="204" y="224" width="40" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="224" y="243" class="tb" text-anchor="middle">40</text>
+<rect x="252" y="224" width="40" height="28" class="fng sng" stroke-width="2" rx="4"/>
+<text x="272" y="243" class="tb tng" text-anchor="middle">300</text>
+<text x="12" y="274" class="tm">平均＝(150＋300)÷6＝450÷6</text>
+<text x="12" y="292" class="tb tng">　　＝75分（30分から大きく上がる）</text>
+<text x="12" y="312" class="tm">中央値＝3番目と4番目の平均</text>
+<text x="12" y="330" class="tm">　　＝(30＋35)÷2＝65÷2</text>
+<text x="12" y="348" class="tb tok">　　＝32.5分（ほとんど動かない）</text>
+<text x="12" y="378" class="tb">③ 数直線で見る（0〜300分）</text>
+<text x="12" y="398" class="tm">5人</text>
+<line x1="24" y1="420" x2="296" y2="420" class="l sm w1"/>
+<line x1="24" y1="416" x2="24" y2="424" class="l sm w1"/>
+<line x1="114.7" y1="416" x2="114.7" y2="424" class="l sm w1"/>
+<line x1="205.3" y1="416" x2="205.3" y2="424" class="l sm w1"/>
+<line x1="296" y1="416" x2="296" y2="424" class="l sm w1"/>
+<circle cx="42.1" cy="420" r="3" class="ft"/>
+<circle cx="46.7" cy="420" r="3" class="ft"/>
+<circle cx="51.2" cy="420" r="3" class="ft"/>
+<circle cx="55.7" cy="420" r="3" class="ft"/>
+<circle cx="60.3" cy="420" r="3" class="ft"/>
+<polygon points="51.2,426 46.2,435 56.2,435" class="ft"/>
+<text x="61.2" y="446" class="tm">平均も中央値も 30</text>
+<text x="12" y="472" class="tm">6人（300分が加わる）</text>
+<line x1="24" y1="494" x2="296" y2="494" class="l sm w1"/>
+<line x1="24" y1="490" x2="24" y2="498" class="l sm w1"/>
+<line x1="114.7" y1="490" x2="114.7" y2="498" class="l sm w1"/>
+<line x1="205.3" y1="490" x2="205.3" y2="498" class="l sm w1"/>
+<line x1="296" y1="490" x2="296" y2="498" class="l sm w1"/>
+<circle cx="42.1" cy="494" r="3" class="ft"/>
+<circle cx="46.7" cy="494" r="3" class="ft"/>
+<circle cx="51.2" cy="494" r="3" class="ft"/>
+<circle cx="55.7" cy="494" r="3" class="ft"/>
+<circle cx="60.3" cy="494" r="3" class="ft"/>
+<circle cx="296" cy="494" r="3" class="fng sng"/>
+<text x="296" y="484" class="tb tng" text-anchor="middle">300</text>
+<polygon points="53.5,500 48.5,509 58.5,509" class="fok l sok w2"/>
+<polygon points="92,500 87,509 97,509" class="fng l sng w2"/>
+<text x="100" y="518" class="tb tng">← 平均 75（引っ張られた）</text>
+<text x="48" y="540" class="tb tok">↑ 中央値 32.5（ほぼそのまま）</text>
+<text x="12" y="570" class="tb">どうするか</text>
+<text x="12" y="590" class="tm">・入力ミスなど誤りと分かれば、除くか直す</text>
+<text x="12" y="608" class="tm">・分からなければ安易に捨てず、中央値の</text>
+<text x="12" y="626" class="tm">　ような外れ値に強い指標や手法を使う</text>
+<text x="12" y="650" class="tm">外れ値＝値はあるが、他から大きく離れている</text>
+<text x="12" y="668" class="tm">欠損値＝値がそもそも無い</text>
+</svg>

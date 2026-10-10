@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 784" role="img" aria-labelledby="fig-g-poc-t fig-g-poc-d">
+<title id="fig-g-poc-t">PoC（概念実証）：本開発の前に小さく試し、次へ進むかを決める</title>
+<desc id="fig-g-poc-d">例は外観検査のAIを全工場に入れる前に、1つのラインで試す場面で、数は説明のための例。目標は不良品の9割を見つけること。PoCの1回目は、1つのラインの画像500枚で試作し、中の不良品100個のうち70個を見つけた。7割で目標の9割に届かない。結果はレポートにまとめる。門で次に進むかを決め、画像を増やしてもう一度試す、やめる、本開発へ、のうち、画像を増やしてもう一度試すを選ぶ。PoCの2回目は画像を1,000枚に増やして試作し直し、不良品100個のうち90個を見つけた。9割で目標に届いたので、門で進むと決め、本開発で全工場向けに本番のモデルを作る。小さく試す理由は、いきなり全工場向けに作って最後に7割と分かると、大きな費用が無駄になるから。試行錯誤なのでPoCを何回か行うことも少なくない。注意として、PoCは限られたデータと環境での確かめなので、PoCで9割でも本番で同じ精度が出るとは限らない。下は、経済産業省の契約ガイドラインの探索的段階型の4つの段階（アセスメント、PoC、開発、追加学習）の中でのPoCの位置。</desc>
+<text x="12" y="20" class="tb">PoC：本開発の前に、小さく試す</text>
+<text x="12" y="42" class="tm">例：外観検査のAIを全工場に入れる前に、</text>
+<text x="12" y="60" class="tm">1つのラインで試す（数は説明のための例）</text>
+<rect x="12" y="72" width="296" height="34" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="94" class="tb twn">目標：不良品の9割を見つける</text>
+<line x1="160" y1="106" x2="160.0" y2="114.4" class="l sm w1"/>
+<polygon points="160,120 156.5,114.4 163.5,114.4" class="fm"/>
+<rect x="12" y="120" width="296" height="104" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="140" class="tb">PoC 1回目</text>
+<text x="24" y="160" class="tm">1つのラインの画像500枚で試作する</text>
+<text x="24" y="180" class="tm">中の不良品100個のうち、70個を見つけた</text>
+<text x="24" y="200" class="tng">→ 7割。目標の9割に届かない</text>
+<text x="24" y="217" class="tm">（結果はレポートにまとめる）</text>
+<line x1="160" y1="224" x2="160.0" y2="232.4" class="l sm w1"/>
+<polygon points="160,238 156.5,232.4 163.5,232.4" class="fm"/>
+<text x="160" y="252" class="tb" text-anchor="middle">門：次に進むかを決める</text>
+<rect x="12" y="262" width="92" height="46" class="fas sa" stroke-width="2" rx="6"/>
+<text x="58" y="281" class="ta" text-anchor="middle">画像を増やして</text>
+<text x="58" y="299" class="tb ta" text-anchor="middle">もう一度試す</text>
+<rect x="114" y="262" width="92" height="46" class="fs sb" stroke-width="1" rx="6"/>
+<text x="160" y="290" class="tm" text-anchor="middle">やめる</text>
+<rect x="216" y="262" width="92" height="46" class="fs sb" stroke-width="1" rx="6"/>
+<text x="262" y="281" class="tm" text-anchor="middle">本開発へ</text>
+<text x="262" y="299" class="tm" text-anchor="middle">（まだ早い）</text>
+<line x1="58" y1="308" x2="58.0" y2="318.4" class="l sa w1"/>
+<polygon points="58,324 54.5,318.4 61.5,318.4" class="fa"/>
+<rect x="12" y="324" width="296" height="84" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="344" class="tb">PoC 2回目</text>
+<text x="24" y="364" class="tm">画像を1,000枚に増やして試作し直す</text>
+<text x="24" y="384" class="tm">不良品100個のうち、90個を見つけた</text>
+<text x="24" y="402" class="tok">→ 9割。目標に届いた</text>
+<line x1="160" y1="408" x2="160.0" y2="416.4" class="l sm w1"/>
+<polygon points="160,422 156.5,416.4 163.5,416.4" class="fm"/>
+<text x="160" y="436" class="tb" text-anchor="middle">門：次に進むかを決める → 進む</text>
+<line x1="160" y1="444" x2="160.0" y2="450.4" class="l sm w1"/>
+<polygon points="160,456 156.5,450.4 163.5,450.4" class="fm"/>
+<rect x="12" y="456" width="296" height="52" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="476" class="tb tok">本開発：全工場向けに</text>
+<text x="24" y="496" class="tok">本番のモデルを作る（大きな費用）</text>
+<text x="12" y="534" class="tb">なぜ小さく試すか</text>
+<text x="12" y="554" class="tm">いきなり全工場向けに作り、最後に7割と</text>
+<text x="12" y="572" class="tm">分かると、大きな費用が無駄になる。</text>
+<text x="12" y="590" class="tm">試行錯誤なので、PoC を何回か行うことも</text>
+<text x="12" y="608" class="tm">少なくない</text>
+<text x="12" y="634" class="tb tng">注意</text>
+<text x="12" y="654" class="tm">PoC は限られたデータと環境での確かめ。</text>
+<text x="12" y="672" class="tm">PoC で9割でも、本番で同じ精度が出るとは</text>
+<text x="12" y="690" class="tm">限らない</text>
+<line x1="12" y1="712" x2="308" y2="712" class="l sb w1"/>
+<text x="12" y="734" class="tb">PoC の位置（探索的段階型の4つの段階）</text>
+<rect x="12" y="744" width="84" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="54" y="764" class="tm" text-anchor="middle">アセスメント</text>
+<line x1="97" y1="759" x2="101.4" y2="759.0" class="l sm w1"/>
+<polygon points="107,759 101.4,762.5 101.4,755.5" class="fm"/>
+<rect x="108" y="744" width="50" height="30" class="fas sa" stroke-width="2" rx="4"/>
+<text x="133" y="764" class="tb ta" text-anchor="middle">PoC</text>
+<line x1="159" y1="759" x2="163.4" y2="759.0" class="l sm w1"/>
+<polygon points="169,759 163.4,762.5 163.4,755.5" class="fm"/>
+<rect x="170" y="744" width="54" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="197" y="764" class="tm" text-anchor="middle">開発</text>
+<line x1="225" y1="759" x2="229.4" y2="759.0" class="l sm w1"/>
+<polygon points="235,759 229.4,762.5 229.4,755.5" class="fm"/>
+<rect x="236" y="744" width="72" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="272" y="764" class="tm" text-anchor="middle">追加学習</text>
+</svg>
