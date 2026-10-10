@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1588" role="img" aria-labelledby="fig-g-cluster-linkage-t fig-g-cluster-linkage-d">
+<title id="fig-g-cluster-linkage-t">クラスタどうしの距離の測り方（最短距離法・最長距離法・群平均法・ウォード法）と、階層的・非階層的の違い</title>
+<desc id="fig-g-cluster-linkage-d">階層的クラスタリングで、2つのクラスタがどれだけ近いかを決める測り方を、数直線上のクラスタ{1,2}（青）と{4,9}（茶）で比べる。最短距離法（単連結法）は最も近い2点2と4の距離で、4−2＝2。最長距離法（完全連結法）は最も遠い2点1と9の距離で、9−1＝8。群平均法は、2つのクラスタから1つずつ選んだ全部の組（1と4、1と9、2と4、2と9）の距離3・8・2・7の平均で、20÷4＝5。ウォード法は距離ではなく、まとめたときのばらつき（各点と中心との差の2乗の和）の増え方で比べる。{1,2}は中心1.5でばらつき0.5、{4,9}は中心6.5でばらつき12.5、まとめた{1,2,4,9}は中心4でばらつき9＋4＋0＋25＝38なので、増え方は38−13＝25。どの方法も、全部の組でこの値を出し、いちばん小さい組から順にまとめる。同じ2つでも値が違うので、まとめる順と結果が変わる。scikit-learn の説明では、最短距離法は大きさが偏りやすく、ウォード法は大きさがそろいやすい。下の段は、同じ1・2・4・9を2通りで分けた例。階層的（最短距離法）では、1と2を距離1で、{1,2}と4を距離2で、残りと9を距離5でまとめ、木（デンドログラム）になる。高さ2と5の間で切ると{1,2,4}と{9}の2つになる。非階層的なk-means法では、k＝2と先に決め、最初の中心を1と9に置くと、{1,2,4}（中心約2.3）と{9}に直接分かれ、木は作らない。</desc>
+<text x="12" y="20" class="tb">クラスタどうしの距離の測り方</text>
+<text x="12" y="42" class="tm">例：クラスタ {1,2}（青）と {4,9}（茶）</text>
+<text x="12" y="62" class="tm">数＝2つのクラスタの離れ具合</text>
+<text x="12" y="82" class="tm">（小さいほど近い＝先にまとめる）</text>
+<text x="12" y="112" class="tb">① 最短距離法（単連結法）</text>
+<rect x="12" y="122" width="296" height="108" class="sb" stroke-width="1" rx="6"/>
+<line x1="38.7" y1="152" x2="308.4" y2="152" class="l sm w1"/>
+<line x1="59" y1="149" x2="59" y2="155" class="l sm w1"/>
+<line x1="88" y1="149" x2="88" y2="155" class="l sm w1"/>
+<line x1="117" y1="149" x2="117" y2="155" class="l sm w1"/>
+<line x1="146" y1="149" x2="146" y2="155" class="l sm w1"/>
+<line x1="175" y1="149" x2="175" y2="155" class="l sm w1"/>
+<line x1="204" y1="149" x2="204" y2="155" class="l sm w1"/>
+<line x1="233" y1="149" x2="233" y2="155" class="l sm w1"/>
+<line x1="262" y1="149" x2="262" y2="155" class="l sm w1"/>
+<line x1="291" y1="149" x2="291" y2="155" class="l sm w1"/>
+<circle cx="59" cy="152" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="59" y="174" class="tb" text-anchor="middle">1</text>
+<circle cx="88" cy="152" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="88" y="174" class="tb" text-anchor="middle">2</text>
+<circle cx="146" cy="152" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="146" y="174" class="tb" text-anchor="middle">4</text>
+<circle cx="291" cy="152" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="291" y="174" class="tb" text-anchor="middle">9</text>
+<polyline points="88,184 88,192 146,192 146,184" class="l w2"/>
+<text x="117" y="187" class="tb ta" text-anchor="middle">2</text>
+<text x="24" y="218">いちばん近い2点（2と4）：4−2＝<tspan class="tb ta">2</tspan></text>
+<text x="12" y="258" class="tb">② 最長距離法（完全連結法）</text>
+<rect x="12" y="268" width="296" height="108" class="sb" stroke-width="1" rx="6"/>
+<line x1="38.7" y1="298" x2="308.4" y2="298" class="l sm w1"/>
+<line x1="59" y1="295" x2="59" y2="301" class="l sm w1"/>
+<line x1="88" y1="295" x2="88" y2="301" class="l sm w1"/>
+<line x1="117" y1="295" x2="117" y2="301" class="l sm w1"/>
+<line x1="146" y1="295" x2="146" y2="301" class="l sm w1"/>
+<line x1="175" y1="295" x2="175" y2="301" class="l sm w1"/>
+<line x1="204" y1="295" x2="204" y2="301" class="l sm w1"/>
+<line x1="233" y1="295" x2="233" y2="301" class="l sm w1"/>
+<line x1="262" y1="295" x2="262" y2="301" class="l sm w1"/>
+<line x1="291" y1="295" x2="291" y2="301" class="l sm w1"/>
+<circle cx="59" cy="298" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="59" y="320" class="tb" text-anchor="middle">1</text>
+<circle cx="88" cy="298" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="88" y="320" class="tb" text-anchor="middle">2</text>
+<circle cx="146" cy="298" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="146" y="320" class="tb" text-anchor="middle">4</text>
+<circle cx="291" cy="298" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="291" y="320" class="tb" text-anchor="middle">9</text>
+<polyline points="59,330 59,338 291,338 291,330" class="l w2"/>
+<text x="298" y="343" class="tb ta">8</text>
+<text x="24" y="364">いちばん遠い2点（1と9）：9−1＝<tspan class="tb ta">8</tspan></text>
+<text x="12" y="404" class="tb">③ 群平均法</text>
+<rect x="12" y="414" width="296" height="196" class="sb" stroke-width="1" rx="6"/>
+<line x1="38.7" y1="444" x2="308.4" y2="444" class="l sm w1"/>
+<line x1="59" y1="441" x2="59" y2="447" class="l sm w1"/>
+<line x1="88" y1="441" x2="88" y2="447" class="l sm w1"/>
+<line x1="117" y1="441" x2="117" y2="447" class="l sm w1"/>
+<line x1="146" y1="441" x2="146" y2="447" class="l sm w1"/>
+<line x1="175" y1="441" x2="175" y2="447" class="l sm w1"/>
+<line x1="204" y1="441" x2="204" y2="447" class="l sm w1"/>
+<line x1="233" y1="441" x2="233" y2="447" class="l sm w1"/>
+<line x1="262" y1="441" x2="262" y2="447" class="l sm w1"/>
+<line x1="291" y1="441" x2="291" y2="447" class="l sm w1"/>
+<circle cx="59" cy="444" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="59" y="466" class="tb" text-anchor="middle">1</text>
+<circle cx="88" cy="444" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="88" y="466" class="tb" text-anchor="middle">2</text>
+<circle cx="146" cy="444" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="146" y="466" class="tb" text-anchor="middle">4</text>
+<circle cx="291" cy="444" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="291" y="466" class="tb" text-anchor="middle">9</text>
+<polyline points="88,472 88,480 146,480 146,472" class="l w2"/>
+<text x="153" y="485" class="tb ta">2</text>
+<polyline points="59,490 59,498 146,498 146,490" class="l w2"/>
+<text x="153" y="503" class="tb ta">3</text>
+<polyline points="88,508 88,516 291,516 291,508" class="l w2"/>
+<text x="298" y="521" class="tb ta">7</text>
+<polyline points="59,526 59,534 291,534 291,526" class="l w2"/>
+<text x="298" y="539" class="tb ta">8</text>
+<text x="24" y="556">1つずつ選んだ全部の組（4本）の距離</text>
+<text x="24" y="576">3・8・2・7 を平均する</text>
+<text x="24" y="598">(3＋8＋2＋7)÷4＝20÷4＝<tspan class="ta">5</tspan></text>
+<text x="12" y="638" class="tb">④ ウォード法</text>
+<rect x="12" y="648" width="296" height="312" class="sb" stroke-width="1" rx="6"/>
+<text x="24" y="670" class="tm">ばらつき＝各点と中心（平均）の</text>
+<text x="24" y="690" class="tm">差を2乗して足した値</text>
+<line x1="38.7" y1="730" x2="308.4" y2="730" class="l sm w1"/>
+<line x1="59" y1="727" x2="59" y2="733" class="l sm w1"/>
+<line x1="88" y1="727" x2="88" y2="733" class="l sm w1"/>
+<line x1="117" y1="727" x2="117" y2="733" class="l sm w1"/>
+<line x1="146" y1="727" x2="146" y2="733" class="l sm w1"/>
+<line x1="175" y1="727" x2="175" y2="733" class="l sm w1"/>
+<line x1="204" y1="727" x2="204" y2="733" class="l sm w1"/>
+<line x1="233" y1="727" x2="233" y2="733" class="l sm w1"/>
+<line x1="262" y1="727" x2="262" y2="733" class="l sm w1"/>
+<line x1="291" y1="727" x2="291" y2="733" class="l sm w1"/>
+<circle cx="59" cy="730" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="59" y="752" class="tb" text-anchor="middle">1</text>
+<circle cx="88" cy="730" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="88" y="752" class="tb" text-anchor="middle">2</text>
+<circle cx="146" cy="730" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="146" y="752" class="tb" text-anchor="middle">4</text>
+<circle cx="291" cy="730" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="291" y="752" class="tb" text-anchor="middle">9</text>
+<polygon points="73.5,701 80.5,708 73.5,715 66.5,708" class="ft sa" stroke-width="2"/>
+<polygon points="218.5,701 225.5,708 218.5,715 211.5,708" class="ft swn" stroke-width="2"/>
+<text x="85.5" y="713" class="tm">1.5</text>
+<text x="230.5" y="713" class="tm">6.5</text>
+<text x="24" y="778">{1,2}：中心1.5、差は0.5と0.5</text>
+<text x="24" y="798">　0.5²＋0.5²＝0.25＋0.25＝0.5</text>
+<text x="24" y="822">{4,9}：中心6.5、差は2.5と2.5</text>
+<text x="24" y="842">　2.5²＋2.5²＝6.25＋6.25＝12.5</text>
+<text x="24" y="866">まとめると：中心4、差は3・2・0・5</text>
+<text x="24" y="886">　9＋4＋0＋25＝38</text>
+<text x="24" y="912" class="tb">増え方＝38−(0.5＋12.5)＝38−13＝<tspan class="ta">25</tspan></text>
+<text x="24" y="936" class="tm">◆＝中心。増え方が小さい組から</text>
+<text x="24" y="954" class="tm">まとめる（距離ではなく、ばらつき）</text>
+<text x="12" y="990" class="tb">同じ2つでも 2・8・5 と値が違う</text>
+<text x="12" y="1010">→ どの組を先にまとめるかが変わり、</text>
+<text x="12" y="1030">　できるまとまりも変わる</text>
+<text x="12" y="1054">最短距離法：大きさが偏りやすい</text>
+<text x="12" y="1074">ウォード法：大きさがそろいやすい</text>
+<text x="12" y="1092" class="tm">（scikit-learn の説明による）</text>
+<line x1="12" y1="1106" x2="308" y2="1106" class="l sb w1"/>
+<text x="12" y="1134" class="tb">⑤ 階層的と非階層的（同じ 1・2・4・9）</text>
+<text x="12" y="1158">階層的：近い組から順にまとめ、木になる</text>
+<rect x="12" y="1168" width="296" height="186" class="sb" stroke-width="1" rx="6"/>
+<polyline points="59,1304 59,1284 88,1284 88,1304" class="l sa w2"/>
+<polyline points="73.5,1284 73.5,1264 146,1264 146,1304" class="l w2"/>
+<polyline points="109.75,1264 109.75,1204 291,1204 291,1304" class="l w2"/>
+<text x="94" y="1289" class="tb ta">1</text>
+<text x="152" y="1269" class="tb ta">2</text>
+<text x="283" y="1198" class="tb ta" text-anchor="end">5</text>
+<line x1="20" y1="1234" x2="300" y2="1234" class="l sng w2 dsh"/>
+<text x="180.8" y="1228" class="tb tng">切る線</text>
+<circle cx="59" cy="1304" r="5" class="fs sok" stroke-width="2.5"/>
+<text x="59" y="1324" class="tb" text-anchor="middle">1</text>
+<circle cx="88" cy="1304" r="5" class="fs sok" stroke-width="2.5"/>
+<text x="88" y="1324" class="tb" text-anchor="middle">2</text>
+<circle cx="146" cy="1304" r="5" class="fs sok" stroke-width="2.5"/>
+<text x="146" y="1324" class="tb" text-anchor="middle">4</text>
+<circle cx="291" cy="1304" r="5" class="fs swn" stroke-width="2.5"/>
+<text x="291" y="1324" class="tb" text-anchor="middle">9</text>
+<text x="24" y="1346" class="tm">数＝まとめたときの距離（最短距離法）</text>
+<text x="12" y="1376">→ 切ると {1,2,4}（緑）と {9}（茶）</text>
+<text x="12" y="1396" class="tm">切る高さで、数を後から選べる</text>
+<text x="12" y="1426">非階層的（k-means 法）：数を先に決め、</text>
+<text x="12" y="1446">木を作らずに直接分ける</text>
+<rect x="12" y="1456" width="296" height="96" class="sb" stroke-width="1" rx="6"/>
+<line x1="38.7" y1="1490" x2="308.4" y2="1490" class="l sm w1"/>
+<line x1="59" y1="1487" x2="59" y2="1493" class="l sm w1"/>
+<line x1="88" y1="1487" x2="88" y2="1493" class="l sm w1"/>
+<line x1="117" y1="1487" x2="117" y2="1493" class="l sm w1"/>
+<line x1="146" y1="1487" x2="146" y2="1493" class="l sm w1"/>
+<line x1="175" y1="1487" x2="175" y2="1493" class="l sm w1"/>
+<line x1="204" y1="1487" x2="204" y2="1493" class="l sm w1"/>
+<line x1="233" y1="1487" x2="233" y2="1493" class="l sm w1"/>
+<line x1="262" y1="1487" x2="262" y2="1493" class="l sm w1"/>
+<line x1="291" y1="1487" x2="291" y2="1493" class="l sm w1"/>
+<circle cx="59" cy="1490" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="59" y="1512" class="tb" text-anchor="middle">1</text>
+<circle cx="88" cy="1490" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="88" y="1512" class="tb" text-anchor="middle">2</text>
+<circle cx="146" cy="1490" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="146" y="1512" class="tb" text-anchor="middle">4</text>
+<circle cx="291" cy="1490" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="291" y="1512" class="tb" text-anchor="middle">9</text>
+<polygon points="97.66666666666667,1461 104.66666666666667,1468 97.66666666666667,1475 90.66666666666667,1468" class="ft sok" stroke-width="2"/>
+<polygon points="291,1461 298,1468 291,1475 284,1468" class="ft swn" stroke-width="2"/>
+<text x="109.66666666666667" y="1473" class="tm">中心≈2.3</text>
+<text x="279" y="1473" class="tm" text-anchor="end">中心9</text>
+<text x="24" y="1540">k＝2 なら {1,2,4} と {9} に分かれる</text>
+<text x="12" y="1574" class="tm">（最初の中心を1と9に置いた場合）</text>
+</svg>
