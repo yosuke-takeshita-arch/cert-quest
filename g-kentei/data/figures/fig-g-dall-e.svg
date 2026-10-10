@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 844" role="img" aria-labelledby="fig-g-dall-e-t fig-g-dall-e-d">
+<title id="fig-g-dall-e-t">DALL-E：文のトークンの続きとして画像のトークンを1つずつ当てて、文から画像を作る（Text-To-Image）</title>
+<desc id="fig-g-dall-e-d">Text-To-Imageは文から画像を作るタスクの名前で、DALL-EはそれをOpenAIが2021年に示したモデル。①画像も記号（トークン）の列にする。256×256画素×3色の画像を圧縮して32×32＝1024マスにし、1マスが1トークンで8192種類の記号のどれか1つ。数の量は256×256×3＝196,608個から1,024個へ、196,608÷1,024＝192分の1に減り、Transformerが一度に読める長さに収まる。②文（最大256個）と画像（1,024個）のトークンを1本の列につなげ、前のトークンをすべて見て次の1つを当てる（自己回帰）。1つ当てたら列に足して次へ進み、画像の1,024個までくり返す。Transformerは120億パラメータで、ネットから集めた文と画像2億5000万組で学習した。③作るときは、1で文（説明用の例：夕焼けの海辺を走る白い犬）を入れ、2で続きの画像トークンを1つずつ1,024個書き、3で圧縮の逆で256×256の画像に戻し、4で512枚作ってCLIPで文に合う順に並べ、よいものを選ぶ。逆向き（画像→文）はImage Captioning。CLIPは画像と文の合い方を測るだけで画像は作らず、DALL-Eでは選ぶ役。</desc>
+<text x="12" y="20" class="tb">DALL-E：文の続きとして画像を書く</text>
+<text x="12" y="42" class="tm">Text-To-Image＝文から画像を作るタスクの名前</text>
+<text x="12" y="60" class="tm">DALL-E＝それを行う OpenAI のモデル（2021年）</text>
+<text x="12" y="88" class="tb">① 画像も記号（トークン）の列にする</text>
+<rect x="12" y="100" width="120" height="76" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="72" y="122" class="tb" text-anchor="middle">画像</text>
+<text x="72" y="142" text-anchor="middle">256×256 画素</text>
+<text x="72" y="162" class="tm" text-anchor="middle">×3色</text>
+<line x1="132" y1="138" x2="162.4" y2="138.0" class="l sm w1"/>
+<polygon points="168,138 162.4,141.5 162.4,134.5" class="fm"/>
+<text x="150" y="130" class="tm" text-anchor="middle">圧縮</text>
+<rect x="176.0" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="100.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="176.0" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="109.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="176.0" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="119.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="176.0" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="128.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="176.0" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="138.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="176.0" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="147.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="176.0" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="157.0" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="176.0" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="185.5" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="195.0" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="204.5" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="214.0" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="223.5" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="233.0" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<rect x="242.5" y="166.5" width="9.5" height="9.5" class="fok sok" stroke-width="0.8"/>
+<text x="260" y="120" class="tb tok">32×32</text>
+<text x="260" y="138" class="tb tok">＝1024</text>
+<text x="260" y="156" class="tok">マス</text>
+<text x="12" y="192" class="tm">マス目は間引いて描いた。1マスが1トークンで、</text>
+<text x="12" y="210" class="tm">8192 種類の記号のどれか1つ</text>
+<text x="12" y="230" class="ta">数の量：256×256×3＝196,608 個 → 1,024 個</text>
+<text x="12" y="248" class="tb ta">196,608÷1,024＝192 分の1 に減る</text>
+<text x="12" y="268" class="tm">（Transformer が一度に読める長さに収める）</text>
+<line x1="12" y1="284" x2="308" y2="284" class="l sb w1"/>
+<text x="12" y="308" class="tb">② 文と画像を1本の列につなげて学ぶ</text>
+<rect x="22" y="322" width="20" height="24" class="fas sa" stroke-width="1.2" rx="2"/>
+<rect x="44" y="322" width="20" height="24" class="fas sa" stroke-width="1.2" rx="2"/>
+<rect x="66" y="322" width="20" height="24" class="fas sa" stroke-width="1.2" rx="2"/>
+<rect x="88" y="322" width="20" height="24" class="fas sa" stroke-width="1.2" rx="2"/>
+<rect x="110" y="322" width="20" height="24" class="fas sa" stroke-width="1.2" rx="2"/>
+<rect x="132" y="322" width="20" height="24" class="fok sok" stroke-width="1.2" rx="2"/>
+<rect x="154" y="322" width="20" height="24" class="fok sok" stroke-width="1.2" rx="2"/>
+<rect x="176" y="322" width="20" height="24" class="fok sok" stroke-width="1.2" rx="2"/>
+<rect x="198" y="322" width="20" height="24" class="fok sok" stroke-width="1.2" rx="2"/>
+<rect x="220" y="322" width="20" height="24" class="fok sok" stroke-width="1.2" rx="2"/>
+<rect x="242" y="322" width="20" height="24" class="fok sok" stroke-width="1.2" rx="2"/>
+<rect x="264" y="322" width="20" height="24" class="fng sng" stroke-width="1.2" rx="2"/>
+<text x="274" y="339" class="tb tng" text-anchor="middle">？</text>
+<text x="77" y="364" class="ta" text-anchor="middle">文（最大 256 個）</text>
+<text x="198" y="364" class="tok" text-anchor="middle">画像（1,024 個）</text>
+<text x="12" y="388" class="tm">前のトークンをすべて見て、次の1つ（赤の ？）</text>
+<text x="12" y="406" class="tm">を当てる（自己回帰）。1つ当てたら列に足して</text>
+<text x="12" y="424" class="tm">また次へ。これを画像の 1,024 個までくり返す</text>
+<rect x="12" y="442" width="296" height="50" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="462" class="tb">Transformer：120億パラメータ</text>
+<text x="22" y="482">学習：ネットから集めた文と画像 2億5000万組</text>
+<line x1="12" y1="510" x2="308" y2="510" class="l sb w1"/>
+<text x="12" y="534" class="tb">③ 作るとき（文は説明用の例）</text>
+<rect x="12" y="546" width="296" height="46" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="566" class="tb ta">1　文を入れる</text>
+<text x="22" y="584" class="tm">『夕焼けの海辺を走る白い犬』</text>
+<line x1="160" y1="592" x2="160.0" y2="600.4" class="l sm w1"/>
+<polygon points="160,606 156.5,600.4 163.5,600.4" class="fm"/>
+<rect x="12" y="606" width="296" height="46" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="22" y="626" class="tb tok">2　続きの画像トークンを書く</text>
+<text x="22" y="644" class="tm">1つずつ 1,024 個（32×32 マス）</text>
+<line x1="160" y1="652" x2="160.0" y2="660.4" class="l sm w1"/>
+<polygon points="160,666 156.5,660.4 163.5,660.4" class="fm"/>
+<rect x="12" y="666" width="296" height="46" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="686" class="tb">3　画像に戻す</text>
+<text x="22" y="704" class="tm">圧縮の逆で 256×256 の画像へ</text>
+<line x1="160" y1="712" x2="160.0" y2="720.4" class="l sm w1"/>
+<polygon points="160,726 156.5,720.4 163.5,720.4" class="fm"/>
+<rect x="12" y="726" width="296" height="46" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="746" class="tb">4　よいものを選ぶ</text>
+<text x="22" y="764" class="tm">512 枚作り、CLIP で文に合う順に並べる</text>
+<text x="12" y="794" class="tm">逆向き（画像→文）は Image Captioning。</text>
+<text x="12" y="812" class="tm">CLIP は画像と文の合い方を測るだけで、</text>
+<text x="12" y="830" class="tm">画像は作らない（DALL-E では選ぶ役）</text>
+</svg>

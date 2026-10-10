@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 978" role="img" aria-labelledby="fig-g-mel-mfcc-t fig-g-mel-mfcc-d">
+<title id="fig-g-mel-mfcc-t">メル尺度とMFCC：人の耳に合わせて高い音ほど差を小さく数える目盛りと、それを使って声の特徴を39個の数にまとめる流れ</title>
+<desc id="fig-g-mel-mfcc-d">①メル尺度の式はメル＝1127×ln(1＋周波数÷700)（SLP3の式）。横軸が周波数0〜8000Hz、縦軸がメル0〜3000の曲線で、高い音ほど傾きがゆるい。1,000Hzから2,000Hzは1,000から約1,521メルで差は約521メル（緑）、7,000Hzから8,000Hzは約2,702から約2,840メルで差は約138メル（赤）。同じ1,000Hzの差でも、高い音では約4分の1に縮めて数える。②MFCCの作り方を1秒の声で。1は25ミリ秒ずつ10ミリ秒ずらして切り、1秒なら約100区間（フレーム）。2は区間ごとにDFTで、どの高さの音がどれだけ強いかを出す。3はメル尺度で並べた三角のフィルタで束ね、低い音は細かく高い音は大まかにする。4は強さの対数を取る（耳は強さも対数で感じる）。5は対数スペクトルをさらに分解してケプストラムにし、最初の12個が声道の形（音色）を表す。6は12個＋音の強さ1個で13個、その変化13個と変化の変化13個を足して13×3＝39個にし、1秒で約100個の39次元のベクトルになる。MFCCは特徴量で、声を作るモデルでもHMMでもない。</desc>
+<text x="12" y="20" class="tb">メル尺度と MFCC：耳の感じ方に合わせた目盛り</text>
+<text x="12" y="46" class="tb">① メル尺度：高い音ほど差を小さく数える</text>
+<text x="12" y="66" class="tm">メル＝1127×ln(1＋周波数÷700)（SLP3 の式）</text>
+<line x1="60" y1="280" x2="296" y2="280" class="l sm w1"/>
+<line x1="60" y1="280" x2="60" y2="100" class="l sm w1"/>
+<line x1="60" y1="280" x2="60" y2="284" class="l sm w1"/>
+<text x="60" y="298" class="tm" text-anchor="middle">0</text>
+<line x1="119" y1="280" x2="119" y2="284" class="l sm w1"/>
+<text x="119" y="298" class="tm" text-anchor="middle">2000</text>
+<line x1="178" y1="280" x2="178" y2="284" class="l sm w1"/>
+<text x="178" y="298" class="tm" text-anchor="middle">4000</text>
+<line x1="237" y1="280" x2="237" y2="284" class="l sm w1"/>
+<text x="237" y="298" class="tm" text-anchor="middle">6000</text>
+<line x1="296" y1="280" x2="296" y2="284" class="l sm w1"/>
+<text x="296" y="298" class="tm" text-anchor="middle">8000</text>
+<line x1="56" y1="280" x2="60" y2="280" class="l sm w1"/>
+<text x="52" y="284" class="tm" text-anchor="end">0</text>
+<line x1="56" y1="220" x2="60" y2="220" class="l sm w1"/>
+<text x="52" y="224" class="tm" text-anchor="end">1000</text>
+<line x1="56" y1="160" x2="60" y2="160" class="l sm w1"/>
+<text x="52" y="164" class="tm" text-anchor="end">2000</text>
+<line x1="56" y1="100" x2="60" y2="100" class="l sm w1"/>
+<text x="52" y="104" class="tm" text-anchor="end">3000</text>
+<text x="296" y="316" class="tm" text-anchor="end">周波数（Hz）→</text>
+<text x="68" y="94" class="tm">メル ↑</text>
+<polyline points="60.0,280.0 63.0,271.0 65.9,263.0 68.8,255.9 71.8,249.4 74.8,243.6 77.7,238.1 80.7,233.1 83.6,228.5 86.5,224.1 89.5,220.0 92.5,216.1 95.4,212.5 98.3,209.0 101.3,205.7 104.3,202.6 107.2,199.6 110.2,196.7 113.1,193.9 116.0,191.3 119.0,188.7 122.0,186.3 124.9,183.9 127.8,181.6 130.8,179.4 133.8,177.2 136.7,175.1 139.7,173.1 142.6,171.2 145.6,169.3 148.5,167.4 151.4,165.6 154.4,163.9 157.3,162.1 160.3,160.5 163.3,158.8 166.2,157.3 169.2,155.7 172.1,154.2 175.1,152.7 178.0,151.2 180.9,149.8 183.9,148.4 186.8,147.1 189.8,145.7 192.8,144.4 195.7,143.1 198.7,141.8 201.6,140.6 204.6,139.4 207.5,138.2 210.4,137.0 213.4,135.9 216.3,134.7 219.3,133.6 222.3,132.5 225.2,131.4 228.2,130.4 231.1,129.3 234.1,128.3 237.0,127.3 239.9,126.3 242.9,125.3 245.8,124.3 248.8,123.3 251.8,122.4 254.7,121.5 257.6,120.5 260.6,119.6 263.6,118.7 266.5,117.9 269.4,117.0 272.4,116.1 275.4,115.3 278.3,114.4 281.3,113.6 284.2,112.8 287.1,112.0 290.1,111.2 293.1,110.4 296.0,109.6" class="l sa w2"/>
+<line x1="89.5" y1="280" x2="89.5" y2="220.00055795403895" class="l sok w1 dsh"/>
+<line x1="119" y1="280" x2="119" y2="188.71795539990754" class="l sok w1 dsh"/>
+<line x1="60" y1="220.00055795403895" x2="89.5" y2="220.00055795403895" class="l sok w1 dot"/>
+<line x1="60" y1="188.71795539990754" x2="119" y2="188.71795539990754" class="l sok w1 dot"/>
+<rect x="57" y="188.71795539990754" width="6" height="31.3" class="fok sok" stroke-width="1.5"/>
+<text x="127" y="212.56615358303097" class="tb tok">約521メル</text>
+<line x1="266.5" y1="280" x2="266.5" y2="117.85432165337417" class="l sng w1 dsh"/>
+<line x1="296" y1="280" x2="296" y2="109.59773729569733" class="l sng w1 dsh"/>
+<line x1="60" y1="117.85432165337417" x2="266.5" y2="117.85432165337417" class="l sng w1 dot"/>
+<line x1="60" y1="109.59773729569733" x2="296" y2="109.59773729569733" class="l sng w1 dot"/>
+<rect x="57" y="109.59773729569733" width="6" height="8.3" class="fng sng" stroke-width="1.5"/>
+<text x="190.5" y="149.60008877911147" class="tb tng">約138メル</text>
+<text x="12" y="334" class="tok">1,000→2,000 Hz：1,000→約1,521メル</text>
+<text x="12" y="352" class="tb tok">　差は約521メル（緑）</text>
+<text x="12" y="372" class="tng">7,000→8,000 Hz：約2,702→約2,840メル</text>
+<text x="12" y="390" class="tb tng">　差は約138メル（赤）</text>
+<text x="12" y="410" class="tm">同じ 1,000 Hz の差でも、高い音では</text>
+<text x="12" y="428" class="tm">約4分の1に縮めて数える（耳の感じ方に合わせる）</text>
+<line x1="12" y1="444" x2="308" y2="444" class="l sb w1"/>
+<text x="12" y="468" class="tb">② MFCC の作り方（例：1秒の声）</text>
+<rect x="12" y="480" width="296" height="62" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="500" class="tb">1　短く切る</text>
+<text x="22" y="518" class="tm">25ミリ秒ずつ、10ミリ秒ずらして切る</text>
+<text x="22" y="536" class="tm">1秒なら約100区間（フレーム）</text>
+<line x1="160" y1="542" x2="160.0" y2="550.4" class="l sm w1"/>
+<polygon points="160,556 156.5,550.4 163.5,550.4" class="fm"/>
+<rect x="12" y="556" width="296" height="62" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="576" class="tb">2　周波数に分ける</text>
+<text x="22" y="594" class="tm">区間ごとに DFT で、どの高さの音が</text>
+<text x="22" y="612" class="tm">どれだけ強いかを出す</text>
+<line x1="160" y1="618" x2="160.0" y2="626.4" class="l sm w1"/>
+<polygon points="160,632 156.5,626.4 163.5,626.4" class="fm"/>
+<rect x="12" y="632" width="296" height="62" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="652" class="tb">3　メルで束ねる</text>
+<text x="22" y="670" class="tm">メル尺度で並べた三角のフィルタで束ねる</text>
+<text x="22" y="688" class="tm">低い音は細かく、高い音は大まかに</text>
+<line x1="160" y1="694" x2="160.0" y2="702.4" class="l sm w1"/>
+<polygon points="160,708 156.5,702.4 163.5,702.4" class="fm"/>
+<rect x="12" y="708" width="296" height="44" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="728" class="tb">4　対数を取る</text>
+<text x="22" y="746" class="tm">強さの対数（耳は強さも対数で感じる）</text>
+<line x1="160" y1="752" x2="160.0" y2="760.4" class="l sm w1"/>
+<polygon points="160,766 156.5,760.4 163.5,760.4" class="fm"/>
+<rect x="12" y="766" width="296" height="62" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="786" class="tb ta">5　もう一度分解</text>
+<text x="22" y="804" class="tm">対数スペクトルをさらに分解（ケプストラム）</text>
+<text x="22" y="822" class="ta">最初の12個＝声道の形（音色）</text>
+<line x1="160" y1="828" x2="160.0" y2="836.4" class="l sm w1"/>
+<polygon points="160,842 156.5,836.4 163.5,836.4" class="fm"/>
+<rect x="12" y="842" width="296" height="84" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="22" y="862" class="tb tok">6　39個の数に並べる（1区間ごと）</text>
+<text x="22" y="882" class="tok">12個＋音の強さ1個＝13個</text>
+<text x="22" y="900" class="tok">＋その変化 13個＋変化の変化 13個</text>
+<text x="22" y="918" class="tb tok">13×3＝39 → 1秒で約100個の39次元</text>
+<text x="12" y="946" class="tm">MFCC は特徴量（入力の表し方）。声を作る</text>
+<text x="12" y="964" class="tm">モデルでも、時系列の確率モデル（HMM）でもない</text>
+</svg>

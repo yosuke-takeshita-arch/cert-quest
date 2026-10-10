@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1114" role="img" aria-labelledby="fig-g-dcgan-t fig-g-dcgan-d">
+<title id="fig-g-dcgan-t">DCGAN：GANの生成器と識別器を畳み込みで作り、プーリングをやめるなどの構造の決まりで学習を安定させる</title>
+<desc id="fig-g-dcgan-d">生成器は乱数から偽の画像を作る側、識別器は画像が本物か偽物かを見分ける側。数は原論文の寝室の画像の生成器。①生成器は100個の乱数を並べ直して4×4で1024枚にし、8×8で512枚、16×16で256枚、32×32で128枚、64×64で3枚（色）と、各段で縦横2倍・枚数半分にする。各段は1マスを2×2に広げる向きの畳み込み。②識別器は64×64の画像を、間隔を空けて動く畳み込み（ストライド2）で縦横を半分ずつ縮め、本物の確率を1つ出す。③構造の決まり：アはプーリング層をやめ、縮小・拡大は畳み込みの動き方で行う。イはバッチ正規化を両方に入れる。ウは全結合の隠れ層を除く（入口の乱数と出口の1つは例外）。エは生成器はReLUで出力だけTanh、識別器はすべてLeakyReLU。Tanhは出力を−1〜1に収める。LeakyReLUは負の入力も0.2倍で通し、入力−5は−5×0.2＝−1（ReLUなら0）。④生成器の入力の乱数を少しずつ動かすと、窓の無い寝室が大きな窓のある寝室へなめらかに変わった。DCGANは条件なしで作り、入力画像を別の画像に変換するのはPix2Pix・CycleGAN。</desc>
+<text x="12" y="20" class="tb">DCGAN：GAN の2つを畳み込みで作る</text>
+<text x="12" y="42" class="tm">生成器＝乱数から偽の画像を作る側</text>
+<text x="12" y="60" class="tm">識別器＝画像が本物か偽物かを見分ける側</text>
+<text x="12" y="78" class="tm">（数は原論文の寝室の画像の生成器）</text>
+<text x="12" y="106" class="tb ta">① 生成器：小さく分厚い → 大きく薄い</text>
+<text x="12" y="124" class="tm">箱＝縦×横、重なりの厚み＝枚数</text>
+<rect x="12" y="144" width="110" height="30" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="67" y="164" class="tb" text-anchor="middle">100個の乱数</text>
+<line x1="67" y1="180" x2="67.0" y2="206.4" class="l sm w1"/>
+<polygon points="67,212 63.5,206.4 70.5,206.4" class="fm"/>
+<text x="110" y="192" class="ta">↓ 並べ直して 4×4 の形に</text>
+<rect x="78" y="196" width="10" height="10" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="74" y="200" width="10" height="10" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="70" y="204" width="10" height="10" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="66" y="208" width="10" height="10" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="62" y="212" width="10" height="10" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="140" y="214" class="tb">4×4</text>
+<text x="140" y="232" class="tm">1024 枚</text>
+<line x1="67" y1="238" x2="67.0" y2="261.4" class="l sm w1"/>
+<polygon points="67,267 63.5,261.4 70.5,261.4" class="fm"/>
+<text x="110" y="250" class="ta">↓ 縦横2倍・枚数半分</text>
+<rect x="71" y="255" width="16" height="16" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="67" y="259" width="16" height="16" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="63" y="263" width="16" height="16" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="59" y="267" width="16" height="16" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="140" y="272" class="tb">8×8</text>
+<text x="140" y="290" class="tm">512 枚</text>
+<line x1="67" y1="296" x2="67.0" y2="315.4" class="l sm w1"/>
+<polygon points="67,321 63.5,315.4 70.5,315.4" class="fm"/>
+<text x="110" y="308" class="ta">↓ 縦横2倍・枚数半分</text>
+<rect x="63" y="313" width="24" height="24" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="59" y="317" width="24" height="24" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="55" y="321" width="24" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="140" y="330" class="tb">16×16</text>
+<text x="140" y="348" class="tm">256 枚</text>
+<line x1="67" y1="354" x2="67.0" y2="368.4" class="l sm w1"/>
+<polygon points="67,374 63.5,368.4 70.5,368.4" class="fm"/>
+<text x="110" y="366" class="ta">↓ 縦横2倍・枚数半分</text>
+<rect x="54" y="370" width="34" height="34" class="fs sa" stroke-width="1" rx="2"/>
+<rect x="50" y="374" width="34" height="34" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="140" y="388" class="tb">32×32</text>
+<text x="140" y="406" class="tm">128 枚</text>
+<line x1="67" y1="412" x2="67.0" y2="420.4" class="l sm w1"/>
+<polygon points="67,426 63.5,420.4 70.5,420.4" class="fm"/>
+<text x="110" y="424" class="ta">↓ 縦横2倍・枚数半分</text>
+<rect x="44" y="426" width="46" height="46" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="140" y="446" class="tb">64×64</text>
+<text x="140" y="464" class="tm">3 枚（色）</text>
+<text x="12" y="496" class="tm">各段は広げる畳み込み（1マスを 2×2 に広げる</text>
+<text x="12" y="514" class="tm">向きで畳み込む）。最後は 64×64 のカラー画像</text>
+<line x1="12" y1="530" x2="308" y2="530" class="l sb w1"/>
+<text x="12" y="554" class="tb tng">② 識別器：逆向きに縮める</text>
+<rect x="12" y="566" width="92" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="58" y="586" text-anchor="middle">64×64 の画像</text>
+<line x1="104" y1="581" x2="118.4" y2="581.0" class="l sm w1"/>
+<polygon points="124,581 118.4,584.5 118.4,577.5" class="fm"/>
+<rect x="124" y="566" width="92" height="30" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="170" y="586" text-anchor="middle">縦横を半分ずつ</text>
+<line x1="216" y1="581" x2="230.4" y2="581.0" class="l sm w1"/>
+<polygon points="236,581 230.4,584.5 230.4,577.5" class="fm"/>
+<rect x="236" y="566" width="72" height="30" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="272" y="586" class="tb tng" text-anchor="middle">本物の確率</text>
+<text x="12" y="616" class="tm">縮めるのは、間隔を空けて動く畳み込み</text>
+<text x="12" y="634" class="tm">（ストライド2。1つ飛ばしに見るので縦横が半分）</text>
+<line x1="12" y1="650" x2="308" y2="650" class="l sb w1"/>
+<text x="12" y="674" class="tb">③ 安定して学ぶための構造の決まり</text>
+<text x="12" y="706" class="tb">ア　プーリング層をやめる</text>
+<text x="28" y="724" class="tm">縮小・拡大は畳み込みの動き方で行う</text>
+<text x="12" y="748" class="tb">イ　バッチ正規化を両方に入れる</text>
+<text x="28" y="766" class="tm">各層の値の散らばりをそろえる</text>
+<text x="12" y="790" class="tb">ウ　全結合の隠れ層を除く</text>
+<text x="28" y="808" class="tm">入口の乱数と出口の1つは例外</text>
+<text x="12" y="832" class="tb">エ　活性化関数を使い分ける</text>
+<text x="28" y="850" class="tm">生成器 ReLU、出力だけ Tanh</text>
+<text x="28" y="868" class="tm">識別器はすべて LeakyReLU</text>
+<rect x="12" y="894" width="296" height="66" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="24" y="914">Tanh：出力を −1〜1 に収める（画素の範囲）</text>
+<text x="24" y="934">LeakyReLU：負の入力も 0.2 倍で通す</text>
+<text x="24" y="952" class="tm">　例：入力 −5 → −5×0.2＝−1（ReLU なら 0）</text>
+<line x1="12" y1="980" x2="308" y2="980" class="l sb w1"/>
+<text x="12" y="1004" class="tb">④ 学んだこと</text>
+<text x="12" y="1024" class="tm">生成器の入力の乱数を少しずつ動かすと、</text>
+<text x="12" y="1042" class="tm">窓の無い寝室が、大きな窓のある寝室へ</text>
+<text x="12" y="1060" class="tm">なめらかに変わった</text>
+<text x="12" y="1082" class="tm">DCGAN は条件なしで作る。入力画像を別の画像に</text>
+<text x="12" y="1100" class="tm">変換するのは Pix2Pix・CycleGAN</text>
+</svg>

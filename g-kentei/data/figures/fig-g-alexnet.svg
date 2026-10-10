@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1152" role="img" aria-labelledby="fig-g-alexnet-t fig-g-alexnet-d">
+<title id="fig-g-alexnet-t">AlexNet：8層のCNNを2つのGPUに分けて学習し、ReLUとドロップアウトで速く・過学習少なく</title>
+<desc id="fig-g-alexnet-d">AlexNetは画素を入れると8層を通って1000クラスのどれかを答えるCNN。①8層の中身：入力224×224×3の画素、畳み込み1（11×11のフィルタ96枚を48枚ずつ）、畳み込み2（5×5を256枚、128枚ずつ）、畳み込み3（3×3を384枚、192枚ずつ）、畳み込み4（3×3を384枚、192枚ずつ）、畳み込み5（3×3を256枚、128枚ずつ）、全結合6と全結合7（4096個を2048個ずつ、ドロップアウトつき）、全結合8（1000クラスの確率）。各層を2つのGPUに半分ずつ載せ、GPUどうしがやり取りするのは畳み込み3と全結合の層だけ。どの層の出力にもReLUを通す。②ReLUは負なら0、正ならそのまま。入力−2、0.5、3は0、0.5、3になる。原論文の4層の例ではtanhの6倍の速さで誤差25%に届いた。③重みは約6000万個で、GPU1つのメモリ3GBに収まらないので2つに分けた。④ドロップアウトは学習中に各ニューロンを確率0.5で休ませる。2048個なら毎回およそ1024個が休み、過学習が減る。⑤ILSVRC 2012のtop-5誤り率（上位5つの答えに正解が無い割合）はAlexNetが15.3%、2位が26.2%。100枚なら外すのは約15枚と約26枚で、差は10.9ポイント。</desc>
+<text x="12" y="20" class="tb">AlexNet：8層の CNN を2つの GPU で学ぶ</text>
+<text x="12" y="42" class="tm">画素を入れると、8層を通って 1000 クラスの</text>
+<text x="12" y="60" class="tm">どれかを答える（2012年の画像分類の大会で優勝）</text>
+<text x="12" y="88" class="tb">① 8層の中身（上から下へ流れる）</text>
+<text x="156" y="110" class="tb ta" text-anchor="middle">GPU 1</text>
+<text x="258" y="110" class="tb ta" text-anchor="middle">GPU 2</text>
+<text x="12" y="132" class="tb">入力</text>
+<text x="12" y="149" class="tm">224×224×3</text>
+<rect x="110" y="120" width="194" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="207" y="138" text-anchor="middle">画像の画素（縦×横×色3）</text>
+<text x="12" y="178" class="tb">畳み込み1</text>
+<text x="12" y="195" class="tm">11×11</text>
+<rect x="110" y="166" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<rect x="212" y="166" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="156" y="184" text-anchor="middle">48 枚</text>
+<text x="258" y="184" text-anchor="middle">48 枚</text>
+<line x1="156" y1="146" x2="156.0" y2="160.4" class="l sm w1"/>
+<polygon points="156,166 152.5,160.4 159.5,160.4" class="fm"/>
+<line x1="258" y1="146" x2="258.0" y2="160.4" class="l sm w1"/>
+<polygon points="258,166 254.5,160.4 261.5,160.4" class="fm"/>
+<text x="12" y="224" class="tb">畳み込み2</text>
+<text x="12" y="241" class="tm">5×5</text>
+<rect x="110" y="212" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<rect x="212" y="212" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="156" y="230" text-anchor="middle">128 枚</text>
+<text x="258" y="230" text-anchor="middle">128 枚</text>
+<line x1="156" y1="192" x2="156.0" y2="206.4" class="l sm w1"/>
+<polygon points="156,212 152.5,206.4 159.5,206.4" class="fm"/>
+<line x1="258" y1="192" x2="258.0" y2="206.4" class="l sm w1"/>
+<polygon points="258,212 254.5,206.4 261.5,206.4" class="fm"/>
+<text x="12" y="270" class="tb">畳み込み3</text>
+<text x="12" y="287" class="tm">3×3</text>
+<rect x="110" y="258" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<rect x="212" y="258" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="156" y="276" text-anchor="middle">192 枚</text>
+<text x="258" y="276" text-anchor="middle">192 枚</text>
+<line x1="156" y1="238" x2="156.0" y2="252.4" class="l sm w1"/>
+<polygon points="156,258 152.5,252.4 159.5,252.4" class="fm"/>
+<line x1="258" y1="238" x2="258.0" y2="252.4" class="l sm w1"/>
+<polygon points="258,258 254.5,252.4 261.5,252.4" class="fm"/>
+<line x1="168" y1="238" x2="240.6" y2="256.6" class="l sa w1"/>
+<polygon points="246,258 239.7,260.0 241.4,253.2" class="fa"/>
+<line x1="246" y1="238" x2="173.4" y2="256.6" class="l sa w1"/>
+<polygon points="168,258 172.6,253.2 174.3,260.0" class="fa"/>
+<text x="12" y="316" class="tb">畳み込み4</text>
+<text x="12" y="333" class="tm">3×3</text>
+<rect x="110" y="304" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<rect x="212" y="304" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="156" y="322" text-anchor="middle">192 枚</text>
+<text x="258" y="322" text-anchor="middle">192 枚</text>
+<line x1="156" y1="284" x2="156.0" y2="298.4" class="l sm w1"/>
+<polygon points="156,304 152.5,298.4 159.5,298.4" class="fm"/>
+<line x1="258" y1="284" x2="258.0" y2="298.4" class="l sm w1"/>
+<polygon points="258,304 254.5,298.4 261.5,298.4" class="fm"/>
+<text x="12" y="362" class="tb">畳み込み5</text>
+<text x="12" y="379" class="tm">3×3</text>
+<rect x="110" y="350" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<rect x="212" y="350" width="92" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="156" y="368" text-anchor="middle">128 枚</text>
+<text x="258" y="368" text-anchor="middle">128 枚</text>
+<line x1="156" y1="330" x2="156.0" y2="344.4" class="l sm w1"/>
+<polygon points="156,350 152.5,344.4 159.5,344.4" class="fm"/>
+<line x1="258" y1="330" x2="258.0" y2="344.4" class="l sm w1"/>
+<polygon points="258,350 254.5,344.4 261.5,344.4" class="fm"/>
+<text x="12" y="408" class="tb">全結合6</text>
+<text x="12" y="425" class="tng">ドロップアウト</text>
+<rect x="110" y="396" width="92" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<rect x="212" y="396" width="92" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="156" y="414" text-anchor="middle">2048 個</text>
+<text x="258" y="414" text-anchor="middle">2048 個</text>
+<line x1="156" y1="376" x2="156.0" y2="390.4" class="l sm w1"/>
+<polygon points="156,396 152.5,390.4 159.5,390.4" class="fm"/>
+<line x1="258" y1="376" x2="258.0" y2="390.4" class="l sm w1"/>
+<polygon points="258,396 254.5,390.4 261.5,390.4" class="fm"/>
+<line x1="168" y1="376" x2="240.6" y2="394.6" class="l sa w1"/>
+<polygon points="246,396 239.7,398.0 241.4,391.2" class="fa"/>
+<line x1="246" y1="376" x2="173.4" y2="394.6" class="l sa w1"/>
+<polygon points="168,396 172.6,391.2 174.3,398.0" class="fa"/>
+<text x="12" y="454" class="tb">全結合7</text>
+<text x="12" y="471" class="tng">ドロップアウト</text>
+<rect x="110" y="442" width="92" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<rect x="212" y="442" width="92" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="156" y="460" text-anchor="middle">2048 個</text>
+<text x="258" y="460" text-anchor="middle">2048 個</text>
+<line x1="156" y1="422" x2="156.0" y2="436.4" class="l sm w1"/>
+<polygon points="156,442 152.5,436.4 159.5,436.4" class="fm"/>
+<line x1="258" y1="422" x2="258.0" y2="436.4" class="l sm w1"/>
+<polygon points="258,442 254.5,436.4 261.5,436.4" class="fm"/>
+<line x1="168" y1="422" x2="240.6" y2="440.6" class="l sa w1"/>
+<polygon points="246,442 239.7,444.0 241.4,437.2" class="fa"/>
+<line x1="246" y1="422" x2="173.4" y2="440.6" class="l sa w1"/>
+<polygon points="168,442 172.6,437.2 174.3,444.0" class="fa"/>
+<text x="12" y="500" class="tb">全結合8</text>
+<text x="12" y="517" class="tm">答え</text>
+<rect x="110" y="488" width="194" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="207" y="506" text-anchor="middle">1000 クラスの確率</text>
+<line x1="156" y1="468" x2="172.0" y2="484.0" class="l sa w1"/>
+<polygon points="176,488 169.6,486.5 174.5,481.6" class="fa"/>
+<line x1="258" y1="468" x2="242.0" y2="484.0" class="l sa w1"/>
+<polygon points="238,488 239.5,481.6 244.4,486.5" class="fa"/>
+<text x="12" y="546" class="tm">数＝その層のフィルタ（畳み込み）やニューロン</text>
+<text x="12" y="564" class="tm">　（全結合）の数。2つの GPU に半分ずつ載せた</text>
+<text x="12" y="584" class="ta">斜めの矢印（青）＝GPU どうしがやり取りする所</text>
+<text x="12" y="602" class="tm">　（畳み込み3と全結合の層だけ。ほかは自分の側だけ）</text>
+<text x="12" y="622" class="tm">どの層の出力にも ReLU を通す</text>
+<line x1="12" y1="638" x2="308" y2="638" class="l sb w1"/>
+<text x="12" y="662" class="tb">② 工夫1：ReLU（負なら0、正ならそのまま）</text>
+<text x="12" y="686" class="tm">入力</text>
+<text x="150" y="686" text-anchor="middle">−2</text>
+<text x="210" y="686" text-anchor="middle">0.5</text>
+<text x="270" y="686" text-anchor="middle">3</text>
+<text x="12" y="708" class="tm">ReLU の出力</text>
+<text x="150" y="708" class="tb ta" text-anchor="middle">0</text>
+<text x="210" y="708" class="tb ta" text-anchor="middle">0.5</text>
+<text x="270" y="708" class="tb ta" text-anchor="middle">3</text>
+<text x="12" y="732" class="tm">計算が軽く、正の側で勾配（重みを直す量）が</text>
+<text x="12" y="750" class="tm">小さくならない。原論文の4層の例では、tanh の</text>
+<text x="12" y="768" class="tm">6倍の速さで目標の誤差 25% に届いた</text>
+<line x1="12" y1="784" x2="308" y2="784" class="l sb w1"/>
+<text x="12" y="808" class="tb">③ 工夫2：2つの GPU に分ける</text>
+<text x="12" y="828" class="tm">重みは約 6000 万個。GPU 1つのメモリ（3GB）に</text>
+<text x="12" y="846" class="tm">収まらないので、各層を半分ずつ2つに載せた</text>
+<line x1="12" y1="862" x2="308" y2="862" class="l sb w1"/>
+<text x="12" y="886" class="tng tb">④ 工夫3：ドロップアウト（赤の2層）</text>
+<text x="12" y="906" class="tm">学習中、各ニューロンを確率 0.5 で休ませる</text>
+<text x="12" y="924" class="tm">例：2048 個のうち、毎回およそ 1024 個が休む</text>
+<text x="12" y="942" class="tm">→ 特定の仲間に頼れず、過学習が減る</text>
+<line x1="12" y1="958" x2="308" y2="958" class="l sb w1"/>
+<text x="12" y="982" class="tb">⑤ 結果：ILSVRC 2012（1000 クラスの分類）</text>
+<text x="12" y="1002" class="tm">top-5 誤り率＝上位5つの答えに正解が無い割合</text>
+<text x="12" y="1030" class="tb tok">AlexNet</text>
+<rect x="80" y="1016" width="122.4" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="208.4" y="1031" class="tb tok">15.3%</text>
+<text x="12" y="1068" class="tb">2位</text>
+<rect x="80" y="1054" width="209.6" height="20" class="fs sb" stroke-width="1.5"/>
+<text x="283.6" y="1069" class="tb" text-anchor="end">26.2%</text>
+<text x="12" y="1098" class="tm">100 枚なら外すのは約 15 枚と約 26 枚</text>
+<text x="12" y="1116" class="tb ta">差は 26.2−15.3＝10.9 ポイント</text>
+<text x="12" y="1136" class="tm">→ 人が作った特徴に頼る方法を大きく上回った</text>
+</svg>

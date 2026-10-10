@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1248" role="img" aria-labelledby="fig-g-fpn-t fig-g-fpn-d">
+<title id="fig-g-fpn-t">FPN：深い層の特徴を上から拡大して戻し、同じ大きさの浅い層の特徴と横の接続で足して、どの大きさのマップにも意味を持たせる</title>
+<desc id="fig-g-fpn-d">800×800の写真に遠くの小さな人と近くの大きな人が写っている例。①形：左は普通のCNNの特徴で、下からC2が200×200、C3が100×100、C4が50×50、C5が25×25。上ほど小さく粗いが人らしいという意味が強い。右はFPNの出力P5〜P2で、上から戻す道（青の下向き矢印）は縦横を2倍に拡大して1つ下へ渡し、横の接続（赤の横矢印）は同じ大きさのCの特徴を足し込む。②1回の合流の例（数は説明用、マスの数はその位置の人らしさの強さ）：上の段の2×2は左上だけ0.8。2倍に拡大すると4×4の左上4マスがすべて0.8になり、人の中心がどこか分からない。横から来る1つ下の段のCNNの特徴（1×1の畳み込みで枚数を256にそろえる）は左上から0.1、0.4、0.1、0.1で、位置は細かいが意味は弱い。同じ位置どうしを足すと0.8＋0.4＝1.2、0.8＋0.1＝0.9となり、1.2のマスに中心を絞れる。これをP5からP2までくり返す。③32×32画素の小さな人は1マス4画素のP2（200×200）で、256×256画素の大きな人は1マス32画素のP5（25×25）で見つける。どの段も意味を持つので細かいP2でも人と分かり、画像ピラミッドより軽い。U-Netは連結で塗り分け、FPNは足し算で段ごとに検出する。</desc>
+<text x="12" y="20" class="tb">FPN：上から戻す道と横の接続で、</text>
+<text x="12" y="38" class="tb">どの大きさのマップにも意味を持たせる</text>
+<text x="12" y="60" class="tm">例：800×800 の写真に、遠くの小さな人と</text>
+<text x="12" y="78" class="tm">近くの大きな人が写っている</text>
+<text x="12" y="106" class="tb">① 形（数は 800×800 の入力での縦×横）</text>
+<text x="80" y="128" class="tb" text-anchor="middle">CNN の特徴</text>
+<text x="80" y="144" class="tm" text-anchor="middle">（下から上へ）</text>
+<text x="240" y="128" class="tb ta" text-anchor="middle">FPN の出力</text>
+<text x="240" y="144" class="tm" text-anchor="middle">（上から下へ）</text>
+<rect x="48" y="156" width="64" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="80" y="175" text-anchor="middle">C5 25×25</text>
+<rect x="208" y="156" width="64" height="28" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="240" y="175" class="tb" text-anchor="middle">P5 25×25</text>
+<line x1="112" y1="170" x2="202.4" y2="170.0" class="l sng w2"/>
+<polygon points="208,170 202.4,173.5 202.4,166.5" class="fng"/>
+<line x1="80" y1="204" x2="80.0" y2="189.6" class="l sm w1"/>
+<polygon points="80,184 83.5,189.6 76.5,189.6" class="fm"/>
+<line x1="240" y1="184" x2="240.0" y2="198.4" class="l sa w2"/>
+<polygon points="240,204 236.5,198.4 243.5,198.4" class="fa"/>
+<rect x="38" y="204" width="84" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="80" y="223" text-anchor="middle">C4 50×50</text>
+<rect x="198" y="204" width="84" height="28" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="240" y="223" class="tb" text-anchor="middle">P4 50×50</text>
+<line x1="122" y1="218" x2="192.4" y2="218.0" class="l sng w2"/>
+<polygon points="198,218 192.4,221.5 192.4,214.5" class="fng"/>
+<line x1="80" y1="252" x2="80.0" y2="237.6" class="l sm w1"/>
+<polygon points="80,232 83.5,237.6 76.5,237.6" class="fm"/>
+<line x1="240" y1="232" x2="240.0" y2="246.4" class="l sa w2"/>
+<polygon points="240,252 236.5,246.4 243.5,246.4" class="fa"/>
+<rect x="26" y="252" width="108" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="80" y="271" text-anchor="middle">C3 100×100</text>
+<rect x="186" y="252" width="108" height="28" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="240" y="271" class="tb" text-anchor="middle">P3 100×100</text>
+<line x1="134" y1="266" x2="180.4" y2="266.0" class="l sng w2"/>
+<polygon points="186,266 180.4,269.5 180.4,262.5" class="fng"/>
+<line x1="80" y1="300" x2="80.0" y2="285.6" class="l sm w1"/>
+<polygon points="80,280 83.5,285.6 76.5,285.6" class="fm"/>
+<line x1="240" y1="280" x2="240.0" y2="294.4" class="l sa w2"/>
+<polygon points="240,300 236.5,294.4 243.5,294.4" class="fa"/>
+<rect x="12" y="300" width="136" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="80" y="319" text-anchor="middle">C2 200×200</text>
+<rect x="172" y="300" width="136" height="28" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="240" y="319" class="tb" text-anchor="middle">P2 200×200</text>
+<line x1="148" y1="314" x2="166.4" y2="314.0" class="l sng w2"/>
+<polygon points="172,314 166.4,317.5 166.4,310.5" class="fng"/>
+<line x1="80" y1="350" x2="80.0" y2="335.6" class="l sm w1"/>
+<polygon points="80,330 83.5,335.6 76.5,335.6" class="fm"/>
+<text x="80" y="364" class="tm" text-anchor="middle">入力 800×800</text>
+<text x="12" y="380" class="tm">左：普通の CNN。上ほど小さく粗いが、</text>
+<text x="12" y="398" class="tm">　『人らしい』という意味が強い</text>
+<text x="12" y="418" class="ta">青の下向き矢印＝上から戻す道</text>
+<text x="12" y="436" class="tm">　（縦横を2倍に拡大して1つ下へ渡す）</text>
+<text x="12" y="456" class="tng">赤の横矢印＝横の接続（同じ大きさどうし）</text>
+<text x="12" y="474" class="tm">　→ 下の『② 1回の合流』で数で見る</text>
+<line x1="12" y1="490" x2="308" y2="490" class="l sb w1"/>
+<text x="12" y="514" class="tb">② 1回の合流（数は説明用の例）</text>
+<text x="12" y="534" class="tm">マスの数＝その位置の『人らしさ』の強さ</text>
+<text x="12" y="560" class="tb">上の段</text>
+<text x="12" y="576" class="tm">2×2</text>
+<rect x="60" y="548" width="52" height="52" class="fas sa" stroke-width="1"/>
+<text x="86" y="578" class="tb" text-anchor="middle">0.8</text>
+<rect x="112" y="548" width="52" height="52" class="fas sa" stroke-width="1"/>
+<text x="138" y="578" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="600" width="52" height="52" class="fas sa" stroke-width="1"/>
+<text x="86" y="630" class="tm" text-anchor="middle">0</text>
+<rect x="112" y="600" width="52" height="52" class="fas sa" stroke-width="1"/>
+<text x="138" y="630" class="tm" text-anchor="middle">0</text>
+<line x1="168" y1="600" x2="190.4" y2="600.0" class="l sa w1"/>
+<polygon points="196,600 190.4,603.5 190.4,596.5" class="fa"/>
+<text x="182" y="592" class="ta" text-anchor="middle">2倍</text>
+<rect x="204" y="548" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="217" y="565" class="tb" text-anchor="middle">0.8</text>
+<rect x="230" y="548" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="243" y="565" class="tb" text-anchor="middle">0.8</text>
+<rect x="256" y="548" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="269" y="565" class="tm" text-anchor="middle">0</text>
+<rect x="282" y="548" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="295" y="565" class="tm" text-anchor="middle">0</text>
+<rect x="204" y="574" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="217" y="591" class="tb" text-anchor="middle">0.8</text>
+<rect x="230" y="574" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="243" y="591" class="tb" text-anchor="middle">0.8</text>
+<rect x="256" y="574" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="269" y="591" class="tm" text-anchor="middle">0</text>
+<rect x="282" y="574" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="295" y="591" class="tm" text-anchor="middle">0</text>
+<rect x="204" y="600" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="217" y="617" class="tm" text-anchor="middle">0</text>
+<rect x="230" y="600" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="243" y="617" class="tm" text-anchor="middle">0</text>
+<rect x="256" y="600" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="269" y="617" class="tm" text-anchor="middle">0</text>
+<rect x="282" y="600" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="295" y="617" class="tm" text-anchor="middle">0</text>
+<rect x="204" y="626" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="217" y="643" class="tm" text-anchor="middle">0</text>
+<rect x="230" y="626" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="243" y="643" class="tm" text-anchor="middle">0</text>
+<rect x="256" y="626" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="269" y="643" class="tm" text-anchor="middle">0</text>
+<rect x="282" y="626" width="26" height="26" class="fas sa" stroke-width="1"/>
+<text x="295" y="643" class="tm" text-anchor="middle">0</text>
+<text x="182" y="618" class="ta" text-anchor="middle">拡大</text>
+<text x="12" y="676" class="tm">左上の4マスが同じ 0.8 で、人の中心が</text>
+<text x="12" y="694" class="tm">どこか分からない（位置が粗い）</text>
+<text x="12" y="722" class="tb tng">横から</text>
+<text x="12" y="738" class="tm">4×4</text>
+<rect x="60" y="710" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="73" y="727" class="tb" text-anchor="middle">0.1</text>
+<rect x="86" y="710" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="99" y="727" class="tb" text-anchor="middle">0.4</text>
+<rect x="112" y="710" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="125" y="727" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="710" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="151" y="727" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="736" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="73" y="753" class="tb" text-anchor="middle">0.1</text>
+<rect x="86" y="736" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="99" y="753" class="tb" text-anchor="middle">0.1</text>
+<rect x="112" y="736" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="125" y="753" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="736" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="151" y="753" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="762" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="73" y="779" class="tm" text-anchor="middle">0</text>
+<rect x="86" y="762" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="99" y="779" class="tm" text-anchor="middle">0</text>
+<rect x="112" y="762" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="125" y="779" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="762" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="151" y="779" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="788" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="73" y="805" class="tm" text-anchor="middle">0</text>
+<rect x="86" y="788" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="99" y="805" class="tm" text-anchor="middle">0</text>
+<rect x="112" y="788" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="125" y="805" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="788" width="26" height="26" class="fs sb" stroke-width="1"/>
+<text x="151" y="805" class="tm" text-anchor="middle">0</text>
+<text x="176" y="722" class="tm">1つ下の段の</text>
+<text x="176" y="740" class="tm">CNN の特徴</text>
+<text x="176" y="758" class="tm">（1×1 の畳み込み</text>
+<text x="176" y="776" class="tm">　で 256 枚に）</text>
+<text x="12" y="838" class="tm">位置は細かいが、意味は弱い</text>
+<text x="12" y="866" class="tb tok">足す</text>
+<text x="12" y="882" class="tm">＝P</text>
+<rect x="60" y="854" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="73" y="871" class="tb" text-anchor="middle">0.9</text>
+<rect x="86" y="854" width="26" height="26" class="fng sng" stroke-width="1"/>
+<text x="99" y="871" class="tb tng" text-anchor="middle">1.2</text>
+<rect x="112" y="854" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="125" y="871" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="854" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="151" y="871" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="880" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="73" y="897" class="tb" text-anchor="middle">0.9</text>
+<rect x="86" y="880" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="99" y="897" class="tb" text-anchor="middle">0.9</text>
+<rect x="112" y="880" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="125" y="897" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="880" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="151" y="897" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="906" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="73" y="923" class="tm" text-anchor="middle">0</text>
+<rect x="86" y="906" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="99" y="923" class="tm" text-anchor="middle">0</text>
+<rect x="112" y="906" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="125" y="923" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="906" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="151" y="923" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="932" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="73" y="949" class="tm" text-anchor="middle">0</text>
+<rect x="86" y="932" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="99" y="949" class="tm" text-anchor="middle">0</text>
+<rect x="112" y="932" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="125" y="949" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="932" width="26" height="26" class="fok sok" stroke-width="1"/>
+<text x="151" y="949" class="tm" text-anchor="middle">0</text>
+<text x="176" y="866" class="tm">同じ位置どうしを足す</text>
+<text x="176" y="884" class="tb tng">0.8＋0.4＝1.2</text>
+<text x="176" y="902" class="tm">0.8＋0.1＝0.9</text>
+<text x="12" y="982" class="tm">→ 1.2 のマスに中心を絞れる。意味（0.8）と</text>
+<text x="12" y="1000" class="tm">　細かい位置（0.4）の両方を持つマップになる</text>
+<text x="12" y="1020" class="tm">これを P5→P4→P3→P2 とくり返す</text>
+<line x1="12" y1="1036" x2="308" y2="1036" class="l sb w1"/>
+<text x="12" y="1060" class="tb">③ 大きさに合ったマップで見つける</text>
+<rect x="12" y="1072" width="140" height="64" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="82" y="1092" class="tb" text-anchor="middle">小さな人 32×32 画素</text>
+<text x="82" y="1110" text-anchor="middle">→ P2（200×200）</text>
+<text x="82" y="1128" class="tm" text-anchor="middle">1マス＝4画素</text>
+<rect x="168" y="1072" width="140" height="64" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="238" y="1092" class="tb" text-anchor="middle">大きな人 256×256 画素</text>
+<text x="238" y="1110" text-anchor="middle">→ P5（25×25）</text>
+<text x="238" y="1128" class="tm" text-anchor="middle">1マス＝32画素</text>
+<text x="12" y="1158" class="tm">どの段も意味を持つので、細かい P2 でも</text>
+<text x="12" y="1176" class="tm">人と分かる。画像を何段にも縮めて調べ直す</text>
+<text x="12" y="1194" class="tm">（画像ピラミッド）より軽い</text>
+<text x="12" y="1216" class="tm">U-Net は連結（枚数を並べる）で塗り分け、</text>
+<text x="12" y="1234" class="tm">FPN は足し算で、段ごとに検出する</text>
+</svg>

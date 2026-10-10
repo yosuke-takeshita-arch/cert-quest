@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1052" role="img" aria-labelledby="fig-g-prompt-engineering-t fig-g-prompt-engineering-d">
+<title id="fig-g-prompt-engineering-t">プロンプトエンジニアリング：重みを変えずに、指示文（プロンプト）の書き方を変えて答えを変える。Chain-of-Thoughtとシステムプロンプトの例</title>
+<desc id="fig-g-prompt-engineering-d">Wei ら（2022）の図1を日本語にした例。①Aはふつうのプロンプトで、例はロジャーがボールを5個持っていて3個入りの缶を2つ買ったら今いくつか、答えは11、と答えだけを見せる。問題は食堂にりんごが23個あり20個を使い6個買い足したら今いくつか。モデルは答えは27と答えて不正解。BはChain-of-Thoughtで、例に、はじめ5個、3個入り2缶で2×3＝6個、5＋6＝11、答えは11と途中の手順も書く。同じりんごの問題に、モデルは、はじめ23個、20個使って23−20＝3、6個買って3＋6＝9、答えは9と手順を書いて正解する。違いは例の書き方だけ。②算数の文章題GSM8Kの正答率は、PaLM 540Bに例を8つ見せたとき、ふつう17.9%、手順つき56.9%で、39.0ポイント上がった。小さなモデルでは上がらなかった。③システムプロンプトは会話の前に与える指示で、説明用の例として、役割を小学生に教える先生にするとReLUって何という同じ質問にマイナスは0にするしかけだよと短く答え、論文を書く研究者にすると活性化関数の一種でmax(0, x)と定義…と答える。モデルは同じでも口調や詳しさが変わる。どれも重みを変えない。追加のデータで重みを直すのはファインチューニング。</desc>
+<text x="12" y="20" class="tb">プロンプトエンジニアリング：</text>
+<text x="12" y="38" class="tb">重みはそのまま、指示文の書き方で答えが変わる</text>
+<text x="12" y="60" class="tm">例：Wei ら（2022）の図1を日本語にしたもの</text>
+<text x="12" y="88" class="tb">① 例の書き方だけを変える（同じモデル）</text>
+<rect x="12" y="100" width="296" height="122" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="120" class="tb">A　ふつうのプロンプト（例は答えだけ）</text>
+<text x="22" y="140" class="tm">例：ロジャーはボールを5個持っている。</text>
+<text x="22" y="158" class="tm">　3個入りの缶を2つ買った。今いくつ？</text>
+<text x="22" y="176" class="tm">　→ 答えは 11</text>
+<text x="22" y="194">問題：食堂にりんごが23個。20個を使い、</text>
+<text x="22" y="212">　6個買い足した。今いくつ？</text>
+<rect x="12" y="228" width="296" height="30" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="22" y="248" class="tb tng">モデル：答えは 27　→ 不正解</text>
+<rect x="12" y="276" width="296" height="122" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="296" class="tb ta">B　Chain-of-Thought（例に途中の手順も書く）</text>
+<text x="22" y="316" class="tm">例：ロジャーはボールを5個持っている。</text>
+<text x="22" y="334" class="tm">　3個入りの缶を2つ買った。今いくつ？</text>
+<text x="22" y="352" class="ta">　→ はじめ5個。3個入り2缶で 2×3＝6個。</text>
+<text x="22" y="370" class="ta">　　5＋6＝11。答えは 11</text>
+<text x="22" y="388">問題：（A と同じりんごの問題）</text>
+<rect x="12" y="404" width="296" height="66" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="22" y="424" class="tok">モデル：はじめ23個。20個使って</text>
+<text x="22" y="442" class="tok">　23−20＝3。6個買って 3＋6＝9。</text>
+<text x="22" y="460" class="tb tok">　答えは 9　→ 正解</text>
+<text x="12" y="488" class="tm">違いは例の書き方だけ。手順を見せると、</text>
+<text x="12" y="506" class="tm">モデルも手順を書いてから答えるようになる</text>
+<line x1="12" y1="522" x2="308" y2="522" class="l sb w1"/>
+<text x="12" y="546" class="tb">② 算数の文章題（GSM8K）の正答率</text>
+<text x="12" y="566" class="tm">PaLM 540B に、例を8つ見せたとき</text>
+<text x="12" y="594" class="tb">A ふつう</text>
+<rect x="100" y="578" width="57.28" height="22" class="fs sb" stroke-width="1.5" rx="2"/>
+<text x="163.28" y="594" class="tb">17.9%</text>
+<text x="12" y="626" class="tb ta">B 手順つき</text>
+<rect x="100" y="610" width="182.08" height="22" class="fas sa" stroke-width="1.5" rx="2"/>
+<text x="276.08000000000004" y="626" class="tb ta" text-anchor="end">56.9%</text>
+<text x="12" y="652" class="tb ta">→ 56.9−17.9＝39.0 ポイント上がった</text>
+<text x="12" y="672" class="tm">ただし小さなモデルでは上がらなかった</text>
+<text x="12" y="690" class="tm">（十分に大きなモデルで現れる効果）</text>
+<line x1="12" y1="706" x2="308" y2="706" class="l sb w1"/>
+<text x="12" y="730" class="tb">③ システムプロンプト：先に役割を決める</text>
+<text x="12" y="750" class="tm">会話の前に与える指示（例は説明用）</text>
+<rect x="12" y="762" width="140" height="74" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="82" y="782" class="tb ta" text-anchor="middle">役割：小学生に</text>
+<text x="82" y="800" class="tb ta" text-anchor="middle">教える先生</text>
+<text x="82" y="822" class="tm" text-anchor="middle">やさしい言葉で短く</text>
+<rect x="168" y="762" width="140" height="74" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="238" y="782" class="tb" text-anchor="middle">役割：論文を書く</text>
+<text x="238" y="800" class="tb" text-anchor="middle">研究者</text>
+<text x="238" y="822" class="tm" text-anchor="middle">用語と根拠をつけて</text>
+<line x1="82" y1="836" x2="82.0" y2="850.4" class="l sm w1"/>
+<polygon points="82,856 78.5,850.4 85.5,850.4" class="fm"/>
+<line x1="238" y1="836" x2="238.0" y2="850.4" class="l sm w1"/>
+<polygon points="238,856 234.5,850.4 241.5,850.4" class="fm"/>
+<rect x="12" y="856" width="296" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="160" y="875" class="tb" text-anchor="middle">同じ質問：ReLU って何？</text>
+<line x1="82" y1="884" x2="82.0" y2="898.4" class="l sm w1"/>
+<polygon points="82,904 78.5,898.4 85.5,898.4" class="fm"/>
+<line x1="238" y1="884" x2="238.0" y2="898.4" class="l sm w1"/>
+<polygon points="238,904 234.5,898.4 241.5,898.4" class="fm"/>
+<rect x="12" y="904" width="140" height="56" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="82" y="926" text-anchor="middle">マイナスは0に</text>
+<text x="82" y="946" text-anchor="middle">するしかけだよ</text>
+<rect x="168" y="904" width="140" height="56" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="238" y="926" text-anchor="middle">活性化関数の一種で</text>
+<text x="238" y="946" text-anchor="middle">max(0, x) と定義…</text>
+<text x="12" y="980" class="tm">→ モデルは同じでも、口調や詳しさが変わる</text>
+<line x1="12" y1="996" x2="308" y2="996" class="l sb w1"/>
+<text x="12" y="1020" class="tm">どれも重みを変えない。追加のデータで</text>
+<text x="12" y="1038" class="tm">重みを直すのはファインチューニング</text>
+</svg>

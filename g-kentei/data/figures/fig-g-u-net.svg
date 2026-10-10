@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 934" role="img" aria-labelledby="fig-g-u-net-t fig-g-u-net-d">
+<title id="fig-g-u-net-t">U-Net：画像を縮める側の各段の特徴を、同じ大きさの戻す側へ連結して渡すU字型のモデル</title>
+<desc id="fig-g-u-net-d">U-Netで顕微鏡の細胞の画像を画素ごとに細胞か境界かに塗り分ける例。①U字の形（原論文の図の大きさ）：縮める側（左）は568×568で64枚、280×280で128枚、136×136で256枚、64×64で512枚と、2×2の最大値で縦横を半分にし枚数を2倍にする。底は28×28で1024枚。1マスが入力（572×572）の約20画素分で、何があるかは分かるが位置は粗い。戻す側（右）は52×52で512枚、100×100で256枚、196×196で128枚、388×388で64枚と、縦横を2倍に広げ枚数を半分にする。同じ段どうしを赤い矢印で連結する。②いちばん上の段の連結：左からの64枚（細かい位置が分かる）と、下から戻った64枚（何があるかが分かる）を重ねて64＋64＝128枚にし、畳み込みで64枚にしてから画素ごとに2択にする。388×388の各画素で、位置の細かさと意味の両方を使って細胞か境界かを決める。連結は足し算ではなく枚数を並べて増やす。畳み込みで縁が少し削れるので、左の特徴の中央を切り出してから連結する。③学習に使えたのは512×512の画像30枚だけで、弾性変形などのデータ拡張を多用して、それまでの最良を上回った。512×512の塗り分けはGPUで1秒かからない。似た形のSegNetは、特徴ではなく最大値の位置の番号だけを渡す。</desc>
+<text x="12" y="20" class="tb">U-Net：縮める側の特徴を、戻す側へ連結</text>
+<text x="12" y="42" class="tm">例：顕微鏡の細胞の画像を、画素ごとに</text>
+<text x="12" y="60" class="tm">『細胞』か『境界』かに塗り分ける（原論文の例）</text>
+<text x="12" y="88" class="tb">① U 字の形（数は原論文の図の大きさ）</text>
+<text x="12" y="106" class="tm">箱の上の行＝縦×横のマス数、下の行＝枚数</text>
+<rect x="14" y="118" width="96" height="38" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="62" y="134" class="tb" text-anchor="middle">568×568</text>
+<text x="62" y="150" text-anchor="middle">64 枚</text>
+<rect x="210" y="118" width="96" height="38" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="258" y="134" class="tb tok" text-anchor="middle">388×388</text>
+<text x="258" y="150" class="tok" text-anchor="middle">64 枚</text>
+<line x1="110" y1="137" x2="204.4" y2="137.0" class="l sng w2"/>
+<polygon points="210,137 204.4,140.5 204.4,133.5" class="fng"/>
+<text x="160" y="132" class="tb tng" text-anchor="middle">連結</text>
+<line x1="62" y1="156" x2="62.0" y2="170.4" class="l sm w1"/>
+<polygon points="62,176 58.5,170.4 65.5,170.4" class="fm"/>
+<line x1="258" y1="176" x2="258.0" y2="161.6" class="l sm w1"/>
+<polygon points="258,156 261.5,161.6 254.5,161.6" class="fm"/>
+<rect x="14" y="176" width="96" height="38" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="62" y="192" class="tb" text-anchor="middle">280×280</text>
+<text x="62" y="208" text-anchor="middle">128 枚</text>
+<rect x="210" y="176" width="96" height="38" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="258" y="192" class="tb tok" text-anchor="middle">196×196</text>
+<text x="258" y="208" class="tok" text-anchor="middle">128 枚</text>
+<line x1="110" y1="195" x2="204.4" y2="195.0" class="l sng w2"/>
+<polygon points="210,195 204.4,198.5 204.4,191.5" class="fng"/>
+<text x="160" y="190" class="tb tng" text-anchor="middle">連結</text>
+<line x1="62" y1="214" x2="62.0" y2="228.4" class="l sm w1"/>
+<polygon points="62,234 58.5,228.4 65.5,228.4" class="fm"/>
+<line x1="258" y1="234" x2="258.0" y2="219.6" class="l sm w1"/>
+<polygon points="258,214 261.5,219.6 254.5,219.6" class="fm"/>
+<rect x="14" y="234" width="96" height="38" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="62" y="250" class="tb" text-anchor="middle">136×136</text>
+<text x="62" y="266" text-anchor="middle">256 枚</text>
+<rect x="210" y="234" width="96" height="38" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="258" y="250" class="tb tok" text-anchor="middle">100×100</text>
+<text x="258" y="266" class="tok" text-anchor="middle">256 枚</text>
+<line x1="110" y1="253" x2="204.4" y2="253.0" class="l sng w2"/>
+<polygon points="210,253 204.4,256.5 204.4,249.5" class="fng"/>
+<text x="160" y="248" class="tb tng" text-anchor="middle">連結</text>
+<line x1="62" y1="272" x2="62.0" y2="286.4" class="l sm w1"/>
+<polygon points="62,292 58.5,286.4 65.5,286.4" class="fm"/>
+<line x1="258" y1="292" x2="258.0" y2="277.6" class="l sm w1"/>
+<polygon points="258,272 261.5,277.6 254.5,277.6" class="fm"/>
+<rect x="14" y="292" width="96" height="38" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="62" y="308" class="tb" text-anchor="middle">64×64</text>
+<text x="62" y="324" text-anchor="middle">512 枚</text>
+<rect x="210" y="292" width="96" height="38" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="258" y="308" class="tb tok" text-anchor="middle">52×52</text>
+<text x="258" y="324" class="tok" text-anchor="middle">512 枚</text>
+<line x1="110" y1="311" x2="204.4" y2="311.0" class="l sng w2"/>
+<polygon points="210,311 204.4,314.5 204.4,307.5" class="fng"/>
+<text x="160" y="306" class="tb tng" text-anchor="middle">連結</text>
+<rect x="112" y="350" width="96" height="38" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="160" y="366" class="tb" text-anchor="middle">28×28</text>
+<text x="160" y="382" text-anchor="middle">1024 枚</text>
+<line x1="62" y1="330" x2="122.6" y2="348.4" class="l sm w1"/>
+<polygon points="128,350 121.6,351.7 123.7,345.0" class="fm"/>
+<line x1="192" y1="350" x2="252.6" y2="331.6" class="l sm w1"/>
+<polygon points="258,330 253.7,335.0 251.6,328.3" class="fm"/>
+<text x="12" y="366" class="tm">縮める</text>
+<text x="12" y="382" class="tm">（左を下へ）</text>
+<text x="308" y="366" class="tm" text-anchor="end">戻す</text>
+<text x="308" y="382" class="tm" text-anchor="end">（右を上へ）</text>
+<text x="12" y="410" class="tm">左：2×2 の最大値で縦横を半分にし、枚数を2倍</text>
+<text x="12" y="428" class="tm">右：縦横を2倍に広げ、枚数を半分に</text>
+<text x="12" y="448" class="tm">底の 28×28 の1マスは入力（572×572）の</text>
+<text x="12" y="466" class="tm">約20画素分。何があるかは分かるが位置は粗い</text>
+<line x1="12" y1="482" x2="308" y2="482" class="l sb w1"/>
+<text x="12" y="506" class="tb">② 連結の中身（いちばん上の段の例）</text>
+<rect x="12" y="520" width="140" height="52" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="82" y="540" class="tb" text-anchor="middle">左から 64 枚</text>
+<text x="82" y="560" class="tm" text-anchor="middle">細かい位置が分かる</text>
+<rect x="168" y="520" width="140" height="52" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="238" y="540" class="tb" text-anchor="middle">下から戻った 64 枚</text>
+<text x="238" y="560" class="tm" text-anchor="middle">何があるかが分かる</text>
+<text x="160" y="552" class="tb" text-anchor="middle">＋</text>
+<line x1="82" y1="572" x2="134.8" y2="592.0" class="l sng w1"/>
+<polygon points="140,594 133.5,595.3 136.0,588.7" class="fng"/>
+<line x1="238" y1="572" x2="185.2" y2="592.0" class="l sng w1"/>
+<polygon points="180,594 184.0,588.7 186.5,595.3" class="fng"/>
+<rect x="60" y="594" width="200" height="30" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="160" y="614" class="tb tng" text-anchor="middle">重ねて 64＋64＝128 枚</text>
+<line x1="160" y1="624" x2="160.0" y2="636.4" class="l sm w1"/>
+<polygon points="160,642 156.5,636.4 163.5,636.4" class="fm"/>
+<rect x="60" y="642" width="200" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="662" class="tb tok" text-anchor="middle">畳み込みで 64 枚 → 画素ごとに2択</text>
+<text x="12" y="692" class="tm">→ 388×388 の各画素に『細胞』か『境界』か</text>
+<text x="12" y="710" class="tm">　位置の細かさと意味の両方を使って決める</text>
+<text x="12" y="730" class="tm">連結は足し算ではなく、枚数を並べて増やす。</text>
+<text x="12" y="748" class="tm">畳み込みでは縁が少し削れるので、左の特徴の</text>
+<text x="12" y="766" class="tm">中央を切り出して大きさをそろえてから連結する</text>
+<line x1="12" y1="782" x2="308" y2="782" class="l sb w1"/>
+<text x="12" y="806" class="tb">③ 少ない画像で学べた</text>
+<text x="12" y="826" class="tm">学習に使えたのは 512×512 の画像 30 枚だけ。</text>
+<text x="12" y="844" class="tm">画像を少しずつ曲げる（弾性変形）などの</text>
+<text x="12" y="862" class="tm">データ拡張を多用して、それまでの最良を上回った</text>
+<text x="12" y="882" class="tm">512×512 の塗り分けは GPU で1秒かからない</text>
+<text x="12" y="902" class="tm">似た形の SegNet は、特徴ではなく最大値の</text>
+<text x="12" y="920" class="tm">位置の番号だけを戻す側へ渡す</text>
+</svg>

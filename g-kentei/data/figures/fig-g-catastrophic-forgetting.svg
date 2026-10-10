@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 986" role="img" aria-labelledby="fig-g-catastrophic-forgetting-t fig-g-catastrophic-forgetting-d">
+<title id="fig-g-catastrophic-forgetting-t">破滅的忘却：タスクBを学ぶとタスクAに大事な重みが書き換えられ、Aができなくなる。EWCは大事な重みにばねを付けて防ぐ</title>
+<desc id="fig-g-catastrophic-forgetting-d">重みがw1とw2の2つだけのモデルの説明用の例。①タスクAはw1を2にしたく、w1だけを使う。タスクBはw1＋w2を8にしたく、両方を使う。誤差は目標とのずれを2乗したもので、0なら完ぺき。②横軸w1、縦軸w2の平面で点の動きを描く。青の破線はAの誤差が0の線（w1＝2）、緑の破線はBの誤差が0の線（w1＋w2＝8）。点1はAを学んだあとの(2, 0)で、Aの誤差は(2−2)²＝0。点2はそのままBだけ学んだ(5, 3)。Bはw1とw2に同じだけ効くので、足りない8−2＝6を3ずつ分けて動かす。Bの誤差は(5＋3−8)²＝0だが、Aの誤差は(5−2)²＝9になりAを忘れた。点3はEWCでBを学んだ(2, 6)。Aに大事なw1には強いばねを付けて2から動きにくくし、Aで使わないw2はばね無しなので、w2だけが6動く。Bの誤差は(2＋6−8)²＝0、Aの誤差は(2−2)²＝0で両方できる。③原因はAに大事な重みがBのために書き換えられること。EWCはばねの強さを重みごとに変え、Aに大事かどうかで強さを決める。全部に同じ強さだとBを覚える余地も減る。過学習とは別の問題。</desc>
+<text x="12" y="20" class="tb">破滅的忘却：B を学ぶと A を忘れる</text>
+<text x="12" y="42" class="tm">例：重みが w1 と w2 の2つだけのモデル</text>
+<text x="12" y="60" class="tm">（数は説明用に計算した）</text>
+<text x="12" y="88" class="tb">① 2つのタスクの目標</text>
+<rect x="12" y="100" width="296" height="48" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="24" y="120" class="tb ta">タスク A：w1 を 2 にしたい</text>
+<text x="24" y="140" class="tm">　A は w1 だけを使う（w2 は使わない）</text>
+<rect x="12" y="156" width="296" height="48" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="24" y="176" class="tb tok">タスク B：w1＋w2 を 8 にしたい</text>
+<text x="24" y="196" class="tm">　B は w1 と w2 の両方を使う</text>
+<text x="12" y="224" class="tm">誤差＝目標とのずれを2乗したもの</text>
+<text x="12" y="242" class="tm">（0 なら完ぺき。大きいほど下手）</text>
+<line x1="12" y1="258" x2="308" y2="258" class="l sb w1"/>
+<text x="12" y="282" class="tb">② 順番に学ぶと（点の動き）</text>
+<line x1="58" y1="530" x2="58" y2="534" class="l sm w1"/>
+<text x="58" y="548" class="tm" text-anchor="middle">0</text>
+<line x1="54" y1="530" x2="58" y2="530" class="l sm w1"/>
+<text x="50" y="534" class="tm" text-anchor="end">0</text>
+<line x1="110" y1="530" x2="110" y2="534" class="l sm w1"/>
+<text x="110" y="548" class="tm" text-anchor="middle">2</text>
+<line x1="54" y1="478" x2="58" y2="478" class="l sm w1"/>
+<text x="50" y="482" class="tm" text-anchor="end">2</text>
+<line x1="162" y1="530" x2="162" y2="534" class="l sm w1"/>
+<text x="162" y="548" class="tm" text-anchor="middle">4</text>
+<line x1="54" y1="426" x2="58" y2="426" class="l sm w1"/>
+<text x="50" y="430" class="tm" text-anchor="end">4</text>
+<line x1="214" y1="530" x2="214" y2="534" class="l sm w1"/>
+<text x="214" y="548" class="tm" text-anchor="middle">6</text>
+<line x1="54" y1="374" x2="58" y2="374" class="l sm w1"/>
+<text x="50" y="378" class="tm" text-anchor="end">6</text>
+<line x1="266" y1="530" x2="266" y2="534" class="l sm w1"/>
+<text x="266" y="548" class="tm" text-anchor="middle">8</text>
+<line x1="54" y1="322" x2="58" y2="322" class="l sm w1"/>
+<text x="50" y="326" class="tm" text-anchor="end">8</text>
+<line x1="58" y1="530" x2="266" y2="530" class="l sm w1"/>
+<line x1="58" y1="530" x2="58" y2="322" class="l sm w1"/>
+<text x="266" y="564" class="tm" text-anchor="end">w1 →</text>
+<text x="28" y="302" class="tm">w2 ↑</text>
+<line x1="110" y1="530" x2="110" y2="322" class="l sa w2 dsh"/>
+<text x="116" y="326" class="ta">A の誤差 0 の線（w1＝2）</text>
+<line x1="58" y1="322" x2="266" y2="530" class="l sok w2 dsh"/>
+<text x="172.4" y="384.4" class="tok">B の誤差 0 の線</text>
+<text x="172.4" y="400.4" class="tok">（w1＋w2＝8）</text>
+<line x1="114" y1="526" x2="180.0" y2="460.0" class="l sng w2"/>
+<polygon points="184,456 182.5,462.4 177.6,457.5" class="fng"/>
+<line x1="110" y1="522" x2="110.0" y2="387.6" class="l sa w2"/>
+<polygon points="110,382 113.5,387.6 106.5,387.6" class="fa"/>
+<circle cx="110" cy="530" r="6" class="fs l" stroke-width="2"/>
+<text x="88" y="524" class="tb">1</text>
+<circle cx="188" cy="452" r="6" class="fng sng" stroke-width="2"/>
+<text x="198" y="456" class="tb tng">2</text>
+<circle cx="110" cy="374" r="6" class="fas sa" stroke-width="2"/>
+<text x="88" y="378" class="tb ta">3</text>
+<text x="12" y="576" class="tb">1 A を学んだあと：(w1, w2)＝(2, 0)</text>
+<text x="12" y="594" class="tm">　A の誤差＝(2−2)²＝0</text>
+<text x="12" y="616" class="tb tng">2 そのまま B だけ学ぶ：(5, 3)</text>
+<text x="12" y="634" class="tm">　B は w1 と w2 に同じだけ効くので、</text>
+<text x="12" y="652" class="tm">　足りない 8−2＝6 を 3 ずつ分けて動かす</text>
+<text x="12" y="670" class="tm">　B の誤差＝(5＋3−8)²＝0</text>
+<text x="12" y="688" class="tb tng">　A の誤差＝(5−2)²＝9 → A を忘れた</text>
+<text x="12" y="710" class="tb ta">3 EWC で B を学ぶ：(2, 6)</text>
+<text x="12" y="728" class="tm">　A に大事な w1 には強いばねを付けて、</text>
+<text x="12" y="746" class="tm">　2 から動きにくくする。w2 は A で使わない</text>
+<text x="12" y="764" class="tm">　のでばね無し → w2 だけが 6 動く</text>
+<text x="12" y="782" class="tm">　B の誤差＝(2＋6−8)²＝0</text>
+<text x="12" y="800" class="tb ta">　A の誤差＝(2−2)²＝0 → 両方できる</text>
+<line x1="12" y1="816" x2="308" y2="816" class="l sb w1"/>
+<text x="12" y="840" class="tb">③ 押さえどころ</text>
+<text x="12" y="860" class="tm">原因：A に大事な重みが、B のために</text>
+<text x="12" y="878" class="tm">書き換えられること（2 では w1 が 2→5）</text>
+<text x="12" y="898" class="tm">EWC：ばねの強さを重みごとに変える。</text>
+<text x="12" y="916" class="tm">全部に同じ強さのばねだと、B を覚える余地も</text>
+<text x="12" y="934" class="tm">減る。A に大事かどうかで強さを決める</text>
+<text x="12" y="954" class="tm">過学習（同じタスクの中で訓練データに合わせ</text>
+<text x="12" y="972" class="tm">すぎる）とは別の問題</text>
+</svg>
