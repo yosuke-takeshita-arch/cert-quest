@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1268" role="img" aria-labelledby="fig-g-adaboost-t fig-g-adaboost-d">
+<title id="fig-g-adaboost-t">AdaBoost：間違えた点の重みを上げて次の学習器を作り、発言権つきで多数決</title>
+<desc id="fig-g-adaboost-d">例は○と×の6点A〜F（A・D・Eが○、B・C・Fが×）を、縦の線1本で左右に分けるだけの弱い学習器で分類する。点の大きさと下の分数がその点の重みで、誤り率は間違えた点の重みの合計。線は、誤り率が最も小さくなる所に引く。発言権は、最後の多数決でのその学習器の1票の重さ。最初は6点とも重み1/6。学習器1は線の左を○、右を×と答え、D・Eを間違える。誤り率は1/6＋1/6＝1/3。発言権はlog(当たり率÷誤り率)＝log(2/3÷1/3)＝log 2≈0.69。重みの付け直しでは、当てた4点に誤り率÷当たり率＝1/3÷2/3＝1/2を掛けて1/6×1/2＝1/12にし、外したD・Eはそのまま1/6。合計の4×1/12＋2×1/6＝8/12で割って合計を1に戻すと、当てた点は1/12÷8/12＝1/8、D・Eは1/6÷8/12＝1/4になる。学習器2は重いD・Eを当てる線が選ばれ、線の左を×、右を○と答え、A・Fを間違える。誤り率は1/8＋1/8＝1/4、発言権はlog 3≈1.10。付け直すとA・Fは1/4、D・Eは1/6、B・Cは1/12。学習器3は重いA・Fを当てる線が選ばれ、線の左を○、右を×と答え、B・Cを間違える。誤り率は1/12＋1/12＝1/6、発言権はlog 5≈1.61。最後に発言権つきで多数決する。例えば点B（正解は×）は、×と答えた学習器1と2の発言権の合計0.69＋1.10＝1.79が、○と答えた学習器3の1.61より大きいので×になり正解。6点とも正解になる。学習器1つずつでは4点ずつしか当たらない。下は勾配ブースティングとの違い。AdaBoostはデータの重みを変え、勾配ブースティングは残りの誤差を次に当てさせる。logは自然対数。</desc>
+<text x="12" y="20" class="tb">AdaBoost：間違えた点を重くして次へ</text>
+<text x="12" y="42" class="tm">例：○と×の6点を、縦の線1本で分ける</text>
+<text x="12" y="62" class="tm">点の大きさ・下の分数＝その点の重み</text>
+<text x="12" y="82" class="tm">誤り率＝間違えた点の重みの合計</text>
+<text x="12" y="102" class="tm">線は、誤り率が最も小さくなる所に引く</text>
+<rect x="12" y="114" width="296" height="202" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="134" class="tb">学習器1：線の左は○、右は×と答える</text>
+<line x1="72" y1="142" x2="72" y2="208" class="l sa w2 dsh"/>
+<circle cx="50" cy="164" r="8" class="l"/>
+<text x="50" y="192" class="tb" text-anchor="middle">A</text>
+<text x="50" y="208" class="tm" text-anchor="middle">1/6</text>
+<line x1="87.6" y1="157.6" x2="100.4" y2="170.4" class="l"/>
+<line x1="87.6" y1="170.4" x2="100.4" y2="157.6" class="l"/>
+<text x="94" y="192" class="tb" text-anchor="middle">B</text>
+<text x="94" y="208" class="tm" text-anchor="middle">1/6</text>
+<line x1="131.6" y1="157.6" x2="144.4" y2="170.4" class="l"/>
+<line x1="131.6" y1="170.4" x2="144.4" y2="157.6" class="l"/>
+<text x="138" y="192" class="tb" text-anchor="middle">C</text>
+<text x="138" y="208" class="tm" text-anchor="middle">1/6</text>
+<circle cx="182" cy="164" r="8" class="l sng w2"/>
+<text x="182" y="192" class="tb tng" text-anchor="middle">D</text>
+<text x="182" y="208" class="tng" text-anchor="middle">1/6</text>
+<circle cx="226" cy="164" r="8" class="l sng w2"/>
+<text x="226" y="192" class="tb tng" text-anchor="middle">E</text>
+<text x="226" y="208" class="tng" text-anchor="middle">1/6</text>
+<line x1="263.6" y1="157.6" x2="276.4" y2="170.4" class="l"/>
+<line x1="263.6" y1="170.4" x2="276.4" y2="157.6" class="l"/>
+<text x="270" y="192" class="tb" text-anchor="middle">F</text>
+<text x="270" y="208" class="tm" text-anchor="middle">1/6</text>
+<text x="24" y="228" class="tng">間違えた点：D・E（赤）</text>
+<text x="24" y="248" class="tm">誤り率＝1/6＋1/6＝1/3</text>
+<text x="24" y="268" class="tm">発言権＝log(当たり率÷誤り率)</text>
+<text x="24" y="288" class="tb ta">　＝log(2/3÷1/3)＝log 2≈0.69</text>
+<text x="24" y="308" class="tm">（発言権＝最後の多数決での1票の重さ）</text>
+<line x1="160" y1="316" x2="160" y2="324.4" class="l sm w1"/>
+<polygon points="160,330 156.5,324.4 163.5,324.4" class="fm"/>
+<rect x="12" y="330" width="296" height="162" class="fas sa" stroke-width="1" rx="6"/>
+<text x="24" y="350" class="tb">重みの付け直し</text>
+<text x="24" y="370" class="tm">当てた4点に（誤り率÷当たり率）を掛ける</text>
+<text x="24" y="390" class="tm">　1/6×(1/3÷2/3)＝1/6×1/2＝1/12</text>
+<text x="24" y="410" class="tm">外した D・E はそのまま 1/6</text>
+<text x="24" y="430" class="tm">合計 4×1/12＋2×1/6＝8/12 で割って</text>
+<text x="24" y="450" class="tm">合計を1に戻す：1/12÷8/12＝1/8、</text>
+<text x="24" y="470" class="tm">　1/6÷8/12＝1/4</text>
+<text x="24" y="486" class="tb ta">→ 当てた点 1/8、D・E 1/4（重くなる）</text>
+<line x1="160" y1="492" x2="160" y2="500.4" class="l sm w1"/>
+<polygon points="160,506 156.5,500.4 163.5,500.4" class="fm"/>
+<rect x="12" y="506" width="296" height="222" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="526" class="tb">学習器2：線の左は×、右は○と答える</text>
+<line x1="160" y1="534" x2="160" y2="600" class="l sa w2 dsh"/>
+<circle cx="50" cy="556" r="6.5" class="l sng w2"/>
+<text x="50" y="584" class="tb tng" text-anchor="middle">A</text>
+<text x="50" y="600" class="tng" text-anchor="middle">1/8</text>
+<line x1="88.8" y1="550.8" x2="99.2" y2="561.2" class="l"/>
+<line x1="88.8" y1="561.2" x2="99.2" y2="550.8" class="l"/>
+<text x="94" y="584" class="tb" text-anchor="middle">B</text>
+<text x="94" y="600" class="tm" text-anchor="middle">1/8</text>
+<line x1="132.8" y1="550.8" x2="143.2" y2="561.2" class="l"/>
+<line x1="132.8" y1="561.2" x2="143.2" y2="550.8" class="l"/>
+<text x="138" y="584" class="tb" text-anchor="middle">C</text>
+<text x="138" y="600" class="tm" text-anchor="middle">1/8</text>
+<circle cx="182" cy="556" r="11" class="l"/>
+<text x="182" y="584" class="tb" text-anchor="middle">D</text>
+<text x="182" y="600" class="tm" text-anchor="middle">1/4</text>
+<circle cx="226" cy="556" r="11" class="l"/>
+<text x="226" y="584" class="tb" text-anchor="middle">E</text>
+<text x="226" y="600" class="tm" text-anchor="middle">1/4</text>
+<line x1="264.8" y1="550.8" x2="275.2" y2="561.2" class="l sng w2"/>
+<line x1="264.8" y1="561.2" x2="275.2" y2="550.8" class="l sng w2"/>
+<text x="270" y="584" class="tb tng" text-anchor="middle">F</text>
+<text x="270" y="600" class="tng" text-anchor="middle">1/8</text>
+<text x="24" y="620" class="tm">重い D・E を当てる線が選ばれる</text>
+<text x="24" y="640" class="tng">間違えた点：A・F（赤）</text>
+<text x="24" y="660" class="tm">誤り率＝1/8＋1/8＝1/4</text>
+<text x="24" y="680" class="tb ta">発言権＝log(3/4÷1/4)＝log 3≈1.10</text>
+<text x="24" y="700" class="tm">付け直し：A・F 1/8→1/4、</text>
+<text x="24" y="720" class="tm">　D・E 1/4→1/6、B・C 1/8→1/12</text>
+<line x1="160" y1="728" x2="160" y2="736.4" class="l sm w1"/>
+<polygon points="160,742 156.5,736.4 163.5,736.4" class="fm"/>
+<rect x="12" y="742" width="296" height="182" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="762" class="tb">学習器3：線の左は○、右は×と答える</text>
+<line x1="248" y1="770" x2="248" y2="836" class="l sa w2 dsh"/>
+<circle cx="50" cy="792" r="11" class="l"/>
+<text x="50" y="820" class="tb" text-anchor="middle">A</text>
+<text x="50" y="836" class="tm" text-anchor="middle">1/4</text>
+<line x1="90.4" y1="788.4" x2="97.6" y2="795.6" class="l sng w2"/>
+<line x1="90.4" y1="795.6" x2="97.6" y2="788.4" class="l sng w2"/>
+<text x="94" y="820" class="tb tng" text-anchor="middle">B</text>
+<text x="94" y="836" class="tng" text-anchor="middle">1/12</text>
+<line x1="134.4" y1="788.4" x2="141.6" y2="795.6" class="l sng w2"/>
+<line x1="134.4" y1="795.6" x2="141.6" y2="788.4" class="l sng w2"/>
+<text x="138" y="820" class="tb tng" text-anchor="middle">C</text>
+<text x="138" y="836" class="tng" text-anchor="middle">1/12</text>
+<circle cx="182" cy="792" r="8" class="l"/>
+<text x="182" y="820" class="tb" text-anchor="middle">D</text>
+<text x="182" y="836" class="tm" text-anchor="middle">1/6</text>
+<circle cx="226" cy="792" r="8" class="l"/>
+<text x="226" y="820" class="tb" text-anchor="middle">E</text>
+<text x="226" y="836" class="tm" text-anchor="middle">1/6</text>
+<line x1="261.2" y1="783.2" x2="278.8" y2="800.8" class="l"/>
+<line x1="261.2" y1="800.8" x2="278.8" y2="783.2" class="l"/>
+<text x="270" y="820" class="tb" text-anchor="middle">F</text>
+<text x="270" y="836" class="tm" text-anchor="middle">1/4</text>
+<text x="24" y="856" class="tm">重い A・F を当てる線が選ばれる</text>
+<text x="24" y="876" class="tng">間違えた点：B・C（赤）</text>
+<text x="24" y="896" class="tm">誤り率＝1/12＋1/12＝1/6</text>
+<text x="24" y="916" class="tb ta">発言権＝log(5/6÷1/6)＝log 5≈1.61</text>
+<line x1="160" y1="924" x2="160" y2="932.4" class="l sm w1"/>
+<polygon points="160,938 156.5,932.4 163.5,932.4" class="fm"/>
+<rect x="12" y="938" width="296" height="188" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="958" class="tb tok">最後：発言権つきの多数決</text>
+<text x="24" y="978" class="tok">発言権 学習器1 0.69・2 1.10・3 1.61</text>
+<text x="24" y="998" class="tok">（誤り率が小さい学習器ほど大きい）</text>
+<text x="24" y="1022" class="tb tok">例：点B（正解は×）</text>
+<text x="24" y="1042" class="tok">×と答えた：学習器1と2</text>
+<text x="24" y="1060" class="tok">　0.69＋1.10＝1.79</text>
+<text x="24" y="1080" class="tok">○と答えた：学習器3　1.61</text>
+<text x="24" y="1100" class="tb tok">1.79＞1.61 → ×（正解）</text>
+<text x="24" y="1118" class="tok">6点とも正解。1つずつでは4点ずつ</text>
+<line x1="12" y1="1140" x2="308" y2="1140" class="l sb w1"/>
+<text x="12" y="1164" class="tb">勾配ブースティングとの違い</text>
+<rect x="12" y="1176" width="142" height="62" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="83" y="1196" class="tb" text-anchor="middle">AdaBoost</text>
+<text x="83" y="1215" class="tm" text-anchor="middle">データの重みを</text>
+<text x="83" y="1232" class="tm" text-anchor="middle">変える</text>
+<rect x="166" y="1176" width="142" height="62" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="237" y="1196" class="tb" text-anchor="middle">勾配ブースティング</text>
+<text x="237" y="1215" class="tm" text-anchor="middle">残りの誤差を</text>
+<text x="237" y="1232" class="tm" text-anchor="middle">次に当てさせる</text>
+<text x="12" y="1258" class="tm">log は自然対数。重みの数は説明のための例</text>
+</svg>
