@@ -101,14 +101,19 @@ export const SFX_FILES = {
   bosshit: 'boss-hit_snare.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で正解して、ボスに当たったとき（OpenGameArt「8-bit/Lo-Fi Snare Drum Sound」Spring Spring、CC0）
   bosswin: 'boss-win_victory.mp3', // 2026-10-09 先生が聞き比べて選んだ。ボスを倒したときのファンファーレ（OpenGameArt「Victory」celestialghost8、CC0。後ろの無音を 4.0 秒で切った）
   bosshurt: 'boss-hurt_explosion02.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で間違えて、ボスからダメージをもらったとき（OpenGameArt「Soundpack 03」crazyduckgames の explosion02、CC0。元の ogg のまま）
+  bosscrit: 'boss-crit_cut.ogg', // 2026-10-10 先生が聞き比べて選んだ。ボス戦で会心の一撃が出たとき（OpenGameArt「NES Sounds」Baŝto の cut、CC0。元の ogg のまま。ふつうの当たり bosshit より約6dB 小さいので BOSS_SFX.crit.boost で持ち上げる）
 };
 
 // ボス戦で鳴らす効果音。種類 → SFX_FILES のキー。値が null の種類は、音のファイルが無い（何も鳴らさない）。
 // synth … ファイルが取れない・読めないときに、代わりに鳴らすプログラムの音（lib/bossmusic.js の SYNTH_SFX のキー）。
 // sfx … 同じく、代わりに鳴らす効果音（SFX_FILES のキー）。hurt は、ふつうの出題の不正解の音（ng）に戻る。
 // hurt を鳴らす場面（ボス戦で間違えた）では、ふつうの不正解の音（ng）は鳴らさない（この「ドン」に置き換える）。
+// boost … 再生の倍率（省略は 1）。この音の元の大きさが、ほかの効果音より小さいときだけ付ける。
+// crit は、会心の一撃のとき hit（ふつうの当たりの snare）の代わりに鳴らす（重ねない）。
+// 元の音は rms -21.4dBFS・peak -9.1dBFS で、hit の snare（rms -15.6dBFS）より約5.8dB 小さい。1.9 倍（+5.6dB）で rms は約 -15.8dBFS、peak は約 -3.5dBFS（割れない）。
 export const BOSS_SFX = {
   hit: { key: 'bosshit', synth: 'hit' },
+  crit: { key: 'bosscrit', synth: 'crit', boost: 1.9 },
   win: { key: 'bosswin', synth: 'fanfare' },
   hurt: { key: 'bosshurt', sfx: 'ng' },
 };

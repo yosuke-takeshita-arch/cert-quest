@@ -73,8 +73,8 @@ function synthBeep(c, name, gain) {
   });
 }
 
-/** 効果音を1回鳴らす。settings.sound が false なら何もしない。name は SFX_FILES のキー。onMissing … ファイルが取れない・読めないときに、昔の「ピッ」の代わりに呼ぶ関数。 */
-export function playSfx(settings, name, onMissing) {
+/** 効果音を1回鳴らす。settings.sound が false なら何もしない。name は SFX_FILES のキー。onMissing … ファイルが取れない・読めないときに、昔の「ピッ」の代わりに呼ぶ関数。boost … 再生の倍率（省略は 1。元の音が小さいものだけ）。 */
+export function playSfx(settings, name, onMissing, boost = 1) {
   if (!settings || !settings.sound || !SFX_FILES[name]) return;
   const c = audioCtx();
   if (!c) return;
@@ -87,7 +87,7 @@ export function playSfx(settings, name, onMissing) {
       const src = c.createBufferSource();
       const g = c.createGain();
       src.buffer = buf;
-      g.gain.value = gain;
+      g.gain.value = gain * boost;
       src.connect(g);
       g.connect(c.destination);
       src.start();
@@ -530,7 +530,7 @@ export function playSynth(settings, name) {
 export function playBossSfx(settings, kind) {
   const e = BOSS_SFX[kind];
   if (!e || !SFX_FILES[e.key]) return;
-  playSfx(settings, e.key, e.synth ? () => playSynth(settings, e.synth) : e.sfx ? () => playSfx(settings, e.sfx) : undefined);
+  playSfx(settings, e.key, e.synth ? () => playSynth(settings, e.synth) : e.sfx ? () => playSfx(settings, e.sfx) : undefined, e.boost);
 }
 
 /** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */

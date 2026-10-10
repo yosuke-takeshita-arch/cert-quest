@@ -456,12 +456,12 @@ export function renderBoss(app, key) {
     else next.focus({ preventScroll: true });
     const perform = () => {
       if (!S || S.item !== sq || !ui || !ui.stage.isConnected) return; // 戻っている間に次の問題へ進んだ・画面が替わったときは何もしない
-      if (correct) playBossSfx(app.state.settings, 'hit'); // ボスに当たった音（とどめの一撃でも鳴らす）
+      if (correct) playBossSfx(app.state.settings, crit && !winNow ? 'crit' : 'hit'); // ボスに当たった音（とどめの一撃でも鳴らす）。会心の一撃のときは snare の代わりに会心の音（重ねない）。とどめは撃破のファンファーレがあるので、ふつうの当たりのまま
       if (winNow) {
         defeatSequence(bar, next);
       } else if (correct) {
         figFlash('hit', 700);
-        if (crit) { flash(ui.stage, 'crit', 450); flash(ui.mini, 'crit', 450); playSynth(app.state.settings, 'crit'); }
+        if (crit) { flash(ui.stage, 'crit', 450); flash(ui.mini, 'crit', 450); } // 会心の音は上の playBossSfx 'crit'（ファイルが読めないときだけプログラムの crit に戻る）
         const mood = bossMood(b);
         say(crit
           ? ['会心の一撃！', name + ' に ダメージ！', BOSS_MOOD_TEXT[mood]]

@@ -534,13 +534,21 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
   assert.equal(SFX_FILES.bosshit, 'boss-hit_snare.ogg');
   assert.equal(SFX_FILES.bosswin, 'boss-win_victory.mp3');
-  assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['hit', 'hurt', 'win']);
+  assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['crit', 'hit', 'hurt', 'win']);
+  // 会心の一撃: ファイル（snare の代わり）。元の音が小さいので倍率をかける。読めなければプログラムの crit に戻る
+  assert.equal(SFX_FILES.bosscrit, 'boss-crit_cut.ogg');
+  assert.equal(BOSS_SFX.crit.key, 'bosscrit');
+  assert.equal(BOSS_SFX.crit.synth, 'crit');
+  assert.ok(BOSS_SFX.crit.boost > 1 && BOSS_SFX.crit.boost <= 2); // 元の peak -9.1dBFS ×倍率が 0dBFS（×2.85）に届かない
+  assert.ok(doc.includes('Baŝto') && doc.includes('sounds/cut.ogg'));
+  assert.equal(statSync(join(shared, 'audio', 'sfx', 'boss-crit_cut.ogg')).size, 7492);
+  assert.match(readFileSync(join(shared, 'sw-core.js'), 'utf8'), /'boss-crit_cut\.ogg'/);
   assert.equal(BOSS_SFX.hit.key, 'bosshit');
   assert.equal(BOSS_SFX.win.key, 'bosswin');
   assert.equal(SFX_FILES.bosshurt, 'boss-hurt_explosion02.ogg');
   assert.equal(BOSS_SFX.hurt.key, 'bosshurt');
   assert.equal(BOSS_SFX.hurt.sfx, 'ng'); // ファイルが読めないときは、ふつうの不正解の音に戻る
-  for (const k of ['bosshit', 'bosswin', 'bosshurt']) {
+  for (const k of ['bosshit', 'bosswin', 'bosshurt', 'bosscrit']) {
     assert.ok(doc.includes(SFX_FILES[k]), SFX_FILES[k] + ' が audio-licenses.md に無い');
     assert.ok(doc.includes('先生が候補を聞き比べて選んだ'));
     assert.ok(statSync(join(shared, 'audio', 'sfx', SFX_FILES[k])).size < 200 * 1024);
@@ -553,6 +561,8 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   assert.match(body, /playSfx\(settings, e\.key,/);
   assert.match(body, /playSynth\(settings, e\.synth\)/);
   assert.match(body, /playSfx\(settings, e\.sfx\)/);
+  assert.match(body, /e\.boost\)/); // 倍率を playSfx に渡す
+  assert.match(functionBody(au, 'playSfx'), /g\.gain\.value = gain \* boost/);
   assert.match(functionBody(au, 'playSfx'), /onMissing \? onMissing\(\)/);
   assert.match(functionBody(au, 'playSfx'), /!settings\.sound/);
   // 呼ぶ場所: 正解の直後（戻りきってから）に当たった音、倒したときにファンファーレ。ファンファーレをプログラムで直接鳴らさない
@@ -560,9 +570,10 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   // 間違えたとき: ふつうの不正解の音（beep ng）は鳴らさず、戻りきってから（perform の else 側で）hurt を鳴らす
   assert.ok(!/beep\(app\.state\.settings, 'ng'\)/.test(bo));
   assert.match(bo, /\} else \{\n\s+playBossSfx\(app\.state\.settings, 'hurt'\)/);
-  assert.match(bo, /if \(correct\) playBossSfx\(app\.state\.settings, 'hit'\)/);
+  // 正解の直後: 会心の一撃（とどめでないとき）は会心の音、それ以外はふつうの当たり。会心のときに snare と重ねず、プログラムの会心の音も直接鳴らさない
+  assert.match(bo, /if \(correct\) playBossSfx\(app\.state\.settings, crit && !winNow \? 'crit' : 'hit'\)/);
+  assert.ok(!/playSynth\(app\.state\.settings, 'crit'\)/.test(bo));
   assert.equal((bo.match(/playBossSfx\(app\.state\.settings, 'win'\)/g) || []).length, 2); // 動きを減らす設定のときと、ふつうの演出
   assert.ok(!/playSynth\(app\.state\.settings, 'fanfare'\)/.test(bo));
-  assert.match(bo, /playSynth\(app\.state\.settings, 'crit'\)/); // 会心・登場はプログラムのまま
   assert.match(bo, /playSynth\(app\.state\.settings, 'appear'\)/);
 });

@@ -105,6 +105,7 @@ const SFX = [
   'boss-hit_snare.ogg',
   'boss-win_victory.mp3',
   'boss-hurt_explosion02.ogg',
+  'boss-crit_cut.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
 self.addEventListener('install', (event) => {
