@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1182" role="img" aria-labelledby="fig-g-sarsa-t fig-g-sarsa-d">
+<title id="fig-g-sarsa-t">SARSA：次に実際に選んだ行動の見積もりで直す（Q学習との違い）</title>
+<desc id="fig-g-sarsa-d">例：ロボットが部屋A・部屋B・部屋Cを動き、部屋Cに着くと報酬10、ほかは報酬0。Q表の数は学習の途中の見積もりで、部屋Aの右へが4、左へが0、部屋Bの右へが8、左へが2。①1回の直しに使う5つの量は、状態S（部屋A）、行動A（右へ）、報酬R（0）、次の状態S（部屋B）、次の行動A（左へ）で、頭文字を並べるとSARSA。部屋Bでは、ときどき別の行動を試すε-greedyで、実際に左へを選んだ。②部屋Aの右への見積もり4を直す。ことばの式は、目標＝もらった報酬＋割引率×次に実際に選んだ行動の見積もり。報酬0、割引率0.9、次に選んだ部屋Bの左へは2なので、0.9×2＝1.8、目標＝0＋1.8＝1.8。ずれ＝目標−いまの見積もり＝1.8−4＝−2.2。新しい見積もり＝いまの見積もり＋学習率×ずれで、学習率0.5なら0.5×（−2.2）＝−1.1、4−1.1＝2.9。ずれが負なので下がる。③Q学習との違いは次の行動の値だけ。Q学習は実際には左へ動いても部屋Bの最大の8を使い、目標0.9×8＝7.2、見積もりは4から5.6に上がる。SARSAは実際に選んだ左への2を使い、探索の行動も入るので、目標1.8、見積もりは4から2.9に下がる。数直線に、いま4、Q学習の5.6、SARSAの2.9を示す。Q学習は次はいちばん良い行動をとる前提の値を学ぶ方策オフ型、SARSAは探索も含む実際の動き方の値を学ぶ方策オン型。④その結果、SARSAは慎重な道を学びやすい。SuttonとBartoの教科書の崖の例では、スタートSとゴールGの間の下の行が崖で、落ちると報酬−100。SARSAは崖から離れた遠回りの道（実線）を、Q学習は崖ぎわの最短の道（点線）を学ぶ。ε-greedyでときどきランダムに動くので崖ぎわだと落ちることがあり、SARSAはその失敗も見積もりに入れるので崖ぎわを避ける。</desc>
+<text x="12" y="20" class="tb">SARSA：実際に次に選んだ行動で直す</text>
+<text x="12" y="42" class="tm">例：部屋A→B→C。Cに着くと報酬10、</text>
+<text x="12" y="60" class="tm">ほかは0。Q表の数は学習の途中の見積もり</text>
+<rect x="12" y="72" width="296" height="26" class="fbg sb" stroke-width="1" rx="0"/>
+<text x="60" y="90" class="tm" text-anchor="middle">部屋</text>
+<text x="158" y="90" class="tb" text-anchor="middle">右へ</text>
+<text x="258" y="90" class="tb" text-anchor="middle">左へ</text>
+<rect x="12" y="98" width="296" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<text x="60" y="118" class="tb" text-anchor="middle">部屋A</text>
+<rect x="118" y="102" width="80" height="22" class="fs sm" stroke-width="2" rx="4"/>
+<text x="158" y="118" class="tb" text-anchor="middle">4（直す）</text>
+<text x="258" y="118" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="128" width="296" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<text x="60" y="148" class="tb" text-anchor="middle">部屋B</text>
+<rect x="118" y="132" width="80" height="22" class="fas sa" stroke-width="2" rx="4"/>
+<text x="158" y="148" class="tb ta" text-anchor="middle">8</text>
+<rect x="218" y="132" width="80" height="22" class="fwn swn" stroke-width="2" rx="4"/>
+<text x="258" y="148" class="tb twn" text-anchor="middle">2</text>
+<line x1="12" y1="172" x2="308" y2="172" class="l sb w1"/>
+<text x="12" y="196" class="tb">① 1回の直しに使う5つの量</text>
+<rect x="12" y="208" width="56" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="40" y="228" class="tl" text-anchor="middle">S</text>
+<text x="40" y="246" class="tm" text-anchor="middle">状態</text>
+<text x="40" y="264" class="tb" text-anchor="middle">部屋A</text>
+<rect x="72" y="208" width="56" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="100" y="228" class="tl" text-anchor="middle">A</text>
+<text x="100" y="246" class="tm" text-anchor="middle">行動</text>
+<text x="100" y="264" class="tb" text-anchor="middle">右へ</text>
+<rect x="132" y="208" width="56" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="228" class="tl" text-anchor="middle">R</text>
+<text x="160" y="246" class="tm" text-anchor="middle">報酬</text>
+<text x="160" y="264" class="tb" text-anchor="middle">0</text>
+<rect x="192" y="208" width="56" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="220" y="228" class="tl" text-anchor="middle">S</text>
+<text x="220" y="246" class="tm" text-anchor="middle">次の状態</text>
+<text x="220" y="264" class="tb" text-anchor="middle">部屋B</text>
+<rect x="252" y="208" width="56" height="66" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="280" y="228" class="tl twn" text-anchor="middle">A</text>
+<text x="280" y="246" class="tm" text-anchor="middle">次の行動</text>
+<text x="280" y="264" class="tb twn" text-anchor="middle">左へ</text>
+<text x="12" y="296" class="tb">頭文字を並べると S・A・R・S・A＝SARSA</text>
+<text x="12" y="316" class="twn">部屋Bでは、ε-greedy（ときどき別の行動を</text>
+<text x="12" y="334" class="twn">試す選び方）で、実際に左へを選んだ</text>
+<line x1="12" y1="350" x2="308" y2="350" class="l sb w1"/>
+<text x="12" y="374" class="tb">② 部屋Aの右への見積もり4を直す</text>
+<rect x="12" y="384" width="296" height="46" class="fs swn" stroke-width="1.5" rx="6"/>
+<text x="22" y="403" class="tb">目標 ＝ もらった報酬 ＋ 割引率 ×</text>
+<text x="22" y="421" class="tb twn">　次に実際に選んだ行動の見積もり</text>
+<text x="12" y="450" class="tm">例の数：報酬0、割引率0.9、</text>
+<text x="12" y="468" class="tm">　次に選んだ部屋Bの左へは 2</text>
+<text x="12" y="490" class="tb twn">0.9 × 2 ＝ 1.8、目標 ＝ 0 ＋ 1.8 ＝ 1.8</text>
+<text x="12" y="514">ずれ ＝ 目標 − いまの見積もり</text>
+<text x="12" y="532" class="tb twn">　＝ 1.8 − 4 ＝ −2.2</text>
+<text x="12" y="556">新しい見積もり ＝ いまの見積もり</text>
+<text x="12" y="574">　＋ 学習率（0.5）× ずれ</text>
+<text x="12" y="592" class="tb twn">　0.5 ×（−2.2）＝ −1.1、4 − 1.1 ＝ 2.9</text>
+<text x="12" y="612" class="tm">ずれが負（目標より上にいた）ので下がる</text>
+<line x1="12" y1="628" x2="308" y2="628" class="l sb w1"/>
+<text x="12" y="652" class="tb">③ Q学習との違いは『次の行動の値』だけ</text>
+<rect x="12" y="662" width="144" height="116" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="84" y="682" class="tb ta" text-anchor="middle">Q学習</text>
+<text x="84" y="700" class="ta" text-anchor="middle">部屋Bの最大の8</text>
+<text x="84" y="718" class="tm" text-anchor="middle">（実際は左でも）</text>
+<text x="84" y="738" text-anchor="middle">目標 0.9×8＝7.2</text>
+<text x="84" y="760" class="tb ta" text-anchor="middle">4 → 5.6</text>
+<rect x="164" y="662" width="144" height="116" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="236" y="682" class="tb twn" text-anchor="middle">SARSA</text>
+<text x="236" y="700" class="twn" text-anchor="middle">実際に選んだ左の2</text>
+<text x="236" y="718" class="tm" text-anchor="middle">（探索の行動も入る）</text>
+<text x="236" y="738" text-anchor="middle">目標 0.9×2＝1.8</text>
+<text x="236" y="760" class="tb twn" text-anchor="middle">4 → 2.9</text>
+<line x1="24" y1="812" x2="304" y2="812" class="l sm w1"/>
+<line x1="24" y1="808" x2="24" y2="816" class="l sm w1"/>
+<text x="24" y="834" class="tm" text-anchor="middle">0</text>
+<line x1="304" y1="808" x2="304" y2="816" class="l sm w1"/>
+<text x="304" y="834" class="tm" text-anchor="middle">10</text>
+<circle cx="136" cy="812" r="6" class="fm sm"/>
+<circle cx="180.79999999999998" cy="812" r="6" class="fa sa"/>
+<circle cx="105.2" cy="812" r="6" class="fwn swn" stroke-width="2.5"/>
+<text x="136" y="800" class="tm" text-anchor="middle">いま4</text>
+<text x="184.79999999999998" y="834" class="tb ta" text-anchor="middle">5.6</text>
+<text x="101.2" y="834" class="tb twn" text-anchor="middle">2.9</text>
+<text x="12" y="858" class="ta">Q学習：『次はいちばん良い行動をとる』前提</text>
+<text x="12" y="876" class="ta">　の値を学ぶ（方策オフ型）</text>
+<text x="12" y="896" class="twn">SARSA：探索も含む、実際の動き方の値を</text>
+<text x="12" y="914" class="twn">　学ぶ（方策オン型）</text>
+<line x1="12" y1="930" x2="308" y2="930" class="l sb w1"/>
+<text x="12" y="954" class="tb">④ その結果：SARSAは慎重な道を学びやすい</text>
+<rect x="34" y="966" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="76" y="966" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="118" y="966" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="160" y="966" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="202" y="966" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="244" y="966" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="34" y="996" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="76" y="996" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="118" y="996" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="160" y="996" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="202" y="996" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="244" y="996" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="34" y="1026" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<rect x="76" y="1026" width="42" height="30" class="fng sng" stroke-width="1" rx="0"/>
+<rect x="118" y="1026" width="42" height="30" class="fng sng" stroke-width="1" rx="0"/>
+<rect x="160" y="1026" width="42" height="30" class="fng sng" stroke-width="1" rx="0"/>
+<rect x="202" y="1026" width="42" height="30" class="fng sng" stroke-width="1" rx="0"/>
+<rect x="244" y="1026" width="42" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<text x="55" y="1046" class="tb" text-anchor="middle">S</text>
+<text x="265" y="1046" class="tb tok" text-anchor="middle">G</text>
+<text x="160" y="1046" class="tng" text-anchor="middle">崖（落ちると−100）</text>
+<polyline points="49,1033 49,981 271,981 271,1033" class="l swn w2" fill="none"/>
+<polyline points="61,1033 61,1011 259,1011 259,1033" class="l sa w2 dsh" fill="none"/>
+<text x="12" y="1078" class="twn">SARSA（実線）：崖から離れた遠回り</text>
+<text x="12" y="1096" class="ta">Q学習（点線）：崖ぎわの最短の道</text>
+<text x="12" y="1116" class="tm">ε-greedy でときどきランダムに動くので、</text>
+<text x="12" y="1134" class="tm">崖ぎわだと落ちることがある。SARSAは</text>
+<text x="12" y="1152" class="tm">その失敗も見積もりに入れるので避ける</text>
+<text x="12" y="1172" class="tm">（Sutton と Barto の教科書の崖の例）</text>
+</svg>

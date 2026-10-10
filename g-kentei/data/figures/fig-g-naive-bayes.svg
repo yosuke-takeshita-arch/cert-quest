@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1052" role="img" aria-labelledby="fig-g-naive-bayes-t fig-g-naive-bayes-d">
+<title id="fig-g-naive-bayes-t">ナイーブベイズ：迷惑メールの例で、単語ごとの確率を独立とみなして掛け、クラスを比べる</title>
+<desc id="fig-g-naive-bayes-d">例：届いたメールに無料と当選という単語が入っている。迷惑メールか通常のメールかを判定する。①学習用のメールで前もって数えておく。迷惑メールはもとの割合0.2、無料が入る確率0.6、当選が入る確率0.5。通常のメールはもとの割合0.8、無料が入る確率0.2、当選が入る確率0.4。0.6は、迷惑メール100通のうち60通に無料が入っていたという意味。②ナイーブ（単純）な仮定：迷惑か通常かが決まれば、無料と当選は互いに無関係に入る（独立）。そのため両方そろって入る確率は、1つずつの確率の掛け算でよい。仮定しないと無料も当選も入ったメールを数える必要があり、単語が何万種類もあると組み合わせが多すぎて数えきれない。③クラスごとに、そのクラスらしさ＝もとの割合×無料が入る確率×当選が入る確率を計算する。迷惑は0.2×0.6＝0.12、0.12×0.5＝0.06。通常は0.8×0.2＝0.16、0.16×0.4＝0.064。棒の長さはその時点での数で、確率を掛けるたびに短くなる。④大きいほうを選ぶ。迷惑0.06より通常0.064が大きいので通常のメールと判定する。確率に直すなら合計0.124で割り、迷惑は約0.48、通常は約0.52。どちらも同じ数で割るので、比べるだけなら割らなくてよい。もとの割合が効いている：単語の確率だけなら迷惑0.6×0.5＝0.30、通常0.2×0.4＝0.08で迷惑になるが、迷惑メールはもともと少ない（0.2）ので逆転して通常になる。</desc>
+<text x="12" y="20" class="tb">ナイーブベイズ：単語ごとの確率を掛けて比べる</text>
+<text x="12" y="42" class="tm">例：届いたメールに『無料』『当選』が入って</text>
+<text x="12" y="60" class="tm">いる。迷惑メールか、通常のメールか？</text>
+<text x="12" y="86" class="tb">① 学習用のメールで、前もって数えておく</text>
+<rect x="12" y="96" width="296" height="40" class="fbg sb" stroke-width="1" rx="0"/>
+<text x="128" y="112" class="tm" text-anchor="middle">もとの</text>
+<text x="128" y="128" class="tm" text-anchor="middle">割合</text>
+<text x="204" y="112" class="tm" text-anchor="middle">『無料』</text>
+<text x="204" y="128" class="tm" text-anchor="middle">が入る</text>
+<text x="272" y="112" class="tm" text-anchor="middle">『当選』</text>
+<text x="272" y="128" class="tm" text-anchor="middle">が入る</text>
+<rect x="12" y="136" width="296" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<text x="52" y="156" class="tb twn" text-anchor="middle">迷惑</text>
+<text x="128" y="156" class="tb twn" text-anchor="middle">0.2</text>
+<text x="204" y="156" class="tb twn" text-anchor="middle">0.6</text>
+<text x="272" y="156" class="tb twn" text-anchor="middle">0.5</text>
+<rect x="12" y="166" width="296" height="30" class="fs sb" stroke-width="1" rx="0"/>
+<text x="52" y="186" class="tb ta" text-anchor="middle">通常</text>
+<text x="128" y="186" class="tb ta" text-anchor="middle">0.8</text>
+<text x="204" y="186" class="tb ta" text-anchor="middle">0.2</text>
+<text x="272" y="186" class="tb ta" text-anchor="middle">0.4</text>
+<text x="12" y="216" class="tm">読み方：迷惑メール100通のうち60通に</text>
+<text x="12" y="234" class="tm">『無料』が入っていた → 0.6</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="274" class="tb">② ナイーブ（単純）な仮定</text>
+<rect x="12" y="284" width="296" height="46" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="303" class="tb ta">迷惑か通常かが決まれば、『無料』と</text>
+<text x="22" y="321" class="tb ta">『当選』は互いに無関係に入る（独立）</text>
+<text x="12" y="350">→ 両方そろって入る確率は、1つずつの</text>
+<text x="12" y="368">　確率の掛け算でよい</text>
+<text x="12" y="390" class="tm">仮定しないと『無料も当選も入ったメール』</text>
+<text x="12" y="408" class="tm">を数える必要がある。単語が何万種類も</text>
+<text x="12" y="426" class="tm">あると、組み合わせが多すぎて数えきれない</text>
+<line x1="12" y1="442" x2="308" y2="442" class="l sb w1"/>
+<text x="12" y="466" class="tb">③ クラスごとに掛けていく</text>
+<text x="12" y="486">そのクラスらしさ ＝ もとの割合</text>
+<text x="12" y="504">　× 無料が入る確率 × 当選が入る確率</text>
+<text x="12" y="534" class="tb twn">迷惑</text>
+<text x="12" y="558" class="tm">割合</text>
+<rect x="70" y="544" width="46" height="20" class="fwn swn" stroke-width="1.5" rx="0"/>
+<text x="122" y="559" class="tb">0.2</text>
+<text x="12" y="584" class="tm">×無料</text>
+<rect x="70" y="570" width="27.599999999999998" height="20" class="fwn swn" stroke-width="1.5" rx="0"/>
+<text x="103.6" y="585" class="tb">0.2×0.6＝0.12</text>
+<text x="12" y="610" class="tm">×当選</text>
+<rect x="70" y="596" width="13.799999999999999" height="20" class="fwn swn" stroke-width="1.5" rx="0"/>
+<text x="89.8" y="611" class="tb">0.12×0.5＝0.06</text>
+<text x="12" y="642" class="tb ta">通常</text>
+<text x="12" y="666" class="tm">割合</text>
+<rect x="70" y="652" width="184" height="20" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="260" y="667" class="tb">0.8</text>
+<text x="12" y="692" class="tm">×無料</text>
+<rect x="70" y="678" width="36.800000000000004" height="20" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="112.80000000000001" y="693" class="tb">0.8×0.2＝0.16</text>
+<text x="12" y="718" class="tm">×当選</text>
+<rect x="70" y="704" width="14.72" height="20" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="90.72" y="719" class="tb">0.16×0.4＝0.064</text>
+<text x="12" y="746" class="tm">棒の長さ＝その時点での数（確率を掛ける</text>
+<text x="12" y="764" class="tm">たびに短くなる）</text>
+<line x1="12" y1="780" x2="308" y2="780" class="l sb w1"/>
+<text x="12" y="804" class="tb">④ 大きいほうのクラスを選ぶ</text>
+<rect x="12" y="814" width="296" height="50" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="834" class="tb">迷惑 0.06 ＜ 通常 0.064</text>
+<text x="22" y="854" class="tb ta">→ 通常のメールと判定</text>
+<text x="12" y="886" class="tm">確率に直すなら、合計 0.124 で割る</text>
+<text x="12" y="904" class="tm">迷惑 0.06÷0.124≒0.48、通常≒0.52</text>
+<text x="12" y="922" class="tm">どちらも同じ数で割るので、比べるだけ</text>
+<text x="12" y="940" class="tm">なら割らなくてよい</text>
+<text x="12" y="964" class="twn">もとの割合が効いている：単語の確率だけ</text>
+<text x="12" y="982" class="twn">なら 迷惑 0.6×0.5＝0.30、通常 0.2×0.4</text>
+<text x="12" y="1000" class="twn">＝0.08 で迷惑。迷惑メールはもともと</text>
+<text x="12" y="1018" class="twn">少ない（0.2）ので、逆転して通常になる</text>
+<text x="12" y="1042" class="tm">数は説明のための例</text>
+</svg>

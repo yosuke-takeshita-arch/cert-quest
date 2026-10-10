@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1080" role="img" aria-labelledby="fig-g-multiple-regression-t fig-g-multiple-regression-d">
+<title id="fig-g-multiple-regression-t">重回帰分析：家賃を床面積と徒歩分数の2つで予測する平面</title>
+<desc id="fig-g-multiple-regression-d">例：家賃を、床面積と駅からの徒歩分数の2つの手がかりで予測する。ことばの式は、家賃（万円）＝3＋0.2×床面積（㎡）−0.1×徒歩（分）。①床面積・徒歩・家賃の3つの軸の空間に、平面を1枚置く。黒い点は実際の物件4件（25㎡・徒歩5分で8.0万円、35㎡・5分で9.0万円、25㎡・15分で6.0万円、35㎡・15分で9.0万円）。赤の縦線は平面とのずれで、どれも0.5万円、平面の上に2件・下に2件。平面は、ずれの2乗の合計がいちばん小さくなる傾きと高さに決める（最小二乗法）。この4件に最小二乗法を当てると、ちょうど上の式の平面になる。星印は新しい物件（30㎡・徒歩10分）で、0.2×30＝6、0.1×10＝1、3＋6−1＝8万円と予測する。これは平面のその位置の高さ。②平面を徒歩の分数で切ると、平行な直線になる。徒歩5分の直線と徒歩15分の直線はどちらも傾き0.2で、1㎡広いと家賃が0.2万円上がる。徒歩が10分ちがうと0.1×10＝1万円ずれ、直線は平行のまま上下にずれるだけ。③係数0.2の意味（偏回帰係数）。徒歩10分のまま床面積を30㎡から31㎡にすると、0.2×31＝6.2、3＋6.2−1＝8.2万円で、8.2−8＝0.2。ほかの手がかりを変えずに、その1つだけを1増やしたときの予測の増え方を表す。手がかり1つの単回帰なら直線、2つなら平面で、3つ以上は絵に描けないが考え方は同じ。</desc>
+<text x="12" y="20" class="tb">重回帰分析：手がかり2つなら平面で予測</text>
+<text x="12" y="42" class="tm">例：家賃を、床面積と駅からの徒歩分数で</text>
+<text x="12" y="60" class="tm">予測する（数は説明のための例）</text>
+<rect x="12" y="70" width="296" height="46" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="89" class="tb">家賃（万円）＝ 3 ＋ 0.2 × 床面積（㎡）</text>
+<text x="22" y="107" class="tb">　　　　　　 − 0.1 × 徒歩（分）</text>
+<text x="12" y="140" class="tb">① 3つの軸の空間に、平面を1枚置く</text>
+<polygon points="110,412 280,412 210,332 40,332" class="fbg l sb w1"/>
+<line x1="110" y1="412" x2="299.9" y2="412.0" class="l sm w1"/>
+<polygon points="305.5,412 299.9,415.5 299.9,408.5" class="fm"/>
+<text x="305.5" y="430" class="tm" text-anchor="end">床面積（㎡）</text>
+<line x1="110" y1="412" x2="29.7" y2="320.2" class="l sm w1"/>
+<polygon points="26,316 32.3,317.9 27.1,322.5" class="fm"/>
+<text x="99" y="396" class="tm">↖ 徒歩（分）</text>
+<line x1="40" y1="332" x2="40.0" y2="167.6" class="l sm w1"/>
+<polygon points="40,162 43.5,167.6 36.5,167.6" class="fm"/>
+<text x="46" y="166" class="tm">家賃（万円）</text>
+<polygon points="110,332 280,252 210,212 40,292" class="fas l sa" stroke-width="1.5" fill-opacity="0.8"/>
+<line x1="75" y1="312" x2="245" y2="232" class="l sa w1 dot"/>
+<line x1="195" y1="292" x2="125" y2="252" class="l sa w1 dot"/>
+<line x1="135" y1="292" x2="135" y2="302" class="l sng w2"/>
+<circle cx="135" cy="292" r="4.5" class="ft"/>
+<line x1="220" y1="272" x2="220" y2="262" class="l sng w2"/>
+<circle cx="220" cy="272" r="4.5" class="ft"/>
+<line x1="100" y1="292" x2="100" y2="282" class="l sng w2"/>
+<circle cx="100" cy="292" r="4.5" class="ft"/>
+<line x1="185" y1="232" x2="185" y2="242" class="l sng w2"/>
+<circle cx="185" cy="232" r="4.5" class="ft"/>
+<polygon points="160,264 161.9,269.4 167.6,269.5 163,273 164.7,278.5 160,275.2 155.3,278.5 157,273 152.4,269.5 158.1,269.4" class="fa"/>
+<text x="12" y="444">●＝実際の物件4件。赤の縦線＝平面との</text>
+<text x="12" y="462">　ずれ（どれも0.5万円。上に2件・下に2件）</text>
+<text x="12" y="484" class="tm">平面は、ずれの2乗の合計がいちばん</text>
+<text x="12" y="502" class="tm">小さくなる傾きと高さに決める（最小二乗法）</text>
+<text x="12" y="524" class="tb ta">★ 新しい物件：30㎡・徒歩10分</text>
+<text x="12" y="542" class="ta">　0.2×30＝6、0.1×10＝1</text>
+<text x="12" y="560" class="tb ta">　3＋6−1＝8万円 と予測（平面の高さ）</text>
+<line x1="12" y1="576" x2="308" y2="576" class="l sb w1"/>
+<text x="12" y="600" class="tb">② 平面を徒歩の分数で切ると、平行な直線</text>
+<line x1="52" y1="782" x2="282.9" y2="782.0" class="l sm w1"/>
+<polygon points="288.5,782 282.9,785.5 282.9,778.5" class="fm"/>
+<line x1="52" y1="782" x2="52.0" y2="621.2" class="l sm w1"/>
+<polygon points="52,615.6 55.5,621.2 48.5,621.2" class="fm"/>
+<line x1="52" y1="782" x2="52" y2="786" class="l sm w1"/>
+<text x="52" y="800" class="tm" text-anchor="middle">20</text>
+<line x1="162" y1="782" x2="162" y2="786" class="l sm w1"/>
+<text x="162" y="800" class="tm" text-anchor="middle">30</text>
+<line x1="272" y1="782" x2="272" y2="786" class="l sm w1"/>
+<text x="272" y="800" class="tm" text-anchor="middle">40</text>
+<line x1="48" y1="756" x2="52" y2="756" class="l sm w1"/>
+<text x="44" y="760" class="tm" text-anchor="end">6</text>
+<line x1="48" y1="704" x2="52" y2="704" class="l sm w1"/>
+<text x="44" y="708" class="tm" text-anchor="end">8</text>
+<line x1="48" y1="652" x2="52" y2="652" class="l sm w1"/>
+<text x="44" y="656" class="tm" text-anchor="end">10</text>
+<text x="288.5" y="816" class="tm" text-anchor="end">床面積（㎡）</text>
+<text x="58" y="619.6" class="tm">家賃（万円）</text>
+<line x1="52" y1="743" x2="272" y2="639" class="l sa w2"/>
+<line x1="52" y1="769" x2="272" y2="665" class="l sm w2 dsh"/>
+<text x="276" y="643" class="ta">5分</text>
+<text x="276" y="669" class="tm">15分</text>
+<line x1="107" y1="717" x2="107" y2="743" class="l sng w2"/>
+<text x="113" y="734" class="tng">1万円</text>
+<text x="12" y="840">どちらの直線も傾きは0.2：1㎡広いと</text>
+<text x="12" y="858">　家賃が0.2万円上がる</text>
+<text x="12" y="878" class="tng">5分と15分で10分ちがうと </text>
+<text x="12" y="896" class="tng">　0.1×10＝1万円ずれる</text>
+<text x="12" y="914" class="tm">（直線は平行のまま上下にずれるだけ）</text>
+<line x1="12" y1="930" x2="308" y2="930" class="l sb w1"/>
+<text x="12" y="954" class="tb">③ 係数0.2の意味（偏回帰係数）</text>
+<text x="12" y="974">徒歩10分のまま、床面積を30→31㎡にする</text>
+<text x="12" y="992">　0.2×31＝6.2、3＋6.2−1＝8.2万円</text>
+<text x="12" y="1010" class="tb ta">　8.2−8＝0.2 → ほかの手がかりを変えずに</text>
+<text x="12" y="1028" class="tb ta">　その1つだけを1増やしたときの増え方</text>
+<text x="12" y="1052" class="tm">手がかり1つ（単回帰）なら直線、2つなら</text>
+<text x="12" y="1070" class="tm">平面。3つ以上は絵に描けないが考え方は同じ</text>
+</svg>
