@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 754" role="img" aria-labelledby="fig-g-ontology-t fig-g-ontology-d">
+<title id="fig-g-ontology-t">オントロジー：言葉の意味と、言葉どうしの関係を決めておく</title>
+<desc id="fig-g-ontology-d">例は2つの病院のデータを合わせる場面。病院Aの「患者」はいま通っている人で120人。病院Bの「患者」はいま通っている人と通院を終えた人で、80＋50＝130人。そのまま足すと120＋130＝250人になるが、違うものを混ぜた数で、何の人数でもない。そこでオントロジーで、概念と概念どうしの関係を決める。患者は人の一種、通院中の患者と通院を終えた患者は患者の一種（is-a）、患者は病院を受診する。患者は通院中の患者と通院を終えた患者を合わせたもの。各病院の言葉を取り決めに当てはめると、Aの「患者」は通院中の患者、Bの「患者」は患者（終えた人も含む）。Bからは通院中の80人だけを取り出し、通院中の患者は120＋80＝200人と、同じ意味どうしを足した数になる。人もコンピュータも同じ意味で使えるよう決まった形で書き、セマンティックWebではOWLという言語で書く。意味ネットワークは知識の表し方（図の形）で、オントロジーは何をどう呼び、どう関係づけるかの取り決めそのもの。</desc>
+<text x="12" y="20" class="tb">オントロジー：言葉の意味と関係を決めておく</text>
+<text x="12" y="46" class="tb">① 困りごと：同じ「患者」でも中身が違う（例）</text>
+<rect x="12" y="56" width="142" height="98" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="166" y="56" width="142" height="98" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="76" class="tb">病院A の「患者」</text>
+<text x="22" y="96" class="tm">＝いま通っている人</text>
+<text x="22" y="140" class="tb">120人</text>
+<text x="176" y="76" class="tb">病院B の「患者」</text>
+<text x="176" y="96" class="tm">＝いま通っている人</text>
+<text x="176" y="114" class="tm">＋通院を終えた人</text>
+<text x="176" y="140" class="tb">80＋50＝130人</text>
+<text x="12" y="176" class="tm">そのまま足すと 120＋130＝250人</text>
+<text x="12" y="196" class="tng">→ 違うものを混ぜた数で、何の人数でもない</text>
+<line x1="160" y1="210" x2="160" y2="218.4" class="l sm w1"/>
+<polygon points="160,224 156.5,218.4 163.5,218.4" class="fm"/>
+<rect x="12" y="224" width="296" height="254" class="fas sa" stroke-width="1" rx="6"/>
+<text x="24" y="244" class="tb">② オントロジーで取り決める</text>
+<text x="24" y="264" class="tm">概念（言葉）と、概念どうしの関係を決める</text>
+<rect x="82" y="281" width="56" height="26" class="fs sa" stroke-width="1.5" rx="4"/>
+<text x="110" y="298.5" class="tb" text-anchor="middle">人</text>
+<rect x="78" y="341" width="64" height="26" class="fs sa" stroke-width="1.5" rx="4"/>
+<text x="110" y="358.5" class="tb" text-anchor="middle">患者</text>
+<rect x="218" y="341" width="64" height="26" class="fs sa" stroke-width="1.5" rx="4"/>
+<text x="250" y="358.5" class="tb" text-anchor="middle">病院</text>
+<rect x="28" y="401" width="112" height="26" class="fs sa" stroke-width="1.5" rx="4"/>
+<text x="84" y="418.5" class="tb" text-anchor="middle">通院中の患者</text>
+<rect x="152" y="401" width="140" height="26" class="fs sa" stroke-width="1.5" rx="4"/>
+<text x="222" y="418.5" class="tb" text-anchor="middle">通院を終えた患者</text>
+<line x1="110" y1="341" x2="110" y2="307" class="l sa w1"/>
+<polyline points="113.04,313.3 110,307 106.96,313.3" class="l sa w1"/>
+<text x="118" y="328" class="tm">一種（is-a）</text>
+<line x1="84" y1="401" x2="102" y2="367" class="l sa w1"/>
+<polyline points="101.74,374 102,367 96.36,371.15" class="l sa w1"/>
+<line x1="210" y1="401" x2="124" y2="367" class="l sa w1"/>
+<polyline points="130.98,366.49 124,367 128.74,372.15" class="l sa w1"/>
+<text x="170" y="386" class="tm">一種</text>
+<text x="40" y="386" class="tm">一種</text>
+<line x1="142" y1="354" x2="218" y2="354" class="l sa w1"/>
+<polyline points="211.7,357.04 218,354 211.7,350.96" class="l sa w1"/>
+<text x="186" y="346" class="tm" text-anchor="middle">受診する</text>
+<text x="24" y="450" class="tm">患者＝通院中の患者と、通院を終えた患者</text>
+<text x="24" y="468" class="tm">矢印「一種」＝下の概念は上の概念の一種</text>
+<line x1="160" y1="478" x2="160" y2="486.4" class="l sm w1"/>
+<polygon points="160,492 156.5,486.4 163.5,486.4" class="fm"/>
+<rect x="12" y="492" width="296" height="128" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="512" class="tb">③ 各病院の言葉を、取り決めに当てはめる</text>
+<text x="24" y="534" class="tm">A の「患者」→ 通院中の患者</text>
+<text x="24" y="554" class="tm">B の「患者」→ 患者（終えた人も含む）</text>
+<text x="24" y="574" class="tm">B からは通院中の 80人だけを取り出す</text>
+<text x="24" y="596" class="tb ta">通院中の患者：120＋80＝200人</text>
+<text x="24" y="614" class="tok">→ 同じ意味どうしを足した、意味のある数</text>
+<text x="12" y="646" class="tb">押さえどころ</text>
+<text x="12" y="666" class="tm">・人もコンピュータも同じ意味で使えるよう、</text>
+<text x="12" y="684" class="tm">　決まった形で書く（セマンティックWebではOWL）</text>
+<text x="12" y="704" class="tm">・意味ネットワーク＝知識の表し方（図の形）</text>
+<text x="12" y="722" class="tm">・オントロジー＝何をどう呼び、どう関係</text>
+<text x="12" y="740" class="tm">　づけるかの取り決めそのもの</text>
+</svg>

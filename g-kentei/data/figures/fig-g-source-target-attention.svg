@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-g-source-target-attention-t fig-g-source-target-attention-d">
+<title id="fig-g-source-target-attention-t">Source-Target Attention：デコーダのクエリが、エンコーダのキーとバリューを見る</title>
+<desc id="fig-g-source-target-attention-d">例は「私は猫が好き」を「I like cats」に訳す場面で、訳文をI likeまで作り、次の語を出すところ。エンコーダ（原文）の各語「私・は・猫・が・好き」からキーとバリューを作る。デコーダ（訳文）では、次の語の位置がクエリになる。クエリと各キーの似ている度合いを合計1に直した重みは、私0.06、は0.04、猫0.76、が0.04、好き0.10で、線の太さが重み。0.06＋0.04＋0.76＋0.04＋0.10＝1。取り込む情報は重み×バリューの合計（0.06×私＋0.04×は＋0.76×猫＋…）で、猫のバリューが76％を占め、デコーダは次の語にcatsを出す。Self-Attentionとの違い：Source-Targetはクエリが訳文（デコーダ）、キーとバリューが原文（エンコーダ）。Selfは3つとも同じ文から作る。向きを逆（クエリが原文側）にしない。</desc>
+<text x="12" y="20" class="tb">Source-Target Attention：訳文から原文を見る</text>
+<text x="12" y="42" class="tm">例：「私は猫が好き」を「I like cats」に訳す。</text>
+<text x="12" y="60" class="tm">訳文を I like まで作り、次の語を出すところ</text>
+<text x="12" y="86" class="tb">エンコーダ（原文）：各語からキーとバリュー</text>
+<rect x="16" y="96" width="48" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="40" y="115" class="tb" text-anchor="middle">私</text>
+<rect x="76" y="96" width="48" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="100" y="115" class="tb" text-anchor="middle">は</text>
+<rect x="136" y="96" width="48" height="28" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="115" class="tb" text-anchor="middle">猫</text>
+<rect x="196" y="96" width="48" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="220" y="115" class="tb" text-anchor="middle">が</text>
+<rect x="256" y="96" width="48" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="280" y="115" class="tb" text-anchor="middle">好き</text>
+<text x="40" y="142" class="tm" text-anchor="middle">0.06</text>
+<text x="100" y="142" class="tm" text-anchor="middle">0.04</text>
+<text x="160" y="142" class="tb ta" text-anchor="middle">0.76</text>
+<text x="220" y="142" class="tm" text-anchor="middle">0.04</text>
+<text x="280" y="142" class="tm" text-anchor="middle">0.10</text>
+<rect x="76" y="242" width="48" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="100" y="261" class="tb" text-anchor="middle">I</text>
+<rect x="136" y="242" width="48" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="160" y="261" class="tb" text-anchor="middle">like</text>
+<rect x="196" y="242" width="48" height="28" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="220" y="261" class="tb" text-anchor="middle">？</text>
+<line x1="220" y1="242" x2="40" y2="150" class="l sm w1"/>
+<line x1="220" y1="242" x2="100" y2="150" class="l sm w1"/>
+<line x1="220" y1="242" x2="160" y2="150" class="l sa w3"/>
+<line x1="220" y1="242" x2="220" y2="150" class="l sm w1"/>
+<line x1="220" y1="242" x2="280" y2="150" class="l sm w1"/>
+<text x="12" y="292" class="tb">デコーダ（訳文）：？＝次の語の位置がクエリ</text>
+<text x="12" y="316" class="tm">原文の下の数と線の太さ＝重み。重みは、</text>
+<text x="12" y="334" class="tm">クエリと各キーの似ている度合いを合計1に</text>
+<text x="12" y="352" class="tm">直したもの（作り方は Q・K・V の図）</text>
+<text x="12" y="372" class="tm">0.06＋0.04＋0.76＋0.04＋0.10＝1</text>
+<line x1="160" y1="386" x2="160" y2="394.4" class="l sm w1"/>
+<polygon points="160,400 156.5,394.4 163.5,394.4" class="fm"/>
+<rect x="12" y="400" width="296" height="92" class="fok sok" stroke-width="1" rx="6"/>
+<text x="24" y="420" class="tb">取り込む情報＝重み×バリュー の合計</text>
+<text x="24" y="442" class="tm">0.06×私＋0.04×は＋0.76×猫＋…</text>
+<text x="24" y="462" class="tm">→ 猫 のバリューが 76％ を占める</text>
+<text x="24" y="482" class="tb tok">→ デコーダは次の語に cats を出す</text>
+<text x="12" y="518" class="tb">Self-Attention との違い</text>
+<text x="12" y="538" class="tm">・Source-Target：クエリ＝訳文（デコーダ）、</text>
+<text x="12" y="556" class="tm">　キー・バリュー＝原文（エンコーダ）</text>
+<text x="12" y="576" class="tm">・Self：3つとも同じ文から作る</text>
+<text x="12" y="596" class="tm">・向きを逆（クエリが原文側）にしない</text>
+</svg>

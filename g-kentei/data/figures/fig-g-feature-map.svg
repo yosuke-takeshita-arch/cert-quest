@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 752" role="img" aria-labelledby="fig-g-feature-map-t fig-g-feature-map-d">
+<title id="fig-g-feature-map-t">特徴マップ：フィルタでなぞった結果の、どこにどの模様があるかの地図</title>
+<desc id="fig-g-feature-map-d">入力は5×5で、1は線がある所。2列目に縦線、4行目に横線がある。縦線のフィルタ（3×3の真ん中の列が1）と横線のフィルタ（真ん中の行が1）で、それぞれなぞる。窓（3×3）を1マスずつずらし、重なった9マスの積の和を地図の1マスにする。縦線の特徴マップは、上の行から3・0・0、3・1・1、3・1・1で、3が縦に並ぶ所が縦線のある所。横線の特徴マップは1・1・0、1・1・0、3・3・3で、3が横に並ぶ所が横線のある所。縦の地図の左上の3は、窓が入力の左上3×3で、フィルタの1は真ん中の列だけ、そこの入力は1・1・1なので、1×1＋1×1＋1×1＝3（ほかの6マスは0を掛ける）。地図の1マスは入力の窓1つぶん。フィルタ1枚につき地図が1枚でき、フィルタ64枚なら地図64枚（64チャネル）。次の層はこの地図を入力にまた畳み込むので、層が深いほど線、角、目や車輪の地図になる。フィルタは模様の型（学習する重み）、特徴マップは型でなぞった結果（出力）。</desc>
+<text x="12" y="20" class="tb">特徴マップ：どこにどの模様があるかの地図</text>
+<text x="12" y="44" class="tb">① 入力（例：5×5。1＝線がある所）</text>
+<rect x="60" y="54" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="71" y="69.5" text-anchor="middle">0</text>
+<rect x="82" y="54" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="93" y="69.5" text-anchor="middle">1</text>
+<rect x="104" y="54" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="115" y="69.5" text-anchor="middle">0</text>
+<rect x="126" y="54" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="69.5" text-anchor="middle">0</text>
+<rect x="148" y="54" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="159" y="69.5" text-anchor="middle">0</text>
+<rect x="60" y="76" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="71" y="91.5" text-anchor="middle">0</text>
+<rect x="82" y="76" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="93" y="91.5" text-anchor="middle">1</text>
+<rect x="104" y="76" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="115" y="91.5" text-anchor="middle">0</text>
+<rect x="126" y="76" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="91.5" text-anchor="middle">0</text>
+<rect x="148" y="76" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="159" y="91.5" text-anchor="middle">0</text>
+<rect x="60" y="98" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="71" y="113.5" text-anchor="middle">0</text>
+<rect x="82" y="98" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="93" y="113.5" text-anchor="middle">1</text>
+<rect x="104" y="98" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="115" y="113.5" text-anchor="middle">0</text>
+<rect x="126" y="98" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="113.5" text-anchor="middle">0</text>
+<rect x="148" y="98" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="159" y="113.5" text-anchor="middle">0</text>
+<rect x="60" y="120" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="71" y="135.5" text-anchor="middle">1</text>
+<rect x="82" y="120" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="93" y="135.5" text-anchor="middle">1</text>
+<rect x="104" y="120" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="115" y="135.5" text-anchor="middle">1</text>
+<rect x="126" y="120" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="137" y="135.5" text-anchor="middle">1</text>
+<rect x="148" y="120" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="159" y="135.5" text-anchor="middle">1</text>
+<rect x="60" y="142" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="71" y="157.5" text-anchor="middle">0</text>
+<rect x="82" y="142" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="93" y="157.5" text-anchor="middle">1</text>
+<rect x="104" y="142" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="115" y="157.5" text-anchor="middle">0</text>
+<rect x="126" y="142" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="137" y="157.5" text-anchor="middle">0</text>
+<rect x="148" y="142" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="159" y="157.5" text-anchor="middle">0</text>
+<text x="178" y="91" class="tm">← 縦線（2列目）</text>
+<text x="178" y="135" class="tm">← 横線（4行目）</text>
+<text x="12" y="190" class="tb">② フィルタ2枚で、それぞれなぞる</text>
+<text x="12" y="210" class="tm">窓（3×3）を1マスずつずらし、重なった</text>
+<text x="12" y="228" class="tm">9マスの積の和を、地図の1マスにする</text>
+<text x="86" y="250" class="tb" text-anchor="middle">縦線のフィルタ</text>
+<text x="234" y="250" class="tb" text-anchor="middle">横線のフィルタ</text>
+<rect x="59" y="258" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="68" y="271.5" text-anchor="middle">0</text>
+<rect x="77" y="258" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<text x="86" y="271.5" text-anchor="middle">1</text>
+<rect x="95" y="258" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="104" y="271.5" text-anchor="middle">0</text>
+<rect x="59" y="276" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="68" y="289.5" text-anchor="middle">0</text>
+<rect x="77" y="276" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<text x="86" y="289.5" text-anchor="middle">1</text>
+<rect x="95" y="276" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="104" y="289.5" text-anchor="middle">0</text>
+<rect x="59" y="294" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="68" y="307.5" text-anchor="middle">0</text>
+<rect x="77" y="294" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<text x="86" y="307.5" text-anchor="middle">1</text>
+<rect x="95" y="294" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="104" y="307.5" text-anchor="middle">0</text>
+<rect x="207" y="258" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="216" y="271.5" text-anchor="middle">0</text>
+<rect x="225" y="258" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="234" y="271.5" text-anchor="middle">0</text>
+<rect x="243" y="258" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="252" y="271.5" text-anchor="middle">0</text>
+<rect x="207" y="276" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<text x="216" y="289.5" text-anchor="middle">1</text>
+<rect x="225" y="276" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<text x="234" y="289.5" text-anchor="middle">1</text>
+<rect x="243" y="276" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<text x="252" y="289.5" text-anchor="middle">1</text>
+<rect x="207" y="294" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="216" y="307.5" text-anchor="middle">0</text>
+<rect x="225" y="294" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="234" y="307.5" text-anchor="middle">0</text>
+<rect x="243" y="294" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="252" y="307.5" text-anchor="middle">0</text>
+<line x1="86" y1="316" x2="86" y2="330.4" class="l sm w1"/>
+<polygon points="86,336 82.5,330.4 89.5,330.4" class="fm"/>
+<line x1="234" y1="316" x2="234" y2="330.4" class="l sm w1"/>
+<polygon points="234,336 230.5,330.4 237.5,330.4" class="fm"/>
+<text x="86" y="352" class="tb" text-anchor="middle">縦線の特徴マップ</text>
+<text x="234" y="352" class="tb" text-anchor="middle">横線の特徴マップ</text>
+<rect x="44" y="360" width="28" height="28" class="fok sok" stroke-width="1"/>
+<text x="58" y="378.5" class="tb tok" text-anchor="middle">3</text>
+<rect x="72" y="360" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="86" y="378.5" class="tm" text-anchor="middle">0</text>
+<rect x="100" y="360" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="114" y="378.5" class="tm" text-anchor="middle">0</text>
+<rect x="44" y="388" width="28" height="28" class="fok sok" stroke-width="1"/>
+<text x="58" y="406.5" class="tb tok" text-anchor="middle">3</text>
+<rect x="72" y="388" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="86" y="406.5" class="tm" text-anchor="middle">1</text>
+<rect x="100" y="388" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="114" y="406.5" class="tm" text-anchor="middle">1</text>
+<rect x="44" y="416" width="28" height="28" class="fok sok" stroke-width="1"/>
+<text x="58" y="434.5" class="tb tok" text-anchor="middle">3</text>
+<rect x="72" y="416" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="86" y="434.5" class="tm" text-anchor="middle">1</text>
+<rect x="100" y="416" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="114" y="434.5" class="tm" text-anchor="middle">1</text>
+<rect x="192" y="360" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="206" y="378.5" class="tm" text-anchor="middle">1</text>
+<rect x="220" y="360" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="234" y="378.5" class="tm" text-anchor="middle">1</text>
+<rect x="248" y="360" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="262" y="378.5" class="tm" text-anchor="middle">0</text>
+<rect x="192" y="388" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="206" y="406.5" class="tm" text-anchor="middle">1</text>
+<rect x="220" y="388" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="234" y="406.5" class="tm" text-anchor="middle">1</text>
+<rect x="248" y="388" width="28" height="28" class="fs sb" stroke-width="1"/>
+<text x="262" y="406.5" class="tm" text-anchor="middle">0</text>
+<rect x="192" y="416" width="28" height="28" class="fok sok" stroke-width="1"/>
+<text x="206" y="434.5" class="tb tok" text-anchor="middle">3</text>
+<rect x="220" y="416" width="28" height="28" class="fok sok" stroke-width="1"/>
+<text x="234" y="434.5" class="tb tok" text-anchor="middle">3</text>
+<rect x="248" y="416" width="28" height="28" class="fok sok" stroke-width="1"/>
+<text x="262" y="434.5" class="tb tok" text-anchor="middle">3</text>
+<text x="86" y="464" class="tok" text-anchor="middle">3 が縦に並ぶ</text>
+<text x="234" y="464" class="tok" text-anchor="middle">3 が横に並ぶ</text>
+<text x="86" y="482" class="tok" text-anchor="middle">＝縦線のある所</text>
+<text x="234" y="482" class="tok" text-anchor="middle">＝横線のある所</text>
+<text x="12" y="508" class="tm">縦の地図の左上の 3 の計算：</text>
+<text x="12" y="526" class="tm">窓は入力の左上 3×3。フィルタの 1 は真ん中の</text>
+<text x="12" y="544" class="tm">列だけで、そこの入力は 1・1・1</text>
+<text x="12" y="562" class="tm">→ 1×1＋1×1＋1×1＝3（ほかの6マスは×0）</text>
+<text x="12" y="580" class="tm">地図の1マス＝入力の窓1つぶん</text>
+<line x1="160" y1="594" x2="160" y2="602.4" class="l sm w1"/>
+<polygon points="160,608 156.5,602.4 163.5,602.4" class="fm"/>
+<rect x="12" y="608" width="296" height="132" class="fas sa" stroke-width="1" rx="6"/>
+<text x="24" y="628" class="tb">③ フィルタ1枚につき、地図が1枚</text>
+<text x="24" y="650" class="tm">フィルタ64枚なら地図64枚（64チャネル）</text>
+<text x="24" y="670" class="tm">次の層はこの地図を入力に、また畳み込む</text>
+<text x="24" y="690" class="tm">→ 層が深いほど 線→角→目や車輪 の地図に</text>
+<text x="24" y="712" class="tb">フィルタ＝模様の型（学習する重み）</text>
+<text x="24" y="732" class="tb ta">特徴マップ＝型でなぞった結果（出力）</text>
+</svg>

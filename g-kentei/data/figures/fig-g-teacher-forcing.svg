@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 732" role="img" aria-labelledby="fig-g-teacher-forcing-t fig-g-teacher-forcing-d">
+<title id="fig-g-teacher-forcing-t">教師強制：学習中は次の入力に正解を入れ、推論では自分の予測を入れる</title>
+<desc id="fig-g-teacher-forcing-d">例は訳文を1語ずつ作るRNNで、正解は「I like dogs」。1語目をYouと誤ったとする。①学習中（教師強制）：入力は〈開始〉、I、likeで、2つ目と3つ目の入力は正解の語（予測のYouは使わない）。予測はYou、like、dogsで、予測と正解を比べて誤差を出す（You≠I）。誤りが後ろへ響かず、学習が安定して速い。教師強制なしなら、②と同じく誤ったYouを入力にしたまま2語目以降を学ぶことになる。②推論（使うとき。正解が無い）：自分の予測を次の入力に回すので、入力は〈開始〉、You、are、予測はYou、are、cuteとなり、1語誤ると後ろの語も次々ずれる。学習中は正解しか入れていないので、誤った後の立て直し方を学んでいない（露出バイアス）。③和らげる方法がScheduled Samplingで、正解を入れる割合を学習が進むにつれて減らし、自分の予測を混ぜていく。教師強制は入力の与え方、BPTTは勾配の計算のしかた。</desc>
+<text x="12" y="20" class="tb">教師強制：学習中は、次の入力に正解を入れる</text>
+<text x="12" y="42" class="tm">例：訳文を1語ずつ作る。正解は「I like dogs」</text>
+<text x="12" y="60" class="tm">1語目を You と誤ったとする</text>
+<rect x="12" y="76" width="296" height="236" class="fas sa" stroke-width="1" rx="6"/>
+<text x="24" y="96" class="tb">① 学習中（教師強制）</text>
+<text x="24" y="130.5" class="tm">予測</text>
+<text x="24" y="222.5" class="tm">入力</text>
+<rect x="66" y="113" width="60" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="96" y="130.5" class="tb tng" text-anchor="middle">You</text>
+<rect x="66" y="159" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="96" y="176.5" class="tm" text-anchor="middle">RNN</text>
+<rect x="66" y="205" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="96" y="222.5" class="tb" text-anchor="middle">〈開始〉</text>
+<line x1="96" y1="205" x2="96" y2="185" class="l sm w1"/>
+<polyline points="99.04,191.3 96,185 92.96,191.3" class="l sm w1"/>
+<line x1="96" y1="159" x2="96" y2="139" class="l sm w1"/>
+<polyline points="99.04,145.3 96,139 92.96,145.3" class="l sm w1"/>
+<line x1="126" y1="172" x2="152" y2="172" class="l sm w1"/>
+<polyline points="145.7,175.04 152,172 145.7,168.96" class="l sm w1"/>
+<rect x="152" y="113" width="60" height="26" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="182" y="130.5" class="tb tok" text-anchor="middle">like</text>
+<rect x="152" y="159" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="182" y="176.5" class="tm" text-anchor="middle">RNN</text>
+<rect x="152" y="205" width="60" height="26" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="182" y="222.5" class="tb tok" text-anchor="middle">I</text>
+<line x1="182" y1="205" x2="182" y2="185" class="l sm w1"/>
+<polyline points="185.04,191.3 182,185 178.96,191.3" class="l sm w1"/>
+<line x1="182" y1="159" x2="182" y2="139" class="l sm w1"/>
+<polyline points="185.04,145.3 182,139 178.96,145.3" class="l sm w1"/>
+<line x1="212" y1="172" x2="238" y2="172" class="l sm w1"/>
+<polyline points="231.7,175.04 238,172 231.7,168.96" class="l sm w1"/>
+<rect x="238" y="113" width="60" height="26" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="268" y="130.5" class="tb tok" text-anchor="middle">dogs</text>
+<rect x="238" y="159" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="268" y="176.5" class="tm" text-anchor="middle">RNN</text>
+<rect x="238" y="205" width="60" height="26" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="268" y="222.5" class="tb tok" text-anchor="middle">like</text>
+<line x1="268" y1="205" x2="268" y2="185" class="l sm w1"/>
+<polyline points="271.04,191.3 268,185 264.96,191.3" class="l sm w1"/>
+<line x1="268" y1="159" x2="268" y2="139" class="l sm w1"/>
+<polyline points="271.04,145.3 268,139 264.96,145.3" class="l sm w1"/>
+<text x="24" y="251" class="tm">緑の入力＝正解の語（予測の You は使わない）</text>
+<text x="24" y="271" class="tm">予測と正解を比べて誤差を出す：You≠I</text>
+<text x="24" y="291" class="tok">→ 誤りが後ろへ響かず、学習が安定して速い</text>
+<text x="12" y="326" class="tm">教師強制なしなら、②と同じく誤った You を</text>
+<text x="12" y="344" class="tm">入力にしたまま、2語目以降を学ぶことになる</text>
+<rect x="12" y="358" width="296" height="256" class="fwn swn" stroke-width="1" rx="6"/>
+<text x="24" y="378" class="tb">② 推論（使うとき。正解が無い）</text>
+<text x="24" y="412.5" class="tm">予測</text>
+<text x="24" y="504.5" class="tm">入力</text>
+<rect x="66" y="395" width="60" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="96" y="412.5" class="tb tng" text-anchor="middle">You</text>
+<rect x="66" y="441" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="96" y="458.5" class="tm" text-anchor="middle">RNN</text>
+<rect x="66" y="487" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="96" y="504.5" class="tb" text-anchor="middle">〈開始〉</text>
+<line x1="96" y1="487" x2="96" y2="467" class="l sm w1"/>
+<polyline points="99.04,473.3 96,467 92.96,473.3" class="l sm w1"/>
+<line x1="96" y1="441" x2="96" y2="421" class="l sm w1"/>
+<polyline points="99.04,427.3 96,421 92.96,427.3" class="l sm w1"/>
+<line x1="126" y1="454" x2="152" y2="454" class="l sm w1"/>
+<polyline points="145.7,457.04 152,454 145.7,450.96" class="l sm w1"/>
+<line x1="122" y1="421" x2="156" y2="487" class="l sng w1 dsh"/>
+<polyline points="150.41,482.79 156,487 155.82,480" class="l sng w1 dsh"/>
+<rect x="152" y="395" width="60" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="182" y="412.5" class="tb tng" text-anchor="middle">are</text>
+<rect x="152" y="441" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="182" y="458.5" class="tm" text-anchor="middle">RNN</text>
+<rect x="152" y="487" width="60" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="182" y="504.5" class="tb tng" text-anchor="middle">You</text>
+<line x1="182" y1="487" x2="182" y2="467" class="l sm w1"/>
+<polyline points="185.04,473.3 182,467 178.96,473.3" class="l sm w1"/>
+<line x1="182" y1="441" x2="182" y2="421" class="l sm w1"/>
+<polyline points="185.04,427.3 182,421 178.96,427.3" class="l sm w1"/>
+<line x1="212" y1="454" x2="238" y2="454" class="l sm w1"/>
+<polyline points="231.7,457.04 238,454 231.7,450.96" class="l sm w1"/>
+<line x1="208" y1="421" x2="242" y2="487" class="l sng w1 dsh"/>
+<polyline points="236.41,482.79 242,487 241.82,480" class="l sng w1 dsh"/>
+<rect x="238" y="395" width="60" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="268" y="412.5" class="tb tng" text-anchor="middle">cute</text>
+<rect x="238" y="441" width="60" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="268" y="458.5" class="tm" text-anchor="middle">RNN</text>
+<rect x="238" y="487" width="60" height="26" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="268" y="504.5" class="tb tng" text-anchor="middle">are</text>
+<line x1="268" y1="487" x2="268" y2="467" class="l sm w1"/>
+<polyline points="271.04,473.3 268,467 264.96,473.3" class="l sm w1"/>
+<line x1="268" y1="441" x2="268" y2="421" class="l sm w1"/>
+<polyline points="271.04,427.3 268,421 264.96,427.3" class="l sm w1"/>
+<text x="24" y="533" class="tm">赤の点線＝自分の予測を次の入力に回す</text>
+<text x="24" y="553" class="tng">→ 1語誤ると、後ろの語も次々ずれる</text>
+<text x="24" y="573" class="tm">学習中は正解しか入れていないので、誤った</text>
+<text x="24" y="591" class="tm">後の立て直し方を学んでいない（露出バイアス）</text>
+<text x="12" y="640" class="tb">③ 和らげる方法：Scheduled Sampling</text>
+<text x="12" y="660" class="tm">正解を入れる割合を、学習が進むにつれて</text>
+<text x="12" y="678" class="tm">減らし、自分の予測を混ぜていく</text>
+<text x="12" y="700" class="tm">混同に注意：教師強制＝入力の与え方、</text>
+<text x="12" y="718" class="tm">BPTT＝勾配の計算のしかた</text>
+</svg>
