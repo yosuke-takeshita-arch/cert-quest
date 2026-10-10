@@ -124,6 +124,7 @@
       }
     ],
     "figures": [
+      "fig-g-neuron-mlp",
       "fig-g-perceptron-xor"
     ],
     "sources": [
@@ -1614,8 +1615,8 @@
       }
     ],
     "figures": [
-      "fig-g-local-min-saddle",
-      "fig-g-optimizers"
+      "fig-g-optimizers",
+      "fig-g-local-min-saddle"
     ],
     "sources": [
       {
