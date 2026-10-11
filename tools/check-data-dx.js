@@ -263,7 +263,18 @@ function svgProblems(text) {
   if (/(?:https?:)?\/\/[a-z0-9]/i.test(text.replace(/\sxmlns(?::[a-z]+)?\s*=\s*"http:\/\/www\.w3\.org\/[^"]*"/gi, ''))) p.push('外部のURL（http など）がある');
   return p;
 }
-const figDirOf = (f) => path.join(path.dirname(path.dirname(path.resolve(f))), 'figures');
+// XML として読めるか（tools/check-data.js の xmlProblems と同じ。2026-10-12 足した。片方を直したら、もう片方も直す）
+function xmlProblems(text) {
+  const p = [];
+  const body = text.replace(/<!--[\s\S]*?-->/g, '').replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, '').replace(/<\?[\s\S]*?\?>/g, '');
+  const rest = body.replace(/<\/?[A-Za-z][^<>]*>/g, '');
+  const lt = rest.indexOf('<');
+  if (lt >= 0) p.push('タグの外に生の < がある（&lt; と書く）: ' + rest.slice(lt, lt + 30));
+  const amp = /&(?!(?:[A-Za-z][A-Za-z0-9]*|#[0-9]+|#x[0-9A-Fa-f]+);)/.exec(body);
+  if (amp) p.push('文字参照になっていない & がある（&amp; と書く）: ' + body.slice(amp.index, amp.index + 30));
+  return p;
+}
+const figDirOf =(f) => path.join(path.dirname(path.dirname(path.resolve(f))), 'figures');
 const figUsed = new Map(); // figures ディレクトリ -> 使われた ID の集合
 function checkFigureRefs(f, id, figs) {
   if (figs === undefined) return;
@@ -285,6 +296,7 @@ function checkFigureFiles() {
       const text = fs.readFileSync(path.join(dir, fn), 'utf8');
       if (!FIGURE_ID_RE.test(id)) err(fn, id, 'SVG のファイル名が図の ID の形式でない');
       for (const m of svgProblems(text)) err(fn, id, m);
+      for (const m of xmlProblems(text)) err(fn, id, m);
       const vb = /<svg[^>]*\sviewBox\s*=\s*"\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([-\d.]+)[\s,]+[-\d.]+\s*"/i.exec(text);
       if (!vb) err(fn, id, 'viewBox が無い');
       else if (Number(vb[1]) > 360) err(fn, id, `viewBox の幅が 360 を超える: ${vb[1]}`);
