@@ -465,6 +465,23 @@ test('このアプリについて: タイトル曲の作者 TAD を載せる', (
   assert.match(about, /TAD/);
 });
 
+// 2026-10-11、ボス戦の音5つを足したとき、about の作者名に足し忘れていた。記録の表の作者を全員載せる
+test('このアプリについて: audio-licenses.md の表にある作者を全員載せる', () => {
+  const about = readFileSync(join(shared, 'js', 'views', 'about.js'), 'utf8');
+  const md = readFileSync(join(shared, '..', 'docs', 'sources', 'audio-licenses.md'), 'utf8');
+  const authors = new Set();
+  let col = -1;
+  for (const line of md.split(/\r?\n/)) {
+    if (!line.startsWith('|')) { col = -1; continue; }
+    const cells = line.split('|').map((s) => s.trim());
+    if (cells.includes('作者')) { col = cells.indexOf('作者'); continue; }
+    if (col < 0 || /^-+$/.test(cells[1])) continue;
+    if (cells[col]) authors.add(cells[col]);
+  }
+  assert.ok(authors.size >= 15, '作者を読めていない: ' + authors.size);
+  for (const a of authors) assert.ok(about.includes(a), a + ' が about.js に無い');
+});
+
 test('タイトル曲: 画面のどこをさわっても音を使える状態にし、鳴らせないあいだは一言を出す', () => {
   const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
   const ti = readFileSync(join(shared, 'js', 'views', 'title.js'), 'utf8');
