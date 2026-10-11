@@ -58,7 +58,7 @@ test('badgeImageUrl: 共通→shared、major-◯◯→アプリ、不正・未�
 });
 
 // 共通のバッジ＝12個（絵あり）＋「どっち？」とボス戦の5つ（絵が届いたら COMMON_BADGE_ART に足し、ここから外す）
-const PENDING_ART = ['dochi-combo-10', 'boss-first', 'boss-all', 'boss-flawless'];
+const PENDING_ART = [];
 
 test('badgeDefs: 共通12個は絵あり、5つは絵なし、章の制覇は major-◯◯ の絵の名前（シラバス id 優先）', () => {
   const defs = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 });
