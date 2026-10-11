@@ -28,6 +28,7 @@ const SHARED = [
   '../shared/images/badges/exam-first.webp',
   '../shared/images/badges/exam-70.webp',
   '../shared/images/badges/exam-90.webp',
+  '../shared/images/badges/dochi-perfect.webp',
   '../shared/images/characters/shiba-hello.webp',
   '../shared/images/characters/shiba-banzai.webp',
   '../shared/images/characters/shiba-clap.webp',

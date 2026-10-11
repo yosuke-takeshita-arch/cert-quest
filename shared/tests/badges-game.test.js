@@ -27,11 +27,11 @@ test('5つが共通の並びの 13〜17 番目に、この順で並ぶ（boss-fi
   assert.equal(new Set(ids).size, ids.length);
 });
 
-test('絵はまだ無い: 5つとも絵の名前は null（記号の表示）', () => {
+test('絵: 届いたもの（COMMON_BADGE_ART にある）は id、まだのものは null（記号の表示）', () => {
   for (const id of NEW5) {
-    assert.equal(badgeArtName(def(id)), null, id);
-    assert.equal(COMMON_BADGE_ART.includes(id), false, id);
+    assert.equal(badgeArtName(def(id)), COMMON_BADGE_ART.includes(id) ? id : null, id);
   }
+  assert.equal(COMMON_BADGE_ART.includes('dochi-perfect'), true);
 });
 
 test('dochi-perfect: 19問では取れず、20問で取れる（境目）', () => {
