@@ -6,7 +6,7 @@
 import { h, clear, icon, vibrate, beep, toast, mascotLine } from '../ui.js';
 import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
-import { bossInfo, bossQuestions, recordBossWin, isFlawlessWin, bossWins, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, BOSS_MIN, CRIT_DAMAGE } from '../lib/boss.js';
+import { bossInfo, bossQuestions, recordBossWin, isFlawlessWin, bossWins, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
 import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
@@ -86,7 +86,13 @@ export function availableBosses(app) {
   return app.data.tree.stages.map((st) => ({ stage: st, ...bossState(app, st) })).filter((b) => b.info.available);
 }
 
-/** 章の画面に置くボスの場所。現れていれば目立たせて挑めるように、まだなら条件を出す。 */
+/**
+ * ボスが現れる条件と、間違えた問題の数は画面に出さない（2026-10-11 先生決定。いつ現れるか分からないワクワクのため）。
+ * まだ現れていない章・姿を消したあと・復習の画面で使う文。
+ */
+export const BOSS_HIDDEN_TEXT = '問題を解いていると、いつか現れます。';
+
+/** 章の画面に置くボスの場所。現れていれば目立たせて挑めるように、まだなら影だけ出す（条件は出さない）。 */
 export function bossPlace(app, stage, back) {
   const { info, wins } = bossState(app, stage);
   const name = bossName(app, stage);
@@ -94,13 +100,13 @@ export function bossPlace(app, stage, back) {
     return h('div', { class: 'card boss-place off', 'data-boss-place': 'off' },
       h('div', { class: 'boss-place-head' }, bossArt(app, stage, 'off'),
         h('div', { class: 'boss-place-text' }, h('strong', { text: name }),
-          h('span', { class: 'small muted', text: '間違えた問題が' + BOSS_MIN + '問たまると現れます（あと ' + info.need + ' 問）' }),
+          h('span', { class: 'small muted', text: BOSS_HIDDEN_TEXT }),
           wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + wins + ' 回' }) : null)));
   }
   return h('div', { class: 'card boss-place on', 'data-boss-place': 'on' },
     h('div', { class: 'boss-place-head' }, bossArt(app, stage, 'on'),
       h('div', { class: 'boss-place-text' }, h('strong', { text: name + ' が あらわれた！' }),
-        h('span', { class: 'small', text: '間違えた問題 ' + info.missed + ' 問が、ボスになりました' }),
+        h('span', { class: 'small', text: '間違えた問題が、ボスになりました' }),
         wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + wins + ' 回' }) : null)),
     h('button', { class: 'btn primary big', type: 'button', 'data-boss-go': stage.key, onClick: () => openBoss(app, stage, back) }, 'ボスに挑む'));
 }
@@ -623,8 +629,8 @@ export function renderBoss(app, key) {
       h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
     const info = bossInfo(stage.questions, app.state.qstats);
     card.appendChild(h('p', { class: 'small muted', text: info.available
-      ? 'この章にはまだ、最後に間違えた問題が ' + info.missed + ' 問あります。ボスはまた挑めます。'
-      : 'この章の、最後に間違えた問題は ' + info.missed + ' 問になり、ボスは姿を消しました（' + BOSS_MIN + '問たまるとまた現れます）。' }));
+      ? 'ボスはまだこの章にいます。また挑めます。'
+      : 'ボスは姿を消しました。またいつか現れます。' }));
     root.appendChild(card);
     if (win) {
       const m = mascotLine('shiba-banzai', 'やったね！ 間違えた問題をひとつずつ越えました。', 'win');
@@ -671,12 +677,11 @@ export function renderBoss(app, key) {
   }
 
   if (!begin()) {
-    const info = bossInfo(stage.questions, app.state.qstats);
     root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: leave }, '← 戻る'));
     root.appendChild(h('h1', { text: name }));
     root.appendChild(h('div', { class: 'card empty', 'data-boss-none': '1' },
       h('p', { text: 'この章のボスはまだ現れていません。' }),
-      h('p', { class: 'small muted', text: '間違えた問題が' + BOSS_MIN + '問たまると現れます（あと ' + info.need + ' 問）。' })));
+      h('p', { class: 'small muted', text: BOSS_HIDDEN_TEXT })));
     return root;
   }
   bindKeys();

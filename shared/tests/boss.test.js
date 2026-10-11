@@ -275,3 +275,15 @@ test('撃破の回数が増える。state に項目が無くても、壊れて�
   assert.deepEqual(broken.boss, { 'A|a': 1 });
   assert.equal(bossWins({ boss: { 'A|a': 'x' } }, 'A|a'), 0);
 });
+
+// 2026-10-11 先生決定: ボスが現れる条件・あと何問か・間違えた問題の数は画面に出さない（要件定義書 §3-7）。
+test('画面の文に、ボスが現れる条件と間違えた問題の数を出さない', async () => {
+  const { readFileSync } = await import('node:fs');
+  for (const f of ['../js/views/boss.js', '../js/views/home.js']) {
+    const code = readFileSync(new URL(f, import.meta.url), 'utf8')
+      .split('\n').filter((l) => !/^\s*(\/\/|\*|\/\*\*)/.test(l)).join('\n'); // コメントは除く
+    assert.doesNotMatch(code, /BOSS_MIN/, f + ' が出る条件の数を使っている');
+    assert.doesNotMatch(code, /info\.(need|missed)/, f + ' が、あと何問か・間違えた問題の数を使っている');
+    assert.doesNotMatch(code, /たまると/, f + ' が出る条件を書いている');
+  }
+});

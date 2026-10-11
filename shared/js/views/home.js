@@ -15,7 +15,7 @@ import { homeMascot } from '../lib/characters.js';
 import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
-import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss } from './boss.js';
+import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_HIDDEN_TEXT } from './boss.js';
 import { cardBody } from './cards.js';
 
 export function masteryChip(level) {
@@ -429,13 +429,13 @@ export function renderReview(app) {
   const bosses = availableBosses(app);
   const bbox = h('div', { class: 'card boss-list', 'data-review-boss': '1' }, h('h2', { text: '章のボス' }));
   if (bosses.length) {
-    bbox.appendChild(h('p', { class: 'small muted', text: '間違えた問題がたまった章に現れます。ボスをたおすと、その問題の復習になります。' }));
+    bbox.appendChild(h('p', { class: 'small muted', text: 'ボスをたおすと、間違えた問題の復習になります。' }));
     bosses.forEach((b) => bbox.appendChild(h('button', { class: 'boss-row', type: 'button', 'data-boss-go': b.stage.key, onClick: () => openBoss(app, b.stage, '#/review') },
       bossArt(app, b.stage, 'on'),
-      h('span', { class: 'boss-row-text' }, h('strong', { text: bossName(app, b.stage) }), h('span', { class: 'small muted', text: '間違えた問題 ' + b.info.missed + ' 問' + (b.wins ? '・たおした回数 ' + b.wins + ' 回' : '') }))
+      h('span', { class: 'boss-row-text' }, h('strong', { text: bossName(app, b.stage) }), b.wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + b.wins + ' 回' }) : null)
       , h('span', { class: 'boss-row-go', 'aria-hidden': 'true', text: '挑む ›' }))));
   } else {
-    bbox.appendChild(h('p', { class: 'small muted', text: 'いまは現れていません。章ごとに、最後に間違えた問題が3問たまると、その章のボスが現れます。' }));
+    bbox.appendChild(h('p', { class: 'small muted', text: 'いまは現れていません。' + BOSS_HIDDEN_TEXT }));
   }
   root.appendChild(bbox);
   // 「あとで見る」へ入る（ゆっくり理解したい問題に自分で付けた印。復習の予定とは別）
