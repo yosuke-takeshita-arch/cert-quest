@@ -1,5 +1,5 @@
 // 章のボス戦の計算。純粋な関数だけ（DOM も localStorage も触らない）。画面はあとで別に作る。
-// 仕様: 要件定義書 3-7。state.boss = { 章のキー: 撃破の回数 }。
+// 仕様: 要件定義書 3-7。state.boss = { 章のキー: 撃破の回数 }。state.bossMet = { 章のキー: true }（一度でも現れた章）。
 
 export const BOSS_MIN = 3; // ボスが現れるのに要る「最後に間違えた問題」の数の下限
 export const BOSS_NEED_MAX = 5; // 同じく上限。章と撃破の回数ごとに BOSS_MIN〜BOSS_NEED_MAX のどれかに決める（bossThreshold。2026-10-11 先生決定 B）
@@ -200,6 +200,30 @@ export function recordBossWin(state, key, flawless = false) {
   state.boss[key] = (state.boss[key] || 0) + 1;
   state.bossFlawless = normalizeBossFlawless(state.bossFlawless) + (flawless ? 1 : 0);
   return state.boss[key];
+}
+
+/**
+ * 読んだ保存データの bossMet（一度でも現れたことのある章のボス）を正しい形にする。{ 章のキー: true }。
+ * 古い記録（項目なし）は空。true でない値は捨てる。2026-10-11 先生決定：一度も現れていないボスは、名前も姿も隠す。
+ */
+export function normalizeBossMet(raw) {
+  const out = {};
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return out;
+  for (const [k, v] of Object.entries(raw)) if (k && v === true) out[k] = true;
+  return out;
+}
+
+/** その章のボスが現れたことを記録する。初めてなら true。 */
+export function markBossMet(state, key) {
+  state.bossMet = normalizeBossMet(state.bossMet);
+  if (state.bossMet[key]) return false;
+  state.bossMet[key] = true;
+  return true;
+}
+
+/** その章のボスに会ったことがあるか（現れたことがある、または倒したことがある。bossMet が入る前に倒した記録も会ったことにする）。 */
+export function hasMetBoss(state, key) {
+  return !!(state && state.bossMet && state.bossMet[key] === true) || bossWins(state, key) > 0;
 }
 
 export function bossWins(state, key) {

@@ -15,7 +15,7 @@ import { homeMascot } from '../lib/characters.js';
 import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
-import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_HIDDEN_TEXT } from './boss.js';
+import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
 import { cardBody } from './cards.js';
 
 export function masteryChip(level) {
@@ -435,7 +435,7 @@ export function renderReview(app) {
       h('span', { class: 'boss-row-text' }, h('strong', { text: bossName(app, b.stage) }), b.wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + b.wins + ' 回' }) : null)
       , h('span', { class: 'boss-row-go', 'aria-hidden': 'true', text: '挑む ›' }))));
   } else {
-    bbox.appendChild(h('p', { class: 'small muted', text: 'いまは現れていません。' + BOSS_HIDDEN_TEXT }));
+    bbox.appendChild(h('p', { class: 'small muted', text: BOSS_TEXT.quiet }));
   }
   root.appendChild(bbox);
   // 「あとで見る」へ入る（ゆっくり理解したい問題に自分で付けた印。復習の予定とは別）

@@ -333,3 +333,26 @@ test('bossInfo・bossQuestions: 要る数（threshold）で現れるかが決ま
   assert.equal(bossInfo(qs, st, 2).available, true); // 3 未満は 3 として扱う
   assert.equal(bossInfo(qs, { Q1: st.Q1, Q2: st.Q2 }, 2).available, false);
 });
+
+// 2026-10-11 先生決定: 一度も現れていないボスは、名前も姿も隠す。
+test('bossMet: 現れたら記録し、会ったことがあるかを返す', async () => {
+  const { normalizeBossMet, markBossMet, hasMetBoss } = await import('../js/lib/boss.js');
+  assert.deepEqual(normalizeBossMet(undefined), {});
+  assert.deepEqual(normalizeBossMet([1]), {});
+  assert.deepEqual(normalizeBossMet({ 'A|a': true, 'B|b': 1, 'C|c': 'yes', '': true }), { 'A|a': true });
+  const s = {};
+  assert.equal(hasMetBoss(s, 'A|a'), false);
+  assert.equal(markBossMet(s, 'A|a'), true);
+  assert.equal(markBossMet(s, 'A|a'), false); // 2回目は初めてではない
+  assert.equal(hasMetBoss(s, 'A|a'), true);
+  assert.equal(hasMetBoss(s, 'B|b'), false);
+  assert.equal(hasMetBoss({ boss: { 'B|b': 2 } }, 'B|b'), true); // 記録が入る前に倒したボスも、会ったことにする
+  assert.equal(hasMetBoss(null, 'A|a'), false);
+});
+
+test('進み具合の読み込み: bossMet を正しい形にする（古い記録は空）', async () => {
+  const { mergeState, defaultState } = await import('../js/lib/progress.js');
+  assert.deepEqual(defaultState().bossMet, {});
+  assert.deepEqual(mergeState({}).bossMet, {}); // 古い記録（項目なし）
+  assert.deepEqual(mergeState({ bossMet: { 'A|a': true, 'B|b': 3 } }).bossMet, { 'A|a': true });
+});

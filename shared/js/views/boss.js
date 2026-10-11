@@ -6,7 +6,7 @@
 import { h, clear, icon, vibrate, beep, toast, mascotLine } from '../ui.js';
 import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
-import { bossInfo, bossQuestions, bossThreshold, recordBossWin, isFlawlessWin, bossWins, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
+import { bossInfo, bossQuestions, bossThreshold, recordBossWin, isFlawlessWin, bossWins, markBossMet, hasMetBoss, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
 import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
@@ -52,7 +52,9 @@ function loadBossImage(url, wrap, onLoad) {
 
 /** 小さな丸のボス（章の画面・地図・復習の一覧）。絵の上のほう（顔）を切り抜く。飾りなので読み上げない。 */
 export function bossArt(app, stage, cls) {
-  const wrap = h('span', { class: 'boss-art ' + (cls || ''), 'aria-hidden': 'true' }, h('span', { class: 'boss-sym', text: BOSS_SYMBOL }));
+  const unknown = String(cls || '').split(' ').includes('unknown'); // まだ会っていないボスは、絵を読まず「？」だけ
+  const wrap = h('span', { class: 'boss-art ' + (cls || ''), 'aria-hidden': 'true' }, h('span', { class: 'boss-sym', text: unknown ? '？' : BOSS_SYMBOL }));
+  if (unknown) return wrap;
   loadBossImage(bossImageUrl(app, stage), wrap, (img) => {
     const c = faceCrop(img.naturalWidth, img.naturalHeight, bossProfileOf(app, stage).face);
     img.style.setProperty('--zoom', String(c.zoom));
@@ -81,9 +83,11 @@ function stageThreshold(app, stage) {
   return bossThreshold(stage.key, bossWins(app.state, stage.key), (stage.questions || []).length);
 }
 
-/** その章のボスの様子。{ info, wins }。 */
+/** その章のボスの様子。{ info, wins, met }。現れていれば、会ったことを記録する（保存は次の app.commit で）。 */
 export function bossState(app, stage) {
-  return { info: bossInfo(stage.questions, app.state.qstats, stageThreshold(app, stage)), wins: bossWins(app.state, stage.key) };
+  const info = bossInfo(stage.questions, app.state.qstats, stageThreshold(app, stage));
+  if (info.available) markBossMet(app.state, stage.key);
+  return { info, wins: bossWins(app.state, stage.key), met: hasMetBoss(app.state, stage.key) };
 }
 
 /** いま挑める（現れている）ボスの章。 */
@@ -93,19 +97,25 @@ export function availableBosses(app) {
 
 /**
  * ボスが現れる条件と、間違えた問題の数は画面に出さない（2026-10-11 先生決定。いつ現れるか分からないワクワクのため）。
- * まだ現れていない章・姿を消したあと・復習の画面で使う文。
+ * 一度も現れていないボスは、名前を「？？？」にして姿も隠す（同日 先生決定）。文は昔の RPG の語り口にする。
  */
-export const BOSS_HIDDEN_TEXT = '問題を解いていると、いつか現れます。';
+export const BOSS_TEXT = {
+  unknownName: '？？？',
+  unknown: 'この章のどこかに、なにかが ひそんでいる……',
+  away: (name) => name + ' は 姿を消している。いつ また あらわれるか……',
+  gone: (name) => name + ' は 姿を消した。だが、また どこかで 待ちかまえている……',
+  quiet: 'いまは どの章も しずまりかえっている……。だが、油断は できない。',
+};
 
 /** 章の画面に置くボスの場所。現れていれば目立たせて挑めるように、まだなら影だけ出す（条件は出さない）。 */
 export function bossPlace(app, stage, back) {
-  const { info, wins } = bossState(app, stage);
+  const { info, wins, met } = bossState(app, stage);
   const name = bossName(app, stage);
   if (!info.available) {
-    return h('div', { class: 'card boss-place off', 'data-boss-place': 'off' },
-      h('div', { class: 'boss-place-head' }, bossArt(app, stage, 'off'),
-        h('div', { class: 'boss-place-text' }, h('strong', { text: name }),
-          h('span', { class: 'small muted', text: BOSS_HIDDEN_TEXT }),
+    return h('div', { class: 'card boss-place off', 'data-boss-place': met ? 'off' : 'unknown' },
+      h('div', { class: 'boss-place-head' }, bossArt(app, stage, met ? 'off' : 'off unknown'),
+        h('div', { class: 'boss-place-text' }, h('strong', { text: met ? name : BOSS_TEXT.unknownName }),
+          h('span', { class: 'small muted', text: met ? BOSS_TEXT.away(name) : BOSS_TEXT.unknown }),
           wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + wins + ' 回' }) : null)));
   }
   return h('div', { class: 'card boss-place on', 'data-boss-place': 'on' },
@@ -635,7 +645,7 @@ export function renderBoss(app, key) {
     const info = bossState(app, stage).info; // 勝ったあとは撃破の回数が増え、現れるのに要る数も変わる
     card.appendChild(h('p', { class: 'small muted', text: info.available
       ? 'ボスはまだこの章にいます。また挑めます。'
-      : 'ボスは姿を消しました。またいつか現れます。' }));
+      : BOSS_TEXT.gone(name) }));
     root.appendChild(card);
     if (win) {
       const m = mascotLine('shiba-banzai', 'やったね！ 間違えた問題をひとつずつ越えました。', 'win');
@@ -683,10 +693,10 @@ export function renderBoss(app, key) {
 
   if (!begin()) {
     root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: leave }, '← 戻る'));
-    root.appendChild(h('h1', { text: name }));
+    const met = hasMetBoss(app.state, stage.key);
+    root.appendChild(h('h1', { text: met ? name : BOSS_TEXT.unknownName }));
     root.appendChild(h('div', { class: 'card empty', 'data-boss-none': '1' },
-      h('p', { text: 'この章のボスはまだ現れていません。' }),
-      h('p', { class: 'small muted', text: BOSS_HIDDEN_TEXT })));
+      h('p', { text: met ? BOSS_TEXT.away(name) : BOSS_TEXT.unknown })));
     return root;
   }
   bindKeys();
