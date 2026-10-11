@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1612" role="img" aria-labelledby="fig-g-ward-t fig-g-ward-d">
+<title id="fig-g-ward-t">ウォード法：結んだときのばらつきの増え方がいちばん小さい組から結ぶ</title>
+<desc id="fig-g-ward-d">ウォード法は、階層的クラスタリングで次にどの2つのまとまりを結ぶかを、距離ではなく、結んだときのばらつきの増え方で決める。ばらつきは各点と中心（平均）の差を2乗して足した値。例は数直線上の4点1・2・3・10で、いまのまとまりは{1,2}（青）・{3}（緑）・{10}（茶）。①まとめる前のばらつきは、{1,2}が中心1.5で差0.5と0.5なので0.25＋0.25＝0.5、{3}と{10}は1点だけなので0。②結ぶ候補を全部試す。増え方＝まとめた後のばらつき−まとめる前の合計。候補A {1,2}＋{3}は中心2、差1・0・1でまとめた後2、増え方は2−0.5＝1.5。候補B {3}＋{10}は中心6.5、差3.5と3.5でまとめた後12.25＋12.25＝24.5、増え方24.5。候補C {1,2}＋{10}は中心13/3（約4.3）、差は約3.3・2.3・5.7でまとめた後約48.7、増え方は約48.7−0.5＝約48.2。③増え方を棒で比べ、いちばん小さいA（{1,2}と{3}）を結ぶ。次は{1,2,3}と{10}を同じように比べ、1つになるまでくり返す。④距離で選ぶ方法とは結ぶ組が変わる例。{1,2,3,4}・{6}・{9}では、最短距離法（いちばん近い2点の距離）は{1,2,3,4}と{6}が2、{6}と{9}が3、{1,2,3,4}と{9}が5なので{1,2,3,4}＋{6}を結ぶ。ウォード法では、{1,2,3,4}のばらつきは中心2.5で2.25＋0.25＋0.25＋2.25＝5、{1,2,3,4}＋{6}は中心3.2でまとめた後14.8、増え方9.8。{6}＋{9}は中心7.5で2.25＋2.25＝4.5、増え方4.5。{1,2,3,4}＋{9}は増え方33.8。だから{6}＋{9}を結び、最短距離法と逆になる。点の多いまとまりに足すと中心が動いて中の全部の点の差が広がるので増え方が大きく、大きさのそろったまとまりになりやすい。</desc>
+<text x="12" y="20" class="tb">ウォード法：ばらつきの増え方で選ぶ</text>
+<text x="12" y="42" class="tm">例：数直線上の4点 1・2・3・10</text>
+<text x="12" y="62" class="tm">いまのまとまり：{1,2}（青）・{3}（緑）・</text>
+<text x="12" y="80" class="tm">　{10}（茶）。次にどの2つを結ぶか？</text>
+<text x="12" y="102" class="tm">ばらつき＝各点と中心（平均）の差を</text>
+<text x="12" y="120" class="tm">　2乗して足した値（◆＝中心）</text>
+<rect x="12" y="132" width="296" height="134" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="152" class="tb">① まとめる前のばらつき</text>
+<line x1="22" y1="198" x2="302" y2="198" class="l sm w1"/>
+<line x1="36" y1="195" x2="36" y2="201" class="l sm w1"/>
+<line x1="64" y1="195" x2="64" y2="201" class="l sm w1"/>
+<line x1="92" y1="195" x2="92" y2="201" class="l sm w1"/>
+<line x1="120" y1="195" x2="120" y2="201" class="l sm w1"/>
+<line x1="148" y1="195" x2="148" y2="201" class="l sm w1"/>
+<line x1="176" y1="195" x2="176" y2="201" class="l sm w1"/>
+<line x1="204" y1="195" x2="204" y2="201" class="l sm w1"/>
+<line x1="232" y1="195" x2="232" y2="201" class="l sm w1"/>
+<line x1="260" y1="195" x2="260" y2="201" class="l sm w1"/>
+<line x1="288" y1="195" x2="288" y2="201" class="l sm w1"/>
+<polygon points="50,169 57,176 50,183 43,176" class="ft sa" stroke-width="2"/>
+<text x="61" y="181" class="tm">1.5</text>
+<circle cx="36" cy="198" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="36" y="220" class="tb" text-anchor="middle">1</text>
+<circle cx="64" cy="198" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="64" y="220" class="tb" text-anchor="middle">2</text>
+<circle cx="92" cy="198" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="92" y="220" class="tb" text-anchor="middle">3</text>
+<circle cx="288" cy="198" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="288" y="220" class="tb" text-anchor="middle">10</text>
+<text x="24" y="242">{1,2}：差0.5と0.5 → 0.25＋0.25＝0.5</text>
+<text x="24" y="260">{3}・{10}：1点だけなので 0</text>
+<line x1="160" y1="266" x2="160" y2="274.4" class="l sm w1"/>
+<polygon points="160,280 156.5,274.4 163.5,274.4" class="fm"/>
+<text x="12" y="302" class="tb">② 結ぶ候補を全部試す</text>
+<text x="12" y="322" class="tm">増え方＝まとめた後 − まとめる前の合計</text>
+<rect x="12" y="332" width="296" height="168" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="352" class="tb">候補A：{1,2}＋{3}</text>
+<line x1="22" y1="394" x2="302" y2="394" class="l sm w1"/>
+<line x1="36" y1="391" x2="36" y2="397" class="l sm w1"/>
+<line x1="64" y1="391" x2="64" y2="397" class="l sm w1"/>
+<line x1="92" y1="391" x2="92" y2="397" class="l sm w1"/>
+<line x1="120" y1="391" x2="120" y2="397" class="l sm w1"/>
+<line x1="148" y1="391" x2="148" y2="397" class="l sm w1"/>
+<line x1="176" y1="391" x2="176" y2="397" class="l sm w1"/>
+<line x1="204" y1="391" x2="204" y2="397" class="l sm w1"/>
+<line x1="232" y1="391" x2="232" y2="397" class="l sm w1"/>
+<line x1="260" y1="391" x2="260" y2="397" class="l sm w1"/>
+<line x1="288" y1="391" x2="288" y2="397" class="l sm w1"/>
+<polygon points="64,365 71,372 64,379 57,372" class="ft sm" stroke-width="2"/>
+<text x="75" y="377" class="tm">2</text>
+<circle cx="36" cy="394" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="36" y="416" class="tb" text-anchor="middle">1</text>
+<circle cx="64" cy="394" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="64" y="416" class="tb" text-anchor="middle">2</text>
+<circle cx="92" cy="394" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="92" y="416" class="tb" text-anchor="middle">3</text>
+<circle cx="288" cy="394" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="288" y="416" class="tb" text-anchor="middle">10</text>
+<polyline points="36,420 36,428 92,428 92,420" class="l sok w2"/>
+<text x="24" y="450">中心 (1＋2＋3)÷3＝2、差は1・0・1</text>
+<text x="24" y="468">まとめた後：1＋0＋1＝2</text>
+<text x="24" y="488" class="tb">増え方＝2−(0.5＋0)＝<tspan class="tok">1.5</tspan></text>
+<rect x="12" y="508" width="296" height="168" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="528" class="tb">候補B：{3}＋{10}</text>
+<line x1="22" y1="570" x2="302" y2="570" class="l sm w1"/>
+<line x1="36" y1="567" x2="36" y2="573" class="l sm w1"/>
+<line x1="64" y1="567" x2="64" y2="573" class="l sm w1"/>
+<line x1="92" y1="567" x2="92" y2="573" class="l sm w1"/>
+<line x1="120" y1="567" x2="120" y2="573" class="l sm w1"/>
+<line x1="148" y1="567" x2="148" y2="573" class="l sm w1"/>
+<line x1="176" y1="567" x2="176" y2="573" class="l sm w1"/>
+<line x1="204" y1="567" x2="204" y2="573" class="l sm w1"/>
+<line x1="232" y1="567" x2="232" y2="573" class="l sm w1"/>
+<line x1="260" y1="567" x2="260" y2="573" class="l sm w1"/>
+<line x1="288" y1="567" x2="288" y2="573" class="l sm w1"/>
+<polygon points="190,541 197,548 190,555 183,548" class="ft sm" stroke-width="2"/>
+<text x="201" y="553" class="tm">6.5</text>
+<circle cx="36" cy="570" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="36" y="592" class="tb" text-anchor="middle">1</text>
+<circle cx="64" cy="570" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="64" y="592" class="tb" text-anchor="middle">2</text>
+<circle cx="92" cy="570" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="92" y="592" class="tb" text-anchor="middle">3</text>
+<circle cx="288" cy="570" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="288" y="592" class="tb" text-anchor="middle">10</text>
+<polyline points="92,596 92,604 288,604 288,596" class="l w2"/>
+<text x="24" y="626">中心 (3＋10)÷2＝6.5、差は3.5と3.5</text>
+<text x="24" y="644">まとめた後：12.25＋12.25＝24.5</text>
+<text x="24" y="664" class="tb">増え方＝24.5−(0＋0)＝<tspan class="ta">24.5</tspan></text>
+<rect x="12" y="684" width="296" height="186" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="704" class="tb">候補C：{1,2}＋{10}</text>
+<line x1="22" y1="746" x2="302" y2="746" class="l sm w1"/>
+<line x1="36" y1="743" x2="36" y2="749" class="l sm w1"/>
+<line x1="64" y1="743" x2="64" y2="749" class="l sm w1"/>
+<line x1="92" y1="743" x2="92" y2="749" class="l sm w1"/>
+<line x1="120" y1="743" x2="120" y2="749" class="l sm w1"/>
+<line x1="148" y1="743" x2="148" y2="749" class="l sm w1"/>
+<line x1="176" y1="743" x2="176" y2="749" class="l sm w1"/>
+<line x1="204" y1="743" x2="204" y2="749" class="l sm w1"/>
+<line x1="232" y1="743" x2="232" y2="749" class="l sm w1"/>
+<line x1="260" y1="743" x2="260" y2="749" class="l sm w1"/>
+<line x1="288" y1="743" x2="288" y2="749" class="l sm w1"/>
+<polygon points="129.33333333333331,717 136.33333333333331,724 129.33333333333331,731 122.33333333333331,724" class="ft sm" stroke-width="2"/>
+<text x="140.33333333333331" y="729" class="tm">約4.3</text>
+<circle cx="36" cy="746" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="36" y="768" class="tb" text-anchor="middle">1</text>
+<circle cx="64" cy="746" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="64" y="768" class="tb" text-anchor="middle">2</text>
+<circle cx="92" cy="746" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="92" y="768" class="tb" text-anchor="middle">3</text>
+<circle cx="288" cy="746" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="288" y="768" class="tb" text-anchor="middle">10</text>
+<polyline points="36,772 36,780 288,780 288,772" class="l w2"/>
+<text x="24" y="802">中心 (1＋2＋10)÷3＝13/3（約4.3）</text>
+<text x="24" y="820">差は約3.3・2.3・5.7</text>
+<text x="24" y="838">まとめた後：約11.1＋5.4＋32.1≈48.7</text>
+<text x="24" y="858" class="tb">増え方≈48.7−(0.5＋0)≈<tspan class="ta">48.2</tspan></text>
+<text x="12" y="900" class="tb">③ 増え方を比べて、いちばん小さい組を結ぶ</text>
+<rect x="12" y="912" width="296" height="122" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="939" class="tb">A</text>
+<rect x="44" y="926" width="5.9" height="18" class="fok sok" stroke-width="1.5"/>
+<text x="55.916955017301035" y="940" class="tb tok">1.5</text>
+<text x="24" y="965" class="tb">B</text>
+<rect x="44" y="952" width="96.6" height="18" class="fwn swn" stroke-width="1.5"/>
+<text x="146.64359861591697" y="966" class="tb">24.5</text>
+<text x="24" y="991" class="tb">C</text>
+<rect x="44" y="978" width="190.0" height="18" class="fwn swn" stroke-width="1.5"/>
+<text x="240" y="992" class="tb">48.2</text>
+<text x="24" y="1024" class="tb tok">→ A（{1,2}と{3}）を結ぶ</text>
+<text x="12" y="1056" class="tm">次は {1,2,3} と {10} を同じように比べる</text>
+<text x="12" y="1074" class="tm">（まとまりが1つになるまでくり返す）</text>
+<line x1="12" y1="1086" x2="308" y2="1086" class="l sb w1"/>
+<text x="12" y="1116" class="tb">④ 距離で選ぶ方法とは、結ぶ組が変わる</text>
+<text x="12" y="1136" class="tm">例：{1,2,3,4}（青）・{6}（緑）・{9}（茶）</text>
+<rect x="12" y="1146" width="296" height="80" class="fs sb" stroke-width="1.5" rx="6"/>
+<line x1="22" y1="1192" x2="306" y2="1192" class="l sm w1"/>
+<line x1="36" y1="1189" x2="36" y2="1195" class="l sm w1"/>
+<line x1="68" y1="1189" x2="68" y2="1195" class="l sm w1"/>
+<line x1="100" y1="1189" x2="100" y2="1195" class="l sm w1"/>
+<line x1="132" y1="1189" x2="132" y2="1195" class="l sm w1"/>
+<line x1="164" y1="1189" x2="164" y2="1195" class="l sm w1"/>
+<line x1="196" y1="1189" x2="196" y2="1195" class="l sm w1"/>
+<line x1="228" y1="1189" x2="228" y2="1195" class="l sm w1"/>
+<line x1="260" y1="1189" x2="260" y2="1195" class="l sm w1"/>
+<line x1="292" y1="1189" x2="292" y2="1195" class="l sm w1"/>
+<polygon points="84,1163 91,1170 84,1177 77,1170" class="ft sa" stroke-width="2"/>
+<text x="95" y="1175" class="tm">2.5</text>
+<circle cx="36" cy="1192" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="36" y="1214" class="tb" text-anchor="middle">1</text>
+<circle cx="68" cy="1192" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="68" y="1214" class="tb" text-anchor="middle">2</text>
+<circle cx="100" cy="1192" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="100" y="1214" class="tb" text-anchor="middle">3</text>
+<circle cx="132" cy="1192" r="6" class="fs sa" stroke-width="2.5"/>
+<text x="132" y="1214" class="tb" text-anchor="middle">4</text>
+<circle cx="196" cy="1192" r="6" class="fs sok" stroke-width="2.5"/>
+<text x="196" y="1214" class="tb" text-anchor="middle">6</text>
+<circle cx="292" cy="1192" r="6" class="fs swn" stroke-width="2.5"/>
+<text x="292" y="1214" class="tb" text-anchor="middle">9</text>
+<rect x="12" y="1234" width="296" height="100" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="1254" class="tb">最短距離法：いちばん近い2点の距離</text>
+<text x="24" y="1274">{1,2,3,4}と{6}：6−4＝2</text>
+<text x="24" y="1292">{6}と{9}：9−6＝3 ／ {1,2,3,4}と{9}：5</text>
+<text x="24" y="1320" class="tb">→ {1,2,3,4}＋{6} を結ぶ</text>
+<rect x="12" y="1342" width="296" height="190" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="1362" class="tb">ウォード法：ばらつきの増え方</text>
+<text x="24" y="1382">{1,2,3,4}：中心2.5、差1.5・0.5・0.5・1.5</text>
+<text x="24" y="1400">　→ 2.25＋0.25＋0.25＋2.25＝5</text>
+<text x="24" y="1420">{1,2,3,4}＋{6}：中心3.2 → 14.8</text>
+<text x="24" y="1438">　増え方 14.8−5＝<tspan class="tb ta">9.8</tspan></text>
+<text x="24" y="1458">{6}＋{9}：中心7.5 → 2.25＋2.25＝4.5</text>
+<text x="24" y="1476">　増え方 4.5−0＝<tspan class="tb tok">4.5</tspan></text>
+<text x="24" y="1494">{1,2,3,4}＋{9}：増え方 <tspan class="tb ta">33.8</tspan></text>
+<text x="24" y="1520" class="tb tok">→ {6}＋{9} を結ぶ（最短距離法と逆）</text>
+<text x="12" y="1556" class="tm">点の多いまとまりに足すと中心が動き、</text>
+<text x="12" y="1574" class="tm">中の全部の点の差が広がる → 増え方が大きい</text>
+<text x="12" y="1598" class="tb">→ 大きさのそろったまとまりになりやすい</text>
+</svg>
