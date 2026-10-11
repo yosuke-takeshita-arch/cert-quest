@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 778" role="img" aria-labelledby="fig-g-fasttext-t fig-g-fasttext-d">
+<title id="fig-g-fasttext-t">fastText：単語を文字 n-gram のかたまりに分け、そのベクトルの和で単語ベクトルを作る</title>
+<desc id="fig-g-fasttext-d">fastText は、単語を文字 n-gram（連続する n 文字のかたまり）の集まりとして表し、それらのベクトルの和で単語のベクトルを作る。&lt; と &gt; は単語の始まりと終わりの印。①word2vec は単語を1つの記号として扱うので、学習データに無い語（新語・活用で形の変わった語）にはベクトルを作れず、つづりの似た語どうしの関係も使えない。②原論文の例：where を n＝3 で分けると、&lt;wh・whe・her・ere・re&gt; の5つのかたまりと、単語そのものを表す &lt;where&gt; になる（実際は n＝3〜6 のすべてを使う）。where のベクトルは6つのかたまりのベクトルの和で、各かたまりのベクトルは学習で決まる。③例：wherever が学習データに無いとき、n＝3 で分けると &lt;wh・whe・her・ere・rev・eve・ver・er&gt; になり、このうち &lt;wh・whe・her・ere の4つは where と同じかたまり。学習で覚えたかたまりのベクトルを足せば wherever のベクトルができる。word2vec ではベクトルが無いが、fastText ではかたまりの和で作れる。混同しやすい点：ここでの n-gram は単語の中の文字の並び。文書分類の fastText の bag of n-grams は文の中の語の並びで、別の話。</desc>
+<text x="12" y="20" class="tb">fastText：単語を文字のかたまりの和で表す</text>
+<text x="12" y="42" class="tm">文字n-gram＝連続する n 文字のかたまり</text>
+<text x="12" y="60" class="tm">&lt; と &gt; は単語の始まりと終わりの印</text>
+<rect x="12" y="72" width="296" height="104" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="92" class="tb">① word2vec の困りごと</text>
+<text x="24" y="112">単語を1つの記号として扱うので、</text>
+<text x="24" y="130">学習データに無い語（新語・活用で形の</text>
+<text x="24" y="148">変わった語）にはベクトルを作れない</text>
+<text x="24" y="166" class="tm">つづりの似た語どうしの関係も使えない</text>
+<line x1="160" y1="176" x2="160.0" y2="184.4" class="l sm w1"/>
+<polygon points="160,190 156.5,184.4 163.5,184.4" class="fm"/>
+<rect x="12" y="196" width="296" height="214" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="216" class="tb">② where を n＝3 で分ける（原論文の例）</text>
+<rect x="24" y="228" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="45" y="245" class="tb" text-anchor="middle">&lt;wh</text>
+<rect x="72" y="228" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="93" y="245" class="tb" text-anchor="middle">whe</text>
+<rect x="120" y="228" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="141" y="245" class="tb" text-anchor="middle">her</text>
+<rect x="168" y="228" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="189" y="245" class="tb" text-anchor="middle">ere</text>
+<rect x="216" y="228" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="237" y="245" class="tb" text-anchor="middle">re&gt;</text>
+<rect x="24" y="260" width="64" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="56" y="277" text-anchor="middle">&lt;where&gt;</text>
+<text x="24" y="312">5つのかたまり＋単語そのもの &lt;where&gt;</text>
+<text x="24" y="330" class="tm">（実際は n＝3〜6 のすべてを使う）</text>
+<text x="24" y="354" class="tb ta">where のベクトル</text>
+<text x="24" y="374">＝ 6つのかたまりのベクトルの和</text>
+<text x="24" y="396" class="tm">各かたまりのベクトルは学習で決まる</text>
+<line x1="160" y1="410" x2="160.0" y2="418.4" class="l sm w1"/>
+<polygon points="160,424 156.5,418.4 163.5,418.4" class="fm"/>
+<rect x="12" y="430" width="296" height="236" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="450" class="tb">③ 学習データに無い語でも作れる</text>
+<text x="24" y="470" class="tm">例：wherever が学習データに無いとき</text>
+<rect x="24" y="482" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="45" y="499" class="tb" text-anchor="middle">&lt;wh</text>
+<rect x="72" y="482" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="93" y="499" class="tb" text-anchor="middle">whe</text>
+<rect x="120" y="482" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="141" y="499" class="tb" text-anchor="middle">her</text>
+<rect x="168" y="482" width="42" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="189" y="499" class="tb" text-anchor="middle">ere</text>
+<rect x="216" y="482" width="42" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="237" y="499" text-anchor="middle">rev</text>
+<rect x="24" y="514" width="42" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="45" y="531" text-anchor="middle">eve</text>
+<rect x="72" y="514" width="42" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="93" y="531" text-anchor="middle">ver</text>
+<rect x="120" y="514" width="42" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="141" y="531" text-anchor="middle">er&gt;</text>
+<text x="24" y="566" class="tb ta">青＝where と同じかたまり（4つ）</text>
+<text x="24" y="586">学習で覚えたかたまりのベクトルを足せば</text>
+<text x="24" y="604">wherever のベクトルができる</text>
+<text x="24" y="626" class="twn">word2vec：ベクトル無し</text>
+<text x="24" y="646" class="tb tok">fastText：かたまりの和で作れる</text>
+<rect x="12" y="680" width="296" height="86" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="700" class="tb">混同しやすい点</text>
+<text x="24" y="720">ここでの n-gram は、単語の中の文字の並び</text>
+<text x="24" y="738">文書分類の fastText の bag of n-grams は、</text>
+<text x="24" y="756">文の中の語の並びで、別の話</text>
+</svg>

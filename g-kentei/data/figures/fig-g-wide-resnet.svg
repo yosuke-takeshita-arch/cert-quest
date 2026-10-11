@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 944" role="img" aria-labelledby="fig-g-wide-resnet-t fig-g-wide-resnet-d">
+<title id="fig-g-wide-resnet-t">Wide ResNet：層を減らし、各層のチャネル数（幅）を広げる</title>
+<desc id="fig-g-wide-resnet-d">Wide ResNet は、ResNet の層を減らす代わりに、各層のチャネル数（幅）を広げた構造。図では棒1本を畳み込みの層1つ、棒の横の長さを幅として描く。①細くて深い ResNet-1001 は、16・32・64チャネルの3つの段にそれぞれ約333層を積み、合わせて1001層・幅1倍。②太くて浅い WRN-16-8 は、128・256・512チャネルの3つの段にそれぞれ4層で、合わせて16層・幅8倍。③原論文の CIFAR-10 の結果：ResNet-1001 は層1001・重み1020万・誤り率4.92%、WRN-16-8 は層16・重み1100万・誤り率4.27%。重みの数は近いのに層は約60分の1で、精度は同じかそれ以上、学習は数倍速い。④速い理由：深いと1001層を1層ずつ順番に計算するが、太いと1層が大きな行列計算になり GPU がまとめて並列にこなせるので、順番待ちが減り速く学習できる。⑤WRN-28-10 は28層・幅10倍という意味。幅を広げると重みは増え、WRN-28-10 は3650万で ResNet-1001 の約3.6倍。深さ・幅・解像度の3つを一緒に広げるのは EfficientNet。</desc>
+<text x="12" y="20" class="tb">Wide ResNet：層を減らし、幅を広げる</text>
+<text x="12" y="42" class="tm">幅＝各層のチャネル数（特徴マップの枚数）</text>
+<text x="12" y="60" class="tm">棒1本＝畳み込みの層1つ。棒の横の長さ＝幅</text>
+<text x="12" y="78" class="tm">（ResNet は幅の違う3つの段を積む）</text>
+<rect x="12" y="90" width="296" height="300" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="110" class="tb">① 細くて深い　vs　② 太くて浅い</text>
+<text x="82" y="132" class="tb" text-anchor="middle">ResNet-1001</text>
+<text x="226" y="132" class="tb ta" text-anchor="middle">WRN-16-8</text>
+<rect x="80" y="146" width="4" height="3" class="fm"/>
+<rect x="80" y="152" width="4" height="3" class="fm"/>
+<rect x="80" y="158" width="4" height="3" class="fm"/>
+<rect x="80" y="164" width="4" height="3" class="fm"/>
+<rect x="80" y="170" width="4" height="3" class="fm"/>
+<rect x="80" y="176" width="4" height="3" class="fm"/>
+<text x="82" y="196" class="tm" text-anchor="middle">⋮</text>
+<text x="96" y="172" class="tm">16ch</text>
+<text x="96" y="190" class="tm">約333層</text>
+<rect x="210" y="146" width="32" height="7" class="fa"/>
+<rect x="210" y="156" width="32" height="7" class="fa"/>
+<rect x="210" y="166" width="32" height="7" class="fa"/>
+<rect x="210" y="176" width="32" height="7" class="fa"/>
+<text x="226" y="204" class="tm" text-anchor="middle">128ch・4層</text>
+<rect x="78" y="216" width="8" height="3" class="fm"/>
+<rect x="78" y="222" width="8" height="3" class="fm"/>
+<rect x="78" y="228" width="8" height="3" class="fm"/>
+<rect x="78" y="234" width="8" height="3" class="fm"/>
+<rect x="78" y="240" width="8" height="3" class="fm"/>
+<rect x="78" y="246" width="8" height="3" class="fm"/>
+<text x="82" y="266" class="tm" text-anchor="middle">⋮</text>
+<text x="96" y="242" class="tm">32ch</text>
+<text x="96" y="260" class="tm">約333層</text>
+<rect x="194" y="216" width="64" height="7" class="fa"/>
+<rect x="194" y="226" width="64" height="7" class="fa"/>
+<rect x="194" y="236" width="64" height="7" class="fa"/>
+<rect x="194" y="246" width="64" height="7" class="fa"/>
+<text x="226" y="274" class="tm" text-anchor="middle">256ch・4層</text>
+<rect x="74" y="286" width="16" height="3" class="fm"/>
+<rect x="74" y="292" width="16" height="3" class="fm"/>
+<rect x="74" y="298" width="16" height="3" class="fm"/>
+<rect x="74" y="304" width="16" height="3" class="fm"/>
+<rect x="74" y="310" width="16" height="3" class="fm"/>
+<rect x="74" y="316" width="16" height="3" class="fm"/>
+<text x="82" y="336" class="tm" text-anchor="middle">⋮</text>
+<text x="96" y="312" class="tm">64ch</text>
+<text x="96" y="330" class="tm">約333層</text>
+<rect x="162" y="286" width="128" height="7" class="fa"/>
+<rect x="162" y="296" width="128" height="7" class="fa"/>
+<rect x="162" y="306" width="128" height="7" class="fa"/>
+<rect x="162" y="316" width="128" height="7" class="fa"/>
+<text x="226" y="344" class="tm" text-anchor="middle">512ch・4層</text>
+<text x="82" y="372" class="tb" text-anchor="middle">1001層・幅1倍</text>
+<text x="226" y="372" class="tb ta" text-anchor="middle">16層・幅8倍</text>
+<line x1="160" y1="392" x2="160.0" y2="400.4" class="l sm w1"/>
+<polygon points="160,406 156.5,400.4 163.5,400.4" class="fm"/>
+<rect x="12" y="412" width="296" height="156" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="432" class="tb">③ 結果（原論文、CIFAR-10）</text>
+<text x="118" y="456" class="tm" text-anchor="middle">層の数</text>
+<text x="190" y="456" class="tm" text-anchor="middle">重みの数</text>
+<text x="264" y="456" class="tm" text-anchor="middle">誤り率</text>
+<text x="24" y="478" class="tb">ResNet</text>
+<text x="118" y="478" class="tb" text-anchor="middle">1001</text>
+<text x="190" y="478" class="tb" text-anchor="middle">1020万</text>
+<text x="264" y="478" class="tb" text-anchor="middle">4.92%</text>
+<text x="24" y="500" class="tb ta">WRN</text>
+<text x="118" y="500" class="tb ta" text-anchor="middle">16</text>
+<text x="190" y="500" class="tb ta" text-anchor="middle">1100万</text>
+<text x="264" y="500" class="tb ta" text-anchor="middle">4.27%</text>
+<text x="24" y="524">重みの数は近いのに、層は約60分の1で、</text>
+<text x="24" y="542" class="tb tok">精度は同じかそれ以上。学習は数倍速い</text>
+<text x="24" y="560" class="tm">（誤り率は小さいほどよい）</text>
+<text x="12" y="594" class="tb">④ なぜ速いか</text>
+<rect x="12" y="604" width="296" height="104" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="624">深い：1001層を1層ずつ順番に計算する</text>
+<text x="24" y="642" class="tm">　（前の層が終わるまで次へ進めない）</text>
+<text x="24" y="664">太い：1層が大きな行列計算になり、</text>
+<text x="24" y="682" class="tm">　GPU がまとめて並列にこなせる</text>
+<text x="24" y="700" class="tb tok">→ 順番待ちが減り、速く学習できる</text>
+<text x="12" y="734" class="tb">⑤ 名前の読み方と欠点</text>
+<rect x="12" y="744" width="296" height="104" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="764">WRN-28-10 ＝ 28層・幅10倍</text>
+<text x="24" y="782" class="tm">　（WRN-16-8 ＝ 16層・幅8倍）</text>
+<text x="24" y="804">幅を広げると重みは増える：</text>
+<text x="24" y="822">WRN-28-10 は3650万で、ResNet-1001 の</text>
+<text x="24" y="840" class="tb twn">約3.6倍</text>
+<line x1="12" y1="864" x2="308" y2="864" class="l sb w1"/>
+<text x="12" y="888" class="tb">深さだけが性能を決めるわけではない</text>
+<text x="12" y="910" class="tm">深さ・幅・解像度の3つを一緒に広げるのは</text>
+<text x="12" y="928" class="tm">EfficientNet</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 780" role="img" aria-labelledby="fig-g-parallel-corpus-t fig-g-parallel-corpus-d">
+<title id="fig-g-parallel-corpus-t">対訳コーパス：同じ内容を2つの言語で書いた文を、文ごとに組にして大量に集めたデータ</title>
+<desc id="fig-g-parallel-corpus-d">対訳コーパスは、同じ内容を2つ（以上）の言語で書いた文書を集め、文ごとに「この文の訳はこれ」と組にしたデータ。コーパスは文章をたくさん集めたデータのこと。①例：英語の I like cats. と日本語の「私は猫が好きだ。」、It is raining. と「雨が降っている。」、Thank you. と「ありがとう。」を、それぞれ1組にする。こうした組を何百万も集める。②統計的機械翻訳やニューラル機械翻訳は、人が規則を書く代わりに、原文と訳文の組から訳し方を学ぶので、組が多いほど学べることが増える。③作り方と代表例：同じ内容の2つの文書から文の対応を取る作業を文アライメントという。代表例は欧州議会の議事録から作った Europarl（21言語）と、国連の6つの公用語の国連パラレルコーパス。英語と組になる言語ではデータが豊富。④足りないときは逆翻訳で補う。例：英→日の翻訳を学びたいが組が少ないとき、1日本語だけの文（例「明日は晴れる。」）を集め、2日→英の機械翻訳で逆向きに訳して英文を作り、3作った英文と元の日本語文を組にして英→日の学習データに足す。訳先の側は人が書いた正しい文なので、その言語らしい文を学べる。</desc>
+<text x="12" y="20" class="tb">対訳コーパス：「この文の訳はこれ」の組を</text>
+<text x="12" y="40" class="tb">大量に集めたデータ</text>
+<text x="12" y="62" class="tm">コーパス＝文章をたくさん集めたデータ</text>
+<rect x="12" y="74" width="296" height="196" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="94" class="tb">① 文ごとに組にする（例）</text>
+<text x="84" y="116" class="tm" text-anchor="middle">英語</text>
+<text x="232" y="116" class="tm" text-anchor="middle">日本語</text>
+<rect x="24" y="124" width="120" height="28" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="84" y="143" class="tb" text-anchor="middle">I like cats.</text>
+<rect x="172" y="124" width="124" height="28" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="234" y="143" class="tb" text-anchor="middle">私は猫が好きだ。</text>
+<line x1="144" y1="138" x2="172" y2="138" class="l sa w2"/>
+<rect x="24" y="160" width="120" height="28" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="84" y="179" text-anchor="middle">It is raining.</text>
+<rect x="172" y="160" width="124" height="28" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="234" y="179" text-anchor="middle">雨が降っている。</text>
+<line x1="144" y1="174" x2="172" y2="174" class="l sa w2"/>
+<rect x="24" y="196" width="120" height="28" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="84" y="215" text-anchor="middle">Thank you.</text>
+<rect x="172" y="196" width="124" height="28" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="234" y="215" text-anchor="middle">ありがとう。</text>
+<line x1="144" y1="210" x2="172" y2="210" class="l sa w2"/>
+<text x="160" y="240" class="tm" text-anchor="middle">⋮</text>
+<text x="24" y="262" class="tb ta">こうした組を何百万も集める</text>
+<line x1="160" y1="270" x2="160.0" y2="278.4" class="l sm w1"/>
+<polygon points="160,284 156.5,278.4 163.5,278.4" class="fm"/>
+<rect x="12" y="290" width="296" height="104" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="310" class="tb">② 組から訳し方を学ぶ</text>
+<text x="24" y="330">統計的機械翻訳・ニューラル機械翻訳は、</text>
+<text x="24" y="348">人が規則を書く代わりに、原文と訳文の</text>
+<text x="24" y="366">組から訳し方を学ぶ</text>
+<text x="24" y="386" class="tb tok">→ 組が多いほど、学べることが増える</text>
+<rect x="12" y="406" width="296" height="132" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="426" class="tb">③ 作り方と代表例</text>
+<text x="24" y="446">同じ内容の2つの文書（英語版と日本語版</text>
+<text x="24" y="464">など）から、文の対応を取る＝文アライメント</text>
+<text x="24" y="488">Europarl：欧州議会の議事録（21言語）</text>
+<text x="24" y="508">国連パラレルコーパス：国連の6つの公用語</text>
+<text x="24" y="528" class="tm">英語と組になる言語ではデータが豊富</text>
+<text x="12" y="562" class="tb">④ 足りないとき：逆翻訳</text>
+<rect x="12" y="572" width="296" height="194" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="592">例：英→日 の翻訳を学びたいが、組が少ない</text>
+<text x="24" y="614">1. 日本語だけの文を集める（訳先の言語）</text>
+<text x="24" y="632" class="tm">　例「明日は晴れる。」</text>
+<text x="24" y="654">2. 日→英 の機械翻訳で、逆向きに訳す</text>
+<text x="24" y="672" class="tm">　→ 英文が作られる</text>
+<text x="24" y="694">3. 作った英文と元の日本語文を組にして、</text>
+<text x="24" y="712">　英→日 の学習データに足す</text>
+<text x="24" y="736" class="tm">訳先の側は人が書いた正しい文なので、</text>
+<text x="24" y="754" class="tm">その言語らしい文を学べる</text>
+</svg>

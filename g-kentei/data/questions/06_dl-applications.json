@@ -107,8 +107,8 @@
       "C-06-006"
     ],
     "figures": [
-      "fig-g-cnn-models",
-      "fig-g-efficientnet"
+      "fig-g-efficientnet",
+      "fig-g-cnn-models"
     ],
     "sources": [
       {
@@ -571,6 +571,7 @@
       "C-06-024"
     ],
     "figures": [
+      "fig-g-openpose",
       "fig-g-vision-tasks"
     ],
     "sources": [
@@ -612,6 +613,7 @@
       "C-06-005"
     ],
     "figures": [
+      "fig-g-wide-resnet",
       "fig-g-skip-connection"
     ],
     "sources": [
@@ -1526,6 +1528,7 @@
       "C-06-051"
     ],
     "figures": [
+      "fig-g-rainbow",
       "fig-g-dqn-family"
     ],
     "sources": [
@@ -1731,6 +1734,7 @@
       "C-06-058"
     ],
     "figures": [
+      "fig-g-domain-randomization",
       "fig-g-rl-data-sources"
     ],
     "sources": [
@@ -2719,6 +2723,7 @@
       "C-06-088"
     ],
     "figures": [
+      "fig-g-permutation-importance",
       "fig-g-lime-shap"
     ],
     "sources": [
@@ -2890,6 +2895,7 @@
       "C-06-091"
     ],
     "figures": [
+      "fig-g-lottery-ticket",
       "fig-g-model-compression"
     ],
     "sources": [
@@ -3056,6 +3062,9 @@
     "memoryTip": "トップダウン＝「人を見つけてから関節」、ボトムアップ＝「関節を見つけてから人」。OpenPose はボトムアップ。",
     "concepts": [
       "C-06-025"
+    ],
+    "figures": [
+      "fig-g-openpose"
     ],
     "sources": [
       {
@@ -3794,6 +3803,7 @@
       "C-06-097"
     ],
     "figures": [
+      "fig-g-imitation-learning",
       "fig-g-rl-data-sources"
     ],
     "sources": [
@@ -4585,6 +4595,9 @@
     "concepts": [
       "C-06-025",
       "C-06-001"
+    ],
+    "figures": [
+      "fig-g-openpose"
     ],
     "sources": [
       {
@@ -6401,6 +6414,7 @@
       "C-06-009"
     ],
     "figures": [
+      "fig-g-mobilenet",
       "fig-g-depthwise-separable"
     ],
     "sources": [
@@ -6498,6 +6512,7 @@
       "C-06-008"
     ],
     "figures": [
+      "fig-g-mobilenet",
       "fig-g-depthwise-separable"
     ],
     "sources": [
