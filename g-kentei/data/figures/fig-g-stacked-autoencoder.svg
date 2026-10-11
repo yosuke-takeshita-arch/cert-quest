@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 858" role="img" aria-labelledby="fig-g-stacked-autoencoder-t fig-g-stacked-autoencoder-d">
+<title id="fig-g-stacked-autoencoder-t">積層オートエンコーダと事前学習：1層ずつオートエンコーダとして学習して積み、最後に全体を微調整する</title>
+<desc id="fig-g-stacked-autoencoder-d">例は 784→500→250→30 の深いネットワークで、大きさは例。棒の数字はその層のニューロンの数。①まず 784→500 を、元の784個に戻せるように1つのオートエンコーダとして学習する。残すのは縮める側（784→500）の重みで、戻す側は捨てる。②次に、その500個の出力を入力にして 500→250 を同じように学習し、500→250 の重みを残す。③250個の出力を入力にして 250→30 を学習し、250→30 の重みを残す。④それらを積んでつなぎ、最後に出力の層を付ける。①②③の重みを初期値にして、正解ラベルを使って全体を微調整（ファインチューニング）する。教師なしで初期値を作り、教師ありで全体を仕上げる2段階。これが層ごとの貪欲な事前学習（2006年ごろ）で、今は事前学習済みモデルを使った転移学習へ考え方が受け継がれている。</desc>
+<text x="12" y="20" class="tb">積層オートエンコーダ：1層ずつ学習して積む</text>
+<text x="12" y="42" class="tm">例：784→500→250→30 の深い網（大きさは例）</text>
+<text x="12" y="60" class="tm">棒の数字＝その層のニューロンの数</text>
+<rect x="12" y="72" width="296" height="160" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="92" class="tb">① 784→500 を、元に戻せるよう学習</text>
+<rect x="45" y="104.0" width="22" height="64.0" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="56" y="182" text-anchor="middle">784</text>
+<rect x="149" y="114.1" width="22" height="43.7" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="160" y="182" text-anchor="middle">500</text>
+<rect x="247" y="104.0" width="22" height="64.0" class="fs sm dsh" stroke-width="1.5" rx="3"/>
+<text x="258" y="182" class="tm" text-anchor="middle">784（≒入力）</text>
+<line x1="70" y1="136" x2="140.4" y2="136.0" class="l sa w2"/>
+<polygon points="146,136 140.4,139.5 140.4,132.5" class="fa"/>
+<line x1="174" y1="136" x2="238.4" y2="136.0" class="l sm w1 dsh"/>
+<polygon points="244,136 238.4,139.5 238.4,132.5" class="fm"/>
+<text x="108" y="126" class="ta" text-anchor="middle">縮める</text>
+<text x="209" y="126" class="tm" text-anchor="middle">戻す</text>
+<text x="24" y="204">残すのは青の矢印（784→500）の重み</text>
+<text x="24" y="222" class="tm">戻す側（点線）は捨てる</text>
+<rect x="12" y="244" width="296" height="160" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="264" class="tb">② 500 個の出力を入力にして 500→250</text>
+<rect x="45" y="286.1" width="22" height="43.7" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="56" y="354" text-anchor="middle">500</text>
+<rect x="149" y="295.1" width="22" height="25.9" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="160" y="354" text-anchor="middle">250</text>
+<rect x="247" y="286.1" width="22" height="43.7" class="fs sm dsh" stroke-width="1.5" rx="3"/>
+<text x="258" y="354" class="tm" text-anchor="middle">500（≒入力）</text>
+<line x1="70" y1="308" x2="140.4" y2="308.0" class="l sa w2"/>
+<polygon points="146,308 140.4,311.5 140.4,304.5" class="fa"/>
+<line x1="174" y1="308" x2="238.4" y2="308.0" class="l sm w1 dsh"/>
+<polygon points="244,308 238.4,311.5 238.4,304.5" class="fm"/>
+<text x="108" y="298" class="ta" text-anchor="middle">縮める</text>
+<text x="209" y="298" class="tm" text-anchor="middle">戻す</text>
+<text x="24" y="376">残すのは 500→250 の重み</text>
+<text x="24" y="394" class="tm">戻す側（点線）は捨てる</text>
+<rect x="12" y="416" width="296" height="160" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="436" class="tb">③ 250 個の出力を入力にして 250→30</text>
+<rect x="45" y="467.1" width="22" height="25.9" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="56" y="526" text-anchor="middle">250</text>
+<rect x="149" y="474.9" width="22" height="10.1" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="160" y="526" text-anchor="middle">30</text>
+<rect x="247" y="467.1" width="22" height="25.9" class="fs sm dsh" stroke-width="1.5" rx="3"/>
+<text x="258" y="526" class="tm" text-anchor="middle">250（≒入力）</text>
+<line x1="70" y1="480" x2="140.4" y2="480.0" class="l sa w2"/>
+<polygon points="146,480 140.4,483.5 140.4,476.5" class="fa"/>
+<line x1="174" y1="480" x2="238.4" y2="480.0" class="l sm w1 dsh"/>
+<polygon points="244,480 238.4,483.5 238.4,476.5" class="fm"/>
+<text x="108" y="470" class="ta" text-anchor="middle">縮める</text>
+<text x="209" y="470" class="tm" text-anchor="middle">戻す</text>
+<text x="24" y="548">残すのは 250→30 の重み</text>
+<text x="24" y="566" class="tm">戻す側（点線）は捨てる</text>
+<rect x="12" y="588" width="296" height="172" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="608" class="tb">④ 積んでつなぎ、全体を微調整</text>
+<rect x="29" y="628.0" width="22" height="64.0" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="40" y="706" text-anchor="middle">784</text>
+<rect x="87" y="638.1" width="22" height="43.7" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="98" y="706" text-anchor="middle">500</text>
+<rect x="145" y="647.1" width="22" height="25.9" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="156" y="706" text-anchor="middle">250</text>
+<rect x="203" y="654.9" width="22" height="10.1" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="214" y="706" text-anchor="middle">30</text>
+<line x1="52" y1="660" x2="80.4" y2="660.0" class="l sa w2"/>
+<polygon points="86,660 80.4,663.5 80.4,656.5" class="fa"/>
+<text x="69" y="646" class="ta" text-anchor="middle">①</text>
+<line x1="110" y1="660" x2="138.4" y2="660.0" class="l sa w2"/>
+<polygon points="144,660 138.4,663.5 138.4,656.5" class="fa"/>
+<text x="127" y="646" class="ta" text-anchor="middle">②</text>
+<line x1="168" y1="660" x2="196.4" y2="660.0" class="l sa w2"/>
+<polygon points="202,660 196.4,663.5 196.4,656.5" class="fa"/>
+<text x="185" y="646" class="ta" text-anchor="middle">③</text>
+<rect x="248" y="646" width="52" height="28" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="274" y="665" text-anchor="middle">出力</text>
+<line x1="226" y1="660" x2="241.4" y2="660.0" class="l sm w1"/>
+<polygon points="247,660 241.4,663.5 241.4,656.5" class="fm"/>
+<text x="24" y="726">①②③の重みを初期値にして、正解ラベル</text>
+<text x="24" y="744" class="tb">で全体を微調整（ファインチューニング）</text>
+<text x="12" y="788" class="tb">2段階：教師なしで初期値を作る</text>
+<text x="12" y="806" class="tb">　→ 教師ありで全体を仕上げる</text>
+<text x="12" y="828" class="tm">層ごとの貪欲な事前学習（2006年ごろ）。</text>
+<text x="12" y="846" class="tm">今は事前学習済みモデルの転移学習へ</text>
+</svg>

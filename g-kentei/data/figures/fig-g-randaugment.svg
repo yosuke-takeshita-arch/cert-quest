@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 758" role="img" aria-labelledby="fig-g-randaugment-t fig-g-randaugment-d">
+<title id="fig-g-randaugment-t">RandAugment：用意した変換からランダムに N 個を選び、共通の強さ M でかける。調整する値は N と M だけ</title>
+<desc id="fig-g-randaugment-d">①用意した変換は原論文の14種類：何もしない、自動コントラスト、ヒストグラム平坦化、回転、ソラリゼーション、色の濃さ、ポスタリゼーション、コントラスト、明るさ、シャープさ、横にせん断、縦にせん断、横に平行移動、縦に平行移動。青は画像1が引いた2つ（回転・明るさ）、茶は画像2が引いた2つ（横にせん断・コントラスト）。②例は N＝2・M＝9。画像1は回転と明るさを、画像2は横にせん断とコントラストを、どれも強さ9でかける。画像ごとに14種類から2つを引き直す。M が大きいほど、どの変換も強くかかる。③AutoAugment などは、変換・確率・強さなど30以上の値を、本番の前に別の段階で探し、小さなモデルや小さなデータで探しがちだった。RandAugment は N と M の組を本番で試すだけ。原論文の ResNet-50・ImageNet では、N を1・2・3、M を5・7・9・11・13・15とした18通りを試し、いちばん良かったのが N＝2・M＝9。Mixup・CutMix は2枚を混ぜる方法で、変換の選び方の話ではない。</desc>
+<text x="12" y="20" class="tb">RandAugment：N 個を選び、強さ M でかける</text>
+<text x="12" y="42" class="tm">調整する値は N と M の2つだけ</text>
+<rect x="12" y="54" width="296" height="190" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="74" class="tb">① 用意した変換（原論文の14種類）</text>
+<text x="24" y="98">何もしない</text>
+<text x="24" y="118">自動コントラスト</text>
+<text x="24" y="138">ヒストグラム平坦化</text>
+<text x="24" y="158" class="tb ta">回転</text>
+<text x="24" y="178">ソラリゼーション</text>
+<text x="24" y="198">色の濃さ</text>
+<text x="24" y="218">ポスタリゼーション</text>
+<text x="168" y="98" class="tb twn">コントラスト</text>
+<text x="168" y="118" class="tb ta">明るさ</text>
+<text x="168" y="138">シャープさ</text>
+<text x="168" y="158" class="tb twn">横にせん断</text>
+<text x="168" y="178">縦にせん断</text>
+<text x="168" y="198">横に平行移動</text>
+<text x="168" y="218">縦に平行移動</text>
+<text x="24" y="236" class="tm">青＝画像1が引いた2つ、茶＝画像2が引いた2つ</text>
+<rect x="12" y="256" width="296" height="176" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="276" class="tb">② 例：N＝2・M＝9</text>
+<rect x="24" y="290" width="54" height="26" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="51" y="307.5" text-anchor="middle">画像1</text>
+<line x1="80" y1="303" x2="90.4" y2="303.0" class="l sm w1"/>
+<polygon points="96,303 90.4,306.5 90.4,299.5" class="fm"/>
+<rect x="98" y="290" width="96" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="146" y="307.5" text-anchor="middle">回転 9</text>
+<line x1="196" y1="303" x2="206.4" y2="303.0" class="l sm w1"/>
+<polygon points="212,303 206.4,306.5 206.4,299.5" class="fm"/>
+<rect x="214" y="290" width="94" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="261" y="307.5" text-anchor="middle">明るさ 9</text>
+<rect x="24" y="328" width="54" height="26" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="51" y="345.5" text-anchor="middle">画像2</text>
+<line x1="80" y1="341" x2="90.4" y2="341.0" class="l sm w1"/>
+<polygon points="96,341 90.4,344.5 90.4,337.5" class="fm"/>
+<rect x="98" y="328" width="96" height="26" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="146" y="345.5" text-anchor="middle">横にせん断 9</text>
+<line x1="196" y1="341" x2="206.4" y2="341.0" class="l sm w1"/>
+<polygon points="212,341 206.4,344.5 206.4,337.5" class="fm"/>
+<rect x="214" y="328" width="94" height="26" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="261" y="345.5" text-anchor="middle">コントラスト 9</text>
+<text x="24" y="376">画像ごとに14種類から2つを引き直し、</text>
+<text x="24" y="394">どれも同じ強さ 9 でかける</text>
+<text x="24" y="418" class="tm">M が大きいほど、どの変換も強くかかる</text>
+<rect x="12" y="444" width="296" height="262" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="464" class="tb">③ 探す手間がちがう</text>
+<text x="24" y="486">AutoAugment など：変換・確率・強さなど</text>
+<text x="24" y="504">30以上の値を、本番の前に別の段階で探す</text>
+<text x="24" y="522" class="tm">（小さなモデル・小さなデータで探しがち）</text>
+<text x="24" y="548" class="tb">RandAugment：N と M の組を本番で試すだけ</text>
+<text x="62" y="570" class="tm" text-anchor="end">N＼M</text>
+<text x="89" y="570" class="tm" text-anchor="middle">5</text>
+<text x="127" y="570" class="tm" text-anchor="middle">7</text>
+<text x="165" y="570" class="tm" text-anchor="middle">9</text>
+<text x="203" y="570" class="tm" text-anchor="middle">11</text>
+<text x="241" y="570" class="tm" text-anchor="middle">13</text>
+<text x="279" y="570" class="tm" text-anchor="middle">15</text>
+<text x="62" y="591.5" class="tm" text-anchor="end">1</text>
+<rect x="70" y="576" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="576" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="146" y="576" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="184" y="576" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="222" y="576" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="260" y="576" width="38" height="22" class="fs sb" stroke-width="1"/>
+<text x="62" y="613.5" class="tm" text-anchor="end">2</text>
+<rect x="70" y="598" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="598" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="146" y="598" width="38" height="22" class="fok sok" stroke-width="2.5"/>
+<text x="165" y="613.5" class="tb tok" text-anchor="middle">最良</text>
+<rect x="184" y="598" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="222" y="598" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="260" y="598" width="38" height="22" class="fs sb" stroke-width="1"/>
+<text x="62" y="635.5" class="tm" text-anchor="end">3</text>
+<rect x="70" y="620" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="620" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="146" y="620" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="184" y="620" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="222" y="620" width="38" height="22" class="fs sb" stroke-width="1"/>
+<rect x="260" y="620" width="38" height="22" class="fs sb" stroke-width="1"/>
+<text x="24" y="662" class="tm">原論文の ResNet-50・ImageNet：この18通り</text>
+<text x="24" y="680" class="tm">を試し、いちばん良かったのが N＝2・M＝9</text>
+<text x="12" y="728" class="tm">Mixup・CutMix は2枚を混ぜる方法で、</text>
+<text x="12" y="746" class="tm">変換の選び方の話ではない</text>
+</svg>

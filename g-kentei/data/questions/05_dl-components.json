@@ -112,6 +112,7 @@
       "C-05-007"
     ],
     "figures": [
+      "fig-g-padding",
       "fig-g-conv-op"
     ],
     "sources": [
@@ -194,6 +195,7 @@
       "C-05-007"
     ],
     "figures": [
+      "fig-g-padding",
       "fig-g-conv-op"
     ],
     "sources": [
@@ -575,6 +577,7 @@
       "C-05-012"
     ],
     "figures": [
+      "fig-g-group-norm",
       "fig-g-normalization"
     ],
     "sources": [
@@ -705,6 +708,7 @@
       "C-05-015"
     ],
     "figures": [
+      "fig-g-instance-norm",
       "fig-g-normalization"
     ],
     "sources": [
@@ -1076,6 +1080,7 @@
       "C-05-025"
     ],
     "figures": [
+      "fig-g-bptt",
       "fig-g-rnn-unroll"
     ],
     "sources": [
@@ -1793,6 +1798,7 @@
       "C-05-040"
     ],
     "figures": [
+      "fig-g-stacked-autoencoder",
       "fig-g-autoencoder-vae"
     ],
     "sources": [
@@ -1881,6 +1887,7 @@
       "C-05-042"
     ],
     "figures": [
+      "fig-g-vae-variants",
       "fig-g-autoencoder-vae"
     ],
     "sources": [
@@ -2050,6 +2057,7 @@
       "C-05-045"
     ],
     "figures": [
+      "fig-g-mixup-cutmix",
       "fig-g-data-augmentation"
     ],
     "sources": [
@@ -2175,6 +2183,7 @@
       "C-05-047"
     ],
     "figures": [
+      "fig-g-randaugment",
       "fig-g-data-augmentation"
     ],
     "sources": [
@@ -2521,6 +2530,10 @@
     "concepts": [
       "C-05-051",
       "C-05-026"
+    ],
+    "figures": [
+      "fig-g-exposure-bias",
+      "fig-g-teacher-forcing"
     ],
     "sources": [
       {
@@ -2946,6 +2959,7 @@
       "C-05-045"
     ],
     "figures": [
+      "fig-g-mixup-cutmix",
       "fig-g-data-augmentation"
     ],
     "sources": [
@@ -3233,6 +3247,7 @@
       "C-05-046"
     ],
     "figures": [
+      "fig-g-mixup-cutmix",
       "fig-g-data-augmentation"
     ],
     "sources": [

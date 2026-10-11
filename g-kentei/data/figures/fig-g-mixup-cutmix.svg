@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 666" role="img" aria-labelledby="fig-g-mixup-cutmix-t fig-g-mixup-cutmix-d">
+<title id="fig-g-mixup-cutmix-t">Mixup と CutMix：2枚の画像を混ぜ、ラベルも同じ割合で混ぜる。Cutout はラベルを混ぜない</title>
+<desc id="fig-g-mixup-cutmix-d">例は犬の画像（青）と猫の画像（茶）で、1マスは画素のかたまり、4×4で描く。①Mixup：画像全体を重ね、どの画素も犬0.7・猫0.3の割合で重ねる。画素の値が犬200・猫100なら0.7×200＋0.3×100＝140＋30＝170。ラベルも犬0.7・猫0.3にする。割合は毎回ベータ分布から取り出す（数は例）。②CutMix：犬の画像の右上の4マスに、猫の画像の同じ場所を切って貼る。16マスのうち猫は4マス（4分の1）なので、ラベルは犬12÷16＝0.75・猫4÷16＝0.25と面積の比で混ぜる。各画素はどちらか1枚のままで、半透明の重ね写真にならない。③比べる：Cutout は右上の4マスを塗りつぶすだけで、ラベルは犬1.0のまま。Random Erasing も同じ。貼らないので、その部分の情報は捨てる。</desc>
+<text x="12" y="20" class="tb">Mixup と CutMix：2枚を混ぜ、ラベルも混ぜる</text>
+<text x="12" y="42" class="tm">例：犬の画像（青）と猫の画像（茶）</text>
+<text x="12" y="60" class="tm">1マス＝画素のかたまり。4×4で描く</text>
+<rect x="12" y="72" width="296" height="226" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="92" class="tb">① Mixup：画像全体を重ねる</text>
+<rect x="28" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="28" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="28" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="28" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<text x="56" y="176" class="tm" text-anchor="middle">犬 ×0.7</text>
+<text x="100" y="138" class="tb" text-anchor="middle">＋</text>
+<rect x="116" y="104" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="104" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="104" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="104" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="118" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="118" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="118" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="118" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="132" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="132" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="132" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="132" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="146" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="146" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="146" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="146" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<text x="144" y="176" class="tm" text-anchor="middle">猫 ×0.3</text>
+<line x1="180" y1="132" x2="200.4" y2="132.0" class="l sm w1"/>
+<polygon points="206,132 200.4,135.5 200.4,128.5" class="fm"/>
+<rect x="216" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="258" y="104" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="216" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="258" y="118" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="216" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="258" y="132" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="216" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="258" y="146" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="216" y="104" width="56" height="56" class="fwn" fill-opacity="0.3"/>
+<rect x="216" y="104" width="56" height="56" class="l sm w1" fill="none"/>
+<text x="244" y="176" class="tm" text-anchor="middle">重ねた1枚</text>
+<text x="24" y="204">どの画素も 0.7：0.3 で重ねる。</text>
+<text x="24" y="222">同じ場所の画素が犬200・猫100 なら</text>
+<text x="24" y="240">0.7×200＋0.3×100＝140＋30＝170</text>
+<text x="24" y="264" class="tb">ラベル：犬 0.7・猫 0.3</text>
+<text x="24" y="284" class="tm">割合は毎回ベータ分布から取り出す（例）</text>
+<rect x="12" y="310" width="296" height="208" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="330" class="tb">② CutMix：一部を切って貼る</text>
+<rect x="28" y="342" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="342" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="342" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="342" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="28" y="356" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="356" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="356" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="356" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="28" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="28" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<text x="56" y="414" class="tm" text-anchor="middle">犬</text>
+<text x="100" y="376" class="tb" text-anchor="middle">＋</text>
+<rect x="116" y="342" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="342" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="342" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="342" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="356" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="356" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="356" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="356" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="370" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="370" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="370" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="370" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="116" y="384" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="130" y="384" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="384" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="158" y="384" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<text x="144" y="414" class="tm" text-anchor="middle">猫</text>
+<line x1="180" y1="370" x2="200.4" y2="370.0" class="l sm w1"/>
+<polygon points="206,370 200.4,373.5 200.4,366.5" class="fm"/>
+<rect x="216" y="342" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="342" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="342" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="258" y="342" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="216" y="356" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="356" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="356" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="258" y="356" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="216" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="258" y="370" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="216" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="230" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="244" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="258" y="384" width="14" height="14" class="fas sa" stroke-width="1"/>
+<text x="244" y="414" class="tm" text-anchor="middle">右上を猫に</text>
+<text x="24" y="434">16マスのうち、猫は4マス（4分の1）</text>
+<text x="24" y="456" class="tb">ラベル：犬 12÷16＝0.75・</text>
+<text x="24" y="474" class="tb">　　　　猫 4÷16＝0.25（面積の比）</text>
+<text x="24" y="498" class="tm">各画素はどちらか1枚のまま（半透明でない）</text>
+<rect x="12" y="530" width="296" height="124" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="550" class="tb">③ 比べる：Cutout（隠すだけ）</text>
+<rect x="28" y="562" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="562" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="562" width="14" height="14" class="ft sm" stroke-width="1"/>
+<rect x="70" y="562" width="14" height="14" class="ft sm" stroke-width="1"/>
+<rect x="28" y="576" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="576" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="576" width="14" height="14" class="ft sm" stroke-width="1"/>
+<rect x="70" y="576" width="14" height="14" class="ft sm" stroke-width="1"/>
+<rect x="28" y="590" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="590" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="590" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="590" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="28" y="604" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="42" y="604" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="56" y="604" width="14" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70" y="604" width="14" height="14" class="fas sa" stroke-width="1"/>
+<text x="100" y="580">右上の4マスを塗りつぶすだけ</text>
+<text x="100" y="600" class="tb">ラベル：犬 1.0 のまま</text>
+<text x="100" y="620" class="tm">（Random Erasing も同じ）</text>
+<text x="24" y="642" class="tm">貼らないので、その部分の情報は捨てる</text>
+</svg>
