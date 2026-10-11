@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1028" role="img" aria-labelledby="fig-g-kl-divergence-t fig-g-kl-divergence-d">
+<title id="fig-g-kl-divergence-t">KLダイバージェンス：Pを基準に、値ごとのずれを確率で重みづけして足す。向きで値が変わる</title>
+<desc id="fig-g-kl-divergence-d">KLダイバージェンス（カルバック・ライブラー情報量）は、2つの確率分布の食い違いの大きさを表す量。例はP＝(0.5, 0.5)（青）、Q＝(0.9, 0.1)（茶）で、logは自然対数。①Pから見たQ（Pが基準）：値ごとに、Pの確率×log(Pの確率÷Qの確率)を計算して足す。値1はQが多めに見積もったのでマイナスで、0.5×log(0.5÷0.9)＝0.5×(−0.59)≈−0.29。値2はQが少なく見積もったのでプラスで、0.5×log(0.5÷0.1)＝0.5×1.61≈0.80。足すと−0.29＋0.80≈0.51。確率が同じなら比が1でlog 1＝0。Pの確率を掛けるのは、Pでよく起きる値のずれを重く数えるため。②入れ替えてQから見たP（Qが基準）：掛ける確率がQの0.9と0.1に変わる。値1は0.9×log(0.9÷0.5)＝0.9×0.59≈0.53、値2は0.1×log(0.1÷0.5)＝0.1×(−1.61)≈−0.16で、足すと0.37。Pが基準なら0.51、Qが基準なら0.37で値が違う（非対称）ので、厳密な意味の距離ではない。③P＝(0.5, 0.5)から見たKLは、Q＝(0.5, 0.5)なら0（log 1＝0が並ぶ）、Q＝(0.6, 0.4)なら0.5×log(0.5÷0.6)＋0.5×log(0.5÷0.4)≈−0.09＋0.11≈0.02、Q＝(0.9, 0.1)なら0.51。同じ分布なら0、近いほど小さい。どこで使うか：予測の分布を目標の分布に近づける学習の誤差に使う（VAEの目的関数にもKLの項が入る）。入れ替えても同じ値になるよう作ったのがJSダイバージェンス。</desc>
+<text x="12" y="20" class="tb">KL ダイバージェンス：P を基準に Q を測る</text>
+<text x="12" y="42" class="tm">例：2つの値の出やすさ（確率分布）P と Q</text>
+<text x="12" y="62" class="tm">P＝(0.5, 0.5)（青）、Q＝(0.9, 0.1)（茶）</text>
+<text x="12" y="82" class="tm">KL の値＝2つの分布の食い違いの大きさ</text>
+<text x="12" y="100" class="tm">（log は自然対数）</text>
+<rect x="12" y="112" width="296" height="372" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="132" class="tb">① P から見た Q（P が基準）</text>
+<text x="24" y="152" class="tm">値ごとに次を計算して、足す</text>
+<text x="24" y="172" class="tb ta">P の確率 × log(P の確率 ÷ Q の確率)</text>
+<rect x="60" y="224" width="22" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="71" y="220" class="tm" text-anchor="middle">0.5</text>
+<rect x="88" y="200" width="22" height="54" class="fwn swn" stroke-width="1.5"/>
+<text x="99" y="196" class="tm" text-anchor="middle">0.9</text>
+<line x1="54" y1="254" x2="116" y2="254" class="l sm w1"/>
+<text x="71" y="270" class="tb ta" text-anchor="middle">P</text>
+<text x="99" y="270" class="tb twn" text-anchor="middle">Q</text>
+<text x="85" y="288" class="tb" text-anchor="middle">値1</text>
+<rect x="200" y="224" width="22" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="211" y="220" class="tm" text-anchor="middle">0.5</text>
+<rect x="228" y="248" width="22" height="6" class="fwn swn" stroke-width="1.5"/>
+<text x="239" y="244" class="tm" text-anchor="middle">0.1</text>
+<line x1="194" y1="254" x2="256" y2="254" class="l sm w1"/>
+<text x="211" y="270" class="tb ta" text-anchor="middle">P</text>
+<text x="239" y="270" class="tb twn" text-anchor="middle">Q</text>
+<text x="225" y="288" class="tb" text-anchor="middle">値2</text>
+<text x="24" y="318">値1：Q が多めに見積もった → マイナス</text>
+<text x="24" y="338" class="tm">　0.5×log(0.5÷0.9)＝0.5×(−0.59)≈−0.29</text>
+<text x="24" y="362">値2：Q が少なく見積もった → プラス</text>
+<text x="24" y="382" class="tm">　0.5×log(0.5÷0.1)＝0.5×1.61≈0.80</text>
+<text x="24" y="408" class="tl ta">足す：−0.29＋0.80≈0.51</text>
+<text x="24" y="432" class="tm">比が1（確率が同じ）なら log 1＝0。</text>
+<text x="24" y="450" class="tm">P の確率を掛けるのは、P でよく起きる</text>
+<text x="24" y="468" class="tm">値のずれを重く数えるため</text>
+<line x1="160" y1="484" x2="160" y2="492.4" class="l sm w1"/>
+<polygon points="160,498 156.5,492.4 163.5,492.4" class="fm"/>
+<rect x="12" y="504" width="296" height="168" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="524" class="tb">② 入れ替える：Q から見た P（Q が基準）</text>
+<text x="24" y="544" class="tm">掛ける確率が Q（0.9 と 0.1）に変わる</text>
+<text x="24" y="568">値1：0.9×log(0.9÷0.5)＝0.9×0.59≈0.53</text>
+<text x="24" y="590">値2：0.1×log(0.1÷0.5)＝0.1×(−1.61)≈−0.16</text>
+<text x="24" y="614" class="tl twn">足す：0.53−0.16≈0.37</text>
+<text x="24" y="640" class="tb">P が基準 0.51、Q が基準 0.37 → 値が違う</text>
+<text x="24" y="660" class="tm">（非対称）。だから厳密な意味の距離ではない</text>
+<line x1="160" y1="678" x2="160" y2="686.4" class="l sm w1"/>
+<polygon points="160,692 156.5,686.4 163.5,686.4" class="fm"/>
+<rect x="12" y="698" width="296" height="204" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="720" class="tb">③ 同じ分布なら 0、近いほど小さい</text>
+<text x="24" y="740" class="tm">P＝(0.5, 0.5) から見た KL</text>
+<text x="24" y="768" class="tb">Q＝(0.5, 0.5)</text>
+<line x1="124" y1="756" x2="124" y2="770" class="l sa w2"/>
+<text x="132" y="768" class="tb ta">0</text>
+<text x="24" y="788" class="tm">どの値も log(0.5÷0.5)＝log 1＝0</text>
+<text x="24" y="818" class="tb">Q＝(0.6, 0.4)</text>
+<rect x="124" y="806" width="4.802587590618256" height="14" class="fas sa" stroke-width="1.5"/>
+<text x="136.80258759061826" y="818" class="tb ta">≈−0.09＋0.11≈0.02</text>
+<text x="24" y="838" class="tm">0.5×log(0.5÷0.6)＋0.5×log(0.5÷0.4)</text>
+<text x="24" y="868" class="tb">Q＝(0.9, 0.1)</text>
+<rect x="124" y="856" width="120.19426441552723" height="14" class="fas sa" stroke-width="1.5"/>
+<text x="252.19426441552724" y="868" class="tb ta">≈0.51</text>
+<text x="24" y="888" class="tm">①の計算</text>
+<text x="12" y="940" class="tb">どこで使うか</text>
+<text x="12" y="960">予測の分布 Q を目標の分布 P に近づける</text>
+<text x="12" y="978">学習の誤差に使う（VAE の目的関数にも</text>
+<text x="12" y="996">KL の項が入る）。入れ替えても同じ値に</text>
+<text x="12" y="1014">なるよう作ったのが JS ダイバージェンス</text>
+</svg>

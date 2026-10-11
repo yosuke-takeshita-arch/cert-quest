@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 876" role="img" aria-labelledby="fig-g-credit-assignment-t fig-g-credit-assignment-d">
+<title id="fig-g-credit-assignment-t">信用割当問題：出力のずれ0.3を、重みAとBにどれだけの責任として割り当てるか</title>
+<desc id="fig-g-credit-assignment-d">信用割当問題は、最終的な結果（誤差や報酬）に対して、どの重みやどの行動がどれだけ効いたかを割り当てる問題。例（数は説明のための例）：隠れ層の値が2と0.5で、重みA＝1、重みB＝1.4で出力yにつながる小さなネットワーク。y＝A×2＋B×0.5＝1×2＋1.4×0.5＝2.7で、目標は2.4なので0.3大きすぎた（ずれ0.3）。①問い：AとBのどちらをどれだけ直すか。責任（信用）の割り当てが決まらないと、直し方も決まらない。②責任の大きさは、その重みを少し動かしたとき誤差がどれだけ変わるか（勾配）。Aを0.01増やすとyは0.02増え（2倍）、Bを0.01増やすとyは0.005増える（0.5倍）。誤差＝½×(ずれ)²とすると、yを少し動かしたときの誤差の変わり方はずれの0.3。2つの変わり方を掛ける（連鎖律）と、Aの勾配は0.3×2＝0.6、Bの勾配は0.3×0.5＝0.15で、Aの責任はBの4倍。③割り当てどおりに直す（学習率0.1）：Aは1−0.1×0.6＝0.94、Bは1.4−0.1×0.15＝1.385。新しいyは0.94×2＋1.385×0.5＝1.88＋0.6925≈2.57で、ずれは0.3から約0.17に減った。強化学習でも起きる：チェスで最後に勝ったとき、勝ちに効いたのは何十手も前のどの手か。つながり：層をまたいでこの掛け算を出力側から順に行うのが誤差逆伝播法（次の図）。勾配消失は、この割り当てが浅い層に届かない問題。</desc>
+<text x="12" y="20" class="tb">信用割当問題：誤差はどの重みのせい？</text>
+<text x="12" y="42" class="tm">例：小さなネットワーク（数は説明のための例）</text>
+<line x1="78" y1="84" x2="228" y2="124" class="l sa w2"/>
+<line x1="78" y1="164" x2="228" y2="124" class="l swn w2"/>
+<circle cx="60" cy="84" r="18" class="fs l sm" stroke-width="1.5"/>
+<circle cx="60" cy="164" r="18" class="fs l sm" stroke-width="1.5"/>
+<circle cx="250" cy="124" r="22" class="fs l sm" stroke-width="1.5"/>
+<text x="60" y="89" class="tb" text-anchor="middle">2</text>
+<text x="60" y="169" class="tb" text-anchor="middle">0.5</text>
+<text x="60" y="60" class="tm" text-anchor="middle">隠れ層の値</text>
+<text x="250" y="129" class="tb" text-anchor="middle">y</text>
+<text x="150" y="92" class="tb ta" text-anchor="middle">重みA＝1</text>
+<text x="150" y="168" class="tb twn" text-anchor="middle">重みB＝1.4</text>
+<text x="250" y="166" class="tm" text-anchor="middle">出力</text>
+<text x="12" y="212">y＝A×2＋B×0.5＝1×2＋1.4×0.5＝2.7</text>
+<text x="12" y="232" class="tb tng">目標は 2.4 → 0.3 大きすぎた（ずれ 0.3）</text>
+<rect x="12" y="246" width="296" height="62" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="266" class="tb">① 問い：A と B、どちらをどれだけ直す？</text>
+<text x="24" y="286" class="tm">責任（信用）の割り当てが決まらないと、</text>
+<text x="24" y="302" class="tm">直し方も決まらない</text>
+<line x1="160" y1="314" x2="160" y2="322.4" class="l sm w1"/>
+<polygon points="160,328 156.5,322.4 163.5,322.4" class="fm"/>
+<text x="12" y="350" class="tb">② 責任の大きさ＝その重みを少し動かした</text>
+<text x="12" y="370" class="tb">とき、誤差がどれだけ変わるか（勾配）</text>
+<text x="12" y="394">A を 0.01 増やすと y は 0.02 増える（2倍）</text>
+<text x="12" y="414">B を 0.01 増やすと y は 0.005 増える（0.5倍）</text>
+<text x="12" y="438" class="tm">誤差＝½×(ずれ)² とすると、y を少し動かし</text>
+<text x="12" y="456" class="tm">たときの誤差の変わり方は、ずれの 0.3</text>
+<text x="12" y="480" class="tm">2つの変わり方を掛ける（連鎖律）</text>
+<text x="12" y="502" class="tb ta">A の勾配＝0.3×2＝0.6</text>
+<text x="12" y="524" class="tb twn">B の勾配＝0.3×0.5＝0.15</text>
+<rect x="178" y="490" width="120.00000000000011" height="16" class="fas sa" stroke-width="1.5"/>
+<rect x="178" y="512" width="30.00000000000003" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="12" y="550" class="tb">→ A の責任は B の 4 倍</text>
+<line x1="160" y1="560" x2="160" y2="568.4" class="l sm w1"/>
+<polygon points="160,574 156.5,568.4 163.5,568.4" class="fm"/>
+<text x="12" y="596" class="tb">③ 割り当てどおりに直す（学習率 0.1）</text>
+<text x="12" y="618">A：1−0.1×0.6＝0.94</text>
+<text x="12" y="638">B：1.4−0.1×0.15＝1.385</text>
+<text x="12" y="662" class="tm">新しい y＝0.94×2＋1.385×0.5</text>
+<text x="12" y="680" class="tm">　＝1.88＋0.6925≈2.57</text>
+<text x="12" y="704" class="tb tok">ずれ 0.3 → 約 0.17 に減った</text>
+<text x="12" y="740" class="tb">強化学習でも起きる</text>
+<text x="12" y="760">チェスで最後に勝った。勝ちに効いたのは</text>
+<text x="12" y="778">何十手も前の、どの手か</text>
+<text x="12" y="806" class="tb">つながり</text>
+<text x="12" y="826" class="tm">層をまたいで、この掛け算を出力側から順に</text>
+<text x="12" y="844" class="tm">行うのが誤差逆伝播法（次の図）。勾配消失</text>
+<text x="12" y="862" class="tm">は、この割り当てが浅い層に届かない問題</text>
+</svg>

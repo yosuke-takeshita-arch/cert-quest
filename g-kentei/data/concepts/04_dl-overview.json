@@ -378,6 +378,7 @@
       }
     ],
     "figures": [
+      "fig-g-relu",
       "fig-g-activation"
     ],
     "sources": [
@@ -419,6 +420,7 @@
       }
     ],
     "figures": [
+      "fig-g-leaky-relu",
       "fig-g-activation"
     ],
     "sources": [
@@ -637,6 +639,7 @@
       }
     ],
     "figures": [
+      "fig-g-kl-divergence",
       "fig-g-loss-functions"
     ],
     "sources": [
@@ -1266,6 +1269,7 @@
       }
     ],
     "figures": [
+      "fig-g-credit-assignment",
       "fig-g-backprop"
     ],
     "sources": [
@@ -1745,6 +1749,7 @@
       }
     ],
     "figures": [
+      "fig-g-adadelta",
       "fig-g-adaptive-learning-rate",
       "fig-g-optimizers"
     ],
@@ -1829,6 +1834,7 @@
       }
     ],
     "figures": [
+      "fig-g-adabound",
       "fig-g-adaptive-learning-rate",
       "fig-g-optimizers"
     ],
