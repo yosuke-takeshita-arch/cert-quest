@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 926" role="img" aria-labelledby="fig-g-js-divergence-t fig-g-js-divergence-d">
+<title id="fig-g-js-divergence-t">JSダイバージェンス：混ぜた分布 M を真ん中に置くので、入れ替えても値が同じ</title>
+<desc id="fig-g-js-divergence-d">JSダイバージェンスは2つの確率分布の食い違いの大きさを表す量。同じ分布なら0。例はP＝(0.5, 0.5)（青）、Q＝(0.9, 0.1)（茶）で、logは自然対数。①KLダイバージェンスは向きで値が変わる（一方通行）。PからQへは0.5×log(0.5÷0.9)＋0.5×log(0.5÷0.1)で約−0.29＋0.80≈0.51、QからPへは0.9×log(0.9÷0.5)＋0.1×log(0.1÷0.5)で約0.53−0.16≈0.37。どちらを基準にするかで値が変わる。②JSダイバージェンスは、PとQを値ごとに半分ずつ混ぜた分布Mを真ん中に作る。Mの1つ目は(0.5＋0.9)÷2＝0.7、2つ目は(0.5＋0.1)÷2＝0.3。PからMへのKLは0.5×log(0.5÷0.7)＋0.5×log(0.5÷0.3)で約−0.168＋0.255≈0.087、QからMへのKLは0.9×log(0.9÷0.7)＋0.1×log(0.1÷0.3)で約0.226−0.110≈0.116。JSはその平均で(0.087＋0.116)÷2≈0.10。③PとQを入れ替えてもMは同じ(0.7, 0.3)で、平均する2つのKLの順番が変わるだけなので、JSは0.10のまま（対称）。KLは0.51と0.37で向きによって違う。JSが0になるのはPとQが同じときだけ。GANとのつながり：識別器が最適なとき、生成器が小さくするのは、本物のデータの分布と生成した分布のJS（に定数を足したもの）。</desc>
+<text x="12" y="20" class="tb">JSダイバージェンス：真ん中で待ち合わせ</text>
+<text x="12" y="42" class="tm">例：2つの値の出やすさ（確率分布）P と Q</text>
+<text x="12" y="62" class="tm">P＝(0.5, 0.5)（青）、Q＝(0.9, 0.1)（茶）</text>
+<text x="12" y="82" class="tm">KL・JS の値＝2つの分布の食い違いの大きさ</text>
+<text x="12" y="100" class="tm">（同じ分布なら 0。log は自然対数）</text>
+<rect x="12" y="112" width="296" height="236" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="132" class="tb">① KL：向きで値が変わる（一方通行）</text>
+<rect x="28" y="192" width="20" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="38" y="188" class="tm" text-anchor="middle">0.5</text>
+<rect x="54" y="192" width="20" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="64" y="188" class="tm" text-anchor="middle">0.5</text>
+<line x1="22" y1="222" x2="80" y2="222" class="l sm w1"/>
+<text x="51" y="240" class="tb" text-anchor="middle">P</text>
+<rect x="246" y="168" width="20" height="54" class="fwn swn" stroke-width="1.5"/>
+<text x="256" y="164" class="tm" text-anchor="middle">0.9</text>
+<rect x="272" y="216" width="20" height="6" class="fwn swn" stroke-width="1.5"/>
+<text x="282" y="212" class="tm" text-anchor="middle">0.1</text>
+<line x1="240" y1="222" x2="298" y2="222" class="l sm w1"/>
+<text x="269" y="240" class="tb" text-anchor="middle">Q</text>
+<line x1="92" y1="176" x2="224" y2="176" class="l sa w2"/>
+<polygon points="230,176 223,172 223,180" class="l sa"/>
+<text x="160" y="168" class="tb ta" text-anchor="middle">P→Q ≈0.51</text>
+<line x1="230" y1="206" x2="98" y2="206" class="l swn w2"/>
+<polygon points="92,206 99,202 99,210" class="l swn"/>
+<text x="160" y="226" class="tb twn" text-anchor="middle">Q→P ≈0.37</text>
+<text x="24" y="262">P→Q：0.5×log(0.5÷0.9)＋0.5×log(0.5÷0.1)</text>
+<text x="24" y="280">　≈−0.29＋0.80≈0.51</text>
+<text x="24" y="300">Q→P：0.9×log(0.9÷0.5)＋0.1×log(0.1÷0.5)</text>
+<text x="24" y="318">　≈0.53−0.16≈0.37</text>
+<text x="24" y="338" class="tb twn">どちらを基準にするかで値が変わる</text>
+<line x1="160" y1="348" x2="160" y2="356.4" class="l sm w1"/>
+<polygon points="160,362 156.5,356.4 163.5,356.4" class="fm"/>
+<rect x="12" y="368" width="296" height="296" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="388" class="tb">② JS：真ん中に、混ぜた分布 M を作る</text>
+<text x="24" y="408" class="tm">M＝P と Q を半分ずつ混ぜる（値ごとに平均）</text>
+<text x="24" y="426" class="tm">(0.5＋0.9)÷2＝0.7、(0.5＋0.1)÷2＝0.3</text>
+<rect x="28" y="496" width="20" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="38" y="492" class="tm" text-anchor="middle">0.5</text>
+<rect x="54" y="496" width="20" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="64" y="492" class="tm" text-anchor="middle">0.5</text>
+<line x1="22" y1="526" x2="80" y2="526" class="l sm w1"/>
+<text x="51" y="544" class="tb" text-anchor="middle">P</text>
+<rect x="138" y="484" width="20" height="42" class="fs sok" stroke-width="1.5"/>
+<text x="148" y="480" class="tm" text-anchor="middle">0.7</text>
+<rect x="164" y="508" width="20" height="18" class="fs sok" stroke-width="1.5"/>
+<text x="174" y="504" class="tm" text-anchor="middle">0.3</text>
+<line x1="132" y1="526" x2="190" y2="526" class="l sm w1"/>
+<text x="161" y="544" class="tb tok" text-anchor="middle">M（真ん中）</text>
+<rect x="246" y="472" width="20" height="54" class="fwn swn" stroke-width="1.5"/>
+<text x="256" y="468" class="tm" text-anchor="middle">0.9</text>
+<rect x="272" y="520" width="20" height="6" class="fwn swn" stroke-width="1.5"/>
+<text x="282" y="516" class="tm" text-anchor="middle">0.1</text>
+<line x1="240" y1="526" x2="298" y2="526" class="l sm w1"/>
+<text x="269" y="544" class="tb" text-anchor="middle">Q</text>
+<line x1="84" y1="458" x2="126" y2="458" class="l sa w2"/>
+<polygon points="132,458 125,454 125,462" class="l sa"/>
+<text x="104" y="448" class="tb ta" text-anchor="middle">P→M ≈0.087</text>
+<line x1="240" y1="458" x2="198" y2="458" class="l swn w2"/>
+<polygon points="192,458 199,454 199,462" class="l swn"/>
+<text x="218" y="448" class="tb twn" text-anchor="middle">Q→M ≈0.116</text>
+<text x="24" y="566">P→M：0.5×log(0.5÷0.7)＋0.5×log(0.5÷0.3)</text>
+<text x="24" y="584">　≈−0.168＋0.255≈0.087</text>
+<text x="24" y="604">Q→M：0.9×log(0.9÷0.7)＋0.1×log(0.1÷0.3)</text>
+<text x="24" y="622">　≈0.226−0.110≈0.116</text>
+<text x="24" y="650" class="tl ta">JS＝(0.087＋0.116)÷2≈0.10</text>
+<line x1="160" y1="664" x2="160" y2="672.4" class="l sm w1"/>
+<polygon points="160,678 156.5,672.4 163.5,672.4" class="fm"/>
+<rect x="12" y="684" width="296" height="150" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="704" class="tb">③ P と Q を入れ替えても同じ値</text>
+<text x="24" y="724" class="tm">入れ替えても M は同じ (0.7, 0.3)。平均する</text>
+<text x="24" y="742" class="tm">2つの KL の順番が変わるだけ</text>
+<text x="24" y="766" class="tb twn">KL：0.51 と 0.37 → 向きで違う</text>
+<text x="24" y="788" class="tb tok">JS：0.10 と 0.10 → 同じ（対称）</text>
+<text x="24" y="812" class="tm">0 になるのは P と Q が同じときだけ</text>
+<text x="12" y="858" class="tb">GAN とのつながり</text>
+<text x="12" y="878">識別器が最適なとき、生成器が小さくする</text>
+<text x="12" y="896">のは、本物のデータの分布と生成した分布</text>
+<text x="12" y="914">の JS（に定数を足したもの）</text>
+</svg>

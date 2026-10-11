@@ -2233,6 +2233,9 @@
         "point": "KL ダイバージェンスは向きによって値が変わる（非対称）。JS ダイバージェンスは混合分布を挟むので向きによらない（対称）。"
       }
     ],
+    "figures": [
+      "fig-g-js-divergence"
+    ],
     "sources": [
       {
         "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)",
