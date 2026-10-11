@@ -5,6 +5,7 @@ import {
   chapterKey, isMissed, missedByChapter, bossInfo, bossQuestions, newBattle, applyBossAnswer, needsRetry,
   normalizeBoss, recordBossWin, bossWins, BOSS_MIN, BOSS_QUEUE_MAX, BOSS_HP_MIN, BOSS_HP_MAX, PLAYER_HP,
   accuracyOf, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_SECONDS, CRIT_CHANCE, CRIT_DAMAGE,
+  bossThreshold, BOSS_NEED_MAX,
 } from '../js/lib/boss.js';
 import { applyAnswer, dayNumber } from '../js/lib/srs.js';
 import { buildTree } from '../js/lib/data.js';
@@ -286,4 +287,49 @@ test('画面の文に、ボスが現れる条件と間違えた問題の数を�
     assert.doesNotMatch(code, /info\.(need|missed)/, f + ' が、あと何問か・間違えた問題の数を使っている');
     assert.doesNotMatch(code, /たまると/, f + ' が出る条件を書いている');
   }
+});
+
+// 2026-10-11 先生決定 B: 現れるのに要る数は、章と撃破の回数ごとに 3〜5 のどれか。
+test('bossThreshold: 3〜5 の中で決まり、同じ章・同じ撃破の回数なら同じ数', () => {
+  assert.equal(BOSS_MIN, 3);
+  assert.equal(BOSS_NEED_MAX, 5);
+  const seen = new Set();
+  for (let c = 0; c < 40; c++) {
+    for (let w = 0; w < 10; w++) {
+      const t = bossThreshold('章' + c + '|中', w);
+      assert.ok(Number.isInteger(t) && t >= 3 && t <= 5, 't=' + t);
+      assert.equal(bossThreshold('章' + c + '|中', w), t); // 開き直しても変わらない
+      seen.add(t);
+    }
+  }
+  assert.deepEqual([...seen].sort(), [3, 4, 5]); // 3つとも出る（固定になっていない）
+  // 撃破の回数が変われば、どこかの章で数が変わる
+  let changed = 0;
+  for (let c = 0; c < 40; c++) if (bossThreshold('章' + c + '|中', 0) !== bossThreshold('章' + c + '|中', 1)) changed++;
+  assert.ok(changed > 0);
+  // 壊れた撃破の回数は 0 と同じ
+  assert.equal(bossThreshold('A|a', -1), bossThreshold('A|a', 0));
+  assert.equal(bossThreshold('A|a', 'x'), bossThreshold('A|a', 0));
+});
+
+test('bossThreshold: 問題の少ない章では、章の問題の数より大きくしない（3 は下回らない）', () => {
+  for (let c = 0; c < 40; c++) {
+    assert.ok(bossThreshold('章' + c + '|中', 0, 4) <= 4);
+    assert.equal(bossThreshold('章' + c + '|中', 0, 3), 3);
+    assert.equal(bossThreshold('章' + c + '|中', 0, 1), 3);
+  }
+});
+
+test('bossInfo・bossQuestions: 要る数（threshold）で現れるかが決まる', () => {
+  const qs = mk(8);
+  const st = {};
+  ['Q1', 'Q2', 'Q3', 'Q4'].forEach((id) => { st[id] = { seen: 1, correct: 0, lastOk: false, step: 0, due: 1 }; });
+  assert.equal(bossInfo(qs, st, 3).available, true);
+  assert.equal(bossInfo(qs, st, 4).available, true);
+  assert.equal(bossInfo(qs, st, 5).available, false);
+  assert.equal(bossInfo(qs, st, 5).need, 1);
+  assert.ok(bossQuestions(qs, st, undefined, 4).length > 0);
+  assert.deepEqual(bossQuestions(qs, st, undefined, 5), []);
+  assert.equal(bossInfo(qs, st, 2).available, true); // 3 未満は 3 として扱う
+  assert.equal(bossInfo(qs, { Q1: st.Q1, Q2: st.Q2 }, 2).available, false);
 });

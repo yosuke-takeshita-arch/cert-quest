@@ -6,7 +6,7 @@
 import { h, clear, icon, vibrate, beep, toast, mascotLine } from '../ui.js';
 import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
-import { bossInfo, bossQuestions, recordBossWin, isFlawlessWin, bossWins, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
+import { bossInfo, bossQuestions, bossThreshold, recordBossWin, isFlawlessWin, bossWins, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
 import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
@@ -76,9 +76,14 @@ export function openBoss(app, stage, back) {
   app.go('#/boss/' + encodeURIComponent(stage.key));
 }
 
+/** その章でボスが現れるのに要る数（章と撃破の回数で決まる。画面には出さない）。 */
+function stageThreshold(app, stage) {
+  return bossThreshold(stage.key, bossWins(app.state, stage.key), (stage.questions || []).length);
+}
+
 /** その章のボスの様子。{ info, wins }。 */
 export function bossState(app, stage) {
-  return { info: bossInfo(stage.questions, app.state.qstats), wins: bossWins(app.state, stage.key) };
+  return { info: bossInfo(stage.questions, app.state.qstats, stageThreshold(app, stage)), wins: bossWins(app.state, stage.key) };
 }
 
 /** いま挑める（現れている）ボスの章。 */
@@ -156,7 +161,7 @@ export function renderBoss(app, key) {
 
   // 戦いを始める。まだ現れていない（間違えた問題が足りない）ときは false。ボスの体力は 5〜10 のどれか（出す問題の数まで）を隠したまま決める
   function begin() {
-    const qs = bossQuestions(stage.questions, app.state.qstats);
+    const qs = bossQuestions(stage.questions, app.state.qstats, undefined, stageThreshold(app, stage));
     if (!qs.length) return false;
     S = { run: newRun(qs, rollBossHp(app.rng, qs.length)), streak: 0, xp: 0, log: [], answered: false, t0: 0, recorded: false, wins: 0, phase: 'intro', appeared: false, item: null, skipFx: null };
     return true;
@@ -627,7 +632,7 @@ export function renderBoss(app, key) {
         : h('p', { text: 'ハートがなくなりました。解説を読んで、もう一度挑みましょう。' }),
       h('p', { class: 'small muted', text: S.log.length + ' 回答えて、' + ok + ' 回正解しました' }),
       h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
-    const info = bossInfo(stage.questions, app.state.qstats);
+    const info = bossState(app, stage).info; // 勝ったあとは撃破の回数が増え、現れるのに要る数も変わる
     card.appendChild(h('p', { class: 'small muted', text: info.available
       ? 'ボスはまだこの章にいます。また挑めます。'
       : 'ボスは姿を消しました。またいつか現れます。' }));

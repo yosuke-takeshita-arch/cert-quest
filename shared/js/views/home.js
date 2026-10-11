@@ -386,7 +386,7 @@ export function renderStage(app, key) {
   } else {
     root.appendChild(h('div', { class: 'empty' }, h('p', { text: 'このステージの問題は準備中です。' })));
   }
-  // 章のボス（最後に間違えた問題が3問以上たまると現れる。要件定義書 §3-7）
+  // 章のボス（最後に間違えた問題が3〜5問たまると現れる。数は章と撃破の回数で決まり、画面には出さない。要件定義書 §3-7）
   if (p.total) root.appendChild(bossPlace(app, st, '#/stage/' + encodeURIComponent(st.key)));
   if (st.children.length) {
     const box = h('div', { class: 'card' }, h('h2', { text: '小項目' }));
@@ -425,7 +425,7 @@ export function renderReview(app) {
     h('p', { class: 'row-line' }, '今日以前: ', h('strong', { text: up.now + '問' })),
     h('p', { class: 'row-line' }, '明日: ', h('strong', { text: up.tomorrow + '問' })),
     h('p', { class: 'row-line' }, 'あさって以降: ', h('strong', { text: up.later + '問' }))));
-  // 章のボス。最後に間違えた問題が3問以上たまった章に現れる（要件定義書 §3-7）
+  // 章のボス。最後に間違えた問題が3〜5問たまった章に現れる（要件定義書 §3-7）
   const bosses = availableBosses(app);
   const bbox = h('div', { class: 'card boss-list', 'data-review-boss': '1' }, h('h2', { text: '章のボス' }));
   if (bosses.length) {

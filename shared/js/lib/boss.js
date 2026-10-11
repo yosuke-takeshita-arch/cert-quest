@@ -1,7 +1,8 @@
 // 章のボス戦の計算。純粋な関数だけ（DOM も localStorage も触らない）。画面はあとで別に作る。
 // 仕様: 要件定義書 3-7。state.boss = { 章のキー: 撃破の回数 }。
 
-export const BOSS_MIN = 3; // 最後に間違えた問題がこの数以上たまると、ボスが現れる
+export const BOSS_MIN = 3; // ボスが現れるのに要る「最後に間違えた問題」の数の下限
+export const BOSS_NEED_MAX = 5; // 同じく上限。章と撃破の回数ごとに BOSS_MIN〜BOSS_NEED_MAX のどれかに決める（bossThreshold。2026-10-11 先生決定 B）
 export const BOSS_QUEUE_MAX = 20; // ボス戦に並べる問題の上限（体力は 5〜10 で、間違えても出し直すので、これで足りる）
 export const BOSS_HP_MIN = 5; // ボスの体力（倒すのに要る正解の数）の下限。戦いの始まりに BOSS_HP_MIN〜BOSS_HP_MAX から決め、画面には出さない
 export const BOSS_HP_MAX = 10;
@@ -58,12 +59,27 @@ export function missedByChapter(questions, qstats) {
   return out;
 }
 
-/** その章のボスが現れているか。chapterQuestions は章の問題（同じ章のものだけ）。 */
-export function bossInfo(chapterQuestions, qstats) {
+/**
+ * ボスが現れるのに要る「最後に間違えた問題」の数（2026-10-11 先生決定 B。いつ現れるか読めないように）。
+ * 章のキーと撃破の回数から BOSS_MIN〜BOSS_NEED_MAX のどれかに決める。同じ章・同じ撃破の回数なら毎回同じ数になる
+ * （画面を開き直すたびに出たり消えたりしないため）。倒すと撃破の回数が増えるので、次に現れる数が変わる。
+ * chapterSize（章の問題の数）があれば、それより大きくしない（問題が少ない章で永久に現れなくならないため）。ただし BOSS_MIN は下回らない。
+ */
+export function bossThreshold(key, wins = 0, chapterSize = Infinity) {
+  const str = String(key) + '#' + (Number.isInteger(wins) && wins > 0 ? wins : 0);
+  let h = 0x811c9dc5; // FNV-1a（32bit）
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+  const t = BOSS_MIN + (h % (BOSS_NEED_MAX - BOSS_MIN + 1));
+  return Math.max(BOSS_MIN, Math.min(t, Number.isFinite(chapterSize) ? chapterSize : t));
+}
+
+/** その章のボスが現れているか。chapterQuestions は章の問題（同じ章のものだけ）。threshold は現れるのに要る数（bossThreshold。省くと BOSS_MIN）。 */
+export function bossInfo(chapterQuestions, qstats, threshold = BOSS_MIN) {
   const st = qstats && typeof qstats === 'object' ? qstats : {};
+  const t = Number.isInteger(threshold) && threshold >= BOSS_MIN ? threshold : BOSS_MIN;
   let missed = 0;
   for (const q of Array.isArray(chapterQuestions) ? chapterQuestions : []) if (q && isMissed(st[q.id])) missed++;
-  return { missed, available: missed >= BOSS_MIN, need: Math.max(0, BOSS_MIN - missed) };
+  return { missed, available: missed >= t, need: Math.max(0, t - missed) };
 }
 
 /** 答えた記録（qstats の1件）から見た正解率（0〜1）と間違えた回数。答えたことが無い（seen が正の整数でない）ものは null。 */
@@ -74,15 +90,16 @@ export function accuracyOf(rec) {
 }
 
 /**
- * ボスに出す問題（要件定義書 §3-7 作り直し）。現れていなければ（間違えた問題が BOSS_MIN 未満なら）空。
+ * ボスに出す問題（要件定義書 §3-7 作り直し）。現れていなければ（間違えた問題が threshold 未満なら）空。threshold は bossInfo と同じ。
  * 答えたことのある問題を、正解率の低い順（同じなら間違えた回数の多い順、それも同じなら問題データの順）に並べ、
  * 答えたことのある問題が尽きたら、まだ答えていない問題を問題データの順に後ろへ足す。最大 max 問。
  * chapterQuestions は章の問題（同じ章のものだけ）。
  */
-export function bossQuestions(chapterQuestions, qstats, max = BOSS_QUEUE_MAX) {
+export function bossQuestions(chapterQuestions, qstats, max = BOSS_QUEUE_MAX, threshold = BOSS_MIN) {
   const st = qstats && typeof qstats === 'object' ? qstats : {};
+  const t = Number.isInteger(threshold) && threshold >= BOSS_MIN ? threshold : BOSS_MIN;
   const chapter = (Array.isArray(chapterQuestions) ? chapterQuestions : []).filter((q) => q && typeof q === 'object');
-  if (chapter.filter((q) => isMissed(st[q.id])).length < BOSS_MIN) return [];
+  if (chapter.filter((q) => isMissed(st[q.id])).length < t) return [];
   const answered = [];
   const fresh = [];
   chapter.forEach((q, i) => {
