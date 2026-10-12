@@ -6,39 +6,43 @@
     "children": [
       {
         "id": "MT-CH01",
-        "title": "戦略の考え方",
+        "title": "企業活動と経営戦略の全体像",
         "keywords": [],
         "children": [
           {"id": "MT-001", "title": "戦略的意思決定", "children": [], "keywords": ["戦略的意思決定"]},
           {"id": "MT-002", "title": "階層別戦略", "children": [], "keywords": ["企業戦略", "事業戦略", "機能戦略"]},
           {"id": "MT-003", "title": "戦略策定プロセス", "children": [], "keywords": ["戦略策定プロセス"]},
-          {"id": "MT-004", "title": "外部環境分析", "children": [], "keywords": ["外部環境分析"]},
-          {"id": "MT-005", "title": "内部環境分析（VRIO）", "children": [], "keywords": ["内部環境分析（VRIO）"]},
-          {"id": "MT-006", "title": "コアコンピタンス・ダイナミックケイパビリティ", "children": [], "keywords": ["コアコンピタンス・ダイナミックケイパビリティ"]}
+          {"id": "MT-004", "title": "外部環境分析", "children": [], "keywords": ["外部環境分析"]}
         ]
       },
       {
         "id": "MT-CH02",
-        "title": "企業戦略",
-        "keywords": [],
-        "children": [
-          {"id": "MT-007", "title": "ドメイン", "children": [], "keywords": ["企業ドメイン・事業ドメイン", "ドメインの定義"]},
-          {"id": "MT-008", "title": "多角化", "children": [], "keywords": ["シナジー", "関連型多角化・非関連型多角化"]},
-          {"id": "MT-009", "title": "PPM", "children": [], "keywords": ["製品ライフサイクル", "市場シェア", "経験曲線"]},
-          {"id": "MT-010", "title": "垂直統合", "children": [], "keywords": ["垂直統合"]},
-          {"id": "MT-011", "title": "M&A", "children": [], "keywords": ["M&A"]},
-          {"id": "MT-012", "title": "戦略的提携", "children": [], "keywords": ["戦略的提携"]}
-        ]
-      },
-      {
-        "id": "MT-CH03",
-        "title": "競争戦略",
+        "title": "事業戦略（競争戦略）",
         "keywords": [],
         "children": [
           {"id": "MT-013", "title": "業界の構造分析（価値連鎖）", "children": [], "keywords": ["業界の構造分析（価値連鎖）"]},
           {"id": "MT-014", "title": "競争優位の戦略", "children": [], "keywords": ["コストリーダーシップ戦略", "差別化戦略", "焦点戦略"]},
-          {"id": "MT-015", "title": "競争地位別戦略", "children": [], "keywords": ["リーダー", "チャレンジャー", "ニッチャー", "フォロワー"]},
-          {"id": "MT-016", "title": "業界標準（プラットフォーム）", "children": [], "keywords": ["業界標準（プラットフォーム）"]}
+          {"id": "MT-015", "title": "競争地位別戦略", "children": [], "keywords": ["リーダー", "チャレンジャー", "ニッチャー", "フォロワー"]}
+        ]
+      },
+      {
+        "id": "MT-CH03",
+        "title": "企業戦略（成長戦略）",
+        "keywords": [],
+        "children": [
+          {"id": "MT-007", "title": "ドメイン", "children": [], "keywords": ["企業ドメイン・事業ドメイン", "ドメインの定義"]},
+          {"id": "MT-005", "title": "内部環境分析（VRIO）", "children": [], "keywords": ["内部環境分析（VRIO）"]},
+          {"id": "MT-006", "title": "コアコンピタンス・ダイナミックケイパビリティ", "children": [], "keywords": ["コアコンピタンス・ダイナミックケイパビリティ"]},
+          {"id": "MT-008", "title": "多角化", "children": [], "keywords": ["シナジー", "関連型多角化・非関連型多角化"]},
+          {"id": "MT-010", "title": "垂直統合", "children": [], "keywords": ["垂直統合"]},
+          {"id": "MT-011", "title": "M&A", "children": [], "keywords": ["M&A"]},
+          {"id": "MT-009", "title": "PPM", "children": [], "keywords": ["製品ライフサイクル", "市場シェア", "経験曲線"]},
+          {"id": "MT-012", "title": "戦略的提携", "children": [], "keywords": ["戦略的提携"]},
+          {"id": "MT-021", "title": "海外進出形態", "children": [], "keywords": ["輸出", "海外直接投資", "ライセンス供与"]},
+          {"id": "MT-022", "title": "グローバル統合とローカル適応", "children": [], "keywords": ["グローバル統合とローカル適応"]},
+          {"id": "MT-023", "title": "国際経営戦略の類型", "children": [], "keywords": ["グローバル", "マルチナショナル", "インターナショナル", "トランスナショナル"]},
+          {"id": "MT-024", "title": "国際経営戦略と組織", "children": [], "keywords": ["国際経営戦略と組織"]},
+          {"id": "MT-025", "title": "本社－海外子会社のマネジメント", "children": [], "keywords": ["本社－海外子会社のマネジメント"]}
         ]
       },
       {
@@ -48,42 +52,24 @@
         "children": [
           {"id": "MT-017", "title": "技術戦略", "children": [], "keywords": ["技術戦略の策定", "技術と市場の統合", "知財戦略"]},
           {"id": "MT-018", "title": "イノベーションマネジメント", "children": [], "keywords": ["イノベーションプロセス", "イノベーションのジレンマ", "オープンイノベーション", "製品アーキテクチャー"]},
+          {"id": "MT-016", "title": "業界標準（プラットフォーム）", "children": [], "keywords": ["業界標準（プラットフォーム）"]},
           {"id": "MT-019", "title": "新規事業開発", "children": [], "keywords": ["新規事業の組織とマネジメント", "ビジネスモデル", "スタートアップ", "アントレプレナーシップ"]},
+          {"id": "MT-031", "title": "創業", "children": [], "keywords": ["創業"]},
           {"id": "MT-020", "title": "知識経営", "children": [], "keywords": ["知識経営"]}
         ]
       },
       {
         "id": "MT-CH05",
-        "title": "国際経営戦略",
-        "keywords": [],
-        "children": [
-          {"id": "MT-021", "title": "海外進出形態", "children": [], "keywords": ["輸出", "海外直接投資", "ライセンス供与"]},
-          {"id": "MT-022", "title": "グローバル統合とローカル適応", "children": [], "keywords": ["グローバル統合とローカル適応"]},
-          {"id": "MT-023", "title": "国際経営戦略の類型", "children": [], "keywords": ["グローバル", "マルチナショナル", "インターナショナル", "トランスナショナル"]},
-          {"id": "MT-024", "title": "国際経営戦略と組織", "children": [], "keywords": ["国際経営戦略と組織"]},
-          {"id": "MT-025", "title": "本社－海外子会社のマネジメント", "children": [], "keywords": ["本社－海外子会社のマネジメント"]}
-        ]
-      },
-      {
-        "id": "MT-CH06",
-        "title": "企業の社会的責任",
+        "title": "CSRとコーポレート・ガバナンス",
         "keywords": [],
         "children": [
           {"id": "MT-026", "title": "CSR・CSV", "children": [], "keywords": ["CSR・CSV"]},
           {"id": "MT-027", "title": "ステークホルダー", "children": [], "keywords": ["ステークホルダー"]},
+          {"id": "MT-030", "title": "企業倫理", "children": [], "keywords": ["企業倫理"]},
           {"id": "MT-028", "title": "コーポレート・ガバナンス", "children": [], "keywords": ["コーポレート・ガバナンス"]},
           {"id": "MT-029", "title": "企業活動の監視", "children": [], "keywords": ["企業活動の監視"]},
-          {"id": "MT-030", "title": "企業倫理", "children": [], "keywords": ["企業倫理"]}
-        ]
-      },
-      {
-        "id": "MT-CH07",
-        "title": "ファミリービジネスの戦略",
-        "keywords": [],
-        "children": [
-          {"id": "MT-031", "title": "創業", "children": [], "keywords": ["創業"]},
-          {"id": "MT-032", "title": "事業承継", "children": [], "keywords": ["事業承継"]},
-          {"id": "MT-033", "title": "ファミリービジネスと地域", "children": [], "keywords": ["ファミリービジネスと地域"]}
+          {"id": "MT-033", "title": "ファミリービジネスと地域", "children": [], "keywords": ["ファミリービジネスと地域"]},
+          {"id": "MT-032", "title": "事業承継", "children": [], "keywords": ["事業承継"]}
         ]
       }
     ]
@@ -94,95 +80,60 @@
     "keywords": [],
     "children": [
       {
-        "id": "MT-CH08",
-        "title": "組織の考え方",
+        "id": "MT-CH06",
+        "title": "組織構造論",
         "keywords": [],
         "children": [
           {"id": "MT-034", "title": "組織目標", "children": [], "keywords": ["組織目標"]},
+          {"id": "MT-048", "title": "意思決定", "children": [], "keywords": ["限定された合理性", "認知バイアス", "ストレス"]},
+          {"id": "MT-037", "title": "権限と責任", "children": [], "keywords": ["権限と責任"]},
           {"id": "MT-035", "title": "階層", "children": [], "keywords": ["階層"]},
           {"id": "MT-036", "title": "分業と調整", "children": [], "keywords": ["分業と調整"]},
-          {"id": "MT-037", "title": "権限と責任", "children": [], "keywords": ["権限と責任"]},
-          {"id": "MT-038", "title": "横断的関係", "children": [], "keywords": ["横断的関係"]}
-        ]
-      },
-      {
-        "id": "MT-CH09",
-        "title": "組織構造の形態",
-        "keywords": [],
-        "children": [
-          {"id": "MT-039", "title": "事業部制組織", "children": [], "keywords": ["事業部制組織"]},
+          {"id": "MT-038", "title": "横断的関係", "children": [], "keywords": ["横断的関係"]},
           {"id": "MT-040", "title": "職能部門組織", "children": [], "keywords": ["職能部門組織"]},
+          {"id": "MT-039", "title": "事業部制組織", "children": [], "keywords": ["事業部制組織"]},
           {"id": "MT-041", "title": "マトリックス組織", "children": [], "keywords": ["マトリックス組織"]},
           {"id": "MT-042", "title": "ネットワーク組織", "children": [], "keywords": ["ネットワーク組織"]},
           {"id": "MT-043", "title": "持株会社", "children": [], "keywords": ["持株会社"]},
-          {"id": "MT-044", "title": "機械的管理システム・有機的管理システム", "children": [], "keywords": ["機械的管理システム・有機的管理システム"]}
-        ]
-      },
-      {
-        "id": "MT-CH10",
-        "title": "組織文化",
-        "keywords": [],
-        "children": [
-          {"id": "MT-045", "title": "組織文化のレベル", "children": [], "keywords": ["組織文化のレベル"]},
-          {"id": "MT-046", "title": "組織文化と経営戦略", "children": [], "keywords": ["組織文化と経営戦略"]},
-          {"id": "MT-047", "title": "組織文化の変革", "children": [], "keywords": ["組織文化の変革"]}
-        ]
-      },
-      {
-        "id": "MT-CH11",
-        "title": "組織における個人",
-        "keywords": [],
-        "children": [
-          {"id": "MT-048", "title": "意思決定", "children": [], "keywords": ["限定された合理性", "認知バイアス", "ストレス"]},
-          {"id": "MT-049", "title": "モチベーション", "children": [], "keywords": ["欲求段階論", "期待理論", "内発的動機付け", "目標設定理論"]},
-          {"id": "MT-050", "title": "組織コミットメント", "children": [], "keywords": ["組織コミットメント"]}
-        ]
-      },
-      {
-        "id": "MT-CH12",
-        "title": "組織の中の人間関係・集団",
-        "keywords": [],
-        "children": [
-          {"id": "MT-051", "title": "リーダーシップ", "children": [], "keywords": ["特性論", "行動論", "状況論", "変革型リーダーシップ"]},
-          {"id": "MT-052", "title": "パワーとコンフリクト", "children": [], "keywords": ["パワーの源泉", "政治的行動", "コンフリクトマネジメント"]},
-          {"id": "MT-053", "title": "集団", "children": [], "keywords": ["グループシンク", "グループシフト", "心理的安全性", "小集団活動"]}
-        ]
-      },
-      {
-        "id": "MT-CH13",
-        "title": "組織間関係",
-        "keywords": [],
-        "children": [
+          {"id": "MT-062", "title": "組織のライフサイクル", "children": [], "keywords": ["組織のライフサイクル"]},
           {"id": "MT-054", "title": "資源依存", "children": [], "keywords": ["資源依存"]},
           {"id": "MT-055", "title": "正当性", "children": [], "keywords": ["正当性"]},
           {"id": "MT-056", "title": "取引コスト", "children": [], "keywords": ["取引コスト"]},
           {"id": "MT-057", "title": "ネットワーク", "children": [], "keywords": ["ネットワーク"]},
-          {"id": "MT-058", "title": "クラスター・エコシステム", "children": [], "keywords": ["クラスター・エコシステム"]}
+          {"id": "MT-058", "title": "クラスター・エコシステム", "children": [], "keywords": ["クラスター・エコシステム"]},
+          {"id": "MT-044", "title": "機械的管理システム・有機的管理システム", "children": [], "keywords": ["機械的管理システム・有機的管理システム"]}
         ]
       },
       {
-        "id": "MT-CH14",
-        "title": "組織変革と組織成長",
+        "id": "MT-CH07",
+        "title": "組織行動論",
         "keywords": [],
         "children": [
+          {"id": "MT-049", "title": "モチベーション", "children": [], "keywords": ["欲求段階論", "期待理論", "内発的動機付け", "目標設定理論"]},
+          {"id": "MT-050", "title": "組織コミットメント", "children": [], "keywords": ["組織コミットメント"]},
+          {"id": "MT-053", "title": "集団", "children": [], "keywords": ["グループシンク", "グループシフト", "心理的安全性", "小集団活動"]},
+          {"id": "MT-052", "title": "パワーとコンフリクト", "children": [], "keywords": ["パワーの源泉", "政治的行動", "コンフリクトマネジメント"]},
+          {"id": "MT-051", "title": "リーダーシップ", "children": [], "keywords": ["特性論", "行動論", "状況論", "変革型リーダーシップ"]},
+          {"id": "MT-045", "title": "組織文化のレベル", "children": [], "keywords": ["組織文化のレベル"]},
+          {"id": "MT-046", "title": "組織文化と経営戦略", "children": [], "keywords": ["組織文化と経営戦略"]},
+          {"id": "MT-047", "title": "組織文化の変革", "children": [], "keywords": ["組織文化の変革"]},
+          {"id": "MT-061", "title": "組織学習", "children": [], "keywords": ["組織学習"]},
           {"id": "MT-059", "title": "変革の段階", "children": [], "keywords": ["変革の段階"]},
           {"id": "MT-060", "title": "組織開発", "children": [], "keywords": ["組織開発"]},
-          {"id": "MT-061", "title": "組織学習", "children": [], "keywords": ["組織学習"]},
-          {"id": "MT-062", "title": "組織のライフサイクル", "children": [], "keywords": ["組織のライフサイクル"]},
           {"id": "MT-063", "title": "経営戦略と組織", "children": [], "keywords": ["経営戦略と組織"]}
         ]
       },
       {
-        "id": "MT-CH15",
+        "id": "MT-CH08",
         "title": "人的資源管理",
         "keywords": [],
         "children": [
-          {"id": "MT-064", "title": "労働関連法規", "children": [], "keywords": ["労働基準法", "労働契約法", "男女雇用機会均等法", "育児・介護休業法", "パートタイム・有期雇用労働法", "労働安全衛生法", "労働組合法", "労働施策総合推進法", "労働者派遣法", "労働保険・社会保険"]},
+          {"id": "MT-069", "title": "戦略的人的資源管理", "children": [], "keywords": ["戦略的人的資源管理"]},
           {"id": "MT-065", "title": "雇用管理", "children": [], "keywords": ["採用", "配置", "人事異動", "資格制度"]},
           {"id": "MT-066", "title": "評価・処遇", "children": [], "keywords": ["人事評価", "昇進", "賃金体系"]},
           {"id": "MT-067", "title": "人材育成", "children": [], "keywords": ["能力開発", "能力開発の方法", "キャリア開発", "メンタリング"]},
           {"id": "MT-068", "title": "労働条件管理", "children": [], "keywords": ["労働時間管理", "労働安全管理", "労働衛生管理"]},
-          {"id": "MT-069", "title": "戦略的人的資源管理", "children": [], "keywords": ["戦略的人的資源管理"]}
+          {"id": "MT-064", "title": "労働関連法規", "children": [], "keywords": ["労働基準法", "労働契約法", "男女雇用機会均等法", "育児・介護休業法", "パートタイム・有期雇用労働法", "労働安全衛生法", "労働組合法", "労働施策総合推進法", "労働者派遣法", "労働保険・社会保険"]}
         ]
       }
     ]
@@ -193,27 +144,28 @@
     "keywords": [],
     "children": [
       {
-        "id": "MT-CH16",
+        "id": "MT-CH09",
         "title": "マーケティングの基礎概念",
         "keywords": [],
         "children": [
           {"id": "MT-070", "title": "マーケティングの定義", "children": [], "keywords": ["マーケティングの定義"]},
           {"id": "MT-071", "title": "マーケティング・コンセプト", "children": [], "keywords": ["マーケティング・コンセプト"]},
-          {"id": "MT-072", "title": "マーケティングの分類と概念の変遷", "children": [], "keywords": ["マーケティングの分類と概念の変遷"]}
-        ]
-      },
-      {
-        "id": "MT-CH17",
-        "title": "マーケティング計画とマーケティング戦略",
-        "keywords": [],
-        "children": [
-          {"id": "MT-073", "title": "企業の競争市場戦略", "children": [], "keywords": ["企業のミッション", "企業のドメイン・事業の定義", "企業の市場環境分析", "成長機会の評価"]},
-          {"id": "MT-074", "title": "マーケティング・マネジメント", "children": [], "keywords": ["STP と４Ｐ", "マーケティング・ミックスの展開", "マーケティングの実行とコントロール"]},
+          {"id": "MT-072", "title": "マーケティングの分類と概念の変遷", "children": [], "keywords": ["マーケティングの分類と概念の変遷"]},
           {"id": "MT-075", "title": "ソーシャルマーケティング", "children": [], "keywords": ["非営利組織のマーケティング", "社会貢献と社会責任のマーケティング", "企業における実行概念"]}
         ]
       },
       {
-        "id": "MT-CH18",
+        "id": "MT-CH10",
+        "title": "マーケティング・マネジメント",
+        "keywords": [],
+        "children": [
+          {"id": "MT-073", "title": "企業の競争市場戦略", "children": [], "keywords": ["企業のミッション", "企業のドメイン・事業の定義", "企業の市場環境分析", "成長機会の評価"]},
+          {"id": "MT-074", "title": "マーケティング・マネジメント", "children": [], "keywords": ["STP と４Ｐ", "マーケティング・ミックスの展開", "マーケティングの実行とコントロール"]},
+          {"id": "MT-081", "title": "グローバル・マーケティング", "children": [], "keywords": ["グローバル・マーケティングの概念", "カントリー・オブ・オリジン", "グローバル・マーケティングの実行"]}
+        ]
+      },
+      {
+        "id": "MT-CH11",
         "title": "マーケティング・リサーチ",
         "keywords": [],
         "children": [
@@ -222,92 +174,77 @@
         ]
       },
       {
-        "id": "MT-CH19",
-        "title": "各分野に展開したマーケティング",
-        "keywords": [],
-        "children": [
-          {"id": "MT-078", "title": "リレーションシップ・マーケティング", "children": [], "keywords": ["リレーションシップ・マーケティングの概念", "顧客関係性管理（CRM）"]},
-          {"id": "MT-079", "title": "サービス・マーケティング", "children": [], "keywords": ["サービス・マーケティングの概念", "サービス品質の測定", "製造業のサービス化"]},
-          {"id": "MT-080", "title": "デジタル・マーケティング", "children": [], "keywords": ["デジタル・マーケティングの概念", "デジタル・マーケティングの実行"]},
-          {"id": "MT-081", "title": "グローバル・マーケティング", "children": [], "keywords": ["グローバル・マーケティングの概念", "カントリー・オブ・オリジン", "グローバル・マーケティングの実行"]},
-          {"id": "MT-082", "title": "生産財マーケティング（生産財マーケティングの特徴と実行）", "children": [], "keywords": ["生産財マーケティング（生産財マーケティングの特徴と実行）"]}
-        ]
-      },
-      {
-        "id": "MT-CH20",
-        "title": "プロダクト・マネジメント",
-        "keywords": [],
-        "children": [
-          {"id": "MT-083", "title": "製品の概念", "children": [], "keywords": ["製品の分類", "製品の価値", "プロダクト・ミックス"]},
-          {"id": "MT-084", "title": "プロダクト・ライフ・サイクル（PLC）", "children": [], "keywords": ["PLC の概要", "製品の普及モデル", "先発の優位と後発の優位"]},
-          {"id": "MT-085", "title": "新製品開発", "children": [], "keywords": ["市場性の評価とカテゴライゼーション", "新製品開発のアイデア創出とスクリーニング", "定性的な開発方法", "定量的な開発方法", "パッケージング"]},
-          {"id": "MT-086", "title": "ライフサイクル・マネジメント", "children": [], "keywords": ["製品のポートフォリオ・マネジメント", "製品の需要拡大", "製品寿命の延命", "製品の入れ替え方法"]}
-        ]
-      },
-      {
-        "id": "MT-CH21",
-        "title": "ブランディング",
-        "keywords": [],
-        "children": [
-          {"id": "MT-087", "title": "ブランドの基礎概念", "children": [], "keywords": ["顧客との関係性", "ブランドの種類", "ブランドエクイティ"]},
-          {"id": "MT-088", "title": "ブランド要素と機能", "children": [], "keywords": ["ブランド要素の構成", "ブランドの機能"]},
-          {"id": "MT-089", "title": "ブランド・マネジメント", "children": [], "keywords": ["ブランド構築", "ブランドの維持管理と基本戦略", "ブランド経験とカスタマージャーニー"]}
-        ]
-      },
-      {
-        "id": "MT-CH22",
-        "title": "消費者行動",
+        "id": "MT-CH12",
+        "title": "消費者行動と組織購買行動",
         "keywords": [],
         "children": [
           {"id": "MT-090", "title": "消費者行動への影響要因", "children": [], "keywords": ["文化的要因", "社会的要因", "個人的要因"]},
           {"id": "MT-091", "title": "消費者の意思決定", "children": [], "keywords": ["消費者行動を捉える諸モデル", "消費者の関与", "購買意思決定プロセス"]},
           {"id": "MT-092", "title": "消費者の認知", "children": [], "keywords": ["ニーズ・動機付け", "知覚・学習・記憶・態度・信念"]},
-          {"id": "MT-093", "title": "消費者の感覚と感情", "children": [], "keywords": ["消費者の感覚", "感覚に対する評価"]}
+          {"id": "MT-093", "title": "消費者の感覚と感情", "children": [], "keywords": ["消費者の感覚", "感覚に対する評価"]},
+          {"id": "MT-082", "title": "生産財マーケティング（生産財マーケティングの特徴と実行）", "children": [], "keywords": ["生産財マーケティング（生産財マーケティングの特徴と実行）"]}
         ]
       },
       {
-        "id": "MT-CH23",
-        "title": "プライシング",
+        "id": "MT-CH13",
+        "title": "製品戦略",
         "keywords": [],
         "children": [
-          {"id": "MT-094", "title": "価格の要素", "children": [], "keywords": ["内的参照価格", "外的参照価格", "価格の関与"]},
+          {"id": "MT-083", "title": "製品の概念", "children": [], "keywords": ["製品の分類", "製品の価値", "プロダクト・ミックス"]},
+          {"id": "MT-084", "title": "プロダクト・ライフ・サイクル（PLC）", "children": [], "keywords": ["PLC の概要", "製品の普及モデル", "先発の優位と後発の優位"]},
+          {"id": "MT-086", "title": "ライフサイクル・マネジメント", "children": [], "keywords": ["製品のポートフォリオ・マネジメント", "製品の需要拡大", "製品寿命の延命", "製品の入れ替え方法"]},
+          {"id": "MT-087", "title": "ブランドの基礎概念", "children": [], "keywords": ["顧客との関係性", "ブランドの種類", "ブランドエクイティ"]},
+          {"id": "MT-088", "title": "ブランド要素と機能", "children": [], "keywords": ["ブランド要素の構成", "ブランドの機能"]},
+          {"id": "MT-089", "title": "ブランド・マネジメント", "children": [], "keywords": ["ブランド構築", "ブランドの維持管理と基本戦略", "ブランド経験とカスタマージャーニー"]},
+          {"id": "MT-085", "title": "新製品開発", "children": [], "keywords": ["市場性の評価とカテゴライゼーション", "新製品開発のアイデア創出とスクリーニング", "定性的な開発方法", "定量的な開発方法", "パッケージング"]},
+          {"id": "MT-079", "title": "サービス・マーケティング", "children": [], "keywords": ["サービス・マーケティングの概念", "サービス品質の測定", "製造業のサービス化"]}
+        ]
+      },
+      {
+        "id": "MT-CH14",
+        "title": "価格戦略",
+        "keywords": [],
+        "children": [
           {"id": "MT-095", "title": "価値表示による価格", "children": [], "keywords": ["価格のコスト", "価格の便益"]},
-          {"id": "MT-096", "title": "消費者の価格判断における文脈効果", "children": [], "keywords": ["トレードオフ・コントラスト", "カテゴライゼーション"]},
           {"id": "MT-097", "title": "価格戦略分類", "children": [], "keywords": ["多様な価格戦略", "デジタル時代の価格戦略"]},
-          {"id": "MT-098", "title": "価格決定の手法（多様な決定方法）", "children": [], "keywords": ["価格決定の手法（多様な決定方法）"]}
+          {"id": "MT-098", "title": "価格決定の手法（多様な決定方法）", "children": [], "keywords": ["価格決定の手法（多様な決定方法）"]},
+          {"id": "MT-094", "title": "価格の要素", "children": [], "keywords": ["内的参照価格", "外的参照価格", "価格の関与"]},
+          {"id": "MT-096", "title": "消費者の価格判断における文脈効果", "children": [], "keywords": ["トレードオフ・コントラスト", "カテゴライゼーション"]}
         ]
       },
       {
-        "id": "MT-CH24",
-        "title": "コミュニケーション",
-        "keywords": [],
-        "children": [
-          {"id": "MT-099", "title": "コミュニケーションの基礎概念", "children": [], "keywords": ["コミュニケーションの定義", "コミュニケーションの分類"]},
-          {"id": "MT-100", "title": "コミュニケーションの種類", "children": [], "keywords": ["マスメディア", "SP メディア"]},
-          {"id": "MT-101", "title": "広告計画と効果測定", "children": [], "keywords": ["広告計画の流れと役割", "効果測定"]},
-          {"id": "MT-102", "title": "広告表現", "children": [], "keywords": ["広告規制", "広告表現方法"]},
-          {"id": "MT-103", "title": "デジタル時代のコミュニケーション", "children": [], "keywords": ["メディアの種類", "SNS 等を活用したコミュニケーション"]}
-        ]
-      },
-      {
-        "id": "MT-CH25",
-        "title": "プロモーション",
-        "keywords": [],
-        "children": [
-          {"id": "MT-104", "title": "プロモーション政策", "children": [], "keywords": ["プロモーション・ミックス", "プッシュ政策", "プル政策", "製品ライフサイクルに応じたプロモーション戦略"]},
-          {"id": "MT-105", "title": "人的販売", "children": [], "keywords": ["役割", "販売員の種類", "進め方", "販売員管理"]},
-          {"id": "MT-106", "title": "販売促進", "children": [], "keywords": ["目的", "種類", "消費者向け", "流通業者向け", "社内向け", "関係法規", "デジタル化による販売促進"]},
-          {"id": "MT-107", "title": "PR", "children": [], "keywords": ["内容", "必要性", "使用媒体", "方法", "パブリシティ"]}
-        ]
-      },
-      {
-        "id": "MT-CH26",
-        "title": "流通チャネル",
+        "id": "MT-CH15",
+        "title": "チャネル・物流戦略",
         "keywords": [],
         "children": [
           {"id": "MT-108", "title": "流通チャネルの機能と種類", "children": [], "keywords": ["チャネルの目的", "チャネルの機能", "チャネル統合", "チャネルの種類"]},
           {"id": "MT-109", "title": "流通チャネル政策", "children": [], "keywords": ["開放的流通チャネル", "選択的流通チャネル", "専属的流通チャネル", "流通チャネルの評価と管理"]},
           {"id": "MT-110", "title": "デジタル化と流通", "children": [], "keywords": ["オムニチャネル", "O2O", "OMO"]}
+        ]
+      },
+      {
+        "id": "MT-CH16",
+        "title": "プロモーション戦略",
+        "keywords": [],
+        "children": [
+          {"id": "MT-104", "title": "プロモーション政策", "children": [], "keywords": ["プロモーション・ミックス", "プッシュ政策", "プル政策", "製品ライフサイクルに応じたプロモーション戦略"]},
+          {"id": "MT-099", "title": "コミュニケーションの基礎概念", "children": [], "keywords": ["コミュニケーションの定義", "コミュニケーションの分類"]},
+          {"id": "MT-100", "title": "コミュニケーションの種類", "children": [], "keywords": ["マスメディア", "SP メディア"]},
+          {"id": "MT-101", "title": "広告計画と効果測定", "children": [], "keywords": ["広告計画の流れと役割", "効果測定"]},
+          {"id": "MT-102", "title": "広告表現", "children": [], "keywords": ["広告規制", "広告表現方法"]},
+          {"id": "MT-107", "title": "PR", "children": [], "keywords": ["内容", "必要性", "使用媒体", "方法", "パブリシティ"]},
+          {"id": "MT-105", "title": "人的販売", "children": [], "keywords": ["役割", "販売員の種類", "進め方", "販売員管理"]},
+          {"id": "MT-106", "title": "販売促進", "children": [], "keywords": ["目的", "種類", "消費者向け", "流通業者向け", "社内向け", "関係法規", "デジタル化による販売促進"]}
+        ]
+      },
+      {
+        "id": "MT-CH17",
+        "title": "関係性マーケティングとデジタル・マーケティング",
+        "keywords": [],
+        "children": [
+          {"id": "MT-078", "title": "リレーションシップ・マーケティング", "children": [], "keywords": ["リレーションシップ・マーケティングの概念", "顧客関係性管理（CRM）"]},
+          {"id": "MT-080", "title": "デジタル・マーケティング", "children": [], "keywords": ["デジタル・マーケティングの概念", "デジタル・マーケティングの実行"]},
+          {"id": "MT-103", "title": "デジタル時代のコミュニケーション", "children": [], "keywords": ["メディアの種類", "SNS 等を活用したコミュニケーション"]}
         ]
       }
     ]
