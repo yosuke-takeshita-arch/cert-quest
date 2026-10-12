@@ -1,0 +1,24 @@
+[
+  {
+    "id": "SMP-C-GDP",
+    "syllabus": ["経済学・経済政策（サンプル）", "経済指標の見方", "GDP"],
+    "title": "GDP（国内総生産）",
+    "oneLine": "一定期間に国内で新しく生み出された付加価値の合計。",
+    "why": "国の経済の大きさと成長を測る、いちばん基本の物差しだから。",
+    "links": [{ "id": "SMP-C-EQ", "relation": "related" }],
+    "confusions": [{ "title": "GNI（国民総所得）", "point": "GDPは国内で生んだもの、GNIは国民が（海外も含め）得た所得で数える。" }],
+    "sources": [{ "title": "サンプル用の出典", "url": "https://www.jf-cmca.jp/contents/007_shiken.html" }],
+    "status": "unverified"
+  },
+  {
+    "id": "SMP-C-EQ",
+    "syllabus": ["経済学・経済政策（サンプル）", "市場の仕組み", "需要と供給"],
+    "title": "均衡価格",
+    "oneLine": "需要量と供給量が一致する価格。",
+    "why": "価格が均衡より高ければ売れ残り、低ければ品不足になって、価格が均衡に向かって動くから。",
+    "links": [{ "id": "SMP-C-GDP", "relation": "related" }],
+    "confusions": [],
+    "sources": [{ "title": "サンプル用の出典", "url": "https://www.jf-cmca.jp/contents/007_shiken.html" }],
+    "status": "unverified"
+  }
+]

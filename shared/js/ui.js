@@ -47,7 +47,17 @@ const ICONS = {
 
 /** バッジの絵の置き場（共通＝shared/images/badges/、章の制覇＝このアプリの images/badges/）。 */
 export function badgeBases() {
-  return { sharedBase: new URL('../images/badges/', import.meta.url).href, appBase: new URL('./images/badges/', location.href).href };
+  return { sharedBase: new URL('../images/badges/', import.meta.url).href, appBase: new URL('badges/', appImagesBase()).href };
+}
+
+// このアプリの絵（章のボス・章の制覇のバッジ）の置き場。科目のあるアプリは科目ごとに images/<科目id>/ に分ける（app.js が科目を開くたびに渡す）。
+// 渡されていなければ、今までどおり <アプリ>/images/
+let imagesBaseOverride = null;
+export function setImagesBase(url) {
+  imagesBaseOverride = typeof url === 'string' && url ? url : null;
+}
+export function appImagesBase() {
+  return imagesBaseOverride || new URL('./images/', location.href).href;
 }
 
 /**

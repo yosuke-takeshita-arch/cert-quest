@@ -1,5 +1,7 @@
 // 起動・ルーティング。資格固有のことは config.json と data/ からだけ読む。
-import { h, clear, icon, toast, celebrate, badgeBases, setTapHost } from './ui.js';
+import { h, clear, icon, toast, celebrate, badgeBases, setTapHost, setImagesBase } from './ui.js';
+import { normalizeSubjects, hasSubjects, createSubjectStore, singleKey, subjectConfig, subjectDataBase, subjectImagesBase } from './lib/subjects.js';
+import { renderSubjectPicker } from './views/subjects.js';
 import { loadData } from './lib/data.js';
 import { loadBosses } from './lib/bossdata.js';
 import { createStorage } from './lib/storage.js';
@@ -84,8 +86,15 @@ export async function start() {
   applyTheme(config);
   document.title = config.name || document.title;
 
-  // 配色は、タイトル画面から効かせる（設定は端末の記録から先に読む）
-  const storage = createStorage('certquest:' + (config.id || 'app') + (sample ? ':sample' : '') + ':v1');
+  // 科目のあるアプリ（config.json に subjects。中小企業診断士など）は、記録とデータを科目ごとに分ける（lib/subjects.js）。
+  // 科目の無いアプリ（G検定・DX）は、これまでと同じ1つの記録（保存キーも同じ）
+  const subjects = normalizeSubjects(config);
+  if (hasSubjects(config) && !subjects.length) return showFatal(root, '設定ファイル(config.json)の科目の一覧が読めませんでした。');
+  const store = subjects.length ? createSubjectStore({ appId: config.id || 'app', subjects, sample }) : null;
+  const baseConfig = config; // 科目を開くと config は科目の分を重ねたものに替わる。アプリ全体の config はこちら
+  // 配色は、タイトル画面から効かせる（設定は端末の記録から先に読む）。科目を選ぶ前は、共通の記録（XP・連続日数・設定）だけ使う
+  let storage = store ? store.common() : createStorage(singleKey(config.id, sample));
+  const commonStorage = storage;
   const darkMq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
   const isDark = (pref) => pref === 'dark' || (pref === 'auto' && !!darkMq && darkMq.matches);
   document.documentElement.dataset.theme = isDark(storage.load().settings.theme) ? 'dark' : 'light';
@@ -100,26 +109,72 @@ export async function start() {
   let live = null;
   initAudio(() => (live ? live.state.settings : titleState.settings));
   // 『それ以外』の BGM（タイトル・ホームなど）は initAudio の中で流れ始める（オンの人だけ。『タップしてはじめる』でも止めず、ホームでも続く）
-  const title = createTitleScreen({ config, examDate: examStatus(titleState.settings).date, sound: { settings: titleState.settings, commit: () => storage.save(titleState) } });
+  // 歯車の音の設定は、科目を選ぶ前でも変えられるので、共通の記録に保存する（科目の無いアプリでは、これまでと同じ1つの記録）
+  const title = createTitleScreen({ config, examDate: examStatus(titleState.settings).date, sound: { settings: titleState.settings, commit: () => commonStorage.save(titleState) } });
   clear(root);
   root.appendChild(title.el);
-  const dataBase = new URL(sample ? './data/_sample/' : './data/', location.href).href;
+  // 科目の無いアプリは ./data/ 、科目のあるアプリは科目のフォルダ（./01_economics/ など）。サンプル表示（?sample=1）は ./data/_sample/ ／ ./_sample/<科目のフォルダ>/
+  const dataBaseOf = (sub) => (sub ? subjectDataBase(sub, location.href, sample) : new URL(sample ? './data/_sample/' : './data/', location.href).href);
+  const loadFor = async (sub, fetchFn) => {
+    const base = dataBaseOf(sub);
+    const d = await loadData({ dataBase: base, fetchFn });
+    return { data: d, dataBase: base };
+  };
+  const loadBossNames = async (loaded) => {
+    // 章のボスの名前・せりふ。無い・壊れているときは空（ボスは汎用の名前とせりふで動く）。読み込みの進み具合には数えない
+    loaded.data.bosses = (await loadBosses(new URL(loaded.data.bossesFile, loaded.dataBase).href)).bosses;
+    return loaded;
+  };
   const tracker = createLoadTracker((s) => title.setProgress(s));
-  let data;
-  try {
-    data = await loadData({ dataBase, fetchFn: tracker.wrap((u) => fetch(u)) });
-  } catch (e) {
-    return title.fail('データの読み込みで予期しない問題が起きました。', String(e.message || e));
+  // 科目のあるアプリは、前回選んだ科目があればそのデータを読む。初めてなら、タイトルのあとで科目を選んでもらうので、ここでは読まない
+  let curSub = store ? subjects.find((s) => s.id === store.selected()) || null : null;
+  let loaded = null;
+  if (!store || curSub) {
+    try {
+      loaded = await loadFor(curSub, tracker.wrap((u) => fetch(u)));
+    } catch (e) {
+      return title.fail('データの読み込みで予期しない問題が起きました。', String(e.message || e));
+    }
+    tracker.complete();
+    await loadBossNames(loaded);
+  } else {
+    tracker.complete();
   }
-  tracker.complete();
-  // 章のボスの名前・せりふ。無い・壊れているときは空（ボスは汎用の名前とせりふで動く）。読み込みの進み具合には数えない
-  data.bosses = (await loadBosses(new URL(data.bossesFile, dataBase).href)).bosses;
   // 押した瞬間に音を使える状態にし、開始のジングルを鳴らす（効果音がオンの人だけ）。演出が済んだらホームへ
   await title.ready(() => {
     unlockAudio(titleState.settings);
     playSfx(titleState.settings, 'start');
   });
   setBgmTitle(false); // タイトル画面を出た。ここから『それ以外』で選んだ曲（タイトル曲を選んでいれば、切らずに続く）
+
+  // 科目のあるアプリで、まだ科目を選んでいない（初回）: 科目を選んでもらい、そのデータを読む
+  while (store && !loaded) {
+    const id = await new Promise((resolve) => {
+      clear(root);
+      root.appendChild(renderSubjectPicker({ config, subjects, peek: (sid) => store.peek(sid), standalone: true, onPick: resolve }));
+    });
+    const sub = subjects.find((s) => s.id === id);
+    if (!sub) continue;
+    clear(root);
+    root.appendChild(h('div', { class: 'view' }, h('p', { class: 'muted', role: 'status', text: '読み込み中…' })));
+    try {
+      loaded = await loadBossNames(await loadFor(sub, (u) => fetch(u)));
+      curSub = sub;
+      store.select(sub.id);
+    } catch (e) {
+      loaded = null;
+      clear(root);
+      root.appendChild(h('div', { class: 'view' }, h('div', { class: 'card empty' }, h('p', { text: 'この科目のデータを読み込めませんでした。' }), h('p', { class: 'small muted', text: String(e.message || e) }), h('button', { class: 'btn primary', type: 'button', onClick: () => location.reload() }, 'もう一度'))));
+      await new Promise(() => {}); // 「もう一度」は再読み込み。ここでは進めない
+    }
+  }
+  // 以降は、開いた科目の記録（科目の無いアプリでは、これまでと同じ1つの記録）。共通の項目はどちらも同じ記録から読む
+  if (store) {
+    storage = store.open(curSub.id);
+    Object.assign(titleState, storage.load());
+  }
+  let data = loaded.data;
+  let dataBase = loaded.dataBase;
 
   // 受験日がまだ決まっていない（初回・古い記録）なら、ここで1回だけ聞く
   if (needsExamDateAsk(titleState.settings)) {
@@ -143,11 +198,18 @@ export async function start() {
     storage.save(titleState);
   }
 
-  const defs = badgeDefs(data.tree, config);
+  const openConfig = curSub ? subjectConfig(baseConfig, curSub) : config; // 科目を開いているときは、科目の名前・試験時間などを重ねたもの
+  setImagesBase(curSub ? subjectImagesBase(curSub, location.href) : null); // ボス・章のバッジの絵は科目ごとの images/<科目id>/
+  if (curSub) document.title = openConfig.name;
   const app = {
-    config,
+    config: openConfig,
+    baseConfig, // アプリ全体の config（科目の一覧 subjects を含む）
+    subject: curSub, // 開いている科目（科目の無いアプリでは null）
+    subjects, // 科目の一覧（科目の無いアプリでは空）
+    store, // 科目ごとの記録の置き場（科目の無いアプリでは null）
+    defs: badgeDefs(data.tree, openConfig),
     data,
-    dataBase, // data/ のURL（図の SVG を取るのに使う）
+    dataBase, // データの置き場のURL（図の SVG を取るのに使う）
     sample,
     storage,
     state: storage.load(),
@@ -167,10 +229,10 @@ export async function start() {
       if (lv > app.lastLevel) app.pending.push({ kind: 'level', level: lv });
       app.lastLevel = lv;
       // 合格予想の推移。今日 1問でも答えていれば、その日の予想を記録する（1日1件、同じ日は上書き）
-      if (app.state.daily[key]) recordForecast(app.state, key, calcForecast(data.questions, app.state.qstats).score);
-      awardBadges(app.state, defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc, image: badgeImageUrl(badgeArtName(b), badgeBases()) }));
+      if (app.state.daily[key]) recordForecast(app.state, key, calcForecast(app.data.questions, app.state.qstats).score);
+      awardBadges(app.state, app.defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc, image: badgeImageUrl(badgeArtName(b), badgeBases()) }));
       if (awardDailyGoal(app.state, key)) app.pending.push({ kind: 'goal', goal: dailyProgress(app.state, key).goal });
-      storage.save(app.state);
+      app.storage.save(app.state);
     },
     /** 星が増えたお祝いを待ち行列に足す（ステージ結果から）。 */
     queueStars(title, n) {
@@ -179,8 +241,8 @@ export async function start() {
     flushCelebrations() {
       if (!app.pending.length) return;
       const events = app.pending.splice(0, app.pending.length);
-      const next = nextGoals(data.tree, defs, app.state, dateKey(new Date()), 1)[0] || null;
-      const startable = !next || next.action.kind !== 'study' || !!suggestStage(data.tree.stages, app.state.qstats);
+      const next = nextGoals(app.data.tree, app.defs, app.state, dateKey(new Date()), 1)[0] || null;
+      const startable = !next || next.action.kind !== 'study' || !!suggestStage(app.data.tree.stages, app.state.qstats);
       celebrate(events, { settings: app.state.settings, next, startable, onStart: (g) => startGoal(app, g) });
     },
     recordAnswer(q, opts) {
@@ -190,8 +252,8 @@ export async function start() {
     },
     /** 書き出したファイルの記録に置き換える（読み込み）。state は parseBackup が正規化したもの。 */
     replaceState(state) {
-      storage.save(state);
-      app.state = storage.load();
+      app.storage.save(state);
+      app.state = app.storage.load();
       app.applyScheme();
       app.applyTextSize();
       app.pending = [];
@@ -202,16 +264,68 @@ export async function start() {
       toast('学習記録を読み込みました');
       app.go('#/home');
     },
-    resetAll() {
-      storage.clear();
-      app.state = defaultState();
+    /** 科目ありのファイルの読み込み。共通の記録と、ファイルに有る科目の記録を置き換える（無い科目はそのまま）。x は parseSubjectsBackup の common / subjects。 */
+    replaceSubjects(x) {
+      app.store.importAll(x);
+      app.state = app.storage.load();
       app.applyScheme();
       app.applyTextSize();
       app.pending = [];
-      app.lastLevel = 1;
+      app.lastLevel = levelFromXp(app.state.xp).level;
+      app.session = null;
+      app.commit();
+      syncBgm();
+      toast('学習記録を読み込みました');
+      app.go('#/home');
+    },
+    /** 科目をかえる（科目のあるアプリだけ）。いまの科目の記録は保存してから、その科目のデータを読んで、ホームへ。 */
+    async switchSubject(id) {
+      const sub = app.subjects.find((s) => s.id === id);
+      if (!app.store || !sub) return false;
+      if (app.subject && app.subject.id === id) { app.go('#/home'); return true; }
+      app.storage.save(app.state); // 共通の記録（XP・設定）を含めて、替える前に確実に書く
+      clear(main);
+      main.appendChild(h('div', { class: 'view' }, h('p', { class: 'muted', role: 'status', text: '「' + sub.name + '」を読み込み中…' })));
+      let next;
+      try {
+        next = await loadBossNames(await loadFor(sub, (u) => fetch(u)));
+      } catch (e) {
+        toast('この科目のデータを読み込めませんでした');
+        render();
+        return false;
+      }
+      app.store.select(sub.id);
+      const nextConfig = subjectConfig(baseConfig, sub);
+      app.subject = sub;
+      app.config = nextConfig;
+      app.data = next.data;
+      app.dataBase = next.dataBase;
+      app.defs = badgeDefs(next.data.tree, nextConfig);
+      app.storage = app.store.open(sub.id);
+      app.state = app.storage.load();
+      app.pending = [];
+      app.session = null;
+      app.lastLevel = levelFromXp(app.state.xp).level;
+      setImagesBase(subjectImagesBase(sub, location.href));
+      document.title = nextConfig.name;
+      app.applyScheme();
+      app.applyTextSize();
+      app.commit(); // この科目の記録で、もう条件を満たしているバッジを付ける
+      syncBgm();
+      app.go('#/home');
+      return true;
+    },
+    resetAll() {
+      app.storage.clear();
+      // 科目のあるアプリは、その科目の分だけ消える。XP・連続日数・設定（共通）は残す
+      app.state = app.subject ? app.storage.load() : defaultState();
+      app.applyScheme();
+      app.applyTextSize();
+      app.pending = [];
+      app.lastLevel = app.subject ? levelFromXp(app.state.xp).level : 1;
       app.session = null;
       syncBgm();
-      toast('学習記録を消しました');
+      toast(app.subject ? 'この科目の学習記録を消しました' : '学習記録を消しました');
       app.go('#/home');
     },
   };
@@ -243,6 +357,7 @@ export async function start() {
     ['cards', 'cards', () => renderCardList(app)],
     ['card', 'cards', (k) => renderCard(app, k)],
     ['review', 'review', () => renderReview(app)],
+    ['subjects', 'home', () => renderSubjects()], // 科目をかえる（科目のあるアプリだけ。科目の無いアプリはホームに戻る）
     ['more', 'more', () => renderMore(app)],
     ['badges', 'more', () => renderBadges(app)],
     ['weak', 'more', () => renderWeak(app)],
@@ -255,6 +370,18 @@ export async function start() {
     ['dochi', 'home', () => renderDochi(app), true], // 出題の遊びなので、下のメニューを隠し、BGM も問題中の設定に従う
     ['boss', 'map', (k) => renderBoss(app, k), true], // 章のボス戦。問題を解く画面なので同じく下のメニューを隠す
   ];
+
+  function renderSubjects() {
+    if (!app.store) return renderHome(app);
+    return renderSubjectPicker({
+      config: app.baseConfig,
+      subjects: app.subjects,
+      peek: (id) => app.store.peek(id),
+      currentId: app.subject ? app.subject.id : null,
+      onBack: () => app.go('#/home'),
+      onPick: (id) => { app.switchSubject(id); },
+    });
+  }
 
   // 配色。設定（light / dark / auto）を data-theme="light"|"dark" に解決して付ける。auto はスマホの設定の変化にも追う
   app.applyScheme = () => {

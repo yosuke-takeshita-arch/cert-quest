@@ -1,7 +1,7 @@
 // 学習記録の引き継ぎ（書き出し・読み込み）の画面部品（ブラウザ専用）。形の検証は lib/backup.js。
 // Android の Chrome で動くよう、書き出しは Blob のダウンロード、読み込みは input type=file を使う。
 import { h, toast } from '../ui.js';
-import { serializeBackup, backupFileName, parseBackup, backupSummary, BACKUP_REASONS, BACKUP_MAX_BYTES } from '../lib/backup.js';
+import { serializeBackup, serializeSubjectsBackup, backupFileName, parseBackup, parseSubjectsBackup, backupSummary, subjectsBackupSummary, BACKUP_REASONS, BACKUP_MAX_BYTES } from '../lib/backup.js';
 
 function readText(file) {
   if (file.text) return file.text();
@@ -24,7 +24,14 @@ export function buildBackupCard(app) {
   exportBtn.addEventListener('click', () => {
     try {
       const now = new Date();
-      const text = serializeBackup(app.config.id, app.state, now);
+      // 科目のあるアプリは、全科目の記録と共通の記録を1つのファイルに入れる（1科目分だけだと、読み込んだとき他の科目が失われる）
+      let text;
+      if (app.store) {
+        app.storage.save(app.state); // 画面の記録を先に書いてから、保存されている全科目を読む
+        text = serializeSubjectsBackup(app.config.id, app.store.exportAll(), now);
+      } else {
+        text = serializeBackup(app.config.id, app.state, now);
+      }
       const name = backupFileName(app.config.id, now);
       const blob = new Blob([text], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
@@ -55,14 +62,22 @@ export function buildBackupCard(app) {
       say(BACKUP_REASONS.broken, true);
       return;
     }
-    const r = parseBackup(text, app.config.id);
+    const multi = !!app.store;
+    const r = multi ? parseSubjectsBackup(text, app.config.id) : parseBackup(text, app.config.id);
     if (!r.ok) { say(BACKUP_REASONS[r.reason] || BACKUP_REASONS.broken, true); return; }
-    const sum = backupSummary(r.state);
     const when = r.exportedAt ? r.exportedAt.slice(0, 10) : '日付不明';
-    const ok = confirm('いまの記録は消えます。ファイルの記録（' + when + ' 書き出し・答えた問題 ' + sum.answered + ' 問・XP ' + sum.xp + '）に置き換えます。元に戻せません。よろしいですか？');
+    let ok;
+    if (multi) {
+      const sum = subjectsBackupSummary(r);
+      ok = confirm('いまの記録は消えます。ファイルの記録（' + when + ' 書き出し・' + sum.subjects + '科目・答えた問題 合計 ' + sum.answered + ' 問・XP ' + sum.xp + '）に置き換えます。ファイルに無い科目の記録は、そのまま残ります。元に戻せません。よろしいですか？');
+    } else {
+      const sum = backupSummary(r.state);
+      ok = confirm('いまの記録は消えます。ファイルの記録（' + when + ' 書き出し・答えた問題 ' + sum.answered + ' 問・XP ' + sum.xp + '）に置き換えます。元に戻せません。よろしいですか？');
+    }
     if (!ok) { say('読み込みをやめました。いまの記録はそのままです。', false); return; }
     say('', false);
-    app.replaceState(r.state);
+    if (multi) app.replaceSubjects({ common: r.common, subjects: r.subjects });
+    else app.replaceState(r.state);
   });
 
   return h('div', { class: 'card', 'data-card': 'backup' },

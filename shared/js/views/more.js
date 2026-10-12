@@ -17,6 +17,7 @@ import { CHARACTER_PAGE_TEXT } from '../lib/characters.js';
 export function renderMore(app) {
   const root = h('section', { class: 'view more' }, h('h1', { text: 'もっと' }));
   const nav = h('div', { class: 'card menu' },
+    app.subject ? h('button', { class: 'row-btn', type: 'button', 'data-menu': 'subjects', onClick: () => app.go('#/subjects') }, h('strong', { text: '科目をかえる' }), h('span', { class: 'small muted', text: 'いまは ' + app.subject.name })) : null,
     h('button', { class: 'row-btn', type: 'button', onClick: () => app.go('#/exam') }, h('strong', { text: '模擬試験' })),
     dochiPairs(app).length ? h('button', { class: 'row-btn', type: 'button', 'data-menu': 'dochi', onClick: () => app.go('#/dochi') }, h('strong', { text: 'どっち？早押し' }), h('span', { class: 'small muted', text: '似た2つの語を見分ける' })) : null,
     h('button', { class: 'row-btn', type: 'button', 'data-menu': 'weak', onClick: () => app.go('#/weak') }, h('strong', { text: '苦手の分析' })),
@@ -122,9 +123,14 @@ export function renderSettings(app) {
   });
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: '1日の目標' }),
     h('label', { class: 'row-btn', for: 'set-dailyGoal' }, h('span', { class: 'row-main' }, h('strong', { text: '1日に答える問題数' }), h('span', { class: 'small muted', text: '初期は10問（ステージ1回ぶん）。ホームに今日の進み具合が出ます' })), sel)));
-  const reset = h('button', { class: 'btn danger', type: 'button', onClick: () => {
-    if (confirm('学習記録（XP・復習・星・バッジ）をすべて消します。元に戻せません。よろしいですか？')) app.resetAll();
-  } }, '学習記録をすべて消す');
+  // 科目のあるアプリ（中小企業診断士など）では、いま開いている科目の記録だけを消す。XP・連続日数・設定は全科目で共通なので残す
+  const bySubject = !!app.subject;
+  const reset = h('button', { class: 'btn danger', type: 'button', 'data-reset': bySubject ? 'subject' : 'all', onClick: () => {
+    const msg = bySubject
+      ? '「' + app.subject.name + '」の学習記録（復習・星・バッジ・模試・ボス）を消します。XP・連続日数・設定は、ほかの科目と共通なので残ります。元に戻せません。よろしいですか？'
+      : '学習記録（XP・復習・星・バッジ）をすべて消します。元に戻せません。よろしいですか？';
+    if (confirm(msg)) app.resetAll();
+  } }, bySubject ? 'この科目の学習記録を消す' : '学習記録をすべて消す');
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: '学習記録' }),
     h('p', { class: 'small muted', text: 'この端末のブラウザの中だけに保存されています。サーバーには送っていません。' + (app.storage.persistent ? '' : '（いまは保存できない状態です）') }), reset));
   root.appendChild(buildBackupCard(app));

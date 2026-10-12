@@ -95,6 +95,8 @@ const SHARED = [
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',
+  '../shared/js/lib/subjects.js',
+  '../shared/js/views/subjects.js',
 ];
 
 // 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。
@@ -121,51 +123,63 @@ const withBase = (u) => (u.startsWith(LEGACY_BASE) ? SHARED_BASE + u.slice(LEGAC
 const SHARED_URLS = SHARED.map(withBase);
 const SFX_URLS = SFX.map(withBase);
 
+// データの置き場（sw.js から見たフォルダ名）。既定は 'data' の1つ（G検定・DX）。
+// 科目ごとにフォルダが分かれたアプリは CFG.dataDirs に全部書く（例: ['01_economics', '02_finance-accounting', ...]）。
+const VALID_DIRS = Array.isArray(CFG.dataDirs) ? CFG.dataDirs.filter((d) => typeof d === 'string' && /^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(d)) : [];
+const DATA_DIRS = VALID_DIRS.length ? VALID_DIRS : ['data']; // 空の一覧だと正規表現が全部に一致してしまうので、必ず1つ以上にする
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// 置き場の下のURLか（キャッシュ優先＋裏で更新にするもの）。'/data/' のほか、dataDirs のフォルダ
+const DATA_PATH = new RegExp('/(?:' + DATA_DIRS.map(escapeRe).join('|') + ')/');
+
+async function prefetchData(cache, dir) {
+  try {
+    const base = './' + dir + '/';
+    const idxRes = await fetch(base + 'index.json', { cache: 'reload' });
+    if (!idxRes.ok) return;
+    const idx = await idxRes.clone().json();
+    await cache.put(new URL(base + 'index.json', self.location).href, idxRes);
+    const files = [idx.syllabus, ...(idx.questions || []), ...(idx.concepts || [])].filter((f) => typeof f === 'string');
+    const figureIds = new Set(); // 問題・カードの figures が指す図（<置き場>/figures/<id>.svg）。オフラインでも出すため、ここで取る
+    await Promise.all(
+      files.map(async (f) => {
+        try {
+          const u = new URL(base + f, self.location).href;
+          const r = await fetch(u, { cache: 'reload' });
+          if (!r.ok) return;
+          try {
+            const arr = await r.clone().json();
+            if (Array.isArray(arr)) for (const o of arr) if (o && Array.isArray(o.figures)) for (const id of o.figures) if (typeof id === 'string' && FIGURE_ID.test(id)) figureIds.add(id);
+          } catch (e) { /* JSON でないもの（シラバス）は図を持たない */ }
+          await cache.put(u, r);
+        } catch (e) { /* 取れないものは飛ばす */ }
+      })
+    );
+    // 章のボスの名前・せりふ（<置き場>/bosses.json。index.json の bosses で名前を変えてもよい）。無い(404)ときは飛ばす（ボスは汎用の名前とせりふで動く）
+    try {
+      const bu = new URL(base + (typeof idx.bosses === 'string' && idx.bosses ? idx.bosses : 'bosses.json'), self.location).href;
+      const br = await fetch(bu, { cache: 'reload' });
+      if (br.ok) await cache.put(bu, br);
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
+    await Promise.all(
+      [...figureIds].map(async (id) => {
+        try {
+          const u = new URL(base + 'figures/' + id + '.svg', self.location).href;
+          const r = await fetch(u, { cache: 'reload' });
+          if (r.ok) await cache.put(u, r);
+        } catch (e) { /* 取れない図は飛ばす（開いたときに取れれば、そのときキャッシュに入る） */ }
+      })
+    );
+  } catch (e) { /* データ無しでも本体は使える */ }
+}
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
       // 本体が1つでも取れなければインストール失敗にする（中途半端なオフラインにしない）
       await cache.addAll([...CFG.appFiles, ...SHARED_URLS, ...SFX_URLS].map((u) => new Request(u, { cache: 'reload' })));
-      // データは有る分だけ。無い(404)ものは飛ばす
-      try {
-        const idxRes = await fetch('./data/index.json', { cache: 'reload' });
-        if (idxRes.ok) {
-          const idx = await idxRes.clone().json();
-          await cache.put(new URL('./data/index.json', self.location).href, idxRes);
-          const files = [idx.syllabus, ...(idx.questions || []), ...(idx.concepts || [])].filter((f) => typeof f === 'string');
-          const figureIds = new Set(); // 問題・カードの figures が指す図（data/figures/<id>.svg）。オフラインでも出すため、ここで取る
-          await Promise.all(
-            files.map(async (f) => {
-              try {
-                const u = new URL('./data/' + f, self.location).href;
-                const r = await fetch(u, { cache: 'reload' });
-                if (!r.ok) return;
-                try {
-                  const arr = await r.clone().json();
-                  if (Array.isArray(arr)) for (const o of arr) if (o && Array.isArray(o.figures)) for (const id of o.figures) if (typeof id === 'string' && FIGURE_ID.test(id)) figureIds.add(id);
-                } catch (e) { /* JSON でないもの（シラバス）は図を持たない */ }
-                await cache.put(u, r);
-              } catch (e) { /* 取れないものは飛ばす */ }
-            })
-          );
-          // 章のボスの名前・せりふ（data/bosses.json。index.json の bosses で名前を変えてもよい）。無い(404)ときは飛ばす（ボスは汎用の名前とせりふで動く）
-          try {
-            const bu = new URL('./data/' + (typeof idx.bosses === 'string' && idx.bosses ? idx.bosses : 'bosses.json'), self.location).href;
-            const br = await fetch(bu, { cache: 'reload' });
-            if (br.ok) await cache.put(bu, br);
-          } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
-          await Promise.all(
-            [...figureIds].map(async (id) => {
-              try {
-                const u = new URL('./data/figures/' + id + '.svg', self.location).href;
-                const r = await fetch(u, { cache: 'reload' });
-                if (r.ok) await cache.put(u, r);
-              } catch (e) { /* 取れない図は飛ばす（開いたときに取れれば、そのときキャッシュに入る） */ }
-            })
-          );
-        }
-      } catch (e) { /* データ無しでも本体は使える */ }
+      // データは有る分だけ。無い(404)ものは飛ばす。置き場が複数あるアプリ（科目ごとのフォルダ）は、全部の置き場を順に取る
+      for (const dir of DATA_DIRS) await prefetchData(cache, dir);
       await self.skipWaiting();
     })()
   );
@@ -232,7 +246,7 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
-  if (/\/data\//.test(url.pathname)) event.respondWith(cacheFirstRevalidate(req));
+  if (DATA_PATH.test(url.pathname)) event.respondWith(cacheFirstRevalidate(req));
   else if (/\/shared\/audio\//.test(url.pathname)) event.respondWith(cacheFirst(req));
   else event.respondWith(networkFirst(req, 4000));
 });

@@ -1,0 +1,29 @@
+{
+  "id": "shindanshi-1ji",
+  "name": "中小企業診断士 第1次試験クエスト",
+  "shortName": "診断士1次",
+  "examDate": "2027-08-01",
+  "exam": { "questions": 25, "minutes": 60 },
+  "secondsPerQuestion": 60,
+  "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
+  "challenge": { "questions": 10 },
+  "reportUrl": "mailto:support@aisunia.com",
+  "about": { "examName": "中小企業診断士 第1次試験", "organizer": "一般社団法人日本中小企業診断士協会連合会（経済産業大臣指定試験機関）", "organizerUrl": "https://www.jf-cmca.jp/" },
+  "officialUrl": "https://www.jf-cmca.jp/contents/007_shiken.html",
+  "officialLinks": [
+    { "title": "中小企業診断士試験（試験案内・申込）", "url": "https://www.jf-cmca.jp/contents/007_shiken.html" }
+  ],
+  "subjects": [
+    { "id": "economics", "folder": "01_economics", "code": "A", "name": "経済学・経済政策", "short": "経済", "exam": { "minutes": 60 } },
+    { "id": "finance-accounting", "folder": "02_finance-accounting", "code": "B", "name": "財務・会計", "short": "財務", "exam": { "minutes": 60 } },
+    { "id": "management-theory", "folder": "03_management-theory", "code": "C", "name": "企業経営理論", "short": "経営", "exam": { "minutes": 90 } },
+    { "id": "operations", "folder": "04_operations", "code": "D", "name": "運営管理（オペレーション・マネジメント）", "short": "運営", "exam": { "minutes": 90 } },
+    { "id": "business-law", "folder": "05_business-law", "code": "E", "name": "経営法務", "short": "法務", "exam": { "minutes": 60 } },
+    { "id": "information-systems", "folder": "06_information-systems", "code": "F", "name": "経営情報システム", "short": "情報", "exam": { "minutes": 60 } },
+    { "id": "sme-policy", "folder": "07_sme-policy", "code": "G", "name": "中小企業経営・中小企業政策", "short": "中小", "exam": { "minutes": 90 } }
+  ],
+  "theme": {
+    "light": { "accent": "#6a1b9a", "onAccent": "#ffffff", "accentSoft": "#f3e5f5" },
+    "dark": { "accent": "#ce93d8", "onAccent": "#2a0a33", "accentSoft": "#2e1a35" }
+  }
+}

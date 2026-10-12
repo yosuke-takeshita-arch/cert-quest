@@ -23,8 +23,15 @@ function resolveId(json, manifestUrl) {
 }
 
 test('各アプリの manifest の id は、アプリ自身のディレクトリを指し、互いに重ならない', () => {
-  const apps = readdirSync(root).filter((d) => existsSync(join(root, d, 'manifest.webmanifest')));
+  // 直下のアプリ（g-kentei/・dx-biz/）と、1段深いアプリ（shindanshi/1ji/ など。<資格>/<試験>/）
+  const direct = readdirSync(root).filter((d) => existsSync(join(root, d, 'manifest.webmanifest')));
+  const nested = readdirSync(root, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && !['node_modules', 'private', 'docs', 'shared', 'tools'].includes(e.name) && !e.name.startsWith('.'))
+    .flatMap((e) => readdirSync(join(root, e.name), { withFileTypes: true }).filter((s) => s.isDirectory()).map((s) => `${e.name}/${s.name}`))
+    .filter((d) => existsSync(join(root, d, 'manifest.webmanifest')));
+  const apps = [...direct, ...nested];
   assert.ok(apps.length >= 2, `manifest を持つアプリが ${apps.length} 個しか見つからない`);
+  assert.ok(nested.includes('shindanshi/1ji'), '深い場所のアプリ（shindanshi/1ji）を見つけられていない');
   const seen = new Map();
   for (const app of apps) {
     const json = JSON.parse(readFileSync(join(root, app, 'manifest.webmanifest'), 'utf8'));
