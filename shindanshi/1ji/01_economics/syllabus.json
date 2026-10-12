@@ -1,0 +1,109 @@
+[
+  {
+    "id": "EC",
+    "title": "経済学・経済政策",
+    "keywords": [],
+    "children": [
+      {
+        "id": "EC-CH01",
+        "title": "経済指標の見方や読み方",
+        "keywords": [],
+        "children": [
+          {"id": "EC-001", "title": "国民経済計算の概念", "children": [], "keywords": ["国民経済計算の概念"]},
+          {"id": "EC-002", "title": "国民所得統計", "children": [], "keywords": ["国民所得統計"]},
+          {"id": "EC-003", "title": "雇用統計", "children": [], "keywords": ["雇用統計"]},
+          {"id": "EC-004", "title": "物価指数", "children": [], "keywords": ["物価指数"]},
+          {"id": "EC-005", "title": "景気動向指数", "children": [], "keywords": ["景気動向指数"]},
+          {"id": "EC-006", "title": "マネーストック統計", "children": [], "keywords": ["マネーストック統計"]},
+          {"id": "EC-007", "title": "国際収支", "children": [], "keywords": ["国際収支"]},
+          {"id": "EC-008", "title": "為替レート", "children": [], "keywords": ["為替レート"]},
+          {"id": "EC-009", "title": "経済事情", "children": [], "keywords": ["経済事情"]}
+        ]
+      },
+      {
+        "id": "EC-CH02",
+        "title": "マクロ経済理論と経済政策",
+        "keywords": [],
+        "children": [
+          {"id": "EC-010", "title": "生産物市場と GDP", "children": [], "keywords": ["生産物市場と GDP"]},
+          {"id": "EC-011", "title": "貨幣市場と利子率", "children": [], "keywords": ["貨幣市場と利子率"]},
+          {"id": "EC-012", "title": "IS-LM 曲線", "children": [], "keywords": ["IS-LM 曲線"]},
+          {"id": "EC-013", "title": "政府支出", "children": [], "keywords": ["政府支出"]},
+          {"id": "EC-014", "title": "租税と財政政策", "children": [], "keywords": ["租税と財政政策"]},
+          {"id": "EC-015", "title": "貨幣理論と金融政策", "children": [], "keywords": ["貨幣理論と金融政策"]},
+          {"id": "EC-016", "title": "雇用と物価水準", "children": [], "keywords": ["雇用と物価水準"]},
+          {"id": "EC-017", "title": "景気変動と景気循環", "children": [], "keywords": ["景気変動と景気循環"]}
+        ]
+      },
+      {
+        "id": "EC-CH03",
+        "title": "国際経済と経済政策",
+        "keywords": [],
+        "children": [
+          {"id": "EC-018", "title": "比較生産費と貿易理論", "children": [], "keywords": ["比較生産費と貿易理論"]},
+          {"id": "EC-019", "title": "貿易政策", "children": [], "keywords": ["貿易政策"]},
+          {"id": "EC-020", "title": "国際収支と為替レート", "children": [], "keywords": ["国際収支と為替レート"]},
+          {"id": "EC-021", "title": "国際マクロ経済の理論と政策", "children": [], "keywords": ["国際マクロ経済の理論と政策"]}
+        ]
+      },
+      {
+        "id": "EC-CH04",
+        "title": "主要経済理論",
+        "keywords": [],
+        "children": [
+          {"id": "EC-022", "title": "ケインズ理論", "children": [], "keywords": ["ケインズ理論"]},
+          {"id": "EC-023", "title": "古典派と新古典派の理論", "children": [], "keywords": ["古典派と新古典派の理論"]},
+          {"id": "EC-024", "title": "マネタリズム", "children": [], "keywords": ["マネタリズム"]}
+        ]
+      },
+      {
+        "id": "EC-CH05",
+        "title": "市場メカニズム",
+        "keywords": [],
+        "children": [
+          {"id": "EC-025", "title": "市場均衡・不均衡", "children": [], "keywords": ["市場均衡・不均衡"]},
+          {"id": "EC-026", "title": "弾力性の概念", "children": [], "keywords": ["弾力性の概念"]},
+          {"id": "EC-027", "title": "経済余剰の概念", "children": [], "keywords": ["経済余剰の概念"]},
+          {"id": "EC-028", "title": "競争的市場の資源配分機能", "children": [], "keywords": ["競争的市場の資源配分機能"]},
+          {"id": "EC-029", "title": "市場の失敗", "children": [], "keywords": ["市場の失敗"]}
+        ]
+      },
+      {
+        "id": "EC-CH06",
+        "title": "消費と生産の理論",
+        "keywords": [],
+        "children": [
+          {"id": "EC-030", "title": "効用理論", "children": [], "keywords": ["効用理論"]},
+          {"id": "EC-031", "title": "予算制約と消費者行動", "children": [], "keywords": ["予算制約と消費者行動"]},
+          {"id": "EC-032", "title": "需要曲線", "children": [], "keywords": ["需要曲線"]},
+          {"id": "EC-033", "title": "生産関数", "children": [], "keywords": ["生産関数"]},
+          {"id": "EC-034", "title": "費用関数", "children": [], "keywords": ["費用関数"]},
+          {"id": "EC-035", "title": "利潤最大化", "children": [], "keywords": ["利潤最大化"]},
+          {"id": "EC-036", "title": "供給曲線", "children": [], "keywords": ["供給曲線"]}
+        ]
+      },
+      {
+        "id": "EC-CH07",
+        "title": "組織と戦略の経済学",
+        "keywords": [],
+        "children": [
+          {"id": "EC-037", "title": "情報の不完全性", "children": [], "keywords": ["情報の不完全性"]},
+          {"id": "EC-038", "title": "ゲーム理論", "children": [], "keywords": ["ゲーム理論"]},
+          {"id": "EC-039", "title": "独占の弊害と寡占化の協調行動", "children": [], "keywords": ["独占の弊害と寡占化の協調行動"]},
+          {"id": "EC-040", "title": "製品差別化と独占的競争", "children": [], "keywords": ["製品差別化と独占的競争"]},
+          {"id": "EC-041", "title": "規模の経済性・範囲の経済性", "children": [], "keywords": ["規模の経済性・範囲の経済性"]}
+        ]
+      },
+      {
+        "id": "EC-CH08",
+        "title": "所得分配",
+        "keywords": [],
+        "children": [
+          {"id": "EC-042", "title": "公正性・公平性の概念", "children": [], "keywords": ["公正性・公平性の概念"]},
+          {"id": "EC-043", "title": "生産要素市場と生産要素報酬", "children": [], "keywords": ["生産要素市場と生産要素報酬"]},
+          {"id": "EC-044", "title": "所得再分配と税制・補助金", "children": [], "keywords": ["所得再分配と税制・補助金"]}
+        ]
+      }
+    ]
+  }
+]
