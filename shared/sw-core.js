@@ -113,12 +113,20 @@ const SFX = [
   'boss-crit_cut.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
+// 上の2つのリストは '../shared/' から始まる形で書いてある。sw.js が深い場所にあるとき
+// （例: shindanshi/1ji/sw.js）は CFG.sharedBase（既定 '../shared/'）に差し替えて使う。
+const SHARED_BASE = CFG.sharedBase || '../shared/';
+const LEGACY_BASE = '../shared/';
+const withBase = (u) => (u.startsWith(LEGACY_BASE) ? SHARED_BASE + u.slice(LEGACY_BASE.length) : u);
+const SHARED_URLS = SHARED.map(withBase);
+const SFX_URLS = SFX.map(withBase);
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
       // 本体が1つでも取れなければインストール失敗にする（中途半端なオフラインにしない）
-      await cache.addAll([...CFG.appFiles, ...SHARED, ...SFX].map((u) => new Request(u, { cache: 'reload' })));
+      await cache.addAll([...CFG.appFiles, ...SHARED_URLS, ...SFX_URLS].map((u) => new Request(u, { cache: 'reload' })));
       // データは有る分だけ。無い(404)ものは飛ばす
       try {
         const idxRes = await fetch('./data/index.json', { cache: 'reload' });
