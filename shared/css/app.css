@@ -238,6 +238,31 @@ details.major > summary::-webkit-details-marker { display: none; }
 .char-img.map-sunny { position: absolute; left: calc(var(--x) * 1%); top: -4.5rem; width: 3rem; height: 3rem; margin-left: -1.5rem; transform-origin: 50% 100%; animation: map-hop 1.6s ease-in-out infinite; }
 @keyframes map-pop { 0% { opacity: 0; transform: translateY(1.5rem) scale(0.8); } 100% { opacity: 1; transform: none; } }
 @keyframes map-pulse { 0%, 100% { box-shadow: 0 0 0 4px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.3); } 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--accent) 45%, transparent), 0 2px 8px rgba(0, 0, 0, 0.3); } }
+/* ボスが出ている章（2026-10-12 先生「燃えてるとか、闇がかってるとか」）: 丸を闇の色にし、上へ炎がゆらめき、まわりに紫の闇がにじむ。
+   色は配色に関係なく固定（明るい・暗いどちらでも同じ見え方）。動きを減らす設定では動きだけ止まり、炎と闇の形は残る */
+.map-node.boss-on .map-dot {
+  color: #ffe3b0; border-color: #ff5a1f; text-shadow: 0 0 6px #ff7a2a, 0 0 2px #000;
+  background: radial-gradient(circle at 50% 38%, #4a1650 0%, #1f0822 60%, #0d020c 100%);
+  box-shadow: 0 0 0 3px #7a1fa2, 0 -8px 16px 4px rgba(255, 90, 20, 0.8), 0 0 34px 14px rgba(70, 0, 95, 0.65);
+  animation: boss-burn 1.3s ease-in-out infinite alternate;
+}
+/* 炎は丸の後ろの別の要素（.map-flame）。ぎざぎざの炎の形で切り抜き、丸のまわりから上へ立ちのぼるように見せる */
+.map-flame {
+  position: absolute; left: calc(var(--x) * 1%); top: 0; width: 6.6rem; height: 7.6rem; margin: -4.9rem 0 0 -3.3rem; pointer-events: none; transform-origin: 50% 80%;
+  background: radial-gradient(ellipse 50% 55% at 50% 64%, #fff2a8 0%, #ffc23a 38%, #ff6a1a 62%, #c81e0a 80%, transparent 100%);
+  clip-path: polygon(50% 0%, 58% 18%, 66% 6%, 70% 26%, 82% 14%, 82% 36%, 94% 30%, 90% 52%, 100% 58%, 92% 72%, 96% 88%, 80% 96%, 50% 100%, 20% 96%, 4% 88%, 8% 72%, 0% 58%, 10% 52%, 6% 30%, 18% 36%, 18% 14%, 30% 26%, 34% 6%, 42% 18%);
+  filter: drop-shadow(0 0 6px rgba(255, 90, 20, 0.8)); animation: boss-flame 0.8s ease-in-out infinite alternate;
+}
+.map-node.boss-on .map-name { border-color: #b0283a; box-shadow: 0 0 0 2px rgba(176, 40, 58, 0.45), 0 0 18px rgba(80, 0, 110, 0.45); }
+@keyframes boss-burn {
+  0% { box-shadow: 0 0 0 3px #7a1fa2, 0 -8px 16px 4px rgba(255, 90, 20, 0.8), 0 0 34px 14px rgba(70, 0, 95, 0.65); }
+  100% { box-shadow: 0 0 0 5px #9b2fc9, 0 -12px 22px 7px rgba(255, 60, 10, 0.95), 0 0 46px 20px rgba(70, 0, 95, 0.8); }
+}
+@keyframes boss-flame {
+  0% { transform: scale(0.92, 0.85) skewX(-3deg); opacity: 0.85; }
+  50% { transform: scale(1.04, 1.08) skewX(2deg); opacity: 1; }
+  100% { transform: scale(0.96, 1.15) skewX(-1deg); opacity: 0.9; }
+}
 @keyframes map-hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.4rem); } }
 
 /* ---- 出題 ---- */
@@ -678,7 +703,8 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .boss-place-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
 .boss-place.on .boss-place-text strong { color: var(--ng); }
 .boss-place .btn.big { margin-bottom: 0; }
-.chip.boss-chip { background: var(--ng-bg); color: var(--ng); border: 1px solid var(--ng); font-weight: 700; }
+.chip.boss-chip { background: linear-gradient(90deg, #2b0a33, #7a1414); color: #ffd36b; border: 1px solid #ff6a1f; font-weight: 700; text-shadow: 0 0 4px #ff6a1f; box-shadow: 0 0 8px rgba(255, 90, 20, 0.55); animation: boss-chip-glow 1.3s ease-in-out infinite alternate; }
+@keyframes boss-chip-glow { 0% { box-shadow: 0 0 6px rgba(255, 90, 20, 0.45); } 100% { box-shadow: 0 0 14px rgba(255, 90, 20, 0.9), 0 0 4px rgba(120, 0, 160, 0.8); } }
 .boss-list h2 { margin-top: 0; }
 .boss-row { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-top: 1px solid var(--border); padding: 12px 0; min-height: 64px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
 .boss-row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }

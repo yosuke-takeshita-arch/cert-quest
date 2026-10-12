@@ -338,7 +338,8 @@ function mapAdventure(app) {
       h('strong', { text: st.name }),
       h('span', { class: 'small muted', text: stageSub(st, p) }),
       h('span', { class: 'map-meta' }, stars(star), masteryChip(p.level), bossChip(app, st)));
-    const node = h('div', { class: 'map-node side-' + n.side + (isHere ? ' here' : '') }, dot, name);
+    const bossOn = bossState(app, st).info.available; // ボスが出ている章は、丸を闇と炎で目立たせる（2026-10-12 先生）
+    const node = h('div', { class: 'map-node side-' + n.side + (isHere ? ' here' : '') + (bossOn ? ' boss-on' : '') }, bossOn ? h('span', { class: 'map-flame', 'aria-hidden': 'true' }) : null, dot, name);
     node.style.setProperty('--x', String(Math.round(n.x * 10000) / 100));
     node.style.setProperty('--y', String(n.y));
     node.style.setProperty('--i', String(n.index));
