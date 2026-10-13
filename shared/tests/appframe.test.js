@@ -56,6 +56,10 @@ for (const app of APPS) {
     const present = existsSync(join(root, app, 'images', 'title.webp'));
     assert.equal(cfg.appFiles.includes('./images/title.webp'), present, app + ': タイトルの絵があるときだけ appFiles に入れる');
     assert.equal(config.titleImage === 'images/title.webp', present, app + ': タイトルの絵があるときだけ config.json に titleImage');
+    // タイトルの文字の絵（2026-10-14 先生の決定。文字だけだったタイトルを、クエストらしい文字の絵にする）
+    const logo = existsSync(join(root, app, 'images', 'logo.webp'));
+    assert.equal(cfg.appFiles.includes('./images/logo.webp'), logo, app + ': 文字の絵があるときだけ appFiles に入れる');
+    assert.equal(config.titleLogo === 'images/logo.webp', logo, app + ': 文字の絵があるときだけ config.json に titleLogo');
     for (const f of cfg.appFiles) {
       const m = /^\.\/images\/(bosses|badges)\/[^/]+\.webp$/.exec(f);
       if (m) assert.ok(existsSync(join(root, app, f)), f);

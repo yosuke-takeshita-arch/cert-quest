@@ -26,6 +26,16 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
   // 画像が読めないときは、テーマ色の背景に戻る
   if (bg) bg.addEventListener('error', () => bg.remove());
 
+  // タイトルの文字の絵（config.titleLogo）。あれば文字の代わりに出し、読めなければ文字に戻る。読み上げは alt の名前
+  const nameEl = h('h1', { class: 'title-name', text: name });
+  if (typeof config.titleLogo === 'string' && config.titleLogo) {
+    const logo = h('img', { class: 'title-logo', src: config.titleLogo, alt: name, decoding: 'async', draggable: 'false' });
+    logo.addEventListener('error', () => { nameEl.textContent = name; nameEl.classList.remove('has-logo'); });
+    nameEl.textContent = '';
+    nameEl.classList.add('has-logo');
+    nameEl.appendChild(logo);
+  }
+
   const fill = h('div', { class: 'title-gauge-fill' });
   const gauge = h('div', { class: 'title-gauge', role: 'progressbar', 'aria-label': '読み込み', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': '0' }, fill);
   const status = h('p', { class: 'title-status', 'aria-live': 'polite', text: '読み込み中…' });
@@ -41,7 +51,7 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
     bg,
     h('div', { class: 'title-scrim' }),
     h('div', { class: 'title-top' },
-      h('h1', { class: 'title-name', text: name }),
+      nameEl,
       countdown ? h('p', { class: 'title-exam', text: countdown }) : null),
     bottom,
     sound ? h('button', { class: 'title-gear', type: 'button', 'aria-label': '音の設定', 'aria-haspopup': 'dialog', onClick: (e) => openSoundPopup(e.currentTarget) }, icon('gear')) : null);
