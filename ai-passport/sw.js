@@ -3,7 +3,7 @@
 self.CERT_QUEST = {
   appId: 'ai-passport',
   version: '1',
-  // タイトル・地図・ボス・章のバッジの絵はまだ無い。置いたら appFiles に足す（config.json の titleImage / mapImage も）
-  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png'],
+  // 地図・ボス・章のバッジの絵はまだ無い。置いたら appFiles に足す（地図は config.json の mapImage も）
+  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png'],
 };
 importScripts('../shared/sw-core.js');

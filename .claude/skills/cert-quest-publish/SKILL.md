@@ -21,7 +21,7 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
    - `shindanshi/1ji/sw.js` の7行目 `version: 'N'` も独自の番号（2026-10-13 に版 1 のまま初めて公開）。shared/ か shindanshi/1ji/ を変えたら1つ上げる
    - shared/ を変えたら4つとも上げる（どのアプリを入れた人にも古い shared/ が出続けるため）
 4. **新しいファイルを先取りに載せたか**: 新しい JS は `shared/sw-core.js` の `SHARED`、効果音は `SFX`、ボスの絵は各アプリの `sw.js` の `appFiles`（`./images/bosses/boss-N.webp`）。BGM は初めて流したときに取る（載せない）
-   - ai-passport はタイトル・地図・ボス・章のバッジの絵がまだ無い（2026-10-13）。置いたら `appFiles` に足し、タイトルと地図は config.json の `titleImage`・`mapImage` も足す（`shared/tests/appframe.test.js`・`maplayout.test.js` が、絵の有無と一覧・config の食い違いで落とす）
+   - ai-passport は地図・ボス・章のバッジの絵がまだ無い（2026-10-13。タイトルは置いた）。置いたら `appFiles` に足し、地図は config.json の `mapImage` も足す（`shared/tests/appframe.test.js`・`maplayout.test.js` が、絵の有無と一覧・config の食い違いで落とす）
 5. **コミットして push**: メッセージは「公開のため service worker の版を NN に上げる（何が入るか）」。`git push origin main`
 6. **公開の完了を待つ**: `gh api repos/yosuke-takeshita-arch/cert-quest/pages/builds/latest --jq '.status+" "+.commit'` が `built <自分のコミット>` になるまで（10秒おきに。Monitor か until ループ）
 7. **公開先を確かめる**（https://yosuke-takeshita-arch.github.io/cert-quest/ ）
