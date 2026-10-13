@@ -1,0 +1,503 @@
+[
+  {
+    "id": "CH1",
+    "title": "AIの基礎と歴史",
+    "keywords": [],
+    "children": [
+      {
+        "id": "CH1-01",
+        "title": "AIの基本的な仕組み",
+        "goal": "AIの定義をはじめとした基礎的な概念と、AIに知能をもたらす2つの仕組みを理解する",
+        "keywords": ["AI（人工知能）", "ルールベース", "機械学習", "ディープラーニング（深層学習）"],
+        "children": [
+          { "id": "CH1-01-01", "title": "AIとは", "children": [], "keywords": [] },
+          { "id": "CH1-01-02", "title": "ルールベースと機械学習", "children": [], "keywords": [] },
+          { "id": "CH1-01-03", "title": "ルールベースの限界と機械学習への発展", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH1-02",
+        "title": "機械学習",
+        "goal": "機械学習の基本的な考え方と、代表的な学習手法それぞれの違いを理解する",
+        "keywords": ["学習済みモデル", "教師あり学習", "教師データ", "分類", "回帰", "二値分類", "多値分類", "正解率", "教師なし学習", "クラスタリング", "次元削減", "強化学習", "報酬", "価値", "方策", "半教師あり学習", "ノーフリーランチ定理", "機械学習"],
+        "children": [
+          { "id": "CH1-02-01", "title": "機械学習とは", "children": [], "keywords": [] },
+          { "id": "CH1-02-02", "title": "教師あり学習", "children": [], "keywords": [] },
+          { "id": "CH1-02-03", "title": "教師なし学習", "children": [], "keywords": [] },
+          { "id": "CH1-02-04", "title": "強化学習", "children": [], "keywords": [] },
+          { "id": "CH1-02-05", "title": "半教師あり学習", "children": [], "keywords": [] },
+          { "id": "CH1-02-06", "title": "ノーフリーランチ定理", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH1-03",
+        "title": "ニューラルネットワーク",
+        "goal": "ニューラルネットワークとディープラーニングの仕組み、代表的なモデル、識別系AIと生成系AIの違いを理解する",
+        "keywords": ["ニューラルネットワーク", "入力層", "隠れ層", "出力層", "重み", "活性化関数", "損失関数", "誤差逆伝播法（バックプロパゲーション）", "勾配降下法", "過学習（オーバーフィッティング）", "汎化", "アーリーストッピング", "正則化", "ドロップアウト", "転移学習", "ファインチューニング", "CNN", "畳み込み", "コンピュータビジョン", "RNN（再帰型ニューラルネットワーク）", "シーケンスデータ", "勾配消失問題", "勾配爆発問題", "LSTM", "Attention", "Transformerモデル", "VAE（変分オートエンコーダ）", "ノイズ", "エンコーダ", "デコーダ", "潜在ベクトル", "GAN（敵対的生成ネットワーク）", "生成器（Generator）", "識別系AI", "生成系AI", "ディープフェイク", "ディープラーニング（深層学習）", "学習済みモデル", "次元削減"],
+        "children": [
+          { "id": "CH1-03-01", "title": "人間の脳とニューラルネットワーク", "children": [], "keywords": [] },
+          { "id": "CH1-03-02", "title": "ディープラーニング（深層学習）", "children": [], "keywords": [] },
+          { "id": "CH1-03-03", "title": "重みの調整による学習の仕組み", "children": [], "keywords": [] },
+          { "id": "CH1-03-04", "title": "過学習と対策", "children": [], "keywords": [] },
+          { "id": "CH1-03-05", "title": "転移学習", "children": [], "keywords": [] },
+          { "id": "CH1-03-06", "title": "CNN", "children": [], "keywords": [] },
+          { "id": "CH1-03-07", "title": "RNN", "children": [], "keywords": [] },
+          { "id": "CH1-03-08", "title": "LSTM", "children": [], "keywords": [] },
+          { "id": "CH1-03-09", "title": "VAE", "children": [], "keywords": [] },
+          { "id": "CH1-03-10", "title": "GAN", "children": [], "keywords": [] },
+          { "id": "CH1-03-11", "title": "識別系AIと生成系AIの違い", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH1-04",
+        "title": "AIの歴史",
+        "goal": "AIの誕生から現在までの変遷と、シンギュラリティの基本的な概念を学習する",
+        "keywords": ["ダートマス会議", "第一次AIブーム", "探索", "推論", "第二次AIブーム", "エキスパートシステム", "知識ベース", "AIの冬", "第三次AIブーム", "ビッグデータ", "拡散モデル（Diffusion Model）", "シンギュラリティ（技術的特異点）", "機械学習", "ディープラーニング（深層学習）", "Transformer", "LLM（大規模言語モデル）"],
+        "children": [
+          { "id": "CH1-04-01", "title": "AI研究の始まり（ダートマス会議）", "children": [], "keywords": [] },
+          { "id": "CH1-04-02", "title": "第一次AIブーム（探索と推論）", "children": [], "keywords": [] },
+          { "id": "CH1-04-03", "title": "第二次AIブーム（知識表現・エキスパートシステム）", "children": [], "keywords": [] },
+          { "id": "CH1-04-04", "title": "第三次AIブーム（機械学習・ディープラーニング）", "children": [], "keywords": [] },
+          { "id": "CH1-04-05", "title": "ディープラーニングから生成AIへ", "children": [], "keywords": [] },
+          { "id": "CH1-04-06", "title": "シンギュラリティと今後の展望", "children": [], "keywords": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CH2",
+    "title": "生成AI",
+    "keywords": [],
+    "children": [
+      {
+        "id": "CH2-01",
+        "title": "生成AIを支える技術革新（Transformer以降）",
+        "goal": "現在の生成AIを直接切り開いたTransformer以降の技術革新と、基盤モデル・マルチモーダル化の流れを理解する",
+        "keywords": ["Transformer", "自然言語処理", "Self-Attention（自己注意機構）", "Query", "Key", "Value", "並列処理", "長距離依存", "拡散モデル（Diffusion Model）", "拡散過程", "逆拡散過程", "潜在拡散モデル（Latent Diffusion Model）", "基盤モデル（Foundation Model）", "マルチモーダルモデル", "モダリティ", "エンコーダ", "デコーダ", "マルチモーダル"],
+        "children": [
+          { "id": "CH2-01-01", "title": "Transformerモデルの革命", "children": [], "keywords": [] },
+          { "id": "CH2-01-02", "title": "Transformer登場以後の派生モデルの系譜", "children": [], "keywords": [] },
+          { "id": "CH2-01-03", "title": "拡散モデルの登場", "children": [], "keywords": [] },
+          { "id": "CH2-01-04", "title": "基盤モデルとマルチモーダルモデル", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH2-02",
+        "title": "生成AIの学習プロセス",
+        "goal": "大規模言語モデルの学習が事前学習・ファインチューニング・RLHFの3段階で行われることと、学習データの課題を理解する",
+        "keywords": ["事前学習", "次トークン予測", "トークン", "パラメータ", "ハルシネーション", "ファインチューニング", "教師ありファインチューニング", "指示チューニング（Instruction Tuning）", "ドメイン適応", "RLHF（人間のフィードバックによる強化学習）", "報酬モデル", "バイアス", "スケーリング則（Scaling Laws）", "創発的能力", "追加学習", "人間の評価", "学習データ", "データの品質", "著作権"],
+        "children": [
+          { "id": "CH2-02-01", "title": "事前学習", "children": [], "keywords": [] },
+          { "id": "CH2-02-02", "title": "ファインチューニング", "children": [], "keywords": [] },
+          { "id": "CH2-02-03", "title": "RLHF", "children": [], "keywords": [] },
+          { "id": "CH2-02-04", "title": "学習データの規模と課題", "children": [], "keywords": [] },
+          { "id": "CH2-02-05", "title": "スケーリング則", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH2-03",
+        "title": "生成AIの生成（推論）プロセス",
+        "goal": "生成AIが文章を生成する仕組みと、ハルシネーションが起こる理由、生成パラメータやコンテキストウィンドウを理解する",
+        "keywords": ["トークン化", "サブワード", "埋め込み（Embedding）", "ベクトル", "確率分布", "ハルシネーション", "RAG（検索拡張生成）", "生成パラメータ", "Temperature", "Top-p", "コンテキストウィンドウ", "トークン"],
+        "children": [
+          { "id": "CH2-03-01", "title": "トークン化", "children": [], "keywords": [] },
+          { "id": "CH2-03-02", "title": "埋め込みとベクトル表現", "children": [], "keywords": [] },
+          { "id": "CH2-03-03", "title": "確率的な次トークン予測", "children": [], "keywords": [] },
+          { "id": "CH2-03-04", "title": "ハルシネーション", "children": [], "keywords": [] },
+          { "id": "CH2-03-05", "title": "生成パラメータ（Temperature・Top-p）", "children": [], "keywords": [] },
+          { "id": "CH2-03-06", "title": "コンテキストウィンドウ", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH2-04",
+        "title": "LLM（大規模言語モデル）の基礎",
+        "goal": "LMとLLMの違いとLLMの特性、オンプレミス／オープンソースLLMの位置づけを理解する",
+        "keywords": ["言語モデル（LM：Language Model）", "大規模言語モデル（LLM：Large Language Model）", "創発的能力", "プロンプト（指示文）", "クラウド型LLM", "オンプレミスLLM", "データ主権", "オープンウェイト", "自然言語処理", "オープンソースLLM", "ライセンス"],
+        "children": [
+          { "id": "CH2-04-01", "title": "LM（言語モデル）とは", "children": [], "keywords": [] },
+          { "id": "CH2-04-02", "title": "LLM（大規模言語モデル）とは", "children": [], "keywords": [] },
+          { "id": "CH2-04-03", "title": "オンプレミス／オープンソースLLM", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH2-05",
+        "title": "ChatGPTと主要な生成AIモデルの動向",
+        "goal": "ChatGPTの歴史とGPTシリーズの進化、推論モデル、主要な生成AIサービスの特徴を理解するとともに、生成AIの最新動向を継続的にキャッチアップするための情報収集力を身につける",
+        "keywords": ["マルチモーダル", "推論モデル（Reasoning Model）", "推論時の計算", "思考の連鎖（Chain-of-Thought）", "事前学習", "RLHF（人間のフィードバックによる強化学習）", "推論", "コーディングエージェント"],
+        "children": [
+          { "id": "CH2-05-01", "title": "ChatGPTとは", "children": [], "keywords": [] },
+          { "id": "CH2-05-02", "title": "ChatGPT登場までの歴史（GPT-1〜GPT-3.5）", "children": [], "keywords": [] },
+          { "id": "CH2-05-03", "title": "GPTモデルの進化（GPT-4〜GPT-6 Astra）", "children": [], "keywords": [] },
+          { "id": "CH2-05-04", "title": "マルチモーダルモデルへの展開", "children": [], "keywords": [] },
+          { "id": "CH2-05-05", "title": "推論モデルと推論時の計算", "children": [], "keywords": [] },
+          { "id": "CH2-05-06", "title": "Operator / Codex / Image Generation", "children": [], "keywords": [] },
+          { "id": "CH2-05-07", "title": "Gemini（Google）", "children": [], "keywords": [] },
+          { "id": "CH2-05-08", "title": "Claude（Anthropic）", "children": [], "keywords": [] },
+          { "id": "CH2-05-09", "title": "Copilot（Microsoft）", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH2-06",
+        "title": "各モダリティの生成AI",
+        "goal": "画像・音楽・音声・動画それぞれの生成AIの仕組みと主なツール、活用事例および注意点を理解する",
+        "keywords": ["画像生成AI", "インペインティング", "電子透かし", "来歴情報", "C2PA", "音楽生成AI", "音声生成AI", "ニューラルTTS（Text-to-Speech）", "Voice Cloning", "動画生成AI", "ディープフェイク", "拡散モデル", "本人の同意"],
+        "children": [
+          { "id": "CH2-06-01", "title": "画像生成AI", "children": [], "keywords": [] },
+          { "id": "CH2-06-02", "title": "音楽生成AI", "children": [], "keywords": [] },
+          { "id": "CH2-06-03", "title": "音声生成AI", "children": [], "keywords": [] },
+          { "id": "CH2-06-04", "title": "動画生成AI", "children": [], "keywords": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CH3",
+    "title": "AIエージェント",
+    "keywords": [],
+    "children": [
+      {
+        "id": "CH3-01",
+        "title": "AIエージェントとは",
+        "goal": "AIエージェントの定義と従来の対話型生成AIとの違い、自律性のレベルの考え方を理解する",
+        "keywords": ["AIエージェント", "ワークフロー型エージェント", "自律型エージェント", "推論モデル", "コンテキストウィンドウ", "Human-in-the-Loop", "計画"],
+        "children": [
+          { "id": "CH3-01-01", "title": "AIエージェントの定義", "children": [], "keywords": [] },
+          { "id": "CH3-01-02", "title": "従来の生成AIとの違い", "children": [], "keywords": [] },
+          { "id": "CH3-01-03", "title": "ワークフロー型エージェントと自律型エージェント", "children": [], "keywords": [] },
+          { "id": "CH3-01-04", "title": "AIエージェントが注目される背景", "children": [], "keywords": [] },
+          { "id": "CH3-01-05", "title": "自律性のレベル", "children": [], "keywords": [] },
+          { "id": "CH3-01-06", "title": "AIエージェントの役割", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH3-02",
+        "title": "RAG（検索拡張生成）",
+        "goal": "RAGが必要とされる理由と仕組み、発展形、ユースケース、主なツールを理解する",
+        "keywords": ["RAG（Retrieval-Augmented Generation：検索拡張生成）", "ハルシネーション", "埋め込み（Embedding）", "ベクトルデータベース", "意味的検索（セマンティック検索）", "リランキング", "ハイブリッド検索", "Advanced RAG", "クエリの書き換え", "Agentic RAG", "Graph RAG", "知識グラフ", "チャンク分割", "メタデータ", "データサイロ", "正確性", "最新性"],
+        "children": [
+          { "id": "CH3-02-01", "title": "RAGとは", "children": [], "keywords": [] },
+          { "id": "CH3-02-02", "title": "RAGが必要とされる理由", "children": [], "keywords": [] },
+          { "id": "CH3-02-03", "title": "RAGの仕組み", "children": [], "keywords": [] },
+          { "id": "CH3-02-04", "title": "RAGの発展", "children": [], "keywords": [] },
+          { "id": "CH3-02-05", "title": "RAGのユースケース", "children": [], "keywords": [] },
+          { "id": "CH3-02-06", "title": "主なRAGツール・フレームワーク", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH3-03",
+        "title": "AIエージェントの仕組み",
+        "goal": "LLMを中核としたエージェントの構成要素と、推論と行動のフィードバックループを理解する",
+        "keywords": ["タスク分解と計画", "サブタスク", "Function Calling", "Tool Use", "記憶（メモリ）", "短期メモリ", "長期メモリ", "コンテキスト管理", "コンテキストエンジニアリング", "システムプロンプト", "ガードレール", "構造化出力", "フィードバックループ", "LLM（大規模言語モデル）", "推論", "観察", "再計画"],
+        "children": [
+          { "id": "CH3-03-01", "title": "LLMを中核とした構成", "children": [], "keywords": [] },
+          { "id": "CH3-03-02", "title": "タスク分解と計画", "children": [], "keywords": [] },
+          { "id": "CH3-03-03", "title": "ツール実行", "children": [], "keywords": [] },
+          { "id": "CH3-03-04", "title": "記憶（メモリ）とコンテキスト管理", "children": [], "keywords": [] },
+          { "id": "CH3-03-05", "title": "コンテキストエンジニアリング", "children": [], "keywords": [] },
+          { "id": "CH3-03-06", "title": "推論と行動のフィードバックループ", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH3-04",
+        "title": "MCP・Agent Skills と外部連携",
+        "goal": "MCPやAgent Skillsといった外部連携・拡張の仕組みと、マルチエージェントの考え方を理解する",
+        "keywords": ["MCP（Model Context Protocol）", "MCPサーバー", "権限管理", "マルチエージェント", "サブエージェント", "A2A（Agent-to-Agent）", "Agent Skills（エージェントスキル）", "データソース", "アクセス権限"],
+        "children": [
+          { "id": "CH3-04-01", "title": "MCP（Model Context Protocol）とは", "children": [], "keywords": [] },
+          { "id": "CH3-04-02", "title": "外部ツール・データソースとの連携", "children": [], "keywords": [] },
+          { "id": "CH3-04-03", "title": "マルチエージェント・エージェント間連携", "children": [], "keywords": [] },
+          { "id": "CH3-04-04", "title": "A2A（Agent-to-Agent）連携プロトコル", "children": [], "keywords": [] },
+          { "id": "CH3-04-05", "title": "Agent Skills（エージェントスキル）とは", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH3-05",
+        "title": "AIエージェントのツールと活用事例",
+        "goal": "コーディングエージェントをはじめとする主要なエージェントツールと、その活用事例を理解する",
+        "keywords": ["コーディングエージェント", "プルリクエスト", "ハーネスエンジニアリング", "プロンプトエンジニアリング", "コンテキストエンジニアリング", "ディープリサーチ", "コード生成", "役割分担"],
+        "children": [
+          { "id": "CH3-05-01", "title": "コーディングエージェント", "children": [], "keywords": [] },
+          { "id": "CH3-05-02", "title": "ハーネスエンジニアリング", "children": [], "keywords": [] },
+          { "id": "CH3-05-03", "title": "ブラウザ操作・PC操作エージェント", "children": [], "keywords": [] },
+          { "id": "CH3-05-04", "title": "リサーチ・業務自動化エージェント", "children": [], "keywords": [] },
+          { "id": "CH3-05-05", "title": "業務への導入事例", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH3-06",
+        "title": "AIエージェントのリスク・安全性・評価",
+        "goal": "AIエージェント特有のリスクと、安全に使うための原則および評価・監視の考え方を理解する",
+        "keywords": ["最小権限の原則", "サンドボックス", "ホワイトリスト", "連鎖的なエラー", "Human-in-the-Loop", "プロンプトインジェクション", "多層防御", "Eval", "継続的なモニタリング", "権限の過剰付与", "アクセス範囲", "情報漏えい", "ガードレール", "安全性"],
+        "children": [
+          { "id": "CH3-06-01", "title": "権限の過剰付与のリスク", "children": [], "keywords": [] },
+          { "id": "CH3-06-02", "title": "連鎖的なエラーの拡大", "children": [], "keywords": [] },
+          { "id": "CH3-06-03", "title": "プロンプトインジェクション", "children": [], "keywords": [] },
+          { "id": "CH3-06-04", "title": "具体的なトラブル事例", "children": [], "keywords": [] },
+          { "id": "CH3-06-05", "title": "安全に使うための原則", "children": [], "keywords": [] },
+          { "id": "CH3-06-06", "title": "AIエージェントの評価", "children": [], "keywords": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CH4",
+    "title": "生成AIのリスク予防・AI倫理・ガバナンス",
+    "keywords": [],
+    "children": [
+      {
+        "id": "CH4-01",
+        "title": "生成AI利用者の基本マインドセット",
+        "goal": "生成AIを業務で利用する前に理解しておくべき基本姿勢と、AI時代に求められる判断力を理解する",
+        "keywords": ["検索エンジン", "一次情報", "主体性", "文脈理解", "判断", "出力の検証", "利用目的", "ハルシネーション", "バイアス", "用途と影響度", "専門家への確認", "AIを使わない判断", "批判的思考"],
+        "children": [
+          { "id": "CH4-01-01", "title": "生成AIを安全に使うための基本姿勢", "children": [], "keywords": [] },
+          { "id": "CH4-01-02", "title": "検索エンジンと生成AIの違い", "children": [], "keywords": [] },
+          { "id": "CH4-01-03", "title": "AIは補助者であり、最終責任は人間にある", "children": [], "keywords": [] },
+          { "id": "CH4-01-04", "title": "AIの出力を鵜呑みにしてはいけない理由", "children": [], "keywords": [] },
+          { "id": "CH4-01-05", "title": "生成AIを使ってよい場面・慎重に使う場面・避けるべき場面", "children": [], "keywords": [] },
+          { "id": "CH4-01-06", "title": "AIを使うリスクと、AIを使わないリスク", "children": [], "keywords": [] },
+          { "id": "CH4-01-07", "title": "AI時代に求められる人間の役割", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-02",
+        "title": "生成AIの代表的リスク",
+        "goal": "生成AIの利用によって生じる代表的なリスクを、出力内容・情報管理・権利侵害・倫理・セキュリティの観点から理解する",
+        "keywords": ["ハルシネーション", "情報漏えい", "個人情報", "プライバシー侵害", "著作権", "知的財産権", "肖像権", "パブリシティ権", "名誉毀損", "信用毀損", "炎上", "差別", "偏見", "バイアス", "ディープフェイク", "なりすまし", "フィッシング", "マルウェア", "脆弱性探索", "自律型AIエージェント", "プロンプトインジェクション", "権利侵害", "ファクトチェック", "機密情報", "入力データの取扱い", "著作権侵害", "利用許諾", "本人の同意", "ソーシャルエンジニアリング", "多要素認証", "人間による確認・承認"],
+        "children": [
+          { "id": "CH4-02-01", "title": "生成AIに潜むリスクの全体像", "children": [], "keywords": [] },
+          { "id": "CH4-02-02", "title": "ハルシネーション", "children": [], "keywords": [] },
+          { "id": "CH4-02-03", "title": "情報漏えいリスク", "children": [], "keywords": [] },
+          { "id": "CH4-02-04", "title": "個人情報・プライバシー侵害リスク", "children": [], "keywords": [] },
+          { "id": "CH4-02-05", "title": "著作権・知的財産権侵害リスク", "children": [], "keywords": [] },
+          { "id": "CH4-02-06", "title": "肖像権・パブリシティ権侵害リスク", "children": [], "keywords": [] },
+          { "id": "CH4-02-07", "title": "名誉毀損・信用毀損・炎上リスク", "children": [], "keywords": [] },
+          { "id": "CH4-02-08", "title": "差別・偏見・バイアスのリスク", "children": [], "keywords": [] },
+          { "id": "CH4-02-09", "title": "ディープフェイクによるなりすましリスク", "children": [], "keywords": [] },
+          { "id": "CH4-02-10", "title": "フィッシング・詐欺・サイバー攻撃への悪用", "children": [], "keywords": [] },
+          { "id": "CH4-02-11", "title": "自律型AIエージェントの想定外の挙動・プロンプトインジェクション", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-03",
+        "title": "シャドーAIと企業コンプライアンス",
+        "goal": "シャドーAIとは何か、なぜ発生するのか、企業と従業員がそれぞれ守るべきルールを理解する",
+        "keywords": ["シャドーAI", "シャドーIT", "承認済みツール", "個人アカウント", "未承認ツール", "ブラウザ拡張機能", "アクセス管理", "利用履歴", "情報漏えい", "トレーサビリティ", "入力可能な情報", "出力確認"],
+        "children": [
+          { "id": "CH4-03-01", "title": "シャドーAIとは", "children": [], "keywords": [] },
+          { "id": "CH4-03-02", "title": "シャドーAIが発生する理由", "children": [], "keywords": [] },
+          { "id": "CH4-03-03", "title": "シャドーAIの具体例", "children": [], "keywords": [] },
+          { "id": "CH4-03-04", "title": "承認されていないAIツールを業務利用する危険性", "children": [], "keywords": [] },
+          { "id": "CH4-03-05", "title": "シャドーAIが組織と従業員にもたらす影響", "children": [], "keywords": [] },
+          { "id": "CH4-03-06", "title": "従業員が守るべき利用ルール", "children": [], "keywords": [] },
+          { "id": "CH4-03-07", "title": "生成AIを安全に使うための会社と従業員の役割", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-04",
+        "title": "AI出力の評価と検証",
+        "goal": "用途と影響度に応じた検証レベルの考え方と、ファクトチェック・妥当性レビューを通じた採否判断を理解する",
+        "keywords": ["検証レベル", "ファクトチェック", "一次情報", "妥当性レビュー", "採用", "修正", "破棄", "専門家確認", "人間による確認", "誤情報", "権利侵害", "影響度", "前提条件", "抜け漏れ", "適切な表現", "第三者の権利", "個人情報", "機密情報", "差別・偏見", "公開範囲"],
+        "children": [
+          { "id": "CH4-04-01", "title": "承認されたAIでも出力確認が必要な理由", "children": [], "keywords": [] },
+          { "id": "CH4-04-02", "title": "用途と影響度に応じた検証レベル", "children": [], "keywords": [] },
+          { "id": "CH4-04-03", "title": "ファクトチェック：事実・数値・出典・最新情報の確認", "children": [], "keywords": [] },
+          { "id": "CH4-04-04", "title": "妥当性レビュー：前提・論理・抜け漏れの確認", "children": [], "keywords": [] },
+          { "id": "CH4-04-05", "title": "表現・権利・個人情報・機密情報の確認", "children": [], "keywords": [] },
+          { "id": "CH4-04-06", "title": "採用・修正・破棄・専門家確認の判断", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-05",
+        "title": "個人情報・プライバシー・秘密保持",
+        "goal": "個人情報保護法の基本と、業務で扱う情報を生成AIに入力してよいかを判断するための考え方を学習する",
+        "keywords": ["個人情報", "プライバシー", "秘密保持", "個人情報保護法", "個人データ", "個人識別符号", "要配慮個人情報", "機微情報", "利用目的", "本人同意", "第三者提供", "委託", "匿名加工情報", "仮名加工情報", "マスキング", "営業秘密", "不正競争防止法", "秘密保持契約（NDA）", "秘密管理性", "有用性", "非公知性", "学習への利用", "顧客情報", "企業機密", "共有範囲", "アクセス権限"],
+        "children": [
+          { "id": "CH4-05-01", "title": "個人情報・プライバシー・秘密保持の違い", "children": [], "keywords": [] },
+          { "id": "CH4-05-02", "title": "個人情報保護法と生成AI利用の関係", "children": [], "keywords": [] },
+          { "id": "CH4-05-03", "title": "個人情報とは何か", "children": [], "keywords": [] },
+          { "id": "CH4-05-04", "title": "個人識別符号", "children": [], "keywords": [] },
+          { "id": "CH4-05-05", "title": "要配慮個人情報と機微情報", "children": [], "keywords": [] },
+          { "id": "CH4-05-06", "title": "個人情報の利用目的・本人同意・第三者提供", "children": [], "keywords": [] },
+          { "id": "CH4-05-07", "title": "個人情報は加工すれば生成AIに入力できるのか", "children": [], "keywords": [] },
+          { "id": "CH4-05-08", "title": "業務で注意すべき個人情報の具体例", "children": [], "keywords": [] },
+          { "id": "CH4-05-09", "title": "企業機密・秘密情報を生成AIに入力するリスク", "children": [], "keywords": [] },
+          { "id": "CH4-05-10", "title": "AIの出力・要約・共有に情報が残るリスク", "children": [], "keywords": [] },
+          { "id": "CH4-05-11", "title": "情報漏えい等が起きたときの対応", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-06",
+        "title": "著作権・知的財産・生成物の権利",
+        "goal": "生成AIの入力・生成・利用の各段階で関係する著作権や知的財産権、AI生成物の権利を学習する",
+        "keywords": ["知的財産", "著作権", "著作権法", "著作物", "著作者人格権", "複製権", "翻案権", "著作権侵害", "類似性", "依拠性", "権利制限規定", "第三者コンテンツ", "引用", "転載", "要約", "翻案", "商標権", "意匠権", "特許権", "肖像権", "パブリシティ権", "利用規約", "ライセンス", "OSS（オープンソースソフトウェア）", "商用利用", "職務著作", "創作意図", "創作的寄与", "AI生成物", "知的財産権", "利用許諾", "提供事業者の透明性", "創作的な表現", "人格的利益", "顧客吸引力", "本人の同意", "透明性", "AI生成物の著作物性"],
+        "children": [
+          { "id": "CH4-06-01", "title": "生成AIと知的財産権の全体像", "children": [], "keywords": [] },
+          { "id": "CH4-06-02", "title": "著作権と著作物の基本", "children": [], "keywords": [] },
+          { "id": "CH4-06-03", "title": "著作者人格権とは", "children": [], "keywords": [] },
+          { "id": "CH4-06-04", "title": "著作権侵害とAI生成物の類似リスク", "children": [], "keywords": [] },
+          { "id": "CH4-06-05", "title": "AI学習と著作権", "children": [], "keywords": [] },
+          { "id": "CH4-06-06", "title": "第三者コンテンツをAIに入力するリスク", "children": [], "keywords": [] },
+          { "id": "CH4-06-07", "title": "引用・転載・要約・翻案の違い", "children": [], "keywords": [] },
+          { "id": "CH4-06-08", "title": "商標権・意匠権・特許権", "children": [], "keywords": [] },
+          { "id": "CH4-06-09", "title": "肖像権・パブリシティ権", "children": [], "keywords": [] },
+          { "id": "CH4-06-10", "title": "AIサービスの利用規約・ライセンス・透明性", "children": [], "keywords": [] },
+          { "id": "CH4-06-11", "title": "商用利用・社外公開前に確認すべきこと", "children": [], "keywords": [] },
+          { "id": "CH4-06-12", "title": "AI生成物の権利帰属と人の創作的関与", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-07",
+        "title": "AI倫理とAI事業者ガイドライン",
+        "goal": "AI倫理とELSIの考え方、AI事業者ガイドラインが示す共通の指針、生成AIが社会に与える影響を理解する",
+        "keywords": ["AI倫理", "ELSI（Ethical, Legal and Social Issues）", "AI事業者ガイドライン", "人間中心", "安全性", "公平性", "プライバシー保護", "セキュリティ確保", "透明性", "アカウンタビリティ", "教育・リテラシー", "公正競争確保", "イノベーション", "高度なAIシステム", "偽情報", "誤情報", "誤送信", "エコーチェンバー", "フィルターバブル", "デジタルタトゥー", "人間の尊厳", "自律", "人や社会への影響", "人間による監督", "バイアス", "プロンプトインジェクション", "責任体制", "過度な依存", "環境負荷", "計算資源"],
+        "children": [
+          { "id": "CH4-07-01", "title": "AI倫理・ELSIとは", "children": [], "keywords": [] },
+          { "id": "CH4-07-02", "title": "AI事業者ガイドラインと人間中心のAI", "children": [], "keywords": [] },
+          { "id": "CH4-07-03", "title": "安全性・公平性：人への不利益を防ぐ", "children": [], "keywords": [] },
+          { "id": "CH4-07-04", "title": "プライバシー保護とセキュリティ確保", "children": [], "keywords": [] },
+          { "id": "CH4-07-05", "title": "透明性・アカウンタビリティ：説明と責任", "children": [], "keywords": [] },
+          { "id": "CH4-07-06", "title": "教育・リテラシー：AIを適切に使うために", "children": [], "keywords": [] },
+          { "id": "CH4-07-07", "title": "公正競争とイノベーション", "children": [], "keywords": [] },
+          { "id": "CH4-07-08", "title": "高度なAIシステムと影響に応じたリスク管理", "children": [], "keywords": [] },
+          { "id": "CH4-07-09", "title": "偽情報・偏りと情報拡散のリスク", "children": [], "keywords": [] },
+          { "id": "CH4-07-10", "title": "雇用・教育・格差・環境への影響", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-08",
+        "title": "AIガバナンスと社内ガイドライン",
+        "goal": "企業が生成AIを安全かつ持続的に活用するためのAIガバナンスと社内ガイドラインの整え方を学習する",
+        "keywords": ["AIガバナンス", "アジャイル・ガバナンス", "社内ガイドライン", "APIキー", "レート制限", "利用ログ", "モニタリング", "インシデント対応", "データの保存・処理場所", "通信経路", "データ移転", "SLA", "ISMS（ISO/IEC 27001）", "SOC 2", "シングルサインオン（SSO）", "多要素認証", "閉域網", "オンプレミス", "ローカルLLM", "アクセス管理", "提供事業者の透明性", "入力可能な情報", "承認済みツール", "利用目的", "コスト管理"],
+        "children": [
+          { "id": "CH4-08-01", "title": "AIガバナンスとは", "children": [], "keywords": [] },
+          { "id": "CH4-08-02", "title": "社内ガイドラインに盛り込む基本項目", "children": [], "keywords": [] },
+          { "id": "CH4-08-03", "title": "AIツールを選定する際の確認項目", "children": [], "keywords": [] },
+          { "id": "CH4-08-04", "title": "AIツールのレベル分けと入力情報のルール", "children": [], "keywords": [] },
+          { "id": "CH4-08-05", "title": "新しいAIツールの申請と承認フロー", "children": [], "keywords": [] },
+          { "id": "CH4-08-06", "title": "AIが出力したデータの取り扱い", "children": [], "keywords": [] },
+          { "id": "CH4-08-07", "title": "API・AIエージェント利用時のコスト・利用量の管理", "children": [], "keywords": [] },
+          { "id": "CH4-08-08", "title": "社内ルールを定着させる体制と教育", "children": [], "keywords": [] },
+          { "id": "CH4-08-09", "title": "モニタリングと継続的な見直し", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH4-09",
+        "title": "AI法・国際ルール・AI安全保障",
+        "goal": "AI法の枠組みと国際的なルール形成、AIと安全保障、国産AI・AI人材の重要性を理解する",
+        "keywords": ["AI法", "人工知能関連技術の研究開発及び活用の推進に関する法律", "AI基本計画", "AI戦略本部", "適正性確保指針", "G7広島AIプロセス", "国際指針", "国際行動規範", "EU AI Act（EU AI規則）", "リスクベース・アプローチ", "安全保障", "重要インフラ", "国産AI", "国内基盤モデル", "AI人材", "レジリエンス", "リスキリング", "ソフトロー", "サイバーセキュリティ"],
+        "children": [
+          { "id": "CH4-09-01", "title": "AI法とは：制定の背景と基本構造", "children": [], "keywords": [] },
+          { "id": "CH4-09-02", "title": "AI基本計画と国・事業者・利用者の役割", "children": [], "keywords": [] },
+          { "id": "CH4-09-03", "title": "イノベーション促進とリスク対応の両立", "children": [], "keywords": [] },
+          { "id": "CH4-09-04", "title": "AI法・ガイドライン・既存法令の関係", "children": [], "keywords": [] },
+          { "id": "CH4-09-05", "title": "G7広島AIプロセスと海外のAI規制動向", "children": [], "keywords": [] },
+          { "id": "CH4-09-06", "title": "AIと安全保障", "children": [], "keywords": [] },
+          { "id": "CH4-09-07", "title": "国産AI・国内基盤モデル・AI人材の重要性", "children": [], "keywords": [] },
+          { "id": "CH4-09-08", "title": "継続的な情報収集とリスキリングの重要性", "children": [], "keywords": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CH5",
+    "title": "生成AIの実践と活用事例",
+    "keywords": [],
+    "children": [
+      {
+        "id": "CH5-01",
+        "title": "プロンプトエンジニアリング",
+        "goal": "プロンプトの基本構成要素と代表的なプロンプティング手法、具体度のコントロールを学習する",
+        "keywords": ["プロンプトエンジニアリング", "対話的な改善", "プロンプト", "Zero-Shot（ゼロショット）プロンプティング", "Few-Shotプロンプティング", "Chain-of-Thought（思考の連鎖）", "In-Context Learning（文脈内学習）"],
+        "children": [
+          { "id": "CH5-01-01", "title": "プロンプトエンジニアリングとは", "children": [], "keywords": [] },
+          { "id": "CH5-01-02", "title": "プロンプトの基本構成要素", "children": [], "keywords": [] },
+          { "id": "CH5-01-03", "title": "Zero-Shotプロンプティング", "children": [], "keywords": [] },
+          { "id": "CH5-01-04", "title": "Few-Shotプロンプティング", "children": [], "keywords": [] },
+          { "id": "CH5-01-05", "title": "Chain-of-Thought（思考の連鎖）", "children": [], "keywords": [] },
+          { "id": "CH5-01-06", "title": "役割設定・出力形式の指定", "children": [], "keywords": [] },
+          { "id": "CH5-01-07", "title": "具体度のコントロール", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH5-02",
+        "title": "文書作成・コミュニケーション業務での活用",
+        "goal": "メール・文書作成、校正、要約、議事録、翻訳、スライド作成における生成AIの活用方法を学習する",
+        "keywords": ["事実確認", "校正", "添削", "整形", "要約", "要点抽出", "文字起こし", "議事録", "翻訳", "スライドの作成"],
+        "children": [
+          { "id": "CH5-02-01", "title": "ビジネスメール・各種ビジネス文書の作成", "children": [], "keywords": [] },
+          { "id": "CH5-02-02", "title": "文章の校正・添削・整形", "children": [], "keywords": [] },
+          { "id": "CH5-02-03", "title": "文章の要約・対象読者やトーンの変更", "children": [], "keywords": [] },
+          { "id": "CH5-02-04", "title": "議事録の作成・要点抽出", "children": [], "keywords": [] },
+          { "id": "CH5-02-05", "title": "翻訳・多言語コミュニケーション", "children": [], "keywords": [] },
+          { "id": "CH5-02-06", "title": "プレゼンテーションスライドの作成", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH5-03",
+        "title": "企画・マーケティング業務での活用",
+        "goal": "キャッチコピー、企画立案、アンケート、SNS、LP制作、リサーチにおける生成AIの活用方法を学習する",
+        "keywords": ["ブレインストーミング", "バイアス", "LP（ランディングページ）", "デプロイ", "ハルシネーション", "ディープリサーチ", "キャッチコピー", "SNS投稿", "市場・競合リサーチ", "一次情報"],
+        "children": [
+          { "id": "CH5-03-01", "title": "キャッチコピー・広告コピーの作成", "children": [], "keywords": [] },
+          { "id": "CH5-03-02", "title": "企画立案・ブレインストーミング・壁打ち", "children": [], "keywords": [] },
+          { "id": "CH5-03-03", "title": "アンケートの設計と分析", "children": [], "keywords": [] },
+          { "id": "CH5-03-04", "title": "SNS投稿・コンテンツ制作", "children": [], "keywords": [] },
+          { "id": "CH5-03-05", "title": "ランディングページの作成", "children": [], "keywords": [] },
+          { "id": "CH5-03-06", "title": "市場・競合リサーチ", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH5-04",
+        "title": "クリエイティブ制作での活用",
+        "goal": "画像・動画・音声・音楽の生成と、既存素材の展開・多言語ローカライズにおける活用方法を学習する",
+        "keywords": ["画像生成AI", "動画生成AI", "音声生成AI", "TTS（Text-to-Speech）", "モックアップ", "権利関係の確認", "一貫性", "ライセンス条件"],
+        "children": [
+          { "id": "CH5-04-01", "title": "画像・ビジュアル素材の生成", "children": [], "keywords": [] },
+          { "id": "CH5-04-02", "title": "動画コンテンツの生成・編集", "children": [], "keywords": [] },
+          { "id": "CH5-04-03", "title": "ナレーション・音声・BGMの生成", "children": [], "keywords": [] },
+          { "id": "CH5-04-04", "title": "ロゴ・デザイン案・モックアップの作成", "children": [], "keywords": [] },
+          { "id": "CH5-04-05", "title": "既存素材のバリエーション展開・多言語ローカライズ", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH5-05",
+        "title": "データ分析・リサーチ業務での活用",
+        "goal": "データの整形・集計・可視化から、大量文書の情報抽出、ディープリサーチ、定例レポートの自動化までを学習する",
+        "keywords": ["RAG（検索拡張生成）", "検算", "ディープリサーチ", "ワークフロー型エージェント", "データの整形", "分類", "個人情報", "集計", "一次情報"],
+        "children": [
+          { "id": "CH5-05-01", "title": "データの整形・分類", "children": [], "keywords": [] },
+          { "id": "CH5-05-02", "title": "表・データの集計と可視化", "children": [], "keywords": [] },
+          { "id": "CH5-05-03", "title": "大量文書からの情報抽出・要約", "children": [], "keywords": [] },
+          { "id": "CH5-05-04", "title": "ディープリサーチ：複数ソースを横断調査", "children": [], "keywords": [] },
+          { "id": "CH5-05-05", "title": "定例レポートの自動生成", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH5-06",
+        "title": "開発・業務自動化での活用",
+        "goal": "コーディングエージェントによる開発支援と、複数ツール・複数ステップを横断する業務自動化を学習する",
+        "keywords": ["コーディングエージェント", "コードベース", "リファクタリング", "コンテキストウィンドウ", "MCP", "フィードバックループ", "コードの生成", "コードレビュー", "ライセンス", "アプリ開発", "セキュリティ", "定型業務の自動化", "ブラウザ操作", "権限", "タスク分解"],
+        "children": [
+          { "id": "CH5-06-01", "title": "コーディング・アプリ開発", "children": [], "keywords": [] },
+          { "id": "CH5-06-02", "title": "既存システム・コードベースの調査とリファクタリング", "children": [], "keywords": [] },
+          { "id": "CH5-06-03", "title": "定型業務の自動化", "children": [], "keywords": [] },
+          { "id": "CH5-06-04", "title": "ブラウザ操作・Web上の手続きの自動化", "children": [], "keywords": [] },
+          { "id": "CH5-06-05", "title": "複数ツール・複数ステップを横断する複合タスクの自動化", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "CH5-07",
+        "title": "業種別に見る生成AI活用",
+        "goal": "業種ごとの生成AI活用の実態と、業種を問わず共通する成功のポイントを理解する",
+        "keywords": ["AX（AIトランスフォーメーション）", "DX（デジタルトランスフォーメーション）", "機密情報", "専門家による確認", "安全性", "コンテンツ制作", "個人情報", "公平性", "ツールの選定"],
+        "children": [
+          { "id": "CH5-07-01", "title": "規制・機密性が重視される業種", "children": [], "keywords": [] },
+          { "id": "CH5-07-02", "title": "現場・ものづくりを支える業種", "children": [], "keywords": [] },
+          { "id": "CH5-07-03", "title": "顧客接点・コンテンツ制作の業種", "children": [], "keywords": [] },
+          { "id": "CH5-07-04", "title": "業種を問わず共通する成功のポイント", "children": [], "keywords": [] }
+        ]
+      }
+    ]
+  }
+]
