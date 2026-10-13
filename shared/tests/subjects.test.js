@@ -414,7 +414,8 @@ test('shindanshi/1ji の枠: config の id・sw.js の dataDirs（科目のフ�
   vm.runInNewContext(sw.replace(/importScripts\([^)]*\);?/, ''), { self: new Proxy({}, { set(_, k, v) { m[k] = v; return true; } }) });
   const c = m.CERT_QUEST;
   assert.equal(c.appId, 'shindanshi-1ji');
-  assert.equal(c.version, '1');
+  // 版は公開のたびに上がるので、番号そのものではなく形を見る（2026-10-14、'1' に固定していて公開で落ちた）
+  assert.match(c.version, /^[1-9]\d*$/);
   assert.equal(c.sharedBase, '../../shared/');
   assert.deepEqual([...c.dataDirs], normalizeSubjects(shin).map((s) => s.folder));
   for (const f of c.appFiles) {

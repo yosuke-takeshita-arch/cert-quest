@@ -92,6 +92,7 @@ const SHARED = [
   '../shared/js/lib/boss.js',
   '../shared/js/lib/bossrun.js',
   '../shared/js/lib/bossdata.js',
+  '../shared/js/lib/install.js',
   '../shared/js/lib/bossmusic.js',
   '../shared/js/views/boss.js',
   '../shared/js/views/intro.js',

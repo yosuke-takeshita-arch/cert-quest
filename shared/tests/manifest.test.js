@@ -46,3 +46,28 @@ test('各アプリの manifest の id は、アプリ自身のディレクトリ
 test('解決の手順そのもの: "./" はオリジン直下になる（仕様の例と同じ）', () => {
   assert.equal(resolveId({ id: './', start_url: './index.html' }, `${BASE}x/manifest.webmanifest`), 'https://yosuke-takeshita-arch.github.io/');
 });
+
+// ホームのインストール案内（lib/install.js）。2026-10-14、案内が無く、先生が Chrome のメニューから入れようとして断られた。
+import { installHint } from '../js/lib/install.js';
+const ANDROID = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Mobile Safari/537.36';
+const IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1';
+const PC = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36';
+
+test('インストール案内: 知らせが来ていればボタン、Android で来ていなければ待つ案内、入れたアプリで開いていれば何も出さない', () => {
+  assert.equal(installHint({ prompt: true, userAgent: ANDROID, standalone: false }), 'button');
+  assert.equal(installHint({ prompt: true, userAgent: PC, standalone: false }), 'button');
+  assert.equal(installHint({ prompt: false, userAgent: ANDROID, standalone: false }), 'wait');
+  assert.equal(installHint({ prompt: false, userAgent: IPHONE, standalone: false }), null);
+  assert.equal(installHint({ prompt: false, userAgent: PC, standalone: false }), null);
+  assert.equal(installHint({ prompt: true, userAgent: ANDROID, standalone: true }), null);
+  assert.equal(installHint({ prompt: false, userAgent: ANDROID, standalone: true }), null);
+  assert.equal(installHint({ prompt: false, userAgent: '', standalone: false }), null);
+});
+
+test('インストール案内: home.js が installHint を使い、sw-core.js が install.js を先取りしている', () => {
+  const home = readFileSync(join(dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..', 'js', 'views', 'home.js'), 'utf8');
+  assert.match(home, /installHint\(/);
+  assert.match(home, /data-install-wait/);
+  const sw = readFileSync(join(dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..', 'sw-core.js'), 'utf8');
+  assert.ok(sw.includes("'../shared/js/lib/install.js'"), 'sw-core.js の SHARED に install.js が無い（オフラインで開けない）');
+});

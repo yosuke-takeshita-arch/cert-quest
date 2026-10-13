@@ -18,6 +18,7 @@ import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
 import { cardBody } from './cards.js';
+import { installHint } from '../lib/install.js';
 
 export function masteryChip(level) {
   return h('span', { class: 'chip m-' + level, text: MASTERY_LABEL[level] });
@@ -105,8 +106,19 @@ export function renderHome(app) {
   const { config, state, data } = app;
   const now = new Date();
   const root = h('section', { class: 'view home' });
-  // ブラウザがインストールできると知らせてきたときだけ出す（app.js の beforeinstallprompt）
-  if (app.installPrompt) {
+  // ボタンはブラウザがインストールできると知らせてきたときだけ出す（app.js の beforeinstallprompt）。
+  // Android で、まだ知らせが来ていないときは、メニューから入れようとして断られないよう案内だけ出す（lib/install.js）
+  const hint = installHint({
+    prompt: !!app.installPrompt,
+    userAgent: navigator.userAgent,
+    standalone: !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches),
+  });
+  if (hint === 'wait') {
+    root.appendChild(h('div', { class: 'card', 'data-install-wait': '1' },
+      h('p', { text: 'アプリとして入れるボタンは、少し使うとここに出ます。' }),
+      h('p', { class: 'small muted', text: 'Chrome のメニューの「ホーム画面に追加」からは入れられません（同じ場所にほかの資格アプリがあるため）。すでに入れてあるなら、ホーム画面のアイコンから開いてください。' })));
+  }
+  if (hint === 'button') {
     const btn = h('button', { class: 'btn primary', type: 'button', text: 'アプリとしてインストール' });
     btn.addEventListener('click', async () => {
       const p = app.installPrompt;
