@@ -2,10 +2,16 @@
   "syllabus": "syllabus.json",
   "questions": [
     "questions/01_ai-basics-history.json",
-    "questions/02_generative-ai.json"
+    "questions/02_generative-ai.json",
+    "questions/03_ai-agents.json",
+    "questions/04_risk-ethics-governance.json",
+    "questions/05_practice-cases.json"
   ],
   "concepts": [
     "concepts/01_ai-basics-history.json",
-    "concepts/02_generative-ai.json"
+    "concepts/02_generative-ai.json",
+    "concepts/03_ai-agents.json",
+    "concepts/04_risk-ethics-governance.json",
+    "concepts/05_practice-cases.json"
   ]
 }
