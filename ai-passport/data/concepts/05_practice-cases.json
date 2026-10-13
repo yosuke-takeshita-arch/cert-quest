@@ -1,0 +1,1393 @@
+[
+  {
+    "id": "C-AP-05-001",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "プロンプトエンジニアリングとは"],
+    "title": "プロンプトエンジニアリング（頼み方の工夫）",
+    "oneLine": "生成AIに望む答えを出させるために、頼み方（プロンプト）を組み立て、試して、直していくこと。モデルの中身は変えず、入力の書き方だけで答えの質を上げる。",
+    "why": "困りごと：同じモデルでも、何をどこまで書いて頼むかで、答えの質が大きく変わる。例：『この文章を要約して』だけだと、長さも形も読み手もAI任せになる。『新入社員向けに、大事な点を3つ、箇条書きで』と書くと、ねらった答えに近づく。押さえどころ：OpenAIのヘルプは、指示をプロンプトの初めに置く、文脈・結果・長さ・形式・文体をできるだけ具体的に書く、望む形式を例で示す、まず例なし（zero-shot）で試し、だめなら例つき（few-shot）、それでもだめならファインチューニング、という順を勧めている。Googleの手引きは、プロンプトの工夫は繰り返しの作業で、手引きの指針は出発点にすぎず、モデルの答えを見て直していくものだとしている。Anthropicの手引きは、AIを、腕はよいが職場の決まりや進め方を知らない新人と考え、何をしてほしいかを正確に説明するほど良い結果になるとしている。混同しやすい点：プロンプトの工夫は入力を変えること。ファインチューニングは追加の学習でモデルの重みを変えること（第1章・第2章）。エージェントの時代の広がり（コンテキストエンジニアリング）は第3章で扱う。",
+    "links": [
+      { "id": "C-AP-05-002", "relation": "部分" },
+      { "id": "C-AP-05-003", "relation": "部分" },
+      { "id": "C-AP-05-011", "relation": "部分" },
+      { "id": "C-AP-03-055", "relation": "関連" },
+      { "id": "C-AP-02-045", "relation": "基礎" },
+      { "id": "C-AP-01-036", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-01-036", "point": "プロンプトの工夫は、入力の書き方を変えて答えを良くする。ファインチューニングは、追加の学習でモデルの重みそのものを変える。" }
+    ],
+    "sources": [
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-002",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "プロンプトエンジニアリングとは"],
+    "title": "対話的な改善（プロンプトの手直し）",
+    "oneLine": "一度で完璧な頼み方を目指さず、答えを見て足りない点を伝え、やり取りを重ねて仕上げていくこと。言い方を変える、条件を足す、手順を分けるなどを試す。",
+    "why": "困りごと：最初のプロンプトで思いどおりの答えが出ることは少ない。何が足りないかは、答えを見て初めて分かることが多い。例：①『新製品の案内文を書いて』→長すぎる ②『200字以内で』と足す→硬すぎる ③『取引先の担当者向けに、ていねいだが親しみのある調子で』と足す→ねらいに近づく。押さえどころ：Googleの手引きは、プロンプトの工夫は繰り返しの作業だとし、思いどおりにならないときの手直しのやり方として、同じ意味でも言い方を変えてみる、似た別の課題に置き換えて頼む、などを挙げている。MicrosoftのPowerPointのCopilotの説明でも、作られた骨組みに対して会話を続けて手直しし、スライドを作った後も会話で編集・調整できるとしている。混同しやすい点：対話で直すのは、答えの書き方や中身を整える作業。答えに書かれた事実が正しいかの確かめ（事実確認）は、それとは別に人が行う。",
+    "links": [
+      { "id": "C-AP-05-001", "relation": "全体" },
+      { "id": "C-AP-05-013", "relation": "対比" },
+      { "id": "C-AP-05-011", "relation": "関連" },
+      { "id": "C-AP-05-023", "relation": "具体例" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-013", "point": "対話的な改善は、答えの書き方や中身をやり取りで整えること。事実確認は、答えに書かれた事実が本当かを出典で確かめること。" }
+    ],
+    "sources": [
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』", "url": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-003",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "プロンプトの基本構成要素"],
+    "title": "プロンプトの基本構成要素",
+    "oneLine": "プロンプトを組み立てる部品のこと。何をしてほしいか（指示）、前提や背景（文脈）、処理してほしい材料（入力データ）、答えの形（出力形式）が中心で、お手本の例や制約を添えることもある。",
+    "why": "困りごと：思いついた順に書くと、指示と材料がまざり、AIが、どこまでが頼みごとで、どこからが処理する文章なのかを取り違える。例：『【指示】次の文章を、大事な点3つの箇条書きに要約して【文脈】読み手は新入社員【入力】\"\"\"（会議メモの本文）\"\"\"【出力形式】・で始まる3行』。押さえどころ：Googleの手引きは、プロンプトの中身として、答えてほしい入力（質問・作業・処理する対象・続きを書かせる途中の文）、指示、例、文脈、制約、答えの形式を挙げている。OpenAIのヘルプは、指示をプロンプトの初めに置き、### や \"\"\" のような区切り記号で、指示と文脈（処理する材料）を分けるよう勧めている。Anthropicの手引きは、指示・文脈・例・入力がまざるときは、それぞれを <instructions> や <input> のようなタグで囲むと読み違いが減るとしている。Googleの手引きは、長い資料を渡すときは資料を先に置き、具体的な指示や質問を最後に置くよう勧めている。混同しやすい点：入力データは処理してほしい材料（要約する文章そのものなど）。出力形式は答えの形（表・箇条書き・字数）。文脈は答えの作り方を左右する前提（読み手・目的）。",
+    "links": [
+      { "id": "C-AP-05-001", "relation": "全体" },
+      { "id": "C-AP-05-004", "relation": "部分" },
+      { "id": "C-AP-05-010", "relation": "部分" },
+      { "id": "C-AP-05-009", "relation": "部分" },
+      { "id": "C-AP-05-006", "relation": "部分" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-010", "point": "入力データは、処理してほしい材料（要約する本文など）。出力形式は、答えをどんな形（表・箇条書き・字数）で返すか。" }
+    ],
+    "sources": [
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-004",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "プロンプトの基本構成要素"],
+    "title": "背景・目的を書き添える（文脈の付与）",
+    "oneLine": "頼みごとに、なぜそうしてほしいのか、どんな場面で使うのかを書き添えること。AIは書かれていない事情を知らないので、背景が分かると、ねらいに合った答えを作りやすい。",
+    "why": "困りごと：AIは、頼んだ人の職場の事情や、答えを何に使うかを知らない。例：Anthropicの手引きの例では、『省略記号（…）を使うな』とだけ書くより、『答えは音声の読み上げで読まれ、読み上げの仕組みは省略記号の読み方を知らないので、省略記号は使わないで』と理由を添える方が効果的だとし、AIは説明から一般化できるとしている。押さえどころ：Anthropicの手引きは、指示の背景や動機（なぜそのふるまいが大事か）を伝えると、目的をよく理解して、的を絞った答えになるとしている。また、仕事の事情をあまり知らない同僚にプロンプトを見せて、同僚が迷うならAIも迷う、という確かめ方を勧めている。Googleの手引きは、AIがすべての情報を持っていると決めつけず、解くのに必要な情報をプロンプトに入れるよう勧め、ルーターの故障の相談で、製品の説明書を文脈として渡すと、ありきたりでない答えになる例を挙げている。混同しやすい点：文脈は答えの材料や前提になる情報。役割設定（『あなたは〜の担当です』）とは別の部品。",
+    "links": [
+      { "id": "C-AP-05-003", "relation": "全体" },
+      { "id": "C-AP-05-009", "relation": "対比" },
+      { "id": "C-AP-05-011", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-009", "point": "文脈の付与は、答えるのに必要な背景や事情を渡すこと。役割設定は、AIに誰として答えるかを与えること。" }
+    ],
+    "sources": [
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-005",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "Zero-Shotプロンプティング"],
+    "title": "Zero-Shot（ゼロショット）プロンプティング",
+    "oneLine": "お手本の例を1つも見せず、やってほしいことを言葉で指示するだけで答えさせる頼み方。手軽だが、答えの形が思いどおりにならないことがある。",
+    "why": "名前：shot は、ここでは見せるお手本の数のたとえ。zero は0個。困りごと：例を用意するのは手間がかかる。例：『次の文章からキーワードを抜き出して。文章：…』とだけ書く。押さえどころ：Brownら（2020、GPT-3の論文）は、zero-shot を、お手本を1つも許さず、課題を説明した自然な言葉の指示だけをモデルに与える設定とした。最も手軽だが最も難しい設定で、例が無いと人でも何を求められているか分かりにくい場合がある（論文の例：『200m走の世界記録の表を作って』だけでは、表にどんな形で何を入れるかが分からない）としている。OpenAIのヘルプは、まず zero-shot で試し、うまくいかなければ few-shot に進む順を勧めている。混同しやすい点：zero-shot は『指示だけ・例0個』。one-shot は例1個、few-shot は例を数個。どれも、モデルの重みは変えない。",
+    "links": [
+      { "id": "C-AP-05-006", "relation": "対比" },
+      { "id": "C-AP-05-007", "relation": "全体" },
+      { "id": "C-AP-05-008", "relation": "関連" },
+      { "id": "C-AP-05-003", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-006", "point": "Zero-Shotは、例を見せずに指示だけで頼む。Few-Shotは、入力と答えの組のお手本を数個見せてから頼む。" }
+    ],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-006",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "Few-Shotプロンプティング"],
+    "title": "Few-Shot（フューショット）プロンプティング",
+    "oneLine": "頼みごとの前に、入力と答えの組のお手本を数個見せて、同じやり方で答えさせる頼み方。答えの形や言い回しをそろえたいときに効く。",
+    "why": "名前：few は『いくつか』。お手本が1個だけなら one-shot と呼ぶ。困りごと：言葉で『この形で』と説明しても、答えの形がぶれることがある。例：OpenAIのヘルプの例のように、『文章1：…→キーワード1：…』『文章2：…→キーワード2：…』と2組を見せ、最後に『文章3：（新しい文章）→キーワード3：』と書いて続きを答えさせる。押さえどころ：Brownら（2020）は、few-shot を、推論のときにお手本を数個見せるが、重みの更新は行わない設定とした（GPT-3では、読み込める長さに収まる10〜100個）。Googleの手引きは、例を数個含むプロンプトを few-shot、含まないものを zero-shot と呼び、例は答えの形・言い回し・範囲をそろえるのによく使われ、例どうしの構造と形式は同じにそろえるよう勧めている。Anthropicの手引きは、例を、使う場面に近く、多様で、指示と区別できるようタグで囲んだものにし、3〜5個入れると最もよい結果になるとしている。混同しやすい点：お手本を見せても、モデルの学習（重みの更新）は起きない。その場の文脈から学ぶので『文脈内学習』と呼ぶ。例が偏ると、意図しない癖まで真似される。",
+    "links": [
+      { "id": "C-AP-05-005", "relation": "対比" },
+      { "id": "C-AP-05-007", "relation": "全体" },
+      { "id": "C-AP-05-010", "relation": "関連" },
+      { "id": "C-AP-05-008", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-007", "point": "Few-Shotは、例を数個見せる頼み方の名前。In-Context Learningは、例や指示をその場の文脈から読み取って課題をこなす、モデルの側の働きの名前。" }
+    ],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-007",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "Few-Shotプロンプティング"],
+    "title": "In-Context Learning（文脈内学習）",
+    "oneLine": "モデルの重みを変えずに、プロンプトに書かれた指示やお手本（文脈）だけから、その場で課題のやり方をつかんで答える働き。Few-Shotプロンプティングは、この働きを使う頼み方。",
+    "why": "名前：in context は『文脈の中で』。困りごと：従来は、新しい課題ごとに何千件もの正解データを集めて、モデルを追加で学習（ファインチューニング）させる必要があった。例：英語の文とフランス語訳の組を数個見せ、最後に英語の文だけを書くと、モデルは続きとしてフランス語訳を書く。押さえどころ：Brownら（2020）は、言語モデルが事前学習の間に身につけた幅広い技能やパターンを見分ける力を、推論のときに使って、求められた課題にすばやく合わせることを『in-context learning』と呼んだ。自然な言葉の指示や数個のお手本で条件づけ、続きを予測させるだけで課題をこなす、という考え方で、zero-shot・one-shot・few-shot はその設定の違い。いずれも重みの更新は行わない。論文は、大きなモデルほど文脈の情報を上手に使うことも示した。混同しやすい点：重みを変えないので、文脈から読み取ったやり方は、そのプロンプトの中でだけ効く（重みを更新しないという論文の記述から導いた帰結）。重みを書き換えて覚えさせるのはファインチューニング。",
+    "links": [
+      { "id": "C-AP-05-006", "relation": "具体例" },
+      { "id": "C-AP-05-005", "relation": "具体例" },
+      { "id": "C-AP-01-036", "relation": "対比" },
+      { "id": "C-AP-02-042", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-01-036", "point": "In-Context Learningは、重みを変えずに、その場の文脈から課題をつかむ。ファインチューニングは、追加の学習で重みを変える。" }
+    ],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-008",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "Chain-of-Thought（思考の連鎖）"],
+    "title": "Chain-of-Thoughtプロンプティング（思考の連鎖の引き出し方）",
+    "oneLine": "答えだけでなく、途中の考えを順に書いてから答えるよう促す頼み方。何段階もの計算や推論で、間違いを減らせる。お手本で途中の段階を示す方法と、『ステップごとに考えよう』と添える方法がある。",
+    "why": "名前：chain of thought は『考えのくさり』。略して CoT。困りごと：何段階も考える問題を答えだけで出させると、途中を飛ばして間違えやすい。例（数は説明のための例）：『りんごが23個。20個使って、6個買い足した。いくつ？』に対し、①途中の段階を書いた解き方のお手本（23−20＝3、3＋6＝9、答えは9）を見せる（few-shot CoT）か、②お手本は見せずに、問題の後に『ステップごとに考えよう』と添える（zero-shot CoT）。押さえどころ：Weiら（2022）は、途中の段階を書いたお手本を8つ見せるだけで、5,400億パラメータのモデルが算数の文章題の評価（GSM8K）で当時の最高の正解率を出したとした。Kojimaら（2022）は、お手本を作らず、答えの前に『Let's think step by step（ステップごとに考えよう）』と1文添えるだけで、InstructGPT（text-davinci-002）の正解率が MultiArith で17.7％から78.7％に、GSM8K で10.4％から40.7％に上がったとした。Anthropicの手引き（2026年10月13日時点）は、自分で考えを深める機能（thinking）を持つ新しいモデルではその機能に任せることを勧め、手でCoTを促すのは、その機能を切っているときの代わりの手段としている。混同しやすい点：途中を書かせても、正しさが保証されるわけではない（上の GSM8K でも40.7％）。推論モデル（第2章）は、CoTを例なしで自分で行うよう学習で鍛えたもの。",
+    "links": [
+      { "id": "C-AP-02-058", "relation": "基礎" },
+      { "id": "C-AP-02-056", "relation": "発展形" },
+      { "id": "C-AP-05-006", "relation": "関連" },
+      { "id": "C-AP-05-005", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-02-056", "point": "CoTプロンプティングは、プロンプトで途中の考えを書かせる頼み方。推論モデルは、答える前に自分で長く考えるよう学習で鍛えたモデル。" }
+    ],
+    "sources": [
+      { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" },
+      { "title": "Kojima et al. (2022) Large Language Models are Zero-Shot Reasoners (arXiv:2205.11916)", "url": "https://arxiv.org/abs/2205.11916" },
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-009",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "役割設定・出力形式の指定"],
+    "title": "役割設定（ロールプロンプト）",
+    "oneLine": "『あなたは〜の担当者です』のように、AIに立場や役割を与えてから頼むこと。役割に合った言葉づかい・観点・詳しさで答えやすくなる。",
+    "why": "困りごと：同じ質問でも、誰として答えるかが決まっていないと、言葉づかいや詳しさがぶれる。例：『あなたは中小企業向けの経理の相談員です。専門用語を使わずに、インボイス制度の要点を3つ説明して』。押さえどころ：Anthropicの手引きは、システムプロンプト（会話の前に置く、ふるまいの決まり）で役割を設定すると、その使い方に合わせてAIのふるまいと口調の焦点が定まり、1文でも違いが出るとしている。Googleの手引き（Gemini 3 向け）は、守らせたい制約・役割の定義（ペルソナ）・出力形式の決まりを、システムの指示か、ユーザーのプロンプトの冒頭に置くよう勧めている。混同しやすい点：役割を与えても、AIがその分野の本物の専門家になるわけではない。知識の正しさは変わらないので、専門の内容は資格や知識を持つ人が確かめる（第7節の専門家による確認）。",
+    "links": [
+      { "id": "C-AP-05-003", "relation": "全体" },
+      { "id": "C-AP-05-018", "relation": "関連" },
+      { "id": "C-AP-03-038", "relation": "関連" },
+      { "id": "C-AP-05-065", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-065", "point": "役割設定は、AIに専門家らしい立場で答えさせる頼み方。専門家による確認は、本物の資格や知識を持つ人が中身を確かめて判断すること。" }
+    ],
+    "sources": [
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-010",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "役割設定・出力形式の指定"],
+    "title": "出力形式の指定",
+    "oneLine": "答えをどんな形で返してほしいか（表・箇条書き・見出しつきの文・字数・JSONなど）を先に決めて伝えること。形がそろうと、読みやすく、そのまま次の作業に使える。",
+    "why": "困りごと：形を指定しないと、AIが自分で形を選ぶので、毎回ばらばらになり、転記や集計がしにくい。例：『会社名：〈会社名をカンマ区切りで〉／人名：〈同じ形〉』のように、答えの型を見せる。押さえどころ：OpenAIのヘルプは、望む出力形式を例で示す（示して、伝える）とAIがよく応え、複数の答えをプログラムで確実に取り出しやすくなるとしている。Googleの手引きは、答えを表・箇条書き・短い説明などの形式で返すよう指示でき、答えの書き出しを途中まで示して続きを書かせる方法も挙げている。単純なJSONはプロンプトで指定できるが、より複雑なJSONの形には、構造化出力（第3章）の機能を勧めている。Anthropicの手引きは、プロンプトの書き方の見た目が答えの見た目に影響するので、Markdownを減らしたいならプロンプトからMarkdownを除くとよいとしている。混同しやすい点：出力形式は答えの『形』の指定。中身の正しさは保証しない。",
+    "links": [
+      { "id": "C-AP-05-003", "relation": "全体" },
+      { "id": "C-AP-05-016", "relation": "関連" },
+      { "id": "C-AP-03-032", "relation": "発展形" },
+      { "id": "C-AP-05-006", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-011",
+    "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "具体度のコントロール"],
+    "title": "具体度のコントロール",
+    "oneLine": "頼みごとを、どこまで細かく決めて伝えるかを調節すること。長さ・数・読み手・範囲を、あいまいな言葉でなく数や条件で書くと、答えがぶれにくい。アイデア出しのように、あえて広く頼む場面もある。",
+    "why": "困りごと：『短めに』『いい感じに』のようなあいまいな言葉は、受け取り方が人によって違い、AIの答えもぶれる。例：OpenAIのヘルプの例では、『説明はかなり短めに、数文くらいで、それ以上はあまり長くしないで』より『3〜5文の1段落で説明して』の方がよい。また、『ユーザー名やパスワードを聞くな』と禁止だけを書くより、『個人を特定する情報を聞く代わりに、ヘルプの記事を案内して』と、代わりにどうするかを書く方がよい。押さえどころ：OpenAIのヘルプは、望む文脈・結果・長さ・形式・文体をできるだけ具体的に書くこと、ふわっとした不正確な説明を減らすこと、してはいけないことだけでなく代わりにすることを書くことを勧めている。Anthropicの手引きは、ふつう以上の働きを望むなら、あいまいな頼み方から推測させず、はっきり頼むよう勧めている。混同しやすい点：細かく決めるほど良い、ではない。案を広く出させたいときに条件を絞りすぎると、案が似通う。目的に合わせて絞る度合いを決める。",
+    "links": [
+      { "id": "C-AP-05-001", "relation": "全体" },
+      { "id": "C-AP-05-010", "relation": "関連" },
+      { "id": "C-AP-05-004", "relation": "関連" },
+      { "id": "C-AP-05-025", "relation": "対比" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-012",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "ビジネスメール・各種ビジネス文書の作成"],
+    "title": "ビジネス文書の下書き作成",
+    "oneLine": "メール・案内文・企画書などの最初の案（下書き）をAIに作らせ、人が直して仕上げる使い方。白紙から書く時間を減らせるが、送る前の確認と責任は人に残る。",
+    "why": "困りごと：白紙から文書を書き始めるのに時間がかかる。例：『取引先に、納期が3日遅れることを伝えるメール。おわび、理由（部品の入荷の遅れ）、新しい納期、代わりの提案を入れて、ていねいに』と頼み、出てきた案の事実（日付・数量・相手の名前）を直して送る。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、職員の文書作成支援として、定型文書の下書きの作成、文書の校正、翻訳などを挙げ、企画書や案内文など、ゼロから新しい文章やアイデアを作るときにAIによる下書きができるとしている。三井住友フィナンシャルグループ・日本総研・NECの発表（2023年4月11日）は、従業員がSMBC-GPTに質問して、文章の作成・要約・翻訳・ソースコードの生成などをチャットの形で手軽に行えるとした。OpenAIの利用規約は、出力を使う・共有する前に、用途に応じて人の確認も使って、正確さと適切さを評価しなければならないとしている。混同しやすい点：下書きはあくまで出発点。社名・日付・金額などの事実は、AIがもっともらしく作ってしまうことがあるので、元の資料と照らす。",
+    "links": [
+      { "id": "C-AP-05-013", "relation": "関連" },
+      { "id": "C-AP-05-014", "relation": "関連" },
+      { "id": "C-AP-05-018", "relation": "関連" },
+      { "id": "C-AP-05-064", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "NEC『SMBCグループの専用環境におけるAIアシスタントツール「SMBC-GPT」の実証実験の開始について』（2023年4月11日。三井住友フィナンシャルグループ・日本総合研究所・NECの共同発表）", "url": "https://jpn.nec.com/press/202304/20230411_02.html" },
+      { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-013",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "ビジネスメール・各種ビジネス文書の作成"],
+    "title": "事実確認（ファクトチェック）",
+    "oneLine": "AIの答えに書かれた事実（数字・日付・名前・出来事・出典）が本当かを、元の資料や公式の情報で1つずつ確かめること。AIの文はもっともらしくても誤りを含むことがあるので、使う前に人が行う。",
+    "why": "困りごと：生成AIは、事実でない内容をもっともらしく書くこと（ハルシネーション）がある。文が自然なので、読むだけでは気づきにくい。例：デジタル庁のガイドブックの例では、学習データに無い『デジタル庁AI班の職員数』を聞くと、根拠のない、事実と異なる人数を答えることがある。確かめ方の例：①答えから、数字・日付・固有名詞・引用を抜き出す ②それぞれを公式のページや社内の元の資料で照らす ③確かめられないものは消すか『未確認』と書く。押さえどころ：OpenAIの利用規約は、機械学習は確率的に動くので、出力が実在の人・場所・事実を正確に反映しないことがあるとし、出力を使う前に正確さと適切さを評価するよう求めている。個人情報保護委員会の注意喚起（令和5年6月2日）も、生成AIの応答は確率的な相関関係にもとづいて作られるので、不正確な内容が含まれるリスクがあるとしている。混同しやすい点：校正は文字や表記の誤りを直すこと。事実確認は中身の真偽を確かめること。文がきれいでも、事実が正しいとは限らない。",
+    "links": [
+      { "id": "C-AP-02-037", "relation": "関連" },
+      { "id": "C-AP-05-032", "relation": "関連" },
+      { "id": "C-AP-05-014", "relation": "対比" },
+      { "id": "C-AP-05-044", "relation": "対比" },
+      { "id": "C-AP-05-012", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-014", "point": "校正は、誤字・脱字・表記のゆれなど文字の誤りを直す。事実確認は、書かれた中身が本当かを出典で確かめる。" }
+    ],
+    "sources": [
+      { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" },
+      { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" },
+      { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日、別添1）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-014",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "文章の校正・添削・整形"],
+    "title": "校正",
+    "oneLine": "文章の誤字・脱字・変換ミス・表記のゆれなど、文字や表記の誤りを見つけて直すこと。生成AIに頼むときは、直した箇所と理由を一覧で示させると、確かめやすい。",
+    "why": "困りごと：自分で書いた文の誤りは、自分では見落としやすい。例：『次の文章の誤字・脱字・表記のゆれ（「お問合せ」と「お問い合わせ」など）を見つけて。直した箇所を、元の語→直した語→理由の表で示して。内容や言い回しは変えないで』。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、職員の文書作成支援の例に、文書の校正を挙げている。OpenAIのヘルプは、してほしいことを具体的に書き、望む形式を示して頼むよう勧めている。直した箇所を表で出させれば、人が1つずつ確かめられる。混同しやすい点：校正は文字や表記の誤りを直すことで、内容や構成には手を入れない。文章をより良く書き直すのは添削、見た目の形をそろえるのは整形（この3語の区別は一般的な言葉の意味によるもので、出典の文書が定義しているものではない）。AIが固有名詞や専門用語を誤りと判断して直してしまうことがあるので、直した結果は人が見る。",
+    "links": [
+      { "id": "C-AP-05-015", "relation": "対比" },
+      { "id": "C-AP-05-016", "relation": "対比" },
+      { "id": "C-AP-05-013", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-015", "point": "校正は、誤字や表記の誤りを直し、内容は変えない。添削は、表現や構成まで踏み込んで、より良い文章に直す。" }
+    ],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-AP-05-015",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "文章の校正・添削・整形"],
+    "title": "添削",
+    "oneLine": "文章を読んで、分かりにくい所・伝わりにくい所・筋道のずれを指摘し、より良い表現や構成に直すこと。生成AIには、直した案だけでなく、直した理由も出させる。",
+    "why": "困りごと：誤字が無くても、言いたいことが伝わらない文章がある。例：『次の報告書を、結論が先に来るように直して。1文が長い所は分けて。直した理由を箇条書きで添えて。数字や事実は変えないで』。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、文書作成支援の特徴を、文章の構成を考えたり、表現を工夫したりする創造的な作業を支えることとしている。理由を出させると、人が受け入れるかを1つずつ判断でき、自分の書き方の癖も分かる。混同しやすい点：添削は表現や構成に手を入れる。校正は文字の誤りだけを直す（この区別は一般的な言葉の意味によるもの）。AIに添削させると、元の意図や事実まで書き換わることがあるので、『事実や数字は変えない』と指示し、直した後に元の文と比べる。",
+    "links": [
+      { "id": "C-AP-05-014", "relation": "対比" },
+      { "id": "C-AP-05-018", "relation": "関連" },
+      { "id": "C-AP-05-016", "relation": "対比" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-AP-05-016",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "文章の校正・添削・整形"],
+    "title": "整形",
+    "oneLine": "中身は変えずに、文章やデータの見た目の形をそろえること。箇条書きにする、表にする、見出しを付ける、日付や数字の書き方をそろえる、などがある。",
+    "why": "困りごと：メモや貼り付けた文は、改行・記号・書き方がばらばらで読みにくく、そのままでは資料や表に使えない。例：『次の打ち合わせのメモを、見出し（日時・参加者・決まったこと・宿題）に分けて整えて。日付は2026-10-13の形にそろえて。中身は足したり削ったりしないで』。押さえどころ：Googleの手引きは、答えを表・箇条書きなどの形式で返すよう指示でき、形式を指定しないとモデルが自分で形を選ぶとしている。OpenAIのヘルプは、望む形式を例で示すと、AIがよく応え、答えをプログラムで取り出しやすくなるとしている。混同しやすい点：整形は見た目の形を変えること（この言葉の意味は一般的な用法によるもの）。中身の誤りは直らない。表のデータの整形（列をそろえる、1行に1件にする）は、集計の前の準備として第5節の『データの整形』で扱う。",
+    "links": [
+      { "id": "C-AP-05-010", "relation": "関連" },
+      { "id": "C-AP-05-041", "relation": "関連" },
+      { "id": "C-AP-05-014", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-041", "point": "文章の整形は、読みやすいよう見た目の形をそろえること。データの整形は、集計や分析ができるよう表の形（1行に1件など）を整えること。" }
+    ],
+    "sources": [
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-AP-05-017",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "文章の要約・対象読者やトーンの変更"],
+    "title": "要約",
+    "oneLine": "長い文章を、大事な点を残して短くまとめること。長さ・形・読み手を指定すると、ねらった要約になりやすい。元の文に無いことが混ざっていないかは、元の文と照らして確かめる。",
+    "why": "困りごと：長い報告書や記事を全部読む時間が無い。例：OpenAIのヘルプの例のように『下の文章を、最も大事な点の箇条書きで要約して。文章：\"\"\"…\"\"\"』と、指示と本文を記号で分けて渡す。Googleの手引きの例のように『1文で要約して』と長さを制約することもできる。押さえどころ：三井住友フィナンシャルグループ・日本総研・NECのSMBC-GPTの発表（2023年4月11日）は、文章の作成・要約・翻訳などを従業員がチャットで手軽に行えるとした。OpenAIの利用規約は、出力が事実を正確に反映しないことがあるとしており、要約でも、数字の取り違えや、元の文に無い推測が入り込むことがある。混同しやすい点：要約は全体を短く言い直すこと。要点抽出は、決まったこと・宿題など、必要な項目だけを拾い出すこと。",
+    "links": [
+      { "id": "C-AP-05-019", "relation": "対比" },
+      { "id": "C-AP-05-018", "relation": "関連" },
+      { "id": "C-AP-05-013", "relation": "関連" },
+      { "id": "C-AP-05-045", "relation": "発展形" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-019", "point": "要約は、文章全体を短く言い直す。要点抽出は、決まったこと・期限など、決めた項目に当たる所だけを拾い出す。" }
+    ],
+    "sources": [
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "NEC『SMBCグループの専用環境におけるAIアシスタントツール「SMBC-GPT」の実証実験の開始について』（2023年4月11日。三井住友フィナンシャルグループ・日本総合研究所・NECの共同発表）", "url": "https://jpn.nec.com/press/202304/20230411_02.html" },
+      { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-018",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "文章の要約・対象読者やトーンの変更"],
+    "title": "対象読者・トーンの変更",
+    "oneLine": "同じ中身の文章を、読む人（社内・顧客・子どもなど）や場面に合わせて、言葉の難しさや調子（トーン）を変えて書き直すこと。中身や事実は変えずに、伝わり方を変える。",
+    "why": "名前：tone は『口調・調子』。困りごと：専門家向けの説明をそのまま顧客に出すと伝わらない。社内の連絡の調子のまま取引先に送ると失礼になる。例：同じ『システム停止のお知らせ』を、①社内向けは要点だけ短く ②顧客向けはおわび・影響・問い合わせ先をていねいに ③高齢の利用者向けは専門用語を言い換えて、と書き分けさせる。押さえどころ：Anthropicの手引きは、役割を与えると口調の焦点が定まり、お手本の例は答えの形式・口調・構成を導く最も確かな方法の1つだとしている。OpenAIのヘルプは、望む文体（スタイル）を具体的に書くよう勧めている。混同しやすい点：トーンの変更は伝わり方を変えること。中身を短くするのは要約。読み手を変えて書き直すと、言い換えの途中で大事な条件や数字が抜けることがあるので、元の文と照らす。",
+    "links": [
+      { "id": "C-AP-05-017", "relation": "関連" },
+      { "id": "C-AP-05-009", "relation": "関連" },
+      { "id": "C-AP-05-015", "relation": "関連" },
+      { "id": "C-AP-05-022", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-019",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "議事録の作成・要点抽出"],
+    "title": "要点抽出",
+    "oneLine": "長い文章や会議の記録から、決まったこと・宿題・期限・数字など、必要な項目だけを拾い出すこと。何を拾うかを先に決めて伝えると、漏れや余計なものが減る。",
+    "why": "困りごと：会議の記録を全部読み返して、誰が何をいつまでにやるかを探すのは手間がかかる。例：『次の会議の文字起こしから、①決まったこと ②宿題（担当者・期限つき） ③持ち越した論点 を表にして。本文に無いことは書かないで』。押さえどころ：OpenAIのヘルプは、文章から会社名・人名・話題を抜き出す例で、何をどの順で抜き出すかと答えの型を示すよう勧めている。MicrosoftのTeamsのCopilotは、会議の文字起こしをもとに、話し合いの要点（誰が何を言ったか）をまとめ、やるべきこと（アクションアイテム）を提案するとしている。混同しやすい点：要点抽出は決めた項目を拾うこと。要約は全体を短く言い直すこと。抜き出した担当者名や期限は、本人や元の記録で確かめる。",
+    "links": [
+      { "id": "C-AP-05-017", "relation": "対比" },
+      { "id": "C-AP-05-021", "relation": "関連" },
+      { "id": "C-AP-05-020", "relation": "関連" },
+      { "id": "C-AP-05-010", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
+      { "title": "Microsoft Support『Catch up on meetings with Microsoft Copilot in Teams』", "url": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-020",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "議事録の作成・要点抽出"],
+    "title": "文字起こし",
+    "oneLine": "会議や取材の録音・録画の話し声を、文字（テキスト）に書き起こすこと。音声認識のAIで自動化でき、議事録や要約の材料になる。",
+    "why": "困りごと：1時間の会議を手で書き起こすと、何時間もかかる。例：会議の録音→音声認識のAIで文字起こし→生成AIで議事録の形に整理→参加者が確認、という流れで使う。押さえどころ：OpenAIのWhisper（Radfordら 2022）は、インターネット上の多言語の音声と書き起こし68万時間で学習し、追加の学習なしでも、標準の評価で、従来の専用に学習したモデルに迫る成績を出したとした。OpenAIは2025年3月20日、なまり・雑音・話す速さの違いがある難しい場面で精度を上げた音声認識のモデルを発表し、コールセンターや会議の書き起こしに向くとした。MicrosoftのTeamsでは、会議の文字起こしをオンにすると、Copilotが会議の中身について質問に答えたり要点をまとめたりできるとしている。混同しやすい点：文字起こし（音声認識）は音声→文字。TTS（音声合成）はその逆で、文字→音声。専門用語・人名・数字は聞き違いが起きやすいので、確かめてから使う。",
+    "links": [
+      { "id": "C-AP-05-021", "relation": "関連" },
+      { "id": "C-AP-05-035", "relation": "対比" },
+      { "id": "C-AP-05-019", "relation": "関連" },
+      { "id": "C-AP-02-072", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-035", "point": "文字起こしは、話し声を文字にする（音声認識）。TTSは、文字を読み上げる声を作る（音声合成）。" }
+    ],
+    "sources": [
+      { "title": "Radford et al. (2022) Robust Speech Recognition via Large-Scale Weak Supervision (arXiv:2212.04356)", "url": "https://arxiv.org/abs/2212.04356" },
+      { "title": "OpenAI『Introducing next-generation audio models in the API』（2025年3月20日）", "url": "https://openai.com/index/introducing-our-next-generation-audio-models/" },
+      { "title": "Microsoft Support『Catch up on meetings with Microsoft Copilot in Teams』", "url": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-021",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "議事録の作成・要点抽出"],
+    "title": "議事録",
+    "oneLine": "会議で何が話され、何が決まり、誰が何をいつまでにやるかを残す記録。生成AIで、文字起こしから下書きを作り、参加者が確かめて仕上げる。",
+    "why": "困りごと：議事録づくりは会議の後の負担が大きく、担当者によって書き方もばらつく。例：①会議の文字起こし（または録音）をAIに渡す ②『日時・参加者・決定事項・宿題（担当・期限）・次回』の型で下書きさせる ③発言者や数字を参加者が確かめて直す ④配る。押さえどころ：パナソニック コネクトの発表（2026年7月29日）は、社内のAIアシスタント ConnectAI で、ファイルを使った議事録作成などの個人の業務での利用が広がったことを大きな要因として、2025年度にAIの活用で78.8万時間（年間総労働時間の3.4％）を減らしたとした。MicrosoftのTeamsの説明は、文字起こしされなかった部分の音声のデータとCopilotとのやり取りは、会議が終わると使えなくなるとしている。混同しやすい点：AIの議事録は、記録に無い発言や、言っていない決定を書いてしまうことがある。決定事項と宿題は、参加者が確かめてから配る。",
+    "links": [
+      { "id": "C-AP-05-020", "relation": "部分" },
+      { "id": "C-AP-05-019", "relation": "部分" },
+      { "id": "C-AP-05-013", "relation": "関連" },
+      { "id": "C-AP-03-008", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "パナソニック コネクト『AI活用で総労働時間の3.4％削減 AIエージェントの活用を拡大し2030年に10％削減を目指す』（2026年7月29日）", "url": "https://news.panasonic.com/jp/press/jn260729-1" },
+      { "title": "Microsoft Support『Catch up on meetings with Microsoft Copilot in Teams』", "url": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-022",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "翻訳・多言語コミュニケーション"],
+    "title": "翻訳（多言語コミュニケーション）",
+    "oneLine": "文章をほかの言語に訳すこと。生成AIは、言葉だけでなく、読み手や場面に合わせた言い回しで訳せる。大事な文書は、その言語が分かる人が確かめる。",
+    "why": "困りごと：海外の取引先とのやり取りや、外国人向けの案内に時間がかかる。例：『次の日本語の案内をベトナム語に訳して。読み手は日本に来たばかりの人。専門用語は言い換えて。訳しにくい所は日本語のまま残して印を付けて』。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、ホームページなどの掲載情報をAIで多言語に自動翻訳する使い方を挙げ、AIの多言語翻訳を使うときは、特定の言語で精度や情報量が著しく劣ることがないよう製品を選ぶこと（公平性）を求めている。GPT-3の論文（Brownら 2020）も、お手本を数個見せるだけで翻訳の課題をこなすことを示した。混同しやすい点：翻訳は意味を別の言語で伝えること。ローカライズ（第4節）は、言葉に加えて、表記・単位・文化に合わせて素材全体を作り変えること。",
+    "links": [
+      { "id": "C-AP-05-040", "relation": "対比" },
+      { "id": "C-AP-05-068", "relation": "関連" },
+      { "id": "C-AP-05-018", "relation": "関連" },
+      { "id": "C-AP-05-007", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-040", "point": "翻訳は、文章の意味を別の言語にすること。ローカライズは、翻訳に加えて、表記・単位・文化・画像まで、その地域向けに作り変えること。" }
+    ],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-023",
+    "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "プレゼンテーションスライドの作成"],
+    "title": "スライドの作成（プレゼン資料）",
+    "oneLine": "伝えたい内容や元の文書から、生成AIにプレゼンの骨組みとスライドの下書きを作らせ、人が手直しして仕上げること。会社のひな形を使えば、デザインもそろえやすい。",
+    "why": "困りごと：構成を考え、1枚ずつ文と図を配置するのに時間がかかる。例：『新サービスの社内説明会用、10枚程度。対象は営業部。課題→解決策→料金→導入の流れ→質疑の順で』と頼み、骨組みを確かめてからスライドにさせる。押さえどころ：MicrosoftのPowerPointのCopilotの説明（2026年10月13日時点）では、作りたいプレゼンの説明を入力すると、対象の聴き手や画像の好みなどを確かめる質問をしてから骨組みを作り、骨組みを会話で直してからスライドを作る。組織のひな形から始めるとテーマとデザインを保ったまま作れ、AIが作った画像にはC2PAにもとづく来歴情報が付くとしている。パナソニック コネクトの発表（2026年7月29日）は、2026年度から自社のデザインのひな形に沿ったプレゼンの生成の機能を足したとした。混同しやすい点：AIの資料は、見た目が整っていても、数字やグラフの元のデータが正しいとは限らない。数字は元の資料と照らす。",
+    "links": [
+      { "id": "C-AP-05-012", "relation": "関連" },
+      { "id": "C-AP-05-013", "relation": "関連" },
+      { "id": "C-AP-02-069", "relation": "関連" },
+      { "id": "C-AP-05-002", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』", "url": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" },
+      { "title": "パナソニック コネクト『AI活用で総労働時間の3.4％削減 AIエージェントの活用を拡大し2030年に10％削減を目指す』（2026年7月29日）", "url": "https://news.panasonic.com/jp/press/jn260729-1" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-024",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "キャッチコピー・広告コピーの作成"],
+    "title": "キャッチコピー（広告の言葉）",
+    "oneLine": "商品やサービスの魅力を短い言葉で伝える宣伝文句。生成AIに多くの案を出させて人が選び、磨く使い方が向く。効果を大げさに言う表現は、法律に触れることがある。",
+    "why": "困りごと：短い言葉で伝えるのは難しく、案を何十も考えるのは時間がかかる。例：『30代の共働きの家庭向けの冷凍の宅配弁当。強みは管理栄養士の献立と、電子レンジで5分。キャッチコピーを、①安心 ②時短 ③おいしさ の切り口で各3案、20字以内で』。Googleの手引きにも、花屋の名前の案を5つ出させる例がある。押さえどころ：消費者庁は、景品表示法が、商品・サービスの内容について、実際のものよりも著しく優良であると一般消費者に示す表示（優良誤認表示）を禁止しているとし、効果・性能の表示については、裏付けとなる合理的な根拠を示す資料の提出を求めることがあるとしている。AIは根拠の無い『No.1』『必ずやせる』のような言い方を作ることがあるので、使う前に根拠を確かめる。混同しやすい点：AIの案は出発点。OpenAIの利用規約は、出力は唯一のものとは限らないとしているので、似た言葉が他社の商標や有名なコピーに無いかも確かめる。",
+    "links": [
+      { "id": "C-AP-05-025", "relation": "関連" },
+      { "id": "C-AP-05-028", "relation": "関連" },
+      { "id": "C-AP-05-037", "relation": "関連" },
+      { "id": "C-AP-05-011", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "消費者庁『表示規制の概要』（景品表示法）", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/representation_regulation/" },
+      { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-025",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "企画立案・ブレインストーミング・壁打ち"],
+    "title": "ブレインストーミング（壁打ち）",
+    "oneLine": "良し悪しの判断を後回しにして、アイデアをたくさん出し合う方法。生成AIを相手にすると、ひとりでも案出しや考えの整理（壁打ち）ができる。",
+    "why": "名前：brainstorm は『頭の中の嵐』。壁打ちは、テニスで壁に球を打ち返してもらう練習のように、相手に考えをぶつけて整理すること。困りごと：ひとりだと案が偏り、会議では声の大きい人の案に流れやすい。例：①『社内の勉強会の参加者を増やす案を20個。実現の手間は気にしないで』と広く出させる ②人が5つに絞る ③『この案の弱点と、反対しそうな人の言い分を挙げて』と自分の案を突かせる。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、政策のアイデア出しや、専門的な課題への解決策をAIに提案させ、職員の思考を広げることを挙げている。デジタル庁のガイドブック（2024年6月10日）は、アイデア出しを特定の大規模言語モデルに頼りすぎると、得られるアイデアがそのモデルのバイアスに影響される危険があるとし、人の意見にもさまざまなバイアスがあるので同じく注意が要るとしている。混同しやすい点：AIの案は、よくある無難な案に寄りやすい。聞き方やモデルを変えて試し、最後に選ぶのは人。",
+    "links": [
+      { "id": "C-AP-05-026", "relation": "関連" },
+      { "id": "C-AP-05-011", "relation": "対比" },
+      { "id": "C-AP-05-024", "relation": "関連" },
+      { "id": "C-AP-02-040", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-026",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "アンケートの設計と分析"],
+    "title": "生成AIの出力のバイアス（企画・アンケートでの偏り）",
+    "oneLine": "生成AIの答えが、学習データや作り方の影響で、特定の見方・属性・ありがちな考えに偏ること。企画の案、アンケートの質問、集計の解釈に入り込むと、結論がゆがむ。",
+    "why": "困りごと：AIの答えは中立に見えるので、偏りに気づきにくい。例（説明のための例）：①アンケートの質問の案に『便利な新機能をどう思いますか』のように答えを誘導する言い方が入る ②想定する回答者の像が、特定の年代や性別に偏る ③自由記述の分類で、少数の意見が『その他』にまとめられて見えなくなる。押さえどころ：デジタル庁のガイドブック（2024年6月10日）は、アイデア出しを特定のモデルに頼りすぎると、そのモデルのバイアスに影響される危険があるとしている。東京都のAI導入・活用ガイドライン（令和8年3月）は、公平性の項で、AIに含まれるバイアス（偏見）によって特定の個人や集団が不当な差別や不利益を被るおそれがあること、出力結果に利用者の偏向が反映されて情報や価値観の傾きを強めるおそれがあることを挙げ、最終判断や出力結果の分析など、適切な時点で人を入れるよう求めている。混同しやすい点：バイアスは見方や扱いの偏り。事実の誤り（ハルシネーション）とは別の問題で、1つ1つの事実が正しくても、取り上げ方が偏ることがある。",
+    "links": [
+      { "id": "C-AP-02-027", "relation": "基礎" },
+      { "id": "C-AP-05-068", "relation": "関連" },
+      { "id": "C-AP-05-025", "relation": "関連" },
+      { "id": "C-AP-05-027", "relation": "関連" },
+      { "id": "C-AP-02-037", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-02-037", "point": "バイアスは、見方や扱いの偏り。ハルシネーションは、事実でない内容をもっともらしく書くこと。" }
+    ],
+    "sources": [
+      { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" },
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-027",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "アンケートの設計と分析"],
+    "title": "アンケートの設計と分析",
+    "oneLine": "生成AIに、アンケートの質問の案づくりと、集まった自由記述の分類・集計を手伝わせる使い方。質問の偏りと分類の誤りは、人が確かめる。",
+    "why": "困りごと：質問を考えるのも、何百件もの自由記述を読んで分けるのも手間がかかる。例：設計では『社員食堂の新しいメニューの満足度を測る質問を10個。答えを誘導しない言い方で。選択肢は5段階』と頼む。分析では、自由記述を『味・量・価格・待ち時間・その他』に分類させる。押さえどころ：デジタル庁のガイドブック（2024年6月10日）は、大量のパブリックコメントの処理の例で、①職員が全体を見て意見の類型を決める ②1つのコメントを内容ごとに分割する ③AIで類型のラベルを付ける ④ラベルごとに職員が妥当か確かめる ⑤ラベルが付かなかったコメントは見落とした意見の可能性が高いので職員が読み直す、という流れを示している。混同しやすい点：AIに分類を任せても、類型を決めるのと、結果を確かめるのは人。件数の集計は、AIが文章の中で数えた数でなく、表計算やプログラムで数える（第5節の検算）。",
+    "links": [
+      { "id": "C-AP-05-042", "relation": "関連" },
+      { "id": "C-AP-05-026", "relation": "関連" },
+      { "id": "C-AP-05-044", "relation": "関連" },
+      { "id": "C-AP-05-043", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-028",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "SNS投稿・コンテンツ制作"],
+    "title": "SNS投稿",
+    "oneLine": "企業や団体の公式アカウントの投稿文・画像・短い動画の案を生成AIで作る使い方。投稿は多くの人の目に触れ、消しても広まることがあるので、事実・権利・表現を確かめてから出す。",
+    "why": "困りごと：毎日の投稿を切らさず続けるのは負担が大きい。例：『新店舗の開店を知らせる投稿。Xは140字以内でハッシュタグ2つ、Instagramは絵文字を控えめに3段落で』と、媒体ごとに形を変えさせる。押さえどころ：消費者庁によると、令和5年10月1日から、広告であるのに広告であることを隠すステルスマーケティングは景品表示法違反となった。SNSの投稿やレビューの投稿も対象で、企業がインフルエンサーなどの第三者に頼んだものも広告に含まれ、規制の対象は広告主の事業者。AIで作った『利用者の感想』のような投稿を、広告と分からない形で出すと、これに当たりうる。商品の効果を実際より著しく良く見せる表示（優良誤認表示）も禁じられている。混同しやすい点：AIで作った画像や動画は、実在の人や他人の作品に似ていないか、使ったサービスの利用規約で商用に使えるかも確かめる（第4節）。",
+    "links": [
+      { "id": "C-AP-05-024", "relation": "関連" },
+      { "id": "C-AP-05-037", "relation": "関連" },
+      { "id": "C-AP-05-039", "relation": "関連" },
+      { "id": "C-AP-05-013", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "消費者庁『令和5年10月1日からステルスマーケティングは景品表示法違反となります。』", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing/" },
+      { "title": "消費者庁『表示規制の概要』（景品表示法）", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/representation_regulation/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-029",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "ランディングページの作成"],
+    "title": "LP（ランディングページ）",
+    "oneLine": "広告などをクリックした人が最初にたどり着く、1つの商品やキャンペーンのためのWebページ。生成AIやコーディングエージェントで、文章・画面の案・HTMLまで短い時間で作れる。",
+    "why": "名前：LP は Landing Page の略。landing は『着地』で、広告から飛んできた人が着地するページ。困りごと：ページを1枚作るのに、文章を書く人・デザインする人・作る人が要った。例：『資料請求を増やすための、会計ソフトの無料体験のLP。見出し・3つの強み・利用者の声の枠・申込みフォームの順。スマホで見やすく』と頼み、文章とHTMLを作らせ、試しの環境で表示を確かめる。押さえどころ：Googleの広告のヘルプは、ランディングページを、広告をクリックした人がたどり着くWebページとし、ふつうは広告の最終ページURLと同じだとしている。ランディングページの体験（情報の役立ちや関連性、操作のしやすさ、広告から期待した内容に合うかなど）は、キーワードの品質スコアを決める要素の1つとしている。混同しやすい点：LPに書く効果や実績は、景品表示法の表示の決まりに従う。AIが作った『利用者の声』は、実在の声でなければ載せない。作ったページを公開する作業がデプロイ。",
+    "links": [
+      { "id": "C-AP-05-030", "relation": "関連" },
+      { "id": "C-AP-05-024", "relation": "関連" },
+      { "id": "C-AP-05-049", "relation": "関連" },
+      { "id": "C-AP-05-036", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Google Ads Help『Landing page』", "url": "https://support.google.com/google-ads/answer/14086?hl=en" },
+      { "title": "消費者庁『表示規制の概要』（景品表示法）", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/representation_regulation/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-030",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "ランディングページの作成"],
+    "title": "デプロイ",
+    "oneLine": "作ったプログラムやWebページを、実際に使われる環境（サーバーなど）に置いて、使える状態にすること。いきなり本番に出さず、試しの環境で確かめてから出すのが基本。",
+    "why": "名前：deploy は『配置する・展開する』。困りごと：作っただけのページは自分のパソコンの中にしか無く、外の人は見られない。例：①コーディングエージェントでLPを作る ②試しの環境（staging）に置いて、表示・リンク・フォームを確かめる ③人が承認してから本番（production）に出す。押さえどころ：GitHubのドキュメントは、環境（environment）を、本番（production）・検証（staging）・開発（development）のような、デプロイ先を表すものとし、環境を使うと、作業を進める前に承認を求めたり、どのブランチから出せるかを制限したり、秘密の情報への接近を制限したりできるとしている。混同しやすい点：生成AIに任せる範囲を、作るところまでにするか、本番へのデプロイまで含めるかは別の判断。本番を変える操作は影響が大きいので、人の承認を挟む（第3章の Human-in-the-Loop）。",
+    "links": [
+      { "id": "C-AP-05-029", "relation": "関連" },
+      { "id": "C-AP-05-049", "relation": "関連" },
+      { "id": "C-AP-05-060", "relation": "関連" },
+      { "id": "C-AP-03-008", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "GitHub Docs『Deploying with GitHub Actions』", "url": "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/control-deployments" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-031",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "市場・競合リサーチ"],
+    "title": "市場・競合リサーチ",
+    "oneLine": "市場の大きさや動き、競合の商品・価格・強みを調べて比べること。生成AIのディープリサーチで、多くの資料を集めて出典つきの報告にまとめさせ、人が出典を開いて確かめる。",
+    "why": "困りごと：何十ものWebサイトや資料を読み比べるのに何日もかかる。例：『国内のペット保険の主な5社について、月額の保険料の幅、補償の割合、ここ3年の新商品を表にして。各数字に出典のURLを付けて』と頼み、表の数字を各社の公式ページで確かめる。押さえどころ：OpenAIは2025年2月2日に deep research を発表し、何百ものオンラインの情報源を見つけて分析・統合し、出典を明記した報告書を作るとした。限界として、ときに事実をでっちあげたり誤った推論をしたりすること、権威のある情報とうわさを見分けにくいこと、どれくらい確かかを伝えるのが苦手なことを挙げている。混同しやすい点：AIの報告書は二次的なまとめ。決め手になる数字や他社の情報は、企業の公式発表や官公庁の統計などの一次情報で確かめる。AIが調べられるのは公開された情報で、競合の社内の事情までは分からない。",
+    "links": [
+      { "id": "C-AP-05-046", "relation": "関連" },
+      { "id": "C-AP-05-032", "relation": "関連" },
+      { "id": "C-AP-03-057", "relation": "基礎" },
+      { "id": "C-AP-05-013", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI『Introducing deep research』（2025年2月2日）", "url": "https://openai.com/index/introducing-deep-research/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-032",
+    "syllabus": ["生成AIの実践と活用事例", "企画・マーケティング業務での活用", "市場・競合リサーチ"],
+    "title": "一次情報",
+    "oneLine": "出来事や数字について、その当事者や発表元が自ら出した元の情報のこと。官公庁の統計・法令の原文、企業の公式発表、論文の原文など。AIの答えやまとめ記事は、確かめる先として使わない。",
+    "why": "困りごと：AIの答えやまとめ記事は、元の情報を誰かが要約・転記したもので、途中で数字や意味が変わっていることがある。例：AIが『A社の売上は前年比20％増』と答えた→①答えに付いた出典を開く ②それがまとめサイトなら、A社の決算の発表資料（一次情報）を探す ③発表資料の数字と照らす。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、職員が一次情報を確認できるよう、AIの回答の根拠となる情報や出典を、操作画面などに表示することを勧めている。三井住友フィナンシャルグループの発表（2025年10月6日）は、社内向けのAIで回答を作るときに参照元を示し、根拠を追えるようにしたとしている。混同しやすい点：出典が付いていても、その出典が一次情報とは限らないし、主張を本当に支えているとも限らない。開いて読んで確かめる。",
+    "links": [
+      { "id": "C-AP-05-013", "relation": "関連" },
+      { "id": "C-AP-05-031", "relation": "関連" },
+      { "id": "C-AP-05-046", "relation": "関連" },
+      { "id": "C-AP-05-045", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "三井住友フィナンシャルグループ『社内向け汎用型AIアシスタントツール「SMBC-GAI」へのRAG技術を活用した社内情報検索機能の導入について』（2025年10月6日）", "url": "https://www.smbc.co.jp/news/pdf/j20251006_01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-033",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "画像・ビジュアル素材の生成"],
+    "title": "画像生成AIの業務での使い方",
+    "oneLine": "広告・資料・Webの挿絵や商品のイメージの案を、文章の指示から画像生成AIで作る使い方。会話で少しずつ直せるが、文字の描写や細部の正確さには限界があり、権利の確かめも要る。",
+    "why": "困りごと：イメージ写真の撮影やイラストの外注は、費用と日数がかかる。例：『春の新作スイーツの販促用。白い皿にいちごのタルト、窓からの自然光、背景はぼかす』→出てきた案に『皿を木の板に』『ロゴを入れる余白を右上に』と会話で直す。押さえどころ：OpenAIは2025年3月25日、GPT-4oの画像生成を発表し、会話の流れの中で画像を直していけ、たとえばゲームのキャラクターを作るとき、何度直しても見た目がそろうとした。限界として、切り抜き、細かい文字が多い画像、多言語の文字の描写、編集の精度などを挙げ、作った画像にはC2PAのメタデータ（来歴情報）を付けるとしている。東京都のAI導入・活用ガイドライン（令和8年3月）は、載せた挿絵について、権利の処理が済んだデータだけを学習元とする、商用利用に配慮した画像生成AIで作り、類似画像の検索で、既存の著作物との意図しない類似や権利侵害が無いことを確かめてから使ったと注記している。混同しやすい点：画像生成AIの仕組みは第2章。ここでは業務で使うときの進め方と確かめ方。",
+    "links": [
+      { "id": "C-AP-02-065", "relation": "基礎" },
+      { "id": "C-AP-05-037", "relation": "関連" },
+      { "id": "C-AP-05-038", "relation": "関連" },
+      { "id": "C-AP-05-039", "relation": "関連" },
+      { "id": "C-AP-02-069", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI『Introducing 4o Image Generation』（2025年3月25日）", "url": "https://openai.com/index/introducing-4o-image-generation/" },
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-034",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "動画コンテンツの生成・編集"],
+    "title": "動画生成AIの業務での使い方",
+    "oneLine": "文章や画像の指示から、短い動画（音声つきのものもある）を作る使い方。広告や説明動画の試作に使えるが、実在の人の姿や声を使うときは、本人の同意が要る。",
+    "why": "困りごと：撮影には人・場所・機材がそろう必要があり、試しに作って比べるのが難しい。例：新商品のCMの企画の段階で、3つの演出の案を数秒ずつ動画にして社内で比べ、本番の撮影の方向を決める。押さえどころ：OpenAIは2025年9月30日、動画と音声を作る Sora 2 を発表し、背景の音・話し声・効果音も高い現実感で作れるとした。同時に出した Sora のアプリでは、本人が一度だけ動画と音声を録って本人確認をすると、自分の姿を動画に登場させられる機能を設け、姿の使用についての同意・来歴の表示・有害な内容の防止などを、取り組んだ安全の課題として挙げている。混同しやすい点：実在の人に似せた動画は、本人が言っていないことを言わせられるので、ディープフェイク（第1章）にもなりうる。仕組みは第2章の動画生成AI。",
+    "links": [
+      { "id": "C-AP-02-075", "relation": "基礎" },
+      { "id": "C-AP-02-074", "relation": "関連" },
+      { "id": "C-AP-01-056", "relation": "関連" },
+      { "id": "C-AP-05-037", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI『Sora 2 is here』（2025年9月30日）", "url": "https://openai.com/index/sora-2/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-035",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "ナレーション・音声・BGMの生成"],
+    "title": "ナレーション・BGMの生成（TTSの活用）",
+    "oneLine": "文章を読み上げる声（ナレーション）をTTS（音声合成）で作り、BGMや効果音も生成AIで作る使い方。読む調子まで指示できるものもあるが、実在の人の声をまねるには本人の同意が要る。",
+    "why": "名前：TTS は Text-to-Speech の略。意味は『文字から音声へ』。困りごと：説明動画のナレーションを声優に頼んだり、録り直したりすると、日数と費用がかかる。例：社内研修の動画の台本を、TTSで『落ち着いた、ゆっくりした調子で』読み上げさせ、台本を直したら声も作り直す。押さえどころ：OpenAIは2025年3月20日、話す内容だけでなく、どう話すか（例：思いやりのあるサポート担当のように）も指示できる音声合成のモデルを発表した。使える声は、あらかじめ用意された人工の声に限り、その声に合っているかを見張るとしている。混同しやすい点：TTSは文字→音声。文字起こし（音声認識）は音声→文字。特定の人の声をまねる Voice Cloning（第2章）は、本人の同意が要る。声や音楽を作る仕組みは第2章の音声生成AI・音楽生成AI。",
+    "links": [
+      { "id": "C-AP-02-072", "relation": "基礎" },
+      { "id": "C-AP-02-073", "relation": "対比" },
+      { "id": "C-AP-02-070", "relation": "関連" },
+      { "id": "C-AP-05-020", "relation": "対比" },
+      { "id": "C-AP-02-071", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-02-073", "point": "TTSは、文字を、用意された声で読み上げる。Voice Cloningは、特定の人の声をまねた声を作るもので、本人の同意が要る。" }
+    ],
+    "sources": [
+      { "title": "OpenAI『Introducing next-generation audio models in the API』（2025年3月20日）", "url": "https://openai.com/index/introducing-our-next-generation-audio-models/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-036",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "ロゴ・デザイン案・モックアップの作成"],
+    "title": "モックアップ（ロゴ・デザイン案）",
+    "oneLine": "完成品がどう見えるかを示す、見た目だけの見本。生成AIで、画面やパッケージ、ロゴの案を早く何通りも作って比べられる。ロゴは商標の確かめが要る。",
+    "why": "名前：mock-up は『実物大の模型・見本』。困りごと：作ってから見た目が合わないと分かると、やり直しが大きい。例：新しいアプリの画面の案を3通り生成AIで作らせ、利用者と社内に見せて意見を集めてから、作り込む1つを選ぶ。押さえどころ：Figmaは、モックアップを、最終の製品を高い完成度で見た目どおりに表したもので、機能ではなく形（見た目）に重点を置き、ボタン・色・画像・アイコン・文字などを静止した画面で示すものとし、開発を始める前にUIと見た目を確かめるのに使うとしている。コードが要らないので直しやすい。白黒や灰色の簡単な線で配置を示す早い段階の骨組み（ワイヤーフレーム）とは別。ロゴは、商品やサービスを他社のものと区別する目印（商標）になりうる。特許庁は、商標登録を受けないまま使っていて、先に他社が同じような商標の登録を受けていれば、その商標権の侵害にあたる可能性があるとしている。混同しやすい点：モックアップは見た目の見本で、動かない。AIで作ったロゴの案は、使う前に、登録された商標に似たものが無いかを調べる。",
+    "links": [
+      { "id": "C-AP-05-029", "relation": "関連" },
+      { "id": "C-AP-05-033", "relation": "関連" },
+      { "id": "C-AP-05-037", "relation": "関連" },
+      { "id": "C-AP-05-023", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Figma『Wireframe Vs. Mockup—What's The Difference?』", "url": "https://www.figma.com/resource-library/wireframe-vs-mockup/" },
+      { "title": "特許庁『商標制度の概要』", "url": "https://www.jpo.go.jp/system/trademark/gaiyo/seidogaiyo/chizai08.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-037",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "画像・ビジュアル素材の生成"],
+    "title": "権利関係の確認",
+    "oneLine": "生成AIで作った文章・画像・音声などを使う前に、他人の著作権・商標・肖像などを侵していないかを確かめること。既存の作品に似ていて、それを元にしたと言える場合は、著作権の侵害になりうる。",
+    "why": "困りごと：AIの生成物は、知らないうちに既存の作品やキャラクター、ロゴに似ることがある。例：①生成した画像を類似画像の検索にかけ、似た既存の作品が無いか見る ②特定の作品名を指示に入れて、その作品に似せて作らせない ③ロゴや商品名は商標の登録を調べる ④実在の人の顔や声は本人の同意を確かめる。押さえどころ：文化庁の『AIと著作権に関する考え方について』（令和6年3月15日）は、生成AIによる生成物でも、既存の著作物との類似性と依拠性（それを元にしたこと）が認められれば、著作権者は差止めや損害賠償を求めうるとし、AIの利用者が既存の著作物を知っていて、その創作的な表現を持つものを作らせた場合は依拠性が認められるとしている。経済産業省は2024年7月5日、知的財産権などの権利・利益の保護に十分に配慮した利活用の方向を示す『コンテンツ制作のための生成AI利活用ガイドブック』を公表し、生成AIサービスの選択やリーガルチェックなどに使うよう案内している。混同しやすい点：権利関係の確認は、出力を使う側が行う。サービスの利用規約で出力の権利が自分にあるとされても、他人の権利を侵してよいことにはならない。",
+    "links": [
+      { "id": "C-AP-05-039", "relation": "対比" },
+      { "id": "C-AP-05-033", "relation": "関連" },
+      { "id": "C-AP-05-036", "relation": "関連" },
+      { "id": "C-AP-02-028", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-039", "point": "権利関係の確認は、生成物が他人の著作権・商標・肖像などを侵していないかを見ること。ライセンス条件の確認は、使ったサービスやモデルの利用規約で、何に使ってよいかを見ること。" }
+    ],
+    "sources": [
+      { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
+      { "title": "経済産業省『「コンテンツ制作のための生成AI利活用ガイドブック」を公表しました』（2024年7月5日）", "url": "https://www.meti.go.jp/policy/mono_info_service/contents/aiguidebook.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-038",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "既存素材のバリエーション展開・多言語ローカライズ"],
+    "title": "一貫性（キャラクター・ブランドのそろえ方）",
+    "oneLine": "何枚も作る画像や動画で、同じキャラクターの顔・服装、ブランドの色・ロゴ・文体などがぶれずにそろっていること。生成AIは毎回少しずつ違うものを作るので、そろえる工夫が要る。",
+    "why": "困りごと：同じキャラクターでシリーズ広告を作ったのに、1枚ごとに顔や服が違うと、別人に見えてブランドの印象が崩れる。例：①最初に決めた基準の画像を毎回渡して『この人物の顔と服装を保ったまま、背景だけを夏の海に』と頼む ②色はカラーコード、文体は例文で指定する ③できたものを並べて見比べる。押さえどころ：OpenAIは、GPT-4oの画像生成（2025年3月25日）では、会話の文脈の画像と文を土台にして、何度直してもキャラクターの見た目がそろうとした。Googleは2025年8月26日、Geminiアプリの画像編集のモデルを更新し、人やペットの写真を編集しても同じ見た目を保つことに重点を置いたとした。混同しやすい点：一貫性は『ぶれずにそろっていること』。違う案をたくさん作ること（バリエーション）とは逆向きの要求なので、何を変えて何を保つかを指示で分ける。",
+    "links": [
+      { "id": "C-AP-05-033", "relation": "関連" },
+      { "id": "C-AP-05-040", "relation": "関連" },
+      { "id": "C-AP-05-034", "relation": "関連" },
+      { "id": "C-AP-05-006", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI『Introducing 4o Image Generation』（2025年3月25日）", "url": "https://openai.com/index/introducing-4o-image-generation/" },
+      { "title": "Google『Nano Banana: Image editing in Google Gemini gets a major upgrade』（2025年8月26日）", "url": "https://blog.google/products-and-platforms/products/gemini/updated-image-editing-model/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-039",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "画像・ビジュアル素材の生成"],
+    "title": "ライセンス条件（生成AIサービスの利用規約）",
+    "oneLine": "生成AIのサービスやモデルを使うときの決まり。出力をだれのものとするか、何に使ってはいけないか、などが書かれている。サービスごと・版ごとに違うので、使う前に読む。",
+    "why": "名前：license は『許し・許可』。困りごと：同じような画像を作れるサービスでも、出力の扱いや禁止事項などの条件が違う。例：広告に使う前に、①そのサービスの利用規約の出力の権利の項 ②禁止されている使い方 ③契約の種類（個人向けか法人向けか）での違い、を確かめる。押さえどころ：OpenAIの利用規約（2026年10月13日時点で公開の、2026年1月1日発効の版）は、利用者とOpenAIの間では、利用者が入力の権利を持ち、出力を所有するとしたうえで、出力は唯一のものとは限らず、他の利用者が似た出力を受け取ることがあり、利用者への権利の譲渡は他の利用者の出力には及ばないとしている。また、出力を使う・共有する前に、正確さと用途への適切さを評価するよう求めている。個人情報保護委員会の注意喚起（令和5年6月2日）も、利用者は事業者の利用規約やプライバシーポリシーなどを十分に確認するよう求めている。混同しやすい点：規約で出力が自分のものとされても、他人の著作権などを侵していないことの保証にはならない（権利関係の確認）。オープンなモデルのライセンス（第2章）とも別に読む。",
+    "links": [
+      { "id": "C-AP-05-037", "relation": "対比" },
+      { "id": "C-AP-02-051", "relation": "関連" },
+      { "id": "C-AP-05-069", "relation": "関連" },
+      { "id": "C-AP-05-054", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" },
+      { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日、別添1）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-040",
+    "syllabus": ["生成AIの実践と活用事例", "クリエイティブ制作での活用", "既存素材のバリエーション展開・多言語ローカライズ"],
+    "title": "多言語ローカライズ（既存素材の展開）",
+    "oneLine": "一度作った広告・動画・マニュアルなどの素材を、ほかの国や地域の人向けに、言葉・表記・単位・文化まで合わせて作り変えること。生成AIで、翻訳・字幕・ナレーション・画像の差し替えをまとめて進められる。",
+    "why": "名前：localize は『その土地向けにする』。困りごと：素材を国ごとに作り直すと、費用も時間もかかる。例：日本向けの商品紹介動画を、①台本をAIで英語・タイ語に訳す ②価格を現地の通貨に、日付の書き方を現地の形に直す ③TTSで現地の言葉のナレーションを作る ④現地の言葉が分かる人が確かめる。押さえどころ：Anthropicの『Building effective agents』は、手順を決めてつなぐ流れ（プロンプトの連鎖）の例に、販促の文を作ってから別の言語に訳す、を挙げている。東京都のAI導入・活用ガイドライン（令和8年3月）は、AIの多言語翻訳を使うときに、特定の言語で精度や情報量が著しく劣らないよう製品を選ぶこと（公平性）を求めている。混同しやすい点：ローカライズは翻訳より広い（この言葉の意味は一般的な用法によるもの）。言葉だけ訳しても、表記や単位、文化の違いが残る。",
+    "links": [
+      { "id": "C-AP-05-022", "relation": "対比" },
+      { "id": "C-AP-05-038", "relation": "関連" },
+      { "id": "C-AP-05-035", "relation": "関連" },
+      { "id": "C-AP-05-068", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "C-AP-05-041",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "データの整形・分類"],
+    "title": "データの整形（分析の前の準備）",
+    "oneLine": "集計や分析ができるように、表のデータの形を整えること。1行に1件、1列に1つの項目、見出しは1行目、表記のゆれをそろえる、など。生成AIに整え方を手伝わせることもできる。",
+    "why": "困りごと：現場の表は、空の行・同じ意味の違う書き方（『株式会社』と『（株）』）・画像で貼った数字などがまざり、そのままでは数えられない。例：『この顧客の一覧の会社名の表記を統一して。全角と半角をそろえて。直した行の一覧も出して』。押さえどころ：OpenAIのChatGPTのデータ分析のヘルプ（2026年10月13日時点）は、表を渡すときは、1行目に分かりやすい列の見出しを置き、1行に1件、分かりやすい列名にし、1枚のシートに関係の無い表をいくつも置くこと、データを分断する空の行や列、分析に要る値を画像で入れることは避けるよう勧めている。また、データの計算・変換・統計の分析をPythonで行えるとしている。混同しやすい点：データの整形は分析の準備で、文章の見た目を整える『整形』（第2節）とは対象が違う。整形の途中で行が消えたり値が変わったりしていないか、件数を前後で比べる。",
+    "links": [
+      { "id": "C-AP-05-016", "relation": "対比" },
+      { "id": "C-AP-05-043", "relation": "関連" },
+      { "id": "C-AP-05-042", "relation": "関連" },
+      { "id": "C-AP-05-048", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI Help Center『Data analysis with ChatGPT』", "url": "https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-042",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "データの整形・分類"],
+    "title": "分類（自由記述の振り分け）",
+    "oneLine": "問い合わせ・アンケートの自由記述・コメントなどの文章を、決めた種類に振り分けること。生成AIは文の意味を読んで振り分けられるので、大量の文章の整理が速くなる。",
+    "why": "困りごと：何千件もの問い合わせを1件ずつ読んで仕分けるのは時間がかかり、人によって振り分けがぶれる。例：『次の問い合わせを、①料金 ②故障 ③解約 ④その他 のどれか1つに分類して。どれにも当てはまらないものは④にして、理由を一言つけて』。押さえどころ：デジタル庁のガイドブック（2024年6月10日）は、パブリックコメントの処理で、職員が類型を決め、AIでコメントを内容ごとに分けてラベルを付け、ラベルごとに職員が妥当かを確かめ、ラベルが付かなかったものは職員が読み直す流れを示し、ラベル付けが妥当かの判断は、自分で一からラベルを付けるよりずっと負担が少ないとしている。混同しやすい点：ここでの分類は、生成AIに指示と例を読ませて文章を振り分けること。第1章の『分類』（教師あり学習で、正解つきのデータから分け方を学ぶ）とは、やり方が違う。",
+    "links": [
+      { "id": "C-AP-01-009", "relation": "対比" },
+      { "id": "C-AP-05-027", "relation": "関連" },
+      { "id": "C-AP-05-041", "relation": "関連" },
+      { "id": "C-AP-05-007", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-01-009", "point": "生成AIでの分類は、指示と例を読ませて文章を振り分ける。教師あり学習の分類は、正解つきのデータでモデルを学習させて分け方を覚えさせる。" }
+    ],
+    "sources": [
+      { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-043",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "表・データの集計と可視化"],
+    "title": "集計と可視化",
+    "oneLine": "表のデータを合計・平均・件数などにまとめ（集計）、グラフで見えるようにする（可視化）こと。生成AIは、Pythonのプログラムを書いて実行し、表やグラフを作れる。",
+    "why": "困りごと：表計算ソフトの関数やグラフの作り方が分からないと、データから傾向を読み取れない。例：売上のCSVを渡し、『月別・地域別の売上を集計して、月ごとの推移を折れ線グラフに。前年同月比も出して』と頼む。押さえどころ：OpenAIのChatGPTのデータ分析のヘルプ（2026年10月13日時点）は、アップロードした表について、行や列・傾向・外れ値の要約、表やグラフの作成、Pythonでの計算・変換・統計の分析ができ、データ分析の一部ではChatGPTがPythonのコードを書いて実行するとしている。最初は意図と違う分析の方法やグラフの種類を選ぶことがあるので、特定の方法・グループ分け・列を指定するよう勧めている。混同しやすい点：集計は、生成AIが文章の中で書く数字に任せない。プログラムで計算させ、そのコードと結果を確かめる（検算）。",
+    "links": [
+      { "id": "C-AP-05-044", "relation": "関連" },
+      { "id": "C-AP-05-041", "relation": "前提" },
+      { "id": "C-AP-05-047", "relation": "関連" },
+      { "id": "C-AP-05-027", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI Help Center『Data analysis with ChatGPT』", "url": "https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-044",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "表・データの集計と可視化"],
+    "title": "検算",
+    "oneLine": "出た計算の結果が正しいかを、別のやり方でもう一度確かめること。生成AIは計算の答えももっともらしく書くので、合計・割合・件数は検算してから使う。",
+    "why": "困りごと：生成AIの計算の答えは、桁や途中の数を取り違えていても、もっともらしく書かれる。例（数は説明のための例）：AIが『3店の売上の合計は1,250万円』と答えた→①3店の数字（420万・380万・450万）を元の表で確かめる ②電卓や表計算で足す（420＋380＝800、800＋450＝1,250）③一致すれば使い、違えば元のデータと計算の方法を見直す。押さえどころ：Googleの手引きは、Geminiのコード実行の道具は、モデルがPythonのコードを作って実行するもので、算数・数え上げ・計算が要るときは有効にすべきだとしている。OpenAIのデータ分析のヘルプは、ChatGPTがPythonで分析したときは、作ったコード・出力・前提を確かめてから結果に頼るよう勧め、スキャンしたファイルや画像の中の表からは正確な値を確実には取り出せないことがあるとしている。混同しやすい点：検算は数字の確かめ。言葉で書かれた事実の確かめは事実確認。",
+    "links": [
+      { "id": "C-AP-05-043", "relation": "関連" },
+      { "id": "C-AP-05-013", "relation": "対比" },
+      { "id": "C-AP-05-047", "relation": "関連" },
+      { "id": "C-AP-03-031", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-013", "point": "検算は、計算の結果を別のやり方で計算し直して確かめる。事実確認は、書かれた事実を出典で確かめる。" }
+    ],
+    "sources": [
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "OpenAI Help Center『Data analysis with ChatGPT』", "url": "https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-045",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "大量文書からの情報抽出・要約"],
+    "title": "大量文書からの情報抽出（RAGの業務での使い方）",
+    "oneLine": "社内規程・マニュアル・契約書など大量の文書から、質問に関係する部分を探し出して答えさせる使い方。RAGの仕組みで、答えに参照元を付けられるので、根拠をたどれる。",
+    "why": "名前：RAG は Retrieval-Augmented Generation の略。意味は『検索で補強した生成』。困りごと：規程やマニュアルが何千もあると、必要な1行を探すのに時間がかかる。例：『海外出張の日当はいくら？』と聞くと、旅費の規程の該当の条を探して、その文を根拠に答え、どの文書のどこかを示す。押さえどころ：三井住友フィナンシャルグループは2025年10月6日、社内向けのAIアシスタント SMBC-GAI に、社内規程・通達・業務マニュアルなど約130万件のファイルを体系的に索引化し、横断して検索・参照できる機能を入れたと発表し、回答を作るときに参照元を示すことで根拠を追えるとした。混同しやすい点：RAGは見つけた文書を根拠に答えるので、元の文書が古い・まちがっていれば、答えもそうなる（仕組みから導いた帰結）。参照元を開いて、最新の版かを確かめる。仕組みは第3章のRAGの流れ。",
+    "links": [
+      { "id": "C-AP-02-038", "relation": "基礎" },
+      { "id": "C-AP-03-010", "relation": "関連" },
+      { "id": "C-AP-05-032", "relation": "関連" },
+      { "id": "C-AP-05-017", "relation": "関連" },
+      { "id": "C-AP-05-064", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "三井住友フィナンシャルグループ『社内向け汎用型AIアシスタントツール「SMBC-GAI」へのRAG技術を活用した社内情報検索機能の導入について』（2025年10月6日）", "url": "https://www.smbc.co.jp/news/pdf/j20251006_01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-046",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "ディープリサーチ：複数ソースを横断調査"],
+    "title": "ディープリサーチの進め方と確かめ方",
+    "oneLine": "AIが何段階も検索して多くの資料を読み比べ、出典つきの報告書にまとめる機能を、業務の調べ物に使うこと。頼み方を具体的にし、出典を開いて確かめるまでを1つの作業と考える。",
+    "why": "困りごと：報告書は長く、出典もたくさん付くので、全部正しいように見えてしまう。例：①『目的・範囲（国内か海外か、期間）・比べる項目・欲しい形（表）』を書いて頼む ②届いた報告書から、結論を左右する数字を3〜5個選ぶ ③その出典を開き、数字が本当に書いてあるか、発表元が一次情報かを確かめる。押さえどころ：OpenAIは2025年2月2日、deep research を、何百ものオンラインの情報源を見つけ、分析・統合して報告書を作るもので、5〜30分かかり、すべての出力に明確な出典と考えの要約を付けて、参照と確かめをしやすくしたとした。一方で、ときに事実をでっちあげたり誤った推論をしたりすること、権威のある情報とうわさを見分けにくいこと、確かさを伝えるのが苦手なことを限界に挙げている。混同しやすい点：ディープリサーチはWebの資料を調べてまとめる機能。決めた社内の文書から答えるのはRAG。機能の仕組みは第3章。",
+    "links": [
+      { "id": "C-AP-03-057", "relation": "基礎" },
+      { "id": "C-AP-05-031", "relation": "関連" },
+      { "id": "C-AP-05-032", "relation": "関連" },
+      { "id": "C-AP-05-045", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-045", "point": "ディープリサーチは、Webの多くの資料を何段階も調べて報告書にする。RAGは、決めた文書の集まりから関係する部分を探して答える。" }
+    ],
+    "sources": [
+      { "title": "OpenAI『Introducing deep research』（2025年2月2日）", "url": "https://openai.com/index/introducing-deep-research/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-047",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "定例レポートの自動生成"],
+    "title": "定例レポートの自動生成",
+    "oneLine": "毎週・毎月の売上報告や進み具合の報告など、決まった形のレポートを、データの取り込み→集計→文章化→配信の決まった手順で自動で作ること。手順を固定したワークフロー型エージェント（第3章）の仕組みが向く。",
+    "why": "困りごと：毎週同じ手順で数字を集めて表と文章を作る作業に、毎回何時間もかかる。例：毎週月曜の朝に、①売上のデータを取り込む ②プログラムで集計する ③前週との違いをAIが3行で文章にする ④担当者が確かめて配る、を自動で回す。押さえどころ：Anthropicは、ワークフローを、LLMと道具を前もって決めたコードの道筋で動かす仕組みとし、手順がはっきりした仕事には予測しやすさと一貫性を与えるとしている。OpenAIのChatGPTのヘルプ（2026年10月13日時点）は、1回きりや繰り返しの作業を予約して実行させたり、変化を見張らせたりできるとしている。混同しやすい点：毎回同じ手順なら、AIが手順を自分で決める自律型より、手順を固定したワークフロー型が向く。数字の計算はプログラムに任せ、AIには文章化を任せる。",
+    "links": [
+      { "id": "C-AP-03-004", "relation": "基礎" },
+      { "id": "C-AP-05-043", "relation": "関連" },
+      { "id": "C-AP-05-044", "relation": "関連" },
+      { "id": "C-AP-05-056", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-03-005", "point": "定例レポートのように毎回同じ手順なら、手順を固定したワークフロー型が向く。自律型エージェントは、手順を前もって決めにくい仕事に向く。" }
+    ],
+    "sources": [
+      { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
+      { "title": "OpenAI Help Center『Scheduled tasks in ChatGPT』", "url": "https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-048",
+    "syllabus": ["生成AIの実践と活用事例", "データ分析・リサーチ業務での活用", "データの整形・分類"],
+    "title": "個人情報を含むデータの入力",
+    "oneLine": "顧客名簿や問い合わせの記録など、個人情報を含むデータを生成AIに入れるときは、利用目的の範囲内か、サービスが入力を学習に使わないかを先に確かめること。要らない個人情報は消してから渡す。",
+    "why": "困りごと：分析のために顧客のデータをそのまま貼ると、入れた情報が学習に使われたり、意図しない形で出力されたりするおそれがある。例：アンケートの自由記述を分類させる前に、①氏名・電話番号・メールアドレスの列を消す ②文中の名前を『顧客A』に置き換える ③使うサービスの設定で、入力を学習に使わない状態かを確かめる。押さえどころ：個人情報保護委員会の注意喚起（令和5年6月2日）は、事業者が個人情報を含むプロンプトを入れる場合は、特定した利用目的の達成に必要な範囲内かを十分に確かめること、本人の同意なく個人データを入れ、それが応答の出力以外の目的で扱われると個人情報保護法の規定に違反する可能性があるので、サービスの提供者が機械学習に使わないことなどを十分に確かめることを求めている。一般の利用者にも、入れた個人情報が学習に使われ、不正確な内容で出力されるリスクを踏まえて判断するよう求めている。混同しやすい点：個人情報の扱いは、使うサービスの設定や契約で変わる。会社のルールで認められたサービスだけを使う。",
+    "links": [
+      { "id": "C-AP-05-064", "relation": "関連" },
+      { "id": "C-AP-05-041", "relation": "関連" },
+      { "id": "C-AP-05-069", "relation": "関連" },
+      { "id": "C-AP-05-042", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-064", "point": "個人情報は、個人に関する情報で、個人情報保護法の決まりに従って扱う。機密情報は、会社の秘密の計画や数字なども含み、会社のルールや契約で守る。" }
+    ],
+    "sources": [
+      { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日、別添1）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-049",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "コーディング・アプリ開発"],
+    "title": "コーディングエージェントによるアプリ開発",
+    "oneLine": "作りたいものを言葉で伝えると、AIが進め方を計画し、複数のファイルにまたがってコードを書き、コマンドを実行して動くかを確かめる使い方。小さなアプリなら、プログラミングに詳しくない人でも試作できる。",
+    "why": "困りごと：アプリを作るには、設計・コードを書く・試験・直す、の多くの手順と知識が要る。例：『社内の備品の貸し出しを記録するWebアプリ。借りた人・日付・返した日を記録し、返していないものを一覧にする』と頼み、AIが作ったものを動かして、足りない点を伝えて直させる。押さえどころ：Claude Codeのドキュメント（2026年10月13日時点）は、Claude Codeを、コードベースを読み、ファイルを編集し、コマンドを実行し、開発の道具とつながるエージェント型のコーディングの道具とし、やりたいことを言葉で伝えると、進め方を計画し、複数のファイルにコードを書き、動くかを確かめるとしている。エラーのメッセージを貼るか症状を説明すると、コードベースをたどって根本の原因を見つけて直し、gitと連携して変更のまとめからプルリクエストの作成まで行うとしている。GitHubのドキュメントも、Copilotのエージェントの機能が、ファイルを読み、コードを編集し、コマンドを実行して、何段階もの作業を計画してやり遂げるとしている。混同しやすい点：コード生成（第3章）は頼まれたコードを書くこと。コーディングエージェントは、書く・動かす・直すまでを続けて進める。動くことと、安全で正しいことは別なので、レビューは人が行う。",
+    "links": [
+      { "id": "C-AP-03-051", "relation": "基礎" },
+      { "id": "C-AP-03-053", "relation": "部分" },
+      { "id": "C-AP-05-052", "relation": "関連" },
+      { "id": "C-AP-05-055", "relation": "部分" },
+      { "id": "C-AP-05-050", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" },
+      { "title": "GitHub Docs『GitHub Copilot in IDEs』", "url": "https://docs.github.com/en/copilot/concepts/copilot-surfaces/copilot-in-ides" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-050",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "既存システム・コードベースの調査とリファクタリング"],
+    "title": "コードベースの調査（大きなコードを読むとき）",
+    "oneLine": "1つのソフトウェアを作っているコードやファイルの全体（コードベース）を、AIに読ませて、どこに何があるか、どう動くかを説明させる使い方。全部を一度に読ませず、必要な所を探して読ませる。",
+    "why": "名前：codebase は『コードの土台・全体』。困りごと：前の担当者が作った大きなシステムは、どこを直せばよいか分かるまでに何週間もかかる。例：『請求書の金額の計算はどのファイルで行っている？ 消費税の端数はどう処理している？ 関係するファイルと関数の名前を挙げて』と聞く。押さえどころ：Anthropicの記事（2025年9月29日）は、コンテキストウィンドウ（一度に読み込める量）の中の語が増えるほど、モデルが中身を正確に思い出す力が落ちる（context rot）とし、文脈は限りのある資源だとしている。Claude Codeは、すべてを先に読み込まず、ファイルの場所などの手がかりだけを持ち、grep や glob のような検索の道具で必要なファイルをその都度読み込むとしている。GitHubのドキュメントも、チャットでなじみの無いコードベースを理解してから、エージェントに複数のファイルにまたがる変更を頼む使い方を挙げている。混同しやすい点：コンテキストウィンドウが大きくても、全部を詰め込むほど良いわけではない。AIの説明が正しいかは、該当のコードを開いて確かめる。",
+    "links": [
+      { "id": "C-AP-02-042", "relation": "関連" },
+      { "id": "C-AP-05-051", "relation": "関連" },
+      { "id": "C-AP-05-049", "relation": "関連" },
+      { "id": "C-AP-03-037", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" },
+      { "title": "GitHub Docs『GitHub Copilot in IDEs』", "url": "https://docs.github.com/en/copilot/concepts/copilot-surfaces/copilot-in-ides" },
+      { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-051",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "既存システム・コードベースの調査とリファクタリング"],
+    "title": "リファクタリング",
+    "oneLine": "プログラムの外から見た動き（結果）は変えずに、中の作り（コードの構造）を分かりやすく直すこと。小さな変更を積み重ね、その都度テストで動きが変わっていないかを確かめる。",
+    "why": "名前：refactor は『構成し直す』。困りごと：継ぎ足しを重ねたコードは読みにくく、直すたびに別の所が壊れやすい。例：同じ計算が5か所にコピーされている→1つの関数にまとめる→5か所からその関数を呼ぶ→テストで計算結果が前と同じかを確かめる。押さえどころ：Martin Fowlerは、リファクタリングを、既存のコードの外から見たふるまいを変えずに、内部の構造を作り直す規律ある技法とし、その中心は、ふるまいを保つ小さな変換の積み重ねで、1つ1つが小さいので失敗しにくく、各変換の後もシステムは完全に動き続けるとしている。GitHubのドキュメントも、Copilotのチャットでコードの説明やリファクタリングを頼めるとしている。混同しやすい点：リファクタリングは、機能を足したり、バグを直したりすることではない。AIに頼むときは『動きは変えない』と書き、テストで確かめる。",
+    "links": [
+      { "id": "C-AP-05-050", "relation": "関連" },
+      { "id": "C-AP-05-055", "relation": "関連" },
+      { "id": "C-AP-05-052", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Martin Fowler『Refactoring』（refactoring.com）", "url": "https://refactoring.com/" },
+      { "title": "GitHub Docs『GitHub Copilot in IDEs』", "url": "https://docs.github.com/en/copilot/concepts/copilot-surfaces/copilot-in-ides" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-052",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "コーディング・アプリ開発"],
+    "title": "コードレビュー（AIが書いたコードの確認）",
+    "oneLine": "書かれたコードを、取り込む前に別の人（や道具）が読み、誤り・読みにくさ・安全上の問題が無いかを確かめること。AIが書いたコードも、人が責任をもってレビューする。",
+    "why": "困りごと：AIは大量のコードを速く書くので、確かめずに取り込むと、問題もいっしょに増える。例：AIが作った変更について、①何を変えたかの説明を読む ②変更されたファイルを読む ③テストが通るかを見る ④入力の検査やパスワードの扱いなど安全の点を見る。AIに『この変更をセキュリティの観点でレビューして』と頼み、指摘を参考にすることもできる。押さえどころ：Googleのコードレビューの指針は、レビューの第一の目的を、コードベース全体の健全さが時間とともに良くなっていくようにすることとし、レビューする人は、見ているコードに責任を持つとしている。変更が全体の健全さを確かに良くするなら、完璧でなくても承認する方に傾くべきだとしている。Claude Codeのドキュメントは、変更したファイルをセキュリティの問題の観点でレビューさせる使い方や、CIでのコードレビューの自動化を例に挙げている。混同しやすい点：AIのレビューは人のレビューの代わりではなく助け。最後に取り込むかを決めるのは人。",
+    "links": [
+      { "id": "C-AP-05-053", "relation": "関連" },
+      { "id": "C-AP-05-054", "relation": "関連" },
+      { "id": "C-AP-05-049", "relation": "関連" },
+      { "id": "C-AP-03-052", "relation": "関連" },
+      { "id": "C-AP-03-008", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Google Engineering Practices『The Standard of Code Review』", "url": "https://google.github.io/eng-practices/review/reviewer/standard.html" },
+      { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-053",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "コーディング・アプリ開発"],
+    "title": "生成されたコードのセキュリティ",
+    "oneLine": "AIが書いたコードに、攻撃に悪用される弱点（脆弱性）がまざることがある、という問題。動くことと安全なことは別なので、レビュー・検査の道具・テストで確かめる。",
+    "why": "困りごと：AIは公開されたたくさんのコードから学んでおり、その中には弱点のあるコードも含まれる。例（説明のための例）：利用者の入力をそのままデータベースへの命令に組み込むコード（SQLインジェクションという攻撃の入口になる）を、動くコードとして出すことがある。押さえどころ：Pearceら（2021）は、GitHub Copilotが、確かめられていない大量の公開のコードから学んでいるので、悪用できるバグのあるコードも学んでいるはずだとし、危険度の高い弱点の種類（MITREの上位25など）にかかわる89の場面でコードを書かせ、できた1,689本のプログラムのうち約40％に弱点があったとした。Claude Codeのドキュメントは、変更したファイルをセキュリティの問題の観点でレビューさせる使い方を挙げている。混同しやすい点：『動いた』『テストが通った』は安全の証明にならない。パスワードや鍵をコードに書き込まない、入力を検査する、などの基本を人が確かめる。",
+    "links": [
+      { "id": "C-AP-05-052", "relation": "関連" },
+      { "id": "C-AP-05-060", "relation": "関連" },
+      { "id": "C-AP-03-062", "relation": "関連" },
+      { "id": "C-AP-05-054", "relation": "対比" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Pearce et al. (2021) Asleep at the Keyboard? Assessing the Security of GitHub Copilot's Code Contributions (arXiv:2108.09293)", "url": "https://arxiv.org/abs/2108.09293" },
+      { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-054",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "コーディング・アプリ開発"],
+    "title": "生成されたコードのライセンス（公開コードとの一致）",
+    "oneLine": "AIが出したコードが、公開されているコードと一致した場合、その元のコードのライセンス（使ってよい条件）を見て、使うか・出典を示すか・取り除くかを決める必要がある、という問題。一致を知らせる機能で確かめる。",
+    "why": "困りごと：オープンソースのコードにも、出典の表示などを求めるライセンスがある。一致に気づかずに取り込むと、条件を守れないおそれがある。例：AIが出した数十行の関数が、ある公開リポジトリのコードと一致→その一致の情報で、元のコードのライセンスを見る→使う・出典を書く・消す、を決める。押さえどころ：GitHubのドキュメント（2026年10月13日時点）は、Copilotが提案を GitHub.com の公開リポジトリのコードと照らし、方針によって、一致した提案を止めるか、一致したコードの情報を添えて見せるとしている。非公開のリポジトリやGitHubの外のコードは照らす対象に含まれない。ふつう公開コードとの一致は提案の1％未満で起き、一致の情報は、元のコードの出どころとライセンスを見て、使うか・出典を示すか・取り除くかを決めるのに役立つとしている。混同しやすい点：生成されたコードの安全性（セキュリティ）とライセンスは別の確かめ。",
+    "links": [
+      { "id": "C-AP-02-051", "relation": "関連" },
+      { "id": "C-AP-05-052", "relation": "関連" },
+      { "id": "C-AP-05-039", "relation": "関連" },
+      { "id": "C-AP-05-053", "relation": "対比" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "GitHub Docs『GitHub Copilot in IDEs』", "url": "https://docs.github.com/en/copilot/concepts/copilot-surfaces/copilot-in-ides" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-055",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "コーディング・アプリ開発"],
+    "title": "テストで回すフィードバックループ",
+    "oneLine": "コードを書く→テストを実行する→失敗の結果を読んで直す→もう一度テストする、を繰り返して仕上げる進め方。結果がはっきり出るので、AIに自分で直させやすい。",
+    "why": "困りごと：AIが書いたコードが正しいかを、人が毎回読んで判断するのは手間がかかる。例：『認証の部分のテストを書いて、実行して、失敗したら直して』と頼むと、AIがテストを作り、実行し、失敗の表示を読んで直し、全部通るまで繰り返す。押さえどころ：Claude Codeのドキュメントは、テストの無いコードにテストを書くなどの作業の例として、テストを書き、実行し、失敗を直すよう頼む使い方を挙げている。Anthropicは、エージェントが進み具合を判断するには、道具の結果やコードの実行の結果のような、環境からの確かな手がかり（ground truth）を毎回得ることが大切だとし、コードの解決策は自動テストで確かめられるのでエージェントに向くとしている。Anthropicのプロンプトの手引きは、テストを消したり書き換えたりすることは、機能の抜けやバグにつながるので受け入れられない、とモデルに念を押す書き方を例に挙げている。混同しやすい点：テストが全部通っても、テストに書いていないことは確かめていない。",
+    "links": [
+      { "id": "C-AP-03-039", "relation": "基礎" },
+      { "id": "C-AP-05-049", "relation": "全体" },
+      { "id": "C-AP-05-051", "relation": "関連" },
+      { "id": "C-AP-05-052", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" },
+      { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
+      { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-056",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "定型業務の自動化"],
+    "title": "定型業務の自動化",
+    "oneLine": "毎日・毎週同じ手順でくり返す事務作業（集計・転記・通知・報告づくりなど）を、生成AIとほかの道具を組み合わせて自動で回すこと。手順が決まっているほど任せやすい。",
+    "why": "困りごと：同じ作業を毎回手で行うと時間がかかり、転記のミスも起きる。例：毎朝、①問い合わせのメールを分類する ②急ぎのものだけ担当者に通知する ③件数を表に記録する、を自動で回す。押さえどころ：OpenAIのChatGPTのヘルプ（2026年10月13日時点）は、1回きりや繰り返しの作業を予約して実行させ、変化を見張らせ、対応するアプリの出来事（メッセージの着信など）に応じて動かせるとしている。Claude Codeのドキュメント（同時点）は、繰り返しの作業を予約でき、クラウドで動く作業はパソコンを切っていても動き続けるとしている。Anthropicは、手順がはっきりした仕事には、手順を固定したワークフローが予測しやすさと一貫性を与えるとし、できるだけ単純な方法から始め、必要なときだけ複雑にするよう勧めている。混同しやすい点：自動で回すほど、まちがいも自動でくり返される。最初はAIの結果を人が確かめ、うまくいくと確かめられた部分から任せる範囲を広げる。",
+    "links": [
+      { "id": "C-AP-05-047", "relation": "関連" },
+      { "id": "C-AP-03-004", "relation": "関連" },
+      { "id": "C-AP-05-057", "relation": "関連" },
+      { "id": "C-AP-05-060", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI Help Center『Scheduled tasks in ChatGPT』", "url": "https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt" },
+      { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" },
+      { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-057",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "ブラウザ操作・Web上の手続きの自動化"],
+    "title": "ブラウザ操作・Web上の手続きの自動化",
+    "oneLine": "AIが人の代わりにWebブラウザを開き、画面を見て、クリック・入力・送信をして、Web上の手続きを進める使い方。ログインや支払いの情報の入力、注文や送信の確定の前には、人に操作や承認を戻す。",
+    "why": "困りごと：APIの無いWebサイトの手続きは、人が画面を操作するしかなかった。例：『来週の出張の宿を、会社の規定の金額以内で3件探して、予約の手前まで進めて』と頼み、最後の予約の確定は人が行う。押さえどころ：OpenAIは2025年1月23日に Operator を発表し、フォームの入力や食料品の注文など、くり返しのブラウザの作業を任せられるとした。ログインや支払いの情報を入れるときは利用者に操作を引き継ぎ（その間は入力を記録したり画面を撮ったりしない）、注文の確定やメールの送信など重要な操作の前には承認を求め、銀行の取引や、採用の判断のような重要な判断の要る作業は断るよう訓練したとしている。2025年7月17日の更新で、Operatorは ChatGPT agent に統合された。混同しやすい点：ブラウザ操作は画面を見て操作する方法なので、APIで直接つなぐのとは別のやり方。仕組みは第3章のブラウザ操作エージェント。",
+    "links": [
+      { "id": "C-AP-03-056", "relation": "基礎" },
+      { "id": "C-AP-05-060", "relation": "関連" },
+      { "id": "C-AP-03-008", "relation": "関連" },
+      { "id": "C-AP-05-056", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OpenAI『Introducing Operator』（2025年1月23日。2025年7月17日の更新を含む）", "url": "https://openai.com/index/introducing-operator/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-058",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "複数ツール・複数ステップを横断する複合タスクの自動化"],
+    "title": "MCPで複数のツールをつなぐ",
+    "oneLine": "AIを社内外のツールやデータ（文書・チケット・チャットなど）とつなぐ共通の決まり MCP を使って、複数のツールにまたがる仕事をAIに進めさせること。ツールごとに別々のつなぎ方を作らずに済む。",
+    "why": "名前：MCP は Model Context Protocol の略。意味は『モデルに文脈を渡すための通信の決まり』。困りごと：AIをツールにつなぐ方法がツールごとに違い、つなぐたびに作り直していた。例：『Google Driveの設計書を読み、Jiraのチケットを更新し、Slackに結果を知らせる』を、それぞれのMCPサーバーにつないだAIに頼む。押さえどころ：Anthropicは2024年11月25日、MCPを、AIの仕組みとデータの出どころをつなぐための、誰でも使える共通の決まり（オープンな標準）として発表し、ばらばらのつなぎ方を1つの決まりに置き換えるとした。Claude Codeのドキュメントは、MCPで、Google Driveの設計書を読む、Jiraのチケットを更新する、Slackからデータを取る、などができるとしている。混同しやすい点：MCPはつなぎ方の決まりで、何を許すかは別に決める。つないだツールに書き込みの権限まで与えると、誤りや悪意ある指示で被害が広がる（自動化に渡す権限の決め方）。仕組みは第3章。",
+    "links": [
+      { "id": "C-AP-03-042", "relation": "基礎" },
+      { "id": "C-AP-03-043", "relation": "関連" },
+      { "id": "C-AP-05-060", "relation": "関連" },
+      { "id": "C-AP-05-059", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-03-049", "point": "MCPは、AIとツール・データをつなぐ決まり。A2Aは、エージェントどうしがやり取りするための決まり。" }
+    ],
+    "sources": [
+      { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" },
+      { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-059",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "複数ツール・複数ステップを横断する複合タスクの自動化"],
+    "title": "タスク分解（複合タスクの分け方）",
+    "oneLine": "大きく複雑な仕事を、順番に処理できる小さな手順に分けてから、AIに1つずつ進めさせること。手順ごとに結果を確かめられるので、誤りを早く見つけられる。",
+    "why": "困りごと：『新商品の発売の準備を全部やって』のような大きな頼みを一度に任せると、途中で抜けや取り違えが起き、どこで間違えたか分からない。例：①競合の価格を調べる ②価格の案を3つ作る ③案ごとの利益を計算する ④人が案を選ぶ ⑤案内文を作る、に分け、③の後に計算を確かめる関門を置く。押さえどころ：Googleの手引きは、複雑なプロンプトでは、指示を1つずつ別のプロンプトに分ける、何段階もの仕事では各段階を1つのプロンプトにして前の答えを次の入力につなぐ（プロンプトの連鎖）、データの部分ごとに別の処理をして結果をまとめる、などを勧めている。Anthropicは、プロンプトの連鎖を、仕事を決まった手順の列に分け、途中の段階にプログラムでの確かめ（関門・ゲート）を置けるものとし、1回ごとの仕事を易しくして、時間と引き換えに正確さを上げる方法だとしている。混同しやすい点：タスク分解は仕事の分け方。分け方をAIが自分で決めるか、人が前もって決めておくかで、自律型とワークフロー型に分かれる（第3章）。",
+    "links": [
+      { "id": "C-AP-03-029", "relation": "基礎" },
+      { "id": "C-AP-03-004", "relation": "関連" },
+      { "id": "C-AP-05-058", "relation": "関連" },
+      { "id": "C-AP-05-060", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
+      { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-060",
+    "syllabus": ["生成AIの実践と活用事例", "開発・業務自動化での活用", "複数ツール・複数ステップを横断する複合タスクの自動化"],
+    "title": "自動化に渡す権限の決め方",
+    "oneLine": "自動化の仕組みやAIエージェントに、どのツールで何をしてよいか（読むだけか、書き換え・削除・送信もよいか）を、仕事に必要な最小限に決めること。影響の大きい操作の前には人の承認を挟む。",
+    "why": "困りごと：便利だからと広い権限を渡すと、AIのまちがいや、悪意ある指示（プロンプトインジェクション）で、データの削除や誤った送信が起きる。例：メールを要約するだけの自動化なら、読む機能だけを渡し、送信・削除の機能は渡さない。データベースから商品を調べるだけなら、商品の表を読む権限だけにする。押さえどころ：OWASPは、LLMが予期しない・あいまいな・操られた出力に応じて、害のある操作をしてしまう弱点を過剰な代理権（Excessive Agency）とし、根本の原因に、要らない機能・要らない権限・要らない自律性の3つを挙げている。対策として、使える拡張機能・その機能・権限を最小限にすることを挙げ、メールの要約なら読む機能だけで足りる例や、利用者の確認なしに文書の削除を行ってしまう例を挙げている。OpenAIのOperatorは、注文の確定やメールの送信などの重要な操作の前に承認を求めるとしている。混同しやすい点：権限を絞るのは、まちがったときの被害を小さくするため。考え方は第3章の最小権限の原則。",
+    "links": [
+      { "id": "C-AP-03-064", "relation": "基礎" },
+      { "id": "C-AP-03-045", "relation": "関連" },
+      { "id": "C-AP-03-060", "relation": "関連" },
+      { "id": "C-AP-03-062", "relation": "関連" },
+      { "id": "C-AP-05-057", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" },
+      { "title": "OpenAI『Introducing Operator』（2025年1月23日。2025年7月17日の更新を含む）", "url": "https://openai.com/index/introducing-operator/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-061",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "業種を問わず共通する成功のポイント"],
+    "title": "DX（デジタルトランスフォーメーション）",
+    "oneLine": "データとデジタル技術を使って、製品やサービス、仕事の進め方、組織や文化まで変え、競争で優位に立つこと。紙を電子にするだけでは、DXの段階には届かない。",
+    "why": "名前：DX は Digital Transformation の略。意味は『デジタルによる変革』。困りごと：ITを入れても、仕事のやり方が昔のままだと、効果が小さい。例（段階）：①紙の申込書をPDFにする（デジタイゼーション）→②申込みの手続きをWebで完結させる（デジタライゼーション）→③集まったデータで新しいサービスや事業の形を作る（DX）。押さえどころ：経済産業省のデジタルガバナンス・コード3.0（2024年9月19日改訂）は、DXを、企業がビジネス環境の激しい変化に対応し、データとデジタル技術を活用して、顧客や社会のニーズを基に、製品やサービス、ビジネスモデルを変革するとともに、業務そのものや、組織、プロセス、企業文化・風土を変革し、競争上の優位性を確立すること、と定義している。経済産業省の検討会の資料（2026年6月1日）は、DXの段階を、デジタイゼーション（アナログ・物理のデータのデジタル化）→デジタライゼーション（個別の業務・プロセスのデジタル化）→DX（全社の業務・プロセスのデジタル化と、事業・ビジネスモデルの変革）と整理している。混同しやすい点：DXは道具の導入ではなく変革。AXは、その考え方を生成AIを前提に置き直したもの。",
+    "links": [
+      { "id": "C-AP-05-062", "relation": "発展形" },
+      { "id": "C-AP-05-070", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "経済産業省『デジタルガバナンス・コード3.0 〜DX経営による企業価値向上に向けて〜』（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" },
+      { "title": "経済産業省『第2回 AX時代におけるスキルのあり方検討WG』資料（2026年6月1日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/society_digital/ax_skill/pdf/002_02_00.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-062",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "業種を問わず共通する成功のポイント"],
+    "title": "AX（AIトランスフォーメーション）",
+    "oneLine": "生成AIを使う前提で仕事のやり方を設計し直し、業務・組織・文化まで変えて、競争で優位に立つこと。いまの手順のまま一部の作業をAIに置き換えるだけでは、AXとは言わない。",
+    "why": "名前：AX は AI Transformation の略。意味は『AIによる変革』。困りごと：議事録づくりなど個々の作業をAIに置き換えても、仕事の流れや役割分担が昔のままだと、効果は一部にとどまる。例（経済産業省の資料の段階のイメージ）：①いまの業務の手順のまま、議事録づくりを対話型の生成AIに頼む→②個人が自分に合ったAIエージェントを作って使う→③自律的に動くAIエージェントで業務を見直して標準化し、AIと人の業務の分担を設計して組織を見直す。押さえどころ：経済産業省の『AX時代におけるスキルのあり方検討WG』の資料（2026年6月1日）は、AXの定義の案（事務局案）として、生成AIの特性を理解し、データや生成AIを活用して、製品やサービス、ビジネスモデルを変革するとともに、各企業のコアバリューを踏まえて、生成AI活用前提で業務をデザインし、業務そのものや、組織、プロセス、企業文化・風土を変革し、競争上の優位性を確立すること、を示した。また、AIは導入すればすべてうまくいく魔法ではなく、技術の導入だけでなく、とくに組織の適応が課題だとしている。混同しやすい点：AXの定義は、2026年10月13日時点では検討会の事務局案で、確定した公式の定義ではない。DXの定義（デジタルガバナンス・コード）を参考にしている。",
+    "links": [
+      { "id": "C-AP-05-061", "relation": "対比" },
+      { "id": "C-AP-05-070", "relation": "関連" },
+      { "id": "C-AP-03-058", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-061", "point": "DXは、データとデジタル技術を使った変革。AXは、生成AIを使う前提で業務を設計し直す変革（経済産業省の検討会の事務局案）。" }
+    ],
+    "sources": [
+      { "title": "経済産業省『第2回 AX時代におけるスキルのあり方検討WG』資料（2026年6月1日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/society_digital/ax_skill/pdf/002_02_00.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-063",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "規制・機密性が重視される業種"],
+    "title": "規制・機密性が重視される業種での活用",
+    "oneLine": "金融・医療・法務・行政のように、法令の決まりが厳しく機密情報を多く扱う業種では、情報が外に出ない環境でAIを使い、資格を持つ人の判断をAIに置き換えず、支える形で使う。",
+    "why": "困りごと：顧客の資産・病歴・法的な争いなどの情報は、漏れると被害が大きく、判断の誤りは人の生活に直結する。例：①銀行が自社専用の環境で社内向けのAIを動かす ②医師が処方の案をAIに複数出させ、自分で選ぶ ③弁護士がAIの契約書の審査の結果をもとに自ら精査する。押さえどころ：三井住友フィナンシャルグループ・日本総研・NECは2023年4月11日、Microsoft Azure上のSMBCグループ専用の環境で、情報が社外に流出しない試作のAIアシスタントを作り、社内の従業員だけが使えるとした。デジタル庁のガイドブック（2024年6月10日）は、症状の記述からAIに薬を推定させ処方箋を自動で発行するのは、医師法や歯科医師法に違反する不適切な例だとし、処方箋の原案をいくつかAIが医師に示し、医師が選ぶ形で支える方法を挙げている。法務省の令和5年8月のガイドラインは、弁護士がサービスの結果も踏まえて契約書を自ら精査し、必要に応じて自ら直す方法で使う場合は、通常、弁護士法第72条に違反しないとしている。混同しやすい点：規制の厳しい業種でAIを使ってはいけないのではない。使い方（環境・役割・確かめ方）を決めて使う。",
+    "links": [
+      { "id": "C-AP-05-064", "relation": "部分" },
+      { "id": "C-AP-05-065", "relation": "部分" },
+      { "id": "C-AP-05-045", "relation": "関連" },
+      { "id": "C-AP-05-069", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "NEC『SMBCグループの専用環境におけるAIアシスタントツール「SMBC-GPT」の実証実験の開始について』（2023年4月11日。三井住友フィナンシャルグループ・日本総合研究所・NECの共同発表）", "url": "https://jpn.nec.com/press/202304/20230411_02.html" },
+      { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" },
+      { "title": "法務省『AI等を用いた契約書等関連業務支援サービスの提供と弁護士法第72条との関係について』（令和5年8月）", "url": "https://www.moj.go.jp/content/001400675.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-064",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "規制・機密性が重視される業種"],
+    "title": "機密情報の扱い（入力してよい情報の線引き）",
+    "oneLine": "社外秘の計画・顧客の情報・未発表の数字など、外に出てはいけない情報を、どの生成AIサービスに入れてよいか、入れてはいけないかを決めて守ること。入力が学習に使われない設定や、専用の環境を選ぶ。",
+    "why": "困りごと：便利だからと、社外秘の資料を個人の判断で一般向けのAIサービスに貼ると、入力が学習に使われ、意図せず他の人への答えとして出てしまうおそれがある。例：①会社が認めたサービス（専用の環境・学習に使わない契約）にだけ入れてよい ②一般向けのサービスには、公開済みの情報だけ ③迷うものは、名前や数字を伏せてから使う、という線を決める。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、AIに入力した機密情報などが学習され、意図せず他者への回答として出力されるなど、第三者への情報漏えいのリスクがあるとし、入力データが学習に使われない設定（オプトアウト）を行うよう求めている。SMBCグループのAIアシスタントは、専用の環境で、情報が社外に流出しない形で作られた。パナソニック コネクトは、全社でのAI利用の3つの目標の1つに、シャドーAI（会社が認めていないAIを社員が使うこと）の利用のリスクを減らすことを挙げている。混同しやすい点：機密情報には、個人情報でない会社の秘密も含まれる。個人情報保護法の決まりとは別に、会社のルールで守る。",
+    "links": [
+      { "id": "C-AP-05-048", "relation": "関連" },
+      { "id": "C-AP-05-063", "relation": "全体" },
+      { "id": "C-AP-05-069", "relation": "関連" },
+      { "id": "C-AP-03-063", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "NEC『SMBCグループの専用環境におけるAIアシスタントツール「SMBC-GPT」の実証実験の開始について』（2023年4月11日。三井住友フィナンシャルグループ・日本総合研究所・NECの共同発表）", "url": "https://jpn.nec.com/press/202304/20230411_02.html" },
+      { "title": "パナソニック コネクト『AI活用で総労働時間の3.4％削減 AIエージェントの活用を拡大し2030年に10％削減を目指す』（2026年7月29日）", "url": "https://news.panasonic.com/jp/press/jn260729-1" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-065",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "規制・機密性が重視される業種"],
+    "title": "専門家による確認",
+    "oneLine": "医療・法律・税務などの専門の内容をAIが作ったときは、その分野の資格や知識を持つ人が中身を確かめ、最後の判断をすること。AIは案を出して支え、判断と責任は専門家に残す。",
+    "why": "困りごと：AIの答えは専門家らしい言い方でも、根拠が誤っていることがあり、資格の要る仕事は法律で決まっている。例：契約書の審査なら、AIが危ない条項に印を付け、弁護士が自ら読んで直す。医療なら、AIが処方の案をいくつか示し、医師が選ぶ。押さえどころ：デジタル庁のガイドブック（2024年6月10日）は、特定の資格を必要とする作業であることが法令に定められている場合にAIを使うのは不適切になりうるとし、資格を持つ人をAIで代えることはできないが、支える方法は考えられるとしている。弁護士法第72条は、弁護士でない者が報酬を得る目的で法律事件に関して法律事務を取り扱うことを業とすることを禁じている。法務省の令和5年8月のガイドラインは、弁護士がサービスの結果も踏まえて契約書を自ら精査し、必要に応じて自ら直す方法で使う場合は、通常、同条に違反しないとした。法務省は令和8年8月21日、この内容を補い広げる新しいガイドラインを公表した。混同しやすい点：『あなたは医師です』とAIに役割を与えること（役割設定）は、専門家による確認の代わりにならない。",
+    "links": [
+      { "id": "C-AP-05-009", "relation": "対比" },
+      { "id": "C-AP-05-063", "relation": "全体" },
+      { "id": "C-AP-03-008", "relation": "関連" },
+      { "id": "C-AP-05-013", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-009", "point": "役割設定は、AIに専門家らしい立場で答えさせる頼み方。専門家による確認は、本物の資格や知識を持つ人が中身を確かめて判断すること。" }
+    ],
+    "sources": [
+      { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" },
+      { "title": "e-Gov法令検索 弁護士法（昭和二十四年法律第二百五号）第七十二条", "url": "https://laws.e-gov.go.jp/law/324AC1000000205" },
+      { "title": "法務省『AI等を用いた契約書等関連業務支援サービスの提供と弁護士法第72条との関係について』（令和5年8月）", "url": "https://www.moj.go.jp/content/001400675.pdf" },
+      { "title": "法務省『AI等法務業務支援サービス提供と弁護士法第72条の関係に係るガイドライン等の公表について』", "url": "https://www.moj.go.jp/housei/shihouseido/housei10_00134.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-066",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "現場・ものづくりを支える業種"],
+    "title": "現場・ものづくりでの活用と安全性",
+    "oneLine": "製造・建設・物流などの現場で、図面や仕様書の照合、手順書づくり、記録の整理などにAIを使うこと。誤りが人のけがや事故、製品の不良につながりうるので、人が確かめ、介入できる形にする（安全性）。",
+    "why": "困りごと：図面と仕様書が食い違っていないかを人が目で見比べる作業は時間がかかり、見落としが後の工程の手戻りや製品の回収につながる。例：パナソニック コネクトの例のように、AIが複数のPDFの図面から材質・仕上げなどを抜き出して照らし、結果を一覧で示し、担当者が確かめる。押さえどころ：パナソニック コネクトは2026年2月19日、図面と設計仕様を照合する『Manufacturing AIエージェント』の社内展開を発表し、目視で50〜340分かかっていた照合を10分に短くした（80〜97％削減）とし、AIが自動で照合して担当者の確認作業を支える半自動の形だとした。東京都のAI導入・活用ガイドライン（令和8年3月）は、安全性を、AIの誤作動や意図しない動作により、人間の生命・身体・財産・精神・環境への危害を加えないようにすることとし、危害の可能性がある場面では、人が適切に介入できるよう、見守り（モニタリング）と対処の仕組みを前もって決めるよう求めている。混同しやすい点：安全性は危害を防ぐ観点。公平性（扱いの偏りを防ぐ観点）とは別。",
+    "links": [
+      { "id": "C-AP-03-008", "relation": "関連" },
+      { "id": "C-AP-05-063", "relation": "対比" },
+      { "id": "C-AP-05-067", "relation": "対比" },
+      { "id": "C-AP-05-068", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "C-AP-05-068", "point": "安全性は、AIの誤作動で生命・身体・財産などに危害を加えないようにすること。公平性は、AIの偏りで特定の人や集団が不当な扱いを受けないようにすること。" }
+    ],
+    "sources": [
+      { "title": "パナソニック コネクト『図面／設計仕様の照合業務で独自開発のManufacturing AIエージェントの利用を開始』（2026年2月19日）", "url": "https://news.panasonic.com/jp/press/jn260219-1" },
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-067",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "顧客接点・コンテンツ制作の業種"],
+    "title": "顧客接点・コンテンツ制作の業種での活用",
+    "oneLine": "小売・サービス・広告・ゲーム・アニメなど、顧客と接したり作品を作ったりする業種で、問い合わせへの対応・多言語の案内・広告の素材・作品の制作にAIを使うこと。公平さと権利への配慮が要る。",
+    "why": "困りごと：問い合わせの数や、作る素材の量が多く、人手が足りない。例：①Webの問い合わせにAIのチャットで24時間答え、難しいものは人に引き継ぐ ②店の案内を多言語に訳す ③広告の画像の案を何通りも作る ④ゲームの背景の下絵をAIで作り、人が仕上げる。押さえどころ：経済産業省は2024年7月5日、ゲーム・アニメ・広告の各産業での生成AIの利活用の例を調べて整理し、利活用の際の法的な留意点と対応策をまとめた『コンテンツ制作のための生成AI利活用ガイドブック』を公表した。東京都のAI導入・活用ガイドライン（令和8年3月）は、都民からの質問に24時間自動で答えるチャットボットや、ホームページの多言語AI翻訳を例に挙げ、AIの多言語翻訳では、特定の言語で精度や情報量が著しく劣らないよう製品を選ぶこと（公平性）を求めている。混同しやすい点：顧客に直接出る答えは、誤りがそのまま顧客に届く。人に引き継ぐ道を用意する。",
+    "links": [
+      { "id": "C-AP-05-068", "relation": "関連" },
+      { "id": "C-AP-05-037", "relation": "関連" },
+      { "id": "C-AP-05-022", "relation": "関連" },
+      { "id": "C-AP-05-028", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "経済産業省『「コンテンツ制作のための生成AI利活用ガイドブック」を公表しました』（2024年7月5日）", "url": "https://www.meti.go.jp/policy/mono_info_service/contents/aiguidebook.html" },
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-068",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "顧客接点・コンテンツ制作の業種"],
+    "title": "公平性",
+    "oneLine": "AIの偏り（バイアス）のせいで、特定の人や集団が不当に差別されたり、不利益を受けたりしないようにすること。人に関わる判断では、最後の判断を人が行う。",
+    "why": "困りごと：AIは学習データの偏りを引き継ぐので、言語・性別・年代などで、扱いに差が出ることがある。例（説明のための例）：①多言語の案内で、ある言語だけ訳の質が低い ②書類の選考で、特定の属性の人の評価が低く出る ③問い合わせの対応で、言葉づかいによって案内の質が変わる。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、公平性を、AIモデルに含まれるバイアス（偏見）によって、特定の個人や集団が不当な差別を受けたり、不利益を被ったりしないようにすることとしている。対応の方向として、回避できないバイアスがあることを認識し、許容できるかを評価した上で利活用を判断すること、バイアスの要因は多岐にわたるので、公平性を損なうおそれのある要因を特定すること、最終判断や出力結果の分析など、適切なタイミングで必ず人を介在させること、都民サービスの提供に関する判断が伴う場合には、最終判断は人が必ず行うことを挙げている。混同しやすい点：公平性は扱いの偏りの問題。事実の正しさ（ハルシネーション）や、危害を防ぐ安全性とは別の観点。",
+    "links": [
+      { "id": "C-AP-05-026", "relation": "関連" },
+      { "id": "C-AP-02-027", "relation": "関連" },
+      { "id": "C-AP-05-067", "relation": "関連" },
+      { "id": "C-AP-05-066", "relation": "対比" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-069",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "業種を問わず共通する成功のポイント"],
+    "title": "ツールの選定",
+    "oneLine": "業務に使う生成AIのサービスを、目的・安全（入力の扱い）・費用・性能・利用規約を比べて選ぶこと。まず会社が認めた共通のツールで足りるかを考え、足りないときに比べて選ぶ。",
+    "why": "困りごと：サービスは数が多く、入力の扱い・出力の扱い・費用・得意なことがそれぞれ違う。例：比べる表を作る：①入力が学習に使われないか（設定・契約）②データの保存場所 ③利用規約（出力の権利・禁止事項）④費用 ⑤業務の例で試した答えの質 ⑥社内の既存の道具とつながるか。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、導入の速さ・費用・セキュリティなどの観点から、都が提供する生成AIの共通ツールの活用を考え、業務の性質上ほかのAIの方が高い効果が見込める場合は、費用・セキュリティ・性能などの観点から複数のAIを比べた上で選ぶとしている。個人情報保護委員会の注意喚起（令和5年6月2日）は、利用規約やプライバシーポリシーなどを十分に確認して判断するよう求め、事業者には、提供者が機械学習に使わないことなどを確かめるよう求めている。経済産業省は、コンテンツ制作のガイドブックを、利用する生成AIサービスの選択にも役立てるよう案内している。混同しやすい点：いちばん賢いモデルが、いちばん良い選択とは限らない。用途に合う安全と費用の釣り合いで選ぶ。",
+    "links": [
+      { "id": "C-AP-05-039", "relation": "関連" },
+      { "id": "C-AP-05-064", "relation": "関連" },
+      { "id": "C-AP-05-070", "relation": "関連" },
+      { "id": "C-AP-05-048", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日、別添1）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
+      { "title": "経済産業省『「コンテンツ制作のための生成AI利活用ガイドブック」を公表しました』（2024年7月5日）", "url": "https://www.meti.go.jp/policy/mono_info_service/contents/aiguidebook.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-05-070",
+    "syllabus": ["生成AIの実践と活用事例", "業種別に見る生成AI活用", "業種を問わず共通する成功のポイント"],
+    "title": "業種を問わず共通する成功のポイント",
+    "oneLine": "生成AIの活用がうまくいく組織に共通するのは、AIで何を実現したいか（目的）を先に決め、小さく始めて効果を数字で測り、人が確かめる仕組みとルールを整えてから広げていくこと。",
+    "why": "困りごと：『AIを入れること』自体が目的になると、使われない・効果が分からない・事故が起きる、のどれかになりやすい。例：①目的を決める（議事録の作業時間を半分に）②1つの部署で試す ③かかった時間を前後で比べる ④うまくいったやり方とルールを文書にして他の部署へ広げる。押さえどころ：東京都のAI導入・活用ガイドライン（令和8年3月）は、AIの導入自体が目的とならないよう、AIによって何を実現したいのか（職員の手取り時間の増加など）を明確にするよう求めている。パナソニック コネクトは、業務生産性の向上・社員のAIスキルの向上・シャドーAI利用のリスクの軽減の3つの目標を掲げて全社で使い始め、2025年度は利用回数361万回・削減時間78.8万時間・1回あたり33分の削減と、効果を数字で示している（2026年7月29日発表）。Anthropicも、できるだけ単純な方法から始め、必要なときだけ複雑にするよう勧めている。混同しやすい点：効果の数字は、各社の測り方で変わる。他社の数字をそのまま自社の見込みにしない。",
+    "links": [
+      { "id": "C-AP-05-062", "relation": "関連" },
+      { "id": "C-AP-05-061", "relation": "関連" },
+      { "id": "C-AP-05-069", "relation": "関連" },
+      { "id": "C-AP-05-066", "relation": "関連" }
+    ],
+    "confusions": [],
+    "sources": [
+      { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
+      { "title": "パナソニック コネクト『AI活用で総労働時間の3.4％削減 AIエージェントの活用を拡大し2030年に10％削減を目指す』（2026年7月29日）", "url": "https://news.panasonic.com/jp/press/jn260729-1" },
+      { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
+    ],
+    "status": "verified"
+  }
+]
