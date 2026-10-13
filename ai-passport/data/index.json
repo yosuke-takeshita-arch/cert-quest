@@ -1,9 +1,11 @@
 {
   "syllabus": "syllabus.json",
   "questions": [
-    "questions/01_ai-basics-history.json"
+    "questions/01_ai-basics-history.json",
+    "questions/02_generative-ai.json"
   ],
   "concepts": [
-    "concepts/01_ai-basics-history.json"
+    "concepts/01_ai-basics-history.json",
+    "concepts/02_generative-ai.json"
   ]
 }

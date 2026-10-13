@@ -1,0 +1,3682 @@
+[
+  {
+    "id": "AP-02-001",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "2017年の論文『Attention Is All You Need』でTransformerが発表されたとき、その性能を示すために使われた仕事として適切なものを１つ選びなさい。",
+    "stemPlain": "Transformerというモデルが初めて発表されたとき、何の仕事で『これだけ良くなった』と示したかを選ぶ問題。",
+    "choices": [
+      "写真に写った物の種類を当てる画像の分類",
+      "英語の文を別の言語の文に訳す機械翻訳",
+      "録音された会話を文字に起こす音声の認識",
+      "囲碁や将棋で次の一手を選ぶゲームの対戦"
+    ],
+    "answer": 1,
+    "explanation": "原論文は、英語からドイツ語、英語からフランス語の2つの機械翻訳の仕事で実験し、当時の最高水準の成績を出したと報告している。Transformer（『変換するもの』）という名前も、ある言語の文を別の言語の文に変換する用途から来ている。その後、同じ仕組みが文章の生成や画像など、ほかの分野にも広がった。",
+    "whyWrong": [
+      "画像の分類は、主にCNN（画像の上で小さなフィルタをずらして模様を拾うモデル）が得意としてきた仕事。Transformerは後に画像にも使われたが、発表の論文で示したのは翻訳。",
+      null,
+      "音声の認識は、録音を文字に変える仕事。原論文では扱っていない。",
+      "囲碁や将棋の対戦は、主に強化学習（行動の結果の点数から学ぶ方法）と探索で取り組まれてきた仕事。原論文の実験には含まれない。"
+    ],
+    "memoryTip": "Transformer＝変換器。最初の腕試しは『英語→ドイツ語・フランス語』の翻訳。",
+    "concepts": ["C-AP-02-001", "C-AP-02-002"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-002",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "Transformerについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "Transformer（いまの生成AIの土台になったモデル）について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "文章を作るときも、出力する文の全部の語を一度にまとめて決めて出す",
+      "再帰も畳み込みも使わず、Attentionの仕組みを中心に組み立てられている",
+      "もとの形は、入力を読むエンコーダと、出力を作るデコーダの組でできている",
+      "語の順番の情報は、位置を表す情報を入力に足すことで伝えている"
+    ],
+    "answer": 0,
+    "explanation": "Transformerが並列に計算できるのは、学習のときの、文の中の語どうしの関係の計算。文章を作るときは、デコーダが、ここまでに出した語を見て次の語を出すことを繰り返すので、1語（1トークン）ずつ順に出す。原論文も、デコーダが先の位置を見ないようにマスクし、自己回帰（前に出したものを使って次を出す）の性質を保つとしている。",
+    "whyWrong": [
+      null,
+      "適切。原論文は、再帰（RNN）や畳み込み（CNN）を使わず、Attentionの仕組みだけに基づくモデルとして発表した。",
+      "適切。原論文の Transformer は、入力を読むエンコーダと、出力を作るデコーダを、それぞれ6層ずつ重ねた組の形。",
+      "適切。Transformerには順に読む仕組みが無いので、語の位置を表す情報（位置エンコーディング）を入力に足して、順番を伝える。"
+    ],
+    "memoryTip": "学習は『一度に』、文章づくりは『1語ずつ』。",
+    "concepts": ["C-AP-02-001", "C-AP-02-005", "C-AP-02-007"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-003",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "自然言語処理の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "『自然言語処理』という分野が何をするものかを選ぶ問題。",
+    "choices": [
+      "人が日常で使うことばの文章や話しことばを、コンピュータで扱う技術の分野",
+      "プログラミング言語で書かれた命令を、コンピュータが実行できる形に変える技術",
+      "画像や映像から、写っている物や人を見つけ出して名前を付ける技術の分野",
+      "文章・画像・音声のような複数の種類のデータを、1つのモデルで扱う技術"
+    ],
+    "answer": 0,
+    "explanation": "自然言語は、人が自然に使う日本語や英語などのことば。自然言語処理は、それをコンピュータに扱わせる分野で、翻訳・要約・質問応答・文の分類などを含む。Googleの用語集は、いまの自然言語処理はほとんどが機械学習に頼っていると書いている。",
+    "whyWrong": [
+      null,
+      "これは、プログラムを機械が実行できる形に変える処理（コンパイルなど）の説明。プログラミング言語は人が作った人工の言語で、自然言語ではない。",
+      "これは、コンピュータビジョン（画像や映像を扱う分野）の説明。扱うのは画像で、ことばではない。",
+      "これはマルチモーダル（複数の種類のデータを扱えること）の説明。自然言語処理は、ことば（テキストや話しことば）を扱う分野の名前。"
+    ],
+    "memoryTip": "自然言語＝人のことば。プログラミング言語は『人工』の言語。",
+    "concepts": ["C-AP-02-002"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（natural language processing）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-004",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "not",
+    "difficulty": 1,
+    "stem": "自然言語処理の仕事の例として不適切なものを１つ選びなさい。",
+    "stemPlain": "ことば（文章や話しことば）を扱う仕事の例のうち、ことばを扱っていないものを1つ選ぶ問題。",
+    "choices": [
+      "日本語で届いた問い合わせのメールを、英語に訳して海外の担当者に回す",
+      "2時間の会議の議事録を読み込んで、決まったことを3行にまとめる",
+      "工場の機械の振動を測った数値から、故障の前ぶれを見つけて知らせる",
+      "お客様の書き込みの文が、苦情なのか質問なのかを見分けて振り分ける"
+    ],
+    "answer": 2,
+    "explanation": "機械の振動の数値は、ことばではなくセンサーの測定値。そこから故障の前ぶれを見つけるのは、数値のデータの分析で、自然言語処理には当たらない。ほかの3つは、翻訳・要約・文の分類で、どれも人のことばを扱う自然言語処理の仕事。",
+    "whyWrong": [
+      "適切。ある言語の文を別の言語の文に変える機械翻訳は、自然言語処理の代表的な仕事。Transformerも翻訳の研究から生まれた。",
+      "適切。長い文章を短くまとめる要約は、自然言語処理の仕事。",
+      null,
+      "適切。文の内容から種類を見分けるのは、文の分類で、自然言語処理の仕事。"
+    ],
+    "memoryTip": "自然言語処理かどうかは『入力がことばか』で決める。センサーの数値はことばではない。",
+    "concepts": ["C-AP-02-002"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（natural language processing）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-005",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "『そのロボットは箱を持ち上げられなかった。それが重すぎたからだ。』という文を処理するとき、『それ』の表現を作るために、同じ文のすべての語との関係の強さを計算し、その重みで各語の情報を混ぜ合わせる仕組みを１つ選びなさい。",
+    "stemPlain": "文の中の『それ』が何を指すかを決めるために、同じ文のほかの語との関係の強さを計算する仕組みの名前を選ぶ問題。",
+    "choices": [
+      "畳み込み（Convolution）",
+      "長距離依存（Long-range Dependency）",
+      "Self-Attention（自己注意機構）",
+      "並列処理（Parallel Processing）"
+    ],
+    "answer": 2,
+    "explanation": "同じ文の中で、各語がほかのどの語とどれだけ関係が深いかを計算し、その重みで情報を混ぜるのが Self-Attention。この文では、『それ』と『箱』の関係が強く計算されれば、『それ』の表現に『箱』の意味が多く入る。Googleの用語集も、self-attention の層は、各語について文の全部の要素との関係の強さを点数にし、その点数でほかの語の表現をどれだけ取り込むかを決めると説明している。",
+    "whyWrong": [
+      "畳み込みは、画像の上で小さなフィルタ（重みの組）をずらしながら掛け合わせ、近くの画素の模様を拾う計算。近くの範囲しか一度に見ず、文の全部の語との関係を重みで混ぜる仕組みではない。",
+      "長距離依存は、離れた語どうしが意味の上でつながっていること、という課題の名前。この文の『それ』と『箱』の関係はその例だが、関係を計算する仕組みの名前ではない。",
+      null,
+      "並列処理は、たくさんの計算を順番を待たずに同時に進めること。Self-Attentionは並列処理しやすいが、並列処理そのものは語どうしの関係を計算する仕組みではない。"
+    ],
+    "memoryTip": "Self-Attention＝同じ文の中で『誰が誰を見るか』を重みで決める。",
+    "concepts": ["C-AP-02-003", "C-AP-02-006"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（self-attention）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-006",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "Self-Attentionの計算について、次の文の（ア）（イ）（ウ）に入る語の組み合わせとして適切なものを１つ選びなさい。『ある語の（ア）と、文の各語の（イ）を照らし合わせて合い具合の重みを出し、その重みで各語の（ウ）を混ぜ合わせて、その語の新しい表現を作る。』",
+    "stemPlain": "Self-Attentionで使う3種類のベクトル（数の並び）が、それぞれどの役をするかの組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）Key　（イ）Query　（ウ）Value",
+      "（ア）Query　（イ）Key　（ウ）Value",
+      "（ア）Query　（イ）Value　（ウ）Key",
+      "（ア）エンコーダ　（イ）デコーダ　（ウ）Value"
+    ],
+    "answer": 1,
+    "explanation": "原論文は、Attentionを、Queryと、KeyとValueの組の集まりから出力を作る仕組みとし、出力はValueの重み付きの和で、それぞれの重みはQueryと対応するKeyとの合い具合から計算すると説明している。図書館にたとえると、探したいこと（Query）を本の見出し（Key）と照らし合わせ、合った本の中身（Value）を読む。",
+    "whyWrong": [
+      "QueryとKeyが逆。Queryは『いま表現を作ろうとしている語が、何を探しているか』を表す側で、Keyは『ほかの各語が、何についての語か』を示す見出しの側。",
+      null,
+      "KeyとValueが逆。Valueは混ぜ合わせる中身で、照らし合わせに使うのはKey。",
+      "エンコーダとデコーダは、Transformerの大きな部品（入力を読む側と出力を作る側）の名前。Self-Attentionの中で重みを決めるために照らし合わせるベクトルではない。"
+    ],
+    "memoryTip": "Q＝探しもの、K＝見出し、V＝中身。QとKで重みを決め、Vを混ぜる。",
+    "concepts": ["C-AP-02-004", "C-AP-02-003"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
+      { "title": "Google for Developers: Machine Learning Glossary（self-attention）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-007",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Self-Attentionで使う Value の役割として適切なものを１つ選びなさい。",
+    "stemPlain": "Self-Attentionで使う3種類のベクトルのうち、Value が何の役をするかを選ぶ問題。",
+    "choices": [
+      "ほかの語に対して『自分は何を探しているか』を表す、問い合わせの役",
+      "ほかの語から探されるときに照らし合わされる、見出しの役",
+      "語が文の何番目にあるかを伝える、位置を表す情報の役",
+      "重みを掛けて混ぜ合わせる、各語が相手に渡す中身の役"
+    ],
+    "answer": 3,
+    "explanation": "Valueは、各語が相手に渡す中身。QueryとKeyの合い具合で決まった重みを、各語のValueに掛けて足し合わせたものが、新しい表現になる。原論文も、出力をValueの重み付きの和としている。",
+    "whyWrong": [
+      "これはQueryの役。いま表現を作ろうとしている語の側が持ち、ほかの語のKeyと照らし合わせる。",
+      "これはKeyの役。Queryと照らし合わせて合い具合（重み）を出すためだけに使い、混ぜ合わせる中身ではない。",
+      "これは位置エンコーディング（語の位置を表す情報）の役。Transformerには順に読む仕組みが無いので、入力に足して順番を伝える。Valueとは別のもの。",
+      null
+    ],
+    "memoryTip": "重みを決めるのはQとK、混ぜられるのはV。",
+    "concepts": ["C-AP-02-004"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-008",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "100語の文を処理するとき、前の計算が終わるのを待って順に行う必要がある計算の段の数について、RNNの層とSelf-Attentionの層を比べた説明として適切なものを１つ選びなさい。",
+    "stemPlain": "100語の文を計算するとき、『順番待ちをしなければならない段』がいくつあるかを、RNNとTransformerの中心の部品で比べる問題。",
+    "choices": [
+      "RNNは100段を1つずつ順に行い、Self-Attentionは文の長さによらず一定の段で済む",
+      "RNNは文の長さによらず一定の段で済み、Self-Attentionは100段を1つずつ順に行う",
+      "どちらも100語を1語ずつ読むので、同じように100段を1つずつ順に行う必要がある",
+      "どちらも文の長さによらず一定の段で済み、順番待ちの数に違いは生まれない"
+    ],
+    "answer": 0,
+    "explanation": "RNNは、t番目の語の計算に t−1番目の結果が要るので、100語なら100段を順に行う。Self-Attentionは、100語どうしの関係をまとめて計算できるので、順番待ちの段は文の長さによらず一定。原論文の表も、順に行う必要のある操作の数を、再帰の層では文の長さnに比例（O(n)）、Self-Attentionの層では一定（O(1)）としている。この違いが、GPUで並列に計算でき、学習が速くなる理由。",
+    "whyWrong": [
+      null,
+      "向きが逆。前の語の結果を待つのはRNNの側で、Self-Attentionは全部の語の関係をまとめて計算する。",
+      "Self-Attentionは1語ずつ読まない。文の全部の語の関係をまとめて計算するので、順番待ちは100段にならない。",
+      "RNNは前の語の結果を待ってから次の語を計算するので、段の数は文の長さに比例して増える。違いが無いわけではない。"
+    ],
+    "memoryTip": "RNN＝行列に並んで1人ずつ、Self-Attention＝全員いっせいに。",
+    "concepts": ["C-AP-02-005", "C-AP-01-040"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-009",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "並列処理とTransformerの関係について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "たくさんの計算を同時に進める『並列処理』と、Transformerの関係について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "並列に計算できるので、学習に使う文章の量が少なくても高い性能が出る",
+      "RNNは前の語の計算を待ってから次に進むので、学習を並列にしにくい",
+      "GPUは多くの計算を同時に行うのが得意で、Transformerの学習と相性がよい",
+      "白書は、GPUの進化による計算資源の拡充を、生成AIブームの背景に挙げている"
+    ],
+    "answer": 0,
+    "explanation": "並列処理で速くなるのは、同じ量のデータを学習する時間。必要な文章の量が減るわけではない。むしろ、速く学習できるようになったことで、より大量の文章とより大きなモデルで学習できるようになった。少ないデータで性能が出る、という目的のすり替えなので不適切。",
+    "whyWrong": [
+      null,
+      "適切。RNNは t番目の語の計算に t−1番目の結果が要るので、文の中の計算を同時に進められない。",
+      "適切。令和6年版情報通信白書は、GPUを、高い並列処理能力を持ち、深層学習のような大規模な計算に適する装置と説明している。",
+      "適切。白書は、クラウドの発展やGPUの進化による計算資源の拡充を、生成AIブームの要因の1つに挙げている。"
+    ],
+    "memoryTip": "並列処理で減るのは『時間』。減ったぶんで、データとモデルを大きくした。",
+    "concepts": ["C-AP-02-005", "C-AP-02-001"],
+    "sources": [
+      { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" },
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-010",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "自然言語処理でいう『長距離依存』の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "『長距離依存』という言葉が、文章のどんな性質を指すかを選ぶ問題。",
+    "choices": [
+      "文の中で離れた位置にある語どうしが、意味の上でつながっていること",
+      "文が長くなるほど、学習や計算に使う量が大きく増えていくこと",
+      "学習データの中で、同じ文が何度も繰り返し出てくること",
+      "モデルが学習用データに頼りすぎて、新しいデータに弱くなること"
+    ],
+    "answer": 0,
+    "explanation": "長距離依存は、離れた位置の語どうしが意味の上でつながっていること（英語で long-range dependency）。例えば『先週、駅前で買ったケーキは、とてもおいしかった。』の『ケーキ』と『おいしかった』。原論文は、これを学ぶことを、文を別の文に変える多くの仕事の主要な課題とし、離れた2つの位置を結ぶ経路が短いほど学びやすいとしている。",
+    "whyWrong": [
+      null,
+      "文が長いほど計算が増えるのは、計算の量（コスト）の話。Self-Attentionでは文の長さの2乗に比例して計算が増えるが、語どうしの意味のつながりを指す長距離依存とは別のこと。",
+      "同じ文の繰り返しは、学習データの重複の話。GPT-3の論文では、重複を取り除いてデータの質を上げている。語どうしのつながりではない。",
+      "これは過学習（学習用データに合わせすぎた状態）の説明。長距離依存とは関係が無い。"
+    ],
+    "memoryTip": "長距離依存＝『遠くの語とつながっている』。課題の名前で、Self-Attentionが解決策。",
+    "concepts": ["C-AP-02-006"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-011",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformerモデルの革命"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "『先週、駅前に新しくできた店で買ったケーキは、とてもおいしかった。』の『ケーキ』と『おいしかった』のような離れた語どうしの関係を、RNNよりTransformerのほうが学びやすい理由として適切なものを１つ選びなさい。",
+    "stemPlain": "文の中の離れた語どうしのつながりを、Transformerのほうが覚えやすいのはなぜかを選ぶ問題。",
+    "choices": [
+      "文を後ろから前へ逆向きに読み、文末の語から先に処理していくから",
+      "語の順番は使わず、それぞれの語が出てきた回数だけで意味を決めるから",
+      "ゲートを増やして記憶の通り道を作り、前の情報を長く保てるようにしたから",
+      "離れた2つの語を直接結べるので、間の語の数だけの段を通らずに済むから"
+    ],
+    "answer": 3,
+    "explanation": "RNNでは、『ケーキ』の情報は、間の語の数だけ計算の段を通って『おいしかった』に届くので、途中で薄れやすい。Self-Attentionは、文の全部の語の組について関係を直接計算するので、離れた2語の間の経路が短い（原論文の表では、経路の最大の長さが Self-Attention の層では一定、再帰の層では文の長さに比例）。経路が短いほど長距離依存を学びやすい、と原論文は説明している。",
+    "whyWrong": [
+      "Transformerは逆向きに読む仕組みではない。順に読む仕組み自体が無く、全部の語の関係をまとめて計算する。",
+      "Transformerは語の順番を捨てていない。位置を表す情報（位置エンコーディング）を入力に足して、順番を伝えている。",
+      "これはLSTMの説明。LSTMはRNNにゲートと記憶の通り道を足して、長い文の前の情報を残せるようにした。Transformerはゲートではなく、Self-Attentionで経路そのものを短くした。",
+      null
+    ],
+    "memoryTip": "LSTM＝記憶を長持ちさせた、Transformer＝遠くの語と直接つないだ。",
+    "concepts": ["C-AP-02-006", "C-AP-02-003", "C-AP-01-044"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-012",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformer登場以後の派生モデルの系譜"],
+    "format": "combo",
+    "difficulty": 1,
+    "stem": "Transformerのもとの形について、次の文の（ア）（イ）に入る語の組み合わせとして適切なものを１つ選びなさい。『翻訳では、（ア）が入力の文を読んで各語の表現に変え、（イ）がその表現と、ここまでに出した訳語を見ながら、次の訳語を1つずつ出す。』",
+    "stemPlain": "翻訳をするTransformerの中で、『元の文を読む部分』と『訳文を作る部分』の名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）デコーダ　（イ）エンコーダ",
+      "（ア）生成器　（イ）デコーダ",
+      "（ア）エンコーダ　（イ）デコーダ",
+      "（ア）エンコーダ　（イ）識別器"
+    ],
+    "answer": 2,
+    "explanation": "入力の文を読んで内側の表現に変えるのがエンコーダ、その表現を見ながら出力の文を作るのがデコーダ。原論文は、エンコーダとデコーダを6層ずつ重ねた組の形で Transformer を作った。デコーダは、まだ出していない先の語を見ないよう、先の位置を隠して計算する。",
+    "whyWrong": [
+      "2つが逆。デコーダは出力（訳文）を作る側で、入力の文を読むのはエンコーダ。",
+      "生成器は、GANで偽のデータを作る側の名前。Transformerで入力の文を読む部分ではない。",
+      null,
+      "識別器は、GANで本物か偽物かを見分ける側の名前。Transformerで訳文を作る部分ではない。"
+    ],
+    "memoryTip": "エンコーダ＝読む、デコーダ＝書く。",
+    "concepts": ["C-AP-02-007", "C-AP-02-001"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-013",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformer登場以後の派生モデルの系譜"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "Transformer登場以後のモデルの流れについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "Transformerが出てきたあと、どんなモデルに分かれて発展したかについて、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "Transformerには、エンコーダだけ、デコーダだけ、両方を使う形がある",
+      "2018年のGPTは、デコーダだけのTransformerで、大量の本の文章で次の語を当てる事前学習をした",
+      "GPTの系統はエンコーダだけを使うので、文章を作ることはできず分類にだけ使われる",
+      "GPT-4の技術報告は、GPT-4を、次のトークンを予測するよう事前学習したTransformerのモデルとしている"
+    ],
+    "answer": 2,
+    "explanation": "GPTの系統は、エンコーダではなくデコーダだけを使う。2018年のGPTの論文は、12層のデコーダだけのTransformerを使ったとしている。デコーダは前の語から次の語を出す部分なので、GPTは文章を作ることが得意。エンコーダだけ、分類だけ、の2点が誤り。",
+    "whyWrong": [
+      "適切。Googleの用語集は、Transformerはエンコーダだけ、デコーダだけ、両方のどの形もとりうるとしている。",
+      "適切。GPTの論文は、7,000冊を超える本の文章（BooksCorpus）で言語モデルを事前学習し、12層のデコーダだけのTransformerを使ったとしている。",
+      null,
+      "適切。GPT-4の技術報告は、GPT-4を、文書の次のトークンを予測するように事前学習したTransformerベースのモデルとしている。"
+    ],
+    "memoryTip": "GPT＝デコーダの系統＝文章を作る側。",
+    "concepts": ["C-AP-02-008", "C-AP-02-007"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（Transformer）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" },
+      { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-014",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "Transformer登場以後の派生モデルの系譜"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "前に出した語をもとに次の語を1つずつ予測して文章を作る GPT の系統が、Transformerのどの部分を使っているかとして適切なものを１つ選びなさい。",
+    "stemPlain": "GPTのような文章を作るモデルが、Transformerの『読む部分』と『書く部分』のどちらを使っているかを選ぶ問題。",
+    "choices": [
+      "エンコーダだけ",
+      "デコーダだけ",
+      "生成器と識別器の組",
+      "エンコーダとデコーダの両方"
+    ],
+    "answer": 1,
+    "explanation": "GPTの系統は、Transformerのデコーダだけを使う。デコーダは、まだ出していない先の語を見ないようにしながら、前の語から次の語を出す部分なので、文章を作るのに向く。2018年のGPTの論文は、12層のデコーダだけのTransformerを使ったとしている。",
+    "whyWrong": [
+      "エンコーダは入力の文を読んで表現に変える部分で、エンコーダだけを使うモデルは、文を読み取って分類するような用途が中心（代表例はGoogleのBERT）。GPTの系統ではない。",
+      null,
+      "生成器と識別器は、GAN（偽物を作る側と見破る側を競わせるモデル）の部品の名前。Transformerの部分ではない。",
+      "もとの翻訳用のTransformerは両方を組にした形だが、GPTの系統はデコーダだけを使う。"
+    ],
+    "memoryTip": "GPT＝デコーダだけ。次の語を当て続けて文章を書く。",
+    "concepts": ["C-AP-02-008", "C-AP-02-007"],
+    "sources": [
+      { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" },
+      { "title": "Google for Developers: Machine Learning Glossary（Transformer・BERT）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-015",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "拡散モデルの登場"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "拡散モデルで、学習によってモデルが身につけるものとして適切なものを１つ選びなさい。",
+    "stemPlain": "ノイズを使って画像を作る『拡散モデル』が、学習で何をできるようになるのかを選ぶ問題。",
+    "choices": [
+      "画像にノイズを少しずつ足して、元の形を壊していく手順",
+      "ノイズの入った画像から、足されたノイズを推定して取り除く手順",
+      "作られた画像が本物か偽物かを見分けて、点数を付ける手順",
+      "画像を格子に区切り、区切りごとに写っている物を分類する手順"
+    ],
+    "answer": 1,
+    "explanation": "拡散モデルが学ぶのは、逆拡散過程の側、つまり『ノイズの入った画像から、足されたノイズを推定して取り除く』こと。学習後は、砂嵐のようなノイズから始めて、ノイズを1回分ずつ取り除くことを繰り返すと、新しい画像が現れる。Sohl-Dicksteinら（2015）も、構造を取り戻す逆向きの拡散過程を学ぶ、としている。",
+    "whyWrong": [
+      "これは拡散過程（前向き）の手順。ノイズを足すだけの決まった手順なので、学習は要らない。学習用の『壊れた画像』を作るのに使う。",
+      null,
+      "これはGANの識別器の役割。拡散モデルには、本物か偽物かを見分ける部品は無い。",
+      "これは画像を分類する識別系のモデル（CNNなど）の仕事。新しい画像を作る拡散モデルが学ぶものではない。"
+    ],
+    "memoryTip": "壊すのは決まった手順、直すのを学ぶ。",
+    "concepts": ["C-AP-02-009", "C-AP-01-067"],
+    "sources": [
+      { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" },
+      { "title": "Ho, Jain & Abbeel (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)", "url": "https://arxiv.org/abs/2006.11239" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-016",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "拡散モデルの登場"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "拡散モデルについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "ノイズを足したり取り除いたりして画像を作る『拡散モデル』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "拡散過程では、データにノイズを少しずつ足して元の形を壊していく",
+      "生成のときは、ノイズを1回で全部取り除くので、少ない計算で画像ができる",
+      "生成のときは、ノイズから始めて少しずつノイズを取り除き、新しいデータを作る",
+      "Hoら（2020）は、この方法で高い品質の画像を作れることを示した"
+    ],
+    "answer": 1,
+    "explanation": "拡散モデルは、ノイズを1回で消すのではなく、何回にも分けて少しずつ取り除く。そのため生成に時間がかかることが弱点。潜在拡散モデルの論文も、画素のままの拡散モデルは順に何回も計算するため、生成が高くつくとしている。",
+    "whyWrong": [
+      "適切。前向きの拡散過程は、データの構造を少しずつ壊していく決まった手順。",
+      null,
+      "適切。逆拡散過程で、ノイズから始めて少しずつ構造を取り戻し、新しいデータを作る。",
+      "適切。Hoら（2020）の論文（DDPM）は、拡散モデルで高い品質の画像を合成した結果を報告している。"
+    ],
+    "memoryTip": "拡散モデルは『少しずつ』が命。1回で消さないから品質が高く、そのぶん遅い。",
+    "concepts": ["C-AP-02-009", "C-AP-01-067"],
+    "sources": [
+      { "title": "Ho, Jain & Abbeel (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)", "url": "https://arxiv.org/abs/2006.11239" },
+      { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-017",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "拡散モデルの登場"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "潜在拡散モデル（Latent Diffusion Model）が、画素のままの拡散モデルに比べて計算を大きく減らせた理由として適切なものを１つ選びなさい。",
+    "stemPlain": "画像を作る拡散モデルのうち『潜在拡散モデル』が、なぜ軽く動くのかを選ぶ問題。",
+    "choices": [
+      "ノイズを足す回数も取り除く回数も、それぞれ1回だけで済ませるから",
+      "生成器と識別器を競わせ、少ない回数で本物らしい画像を作るから",
+      "画像を白黒にして、扱う値の数を色つきの3分の1に減らしてから計算するから",
+      "学習済みのオートエンコーダで画像を小さく縮め、その中で拡散と逆拡散を行うから"
+    ],
+    "answer": 3,
+    "explanation": "潜在拡散モデルは、学習済みのオートエンコーダ（縮める部分と戻す部分の組）で、画像を小さな潜在空間に縮めてから、その中で拡散と逆拡散を行う。最後にデコーダで元の大きさに戻す。Rombachら（2021）は、これで品質を保ったまま計算を大きく減らしたとしている。例えば Stable Diffusion は縦横を1/8に縮めるので、512×512の画像を64×64の大きさで扱う。",
+    "whyWrong": [
+      "拡散モデルは、潜在拡散モデルも含め、ノイズを何回にも分けて少しずつ取り除く。1回で済ませるのではない。",
+      "これはGANの仕組み。潜在拡散モデルに、偽物を見破る識別器は無い。",
+      "色を減らす処理はしていない。Stable Diffusionはカラーの画像を作る。減らしているのは、縮めた潜在空間で計算することによる値の数。",
+      null
+    ],
+    "memoryTip": "Latent（潜在）＝縮めた空間で拡散する。",
+    "concepts": ["C-AP-02-010", "C-AP-01-050"],
+    "sources": [
+      { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
+      { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-018",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "拡散モデルの登場"],
+    "format": "fill",
+    "difficulty": 2,
+    "stem": "次の文の（　）に入る語を１つ選びなさい。『Rombachら（2021）は、拡散モデルを、学習済みのオートエンコーダの（　）で動かすことで、画像の品質を保ったまま計算を大きく減らした。この考え方は Stable Diffusion の土台になった。』",
+    "stemPlain": "画像を軽く作れるようにした拡散モデルが、画像を『どこで』計算するようにしたのかを選ぶ問題。",
+    "choices": [
+      "画素空間",
+      "潜在空間",
+      "損失関数",
+      "報酬モデル"
+    ],
+    "answer": 1,
+    "explanation": "潜在空間は、画像の要点を少ない数で表した内側の表現の空間。Rombachら（2021）の論文は、拡散モデルを学習済みのオートエンコーダの潜在空間で動かし、画素空間のままより計算を大きく減らしたとしている。CompVisが公開した Stable Diffusion は、この潜在拡散モデルを学習させたもの。",
+    "whyWrong": [
+      "画素空間は、画像の画素の値そのままの空間。潜在拡散モデルが計算を減らすために避けたのが、この画素空間での拡散。",
+      null,
+      "損失関数は、予測と正解のずれを1つの数にする関数で、学習の目標に使う。モデルを動かす『場所（空間）』ではない。",
+      "報酬モデルは、LLMのRLHFで、人が良いと思う回答に高い点を付けるよう学習したモデル。画像の拡散モデルを動かす空間ではない。"
+    ],
+    "memoryTip": "画素で拡散＝重い、潜在で拡散＝軽い。",
+    "concepts": ["C-AP-02-010"],
+    "sources": [
+      { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
+      { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-019",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "拡散モデルの登場"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "拡散モデルについて、次の文の（ア）（イ）（ウ）に入る語の組み合わせとして適切なものを１つ選びなさい。『データにノイズを少しずつ足して壊していくのが（ア）、ノイズを少しずつ取り除いてデータを作るのが（イ）である。これを画像を縮めた空間の中で行い、計算を減らしたのが（ウ）である。』",
+    "stemPlain": "拡散モデルの2つの向きの手順の名前と、それを小さく縮めた空間で行うモデルの名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）逆拡散過程　（イ）拡散過程　（ウ）潜在拡散モデル",
+      "（ア）拡散過程　（イ）逆拡散過程　（ウ）GAN",
+      "（ア）拡散過程　（イ）誤差逆伝播法　（ウ）潜在拡散モデル",
+      "（ア）拡散過程　（イ）逆拡散過程　（ウ）潜在拡散モデル"
+    ],
+    "answer": 3,
+    "explanation": "ノイズを足して壊す向きが拡散過程、ノイズを取り除いて作る向きが逆拡散過程。これを、学習済みのオートエンコーダで縮めた潜在空間の中で行うのが潜在拡散モデル（Rombachら、2021）。",
+    "whyWrong": [
+      "（ア）と（イ）が逆。逆拡散過程は、ノイズを取り除いてデータを作る向き。",
+      "GANは、生成器と識別器を競わせて画像を作るモデルで、拡散と逆拡散の仕組みを持たない。（ウ）には当たらない。",
+      "誤差逆伝播法は、ニューラルネットワークの学習で、誤差を出力側から入力側へたどって各重みの勾配を求める方法。名前に『逆』が付くが、ノイズを取り除いてデータを作る過程ではない。",
+      null
+    ],
+    "memoryTip": "拡散＝壊す、逆拡散＝作る、潜在＝縮めた空間で。",
+    "concepts": ["C-AP-02-009", "C-AP-02-010"],
+    "sources": [
+      { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" },
+      { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-020",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "基盤モデルとマルチモーダルモデル"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "基盤モデル（Foundation Model）の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "『基盤モデル』と呼ばれるAIのモデルが、どんなものかを選ぶ問題。",
+    "choices": [
+      "1つの仕事のためだけに、その仕事のデータで一から作った小さなモデル",
+      "人が規則を書き並べて作った、専門家の知識の土台になるデータの集まり",
+      "モデルを動かすためのサーバーやGPUなどの、計算の設備をまとめた一式",
+      "広く大量のデータで学習し、多くの異なる仕事に合わせて使い回せる大きなモデル"
+    ],
+    "answer": 3,
+    "explanation": "基盤モデルは、広いデータで大規模に学習し、多くの後の仕事に適応できるモデル（Bommasaniら、2021）。Googleの用語集も、幅広い依頼にうまく応じられ、追加のファインチューニングなどの土台（ベースモデル）にもなる、とても大きな事前学習済みモデルとしている。",
+    "whyWrong": [
+      "これは基盤モデルが出てくる前の作り方。仕事ごとに別のモデルを作ると、新しい仕事のたびに学習し直す必要がある。",
+      "これは知識ベース（エキスパートシステムで使う、人が書いた知識の集まり）の説明。データから学習したモデルではない。",
+      "これはAIを動かす計算の設備（インフラ）の話。『基盤』という語は同じだが、基盤モデルは設備ではなく学習済みのモデルのこと。",
+      null
+    ],
+    "memoryTip": "基盤モデル＝いろいろな仕事の『土台』になる、大きな学習済みモデル。",
+    "concepts": ["C-AP-02-011"],
+    "sources": [
+      { "title": "Bommasani et al. (2021) On the Opportunities and Risks of Foundation Models (arXiv:2108.07258)", "url": "https://arxiv.org/abs/2108.07258" },
+      { "title": "Google for Developers: Machine Learning Glossary（foundation model）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-021",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "基盤モデルとマルチモーダルモデル"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "基盤モデルについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "いろいろな仕事の土台になる『基盤モデル』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "文章を扱うモデルに限った呼び名で、画像を作るモデルは含まない",
+      "白書は、基盤モデルやLLMの登場で、新しいタスクのたびに学習し直す必要がなくなったとしている",
+      "多くのモデルが同じ基盤から作られるので、基盤の欠点が作ったモデルに引き継がれるおそれがある",
+      "名付けた報告書は、BERT・DALL-E・GPT-3のようなモデルを例に挙げている"
+    ],
+    "answer": 0,
+    "explanation": "基盤モデルは文章専用ではない。名付けた報告書（Bommasaniら、2021）が挙げた例には、画像を作るDALL-Eも入っている。報告書は、基盤モデルの力の例として、言語のほかに視覚（画像）なども挙げている。",
+    "whyWrong": [
+      null,
+      "適切。令和6年版情報通信白書は、膨大なデータで学習した基盤モデルやLLMの登場で、新たなタスクに対応するためにモデルを再トレーニングする必要がなくなったとしている。",
+      "適切。報告書は、多くのモデルが同じ基盤に頼る（均質化する）ため、基盤モデルの欠陥が、そこから作った全部のモデルに引き継がれると注意している。",
+      "適切。報告書の要旨は、BERT・DALL-E・GPT-3を例に、広いデータで大規模に学習し、多くの仕事に適応できるモデルを基盤モデルと呼んでいる。"
+    ],
+    "memoryTip": "基盤モデル＝文章も画像も。LLMは、その中の文章のもの。",
+    "concepts": ["C-AP-02-011"],
+    "sources": [
+      { "title": "Bommasani et al. (2021) On the Opportunities and Risks of Foundation Models (arXiv:2108.07258)", "url": "https://arxiv.org/abs/2108.07258" },
+      { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-022",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "基盤モデルとマルチモーダルモデル"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "モダリティ（データの種類）が異なる2つのデータの組み合わせの例として不適切なものを１つ選びなさい。",
+    "stemPlain": "2つのデータの『種類』（文章・画像・音声・動画など）が違う組み合わせのうち、実は同じ種類どうしのものを1つ選ぶ問題。",
+    "choices": [
+      "料理の写真と、その料理の作り方の説明文",
+      "会議の録音と、その会議の書き起こしの文章",
+      "日本語のニュース記事と、その記事の英語の翻訳",
+      "商品の紹介の動画と、その動画に付けた字幕の文"
+    ],
+    "answer": 2,
+    "explanation": "日本語の記事も英語の翻訳も、どちらもテキスト（文章）なので、モダリティは同じ。言語が違うだけ。ほかの3つは、画像と文章、音声と文章、動画と文章で、モダリティが異なる。Googleの用語集は、数値・テキスト・画像・動画・音声を5つの異なるモダリティの例に挙げている。",
+    "whyWrong": [
+      "異なる組み合わせ。写真は画像、説明文はテキストで、モダリティが違う。",
+      "異なる組み合わせ。録音は音声、書き起こしはテキストで、モダリティが違う。",
+      null,
+      "異なる組み合わせ。動画と、字幕のテキストで、モダリティが違う。"
+    ],
+    "memoryTip": "モダリティ＝データの『種類』。言語の違い（日本語と英語）は種類の違いではない。",
+    "concepts": ["C-AP-02-012", "C-AP-02-013"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（modality）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-023",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "基盤モデルとマルチモーダルモデル"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "次のうち、マルチモーダルなAIの使い方に当たるものを１つ選びなさい。",
+    "stemPlain": "文章・画像・音声など、2種類以上のデータを一緒に扱うAIの使い方を選ぶ問題。",
+    "choices": [
+      "日本語で書いた質問に、英語の文章で答えてもらう",
+      "長い英語の論文を読ませて、短い英語の要約を作らせる",
+      "冷蔵庫の中の写真を見せて、作れる料理を文章で提案させる",
+      "過去の売上の数値の表から、来月の売上の数を予測させる"
+    ],
+    "answer": 2,
+    "explanation": "写真（画像）を入力し、文章（テキスト）で答えさせているので、2つのモダリティを扱うマルチモーダルな使い方。Googleの用語集は、入力・出力の一方または両方に2つ以上のモダリティを含むモデルをマルチモーダルモデルとしている。",
+    "whyWrong": [
+      "日本語も英語もテキストなので、扱っているモダリティは1つ。複数の言語に対応することはマルチリンガル（多言語対応）と呼び、マルチモーダルとは別。",
+      "入力も出力も英語のテキストで、モダリティは1つ。文章の要約は、テキストだけを扱う使い方。",
+      null,
+      "入力も出力も数値のデータで、モダリティは1つ。数値から数値を予測するのは、第1章の回帰に当たる。"
+    ],
+    "memoryTip": "マルチモーダル＝『見せて、文章で答える』のように種類をまたぐ。",
+    "concepts": ["C-AP-02-013", "C-AP-02-012"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（multimodal model）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-024",
+    "syllabus": ["生成AI", "生成AIを支える技術革新（Transformer以降）", "基盤モデルとマルチモーダルモデル"],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "次の文の（　）に入る語を１つ選びなさい。『入力・出力の一方または両方に、2つ以上の（　）を含むモデルを、マルチモーダルモデルと呼ぶ。』",
+    "stemPlain": "『マルチモーダル』の『モーダル』が何を指すかを、文の空欄に入れる問題。",
+    "choices": [
+      "モダリティ",
+      "トークン",
+      "パラメータ",
+      "レイヤー（層）"
+    ],
+    "answer": 0,
+    "explanation": "モダリティは、テキスト・画像・音声・動画・数値のような、データの種類。Googleの用語集は、入力・出力の一方または両方に2つ以上のモダリティを含むモデルをマルチモーダルモデルとしている。",
+    "whyWrong": [
+      null,
+      "トークンは、言語モデルが文章を区切って扱う単位（語や語の一部など）。2つ以上のトークンを扱うのは、ふつうのテキストのモデルでも同じ。",
+      "パラメータは、モデルが学習で決める重みなどの数。マルチモーダルかどうかは、パラメータの数ではなく、扱うデータの種類で決まる。",
+      "レイヤー（層）は、ニューラルネットワークの中の計算の段。2つ以上の層を持つことは、ディープラーニングでは当たり前で、マルチモーダルの条件ではない。"
+    ],
+    "memoryTip": "マルチ（複数の）＋モーダル（モダリティ＝データの種類）。",
+    "concepts": ["C-AP-02-013", "C-AP-02-012"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（multimodal model・modality）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-025",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "事前学習"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "LLMの学習の流れについて、次の文の（ア）（イ）（ウ）に入る語の組み合わせとして適切なものを１つ選びなさい。『まず（ア）で、大量の文章の次のトークンを当てる練習をする。次に（イ）で、人が書いた手本の答えをまねさせる。最後に（ウ）で、人が答えに付けた順位をもとに答え方を仕上げる。』",
+    "stemPlain": "LLMが作られる3つの段階の名前を、行う順に並べた組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）事前学習　（イ）教師ありファインチューニング　（ウ）RLHF",
+      "（ア）教師ありファインチューニング　（イ）事前学習　（ウ）RLHF",
+      "（ア）事前学習　（イ）教師ありファインチューニング　（ウ）RAG",
+      "（ア）事前学習　（イ）RLHF　（ウ）教師ありファインチューニング"
+    ],
+    "answer": 0,
+    "explanation": "InstructGPT（2022年）は、事前学習済みのGPT-3を、①人が書いた手本の答えで教師ありファインチューニング ②人が答えに付けた順位から報酬モデルを学習 ③その点数を報酬に強化学習、の流れで仕上げた。②③をまとめてRLHF（人間のフィードバックによる強化学習）と呼ぶ。ChatGPTも同じ方法で学習させたと、発表のページに書かれている。",
+    "whyWrong": [
+      null,
+      "（ア）と（イ）が逆。手本の答えをまねるファインチューニングは、事前学習で身につけたことばの力を土台にする段階なので、事前学習のあとに行う。",
+      "RAG（検索拡張生成）は、回答のたびに関連する文書を検索して入力に添える技術で、モデルの重みを変える学習の段階ではない。人の順位をもとに仕上げる（ウ）には当たらない。",
+      "（イ）と（ウ）が逆。InstructGPTやChatGPTでは、手本をまねる教師ありファインチューニングを先に行い、そのモデルを出発点にRLHFで仕上げた。"
+    ],
+    "memoryTip": "事前学習（読み込む）→ SFT（手本をまねる）→ RLHF（好みに合わせる）。",
+    "concepts": ["C-AP-02-014", "C-AP-02-015", "C-AP-02-018", "C-AP-02-022"],
+    "sources": [
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" },
+      { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-026",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "事前学習"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "LLMの事前学習の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "LLMを作る最初の学習（事前学習）が、どんな学習かを選ぶ問題。",
+    "choices": [
+      "人が書いた質問と模範の答えの組を少しずつ用意し、答え方の手本をまねさせる",
+      "大量の文章で次に来るトークンを当てる練習をし、ことばの使い方や知識を身につける",
+      "同じ質問への複数の答えに人が順位を付け、好まれる答え方に近づける",
+      "回答のたびに関連する文書を検索し、その文書を質問に添えてモデルに入力する"
+    ],
+    "answer": 1,
+    "explanation": "事前学習は、大量の文章で、次に来るトークンを当てる練習をくり返す最初の学習。正解（次のトークン）は文章そのものの中にあるので、人が正解を付けなくてよい。Googleの用語集は、事前学習を大きなデータセットでのモデルの最初の学習としている。",
+    "whyWrong": [
+      "これは教師ありファインチューニング（SFT）の説明。事前学習のあとで、人が書いた手本の答えで仕上げる段階。",
+      null,
+      "これはRLHF（人間のフィードバックによる強化学習）の説明。順位から報酬モデルを作り、強化学習で答え方を整える、3段階の最後の段階。",
+      "これはRAG（検索拡張生成）の説明。モデルの学習ではなく、使うときに入力を補う技術で、重みは変わらない。"
+    ],
+    "memoryTip": "事前学習＝『次の語当て』を大量にくり返す。正解は文章の中にある。",
+    "concepts": ["C-AP-02-015", "C-AP-02-016"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（pre-training）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-027",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "事前学習"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "LLMの事前学習について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "LLMを作る最初の学習（事前学習）について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "文の途中までを入力にし、その次のトークンを正解として当てさせる問題を、文章から作れる",
+      "事前学習のあとに、ファインチューニングや指示チューニングで仕上げることが多い",
+      "学習に使う文ごとに、人が『事実として正しい』『誤り』のラベルを付けてから学ばせる",
+      "GPT-3は、絞り込んだウェブの文章に、本やWikipediaなどの文章を加えて事前学習した"
+    ],
+    "answer": 2,
+    "explanation": "事前学習では、文ごとに正誤のラベルは付けない。OpenAIの解説は、言語モデルはまず事前学習で、ばく大な文章の次の語を予測して学び、ふつうの機械学習の問題と違って文ごとに真か偽かのラベルは付いていない、としている。正誤の印が無いことが、もっともらしいが事実でない文（ハルシネーション）が生まれる理由の1つとされる。",
+    "whyWrong": [
+      "適切。『吾輩は』の次は『猫』のように、文章の途中までと次のトークンの組で練習問題が作れる。正解は文章そのものの中にある。",
+      "適切。Googleの用語集は、事前学習したモデルを、蒸留・ファインチューニング・指示チューニングなどでさらに仕上げることがあるとしている。",
+      null,
+      "適切。GPT-3の論文は、絞り込んだCommon Crawlに、WebText2、2種類の本の文章、Wikipediaを混ぜて学習したとしている。"
+    ],
+    "memoryTip": "事前学習の文章には『正しい／誤り』の印は付いていない。だからもっともらしい誤りが生まれる。",
+    "concepts": ["C-AP-02-015", "C-AP-02-016", "C-AP-02-037"],
+    "sources": [
+      { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" },
+      { "title": "Google for Developers: Machine Learning Glossary（pre-training）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-028",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "事前学習"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "『今日は天気が良いので散歩に行く』という1つの文から、LLMの事前学習の練習問題を作るときのやり方として適切なものを１つ選びなさい。",
+    "stemPlain": "LLMが、ふつうの文章から、人の手を借りずにどうやって練習問題を作るのかを選ぶ問題。",
+    "choices": [
+      "文の途中までを入力にし、その次に続くトークンを正解として当てさせる",
+      "文の内容が事実かどうかを人が判断し、その判断を正解として当てさせる",
+      "文を読んだ人に感想を書いてもらい、その感想を正解として当てさせる",
+      "文と同じ意味の別の言い方を人が書き、その言い方を正解として当てさせる"
+    ],
+    "answer": 0,
+    "explanation": "事前学習の目標は次トークン予測。『今日は』→『天気』、『今日は天気が』→『良い』…のように、文の途中までを入力、その次のトークンを正解とする問題が、1つの文からいくつも作れる。正解は文章そのものの中にあるので、人が正解を付けなくてよい。GPT-4の技術報告も、GPT-4を、文書の次のトークンを予測するよう事前学習したとしている。",
+    "whyWrong": [
+      null,
+      "事実かどうかを人が判断して付けるのは、事前学習のやり方ではない。事前学習のデータには、文ごとの正誤の印は付いていない。",
+      "人の感想を集めて当てさせるのは、事前学習のやり方ではない。人の手で正解を作る必要があると、ばく大な量の文章で学ぶことができない。",
+      "人が言い換えを書いて正解にするのは、人が手本を作る教師ありの学習のやり方に近い。事前学習では、人が正解を書かずに、文章の次のトークンを正解にする。"
+    ],
+    "memoryTip": "1つの文から『次の語当て』がいくつも作れる。だから人が正解を付けなくてよい。",
+    "concepts": ["C-AP-02-016", "C-AP-02-015"],
+    "sources": [
+      { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" },
+      { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-029",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "事前学習"],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "次の文の（　）に入る語を１つ選びなさい。『2020年に発表されたGPT-3は、学習で決まる重みなどの（　）を約1,750億個持ち、それまでの言語モデルより10倍以上大きかった。』",
+    "stemPlain": "GPT-3の大きさを表す『1,750億個』が、何の数なのかを選ぶ問題。",
+    "choices": [
+      "トークン",
+      "ハイパーパラメータ",
+      "パラメータ",
+      "学習データの文書"
+    ],
+    "answer": 2,
+    "explanation": "パラメータは、モデルが学習で決める重みなどの数。GPT-3の論文は、GPT-3を1,750億のパラメータを持つ言語モデルとし、それまでの（疎でない）言語モデルの10倍としている。LLMの大きさは、ふつうこのパラメータの個数で表す。",
+    "whyWrong": [
+      "トークンは、文章を区切った単位（語や語の一部）。学習に使った文章の量をトークンの数で表すことはあるが、モデルが持つ重みの数ではない。",
+      "ハイパーパラメータは、学習率や層の数、Temperatureのように、人が学習の前や使うときに決める設定。学習で決まる数ではない。",
+      null,
+      "学習データの文書の数は、学ぶ材料の量。モデルの中に持つ重みの数とは別のものさし。"
+    ],
+    "memoryTip": "パラメータ＝学習で決まる重み。GPT-3は1,750億個。",
+    "concepts": ["C-AP-02-017"],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
+      { "title": "Google for Developers: Machine Learning Glossary（parameter）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-030",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "事前学習"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "LLMの『パラメータ』に当たるものとして適切なものを１つ選びなさい。",
+    "stemPlain": "LLMの大きさを表す『パラメータ』が、具体的に何を指すかを選ぶ問題。",
+    "choices": [
+      "文章を作るときに利用者が決める、出力のばらつきを調整するTemperatureの値",
+      "学習を始める前に人が決める、学習を何回くり返すかという回数の設定",
+      "利用者がモデルに入力する、質問や指示の文（プロンプト）の文字の数",
+      "学習によって値が決まる、モデルの中のノードどうしのつながりの重み"
+    ],
+    "answer": 3,
+    "explanation": "パラメータは、モデルが学習の間に値を決める重みとバイアス（Googleの用語集）。LLMの『1,750億パラメータ』のような数は、この重みなどの個数を指す。",
+    "whyWrong": [
+      "Temperatureは、文章を作るときに人が決める設定（ハイパーパラメータ）。Googleの用語集も、出力のランダムさの度合いを決めるハイパーパラメータとしている。学習では変わらない。",
+      "学習の回数は、人が学習の前に決めるハイパーパラメータ。学習で値が決まるパラメータとは別。",
+      "プロンプトは使うときに入力する文で、その長さはモデルのパラメータではない。プロンプトが長くても短くても、モデルの重みの数は変わらない。",
+      null
+    ],
+    "memoryTip": "学習で決まる＝パラメータ、人が決める＝ハイパーパラメータ。",
+    "concepts": ["C-AP-02-017", "C-AP-02-040"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（parameter・hyperparameter・temperature）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-031",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "ファインチューニング"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "人が書いた『指示の文と、その望ましい答え』の組を用意し、事前学習済みのLLMをその組で追加学習させて、答え方の手本をまねさせる段階を１つ選びなさい。",
+    "stemPlain": "人が作った『お手本の答え』をまねさせて、LLMの答え方を整える学習の名前を選ぶ問題。",
+    "choices": [
+      "RLHF（人間のフィードバックによる強化学習）",
+      "教師ありファインチューニング（SFT）",
+      "事前学習（プレトレーニング）",
+      "RAG（検索拡張生成）"
+    ],
+    "answer": 1,
+    "explanation": "手本の答え（正解）を付けたデータで、事前学習済みのモデルを追加学習させるのが教師ありファインチューニング（Supervised Fine-Tuning、SFT）。InstructGPTでは、担当者が望ましい答えを書き、その組で事前学習済みのGPT-3を教師あり学習で追加学習させた。",
+    "whyWrong": [
+      "RLHFは、手本をまねるのではなく、人が複数の答えに付けた順位から報酬モデルを作り、その点数が上がるよう強化学習で仕上げる方法。SFTのあとに行う。",
+      null,
+      "事前学習は、大量の文章で次のトークンを当てる最初の学習。人が書いた手本の答えは使わない。",
+      "RAGは、回答のたびに関連する文書を検索して入力に添える技術で、モデルを追加学習させない。"
+    ],
+    "memoryTip": "SFT＝お手本をまねる。RLHF＝好みの順位で整える。",
+    "concepts": ["C-AP-02-018", "C-AP-02-014"],
+    "sources": [
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-032",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "ファインチューニング"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "翻訳・要約・質問応答など60を超える仕事を、自然な『指示の文』の形に書き直したデータで事前学習済みのモデルをファインチューニングした。すると、学習で見せていない種類の仕事でも、指示だけで頼んだときの成績が上がった。この方法を１つ選びなさい。",
+    "stemPlain": "いろいろな仕事を『〜してください』という指示の形にしたデータで学ばせ、指示に従う力を高める方法の名前を選ぶ問題。",
+    "choices": [
+      "ドメイン適応（Domain Adaptation）",
+      "報酬モデル（Reward Model）",
+      "スケーリング則（Scaling Laws）",
+      "指示チューニング"
+    ],
+    "answer": 3,
+    "explanation": "いろいろな仕事を指示の文の形にしたデータでファインチューニングし、指示に従う力を高めるのが指示チューニング。GoogleのFLAN（2021年）は、1,370億パラメータのモデルを60を超える仕事で指示チューニングし、学習で見せていない種類の仕事で、例を見せない場合の成績が25の仕事のうち20で、例を見せない1,750億パラメータのGPT-3を上回った。",
+    "whyWrong": [
+      "ドメイン適応は、医療・法律など特定の分野の文章で追加学習し、その分野に強くすること。たくさんの種類の仕事を指示の形で学ばせるのとは目的が違う。",
+      "報酬モデルは、RLHFで、人がどの答えを好むかを予測して点数を出すモデル。指示の形のデータで学ばせる方法の名前ではない。",
+      "スケーリング則は、モデルやデータを大きくすると損失が予測どおり下がる、という経験則。学習のやり方の名前ではない。",
+      null
+    ],
+    "memoryTip": "指示チューニング＝いろいろな仕事を『指示の文』にして学ばせる。初めての指示にも強くなる。",
+    "concepts": ["C-AP-02-019"],
+    "sources": [
+      { "title": "Wei et al. (2021) Finetuned Language Models Are Zero-Shot Learners (arXiv:2109.01652)", "url": "https://arxiv.org/abs/2109.01652" },
+      { "title": "Google for Developers: Machine Learning Glossary（instruction tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-033",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "ファインチューニング"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "指示チューニング（Instruction Tuning）について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "いろいろな仕事を指示の形にして学ばせる『指示チューニング』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "Googleの用語集は、指示に従う力を高めるファインチューニングの一種としている",
+      "モデルの重みは変えずに、利用者が入力する指示の書き方だけを工夫する方法である",
+      "FLANは、学習で見せていない種類の仕事で、指示だけで頼んだときの成績が上がった",
+      "幅広い仕事を、指示の文の形に書き直したデータで学ばせることが多い"
+    ],
+    "answer": 1,
+    "explanation": "指示チューニングはファインチューニングの一種で、指示の形のデータでモデルを学習させ、重みを直す。重みを変えずに指示の書き方だけを工夫するのは、プロンプトの工夫（プロンプトエンジニアリング）で、別のもの。",
+    "whyWrong": [
+      "適切。Googleの用語集は、指示チューニングを、生成AIのモデルが指示に従う力を高めるファインチューニングの一種としている。",
+      null,
+      "適切。FLANの論文は、学習で見せていない種類の仕事で、指示チューニングしたモデルの成績が、元のモデルより大きく上がったとしている。",
+      "適切。Googleの用語集は、ふつう幅広い仕事にわたる指示のプロンプトで学習させるとしている。FLANは60を超える仕事を使った。"
+    ],
+    "memoryTip": "チューニング＝重みを直す。書き方の工夫だけなら、それはプロンプトの工夫。",
+    "concepts": ["C-AP-02-019", "C-AP-02-045"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（instruction tuning）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Wei et al. (2021) Finetuned Language Models Are Zero-Shot Learners (arXiv:2109.01652)", "url": "https://arxiv.org/abs/2109.01652" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-034",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "ファインチューニング"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "製薬会社が、一般の文章で学習済みの言語モデルを、正解の付いていない大量の医学論文の文章でさらに事前学習させ、医学の文章の読み取りに強くした。この取り組みを表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "一般の文章で学んだAIに、医学の文章を追加で読ませて、医学の分野に強くすることを何と呼ぶかを選ぶ問題。",
+    "choices": [
+      "ドメイン適応",
+      "指示チューニング",
+      "RLHF（人間のフィードバックによる強化学習）",
+      "次元削減"
+    ],
+    "answer": 0,
+    "explanation": "特定の分野（ドメイン）の文章で追加学習し、その分野に合わせるのがドメイン適応。Gururanganら（2020）は、生物医学や計算機科学の論文などの分野の文章で2回目の事前学習をさせると、その分野の仕事の成績が上がることを示した。正解の付いていない分野の文章をそのまま使える。",
+    "whyWrong": [
+      null,
+      "指示チューニングは、たくさんの種類の仕事を指示の文の形にしたデータで学ばせ、指示に従う力を高めること。特定の分野の文章を読ませて分野に強くするのとは目的が違う。",
+      "RLHFは、人が答えに付けた順位から報酬モデルを作り、強化学習で答え方を整える方法。人の順位付けを使っておらず、この場面には当たらない。",
+      "次元削減は、データを表す項目の数を、情報をなるべく失わずに減らす教師なし学習の処理。モデルを分野に合わせる学習ではない。"
+    ],
+    "memoryTip": "ドメイン＝分野。分野の文章で追加学習してその分野に強くする。",
+    "concepts": ["C-AP-02-020", "C-AP-02-021"],
+    "sources": [
+      { "title": "Gururangan et al. (2020) Don't Stop Pretraining: Adapt Language Models to Domains and Tasks (arXiv:2004.10964)", "url": "https://arxiv.org/abs/2004.10964" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-035",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "ファインチューニング"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "学習済みのモデルに新しいデータで学習を足して重みを直す『追加学習』に当たるものとして不適切なものを１つ選びなさい。",
+    "stemPlain": "すでにできあがったAIに、さらに学習をさせる方法の仲間のうち、仲間でないもの（学習させていないもの）を1つ選ぶ問題。",
+    "choices": [
+      "自社の問い合わせと回答の組で、学習済みのLLMをファインチューニングする",
+      "法律の文章で学習済みのLLMを追加で事前学習させ、法律の分野に合わせる",
+      "少ないパラメータだけを足して学ぶLoRAで、特定の画風を学習させる",
+      "回答のたびに社内の資料を検索し、見つけた文書を質問に添えて入力する"
+    ],
+    "answer": 3,
+    "explanation": "回答のたびに資料を検索して入力に添えるのはRAG（検索拡張生成）で、モデルの重みは変わらないので追加学習ではない。文化庁の『AIと著作権に関する考え方について』も、生成AIへの追加的な学習（いわゆるファインチューニング等、LoRA）と、回答のたびに関連するデータを検索して入力として扱う技術（RAG）を、別の技術として挙げている。",
+    "whyWrong": [
+      "追加学習に当たる。手元の質問と回答の組で、学習済みのモデルの重みを直すファインチューニング。",
+      "追加学習に当たる。分野の文章で追加の事前学習をするドメイン適応で、重みが変わる。",
+      "追加学習に当たる。LoRAは、学習済みのモデルに少ないパラメータを足して学ぶ方法。文化庁の文書も、小規模なデータで追加的な学習を行う技術の例に挙げている。",
+      null
+    ],
+    "memoryTip": "重みが変わる＝追加学習。入力を変えるだけ＝RAGやプロンプトの工夫。",
+    "concepts": ["C-AP-02-021", "C-AP-02-038", "C-AP-02-020"],
+    "sources": [
+      { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
+      { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-036",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "RLHF"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "次の文の（ア）（イ）（ウ）に入る語の組み合わせとして適切なものを１つ選びなさい。『同じ質問への複数の答えに人が順位を付け、その順位から（ア）を学習する。（ア）の出す点数を報酬にして、（イ）でモデルの答え方を仕上げる。この方法全体を（ウ）と呼ぶ。』",
+    "stemPlain": "人が答えに順位を付けて、その好みに合うようにAIを仕上げる方法の、部品と名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）報酬モデル　（イ）教師なし学習　（ウ）RLHF",
+      "（ア）識別器　（イ）強化学習　（ウ）GAN",
+      "（ア）報酬モデル　（イ）強化学習　（ウ）RAG",
+      "（ア）報酬モデル　（イ）強化学習　（ウ）RLHF"
+    ],
+    "answer": 3,
+    "explanation": "人が付けた順位から、人の好みを予測して点数を出す報酬モデルを学習し、その点数を報酬として強化学習（InstructGPTではPPOという方法）でモデルを仕上げる。全体をRLHF（Reinforcement Learning from Human Feedback、人間のフィードバックによる強化学習）と呼ぶ。",
+    "whyWrong": [
+      "教師なし学習は、正解の無いデータからまとまりや構造を見つける方法。点数（報酬）を手がかりに行動のしかた（ここでは答え方）を良くしていくのは強化学習。",
+      "識別器と生成器を競わせるのはGANで、画像などを作るモデルの仕組み。人の順位から点数を出すモデルではなく、（ウ）の方法全体もRLHFではない。",
+      "RAGは、回答のたびに関連文書を検索して入力に添える技術。人の順位を使って答え方を仕上げる学習の方法ではない。",
+      null
+    ],
+    "memoryTip": "人が順位 → 報酬モデルが採点 → 強化学習で仕上げ ＝ RLHF。",
+    "concepts": ["C-AP-02-022", "C-AP-02-023"],
+    "sources": [
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-037",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "RLHF"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "RLHFで使う報酬モデルが出力するものとして適切なものを１つ選びなさい。",
+    "stemPlain": "人の好みを学んだ『報酬モデル』が、何を出すのかを選ぶ問題。",
+    "choices": [
+      "質問と答えの組に対する、人がその答えをどれだけ好みそうかを表す1つの点数",
+      "質問の文の続きとして、次に来そうなトークンごとの確率の一覧",
+      "人の好みに合うように書き直した、質問に対する答えの文そのもの",
+      "答えの根拠として質問に添えるために、検索して見つけた資料の文書"
+    ],
+    "answer": 0,
+    "explanation": "InstructGPTの論文は、報酬モデルを、プロンプトと答えを受け取り、1つの数の報酬を出すモデルとし、人が好んだ答えを予測するよう学習させたと説明している。答えの文を作るのは仕上げられる側の言語モデルで、報酬モデルは採点係。",
+    "whyWrong": [
+      null,
+      "次のトークンごとの確率を出すのは、文章を作る言語モデルそのもの。報酬モデルは、できあがった答えに点数を付ける。",
+      "答えの文を書くのは、報酬モデルではなく、強化学習で仕上げられる言語モデルの側。",
+      "検索して資料を添えるのはRAG（検索拡張生成）の仕組み。報酬モデルは資料を探さない。"
+    ],
+    "memoryTip": "報酬モデル＝採点係。文は書かず、点数を出す。",
+    "concepts": ["C-AP-02-023", "C-AP-02-022"],
+    "sources": [
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-038",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "RLHF"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "RLHF（人間のフィードバックによる強化学習）について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "人の評価を使ってAIの答え方を仕上げる『RLHF』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "InstructGPTでは、1つの質問への4〜9個の答えに、担当者が良い順の順位を付けた",
+      "ChatGPTの発表のページは、InstructGPTと同じ方法でRLHFを使って学習させたとしている",
+      "InstructGPTの論文で、人の評価では、13億パラメータのモデルの出力がGPT-3より好まれた",
+      "RLHFで仕上げたモデルは、もっともらしいが誤った答えを出す問題が見られなくなった"
+    ],
+    "answer": 3,
+    "explanation": "RLHFで仕上げても、もっともらしいが誤った答えはなくならない。ChatGPTの発表のページは、RLHFで学習させたChatGPTについて、もっともらしく聞こえるが誤った、または意味の通らない答えを書くことがあると、限界として挙げている。理由の1つに、強化学習の段階では何が真実かを示す情報源が無いことを挙げている。",
+    "whyWrong": [
+      "適切。InstructGPTの論文は、比較を集める手間を減らすため、担当者に4〜9個の答えを見せて順位を付けさせたとしている。",
+      "適切。ChatGPTの発表のページは、InstructGPTと同じ方法でRLHFを使い、データの集め方を少し変えて学習させたとしている。",
+      "適切。論文は、13億パラメータのInstructGPTの出力が、100倍以上パラメータの多い1,750億パラメータのGPT-3の出力より好まれたとしている。",
+      null
+    ],
+    "memoryTip": "RLHFは『好まれる答え方』に整える。事実の誤りまでは消せない。",
+    "concepts": ["C-AP-02-022", "C-AP-02-024", "C-AP-02-037"],
+    "sources": [
+      { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" },
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-039",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "RLHF"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "InstructGPTの論文が、人間の評価によって示した結果として適切なものを１つ選びなさい。",
+    "stemPlain": "人がAIの答えを読んで比べたとき、どんな結果になったと論文が報告しているかを選ぶ問題。",
+    "choices": [
+      "パラメータの数が100倍以上多い1,750億パラメータのGPT-3の出力が、ほぼすべての質問で好まれた",
+      "13億パラメータのInstructGPTの出力が、1,750億パラメータのGPT-3の出力より好まれた",
+      "人が読んで比べても2つのモデルの出力に差は見られず、どちらも同じくらい好まれた",
+      "人は評価に加わらず、正解の文との一致を数える自動の採点だけで2つのモデルを比べた"
+    ],
+    "answer": 1,
+    "explanation": "InstructGPTの論文は、担当者に出力の質を評価させる方法を主な評価とし、13億パラメータのInstructGPTの出力が、100倍以上パラメータの多い1,750億パラメータのGPT-3の出力より好まれたと報告している。大きさよりも、人の評価にもとづく仕上げが効いたことを示す結果。",
+    "whyWrong": [
+      "結果が逆。論文は、小さいInstructGPTの出力のほうが好まれたとしている。",
+      null,
+      "論文は、担当者がInstructGPTの出力を、GPT-3の出力よりはっきり好んだとしている。差が無かったわけではない。",
+      "論文の主な評価は、担当者が出力の質を評価する人間の評価。公開の評価用データでの自動の評価も行っているが、人が加わらなかったのではない。"
+    ],
+    "memoryTip": "人の評価で整えた小さなモデル（13億）＞ 整えていない大きなモデル（1,750億）。",
+    "concepts": ["C-AP-02-024", "C-AP-02-022"],
+    "sources": [
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-040",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "RLHF"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "文章を作る生成AIの評価に、人間の評価が使われる理由として適切なものを１つ選びなさい。",
+    "stemPlain": "AIが作った文章の良し悪しを、わざわざ人が読んで確かめるのはなぜかを選ぶ問題。",
+    "choices": [
+      "人が読んで評価すると、その分だけモデルのパラメータが減り、動きが軽くなるから",
+      "人が評価した結果を使うと、学習に使う文章の量を少なく抑えられるから",
+      "役に立つか・自然かのような、正解が1つに決まらない質を測るには、人が読む必要があるから",
+      "人が付けた点数が、そのまま次のトークンの確率として出力に使われるから"
+    ],
+    "answer": 2,
+    "explanation": "要約や回答のような文章は、良い言い方が何通りもあり、正解の文との一致を数える自動の採点だけでは、役に立つか・自然か・害が無いかを測りきれない。そこで人が読んで比べたり点を付けたりする。InstructGPTの論文も、担当者による出力の質の評価を主な評価として使い、その順位付けをRLHFの材料にもした。",
+    "whyWrong": [
+      "人が評価しても、モデルのパラメータの数は変わらない。評価は質を確かめるためのもので、モデルを軽くする方法ではない。",
+      "人の評価は、学習データの量を減らすためのものではない。事前学習には、人の評価とは別にばく大な文章を使う。",
+      null,
+      "人の点数は、報酬モデルを作る材料などに使われるが、そのまま次のトークンの確率になるわけではない。次のトークンの確率は、言語モデルが計算する。"
+    ],
+    "memoryTip": "正解が1つでないもの（役に立つか・自然か）は、人が読んで測る。",
+    "concepts": ["C-AP-02-024"],
+    "sources": [
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-041",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "学習データの規模と課題"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "GPT-3の論文が、ウェブから集めた文章（Common Crawl）の質を上げるために行ったこととして適切なものを１つ選びなさい。",
+    "stemPlain": "インターネットから集めた大量の文章を、学習に使う前にどうやって良いデータにしたかを選ぶ問題。",
+    "choices": [
+      "すべての文書を人が読み、事実として正しい文だけに正解の印を付けて残した",
+      "日本語の文章だけを残し、英語などほかの言語の文章をすべて取り除いた",
+      "データを何倍にも増やすため、同じ文書をわざと何度もくり返し入れた",
+      "質の高い文章の集まりと似ているかで絞り込み、重複する文書も取り除いた"
+    ],
+    "answer": 3,
+    "explanation": "GPT-3の論文は、絞り込まないCommon Crawlは厳選したデータより質が低いとし、①質の高い文章の集まりとの似ている度合いで絞り込む ②文書の単位で重複を取り除く ③質の高い文章の集まりを混ぜる、の3つを行った。その結果、圧縮した状態で45TBあったデータが570GBになった。",
+    "whyWrong": [
+      "人がすべての文書を読んで正誤の印を付けることはしていない。量がばく大で現実的でなく、事前学習のデータには正誤のラベルは付いていない。",
+      "言語で絞り込んだわけではない。GPT-3の学習データは英語が中心だが、日本語だけを残すような処理はしていない。",
+      "逆。重複は、同じ文章を覚え込むことや、評価用のデータの混入を招くので、取り除いている。",
+      null
+    ],
+    "memoryTip": "量を集めたら、似ているもので絞り込み、重複を消す。45TB→570GB。",
+    "concepts": ["C-AP-02-026", "C-AP-02-025"],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-042",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "学習データの規模と課題"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "LLMの学習データの品質について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIの学習に使う文章の『質』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "ウェブから機械的に集めた文章は、そのままでは厳選した文章より質が低いことがある",
+      "重複を取り除くと、同じ文章を何度も学んで覚え込むことを防ぎやすい",
+      "評価用の問題が学習データに混ざると、成績を正しく測れなくなるおそれがある",
+      "量が十分に多ければ質は問題にならないので、誤りや重複を取り除く作業は省いてよい"
+    ],
+    "answer": 3,
+    "explanation": "量が多くても質は問題になる。GPT-3の論文は、絞り込まないウェブの文章は厳選したデータより質が低いとし、絞り込みと重複の除去に手間をかけた。量と質の両方をそろえる必要がある。",
+    "whyWrong": [
+      "適切。GPT-3の論文は、絞り込まない、または軽く絞り込んだだけのCommon Crawlは、厳選したデータより質が低い傾向があるとしている。",
+      "適切。同じ文章を何度も学ぶと、その文章を覚え込みやすくなる。GPT-3の論文は、文書の単位で重複を取り除いた。",
+      "適切。GPT-3の論文は、評価用のデータが学習データに混ざる『データの汚染』を調べ、成績への影響を確かめている。",
+      null
+    ],
+    "memoryTip": "データは『量』と『質』の両輪。量だけ増やしても質の問題は残る。",
+    "concepts": ["C-AP-02-026"],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-043",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "学習データの規模と課題"],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "決まった計算量の中で、モデルの大きさと学習データの量をどう配分するのがよいかを調べた2022年の研究（Chinchilla）の結論として適切なものを１つ選びなさい。",
+    "stemPlain": "AIの学習に使える計算の量が決まっているとき、モデルを大きくするのとデータを増やすのを、どんな割合にするのがよいかを選ぶ問題。",
+    "choices": [
+      "データの量は増やさずに、モデルのパラメータの数だけを増やすのがよい",
+      "モデルの大きさを2倍にするなら、学習のトークン数も2倍にし、同じ割合で増やすのがよい",
+      "モデルは小さいままにしておき、学習データの量だけを増やすのがよい",
+      "モデルの大きさもデータの量も性能には関係しないので、配分を気にする必要はない"
+    ],
+    "answer": 1,
+    "explanation": "Hoffmannら（2022）は、計算量に対して最も効率よく学習するには、モデルの大きさと学習のトークン数を同じ割合で増やすべきで、モデルを2倍にするたびにトークン数も2倍にするのがよいとした。当時の多くのLLMは学習不足だったとし、700億パラメータのChinchillaに4倍のデータを使わせて、2,800億パラメータのGopherやGPT-3を多くの仕事で上回った。",
+    "whyWrong": [
+      "論文は、当時のLLMが、データの量をそのままにモデルだけを大きくしてきた結果、学習不足になっていると指摘した。モデルだけを増やすのは、論文が問題にした配分。",
+      null,
+      "モデルを小さいままにするのではなく、モデルとデータを同じ割合で増やすのが論文の結論。",
+      "論文は、モデルの大きさもデータの量も性能に関係するからこそ、配分を調べている。"
+    ],
+    "memoryTip": "Chinchilla＝モデルとデータは『半々で』増やす。",
+    "concepts": ["C-AP-02-025", "C-AP-02-029"],
+    "sources": [
+      { "title": "Hoffmann et al. (2022) Training Compute-Optimal Large Language Models (arXiv:2203.15556)", "url": "https://arxiv.org/abs/2203.15556" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-044",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "学習データの規模と課題"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ある言語モデルに『その看護師は』『その技術者は』のような文の続きを書かせたところ、学習データに多く含まれる職業と性別の結びつきどおりに、特定の性別を表す語ばかりが続いた。この問題を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "学習に使った文章の偏りが、AIの答えにそのまま出てしまう問題の名前を選ぶ問題。",
+    "choices": [
+      "ハルシネーション",
+      "過学習（オーバーフィッティング）",
+      "バイアス",
+      "長距離依存"
+    ],
+    "answer": 2,
+    "explanation": "学習データに含まれる偏りや偏見を、モデルが受け継いで出力に表すのがバイアス。GPT-3の論文も、試した388の職業のうち83％で、女性より男性を表す語が続く確率が高かったと報告し、学習データの偏りが決めつけや偏見をふくむ内容につながりうるとしている。",
+    "whyWrong": [
+      "ハルシネーションは、事実でないことをもっともらしく答えること（例：存在しない本の題名を挙げる）。この場面は、事実の誤りではなく、偏った結びつきの問題。",
+      "過学習は、学習用データに合わせすぎて、新しいデータで当たらなくなる状態。社会の偏りを受け継ぐ問題とは別。",
+      null,
+      "長距離依存は、文の中の離れた語どうしの意味のつながり。偏った出力の問題の名前ではない。"
+    ],
+    "memoryTip": "データが偏っていれば、出力も偏る＝バイアス。",
+    "concepts": ["C-AP-02-027", "C-AP-02-037"],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-045",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "学習データの規模と課題"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "生成AIのバイアス（学習データからくる偏り）について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "学習に使った文章の偏りがAIの答えに出てしまう『バイアス』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "学習データにある偏りが、特定の集団についての決めつけた内容を作らせることがある",
+      "事実としては正しい文でも、偏った見方を強めるような出力になることがある",
+      "人の評価にもとづく調整で、有害な出力を減らせたという報告がある",
+      "学習データの量を増やせば偏りは自然に打ち消されるので、中身を確かめる必要はない"
+    ],
+    "answer": 3,
+    "explanation": "量を増やしても、集めた文章の多くに同じ偏りがあれば、偏りは残る。GPT-3は大量のデータで学習したが、職業と性別の結びつきに偏りが見られた（388の職業のうち83％で男性を表す語が続きやすかった）。データの中身と出力を確かめる必要がある。",
+    "whyWrong": [
+      "適切。GPT-3の論文は、学習データにある偏りが、決めつけや偏見をふくむ内容をモデルに作らせることがあるとしている。",
+      "適切。バイアスは事実の誤り（ハルシネーション）とは別の問題で、個々の文が事実として正しくても、偏った結びつきをくり返し示すことで見方をゆがめうる。",
+      "適切。InstructGPTの論文は、人のフィードバックにもとづく調整で、有害な出力が減ったと報告している。",
+      null
+    ],
+    "memoryTip": "量を増やしてもバイアスは消えない。中身を見る。",
+    "concepts": ["C-AP-02-027"],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
+      { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-046",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "学習データの規模と課題"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "AIの学習に他人の著作物を使うことについて、文化庁の『AIと著作権に関する考え方について』（2024年3月）が示した、著作権法30条の4の考え方として適切なものを１つ選びなさい。",
+    "stemPlain": "AIの学習に、他の人が作った文章や絵を使うことが、日本の著作権法でどう考えられているかを選ぶ問題。",
+    "choices": [
+      "AI学習のための情報解析は、作品を味わう目的ではない利用に当たり、原則として許諾なしで利用できる",
+      "AIの学習に作品を使うときは、作品ごとに著作権者から許諾を得ることが原則として求められる",
+      "インターネットで公開されている作品なら、出力に作品をそのまま出させる目的の学習でも許諾は要らない",
+      "学習に使われた作品は、学習が終わった時点で著作権による保護の対象から外れる"
+    ],
+    "answer": 0,
+    "explanation": "著作権法30条の4は、著作物に表現された思想又は感情を自ら享受し又は他人に享受させることを目的としない場合に、必要と認められる限度で利用できるとし、その例に情報解析の用に供する場合を挙げている。文化庁の文書は、AI学習のための情報解析はこの非享受目的に当たると考えられる、としている。ただし、著作権者の利益を不当に害する場合は除かれ、享受目的が1つでも併存すれば適用されない。",
+    "whyWrong": [
+      null,
+      "30条の4は、非享受目的の利用を、原則として許諾なしで認める規定。作品ごとの許諾が原則として求められる、というのは逆。",
+      "公開されているかどうかで決まるのではない。文化庁の文書は、学習データの作品の創作的な表現を出力させることを目的とした学習は、享受目的が併存するので30条の4は適用されない、としている。",
+      "学習に使っても、元の作品の著作権は消えない。30条の4は、一定の利用を許諾なしで認める規定で、作品の保護をなくすものではない。"
+    ],
+    "memoryTip": "30条の4＝『味わう目的でない利用』はOK。ただし味わう目的が混ざればNG。",
+    "concepts": ["C-AP-02-028"],
+    "sources": [
+      { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）第三十条の四", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
+      { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-047",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "学習データの規模と課題"],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "ある事業者が、特定のイラストレーターの作品だけを少し集めて学習済みの画像生成AIに追加学習させ、その作品の創作的な表現をそのまま出力させることを目的にした。文化庁の『AIと著作権に関する考え方について』（2024年3月）に沿った考え方として適切なものを１つ選びなさい。",
+    "stemPlain": "特定の作家の絵をそっくり出させるために、その作家の絵だけで追加学習させる場合、著作権法の『学習ならOK』の規定が使えるかを選ぶ問題。",
+    "choices": [
+      "作品を味わう目的が併存すると評価されるので、30条の4は適用されない",
+      "追加学習は事前学習とは違うので、著作権法の対象にはならず、問題は生じない",
+      "学習のための利用である以上、目的を問わず30条の4が適用され、許諾は要らない",
+      "少しのデータしか使わないので情報解析に当たり、30条の4がそのまま適用される"
+    ],
+    "answer": 0,
+    "explanation": "文化庁の文書は、既存の学習済みモデルへの追加的な学習のうち、意図的に、学習データの作品の創作的表現の全部又は一部を出力させることを目的としたものは、享受目的が併存すると評価される場合の例とし、享受目的が1つでも併存すれば30条の4は適用されないとしている。この場合は、ふつうの著作物の利用と同じく、権利者の許諾などが問題になる。",
+    "whyWrong": [
+      null,
+      "追加学習も著作物の複製などを伴うので、著作権法の対象になる。文化庁の文書も、追加的な学習を検討の対象にしている。",
+      "30条の4は、作品を味わう目的が無い場合の規定。文化庁の文書は、享受目的が併存すれば適用されないとしており、目的を問わず適用されるのではない。",
+      "データが少ないかどうかで決まるのではない。作品の創作的な表現を出力させる目的があるかどうかが問題で、この場合は享受目的が併存すると評価される。"
+    ],
+    "memoryTip": "『そっくり出させる』目的の学習＝味わう目的あり＝30条の4は使えない。",
+    "concepts": ["C-AP-02-028", "C-AP-02-021"],
+    "sources": [
+      { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
+      { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）第三十条の四", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-048",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "スケーリング則"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "スケーリング則（Scaling Laws）の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "AIのモデルを大きくすることと、性能の関係を表した『スケーリング則』がどんなものかを選ぶ問題。",
+    "choices": [
+      "モデルの大きさ・データの量・計算量を増やすと、言語モデルの損失が予測できる形で下がっていく",
+      "モデルを大きくすると、ある大きさを超えたところで、予測できない新しい能力が急に現れる",
+      "どんな問題でも、すべての学習方法の成績を平均すると、どの方法も同じになる",
+      "モデルを大きくするほど、学習用のデータに合わせすぎて、新しいデータに弱くなっていく"
+    ],
+    "answer": 0,
+    "explanation": "Kaplanら（2020）は、言語モデルの損失が、モデルの大きさ・データの量・学習の計算量のそれぞれに対して、べき乗則（決まった割合ずつ下がる関係）にしたがうことを示した。傾向の一部は7けたを超える広い範囲にわたって成り立っており、大きなモデルを作る前に性能を見積もるのに使える。",
+    "whyWrong": [
+      null,
+      "これは創発的能力の説明。スケーリング則は、なめらかに予測どおり良くなるという経験則で、急に現れる能力とは対になる。",
+      "これはノーフリーランチ定理の説明。規模と性能の関係を表すものではない。",
+      "これは過学習の説明に近い。Kaplanらは、大きなモデルほど少ないデータで効率よく学べるとしており、大きくするほど新しいデータに弱くなる、という関係ではない。"
+    ],
+    "memoryTip": "スケーリング則＝大きくすれば『予測どおり』良くなる。創発＝『予測できず』急に良くなる。",
+    "concepts": ["C-AP-02-029", "C-AP-02-030"],
+    "sources": [
+      { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-049",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "スケーリング則"],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "Kaplanら（2020）のスケーリング則では、パラメータの数を10倍にするたびに、言語モデルの損失（予測の外れ具合）が約0.84倍になる関係が示されている。パラメータの数を100倍にしたときの損失はおよそ何倍になるか。適切なものを１つ選びなさい。",
+    "stemPlain": "『10倍にすると外れ具合が0.84倍になる』という決まりがあるとき、100倍にしたら何倍になるかを計算する問題。",
+    "choices": [
+      "約0.70倍",
+      "約0.16倍",
+      "約0.84倍",
+      "約0.08倍"
+    ],
+    "answer": 0,
+    "explanation": "100倍は『10倍を2回』なので、損失には0.84を2回掛ける。0.84×0.84＝0.7056 で、約0.70倍（約30％減る）。べき乗則は、大きさが同じ倍率で増えるたびに、損失が同じ割合ずつ下がる関係なので、掛け算をくり返して求める。論文の式では指数が約0.076で、10の0.076乗が約1.19なので、10倍で 1÷1.19≒0.84倍になる。",
+    "whyWrong": [
+      null,
+      "0.16は、10倍のときに減る割合（1−0.84＝0.16、16％減）。100倍にしたときの損失の倍率ではない。",
+      "0.84倍は、10倍にしたときの値。100倍は10倍を2回くり返すので、0.84をもう1回掛ける必要がある。",
+      "0.08は、0.84を10で割ったような値で、計算のしかたが違う。べき乗則では、10倍ごとに0.84を掛ける。"
+    ],
+    "memoryTip": "10倍ごとに同じ割合ずつ減る。100倍＝0.84を2回掛ける。",
+    "concepts": ["C-AP-02-029"],
+    "sources": [
+      { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-050",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "スケーリング則"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "3けたの足し算・引き算などの計算問題で、GPT-3はある大きさまでは正解がほぼ0のままだったが、130億パラメータのあたりで、偶然より大きく上の成績へ急に上がった。このように、ある規模を超えると急に現れる能力を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "AIを大きくしていくと、ある大きさで急にできるようになる能力の名前を選ぶ問題。",
+    "choices": [
+      "スケーリング則",
+      "汎化",
+      "創発的能力",
+      "転移学習"
+    ],
+    "answer": 2,
+    "explanation": "Weiら（2022）は、小さいモデルには無く大きいモデルにある能力を創発的能力と呼び、小さいモデルの成績を延長しても予測できないとした。論文は、3けたの足し算・引き算などで、GPT-3の成績が学習の計算量2×10の22乗回（130億パラメータ）のあたりで急に上がった例を挙げている。",
+    "whyWrong": [
+      "スケーリング則は、規模を増やすと損失がなめらかに予測どおり下がる、という経験則。ある大きさで急に現れ、前もって予測できない能力とは対になる考え方。",
+      "汎化は、学習で見ていない新しいデータにも正しく予測できること。規模を超えたところで急に現れる能力の名前ではない。",
+      null,
+      "転移学習は、ある仕事で学習したモデルを、別の仕事の学習の出発点に使う方法。規模に応じて能力が現れる現象の名前ではない。"
+    ],
+    "memoryTip": "創発＝ある大きさで『急に』できるようになる。",
+    "concepts": ["C-AP-02-030", "C-AP-02-029"],
+    "sources": [
+      { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-051",
+    "syllabus": ["生成AI", "生成AIの学習プロセス", "スケーリング則"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "次の文の（ア）（イ）に入る語の組み合わせとして適切なものを１つ選びなさい。『（ア）は、モデルやデータを大きくすると、言語モデルの損失がなめらかに予測どおり下がっていく、という経験則である。一方（イ）は、ある規模を超えたときに急に現れ、小さいモデルの成績からは予測できない能力である。』",
+    "stemPlain": "AIを大きくしたときの2つの現象、『予測どおり良くなる』と『急にできるようになる』の名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）創発的能力　（イ）スケーリング則",
+      "（ア）スケーリング則　（イ）創発的能力",
+      "（ア）スケーリング則　（イ）過学習",
+      "（ア）ノーフリーランチ定理　（イ）創発的能力"
+    ],
+    "answer": 1,
+    "explanation": "規模とともに損失がなめらかに下がるのがスケーリング則（Kaplanら、2020）。ある規模を超えると急に現れ、小さいモデルの延長では予測できないのが創発的能力（Weiら、2022）。創発的能力の論文も、創発的能力はスケーリング則を延長しても予測できなかった、と対比している。",
+    "whyWrong": [
+      "2つが逆。なめらかに予測どおり良くなるのがスケーリング則、急に現れるのが創発的能力。",
+      null,
+      "過学習は、学習用データに合わせすぎて新しいデータに弱くなる状態で、規模を超えたときに現れる能力ではない。",
+      "ノーフリーランチ定理は、あらゆる問題で平均すると、どの学習方法も成績は変わらない、という定理。規模と損失の関係の経験則ではない。"
+    ],
+    "memoryTip": "スケーリング則＝なだらかな坂、創発＝急な段差。",
+    "concepts": ["C-AP-02-029", "C-AP-02-030"],
+    "sources": [
+      { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" },
+      { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-052",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "トークン化"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "言語モデルでいう『トークン』の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "AIが文章を読むときに使う『トークン』という単位が、何を指すかを選ぶ問題。",
+    "choices": [
+      "モデルが文章を区切って扱う単位で、語・語の一部・1文字・記号などがなりうる",
+      "利用者がAIのサービスに入るときに使う、本人であることを確かめる合言葉",
+      "モデルが学習で値を決める、ノードどうしのつながりの重みの1つ1つ",
+      "文章を、意味の近いものほど近くなるように並べた、数百個の数の並び"
+    ],
+    "answer": 0,
+    "explanation": "トークンは、言語モデルが学習と予測で扱う最小の単位（Googleの用語集）。語・1文字・サブワード（語の一部）などがトークンになる。OpenAIの説明では、英語ではおよそ1トークンが4文字にあたる。",
+    "whyWrong": [
+      null,
+      "これは、ログインに使うパスワードや認証用のトークン（合言葉）の意味。情報セキュリティでも『トークン』という語を使うが、言語モデルのトークンは文章を区切った単位。",
+      "これはパラメータ（学習で決まる重み）の説明。トークンはモデルの中の重みではなく、モデルに入れる文章の単位。",
+      "これは埋め込み（ベクトル）の説明。トークンを、意味の近さを表す数の並びに置きかえたものが埋め込み。"
+    ],
+    "memoryTip": "トークン＝文章を区切った札。英語ならおよそ4文字で1枚。",
+    "concepts": ["C-AP-02-031"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（token）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-053",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "トークン化"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "LLMのトークンについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIが文章を区切って扱う単位『トークン』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "OpenAIの説明では、英語ではおよそ1トークンが4文字、100トークンが約75語にあたる",
+      "同じ文でも、モデルの区切り方（エンコーディング）が違えば、トークンの数が変わることがある",
+      "トークンの数は、どのモデル・どの言語でも、文章の文字数とちょうど同じ数になる",
+      "利用料や、1回に入れられる量の上限は、トークンの数で数えることが多い"
+    ],
+    "answer": 2,
+    "explanation": "トークンの数は文字数と一致しない。OpenAIの説明は、トークンの数は単語の数とも同じではなく、同じ文章でもモデル・エンコーディング・言語によって数が変わるとし、英語の目安（1トークン約4文字）もほかの言語では関係が変わるとしている。",
+    "whyWrong": [
+      "適切。OpenAIの説明は、英語の目安として、1トークンはおよそ4文字、100トークンはおよそ75語としている。",
+      "適切。OpenAIの説明は、同じ文章でも、モデル・エンコーディング・言語によってトークンの数が変わるとしている。",
+      null,
+      "適切。OpenAIの説明は、入力・出力のトークンが、使用量・モデルの上限・費用に影響するとしている。"
+    ],
+    "memoryTip": "トークン数≠文字数。言語やモデルで変わる。",
+    "concepts": ["C-AP-02-031", "C-AP-02-032"],
+    "sources": [
+      { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-054",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "トークン化"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "LLMに文章を入力すると、まず文章が決まった単位に区切られ、それぞれに番号が付いた並びに変えられる。この処理を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "AIに文章を入れたとき、最初に文章を細かく区切って番号にする処理の名前を選ぶ問題。",
+    "choices": [
+      "埋め込み（Embedding）",
+      "トークン化（Tokenization）",
+      "次元削減",
+      "RAG（検索拡張生成）"
+    ],
+    "answer": 1,
+    "explanation": "文章をトークン（モデルが扱う単位）に区切り、番号（トークンID）の並びにするのがトークン化。OpenAIの説明も、文章がトークンに分けられ、モデルがそのトークンを処理し、出力のトークンを作る、という順で説明している。",
+    "whyWrong": [
+      "埋め込みは、トークン化でできた番号を、意味の近さを表す数の並び（ベクトル）に変える次の段階。区切って番号にする処理そのものではない。",
+      null,
+      "次元削減は、データを表す項目の数を減らす処理（第1章）。文章を単位に区切る処理ではない。",
+      "RAGは、質問に関係する文書を検索して入力に添える仕組み。文章を区切る処理の名前ではない。"
+    ],
+    "memoryTip": "トークン化（区切って番号）→ 埋め込み（数の並びに）→ 計算。",
+    "concepts": ["C-AP-02-032", "C-AP-02-034"],
+    "sources": [
+      { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-055",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "トークン化"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "LLMのトークン化で、単語より細かいサブワード（語の一部）を単位にする利点として適切なものを１つ選びなさい。",
+    "stemPlain": "文章を区切るときに、単語ごとではなく『単語のかけら』で区切ると、何が良いのかを選ぶ問題。",
+    "choices": [
+      "区切った単位ごとに意味の近さの数が決まるので、埋め込みの学習が要らなくなる",
+      "1文字ずつに区切るので、どんな文章も同じ長さのトークンの並びにそろえられる",
+      "文章をすべて英語に直してから区切るので、言語による違いを考えなくてよい",
+      "辞書に無い新しい語やまれな語も、知っている部分の組み合わせで表せる"
+    ],
+    "answer": 3,
+    "explanation": "単語ごとに区切ると、辞書（語彙）に無い語を扱えない。サブワードなら、例えば taller を tall と er に分けるように、知っている部分の組み合わせで表せる。Sennrichら（2015）は、まれな語や知らない語をサブワードの並びとして表すことで、辞書に無い語も翻訳できるようにした。",
+    "whyWrong": [
+      "サブワードで区切っても、各トークンを数の並びに変える埋め込みは学習で決める必要がある。区切り方と埋め込みは別の段階。",
+      "サブワードは1文字ずつ区切る方法ではない。1文字ずつだと並びが長くなりすぎるので、単語と1文字の中間の単位を使う。区切ってできる並びの長さもそろわない。",
+      "サブワードの区切り方は、言語を英語に直す処理ではない。それぞれの言語の文字の並びのまま区切る。",
+      null
+    ],
+    "memoryTip": "サブワード＝単語のかけら。知らない語もかけらの組み合わせで読める。",
+    "concepts": ["C-AP-02-033", "C-AP-02-032"],
+    "sources": [
+      { "title": "Sennrich, Haddow & Birch (2015) Neural Machine Translation of Rare Words with Subword Units (arXiv:1508.07909)", "url": "https://arxiv.org/abs/1508.07909" },
+      { "title": "Google for Developers: Machine Learning Glossary（token）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-056",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "埋め込みとベクトル表現"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "LLMが文章を受け取ってからの流れについて、次の文の（ア）（イ）（ウ）に入る語の組み合わせとして適切なものを１つ選びなさい。『まず（ア）で文章を区切る。区切る単位には、単語より細かい（イ）がよく使われる。次に（ウ）で、各トークンを、意味の近いものほど近くなる数の並びに変える。』",
+    "stemPlain": "文章を区切る処理、区切る単位、数の並びに変える処理の3つの名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）埋め込み　（イ）サブワード　（ウ）トークン化",
+      "（ア）トークン化　（イ）サブワード　（ウ）次元削減",
+      "（ア）トークン化　（イ）パラメータ　（ウ）埋め込み",
+      "（ア）トークン化　（イ）サブワード　（ウ）埋め込み"
+    ],
+    "answer": 3,
+    "explanation": "文章をトークンに区切るのがトークン化、その単位としてよく使われるのが単語より細かいサブワード、各トークンを意味の近さを表す数の並び（ベクトル）に変えるのが埋め込み。Googleの用語集も、埋め込みの空間では、2つの埋め込みの内積が似ている度合いの目安になるとしている。",
+    "whyWrong": [
+      "（ア）と（ウ）が逆。区切るのがトークン化で、数の並びに変えるのが埋め込み。",
+      "次元削減は、データを表す項目の数を、情報をなるべく失わずに減らす処理。トークンを意味の近さを表す数の並びに変える処理ではない。",
+      "パラメータは、モデルが学習で決める重みなどの数で、文章を区切る単位ではない。",
+      null
+    ],
+    "memoryTip": "区切る（トークン化）→ かけら（サブワード）→ 数の並びに（埋め込み）。",
+    "concepts": ["C-AP-02-032", "C-AP-02-033", "C-AP-02-034"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（token・embedding space）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-057",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "埋め込みとベクトル表現"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "LLMで使う埋め込み（Embedding）の性質として適切なものを１つ選びなさい。",
+    "stemPlain": "語を数の並びに置きかえた『埋め込み』が、どんな性質を持つかを選ぶ問題。",
+    "choices": [
+      "文字の数が同じ語ほど、数の並びどうしが近くなる",
+      "辞書の五十音順で近い語ほど、数の並びどうしが近くなる",
+      "すべての語が、同じ1つの数の並びで表される",
+      "意味や使われ方の近い語ほど、数の並びどうしが近くなる"
+    ],
+    "answer": 3,
+    "explanation": "埋め込みは、意味や使われ方の近い語ほど近い位置に来るように、学習で値が決まる数の並び。Googleの用語集は、埋め込みの値は学習で決まり、2つの埋め込みの内積が似ている度合いの目安になるとしている。Mikolovら（2013）も、語のベクトルが語の意味や文法の似かたを表せることを示した。",
+    "whyWrong": [
+      "文字の数は意味と関係しない。例えば『犬』と『猫』は1文字どうしで近いが、『犬』と『車』も1文字どうしで、意味は遠い。",
+      "五十音順は文字の並び順で、意味の近さとは関係しない。埋め込みは、文章の中での使われ方から学習する。",
+      "全部が同じ数の並びだと、語を区別できない。語ごとに別の数の並びを持つ。",
+      null
+    ],
+    "memoryTip": "埋め込み＝意味の地図。似た意味は近くに置かれる。",
+    "concepts": ["C-AP-02-034", "C-AP-02-035"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（embedding vector・embedding space）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)", "url": "https://arxiv.org/abs/1301.3781" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-058",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "埋め込みとベクトル表現"],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "次の文の（　）に入る語を１つ選びなさい。『Transformerの原論文では、1つのトークンを512個の数を順に並べたもので表した。このように数をいくつか順に並べたものを（　）と呼ぶ。』",
+    "stemPlain": "数をいくつも順に並べたものの名前を、文の空欄に入れる問題。",
+    "choices": [
+      "トークン",
+      "ベクトル",
+      "パラメータ",
+      "プロンプト"
+    ],
+    "answer": 1,
+    "explanation": "数をいくつか順に並べたものをベクトルと呼ぶ。Transformerの原論文では、各トークンを512次元（512個の数の並び）のベクトルで表した。ベクトルどうしは、近さ（似ている度合い）を計算できる。",
+    "whyWrong": [
+      "トークンは、文章を区切った単位（語や語の一部）。そのトークンを数の並びで表したものがベクトル（埋め込み）。",
+      null,
+      "パラメータは、モデルが学習で決める重みなどの数。1つのトークンを表す数の並びの名前ではない。",
+      "プロンプトは、利用者がモデルに入力する指示や質問の文。数の並びの名前ではない。"
+    ],
+    "memoryTip": "ベクトル＝数の並び。語は数百個の数の並びで表される。",
+    "concepts": ["C-AP-02-035", "C-AP-02-034"],
+    "sources": [
+      { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
+      { "title": "Google for Developers: Machine Learning Glossary（embedding vector）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-059",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "確率的な次トークン予測"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "LLMが文章を作るとき、次のトークンを決めるために計算するものとして適切なものを１つ選びなさい。",
+    "stemPlain": "AIが文章の続きを書くとき、次の語を決めるのに何を計算しているかを選ぶ問題。",
+    "choices": [
+      "次に来うるトークンそれぞれの来やすさを表す、全部足すと1になる確率の一覧",
+      "あらかじめ人が用意した回答の一覧の中で、質問に一番近い回答の番号",
+      "質問の文に出てくる単語の数と、答えに使える文字の数の差",
+      "インターネットで検索して見つけたページのうち、一番新しいページの日付"
+    ],
+    "answer": 0,
+    "explanation": "LLMは、次に来うるすべてのトークンに確率を割り振った確率分布を計算し、そこから1つを選ぶ。Googleの用語集は、言語モデルを、トークンやトークンの並びが現れる確率を見積もるモデルとしている。選ぶたびにそのトークンを足して、また次を予測する、をくり返して文章を作る。",
+    "whyWrong": [
+      null,
+      "LLMは、用意した回答の一覧から選んで返しているのではない。1トークンずつ確率を計算して、その場で文章を作っている。",
+      "単語の数や文字の数の差は、次のトークンを決める計算ではない。",
+      "LLMそのものは、文章を作るたびにインターネットを検索するわけではない。検索した情報を使うのは、RAGなどの仕組みを組み合わせた場合。"
+    ],
+    "memoryTip": "LLMは『次に来るもの』の確率表を毎回作り、1つ選ぶ。",
+    "concepts": ["C-AP-02-036", "C-AP-02-016"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（language model）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-060",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "確率的な次トークン予測"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "LLMが確率にもとづいて次のトークンを選ぶことについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIが確率を使って次の語を選んで文章を作ることについて、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "同じ質問でも、選び方の設定によって、答えの文が毎回変わることがある",
+      "Temperatureを0にすると、最も確率の高いトークンが選ばれ、ほぼ同じ答えになる",
+      "確率の高い続きを選ぶので、もっともらしいが事実でない文になることがある",
+      "確率は、内容が事実である度合いを表しているので、確率の高い文は事実として正しい"
+    ],
+    "answer": 3,
+    "explanation": "次のトークンの確率は、学習した文章から見て『その続きがどれだけありそうか』を表すもので、内容が事実かどうかを表すものではない。ありそうな続きと正しい事実は別なので、確率の高い文でも事実と違うことがある（ハルシネーション）。",
+    "whyWrong": [
+      "適切。確率にしたがってくじを引くように選ぶ設定なら、同じ質問でも選ばれるトークンが変わり、答えの文も変わる。",
+      "適切。Google Cloudの説明は、温度が0なら常に最も確率の高いトークンが選ばれ、答えはほとんど確定的になるが、わずかに変わる可能性は残るとしている。",
+      "適切。OpenAIの解説も、事前学習で次の語を予測して学ぶことが、ハルシネーションの起こる理由の1つだとしている。",
+      null
+    ],
+    "memoryTip": "確率＝『ありそう』の度合い。『正しい』の度合いではない。",
+    "concepts": ["C-AP-02-036", "C-AP-02-037", "C-AP-02-040"],
+    "sources": [
+      { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
+      { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-061",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "ハルシネーション"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "生成AIに参考文献を尋ねたところ、実在しない論文の題名と著者名を、もっともらしく自信ありげに挙げた。この現象を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "AIが、本当は無いものを、あるかのように自信たっぷりに答える現象の名前を選ぶ問題。",
+    "choices": [
+      "バイアス",
+      "過学習（オーバーフィッティング）",
+      "ハルシネーション",
+      "プロンプトインジェクション"
+    ],
+    "answer": 2,
+    "explanation": "事実ではない内容を、もっともらしく出力するのがハルシネーション（幻覚）。Googleの用語集は、現実の世界について述べているかのような、もっともらしいが事実として誤った出力を、生成AIのモデルが作ること、としている。",
+    "whyWrong": [
+      "バイアスは、学習データの偏りを受け継いで、特定の人や集団について偏った内容を出すこと。実在しないものを挙げる現象とは別。",
+      "過学習は、学習用データに合わせすぎて新しいデータで当たらなくなる、学習の状態の名前。答えの中で無いものを語る現象の名前ではない。",
+      null,
+      "プロンプトインジェクションは、入力や参照する文書に悪意のある指示を紛れ込ませ、AIに本来の指示に反した動きをさせる攻撃（第3章・第4章）。AIが自分から誤りを作る現象ではない。"
+    ],
+    "memoryTip": "ハルシネーション＝幻覚。無いものを自信満々に語る。",
+    "concepts": ["C-AP-02-037"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（hallucination）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-062",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "ハルシネーション"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "OpenAIの解説（2025年）が、ハルシネーションが起こる理由として挙げた内容として適切なものを１つ選びなさい。",
+    "stemPlain": "AIがもっともらしいうそを言ってしまう理由について、OpenAIが説明した内容を選ぶ問題。",
+    "choices": [
+      "モデルが、利用者を楽しませるためにわざと事実と違う答えを作るよう設計されているから",
+      "正誤の印の無い文章で次の語を予測して学ぶので、まれな事実はあてずっぽうになりやすいから",
+      "コンテキストウィンドウが大きすぎて、入力された情報が多すぎると必ず混乱するから",
+      "Temperatureを0にすると、確率の最も低いトークンばかりが選ばれるようになるから"
+    ],
+    "answer": 1,
+    "explanation": "OpenAIの解説は、事前学習では文ごとに真偽のラベルが無く、次の語の予測で学ぶので、つづりのような規則的なものは身につくが、ペットの誕生日のような、パターンから予測できないまれな事実はハルシネーションにつながるとしている。あわせて、正解率だけで採点すると、分からないときも当て推量をするほうが有利になる評価のしかたも理由に挙げている。",
+    "whyWrong": [
+      "わざと誤りを作るよう設計されているのではない。解説は、学習のしかたと評価のしかたから、当て推量をしてしまう理由を説明している。",
+      null,
+      "コンテキストウィンドウ（1回に扱えるトークンの上限）が大きいことは、解説が挙げた理由ではない。用語集は、大きいほど多くの情報を使えるとしている。",
+      "逆。Temperatureを0にすると、最も確率の高いトークンが選ばれる（Google Cloudの説明）。確率の低いものばかりが選ばれるのではない。"
+    ],
+    "memoryTip": "まれな事実は『パターンから当てられない』→ あてずっぽう → ハルシネーション。",
+    "concepts": ["C-AP-02-037", "C-AP-02-015"],
+    "sources": [
+      { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" },
+      { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-063",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "ハルシネーション"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "ハルシネーションについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIがもっともらしいうそを言う『ハルシネーション』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "正解率だけで採点すると、分からないときも当て推量で答えるほうが点が高く見えやすい",
+      "分からないときに『分かりません』と答えることは、誤った答えより望ましい場合がある",
+      "関係する資料を検索して添えるRAGのように、ハルシネーションを減らす工夫がある",
+      "新しく大きなモデルでは、ハルシネーションは過去の問題になり、起きなくなっている"
+    ],
+    "answer": 3,
+    "explanation": "モデルが新しく大きくなっても、ハルシネーションは起きる。OpenAIの解説（2025年）も、モデルが進歩しても、不確かなときに分からないと言わずに、自信を持って誤った答えを出すことがあるとしている。",
+    "whyWrong": [
+      "適切。OpenAIの解説は、正解率だけで採点する評価では、知らないときも当て推量をするほうが、慎重に分からないと答えるモデルより成績が良く見えると説明している。",
+      "適切。OpenAIの解説は、誤りは答えを控えること（分からないと答えること）より悪いとしている。",
+      "適切。Lewisら（2020）は、検索した文書を使うRAGで、より事実に沿った文が作れたと報告している。",
+      null
+    ],
+    "memoryTip": "ハルシネーションは『減らせる』が『なくならない』。",
+    "concepts": ["C-AP-02-037", "C-AP-02-038"],
+    "sources": [
+      { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" },
+      { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-064",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "ハルシネーション"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ある会社が、社内規程についての質問に生成AIで答えたい。規程はよく改定されるので、モデルを学習し直さずに、そのときの規程の文書にもとづいて答えさせ、もっともらしい誤りを減らしたい。適した方法を１つ選びなさい。",
+    "stemPlain": "よく変わる社内のルールについて、AIを学習し直さずに、いまのルールの文書を見ながら答えさせる方法を選ぶ問題。",
+    "choices": [
+      "規程の文書でドメイン適応の追加学習を行い、改定のたびに学習し直す",
+      "Temperatureを高くして、いろいろな言い方の答えを出させる",
+      "質問に関係する規程の文書を検索して、質問と一緒にモデルに渡すRAGを使う",
+      "さまざまな仕事を指示の形にしたデータで、指示チューニングを行う"
+    ],
+    "answer": 2,
+    "explanation": "RAG（検索拡張生成）は、質問に関係する文書を検索して取り出し、質問と一緒にLLMに渡して、その文書にもとづいて答えさせる。文書を差し替えれば、学習し直さずに新しい規程で答えられる。Lewisら（2020）は、RAGがパラメータだけのモデルより事実に沿った文を作ったと報告し、知識を新しくすることをパラメータだけのモデルの課題に挙げている。",
+    "whyWrong": [
+      "ドメイン適応は、モデルの重みを直す追加学習。改定のたびに学習し直す必要があり、『学習し直さずに』という条件に合わない。",
+      "Temperatureを高くすると、答えの言い方がばらつくだけで、規程にもとづいた正しい内容になるわけではない。むしろ確率の低い続きも選ばれやすくなる。",
+      null,
+      "指示チューニングは、指示に従う力を高める追加学習。社内規程の中身を知らせる方法ではなく、学習し直す必要もある。"
+    ],
+    "memoryTip": "学習し直さず最新の資料で答える＝RAG。",
+    "concepts": ["C-AP-02-038", "C-AP-02-037", "C-AP-02-020"],
+    "sources": [
+      { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-065",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "ハルシネーション"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "RAG（検索拡張生成）について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "資料を検索してAIに添える『RAG』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "RAGを使うと、検索した文書の内容でモデルの重みが書き換わり、次からは検索しなくても答えられる",
+      "検索した文書を質問に添えて渡すので、モデルの重みは変えずに使える",
+      "Lewisら（2020）は、モデルの中の知識と、検索用の文書の索引を組み合わせる方法として提案した",
+      "検索した文書が古かったり誤っていたりすると、その内容にもとづいた答えも誤りうる"
+    ],
+    "answer": 0,
+    "explanation": "RAGは、回答のたびに文書を検索して入力に添える仕組みで、モデルの重みは書き換わらない。だから次も検索して添える必要がある。重みを書き換えるのは、ファインチューニングなどの追加学習。文化庁の文書も、RAGを、追加的な学習とは別の、入力に用いる技術として挙げている。",
+    "whyWrong": [
+      null,
+      "適切。RAGは入力を補う仕組みなので、モデルを学習し直さずに使える。",
+      "適切。Lewisら（2020）は、事前学習したモデル（パラメータの記憶）と、Wikipediaをベクトルにした索引（外部の記憶）を組み合わせたRAGを提案した。",
+      "適切。RAGは添えた文書にもとづいて答えるので、文書が古い・誤っている・関係が薄いと、答えも誤りうる（仕組みからの帰結）。"
+    ],
+    "memoryTip": "RAG＝毎回『資料を手渡す』。モデルの中身は変わらない。",
+    "concepts": ["C-AP-02-038", "C-AP-02-021"],
+    "sources": [
+      { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" },
+      { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-066",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "生成パラメータ（Temperature・Top-p）"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "LLMが文章を作るときに使う人が調整する生成パラメータの例として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIに文章を作らせるときに、使う人が変えられる設定の例のうち、そうでないものを1つ選ぶ問題。",
+    "choices": [
+      "出力のばらつきの度合いを決める Temperature",
+      "確率の合計で候補を絞る Top-p",
+      "学習で値が決まる、ノードどうしのつながりの重み",
+      "作れるトークンの最大数を決める、最大出力トークン数"
+    ],
+    "answer": 2,
+    "explanation": "つながりの重みは、モデルが学習で決めるパラメータで、文章を作るときに使う人が調整する設定ではない。Google Cloudの説明は、Geminiで調整できる値として、最大出力トークン、温度（Temperature）、Top-K、Top-P、シードを挙げている。",
+    "whyWrong": [
+      "生成パラメータの例。Google Cloudの説明は、温度を、トークンの選び方のランダムさの度合いを制御する値としている。",
+      "生成パラメータの例。Top-Pは、確率の合計がその値に届くまでの候補から選ぶ設定。",
+      null,
+      "生成パラメータの例。最大出力トークンは、答えとして作れるトークンの最大数を決める。"
+    ],
+    "memoryTip": "生成パラメータ＝『選び方』と『長さ』の設定。重みは学習で決まり、使う人は触らない。",
+    "concepts": ["C-AP-02-039", "C-AP-02-017"],
+    "sources": [
+      { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-067",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "生成パラメータ（Temperature・Top-p）"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "社内規程についての問い合わせに答えるチャットボットで、同じ質問にはなるべく毎回同じような決まった答えを返させたい。生成パラメータの調整として適切なものを１つ選びなさい。",
+    "stemPlain": "AIの答えをなるべくばらつかせたくないとき、Temperature（ばらつきの設定）をどうするかを選ぶ問題。",
+    "choices": [
+      "Temperatureを低くする",
+      "Temperatureを高くする",
+      "コンテキストウィンドウを広げる",
+      "学習データの量を増やす"
+    ],
+    "answer": 0,
+    "explanation": "Temperatureは、次のトークンを選ぶときのランダムさの度合い。Google Cloudの説明は、温度が低いほど確定的で自由度を抑えた答えに、高いほど多様で創造的な答えになるとしている。決まった答えがほしいなら低くする。",
+    "whyWrong": [
+      null,
+      "逆。Temperatureを高くすると、確率の低い候補も選ばれやすくなり、答えがばらつく。キャッチコピーの案出しのように、多様な答えがほしいときの設定。",
+      "コンテキストウィンドウは、1回に入力できるトークンの上限。広げても、答えのばらつきの度合いは変わらない。",
+      "学習データの量は、モデルを作るときの話で、使うときの答えのばらつきを調整する設定ではない。"
+    ],
+    "memoryTip": "決まった答え＝低温、アイデア出し＝高温。",
+    "concepts": ["C-AP-02-040", "C-AP-02-039"],
+    "sources": [
+      { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
+      { "title": "Google for Developers: Machine Learning Glossary（temperature）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-068",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "生成パラメータ（Temperature・Top-p）"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Google Cloudの説明で、Temperature（温度）を0にしたときの動きとして述べられている内容として適切なものを１つ選びなさい。",
+    "stemPlain": "AIのばらつきの設定 Temperature を0にすると、次の語の選び方がどうなるかを選ぶ問題。",
+    "choices": [
+      "すべての候補が同じ確率で選ばれ、毎回まったく違う答えになる",
+      "最も確率の高いトークンが毎回選ばれ、答えはほとんど決まったものになる",
+      "確率の最も低いトークンだけが選ばれ、意外性の高い答えになる",
+      "トークンが1つも選ばれなくなり、答えが出力されなくなる"
+    ],
+    "answer": 1,
+    "explanation": "Google Cloudの説明は、温度が0の場合、確率が最も高いトークンが常に選択され、特定のプロンプトに対する答えはほとんど確定的になるが、わずかに変動する可能性は残るとしている。",
+    "whyWrong": [
+      "逆の向き。全部の候補を同じように選ぶのは、ばらつきを最大にする方向で、温度を上げたときに近い。",
+      null,
+      "温度0は、最も確率の高いトークンを選ぶ設定。確率の低いものばかりを選ぶのではない。",
+      "温度0でもトークンは選ばれ、答えは出力される。選ばれ方が、最も確率の高いものに決まるだけ。"
+    ],
+    "memoryTip": "温度0＝いつも一番人気を選ぶ。",
+    "concepts": ["C-AP-02-040", "C-AP-02-036"],
+    "sources": [
+      { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-069",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "生成パラメータ（Temperature・Top-p）"],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "次のトークンの候補とその確率が『良い』0.5、『悪い』0.3、『雨』0.15、『象』0.05のとき、Top-pを0.8に設定した。次のトークンを選ぶ候補として残るものの組み合わせとして適切なものを１つ選びなさい。",
+    "stemPlain": "確率の高い順に足していき、合計が0.8になるまでの候補だけを残す、という決まりで、どの語が残るかを計算する問題。",
+    "choices": [
+      "『良い』だけ",
+      "『良い』と『悪い』",
+      "『良い』と『悪い』と『雨』",
+      "『良い』『悪い』『雨』『象』の4つ全部"
+    ],
+    "answer": 1,
+    "explanation": "Top-pでは、確率の高いトークンから順に足していき、合計がpに届くまでの候補だけを残す。高い順に『良い』0.5、次に『悪い』を足すと 0.5＋0.3＝0.8 で、0.8に届く。そこで『良い』と『悪い』の2つが候補に残り、『雨』と『象』は外される。Google Cloudの説明も、トークンは、確率の合計がTop-Pの値に等しくなるまで、確率の高いものから低いものへと選ばれるとしている。",
+    "whyWrong": [
+      "『良い』だけでは合計が0.5で、0.8に届かない。届くまで次の候補を足す。",
+      null,
+      "『雨』まで足すと合計は0.95で、0.8を超える。0.8に届いた時点の『良い』『悪い』で止める。",
+      "4つ全部を残すのは、Top-pを1にしたとき。0.8なら、確率の低い『雨』と『象』は外れる。"
+    ],
+    "memoryTip": "Top-p＝確率の高い順に『合計p』まで残す。0.5＋0.3＝0.8で止まる。",
+    "concepts": ["C-AP-02-041", "C-AP-02-036"],
+    "sources": [
+      { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
+      { "title": "Holtzman et al. (2019) The Curious Case of Neural Text Degeneration (arXiv:1904.09751)", "url": "https://arxiv.org/abs/1904.09751" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-070",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "生成パラメータ（Temperature・Top-p）"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "生成パラメータについて、次の文の（ア）（イ）に入る語の組み合わせとして適切なものを１つ選びなさい。『（ア）は、次のトークンを選ぶときのばらつきの度合いを決め、低いほど決まった答えになる。（イ）は、確率の高いトークンから順に足して、合計が決めた値に届くまでの候補だけから選ぶ。』",
+    "stemPlain": "AIの文章づくりの設定のうち、『ばらつきの度合い』と『確率の合計で候補を絞る』の2つの名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）Top-p　（イ）Temperature",
+      "（ア）Temperature　（イ）コンテキストウィンドウ",
+      "（ア）Temperature　（イ）Top-p",
+      "（ア）スケーリング則　（イ）Top-p"
+    ],
+    "answer": 2,
+    "explanation": "ばらつき（ランダムさ）の度合いを決めるのがTemperature、確率の合計で候補を絞るのがTop-p（核サンプリング）。Google Cloudの説明は、Top-Kで絞り、Top-Pでさらに絞ってから、温度を使って最終的なトークンを選ぶとしている。",
+    "whyWrong": [
+      "2つが逆。Top-pは確率の合計で候補を絞る設定で、Temperatureはばらつきの度合いの設定。",
+      "コンテキストウィンドウは、1回に扱えるトークンの数の上限。候補を確率で絞る設定ではない。",
+      null,
+      "スケーリング則は、モデルを大きくすると損失が予測どおり下がるという経験則で、文章を作るときの設定ではない。"
+    ],
+    "memoryTip": "Temperature＝ばらつきのつまみ、Top-p＝候補のふるい。",
+    "concepts": ["C-AP-02-040", "C-AP-02-041"],
+    "sources": [
+      { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-071",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "コンテキストウィンドウ"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "LLMでいう『コンテキストウィンドウ』の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "AIが一度に読める量の上限を表す『コンテキストウィンドウ』が何かを選ぶ問題。",
+    "choices": [
+      "モデルを作るときに学習に使った文章の、全部の量",
+      "モデルが1回のやり取りで処理できるトークンの数の上限",
+      "利用者がAIのサービスを開いている画面の大きさ",
+      "モデルが持つ、学習で決まる重みの個数"
+    ],
+    "answer": 1,
+    "explanation": "Googleの用語集は、コンテキストウィンドウを、モデルが1回のプロンプトで処理できるトークンの数とし、大きいほど多くの情報を使って一貫した答えを出しやすいとしている。会話の履歴や添えた資料も、この中に収める必要がある。",
+    "whyWrong": [
+      "これは学習データの量の話。コンテキストウィンドウは、使うときに1回で扱える入力の上限。",
+      null,
+      "画面の大きさとは関係ない。『ウィンドウ（窓）』は、モデルが一度に見渡せる文脈の範囲のたとえ。",
+      "これはパラメータの数の話で、モデルの大きさを表す。1回に入力できる量の上限ではない。"
+    ],
+    "memoryTip": "コンテキストウィンドウ＝一度に見渡せる『窓』の広さ（トークン数）。",
+    "concepts": ["C-AP-02-042"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（context window）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-072",
+    "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "コンテキストウィンドウ"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "コンテキストウィンドウについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIが一度に扱えるトークンの上限『コンテキストウィンドウ』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "指示の文・会話の履歴・添えた資料などを、この上限の中に収める必要がある",
+      "大きいほど、多くの情報を使って一貫した答えを出しやすい",
+      "推論モデルでは、画面に出ない推論のトークンの分も見込んでおく必要がある",
+      "学習に使った文章の総量のことで、大きいほどモデルの知識が多い"
+    ],
+    "answer": 3,
+    "explanation": "コンテキストウィンドウは、1回のやり取りで扱えるトークンの上限で、学習に使った文章の量とは別。学習データの量は、モデルを作るときに学ばせた材料の多さを表す。",
+    "whyWrong": [
+      "適切。入力に入れるものはすべてトークンとして数えられ、上限の中に収める必要がある。",
+      "適切。Googleの用語集は、コンテキストウィンドウが大きいほど、多くの情報を使って筋の通った一貫した答えを出しやすいとしている。",
+      "適切。OpenAIの説明は、推論モデルでは、見える答えのほかに推論のトークンの分の余裕も見込むようにとしている。",
+      null
+    ],
+    "memoryTip": "窓の広さ（1回に読める量）と、学んだ量（学習データ）は別物。",
+    "concepts": ["C-AP-02-042", "C-AP-02-025"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（context window）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-073",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "LM（言語モデル）とは"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "言語モデル（LM：Language Model）の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "『言語モデル』と呼ばれるAIのモデルが、何をするものかを選ぶ問題。",
+    "choices": [
+      "人が書いた文法の規則を集めて、文の正しさを判定するためのデータベース",
+      "文章の中で、語やトークンの並びが現れる確率を見積もるモデル",
+      "写真に写っている物を見つけて、その名前を文章で答えるモデル",
+      "会話の音声を聞き取って、話した人がだれかを当てるモデル"
+    ],
+    "answer": 1,
+    "explanation": "Googleの用語集は、言語モデルを、トークンやトークンの並びが、より長いトークンの並びの中に現れる確率を見積もるモデルとしている。次に来る語の確率が分かれば、続きを予測して文章を作ることもできる。",
+    "whyWrong": [
+      "人が書いた規則を集めたものは、ルールベースの仕組み。言語モデルは、文章のデータから語の並びの確率を学ぶ。",
+      null,
+      "これは画像を入力にするモデル（画像の認識やマルチモーダルなモデル）の説明。語の並びの確率を表す言語モデルそのものの定義ではない。",
+      "これは話者を識別するモデルの説明。音声から人を当てる識別系のモデルで、語の並びの確率を見積もるものではない。"
+    ],
+    "memoryTip": "言語モデル＝『この並びはどれくらいありそうか』を確率で出す。",
+    "concepts": ["C-AP-02-043"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（language model）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-074",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "LM（言語モデル）とは"],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "Googleの用語集の考え方にもとづくと、言語モデルの働きの例として不適切なものを１つ選びなさい。",
+    "stemPlain": "『言語モデル』の働きの例のうち、文章を扱ってはいるが言語モデルとは言えないものを1つ選ぶ問題。",
+    "choices": [
+      "『私は朝ごはんに』の次に来る語として、『パン』と『電柱』の来やすさを比べる",
+      "2つの文のうち、どちらが日本語として自然な並びかを確率で比べる",
+      "前に出した語をもとに次の語を選ぶことをくり返して、文章を作る",
+      "商品への書き込みが、好意的か否定的かを判定して2つに分ける"
+    ],
+    "answer": 3,
+    "explanation": "書き込みが好意的か否定的かを当てるのは感情分析で、文を種類に分ける分類のモデル。Googleの用語集は、文の分類のモデルや感情分析のモデルは、文章を扱っていても言語モデルではない、と注意している。言語モデルは、語の並びが現れる確率を見積もるモデル。",
+    "whyWrong": [
+      "言語モデルの働きに当たる。次に来る語ごとの来やすさ（確率）を見積もっている。",
+      "言語モデルの働きに当たる。語の並び全体の確率を比べれば、どちらが自然な並びかが分かる。",
+      "言語モデルの働きに当たる。次の語の確率から1つ選んで足すことをくり返すと、文章が作れる。",
+      null
+    ],
+    "memoryTip": "文章を扱う＝言語モデル、ではない。『並びの確率』を出すのが言語モデル。",
+    "concepts": ["C-AP-02-043"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（language model）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-075",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "LLM（大規模言語モデル）とは"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "言語モデル（LM）と大規模言語モデル（LLM）の違いの説明として適切なものを１つ選びなさい。",
+    "stemPlain": "ふつうの『言語モデル』と『大規模言語モデル』は何が違うのかを選ぶ問題。",
+    "choices": [
+      "LLMは、扱える言語の数が多い言語モデルで、日本語と英語の両方を扱えるものを指す",
+      "LLMは、人が書いた文法の規則で動き、LMはデータから学ぶという違いがある",
+      "LLMは、画像だけを扱う言語モデルで、文章を扱うものはLMと呼んで区別する",
+      "LLMは、パラメータの数と学習データの量をけた違いに大きくした言語モデルである"
+    ],
+    "answer": 3,
+    "explanation": "Googleの用語集は、LLMを、最低限とても多くのパラメータを持つ言語モデルとしている。GPT-3は、それまでの言語モデルの10倍にあたる1,750億パラメータを持ち、仕事ごとの追加学習をせずに、例を少し見せるだけで多くの仕事をこなした。",
+    "whyWrong": [
+      "『大規模』は、扱える言語の数ではなく、パラメータとデータの規模のこと。多言語に対応するのはマルチリンガルで、別の話。",
+      "LMもLLMも、どちらもデータから学ぶ。人が書いた規則で動くのはルールベースの仕組み。",
+      "LLMは文章を扱う言語モデル。画像だけを扱うものは言語モデルとは呼ばない。",
+      null
+    ],
+    "memoryTip": "LLMのL（Large）は『大きさ』。言語の数ではない。",
+    "concepts": ["C-AP-02-044", "C-AP-02-043"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（large language model）", "url": "https://developers.google.com/machine-learning/glossary" },
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-076",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "LLM（大規模言語モデル）とは"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "LLMの特性について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "大規模言語モデル（LLM）の性質について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "仕事ごとに重みを追加学習しなくても、指示と数個の例を文章で見せるだけで、多くの仕事をこなせることがある",
+      "モデルの規模がある大きさを超えると、小さいモデルには無かった能力が急に現れることがある",
+      "次のトークンを確率で予測して文章を作るので、もっともらしいが事実でない文を出すことがある",
+      "翻訳や要約のような仕事は、仕事ごとにファインチューニングしないと、こなすことができない"
+    ],
+    "answer": 3,
+    "explanation": "GPT-3の論文は、仕事ごとの追加学習（重みの更新）をせず、指示と数個の例を文章で見せるだけで、翻訳や質問応答などの多くの仕事で高い成績を出したとしている。仕事ごとにファインチューニングしないとこなせない、というのは、LLMより前の作り方の説明。",
+    "whyWrong": [
+      "適切。GPT-3の論文は、勾配の更新やファインチューニングをせず、文章で示した例だけで仕事をこなしたとしている。",
+      "適切。Weiら（2022）は、小さいモデルに無く大きいモデルにある創発的能力を報告している。",
+      "適切。LLMは事実を確かめて答えるのではなく、ありそうな続きを確率で選ぶので、ハルシネーションが起きる。",
+      null
+    ],
+    "memoryTip": "LLMの強み＝例を見せるだけで多くの仕事。弱み＝もっともらしい誤り。",
+    "concepts": ["C-AP-02-044", "C-AP-02-030", "C-AP-02-037"],
+    "sources": [
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
+      { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-077",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "LLM（大規模言語モデル）とは"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "LLMでいう『プロンプト』の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "AIに入力する『プロンプト』が何を指すかを選ぶ問題。",
+    "choices": [
+      "LLMに入力して、どんなふるまいをしてほしいかを伝える、質問や指示などの文",
+      "LLMが学習で値を決める、ノードどうしのつながりの重みの集まり",
+      "LLMが答えを作り終えたあとに、人が付ける良し悪しの点数",
+      "LLMを動かすために、提供会社が用意するサーバーやGPUなどの設備"
+    ],
+    "answer": 0,
+    "explanation": "Googleの用語集は、プロンプトを、LLMに入力して、モデルに一定のふるまいをさせるための文とし、質問・指示・例・役割・続きを書かせる途中までの文などの種類を挙げている。短い語句から長い文章まで、長さはさまざま。",
+    "whyWrong": [
+      null,
+      "これはパラメータ（重み）の説明。プロンプトは利用者が入力する文で、プロンプトを変えても重みは変わらない。",
+      "これは人間の評価（RLHFの材料にもなる順位や点数）の説明。プロンプトは答えを作る前に入力するもの。",
+      "これはクラウドの計算の設備の説明。プロンプトは設備ではなく、モデルに入れる文。"
+    ],
+    "memoryTip": "プロンプト＝AIへの頼み方の文。",
+    "concepts": ["C-AP-02-045"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（prompt）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-078",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "LLM（大規模言語モデル）とは"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "プロンプト（指示文）について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIに入力する頼み方の文『プロンプト』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "質問のほか、指示・例・役割の指定・続きを書かせる途中までの文などの種類がある",
+      "同じモデルでも、プロンプトの書き方によって答えが大きく変わることがある",
+      "プロンプトを工夫して入力するたびに、モデルの重みが書き換わって学習が進む",
+      "短い語句から、小説の全文のような長い文章まで、プロンプトになりうる"
+    ],
+    "answer": 2,
+    "explanation": "プロンプトは使うときに入力する文で、プロンプトを変えてもモデルの重みは変わらない。重みを変えるのは、指示チューニングやファインチューニングのような学習。",
+    "whyWrong": [
+      "適切。Googleの用語集は、プロンプトの種類として、質問・指示・例・役割・続きを書かせる途中までの入力を挙げている。",
+      "適切。LLMは入力された文に続けて答えを作るので、何をどう頼むかで答えが変わる。書き方の工夫は第5章で扱う。",
+      null,
+      "適切。Googleの用語集は、プロンプトは短い語句から、小説の全文のようにいくらでも長くなりうるとしている（ただし1回に入れられる量はコンテキストウィンドウの上限まで）。"
+    ],
+    "memoryTip": "プロンプト＝入力を変える。チューニング＝重みを変える。",
+    "concepts": ["C-AP-02-045", "C-AP-02-019"],
+    "sources": [
+      { "title": "Google for Developers: Machine Learning Glossary（prompt・instruction tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-079",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ある病院が、患者のカルテを外部の会社に送らずに、カルテの要約にLLMを使いたい。この目的に合ったLLMの使い方を１つ選びなさい。",
+    "stemPlain": "外に出したくないデータをAIで扱いたいとき、AIをどこで動かすのがよいかを選ぶ問題。",
+    "choices": [
+      "提供会社のサーバーで動くLLMを、インターネット越しにAPIで呼び出して使う",
+      "コンテキストウィンドウの広いLLMを選び、全部のカルテを一度に入力する",
+      "Temperatureを0にしたLLMを使い、毎回同じ要約が出るようにする",
+      "重みが公開されたLLMを病院内のサーバーに入れ、院内で動かして使う"
+    ],
+    "answer": 3,
+    "explanation": "自分たちが管理するサーバーでLLMを動かすオンプレミスなら、入力したカルテが院外に出ない。NTIAの報告書（2024年）も、重みが広く公開されたモデルは、データを第三者と共有せずにモデルを使えるようにし、機密性とデータの保護を高めるとしている。",
+    "whyWrong": [
+      "これはクラウド型LLMの使い方で、入力したカルテは提供会社のサーバーに送られる。『外部の会社に送らずに』という条件に合わない。",
+      "コンテキストウィンドウの広さは、1回に入力できる量の話。どこのサーバーでデータを処理するかは変わらない。",
+      "Temperatureは答えのばらつきの設定。データが外に送られるかどうかとは関係が無い。",
+      null
+    ],
+    "memoryTip": "データを外に出さない＝自前のサーバーで動かす（オンプレミス）。",
+    "concepts": ["C-AP-02-047", "C-AP-02-046", "C-AP-02-049"],
+    "sources": [
+      { "title": "NTIA『Dual-Use Foundation Models with Widely Available Model Weights』Report（2024年7月30日）", "url": "https://www.ntia.gov/issues/artificial-intelligence/open-model-weights-report" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-080",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "LLMを動かす場所について、次の文の（ア）（イ）（ウ）に入る語の組み合わせとして適切なものを１つ選びなさい。『（ア）は、提供会社のサーバーで動き、利用者はインターネット越しに使う。（イ）は、自分たちが管理するサーバーで動かす。（イ）は、大事なデータを自分たちの管理のもとで扱う（ウ）を確保しやすい。』",
+    "stemPlain": "AIを『よその会社のサーバーで動かす形』『自分のサーバーで動かす形』と、データを自分たちで管理する考え方の名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）クラウド型LLM　（イ）オンプレミスLLM　（ウ）データ主権",
+      "（ア）オンプレミスLLM　（イ）クラウド型LLM　（ウ）データ主権",
+      "（ア）クラウド型LLM　（イ）オンプレミスLLM　（ウ）オープンウェイト",
+      "（ア）クラウド型LLM　（イ）オープンソースLLM　（ウ）データ主権"
+    ],
+    "answer": 0,
+    "explanation": "提供会社のサーバーで動くのがクラウド型LLM、自分たちのサーバーで動かすのがオンプレミスLLM。データを自分たちの管理のもとで自律的に扱えることをデータ主権と呼ぶ。経済産業省の取組方針は、重要なデータを自律的に管理できるクラウドの確保を課題に挙げ、EUがデータの主権を重視していることにも触れている。",
+    "whyWrong": [
+      null,
+      "（ア）と（イ）が逆。オンプレミスは自分たちのサーバーで動かす形。",
+      "オープンウェイトは、モデルの重みが公開されていることで、データを自分たちで管理するという考え方の名前ではない。（ウ）には当たらない。",
+      "オープンソースLLMは、重みや学習のプログラムなどが公開されていることで、『どこで動かすか』の分け方ではない。オープンソースのモデルをクラウドで動かすこともある。"
+    ],
+    "memoryTip": "クラウド＝よそで動かす、オンプレミス＝自分の敷地で動かす。データ主権＝自分で決められること。",
+    "concepts": ["C-AP-02-046", "C-AP-02-047", "C-AP-02-048"],
+    "sources": [
+      { "title": "NIST Special Publication 800-145 The NIST Definition of Cloud Computing（2011）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" },
+      { "title": "経済産業省『インターネットその他の高度情報通信ネットワークを通じて電子計算機…を他人の情報処理の用に供するシステムに用いるプログラムに係る安定供給確保を図るための取組方針』（令和6年2月5日改定）", "url": "https://www.meti.go.jp/policy/economy/economic_security/cloud/cloud.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-081",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "クラウド型LLMとオンプレミスLLMについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIを『よその会社のサーバーで使う形』と『自分のサーバーで動かす形』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "クラウド型LLMでは、入力したデータが提供会社のサーバーに送られて処理される",
+      "デジタル庁のガイドラインの概要は、国外のサーバーを使う生成AIで、現地の政府によるデータの検閲や接収を受ける可能性を挙げている",
+      "オンプレミスLLMでは、GPUなどの設備をそろえる手間も保守の作業も、提供会社が引き受けてくれる",
+      "オンプレミスLLMには、重みが公開されたモデルを入れて使うことが多い"
+    ],
+    "answer": 2,
+    "explanation": "オンプレミスは自分たちの敷地の中で動かす形なので、GPUなどの設備をそろえ、動かし続けるための保守やセキュリティ対策は、自分たちで行う（仕組みからの帰結）。設備の管理を提供会社に任せられるのは、クラウド型の長所。NISTの定義も、クラウドでは利用者がその下の設備を管理しないとしている。",
+    "whyWrong": [
+      "適切。クラウド型は、提供会社のサーバーで処理するので、入力したデータはそのサーバーに送られる。",
+      "適切。デジタル庁のガイドライン（2.0版の概要、2026年6月）は、府省庁の職員が理解すべきこととして、この可能性を挙げている。",
+      null,
+      "適切。自分のサーバーで動かすには重みが手元に要るので、重みが公開されたモデル（オープンウェイト）を使うことが多い。NTIAの報告書も、こうしたモデルはデータを第三者と共有せずに使えるとしている。"
+    ],
+    "memoryTip": "クラウド＝設備はおまかせ・データは外へ。オンプレミス＝データは手元・設備は自前。",
+    "concepts": ["C-AP-02-046", "C-AP-02-047"],
+    "sources": [
+      { "title": "NIST Special Publication 800-145 The NIST Definition of Cloud Computing（2011）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" },
+      { "title": "デジタル庁『行政の進化と革新のための生成AIの調達・利活用に係るガイドライン2.0版について（概要）』（2026年6月）", "url": "https://www.digital.go.jp/assets/contents/node/information/field_ref_resources/decb64eb-f26e-41cb-8d37-f3dd173108b8/f8e1c3b8/20260612_resources_standard_guidelines_guideline_03.pdf" },
+      { "title": "NTIA『Dual-Use Foundation Models with Widely Available Model Weights』Report（2024年7月30日）", "url": "https://www.ntia.gov/issues/artificial-intelligence/open-model-weights-report" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-082",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "『データ主権』の考え方の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "『データ主権』という考え方が、何を大事にするものかを選ぶ問題。",
+    "choices": [
+      "データを集めた会社が、そのデータを自由に売ってよいという権利の考え方",
+      "国や組織が、自分たちの大事なデータを、自分たちの管理のもとで自律的に扱えること",
+      "インターネットに公開されたデータは、だれでも自由に学習に使ってよいという考え方",
+      "個人が自分のデータを消すよう求めたときに、すぐに消さなければならない決まり"
+    ],
+    "answer": 1,
+    "explanation": "データ主権は、データについて『自分たちで決められる』ことを重視する考え方。経済産業省の取組方針は、EUがデータの主権を重視していることに触れ、日本についても、重要なデータを自律的に管理できるクラウドの確保を課題に挙げている。国外のサーバーを使う生成AIでは、現地の政府によるデータの検閲や接収を受ける可能性がある（デジタル庁のガイドラインの概要）ことも、この考え方が大事にされる理由。",
+    "whyWrong": [
+      "データを集めた会社が自由に売れる、という考え方ではない。データ主権は、データの持ち主の側（国や組織）が、自分たちで管理し決められることを重視する。",
+      null,
+      "これは公開データの利用の自由の話で、データ主権の考え方ではない。AIの学習と著作物の関係は、著作権法30条の4などで別に考える。",
+      "これは、個人が自分の情報の削除を求める権利に関わる話（個人情報の保護）で、国や組織がデータを自律的に管理するというデータ主権とは別。"
+    ],
+    "memoryTip": "データ主権＝自分たちのデータは自分たちで決める。",
+    "concepts": ["C-AP-02-048"],
+    "sources": [
+      { "title": "経済産業省『インターネットその他の高度情報通信ネットワークを通じて電子計算機…を他人の情報処理の用に供するシステムに用いるプログラムに係る安定供給確保を図るための取組方針』（令和6年2月5日改定）", "url": "https://www.meti.go.jp/policy/economy/economic_security/cloud/cloud.pdf" },
+      { "title": "デジタル庁『行政の進化と革新のための生成AIの調達・利活用に係るガイドライン2.0版について（概要）』（2026年6月）", "url": "https://www.digital.go.jp/assets/contents/node/information/field_ref_resources/decb64eb-f26e-41cb-8d37-f3dd173108b8/f8e1c3b8/20260612_resources_standard_guidelines_guideline_03.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-083",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Open Source Initiative（OSI）の説明にもとづく『オープンウェイト』の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "『オープンウェイト』のモデルが、何を公開したものかを選ぶ問題。",
+    "choices": [
+      "学習済みモデルの重みとバイアスを公開したもので、学習のプログラムや学習データまでは含まない",
+      "学習のプログラムと学習データだけを公開し、学習済みの重みは公開しないもの",
+      "モデルの重みは公開しないが、APIを無料で呼び出せるようにしたもの",
+      "重み・学習のプログラム・学習データの詳しい情報をすべて公開し、4つの自由を認めたもの"
+    ],
+    "answer": 0,
+    "explanation": "OSIは、オープンウェイトを、学習済みのニューラルネットワークの最終的な重みとバイアスを公開したものとし、学習のコード、学習データ、データの詳しい中身の情報は含まないので、オープンソースAIとは大きく違う、としている。重みがあれば、自分のサーバーで動かしたり、追加学習したりできる。",
+    "whyWrong": [
+      null,
+      "逆。オープンウェイトは、重みを公開したもの。プログラムとデータだけで重みが無ければ、そのモデルをすぐには動かせない。",
+      "APIを無料で使えることは、重みの公開とは別。重みが公開されていなければ、オープンウェイトではない。",
+      "これはOSIのオープンソースAIの定義に近い。オープンウェイトは、重み以外の学習のプログラムやデータの情報までは含まない。"
+    ],
+    "memoryTip": "オープンウェイト＝重みだけ公開。オープンソース＝重み＋作り方まで公開。",
+    "concepts": ["C-AP-02-049", "C-AP-02-050"],
+    "sources": [
+      { "title": "Open Source Initiative『Open Weights: not quite what you've been told』", "url": "https://opensource.org/ai/open-weights" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-084",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "オープンウェイトとオープンソースのAIについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "『重みが公開されたAI』と『オープンソースのAI』の違いについて、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "OSIのオープンソースAIの定義は、使う・調べる・作り変える・共有する、の4つの自由を求めている",
+      "OSIの定義は、重みのほか、学習データの詳しい情報や学習のプログラムの公開も求めている",
+      "オープンウェイトのモデルは、学習データと学習のプログラムまで公開されているので、OSIの定義をそのまま満たす",
+      "NTIAの報告書は、Metaなど複数の会社が、重みを広く公開したモデルを出しているとしている"
+    ],
+    "answer": 2,
+    "explanation": "オープンウェイトは、重みを公開したもので、学習データや学習のプログラムまでは公開しないことが多い。OSIは、オープンウェイトは学習のコードや学習データなどを含まないので、オープンソースAIとは大きく違うとしている。",
+    "whyWrong": [
+      "適切。OSIの定義は、目的を問わず使う・どう動くかを調べる・作り変える・作り変えたものも含めて共有する、の4つの自由を挙げている。",
+      "適切。OSIの定義は、データ情報（学習データの詳しい情報）、コード、パラメータ（重みなど）を、OSIが認めた条件で公開するよう求めている。",
+      null,
+      "適切。NTIAの報告書（2024年）は、Meta・Google・Microsoft・Stability AI・Mistralなどが、重みを広く公開したモデルを出しているとしている。"
+    ],
+    "memoryTip": "重みが公開＝オープンソース、ではない。",
+    "concepts": ["C-AP-02-049", "C-AP-02-050"],
+    "sources": [
+      { "title": "Open Source Initiative『The Open Source AI Definition – 1.0』", "url": "https://opensource.org/ai/open-source-ai-definition" },
+      { "title": "Open Source Initiative『Open Weights: not quite what you've been told』", "url": "https://opensource.org/ai/open-weights" },
+      { "title": "NTIA『Dual-Use Foundation Models with Widely Available Model Weights』Report（2024年7月30日）", "url": "https://www.ntia.gov/issues/artificial-intelligence/open-model-weights-report" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-085",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "MetaのLlama 3.1のライセンスで、そのバージョンの公開日の時点で、自社の製品やサービスの月間の利用者が7億人を超えている会社がLlama 3.1を使う場合の扱いとして適切なものを１つ選びなさい。",
+    "stemPlain": "重みが公開されたAIのモデルでも、とても大きな会社が使うときには特別な条件がある、という例について選ぶ問題。",
+    "choices": [
+      "重みが公開されているので、ほかの会社と同じ条件で、許可を求めずに使える",
+      "このモデルを使うことは認められておらず、求めても許可は出ない",
+      "Metaに別にライセンスを求める必要があり、認められるまでは権利を使えない",
+      "利用料を毎月支払えば、許可を求めなくても同じように使える"
+    ],
+    "answer": 2,
+    "explanation": "Llama 3.1のライセンスの追加の商用条件は、公開日の時点で月間の利用者が7億人を超える会社は、Metaにライセンスを求める必要があり、Metaが自らの判断で認めるまでは、このライセンスの権利を使えない、としている。重みが公開されていても、ライセンスの条件しだいで使い方が変わる例。",
+    "whyWrong": [
+      "重みが公開されていても、条件が無いわけではない。7億人を超える会社には、別のライセンスが必要という条件がある。",
+      "許可が出ないと決まっているのではない。Metaに求め、Metaの判断で認められれば使える。",
+      null,
+      "ライセンスは、使用料を払えば許可が要らなくなる、という形にはなっていない。Metaに求めて、認められる必要がある。"
+    ],
+    "memoryTip": "重みが公開されていても、ライセンスの条件を読む。",
+    "concepts": ["C-AP-02-051", "C-AP-02-049"],
+    "sources": [
+      { "title": "Meta『Llama 3.1 Community License Agreement』（GitHub の meta-llama/llama-models）", "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-086",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "公開されたLLMのライセンスについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "重みなどが公開されたAIのモデルを使うときの約束（ライセンス）について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "ライセンスには、商用で使えるか、作り変えて配れるか、どんな表示が要るかなどが定められている",
+      "Llama 3.1のライセンスは、Llamaを使った製品を配るときに『Built with Llama』と目立つように表示するよう求めている",
+      "重みがダウンロードできるモデルなら、ライセンスの条件を確かめずに、どの製品にも組み込んで売ってよい",
+      "Llama 3.1のライセンスは、許容される利用の方針に従うことを求め、禁止される使い方を定めている"
+    ],
+    "answer": 2,
+    "explanation": "重みがダウンロードできても、使い方には条件が付くことがある。例えばLlama 3.1のライセンスは、表示の義務、許容される利用の方針、月間の利用者が7億人を超える会社への条件などを定めている。製品に組み込む前に、ライセンスの条件を確かめる必要がある。",
+    "whyWrong": [
+      "適切。ライセンスは、権利を持つ者が定めた使うときの条件の約束で、商用利用・改変・再配布・表示などを決めている。",
+      "適切。Llama 3.1のライセンスは、Llamaの素材やそれを含む製品を配るときに、『Built with Llama』を目立つように表示するよう求めている。",
+      null,
+      "適切。Llama 3.1のライセンスは、許容される利用の方針（Acceptable Use Policy）に従うことを求め、それを契約の一部としている。"
+    ],
+    "memoryTip": "ダウンロードできる≠何をしてもよい。ライセンスを読む。",
+    "concepts": ["C-AP-02-051"],
+    "sources": [
+      { "title": "Meta『Llama 3.1 Community License Agreement』（GitHub の meta-llama/llama-models）", "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-087",
+    "syllabus": ["生成AI", "LLM（大規模言語モデル）の基礎", "オンプレミス／オープンソースLLM"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "OSIのオープンソースAIの定義が、利用者に認めるよう求めている自由の組み合わせとして適切なものを１つ選びなさい。",
+    "stemPlain": "『オープンソースのAI』と言えるために、使う人に認めなければならない自由の組み合わせを選ぶ問題。",
+    "choices": [
+      "無料で使う・広告を付けずに使う・人数の制限なく使う・期限なく使う",
+      "使う・どう動くかを調べる・作り変える・作り変えたものも含めて共有する",
+      "使う・提供会社の許可を得て調べる・提供会社が作り変えたものを受け取る・個人の範囲で共有する",
+      "重みを見る・学習データを売る・利用者の情報を集める・ほかのモデルを禁止する"
+    ],
+    "answer": 1,
+    "explanation": "OSIのオープンソースAIの定義（1.0）は、目的を問わず許可なく使う、どう動くかを調べて部品を確かめる、目的を問わず作り変える、作り変えたかどうかにかかわらず共有する、の4つの自由を利用者に認めることを求めている。そのために、データ情報・コード・パラメータの公開も求めている。",
+    "whyWrong": [
+      "無料かどうか、広告の有無などは、OSIの定義が挙げる4つの自由ではない。オープンソースは『無料』という意味ではなく、自由の範囲の話。",
+      null,
+      "調べるのに許可が要ったり、共有が個人の範囲に限られたりするのは、OSIの定義の自由とは逆。定義は、許可を求めずに使い、目的を問わず共有できることを求めている。",
+      "学習データを売る、利用者の情報を集める、などは定義が挙げる自由ではない。定義は利用者に認める4つの自由を挙げている。"
+    ],
+    "memoryTip": "オープンソースの4つの自由＝使う・調べる・変える・配る。",
+    "concepts": ["C-AP-02-050"],
+    "sources": [
+      { "title": "Open Source Initiative『The Open Source AI Definition – 1.0』", "url": "https://opensource.org/ai/open-source-ai-definition" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-088",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "ChatGPTとは"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "2022年11月30日に公開されたChatGPTの説明として適切なものを１つ選びなさい。",
+    "stemPlain": "2022年に公開され、生成AIが広まるきっかけになった ChatGPT が、どんなものかを選ぶ問題。",
+    "choices": [
+      "Googleが公開した、最初から複数の種類のデータで学習した画像専用の生成AI",
+      "OpenAIが公開した、GPT-3.5の系列のモデルをRLHFで仕上げた会話型の生成AI",
+      "Microsoftが公開した、WordやExcelの中だけで動く表計算の自動化の道具",
+      "Anthropicが公開した、原則の一覧（憲法）で学習させた検索エンジン"
+    ],
+    "answer": 1,
+    "explanation": "ChatGPTは、OpenAIが2022年11月30日に研究段階で公開した会話型の生成AI。発表のページは、InstructGPTと同じ方法のRLHFで学習させ、2022年初めに学習を終えたGPT-3.5の系列のモデルをファインチューニングしたとしている。令和6年版情報通信白書は、公開から2か月で利用者が1億人を超えたとしている。",
+    "whyWrong": [
+      "これはGoogleのGemini（最初から複数の種類のデータで学習したモデル）を思わせる説明。Geminiは画像専用ではなく、会社もモデルもChatGPTとは別。",
+      null,
+      "これはMicrosoftのCopilotを思わせる説明。CopilotはLLMと仕事のアプリ・データを組み合わせた製品で、ChatGPTとは提供する会社が違う。",
+      "原則の一覧（憲法）で学習させたのはAnthropicのClaude。また、Claudeは検索エンジンではなく対話型のAI。"
+    ],
+    "memoryTip": "ChatGPT＝OpenAI、2022年11月30日、GPT-3.5＋RLHF。",
+    "concepts": ["C-AP-02-052"],
+    "sources": [
+      { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" },
+      { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-089",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "ChatGPTとは"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "ChatGPTの公開時のことについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "2022年にChatGPTが公開されたときのことについて、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "指示に従うよう学習したInstructGPTの兄弟にあたるモデルとして紹介された",
+      "公開当初から有料の会員向けのサービスとして始まり、無料では使えなかった",
+      "会話の形なので、続けての質問に答えたり、不適切な頼みを断ったりできるとされた",
+      "もっともらしく聞こえるが誤った答えを書くことがある、と限界が挙げられていた"
+    ],
+    "answer": 1,
+    "explanation": "ChatGPTの発表のページは、研究段階の公開（リサーチプレビュー）の間、ChatGPTは無料で使えるとしていた。利用者の反応を集めて、強みと弱みを学ぶための公開だった。",
+    "whyWrong": [
+      "適切。発表のページは、ChatGPTを、指示に従って詳しく答えるよう学習したInstructGPTの兄弟のモデルとしている。",
+      null,
+      "適切。発表のページは、会話の形にしたことで、続けての質問に答え、誤りを認め、誤った前提に異を唱え、不適切な頼みを断れるとしている。",
+      "適切。発表のページは、限界として、もっともらしく聞こえるが誤った、または意味の通らない答えを書くことがあるとしている。"
+    ],
+    "memoryTip": "ChatGPTは『無料の研究公開』から始まった。",
+    "concepts": ["C-AP-02-052"],
+    "sources": [
+      { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-090",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "ChatGPT登場までの歴史（GPT-1〜GPT-3.5）"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "OpenAIのGPTのパラメータの数について、次の文の（ア）（イ）（ウ）に入る数の組み合わせとして適切なものを１つ選びなさい。『2018年のGPTは約（ア）、2019年のGPT-2は最大で約（イ）、2020年のGPT-3は（ウ）のパラメータを持つ。』",
+    "stemPlain": "GPT、GPT-2、GPT-3の3つのモデルの大きさ（パラメータの数）を、正しく当てはめた組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）1億1,700万　（イ）15億　（ウ）1,750億",
+      "（ア）15億　（イ）1億1,700万　（ウ）1,750億",
+      "（ア）1億1,700万　（イ）1,750億　（ウ）15億",
+      "（ア）1億1,700万　（イ）15億　（ウ）1兆7,500億"
+    ],
+    "answer": 0,
+    "explanation": "GPT-2の論文は、4つの大きさのモデルのうち最小のもの（1億1,700万）が元のGPTと同じ大きさで、最大のものが15億4,200万（約15億）としている。GPT-3の論文は、GPT-3を1,750億パラメータとしている。約1億→約15億→1,750億と、2年ほどで1,000倍以上に大きくなった。",
+    "whyWrong": [
+      null,
+      "（ア）と（イ）が逆。古いGPTのほうが小さく、約1億1,700万。",
+      "（イ）と（ウ）が逆。1,750億はGPT-3の大きさで、GPT-2は最大で約15億。",
+      "GPT-3は1,750億で、1兆7,500億ではない。けたを1つ多く取り違えている。"
+    ],
+    "memoryTip": "GPT→GPT-2→GPT-3＝約1億→約15億→1,750億（ほぼ10倍、100倍と跳ねる）。",
+    "concepts": ["C-AP-02-053", "C-AP-02-017"],
+    "sources": [
+      { "title": "Radford et al. (2019) Language Models are Unsupervised Multitask Learners（OpenAI）", "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" },
+      { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-091",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "ChatGPT登場までの歴史（GPT-1〜GPT-3.5）"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "2019年に発表されたGPT-2の論文が示したこととして適切なものを１つ選びなさい。",
+    "stemPlain": "GPT-2というモデルの論文で、何が分かったと言っているかを選ぶ問題。",
+    "choices": [
+      "人が答えに付けた順位から報酬モデルを作り、強化学習で答え方を仕上げられること",
+      "画像と文章を入力に取って文章を出す、マルチモーダルなモデルを作れること",
+      "答える前に長い思考の連鎖を作るよう強化学習で鍛えると、難問に強くなること",
+      "重みや形を変えずに、例も見せずに、言語モデルが多くの仕事に取り組めること"
+    ],
+    "answer": 3,
+    "explanation": "GPT-2の論文は、言語モデルが、パラメータや形をいっさい変えずに、ゼロショット（例を見せない設定）で、下流のさまざまな仕事に取り組めることを示した。ウェブの文章を集めたWebTextで学習し、最大のモデルは約15億パラメータ。",
+    "whyWrong": [
+      "これはRLHFの説明で、InstructGPT（2022年）の論文の内容。GPT-2の論文ではない。",
+      "これはGPT-4（2023年）の説明。GPT-4の技術報告は、画像と文章の入力を受け付けて文章を出すマルチモーダルなモデルとしている。",
+      "これは推論モデルの説明で、o1（2024年）の発表の内容。",
+      null
+    ],
+    "memoryTip": "GPT＝事前学習＋仕事ごとの仕上げ、GPT-2＝仕上げなしでも、GPT-3＝例を数個見せるだけで。",
+    "concepts": ["C-AP-02-053"],
+    "sources": [
+      { "title": "Radford et al. (2019) Language Models are Unsupervised Multitask Learners（OpenAI）", "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-092",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "ChatGPT登場までの歴史（GPT-1〜GPT-3.5）"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "2018年にOpenAIが発表した最初のGPTの学習のしかたとして適切なものを１つ選びなさい。",
+    "stemPlain": "最初のGPTが、どういう順番で学習したかを選ぶ問題。",
+    "choices": [
+      "正解の付いていない大量の本の文章で事前学習し、そのあと仕事ごとの正解付きのデータでファインチューニングした",
+      "人が書いた会話の手本だけで一から学習し、事前学習はしなかった",
+      "画像と文章を組にした大量のデータで学び、画像の説明文を作るようにした",
+      "人が答えに付けた順位だけを使い、強化学習で一から学習した"
+    ],
+    "answer": 0,
+    "explanation": "GPTの論文は、7,000冊を超える本の文章（BooksCorpus）で言語モデルを事前学習する『生成的な事前学習』と、そのあとの仕事ごとの『識別的なファインチューニング』を組み合わせた。正解の付いた仕事のデータは少ないが、正解の付いていない文章は大量にある、という問題への答えだった。",
+    "whyWrong": [
+      null,
+      "GPTは事前学習を中心にしたモデルで、会話の手本だけで一から学習したのではない。会話の手本で仕上げるのは、ChatGPTの教師ありファインチューニングの段階。",
+      "GPTは文章のモデルで、画像と文章の組で学んだのではない。",
+      "人の順位を使う強化学習（RLHF）は、InstructGPTやChatGPTの仕上げの段階で使われた方法。GPTの学習のしかたではない。"
+    ],
+    "memoryTip": "GPT＝Generative Pre-Training（生成的な事前学習）＋ファインチューニング。",
+    "concepts": ["C-AP-02-053", "C-AP-02-015"],
+    "sources": [
+      { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-093",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "GPTモデルの進化（GPT-4〜GPT-6 Astra）"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "GPT-4以降のOpenAIのモデルについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "GPT-4から後のOpenAIのAIモデルについて、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "GPT-4の技術報告は、GPT-4を、画像と文章を入力に取り文章を出すマルチモーダルなモデルとしている",
+      "GPT-4oは、音声を文字にする・文字で答える・文字を音声にする、の3つの別々のモデルをつないで会話する",
+      "GPT-5は、速いモデルと深く推論するモデルを、ルーターが会話の内容などから選ぶ1つの仕組みとして発表された",
+      "GPT-6 Astraについて、OpenAIはパソコンやブラウザの操作で最高水準だとしている"
+    ],
+    "answer": 1,
+    "explanation": "3つの別々のモデルをつないで会話する仕組みは、GPT-4oより前の音声の会話（Voice Mode）のもの。GPT-4oの発表のページは、文章・画像・音声を1つのモデルで最初から最後まで学習し、すべての入力と出力を同じニューラルネットワークで処理するとしている。",
+    "whyWrong": [
+      "適切。GPT-4の技術報告は、画像と文章の入力を受け付けて文章を出す、大規模なマルチモーダルなモデルとしている。",
+      null,
+      "適切。GPT-5の発表のページは、多くの質問に答える速いモデル、難しい問題用の深く推論するモデル（GPT-5 thinking）、どちらを使うかを決めるリアルタイムのルーターからなる1つの仕組みとしている。",
+      "適切。GPT-6 Astraの発表のページ（2026年9月3日）は、コンピュータの操作やブラウジングなどで最高水準だとし、オンラインのフォームへの入力などの作業を挙げている。"
+    ],
+    "memoryTip": "GPT-4o より前＝3つのモデルのリレー、GPT-4o＝1つのモデルで全部。",
+    "concepts": ["C-AP-02-054", "C-AP-02-055"],
+    "sources": [
+      { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" },
+      { "title": "OpenAI『Hello GPT-4o』（2024年5月13日）", "url": "https://openai.com/index/hello-gpt-4o/" },
+      { "title": "OpenAI『Introducing GPT-5』（2025年8月7日）", "url": "https://openai.com/index/introducing-gpt-5/" },
+      { "title": "OpenAI『GPT-6 Astra: A new generation of intelligence』（2026年9月3日）", "url": "https://openai.com/index/gpt-6-astra/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-094",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "GPTモデルの進化（GPT-4〜GPT-6 Astra）"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "2025年8月に発表されたGPT-5の仕組みとして、発表のページが説明している内容として適切なものを１つ選びなさい。",
+    "stemPlain": "GPT-5が、やさしい質問と難しい問題をどうやって答え分けるのかを選ぶ問題。",
+    "choices": [
+      "どんな質問にも、いちばん大きなモデルで毎回長く考えてから答える",
+      "利用者が毎回メニューから使うモデルを選ばない限り、速いモデルだけが答える",
+      "文章の質問にだけ答え、画像や音声は別のアプリに送って処理させる",
+      "速いモデルと深く推論するモデルを、ルーターが会話の内容や難しさから選ぶ"
+    ],
+    "answer": 3,
+    "explanation": "GPT-5の発表のページは、GPT-5を、多くの質問に答える賢く効率的なモデル、難しい問題用の深い推論のモデル（GPT-5 thinking）、会話の種類・複雑さ・道具の要否・利用者の明示の意図（『よく考えて』と書くなど）から、どちらを使うかを素早く決めるリアルタイムのルーター、からなる1つの仕組みとしている。",
+    "whyWrong": [
+      "いつも長く考えると、易しい質問でも時間と費用がかかる。GPT-5は、易しい質問には速いモデルを使い分ける仕組み。",
+      "利用者がメニューで選ばなくても、ルーターが自動で振り分ける。プロンプトで『よく考えて』と書くなど、利用者の意図も判断に使う。",
+      "発表のページは、ルーターがモデルを選ぶ1つの仕組みを説明しており、文章以外を別のアプリに送る仕組みとは説明していない。",
+      null
+    ],
+    "memoryTip": "GPT-5＝速い係と考える係を、ルーターが振り分ける。",
+    "concepts": ["C-AP-02-054", "C-AP-02-056", "C-AP-02-057"],
+    "sources": [
+      { "title": "OpenAI『Introducing GPT-5』（2025年8月7日）", "url": "https://openai.com/index/introducing-gpt-5/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-095",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "GPTモデルの進化（GPT-4〜GPT-6 Astra）"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "OpenAIが2026年9月3日に発表したGPT-6 Astraについて、発表のページの内容として適切なものを１つ選びなさい。",
+    "stemPlain": "2026年9月に発表された GPT-6 Astra について、OpenAIが何を得意だと言っているかを選ぶ問題。",
+    "choices": [
+      "Googleが開発したモデルで、検索エンジンの中だけで使われる",
+      "重みを公開し、だれでも自分のサーバーにダウンロードして動かせるようにした",
+      "パソコンやブラウザを操作して、フォームへの入力や記録の更新などの作業を進められる",
+      "画像を作ることに特化したモデルで、文章の質問には答えない"
+    ],
+    "answer": 2,
+    "explanation": "GPT-6 Astraの発表のページは、コンピュータの操作・ブラウジング・ソフトウェア開発・サイバーセキュリティ・科学・専門的な仕事で最高水準だとし、オンラインのフォームへの入力、顧客の記録（CRM）の更新、予定の整理などの作業を引き受けられるとしている。まず限られた組織に提供し、その後ChatGPTの有料プラン（Plus・Pro・Business・Enterprise）やAPI、Microsoft Azure、AWS Bedrockに広げるとした（2026年10月13日時点の内容）。",
+    "whyWrong": [
+      "GPT-6 AstraはOpenAIのモデル。Googleのモデルの系列はGemini。",
+      "発表のページは、ChatGPTの有料プランやAPI、クラウドのサービスを通じて提供するとしており、重みを公開してダウンロードできるようにするとはしていない。",
+      null,
+      "発表のページは、数学や抽象的な推論の評価で高い成績を挙げ、文章でのやり取りを含む幅広い仕事を扱うとしている。画像を作ることに特化したモデルではない。"
+    ],
+    "memoryTip": "GPT-6 Astra（2026年9月）＝『パソコンを操作して仕事を進める』が売り。",
+    "concepts": ["C-AP-02-054"],
+    "sources": [
+      { "title": "OpenAI『GPT-6 Astra: A new generation of intelligence』（2026年9月3日）", "url": "https://openai.com/index/gpt-6-astra/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-096",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "マルチモーダルモデルへの展開"],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "次の文の（　）に入る語を１つ選びなさい。『2024年5月に発表されたGPT-4oの o は（　）の頭文字で、文章・音声・画像・動画のどの組み合わせの入力も1つのモデルで扱えることを表している。』",
+    "stemPlain": "GPT-4o という名前の『o』が、何の頭文字かを選ぶ問題。",
+    "choices": [
+      "open（開かれた）",
+      "omni（あらゆる）",
+      "optimized（最適化された）",
+      "operator（操作する人）"
+    ],
+    "answer": 1,
+    "explanation": "GPT-4oの発表のページは、o は omni の意味だとし、文章・音声・画像・動画のどの組み合わせでも入力でき、文章・音声・画像のどの組み合わせでも出力できるとしている。omni は『すべての』という意味の接頭語。",
+    "whyWrong": [
+      "open は『開かれた』。発表のページは o を omni としており、open の意味ではない。",
+      null,
+      "optimized は『最適化された』。発表のページの説明とは違う。",
+      "Operatorは、OpenAIが2025年に公開した、ブラウザを操作するエージェントの名前。GPT-4oの o とは関係が無い。"
+    ],
+    "memoryTip": "4o の o は omni＝『全部入り』。",
+    "concepts": ["C-AP-02-055"],
+    "sources": [
+      { "title": "OpenAI『Hello GPT-4o』（2024年5月13日）", "url": "https://openai.com/index/hello-gpt-4o/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-097",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "推論モデルと推論時の計算"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "OpenAIのo1（2024年）に代表される『推論モデル』の特徴として適切なものを１つ選びなさい。",
+    "stemPlain": "『推論モデル』と呼ばれるAIが、ふつうのAIと比べて何が違うかを選ぶ問題。",
+    "choices": [
+      "答える前に、長い内部の思考の連鎖を作るよう、強化学習で鍛えられている",
+      "学習を終えたあとは計算をせず、用意された答えを検索してすぐに返す",
+      "第一次AIブームのように、人が書いた記号の規則だけで結論を導く",
+      "文章は扱わず、画像の中の物の位置を推し量ることだけに特化している"
+    ],
+    "answer": 0,
+    "explanation": "o1の発表のページは、o1を、複雑な推論をするよう強化学習で学習させたLLMとし、答える前に長い内部の思考の連鎖を作れるとしている。何段階も考える数学やプログラミングの問題に強い。",
+    "whyWrong": [
+      null,
+      "推論モデルは、答えるときに多くの計算（考えるためのトークン）を使う。用意された答えを検索して返す仕組みではない。",
+      "これは第1章の、第一次AIブームの記号による推論の説明。推論モデルは、データで学習したLLMを強化学習で鍛えたもので、人が書いた規則で動くのではない。",
+      "推論モデルは文章で考えて答えるLLM。画像の中の物の位置を当てることに特化したモデルではない。"
+    ],
+    "memoryTip": "推論モデル＝『考えてから答える』LLM。",
+    "concepts": ["C-AP-02-056", "C-AP-02-058"],
+    "sources": [
+      { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-098",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "推論モデルと推論時の計算"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "推論モデルについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "答える前に考える『推論モデル』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "o1の成績は、考える時間を長くするほど上がると発表された",
+      "GPT-5では、難しい問題のときに、深く推論するモデルに自動で切り替える",
+      "考えるために使うトークンは、答えの文に出ないので、使用量や料金には数えられない",
+      "推論モデルの『推論』は、学習済みモデルで予測を出す工程の『推論』とは意味が違う"
+    ],
+    "answer": 2,
+    "explanation": "OpenAIの説明は、推論モデルが答えの前に内部で使う推論のトークンは、答えの文には出ないが、出力の使用量に数えられ、出力のトークンとして料金がかかるとしている。短い答えでも、見た目より多くのトークンを使うことがある。",
+    "whyWrong": [
+      "適切。o1の発表のページは、o1の成績が、強化学習を増やすほど、また考える時間（推論時の計算）を長くするほど、一貫して上がるとしている。",
+      "適切。GPT-5の発表のページは、ルーターが会話の内容や難しさから、深く推論するモデル（GPT-5 thinking）を使うかどうかを決めるとしている。",
+      null,
+      "適切。推論モデルの推論（reasoning）は筋道を立てて考えること。学習済みモデルに入力して予測を出させる工程（inference）も日本語で推論と呼ぶが、別の意味。"
+    ],
+    "memoryTip": "見えない『考えるトークン』も料金に入る。",
+    "concepts": ["C-AP-02-056", "C-AP-02-057"],
+    "sources": [
+      { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" },
+      { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" },
+      { "title": "OpenAI『Introducing GPT-5』（2025年8月7日）", "url": "https://openai.com/index/introducing-gpt-5/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-099",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "推論モデルと推論時の計算"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "o1の発表について、次の文の（ア）（イ）に入る語の組み合わせとして適切なものを１つ選びなさい。『o1の成績は、強化学習を多く行うこと、つまり（ア）を増やすほど上がり、答える前に考える時間を長くすること、つまり（イ）を増やすほど上がった。』",
+    "stemPlain": "AIを『作るときにかける計算』と『使うときにかける計算』の名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）推論時の計算　（イ）学習時の計算",
+      "（ア）学習データの量　（イ）推論時の計算",
+      "（ア）学習時の計算　（イ）推論時の計算",
+      "（ア）学習時の計算　（イ）コンテキストウィンドウ"
+    ],
+    "answer": 2,
+    "explanation": "o1の発表のページは、o1の成績が、強化学習を増やす（train-time compute＝学習時の計算）ほど、また考える時間を長くする（test-time compute＝推論時の計算）ほど、一貫して上がるとしている。",
+    "whyWrong": [
+      "2つが逆。強化学習を増やすのはモデルを作るとき（学習時）の計算、考える時間を長くするのは使うとき（推論時）の計算。",
+      "強化学習を多く行うことは、学習に使う計算を増やすことで、学習データの量を増やすことと同じではない。発表のページも train-time compute（学習時の計算）と呼んでいる。",
+      null,
+      "コンテキストウィンドウは、1回に扱えるトークンの上限。考える時間を長くして計算を増やすことの名前ではない。"
+    ],
+    "memoryTip": "作るときに鍛える＝学習時の計算、答えるときに考える＝推論時の計算。",
+    "concepts": ["C-AP-02-057", "C-AP-02-056"],
+    "sources": [
+      { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-100",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "推論モデルと推論時の計算"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "LLMに、何段階もの計算が要る文章題を解かせるとき、答えだけでなく途中の考えの段階を順に書き出させると、正解しやすくなることが知られている。このやり方を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "AIに『途中の考え方を順番に書いてから答えて』と書き出させるやり方の名前を選ぶ問題。",
+    "choices": [
+      "思考の連鎖（Chain-of-Thought）",
+      "トークン化（Tokenization）",
+      "ドメイン適応（Domain Adaptation）",
+      "温度の調整（Temperature）"
+    ],
+    "answer": 0,
+    "explanation": "途中の考えの段階を順に書き出させるのが思考の連鎖（Chain-of-Thought、CoT）。Weiら（2022）は、途中の段階を書いた例を数個見せるだけで、算数・常識・記号の推論の問題で成績が上がり、5,400億パラメータのモデルに8つの例を見せると、算数の文章題（GSM8K）で当時の最高の成績を出したとしている。",
+    "whyWrong": [
+      null,
+      "トークン化は、文章をトークン（モデルが扱う単位）に区切って番号にする処理。途中の考えを書き出させるやり方ではない。",
+      "ドメイン適応は、特定の分野の文章で追加学習して、その分野に強くすること。答え方の工夫ではない。",
+      "Temperatureは、次のトークンを選ぶときのばらつきの度合いの設定。途中の考えを書き出させるものではない。"
+    ],
+    "memoryTip": "思考の連鎖＝途中式を書かせると、正解しやすい。",
+    "concepts": ["C-AP-02-058"],
+    "sources": [
+      { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-101",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "推論モデルと推論時の計算"],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "思考の連鎖（Chain-of-Thought）について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "途中の考えを書き出させる『思考の連鎖』について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "途中の考えの段階を書いた例を数個プロンプトに入れるだけで、効果が出ることがある",
+      "Weiら（2022）は、この力は十分に大きなモデルで自然に現れるとしている",
+      "推論モデルのo1は、答える前に内部で長い思考の連鎖を作るよう学習させている",
+      "モデルの大きさに関係なく、小さなモデルでも大きなモデルと同じように効果が出る"
+    ],
+    "answer": 3,
+    "explanation": "Weiら（2022）は、思考の連鎖による推論の力は、十分に大きな言語モデルで自然に現れるとしている。モデルの大きさに関係なく同じ効果が出る、というのは論文の内容と合わない。創発的能力の論文（Weiら、2022）も、思考の連鎖のような工夫が効くのは一定の規模を超えてからだと整理している。",
+    "whyWrong": [
+      "適切。論文は、途中の段階を書いた例を、プロンプトの中で数個示すだけの簡単な方法で効果が出たとしている。",
+      "適切。論文の要旨は、この推論の力が、十分に大きな言語モデルで、簡単な方法により自然に現れるとしている。",
+      "適切。o1の発表のページは、答える前に長い内部の思考の連鎖を作れるよう、強化学習で学習させたとしている。",
+      null
+    ],
+    "memoryTip": "思考の連鎖が効くのは『大きなモデル』から。",
+    "concepts": ["C-AP-02-058", "C-AP-02-030"],
+    "sources": [
+      { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" },
+      { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" },
+      { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-102",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Operator / Codex / Image Generation"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "2025年1月にOpenAIが研究段階で公開した、自分用のブラウザの画面を見て、マウスとキーボードの操作でウェブ上の作業を代わりに進め、ログインや支払いの場面では利用者に操作を代わるよう求めるAIエージェントを１つ選びなさい。",
+    "stemPlain": "AIが自分でブラウザを開いて、クリックや入力をしながら作業を進めてくれる道具の名前を選ぶ問題。",
+    "choices": [
+      "Codex",
+      "Copilot",
+      "Operator",
+      "Gemini Nano"
+    ],
+    "answer": 2,
+    "explanation": "Operatorの発表のページ（2025年1月23日）は、Operatorを、自分のブラウザを使って作業をする研究段階のエージェントとし、スクリーンショットで画面を『見て』、マウスとキーボードの操作でブラウザと『やり取り』するとしている。ログイン・支払いの情報・CAPTCHAの場面では、利用者に操作を代わるよう求める。2025年7月には、ChatGPTの中のエージェントの機能に統合された。",
+    "whyWrong": [
+      "Codexは、クラウドの隔離された環境で、ソフトウェアのコードを書き・直し・テストするコーディングエージェント。ブラウザの画面を操作してウェブの作業を進めるものではない。",
+      "Copilotは、Microsoftの生成AIのアシスタントで、WordやExcelなどのアプリに組み込まれて手伝う。OpenAIのブラウザ操作のエージェントではない。",
+      null,
+      "Gemini Nanoは、Googleのスマートフォンの中で動く小さなGeminiのモデル。ブラウザを操作するエージェントではない。"
+    ],
+    "memoryTip": "Operator＝画面を見てクリックする係。Codex＝コードを書く係。",
+    "concepts": ["C-AP-02-059", "C-AP-02-060"],
+    "sources": [
+      { "title": "OpenAI『Introducing Operator』（2025年1月23日。2025年7月17日の更新を含む）", "url": "https://openai.com/index/introducing-operator/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-103",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Operator / Codex / Image Generation"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "開発者が『このバグを直して』と頼むと、そのコード一式を読み込んだクラウドの隔離された環境でファイルを書き換え、テストを実行し、変更をまとめて取り込みの提案（プルリクエスト）として出す。いくつもの頼みを同時に進められる。このようなAIの道具を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "AIがプログラムのコードを書いたり直したりテストしたりする作業を、自分で進めてくれる道具の種類の名前を選ぶ問題。",
+    "choices": [
+      "コーディングエージェント",
+      "報酬モデル（Reward Model）",
+      "マルチモーダルモデル",
+      "電子透かし（ウォーターマーク）"
+    ],
+    "answer": 0,
+    "explanation": "コードを書く・直す・テストするといったプログラミングの作業を、自分で進めるAIエージェントをコーディングエージェントと呼ぶ。OpenAIのCodex（2025年5月16日発表）は、その例で、各作業を、リポジトリを読み込んだ別々の隔離された環境で進め、機能の追加・コードについての質問への回答・バグの修正・プルリクエストの提案などを行うとしている。",
+    "whyWrong": [
+      null,
+      "報酬モデルは、RLHFで、人が好む答えに高い点を出すよう学習したモデル。コードを書き換える道具ではない。",
+      "マルチモーダルモデルは、文章・画像・音声など複数の種類のデータを入力や出力に使えるモデル。扱えるデータの種類による呼び名で、コードの作業を自分で進める道具の名前ではない。",
+      "電子透かしは、画像などに見えない目印を埋め込み、AIで作ったものか見分けられるようにする技術。コードを直す道具ではない。"
+    ],
+    "memoryTip": "コーディングエージェント＝コードを自分で書いて試して提案するAI（例：Codex）。",
+    "concepts": ["C-AP-02-060"],
+    "sources": [
+      { "title": "OpenAI『Introducing Codex』（2025年5月16日）", "url": "https://openai.com/index/introducing-codex/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-104",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Operator / Codex / Image Generation"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "OpenAIのCodex（2025年5月発表）について、発表のページの内容として不適切なものを１つ選びなさい。",
+    "stemPlain": "プログラムのコードを書くAI『Codex』について、発表の内容と違う文を1つ選ぶ問題。",
+    "choices": [
+      "クラウドで動き、いくつもの作業を同時に進められるソフトウェア開発のエージェントである",
+      "発表の時点では、作業中はインターネットにつながない、隔離された環境で動くとした",
+      "ターミナルの記録やテストの結果を示すので、生成されたコードは人が確かめずにそのまま取り込んでよいとされている",
+      "OpenAI o3をソフトウェア開発向けにしたcodex-1で動き、実際のコーディングの仕事で強化学習した"
+    ],
+    "answer": 2,
+    "explanation": "発表のページは、ターミナルの記録やテストの結果で作業を確かめられるようにしたうえで、取り込んで動かす前に、エージェントが生成したすべてのコードを利用者が自分で確かめることが欠かせない、としている。人の確認が要らなくなる、というのは言い過ぎ。",
+    "whyWrong": [
+      "適切。発表のページは、Codexを、多くの作業を同時に進められる、クラウドのソフトウェア開発のエージェントとしている。",
+      "適切。発表のページは、作業中はインターネットへの接続を切った、安全で隔離されたクラウドの入れ物（コンテナ）の中で動くとしていた。なお、同じページの2025年6月3日の更新で、利用者が作業中のインターネットへの接続を許可できるようになった。",
+      null,
+      "適切。発表のページは、codex-1を、ソフトウェア開発向けにしたOpenAI o3の版とし、さまざまな環境での実際のコーディングの仕事で強化学習したとしている。"
+    ],
+    "memoryTip": "AIが書いたコードも、取り込む前に人が確かめる。",
+    "concepts": ["C-AP-02-060"],
+    "sources": [
+      { "title": "OpenAI『Introducing Codex』（2025年5月16日）", "url": "https://openai.com/index/introducing-codex/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-105",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Operator / Codex / Image Generation"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "2025年3月に発表された『4o Image Generation』で作った画像について、OpenAIが行っているとした取り組みとして適切なものを１つ選びなさい。",
+    "stemPlain": "ChatGPTで作った画像に、AIで作ったと分かるようにするためにOpenAIが何をしているかを選ぶ問題。",
+    "choices": [
+      "すべての画像の右下に、目に見えるOpenAIのロゴを大きく入れている",
+      "作った画像は保存できないようにし、画面で見ることだけを許している",
+      "利用者の顔写真を登録させ、作った画像に作成者の名前を書き込んでいる",
+      "作ったすべての画像に、GPT-4oで作ったことを示すC2PAのメタデータを付けている"
+    ],
+    "answer": 3,
+    "explanation": "4o Image Generationの発表のページは、作ったすべての画像にC2PAのメタデータを付け、GPT-4oで作ったものだと分かるようにし、透明性を高めるとしている。あわせて、自社のモデルで作ったものかを確かめる社内の検索の道具も作ったとしている。",
+    "whyWrong": [
+      "発表のページが挙げた取り組みは、C2PAのメタデータと社内の検索の道具で、目に見えるロゴを大きく入れることではない。",
+      "作った画像の保存を禁じるという取り組みは、発表のページに書かれていない。",
+      "作成者の顔写真や名前を画像に書き込む取り組みは挙げられていない。C2PAのFAQも、中心の仕様は、個人や組織の名前を書き込む仕組みを持たないとしている。",
+      null
+    ],
+    "memoryTip": "4o Image Generation の画像には C2PA の来歴の情報が付く。",
+    "concepts": ["C-AP-02-061", "C-AP-02-069"],
+    "sources": [
+      { "title": "OpenAI『Introducing 4o Image Generation』（2025年3月25日）", "url": "https://openai.com/index/introducing-4o-image-generation/" },
+      { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-106",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Gemini（Google）"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "2023年12月に発表され、最初から文章・コード・音声・画像・動画を合わせて事前学習した『ネイティブにマルチモーダル』なモデルとして作られ、Ultra・Pro・Nanoの3つの大きさで出たモデルを１つ選びなさい。",
+    "stemPlain": "最初からいろいろな種類のデータで学ばせ、大・中・小の3つの大きさで出たAIのモデルの名前を選ぶ問題。",
+    "choices": [
+      "Claude（Anthropic）",
+      "Gemini（Google）",
+      "Copilot（Microsoft）",
+      "GPT-3（OpenAI）"
+    ],
+    "answer": 1,
+    "explanation": "Googleは2023年12月6日にGeminiを発表し、最初の版Gemini 1.0をUltra・Pro・Nanoの3つの大きさで出した。発表のページは、Geminiを、最初から異なる種類のデータで事前学習した、ネイティブにマルチモーダルなモデルとしている。最も小さいNanoは、スマートフォンの中で動く。",
+    "whyWrong": [
+      "ClaudeはAnthropicのモデル。発表（2023年3月）では、性能の高いClaudeと軽く速いClaude Instantの2つを出し、役に立ち・正直で・害の無いことを掲げた。Ultra・Pro・Nanoの3つではない。",
+      null,
+      "CopilotはMicrosoftの生成AIのアシスタントの製品名で、中でGPT-4などのLLMを使っている。Ultra・Pro・Nanoの3つのモデルの系列ではない。",
+      "GPT-3はOpenAIが2020年に発表した文章の言語モデル（1,750億パラメータ）で、最初から音声・画像・動画まで学習したモデルではない。"
+    ],
+    "memoryTip": "Gemini（Google）＝最初からマルチモーダル。Ultra・Pro・Nano。",
+    "concepts": ["C-AP-02-062", "C-AP-02-013"],
+    "sources": [
+      { "title": "Google『Introducing Gemini: our largest and most capable AI model』（2023年12月6日）", "url": "https://blog.google/technology/ai/google-gemini-ai/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-107",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Claude（Anthropic）"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "AnthropicのClaudeの学習に使われている『Constitutional AI』の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "Claudeという生成AIを、安全に振る舞わせるために使っている『Constitutional AI』がどんな方法かを選ぶ問題。",
+    "choices": [
+      "国の憲法の条文だけを学習データにして、法律の質問に答えられるようにする方法",
+      "原則の一覧（憲法）をもとにAIが答えを評価し、その評価を使って振る舞いを整える方法",
+      "人が全部の答えを1つずつ書き直し、その書き直しだけを手本にして学習させる方法",
+      "重みを公開して、だれでも自由に作り変えられるようにする方法"
+    ],
+    "answer": 1,
+    "explanation": "Anthropicは、Constitutional AIを、原則の一覧（憲法）を使って、AIの出力をAIのフィードバックで評価する方法とし、ClaudeをConstitutional AIで学習させたとしている。論文（2022年）は、AIが原則にもとづいて自分の答えを見直して書き直す教師ありの段階と、2つの答えのどちらが良いかをAIが判定して作った好みのモデルで強化学習する段階（AIのフィードバックによる強化学習、RLAIF）を説明している。",
+    "whyWrong": [
+      "『憲法』は、AIの振る舞いを決める原則の一覧のたとえ。国の憲法の条文を学習データにする方法ではない。",
+      null,
+      "Constitutional AIは、人の手間を減らすため、原則にもとづいてAIが評価する方法。人が全部の答えを書き直すのではない。",
+      "重みを公開することはオープンウェイトの話で、Constitutional AIの説明ではない。"
+    ],
+    "memoryTip": "Constitutional AI＝原則の一覧（憲法）で、AIがAIを評価して整える。",
+    "concepts": ["C-AP-02-063", "C-AP-02-022"],
+    "sources": [
+      { "title": "Anthropic『Claude's Constitution』（2023年5月9日）", "url": "https://www.anthropic.com/news/claudes-constitution" },
+      { "title": "Bai et al. (2022) Constitutional AI: Harmlessness from AI Feedback (arXiv:2212.08073)", "url": "https://arxiv.org/abs/2212.08073" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-108",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Copilot（Microsoft）"],
+    "format": "combo",
+    "difficulty": 1,
+    "stem": "主要な生成AIと提供する会社について、次の文の（ア）（イ）（ウ）に入る会社の組み合わせとして適切なものを１つ選びなさい。『Geminiは（ア）、Claudeは（イ）、Copilotは（ウ）が提供している。』",
+    "stemPlain": "Gemini・Claude・Copilot の3つの生成AIを、どの会社が出しているかの組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）Anthropic　（イ）Google　（ウ）Microsoft",
+      "（ア）Google　（イ）Microsoft　（ウ）Anthropic",
+      "（ア）Google　（イ）Anthropic　（ウ）Microsoft",
+      "（ア）Google　（イ）Anthropic　（ウ）OpenAI"
+    ],
+    "answer": 2,
+    "explanation": "GeminiはGoogle（2023年12月発表）、ClaudeはAnthropic（2023年3月公開）、CopilotはMicrosoft（Microsoft 365 Copilotは2023年3月発表）。CopilotはOpenAIのGPT-4などのLLMを中で使っているが、製品を提供しているのはMicrosoft。",
+    "whyWrong": [
+      "（ア）と（イ）が逆。GeminiはGoogle、ClaudeはAnthropic。",
+      "（イ）と（ウ）が逆。ClaudeはAnthropic、CopilotはMicrosoft。",
+      null,
+      "Copilotは、中でOpenAIのGPT-4などを使っているが、提供しているのはMicrosoft。OpenAIが提供する会話のサービスはChatGPT。"
+    ],
+    "memoryTip": "Gemini＝Google、Claude＝Anthropic、Copilot＝Microsoft、ChatGPT＝OpenAI。",
+    "concepts": ["C-AP-02-062", "C-AP-02-063", "C-AP-02-064"],
+    "sources": [
+      { "title": "Google『Introducing Gemini: our largest and most capable AI model』（2023年12月6日）", "url": "https://blog.google/technology/ai/google-gemini-ai/" },
+      { "title": "Anthropic『Introducing Claude』（2023年3月14日）", "url": "https://www.anthropic.com/news/introducing-claude" },
+      { "title": "Microsoft『Introducing Microsoft 365 Copilot – your copilot for work』（2023年3月16日）", "url": "https://blogs.microsoft.com/blog/2023/03/16/introducing-microsoft-365-copilot-your-copilot-for-work/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-109",
+    "syllabus": ["生成AI", "ChatGPTと主要な生成AIモデルの動向", "Copilot（Microsoft）"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Microsoftが2023年3月に発表したMicrosoft 365 Copilotの仕組みの説明として適切なものを１つ選びなさい。",
+    "stemPlain": "Microsoft 365 Copilot が、WordやExcelの中で、どうやって仕事に合った答えを出しているかを選ぶ問題。",
+    "choices": [
+      "LLMを使わず、Excelの関数を自動で組み合わせて答えを出す仕組み",
+      "利用者の端末の中だけで動く小さなモデルで、インターネットにはつながない仕組み",
+      "画像を作ることに特化したモデルで、文章の作成や要約は行わない仕組み",
+      "GPT-4を含むLLMと、仕事のデータ（Microsoft Graph）と仕事のアプリを組み合わせる仕組み"
+    ],
+    "answer": 3,
+    "explanation": "Microsoft 365 Copilotの発表（2023年3月16日）は、LLM（GPT-4を含む）を、Microsoft Graphにある利用者の仕事のデータ（メール・予定・文書など）と、Word・Excel・PowerPoint・Outlook・Teamsなどのアプリと組み合わせ、仕事のデータに根ざした答えを作るとしている。LLMは学習した一般の知識しか持たないので、仕事のデータとつなぐことが鍵だとしている。",
+    "whyWrong": [
+      "Microsoft 365 Copilotは、LLMを使う仕組み。発表は、LLMの力と仕事のデータを組み合わせるとしている。",
+      "発表は、Microsoft Graphの仕事のデータに即時にアクセスする仕組みとしており、端末の中だけで閉じる小さなモデルとはしていない。",
+      "Microsoft 365 Copilotは、文章の作成・要約・分析など、Word・Excel・Teamsなどでの仕事を手伝う。画像を作ることに特化した仕組みではない。",
+      null
+    ],
+    "memoryTip": "Copilot＝LLM＋自分の仕事のデータ＋いつものアプリ。",
+    "concepts": ["C-AP-02-064"],
+    "sources": [
+      { "title": "Microsoft『Introducing Microsoft 365 Copilot – your copilot for work』（2023年3月16日）", "url": "https://blogs.microsoft.com/blog/2023/03/16/introducing-microsoft-365-copilot-your-copilot-for-work/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-110",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "Stable Diffusionのような、文章の指示から画像を作る画像生成AIの多くが土台にしている技術として適切なものを１つ選びなさい。",
+    "stemPlain": "文章から画像を作るAIが、どんな仕組みで画像を作っているかを選ぶ問題。",
+    "choices": [
+      "LSTM（長い文の記憶を残すRNN）",
+      "報酬モデル（Reward Model）",
+      "RAG（検索拡張生成）",
+      "潜在拡散モデル（Latent Diffusion Model）"
+    ],
+    "answer": 3,
+    "explanation": "Stable Diffusionの公式のリポジトリは、Stable Diffusionを、潜在拡散モデルを使った、文章から画像を作るモデルとしている。画像を小さな潜在空間に縮め、その中でノイズを少しずつ取り除いて画像を作る。文章は、Cross-Attentionの層などで条件として取り込む（Rombachら、2021）。",
+    "whyWrong": [
+      "LSTMは、RNN（1語ずつ順に読むモデル）にゲートを足して、長い文の前の情報も残せるようにしたモデル。順番のあるデータ向けで、いまの画像生成AIの土台の技術ではない。",
+      "報酬モデルは、LLMのRLHFで、人が好む答えに高い点を出すモデル。画像を作る仕組みではない。",
+      "RAGは、質問に関係する文書を検索してLLMに渡す仕組み。画像を作る仕組みではない。",
+      null
+    ],
+    "memoryTip": "いまの画像生成AI＝拡散モデル（とくに潜在拡散）。",
+    "concepts": ["C-AP-02-065", "C-AP-02-010"],
+    "sources": [
+      { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" },
+      { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-111",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "旅行の写真に写り込んだ通行人の部分だけをブラシで塗って指定し、その部分を周りの景色に合わせて描き埋めさせた。この画像生成AIの使い方を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "写真の一部分だけを指定して、そこだけをAIに描き直させる使い方の名前を選ぶ問題。",
+    "choices": [
+      "インペインティング",
+      "電子透かし",
+      "C2PA",
+      "次元削減"
+    ],
+    "answer": 0,
+    "explanation": "画像の一部を指定して、その部分を新しい内容で描き埋めるのがインペインティング。潜在拡散モデルの論文は、インペインティングを、画像の一部が傷んでいたり、望まない内容を置きかえたりするために、マスクをかけた部分を新しい内容で埋める仕事としている。",
+    "whyWrong": [
+      null,
+      "電子透かしは、画像などに目に見えない目印を埋め込み、AIで作ったかどうかをあとで確かめられるようにする技術。画像の一部を描き直す技術ではない。",
+      "C2PAは、コンテンツに来歴情報（作られ方や編集の履歴）を、改ざんすると分かる形で付けるための標準。描き直す技術ではない。",
+      "次元削減は、データを表す項目の数を減らす処理。画像の一部を描き埋める技術ではない。"
+    ],
+    "memoryTip": "インペインティング＝『内側を塗り直す』。消したい所を描き埋める。",
+    "concepts": ["C-AP-02-066"],
+    "sources": [
+      { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-112",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "画像生成AIについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "文章などから画像を作るAIについて、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "潜在拡散モデルは、Cross-Attentionの層を入れて、文章などを条件に画像を作れるようにした",
+      "OpenAIは、4o Image Generationで作った画像にC2PAのメタデータを付けるとしている",
+      "画像生成AIが作った画像は、既存の作品に似ることが起きないので、公開前に確かめる必要はない",
+      "Stable Diffusionは、10GB以上のメモリを持つGPUで動く、比較的軽いモデルとして公開された"
+    ],
+    "answer": 2,
+    "explanation": "画像生成AIの出力が、学習データの作品などに似ることはありうる。生成の仕組みのうえでも、音楽の生成AIの研究（MusicLM）が学習データの覚え込みを調べているように、生成AIが学習データに近いものを出すことは確かめるべき問題とされている。公開や利用の前に、既存の作品に似ていないかを確かめる必要がある（著作権との関係は第4章）。",
+    "whyWrong": [
+      "適切。Rombachら（2021）は、Cross-Attentionの層を入れて、文章や囲み枠などを条件にして画像を作れるようにしたとしている。",
+      "適切。4o Image Generationの発表は、作ったすべての画像にC2PAのメタデータを付けるとしている。",
+      null,
+      "適切。CompVisのリポジトリは、8億6,000万パラメータの本体と1億2,300万パラメータのテキストエンコーダで、10GB以上のメモリを持つGPUで動く比較的軽いモデルとしている。"
+    ],
+    "memoryTip": "AIが作った画像も、既存の作品に似ていないか確かめてから使う。",
+    "concepts": ["C-AP-02-065", "C-AP-02-028"],
+    "sources": [
+      { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
+      { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" },
+      { "title": "OpenAI『Introducing 4o Image Generation』（2025年3月25日）", "url": "https://openai.com/index/introducing-4o-image-generation/" },
+      { "title": "Agostinelli et al. (2023) MusicLM: Generating Music From Text (arXiv:2301.11325)", "url": "https://arxiv.org/abs/2301.11325" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-113",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "令和6年版情報通信白書が、ディープフェイク対策として米国の企業が開発を進めている技術の1つとして挙げた『電子透かし』の説明として適切なものを１つ選びなさい。",
+    "stemPlain": "AIで作った画像や音声に使われる『電子透かし』が、どんな技術かを選ぶ問題。",
+    "choices": [
+      "画像の一部をマスクで覆い、その部分を周りに合わせて描き直す技術",
+      "データに真贋を示す目印を忍ばせて、あとで識別できるようにする技術",
+      "データを暗号にして、鍵を持つ人だけが見られるようにする技術",
+      "画像の画素の数を減らして、ファイルの大きさを小さくする技術"
+    ],
+    "answer": 1,
+    "explanation": "令和6年版情報通信白書は、電子透かしを、真贋を示す目印をデータに忍ばせて識別を可能にする技術と説明し、米国で2023年に15社が、電子透かしなどAIによる生成を識別する技術の開発を進めているとしている。GoogleのSynthIDのように、画素に人の目には見えない目印を埋め込む方法がある。",
+    "whyWrong": [
+      "これはインペインティングの説明。画像の一部を描き直す技術で、目印を埋め込む技術ではない。",
+      null,
+      "これは暗号化の説明。電子透かしは、データを読めなくするのではなく、データを見られるまま、見分けるための目印を埋め込む。",
+      "これは画像の圧縮の説明。ファイルを小さくする技術で、AIで作ったかを見分ける目印ではない。"
+    ],
+    "memoryTip": "電子透かし＝目に見えない『しるし』を中に埋め込む。",
+    "concepts": ["C-AP-02-067"],
+    "sources": [
+      { "title": "総務省 令和6年版 情報通信白書 偽・誤情報の流通・拡散", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" },
+      { "title": "Google DeepMind『Identifying AI-generated images with SynthID』（2023年8月29日）", "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-114",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "GoogleのSynthID（2023年8月公開）のような、AIで作った画像の電子透かしについて述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIで作った画像に目に見えない目印を入れる技術について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "画像の画素そのものに、人の目には見えない透かしを埋め込む",
+      "フィルタをかけたり、色や明るさを変えたりしても、検出できるとされている",
+      "どんな加工にも耐えるので、透かしが有るか無いかを見れば、本物か偽物かを確実に判定できる",
+      "ファイルに付けるメタデータは消えることがあるので、透かしと組み合わせて使う"
+    ],
+    "answer": 2,
+    "explanation": "SynthIDの発表は、SynthIDは極端な画像の加工に対しては完全ではないとしている。また、透かしが見つからないことは、人が作った証拠にはならない（透かしを入れないAIもある）。透かしだけで本物か偽物かを確実に判定できる、というのは言い過ぎ。",
+    "whyWrong": [
+      "適切。発表は、画像の画素に直接、人の目には見えないが検出できる電子透かしを埋め込むとしている。",
+      "適切。発表は、フィルタを加えたり、色や明るさを変えたりしても、透かしは検出できるとしている。",
+      null,
+      "適切。発表は、作成者などの情報を持つメタデータは手で取り除かれたり、編集で失われたりすることがあり、画素に埋め込む透かしは、メタデータにもとづく方法と組み合わせて使えるとしている。"
+    ],
+    "memoryTip": "透かしは強いが、万能ではない。来歴の記録や検出と組み合わせる。",
+    "concepts": ["C-AP-02-067", "C-AP-02-068"],
+    "sources": [
+      { "title": "Google DeepMind『Identifying AI-generated images with SynthID』（2023年8月29日）", "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-115",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "デジタルの画像や動画について、いつ・何で作られ、その後どう編集されてきたかの記録を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "写真や動画の『生まれと育ち』の記録を何と呼ぶかを選ぶ問題。",
+    "choices": [
+      "来歴情報",
+      "電子透かし",
+      "埋め込み（Embedding）",
+      "コンテキストウィンドウ"
+    ],
+    "answer": 0,
+    "explanation": "作られた瞬間から、その後の変更や利用までをたどった記録が来歴情報（provenance）。C2PAのFAQは、コンテンツの来歴を、画像・動画・音声・文書などのデジタルのコンテンツが作られてから、その後に変更・利用されるまでの記録の歴史としている。",
+    "whyWrong": [
+      null,
+      "電子透かしは、データの中身に目に見えない目印を埋め込む技術。作られ方や編集の履歴を記録するものではない。",
+      "埋め込みは、トークンなどを、意味の近さを表す数の並びに置きかえること。名前は似ているが、作品の履歴の記録ではない。",
+      "コンテキストウィンドウは、LLMが1回に扱えるトークンの上限。作品の履歴とは関係が無い。"
+    ],
+    "memoryTip": "来歴＝作品の『履歴書』。",
+    "concepts": ["C-AP-02-068"],
+    "sources": [
+      { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-116",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "C2PA（Coalition for Content Provenance and Authenticity）のContent Credentials（コンテンツ認証情報）について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "画像などに『作られ方の記録』を付ける標準 C2PA について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "来歴の記録には電子署名と暗号のハッシュが含まれ、書き換えると改ざんが分かる",
+      "使い方を制限するDRMではなく、透明性と完全性のための仕組みとされている",
+      "記録はファイルに組み込まれるので、ファイルから取り除くことは技術的にできない",
+      "記録が取り除かれた場合に備え、電子透かしなどで記録を探し直す仕組みも用意されている"
+    ],
+    "answer": 2,
+    "explanation": "C2PAのFAQは、来歴の記録（C2PAのマニフェスト）はふつうファイルに組み込まれるが、切り離されることがあり、意図的にも偶然にも取り除かれうるとしている。そのために、見えない電子透かしや指紋のような値（ソフトバインディング）で、取り除かれた記録を探し直す仕組みを用意している。",
+    "whyWrong": [
+      "適切。FAQは、各Content Credentialは信頼できる実装による電子署名を持ち、コンテンツと来歴の両方の暗号のハッシュを含むので、変更があればつながりが壊れて改ざんが分かるとしている。",
+      "適切。FAQは、Content CredentialsはDRM（デジタル著作権管理）ではなく、使い方を制限せずに来歴を記録・保存する、透明性と完全性のためのものとしている。",
+      null,
+      "適切。FAQは、記録が取り除かれても、ソフトバインディングで関連するContent Credentialを探し直せる『Durable Content Credentials』を説明している。"
+    ],
+    "memoryTip": "C2PAの記録は『改ざんは分かる』が『消されることはある』。",
+    "concepts": ["C-AP-02-069", "C-AP-02-068"],
+    "sources": [
+      { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-117",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "画像生成AI"],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "AIで作ったコンテンツを見分ける技術について、次の文の（ア）（イ）（ウ）に入る語の組み合わせとして適切なものを１つ選びなさい。『（ア）は、データの中身に目に見えない目印を埋め込む。（イ）は、いつ・何で作られ、どう編集されたかの記録である。（ウ）は、（イ）を、書き換えると分かる形でコンテンツに付けるための標準である。』",
+    "stemPlain": "AIで作ったものを見分けるための3つの技術・考え方の名前の組み合わせを選ぶ問題。",
+    "choices": [
+      "（ア）電子透かし　（イ）来歴情報　（ウ）C2PA",
+      "（ア）来歴情報　（イ）電子透かし　（ウ）C2PA",
+      "（ア）電子透かし　（イ）来歴情報　（ウ）RLHF",
+      "（ア）インペインティング　（イ）来歴情報　（ウ）C2PA"
+    ],
+    "answer": 0,
+    "explanation": "データの中身に目印を埋め込むのが電子透かし（SynthIDなど）、作られ方や編集の履歴の記録が来歴情報、その記録を電子署名とハッシュで改ざんが分かる形で付ける標準がC2PA（Content Credentials）。",
+    "whyWrong": [
+      null,
+      "（ア）と（イ）が逆。目印を埋め込むのが電子透かしで、履歴の記録が来歴情報。",
+      "RLHFは、人の評価をもとにLLMの答え方を強化学習で仕上げる方法。来歴の記録を付ける標準ではない。",
+      "インペインティングは、画像の一部を描き直す技術。目印を埋め込む技術ではない。"
+    ],
+    "memoryTip": "透かし＝中に埋める、来歴＝履歴の記録、C2PA＝記録を改ざんできない形で付ける決まり。",
+    "concepts": ["C-AP-02-067", "C-AP-02-068", "C-AP-02-069"],
+    "sources": [
+      { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" },
+      { "title": "Google DeepMind『Identifying AI-generated images with SynthID』（2023年8月29日）", "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-118",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音楽生成AI"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Googleの研究者による音楽生成AI『MusicLM』（2023年）の論文の内容として適切なものを１つ選びなさい。",
+    "stemPlain": "文章から曲を作るAI『MusicLM』の論文に書かれていることを選ぶ問題。",
+    "choices": [
+      "楽譜の画像を読み取って、演奏している楽器と演奏者の名前を当てる",
+      "楽譜のデータからだけ学び、録音された音は学習にも出力にも使わない",
+      "文章の説明から、数分にわたって一貫した曲を作り、ハミングのメロディを変えることもできる",
+      "人の話し声を、別の人の声に変えて読み上げることを主な目的にしている"
+    ],
+    "answer": 2,
+    "explanation": "MusicLMの論文は、『落ち着くバイオリンの旋律』のような文章の説明から、24kHzの音質で、数分にわたって一貫した音楽を作るとしている。口笛やハミングのメロディを、文章で指定した雰囲気に変えることもできるとしている。",
+    "whyWrong": [
+      "楽器や演奏者を当てるのは、入力を見分ける識別系のAIの仕事。MusicLMは新しい曲を作る生成系のAI。",
+      "MusicLMは、音そのもの（オーディオ）を生成する。録音された音を使わない、というのは論文の内容と合わない。音楽生成AIの学習データの形を1つに決めつけるのは誤り。",
+      null,
+      "人の声を別の人の声に変えるのは、音声の変換や Voice Cloning の話。MusicLMは曲を作る音楽生成AI。"
+    ],
+    "memoryTip": "MusicLM＝文章やハミングから、数分の曲を作る。",
+    "concepts": ["C-AP-02-070"],
+    "sources": [
+      { "title": "Agostinelli et al. (2023) MusicLM: Generating Music From Text (arXiv:2301.11325)", "url": "https://arxiv.org/abs/2301.11325" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-119",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音楽生成AI"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "MusicLMの論文が挙げた、音楽生成AIのリスクや注意点として不適切なものを１つ選びなさい。",
+    "stemPlain": "曲を作るAIの論文が心配な点として挙げたことのうち、挙げていないものを1つ選ぶ問題。",
+    "choices": [
+      "学習した曲を覚えていて、それに近い部分を出してしまうおそれ",
+      "学習データの偏りが、作られる曲に表れること",
+      "作品の創作的な内容を不正に使ってしまうおそれ",
+      "作った曲は人が作った曲より音質がはるかに劣るので、使い道が無いこと"
+    ],
+    "answer": 3,
+    "explanation": "論文は、文章の説明に合った高い音質の曲を作れることを成果としており、音質が悪くて使い道が無い、とはしていない。リスクとして挙げたのは、作品の創作的な内容を不正に使ってしまうおそれ（学習データの覚え込み）と、学習データの偏りが生成物に表れることなど。",
+    "whyWrong": [
+      "挙げている。論文は覚え込みを調べ、そっくり同じものはごく一部、近いものは例の1％で見つかったとしている。",
+      "挙げている。論文は、生成されたものは学習データの偏りを反映し、学習データに少ない文化の音楽を作ることの適切さが問われるとしている。",
+      "挙げている。論文は、この用途に伴う創作的な内容の不正な利用のリスクを認め、この時点ではモデルを公開しないとした。",
+      null
+    ],
+    "memoryTip": "音楽生成AIの心配＝『覚えて出す』『偏りが出る』。",
+    "concepts": ["C-AP-02-070", "C-AP-02-027"],
+    "sources": [
+      { "title": "Agostinelli et al. (2023) MusicLM: Generating Music From Text (arXiv:2301.11325)", "url": "https://arxiv.org/abs/2301.11325" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-120",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音声生成AI"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ニューラルネットワークを使って、文字の文章から人の話し声のような自然な音声を作る読み上げの技術を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "AIが、書かれた文章を自然な声で読み上げる技術の名前を選ぶ問題。",
+    "choices": [
+      "音声認識（Speech-to-Text）",
+      "ニューラルTTS（Text-to-Speech）",
+      "MusicLM（音楽の生成）",
+      "C2PA（来歴の標準）"
+    ],
+    "answer": 1,
+    "explanation": "文字（Text）から話し声（Speech）を作るのがTTS（Text-to-Speech）で、ニューラルネットワークを使うものをニューラルTTSと呼ぶ。WaveNet（2016年）は、読み上げで、人の聞き手が従来の方式よりはるかに自然と評価した。",
+    "whyWrong": [
+      "音声認識は、録音された話し声を文字に起こす技術で、TTSとは逆の向き。",
+      null,
+      "MusicLMは、文章の説明から曲を作る音楽生成AI。話し声を作る読み上げの技術ではない。",
+      "C2PAは、コンテンツに来歴情報を付けるための標準。音声を作る技術ではない。"
+    ],
+    "memoryTip": "TTS＝Text→Speech（文字から声）。STT＝Speech→Text（声から文字）。",
+    "concepts": ["C-AP-02-072", "C-AP-02-071"],
+    "sources": [
+      { "title": "van den Oord et al. (2016) WaveNet: A Generative Model for Raw Audio (arXiv:1609.03499)", "url": "https://arxiv.org/abs/1609.03499" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-121",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音声生成AI"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Tacotron 2（2017年）の論文が報告した、読み上げの自然さを人が5点満点で評価した平均点（MOS）の結果として適切なものを１つ選びなさい。",
+    "stemPlain": "AIの読み上げの声を人に聞いてもらって点を付けたら、プロが録音した声と比べてどうだったかを選ぶ問題。",
+    "choices": [
+      "4.53で、プロが録音した音声の4.58に近かった",
+      "2.10で、プロが録音した音声の4.58に遠く及ばなかった",
+      "4.58で、プロが録音した音声の4.53を上回った",
+      "人による評価は行わず、機械の採点だけで比べた"
+    ],
+    "answer": 0,
+    "explanation": "Tacotron 2の論文は、文字から音の特徴（メルスペクトログラム）を作り、WaveNetで波形にする仕組みで、平均の評価（MOS）が4.53となり、プロが録音した音声の4.58に近い結果を出したとしている。ニューラルTTSで、機械の読み上げが人の録音に近づいた例。",
+    "whyWrong": [
+      null,
+      "論文の結果は4.53で、プロの録音の4.58に近い。遠く及ばなかったのではない。",
+      "数字が逆。4.53がTacotron 2で、4.58がプロの録音。プロの録音を上回ってはいない。",
+      "MOSは、人が聞いて点を付ける評価（平均の意見の点数）。論文は人の評価を使っている。"
+    ],
+    "memoryTip": "Tacotron 2＝4.53、プロの録音＝4.58。ほぼ人に並んだ。",
+    "concepts": ["C-AP-02-072"],
+    "sources": [
+      { "title": "Shen et al. (2017) Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions (arXiv:1712.05884)", "url": "https://arxiv.org/abs/1712.05884" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-122",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音声生成AI"],
+    "format": "fill",
+    "difficulty": 1,
+    "stem": "次の文の（　）に入る語を１つ選びなさい。『ニューラルTTSのTTSは（　）の略で、文字の文章から話し声を作ることを表す。』",
+    "stemPlain": "読み上げの技術の名前『TTS』が、何の英語の略かを選ぶ問題。",
+    "choices": [
+      "Speech-to-Text",
+      "Text-to-Image",
+      "Text-to-Speech",
+      "Text-to-Video"
+    ],
+    "answer": 2,
+    "explanation": "TTSは Text-to-Speech の略で、Text（文字）から Speech（話し声）へ、という意味。Tacotron 2の論文も、文字から直接音声を合成する仕組みを Natural TTS Synthesis と呼んでいる。",
+    "whyWrong": [
+      "Speech-to-Text は、話し声から文字へ、つまり音声認識のこと。TTSとは逆の向き。",
+      "Text-to-Image は、文章から画像を作ること（画像生成AI）。",
+      null,
+      "Text-to-Video は、文章から動画を作ること（動画生成AI）。"
+    ],
+    "memoryTip": "Text-to-○○＝文章から○○を作る。Speech なら声。",
+    "concepts": ["C-AP-02-072"],
+    "sources": [
+      { "title": "Shen et al. (2017) Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions (arXiv:1712.05884)", "url": "https://arxiv.org/abs/1712.05884" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-123",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音声生成AI"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ある人の15秒ほどの録音1つから、その人によく似た声で、好きな文章を話させる技術を表す語として適切なものを１つ選びなさい。",
+    "stemPlain": "短い録音から、その人そっくりの声で何でも話させる技術の名前を選ぶ問題。",
+    "choices": [
+      "インペインティング",
+      "音声認識（Speech-to-Text）",
+      "C2PA",
+      "Voice Cloning（声の複製）"
+    ],
+    "answer": 3,
+    "explanation": "特定の人の短い録音から、その人に似た声を作るのがVoice Cloning（声の複製）。OpenAIのVoice Engine（2024年）は、文章と15秒の録音1つから、元の話し手によく似た自然な声を作れるとした。便利な一方、なりすましに悪用されうるので、本人の同意が欠かせない。",
+    "whyWrong": [
+      "インペインティングは、画像の一部を指定して描き直す技術。声を作る技術ではない。",
+      "音声認識は、話し声を文字に起こす技術。人の声に似せた声を作るのとは逆の向き。",
+      "C2PAは、コンテンツに来歴情報を付けるための標準。声を作る技術ではない。",
+      null
+    ],
+    "memoryTip": "Voice Cloning＝声のコピー。15秒で似せられる時代。",
+    "concepts": ["C-AP-02-073"],
+    "sources": [
+      { "title": "OpenAI『Navigating the Challenges and Opportunities of Synthetic Voices』（2024年3月29日）", "url": "https://openai.com/index/navigating-the-challenges-and-opportunities-of-synthetic-voices/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-124",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音声生成AI"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "OpenAIがVoice Engine（2024年3月の発表）について示した方針として不適切なものを１つ選びなさい。",
+    "stemPlain": "声をまねるAI『Voice Engine』について、OpenAIが決めた約束や勧めのうち、実際とは違うものを1つ選ぶ問題。",
+    "choices": [
+      "試験に参加する会社には、聞く人にAIで作った声だと明らかにすることを求めた",
+      "作った音声に透かしを入れるなどの安全策を取り入れた",
+      "有名人の声なら、本人の同意が無くても、まねて使ってよいとした",
+      "銀行口座などで、声による本人確認をやめていくことを社会に勧めた"
+    ],
+    "answer": 2,
+    "explanation": "発表のページは、利用の方針で、同意や法的な権利の無い個人や組織へのなりすましを禁じ、元の話し手のはっきりした、内容を理解したうえでの同意を求めるとしている。有名人かどうかで、同意の要否は変わらない。",
+    "whyWrong": [
+      "適切。発表のページは、参加者が、聞く人にその声がAIで作られたものだと明らかにすることを求めている。",
+      "適切。発表のページは、透かしを含む一連の安全策を入れたとしている。",
+      null,
+      "適切。発表のページは、銀行口座などの重要な情報へのアクセスで、声による本人確認を段階的にやめていくことを勧めている。"
+    ],
+    "memoryTip": "声のコピーは『本人の同意』が大前提。有名人でも同じ。",
+    "concepts": ["C-AP-02-073", "C-AP-02-074"],
+    "sources": [
+      { "title": "OpenAI『Navigating the Challenges and Opportunities of Synthetic Voices』（2024年3月29日）", "url": "https://openai.com/index/navigating-the-challenges-and-opportunities-of-synthetic-voices/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-125",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "音声生成AI"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "OpenAIがVoice Engineの試験の参加者に対し、元の話し手（声を複製される人）について求めたこととして適切なものを１つ選びなさい。",
+    "stemPlain": "声をまねるAIを使う会社に、声の持ち主についてOpenAIが何を求めたかを選ぶ問題。",
+    "choices": [
+      "話し手がインターネットに声を公開していれば、改めて確かめる必要は無いこと",
+      "話し手から、はっきりした、内容を理解したうえでの同意を得ること",
+      "話し手の声を複製したことを、話し手本人には知らせずにおくこと",
+      "話し手が会社の社員であれば、上司の許可だけで声を使ってよいこと"
+    ],
+    "answer": 1,
+    "explanation": "発表のページは、参加者との約束で、元の話し手のはっきりした、内容を理解したうえでの同意（explicit and informed consent）を求めるとしている。声は本人を特定できる特徴なので、使う前に本人の同意を得ることが前提になる。",
+    "whyWrong": [
+      "声が公開されていることと、AIでの複製に本人が同意していることは別。発表のページは、元の話し手のはっきりした同意を求めている。",
+      null,
+      "本人に知らせずに複製するのは、求められた同意と正反対。発表のページは、なりすましを禁じ、同意を求めている。",
+      "上司の許可は、声の持ち主である本人の同意の代わりにならない。求められているのは、元の話し手本人の同意。"
+    ],
+    "memoryTip": "同意は『本人から』『内容を分かったうえで』『はっきり』。",
+    "concepts": ["C-AP-02-074", "C-AP-02-073"],
+    "sources": [
+      { "title": "OpenAI『Navigating the Challenges and Opportunities of Synthetic Voices』（2024年3月29日）", "url": "https://openai.com/index/navigating-the-challenges-and-opportunities-of-synthetic-voices/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-126",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "動画生成AI"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "OpenAIの技術報告（2024年2月）が説明した、動画生成AI『Sora』の仕組みとして適切なものを１つ選びなさい。",
+    "stemPlain": "動画を作るAI『Sora』が、どんな仕組みで動画を作っているかを選ぶ問題。",
+    "choices": [
+      "1コマずつ画像を見分ける識別系のモデルで、写っている物の名前を並べて動画にする",
+      "動画を潜在空間に縮めて時空間のパッチに分け、Transformerで扱う拡散モデル",
+      "RNNで1コマずつ順に作り、前のコマを見ずに次のコマを作っていく",
+      "生成器と識別器を競わせるGANだけで、文章を使わずに動画を作る"
+    ],
+    "answer": 1,
+    "explanation": "Soraの技術報告は、文章を条件にした拡散モデルを、さまざまな長さ・解像度・縦横比の動画と画像でいっしょに学習させ、動画と画像の潜在の表現を時空間のパッチ（小さなかたまり）に分けて扱うTransformerを使ったとしている。LLMがトークンでいろいろな文章をまとめて扱うのにならい、パッチを使ったとしている。",
+    "whyWrong": [
+      "識別系のモデルは、入力に何が写っているかを当てるもの。Soraは新しい動画を作る生成系のモデル。",
+      null,
+      "報告はRNNで作るとはしていない。また、前のコマを見ずに作ると、コマどうしのつながり（時間の一貫性）が保てない。",
+      "報告は、GANも動画の生成に使われてきた方法の1つとして紹介しているが、Soraは文章を条件にした拡散モデル。"
+    ],
+    "memoryTip": "Sora＝動画を『パッチ』に切ってトークンのように扱う拡散モデル。",
+    "concepts": ["C-AP-02-075", "C-AP-02-009"],
+    "sources": [
+      { "title": "OpenAI『Video generation models as world simulators』（2024年2月15日）", "url": "https://openai.com/index/video-generation-models-as-world-simulators/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-127",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "動画生成AI"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "Soraの技術報告（2024年2月）の内容について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "動画を作るAI『Sora』の報告の内容について、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "最大のモデルは、1分の高品質な動画を作れるとした",
+      "静止画は学習に使わず、動画のデータに限って学習させたとした",
+      "動画をまず低い次元の潜在空間に縮めてから、パッチに分けるとした",
+      "動画の生成モデルを大きくすることは、物理的な世界の汎用的なシミュレーターづくりへの有望な道だとした"
+    ],
+    "answer": 1,
+    "explanation": "技術報告は、さまざまな長さ・解像度・縦横比の動画と画像を、いっしょに（jointly）学習させたとしている。画像は1コマだけの動画として、同じパッチの形で扱える。",
+    "whyWrong": [
+      "適切。報告は、最大のモデルであるSoraは、1分の高品質な動画を作れるとしている。",
+      null,
+      "適切。報告は、動画をまず低い次元の潜在空間に縮め、その表現を時空間のパッチに分けるとしている。",
+      "適切。報告は、動画の生成モデルを大きくすることが、物理的な世界の汎用的なシミュレーターを作る有望な道だとしている。"
+    ],
+    "memoryTip": "Sora は動画と画像を『いっしょに』学ぶ。画像は1コマの動画。",
+    "concepts": ["C-AP-02-075"],
+    "sources": [
+      { "title": "OpenAI『Video generation models as world simulators』（2024年2月15日）", "url": "https://openai.com/index/video-generation-models-as-world-simulators/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-128",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "動画生成AI"],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "令和6年版情報通信白書が、ディープフェイクへの技術的な対策の例として紹介した、国立情報学研究所（NII）が2021年に開発したツールの働きとして適切なものを１つ選びなさい。",
+    "stemPlain": "偽の動画や画像への対策として、国の研究所が作った道具が何をするものかを選ぶ問題。",
+    "choices": [
+      "AIで作られた偽の顔画像かどうかを、自動で判定する",
+      "本人の声を15秒の録音から複製して、読み上げに使う",
+      "ニュース記事に、発信者の情報を結びつけて表示する",
+      "画像の一部をマスクで覆い、周りに合わせて描き直す"
+    ],
+    "answer": 0,
+    "explanation": "白書は、NIIが2021年9月に、AIにより生成されたフェイク顔画像を自動判定するツール『SYNTHETIQ VISION』を開発したとし、画像をサーバーにアップロードすると、フェイクかどうかを判定するとしている。さらに、どこが改ざんされたかも分かる『Cyber Vaccine』を開発中としている。",
+    "whyWrong": [
+      null,
+      "これはVoice Cloning（声の複製）の働き。偽物を見破る道具ではなく、むしろ作る側の技術。",
+      "これはオリジネータープロファイル（OP）技術の働き。白書は別の技術的な対策として紹介しているが、NIIの判定ツールの働きではない。",
+      "これはインペインティングの働き。画像を描き直す技術で、偽物を判定する道具ではない。"
+    ],
+    "memoryTip": "見破る（NIIの判定ツール）・印を付ける（透かし）・出どころを示す（来歴・OP）。",
+    "concepts": ["C-AP-02-076", "C-AP-01-056"],
+    "sources": [
+      { "title": "総務省 令和6年版 情報通信白書 偽・誤情報の流通・拡散", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "AP-02-129",
+    "syllabus": ["生成AI", "各モダリティの生成AI", "動画生成AI"],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "ディープフェイクへの技術的な対策について述べた文として不適切なものを１つ選びなさい。",
+    "stemPlain": "AIで作られた偽の動画・音声・画像に、技術でどう備えるかについて、間違っている文を1つ選ぶ問題。",
+    "choices": [
+      "白書は、ディープフェイクへの対策はいたちごっこの様相を呈しているとしている",
+      "白書は、ニュース記事などに発信者の情報を結びつけるオリジネータープロファイル技術の研究開発を紹介している",
+      "OpenAIは、声の複製の広がりに備え、声による本人確認をやめていくことを勧めている",
+      "判定ツールが実用化されたので、技術でディープフェイクを見分けきれるようになり、対策は終わった段階にある"
+    ],
+    "answer": 3,
+    "explanation": "令和6年版情報通信白書は、ディープフェイクによる情報操作や犯罪利用への対策は各方面で行われているものの、いたちごっこの様相を呈しているとしている。判定ツールなどの対策は進んでいるが、見分けきれるようになった、対策が終わった、という段階ではない。",
+    "whyWrong": [
+      "適切。白書は、対策には各方面からの取り組みが行われているものの、いたちごっこの様相を呈していると書いている。",
+      "適切。白書は、なりすましや改変が見える化されるオリジネータープロファイル（OP）技術の研究開発が進んでいるとしている。",
+      "適切。Voice Engineの発表は、銀行口座などの重要な情報へのアクセスで、声による本人確認を段階的にやめていくことを勧めている。",
+      null
+    ],
+    "memoryTip": "ディープフェイクとの戦いは『いたちごっこ』。対策は重ねて使う。",
+    "concepts": ["C-AP-02-076", "C-AP-01-056"],
+    "sources": [
+      { "title": "総務省 令和6年版 情報通信白書 偽・誤情報の流通・拡散", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" },
+      { "title": "OpenAI『Navigating the Challenges and Opportunities of Synthetic Voices』（2024年3月29日）", "url": "https://openai.com/index/navigating-the-challenges-and-opportunities-of-synthetic-voices/" }
+    ],
+    "status": "verified"
+  }
+]
