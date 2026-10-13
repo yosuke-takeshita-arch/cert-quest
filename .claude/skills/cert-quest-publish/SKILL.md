@@ -18,7 +18,8 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
    - `node tools/check-answers-unchanged.cjs`（説明文を書き直したとき。引数を省くと g-kentei・dx-biz・ai-passport を全部見る）
 3. **service worker の版を上げる**: `g-kentei/sw.js` と `dx-biz/sw.js` の5行目 `version: 'NN'` を、両方とも同じ番号で1つ上げる（shared/ を変えたら両方。片方だけにしない）
    - `ai-passport/sw.js` の5行目 `version: 'N'` は、G検定・DX と別の番号（2026-10-13 に 1 から始めた）。shared/ か ai-passport/ を変えたら1つ上げる。G検定・DX の番号にそろえない
-   - shared/ を変えたら3つとも上げる（ai-passport を入れた人にも古い shared/ が出続けるため）
+   - `shindanshi/1ji/sw.js` の7行目 `version: 'N'` も独自の番号（2026-10-13 に版 1 のまま初めて公開）。shared/ か shindanshi/1ji/ を変えたら1つ上げる
+   - shared/ を変えたら4つとも上げる（どのアプリを入れた人にも古い shared/ が出続けるため）
 4. **新しいファイルを先取りに載せたか**: 新しい JS は `shared/sw-core.js` の `SHARED`、効果音は `SFX`、ボスの絵は各アプリの `sw.js` の `appFiles`（`./images/bosses/boss-N.webp`）。BGM は初めて流したときに取る（載せない）
    - ai-passport はタイトル・地図・ボス・章のバッジの絵がまだ無い（2026-10-13）。置いたら `appFiles` に足し、タイトルと地図は config.json の `titleImage`・`mapImage` も足す（`shared/tests/appframe.test.js`・`maplayout.test.js` が、絵の有無と一覧・config の食い違いで落とす）
 5. **コミットして push**: メッセージは「公開のため service worker の版を NN に上げる（何が入るか）」。`git push origin main`
