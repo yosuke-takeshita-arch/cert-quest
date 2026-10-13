@@ -6,6 +6,7 @@ import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
 import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
+import { formatStudyTime } from '../lib/studytime.js';
 import { laterCount } from '../lib/later.js';
 import { dochiPairs } from './dochi.js';
 import { forecastCard } from './forecast.js';
@@ -148,7 +149,8 @@ export function renderHome(app) {
       h('div', {}, h('span', { class: 'small muted', text: 'レベル' }), h('strong', { class: 'lv', text: 'Lv ' + lv.level })),
       h('div', { class: 'streak', title: '連続日数' }, icon('flame', streak ? 'on' : 'off'), h('strong', { text: streak + ' 日連続' }))),
     h('div', { class: 'progress', role: 'progressbar', 'aria-label': '次のレベルまで', 'aria-valuemin': '0', 'aria-valuemax': String(lv.need), 'aria-valuenow': String(lv.into) }, h('div', { class: 'progress-fill', style: { width: Math.round(lv.progress * 100) + '%' } })),
-    h('p', { class: 'small muted', text: 'XP ' + state.xp + '（次のレベルまで あと ' + (lv.need - lv.into) + '）' }));
+    h('p', { class: 'small muted', text: 'XP ' + state.xp + '（次のレベルまで あと ' + (lv.need - lv.into) + '）' }),
+    h('p', { class: 'small muted study-time', 'data-study-time': '1', text: '総学習時間 ' + formatStudyTime(state.studySeconds) }));
   root.appendChild(prog);
 
   if (!data.questions.length) {

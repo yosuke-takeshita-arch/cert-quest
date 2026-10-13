@@ -2,6 +2,7 @@
 import { h, clear, icon, toast, celebrate, badgeBases, setTapHost, setImagesBase } from './ui.js';
 import { normalizeSubjects, hasSubjects, createSubjectStore, singleKey, subjectConfig, subjectDataBase, subjectImagesBase } from './lib/subjects.js';
 import { renderSubjectPicker } from './views/subjects.js';
+import { installStudyClock } from './studyclock.js';
 import { loadData } from './lib/data.js';
 import { loadBosses } from './lib/bossdata.js';
 import { createStorage } from './lib/storage.js';
@@ -334,6 +335,8 @@ export async function start() {
   setTapHost({ state: () => tapSession, save: () => {}, sfx: (name) => playSfx(app.state.settings, name) });
   // 動作確認用に外から触れるようにする（テストが状態を調べる）
   window.__app = app;
+  // 総学習時間（§6-1）。画面が前に出ていて、操作が2分以内の間だけ app.state.studySeconds に足す
+  installStudyClock(app);
   // 音。BGM は、問題を解いている画面（ステージ・復習・チャレンジ・模試）では問題中の曲、それ以外（ホームなど）では『それ以外』の曲（initAudio はタイトル画面の前に済んでいる）
   live = app;
 

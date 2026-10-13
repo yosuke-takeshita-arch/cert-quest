@@ -9,6 +9,7 @@ import { normalizeLater } from './later.js';
 import { normalizeDochi } from './dochi.js';
 import { normalizeForecast } from './forecast.js';
 import { normalizeBoss, normalizeBossFlawless, normalizeBossMet } from './boss.js';
+import { normalizeStudySeconds } from './studytime.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
@@ -32,6 +33,7 @@ export function defaultState() {
     bossMet: {}, // 一度でも現れた章のボス（章のキー → true）。会うまでは名前も姿も隠す
     bossFlawless: 0, // ハートを1つも減らさずにボスを倒した回数（バッジ「ノーダメージ」用）
     goalAwarded: null,
+    studySeconds: 0, // 総学習時間（秒）。アプリを開いて画面が前に出ている時間（studytime.js）。過去の分は記録が無いので0から
   };
 }
 
@@ -58,6 +60,7 @@ export function mergeState(saved) {
   o.boss = normalizeBoss(saved.boss); // 章のボスの撃破回数。古い記録（項目なし）は空
   o.bossMet = normalizeBossMet(saved.bossMet); // 一度でも現れた章のボス。古い記録（項目なし）は空（倒したことがあれば会ったことにする。hasMetBoss）
   o.bossFlawless = normalizeBossFlawless(saved.bossFlawless); // ノーダメージで倒した回数。古い記録（項目なし）・壊れた値は0
+  o.studySeconds = normalizeStudySeconds(saved.studySeconds); // 総学習時間。古い記録（項目なし）・壊れた値は0
   if (!Number.isFinite(o.xp)) o.xp = 0;
   o.settings.dailyGoal = normalizeDailyGoal(o.settings.dailyGoal);
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';

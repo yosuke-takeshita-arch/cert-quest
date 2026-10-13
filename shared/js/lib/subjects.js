@@ -12,7 +12,7 @@
 import { defaultState, mergeState } from './progress.js';
 
 /** 科目をまたいで共通にする記録の項目（goalAwarded は daily の「今日の目標を達成した日」なので daily と一緒に共通）。 */
-export const COMMON_KEYS = ['xp', 'streak', 'daily', 'settings', 'goalAwarded'];
+export const COMMON_KEYS = ['xp', 'streak', 'daily', 'settings', 'goalAwarded', 'studySeconds']; // 総学習時間もアプリ単位の合計（§6-1）
 
 const SUBJECT_ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FOLDER_RE = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;

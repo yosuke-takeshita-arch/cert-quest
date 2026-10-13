@@ -122,7 +122,7 @@ test('データと絵の置き場: 科目のフォルダ（サンプルは _samp
 // ---- 記録の分け方 ----
 
 test('共通の項目は xp・streak・daily・settings・goalAwarded。科目の項目はそれ以外の全部（defaultState の全項目が、どちらか一方にだけ入る）', () => {
-  assert.deepEqual([...COMMON_KEYS].sort(), ['daily', 'goalAwarded', 'settings', 'streak', 'xp']);
+  assert.deepEqual([...COMMON_KEYS].sort(), ['daily', 'goalAwarded', 'settings', 'streak', 'studySeconds', 'xp']);
   const all = Object.keys(defaultState());
   const { common, subject } = splitState(defaultState());
   assert.deepEqual(Object.keys(common).sort(), [...COMMON_KEYS].sort());
