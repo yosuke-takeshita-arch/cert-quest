@@ -112,3 +112,26 @@ test('読み込み: 404・通信エラー・壊れた JSON は空配列（落ち
   assert.ok(broken.reason);
   assert.deepEqual((await loadBosses('u', ok({ not: 'array' }))).bosses, []);
 });
+
+// 2026-10-13、生成AIパスポートの32体を置いたとき、置いた bosses.json が地図の章と合っているかを見るテストが無かった。
+// 章の名前を1つ取り違えると、そのボスは黙って汎用に切り替わる（どこにも出ない）。地図1つのアプリ全部で、並びとキーまで確かめる。
+test('各アプリの bosses.json: ボスの章のキーが、シラバスから作った地図の章と同じ並びで1対1に合う（番号は1から）', async () => {
+  const { readFileSync, existsSync } = await import('node:fs');
+  const { join } = await import('node:path');
+  const { APPS, root } = await import('./apps.js');
+  const { buildTree } = await import('../js/lib/data.js');
+  let seen = 0;
+  for (const app of APPS) {
+    const f = join(root, app, 'data', 'bosses.json');
+    if (!existsSync(f)) continue;
+    seen++;
+    const raw = JSON.parse(readFileSync(f, 'utf8'));
+    const syl = JSON.parse(readFileSync(join(root, app, 'data', 'syllabus.json'), 'utf8'));
+    const keys = buildTree(syl, [], []).stages.map((s) => s.key);
+    const kept = normalizeBosses(raw);
+    assert.equal(kept.length, raw.length, app + ': 形が崩れて捨てられたボスがある');
+    assert.deepEqual(raw.map((b) => b.stageKey), keys, app + ': ボスの章のキーが地図の章と合わない');
+    assert.deepEqual(raw.map((b) => b.no), keys.map((_, i) => i + 1), app + ': 番号が1からの連番でない');
+  }
+  assert.ok(seen >= 3, 'bosses.json のあるアプリが3つより少ない（' + seen + '）');
+});

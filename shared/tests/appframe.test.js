@@ -95,8 +95,8 @@ test('ai-passport: 本番の形は公式ページの試験概要のとおり（6
   assert.equal(c.examDate, '2027-02-28');
   assert.equal(readJson('ai-passport/manifest.webmanifest').id, '/cert-quest/ai-passport/');
   assert.ok(existsSync(join(root, 'ai-passport', 'data', '_sample', 'index.json')), 'サンプル（?sample=1）が無い');
-  // ボスの名前・せりふ（bosses.json）は、ボスの単位を先生が決めるまで置かない（§11-1）
-  assert.ok(!existsSync(join(root, 'ai-passport', 'data', 'bosses.json')));
+  // ボスは中項目ごとに1体、32体（§11-1。2026-10-13 先生「ボスの数はAで。」）
+  assert.equal(readJson('ai-passport/data/bosses.json').length, 32);
   // シラバスは 2027年2月試験から適用の版（5章・中項目32・学習項目210）
   const syl = readJson('ai-passport/data/syllabus.json');
   assert.equal(syl.length, 5);
