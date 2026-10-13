@@ -84,3 +84,36 @@ function roadPath(nodes, height) {
   }
   return p;
 }
+
+/** 章ごとの背景の絵が、下の絵に重なってなじむ長さ（rem）。重なりの部分で上の絵が透明へ消えていく。 */
+export const MAP_BAND_BLEND = 4;
+
+/**
+ * 章ごとの背景の絵を、地図のどこに敷くか（config.mapImages）。
+ * 1枚の縦長の絵を地図全体に敷くと、章が多い地図では絵が何倍にも引き伸ばされ、左右も大きく切れる
+ * （2026-10-14、生成AIパスポートの地図は幅の15%しか見えず、モアレが出た）。章ごとに絵を分ければ、引き伸ばしが小さくなる。
+ * @param lay    mapLayout の戻り値
+ * @param images 章ごとの絵の並び（下の章から）。1つの章に2枚以上あれば、その章の帯を等分して下から順に敷く
+ * @returns [{ src, top, height, blend }] … top・height は rem。blend は下端を何 rem かけて透明にするか（いちばん下の絵は 0）。
+ *   章の数と images の数が合わないときは [] （1枚の絵 mapImage に戻す合図）
+ */
+export function mapBands(lay, images) {
+  if (!Array.isArray(images) || images.length !== lay.labels.length || !images.length) return [];
+  const out = [];
+  const n = lay.labels.length;
+  for (let g = 0; g < n; g++) {
+    const list = (Array.isArray(images[g]) ? images[g] : [images[g]]).filter((s) => typeof s === 'string' && s);
+    if (!list.length) return [];
+    const bottom = g === 0 ? lay.height : lay.labels[g].y;
+    const top = g === n - 1 ? 0 : lay.labels[g + 1].y;
+    const part = (bottom - top) / list.length;
+    list.forEach((src, i) => {
+      const b = bottom - part * i;
+      const first = g === 0 && i === 0;
+      const blend = first ? 0 : MAP_BAND_BLEND;
+      const t = i === list.length - 1 ? top : b - part;
+      out.push({ src, top: round(t), height: round(b - t + blend), blend });
+    });
+  }
+  return out;
+}

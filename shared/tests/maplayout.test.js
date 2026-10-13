@@ -212,3 +212,52 @@ test('要件定義書に、冒険の地図の要件がある', () => {
   assert.match(doc, /mapImage/);
   assert.match(doc, /images\/map\.webp/);
 });
+
+// 章ごとの背景の絵（2026-10-14。生成AIパスポートの地図は1枚の絵が約2.8倍に引き伸ばされ、幅の15%しか見えずモアレが出た）
+import { mapBands, MAP_BAND_BLEND } from '../js/lib/maplayout.js';
+import { buildTree } from '../js/lib/data.js';
+
+test('章ごとの絵: 帯は地図の下端から上端まですき間なく続き、2枚の章は等分。いちばん下の絵だけ透明にしない', () => {
+  const lay = mapLayout([4, 6, 6, 9, 7].map((count) => ({ count })));
+  const bands = mapBands(lay, ['m1', 'm2', 'm3', ['m4a', 'm4b'], 'm5']);
+  assert.deepEqual(bands.map((b) => b.src), ['m1', 'm2', 'm3', 'm4a', 'm4b', 'm5']);
+  // 下から順。各帯の下端（top + height - blend）は、ひとつ下の帯の上端
+  let below = lay.height;
+  for (const b of bands) {
+    assert.ok(Math.abs(b.top + b.height - b.blend - below) < 0.02, b.src + ' の下端が下の帯の上端と合わない');
+    assert.ok(b.height > b.blend, b.src + ' の高さ');
+    below = b.top;
+  }
+  assert.equal(below, 0, 'いちばん上の帯が地図の上端まで届いていない');
+  assert.equal(bands[0].blend, 0);
+  for (const b of bands.slice(1)) assert.equal(b.blend, MAP_BAND_BLEND);
+  // 2枚の章（第4章）は等分
+  assert.ok(Math.abs((bands[3].height - bands[3].blend) - (bands[4].height - bands[4].blend)) < 0.02);
+  // 章の境目は、章の見出しの位置（lay.labels）
+  assert.ok(Math.abs(bands[1].top + bands[1].height - bands[1].blend - lay.labels[1].y) < 0.02);
+});
+
+test('章ごとの絵: 章の数と合わない・空の章がある・無いときは []（1枚の絵に戻る）', () => {
+  const lay = mapLayout([2, 3].map((count) => ({ count })));
+  assert.deepEqual(mapBands(lay, ['a']), []);
+  assert.deepEqual(mapBands(lay, ['a', 'b', 'c']), []);
+  assert.deepEqual(mapBands(lay, ['a', []]), []);
+  assert.deepEqual(mapBands(lay, undefined), []);
+  assert.equal(mapBands(lay, ['a', 'b']).length, 2);
+});
+
+test('章ごとの絵: config.json の mapImages は、地図の章の数と合い、どの絵も実在して appFiles に入っている', () => {
+  for (const a of APPS) {
+    const cfg = JSON.parse(read(a + '/config.json'));
+    if (!cfg.mapImages) continue;
+    const sw = read(a + '/sw.js');
+    const flat = cfg.mapImages.flat();
+    for (const f of flat) {
+      assert.ok(existsSync(join(root, a, f)), a + '/' + f + ' が無い');
+      assert.ok(sw.includes("'./" + f + "'"), a + ': ' + f + ' が appFiles に無い（オフラインで絵が出ない）');
+    }
+    const idx = JSON.parse(read(a + '/data/index.json'));
+    const syl = JSON.parse(read(a + '/data/' + idx.syllabus));
+    assert.equal(cfg.mapImages.length, buildTree(syl, [], []).roots.length, a + ': mapImages の数が章の数と違う（1枚の絵に戻ってしまう）');
+  }
+});

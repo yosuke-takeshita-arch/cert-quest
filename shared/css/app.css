@@ -207,6 +207,12 @@ details.major > summary::-webkit-details-marker { display: none; }
   background: linear-gradient(to top, color-mix(in srgb, var(--accent) 30%, var(--surface)) 0%, var(--accent-soft) 50%, color-mix(in srgb, var(--accent) 45%, var(--surface)) 100%);
 }
 .map-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+/* 章ごとの絵（lib/maplayout.js の mapBands）。下端を --blend rem かけて透明にし、下の章の絵になじませる */
+.map-bg.map-band {
+  inset: auto; left: 0; top: calc(var(--top) * 1rem); height: calc(var(--bh) * 1rem); object-position: center center;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--blend) * 1rem), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - var(--blend) * 1rem), transparent);
+}
 .map-road { position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--map-h) * 1rem); pointer-events: none; }
 .map-road path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .map-road-band { stroke: var(--surface); stroke-width: 24px; opacity: 0.9; }

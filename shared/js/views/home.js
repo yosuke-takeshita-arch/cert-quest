@@ -11,7 +11,7 @@ import { laterCount } from '../lib/later.js';
 import { dochiPairs } from './dochi.js';
 import { forecastCard } from './forecast.js';
 import { nextGoals } from '../lib/goals.js';
-import { mapLayout, normalizeMapView } from '../lib/maplayout.js';
+import { mapLayout, mapBands, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
 import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
@@ -309,7 +309,18 @@ function mapAdventure(app) {
   const here = suggestStage(data.tree.stages, state.qstats);
   const board = h('div', { class: 'map-board' });
   board.style.setProperty('--map-h', String(lay.height));
-  if (typeof config.mapImage === 'string' && config.mapImage) {
+  // 章ごとの絵（config.mapImages）があればそれを章の帯に敷く。無い・数が合わないときは1枚の絵（mapImage）
+  const bands = mapBands(lay, config.mapImages);
+  if (bands.length) {
+    for (const b of bands) {
+      const img = h('img', { class: 'map-bg map-band', src: b.src, alt: '', 'aria-hidden': 'true', decoding: 'async', draggable: 'false' });
+      img.style.setProperty('--top', String(b.top));
+      img.style.setProperty('--bh', String(b.height));
+      img.style.setProperty('--blend', String(b.blend));
+      img.addEventListener('error', () => img.remove());
+      board.appendChild(img);
+    }
+  } else if (typeof config.mapImage === 'string' && config.mapImage) {
     const img = h('img', { class: 'map-bg', src: config.mapImage, alt: '', 'aria-hidden': 'true', decoding: 'async', draggable: 'false' });
     img.addEventListener('error', () => img.remove());
     board.appendChild(img);
