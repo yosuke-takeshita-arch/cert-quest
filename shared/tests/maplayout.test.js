@@ -12,6 +12,7 @@ import {
 import { defaultState, mergeState } from '../js/lib/progress.js';
 import { createStorage } from '../js/lib/storage.js';
 import { parseBackup, serializeBackup } from '../js/lib/backup.js';
+import { APPS, swVersion, minVersion } from './apps.js';
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..');
 const root = join(shared, '..');
@@ -193,10 +194,9 @@ test('CSS: 動きを減らす設定で止まる。文字は rem（px 直書き�
 test('オフライン登録と版: maplayout.js を登録。両アプリの版は33以上。絵が無い間は appFiles に map.webp を入れない', () => {
   assert.match(read('shared/sw-core.js'), /shared\/js\/lib\/maplayout\.js/);
   assert.match(read('shared/package.json'), /tests\/maplayout\.test\.js/);
-  for (const a of ['g-kentei', 'dx-biz']) {
+  for (const a of APPS) {
     const sw = read(a + '/sw.js');
-    const v = sw.match(/version:\s*'(\d+)'/);
-    assert.ok(v && Number(v[1]) >= 33, a + ' の version は 33 以上');
+    assert.ok(swVersion(a) >= minVersion(a, 33), a + ' の version は 33 以上（後から作ったアプリは1以上）');
     // 絵（images/map.webp）を置いたら、config.json に mapImage を足し、appFiles に './images/map.webp' を足す（要件定義書 §6「冒険の地図」）。
     // 置いていないのに入れると、インストールが404で失敗する。置いたのに入れないと、オフラインで絵が出ない。
     const present = existsSync(join(root, a, 'images', 'map.webp'));

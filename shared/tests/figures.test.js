@@ -10,6 +10,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { isFigureId, normalizeFigureIds, figureUrl, svgProblems, viewBoxWidth, scopeIds, FIGURE_ID_RE } from '../js/lib/figures.js';
 import { normalizeQuestion, normalizeConcept } from '../js/lib/data.js';
+import { APPS, swVersion, minVersion } from './apps.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const GOOD = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" role="img" aria-labelledby="fig-t-a-t fig-t-a-d"><title id="fig-t-a-t">題</title><desc id="fig-t-a-d">説明</desc><rect x="1" y="1" width="10" height="10" class="fa"/><text x="2" y="20" class="t">文字</text></svg>';
@@ -75,7 +76,7 @@ test('id の付け替え: id とそれを指す参照をそろえて直し、他
 });
 
 // ---- 配っている図 ----
-const APPS = ['g-kentei', 'dx-biz'];
+// APPS は tests/apps.js（リポジトリ直下の地図1つのアプリを全部。データがまだ無いアプリは図も参照も0件で数える）
 function refs(app) {
   const out = [];
   for (const k of ['concepts', 'questions']) {
@@ -182,7 +183,7 @@ test('サービスワーカー: 図を表示するファイルをキャッシュ
   assert.equal(/const FIGURE_ID = (\/.*\/);/.exec(sw)[1], FIGURE_ID_RE.toString());
   // 図を配った版（13）以上であること。決まった数で比べると、版を上げるたびに落ちる
   for (const app of APPS) {
-    const v = Number(/version: '(\d+)'/.exec(readFileSync(join(root, app, 'sw.js'), 'utf8'))[1]);
-    assert.ok(v >= 13, app + ' の version が ' + v);
+    const v = swVersion(app);
+    assert.ok(v >= minVersion(app, 13), app + ' の version が ' + v + '（後から作ったアプリは1以上）');
   }
 });

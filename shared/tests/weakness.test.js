@@ -12,6 +12,7 @@ import {
 } from '../js/lib/weakness.js';
 import { weakMascot, isCharacterArt, characterName } from '../js/lib/characters.js';
 import { pickQuestions } from '../js/lib/quiz.js';
+import { APPS, swVersion, minVersion } from './apps.js';
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -221,9 +222,8 @@ test('結線: オフライン登録・テスト登録・両アプリの版・も
   assert.ok(sw.includes("'../shared/js/views/weak.js'"));
   const pkg = readFileSync(join(shared, 'package.json'), 'utf8');
   assert.ok(pkg.includes('tests/weakness.test.js'));
-  for (const app of ['g-kentei', 'dx-biz']) {
-    const v = readFileSync(join(shared, '..', app, 'sw.js'), 'utf8').match(/version:\s*'(\d+)'/);
-    assert.ok(v && Number(v[1]) >= 31, app + ' の版が31以上');
+  for (const app of APPS) {
+    assert.ok(swVersion(app) >= minVersion(app, 31), app + ' の版が31以上（後から作ったアプリは1以上）');
   }
   const appjs = readFileSync(join(shared, 'js', 'app.js'), 'utf8');
   assert.ok(/\['weak',\s*'more',\s*\(\)\s*=>\s*renderWeak\(app\)\]/.test(appjs));

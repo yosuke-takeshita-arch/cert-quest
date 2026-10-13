@@ -1,0 +1,18 @@
+{
+  "id": "/cert-quest/ai-passport/",
+  "name": "生成AIパスポートクエスト",
+  "short_name": "生成AIパス",
+  "description": "生成AIパスポート試験をゲーム感覚で体系的に学ぶ",
+  "lang": "ja",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f6fb",
+  "theme_color": "#bf360c",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

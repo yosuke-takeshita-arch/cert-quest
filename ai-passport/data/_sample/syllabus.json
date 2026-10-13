@@ -1,0 +1,27 @@
+[
+  {
+    "id": "S-CH1",
+    "title": "AIの基礎と歴史",
+    "keywords": [],
+    "children": [
+      {
+        "id": "S-CH1-01",
+        "title": "AIの基本的な仕組み",
+        "keywords": ["ルールベース", "機械学習"],
+        "children": [
+          { "id": "S-CH1-01-01", "title": "AIとは", "children": [], "keywords": [] },
+          { "id": "S-CH1-01-02", "title": "ルールベースと機械学習", "children": [], "keywords": [] }
+        ]
+      },
+      {
+        "id": "S-CH1-02",
+        "title": "機械学習",
+        "keywords": ["教師あり学習", "教師なし学習", "クラスタリング"],
+        "children": [
+          { "id": "S-CH1-02-01", "title": "教師あり学習", "children": [], "keywords": [] },
+          { "id": "S-CH1-02-02", "title": "教師なし学習", "children": [], "keywords": [] }
+        ]
+      }
+    ]
+  }
+]

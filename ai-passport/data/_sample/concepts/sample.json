@@ -1,0 +1,31 @@
+[
+  {
+    "id": "C-AP-UNSUP",
+    "syllabus": ["AIの基礎と歴史", "機械学習", "教師なし学習"],
+    "title": "教師なし学習",
+    "oneLine": "正解ラベルの無いデータから、データの中の構造やまとまりを見つける学習。",
+    "why": "正解ラベルを付けるには手間がかかる。ラベルが無くても、似たもの同士をまとめたり、情報を圧縮したりできる。",
+    "links": [
+      { "title": "クラスタリング", "relation": "example" },
+      { "title": "次元削減", "relation": "example" }
+    ],
+    "confusions": [
+      { "title": "教師あり学習", "point": "教師あり学習は正解ラベル付きのデータから学ぶ。教師なし学習はラベルを使わない。" }
+    ],
+    "sources": [{ "title": "生成AIパスポート試験シラバス（2027年2月試験より適用。サンプル用の出典）", "url": "https://guga.or.jp/assets/syllabus.pdf" }],
+    "status": "verified"
+  },
+  {
+    "id": "C-AP-RULE",
+    "syllabus": ["AIの基礎と歴史", "AIの基本的な仕組み", "ルールベースと機械学習"],
+    "title": "ルールベース",
+    "oneLine": "人があらかじめ書いた規則に従って判断する仕組み。",
+    "why": "判断の理由が分かりやすい一方、規則に無い状況には対応しにくい。その限界から、データから学ぶ機械学習へ発展した。",
+    "links": [{ "id": "C-AP-UNSUP", "relation": "related" }],
+    "confusions": [
+      { "title": "機械学習", "point": "ルールベースは人が規則を書く。機械学習はデータから判断のしかたを学ぶ。" }
+    ],
+    "sources": [{ "title": "生成AIパスポート試験シラバス（2027年2月試験より適用。サンプル用の出典）", "url": "https://guga.or.jp/assets/syllabus.pdf" }],
+    "status": "verified"
+  }
+]

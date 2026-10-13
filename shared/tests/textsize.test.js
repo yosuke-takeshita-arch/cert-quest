@@ -9,6 +9,7 @@ import { TEXT_SIZES, DEFAULT_TEXT_SIZE, TEXT_SCALE, TEXT_SIZE_LABEL, normalizeTe
 import { defaultState, mergeState } from '../js/lib/progress.js';
 import { createStorage } from '../js/lib/storage.js';
 import { parseBackup, serializeBackup } from '../js/lib/backup.js';
+import { APPS, swVersion, minVersion } from './apps.js';
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..');
 const root = join(shared, '..');
@@ -77,8 +78,7 @@ test('画面: 設定に選択欄があり、起動時と読み込み・消去の
   assert.match(app, /dataset\.text\s*=/);
   assert.equal((app.match(/app\.applyTextSize\(\)/g) || []).length >= 2, true, '読み込み・消去のあとに反映');
   assert.match(read('shared/sw-core.js'), /shared\/js\/lib\/textsize\.js/);
-  for (const a of ['g-kentei', 'dx-biz']) {
-    const v = read(a + '/sw.js').match(/version:\s*'(\d+)'/);
-    assert.ok(v && Number(v[1]) >= 32, a + ' の version は 32 以上');
+  for (const a of APPS) {
+    assert.ok(swVersion(a) >= minVersion(a, 32), a + ' の version は 32 以上（後から作ったアプリは1以上）');
   }
 });

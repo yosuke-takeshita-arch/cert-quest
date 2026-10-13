@@ -10,6 +10,7 @@ import { isCharacterArt, characterName, CHARACTER_NAMES } from '../js/lib/charac
 import { defaultState, mergeState, recordAnswer } from '../js/lib/progress.js';
 import { createStorage } from '../js/lib/storage.js';
 import { parseBackup, serializeBackup } from '../js/lib/backup.js';
+import { APPS, swVersion, minVersion } from './apps.js';
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..');
 const root = join(shared, '..');
@@ -120,9 +121,8 @@ test('結線: オフラインの登録・テスト一覧・両アプリの版・
   assert.ok(sw.includes("'../shared/js/views/intro.js'"), 'views/intro.js が SHARED に無い');
   const pkg = JSON.parse(readFileSync(join(shared, 'package.json'), 'utf8'));
   assert.ok(pkg.scripts.test.includes('tests/intro.test.js'));
-  for (const app of ['g-kentei', 'dx-biz']) {
-    const v = /version: '(\d+)'/.exec(readFileSync(join(root, app, 'sw.js'), 'utf8'));
-    assert.ok(v && Number(v[1]) >= 30, app + ' の版が 30 以上でない');
+  for (const app of APPS) {
+    assert.ok(swVersion(app) >= minVersion(app, 30), app + ' の版が 30 以上でない（後から作ったアプリは1以上）');
   }
   const more = readFileSync(join(shared, 'js/views/more.js'), 'utf8');
   assert.ok(more.includes('openIntro()') && more.includes('INTRO_TEXT.menu'));

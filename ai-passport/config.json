@@ -1,0 +1,22 @@
+{
+  "id": "ai-passport",
+  "name": "生成AIパスポートクエスト",
+  "shortName": "生成AIパス",
+  "examDate": "2027-02-28",
+  "exam": { "questions": 60, "minutes": 60 },
+  "secondsPerQuestion": 60,
+  "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
+  "challenge": { "questions": 10 },
+  "reportUrl": "mailto:support@aisunia.com",
+  "about": { "examName": "生成AIパスポート試験", "organizer": "一般社団法人生成AI活用普及協会（GUGA）", "organizerUrl": "https://guga.or.jp/" },
+  "officialUrl": "https://guga.or.jp/generativeaiexam/",
+  "officialLinks": [
+    { "title": "生成AIパスポート 公式ページ（試験概要・日程）", "url": "https://guga.or.jp/generativeaiexam/" },
+    { "title": "シラバス（2027年2月試験より適用）", "url": "https://guga.or.jp/assets/syllabus.pdf" },
+    { "title": "よくある質問", "url": "https://guga.or.jp/qa" }
+  ],
+  "theme": {
+    "light": { "accent": "#bf360c", "onAccent": "#ffffff", "accentSoft": "#fbe9e7" },
+    "dark": { "accent": "#ffab91", "onAccent": "#3e1005", "accentSoft": "#3a2219" }
+  }
+}

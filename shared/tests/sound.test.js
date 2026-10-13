@@ -10,6 +10,7 @@ import {
   normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, normalizeHomeTrack, bgmPlan, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
+import { APPS, swVersion, minVersion } from './apps.js';
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..');
 const root = join(shared, '..');
@@ -215,10 +216,9 @@ test('オフライン用の一覧（sw-core.js）: 効果音は全部入って�
 });
 
 test('各アプリの sw.js の version は 9 以上（新しい音のファイルを配るため）', () => {
-  for (const app of ['g-kentei', 'dx-biz']) {
-    const sw = readFileSync(join(root, app, 'sw.js'), 'utf8');
-    const v = Number(/version: '(\d+)'/.exec(sw)[1]);
-    assert.ok(v >= 9, app + ' の version が ' + v);
+  for (const app of APPS) {
+    const v = swVersion(app);
+    assert.ok(v >= minVersion(app, 9), app + ' の version が ' + v);
   }
 });
 

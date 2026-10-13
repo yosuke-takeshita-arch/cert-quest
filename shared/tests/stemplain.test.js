@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { normalizeQuestion, normalizeConcept, buildConceptIndex } from '../js/lib/data.js';
+import { APPS, swVersion, minVersion } from './apps.js';
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..');
 const root = join(shared, '..');
@@ -74,9 +75,9 @@ test('結線: 出題画面(play.js)に「問題文の意味」のボタンを置
 test('撤去: 問答の前に出す仕組み(stemhelp)が残っていない。sw-core.js の一覧・CSS からも消えている。2つのアプリの sw.js の version がそろっている', () => {
   assert.ok(!/stemhelp/.test(src('sw-core.js')));
   assert.ok(!/stem-help/.test(src('css/app.css')));
-  const ver = (app) => /version:\s*'(\d+)'/.exec(readFileSync(join(root, app, 'sw.js'), 'utf8'))[1];
-  assert.equal(ver('g-kentei'), ver('dx-biz'));
-  assert.ok(Number(ver('g-kentei')) >= 43);
+  // 撤去を配ったときに公開していた2つは、同じ版で上げる。後から作ったアプリ（ai-passport）は版 1 から別に数える
+  assert.equal(swVersion('g-kentei'), swVersion('dx-biz'));
+  for (const app of APPS) assert.ok(swVersion(app) >= minVersion(app, 43), app + ' の版が 43 以上（後から作ったアプリは1以上）');
 });
 
 test('stemPlain の上限は 200 文字（tools/check-data*.js）。選択肢の文を含む検査は無い（回答後に出すため）', () => {
