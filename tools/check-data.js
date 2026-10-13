@@ -16,6 +16,7 @@
 //   - 用語カード: id, syllabus, title, oneLine, why, links, confusions, sources, status
 //   - syllabus のパスが syllabus.json の木に実在すること
 //   - id の形式と重複、問題の concepts が実在するカードを指すこと
+//     （形は資格ごと。G検定 G-NN-NNN／C-NN-NNN、生成AIパスポート AP-NN-NNN／C-AP-NN-NNN。下の ID_FORMS）
 //   - stemPlain（任意）が、空でない文字列・200文字以内・問題文と別の文であること（要件定義書 §7-3）
 //   - sources が {title, url} で url が http(s) であること
 //   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
@@ -263,13 +264,23 @@ function checkCueWords(f, id, o) {
   warn(f, id, `cue: ${reasons.join('。')}。語だけで正解が選べる（同じ語を正解と誤答の両方に使うか、どちらからも外し、別の書き方で1点だけ違える）`);
 }
 
+// id の形は資格ごとに決める（2026-10-13 生成AIパスポートを足した）。data ディレクトリの1つ上のフォルダ名（アプリの id）で引く。
+// 一覧に無いフォルダ（g-kentei や、テストが作る一時ディレクトリ）は G検定の形。
+// 生成AIパスポートを G- にしないのは、誤りの報告（shared/js/lib/report.js）の件名に id がそのまま出て、G検定の問題と見分けにくくなるため。
+const ID_FORMS = {
+  'ai-passport': { q: /^AP-\d{2}-\d{3}$/, qLabel: 'AP-NN-NNN', c: /^C-AP-\d{2}-\d{3}$/, cLabel: 'C-AP-NN-NNN' },
+};
+const ID_DEFAULT = { q: /^G-\d{2}-\d{3}$/, qLabel: 'G-NN-NNN', c: /^C-\d{2}-\d{3}$/, cLabel: 'C-NN-NNN' };
+const idFormOf = (f) => ID_FORMS[path.basename(path.dirname(path.dirname(path.dirname(path.resolve(f)))))] || ID_DEFAULT;
+
 const seen = new Map();
 for (const { file: f, kind, data, syl } of loaded) {
+  const idForm = idFormOf(f);
   data.forEach((o, idx) => {
     const id = o && o.id ? o.id : `#${idx}`;
     if (seen.has(id)) err(f, id, `id が重複（${seen.get(id)} にもある）`); else seen.set(id, path.basename(f));
     if (kind === 'questions') {
-      if (!/^G-\d{2}-\d{3}$/.test(id)) err(f, id, 'id が G-NN-NNN 形式でない');
+      if (!idForm.q.test(id)) err(f, id, `id が ${idForm.qLabel} 形式でない`);
       checkSyllabus(f, id, o.syllabus, syl);
       if (!QFMT.has(o.format)) err(f, id, `format が不正: ${o.format}`);
       if (!Number.isInteger(o.difficulty) || o.difficulty < 1 || o.difficulty > 5) err(f, id, 'difficulty が 1〜5 の整数でない');
@@ -298,7 +309,7 @@ for (const { file: f, kind, data, syl } of loaded) {
         if (Array.isArray(o.choices) && new Set(o.choices.map((c) => String(c).replace(/\s+/g, ''))).size !== o.choices.length) err(f, id, 'combo の選択肢に同じ組がある');
       }
     } else {
-      if (!/^C-\d{2}-\d{3}$/.test(id)) err(f, id, 'id が C-NN-NNN 形式でない');
+      if (!idForm.c.test(id)) err(f, id, `id が ${idForm.cLabel} 形式でない`);
       checkSyllabus(f, id, o.syllabus, syl);
       for (const k of ['title', 'oneLine', 'why']) if (!isStr(o[k])) err(f, id, `${k} が無い`);
       for (const k of ['links', 'confusions']) if (!Array.isArray(o[k])) err(f, id, `${k} が配列でない`);

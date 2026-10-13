@@ -1,5 +1,9 @@
 {
   "syllabus": "syllabus.json",
-  "questions": [],
-  "concepts": []
+  "questions": [
+    "questions/01_ai-basics-history.json"
+  ],
+  "concepts": [
+    "concepts/01_ai-basics-history.json"
+  ]
 }
