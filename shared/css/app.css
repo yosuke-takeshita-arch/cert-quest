@@ -673,7 +673,11 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .fc-num { font-size: 2.75rem; line-height: 1.2; color: var(--accent); }
 .fc-unit { font-size: 1.25rem; font-weight: 700; }
 .fc-full { margin-left: 4px; }
-.fc-meter { height: 16px; margin-bottom: 12px; }
+.fc-meter { height: 16px; margin-bottom: 12px; position: relative; }
+.fc-band { position: absolute; top: 0; bottom: 0; background: var(--text); opacity: 0.22; border-left: 2px solid var(--text); border-right: 2px solid var(--text); box-sizing: border-box; pointer-events: none; }
+.fc-guide { margin: 0 0 4px; overflow-wrap: anywhere; }
+.fc-guide-status { margin: 0 0 8px; overflow-wrap: anywhere; }
+.exam-guide { margin: 0 0 8px; overflow-wrap: anywhere; }
 .fc-note { margin: 0 0 8px; padding: 8px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); line-height: 1.6; overflow-wrap: anywhere; }
 .fc-sub { font-size: 1rem; margin: 16px 0 4px; }
 .fc-gains { display: flex; flex-direction: column; }

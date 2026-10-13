@@ -84,6 +84,32 @@ export function normalizeLine(v) {
   return typeof v === 'number' && Number.isFinite(v) && v > 0 && v <= 100 ? v : null;
 }
 
+/** 合格の目安の幅（config.passGuide）。公式が合格基準を開示しない資格で、運営が決めた幅を出すときだけ使う。
+ *  { min, max } がどちらも数で 0 < min <= max <= 100 のときだけその幅を返す。それ以外（無い・min>max・範囲外・文字列）は null＝出さない。 */
+export function normalizePassGuide(v) {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return null;
+  const { min, max } = v;
+  const num = (x) => typeof x === 'number' && Number.isFinite(x);
+  if (!num(min) || !num(max) || min <= 0 || max > 100 || min > max) return null;
+  return { min, max };
+}
+
+/** 幅の言い方。『合格の目安 70〜80%（公式は非公開）』。幅が使えなければ null。 */
+export function passGuideLabel(v) {
+  const g = normalizePassGuide(v);
+  return g ? '合格の目安 ' + g.min + '〜' + g.max + '%（公式は非公開）' : null;
+}
+
+/** 点（0〜100）と目安の幅の関係を言葉にする。合格とは言わない。幅が使えない・点が数でなければ null。 */
+export function passGuideStatus(v, pct) {
+  const g = normalizePassGuide(v);
+  if (!g || typeof pct !== 'number' || !Number.isFinite(pct)) return null;
+  const range = g.min + '〜' + g.max + '%';
+  if (pct >= g.max) return '目安（' + range + '）の上まで届いています。';
+  if (pct >= g.min) return '目安（' + range + '）に届いています。';
+  return '目安（' + range + '）まで、あと ' + Math.ceil(g.min - pct) + ' ポイントです。';
+}
+
 // ---- 日ごとの推移 ----
 
 /** 読んだ保存データの forecast を正しい形にする。古い記録（項目なし）は空。日付でないキー・0〜100 の数でない値は捨て、新しい60日だけ残す。 */

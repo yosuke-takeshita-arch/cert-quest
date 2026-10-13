@@ -2,6 +2,7 @@
 // 本番と同じく、途中では解説を出さない。終わってから大項目別の正答率と見直しを出す。
 import { h, clear, burst, toast, mascotLine } from '../ui.js';
 import { examMascot } from '../lib/characters.js';
+import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
 import { shuffle, shuffleChoices, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
@@ -126,11 +127,13 @@ export function renderExam(app) {
       clear(root);
       const rate = Math.round((ok / Math.max(1, results.length)) * 100);
       const em = examMascot(rate);
+      const guide = normalizePassGuide(app.config.passGuide);
       const card = h('div', { class: 'card result' },
         h('h1', { text: '模擬試験 結果' }),
         auto ? h('p', { class: 'note', text: '時間切れで自動採点しました。' }) : null,
         h('p', { class: 'score' }, h('strong', { class: 'big-num', text: rate + '%' }), '　' + ok + ' / ' + results.length + ' 正解'),
         plan.reduced ? h('p', { class: 'small muted', text: '縮小版（' + plan.count + '問）の結果です。' }) : null,
+        guide ? h('p', { class: 'small exam-guide', 'data-pass-guide': '1', text: passGuideStatus(guide, rate) + '（' + passGuideLabel(guide) + '）' }) : null,
         mascotLine(em.art, em.text, 'exam-mascot'));
       root.appendChild(card);
       const mc = h('div', { class: 'card' }, h('h2', { text: blueprint ? '領域別の正答率' : '大項目別の正答率' }));

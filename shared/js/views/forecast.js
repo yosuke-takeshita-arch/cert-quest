@@ -1,7 +1,8 @@
 // ホームの「合格予想メーター」のカード。計算は lib/forecast.js、仕様は要件定義書 §3-6。
-// 合格の線は出さない（G検定は非公開、DX は100点満点に置き換えられない）。言い方は『目安』で、合格を約束しない。
+// 合格の線は出さない（G検定は非公開、DX は100点満点に置き換えられない）。例外は config.passGuide を持つ資格（生成AIパスポート）だけで、
+// 『目安の幅』を薄い帯で重ねる（公式の線ではない）。言い方は『目安』で、合格を約束しない。
 import { h } from '../ui.js';
-import { forecast, forecastSeries } from '../lib/forecast.js';
+import { forecast, forecastSeries, normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
@@ -66,8 +67,14 @@ export function forecastCard(app) {
     h('strong', { class: 'fc-num', text: String(pt) }),
     h('span', { class: 'fc-unit', text: '点' }),
     h('span', { class: 'small muted fc-full', text: '100点満点の目安' })));
+  const guide = normalizePassGuide(app.config && app.config.passGuide);
   card.appendChild(h('div', { class: 'progress fc-meter', role: 'progressbar', 'aria-label': '合格予想（100点満点の目安）', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(pt) },
-    h('div', { class: 'progress-fill', style: { width: pt + '%' } })));
+    h('div', { class: 'progress-fill', style: { width: pt + '%' } }),
+    guide ? h('div', { class: 'fc-band', 'aria-hidden': 'true', style: { left: guide.min + '%', width: (guide.max - guide.min) + '%' } }) : null));
+  if (guide) {
+    card.appendChild(h('p', { class: 'small fc-guide', 'data-pass-guide': '1', text: passGuideLabel(guide) + '。メーターの濃い帯がその範囲です。' }));
+    card.appendChild(h('p', { class: 'small muted fc-guide-status', text: passGuideStatus(guide, pt) }));
+  }
   card.appendChild(h('p', { class: 'small muted', text: '答えた問題 ' + f.answered + ' / 全 ' + f.total + ' 問。まだ答えていない問題や、前回まちがえた問題は、4択を当てずっぽうで選んだ見込み（4分の1）で数えています。' }));
   card.appendChild(h('p', { class: 'small fc-note', text: FORECAST_NOTE }));
 

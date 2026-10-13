@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  forecast, questionValue, normalizeLine, normalizeForecast, recordForecast, forecastSeries,
+  forecast, questionValue, normalizeLine, normalizePassGuide, passGuideLabel, passGuideStatus, normalizeForecast, recordForecast, forecastSeries,
   FORECAST_MAX_DAYS, UNANSWERED_VALUE,
 } from '../js/lib/forecast.js';
 import { dateKey } from '../js/lib/srs.js';
@@ -104,6 +104,39 @@ test('合格の線: 0より大きく100以下の数だけ。それ以外は null
   assert.equal(normalizeLine(70), 70);
   assert.equal(normalizeLine(100), 100);
   for (const bad of [null, undefined, 0, -1, 101, NaN, '70', Infinity, {}]) assert.equal(normalizeLine(bad), null, String(bad));
+});
+
+test('合格の目安の幅: 正しい幅だけ通す。無い・min>max・範囲外・文字列は null（出さない）', () => {
+  assert.deepEqual(normalizePassGuide({ min: 70, max: 80 }), { min: 70, max: 80 });
+  assert.deepEqual(normalizePassGuide({ min: 80, max: 80 }), { min: 80, max: 80 });
+  assert.deepEqual(normalizePassGuide({ min: 1, max: 100 }), { min: 1, max: 100 });
+  const bad = [undefined, null, 70, '70', [70, 80], {}, { min: 70 }, { max: 80 }, { min: 80, max: 70 }, { min: 0, max: 80 }, { min: -5, max: 80 },
+    { min: 70, max: 101 }, { min: '70', max: '80' }, { min: NaN, max: 80 }, { min: 70, max: Infinity }, { min: null, max: 80 }];
+  for (const b of bad) {
+    assert.equal(normalizePassGuide(b), null, JSON.stringify(b));
+    assert.equal(passGuideLabel(b), null);
+    assert.equal(passGuideStatus(b, 75), null);
+  }
+});
+
+test('合格の目安の言い方: 非公開と分かる。合格と断定しない', () => {
+  const g = { min: 70, max: 80 };
+  assert.equal(passGuideLabel(g), '合格の目安 70〜80%（公式は非公開）');
+  assert.equal(passGuideStatus(g, 80), '目安（70〜80%）の上まで届いています。');
+  assert.equal(passGuideStatus(g, 79.9), '目安（70〜80%）に届いています。');
+  assert.equal(passGuideStatus(g, 70), '目安（70〜80%）に届いています。');
+  assert.equal(passGuideStatus(g, 69.5), '目安（70〜80%）まで、あと 1 ポイントです。');
+  assert.equal(passGuideStatus(g, 0), '目安（70〜80%）まで、あと 70 ポイントです。');
+  assert.equal(passGuideStatus(g, NaN), null);
+  assert.equal(passGuideStatus(g, '75'), null);
+  for (const pct of [0, 50, 69, 70, 75, 80, 100]) assert.doesNotMatch(passGuideStatus(g, pct), /合格(です|できます|確実)/);
+});
+
+test('ai-passport/config.json の目安の幅は 70〜80。幅の無い資格（G検定・DX）には足していない', async () => {
+  const { readFileSync } = await import('node:fs');
+  const read = (p) => JSON.parse(readFileSync(new URL('../../' + p, import.meta.url), 'utf8'));
+  assert.deepEqual(normalizePassGuide(read('ai-passport/config.json').passGuide), { min: 70, max: 80 });
+  for (const app of ['g-kentei', 'dx-biz']) assert.equal(read(app + '/config.json').passGuide, undefined, app);
 });
 
 test('推移: 古い記録（項目なし）や壊れた値は空／捨てる', () => {
