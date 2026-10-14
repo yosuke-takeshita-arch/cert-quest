@@ -457,12 +457,21 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .title-series { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.2em; margin: 0 0 4px; opacity: 0.9; }
 .title-subtitle { font-size: 0.95rem; font-weight: 700; margin: 0 0 12px; padding: 2px 12px; border-radius: 999px; background: rgba(0, 0, 0, 0.35); }
 .title-name.has-logo { margin-bottom: 8px; line-height: 0; }
-.title-logo { display: block; width: min(100%, 480px); height: auto; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 0 rgba(255, 224, 130, 0)) drop-shadow(0 0 0 rgba(255, 200, 80, 0)); user-select: none; -webkit-user-drag: none; animation: title-logo-glow 4s ease-in-out 1.2s infinite; }
-/* 2026-10-14 先生の提案: ロゴの縁を何秒かに1回光らせる。絵の形に沿う drop-shadow の金色を、4秒のうち最後の約0.8秒だけ強める（動きを減らす設定では上の規則で止まる） */
-@keyframes title-logo-glow {
-  0%, 78%, 100% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 0 rgba(255, 224, 130, 0)) drop-shadow(0 0 0 rgba(255, 200, 80, 0)); }
-  88% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 4px rgba(255, 236, 160, 1)) drop-shadow(0 0 14px rgba(255, 200, 80, 0.85)); }
-}
+.title-logo-wrap { position: relative; display: block; width: min(100%, 480px); margin: 0 auto; }
+.title-logo { display: block; width: 100%; height: auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)); user-select: none; -webkit-user-drag: none; }
+/* 縁をたどる光の粒（views/title.js の traceLogo）。2026-10-14 先生「ぼやーんと光るんじゃなくて、キラッと光ってほしい。できれば縁を辿るように」。
+   輪郭の長さを100（path の pathLength）として、粒が 4.5秒ごとに約1.6秒で一周する。粒は長さの違う3本（尾16・中7・頭2）で、先の端がそろうよう、
+   どれも「ずらし＝長さ」から「長さ−100」まで動かす。ずらしの値は keyframes に数で書く（var() を使うと Chrome がなめらかに動かさず、始めと終わりに飛んだ）。
+   太さは viewBox（絵の幅240）の単位。vector-effect: non-scaling-stroke は粒の長さの計算を狂わせるので使わない。動きを減らす設定では上の規則で止まり、見えないまま */
+.title-logo-trace { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; filter: drop-shadow(0 0 3px rgba(255, 248, 210, 0.95)) drop-shadow(0 0 7px rgba(255, 205, 90, 0.8)); }
+.title-logo-trace > path { fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.title-logo-trace .trace-tail { stroke: rgba(255, 205, 90, 0.55); stroke-width: 4.5; stroke-dasharray: 16 300; stroke-dashoffset: 16; animation: logo-trace-16 4.5s linear 1.2s infinite; }
+.title-logo-trace .trace-mid { stroke: rgba(255, 236, 160, 0.9); stroke-width: 2.3; stroke-dasharray: 7 300; stroke-dashoffset: 7; animation: logo-trace-7 4.5s linear 1.2s infinite; }
+.title-logo-trace .trace-head { stroke: #ffffff; stroke-width: 1.6; stroke-dasharray: 2 300; stroke-dashoffset: 2; animation: logo-trace-2 4.5s linear 1.2s infinite; }
+.title-logo-trace .trace-star { fill: #ffffff; }
+@keyframes logo-trace-16 { 0% { stroke-dashoffset: 16; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -84; opacity: 0; } }
+@keyframes logo-trace-7 { 0% { stroke-dashoffset: 7; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -93; opacity: 0; } }
+@keyframes logo-trace-2 { 0% { stroke-dashoffset: 2; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -98; opacity: 0; } }
 .title-exam { font-size: 1rem; font-weight: 700; margin: 0; padding: 4px 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); }
 .title-bottom { padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); min-height: 120px; display: flex; flex-direction: column; justify-content: flex-end; }
 .title-gauge { height: 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(255, 255, 255, 0.85); overflow: hidden; }

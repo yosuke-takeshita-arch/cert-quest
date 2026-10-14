@@ -5,6 +5,49 @@ import { daysUntil } from '../lib/scoring.js';
 import { unlockAudio, titleAudioLocked } from '../audio.js';
 import { buildSoundCard } from './sound-settings.js';
 import { appTitle } from '../lib/appname.js';
+import { outlinePath } from '../lib/outline.js';
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const TRACE_W = 240; // 輪郭を取るときの絵の幅（画素）。小さいほど速く、輪郭は粗くなる
+
+// ロゴの上に、絵の外まわりをなぞる線を重ねる。線は CSS（.title-logo-trace）で、短い光の粒として一周させる。
+// 粒は3本を重ねる（太く淡い尾・中くらい・細く白い頭）。長さと動きは CSS の .trace-tail / .trace-mid / .trace-head
+function traceLogo(img, wrap) {
+  const w = TRACE_W, hgt = Math.max(1, Math.round(img.naturalHeight * TRACE_W / img.naturalWidth));
+  const c = document.createElement('canvas');
+  c.width = w; c.height = hgt;
+  const g = c.getContext('2d', { willReadFrequently: true });
+  g.drawImage(img, 0, 0, w, hgt);
+  const d = outlinePath(g.getImageData(0, 0, w, hgt).data, w, hgt);
+  if (!d) return;
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('class', 'title-logo-trace');
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + hgt);
+  svg.setAttribute('preserveAspectRatio', 'none');
+  svg.setAttribute('aria-hidden', 'true');
+  for (const cls of ['tail', 'mid', 'head']) {
+    const p = document.createElementNS(SVG_NS, 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('pathLength', '100');
+    p.setAttribute('class', 'trace-' + cls);
+    svg.appendChild(p);
+  }
+  // 粒の頭に、四つ角の星のきらめきを乗せて一緒に走らせる（キラッと見せるため）。SMIL の動きは CSS の「動きを減らす」規則では止まらないので、そのときは付けない
+  if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) svg.appendChild(sparkle(d));
+  wrap.appendChild(svg);
+}
+
+// 時間は CSS の logo-trace-*（4.5秒ごと・1.2秒待ってから・36%で一周）とそろえる
+function sparkle(d) {
+  const set = (el, attrs) => { for (const k in attrs) el.setAttribute(k, attrs[k]); return el; };
+  const g = set(document.createElementNS(SVG_NS, 'g'), { class: 'trace-star', opacity: '0' });
+  const star = set(document.createElementNS(SVG_NS, 'path'), { d: 'M0 -7L1.4 -1.4L7 0L1.4 1.4L0 7L-1.4 1.4L-7 0L-1.4 -1.4Z' });
+  set(star.appendChild(document.createElementNS(SVG_NS, 'animateTransform')), { attributeName: 'transform', type: 'rotate', values: '0;90', dur: '0.8s', repeatCount: 'indefinite' });
+  g.appendChild(star);
+  set(g.appendChild(document.createElementNS(SVG_NS, 'animateMotion')), { path: d, dur: '4.5s', begin: '1.2s', repeatCount: 'indefinite', calcMode: 'linear', keyPoints: '0;1;1', keyTimes: '0;0.36;1' });
+  set(g.appendChild(document.createElementNS(SVG_NS, 'animate')), { attributeName: 'opacity', values: '0;1;1;0;0', keyTimes: '0;0.04;0.32;0.36;1', dur: '4.5s', begin: '1.2s', repeatCount: 'indefinite' });
+  return g;
+}
 
 /**
  * 返すもの:
@@ -37,7 +80,11 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
     if (seriesEl) seriesEl.hidden = true;
     nameEl.textContent = '';
     nameEl.classList.add('has-logo');
-    nameEl.appendChild(logo);
+    const wrap = h('span', { class: 'title-logo-wrap' }, logo);
+    nameEl.appendChild(wrap);
+    // 縁を光の粒が一周する（2026-10-14 先生「キラッと光ってほしい。できれば縁を辿るように」）。輪郭は絵の透明度から作る
+    const addTrace = () => { try { traceLogo(logo, wrap); } catch { /* 輪郭が作れなくてもロゴはそのまま出す */ } };
+    if (logo.complete && logo.naturalWidth) addTrace(); else logo.addEventListener('load', addTrace, { once: true });
   }
 
   const fill = h('div', { class: 'title-gauge-fill' });

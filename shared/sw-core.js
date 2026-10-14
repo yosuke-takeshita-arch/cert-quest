@@ -81,6 +81,7 @@ const SHARED = [
   '../shared/js/lib/maplayout.js',
   '../shared/js/lib/cardtree.js',
   '../shared/js/lib/appname.js',
+  '../shared/js/lib/outline.js',
   '../shared/js/lib/weakness.js',
   '../shared/js/views/weak.js',
   '../shared/js/views/later.js',
