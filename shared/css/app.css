@@ -457,7 +457,12 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .title-series { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.2em; margin: 0 0 4px; opacity: 0.9; }
 .title-subtitle { font-size: 0.95rem; font-weight: 700; margin: 0 0 12px; padding: 2px 12px; border-radius: 999px; background: rgba(0, 0, 0, 0.35); }
 .title-name.has-logo { margin-bottom: 8px; line-height: 0; }
-.title-logo { display: block; width: min(100%, 480px); height: auto; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)); user-select: none; -webkit-user-drag: none; }
+.title-logo { display: block; width: min(100%, 480px); height: auto; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 0 rgba(255, 224, 130, 0)) drop-shadow(0 0 0 rgba(255, 200, 80, 0)); user-select: none; -webkit-user-drag: none; animation: title-logo-glow 4s ease-in-out 1.2s infinite; }
+/* 2026-10-14 先生の提案: ロゴの縁を何秒かに1回光らせる。絵の形に沿う drop-shadow の金色を、4秒のうち最後の約0.8秒だけ強める（動きを減らす設定では上の規則で止まる） */
+@keyframes title-logo-glow {
+  0%, 78%, 100% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 0 rgba(255, 224, 130, 0)) drop-shadow(0 0 0 rgba(255, 200, 80, 0)); }
+  88% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 4px rgba(255, 236, 160, 1)) drop-shadow(0 0 14px rgba(255, 200, 80, 0.85)); }
+}
 .title-exam { font-size: 1rem; font-weight: 700; margin: 0; padding: 4px 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); }
 .title-bottom { padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); min-height: 120px; display: flex; flex-direction: column; justify-content: flex-end; }
 .title-gauge { height: 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(255, 255, 255, 0.85); overflow: hidden; }
