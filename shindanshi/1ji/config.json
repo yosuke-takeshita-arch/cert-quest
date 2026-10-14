@@ -1,7 +1,9 @@
 {
   "id": "shindanshi-1ji",
-  "name": "中小企業診断士 第1次試験クエスト",
-  "shortName": "診断士1次",
+  "series": "CertQuest",
+  "name": "七つの城",
+  "shortName": "七つの城",
+  "subtitle": "中小企業診断士 第1次試験対策",
   "examDate": "2027-08-01",
   "exam": { "questions": 25, "minutes": 60 },
   "secondsPerQuestion": 60,

@@ -1,5 +1,6 @@
 // 「もっと」: バッジ・設定・公式リンク・データの状態。
 import { h, externalLink, icon, badgeBases, badgeImg } from '../ui.js';
+import { appTitle } from '../lib/appname.js';
 import { badgeDefs, badgeProgress, badgeArtName, badgeImageUrl } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
@@ -144,7 +145,7 @@ export function renderSettings(app) {
     d.problems.slice(0, 30).forEach((p) => det.appendChild(h('p', { class: 'small muted', text: p.file + ': ' + p.reason })));
     info.appendChild(det);
   }
-  info.appendChild(h('p', { class: 'small muted', text: 'アプリ: ' + (app.config.name || '') + (app.sample ? '（サンプルデータ表示中）' : '') }));
+  info.appendChild(h('p', { class: 'small muted', text: 'アプリ: ' + appTitle(app.config) + (app.sample ? '（サンプルデータ表示中）' : '') }));
   root.appendChild(info);
   return { el: root, cleanup: sound.dispose }; // 画面を出るとき、試聴のBGMを止める
 }

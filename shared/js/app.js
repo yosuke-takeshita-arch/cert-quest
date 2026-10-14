@@ -1,5 +1,6 @@
 // 起動・ルーティング。資格固有のことは config.json と data/ からだけ読む。
 import { h, clear, icon, toast, celebrate, badgeBases, setTapHost, setImagesBase } from './ui.js';
+import { appTitle } from './lib/appname.js';
 import { normalizeSubjects, hasSubjects, createSubjectStore, singleKey, subjectConfig, subjectDataBase, subjectImagesBase } from './lib/subjects.js';
 import { renderSubjectPicker } from './views/subjects.js';
 import { installStudyClock } from './studyclock.js';
@@ -85,7 +86,7 @@ export async function start() {
     return showFatal(root, '設定ファイル(config.json)を読めませんでした。', String(e.message || e));
   }
   applyTheme(config);
-  document.title = config.name || document.title;
+  document.title = appTitle(config) || document.title;
 
   // 科目のあるアプリ（config.json に subjects。中小企業診断士など）は、記録とデータを科目ごとに分ける（lib/subjects.js）。
   // 科目の無いアプリ（G検定・DX）は、これまでと同じ1つの記録（保存キーも同じ）

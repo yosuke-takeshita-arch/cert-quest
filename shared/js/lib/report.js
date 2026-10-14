@@ -3,6 +3,7 @@
 //   https://…（GitHub Issues の新規作成ページなど）… title と body を付けて開く
 //   mailto:アドレス … subject と body を付けて、メールの作成画面を開く（スクリーンショットを添付できる）
 // 先を変えたいときは reportUrl の1行を差し替えるだけにする。
+import { appTitle } from './appname.js';
 
 /** 本文の冒頭として渡す長さ（文字数）。URL を長くしすぎない。 */
 export const REPORT_HEAD_CHARS = 60;
@@ -63,7 +64,7 @@ export const REPORT_SHOT_NOTE = '画面のスクリーンショットを添付�
 export function buildReportUrl(config, item) {
   const target = reportTarget(config);
   if (!target || !item || !item.id) return null;
-  const appName = (config && config.name) || '';
+  const appName = appTitle(config);
   const kindLabel = item.kind === 'card' ? '用語カード' : '問題';
   const title = '【誤りの報告】' + appName + ' ' + kindLabel + ' ' + item.id;
   const lines = [

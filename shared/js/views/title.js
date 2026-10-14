@@ -4,6 +4,7 @@ import { h, icon } from '../ui.js';
 import { daysUntil } from '../lib/scoring.js';
 import { unlockAudio, titleAudioLocked } from '../audio.js';
 import { buildSoundCard } from './sound-settings.js';
+import { appTitle } from '../lib/appname.js';
 
 /**
  * 返すもの:
@@ -28,9 +29,12 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
 
   // タイトルの文字の絵（config.titleLogo）。あれば文字の代わりに出し、読めなければ文字に戻る。読み上げは alt の名前
   const nameEl = h('h1', { class: 'title-name', text: name });
+  // シリーズ名（CertQuest）。文字の絵には CertQuest も描いてあるので、絵を出している間は隠す
+  const seriesEl = config.series ? h('p', { class: 'title-series', text: config.series }) : null;
   if (typeof config.titleLogo === 'string' && config.titleLogo) {
-    const logo = h('img', { class: 'title-logo', src: config.titleLogo, alt: name, decoding: 'async', draggable: 'false' });
-    logo.addEventListener('error', () => { nameEl.textContent = name; nameEl.classList.remove('has-logo'); });
+    const logo = h('img', { class: 'title-logo', src: config.titleLogo, alt: appTitle(config), decoding: 'async', draggable: 'false' });
+    logo.addEventListener('error', () => { nameEl.textContent = name; nameEl.classList.remove('has-logo'); if (seriesEl) seriesEl.hidden = false; });
+    if (seriesEl) seriesEl.hidden = true;
     nameEl.textContent = '';
     nameEl.classList.add('has-logo');
     nameEl.appendChild(logo);
@@ -51,7 +55,10 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
     bg,
     h('div', { class: 'title-scrim' }),
     h('div', { class: 'title-top' },
+      // シリーズ名（CertQuest）は名前の上に小さく、試験名は副題として下に小さく（試験名は登録商標のことがあるので、名前やロゴにしない）
+      seriesEl,
       nameEl,
+      config.subtitle ? h('p', { class: 'title-subtitle', text: config.subtitle }) : null,
       countdown ? h('p', { class: 'title-exam', text: countdown }) : null),
     bottom,
     sound ? h('button', { class: 'title-gear', type: 'button', 'aria-label': '音の設定', 'aria-haspopup': 'dialog', onClick: (e) => openSoundPopup(e.currentTarget) }, icon('gear')) : null);

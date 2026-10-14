@@ -142,6 +142,7 @@ export function renderHome(app) {
 
   root.appendChild(h('header', { class: 'hero' },
     h('p', { class: 'hero-name', text: config.name }),
+    config.subtitle ? h('p', { class: 'hero-subtitle small', text: config.subtitle }) : null,
     // 科目のあるアプリ（中小企業診断士など）だけ。ほかの科目に替える入口
     app.subject ? h('button', { class: 'btn small-btn subject-switch', type: 'button', 'data-subject-switch': '1', onClick: () => app.go('#/subjects') }, '科目をかえる') : null,
     left === null ? null

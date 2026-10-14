@@ -9,6 +9,7 @@ import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import vm from 'node:vm';
 import { APPS, root } from './apps.js';
+import { appTitle } from '../js/lib/appname.js';
 
 const readJson = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
 function swConfig(app) {
@@ -23,6 +24,27 @@ test('一覧: 地図1つのアプリとして g-kentei・dx-biz・ai-passport �
   assert.ok(!APPS.some((a) => a.startsWith('shindanshi')));
 });
 
+// 科目のある診断士も同じ決まりで見る
+for (const app of [...APPS, 'shindanshi/1ji']) {
+  test(`${app}: 名前は CertQuest シリーズ＋アプリごとの名前。試験名（登録商標のことがある）は名前に入れず、副題の「〜対策」にだけ書く`, () => {
+    // 2026-10-14 先生の決定。G検定（登録6202165）・生成AIパスポート（登録6768938）は登録商標。名前・ロゴ・アイコンの下の名前に試験名を使わない
+    const config = readJson(app + '/config.json');
+    const man = readJson(app + '/manifest.webmanifest');
+    const html = readFileSync(join(root, app, 'index.html'), 'utf8');
+    assert.equal(man.name, appTitle(config));
+    assert.equal(man.short_name, config.shortName);
+    assert.ok(html.includes('<title>' + appTitle(config) + '</title>'), 'index.html の title');
+    assert.equal(config.series, 'CertQuest');
+    assert.ok(config.name, '名前が無い');
+    assert.match(config.subtitle, /対策$/);
+    for (const word of ['G検定', '生成AI', 'パスポート', 'DX', 'ビジネス', '診断士', '検定', 'クエスト']) {
+      for (const [where, v] of [['config.name', config.name], ['config.shortName', config.shortName], ['manifest の short_name（アイコンの下の名前）', man.short_name]]) {
+        assert.ok(!v.includes(word), where + ' の「' + v + '」に「' + word + '」が入っている');
+      }
+    }
+  });
+}
+
 for (const app of APPS) {
   test(`${app}: config・sw.js・manifest・index.html の名前と色と id がそろっている`, () => {
     const config = readJson(app + '/config.json');
@@ -32,11 +54,11 @@ for (const app of APPS) {
     assert.match(String(cfg.version), /^[1-9]\d*$/);
     assert.match(src, /importScripts\('\.\.\/shared\/sw-core\.js'\)/);
     const man = readJson(app + '/manifest.webmanifest');
-    assert.equal(man.name, config.name);
+    assert.equal(man.name, appTitle(config), 'ホーム画面に入れたときの名前は CertQuest ＋名前＋（副題）');
     assert.equal(man.short_name, config.shortName);
     assert.equal(man.theme_color, config.theme.light.accent);
     const html = readFileSync(join(root, app, 'index.html'), 'utf8');
-    assert.equal((/<title>([^<]*)<\/title>/.exec(html) || [])[1], config.name);
+    assert.equal((/<title>([^<]*)<\/title>/.exec(html) || [])[1], appTitle(config));
     assert.equal((/<meta name="theme-color" content="([^"]+)"/.exec(html) || [])[1], config.theme.light.accent);
     assert.match(html, /\.\.\/shared\/css\/app\.css/);
     assert.match(readFileSync(join(root, app, 'main.js'), 'utf8'), /\.\.\/shared\/js\/app\.js/);
