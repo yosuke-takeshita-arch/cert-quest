@@ -6,9 +6,75 @@ import { unlockAudio, titleAudioLocked } from '../audio.js';
 import { buildSoundCard } from './sound-settings.js';
 import { appTitle } from '../lib/appname.js';
 import { outlinePath } from '../lib/outline.js';
+import { validTrace, partPath, lineLength, traceSchedule } from '../lib/logotrace.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const TRACE_W = 240; // 輪郭を取るときの絵の幅（画素）。小さいほど速く、輪郭は粗くなる
+const STAR_D = 'M0 -7L1.4 -1.4L7 0L1.4 1.4L0 7L-1.4 1.4L-7 0L-1.4 -1.4Z'; // 四つ角の星
+const setAttrs = (el, attrs) => { for (const k in attrs) el.setAttribute(k, attrs[k]); return el; };
+const svgEl = (parent, tag, attrs) => parent.appendChild(setAttrs(document.createElementNS(SVG_NS, tag), attrs));
+const reducedMotion = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+// config.titleLogoTrace の線だけを、順に光の粒がたどり、最後に flash の場所を強く光らせる（lib/logotrace.js）。
+// 長さ・太さは viewBox（絵の幅240）の単位。動きは JS（Web Animations と SMIL）で付けるので、動きを減らす設定では何も足さない
+const PART = { speed: 170, lead: 0.05, gap: 0.12, flash: 0.75, rest: 2.2, delay: 1.2 };
+const PART_LAYERS = [['tail', 22], ['mid', 9], ['head', 2.5]]; // 粒の3本と、それぞれの長さ
+function traceParts(img, wrap, cfg) {
+  if (reducedMotion()) return;
+  const k = TRACE_W / img.naturalWidth;
+  const hgt = Math.max(1, Math.round(img.naturalHeight * k));
+  const lines = cfg.parts.map((pts) => pts.map(([x, y]) => [x * k, y * k]));
+  const lens = lines.map(lineLength);
+  const s = traceSchedule(lens, PART);
+  const T = s.cycle, at = (t) => Math.min(1, t / T), e = 0.004;
+  const svg = setAttrs(document.createElementNS(SVG_NS, 'svg'), { class: 'title-logo-trace is-parts', viewBox: '0 0 ' + TRACE_W + ' ' + hgt, preserveAspectRatio: 'none', 'aria-hidden': 'true' });
+  const timing = { duration: T * 1000, delay: PART.delay * 1000, iterations: Infinity, easing: 'linear' };
+  const smil = { dur: T + 's', begin: PART.delay + 's', repeatCount: 'indefinite' };
+  lines.forEach((pts, i) => {
+    const d = partPath(pts), len = lens[i], { start, end } = s.parts[i];
+    // 粒は「ずらし＝長さ D」（線の始めの手前に隠れている）から「−線の長さ」（終わりの先に抜けた）まで、同じ速さで動かす
+    for (const [cls, D] of PART_LAYERS) {
+      const p = svgEl(svg, 'path', { d, class: 'trace-' + cls });
+      p.style.strokeDasharray = D + ' ' + (len + D + 10);
+      const fin = at(start + (len + D) / PART.speed);
+      p.animate([
+        { offset: 0, strokeDashoffset: D, opacity: 0 },
+        { offset: at(start), strokeDashoffset: D, opacity: 0 },
+        { offset: at(start) + e, strokeDashoffset: D - PART.speed * e * T, opacity: 1 },
+        { offset: fin, strokeDashoffset: -len, opacity: 1 },
+        { offset: Math.min(1, fin + e), strokeDashoffset: -len, opacity: 0 },
+        { offset: 1, strokeDashoffset: -len, opacity: 0 },
+      ], timing);
+    }
+    // 頭に乗る星
+    const a = at(start), b = at(end);
+    const g = svgEl(svg, 'g', { class: 'trace-star', opacity: '0' });
+    svgEl(svgEl(g, 'path', { d: STAR_D }), 'animateTransform', { attributeName: 'transform', type: 'rotate', values: '0;90', dur: '0.8s', repeatCount: 'indefinite' });
+    svgEl(g, 'animateMotion', { path: d, ...smil, calcMode: 'linear', keyPoints: '0;0;1;1', keyTimes: `0;${a};${b};1` });
+    svgEl(g, 'animate', { attributeName: 'opacity', ...smil, values: '0;0;1;1;0;0', keyTimes: `0;${a};${a + e};${b - e};${b};1` });
+  });
+  if (cfg.flash) svg.appendChild(flashBurst(cfg.flash[0] * k, cfg.flash[1] * k, at(s.flashAt), at(s.flashAt + 0.15), at(s.flashAt + PART.flash), smil));
+  wrap.appendChild(svg);
+}
+
+// 最後の「キラッ」。光の玉がふくらみ、輪が広がり、大きな星が回りながら開いて消える。f0 始め・f1 いちばん強い・f2 消える（周期の中の割合）
+function flashBurst(x, y, f0, f1, f2, smil) {
+  const g = setAttrs(document.createElementNS(SVG_NS, 'g'), { class: 'trace-flash', transform: `translate(${x} ${y})` });
+  const kt = `0;${f0};${f1};${f2};1`;
+  const glow = svgEl(g, 'circle', { class: 'trace-flash-glow', r: '0', opacity: '0' });
+  svgEl(glow, 'animate', { attributeName: 'r', ...smil, values: '0;0;9;14;14', keyTimes: kt });
+  svgEl(glow, 'animate', { attributeName: 'opacity', ...smil, values: '0;0;0.95;0;0', keyTimes: kt });
+  const ring = svgEl(g, 'circle', { class: 'trace-flash-ring', r: '0', opacity: '0' });
+  svgEl(ring, 'animate', { attributeName: 'r', ...smil, values: '0;0;8;24;24', keyTimes: kt });
+  svgEl(ring, 'animate', { attributeName: 'opacity', ...smil, values: '0;0;1;0;0', keyTimes: kt });
+  const burst = svgEl(g, 'g', { class: 'trace-star', transform: 'scale(0)' });
+  svgEl(burst, 'animateTransform', { attributeName: 'transform', type: 'scale', ...smil, values: '0;0;3.2;0;0', keyTimes: kt });
+  const rays = svgEl(burst, 'g', {});
+  svgEl(rays, 'path', { d: STAR_D });
+  svgEl(rays, 'path', { d: STAR_D, transform: 'rotate(45) scale(0.55)' });
+  svgEl(rays, 'animateTransform', { attributeName: 'transform', type: 'rotate', ...smil, values: '0;0;30;70;70', keyTimes: kt });
+  return g;
+}
 
 // ロゴの上に、絵の外まわりをなぞる線を重ねる。線は CSS（.title-logo-trace）で、短い光の粒として一周させる。
 // 粒は3本を重ねる（太く淡い尾・中くらい・細く白い頭）。長さと動きは CSS の .trace-tail / .trace-mid / .trace-head
@@ -83,7 +149,10 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
     const wrap = h('span', { class: 'title-logo-wrap' }, logo);
     nameEl.appendChild(wrap);
     // 縁を光の粒が一周する（2026-10-14 先生「キラッと光ってほしい。できれば縁を辿るように」）。輪郭は絵の透明度から作る
-    const addTrace = () => { try { traceLogo(logo, wrap); } catch { /* 輪郭が作れなくてもロゴはそのまま出す */ } };
+    // config.titleLogoTrace があれば、そこに書いた部分だけをたどって最後に光らせる（2026-10-15 先生「塔、羽、剣の周囲だけ…剣のところで最後強めに光って」）
+    const addTrace = () => {
+      try { if (validTrace(config.titleLogoTrace)) traceParts(logo, wrap, config.titleLogoTrace); else traceLogo(logo, wrap); } catch { /* 輪郭が作れなくてもロゴはそのまま出す */ }
+    };
     if (logo.complete && logo.naturalWidth) addTrace(); else logo.addEventListener('load', addTrace, { once: true });
   }
 

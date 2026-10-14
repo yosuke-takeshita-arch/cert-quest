@@ -469,6 +469,10 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .title-logo-trace .trace-mid { stroke: rgba(255, 236, 160, 0.9); stroke-width: 2.3; stroke-dasharray: 7 300; stroke-dashoffset: 7; animation: logo-trace-7 4.5s linear 1.2s infinite; }
 .title-logo-trace .trace-head { stroke: #ffffff; stroke-width: 1.6; stroke-dasharray: 2 300; stroke-dashoffset: 2; animation: logo-trace-2 4.5s linear 1.2s infinite; }
 .title-logo-trace .trace-star { fill: #ffffff; }
+/* config.titleLogoTrace で決めた部分だけをたどる形（views/title.js の traceParts）。動きは JS が付けるので、上の CSS の動きは止める */
+.title-logo-trace.is-parts > path { animation: none; }
+.title-logo-trace .trace-flash-glow { fill: #fffbe8; }
+.title-logo-trace .trace-flash-ring { fill: none; stroke: #ffe28a; stroke-width: 1.4; }
 @keyframes logo-trace-16 { 0% { stroke-dashoffset: 16; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -84; opacity: 0; } }
 @keyframes logo-trace-7 { 0% { stroke-dashoffset: 7; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -93; opacity: 0; } }
 @keyframes logo-trace-2 { 0% { stroke-dashoffset: 2; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -98; opacity: 0; } }
