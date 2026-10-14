@@ -5,6 +5,7 @@ import { DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, normalizeSoundSettings } from '
 import { normalizeExamSettings } from './examdate.js';
 import { DEFAULT_TEXT_SIZE, normalizeTextSize } from './textsize.js';
 import { DEFAULT_MAP_VIEW, normalizeMapView } from './maplayout.js';
+import { DEFAULT_CARD_VIEW, normalizeCardView } from './cardtree.js';
 import { normalizeLater } from './later.js';
 import { normalizeDochi } from './dochi.js';
 import { normalizeForecast } from './forecast.js';
@@ -27,7 +28,7 @@ export function defaultState() {
     later: {}, // 「あとで見る」の印（問題ID → 印を付けた時刻のミリ秒）
     challenge: { runs: 0, best: 0 },
     dochi: { runs: 0, best: 0, bestCombo: 0 }, // 「どっち？」早押しの記録（回数・最高の正解数・最高コンボ）
-    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, examDate: null, examAsked: false, introSeen: false },
+    settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, cardView: DEFAULT_CARD_VIEW, examDate: null, examAsked: false, introSeen: false },
     forecast: {}, // 合格予想の日ごとの記録（'YYYY-MM-DD' → 点。最大60日）
     boss: {}, // 章のボスの撃破回数（章のキー → 回数）
     bossMet: {}, // 一度でも現れた章のボス（章のキー → true）。会うまでは名前も姿も隠す
@@ -66,6 +67,7 @@ export function mergeState(saved) {
   if (!THEMES.includes(o.settings.theme)) o.settings.theme = 'light';
   o.settings.textSize = normalizeTextSize(o.settings.textSize); // 文字の大きさ。ありえない値は「ふつう」
   o.settings.mapView = normalizeMapView(o.settings.mapView); // 地図の表示（地図／一覧）。ありえない値は地図
+  o.settings.cardView = normalizeCardView(o.settings.cardView); // カードの表示（分野で見る／一覧・検索）。ありえない値は分野で見る
   // BGM は「問題中（bgm・bgmTrack）」と「それ以外（bgmHome・bgmHomeTrack）」の2つの場面に分けた。
   // それ以外の項目が無い古い記録は、これまでの BGM のオン／オフを引き継ぐ（オンだった人は両方オン。曲は問題中が bgmTrack のまま、それ以外はタイトル曲）
   const savedSet = saved.settings && typeof saved.settings === 'object' ? saved.settings : {};
