@@ -17,7 +17,8 @@ const reducedMotion = () => !!(window.matchMedia && window.matchMedia('(prefers-
 
 // config.titleLogoTrace の線だけを、順に光の粒がたどり、最後に flash の場所を強く光らせる（lib/logotrace.js）。
 // 長さ・太さは viewBox（絵の幅240）の単位。動きは JS（Web Animations と SMIL）で付けるので、動きを減らす設定では何も足さない
-const PART = { speed: 170, lead: 0.05, gap: 0.12, flash: 0.75, rest: 2.2, delay: 1.2 };
+// 2026-10-15 先生「光の進むスピードはもっと早く。倍速でいい。間隔は今のでいい」: 速さを 170→340 にし、縮んだ分を休みに足して、くり返しの間隔（G検定で約6秒）を変えない
+const PART = { speed: 340, lead: 0.05, gap: 0.12, flash: 0.75, rest: 3.6, delay: 1.2 };
 const PART_LAYERS = [['tail', 22], ['mid', 9], ['head', 2.5]]; // 粒の3本と、それぞれの長さ
 function traceParts(img, wrap, cfg) {
   if (reducedMotion()) return;
