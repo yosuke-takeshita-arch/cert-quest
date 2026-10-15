@@ -203,6 +203,9 @@ export async function start() {
   const openConfig = curSub ? subjectConfig(baseConfig, curSub) : config; // 科目を開いているときは、科目の名前・試験時間などを重ねたもの
   setImagesBase(curSub ? subjectImagesBase(curSub, location.href) : null); // ボス・章のバッジの絵は科目ごとの images/<科目id>/
   if (curSub) document.title = openConfig.name;
+  // スマホの「戻る」の見張り（app.guardBack）。backGuard … 見張っている画面の { ask }。onGuardEntry … いま見張りの履歴の上にいるか
+  let backGuard = null;
+  let onGuardEntry = !!(history.state && history.state.cqGuard);
   const app = {
     config: openConfig,
     baseConfig, // アプリ全体の config（科目の一覧 subjects を含む）
@@ -220,7 +223,23 @@ export async function start() {
     starThresholds: (config.stage && config.stage.stars) || STAR_THRESHOLDS,
     go(hash) {
       if (location.hash === hash) render();
+      // 見張りの履歴（guardBack）の上にいるなら、それを置き換えて進む（戻ったときに同じ画面が2回出ないように）
+      else if (onGuardEntry) { onGuardEntry = false; location.replace(location.pathname + location.search + hash); }
       else location.hash = hash;
+    },
+    /**
+     * スマホの「戻る」（ブラウザの戻る）を見張る。問題を解いている画面が開いたときに呼ぶ。
+     * 戻るが押されたら ask() を呼び、true なら一つ前の画面へ戻り、false なら今の画面に残る（ask の中で confirm を出す）。
+     * 見張りは画面が変わると外れる（render のたびに外す。見張りたい画面は描くたびに呼ぶ）。
+     * 2026-10-15 先生「ブラウザバックはアプリでは無効化したい」→ A（問題の途中だけ「やめますか？」と聞く）。
+     * 戻るを止めきることはブラウザが許さない。同じ URL の履歴を1つ足して、戻るでそれが抜けたときに聞き直す
+     */
+    guardBack(ask) {
+      backGuard = { ask };
+      if (!onGuardEntry) {
+        history.pushState({ cqGuard: true }, '', location.href);
+        onGuardEntry = true;
+      }
     },
     // お祝いの待ち行列。問題を解いている最中は出さず、結果画面かホームに戻ったとき flushCelebrations() で順に出す
     pending: [],
@@ -409,6 +428,7 @@ export async function start() {
       try { cleanup(); } catch (e) { /* 後始末の失敗で画面遷移を止めない */ }
       cleanup = null;
     }
+    backGuard = null; // 見張りは描いた画面ごと。見張りたい画面は描くときに app.guardBack を呼び直す
     const parts = location.hash.replace(/^#\/?/, '').split('/');
     const name = parts[0] || 'home';
     const arg = parts.length > 1 ? decodeURIComponent(parts.slice(1).join('/')) : '';
@@ -438,6 +458,19 @@ export async function start() {
     if (!full) app.flushCelebrations();
   }
   window.addEventListener('hashchange', render);
+  // 見張りの履歴から戻った（URL は同じなので hashchange は来ない）。続けるなら見張りを足し直し、やめるならもう一つ戻る
+  window.addEventListener('popstate', () => {
+    const was = onGuardEntry;
+    onGuardEntry = !!(history.state && history.state.cqGuard);
+    if (!was || onGuardEntry) return;
+    if (backGuard && !backGuard.ask()) {
+      history.pushState({ cqGuard: true }, '', location.href);
+      onGuardEntry = true;
+      return;
+    }
+    backGuard = null;
+    history.back();
+  });
   if (!location.hash) history.replaceState(null, '', location.pathname + location.search + '#/home');
   render();
 

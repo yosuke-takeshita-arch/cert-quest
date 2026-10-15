@@ -182,8 +182,12 @@ export function renderBoss(app, key) {
     app.go(back);
   }
 
+  const askExit = () => !(S && !S.run.battle.result && S.log.length) || confirm('途中で終了します。ここまでの回答の記録は残ります。');
+  // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
+  app.guardBack(askExit);
+
   function onExit() {
-    if (S && !S.run.battle.result && S.log.length && !confirm('途中で終了します。ここまでの回答の記録は残ります。')) return;
+    if (!askExit()) return;
     leave();
   }
 

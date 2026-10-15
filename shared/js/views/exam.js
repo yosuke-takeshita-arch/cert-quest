@@ -30,6 +30,9 @@ export function renderExam(app) {
   };
   const preview = pickAll();
   const plan = examPlan(cfg, blueprint ? preview.items.length : app.data.questions.length);
+  let running = null; // 解いている試験（start の S）。採点したら done
+  // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
+  app.guardBack(() => !running || running.done || confirm('模擬試験をやめますか？ ここまでの答えは採点されず、記録にも残りません。'));
 
   // 始める前の画面の「戻る」。この画面は下のメニューを隠すので、これが無いとブラウザの戻るしか出口が無かった（2026-10-15 先生の指摘）
   const backBtn = () => h('button', { class: 'btn big exam-back', type: 'button', onClick: () => app.go('#/home') }, '戻る');
@@ -64,6 +67,7 @@ export function renderExam(app) {
   function start() {
     const items = pickAll().items.slice(0, plan.count).map((q) => shuffleChoices(q, app.rng));
     const S = { items, answers: items.map(() => null), cur: 0, deadline: Date.now() + plan.minutes * 60000, t0: Date.now(), grid: false, done: false };
+    running = S;
 
     function finish(auto) {
       if (S.done) return;

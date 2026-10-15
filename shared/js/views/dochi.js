@@ -74,8 +74,12 @@ export function renderDochi(app) {
     if (e.key === '1' || e.key === '2') answer(Number(e.key) - 1);
   }
 
+  const askExit = () => !(S && S.results.length < S.items.length && S.results.length) || confirm('途中で終了します。この回の記録は残りません。');
+  // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
+  app.guardBack(askExit);
+
   function onExit() {
-    if (S && S.results.length < S.items.length && S.results.length && !confirm('途中で終了します。この回の記録は残りません。')) return;
+    if (!askExit()) return;
     cleanup();
     app.go('#/home');
   }
