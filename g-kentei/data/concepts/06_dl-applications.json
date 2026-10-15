@@ -5103,6 +5103,9 @@
         "point": "プロンプトの工夫は重みを変えない。LoRA は小さな行列という形で重みを変える。"
       }
     ],
+    "figures": [
+      "fig-g-lora"
+    ],
     "sources": [
       {
         "title": "Hu et al. (2021) LoRA: Low-Rank Adaptation of Large Language Models (arXiv:2106.09685)",

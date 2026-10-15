@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 816" role="img" aria-labelledby="fig-g-lora-t fig-g-lora-d">
+<title id="fig-g-lora-t">LoRA：元の重みは固定し、小さな行列 B と A だけを学ぶ</title>
+<desc id="fig-g-lora-d">①ふつうのファインチューニングは、縦1000×横1000の重み W の100万個を全部学習し直す。②LoRA は元の重み W0 を固定し、縦1000×横8の行列 B と、縦8×横1000の行列 A の積 BA を足す。学習するのは B と A だけで、8000＋8000＝16000個。100万個の約1.6%。この 8 をランク r と呼ぶ。数は説明のための例。棒で比べると、学習する数の差が分かる。③使うときは W＝W0＋BA を先に計算して1枚の行列にしておけるので、層が増えず、推論の遅れが増えない。アダプタは層を足すので遅れが出る。④用途を替えるときは、共通の W0 はそのままで、用途ごとの小さい B と A だけを差し替える。</desc>
+<text x="12" y="20" class="tb">① ふつうのファインチューニング</text>
+<rect x="12" y="34" width="100" height="100" class="fwn swn" stroke-width="1.5"/>
+<text x="62" y="89" class="tl" text-anchor="middle">W</text>
+<text x="128" y="58">縦1000×横1000 の重み</text>
+<text x="128" y="80" class="tb twn">100万個を全部</text>
+<text x="128" y="100" class="tb twn">学習し直す</text>
+<text x="128" y="124" class="tm">用途ごとに全部を複製</text>
+<line x1="12" y1="150" x2="308" y2="150" class="l sb w1"/>
+<text x="12" y="174" class="tb">② LoRA：元の重みは固定、小さな行列を足す</text>
+<rect x="12" y="190" width="100" height="100" class="fs sm" stroke-width="1.5"/>
+<text x="62" y="238" class="tl" text-anchor="middle">W0</text>
+<text x="62" y="258" class="tm" text-anchor="middle">固定</text>
+<text x="62" y="274" class="tm" text-anchor="middle">（学習しない）</text>
+<text x="124" y="246" class="tl" text-anchor="middle">＋</text>
+<rect x="138" y="190" width="14" height="100" class="fok sok" stroke-width="1.5"/>
+<text x="145" y="306" class="tb tok" text-anchor="middle">B</text>
+<text x="166" y="246" class="tl" text-anchor="middle">×</text>
+<rect x="180" y="233" width="100" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="230" y="226" class="tb tok" text-anchor="middle">A</text>
+<text x="12" y="332">B：縦1000×横8＝8000個</text>
+<text x="12" y="352">A：縦8×横1000＝8000個</text>
+<text x="12" y="374" class="tb tok">学習するのは B と A だけ：計16000個</text>
+<text x="12" y="394">100万個の約1.6%（この 8 がランク r）</text>
+<text x="12" y="414" class="tm">※ B と A の細さは、見やすく太く描いた</text>
+<text x="12" y="440" class="tm">学習する数の比べ（横の長さ＝個数）</text>
+<rect x="12" y="450" width="296" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="12" y="484">ふつう：100万個</text>
+<rect x="12" y="494" width="5" height="16" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="507" class="tb tok">LoRA：16000個（約1.6%）</text>
+<line x1="12" y1="528" x2="308" y2="528" class="l sb w1"/>
+<text x="12" y="552" class="tb">③ 使うとき：先に足して1枚にする</text>
+<rect x="12" y="566" width="60" height="60" class="fs sm" stroke-width="1.5"/>
+<text x="42" y="601" class="tb" text-anchor="middle">W0</text>
+<text x="86" y="601" class="tl" text-anchor="middle">＋</text>
+<rect x="100" y="566" width="60" height="60" class="fok sok" stroke-width="1.5"/>
+<text x="130" y="601" class="tb tok" text-anchor="middle">BA</text>
+<text x="174" y="601" class="tl" text-anchor="middle">＝</text>
+<rect x="188" y="566" width="60" height="60" class="fas sa" stroke-width="1.5"/>
+<text x="218" y="601" class="tb ta" text-anchor="middle">W</text>
+<text x="12" y="652">W＝W0＋BA を先に計算しておける</text>
+<text x="12" y="672" class="tb tok">→ 層が増えず、推論の遅れが増えない</text>
+<text x="12" y="692" class="tm">（アダプタは層を足すので、遅れが出る）</text>
+<line x1="12" y1="710" x2="308" y2="710" class="l sb w1"/>
+<text x="12" y="734" class="tb">④ 用途を替える：B と A だけ差し替え</text>
+<rect x="12" y="746" width="44" height="44" class="fs sm" stroke-width="1.5"/>
+<text x="34" y="773" class="tb" text-anchor="middle">W0</text>
+<text x="34" y="806" class="tm" text-anchor="middle">共通</text>
+<rect x="70" y="746" width="110" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="125" y="761" text-anchor="middle">翻訳用の B・A</text>
+<rect x="70" y="770" width="110" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="125" y="785" text-anchor="middle">要約用の B'・A'</text>
+<text x="192" y="764">小さい B・A を</text>
+<text x="192" y="784">用途ごとに持つ</text>
+</svg>

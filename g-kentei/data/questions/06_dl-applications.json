@@ -6953,6 +6953,9 @@
       "C-06-117",
       "C-06-070"
     ],
+    "figures": [
+      "fig-g-lora"
+    ],
     "sources": [
       {
         "title": "Hu et al. (2021) LoRA: Low-Rank Adaptation of Large Language Models (arXiv:2106.09685)",
@@ -7037,6 +7040,9 @@
     "memoryTip": "LoRA の売り＝『学習は軽く、推論は遅くならず、切り替えは付箋の貼り替え』。",
     "concepts": [
       "C-06-117"
+    ],
+    "figures": [
+      "fig-g-lora"
     ],
     "sources": [
       {
