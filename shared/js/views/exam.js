@@ -31,12 +31,16 @@ export function renderExam(app) {
   const preview = pickAll();
   const plan = examPlan(cfg, blueprint ? preview.items.length : app.data.questions.length);
 
+  // 始める前の画面の「戻る」。この画面は下のメニューを隠すので、これが無いとブラウザの戻るしか出口が無かった（2026-10-15 先生の指摘）
+  const backBtn = () => h('button', { class: 'btn big exam-back', type: 'button', onClick: () => app.go('#/home') }, '戻る');
+
   function intro() {
     cleanup();
     clear(root);
     root.appendChild(h('h1', { text: '模擬試験' }));
     if (!plan.count) {
       root.appendChild(h('div', { class: 'empty' }, h('p', { text: '問題を準備中です。' }), h('p', { class: 'small muted', text: '問題がそろうと、ここから模擬試験を受けられます。' })));
+      root.appendChild(backBtn());
       return;
     }
     const card = h('div', { class: 'card' },
@@ -48,6 +52,7 @@ export function renderExam(app) {
     card.appendChild(h('ul', { class: 'plain' }, h('li', { text: '途中では正解も解説も出ません。終わってからまとめて見られます。' }), h('li', { text: '時間になると自動で終了します。' }), h('li', { text: '答えていない問題は不正解になります。' })));
     card.appendChild(h('button', { class: 'btn primary big', type: 'button', onClick: start }, '試験を始める'));
     root.appendChild(card);
+    root.appendChild(backBtn());
     const hist = app.state.exams.slice(-5).reverse();
     if (hist.length) {
       const l = h('div', { class: 'card' }, h('h2', { text: 'これまでの結果' }));
