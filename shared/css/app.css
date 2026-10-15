@@ -392,6 +392,11 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 
 /* ---- お祝いの画面 ---- */
 .celebrate-back { position: fixed; inset: 0; z-index: 60; background: rgba(8, 12, 24, 0.82); display: flex; align-items: center; justify-content: center; padding: 16px; overflow: auto; animation: fade 0.25s; }
+/* 確かめの小窓（ui.js の confirmDialog。ブラウザの confirm の代わり）。お祝いの窓と同じ角丸・影で、お祝いより手前に出す */
+.confirm-back { position: fixed; inset: 0; z-index: 80; background: rgba(8, 12, 24, 0.7); display: flex; align-items: center; justify-content: center; padding: 16px; animation: fade 0.2s; }
+.confirm { width: 100%; max-width: 400px; max-height: 100%; overflow: auto; background: var(--surface); color: var(--text); border-radius: 20px; padding: 22px 20px 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); animation: pop 0.3s; }
+.confirm-title { font-size: 1.2rem; font-weight: 800; margin: 0 0 10px; }
+.confirm-msg { margin: 0 0 20px; line-height: 1.7; color: var(--muted); }
 .celebrate-confetti { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
 .celebrate-confetti .confetti { top: -16px; width: 12px; height: 16px; animation: rain var(--dur, 2.4s) linear var(--delay, 0s) infinite; }
 .celebrate { position: relative; z-index: 1; width: 100%; max-width: 420px; max-height: 100%; overflow: auto; background: var(--surface); color: var(--text); border-radius: 20px; padding: 24px 20px 20px; text-align: center; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); animation: pop 0.4s; }

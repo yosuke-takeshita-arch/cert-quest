@@ -290,6 +290,45 @@ export function celebrate(events, opts = {}) {
   return close;
 }
 
+// ---- 確かめの小窓（ブラウザの confirm の代わり） ----
+// 2026-10-15 先生「ポップアップで出てくる画面のデザインも、アプリのデザインに合わせて」。ブラウザの confirm は上に
+// 「yosuke-takeshita-arch.github.io の内容」と出て、ボタンも「キャンセル」「OK」で何が起きるか読めなかった。
+// 返すのは Promise<boolean>（ok を押したら true。cancel・外側・Esc・もう一度開かれたら false）。danger … ok を赤い枠のボタンにする（消す操作）
+let openConfirm = null; // いま開いている小窓を閉じる関数（同時に2つ出さない）
+export function confirmDialog({ title, message = '', ok = 'OK', cancel = 'キャンセル', danger = false }) {
+  if (openConfirm) openConfirm(false);
+  return new Promise((resolve) => {
+    const prevFocus = document.activeElement;
+    const cancelBtn = h('button', { class: 'btn big', type: 'button', 'data-confirm': 'cancel' }, cancel);
+    const okBtn = h('button', { class: 'btn big ' + (danger ? 'danger' : 'primary'), type: 'button', 'data-confirm': 'ok' }, ok);
+    const box = h('div', { class: 'confirm', role: 'alertdialog', 'aria-modal': 'true', 'aria-labelledby': 'confirm-title', 'aria-describedby': 'confirm-msg' },
+      h('h2', { class: 'confirm-title', id: 'confirm-title', text: title }),
+      message ? h('p', { class: 'confirm-msg', id: 'confirm-msg', text: message }) : null,
+      h('div', { class: 'btn-row' }, cancelBtn, okBtn));
+    const back = h('div', { class: 'confirm-back' }, box);
+    const close = (v) => {
+      if (openConfirm !== close) return;
+      openConfirm = null;
+      back.remove();
+      document.removeEventListener('keydown', onKey, true);
+      if (prevFocus && prevFocus.focus) prevFocus.focus({ preventScroll: true });
+      resolve(v);
+    };
+    // 小窓が出ている間は、裏の画面のキー操作（1〜4 で答える等）を止める
+    const onKey = (e) => {
+      e.stopPropagation();
+      if (e.key === 'Escape') close(false);
+    };
+    cancelBtn.addEventListener('click', () => close(false));
+    okBtn.addEventListener('click', () => close(true));
+    back.addEventListener('click', (e) => { if (e.target === back) close(false); });
+    document.addEventListener('keydown', onKey, true);
+    openConfirm = close;
+    document.body.appendChild(back);
+    cancelBtn.focus({ preventScroll: true });
+  });
+}
+
 // ---- 下から出るシート（用語カードを問題の途中で開く用） ----
 export function openSheet(build) {
   const prevFocus = document.activeElement;

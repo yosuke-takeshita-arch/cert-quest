@@ -1,6 +1,6 @@
 // 学習記録の引き継ぎ（書き出し・読み込み）の画面部品（ブラウザ専用）。形の検証は lib/backup.js。
 // Android の Chrome で動くよう、書き出しは Blob のダウンロード、読み込みは input type=file を使う。
-import { h, toast } from '../ui.js';
+import { h, toast, confirmDialog } from '../ui.js';
 import { serializeBackup, serializeSubjectsBackup, backupFileName, parseBackup, parseSubjectsBackup, backupSummary, subjectsBackupSummary, BACKUP_REASONS, BACKUP_MAX_BYTES } from '../lib/backup.js';
 
 function readText(file) {
@@ -69,10 +69,10 @@ export function buildBackupCard(app) {
     let ok;
     if (multi) {
       const sum = subjectsBackupSummary(r);
-      ok = confirm('いまの記録は消えます。ファイルの記録（' + when + ' 書き出し・' + sum.subjects + '科目・答えた問題 合計 ' + sum.answered + ' 問・XP ' + sum.xp + '）に置き換えます。ファイルに無い科目の記録は、そのまま残ります。元に戻せません。よろしいですか？');
+      ok = await confirmDialog({ title: '記録を置き換えますか？', message: 'いまの記録は消えます。ファイルの記録（' + when + ' 書き出し・' + sum.subjects + '科目・答えた問題 合計 ' + sum.answered + ' 問・XP ' + sum.xp + '）に置き換えます。ファイルに無い科目の記録は、そのまま残ります。元に戻せません。', ok: '置き換える', cancel: 'やめる', danger: true });
     } else {
       const sum = backupSummary(r.state);
-      ok = confirm('いまの記録は消えます。ファイルの記録（' + when + ' 書き出し・答えた問題 ' + sum.answered + ' 問・XP ' + sum.xp + '）に置き換えます。元に戻せません。よろしいですか？');
+      ok = await confirmDialog({ title: '記録を置き換えますか？', message: 'いまの記録は消えます。ファイルの記録（' + when + ' 書き出し・答えた問題 ' + sum.answered + ' 問・XP ' + sum.xp + '）に置き換えます。元に戻せません。', ok: '置き換える', cancel: 'やめる', danger: true });
     }
     if (!ok) { say('読み込みをやめました。いまの記録はそのままです。', false); return; }
     say('', false);

@@ -458,18 +458,28 @@ export async function start() {
     if (!full) app.flushCelebrations();
   }
   window.addEventListener('hashchange', render);
-  // 見張りの履歴から戻った（URL は同じなので hashchange は来ない）。続けるなら見張りを足し直し、やめるならもう一つ戻る
+  // 見張りの履歴から戻った（URL は同じなので hashchange は来ない）。見張りを足し直して画面に残り、ask の答え（アプリの小窓）を待つ。
+  // やめるなら、足し直した見張りと元の履歴の2つ分戻る。見張りが無ければ（結果の画面など）すぐもう一つ戻る
+  let skipPop = 0; // こちらから戻したときの popstate を数えて無視する
+  let asking = null; // 答えを待っている見張り（小窓を2つ出さない）
   window.addEventListener('popstate', () => {
     const was = onGuardEntry;
     onGuardEntry = !!(history.state && history.state.cqGuard);
+    if (skipPop) { skipPop--; return; }
     if (!was || onGuardEntry) return;
-    if (backGuard && !backGuard.ask()) {
-      history.pushState({ cqGuard: true }, '', location.href);
-      onGuardEntry = true;
-      return;
-    }
-    backGuard = null;
-    history.back();
+    const g = backGuard;
+    if (!g) { skipPop++; history.back(); return; }
+    history.pushState({ cqGuard: true }, '', location.href);
+    onGuardEntry = true;
+    if (asking === g) return;
+    asking = g;
+    Promise.resolve(g.ask()).then((leave) => {
+      if (asking === g) asking = null;
+      if (!leave || backGuard !== g || !onGuardEntry) return;
+      backGuard = null;
+      skipPop++;
+      history.go(-2);
+    });
   });
   if (!location.hash) history.replaceState(null, '', location.pathname + location.search + '#/home');
   render();

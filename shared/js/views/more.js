@@ -1,5 +1,5 @@
 // 「もっと」: バッジ・設定・公式リンク・データの状態。
-import { h, externalLink, icon, badgeBases, badgeImg } from '../ui.js';
+import { h, externalLink, icon, badgeBases, badgeImg, confirmDialog } from '../ui.js';
 import { appTitle } from '../lib/appname.js';
 import { badgeDefs, badgeProgress, badgeArtName, badgeImageUrl } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
@@ -126,11 +126,11 @@ export function renderSettings(app) {
     h('label', { class: 'row-btn', for: 'set-dailyGoal' }, h('span', { class: 'row-main' }, h('strong', { text: '1日に答える問題数' }), h('span', { class: 'small muted', text: '初期は10問（ステージ1回ぶん）。ホームに今日の進み具合が出ます' })), sel)));
   // 科目のあるアプリ（中小企業診断士など）では、いま開いている科目の記録だけを消す。XP・連続日数・設定は全科目で共通なので残す
   const bySubject = !!app.subject;
-  const reset = h('button', { class: 'btn danger', type: 'button', 'data-reset': bySubject ? 'subject' : 'all', onClick: () => {
+  const reset = h('button', { class: 'btn danger', type: 'button', 'data-reset': bySubject ? 'subject' : 'all', onClick: async () => {
     const msg = bySubject
-      ? '「' + app.subject.name + '」の学習記録（復習・星・バッジ・模試・ボス）を消します。XP・連続日数・設定は、ほかの科目と共通なので残ります。元に戻せません。よろしいですか？'
-      : '学習記録（XP・復習・星・バッジ）をすべて消します。元に戻せません。よろしいですか？';
-    if (confirm(msg)) app.resetAll();
+      ? '「' + app.subject.name + '」の学習記録（復習・星・バッジ・模試・ボス）を消します。XP・連続日数・設定は、ほかの科目と共通なので残ります。元に戻せません。'
+      : '学習記録（XP・復習・星・バッジ）をすべて消します。元に戻せません。';
+    if (await confirmDialog({ title: '学習記録を消しますか？', message: msg, ok: '消す', cancel: 'やめる', danger: true })) app.resetAll();
   } }, bySubject ? 'この科目の学習記録を消す' : '学習記録をすべて消す');
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: '学習記録' }),
     h('p', { class: 'small muted', text: 'この端末のブラウザの中だけに保存されています。サーバーには送っていません。' + (app.storage.persistent ? '' : '（いまは保存できない状態です）') }), reset));

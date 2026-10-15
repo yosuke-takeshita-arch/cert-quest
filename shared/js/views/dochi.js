@@ -1,6 +1,6 @@
 // 「どっち？」早押し（要件定義書 §3-5）。一行目（題名は〇〇に伏せる）を読んで、2つの題名のどちらかを5秒で選ぶ。
 // 出題・伏せ方・記録の直し方は lib/dochi.js。ここは画面だけ。問題の記録（qstats）・XP には入れない。
-import { h, clear, icon, burst, vibrate, beep } from '../ui.js';
+import { h, clear, icon, burst, vibrate, beep, confirmDialog } from '../ui.js';
 import { buildPairs, pickRound, isCorrect, nextCombo, recordDochi, normalizeDochi, DOCHI_ROUNDS, DOCHI_SECONDS, DOCHI_POINT_MS } from '../lib/dochi.js';
 import { CHOICE_LABELS } from './explain.js';
 import { openCardSheet } from './cards.js';
@@ -74,12 +74,12 @@ export function renderDochi(app) {
     if (e.key === '1' || e.key === '2') answer(Number(e.key) - 1);
   }
 
-  const askExit = () => !(S && S.results.length < S.items.length && S.results.length) || confirm('途中で終了します。この回の記録は残りません。');
+  const askExit = () => !(S && S.results.length < S.items.length && S.results.length) || confirmDialog({ title: 'やめますか？', message: '途中で終了します。この回の記録は残りません。', ok: 'やめる', cancel: '続ける' });
   // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
   app.guardBack(askExit);
 
-  function onExit() {
-    if (!askExit()) return;
+  async function onExit() {
+    if (!(await askExit())) return;
     cleanup();
     app.go('#/home');
   }

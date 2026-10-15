@@ -1,6 +1,6 @@
 // 模擬試験。本番の問題数・制限時間に合わせる（問題が足りない間は有る分で縮小版）。
 // 本番と同じく、途中では解説を出さない。終わってから大項目別の正答率と見直しを出す。
-import { h, clear, burst, toast, mascotLine } from '../ui.js';
+import { h, clear, burst, toast, mascotLine, confirmDialog } from '../ui.js';
 import { examMascot } from '../lib/characters.js';
 import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
 import { shuffle, shuffleChoices, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
@@ -32,7 +32,7 @@ export function renderExam(app) {
   const plan = examPlan(cfg, blueprint ? preview.items.length : app.data.questions.length);
   let running = null; // 解いている試験（start の S）。採点したら done
   // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
-  app.guardBack(() => !running || running.done || confirm('模擬試験をやめますか？ ここまでの答えは採点されず、記録にも残りません。'));
+  app.guardBack(() => !running || running.done || confirmDialog({ title: 'やめますか？', message: 'ここまでの答えは採点されず、記録にも残りません。', ok: 'やめる', cancel: '続ける' }));
 
   // 始める前の画面の「戻る」。この画面は下のメニューを隠すので、これが無いとブラウザの戻るしか出口が無かった（2026-10-15 先生の指摘）
   const backBtn = () => h('button', { class: 'btn big exam-back', type: 'button', onClick: () => app.go('#/home') }, '戻る');
@@ -69,11 +69,13 @@ export function renderExam(app) {
     const S = { items, answers: items.map(() => null), cur: 0, deadline: Date.now() + plan.minutes * 60000, t0: Date.now(), grid: false, done: false };
     running = S;
 
-    function finish(auto) {
+    async function finish(auto) {
       if (S.done) return;
       const un = S.answers.filter((a) => a === null).length;
-      if (!auto && un && !confirm('まだ答えていない問題が ' + un + '問あります。採点しますか？')) return;
-      if (!auto && !un && !confirm('採点します。よろしいですか？')) return;
+      if (!auto && !(await confirmDialog(un
+        ? { title: '採点しますか？', message: 'まだ答えていない問題が ' + un + '問あります。答えていない問題は不正解になります。', ok: '採点する', cancel: '問題に戻る' }
+        : { title: '採点しますか？', message: '採点すると、答えは変えられません。', ok: '採点する', cancel: '問題に戻る' }))) return;
+      if (S.done) return; // 小窓を出している間に時間切れで採点された
       S.done = true;
       cleanup();
       const results = S.items.map((sq, i) => {
