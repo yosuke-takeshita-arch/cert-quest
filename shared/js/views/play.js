@@ -1,5 +1,5 @@
 // 出題画面。ステージ・復習・秒数つきチャレンジで共通（mode で挙動が少し変わる）。
-import { h, clear, icon, stars, burst, vibrate, beep, toast, mascotLine, confirmDialog } from '../ui.js';
+import { h, clear, icon, stars, burst, vibrate, beep, toast, mascotLine, confirmQuit } from '../ui.js';
 import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.js';
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
@@ -59,7 +59,7 @@ export function renderPlay(app) {
       h('div', { class: 'progress', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(n), 'aria-valuenow': String(S.idx) }, h('div', { class: 'progress-fill', style: { width: (S.idx / n) * 100 + '%' } })));
   }
 
-  const askExit = () => !(S.results.length && S.results.length < S.items.length) || confirmDialog({ title: 'やめますか？', message: '途中で終了します。ここまでの回答の記録は残ります。', ok: 'やめる', cancel: '続ける' });
+  const askExit = () => !(S.results.length && S.results.length < S.items.length) || confirmQuit('途中で終了します。ここまでの回答の記録は残ります。');
   // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
   app.guardBack(askExit);
 

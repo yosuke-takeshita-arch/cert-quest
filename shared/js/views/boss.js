@@ -3,7 +3,7 @@
 // ボスの名前・せりふは lib/bossdata.js（data/bosses.json。無ければ汎用）、曲は lib/bossmusic.js（プログラムで鳴らす）。ここは画面と演出の順番だけ。
 // 答えはふつうの出題と同じに問題の記録（qstats・復習の予定・XP）に入る（復習そのものなので）。
 // 動きを減らす設定（prefers-reduced-motion）では、点滅・揺れ・崩れる動きをやめ、色の変化と文だけにする（CSS と reduced() の両方で）。
-import { h, clear, icon, vibrate, beep, toast, mascotLine, appImagesBase, confirmDialog } from '../ui.js';
+import { h, clear, icon, vibrate, beep, toast, mascotLine, appImagesBase, confirmQuit } from '../ui.js';
 import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
 import { bossInfo, bossQuestions, bossThreshold, recordBossWin, isFlawlessWin, bossWins, markBossMet, hasMetBoss, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
@@ -182,7 +182,7 @@ export function renderBoss(app, key) {
     app.go(back);
   }
 
-  const askExit = () => !(S && !S.run.battle.result && S.log.length) || confirmDialog({ title: 'やめますか？', message: '途中で終了します。ここまでの回答の記録は残ります。', ok: 'やめる', cancel: '続ける' });
+  const askExit = () => !(S && !S.run.battle.result && S.log.length) || confirmQuit('途中で終了します。ここまでの回答の記録は残ります。');
   // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
   app.guardBack(askExit);
 

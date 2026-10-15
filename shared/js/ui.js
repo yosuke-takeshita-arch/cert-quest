@@ -1,7 +1,7 @@
 // 画面部品の小さな道具。データ由来の文字は必ず textContent で入れる（innerHTML は使わない）。
 import { playSfx } from './audio.js';
 import { celebrateSfx } from './lib/sound.js';
-import { characterImageUrl, celebrationMascot, characterName, tapWho, recordTap, CHARACTER_NAMES } from './lib/characters.js';
+import { characterImageUrl, celebrationMascot, characterName, tapWho, recordTap, CHARACTER_NAMES, CHARACTER_TEXT } from './lib/characters.js';
 
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
@@ -126,13 +126,13 @@ export function tappable(img, say) {
   return wrap;
 }
 
-/** 絵と一言の並び（吹き出し）。絵が無い名前なら何も出さない。text が無ければ絵だけ。絵はタップできる（隠しセリフ）。 */
-export function mascotLine(art, text, cls) {
+/** 絵と一言の並び（吹き出し）。絵が無い名前なら何も出さない。text が無ければ絵だけ。絵はタップできる（隠しセリフ）。tap: false ならタップできない飾りのまま */
+export function mascotLine(art, text, cls, { tap = true } = {}) {
   const img = characterImg(art, 'mascot-img');
   if (!img) return null;
   const name = characterName(art);
   const say = text ? h('p', { class: 'mascot-say' }, name ? h('span', { class: 'mascot-name', text: name }) : null, text) : null;
-  return h('div', { class: 'mascot-line ' + (cls || '') }, tappable(img, say), say);
+  return h('div', { class: 'mascot-line ' + (cls || '') }, tap ? tappable(img, say) : img, say);
 }
 
 export function icon(name, cls) {
@@ -294,14 +294,16 @@ export function celebrate(events, opts = {}) {
 // 2026-10-15 先生「ポップアップで出てくる画面のデザインも、アプリのデザインに合わせて」。ブラウザの confirm は上に
 // 「yosuke-takeshita-arch.github.io の内容」と出て、ボタンも「キャンセル」「OK」で何が起きるか読めなかった。
 // 返すのは Promise<boolean>（ok を押したら true。cancel・外側・Esc・もう一度開かれたら false）。danger … ok を赤い枠のボタンにする（消す操作）
+// mascot … { art, text } で、キャラクターと一言を上に添える（どの小窓に誰を出すかは要件定義書 §6「確かめの小窓」。絵はタップの遊びの対象外）
 let openConfirm = null; // いま開いている小窓を閉じる関数（同時に2つ出さない）
-export function confirmDialog({ title, message = '', ok = 'OK', cancel = 'キャンセル', danger = false }) {
+export function confirmDialog({ title, message = '', ok = 'OK', cancel = 'キャンセル', danger = false, mascot = null }) {
   if (openConfirm) openConfirm(false);
   return new Promise((resolve) => {
     const prevFocus = document.activeElement;
     const cancelBtn = h('button', { class: 'btn big', type: 'button', 'data-confirm': 'cancel' }, cancel);
     const okBtn = h('button', { class: 'btn big ' + (danger ? 'danger' : 'primary'), type: 'button', 'data-confirm': 'ok' }, ok);
     const box = h('div', { class: 'confirm', role: 'alertdialog', 'aria-modal': 'true', 'aria-labelledby': 'confirm-title', 'aria-describedby': 'confirm-msg' },
+      mascot ? mascotLine(mascot.art, mascot.text, 'confirm-mascot', { tap: false }) : null,
       h('h2', { class: 'confirm-title', id: 'confirm-title', text: title }),
       message ? h('p', { class: 'confirm-msg', id: 'confirm-msg', text: message }) : null,
       h('div', { class: 'btn-row' }, cancelBtn, okBtn));
@@ -327,6 +329,11 @@ export function confirmDialog({ title, message = '', ok = 'OK', cancel = 'キャ
     document.body.appendChild(back);
     cancelBtn.focus({ preventScroll: true });
   });
+}
+
+/** 問題の途中で「やめますか？」と聞く小窓（模擬試験・ステージ・どっち？・ボス戦。戻る・×のどちらでも）。サニーが引き止めて応援する */
+export function confirmQuit(message) {
+  return confirmDialog({ title: 'やめますか？', message, ok: 'やめる', cancel: '続ける', mascot: { art: 'shiba-cheer', text: CHARACTER_TEXT.confirmQuit } });
 }
 
 // ---- 下から出るシート（用語カードを問題の途中で開く用） ----
