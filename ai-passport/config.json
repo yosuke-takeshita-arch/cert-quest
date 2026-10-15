@@ -8,6 +8,7 @@
   "titleImage": "images/title.webp",
   "titleLogo": "images/logo.webp",
   "mapImage": "images/map.webp",
+  "mapImages": ["images/map-1.webp", "images/map-2.webp", "images/map-3.webp", ["images/map-4a.webp", "images/map-4b.webp"], "images/map-5.webp"],
   "exam": { "questions": 60, "minutes": 60 },
   "passGuide": { "min": 70, "max": 80 },
   "secondsPerQuestion": 60,
