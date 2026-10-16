@@ -313,6 +313,17 @@ function checkFigureFiles() {
 // 任意の欄 stemPlain（問題文を専門用語を使わずに言い直した文。要件定義書 §7-3。回答後の解説に出すので、選択肢の文を含んでもよい）。
 const STEM_PLAIN_MAX = 200;
 const nfkc = (s) => String(s).normalize('NFKC').replace(/\s/g, '').toLowerCase();
+// 選択肢は画面で並び替えて出す（scenario を除く）。解説で「3つ目の文」「選択肢B」のように位置で指すと、
+// 画面の並びと合わず、どの文のことか分からない（2026-10-16、G検定の G-05-073 で先生が気づいた。check-data.js と同じ決まり）。
+const POSITION_REF = /[1-4１-４一二三四]つ目の(文|選択肢)|[1-4１-４]番目の(文|選択肢)|選択肢\s*[A-DＡ-Ｄ1-4１-４]|(^|。)[1-4１-４]つ目は/;
+function checkChoicePositionRefs(f, id, o) {
+  if (o.format === 'scenario') return;
+  const texts = [['explanation', o.explanation], ['memoryTip', o.memoryTip], ...(o.whyWrong || []).map((w, i) => [`whyWrong[${i}]`, w])];
+  for (const [k, s] of texts) {
+    const m = isStr(s) && POSITION_REF.exec(s);
+    if (m) err(f, id, `${k} が選択肢を位置で指している（「${m[0]}」）。選択肢は並び替えて出すので、文の中身で指す`);
+  }
+}
 function checkStemPlain(f, id, o) {
   if (!('stemPlain' in o)) return;
   const sp = o.stemPlain;
@@ -404,6 +415,7 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
         else if (!isStr(w)) err(f, id, `whyWrong[${i}] が空（null は正解位置 ${o.answer} だけ）`);
       });
       if (!isStr(o.memoryTip)) err(f, id, 'memoryTip が無い');
+      checkChoicePositionRefs(f, id, o);
       checkStemPlain(f, id, o);
       if (!Array.isArray(o.concepts) || o.concepts.length === 0) err(f, id, 'concepts が空');
       else o.concepts.forEach((c) => { if (!conceptIndex.has(c)) err(f, id, `concepts の ${c} が用語カードに無い`); });
