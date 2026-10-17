@@ -21,6 +21,7 @@
 //   - sources が {title, url} で url が http(s) であること
 //   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
 //     viewBox の幅が 360 以下で、role="img"・<title>・<desc> を持つこと（要件定義書 §7-2）
+//   - 基礎のことば（data/basics.json。要件定義書 §7-5）: id・term・oneLine・why・aliases・related・figures。決まりは tools/check-basics.cjs の冒頭（G検定・DX・AIパスポートで同じ検査）
 //   - 正解の長さの偏り（WARN）: 正解が最も長い誤答の2倍以上の問題／全体で正解がいちばん長い問題が40%を超えること
 //
 // 選択肢の語の偏り（WARN のみ。2026-10-06 追加。下の CUE_WORDS。tools/check-data-dx.js の checkCueWords と同じ判定・同じ語の一覧）
@@ -36,6 +37,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { checkBasics } = require('./check-basics.cjs'); // 基礎のことば（data/basics.json）の検査。G検定・DX・AIパスポートで共通
 
 const args = process.argv.slice(2);
 let syllabusPath = null;
@@ -46,6 +48,11 @@ for (let i = 0; i < args.length; i++) {
   if (args[i] === '--strict-links') { strictLinks = true; continue; }
   files.push(args[i]);
 }
+// アプリの basics.json（基礎のことば）は、その data/ の問題・カードを渡したときに自動で一緒に検査する（渡し忘れを防ぐ）
+for (const f of files.slice()) {
+  const b = path.join(path.dirname(path.dirname(path.resolve(f))), 'basics.json');
+  if (!/basics[.]json$/.test(f) && fs.existsSync(b) && !files.some((x) => path.resolve(x) === b)) files.push(b);
+}
 if (files.length === 0) {
   console.error('使い方: node tools/check-data.js <ファイル...> [--syllabus path] [--strict-links]');
   process.exit(2);
@@ -55,6 +62,10 @@ const errors = [];
 const warns = [];
 const err = (f, id, msg) => errors.push(`NG ${path.basename(f)} ${id || '-'}: ${msg}`);
 const warn = (f, id, msg) => warns.push(`WARN ${path.basename(f)} ${id || '-'}: ${msg}`);
+
+// 基礎のことば（<アプリ>/data/basics.json。要件定義書 §7-5）は data/ の直下にある（問題・カードは data/questions/・data/concepts/ の下）
+const isBasicsFile = (f) => /(^|[\\/])basics\.json$/.test(f);
+const dataRootOf = (f) => (isBasicsFile(f) ? path.dirname(path.resolve(f)) : path.dirname(path.dirname(path.resolve(f))));
 
 function readJson(f) {
   const raw = fs.readFileSync(f, 'utf8');
@@ -108,6 +119,7 @@ for (const f of files) {
   let data;
   try { data = readJson(f); } catch (e) { err(f, null, `JSON として読めない: ${e.message}`); continue; }
   if (!Array.isArray(data)) { err(f, null, 'ルートが配列でない'); continue; }
+  if (isBasicsFile(f)) { loaded.push({ file: f, kind: 'basics', data, syl: null }); continue; } // 基礎のことばは試験範囲の外。シラバスの木とは照合しない
   const sp = syllabusPath || path.join(path.dirname(path.dirname(path.resolve(f))), 'syllabus.json');
   if (!(sp in sylCache)) {
     try { sylCache[sp] = loadSyllabusPaths(sp); } catch (e) { sylCache[sp] = null; warn(f, null, `syllabus.json を読めない（パス照合を飛ばす）: ${e.message}`); }
@@ -118,7 +130,7 @@ for (const f of files) {
 // 他章も含めたカード索引（同じ data ディレクトリの concepts/*.json を全部読む）
 const conceptIndex = new Map(); // id -> title
 const conceptTitles = new Map(); // title -> id
-const dirs = new Set(loaded.map((l) => path.join(path.dirname(path.dirname(path.resolve(l.file))), 'concepts')));
+const dirs = new Set(loaded.map((l) => path.join(dataRootOf(l.file), 'concepts')));
 for (const d of dirs) {
   if (!fs.existsSync(d)) continue;
   for (const fn of fs.readdirSync(d).filter((x) => x.endsWith('.json'))) {
@@ -168,7 +180,7 @@ function xmlProblems(text) {
   if (amp) p.push('文字参照になっていない & がある（&amp; と書く）: ' + body.slice(amp.index, amp.index + 30));
   return p;
 }
-const figDirOf = (f) => path.join(path.dirname(path.dirname(path.resolve(f))), 'figures');
+const figDirOf = (f) => path.join(dataRootOf(f), 'figures');
 const figUsed = new Map(); // figures ディレクトリ -> 使われた ID の集合
 function checkFigureRefs(f, id, figs) {
   if (figs === undefined) return;
@@ -281,14 +293,15 @@ function checkCueWords(f, id, o) {
 // 一覧に無いフォルダ（g-kentei や、テストが作る一時ディレクトリ）は G検定の形。
 // 生成AIパスポートを G- にしないのは、誤りの報告（shared/js/lib/report.js）の件名に id がそのまま出て、G検定の問題と見分けにくくなるため。
 const ID_FORMS = {
-  'ai-passport': { q: /^AP-\d{2}-\d{3}$/, qLabel: 'AP-NN-NNN', c: /^C-AP-\d{2}-\d{3}$/, cLabel: 'C-AP-NN-NNN' },
+  'ai-passport': { q: /^AP-\d{2}-\d{3}$/, qLabel: 'AP-NN-NNN', c: /^C-AP-\d{2}-\d{3}$/, cLabel: 'C-AP-NN-NNN', b: /^B-AP-\d{3}$/, bLabel: 'B-AP-NNN' },
 };
-const ID_DEFAULT = { q: /^G-\d{2}-\d{3}$/, qLabel: 'G-NN-NNN', c: /^C-\d{2}-\d{3}$/, cLabel: 'C-NN-NNN' };
-const idFormOf = (f) => ID_FORMS[path.basename(path.dirname(path.dirname(path.dirname(path.resolve(f)))))] || ID_DEFAULT;
+const ID_DEFAULT = { q: /^G-\d{2}-\d{3}$/, qLabel: 'G-NN-NNN', c: /^C-\d{2}-\d{3}$/, cLabel: 'C-NN-NNN', b: /^B-\d{3}$/, bLabel: 'B-NNN' };
+const idFormOf = (f) => ID_FORMS[path.basename(path.dirname(dataRootOf(f)))] || ID_DEFAULT;
 
 const seen = new Map();
 for (const { file: f, kind, data, syl } of loaded) {
   const idForm = idFormOf(f);
+  if (kind === 'basics') { checkBasics({ file: f, data, idRe: idForm.b, idLabel: idForm.bLabel, seen, conceptIndex, checkFigureRefs, err, warn, isStr }); continue; }
   data.forEach((o, idx) => {
     const id = o && o.id ? o.id : `#${idx}`;
     if (seen.has(id)) err(f, id, `id が重複（${seen.get(id)} にもある）`); else seen.set(id, path.basename(f));
@@ -351,6 +364,7 @@ checkFigureFiles();
 
 // 集計
 for (const { file: f, kind, data } of loaded) {
+  if (kind === 'basics') { console.log(`${path.basename(path.dirname(f))}/${path.basename(f)}: basics ${data.length}語`); continue; }
   const v = data.filter((o) => o.status === 'verified').length;
   console.log(`${path.basename(path.dirname(f))}/${path.basename(f)}: ${kind} ${data.length}件（verified ${v} / unverified ${data.length - v}）`);
 }

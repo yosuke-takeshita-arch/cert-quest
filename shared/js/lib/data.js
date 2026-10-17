@@ -1,5 +1,6 @@
 // データの読み込みと整形。資格固有のことは書かない。
 import { normalizeFigureIds } from './figures.js';
+import { BASICS_FILE } from './basics.js';
 // 存在しないファイル(404)は飛ばす。形が崩れた問題・カードは捨てて problems に記録する。
 
 const norm = (s) => String(s == null ? '' : s).normalize('NFKC').trim().toLowerCase();
@@ -259,7 +260,8 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
 
   // ボスの名前・せりふのファイル（無くてもよい。読むのは app.js。ここでは読み込みの進み具合に数えないよう、名前だけ返す）
   const bossesFile = typeof idx.json.bosses === 'string' && idx.json.bosses ? idx.json.bosses : 'bosses.json';
-  return finish({ indexFound: true, syllabusRaw, questions, concepts, problems, missing, bossesFile });
+  const basicsFile = typeof idx.json.basics === 'string' && idx.json.basics ? idx.json.basics : BASICS_FILE; // 基礎のことば（lib/basics.js）
+  return finish({ indexFound: true, syllabusRaw, questions, concepts, problems, missing, bossesFile, basicsFile });
 
   function finish(d) {
     const tree = buildTree(d.syllabusRaw, d.questions, d.concepts);
@@ -276,6 +278,9 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
       missing: d.missing,
       bossesFile: d.bossesFile || 'bosses.json',
       bosses: [], // app.js が bosses.json を読んで入れる（章のボスの名前・せりふ。lib/bossdata.js）
+      basicsFile: d.basicsFile || BASICS_FILE,
+      basics: [], // app.js が basics.json を読んで入れる（基礎のことば。試験範囲の外。lib/basics.js）
+      basicsMatcher: null, // 文中で基礎のことばを見つける道具（basics と concepts の title から app.js が作る）
     };
   }
 }

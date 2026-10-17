@@ -337,11 +337,12 @@ export function confirmQuit(message) {
 }
 
 // ---- 下から出るシート（用語カードを問題の途中で開く用） ----
-export function openSheet(build) {
+// opts.label … 窓の名前（読み上げ用。既定は『用語カード』）。窓の上にさらに窓が開くことがある（基礎のことば → カード）ので、Esc は一番上の窓だけ閉じる
+export function openSheet(build, opts = {}) {
   const prevFocus = document.activeElement;
   const body = h('div', { class: 'sheet-body' });
   const closeBtn = h('button', { class: 'btn ghost sheet-close', type: 'button', 'aria-label': '閉じる' }, icon('close'), '閉じる');
-  const sheet = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-label': '用語カード' }, closeBtn, body);
+  const sheet = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-label': opts.label || '用語カード' }, closeBtn, body);
   const back = h('div', { class: 'sheet-back' }, sheet);
   const close = () => {
     back.remove();
@@ -349,7 +350,9 @@ export function openSheet(build) {
     if (prevFocus && prevFocus.focus) prevFocus.focus();
   };
   const onKey = (e) => {
-    if (e.key === 'Escape') close();
+    if (e.key !== 'Escape') return;
+    const all = document.querySelectorAll('.sheet-back');
+    if (!all.length || all[all.length - 1] === back) close();
   };
   closeBtn.addEventListener('click', close);
   back.addEventListener('click', (e) => {

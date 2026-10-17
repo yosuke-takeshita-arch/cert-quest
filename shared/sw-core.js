@@ -4,7 +4,7 @@
 //
 // 方針
 //  - アプリ本体（HTML/JS/CSS/config/アイコン）: ネット優先。4秒で返らなければキャッシュ。→ 更新が1回で反映され、新旧が混ざらない
-//  - data/（問題・カード・図）: キャッシュ優先＋裏で更新。オフラインでも即開く。更新は次に開いたとき見える。図（data/figures/*.svg）は、問題・カードの figures が指すものをインストール時に取る
+//  - data/（問題・カード・図）: キャッシュ優先＋裏で更新。オフラインでも即開く。更新は次に開いたとき見える。図（data/figures/*.svg）は、問題・カード・基礎のことば（data/basics.json）の figures が指すものをインストール時に取る
 //  - audio/（効果音・BGM）: 効果音は小さいのでインストール時に取る。BGM は大きいので、最初に流したときに取ってキャッシュに入れ、以後はキャッシュ優先（オフラインでも鳴る）
 //  - 404 などの失敗応答はキャッシュしない（まだ無いデータを「無い」と覚えない）
 /* global self, caches, fetch, URL, Response */
@@ -106,6 +106,9 @@ const SHARED = [
   '../shared/js/lib/report.js',
   '../shared/js/lib/subjects.js',
   '../shared/js/views/subjects.js',
+  '../shared/js/lib/basics.js',
+  '../shared/js/views/basics.js',
+  '../shared/js/views/richtext.js',
 ];
 
 // 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。
@@ -168,6 +171,19 @@ async function prefetchData(cache, dir) {
       const bu = new URL(base + (typeof idx.bosses === 'string' && idx.bosses ? idx.bosses : 'bosses.json'), self.location).href;
       const br = await fetch(bu, { cache: 'reload' });
       if (br.ok) await cache.put(bu, br);
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
+    // 基礎のことば（<置き場>/basics.json。index.json の basics で名前を変えてもよい）。無い(404)ときは飛ばす。図を持っていれば、その図も取る
+    try {
+      const nu = new URL(base + (typeof idx.basics === 'string' && idx.basics ? idx.basics : 'basics.json'), self.location).href;
+      const nr = await fetch(nu, { cache: 'reload' });
+      if (nr.ok) {
+        try {
+          const raw = await nr.clone().json();
+          const arr = Array.isArray(raw) ? raw : raw && Array.isArray(raw.basics) ? raw.basics : [];
+          for (const o of arr) if (o && Array.isArray(o.figures)) for (const id of o.figures) if (typeof id === 'string' && FIGURE_ID.test(id)) figureIds.add(id);
+        } catch (e) { /* 読めない JSON は図を持たない */ }
+        await cache.put(nu, nr);
+      }
     } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
     await Promise.all(
       [...figureIds].map(async (id) => {

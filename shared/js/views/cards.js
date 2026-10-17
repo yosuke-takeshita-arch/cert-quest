@@ -2,6 +2,7 @@
 import { h, clear, externalLink } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { figureBlock } from './figure.js';
+import { richEl } from './richtext.js';
 import { reportButton } from './report.js';
 import { CARD_VIEWS, normalizeCardView, cardSections } from '../lib/cardtree.js';
 
@@ -39,10 +40,11 @@ export function cardBody(app, c, open) {
   const wrap = h('article', { class: 'card concept' });
   wrap.appendChild(h('p', { class: 'crumb small muted', text: c.syllabus.join(' › ') }));
   wrap.appendChild(h('h2', {}, c.title, ' ', statusChip(c.status)));
-  if (c.oneLine) wrap.appendChild(h('p', { class: 'one-line', text: c.oneLine }));
+  const seen = new Set(); // 基礎のことばの印。一言と『背景とポイント』は続けて読むので1区画（同じ語に印を付けるのは最初の1回だけ）
+  if (c.oneLine) wrap.appendChild(richEl(app, 'p', { class: 'one-line' }, c.oneLine, seen));
   const fig = figureBlock(app, c.figures);
   if (fig) wrap.appendChild(fig);
-  if (c.why) wrap.appendChild(h('div', { class: 'why' }, h('h3', { text: '背景とポイント' }), h('p', { text: c.why })));
+  if (c.why) wrap.appendChild(h('div', { class: 'why' }, h('h3', { text: '背景とポイント' }), richEl(app, 'p', {}, c.why, seen)));
 
   if (c.links.length || incoming.length) {
     const g = h('div', { class: 'tie' }, h('h3', { text: 'つながり' }));
@@ -69,9 +71,10 @@ export function cardBody(app, c, open) {
   if (c.confusions.length) {
     const g = h('div', { class: 'confuse' }, h('h3', { text: 'よくある混同' }));
     const ul = h('ul', { class: 'conf-list' });
+    const confSeen = new Set(); // 『よくある混同』も1区画
     for (const f of c.confusions) {
       const r = resolveRef(f, d.conceptIndex);
-      ul.appendChild(h('li', {}, refChip(app, f, open), r.point ? h('p', { class: 'point', text: '違い: ' + r.point }) : null));
+      ul.appendChild(h('li', {}, refChip(app, f, open), r.point ? richEl(app, 'p', { class: 'point' }, '違い: ' + r.point, confSeen) : null));
     }
     g.appendChild(ul);
     wrap.appendChild(g);
@@ -125,6 +128,15 @@ export function renderCardList(app) {
   const { state } = app;
   const root = h('section', { class: 'view' });
   root.appendChild(h('h1', { text: '用語カード' }));
+  // 基礎のことば（次元・パラメータなど、試験範囲の外の土台の言葉。要件定義書 §7-5）の入口。無いアプリ・空のファイルでは何も出さない
+  const nBasics = Array.isArray(d.basics) ? d.basics.length : 0;
+  if (nBasics) {
+    root.appendChild(h('button', { class: 'basics-entry', type: 'button', 'data-basics-entry': '', onClick: () => app.go('#/basics') },
+      h('span', { class: 'row-main' },
+        h('strong', { text: '基礎のことば（' + nBasics + '語）' }),
+        h('span', { class: 'small', text: '次元・パラメータなど、カードを読む前に知っておきたい土台の言葉' })),
+      h('span', { class: 'basics-entry-arrow', 'aria-hidden': 'true', text: '›' })));
+  }
   if (!d.concepts.length) {
     root.appendChild(h('div', { class: 'empty' }, h('p', { text: '用語カードは準備中です。' }), h('p', { class: 'small muted', text: 'できあがり次第、ここに並びます。' })));
     return root;

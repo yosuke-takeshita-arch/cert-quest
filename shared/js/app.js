@@ -6,6 +6,7 @@ import { renderSubjectPicker } from './views/subjects.js';
 import { installStudyClock } from './studyclock.js';
 import { loadData } from './lib/data.js';
 import { loadBosses } from './lib/bossdata.js';
+import { loadBasics, buildMatcher } from './lib/basics.js';
 import { createStorage } from './lib/storage.js';
 import { defaultState, recordAnswer } from './lib/progress.js';
 import { badgeDefs, awardBadges, badgeArtName, badgeImageUrl } from './lib/badges.js';
@@ -17,6 +18,7 @@ import { nextGoals } from './lib/goals.js';
 import { suggestStage } from './lib/progress.js';
 import { renderHome, renderMap, renderStage, renderReview, startGoal } from './views/home.js';
 import { renderCardList, renderCard } from './views/cards.js';
+import { renderBasicList, renderBasic } from './views/basics.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
@@ -123,9 +125,13 @@ export async function start() {
     const d = await loadData({ dataBase: base, fetchFn });
     return { data: d, dataBase: base };
   };
-  const loadBossNames = async (loaded) => {
+  const loadExtras = async (loaded) => {
     // 章のボスの名前・せりふ。無い・壊れているときは空（ボスは汎用の名前とせりふで動く）。読み込みの進み具合には数えない
     loaded.data.bosses = (await loadBosses(new URL(loaded.data.bossesFile, loaded.dataBase).href)).bosses;
+    // 基礎のことば（要件定義書 §7-5）。無い・空・壊れているときは、基礎のことばの無いアプリとして動く。進み具合には数えない。
+    // 文中で見つける道具は、試験範囲のカードの title も知っている（「次元削減」というカードがあれば、その中の「次元」には印を付けない）
+    loaded.data.basics = (await loadBasics(new URL(loaded.data.basicsFile, loaded.dataBase).href)).items;
+    loaded.data.basicsMatcher = buildMatcher(loaded.data.basics, loaded.data.concepts);
     return loaded;
   };
   const tracker = createLoadTracker((s) => title.setProgress(s));
@@ -139,7 +145,7 @@ export async function start() {
       return title.fail('データの読み込みで予期しない問題が起きました。', String(e.message || e));
     }
     tracker.complete();
-    await loadBossNames(loaded);
+    await loadExtras(loaded);
   } else {
     tracker.complete();
   }
@@ -161,7 +167,7 @@ export async function start() {
     clear(root);
     root.appendChild(h('div', { class: 'view' }, h('p', { class: 'muted', role: 'status', text: '読み込み中…' })));
     try {
-      loaded = await loadBossNames(await loadFor(sub, (u) => fetch(u)));
+      loaded = await loadExtras(await loadFor(sub, (u) => fetch(u)));
       curSub = sub;
       store.select(sub.id);
     } catch (e) {
@@ -310,7 +316,7 @@ export async function start() {
       main.appendChild(h('div', { class: 'view' }, h('p', { class: 'muted', role: 'status', text: '「' + sub.name + '」を読み込み中…' })));
       let next;
       try {
-        next = await loadBossNames(await loadFor(sub, (u) => fetch(u)));
+        next = await loadExtras(await loadFor(sub, (u) => fetch(u)));
       } catch (e) {
         toast('この科目のデータを読み込めませんでした');
         render();
@@ -380,6 +386,8 @@ export async function start() {
     ['stage', 'map', (k) => renderStage(app, k)],
     ['cards', 'cards', () => renderCardList(app)],
     ['card', 'cards', (k) => renderCard(app, k)],
+    ['basics', 'cards', () => renderBasicList(app)], // 基礎のことば（試験範囲の外の土台の言葉）の一覧
+    ['basic', 'cards', (k) => renderBasic(app, k)],
     ['review', 'review', () => renderReview(app)],
     ['subjects', 'home', () => renderSubjects()], // 科目をかえる（科目のあるアプリだけ。科目の無いアプリはホームに戻る）
     ['more', 'more', () => renderMore(app)],
