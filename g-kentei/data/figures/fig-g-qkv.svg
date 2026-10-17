@@ -1,139 +1,153 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 836" role="img" aria-labelledby="fig-g-qkv-t fig-g-qkv-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 992" role="img" aria-labelledby="fig-g-qkv-t fig-g-qkv-d">
 <title id="fig-g-qkv-t">Attention の計算（クエリ・キー・バリュー）と、デコーダのマスク</title>
-<desc id="fig-g-qkv-d">上は3単語の文での Attention の計算。単語1のクエリと各単語のキーの内積（類似度）をスコアとし、ソフトマックスで合計1の重みにして、その重みで各バリューを足し合わせ、単語1の新しい表現にする。ソフトマックスは2段で、スコア2.0、0.7、0.0をそれぞれeのx乗にして7.39、2.01、1.00（どれも正）とし、合計10.40で割って0.71、0.19、0.10にする。実際はスコアをキーの次元数の平方根で割ってからソフトマックスをとり、64次元なら8で割る。検索にたとえると、クエリが検索語、キーが記事のタイトル、バリューが記事の本文。下はデコーダの Self-Attention のマスク。4×4のスコアの表で、各位置から見て後ろの位置（右上の三角）のスコアを マイナス無限大 にすると、ソフトマックスのあと重みが0になり、未来の位置を見ない。</desc>
-<text x="12" y="20" class="tb">① 重みを求めて、バリューを足す</text>
-<rect x="150" y="34" width="44" height="26" class="fs sb" stroke-width="1.5"/>
-<text x="172" y="51.5" class="tb" text-anchor="middle">猫</text>
-<rect x="204" y="34" width="44" height="26" class="fs sb" stroke-width="1.5"/>
-<text x="226" y="51.5" class="tb" text-anchor="middle">が</text>
-<rect x="258" y="34" width="44" height="26" class="fs sb" stroke-width="1.5"/>
-<text x="280" y="51.5" class="tb" text-anchor="middle">好き</text>
-<text x="12" y="88.5">キー k</text>
-<rect x="154" y="73" width="36" height="22" class="fs sb" stroke-width="1.5"/>
-<text x="172" y="88.5" class="tb" text-anchor="middle">k1</text>
-<rect x="208" y="73" width="36" height="22" class="fs sb" stroke-width="1.5"/>
-<text x="226" y="88.5" class="tb" text-anchor="middle">k2</text>
-<rect x="262" y="73" width="36" height="22" class="fs sb" stroke-width="1.5"/>
-<text x="280" y="88.5" class="tb" text-anchor="middle">k3</text>
-<text x="12" y="118.5">バリュー v</text>
-<rect x="154" y="103" width="36" height="22" class="fs sb" stroke-width="1.5"/>
-<text x="172" y="118.5" class="tb" text-anchor="middle">v1</text>
-<rect x="208" y="103" width="36" height="22" class="fs sb" stroke-width="1.5"/>
-<text x="226" y="118.5" class="tb" text-anchor="middle">v2</text>
-<rect x="262" y="103" width="36" height="22" class="fs sb" stroke-width="1.5"/>
-<text x="280" y="118.5" class="tb" text-anchor="middle">v3</text>
-<text x="12" y="152" class="tb ta">単語1のクエリ</text>
-<rect x="104" y="141" width="36" height="22" class="fas sa" stroke-width="1.5"/>
-<text x="122" y="156" class="tb ta" text-anchor="middle">q1</text>
-<text x="12" y="194.5">q1・k の内積</text>
-<text x="172" y="194.5" class="tb" text-anchor="middle">2.0</text>
-<text x="226" y="194.5" class="tb" text-anchor="middle">0.7</text>
-<text x="280" y="194.5" class="tb" text-anchor="middle">0.0</text>
-<text x="12" y="212" class="tm">（類似度のスコア）</text>
-<text x="12" y="248.5">eˣ にする</text>
-<text x="172" y="248.5" class="tb" text-anchor="middle">7.39</text>
-<text x="226" y="248.5" class="tb" text-anchor="middle">2.01</text>
-<text x="280" y="248.5" class="tb" text-anchor="middle">1.00</text>
-<text x="12" y="266" class="tm">（どれも正）→ 合計 10.40 で割る</text>
-<text x="12" y="292.5">ソフトマックス</text>
-<text x="172" y="292.5" class="tb ta" text-anchor="middle">0.71</text>
-<rect x="158" y="300" width="28" height="6" class="fa"/>
-<text x="226" y="292.5" class="tb ta" text-anchor="middle">0.19</text>
-<rect x="212" y="300" width="7.49" height="6" class="fa"/>
-<text x="280" y="292.5" class="tb ta" text-anchor="middle">0.10</text>
-<rect x="266" y="300" width="3.94" height="6" class="fa"/>
-<text x="12" y="310" class="tm">＝重み（合計1）</text>
-<line x1="226" y1="334" x2="226" y2="350" class="l w2"/>
-<polyline points="222.15,343 226,350 229.85,343" class="l w2"/>
-<rect x="40" y="352" width="240" height="44" class="fas sa" stroke-width="1.5"/>
-<text x="160" y="369.5" text-anchor="middle">新しい表現（単語1）</text>
-<text x="160" y="387.5" text-anchor="middle">＝ 重み × v を足し合わせる</text>
-<text x="12" y="420" class="tm">実際はスコアを √(キーの次元数) で割る</text>
-<text x="12" y="438" class="tm">（64次元なら √64＝8 で割る）</text>
-<rect x="12" y="454" width="296" height="78" class="fs sb" stroke-width="1"/>
-<text x="24" y="476" class="tb">検索にたとえると</text>
-<text x="24" y="496">q＝検索語　k＝記事のタイトル</text>
-<text x="24" y="516">v＝記事の本文</text>
-<line x1="12" y1="550" x2="308" y2="550" class="l sb w1"/>
-<text x="12" y="574" class="tb">② デコーダでは、後ろの位置を隠す</text>
-<text x="12" y="594" class="tm">行＝今の位置　列＝見る位置</text>
-<text x="90" y="614" class="tb" text-anchor="middle">スコア</text>
-<text x="236" y="614" class="tb" text-anchor="middle">ソフトマックス後</text>
-<text x="40.5" y="630" class="tm" text-anchor="middle">1</text>
-<text x="73.5" y="630" class="tm" text-anchor="middle">2</text>
-<text x="106.5" y="630" class="tm" text-anchor="middle">3</text>
-<text x="139.5" y="630" class="tm" text-anchor="middle">4</text>
-<text x="12" y="653.5" class="tm">1</text>
-<rect x="24" y="634" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="40.5" y="653.5" class="tb" text-anchor="middle">1.2</text>
-<rect x="170" y="634" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="186.5" y="653.5" class="tb" text-anchor="middle">1.00</text>
-<rect x="57" y="634" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="73.5" y="653.5" class="tm" text-anchor="middle">−∞</text>
-<rect x="203" y="634" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="219.5" y="653.5" class="tm" text-anchor="middle">0</text>
-<rect x="90" y="634" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="106.5" y="653.5" class="tm" text-anchor="middle">−∞</text>
-<rect x="236" y="634" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="252.5" y="653.5" class="tm" text-anchor="middle">0</text>
-<rect x="123" y="634" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="139.5" y="653.5" class="tm" text-anchor="middle">−∞</text>
-<rect x="269" y="634" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="285.5" y="653.5" class="tm" text-anchor="middle">0</text>
-<text x="12" y="683.5" class="tm">2</text>
-<rect x="24" y="664" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="40.5" y="683.5" class="tb" text-anchor="middle">0.5</text>
-<rect x="170" y="664" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="186.5" y="683.5" class="tb" text-anchor="middle">0.27</text>
-<rect x="57" y="664" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="73.5" y="683.5" class="tb" text-anchor="middle">1.5</text>
-<rect x="203" y="664" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="219.5" y="683.5" class="tb" text-anchor="middle">0.73</text>
-<rect x="90" y="664" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="106.5" y="683.5" class="tm" text-anchor="middle">−∞</text>
-<rect x="236" y="664" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="252.5" y="683.5" class="tm" text-anchor="middle">0</text>
-<rect x="123" y="664" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="139.5" y="683.5" class="tm" text-anchor="middle">−∞</text>
-<rect x="269" y="664" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="285.5" y="683.5" class="tm" text-anchor="middle">0</text>
-<text x="12" y="713.5" class="tm">3</text>
-<rect x="24" y="694" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="40.5" y="713.5" class="tb" text-anchor="middle">0.3</text>
-<rect x="170" y="694" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="186.5" y="713.5" class="tb" text-anchor="middle">0.20</text>
-<rect x="57" y="694" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="73.5" y="713.5" class="tb" text-anchor="middle">0.9</text>
-<rect x="203" y="694" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="219.5" y="713.5" class="tb" text-anchor="middle">0.36</text>
-<rect x="90" y="694" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="106.5" y="713.5" class="tb" text-anchor="middle">1.1</text>
-<rect x="236" y="694" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="252.5" y="713.5" class="tb" text-anchor="middle">0.44</text>
-<rect x="123" y="694" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="139.5" y="713.5" class="tm" text-anchor="middle">−∞</text>
-<rect x="269" y="694" width="33" height="30" class="fbg sb" stroke-width="1"/>
-<text x="285.5" y="713.5" class="tm" text-anchor="middle">0</text>
-<text x="12" y="743.5" class="tm">4</text>
-<rect x="24" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="40.5" y="743.5" class="tb" text-anchor="middle">0.8</text>
-<rect x="170" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="186.5" y="743.5" class="tb" text-anchor="middle">0.28</text>
-<rect x="57" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="73.5" y="743.5" class="tb" text-anchor="middle">0.2</text>
-<rect x="203" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="219.5" y="743.5" class="tb" text-anchor="middle">0.15</text>
-<rect x="90" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="106.5" y="743.5" class="tb" text-anchor="middle">0.6</text>
-<rect x="236" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="252.5" y="743.5" class="tb" text-anchor="middle">0.23</text>
-<rect x="123" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="139.5" y="743.5" class="tb" text-anchor="middle">1.0</text>
-<rect x="269" y="724" width="33" height="30" class="fas sb" stroke-width="1"/>
-<text x="285.5" y="743.5" class="tb" text-anchor="middle">0.34</text>
-<line x1="158" y1="694" x2="166" y2="694" class="l w2"/>
-<polyline points="159,697.85 166,694 159,690.15" class="l w2"/>
-<text x="12" y="782" class="tb">右上（後ろの位置）は −∞ にする</text>
-<text x="12" y="804">→ ソフトマックスで重みが0になり、</text>
-<text x="12" y="824">　 未来の位置を見ない</text>
+<desc id="fig-g-qkv-d">上は Self-Attention の重みの計算。検索にたとえると、クエリ q は探しているもの（検索語）、キー k は各語の見出し（タイトル）、バリュー v は各語の中身（本文）。文の各語（例は動物・道・それの3語）から、学習で決まる3種類の変換で q・k・v の3つを作る。「それ」のクエリ q3 と各語のキーの内積（似ている度合い。大きいほど似ている）が 2.0、0.7、0.0。ソフトマックスは2段で、それぞれ e の x 乗にして 7.39、2.01、1.00（どれも正）とし、合計 10.40 で割って 0.71、0.19、0.10（合計1の重み）にする。バリューを1つの数とした例で 10、20、30 なら、「それ」の新しい中身は 0.71×10＋0.19×20＋0.10×30＝7.1＋3.8＋3.0＝13.9。同じ割合で混ぜれば20なので、13.9 は動物の10に寄っている。実際は内積をキーの次元数の平方根で割ってからソフトマックスにかけ、64次元なら8で割る（図の2.0などは割ったあとの値として読む）。Source-Target Attention では q だけを別の文（出力側）から作る。下はデコーダの Self-Attention のマスク。4×4のスコアの表で、各位置から見て後ろの位置（右上の三角）のスコアを マイナス無限大 にすると、ソフトマックスのあと重みが0になり、未来の位置を見ない。</desc>
+<text x="12" y="20" class="tb">① 重みを求めて、中身を混ぜる</text>
+<rect x="12" y="32" width="296" height="96" class="fs sb" stroke-width="1"/>
+<text x="24" y="52" class="tb">検索にたとえると</text>
+<text x="24" y="72">クエリ q＝探しているもの（検索語）</text>
+<text x="24" y="92">キー k＝各語の見出し（タイトル）</text>
+<text x="24" y="112">バリュー v＝各語の中身（本文）</text>
+<text x="12" y="150" class="tm">文の各語から q・k・v の3つを作る</text>
+<text x="12" y="168" class="tm">（学習で決まる3種類の変換で作る）</text>
+<text x="12" y="197.5">語（例の文）</text>
+<rect x="150" y="180" width="44" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="172" y="197.5" class="tb" text-anchor="middle">動物</text>
+<rect x="204" y="180" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="197.5" class="tb" text-anchor="middle">道</text>
+<rect x="258" y="180" width="44" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="280" y="197.5" class="tb" text-anchor="middle">それ</text>
+<text x="12" y="229.5">キー k</text>
+<rect x="154" y="214" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="172" y="229.5" class="tb" text-anchor="middle">k1</text>
+<rect x="208" y="214" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="229.5" class="tb" text-anchor="middle">k2</text>
+<rect x="262" y="214" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="280" y="229.5" class="tb" text-anchor="middle">k3</text>
+<text x="12" y="259.5">バリュー v</text>
+<rect x="154" y="244" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="172" y="259.5" class="tb" text-anchor="middle">v1</text>
+<rect x="208" y="244" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="226" y="259.5" class="tb" text-anchor="middle">v2</text>
+<rect x="262" y="244" width="36" height="22" class="fs sb" stroke-width="1.5"/>
+<text x="280" y="259.5" class="tb" text-anchor="middle">v3</text>
+<text x="12" y="295.5" class="tb ta">「それ」のクエリ</text>
+<rect x="262" y="280" width="36" height="22" class="fas sa" stroke-width="1.5"/>
+<text x="280" y="295.5" class="tb ta" text-anchor="middle">q3</text>
+<text x="12" y="332">q3・k の内積</text>
+<text x="172" y="332" class="tb" text-anchor="middle">2.0</text>
+<text x="226" y="332" class="tb" text-anchor="middle">0.7</text>
+<text x="280" y="332" class="tb" text-anchor="middle">0.0</text>
+<text x="12" y="350" class="tm">＝似ている度合い（大きいほど似ている）</text>
+<text x="12" y="380">eˣ にする</text>
+<text x="172" y="380" class="tb" text-anchor="middle">7.39</text>
+<text x="226" y="380" class="tb" text-anchor="middle">2.01</text>
+<text x="280" y="380" class="tb" text-anchor="middle">1.00</text>
+<text x="12" y="398" class="tm">（どれも正になる）→ 合計 10.40 で割る</text>
+<text x="12" y="426">ソフトマックス</text>
+<text x="172" y="426" class="tb ta" text-anchor="middle">0.71</text>
+<rect x="158" y="434" width="28" height="6" class="fa"/>
+<text x="226" y="426" class="tb ta" text-anchor="middle">0.19</text>
+<rect x="212" y="434" width="7.49" height="6" class="fa"/>
+<text x="280" y="426" class="tb ta" text-anchor="middle">0.10</text>
+<rect x="266" y="434" width="3.94" height="6" class="fa"/>
+<text x="12" y="446" class="tm">＝重み（合計1）</text>
+<text x="12" y="476">v（1つの数の例）</text>
+<text x="172" y="476" class="tb" text-anchor="middle">10</text>
+<text x="226" y="476" class="tb" text-anchor="middle">20</text>
+<text x="280" y="476" class="tb" text-anchor="middle">30</text>
+<line x1="160" y1="484" x2="160" y2="490" class="l w2"/>
+<polyline points="156.15,489 160,496 163.85,489" class="l w2"/>
+<rect x="24" y="500" width="272" height="62" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="519" class="tb" text-anchor="middle">「それ」の新しい中身＝重み×v の合計</text>
+<text x="160" y="537" text-anchor="middle">0.71×10＋0.19×20＋0.10×30</text>
+<text x="160" y="555" class="tb ta" text-anchor="middle">＝7.1＋3.8＋3.0＝13.9</text>
+<text x="12" y="582" class="tm">→ 同じ割合で混ぜれば 20。13.9 は</text>
+<text x="12" y="600" class="tm">　「動物」の 10 に寄っている</text>
+<text x="12" y="626" class="tm">実際は内積を √(キーの次元数) で割ってから</text>
+<text x="12" y="644" class="tm">ソフトマックスにかける（64次元なら8で割る）</text>
+<text x="12" y="662" class="tm">（上の 2.0 などは割ったあとの値として読む）</text>
+<text x="12" y="684" class="tm">Source-Target Attention では、q だけを</text>
+<text x="12" y="702" class="tm">別の文（出力側）から作る</text>
+<line x1="12" y1="706" x2="308" y2="706" class="l sb w1"/>
+<text x="12" y="730" class="tb">② デコーダでは、後ろの位置を隠す</text>
+<text x="12" y="750" class="tm">行＝今の位置　列＝見る位置</text>
+<text x="90" y="770" class="tb" text-anchor="middle">スコア</text>
+<text x="236" y="770" class="tb" text-anchor="middle">ソフトマックス後</text>
+<text x="40.5" y="786" class="tm" text-anchor="middle">1</text>
+<text x="73.5" y="786" class="tm" text-anchor="middle">2</text>
+<text x="106.5" y="786" class="tm" text-anchor="middle">3</text>
+<text x="139.5" y="786" class="tm" text-anchor="middle">4</text>
+<text x="12" y="809.5" class="tm">1</text>
+<rect x="24" y="790" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="809.5" class="tb" text-anchor="middle">1.2</text>
+<rect x="170" y="790" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="809.5" class="tb" text-anchor="middle">1.00</text>
+<rect x="57" y="790" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="73.5" y="809.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="203" y="790" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="219.5" y="809.5" class="tm" text-anchor="middle">0</text>
+<rect x="90" y="790" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="106.5" y="809.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="236" y="790" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="252.5" y="809.5" class="tm" text-anchor="middle">0</text>
+<rect x="123" y="790" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="139.5" y="809.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="269" y="790" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="285.5" y="809.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="839.5" class="tm">2</text>
+<rect x="24" y="820" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="839.5" class="tb" text-anchor="middle">0.5</text>
+<rect x="170" y="820" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="839.5" class="tb" text-anchor="middle">0.27</text>
+<rect x="57" y="820" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="73.5" y="839.5" class="tb" text-anchor="middle">1.5</text>
+<rect x="203" y="820" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="219.5" y="839.5" class="tb" text-anchor="middle">0.73</text>
+<rect x="90" y="820" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="106.5" y="839.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="236" y="820" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="252.5" y="839.5" class="tm" text-anchor="middle">0</text>
+<rect x="123" y="820" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="139.5" y="839.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="269" y="820" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="285.5" y="839.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="869.5" class="tm">3</text>
+<rect x="24" y="850" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="869.5" class="tb" text-anchor="middle">0.3</text>
+<rect x="170" y="850" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="869.5" class="tb" text-anchor="middle">0.20</text>
+<rect x="57" y="850" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="73.5" y="869.5" class="tb" text-anchor="middle">0.9</text>
+<rect x="203" y="850" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="219.5" y="869.5" class="tb" text-anchor="middle">0.36</text>
+<rect x="90" y="850" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="106.5" y="869.5" class="tb" text-anchor="middle">1.1</text>
+<rect x="236" y="850" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="252.5" y="869.5" class="tb" text-anchor="middle">0.44</text>
+<rect x="123" y="850" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="139.5" y="869.5" class="tm" text-anchor="middle">−∞</text>
+<rect x="269" y="850" width="33" height="30" class="fbg sb" stroke-width="1"/>
+<text x="285.5" y="869.5" class="tm" text-anchor="middle">0</text>
+<text x="12" y="899.5" class="tm">4</text>
+<rect x="24" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="40.5" y="899.5" class="tb" text-anchor="middle">0.8</text>
+<rect x="170" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="186.5" y="899.5" class="tb" text-anchor="middle">0.28</text>
+<rect x="57" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="73.5" y="899.5" class="tb" text-anchor="middle">0.2</text>
+<rect x="203" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="219.5" y="899.5" class="tb" text-anchor="middle">0.15</text>
+<rect x="90" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="106.5" y="899.5" class="tb" text-anchor="middle">0.6</text>
+<rect x="236" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="252.5" y="899.5" class="tb" text-anchor="middle">0.23</text>
+<rect x="123" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="139.5" y="899.5" class="tb" text-anchor="middle">1.0</text>
+<rect x="269" y="880" width="33" height="30" class="fas sb" stroke-width="1"/>
+<text x="285.5" y="899.5" class="tb" text-anchor="middle">0.34</text>
+<line x1="158" y1="850" x2="166" y2="850" class="l w2"/>
+<polyline points="159,853.85 166,850 159,846.15" class="l w2"/>
+<text x="12" y="938" class="tb">右上（後ろの位置）は −∞ にする</text>
+<text x="12" y="960">→ ソフトマックスで重みが0になり、</text>
+<text x="12" y="980">　 未来の位置を見ない</text>
 </svg>
