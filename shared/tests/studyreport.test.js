@@ -6,7 +6,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   UNITS, MAX_RANGE_DAYS, keyToNum, numToKey, bucketStart, nextBucketStart, defaultRange, normalizeRange,
-  studyReport, formatDuration, formatAxis, axisMax, bucketText,
+  studyReport, formatDuration, formatAxis, axisMax, bucketText, formatBarValue, barPx, labelEvery, matchColumns, MIN_SLOT_PX, VERTICAL_LABEL_UNDER_PX, PLOT_PX,
 } from '../js/lib/studyreport.js';
 import { addStudySeconds, normalizeStudyDays, isDateKey, MAX_DAY_SECONDS, MAX_STUDY_DAYS } from '../js/lib/studytime.js';
 import { defaultState, mergeState, recordAnswer } from '../js/lib/progress.js';
@@ -387,6 +387,63 @@ test('書き出し・読み込み（科目あり）: 共通の記録に日ごと
 
 // ---- 結線 ----
 
+test('棒の上の数値: 0は出さない。1分未満・分・時間:分・100時間以上。切り捨て（detail の formatDuration と同じ向き）', () => {
+  assert.equal(formatBarValue(0), '');
+  assert.equal(formatBarValue(-5), '');
+  assert.equal(formatBarValue(NaN), '');
+  assert.equal(formatBarValue(1), '<1分');
+  assert.equal(formatBarValue(59), '<1分');
+  assert.equal(formatBarValue(60), '1分');
+  assert.equal(formatBarValue(45 * 60), '45分');
+  assert.equal(formatBarValue(59 * 60 + 59), '59分');
+  assert.equal(formatBarValue(3600), '1:00');
+  assert.equal(formatBarValue(3900), '1:05');
+  assert.equal(formatBarValue(10 * 3600 + 9 * 60), '10:09');
+  assert.equal(formatBarValue(99 * 3600 + 59 * 60), '99:59');
+  assert.equal(formatBarValue(100 * 3600), '100時間');
+  assert.equal(formatBarValue(2000 * 3600 + 1800), '2000時間');
+});
+
+test('棒の高さ: 0は2px、記録があれば最低3px、上端でPLOT_PX。上端を超える値は上端に抑える', () => {
+  assert.equal(barPx(0, 3600), 2);
+  assert.equal(barPx(5, 86400), 3);
+  assert.equal(barPx(3600, 3600), PLOT_PX);
+  assert.equal(barPx(1800, 3600), PLOT_PX / 2);
+  assert.equal(barPx(9999, 3600), PLOT_PX);
+  assert.equal(barPx(100, 0), 2);
+  assert.equal(barPx(NaN, 3600), 2);
+});
+
+test('名前を出す間隔と、細い棒の判定: 日ごと(14px)は縦書きの数値、週・月・年は横書き。名前は約46pxおき', () => {
+  assert.equal(labelEvery(14), 4);
+  assert.equal(labelEvery(40), 2);
+  assert.equal(labelEvery(56), 1);
+  assert.equal(labelEvery(1000), 1);
+  assert.equal(MIN_SLOT_PX.day < VERTICAL_LABEL_UNDER_PX, true);
+  for (const u of ['week', 'month', 'year']) assert.equal(MIN_SLOT_PX[u] >= VERTICAL_LABEL_UNDER_PX, true, u);
+});
+
+test('切り替えで棒を結ぶ: 右端（今）をそろえて引き継ぎ、左の余りは消える／新しく出る（30本→12本、12本→5本、0本から）', () => {
+  assert.deepEqual(matchColumns(30, 12), { leave: 18, enter: 0, keep: 12 });
+  assert.deepEqual(matchColumns(12, 30), { leave: 0, enter: 18, keep: 12 });
+  assert.deepEqual(matchColumns(12, 12), { leave: 0, enter: 0, keep: 12 });
+  assert.deepEqual(matchColumns(0, 5), { leave: 0, enter: 5, keep: 0 });
+  assert.deepEqual(matchColumns(5, 0), { leave: 5, enter: 0, keep: 0 });
+  assert.deepEqual(matchColumns(undefined, NaN), { leave: 0, enter: 0, keep: 0 });
+});
+
+test('動き: 棒の高さ・幅は CSS の transition、数値と縦軸は数え上がり。動きを減らす設定では止まる（CSS の一括停止＋画面側の判定）', () => {
+  const css = read('css/app.css');
+  assert.match(css, /\.sr-bar \{[^}]*transition: height/);
+  assert.match(css, /\.sr-col \{[^}]*transition: flex-grow/);
+  assert.match(css, /prefers-reduced-motion: reduce\) \{\s*\*, \*::before, \*::after \{ animation: none !important; transition: none !important;/);
+  const v = read('js/views/studyreport.js');
+  assert.match(v, /prefers-reduced-motion: reduce/);
+  assert.match(v, /tween\(axisTop/);
+  assert.match(v, /tween\(it\.val/);
+  assert.match(v, /matchColumns\(items\.length, n\)/);
+});
+
 test('結線: オフライン登録・テスト登録・ルート・ホームの入口・記録を足す所', () => {
   const sw = read('sw-core.js');
   for (const f of ['js/lib/studyreport.js', 'js/views/studyreport.js']) assert.ok(sw.includes("'../shared/" + f + "'"), f + ' が sw-core.js の SHARED に無い');
@@ -403,7 +460,7 @@ test('画面: 4つの単位・期間の指定・読み上げ用の名前・横�
   const v = read('js/views/studyreport.js');
   assert.match(v, /UNITS\.forEach/);
   assert.match(v, /type: 'date'/);
-  assert.match(v, /'aria-label': bucketText\(bk\)/);
+  assert.match(v, /setAttribute\('aria-label', bucketText\(bk\)\)/);
   assert.match(v, /MIN_SLOT_PX\[unit\]/);
   assert.match(v, /minWidth = minW/);
   assert.match(v, /scrollLeft = scroll\.scrollWidth/);
@@ -413,7 +470,6 @@ test('画面: 4つの単位・期間の指定・読み上げ用の名前・横�
   for (const c of ['.sr-cols', '.sr-col', '.sr-bar', '.sr-scroll', '.sr-tab', '.sr-date', '.sr-stats', '.sr-detail']) assert.ok(css.includes(c + ' ') || css.includes(c + '{') || css.includes(c + ','), c + ' が app.css に無い');
 });
 
-import { MIN_SLOT_PX } from '../js/lib/studyreport.js';
 function MIN_SLOT_PX_OK(u) {
   return Number.isInteger(MIN_SLOT_PX[u]) && MIN_SLOT_PX[u] >= 14; // これより細い棒は押しにくい
 }

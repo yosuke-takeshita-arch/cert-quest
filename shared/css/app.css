@@ -886,14 +886,27 @@ body.boss-on { background: #000; }
 .sr-stat { display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); min-width: 0; overflow-wrap: anywhere; }
 .sr-stat-val { font-size: 1.25rem; line-height: 1.4; }
 .sr-chart { display: flex; gap: 4px; }
-.sr-axis { flex: none; width: 3.5rem; height: 160px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 0.75rem; line-height: 1; color: var(--muted); }
+/* 棒の高さは PLOT_PX(160)。その上に、数値のための余白 44px。縦軸の上端は棒の最大の高さ（余白の下） */
+.sr-axis { flex: none; width: 3.5rem; height: 204px; padding-top: 44px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 0.75rem; line-height: 1; color: var(--muted); }
 .sr-scroll { flex: 1; min-width: 0; overflow-x: auto; padding-bottom: 4px; }
-.sr-cols { display: flex; height: 160px; border-top: 1px dashed var(--border); border-bottom: 1px solid var(--muted); background-image: linear-gradient(var(--border), var(--border)); background-size: 100% 1px; background-position: 0 50%; background-repeat: no-repeat; }
-.sr-col { appearance: none; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 1px; border: 0; background: none; cursor: pointer; font: inherit; }
-.sr-bar { display: block; width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; }
-.sr-bar.zero { height: 2px; background: var(--border); border-radius: 0; }
-.sr-col[aria-pressed='true'] { background: var(--accent-soft); outline: 2px solid var(--accent); outline-offset: -2px; }
-.sr-xs { display: flex; margin-top: 4px; }
-.sr-x { flex: 1 1 0; min-width: 0; font-size: 0.6875rem; line-height: 1.2; white-space: nowrap; color: var(--muted); text-align: left; }
+/* 横にスクロールして左が切れているときだけ、左の端をぼかして『まだ続く』と分かるようにする（切れた文字が中途半端に見えない） */
+.sr-scroll.scrolled { -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20px); mask-image: linear-gradient(to right, transparent 0, #000 20px); }
+.sr-cols { display: flex; height: 204px; padding: 44px 16px 0; box-sizing: border-box; border-bottom: 1px solid var(--muted); background-image: linear-gradient(var(--border), var(--border)), linear-gradient(var(--border), var(--border)); background-size: 100% 1px, 100% 1px; background-position: 0 44px, 0 124px; background-repeat: no-repeat; }
+.sr-col { appearance: none; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 0 1px; border: 0; background: none; cursor: pointer; font: inherit; overflow: visible; transition: flex-grow 0.42s ease; }
+.sr-col.entering, .sr-col.leaving { flex-grow: 0; padding: 0; }
+.sr-bar, .sr-val { flex: none; } /* 縮めない（縮むと棒の高さが数値の分だけ削られる） */
+.sr-bar { display: block; width: 100%; height: 2px; background: var(--accent); border-radius: 3px 3px 0 0; transition: height 0.42s ease; }
+.sr-bar.zero { background: var(--border); border-radius: 0; }
+/* 棒の上の数値。細い棒（日ごと）は縦向きに書いて、隣と重ならないようにする */
+.sr-val { display: block; min-height: 1em; margin-bottom: 6px; font-size: 0.6875rem; line-height: 1; font-weight: 700; color: var(--text); white-space: nowrap; pointer-events: none; }
+.sr-cols.vertical .sr-val { writing-mode: vertical-rl; text-orientation: sideways; }
+/* 選んだ棒は、棒そのものに縁を付ける（枠が上まで伸びて、棒と見分けにくくなるのを避ける）。*/
+.sr-col[aria-pressed='true'] .sr-bar { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text); }
+.sr-xs { display: flex; margin-top: 4px; padding: 0 16px; box-sizing: border-box; }
+.sr-x { flex: 1 1 0; min-width: 0; display: flex; justify-content: center; font-size: 0.6875rem; line-height: 1.2; white-space: nowrap; color: var(--muted); transition: flex-grow 0.42s ease; }
+.sr-x.entering, .sr-x.leaving { flex-grow: 0; }
+.sr-x-in { display: flex; flex-direction: column; align-items: center; }
 .sr-x small { display: block; font-size: 0.625rem; }
+.sr-hint { margin-top: 8px; }
+.sr-hint p { margin: 0 0 8px; }
 .sr-detail { margin: 12px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--text); font-weight: 700; overflow-wrap: anywhere; }

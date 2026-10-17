@@ -9,7 +9,11 @@ export const UNIT_LABEL = { day: '日ごと', week: '週ごと', month: '月ご�
 /** 期間の長さの上限（日）。10年。 */
 export const MAX_RANGE_DAYS = 3660;
 /** 棒1本の最小の幅（px）。画面が狭い・棒が多いときは、これより細くせず横にスクロールさせる。 */
-export const MIN_SLOT_PX = { day: 14, week: 28, month: 40, year: 56 };
+export const MIN_SLOT_PX = { day: 14, week: 40, month: 48, year: 56 };
+/** 棒の幅がこれより細いときは、棒の上の数値を縦向き（90度回転）に書く。横書きの文字が隣と重なるため。 */
+export const VERTICAL_LABEL_UNDER_PX = 30;
+/** 棒の高さの最大（px）。縦軸の上端（axisMax）がこの高さ。 */
+export const PLOT_PX = 160;
 /** 日ごとでこれより多い日数を見るときは、週ごとへの切り替えを勧める。 */
 export const DAY_UNIT_HINT_OVER = 90;
 
@@ -226,4 +230,40 @@ export function studyReport(state, unit, from, to, today = null) {
 /** 棒1本を読み上げ・詳細に出す文。例: '10月3日(金)：1時間5分、答えた問題 12問'。 */
 export function bucketText(bk) {
   return bk.speak + '：' + formatDuration(bk.seconds) + (bk.answered > 0 ? '、答えた問題 ' + bk.answered + '問' : '');
+}
+
+/**
+ * 棒の上に出す短い数値。1分に満たなければ '<1分'、1時間に満たなければ '45分'、100時間までは '1:05'（時間:分）、それ以上は '120時間'。0は空（出さない）。
+ * 正確な数字は棒の読み上げ・詳細の文（formatDuration）にもある。ここは狭い幅で読める短さを優先。
+ */
+export function formatBarValue(seconds) {
+  const s = typeof seconds === 'number' && Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
+  if (s <= 0) return '';
+  if (s < 60) return '<1分';
+  const m = Math.floor(s / 60);
+  if (m < 60) return m + '分';
+  const h = Math.floor(m / 60);
+  return h >= 100 ? h + '時間' : h + ':' + pad(m % 60);
+}
+
+/** 棒の高さ（px）。0 は 2px の細い線、記録がある日は最低 3px（見えなくならないように）。 */
+export function barPx(seconds, axisMaxSeconds, plotPx = PLOT_PX) {
+  if (!(seconds > 0) || !(axisMaxSeconds > 0)) return 2;
+  return Math.max(3, Math.round((Math.min(seconds, axisMaxSeconds) / axisMaxSeconds) * plotPx));
+}
+
+/** 下の日付などの名前を、何本おきに出すか（約46pxあけて、重ならないように）。 */
+export function labelEvery(slotPx) {
+  return Math.max(1, Math.ceil(46 / slotPx));
+}
+
+/**
+ * 単位や期間を切り替えたとき、古い棒の並びと新しい棒の並びを、新しい側（右端＝今）をそろえて結ぶ。
+ * 戻り値: { leave: 消える古い棒の数（左側）, enter: 新しく出る棒の数（左側）, keep: 引き継ぐ棒の数 }
+ */
+export function matchColumns(oldCount, newCount) {
+  const o = Math.max(0, Math.floor(oldCount) || 0);
+  const n = Math.max(0, Math.floor(newCount) || 0);
+  const keep = Math.min(o, n);
+  return { leave: o - keep, enter: n - keep, keep };
 }
