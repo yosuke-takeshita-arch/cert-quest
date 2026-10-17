@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 404" role="img" aria-labelledby="fig-dx-parallel-t fig-dx-parallel-d">
+<title id="fig-dx-parallel-t">並列分散処理：大きな処理を分けて、複数のサーバーで同時に処理する</title>
+<desc id="fig-dx-parallel-d">横棒グラフ。横軸はかかる時間（時間）で、横棒の長さがかかる時間を表す（どの横棒も同じ目盛り、数は例）。上：1台で順番に処理すると12時間かかる。中：同じ処理を3つに分けて3台で同時に処理すると、1台あたり4時間で、3本の結果を1つにまとめる。分ける・まとめる手間のぶん少し延びるが、約4時間で終わる。下：代表例のHadoopは、複数のサーバーで並列に処理し、大規模なデータを高速に処理する仕組み。</desc>
+<text x="12" y="22" class="tb">横棒の長さ＝かかる時間（数は例）</text>
+<text x="12" y="40" class="tm">どの横棒も同じ目盛り</text>
+<text x="12" y="64" class="tb">1台で順番に処理する</text>
+<text x="12" y="91">1台</text>
+<rect x="60" y="74" width="240" height="26" class="fs sm" stroke-width="1.5"/>
+<text x="180" y="91.5" class="tb" text-anchor="middle">12時間かかる</text>
+<text x="12" y="128" class="tb">3つに分けて、3台で同時に処理する</text>
+<text x="12" y="155">1台目</text>
+<rect x="60" y="138" width="80" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="100" y="155.5" text-anchor="middle">4時間</text>
+<text x="12" y="185">2台目</text>
+<rect x="60" y="168" width="80" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="100" y="185.5" text-anchor="middle">4時間</text>
+<text x="12" y="215">3台目</text>
+<rect x="60" y="198" width="80" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="100" y="215.5" text-anchor="middle">4時間</text>
+<line x1="142" y1="151" x2="172" y2="178" class="l sa w1"/>
+<line x1="142" y1="181" x2="172" y2="181" class="l sa w1"/>
+<line x1="142" y1="211" x2="172" y2="184" class="l sa w1"/>
+<rect x="174" y="164" width="126" height="34" class="fok sok" stroke-width="1.5"/>
+<text x="237" y="185.5" class="tb" text-anchor="middle">結果をまとめる</text>
+<line x1="60" y1="234" x2="300" y2="234" class="l w1"/>
+<line x1="60" y1="230" x2="60" y2="238" class="l w1"/>
+<line x1="140" y1="230" x2="140" y2="238" class="l w1"/>
+<line x1="300" y1="230" x2="300" y2="238" class="l w1"/>
+<text x="60" y="252" text-anchor="middle">0</text>
+<text x="140" y="252" text-anchor="middle">4</text>
+<text x="300" y="252" text-anchor="end">12</text>
+<text x="180" y="272" class="tm" text-anchor="middle">横軸：かかる時間（時間）</text>
+<line x1="12" y1="286" x2="308" y2="286" class="l sb w1"/>
+<text x="12" y="308" class="tb">12時間 → 3台なら約4時間</text>
+<text x="12" y="327" class="tm">（分ける・まとめる手間で少し延びる）</text>
+<text x="12" y="353" class="tb">代表例：Hadoop</text>
+<text x="12" y="373">複数のサーバーで並列に処理し、</text>
+<text x="12" y="392">大規模なデータを高速に処理する仕組み</text>
+</svg>

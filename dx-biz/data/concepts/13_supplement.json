@@ -993,7 +993,7 @@
     "confusions": [
       { "title": "寄付・援助", "point": "BOPは援助ではなく、持続する事業として収益をあげる。" }
     ],
-    "figures": ["fig-dx-bop"],
+    "figures": ["fig-dx-bop-business"],
     "sources": [
       { "title": "JICAバングラデシュ事務所「次世代のBOPビジネスがやってくる!」", "url": "https://www.jica.go.jp/bangladesh/bangland/reports/report21.html" },
       { "title": "JICA「協力準備調査（BOPビジネス連携促進）募集要項」（2013年3月）", "url": "https://www.jica.go.jp/Resource/announce/notice/bop/ku57pq00001iepav-att/20130315_01_ins01.pdf" }
@@ -2099,7 +2099,7 @@
     "syllabus": ["補足", "ビジネスとDXの関連知識", "マーケティング"],
     "title": "SEO（検索エンジン最適化）",
     "oneLine": "検索エンジンにサイトの内容を理解してもらい、利用者が検索結果からサイトを見つけて訪れやすくする取り組み。Search Engine Optimization の略。",
-    "why": "名前：SEO は Search Engine Optimization の略。Googleの『検索エンジン最適化（SEO）スターターガイド』は、SEOを、検索エンジンにコンテンツを理解させ、利用者が検索からサイトを見つけてアクセスすべきか判断できるようにすることと説明し、検索で1位になる秘訣は無いとしている。費用を払って検索結果と並べて出すのはリスティング広告（検索連動型広告）で、SEOは広告枠ではない検索結果での見つけやすさを高める。生成AIの回答に引用されることを狙うのはGEO。ITパスポート試験のシラバスは、SEOをWebマーケティングの用語に挙げている。",
+    "why": "名前：SEO は Search Engine Optimization の略。Googleの『検索エンジン最適化（SEO）スターターガイド』は、SEOを、検索エンジンにコンテンツを理解させ、利用者が検索からサイトを見つけてアクセスすべきか判断できるようにすることと説明し、検索で1位になる秘訣は無いとしている。Googleは、サイトの掲載順位を上げるために金銭を受け取ることはないとも述べている（だから広告枠を買っても、広告ではない検索結果の順位は上がらない）。費用を払って検索結果と並べて出すのはリスティング広告（検索連動型広告）で、SEOは広告枠ではない検索結果での見つけやすさを高める。生成AIの回答に引用されることを狙うのはGEO。ITパスポート試験のシラバスは、SEOをWebマーケティングの用語に挙げている。",
     "links": [
       { "id": "DC-08-010", "relation": "対比" },
       { "id": "DC-02-022", "relation": "対比" },
@@ -2109,9 +2109,10 @@
     "confusions": [
       { "id": "DC-08-010", "point": "SEOは広告枠ではない検索結果での見つけやすさを高める。リスティング広告は費用を払って検索結果と並べて表示する。" }
     ],
-    "figures": ["fig-dx-web-ads"],
+    "figures": ["fig-dx-seo-listing"],
     "sources": [
       { "title": "Google 検索セントラル「検索エンジン最適化（SEO）スターター ガイド」", "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja" },
+      { "title": "Google 検索セントラル「Google の検索エンジンの仕組み、検索結果と掲載順位について」", "url": "https://developers.google.com/search/docs/fundamentals/how-search-works?hl=ja" },
       { "title": "IPA「ITパスポート試験 シラバス Ver.6.4」", "url": "https://www.ipa.go.jp/shiken/syllabus/nl10bi0000007sxy-att/syllabus_ip_ver6_4.pdf" }
     ],
     "status": "verified"
