@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-dx-basic-server-t fig-dx-basic-server-d">
+<title id="fig-dx-basic-server-t">サーバー＝頼まれた仕事をして結果を返すコンピュータ</title>
+<desc id="fig-dx-basic-server-d">上の箱はスマートフォンの買い物アプリで、頼む側（クライアント）。真ん中の箱がサーバーで、ネットワークの向こうにある。下の箱はサーバーが使うデータベース。①アプリで「在庫ある？」を押すと、その頼みがネットワークを通ってサーバーに届く。②サーバーがデータベースで在庫を調べ、残り3個と分かる。③サーバーが「残り3個」という答えをアプリに返す。何千人が同時に頼んでも、皆が同じサーバーに頼むので、同じ在庫の数を見られる。</desc>
+<text x="12" y="22" class="tl">サーバーとクライアント</text>
+<text x="12" y="44" class="tm">例：買い物アプリで在庫を確かめる</text>
+<rect x="70" y="60" width="180" height="52" class="fok sok" stroke-width="1.5" rx="8"/>
+<text x="160" y="82" class="tb" text-anchor="middle">スマートフォンのアプリ</text>
+<text x="160" y="102" class="tm" text-anchor="middle">頼む側＝クライアント</text>
+<line x1="120" y1="112" x2="120" y2="186" class="l sa w2"/>
+<polygon points="120,194 115,186 125,186" class="fa"/>
+<text x="112" y="144" class="tb ta" text-anchor="end">①頼む</text>
+<text x="112" y="164" class="ta" text-anchor="end">「在庫ある？」</text>
+<line x1="200" y1="194" x2="200" y2="120" class="l sok w2"/>
+<polygon points="200,112 195,120 205,120" class="fok sok" stroke-width="1.5"/>
+<text x="210" y="144" class="tb tok">③答える</text>
+<text x="210" y="164" class="tok">「残り3個」</text>
+<text x="160" y="186" class="tm" text-anchor="middle">ネット</text>
+<rect x="70" y="196" width="180" height="52" class="fas sa" stroke-width="1.5" rx="8"/>
+<text x="160" y="218" class="tb ta" text-anchor="middle">サーバー</text>
+<text x="160" y="238" class="tm" text-anchor="middle">仕事をして結果を返す側</text>
+<line x1="160" y1="248" x2="160" y2="284" class="l sm w2"/>
+<polygon points="160,292 155,284 165,284" class="fm"/>
+<text x="172" y="274" class="tb">②在庫を調べる</text>
+<rect x="70" y="294" width="180" height="44" class="fs sm" stroke-width="1.5" rx="8"/>
+<text x="160" y="321" text-anchor="middle">データベース（在庫の数）</text>
+<line x1="12" y1="354" x2="308" y2="354" class="l sb w1"/>
+<text x="12" y="378">何千人が頼んでも、同じサーバーを見るので</text>
+<text x="12" y="400">皆が同じ在庫の数を見られる</text>
+</svg>

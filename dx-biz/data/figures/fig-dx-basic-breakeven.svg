@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-dx-basic-breakeven-t fig-dx-basic-breakeven-d">
+<title id="fig-dx-basic-breakeven-t">固定費・変動費と損益分岐点</title>
+<desc id="fig-dx-basic-breakeven-d">折れ線グラフ。横軸は1か月に売った数（個）、縦軸は金額（万円）。パン屋の例で、売値は1個300円、材料費（変動費）は1個100円、家賃・人件費（固定費）は毎月14万円。固定費は売った数に関係なく14万円の横線。総コストの線は固定費の14万円から始まり、1個売るごとに100円ずつ上がって、1,000個で24万円。売上の線は0から始まり、1個ごとに300円ずつ上がって、1,000個で30万円。2本の線は700個・21万円で交わり、ここが損益分岐点。700個より少ないと売上がコストより下で赤字、多いと黒字。1,000個売れたときの利益は30万円－24万円＝6万円。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">何個売れば、もうけが出るか</text>
+<text x="12" y="42" class="tm">売値300円・材料費1個100円・家賃など月14万円</text>
+<text x="12" y="60" class="tm">折れ線グラフ。横軸＝売った数、縦軸＝金額</text>
+<line x1="50" y1="84" x2="50" y2="290" class="l sm w1"/>
+<line x1="50" y1="290" x2="296" y2="290" class="l sm w1"/>
+<text x="44" y="294" class="tm" text-anchor="end">0</text>
+<text x="44" y="200" class="tm" text-anchor="end">14</text>
+<text x="44" y="134" class="tm" text-anchor="end">24</text>
+<text x="44" y="94" class="tm" text-anchor="end">30</text>
+<text x="56" y="82" class="tm">（万円）</text>
+<text x="218" y="308" class="tm" text-anchor="middle">700</text>
+<text x="290" y="308" class="tm" text-anchor="middle">1,000</text>
+<text x="120" y="326" class="tm" text-anchor="middle">売った数（個）</text>
+<line x1="50" y1="196.7" x2="290" y2="196.7" class="l sm w1 dsh"/>
+<text x="56" y="214" class="tm">固定費14万円（横ばい）</text>
+<line x1="50" y1="196.7" x2="290" y2="130" class="l sng w2"/>
+<line x1="50" y1="290" x2="290" y2="90" class="l sa w2"/>
+<text x="150" y="162" class="tb tng" text-anchor="end">総コスト</text>
+<text x="166" y="246" class="tb ta">売上</text>
+<line x1="218" y1="150" x2="218" y2="290" class="l sm w1 dot"/>
+<circle cx="218" cy="150" r="5" class="fa"/>
+<text x="210" y="114" class="tb" text-anchor="end">損益分岐点</text>
+<text x="210" y="132" class="tm" text-anchor="end">700個・21万円</text>
+<line x1="298" y1="90" x2="298" y2="130" class="l sok w2"/>
+<text x="306" y="82" class="tb tok" text-anchor="end">利益6万</text>
+<text x="96" y="276" class="tng">赤字</text>
+<text x="238" y="276" class="tok">黒字</text>
+<line x1="12" y1="340" x2="308" y2="340" class="l sb w1"/>
+<text x="12" y="364">1個売ると 300－100＝<tspan class="tb">200円</tspan> 残る</text>
+<text x="12" y="386">14万円÷200円＝<tspan class="tb">700個</tspan>で固定費を埋め終わる</text>
+<text x="12" y="408" class="tm">（売上と総コストが同じ＝損益分岐点）</text>
+<text x="12" y="432">1,000個なら 30万－24万＝<tspan class="tb tok">6万円</tspan>の利益</text>
+<text x="12" y="456" class="tm">総コスト＝固定費14万＋変動費100円×個数</text>
+</svg>

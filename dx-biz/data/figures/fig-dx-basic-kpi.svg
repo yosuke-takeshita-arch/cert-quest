@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-dx-basic-kpi-t fig-dx-basic-kpi-d">
+<title id="fig-dx-basic-kpi-t">KGI（最後の目標）と KPI（途中の数）</title>
+<desc id="fig-dx-basic-kpi-d">上の箱が KGI で、パン屋の最後の目標「月の売上30万円」。売上は来店客数×客単価に分けられるので、その下に KPI の箱を2つ置く。左は来店客数の目標で月1,000人、右は客単価（1人が1回に買う額）の目標で300円。1,000×300＝30万円で、KPI を2つとも達成すると KGI に届く。下の段は使い方の例。売上が24万円しかなかった月に KPI を見ると、客単価は300円で目標どおりだが、来店客数が800人で200人足りない。800×300＝24万円。だから手を打つのは客数のほう（チラシやSNSで来店を増やす）と分かる。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">KGI と KPI</text>
+<text x="12" y="44" class="tm">例：パン屋の目標（数は例）</text>
+<rect x="60" y="58" width="200" height="56" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="80" class="tb ta" text-anchor="middle">KGI＝最後の目標</text>
+<text x="160" y="102" class="tb" text-anchor="middle">月の売上 30万円</text>
+<line x1="160" y1="114" x2="160" y2="128" class="l sm w1"/>
+<line x1="80" y1="128" x2="240" y2="128" class="l sm w1"/>
+<line x1="80" y1="128" x2="80" y2="140" class="l sm w1"/>
+<line x1="240" y1="128" x2="240" y2="140" class="l sm w1"/>
+<rect x="12" y="142" width="136" height="70" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="80" y="164" class="tb tok" text-anchor="middle">KPI ①</text>
+<text x="80" y="184" text-anchor="middle">来店客数</text>
+<text x="80" y="204" class="tb" text-anchor="middle">月1,000人</text>
+<text x="160" y="184" class="tb" text-anchor="middle">×</text>
+<rect x="172" y="142" width="136" height="70" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="240" y="164" class="tb tok" text-anchor="middle">KPI ②</text>
+<text x="240" y="184" text-anchor="middle">客単価</text>
+<text x="240" y="204" class="tb" text-anchor="middle">300円</text>
+<text x="12" y="234" class="tm">客単価＝1人が1回に買う額</text>
+<text x="12" y="254">1,000人×300円＝30万円（KGI に届く）</text>
+<line x1="12" y1="270" x2="308" y2="270" class="l sb w1"/>
+<text x="12" y="294" class="tb">使い方：売上が24万円の月</text>
+<text x="12" y="318">客単価 300円 → 目標どおり</text>
+<text x="12" y="340">来店客数 <tspan class="tb tng">800人</tspan> → 200人足りない</text>
+<text x="12" y="362" class="tm">800人×300円＝24万円</text>
+<text x="12" y="388" class="tb">→ 手を打つのは客数のほう</text>
+<text x="12" y="408" class="tm">（チラシやSNSで来店を増やす）</text>
+</svg>

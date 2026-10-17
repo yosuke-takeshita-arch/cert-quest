@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 430" role="img" aria-labelledby="fig-dx-basic-encryption-t fig-dx-basic-encryption-d">
+<title id="fig-dx-basic-encryption-t">暗号化と復号</title>
+<desc id="fig-dx-basic-encryption-d">上から下へ、文が送られる流れ。送る人の「会議は3時」という文を、鍵を使って暗号化すると「Xq7#pL2w」のような意味の分からない文字の並びになり、その形でネットワークを流れる。途中で盗み見た人は鍵を持っていないので読めない（右の赤い枠）。受け取った人は、対応する鍵で復号して、元の「会議は3時」に戻す。文字の並びは説明のための例。</desc>
+<text x="12" y="22" class="tl">暗号化と復号</text>
+<text x="12" y="44" class="tm">例：文をネットで送る（文字の並びは例）</text>
+<rect x="12" y="58" width="176" height="44" class="fok sok" stroke-width="1.5" rx="8"/>
+<text x="100" y="78" class="tm" text-anchor="middle">送る人</text>
+<text x="100" y="96" class="tb" text-anchor="middle">「会議は3時」</text>
+<line x1="100" y1="102" x2="100" y2="146" class="l sa w2"/>
+<polygon points="100,154 95,146 105,146" class="fa"/>
+<text x="112" y="132" class="tb ta">鍵で暗号化</text>
+<rect x="12" y="156" width="176" height="44" class="fas sa" stroke-width="1.5" rx="8"/>
+<text x="100" y="176" class="tm" text-anchor="middle">ネットを流れる形</text>
+<text x="100" y="194" class="tb ta" text-anchor="middle">Xq7#pL2w</text>
+<line x1="188" y1="178" x2="212" y2="178" class="l sng w1 dsh"/>
+<rect x="214" y="150" width="94" height="58" class="fng sng" stroke-width="1.5" rx="8"/>
+<text x="261" y="172" class="tng" text-anchor="middle">盗み見た人</text>
+<text x="261" y="190" class="tb tng" text-anchor="middle">鍵が無い</text>
+<text x="261" y="204" class="tng" text-anchor="middle">→読めない</text>
+<line x1="100" y1="200" x2="100" y2="244" class="l sok w2"/>
+<polygon points="100,252 95,244 105,244" class="fok sok" stroke-width="1.5"/>
+<text x="112" y="230" class="tb tok">鍵で復号（元に戻す）</text>
+<rect x="12" y="254" width="176" height="44" class="fok sok" stroke-width="1.5" rx="8"/>
+<text x="100" y="274" class="tm" text-anchor="middle">受け取る人</text>
+<text x="100" y="292" class="tb" text-anchor="middle">「会議は3時」</text>
+<line x1="12" y1="316" x2="308" y2="316" class="l sb w1"/>
+<text x="12" y="340" class="tb">鍵の持ち方は2通り</text>
+<text x="12" y="362">共通鍵：送る人と受け取る人が同じ鍵</text>
+<text x="12" y="384">公開鍵：閉める鍵は公開、開ける鍵は秘密</text>
+<text x="12" y="412" class="tm">見られても中身が分からないようにする技術</text>
+</svg>
