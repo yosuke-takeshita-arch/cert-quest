@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-g-basic-parameter-t fig-g-basic-parameter-d">
+<title id="fig-g-basic-parameter-t">パラメータ＝学習で決まる、モデルの中の数</title>
+<desc id="fig-g-basic-parameter-d">家賃を広さから予測するモデルの例。ことばの式は、家賃（万円）＝ w × 広さ（平方メートル）＋ b。wは広さに掛ける数（重み）、bは最後に足す数（バイアス）で、この2つがパラメータ。w＝0.2、b＝2 のとき、30平方メートルの部屋は 0.2×30＝6、6＋2＝8 で、予測は8万円。実際の家賃が9万円なら1万円ずれているので、学習ではこのずれが小さくなるよう w と b を少しずつ直す。下の段は、学習で決まるパラメータと、学習の前に人が決めるハイパーパラメータ（学習率、何周学習するか、層の数など）の違い。ディープラーニングのモデルは、このような数を何百万個以上も持つ。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">パラメータ＝モデルの中の調整する数</text>
+<text x="12" y="44" class="tm">例：広さから家賃を予測する（数は例）</text>
+<text x="12" y="72" class="tb">家賃 ＝ <tspan class="ta">w</tspan> × 広さ ＋ <tspan class="twn">b</tspan></text>
+<text x="12" y="94"><tspan class="tb ta">w＝重み</tspan>（広さに掛ける数）</text>
+<text x="12" y="114"><tspan class="tb twn">b＝バイアス</tspan>（最後に足す数）</text>
+<rect x="12" y="132" width="64" height="44" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="44" y="152" class="tm" text-anchor="middle">広さ</text>
+<text x="44" y="170" class="tb" text-anchor="middle">30㎡</text>
+<line x1="76" y1="154" x2="94" y2="154" class="l sm w2"/>
+<polygon points="100,154 93,150 93,158" class="fm"/>
+<rect x="102" y="132" width="64" height="44" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="134" y="152" class="tm" text-anchor="middle">×w</text>
+<text x="134" y="170" class="tb ta" text-anchor="middle">×0.2</text>
+<line x1="166" y1="154" x2="182" y2="154" class="l sm w2"/>
+<polygon points="188,154 181,150 181,158" class="fm"/>
+<rect x="190" y="132" width="52" height="44" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="216" y="152" class="tm" text-anchor="middle">＋b</text>
+<text x="216" y="170" class="tb twn" text-anchor="middle">＋2</text>
+<line x1="242" y1="154" x2="256" y2="154" class="l sm w2"/>
+<polygon points="262,154 255,150 255,158" class="fm"/>
+<text x="266" y="152" class="tm">予測</text>
+<text x="266" y="170" class="tb tok">8万円</text>
+<text x="12" y="202">0.2×30＝6、6＋2＝8（万円）</text>
+<text x="12" y="226">実際が9万円なら、1万円ずれている</text>
+<text x="12" y="248" class="tb">→ ずれが小さくなるよう w と b を直す</text>
+<text x="12" y="268" class="tm">（これが学習。w と b がパラメータ）</text>
+<line x1="12" y1="286" x2="308" y2="286" class="l sb w1"/>
+<rect x="12" y="300" width="296" height="80" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="324" class="tb ta">パラメータ</text>
+<text x="24" y="346">学習が決める（重み・バイアス）</text>
+<text x="24" y="368" class="tm">データに合わせて自動で直される</text>
+<rect x="12" y="392" width="296" height="80" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="416" class="tb twn">ハイパーパラメータ</text>
+<text x="24" y="438">学習の前に人が決める</text>
+<text x="24" y="460" class="tm">学習率・何周学ぶか・層の数など</text>
+<text x="12" y="500" class="tm">ディープラーニングでは何百万個以上</text>
+</svg>

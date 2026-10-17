@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-g-basic-channel-t fig-g-basic-channel-d">
+<title id="fig-g-basic-channel-t">チャネル＝重ねた表の1枚1枚</title>
+<desc id="fig-g-basic-channel-d">左はカラー画像。赤・緑・青の明るさの表が3枚重なっていて、3チャネル。真ん中は畳み込み層のフィルタ。フィルタを4個用意すると、1個のフィルタが3チャネル全部をまとめて見て1枚の地図（特徴マップ）を出すので、出力は4枚、つまり4チャネルになる。右は出力の4枚で、それぞれが別の模様（例：縦線、横線、斜め、色の境目）をどこで見つけたかを表す。入力のチャネルの数は画像の色の数、出力のチャネルの数はフィルタの数で決まる。32ch は32チャネルの意味。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">チャネル＝重ねた表の1枚1枚</text>
+<text x="12" y="44" class="tm">ch と略す（32ch＝32チャネル）。数は例</text>
+<rect x="36" y="76" width="56" height="56" class="fs sm" stroke-width="1.5"/>
+<rect x="26" y="86" width="56" height="56" class="fs sm" stroke-width="1.5"/>
+<rect x="16" y="96" width="56" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="44" y="129" class="tb" text-anchor="middle">赤</text>
+<text x="54" y="176" class="tb ta" text-anchor="middle">入力 3ch</text>
+<text x="54" y="196" class="tm" text-anchor="middle">赤・緑・青</text>
+<line x1="100" y1="118" x2="122" y2="118" class="l sm w2"/>
+<polygon points="128,118 121,114 121,122" class="fm"/>
+<rect x="134" y="92" width="52" height="52" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="160" y="114" class="tb twn" text-anchor="middle">フィルタ</text>
+<text x="160" y="134" class="tb twn" text-anchor="middle">4個</text>
+<line x1="192" y1="118" x2="214" y2="118" class="l sm w2"/>
+<polygon points="220,118 213,114 213,122" class="fm"/>
+<rect x="256" y="66" width="48" height="48" class="fs sm" stroke-width="1.5"/>
+<rect x="246" y="76" width="48" height="48" class="fs sm" stroke-width="1.5"/>
+<rect x="236" y="86" width="48" height="48" class="fs sm" stroke-width="1.5"/>
+<rect x="226" y="96" width="48" height="48" class="fok sok" stroke-width="1.5"/>
+<text x="250" y="176" class="tb tok" text-anchor="middle">出力 4ch</text>
+<text x="250" y="196" class="tm" text-anchor="middle">特徴マップ4枚</text>
+<line x1="12" y1="216" x2="308" y2="216" class="l sb w1"/>
+<text x="12" y="242">フィルタ1個が入力の3枚をまとめて見て、</text>
+<text x="12" y="264">地図（特徴マップ）を1枚出す</text>
+<text x="12" y="288" class="tm">1枚目は縦線、2枚目は横線…と、</text>
+<text x="12" y="308" class="tm">模様ごとに別の1枚</text>
+<line x1="12" y1="324" x2="308" y2="324" class="l sb w1"/>
+<text x="12" y="348"><tspan class="tb ta">入力のチャネル数</tspan>＝色の数（白黒は1）</text>
+<text x="12" y="372"><tspan class="tb tok">出力のチャネル数</tspan>＝フィルタの数</text>
+</svg>
