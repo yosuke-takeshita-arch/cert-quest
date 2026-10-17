@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 552" role="img" aria-labelledby="fig-g-correlation-t fig-g-correlation-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 598" role="img" aria-labelledby="fig-g-correlation-t fig-g-correlation-d">
 <title id="fig-g-correlation-t">散布図と相関係数：強さ・向き・曲線の落とし穴</title>
-<desc id="fig-g-correlation-d">5つの散布図。強い正の相関は右上がりの直線状で相関係数は約1。正の相関は右上がりでややばらつき、約0.7。無相関は点がばらばらで約0。負の相関は右下がりで約−0.7。最後は、Yが Xの2乗でXが左右対称のとき、点は放物線に並んで関係は強いのに、相関係数は0になる。相関係数は直線的な関係だけを測る。単位を変えても相関係数は変わらず、共分散は変わる。相互情報量は曲がった関係も含めて依存の強さを表し、独立のときだけ0になる。</desc>
+<desc id="fig-g-correlation-d">散布図は、1つの点が1件のデータで、横軸に X の値、縦軸に Y の値をとって点を打ったグラフ。5つの散布図。強い正の相関は右上がりの直線状で相関係数は約1。正の相関は右上がりでややばらつき、約0.7。無相関は点がばらばらで約0。負の相関は右下がりで約−0.7。最後は、Yが Xの2乗でXが左右対称のとき、点は放物線に並んで関係は強いのに、相関係数は0になる。相関係数は直線的な関係だけを測る。単位を変えても相関係数は変わらず、共分散は変わる。相互情報量は曲がった関係も含めて依存の強さを表し、独立のときだけ0になる。</desc>
+<text x="12" y="20" class="tb">5つとも散布図：点1つがデータ1件</text>
+<text x="12" y="40" class="tm">横：X の値　縦：Y の値（比べる2つの値）</text>
+<g transform="translate(0,46)">
 <text x="12" y="20" class="tb">強い正の相関</text>
 <rect x="12" y="28" width="140" height="100" class="fs sb" stroke-width="1"/>
 <circle cx="40.79" cy="113.75" r="3.6" class="fa"/>
@@ -149,4 +152,5 @@
 <text x="12" y="496" class="tb">相関係数（r）は、直線的な関係だけを測る</text>
 <text x="12" y="520">単位を変えても、相関係数は変わらない</text>
 <text x="12" y="540" class="tm">（共分散は変わる）</text>
+</g>
 </svg>

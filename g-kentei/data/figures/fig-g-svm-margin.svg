@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 584" role="img" aria-labelledby="fig-g-svm-margin-t fig-g-svm-margin-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 606" role="img" aria-labelledby="fig-g-svm-margin-t fig-g-svm-margin-d">
 <title id="fig-g-svm-margin-t">SVM のマージン最大化と、ソフトマージン</title>
-<desc id="fig-g-svm-margin-d">2クラス（丸と×）を分ける直線と、その両側に平行な破線2本。破線までの幅がマージンで、破線上の点がサポートベクター。SVM はこのマージンが最大になる境界を選ぶ。マージンの狭い境界でも分けられるが、余裕が小さい。下の図はソフトマージン。破線の内側や反対側にはみ出した点には、はみ出し量（スラック変数ξ）に応じた罰則がかかる。Cを大きくするとはみ出しを許さず訓練データを全部正しく分けようとし、Cを小さくするとはみ出しを許して境界はなめらかになる。</desc>
+<desc id="fig-g-svm-margin-d">①②とも散布図で、横と縦は2つの特徴量、点1つがデータ1件。2クラス（丸と×）を分ける直線と、その両側に平行な破線2本。破線までの幅がマージンで、破線上の点がサポートベクター。SVM はこのマージンが最大になる境界を選ぶ。マージンの狭い境界でも分けられるが、余裕が小さい。下の図はソフトマージン。破線の内側や反対側にはみ出した点には、はみ出し量（スラック変数ξ）に応じた罰則がかかる。Cを大きくするとはみ出しを許さず訓練データを全部正しく分けようとし、Cを小さくするとはみ出しを許して境界はなめらかになる。</desc>
 <text x="12" y="20" class="tb">① ハードマージン：余裕が最大の境界</text>
 <rect x="12" y="32" width="296" height="170" class="sb" stroke-width="1"/>
 <line x1="58.16" y1="127.57" x2="248" y2="64.66" class="l sm w1 dsh"/>
@@ -40,6 +40,8 @@
 <polygon points="94.23,115.62 98.58,119.23 92.89,121.12" class="fng"/>
 <text x="109.15" y="158.5" class="tb tng">マージン</text>
 <text x="16" y="52" class="tm">○と× ＝2つのクラス</text>
+<text x="12" y="224" class="tm">散布図：横・縦は2つの特徴量。点1つが1件</text>
+<g transform="translate(0,22)">
 <text x="12" y="224">太い線：境界。破線：マージンの縁</text>
 <text x="12" y="244" class="tb tng">赤い輪の点＝サポートベクター</text>
 <text x="12" y="264" class="tm">点線：マージンが狭く、余裕の小さい境界</text>
@@ -86,4 +88,5 @@
 <text x="12" y="532" class="tb">C ＝はみ出しへの罰則の強さ</text>
 <text x="12" y="552">C 大：はみ出しを許さず、全部正しく分ける</text>
 <text x="12" y="572">C 小：はみ出しを許し、境界はなめらか</text>
+</g>
 </svg>

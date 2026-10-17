@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 530" role="img" aria-labelledby="fig-g-pca-t fig-g-pca-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 552" role="img" aria-labelledby="fig-g-pca-t fig-g-pca-d">
 <title id="fig-g-pca-t">主成分分析：ばらつきの大きい方向に軸をとる</title>
-<desc id="fig-g-pca-d">斜めに細長く広がった2次元の点の集まり。点が最も広がる方向に第1主成分の軸、それに直交する方向に第2主成分の軸をとる。点を第1主成分の軸の上に落とすと、2次元のデータが1次元になる（次元削減）。第1主成分は、分散が最大の方向である。下に、t-SNE（非線形で近い点の関係を保ち、可視化向き）、MDS（点の間の距離が保たれるよう配置）、SVD（行列を3つの行列の積に分ける）を一行ずつ対比する。</desc>
+<desc id="fig-g-pca-d">①は散布図で、横軸が変数1、縦軸が変数2、点1つがデータ1件。斜めに細長く広がった2次元の点の集まり。点が最も広がる方向に第1主成分の軸、それに直交する方向に第2主成分の軸をとる。点を第1主成分の軸の上に落とすと、2次元のデータが1次元になる（次元削減）。第1主成分は、分散が最大の方向である。下に、t-SNE（非線形で近い点の関係を保ち、可視化向き）、MDS（点の間の距離が保たれるよう配置）、SVD（行列を3つの行列の積に分ける）を一行ずつ対比する。</desc>
 <text x="12" y="20" class="tb">① 点が広がる方向に軸をとる</text>
 <rect x="12" y="32" width="296" height="190" class="sb" stroke-width="1"/>
 <line x1="131.32" y1="157.81" x2="127.6" y2="153.41" class="l sm w1 dot"/>
@@ -63,6 +63,8 @@
 <text x="188" y="210" class="tb ta">第1主成分</text>
 <text x="124.29" y="92.88" class="tb twn" text-anchor="end">第2主成分</text>
 <text x="18" y="52" class="tm">点線：第1主成分へ落とす</text>
+<text x="12" y="240" class="tm">散布図：横＝変数1、縦＝変数2。点1つが1件</text>
+<g transform="translate(0,22)">
 <text x="12" y="250" class="tb">② 第1主成分の軸の上に並べる（1次元）</text>
 <line x1="30" y1="282" x2="290" y2="282" class="l sa w2"/>
 <circle cx="95.58" cy="282" r="4.5" class="fs sa" stroke-width="1.8"/>
@@ -102,4 +104,5 @@
 <text x="12" y="476" class="tm">　　　（主に可視化）</text>
 <text x="12" y="498">MDS：点の間の距離を保って配置</text>
 <text x="12" y="518">SVD：行列を3つの行列の積に分ける</text>
+</g>
 </svg>

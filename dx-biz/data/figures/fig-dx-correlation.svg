@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 608" role="img" aria-labelledby="fig-dx-correlation-t fig-dx-correlation-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 630" role="img" aria-labelledby="fig-dx-correlation-t fig-dx-correlation-d">
 <title id="fig-dx-correlation-t">相関と疑似相関</title>
-<desc id="fig-dx-correlation-d">上：散布図の4つの形。点が右上がりにそろえば正の相関、右下がりなら負の相関、ばらばらなら相関なし。曲線状に並ぶ点は、相関係数が0に近くても関係がある例で、相関係数は直線状の関係を測る尺度なので散布図も描いて確かめる。相関係数は-1から1の値をとり、絶対値が1に近いほど強い相関。下：因果の図。暑さ（気温）が、アイスの販売数と溺死数の両方を増やす。アイスの販売数と溺死数には高い相関があるが、一方が原因ではない。このように、直接の関係がないのに相関があるように見えることを疑似相関という。相関関係と因果関係は別の概念。</desc>
+<desc id="fig-dx-correlation-d">散布図は、点1つが1件のデータで、横と縦に比べる2つの値をとって点を打ったグラフ。上：散布図の4つの形。点が右上がりにそろえば正の相関、右下がりなら負の相関、ばらばらなら相関なし。曲線状に並ぶ点は、相関係数が0に近くても関係がある例で、相関係数は直線状の関係を測る尺度なので散布図も描いて確かめる。相関係数は-1から1の値をとり、絶対値が1に近いほど強い相関。下：因果の図。暑さ（気温）が、アイスの販売数と溺死数の両方を増やす。アイスの販売数と溺死数には高い相関があるが、一方が原因ではない。このように、直接の関係がないのに相関があるように見えることを疑似相関という。相関関係と因果関係は別の概念。</desc>
 <text x="12" y="22" class="tb">散布図で見る（イメージ）</text>
+<text x="12" y="44" class="tm">点1つがデータ1件。横・縦＝比べる2つの値</text>
+<g transform="translate(0,22)">
 <text x="12" y="46" class="tb">正の相関</text>
 <rect x="12" y="54" width="146" height="98" class="fs sb" stroke-width="1"/>
 <circle cx="34" cy="135.4" r="3.2" class="fa"/>
@@ -64,4 +66,5 @@
 <line x1="136" y1="530" x2="184" y2="530" class="l sng w2 dsh"/>
 <text x="12" y="576" class="tb">点線：相関は高いが、一方が原因ではない</text>
 <text x="12" y="596" class="tm">（疑似相関＝見せかけの相関）</text>
+</g>
 </svg>

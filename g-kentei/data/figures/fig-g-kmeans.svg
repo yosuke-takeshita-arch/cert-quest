@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 472" role="img" aria-labelledby="fig-g-kmeans-t fig-g-kmeans-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 516" role="img" aria-labelledby="fig-g-kmeans-t fig-g-kmeans-d">
 <title id="fig-g-kmeans-t">k-means 法の繰り返し：割り当てと中心の更新</title>
-<desc id="fig-g-kmeans-d">k が3の例を4コマで示す。1コマ目は、点をばらまいて初期の中心を3つ置く。2コマ目は、各点を最も近い中心のグループに分ける。3コマ目は、各グループの点の平均の位置へ中心を動かす（動く前の位置は点線で残す）。4コマ目は、動いた中心で点を割り当て直す。この2つの手順を、割り当てが変わらなくなるまで繰り返す。k は事前に決める必要があり、最初の中心の置き方で結果が変わる。</desc>
+<desc id="fig-g-kmeans-d">4コマとも散布図で、横と縦はデータの2つの特徴量、点1つがデータ1件。k が3の例を4コマで示す。1コマ目は、点をばらまいて初期の中心を3つ置く。2コマ目は、各点を最も近い中心のグループに分ける。3コマ目は、各グループの点の平均の位置へ中心を動かす（動く前の位置は点線で残す）。4コマ目は、動いた中心で点を割り当て直す。この2つの手順を、割り当てが変わらなくなるまで繰り返す。k は事前に決める必要があり、最初の中心の置き方で結果が変わる。</desc>
 <text x="12" y="28" class="tb">① 中心を置く</text>
 <rect x="12" y="36" width="148" height="120" class="sb" stroke-width="1"/>
 <circle cx="35.56" cy="74" r="4" class="fm"/>
@@ -102,6 +102,9 @@
 <polygon points="257.79,255.33 266.79,264.33 257.79,273.33 248.79,264.33" class="ft sa" stroke-width="2.5"/>
 <polygon points="236,220.43 245,229.43 236,238.43 227,229.43" class="ft sok" stroke-width="2.5"/>
 <polygon points="207.55,268.6 216.55,277.6 207.55,286.6 198.55,277.6" class="ft swn" stroke-width="2.5"/>
+<text x="12" y="340" class="tm">4コマとも散布図：点1つがデータ1件</text>
+<text x="12" y="360" class="tm">横・縦＝データの2つの特徴量</text>
+<g transform="translate(0,44)">
 <text x="12" y="340" class="tb">◆ ＝中心。形と線の色が同じ中心のグループ</text>
 <text x="12" y="364">②と③をくり返し、割り当てが</text>
 <text x="12" y="384">変わらなくなったら終わり</text>
@@ -109,4 +112,5 @@
 <text x="12" y="420" class="tb">k は事前に決める</text>
 <text x="12" y="440">最初の中心の置き方で結果が変わる</text>
 <text x="12" y="460">階層をつくらない（非階層型）</text>
+</g>
 </svg>
