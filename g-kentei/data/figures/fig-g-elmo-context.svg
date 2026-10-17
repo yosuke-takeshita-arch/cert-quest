@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-g-elmo-context-t fig-g-elmo-context-d">
+<title id="fig-g-elmo-context-t">ELMo は文脈で単語のベクトルが変わる（word2vec との違い）</title>
+<desc id="fig-g-elmo-context-d">同じ英単語 play を2つの文で比べる。文Aは野球で見事な play（好プレー）、文Bはブロードウェイの play（劇）。ELMo の論文の表4の文を短くした例。①word2vec は1つの単語に1つの固定ベクトルを持ち、表から play の行を引くだけで文は見ないので、文Aの play と文Bの play は同じベクトルになり、好プレーと劇を区別できない。②ELMo は、文を前から読む LSTM と後ろから読む LSTM の中身（内部状態）から、その場でベクトルを作るので、文Aの play と文Bの play は別のベクトルになり、多義語を区別できる。誤りの文『ELMo は文脈によらず各単語に1つの固定ベクトルを割り当てる』は、word2vec の性質を言っている。棒の高さは説明のための例。</desc>
+<text x="12" y="22" class="tl">ELMo は文脈でベクトルが変わる</text>
+<text x="12" y="42" class="tm">同じ英単語 play を、2つの文で比べる</text>
+<rect x="12" y="55" width="12" height="12" class="fas sa" stroke-width="1"/>
+<text x="30" y="66">文A：野球で見事な play（好プレー）</text>
+<rect x="12" y="77" width="12" height="12" class="fwn swn" stroke-width="1"/>
+<text x="30" y="88">文B：ブロードウェイの play（劇）</text>
+<text x="12" y="108" class="tm">（ELMo の論文の表4の文を短くした例）</text>
+<line x1="12" y1="122" x2="308" y2="122" class="l sb w1"/>
+<text x="12" y="148" class="tb">①word2vec：1単語に1つの固定ベクトル</text>
+<text x="12" y="166" class="tm">表から play の行を引くだけ。文は見ない</text>
+<line x1="40" y1="232" x2="130" y2="232" class="l sm w1"/>
+<rect x="46" y="212" width="12" height="20" class="fas sa" stroke-width="1"/>
+<rect x="62" y="224" width="12" height="8" class="fas sa" stroke-width="1"/>
+<rect x="78" y="198" width="12" height="34" class="fas sa" stroke-width="1"/>
+<rect x="94" y="214" width="12" height="18" class="fas sa" stroke-width="1"/>
+<rect x="110" y="190" width="12" height="42" class="fas sa" stroke-width="1"/>
+<text x="85" y="250" class="tm" text-anchor="middle">文A の play</text>
+<text x="160" y="220" class="tl" text-anchor="middle">＝</text>
+<line x1="190" y1="232" x2="280" y2="232" class="l sm w1"/>
+<rect x="196" y="212" width="12" height="20" class="fwn swn" stroke-width="1"/>
+<rect x="212" y="224" width="12" height="8" class="fwn swn" stroke-width="1"/>
+<rect x="228" y="198" width="12" height="34" class="fwn swn" stroke-width="1"/>
+<rect x="244" y="214" width="12" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="260" y="190" width="12" height="42" class="fwn swn" stroke-width="1"/>
+<text x="235" y="250" class="tm" text-anchor="middle">文B の play</text>
+<text x="12" y="276" class="tb tng">→ 同じ棒の形。好プレーと劇を区別できない</text>
+<line x1="12" y1="294" x2="308" y2="294" class="l sb w1"/>
+<text x="12" y="320" class="tb">②ELMo：文脈で変わるベクトル</text>
+<text x="12" y="340" class="tm">文を前から読む LSTM と後ろから読む LSTM</text>
+<text x="12" y="358" class="tm">の中身（内部状態）から、その場で作る</text>
+<line x1="40" y1="426" x2="130" y2="426" class="l sm w1"/>
+<rect x="46" y="398" width="12" height="28" class="fas sa" stroke-width="1"/>
+<rect x="62" y="418" width="12" height="8" class="fas sa" stroke-width="1"/>
+<rect x="78" y="404" width="12" height="22" class="fas sa" stroke-width="1"/>
+<rect x="94" y="390" width="12" height="36" class="fas sa" stroke-width="1"/>
+<rect x="110" y="414" width="12" height="12" class="fas sa" stroke-width="1"/>
+<text x="85" y="444" class="tm" text-anchor="middle">文A の play</text>
+<text x="160" y="414" class="tl" text-anchor="middle">≠</text>
+<line x1="190" y1="426" x2="280" y2="426" class="l sm w1"/>
+<rect x="196" y="416" width="12" height="10" class="fwn swn" stroke-width="1"/>
+<rect x="212" y="392" width="12" height="34" class="fwn swn" stroke-width="1"/>
+<rect x="228" y="412" width="12" height="14" class="fwn swn" stroke-width="1"/>
+<rect x="244" y="418" width="12" height="8" class="fwn swn" stroke-width="1"/>
+<rect x="260" y="386" width="12" height="40" class="fwn swn" stroke-width="1"/>
+<text x="235" y="444" class="tm" text-anchor="middle">文B の play</text>
+<text x="12" y="470" class="tb tok">→ 別の棒の形。多義語を区別できる</text>
+<line x1="12" y1="488" x2="308" y2="488" class="l sb w1"/>
+<text x="12" y="512" class="tb tng">誤りの文：『ELMo は文脈によらず固定』</text>
+<text x="12" y="532">固定なのは word2vec。ELMo はそれを解いた側</text>
+<text x="12" y="558" class="tm">（棒の高さは説明のための例）</text>
+</svg>

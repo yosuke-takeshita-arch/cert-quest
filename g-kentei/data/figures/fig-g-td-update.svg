@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 624" role="img" aria-labelledby="fig-g-td-update-t fig-g-td-update-d">
+<title id="fig-g-td-update-t">TD(0) で状態価値 V(s) を直す計算（V(s)＝5、r＝2、V(s′)＝10）</title>
+<desc id="fig-g-td-update-d">V はその状態の良さの見積もり。①1歩進んだ場面：いまの状態 s の見積もり V(s)＝5、行動して報酬 r＝2 をもらい、次の状態 s′ に着いた。次の状態の見積もり V(s′)＝10。割引率 γ＝0.9、学習率 α＝0.1。②3つの手順。手順1は目標を作る。目標＝報酬＋割引率×次の見積もり＝2＋0.9×10＝2＋9＝11。手順2はずれ（TD誤差）を測る。ずれ＝目標−いまの見積もり＝11−5＝6。手順3はずれの一部だけ動く。新しい V(s)＝いまの見積もり＋学習率×ずれ＝5＋0.1×6＝5＋0.6＝5.6。③数直線：4から12の目盛りに、いまの5、新しい見積もり5.6、目標11を示す。目標へ一気に飛ばず、ずれの1割だけ近づく。④ほかの選択肢の間違え方：5.2 は報酬だけで直した（5＋0.1×2）。5.7 は割引率を掛け忘れて目標を12にした（5＋0.1×7）。11.0 は目標まで一気に動いた。数は問題の数。</desc>
+<text x="12" y="22" class="tl">TD(0)：見積もりを数で直す</text>
+<text x="12" y="42" class="tm">V＝その状態の良さの見積もり（問題の数）</text>
+<text x="12" y="68" class="tb">①1歩進んだ場面</text>
+<circle cx="60" cy="104" r="22" class="fas sa" stroke-width="1.5"/>
+<text x="60" y="109" class="tb ta" text-anchor="middle">s</text>
+<circle cx="256" cy="104" r="22" class="fwn swn" stroke-width="1.5"/>
+<text x="256" y="109" class="tb twn" text-anchor="middle">s'</text>
+<line x1="84" y1="104" x2="230" y2="104" class="l sm w1"/>
+<polyline points="224,99 230,104 224,109" class="l sm w1"/>
+<text x="157" y="96" class="tb" text-anchor="middle">報酬 r＝2</text>
+<text x="60" y="146" class="ta" text-anchor="middle">いま V(s)＝5</text>
+<text x="256" y="146" class="twn" text-anchor="middle">次 V(s')＝10</text>
+<text x="12" y="170" class="tm">割引率 γ＝0.9、学習率 α＝0.1</text>
+<line x1="12" y1="184" x2="308" y2="184" class="l sb w1"/>
+<text x="12" y="208" class="tb">②3つの手順</text>
+<text x="12" y="230" class="tb">手順1　目標を作る</text>
+<text x="12" y="250">目標＝報酬＋割引率×次の見積もり</text>
+<text x="12" y="270">　　＝2＋0.9×10＝2＋9＝11</text>
+<text x="12" y="296" class="tb">手順2　ずれ（TD誤差）を測る</text>
+<text x="12" y="316">ずれ＝目標−いまの見積もり＝11−5＝6</text>
+<text x="12" y="342" class="tb">手順3　ずれの一部だけ動く</text>
+<text x="12" y="362">新しい V(s)＝いま＋学習率×ずれ</text>
+<text x="12" y="382" class="tb tok">　　＝5＋0.1×6＝5＋0.6＝5.6</text>
+<line x1="12" y1="398" x2="308" y2="398" class="l sb w1"/>
+<text x="12" y="422" class="tb">③数直線で見る</text>
+<line x1="24" y1="470" x2="296" y2="470" class="l sm w1"/>
+<line x1="24" y1="466" x2="24" y2="474" class="l sm w1"/>
+<line x1="58" y1="466" x2="58" y2="474" class="l sm w1"/>
+<line x1="92" y1="466" x2="92" y2="474" class="l sm w1"/>
+<line x1="126" y1="466" x2="126" y2="474" class="l sm w1"/>
+<line x1="160" y1="466" x2="160" y2="474" class="l sm w1"/>
+<line x1="194" y1="466" x2="194" y2="474" class="l sm w1"/>
+<line x1="228" y1="466" x2="228" y2="474" class="l sm w1"/>
+<line x1="262" y1="466" x2="262" y2="474" class="l sm w1"/>
+<line x1="296" y1="466" x2="296" y2="474" class="l sm w1"/>
+<text x="24" y="490" class="tm" text-anchor="middle">4</text>
+<text x="58" y="490" class="tm" text-anchor="middle">5</text>
+<text x="92" y="490" class="tm" text-anchor="middle">6</text>
+<text x="126" y="490" class="tm" text-anchor="middle">7</text>
+<text x="160" y="490" class="tm" text-anchor="middle">8</text>
+<text x="194" y="490" class="tm" text-anchor="middle">9</text>
+<text x="228" y="490" class="tm" text-anchor="middle">10</text>
+<text x="262" y="490" class="tm" text-anchor="middle">11</text>
+<text x="296" y="490" class="tm" text-anchor="middle">12</text>
+<line x1="78.4" y1="462" x2="262" y2="462" class="l swn w1 dsh"/>
+<line x1="58" y1="462" x2="74" y2="462" class="l sok w2"/>
+<circle cx="58" cy="470" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="78.4" cy="470" r="5" class="fok sok" stroke-width="2"/>
+<circle cx="262" cy="470" r="5" class="fwn swn" stroke-width="2"/>
+<text x="54" y="450" class="ta" text-anchor="end">いま 5</text>
+<text x="70" y="440" class="tb tok">新しい 5.6</text>
+<text x="262" y="450" class="twn" text-anchor="middle">目標 11</text>
+<text x="12" y="514" class="tm">目標へ一気に飛ばず、ずれ6の1割（0.6）だけ動く</text>
+<line x1="12" y1="528" x2="308" y2="528" class="l sb w1"/>
+<text x="12" y="552" class="tb">④ほかの選択肢の間違え方</text>
+<text x="12" y="572">5.2：報酬だけで直した（5＋0.1×2）</text>
+<text x="12" y="592">5.7：割引率を忘れ目標を12に（5＋0.1×7）</text>
+<text x="12" y="612">11.0：目標まで一気に動いた</text>
+</svg>

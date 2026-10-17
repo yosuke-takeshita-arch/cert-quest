@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 656" role="img" aria-labelledby="fig-g-pooling-channels-t fig-g-pooling-channels-d">
+<title id="fig-g-pooling-channels-t">プーリングはチャネルごとに縮め、チャネル数は変わらない</title>
+<desc id="fig-g-pooling-channels-d">チャネルは、特徴の種類ごとの面（1枚ずつ）。①2×2 の窓・ストライド2 の最大値プーリングを、チャネルごとに別々にかける。チャネル1の4×4（1行目 1、3、2、0、2行目 4、2、1、5、3行目 0、1、6、2、4行目 2、7、3、1）は、窓ごとの最大で2×2（4、5／7、6）になる。チャネル2の4×4（1行目 5、0、1、1、2行目 2、1、0、3、3行目 1、8、2、2、4行目 0、4、9、0）は、2×2（5、3／8、9）になる。太い線が窓の区切りで、チャネル1と2の値は混ぜない。②全体で見ると、例えば縦8×横8×チャネル16 の特徴マップは、縦4×横4×チャネル16 になる。縦と横は半分で、チャネルは16のまま。PyTorch の MaxPool2d も、入力 (N, C, H, W) に対して出力 (N, C, Hout, Wout) で、チャネル数 C は変わらない。誤りの文『複数のチャネルの値をまとめて1つにするので、出力のチャネル数は入力のチャネル数より少なくなる』は誤り。チャネル数を変えるのは 1×1 の畳み込みなど。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">プーリングでチャネル数は変わらない</text>
+<text x="12" y="42" class="tm">チャネル＝特徴の種類ごとの面（1枚ずつ）</text>
+<text x="12" y="68" class="tb">①チャネルごとに別々に縮める</text>
+<text x="12" y="86" class="tm">2×2 の窓・ストライド2 の最大値プーリング</text>
+<text x="12" y="108" class="tb ta">チャネル1</text>
+<rect x="12" y="116" width="96" height="96" class="fas sa" stroke-width="1"/>
+<line x1="36" y1="116" x2="36" y2="212" class="l sa w1"/>
+<line x1="12" y1="140" x2="108" y2="140" class="l sa w1"/>
+<line x1="60" y1="116" x2="60" y2="212" class="l sa w2"/>
+<line x1="12" y1="164" x2="108" y2="164" class="l sa w2"/>
+<line x1="84" y1="116" x2="84" y2="212" class="l sa w1"/>
+<line x1="12" y1="188" x2="108" y2="188" class="l sa w1"/>
+<text x="24" y="133" class="ta" text-anchor="middle">1</text>
+<text x="48" y="133" class="ta" text-anchor="middle">3</text>
+<text x="72" y="133" class="ta" text-anchor="middle">2</text>
+<text x="96" y="133" class="ta" text-anchor="middle">0</text>
+<text x="24" y="157" class="ta" text-anchor="middle">4</text>
+<text x="48" y="157" class="ta" text-anchor="middle">2</text>
+<text x="72" y="157" class="ta" text-anchor="middle">1</text>
+<text x="96" y="157" class="ta" text-anchor="middle">5</text>
+<text x="24" y="181" class="ta" text-anchor="middle">0</text>
+<text x="48" y="181" class="ta" text-anchor="middle">1</text>
+<text x="72" y="181" class="ta" text-anchor="middle">6</text>
+<text x="96" y="181" class="ta" text-anchor="middle">2</text>
+<text x="24" y="205" class="ta" text-anchor="middle">2</text>
+<text x="48" y="205" class="ta" text-anchor="middle">7</text>
+<text x="72" y="205" class="ta" text-anchor="middle">3</text>
+<text x="96" y="205" class="ta" text-anchor="middle">1</text>
+<line x1="124" y1="164" x2="186" y2="164" class="l sm w1"/>
+<polyline points="181,160 186,164 181,168" class="l sm w1"/>
+<text x="155" y="156" class="tm" text-anchor="middle">窓の最大</text>
+<rect x="200" y="140" width="48" height="48" class="fas sa" stroke-width="1"/>
+<line x1="224" y1="140" x2="224" y2="188" class="l sa w1"/>
+<line x1="200" y1="164" x2="248" y2="164" class="l sa w1"/>
+<text x="212" y="157" class="tb ta" text-anchor="middle">4</text>
+<text x="236" y="157" class="tb ta" text-anchor="middle">5</text>
+<text x="212" y="181" class="tb ta" text-anchor="middle">7</text>
+<text x="236" y="181" class="tb ta" text-anchor="middle">6</text>
+<text x="12" y="236" class="tb twn">チャネル2</text>
+<rect x="12" y="244" width="96" height="96" class="fwn swn" stroke-width="1"/>
+<line x1="36" y1="244" x2="36" y2="340" class="l swn w1"/>
+<line x1="12" y1="268" x2="108" y2="268" class="l swn w1"/>
+<line x1="60" y1="244" x2="60" y2="340" class="l swn w2"/>
+<line x1="12" y1="292" x2="108" y2="292" class="l swn w2"/>
+<line x1="84" y1="244" x2="84" y2="340" class="l swn w1"/>
+<line x1="12" y1="316" x2="108" y2="316" class="l swn w1"/>
+<text x="24" y="261" class="twn" text-anchor="middle">5</text>
+<text x="48" y="261" class="twn" text-anchor="middle">0</text>
+<text x="72" y="261" class="twn" text-anchor="middle">1</text>
+<text x="96" y="261" class="twn" text-anchor="middle">1</text>
+<text x="24" y="285" class="twn" text-anchor="middle">2</text>
+<text x="48" y="285" class="twn" text-anchor="middle">1</text>
+<text x="72" y="285" class="twn" text-anchor="middle">0</text>
+<text x="96" y="285" class="twn" text-anchor="middle">3</text>
+<text x="24" y="309" class="twn" text-anchor="middle">1</text>
+<text x="48" y="309" class="twn" text-anchor="middle">8</text>
+<text x="72" y="309" class="twn" text-anchor="middle">2</text>
+<text x="96" y="309" class="twn" text-anchor="middle">2</text>
+<text x="24" y="333" class="twn" text-anchor="middle">0</text>
+<text x="48" y="333" class="twn" text-anchor="middle">4</text>
+<text x="72" y="333" class="twn" text-anchor="middle">9</text>
+<text x="96" y="333" class="twn" text-anchor="middle">0</text>
+<line x1="124" y1="292" x2="186" y2="292" class="l sm w1"/>
+<polyline points="181,288 186,292 181,296" class="l sm w1"/>
+<text x="155" y="284" class="tm" text-anchor="middle">窓の最大</text>
+<rect x="200" y="268" width="48" height="48" class="fwn swn" stroke-width="1"/>
+<line x1="224" y1="268" x2="224" y2="316" class="l swn w1"/>
+<line x1="200" y1="292" x2="248" y2="292" class="l swn w1"/>
+<text x="212" y="285" class="tb twn" text-anchor="middle">5</text>
+<text x="236" y="285" class="tb twn" text-anchor="middle">3</text>
+<text x="212" y="309" class="tb twn" text-anchor="middle">8</text>
+<text x="236" y="309" class="tb twn" text-anchor="middle">9</text>
+<text x="12" y="362" class="tm">太い線が窓の区切り。チャネル1と2は混ぜない</text>
+<line x1="12" y1="376" x2="308" y2="376" class="l sb w1"/>
+<text x="12" y="400" class="tb">②全体で見ると（例：16チャネル）</text>
+<rect x="36" y="430" width="64" height="64" class="fs sm" stroke-width="1"/>
+<rect x="28" y="422" width="64" height="64" class="fs sm" stroke-width="1"/>
+<rect x="20" y="414" width="64" height="64" class="fs sm" stroke-width="1"/>
+<rect x="220" y="446" width="32" height="32" class="fs sm" stroke-width="1"/>
+<rect x="214" y="440" width="32" height="32" class="fs sm" stroke-width="1"/>
+<rect x="208" y="434" width="32" height="32" class="fs sm" stroke-width="1"/>
+<line x1="112" y1="462" x2="190" y2="462" class="l sm w1"/>
+<polyline points="185,458 190,462 185,466" class="l sm w1"/>
+<text x="151" y="454" class="tm" text-anchor="middle">プーリング</text>
+<text x="60" y="516" class="tb" text-anchor="middle">8×8×16</text>
+<text x="232" y="516" class="tb" text-anchor="middle">4×4×16</text>
+<text x="12" y="538" class="tm">（縦×横×チャネル。重ねた面は16枚の略）</text>
+<text x="12" y="562" class="tb tok">縦と横は半分。チャネルは16のまま</text>
+<text x="12" y="582" class="tm">PyTorch：(N, C, H, W) → (N, C, Hout, Wout)</text>
+<line x1="12" y1="598" x2="308" y2="598" class="l sb w1"/>
+<text x="12" y="622" class="tb tng">誤りの文：『チャネルをまとめるので減る』</text>
+<text x="12" y="642">チャネル数を変えるのは 1×1 の畳み込みなど</text>
+</svg>

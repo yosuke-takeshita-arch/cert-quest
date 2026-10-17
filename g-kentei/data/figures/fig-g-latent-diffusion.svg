@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-latent-diffusion-t fig-g-latent-diffusion-d">
+<title id="fig-g-latent-diffusion-t">潜在拡散モデル：縮めた空間で拡散し、条件はクロスアテンションで入れる</title>
+<desc id="fig-g-latent-diffusion-d">Rombach ら（2021）の潜在拡散モデル（Latent Diffusion Model）。①従来の拡散モデルは画素の空間のまま、ノイズ除去を何度もくり返すので、学習に何百日分もの GPU を使い、生成も重い。②潜在拡散モデルは、事前学習したオートエンコーダのエンコーダ E で画像（例 512×512 画素）を潜在表現 z（縦横 8分の1 の 64×64）に縮め、その潜在空間でノイズを少しずつ取り除く計算（U-Net）をくり返す。文章などの条件（例：夕日と猫）は、条件のエンコーダで表現にしてから、U-Net に入れたクロスアテンションの層で取り込む。最後にデコーダ D で画像に戻す。64×64 は縦横 8分の1 で、縦横のマスの数は 8×8＝64分の1。f＝8 は論文が試した縮める倍率の1つで、画像の大きさは例。条件を入れるのはクロスアテンションで、プーリング（特徴マップを縮める処理）でも、識別器（GAN で本物と生成物を見分ける役）でもない。</desc>
+<text x="12" y="22" class="tl">潜在拡散モデル：縮めてから拡散</text>
+<text x="12" y="42" class="tm">Rombach ら（2021）の Latent Diffusion Model</text>
+<text x="12" y="68" class="tb">①従来：画素の空間のまま</text>
+<text x="12" y="88">画素のまま、ノイズ除去を何度もくり返す</text>
+<text x="12" y="106" class="tm">→ 学習に何百日分もの GPU。生成も重い</text>
+<line x1="12" y1="120" x2="308" y2="120" class="l sb w1"/>
+<text x="12" y="146" class="tb">②潜在拡散：潜在空間で動かす</text>
+<rect x="12" y="158" width="148" height="30" rx="4" class="fs sm" stroke-width="1"/>
+<text x="86" y="178" text-anchor="middle">画像（512×512）</text>
+<line x1="86" y1="190" x2="86" y2="206" class="l sm w1"/>
+<polyline points="82,201 86,206 90,201" class="l sm w1"/>
+<text x="94" y="203" class="tm">E で縮める</text>
+<rect x="12" y="210" width="148" height="40" rx="4" class="fas sa" stroke-width="1"/>
+<text x="86" y="227" class="tb ta" text-anchor="middle">潜在表現 z</text>
+<text x="86" y="244" class="ta" text-anchor="middle">（64×64）</text>
+<rect x="176" y="210" width="132" height="40" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="242" y="227" class="tb twn" text-anchor="middle">条件：文章など</text>
+<text x="242" y="244" class="twn" text-anchor="middle">例：夕日と猫</text>
+<line x1="86" y1="252" x2="86" y2="268" class="l sm w1"/>
+<polyline points="82,263 86,268 90,263" class="l sm w1"/>
+<line x1="235" y1="252" x2="235" y2="280" class="l swn w1"/>
+<polyline points="231,275 235,280 239,275" class="l swn w1"/>
+<rect x="12" y="270" width="296" height="76" rx="6" class="fok sok" stroke-width="1"/>
+<text x="20" y="292" class="tb tok">潜在空間で</text>
+<text x="20" y="312" class="tok">ノイズを少しずつ</text>
+<text x="20" y="332" class="tok">取り除く（U-Net）</text>
+<rect x="168" y="282" width="134" height="56" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="235" y="304" class="tb twn" text-anchor="middle">クロスアテンション</text>
+<text x="235" y="326" class="twn" text-anchor="middle">の層で条件を入れる</text>
+<line x1="86" y1="348" x2="86" y2="366" class="l sm w1"/>
+<polyline points="82,361 86,366 90,361" class="l sm w1"/>
+<text x="94" y="362" class="tm">デコーダ D で画像に戻す</text>
+<rect x="12" y="370" width="148" height="30" rx="4" class="fs sm" stroke-width="1"/>
+<text x="86" y="390" text-anchor="middle">できた画像</text>
+<text x="12" y="424" class="tm">64×64 は縦横 8分の1。マスの数は 64分の1</text>
+<text x="12" y="442" class="tm">（8分の1 は論文が試した倍率の1つ。大きさは例）</text>
+<line x1="12" y1="458" x2="308" y2="458" class="l sb w1"/>
+<text x="12" y="482" class="tb tng">条件を入れるのはクロスアテンション</text>
+<text x="12" y="502">プーリング＝特徴マップを縮める処理</text>
+<text x="12" y="522">識別器＝GAN で本物と生成物を見分ける役</text>
+<text x="12" y="542" class="tm">どちらも条件を取り込む仕組みではない</text>
+</svg>

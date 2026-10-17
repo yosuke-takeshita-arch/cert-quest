@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 624" role="img" aria-labelledby="fig-g-ml-tech-debt-t fig-g-ml-tech-debt-d">
+<title id="fig-g-ml-tech-debt-t">機械学習のシステムは技術的負債がたまりやすい</title>
+<desc id="fig-g-ml-tech-debt-d">技術的負債は、後回しにした手入れのツケ。①Sculley ら（2015）は、機械学習のシステムは、従来のコードの保守の問題をすべて持ったうえに、機械学習に固有の問題が上乗せされるとした。赤い箱が固有の問題で、データへの依存、外部世界の変化、隠れたフィードバックループ、設定の問題など。灰色の箱が従来のコードの保守の問題。赤い箱の問題はコードの外（システムの水準）にあるので見つけにくい。②外部世界が変わるとモデルが外れる流れの例：利用者の行動が変わる、学習したときのデータと合わなくなる、予測が外れるようになる、データを集め直して再学習する。③リファクタリング（動きを変えずにコードを整理し直すこと）で返せるのはコードの水準の負債で、論文は、コードの水準の典型的な返し方では、システムの水準にある機械学習固有の負債には足りないとしている。誤りの文『コードが短いので保守の問題は起こらない』『一度学習すれば手入れが要らない』は、論文の主張と逆。流れは説明のための例。</desc>
+<text x="12" y="22" class="tl">機械学習は負債がたまりやすい</text>
+<text x="12" y="42" class="tm">技術的負債＝後回しにした手入れのツケ</text>
+<text x="12" y="66" class="tb">①従来の問題に、固有の問題が上乗せ</text>
+<rect x="12" y="78" width="296" height="80" rx="4" class="fng sng" stroke-width="1"/>
+<text x="20" y="98" class="tb tng">＋ 機械学習に固有の問題</text>
+<text x="20" y="120">データへの依存・外部世界の変化</text>
+<text x="20" y="142">隠れたフィードバックループ・設定 など</text>
+<rect x="12" y="164" width="296" height="34" rx="4" class="fs sm" stroke-width="1"/>
+<text x="20" y="186">従来のコードの保守の問題（すべて持つ）</text>
+<text x="12" y="220" class="tm">赤い箱の問題はコードの外（システムの水準）</text>
+<text x="12" y="238" class="tm">にあるので、見つけにくい（Sculley ら 2015）</text>
+<line x1="12" y1="254" x2="308" y2="254" class="l sb w1"/>
+<text x="12" y="278" class="tb">②外部世界が変わると、モデルが外れる</text>
+<rect x="12" y="290" width="296" height="26" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="20" y="308">利用者の行動が変わる</text>
+<line x1="40" y1="318" x2="40" y2="328" class="l sm w1"/>
+<polyline points="36,323 40,328 44,323" class="l sm w1"/>
+<rect x="12" y="330" width="296" height="26" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="20" y="348">学習したときのデータと合わなくなる</text>
+<line x1="40" y1="358" x2="40" y2="368" class="l sm w1"/>
+<polyline points="36,363 40,368 44,363" class="l sm w1"/>
+<rect x="12" y="370" width="296" height="26" rx="4" class="fng sng" stroke-width="1"/>
+<text x="20" y="388" class="tng">予測が外れるようになる</text>
+<line x1="40" y1="398" x2="40" y2="408" class="l sm w1"/>
+<polyline points="36,403 40,408 44,403" class="l sm w1"/>
+<rect x="12" y="410" width="296" height="26" rx="4" class="fok sok" stroke-width="1"/>
+<text x="20" y="428" class="tok">データを集め直して再学習（手入れ）</text>
+<text x="12" y="456" class="tm">（流れは説明のための例）</text>
+<line x1="12" y1="470" x2="308" y2="470" class="l sb w1"/>
+<text x="12" y="494" class="tb">③リファクタリングだけでは返せない</text>
+<text x="12" y="514">リファクタリング＝動きを変えずにコード</text>
+<text x="12" y="532">を整理し直すこと。返せるのはコードの負債</text>
+<text x="12" y="552" class="tm">論文：コードの水準の典型的な返し方では、</text>
+<text x="12" y="570" class="tm">システムの水準の固有の負債に足りない</text>
+<text x="12" y="596" class="tb tng">誤り：『保守の問題は起こらない』</text>
+<text x="12" y="616" class="tng">『一度学習すれば手入れが要らない』も逆</text>
+</svg>

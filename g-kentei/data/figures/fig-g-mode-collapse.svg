@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 632" role="img" aria-labelledby="fig-g-mode-collapse-t fig-g-mode-collapse-d">
+<title id="fig-g-mode-collapse-t">モード崩壊：違う入力 z から同じ出力ばかり作る</title>
+<desc id="fig-g-mode-collapse-d">モードはデータの分布の山（よく出る型）のこと。①グラフの横軸はデータの種類（例：手書きの数字）、縦軸は出る割合。本物のデータ（実線）には 0、1、7 の3つの山がある。崩れた生成器が作るもの（破線）は 1 の山だけに集まる。②うまく学べた生成器は、z1 から z4 の違う入力から 0、7、1、7 のようにいろいろな数字を作る。③モード崩壊した生成器は、z1 から z4 のどれを入れても 1 ばかり作る。山が3つあるのに、1つの山に崩れ落ちる。Goodfellow の NIPS 2016 のチュートリアルは、完全な崩壊はまれで、同じ色や模様ばかりの部分的な崩壊はよく起きると述べている。似た名前との違い：勾配消失は前の層まで勾配が届かず学べない問題、破滅的忘却は新しいタスクを学ぶと前のタスクを忘れる問題、過学習は訓練データに合わせすぎる問題。数字の種類は説明のための例。</desc>
+<text x="12" y="22" class="tl">モード崩壊：違う z から同じ出力</text>
+<text x="12" y="42" class="tm">モード＝データの分布の山（よく出る型）</text>
+<text x="12" y="68" class="tb">①山の数で見る</text>
+<text x="12" y="88" class="tm">縦：出る割合</text>
+<line x1="36" y1="96" x2="36" y2="200" class="l sm w1"/>
+<line x1="36" y1="200" x2="304" y2="200" class="l sm w1"/>
+<polyline points="40,200.0 44,199.9 48,199.7 52,199.3 56,198.4 60,196.5 64,193.2 68,188.1 72,180.8 76,172.0 80,162.8 84,155.1 88,150.6 92,150.6 96,155.1 100,162.8 104,172.0 108,180.8 112,188.1 116,193.2 120,196.5 124,198.3 128,199.0 132,199.0 136,198.3 140,196.5 144,193.2 148,188.1 152,180.8 156,172.0 160,162.8 164,155.1 168,150.6 172,150.6 176,155.1 180,162.8 184,172.0 188,180.8 192,188.1 196,193.2 200,196.5 204,198.3 208,199.0 212,199.0 216,198.3 220,196.5 224,193.2 228,188.1 232,180.8 236,172.0 240,162.8 244,155.1 248,150.6 252,150.6 256,155.1 260,162.8 264,172.0 268,180.8 272,188.1 276,193.2 280,196.5 284,198.4 288,199.3 292,199.7 296,199.9 300,200.0" class="l sa w2"/>
+<polyline points="132,200.0 136,199.9 140,199.6 144,198.5 148,195.0 152,186.5 156,170.2 160,146.1 164,119.9 168,102.4 172,102.4 176,119.9 180,146.1 184,170.2 188,186.5 192,195.0 196,198.5 200,199.6 204,199.9 208,200.0" class="l sng w2 dsh"/>
+<text x="90" y="218" class="tb" text-anchor="middle">0</text>
+<text x="170" y="218" class="tb" text-anchor="middle">1</text>
+<text x="250" y="218" class="tb" text-anchor="middle">7</text>
+<text x="170" y="238" class="tb" text-anchor="middle">横：データの種類（例：手書きの数字）</text>
+<line x1="16" y1="256" x2="40" y2="256" class="l sa w2"/>
+<text x="46" y="261">本物のデータ（山が3つ）</text>
+<line x1="16" y1="278" x2="40" y2="278" class="l sng w2 dsh"/>
+<text x="46" y="283">崩れた生成器が作るもの（1の山だけ）</text>
+<line x1="12" y1="300" x2="308" y2="300" class="l sb w1"/>
+<text x="12" y="324" class="tb tok">②うまく学べた</text>
+<text x="168" y="324" class="tb tng">③モード崩壊</text>
+<text x="24" y="354">z1</text>
+<text x="24" y="384">z2</text>
+<text x="24" y="414">z3</text>
+<text x="24" y="444">z4</text>
+<line x1="46" y1="350" x2="88" y2="350" class="l sm w1"/>
+<polyline points="83,346 88,350 83,354" class="l sm w1"/>
+<line x1="46" y1="380" x2="88" y2="380" class="l sm w1"/>
+<polyline points="83,376 88,380 83,384" class="l sm w1"/>
+<line x1="46" y1="410" x2="88" y2="410" class="l sm w1"/>
+<polyline points="83,406 88,410 83,414" class="l sm w1"/>
+<line x1="46" y1="440" x2="88" y2="440" class="l sm w1"/>
+<polyline points="83,436 88,440 83,444" class="l sm w1"/>
+<rect x="94" y="338" width="28" height="24" rx="3" class="fok sok" stroke-width="1"/>
+<text x="108" y="355" class="tb tok" text-anchor="middle">0</text>
+<rect x="94" y="368" width="28" height="24" rx="3" class="fok sok" stroke-width="1"/>
+<text x="108" y="385" class="tb tok" text-anchor="middle">7</text>
+<rect x="94" y="398" width="28" height="24" rx="3" class="fok sok" stroke-width="1"/>
+<text x="108" y="415" class="tb tok" text-anchor="middle">1</text>
+<rect x="94" y="428" width="28" height="24" rx="3" class="fok sok" stroke-width="1"/>
+<text x="108" y="445" class="tb tok" text-anchor="middle">7</text>
+<line x1="158" y1="334" x2="158" y2="456" class="l sb w1"/>
+<text x="180" y="354">z1</text>
+<text x="180" y="384">z2</text>
+<text x="180" y="414">z3</text>
+<text x="180" y="444">z4</text>
+<line x1="202" y1="350" x2="244" y2="350" class="l sm w1"/>
+<polyline points="239,346 244,350 239,354" class="l sm w1"/>
+<line x1="202" y1="380" x2="244" y2="380" class="l sm w1"/>
+<polyline points="239,376 244,380 239,384" class="l sm w1"/>
+<line x1="202" y1="410" x2="244" y2="410" class="l sm w1"/>
+<polyline points="239,406 244,410 239,414" class="l sm w1"/>
+<line x1="202" y1="440" x2="244" y2="440" class="l sm w1"/>
+<polyline points="239,436 244,440 239,444" class="l sm w1"/>
+<rect x="250" y="338" width="28" height="24" rx="3" class="fng sng" stroke-width="1"/>
+<text x="264" y="355" class="tb tng" text-anchor="middle">1</text>
+<rect x="250" y="368" width="28" height="24" rx="3" class="fng sng" stroke-width="1"/>
+<text x="264" y="385" class="tb tng" text-anchor="middle">1</text>
+<rect x="250" y="398" width="28" height="24" rx="3" class="fng sng" stroke-width="1"/>
+<text x="264" y="415" class="tb tng" text-anchor="middle">1</text>
+<rect x="250" y="428" width="28" height="24" rx="3" class="fng sng" stroke-width="1"/>
+<text x="264" y="445" class="tb tng" text-anchor="middle">1</text>
+<text x="12" y="478" class="tok">いろいろな数字が出る</text>
+<text x="168" y="478" class="tng">何を入れても1ばかり</text>
+<text x="12" y="502" class="tm">完全な崩壊はまれ。同じ色や模様ばかりの</text>
+<text x="12" y="520" class="tm">部分的な崩壊はよく起きる（Goodfellow 2016）</text>
+<line x1="12" y1="536" x2="308" y2="536" class="l sb w1"/>
+<text x="12" y="558" class="tb">似た名前との違い</text>
+<text x="12" y="578">勾配消失：前の層まで勾配が届かず学べない</text>
+<text x="12" y="598">破滅的忘却：前に学んだタスクを忘れる</text>
+<text x="12" y="618">過学習：訓練データに合わせすぎる</text>
+</svg>

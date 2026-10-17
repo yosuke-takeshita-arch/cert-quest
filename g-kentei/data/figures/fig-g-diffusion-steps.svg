@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-g-diffusion-steps-t fig-g-diffusion-steps-d">
+<title id="fig-g-diffusion-steps-t">画像1枚を作るまでの回数：GAN は1回、DDPM は T＝1000 回</title>
+<desc id="fig-g-diffusion-steps-d">画像1枚を作るまでに、ネットワークを何回通すかを比べる。①GAN は、ノイズ z を生成器に1回通すと画像ができる。②DDPM（Ho ら、2020）は、ノイズから出発して、ノイズを取り除く同じネットワークを1回目、2回目、3回目と順に通し、999回目、1000回目を通してやっと画像になる。論文は段階の数を T＝1000 にした。前の段の結果を待って次を計算するので、一度にはできない。③通す回数を棒で比べると、GAN は1回、DDPM は1000回で、棒の長さは回数に比例させた。誤りの文『生成を1回のネットワークの計算で終えられるので、GAN より生成が速い』は、GAN の側の性質を言っている。DDPM は1000回くり返すので生成が遅い。T＝1000 は論文の設定で、1000回は設定から導いた数。</desc>
+<text x="12" y="22" class="tl">画像1枚を作るまでの回数</text>
+<text x="12" y="42" class="tm">ネットワークを何回通すかを比べる</text>
+<text x="12" y="68" class="tb">①GAN：生成器を1回通す</text>
+<rect x="12" y="80" width="68" height="28" rx="4" class="fs sm" stroke-width="1"/>
+<text x="46" y="99" text-anchor="middle">ノイズ z</text>
+<line x1="82" y1="94" x2="100" y2="94" class="l sm w1"/>
+<polyline points="95,90 100,94 95,98" class="l sm w1"/>
+<rect x="104" y="80" width="80" height="28" rx="4" class="fas sa" stroke-width="1"/>
+<text x="144" y="99" class="tb ta" text-anchor="middle">生成器</text>
+<line x1="186" y1="94" x2="204" y2="94" class="l sm w1"/>
+<polyline points="199,90 204,94 199,98" class="l sm w1"/>
+<rect x="208" y="80" width="68" height="28" rx="4" class="fs sm" stroke-width="1"/>
+<text x="242" y="99" text-anchor="middle">画像</text>
+<text x="12" y="128" class="tm">1回の計算で画像ができる</text>
+<line x1="12" y1="142" x2="308" y2="142" class="l sb w1"/>
+<text x="12" y="166" class="tb">②DDPM：ノイズ除去を T＝1000 回</text>
+<rect x="12" y="178" width="56" height="28" rx="4" class="fs sm" stroke-width="1"/>
+<text x="40" y="197" text-anchor="middle">ノイズ</text>
+<line x1="70" y1="192" x2="84" y2="192" class="l sm w1"/>
+<polyline points="79,188 84,192 79,196" class="l sm w1"/>
+<rect x="88" y="178" width="56" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="116" y="197" class="twn" text-anchor="middle">1回目</text>
+<line x1="146" y1="192" x2="160" y2="192" class="l sm w1"/>
+<polyline points="155,188 160,192 155,196" class="l sm w1"/>
+<rect x="164" y="178" width="56" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="192" y="197" class="twn" text-anchor="middle">2回目</text>
+<line x1="222" y1="192" x2="236" y2="192" class="l sm w1"/>
+<polyline points="231,188 236,192 231,196" class="l sm w1"/>
+<rect x="240" y="178" width="56" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="268" y="197" class="twn" text-anchor="middle">3回目</text>
+<text x="302" y="197" class="tb">…</text>
+<text x="12" y="239" class="tb">…</text>
+<line x1="26" y1="234" x2="40" y2="234" class="l sm w1"/>
+<polyline points="35,230 40,234 35,238" class="l sm w1"/>
+<rect x="44" y="220" width="66" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="77" y="239" class="twn" text-anchor="middle">999回目</text>
+<line x1="112" y1="234" x2="126" y2="234" class="l sm w1"/>
+<polyline points="121,230 126,234 121,238" class="l sm w1"/>
+<rect x="130" y="220" width="74" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="167" y="239" class="twn" text-anchor="middle">1000回目</text>
+<line x1="206" y1="234" x2="220" y2="234" class="l sm w1"/>
+<polyline points="215,230 220,234 215,238" class="l sm w1"/>
+<rect x="224" y="220" width="72" height="28" rx="4" class="fs sm" stroke-width="1"/>
+<text x="260" y="239" text-anchor="middle">画像</text>
+<text x="12" y="272">同じネットワークを、順に1000回通す</text>
+<text x="12" y="292" class="tm">前の回の結果を待つので、一度にはできない</text>
+<line x1="12" y1="308" x2="308" y2="308" class="l sb w1"/>
+<text x="12" y="332" class="tb">③通す回数を棒で比べる</text>
+<text x="12" y="357">GAN</text>
+<rect x="60" y="344" width="1.5" height="18" class="fas sa" stroke-width="1"/>
+<text x="70" y="358" class="tb ta">1回</text>
+<text x="12" y="385">DDPM</text>
+<rect x="60" y="372" width="244" height="18" class="fwn swn" stroke-width="1"/>
+<text x="298" y="386" class="tb twn" text-anchor="end">1000回</text>
+<text x="12" y="410" class="tm">（棒の長さは回数に比例させた）</text>
+<line x1="12" y1="424" x2="308" y2="424" class="l sb w1"/>
+<text x="12" y="448" class="tb tng">誤りの文：『1回の計算で終わり速い』</text>
+<text x="12" y="468">1回で終わるのは GAN のほう</text>
+<text x="12" y="488">DDPM は1000回くり返すので、生成が遅い</text>
+<text x="12" y="510" class="tm">（T＝1000 は論文の設定。回数はそこから導いた数）</text>
+</svg>

@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-g-ensemble-diversity-t fig-g-ensemble-diversity-d">
+<title id="fig-g-ensemble-diversity-t">似たモデルを集めても、誤りは減らない（アンサンブルの多様性）</title>
+<desc id="fig-g-ensemble-diversity-d">3つのモデルは、どれも10問中7問に正解する（○が正解、×が誤り）。いちばん下の行は3つの多数決。①似たモデルは、3つとも同じ問8・問9・問10で間違えるので、多数決も問8・問9・問10で外れ、10問中7問（70％）しか当たらない。誤りが同じ向きにそろい、1つのモデルと変わらない。②ばらばらなモデルは、モデル1が問1・2・3、モデル2が問3・4・5、モデル3が問6・7・8で間違える。1つのモデルだけの誤りは、ほかの2つの正解で打ち消せるので、多数決は10問中9問（90％）当たる。外れたのは、2つのモデルが同じ問3で間違えた所だけ。誤りの文『組み合わせるモデルどうしの予測が似ているほど、アンサンブルの効果は大きくなる』は逆で、予測がばらばらなほど誤りが打ち消し合う。互いに無関係に間違えるなら、多数決は平均で約78％当たる（解説の計算）。○×の並びは説明のための例。</desc>
+<text x="12" y="22" class="tl">似たモデルを集めても誤りは減らない</text>
+<text x="12" y="42" class="tm">3つのモデル（どれも10問中7問正解）で多数決</text>
+<text x="12" y="70" class="tb">①似たモデル：同じ問題で間違える</text>
+<text x="72" y="90" class="tm" text-anchor="middle">1</text>
+<text x="96" y="90" class="tm" text-anchor="middle">2</text>
+<text x="120" y="90" class="tm" text-anchor="middle">3</text>
+<text x="144" y="90" class="tm" text-anchor="middle">4</text>
+<text x="168" y="90" class="tm" text-anchor="middle">5</text>
+<text x="192" y="90" class="tm" text-anchor="middle">6</text>
+<text x="216" y="90" class="tm" text-anchor="middle">7</text>
+<text x="240" y="90" class="tm" text-anchor="middle">8</text>
+<text x="264" y="90" class="tm" text-anchor="middle">9</text>
+<text x="288" y="90" class="tm" text-anchor="middle">10</text>
+<text x="12" y="114">モデル1</text>
+<rect x="61" y="99" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="72" y="114" class="tb tok" text-anchor="middle">○</text>
+<rect x="85" y="99" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="96" y="114" class="tb tok" text-anchor="middle">○</text>
+<rect x="109" y="99" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="120" y="114" class="tb tok" text-anchor="middle">○</text>
+<rect x="133" y="99" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="144" y="114" class="tb tok" text-anchor="middle">○</text>
+<rect x="157" y="99" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="168" y="114" class="tb tok" text-anchor="middle">○</text>
+<rect x="181" y="99" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="192" y="114" class="tb tok" text-anchor="middle">○</text>
+<rect x="205" y="99" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="216" y="114" class="tb tok" text-anchor="middle">○</text>
+<rect x="229" y="99" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="240" y="114" class="tb tng" text-anchor="middle">×</text>
+<rect x="253" y="99" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="264" y="114" class="tb tng" text-anchor="middle">×</text>
+<rect x="277" y="99" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="288" y="114" class="tb tng" text-anchor="middle">×</text>
+<text x="12" y="138">モデル2</text>
+<rect x="61" y="123" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="72" y="138" class="tb tok" text-anchor="middle">○</text>
+<rect x="85" y="123" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="96" y="138" class="tb tok" text-anchor="middle">○</text>
+<rect x="109" y="123" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="120" y="138" class="tb tok" text-anchor="middle">○</text>
+<rect x="133" y="123" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="144" y="138" class="tb tok" text-anchor="middle">○</text>
+<rect x="157" y="123" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="168" y="138" class="tb tok" text-anchor="middle">○</text>
+<rect x="181" y="123" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="192" y="138" class="tb tok" text-anchor="middle">○</text>
+<rect x="205" y="123" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="216" y="138" class="tb tok" text-anchor="middle">○</text>
+<rect x="229" y="123" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="240" y="138" class="tb tng" text-anchor="middle">×</text>
+<rect x="253" y="123" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="264" y="138" class="tb tng" text-anchor="middle">×</text>
+<rect x="277" y="123" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="288" y="138" class="tb tng" text-anchor="middle">×</text>
+<text x="12" y="162">モデル3</text>
+<rect x="61" y="147" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="72" y="162" class="tb tok" text-anchor="middle">○</text>
+<rect x="85" y="147" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="96" y="162" class="tb tok" text-anchor="middle">○</text>
+<rect x="109" y="147" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="120" y="162" class="tb tok" text-anchor="middle">○</text>
+<rect x="133" y="147" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="144" y="162" class="tb tok" text-anchor="middle">○</text>
+<rect x="157" y="147" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="168" y="162" class="tb tok" text-anchor="middle">○</text>
+<rect x="181" y="147" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="192" y="162" class="tb tok" text-anchor="middle">○</text>
+<rect x="205" y="147" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="216" y="162" class="tb tok" text-anchor="middle">○</text>
+<rect x="229" y="147" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="240" y="162" class="tb tng" text-anchor="middle">×</text>
+<rect x="253" y="147" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="264" y="162" class="tb tng" text-anchor="middle">×</text>
+<rect x="277" y="147" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="288" y="162" class="tb tng" text-anchor="middle">×</text>
+<text x="12" y="192" class="tb">多数決</text>
+<rect x="61" y="177" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="72" y="192" class="tb tok" text-anchor="middle">○</text>
+<rect x="85" y="177" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="96" y="192" class="tb tok" text-anchor="middle">○</text>
+<rect x="109" y="177" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="120" y="192" class="tb tok" text-anchor="middle">○</text>
+<rect x="133" y="177" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="144" y="192" class="tb tok" text-anchor="middle">○</text>
+<rect x="157" y="177" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="168" y="192" class="tb tok" text-anchor="middle">○</text>
+<rect x="181" y="177" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="192" y="192" class="tb tok" text-anchor="middle">○</text>
+<rect x="205" y="177" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="216" y="192" class="tb tok" text-anchor="middle">○</text>
+<rect x="229" y="177" width="22" height="20" rx="3" class="fng sng" stroke-width="1.5"/>
+<text x="240" y="192" class="tb tng" text-anchor="middle">×</text>
+<rect x="253" y="177" width="22" height="20" rx="3" class="fng sng" stroke-width="1.5"/>
+<text x="264" y="192" class="tb tng" text-anchor="middle">×</text>
+<rect x="277" y="177" width="22" height="20" rx="3" class="fng sng" stroke-width="1.5"/>
+<text x="288" y="192" class="tb tng" text-anchor="middle">×</text>
+<text x="12" y="214" class="tb tng">多数決の正解：10問中7問（70％）</text>
+<text x="12" y="234">誤りが同じ向きにそろい、1つと変わらない</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="276" class="tb">②ばらばらなモデル：間違える問題が違う</text>
+<text x="72" y="296" class="tm" text-anchor="middle">1</text>
+<text x="96" y="296" class="tm" text-anchor="middle">2</text>
+<text x="120" y="296" class="tm" text-anchor="middle">3</text>
+<text x="144" y="296" class="tm" text-anchor="middle">4</text>
+<text x="168" y="296" class="tm" text-anchor="middle">5</text>
+<text x="192" y="296" class="tm" text-anchor="middle">6</text>
+<text x="216" y="296" class="tm" text-anchor="middle">7</text>
+<text x="240" y="296" class="tm" text-anchor="middle">8</text>
+<text x="264" y="296" class="tm" text-anchor="middle">9</text>
+<text x="288" y="296" class="tm" text-anchor="middle">10</text>
+<text x="12" y="320">モデル1</text>
+<rect x="61" y="305" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="72" y="320" class="tb tng" text-anchor="middle">×</text>
+<rect x="85" y="305" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="96" y="320" class="tb tng" text-anchor="middle">×</text>
+<rect x="109" y="305" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="120" y="320" class="tb tng" text-anchor="middle">×</text>
+<rect x="133" y="305" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="144" y="320" class="tb tok" text-anchor="middle">○</text>
+<rect x="157" y="305" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="168" y="320" class="tb tok" text-anchor="middle">○</text>
+<rect x="181" y="305" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="192" y="320" class="tb tok" text-anchor="middle">○</text>
+<rect x="205" y="305" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="216" y="320" class="tb tok" text-anchor="middle">○</text>
+<rect x="229" y="305" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="240" y="320" class="tb tok" text-anchor="middle">○</text>
+<rect x="253" y="305" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="264" y="320" class="tb tok" text-anchor="middle">○</text>
+<rect x="277" y="305" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="288" y="320" class="tb tok" text-anchor="middle">○</text>
+<text x="12" y="344">モデル2</text>
+<rect x="61" y="329" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="72" y="344" class="tb tok" text-anchor="middle">○</text>
+<rect x="85" y="329" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="96" y="344" class="tb tok" text-anchor="middle">○</text>
+<rect x="109" y="329" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="120" y="344" class="tb tng" text-anchor="middle">×</text>
+<rect x="133" y="329" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="144" y="344" class="tb tng" text-anchor="middle">×</text>
+<rect x="157" y="329" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="168" y="344" class="tb tng" text-anchor="middle">×</text>
+<rect x="181" y="329" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="192" y="344" class="tb tok" text-anchor="middle">○</text>
+<rect x="205" y="329" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="216" y="344" class="tb tok" text-anchor="middle">○</text>
+<rect x="229" y="329" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="240" y="344" class="tb tok" text-anchor="middle">○</text>
+<rect x="253" y="329" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="264" y="344" class="tb tok" text-anchor="middle">○</text>
+<rect x="277" y="329" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="288" y="344" class="tb tok" text-anchor="middle">○</text>
+<text x="12" y="368">モデル3</text>
+<rect x="61" y="353" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="72" y="368" class="tb tok" text-anchor="middle">○</text>
+<rect x="85" y="353" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="96" y="368" class="tb tok" text-anchor="middle">○</text>
+<rect x="109" y="353" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="120" y="368" class="tb tok" text-anchor="middle">○</text>
+<rect x="133" y="353" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="144" y="368" class="tb tok" text-anchor="middle">○</text>
+<rect x="157" y="353" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="168" y="368" class="tb tok" text-anchor="middle">○</text>
+<rect x="181" y="353" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="192" y="368" class="tb tng" text-anchor="middle">×</text>
+<rect x="205" y="353" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="216" y="368" class="tb tng" text-anchor="middle">×</text>
+<rect x="229" y="353" width="22" height="20" rx="3" class="fng sng" stroke-width="1"/>
+<text x="240" y="368" class="tb tng" text-anchor="middle">×</text>
+<rect x="253" y="353" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="264" y="368" class="tb tok" text-anchor="middle">○</text>
+<rect x="277" y="353" width="22" height="20" rx="3" class="fok sok" stroke-width="1"/>
+<text x="288" y="368" class="tb tok" text-anchor="middle">○</text>
+<text x="12" y="398" class="tb">多数決</text>
+<rect x="61" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="72" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="85" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="96" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="109" y="383" width="22" height="20" rx="3" class="fng sng" stroke-width="1.5"/>
+<text x="120" y="398" class="tb tng" text-anchor="middle">×</text>
+<rect x="133" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="144" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="157" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="168" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="181" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="192" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="205" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="216" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="229" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="240" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="253" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="264" y="398" class="tb tok" text-anchor="middle">○</text>
+<rect x="277" y="383" width="22" height="20" rx="3" class="fok sok" stroke-width="1.5"/>
+<text x="288" y="398" class="tb tok" text-anchor="middle">○</text>
+<text x="12" y="420" class="tb tok">多数決の正解：10問中9問（90％）</text>
+<text x="12" y="440">1つの誤りは、ほかの2つの正解で打ち消せる</text>
+<text x="12" y="460" class="tm">外れたのは、2つが同じ問題（問3）で間違えた所</text>
+<line x1="12" y1="476" x2="308" y2="476" class="l sb w1"/>
+<text x="12" y="500" class="tb tng">誤りの文：『似ているほど効果が大きい』</text>
+<text x="12" y="520">逆。予測がばらばらなほど、誤りが打ち消し合う</text>
+<text x="12" y="542" class="tm">互いに無関係に間違えるなら平均で約78％</text>
+<text x="12" y="560" class="tm">（解説の計算。○×の並びは説明のための例）</text>
+</svg>

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 790" role="img" aria-labelledby="fig-g-attention-cost-t fig-g-attention-cost-d">
+<title id="fig-g-attention-cost-t">Self-Attention と RNN の1層の計算量（n²·d と n·d²）</title>
+<desc id="fig-g-attention-cost-d">n は系列の長さ（語の数）、d は表現の次元。①Self-Attention は語の全部の組を比べる。マス目の1マスが語の組1つで、n＝4 なら 4×4＝16組、n＝8 なら 8×8＝64組。n が2倍になると組の数は4倍になる。1組ごとに長さ d の計算をするので、1層の計算量は n×n×d。どの2語も1回でつながり、全部の組を同時に（並列に）計算できる。②RNN は語を1つずつ順に進む。箱1つが1歩で、1歩ごとに d×d の重みを掛ける。n＝4 なら4歩、n＝8 なら8歩で2倍。1層の計算量は n×d×d。前の結果を待つので順番に計算し、1番目の語が4番目に届くまで3回受け渡す。③数を入れて比べる例。d＝512 とすると、n＝100 で Self-Attention は 100×100×512＝512万、RNN は 100×512×512＝約2621万。n＝200 では Self-Attention は 2048万で4倍、RNN は約5243万で2倍。n が d より小さいときは Self-Attention のほうが軽い。『n が2倍で計算量も約2倍』は RNN の増え方で、Self-Attention は約4倍に増える。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">1層の計算量：n²·d と n·d²</text>
+<text x="12" y="42" class="tm">n＝系列の長さ（語の数）、d＝表現の次元</text>
+<text x="12" y="70" class="tb">①Self-Attention：語の全部の組を比べる</text>
+<text x="12" y="88" class="tm">マス1つ＝語の組1つ（行の語が列の語を見る）</text>
+<rect x="24" y="100" width="56" height="56" class="fas sa" stroke-width="1"/>
+<line x1="38" y1="100" x2="38" y2="156" class="l sa w1"/>
+<line x1="52" y1="100" x2="52" y2="156" class="l sa w1"/>
+<line x1="66" y1="100" x2="66" y2="156" class="l sa w1"/>
+<line x1="24" y1="114" x2="80" y2="114" class="l sa w1"/>
+<line x1="24" y1="128" x2="80" y2="128" class="l sa w1"/>
+<line x1="24" y1="142" x2="80" y2="142" class="l sa w1"/>
+<text x="52" y="176" class="tb" text-anchor="middle">n＝4</text>
+<text x="52" y="194" text-anchor="middle">16組</text>
+<rect x="150" y="100" width="112" height="112" class="fas sa" stroke-width="1"/>
+<line x1="164" y1="100" x2="164" y2="212" class="l sa w1"/>
+<line x1="178" y1="100" x2="178" y2="212" class="l sa w1"/>
+<line x1="192" y1="100" x2="192" y2="212" class="l sa w1"/>
+<line x1="206" y1="100" x2="206" y2="212" class="l sa w1"/>
+<line x1="220" y1="100" x2="220" y2="212" class="l sa w1"/>
+<line x1="234" y1="100" x2="234" y2="212" class="l sa w1"/>
+<line x1="248" y1="100" x2="248" y2="212" class="l sa w1"/>
+<line x1="150" y1="114" x2="262" y2="114" class="l sa w1"/>
+<line x1="150" y1="128" x2="262" y2="128" class="l sa w1"/>
+<line x1="150" y1="142" x2="262" y2="142" class="l sa w1"/>
+<line x1="150" y1="156" x2="262" y2="156" class="l sa w1"/>
+<line x1="150" y1="170" x2="262" y2="170" class="l sa w1"/>
+<line x1="150" y1="184" x2="262" y2="184" class="l sa w1"/>
+<line x1="150" y1="198" x2="262" y2="198" class="l sa w1"/>
+<text x="206" y="232" class="tb" text-anchor="middle">n＝8：64組</text>
+<line x1="90" y1="128" x2="138" y2="128" class="l sm w1"/>
+<polyline points="132,123 138,128 132,133" class="l sm w1"/>
+<text x="114" y="118" class="tm" text-anchor="middle">n×2</text>
+<text x="12" y="258" class="tb tng">→ n が2倍で、組の数は4倍</text>
+<text x="12" y="280">1組ごとに長さ d の計算 → n×n×d</text>
+<text x="12" y="300" class="tm">どの2語も1回でつながる（遠い語にも1歩）</text>
+<text x="12" y="318" class="tm">全部の組を同時に（並列に）計算できる</text>
+<line x1="12" y1="336" x2="308" y2="336" class="l sb w1"/>
+<text x="12" y="362" class="tb">②RNN：語を1つずつ順に進む</text>
+<text x="12" y="380" class="tm">箱1つ＝1歩。前の箱が終わるまで次を待つ</text>
+<rect x="12" y="392" width="48" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<rect x="84" y="392" width="48" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<rect x="156" y="392" width="48" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<rect x="228" y="392" width="48" height="28" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="36" y="411" class="tm" text-anchor="middle">d×d</text>
+<text x="108" y="411" class="tm" text-anchor="middle">d×d</text>
+<text x="180" y="411" class="tm" text-anchor="middle">d×d</text>
+<text x="252" y="411" class="tm" text-anchor="middle">d×d</text>
+<line x1="62" y1="406" x2="80" y2="406" class="l sm w1"/>
+<polyline points="75,402 80,406 75,410" class="l sm w1"/>
+<line x1="134" y1="406" x2="152" y2="406" class="l sm w1"/>
+<polyline points="147,402 152,406 147,410" class="l sm w1"/>
+<line x1="206" y1="406" x2="224" y2="406" class="l sm w1"/>
+<polyline points="219,402 224,406 219,410" class="l sm w1"/>
+<text x="290" y="411" class="tb">4歩</text>
+<text x="12" y="440" class="tb">n＝4</text>
+<rect x="12" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<rect x="45" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<rect x="78" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<rect x="111" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<rect x="144" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<rect x="177" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<rect x="210" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<rect x="243" y="452" width="26" height="22" rx="3" class="fwn swn" stroke-width="1"/>
+<text x="290" y="468" class="tb">8歩</text>
+<text x="12" y="494" class="tb">n＝8（歩数は2倍）</text>
+<text x="12" y="520" class="tb tng">→ n が2倍で、歩数も計算量も2倍</text>
+<text x="12" y="542">1歩ごとに d×d の重み → n×d×d</text>
+<text x="12" y="562" class="tm">前の結果を待つので、順番にしか計算できない</text>
+<text x="12" y="580" class="tm">1番目の語が4番目に届くまで3回受け渡す</text>
+<line x1="12" y1="598" x2="308" y2="598" class="l sb w1"/>
+<text x="12" y="624" class="tb">③数を入れて比べる</text>
+<text x="12" y="644" class="tm">d＝512 とする（論文の基本のモデルの次元）</text>
+<text x="190" y="668" class="tb" text-anchor="end">n＝100</text>
+<text x="300" y="668" class="tb" text-anchor="end">n＝200</text>
+<line x1="12" y1="676" x2="308" y2="676" class="l sb w1"/>
+<text x="12" y="694" class="ta">Self-Attention</text>
+<text x="190" y="694" text-anchor="end">512万</text>
+<text x="300" y="694" class="tng" text-anchor="end">2048万（4倍）</text>
+<text x="12" y="716" class="twn">RNN</text>
+<text x="190" y="716" text-anchor="end">約2621万</text>
+<text x="300" y="716" text-anchor="end">約5243万（2倍）</text>
+<text x="12" y="740" class="tok">n が d より小さいと Self-Attention が軽い</text>
+<text x="12" y="762" class="tb tng">『n が2倍で約2倍』は RNN の増え方</text>
+<text x="12" y="782" class="tm">（n の値と計算の数は説明のための例）</text>
+</svg>

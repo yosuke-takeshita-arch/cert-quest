@@ -1356,7 +1356,10 @@
         "url": "https://arxiv.org/abs/1802.05365"
       }
     ],
-    "status": "verified"
+    "status": "verified",
+    "figures": [
+      "fig-g-elmo-context"
+    ]
   },
   {
     "id": "C-06-032",
@@ -2713,7 +2716,8 @@
       }
     ],
     "figures": [
-      "fig-g-gan"
+      "fig-g-gan",
+      "fig-g-mode-collapse"
     ],
     "sources": [
       {
@@ -2866,7 +2870,8 @@
       }
     ],
     "figures": [
-      "fig-g-diffusion"
+      "fig-g-diffusion",
+      "fig-g-diffusion-steps"
     ],
     "sources": [
       {
