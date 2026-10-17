@@ -6,7 +6,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   UNITS, MAX_RANGE_DAYS, keyToNum, numToKey, bucketStart, nextBucketStart, defaultRange, normalizeRange,
-  studyReport, formatDuration, formatAxis, axisMax, bucketText, formatBarValue, barPx, labelEvery, matchColumns, MIN_SLOT_PX, PLOT_PX, pickBarValues, barValueWidthPx,
+  studyReport, formatDuration, formatAxis, axisMax, bucketText, formatBarValue, barPx, labelEvery, matchColumns, MIN_SLOT_PX, PLOT_PX, placeBarValues, barValueWidthPx,
 } from '../js/lib/studyreport.js';
 import { addStudySeconds, normalizeStudyDays, isDateKey, MAX_DAY_SECONDS, MAX_STUDY_DAYS } from '../js/lib/studytime.js';
 import { defaultState, mergeState, recordAnswer } from '../js/lib/progress.js';
@@ -421,25 +421,31 @@ test('名前を出す間隔: 約46pxおき', () => {
   assert.equal(labelEvery(1000), 1);
 });
 
-test('棒の上の数値（横書き1行）: 隣と重なるものだけ隠す。選んだ棒と、右（新しい日）を先に出す', () => {
+test('棒の上の数値（横書き1行）: 重なるなら1段上げて出す。1段上げても重なる・余白を超えるときだけ隠す', () => {
   // 幅の見積もり: 数字は0.62字、漢字は1字（11px）
   assert.equal(barValueWidthPx('37分'), Math.ceil((0.62 * 2 + 1) * 11));
   assert.equal(barValueWidthPx(''), 0);
-  // 日ごと（14px）で1本だけ → 出す（先生の画面の形）
-  assert.deepEqual(pickBarValues(['', '', '', '37分'], 14, 3), [false, false, false, true]);
-  // 隣り合う2本は重なる → 右（新しい日）だけ
-  assert.deepEqual(pickBarValues(['', '20分', '37分'], 14, -1), [false, false, true]);
-  // 選んだ棒は、右より先に出す
-  assert.deepEqual(pickBarValues(['', '20分', '37分'], 14, 1), [false, true, false]);
-  // 25px（37分）+4px のすき間 → 中心が 29px 以上離れれば両方出る。14px幅なら3本おき
-  assert.deepEqual(pickBarValues(['37分', '37分', '37分', '37分'], 14, -1), [true, false, false, true]);
+  // 1本だけ → 真上（0段）
+  assert.deepEqual(placeBarValues(['', '', '', '37分'], [2, 2, 2, 100], 14, { first: 3 }), [-1, -1, -1, 0]);
+  // 先生の画面（2026-10-18）: 同じくらいの高さの隣どうし → 右（新しい日）が0段、左は1段上げて両方出す
+  assert.deepEqual(placeBarValues(['', '', '37分', '38分'], [2, 2, 120, 118], 14, { first: 0 }), [-1, -1, 1, 0]);
+  // 選んだ棒を先に置く（選んだ棒が0段、右が1段）
+  assert.deepEqual(placeBarValues(['', '37分', '38分'], [2, 100, 100], 14, { first: 1 }), [-1, 0, 1]);
+  // 同じ高さの4本 → 0段と1段を交互に。どちらにも置けない2本目は隠す（2段上げると、どの棒か分かりにくい）
+  assert.deepEqual(placeBarValues(['37分', '37分', '37分', '37分'], [100, 100, 100, 100], 14), [0, -1, 1, 0]);
+  // 背の高い棒の隣の低い棒: 1段上げても高い棒にかかる → 隠す（押せば詳細で読める）
+  assert.deepEqual(placeBarValues(['33分', '1:18'], [50, 120], 14), [-1, 0]);
+  // 余白の上端（202px）を超える段には置かない: 最大の高さの3本が並ぶと、左端は隠れる
+  assert.deepEqual(placeBarValues(['37分'], [PLOT_PX], 14), [0]);
+  assert.deepEqual(placeBarValues(['37分', '37分'], [PLOT_PX, PLOT_PX], 14), [1, 0]);
+  assert.deepEqual(placeBarValues(['37分', '37分', '37分'], [PLOT_PX, PLOT_PX, PLOT_PX], 14), [-1, 1, 0]);
   // 週ごと（40px）では『1:05』どうしは重ならない
-  assert.deepEqual(pickBarValues(['1:05', '1:05', '1:05'], 40, -1), [true, true, true]);
-  // 文字が大きい設定（16px）では、詰まりやすくなる
-  assert.deepEqual(pickBarValues(['10:09', '10:09', '10:09'], 40, -1, 16), [true, false, true]);
+  assert.deepEqual(placeBarValues(['1:05', '1:05', '1:05'], [100, 100, 100], 40), [0, 0, 0]);
+  // 文字が大きい設定（16px）では、詰まって段が上がる
+  assert.deepEqual(placeBarValues(['10:09', '10:09', '10:09'], [100, 100, 100], 40, { fontPx: 16 }), [0, 1, 0]);
   // 空の数値（0分の日）は出さないし、場所も取らない
-  assert.deepEqual(pickBarValues(['37分', '', '37分'], 14, -1), [false, false, true]);
-  assert.deepEqual(pickBarValues([], 14, -1), []);
+  assert.deepEqual(placeBarValues(['37分', '', '37分'], [100, 2, 100], 14), [1, -1, 0]);
+  assert.deepEqual(placeBarValues([], [], 14), []);
 });
 
 test('切り替えで棒を結ぶ: 右端（今）をそろえて引き継ぎ、左の余りは消える／新しく出る（30本→12本、12本→5本、0本から）', () => {

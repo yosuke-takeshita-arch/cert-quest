@@ -13,8 +13,13 @@ export const MIN_SLOT_PX = { day: 14, week: 40, month: 48, year: 56 };
 /** 棒の上の数値の文字の大きさ（px。CSS の .sr-val の 0.6875rem と合わせる）と、隣の数値との最小のすき間（px）。 */
 export const BAR_VALUE_FONT_PX = 11;
 export const BAR_VALUE_GAP_PX = 4;
+/** 棒の上端と数値のすき間（px。CSS の .sr-val の margin-bottom 6px と合わせる）。 */
+export const BAR_VALUE_MARGIN_PX = 6;
 /** 棒の高さの最大（px）。縦軸の上端（axisMax）がこの高さ。 */
 export const PLOT_PX = 160;
+/** 棒の上の数値を置ける高さ（グラフの下端から、上の余白の上端の 2px 下まで。CSS の .sr-cols の padding-top 44px と合わせる）と、上げてよい段の数。 */
+export const BAR_VALUE_ROOM_PX = PLOT_PX + 44 - 2;
+export const BAR_VALUE_MAX_LEVEL = 1;
 /** 日ごとでこれより多い日数を見るときは、週ごとへの切り替えを勧める。 */
 export const DAY_UNIT_HINT_OVER = 90;
 
@@ -255,15 +260,24 @@ export function barValueWidthPx(text, fontPx = BAR_VALUE_FONT_PX) {
 }
 
 /**
- * 棒の上の数値（横書き1行）のうち、隣と重ならずに出せるものを選ぶ。
- * texts は左からの数値（空は出さない）、slotPx は棒1本の幅、first は必ず出す棒の番号（選んでいる棒。無ければ -1）、fontPx は数値の文字の大きさ（文字の大きさの設定で変わる）。
- * 選んでいる棒を最初に、残りは右（新しい日）から順に置き、すでに置いた数値と gap px 未満に近づくものは出さない。
- * 戻り値は texts と同じ長さの true/false。出さなかった数値は、棒を押すと下の詳細の文で読める。
+ * 棒の上の数値（横書き1行）を、どの段に置くか決める。
+ * texts は左からの数値（空は出さない）、heights は棒の高さ（px）、slotPx は棒1本の幅。
+ * opts.first は必ず先に置く棒（選んでいる棒。無ければ -1）、opts.fontPx は数値の文字の大きさ（文字の大きさの設定で変わる）、
+ * opts.roomPx はグラフの下端から上の余白の上端までの高さ。
+ * 数値は棒の真上（0段）に置き、ほかの数値・ほかの棒と重なるなら1段ずつ上げる（2026-10-18 先生「タップしないと表示されない」。
+ * 隣どうしの数値を隠さず、段をずらして両方出す）。1段上げても重なる・余白の上端を超えるときだけ出さない。
+ * 置く順は、選んでいる棒、それから右（新しい日）から。
+ * 戻り値は texts と同じ長さの段の番号（0, 1, 2…）。出さないものは -1（棒を押すと下の詳細の文で読める）。
  */
-export function pickBarValues(texts, slotPx, first = -1, fontPx = BAR_VALUE_FONT_PX, gap = BAR_VALUE_GAP_PX) {
+export function placeBarValues(texts, heights, slotPx, opts = {}) {
+  const first = opts.first ?? -1;
+  const fontPx = opts.fontPx || BAR_VALUE_FONT_PX;
+  const roomPx = opts.roomPx || BAR_VALUE_ROOM_PX;
+  const gap = BAR_VALUE_GAP_PX;
+  const step = fontPx + 2;
   const n = texts.length;
-  const show = new Array(n).fill(false);
-  const placed = [];
+  const level = new Array(n).fill(-1);
+  const placed = []; // [左, 右, 下, 上]（下端から上向きの px）
   const order = [];
   if (first >= 0 && first < n) order.push(first);
   for (let i = n - 1; i >= 0; i--) if (i !== first) order.push(i);
@@ -273,11 +287,25 @@ export function pickBarValues(texts, slotPx, first = -1, fontPx = BAR_VALUE_FONT
     const half = barValueWidthPx(texts[i], fontPx) / 2;
     const lo = c - half;
     const hi = c + half;
-    if (placed.some(([a, b]) => lo < b + gap && hi > a - gap)) continue;
-    placed.push([lo, hi]);
-    show[i] = true;
+    // 横に重なる、ほかの棒のうち、いちばん高いもの（数値はその上に出す）
+    let under = heights[i] || 0;
+    for (let j = 0; j < n; j++) {
+      if (j === i) continue;
+      if (lo < (j + 1) * slotPx - 1 && hi > j * slotPx + 1) under = Math.max(under, heights[j] || 0);
+    }
+    // 上げるのは1段まで（2段上げると、どの棒の数値か分かりにくかった）
+    for (let lv = 0; lv <= BAR_VALUE_MAX_LEVEL; lv++) {
+      const bottom = (heights[i] || 0) + BAR_VALUE_MARGIN_PX + lv * step;
+      const top = bottom + fontPx;
+      if (top > roomPx) break;
+      if (bottom < under + 1) continue; // ほかの棒に重なる
+      if (placed.some(([a, b, d, u]) => lo < b + gap && hi > a - gap && bottom < u + 1 && top > d - 1)) continue;
+      placed.push([lo, hi, bottom, top]);
+      level[i] = lv;
+      break;
+    }
   }
-  return show;
+  return level;
 }
 
 /** 棒の高さ（px）。0 は 2px の細い線、記録がある日は最低 3px（見えなくならないように）。 */

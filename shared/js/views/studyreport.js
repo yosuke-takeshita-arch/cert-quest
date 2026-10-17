@@ -6,7 +6,7 @@ import { h, clear } from '../ui.js';
 import { dateKey } from '../lib/srs.js';
 import {
   UNITS, UNIT_LABEL, MIN_SLOT_PX, PLOT_PX, DAY_UNIT_HINT_OVER, defaultRange, normalizeRange, studyReport, formatDuration, formatAxis, bucketText,
-  formatBarValue, pickBarValues, BAR_VALUE_FONT_PX, barPx, labelEvery, matchColumns,
+  formatBarValue, placeBarValues, BAR_VALUE_FONT_PX, BAR_VALUE_MARGIN_PX, barPx, labelEvery, matchColumns,
 } from '../lib/studyreport.js';
 
 const RANGE_MSG = {
@@ -66,7 +66,7 @@ function createChart(app) {
   let axisSec = 0;
   let first = true;
 
-  // 棒の上の数値は横書き1行。隣と重なるものは隠す（選んでいる棒と、右の新しい日を先に出す）
+  // 棒の上の数値は横書き1行。隣と重なるものは段を上げて出し、1段上げても重なるものだけ隠す（選んでいる棒と、右の新しい日を先に置く）
   let curSlot = 0;
   function placeValues() {
     const live = items.filter((x) => !x.col.classList.contains('leaving'));
@@ -74,8 +74,12 @@ function createChart(app) {
     const width = Math.max(scroll.clientWidth || 0, live.length * curSlot + PAD_X * 2);
     const slotPx = (width - PAD_X * 2) / live.length;
     const fontPx = parseFloat(getComputedStyle(live[0].val).fontSize) || BAR_VALUE_FONT_PX;
-    const show = pickBarValues(live.map((x) => formatBarValue(x.sec)), slotPx, live.indexOf(selected), fontPx);
-    live.forEach((x, i) => x.val.classList.toggle('sr-val-hidden', !show[i]));
+    const heights = live.map((x) => barPx(x.sec, axisSec, PLOT_PX));
+    const level = placeBarValues(live.map((x) => formatBarValue(x.sec)), heights, slotPx, { first: live.indexOf(selected), fontPx });
+    live.forEach((x, i) => {
+      x.val.classList.toggle('sr-val-hidden', level[i] < 0);
+      x.val.style.marginBottom = BAR_VALUE_MARGIN_PX + Math.max(0, level[i]) * (fontPx + 2) + 'px';
+    });
   }
 
   function select(it) {
