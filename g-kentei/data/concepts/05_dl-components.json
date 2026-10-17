@@ -909,7 +909,8 @@
       }
     ],
     "figures": [
-      "fig-g-rnn-unroll"
+      "fig-g-rnn-unroll",
+      "fig-g-rnn-to-transformer"
     ],
     "sources": [
       {
@@ -1171,7 +1172,8 @@
     ],
     "figures": [
       "fig-g-lstm-gru",
-      "fig-g-cec"
+      "fig-g-cec",
+      "fig-g-rnn-to-transformer"
     ],
     "sources": [
       {
@@ -1360,7 +1362,8 @@
       }
     ],
     "figures": [
-      "fig-g-seq2seq-attention"
+      "fig-g-seq2seq-attention",
+      "fig-g-rnn-to-transformer"
     ],
     "sources": [
       {
@@ -1413,7 +1416,8 @@
       }
     ],
     "figures": [
-      "fig-g-seq2seq-attention"
+      "fig-g-seq2seq-attention",
+      "fig-g-rnn-to-transformer"
     ],
     "sources": [
       {
@@ -1528,7 +1532,7 @@
     ],
     "title": "Transformer",
     "oneLine": "Attention（入力のどこに注目するかの重み付け）だけで組み立てたモデルで、RNNも畳み込みも使わないので並列に速く計算できる。入力を読むエンコーダと出力を作るデコーダからなり、Self-Attention・Source-Target Attention・Multi-Head Attentionを使う。2017年の論文「Attention Is All You Need」で発表。",
-    "why": "RNNを使ったSeq2Seqは1語ずつ順に計算するので、長い文の学習が遅く、GPUで並列に計算しにくかった。Transformerは、RNNも畳み込みも使わず、Attentionだけでエンコーダとデコーダを組んだ。エンコーダはSelf-Attention、デコーダはMasked Self-Attention（まだ作っていない後ろの位置を隠す）とSource-Target Attentionを持ち、どれも複数のヘッドに分けて計算する（Multi-Head）。各部分層には残差の結合とレイヤー正規化が付く。例：原論文の基本モデルは、エンコーダ・デコーダが6層ずつ、各語の表現は512次元で、それを 512÷8＝64次元ずつ8つのヘッドに分けた。押さえどころ：文の全部の位置を同時に計算できるので学習が速く、離れた語の関係も1回で結べる。BERTやGPTなどの大規模言語モデル、生成AIの土台になった。注意点：そのままでは語順が分からないので位置エンコーディングを足す。Self-Attention の計算量は系列の長さの2乗に比例して増える（原論文の表）。",
+    "why": "RNNを使ったSeq2Seqは1語ずつ順に計算するので、長い文の学習が遅く、GPUで並列に計算しにくかった。Transformerは、RNNも畳み込みも使わず、Attentionだけでエンコーダとデコーダを組んだ。動きの例：「私は猫が好き」を「I like cats」に訳すとき、エンコーダは5つの語を一度に読み、デコーダは I → like → cats と1語ずつ作る。作るたびに、自分がここまで出した語と、エンコーダが読んだ入力の文の両方を見る（例）。エンコーダはSelf-Attention、デコーダはMasked Self-Attention（まだ作っていない後ろの位置を隠す）とSource-Target Attentionを持ち、どれも複数のヘッドに分けて計算する（Multi-Head）。各部分層には残差の結合（箱の入力を出力に足して戻す近道）とレイヤー正規化（値の大きさをそろえる）が付き、各語を別々に変換する小さな全結合（フィードフォワード）もある。例：原論文の基本モデルは、エンコーダ・デコーダが6層ずつ、各語の表現は512次元で、それを 512÷8＝64次元ずつ8つのヘッドに分けた。押さえどころ：文の全部の位置を同時に計算できるので学習が速く、離れた語の関係も1回で結べる。BERTやGPTなどの大規模言語モデル、生成AIの土台になった。注意点：そのままでは語順が分からないので位置エンコーディングを足す。Self-Attention の計算量は系列の長さの2乗に比例して増える（原論文の表）。",
     "links": [
       {
         "id": "C-05-034",
@@ -1566,7 +1570,9 @@
       }
     ],
     "figures": [
+      "fig-g-transformer-flow",
       "fig-g-transformer",
+      "fig-g-rnn-to-transformer",
       "fig-g-vit"
     ],
     "sources": [
@@ -2255,7 +2261,8 @@
       }
     ],
     "figures": [
-      "fig-g-seq2seq-attention"
+      "fig-g-seq2seq-attention",
+      "fig-g-rnn-to-transformer"
     ],
     "sources": [
       {

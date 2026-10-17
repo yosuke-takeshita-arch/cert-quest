@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 546" role="img" aria-labelledby="fig-g-transformer-t fig-g-transformer-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 722" role="img" aria-labelledby="fig-g-transformer-t fig-g-transformer-d">
 <title id="fig-g-transformer-t">Transformer の構成</title>
-<desc id="fig-g-transformer-d">左にエンコーダ、右にデコーダを、それぞれN段積んだ構成図。入力の単語は、埋め込みに位置エンコーディングを足してから入る。エンコーダの各段は、Self-Attention とフィードフォワードで、それぞれに残差接続と正規化がつく。デコーダの各段は、Masked Self-Attention、Source-Target Attention、フィードフォワードの順で、エンコーダの出力は Source-Target Attention に渡される。Attention はすべてマルチヘッドで、複数のヘッドで並列に計算して連結する。RNN も畳み込みも使わないので、並列に計算できる。</desc>
+<desc id="fig-g-transformer-d">左にエンコーダ、右にデコーダを、それぞれN段積んだ構成図。入力の単語は、埋め込みに位置エンコーディングを足してから入る。エンコーダの各段は、Self-Attention とフィードフォワードで、それぞれに残差接続と正規化がつく。デコーダの各段は、Masked Self-Attention、Source-Target Attention、フィードフォワードの順で、エンコーダの出力は Source-Target Attention に渡される。Attention はすべてマルチヘッドで、複数のヘッドで並列に計算して連結する。箱の言葉：フィードフォワードは各語を別々に変換する小さな全結合（2層）、残差は箱の入力を出力に足して戻す近道、正規化は値の大きさをそろえること、×N は同じ段を N 回重ねること（論文では6）、Masked はまだ出していない後ろの語を隠すこと、Source-Target は入力側（エンコーダ）を見ること。RNN も畳み込みも使わないので、並列に計算できる。</desc>
 <text x="168" y="36" class="tb">デコーダ ×N</text>
 <rect x="168" y="44" width="140" height="224" class="fs sb" stroke-width="1.5"/>
 <rect x="176" y="52" width="124" height="60" class="fs sb" stroke-width="1.5"/>
@@ -47,10 +47,19 @@
 <text x="12" y="62" class="tm">キー・バリュー</text>
 <text x="12" y="80" class="tm">として渡す</text>
 <line x1="12" y1="398" x2="308" y2="398" class="l sb w1"/>
-<text x="12" y="422" class="tb">RNN も畳み込みも使わない</text>
-<text x="12" y="442" class="tb">→ 並列に計算できる</text>
-<text x="12" y="468">位置エンコーディング：語順の情報を足す</text>
-<text x="12" y="488" class="tm">（元の論文は sin・cos の波）</text>
-<text x="12" y="514">Attention はすべて Multi-Head</text>
-<text x="12" y="534" class="tm">複数のヘッドで並列に計算して連結</text>
+<text x="12" y="422" class="tb">箱の言葉</text>
+<text x="12" y="442">フィードフォワード：各語を別々に変換する</text>
+<text x="12" y="460" class="tm">　小さな全結合（2層）</text>
+<text x="12" y="480">残差：箱の入力を出力に足して戻す近道</text>
+<text x="12" y="500">正規化：値の大きさをそろえる</text>
+<text x="12" y="520">×N：同じ段を N 回重ねる（論文では 6）</text>
+<text x="12" y="540">Masked：まだ出していない後ろの語を隠す</text>
+<text x="12" y="560">Source-Target：入力側（エンコーダ）を見る</text>
+<line x1="12" y1="576" x2="308" y2="576" class="l sb w1"/>
+<text x="12" y="598" class="tb">RNN も畳み込みも使わない</text>
+<text x="12" y="618" class="tb">→ 並列に計算できる</text>
+<text x="12" y="644">位置エンコーディング：語順の情報を足す</text>
+<text x="12" y="664" class="tm">（元の論文は sin・cos の波）</text>
+<text x="12" y="690">Attention はすべて Multi-Head</text>
+<text x="12" y="710" class="tm">複数のヘッドで並列に計算して連結</text>
 </svg>
