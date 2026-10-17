@@ -14,7 +14,7 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
    - `npm --prefix shared test`（`# tests N` が、`shared/tests/*.test.js` を1つずつ回した件数の合計と一致すること。2026-10-09、一覧の空白抜けで2ファイルが黙って回らなかった）
    - `node tools/check-data.js g-kentei/data/concepts/*.json g-kentei/data/questions/*.json`
    - `node tools/check-data-dx.js dx-biz/data/concepts/*.json dx-biz/data/questions/*.json`
-   - `node tools/check-data.js ai-passport/data/concepts/*.json ai-passport/data/questions/*.json`（生成AIパスポートの問題・カードを置いてから。2026-10-13 時点では data/questions・data/concepts がまだ無いので飛ばす。check-data.js は id を G-NN-NNN・C-NN-NNN の形で求める）
+   - `node tools/check-data.js ai-passport/data/concepts/*.json ai-passport/data/questions/*.json`（2026-10-18 時点で問題786問・カードあり。毎回回す。組み合わせ問題の COMBO-MODE もここで見る）
    - `node tools/check-answers-unchanged.cjs`（説明文を書き直したとき。引数を省くと g-kentei・dx-biz・ai-passport を全部見る）
 3. **service worker の版を上げる**: `g-kentei/sw.js` と `dx-biz/sw.js` の5行目 `version: 'NN'` を、両方とも同じ番号で1つ上げる（shared/ を変えたら両方。片方だけにしない）
    - `ai-passport/sw.js` の5行目 `version: 'N'` は、G検定・DX と別の番号（2026-10-13 に 1 から始めた）。shared/ か ai-passport/ を変えたら1つ上げる。G検定・DX の番号にそろえない
