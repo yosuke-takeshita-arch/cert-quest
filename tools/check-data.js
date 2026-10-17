@@ -270,6 +270,34 @@ const CUE_WORDS = [
   /ただし/, /しかし/, /のみ/, /(?<!どれ|それ|これ|同じ)だけ(?!でなく|ではなく)/, /ではなく/, /一方で/,
   /必ず/, /(?<!異|非|正|日|通)常に/, /すべて|全て/, /まったく|全く/, /一切/,
 ];
+// COMBO-MODE: 組み合わせ問題で、どの欄でも正解の語がほかのどの語より多く出ていたらエラー（2026-10-18、先生が実機で気づいた。
+// 誤答を「正解から1欄だけ変えたもの」で作ると、各欄でいちばん多く出る語を選ぶだけで正解できる。同数はよい）
+const COMBO_MARK = /（([ア-ン])）/g;
+function splitComboChoice(choice) {
+  const parts = {};
+  const idx = [];
+  let m;
+  COMBO_MARK.lastIndex = 0;
+  while ((m = COMBO_MARK.exec(choice))) idx.push([m[1], m.index, m.index + m[0].length]);
+  idx.forEach(([k, , end], i) => {
+    const stop = i + 1 < idx.length ? idx[i + 1][1] : choice.length;
+    parts[k] = choice.slice(end, stop).trim();
+  });
+  return parts;
+}
+function checkComboMode(f, id, o) {
+  if (!Array.isArray(o.choices) || !o.choices.every(isStr) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
+  const sp = o.choices.map(splitComboChoice);
+  const ans = sp[o.answer];
+  const keys = Object.keys(ans);
+  if (!sp.every((p) => keys.every((k) => k in p))) { err(f, id, 'COMBO-MODE: combo の選択肢で欄（ア）（イ）…の並びがそろっていない'); return; }
+  const leak = keys.filter((k) => {
+    const c = {};
+    sp.forEach((p) => (c[p[k]] = (c[p[k]] || 0) + 1));
+    return Object.keys(c).every((v) => v === ans[k] || c[v] < c[ans[k]]);
+  });
+  if (leak.length) err(f, id, `COMBO-MODE: 欄 ${leak.map((k) => `（${k}）`).join('')} で正解の語がいちばん多く出る（各欄の最多の語を選ぶと正解できる。正解の語の回数をほかの語以下にする）`);
+}
 const cueStats = { n: 0, flagged: 0 };
 function checkCueWords(f, id, o) {
   if (!Array.isArray(o.choices) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
@@ -334,6 +362,10 @@ for (const { file: f, kind, data, syl } of loaded) {
         if (!/（ア）/.test(o.stem) || !/（イ）/.test(o.stem)) err(f, id, 'combo なのに問題文に空欄（ア）（イ）が無い');
         if (Array.isArray(o.choices) && o.choices.some((c) => typeof c !== 'string' || !/^（ア）/.test(c.trim()) || !/（イ）/.test(c))) err(f, id, 'combo の選択肢が「（ア）〇〇　（イ）△△」の形でない');
         if (Array.isArray(o.choices) && new Set(o.choices.map((c) => String(c).replace(/\s+/g, ''))).size !== o.choices.length) err(f, id, 'combo の選択肢に同じ組がある');
+        checkComboMode(f, id, o);
+      } else if (Array.isArray(o.choices) && o.choices.every((c) => isStr(c) && /^（ア）/.test(c.trim()) && /（イ）/.test(c))) {
+        // fill 等でも選択肢が「（ア）〇〇　（イ）△△」の組なら、同じ手がかりが出るので同じ検査をかける
+        checkComboMode(f, id, o);
       }
     } else {
       if (!idForm.c.test(id)) err(f, id, `id が ${idForm.cLabel} 形式でない`);
