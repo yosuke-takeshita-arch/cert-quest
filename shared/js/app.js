@@ -29,6 +29,7 @@ import { renderAbout } from './views/about.js';
 import { renderCharacters } from './views/characters.js';
 import { renderWeak } from './views/weak.js';
 import { renderLater } from './views/later.js';
+import { renderStudyReport } from './views/studyreport.js';
 import { renderDochi } from './views/dochi.js';
 import { renderBoss } from './views/boss.js';
 import { createIntro } from './views/intro.js';
@@ -385,6 +386,7 @@ export async function start() {
     ['badges', 'more', () => renderBadges(app)],
     ['weak', 'more', () => renderWeak(app)],
     ['later', 'more', (k) => renderLater(app, k)],
+    ['study', 'home', () => renderStudyReport(app)], // 学習時間の振り返り（ホームの総学習時間から開く）
     ['settings', 'more', () => renderSettings(app)],
     ['about', 'more', () => renderAbout(app)],
     ['characters', 'more', (k) => renderCharacters(app, k)],

@@ -163,7 +163,7 @@ export function renderHome(app) {
       h('div', { class: 'streak', title: '連続日数' }, icon('flame', streak ? 'on' : 'off'), h('strong', { text: streak + ' 日連続' }))),
     h('div', { class: 'progress', role: 'progressbar', 'aria-label': '次のレベルまで', 'aria-valuemin': '0', 'aria-valuemax': String(lv.need), 'aria-valuenow': String(lv.into) }, h('div', { class: 'progress-fill', style: { width: Math.round(lv.progress * 100) + '%' } })),
     h('p', { class: 'small muted', text: 'XP ' + state.xp + '（次のレベルまで あと ' + (lv.need - lv.into) + '）' }),
-    h('p', { class: 'small muted study-time', 'data-study-time': '1', text: '総学習時間 ' + formatStudyTime(state.studySeconds) }));
+    h('button', { class: 'link-btn study-time', type: 'button', 'data-study-time': '1', 'aria-label': '総学習時間 ' + formatStudyTime(state.studySeconds) + '。押すと日ごと・週ごとの振り返りを開きます', onClick: () => app.go('#/study') }, '総学習時間 ' + formatStudyTime(state.studySeconds) + '　振り返る ›'));
   root.appendChild(prog);
 
   if (!data.questions.length) {

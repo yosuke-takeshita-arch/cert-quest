@@ -16,7 +16,7 @@ export function installStudyClock(app, { win = window, doc = document, now = () 
     const r = advance(clock, ev, now());
     clock = r.clock;
     if (r.seconds > 0) {
-      addStudySeconds(app.state, r.seconds);
+      addStudySeconds(app.state, r.seconds, new Date(now())); // 合計と、その日の分に足す
       if (dirtySince === null) dirtySince = now();
     }
   }
