@@ -397,6 +397,13 @@ test('棒の上の数値: 0は出さない。1分未満・分・時間:分・100
   assert.equal(formatBarValue(45 * 60), '45分');
   assert.equal(formatBarValue(59 * 60 + 59), '59分');
   assert.equal(formatBarValue(3600), '1:00');
+  // 縦書き（日ごとの細い棒）: コロンや「<」は横倒しになるので使わない
+  assert.equal(formatBarValue(30, true), '1分未満');
+  assert.equal(formatBarValue(37 * 60, true), '37分');
+  assert.equal(formatBarValue(3600, true), '1時間');
+  assert.equal(formatBarValue(3600 + 5 * 60, true), '1時間5分');
+  assert.equal(formatBarValue(24 * 3600 - 1, true), '23時間59分');
+  assert.equal(formatBarValue(0, true), '');
   assert.equal(formatBarValue(3900), '1:05');
   assert.equal(formatBarValue(10 * 3600 + 9 * 60), '10:09');
   assert.equal(formatBarValue(99 * 3600 + 59 * 60), '99:59');

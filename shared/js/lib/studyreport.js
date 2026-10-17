@@ -236,13 +236,15 @@ export function bucketText(bk) {
  * 棒の上に出す短い数値。1分に満たなければ '<1分'、1時間に満たなければ '45分'、100時間までは '1:05'（時間:分）、それ以上は '120時間'。0は空（出さない）。
  * 正確な数字は棒の読み上げ・詳細の文（formatDuration）にもある。ここは狭い幅で読める短さを優先。
  */
-export function formatBarValue(seconds) {
+export function formatBarValue(seconds, vertical = false) {
   const s = typeof seconds === 'number' && Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
   if (s <= 0) return '';
-  if (s < 60) return '<1分';
+  if (s < 60) return vertical ? '1分未満' : '<1分'; // 縦書きでは「<」が横倒しになる
   const m = Math.floor(s / 60);
   if (m < 60) return m + '分';
   const h = Math.floor(m / 60);
+  // 縦書きでは「1:05」のコロンが横倒しになるので、「1時間5分」と書く（日ごとの棒は24時間まで）
+  if (vertical) return h + '時間' + (m % 60 ? (m % 60) + '分' : '');
   return h >= 100 ? h + '時間' : h + ':' + pad(m % 60);
 }
 
