@@ -10,8 +10,9 @@ export const UNIT_LABEL = { day: '日ごと', week: '週ごと', month: '月ご�
 export const MAX_RANGE_DAYS = 3660;
 /** 棒1本の最小の幅（px）。画面が狭い・棒が多いときは、これより細くせず横にスクロールさせる。 */
 export const MIN_SLOT_PX = { day: 14, week: 40, month: 48, year: 56 };
-/** 棒の幅がこれより細いときは、棒の上の数値を縦向き（90度回転）に書く。横書きの文字が隣と重なるため。 */
-export const VERTICAL_LABEL_UNDER_PX = 30;
+/** 棒の上の数値の文字の大きさ（px。CSS の .sr-val の 0.6875rem と合わせる）と、隣の数値との最小のすき間（px）。 */
+export const BAR_VALUE_FONT_PX = 11;
+export const BAR_VALUE_GAP_PX = 4;
 /** 棒の高さの最大（px）。縦軸の上端（axisMax）がこの高さ。 */
 export const PLOT_PX = 160;
 /** 日ごとでこれより多い日数を見るときは、週ごとへの切り替えを勧める。 */
@@ -236,16 +237,47 @@ export function bucketText(bk) {
  * 棒の上に出す短い数値。1分に満たなければ '<1分'、1時間に満たなければ '45分'、100時間までは '1:05'（時間:分）、それ以上は '120時間'。0は空（出さない）。
  * 正確な数字は棒の読み上げ・詳細の文（formatDuration）にもある。ここは狭い幅で読める短さを優先。
  */
-export function formatBarValue(seconds, vertical = false) {
+export function formatBarValue(seconds) {
   const s = typeof seconds === 'number' && Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
   if (s <= 0) return '';
-  if (s < 60) return vertical ? '1分未満' : '<1分'; // 縦書きでは「<」が横倒しになる
+  if (s < 60) return '<1分';
   const m = Math.floor(s / 60);
   if (m < 60) return m + '分';
   const h = Math.floor(m / 60);
-  // 縦書きでは「1:05」のコロンが横倒しになるので、「1時間5分」と書く（日ごとの棒は24時間まで）
-  if (vertical) return h + '時間' + (m % 60 ? (m % 60) + '分' : '');
   return h >= 100 ? h + '時間' : h + ':' + pad(m % 60);
+}
+
+/** 棒の上の数値の幅（px）の見積もり。文字の大きさ fontPx の太字で、数字・記号は約0.62字、漢字・かなは1字。 */
+export function barValueWidthPx(text, fontPx = BAR_VALUE_FONT_PX) {
+  let em = 0;
+  for (const ch of String(text || '')) em += /[0-9<:]/.test(ch) ? 0.62 : 1;
+  return Math.ceil(em * fontPx);
+}
+
+/**
+ * 棒の上の数値（横書き1行）のうち、隣と重ならずに出せるものを選ぶ。
+ * texts は左からの数値（空は出さない）、slotPx は棒1本の幅、first は必ず出す棒の番号（選んでいる棒。無ければ -1）、fontPx は数値の文字の大きさ（文字の大きさの設定で変わる）。
+ * 選んでいる棒を最初に、残りは右（新しい日）から順に置き、すでに置いた数値と gap px 未満に近づくものは出さない。
+ * 戻り値は texts と同じ長さの true/false。出さなかった数値は、棒を押すと下の詳細の文で読める。
+ */
+export function pickBarValues(texts, slotPx, first = -1, fontPx = BAR_VALUE_FONT_PX, gap = BAR_VALUE_GAP_PX) {
+  const n = texts.length;
+  const show = new Array(n).fill(false);
+  const placed = [];
+  const order = [];
+  if (first >= 0 && first < n) order.push(first);
+  for (let i = n - 1; i >= 0; i--) if (i !== first) order.push(i);
+  for (const i of order) {
+    if (!texts[i]) continue;
+    const c = (i + 0.5) * slotPx;
+    const half = barValueWidthPx(texts[i], fontPx) / 2;
+    const lo = c - half;
+    const hi = c + half;
+    if (placed.some(([a, b]) => lo < b + gap && hi > a - gap)) continue;
+    placed.push([lo, hi]);
+    show[i] = true;
+  }
+  return show;
 }
 
 /** 棒の高さ（px）。0 は 2px の細い線、記録がある日は最低 3px（見えなくならないように）。 */

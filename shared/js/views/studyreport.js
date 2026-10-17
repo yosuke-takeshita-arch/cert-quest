@@ -5,8 +5,8 @@
 import { h, clear } from '../ui.js';
 import { dateKey } from '../lib/srs.js';
 import {
-  UNITS, UNIT_LABEL, MIN_SLOT_PX, VERTICAL_LABEL_UNDER_PX, PLOT_PX, DAY_UNIT_HINT_OVER, defaultRange, normalizeRange, studyReport, formatDuration, formatAxis, bucketText,
-  formatBarValue, barPx, labelEvery, matchColumns,
+  UNITS, UNIT_LABEL, MIN_SLOT_PX, PLOT_PX, DAY_UNIT_HINT_OVER, defaultRange, normalizeRange, studyReport, formatDuration, formatAxis, bucketText,
+  formatBarValue, pickBarValues, BAR_VALUE_FONT_PX, barPx, labelEvery, matchColumns,
 } from '../lib/studyreport.js';
 
 const RANGE_MSG = {
@@ -21,11 +21,11 @@ function reduced() {
   return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-/** el の数値の表示を from から to まで数え上げ（数え下げ）る。fmt は秒→文字。put は文字の入れ方（省くと textContent）。動きを減らす設定では、すぐ to にする。 */
-function tween(el, from, to, fmt, put = (e, t) => { e.textContent = t; }) {
+/** el の数値の表示を from から to まで数え上げ（数え下げ）る。fmt は秒→文字。動きを減らす設定では、すぐ to にする。 */
+function tween(el, from, to, fmt) {
   const token = (el._tw = (el._tw || 0) + 1);
   if (reduced() || from === to || typeof requestAnimationFrame !== 'function') {
-    put(el, fmt(to));
+    el.textContent = fmt(to);
     return;
   }
   const t0 = performance.now();
@@ -33,20 +33,10 @@ function tween(el, from, to, fmt, put = (e, t) => { e.textContent = t; }) {
     if (el._tw !== token) return; // 新しい切り替えが始まったら、古い動きはやめる
     const k = Math.min(1, (now - t0) / ANIM_MS);
     const e = 1 - Math.pow(1 - k, 3); // 終わりでゆっくり
-    put(el, fmt(k >= 1 ? to : from + (to - from) * e));
+    el.textContent = fmt(k >= 1 ? to : from + (to - from) * e);
     if (k < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
-}
-
-/** 棒の上の数値を入れる。縦書きのときは、数字のかたまりだけ横に並べる（縦中横。「37分」の「37」が横倒しにならない）。 */
-function putVal(el, text) {
-  if (!el.closest('.vertical')) { el.textContent = text; return; }
-  clear(el);
-  for (const part of text.split(/(d+)/)) {
-    if (!part) continue;
-    el.appendChild(/^d+$/.test(part) ? h('span', { class: 'sr-tcy', text: part }) : document.createTextNode(part));
-  }
 }
 
 function stat(label, value, sub) {
@@ -76,9 +66,22 @@ function createChart(app) {
   let axisSec = 0;
   let first = true;
 
+  // 棒の上の数値は横書き1行。隣と重なるものは隠す（選んでいる棒と、右の新しい日を先に出す）
+  let curSlot = 0;
+  function placeValues() {
+    const live = items.filter((x) => !x.col.classList.contains('leaving'));
+    if (!live.length) return;
+    const width = Math.max(scroll.clientWidth || 0, live.length * curSlot + PAD_X * 2);
+    const slotPx = (width - PAD_X * 2) / live.length;
+    const fontPx = parseFloat(getComputedStyle(live[0].val).fontSize) || BAR_VALUE_FONT_PX;
+    const show = pickBarValues(live.map((x) => formatBarValue(x.sec)), slotPx, live.indexOf(selected), fontPx);
+    live.forEach((x, i) => x.val.classList.toggle('sr-val-hidden', !show[i]));
+  }
+
   function select(it) {
     if (selected) selected.col.setAttribute('aria-pressed', 'false');
     selected = it;
+    placeValues();
     if (!it) { detail.textContent = ''; return; }
     it.col.setAttribute('aria-pressed', 'true');
     detail.textContent = bucketText(it.bk);
@@ -134,7 +137,7 @@ function createChart(app) {
       xs.insertBefore(it.x, firstLive ? firstLive.x : null);
     }
 
-    cols.classList.toggle('vertical', slot < VERTICAL_LABEL_UNDER_PX);
+    curSlot = slot;
     cols.setAttribute('aria-label', UNIT_LABEL[unit] + 'の学習時間の棒グラフ。' + n + '本');
     const minW = n * slot + PAD_X * 2 + 'px';
     cols.style.minWidth = minW;
@@ -164,7 +167,7 @@ function createChart(app) {
       }
       if (!animate) {
         it.bar.style.height = px + 'px';
-        putVal(it.val, formatBarValue(bk.seconds, cols.classList.contains('vertical')));
+        it.val.textContent = formatBarValue(bk.seconds);
       }
       it._px = px;
       it._from = it.col.classList.contains('entering') ? 0 : from;
@@ -188,8 +191,7 @@ function createChart(app) {
           it.col.classList.remove('entering');
           it.x.classList.remove('entering');
           it.bar.style.height = it._px + 'px';
-          const vert = cols.classList.contains('vertical');
-          tween(it.val, it._from, it.sec, (sec) => formatBarValue(sec, vert), putVal);
+          tween(it.val, it._from, it.sec, formatBarValue);
         });
       }));
     } else {

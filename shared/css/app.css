@@ -897,21 +897,19 @@ body.boss-on { background: #000; }
 .sr-stat-val { font-size: 1.25rem; line-height: 1.4; }
 .sr-chart { display: flex; gap: 4px; }
 /* 棒の高さは PLOT_PX(160)。その上に、数値のための余白 44px。縦軸の上端は棒の最大の高さ（余白の下） */
-.sr-axis { flex: none; width: 3.5rem; height: 224px; padding-top: 64px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 0.75rem; line-height: 1; color: var(--muted); }
+.sr-axis { flex: none; width: 3.5rem; height: 204px; padding-top: 44px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 0.75rem; line-height: 1; color: var(--muted); }
 .sr-scroll { flex: 1; min-width: 0; overflow-x: auto; padding-bottom: 4px; }
 /* 横にスクロールして左が切れているときだけ、左の端をぼかして『まだ続く』と分かるようにする（切れた文字が中途半端に見えない） */
 .sr-scroll.scrolled { -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20px); mask-image: linear-gradient(to right, transparent 0, #000 20px); }
-.sr-cols { display: flex; height: 224px; padding: 64px 16px 0; box-sizing: border-box; border-bottom: 1px solid var(--muted); background-image: linear-gradient(var(--border), var(--border)), linear-gradient(var(--border), var(--border)); background-size: 100% 1px, 100% 1px; background-position: 0 64px, 0 144px; background-repeat: no-repeat; }
+.sr-cols { display: flex; height: 204px; padding: 44px 16px 0; box-sizing: border-box; border-bottom: 1px solid var(--muted); background-image: linear-gradient(var(--border), var(--border)), linear-gradient(var(--border), var(--border)); background-size: 100% 1px, 100% 1px; background-position: 0 44px, 0 124px; background-repeat: no-repeat; }
 .sr-col { appearance: none; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 0 1px; border: 0; background: none; cursor: pointer; font: inherit; overflow: visible; transition: flex-grow 0.42s ease; }
 .sr-col.entering, .sr-col.leaving { flex-grow: 0; padding: 0; }
 .sr-bar, .sr-val { flex: none; } /* 縮めない（縮むと棒の高さが数値の分だけ削られる） */
 .sr-bar { display: block; width: 100%; height: 2px; background: var(--accent); border-radius: 3px 3px 0 0; transition: height 0.42s ease; }
 .sr-bar.zero { background: var(--border); border-radius: 0; }
-/* 棒の上の数値。細い棒（日ごと）は縦向きに書いて、隣と重ならないようにする */
+/* 棒の上の数値。横書き1行で、棒の幅より長くてよい（隣にはみ出す）。隣と重なるものは画面側で .sr-val-hidden にして隠す */
 .sr-val { display: block; min-height: 1em; margin-bottom: 6px; font-size: 0.6875rem; line-height: 1; font-weight: 700; color: var(--text); white-space: nowrap; pointer-events: none; }
-/* 縦書きは日本語の向き（漢字は立てたまま）。数字は .sr-tcy で横に並べる。上の余白 64px は「23時間59分」（5文字分）が入る高さ */
-.sr-cols.vertical .sr-val { writing-mode: vertical-rl; text-orientation: mixed; }
-.sr-tcy { text-combine-upright: all; -webkit-text-combine: horizontal; }
+.sr-val.sr-val-hidden { visibility: hidden; }
 /* 選んだ棒は、棒そのものに縁を付ける（枠が上まで伸びて、棒と見分けにくくなるのを避ける）。*/
 .sr-col[aria-pressed='true'] .sr-bar { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text); }
 .sr-xs { display: flex; margin-top: 4px; padding: 0 16px; box-sizing: border-box; }
