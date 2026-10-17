@@ -1,6 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 816" role="img" aria-labelledby="fig-g-lora-t fig-g-lora-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 916" role="img" aria-labelledby="fig-g-lora-t fig-g-lora-d">
 <title id="fig-g-lora-t">LoRA：元の重みは固定し、小さな行列 B と A だけを学ぶ</title>
-<desc id="fig-g-lora-d">①ふつうのファインチューニングは、縦1000×横1000の重み W の100万個を全部学習し直す。②LoRA は元の重み W0 を固定し、縦1000×横8の行列 B と、縦8×横1000の行列 A の積 BA を足す。学習するのは B と A だけで、8000＋8000＝16000個。100万個の約1.6%。この 8 をランク r と呼ぶ。数は説明のための例。棒で比べると、学習する数の差が分かる。③使うときは W＝W0＋BA を先に計算して1枚の行列にしておけるので、層が増えず、推論の遅れが増えない。アダプタは層を足すので遅れが出る。④用途を替えるときは、共通の W0 はそのままで、用途ごとの小さい B と A だけを差し替える。</desc>
+<desc id="fig-g-lora-d">①ふつうのファインチューニングは、縦1000×横1000の重み W の100万個を全部学習し直す。②LoRA は元の重み W0 を固定し、縦1000×横8の行列 B と、縦8×横1000の行列 A の積 BA を足す。学習するのは B と A だけで、8000＋8000＝16000個。100万個の約1.6%。この 8 をランク r と呼ぶ。数は説明のための例。棒で比べると、学習する数の差が分かる。③使うときは W＝W0＋BA を先に計算して1枚の行列にしておけるので、層が増えず、推論の遅れが増えない。アダプタは層を足すので遅れが出る。④用途を替えるときは、共通の W0 はそのままで、用途ごとの小さい B と A だけを差し替える。言葉：重みは入力に掛ける、学習で決まる数。行列は数を縦×横の表に並べたもので、W・B・Aはどれも重みの行列。</desc>
+<rect x="12" y="6" width="296" height="88" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="29" class="tb">言葉：重み・行列</text>
+<text x="22" y="47">重み：入力に掛ける、学習で決まる数</text>
+<text x="22" y="65">行列：数を縦×横の表に並べたもの</text>
+<text x="22" y="83">　（W・B・A はどれも重みの行列）</text>
+<g transform="translate(0,100)">
 <text x="12" y="20" class="tb">① ふつうのファインチューニング</text>
 <rect x="12" y="34" width="100" height="100" class="fwn swn" stroke-width="1.5"/>
 <text x="62" y="89" class="tl" text-anchor="middle">W</text>
@@ -54,4 +60,5 @@
 <text x="125" y="785" text-anchor="middle">要約用の B'・A'</text>
 <text x="192" y="764">小さい B・A を</text>
 <text x="192" y="784">用途ごとに持つ</text>
+</g>
 </svg>

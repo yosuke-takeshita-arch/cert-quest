@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-g-inception-t fig-g-inception-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 482" role="img" aria-labelledby="fig-g-inception-t fig-g-inception-d">
 <title id="fig-g-inception-t">Inception モジュール（GoogLeNet）</title>
-<desc id="fig-g-inception-d">前の層の出力から、4本の枝を並べて計算し、最後に連結する。1つ目は1×1の畳み込み。2つ目は1×1の畳み込みで減らしてから3×3の畳み込み。3つ目は1×1の畳み込みで減らしてから5×5の畳み込み。4つ目は3×3の最大値プーリングのあとに1×1の畳み込み。1×1の畳み込みでチャネル数を減らし、計算量を抑える。大きさの違う畳み込みを並列に束ねるのが Inception モジュール。</desc>
+<desc id="fig-g-inception-d">前の層の出力から、4本の枝を並べて計算し、最後に連結する。1つ目は1×1の畳み込み。2つ目は1×1の畳み込みで減らしてから3×3の畳み込み。3つ目は1×1の畳み込みで減らしてから5×5の畳み込み。4つ目は3×3の最大値プーリングのあとに1×1の畳み込み。1×1の畳み込みでチャネル数を減らし、計算量を抑える。大きさの違う畳み込みを並列に束ねるのが Inception モジュール。言葉：チャネルは特徴マップの枚数。連結は、枝ごとの特徴マップを重ねること。</desc>
 <text x="12" y="20" class="tb">4本の枝を並べて、最後に連結</text>
+<rect x="12" y="34" width="296" height="70" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="57" class="tb">言葉：チャネル</text>
+<text x="22" y="75">チャネル：特徴マップの枚数</text>
+<text x="22" y="93">　連結＝枝ごとの特徴マップを重ねる</text>
+<g transform="translate(0,82)">
 <rect x="94" y="36" width="132" height="28" class="fs sb" stroke-width="1.5"/>
 <text x="160" y="54.5" class="tb" text-anchor="middle">前の層の出力</text>
 <line x1="160" y1="64" x2="43" y2="100" class="l sm w2"/>
@@ -57,4 +62,5 @@
 <text x="12" y="338" class="tm">→ 5×5 などの計算量を抑える</text>
 <text x="12" y="366" class="tb">大きさの違う畳み込みを並列に束ねる</text>
 <text x="12" y="388">＝ Inception モジュール（GoogLeNet、22層）</text>
+</g>
 </svg>

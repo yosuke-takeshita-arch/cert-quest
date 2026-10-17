@@ -1,10 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 944" role="img" aria-labelledby="fig-g-wide-resnet-t fig-g-wide-resnet-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1044" role="img" aria-labelledby="fig-g-wide-resnet-t fig-g-wide-resnet-d">
 <title id="fig-g-wide-resnet-t">Wide ResNet：層を減らし、各層のチャネル数（幅）を広げる</title>
-<desc id="fig-g-wide-resnet-d">Wide ResNet は、ResNet の層を減らす代わりに、各層のチャネル数（幅）を広げた構造。図では棒1本を畳み込みの層1つ、棒の横の長さを幅として描く。①細くて深い ResNet-1001 は、16・32・64チャネルの3つの段にそれぞれ約333層を積み、合わせて1001層・幅1倍。②太くて浅い WRN-16-8 は、128・256・512チャネルの3つの段にそれぞれ4層で、合わせて16層・幅8倍。③原論文の CIFAR-10 の結果：ResNet-1001 は層1001・重み1020万・誤り率4.92%、WRN-16-8 は層16・重み1100万・誤り率4.27%。重みの数は近いのに層は約60分の1で、精度は同じかそれ以上、学習は数倍速い。④速い理由：深いと1001層を1層ずつ順番に計算するが、太いと1層が大きな行列計算になり GPU がまとめて並列にこなせるので、順番待ちが減り速く学習できる。⑤WRN-28-10 は28層・幅10倍という意味。幅を広げると重みは増え、WRN-28-10 は3650万で ResNet-1001 の約3.6倍。深さ・幅・解像度の3つを一緒に広げるのは EfficientNet。</desc>
+<desc id="fig-g-wide-resnet-d">Wide ResNet は、ResNet の層を減らす代わりに、各層のチャネル数（幅）を広げた構造。図では棒1本を畳み込みの層1つ、棒の横の長さを幅として描く。①細くて深い ResNet-1001 は、16・32・64チャネルの3つの段にそれぞれ約333層を積み、合わせて1001層・幅1倍。②太くて浅い WRN-16-8 は、128・256・512チャネルの3つの段にそれぞれ4層で、合わせて16層・幅8倍。③原論文の CIFAR-10 の結果：ResNet-1001 は層1001・重み1020万・誤り率4.92%、WRN-16-8 は層16・重み1100万・誤り率4.27%。重みの数は近いのに層は約60分の1で、精度は同じかそれ以上、学習は数倍速い。④速い理由：深いと1001層を1層ずつ順番に計算するが、太いと1層が大きな行列計算になり GPU がまとめて並列にこなせるので、順番待ちが減り速く学習できる。⑤WRN-28-10 は28層・幅10倍という意味。幅を広げると重みは増え、WRN-28-10 は3650万で ResNet-1001 の約3.6倍。深さ・幅・解像度の3つを一緒に広げるのは EfficientNet。言葉：chはチャネルで、特徴マップの枚数（16chなら16枚）。重みは入力に掛ける、学習で決まる数。</desc>
 <text x="12" y="20" class="tb">Wide ResNet：層を減らし、幅を広げる</text>
 <text x="12" y="42" class="tm">幅＝各層のチャネル数（特徴マップの枚数）</text>
 <text x="12" y="60" class="tm">棒1本＝畳み込みの層1つ。棒の横の長さ＝幅</text>
 <text x="12" y="78" class="tm">（ResNet は幅の違う3つの段を積む）</text>
+<rect x="12" y="92" width="296" height="88" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="115" class="tb">言葉：ch・重み</text>
+<text x="22" y="133">ch：チャネル（特徴マップの枚数）</text>
+<text x="22" y="151">　16ch ＝ 特徴マップ 16 枚</text>
+<text x="22" y="169">重み：入力に掛ける、学習で決まる数</text>
+<g transform="translate(0,100)">
 <rect x="12" y="90" width="296" height="300" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="24" y="110" class="tb">① 細くて深い　vs　② 太くて浅い</text>
 <text x="82" y="132" class="tb" text-anchor="middle">ResNet-1001</text>
@@ -89,4 +95,5 @@
 <text x="12" y="888" class="tb">深さだけが性能を決めるわけではない</text>
 <text x="12" y="910" class="tm">深さ・幅・解像度の3つを一緒に広げるのは</text>
 <text x="12" y="928" class="tm">EfficientNet</text>
+</g>
 </svg>

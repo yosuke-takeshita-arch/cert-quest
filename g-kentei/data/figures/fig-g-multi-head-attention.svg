@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-multi-head-attention-t fig-g-multi-head-attention-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 678" role="img" aria-labelledby="fig-g-multi-head-attention-t fig-g-multi-head-attention-d">
 <title id="fig-g-multi-head-attention-t">Multi-Head Attention：注目の仕方を複数持つ</title>
-<desc id="fig-g-multi-head-attention-d">「犬 が 骨 を かじった」という文で、「かじった」がどの語に注目するかを、3つのヘッドで別々に計算する例。ヘッド1は、だれがにあたる「犬」に強く注目する。ヘッド2は、何をにあたる「骨」に強く注目する。ヘッド3は、すぐ前の語「を」に強く注目する。注目先は説明のための例。各ヘッドの結果（原論文では64次元ずつ）を、同じ色の区画としてつなぎ、8ヘッドで 64×8＝512次元にする。つないだものをもう一度線形変換して出力にする。ヘッドごとにクエリ・キー・バリューを別の重みで作るので、見る相手がヘッドごとに分かれる。1つのヘッドの次元が小さいので、計算量は大きなヘッド1つとほぼ同じ。</desc>
+<desc id="fig-g-multi-head-attention-d">「犬 が 骨 を かじった」という文で、「かじった」がどの語に注目するかを、3つのヘッドで別々に計算する例。ヘッド1は、だれがにあたる「犬」に強く注目する。ヘッド2は、何をにあたる「骨」に強く注目する。ヘッド3は、すぐ前の語「を」に強く注目する。注目先は説明のための例。各ヘッドの結果（原論文では64次元ずつ）を、同じ色の区画としてつなぎ、8ヘッドで 64×8＝512次元にする。つないだものをもう一度線形変換して出力にする。ヘッドごとにクエリ・キー・バリューを別の重みで作るので、見る相手がヘッドごとに分かれる。1つのヘッドの次元が小さいので、計算量は大きなヘッド1つとほぼ同じ。言葉：次元は1語を表す数の個数。重みは入力に掛ける、学習で決まる数。線形変換は、数の並びに重みを掛けて足し、別の数の並びにする計算。</desc>
 <text x="12" y="20" class="tb">Multi-Head Attention：見方を複数持つ</text>
 <text x="12" y="44" class="tm">文「犬 が 骨 を かじった」で、</text>
 <text x="12" y="62" class="tm">「かじった」がどの語を見るか（例）</text>
@@ -37,6 +37,13 @@
 <text x="178" y="230" class="tb twn" text-anchor="middle">を</text>
 <rect x="204" y="212" width="70" height="26" class="fs sb" stroke-width="1" rx="4"/>
 <text x="239" y="230" class="tm" text-anchor="middle">かじった</text>
+<rect x="12" y="252" width="296" height="106" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="275" class="tb">言葉：次元・重み・線形変換</text>
+<text x="22" y="293">次元：1語を表す数の個数</text>
+<text x="22" y="311">重み：入力に掛ける、学習で決まる数</text>
+<text x="22" y="329">線形変換：数の並びに重みを掛けて足し、</text>
+<text x="22" y="347">　別の数の並びにする計算</text>
+<g transform="translate(0,118)">
 <text x="12" y="268">各ヘッドの結果をつなぐ（連結）</text>
 <rect x="12" y="278" width="60" height="28" class="fas sa" stroke-width="1.5"/>
 <text x="42" y="297" class="tb ta" text-anchor="middle">1</text>
@@ -59,4 +66,5 @@
 <text x="12" y="508" class="tm">計算量は大きなヘッド1つとほぼ同じ</text>
 <text x="12" y="532" class="tm">注目先と、ヘッドを3つだけ描いたのは</text>
 <text x="12" y="550" class="tm">説明のための例</text>
+</g>
 </svg>

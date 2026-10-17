@@ -1,7 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 630" role="img" aria-labelledby="fig-g-cnn-models-t fig-g-cnn-models-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 748" role="img" aria-labelledby="fig-g-cnn-models-t fig-g-cnn-models-d">
 <title id="fig-g-cnn-models-t">代表的な画像分類モデルの比べ表</title>
-<desc id="fig-g-cnn-models-d">AlexNet（2012年、8層。ReLU・GPU・ドロップアウト）、VGG（2014年、16〜19層。3×3のフィルタだけを重ねる）、GoogLeNet（2014年、22層。Inceptionモジュールと補助分類器）、ResNet（2015年、152層。スキップ結合で残差を学ぶ）、Wide ResNet（2016年。層を減らして幅を広げる）、DenseNet（2016年。前の全層の出力と連結する）、SENet（2017年。チャネルの重みを付け直す）、MobileNet（2017年。深さ方向分離畳み込みで軽量化）、EfficientNet（2019年。深さ・幅・解像度をまとめて拡大）、ViT（2020年。画像をパッチに分けて Transformer で分類）。年は各モデルの論文の年。</desc>
+<desc id="fig-g-cnn-models-d">AlexNet（2012年、8層。ReLU・GPU・ドロップアウト）、VGG（2014年、16〜19層。3×3のフィルタだけを重ねる）、GoogLeNet（2014年、22層。Inceptionモジュールと補助分類器）、ResNet（2015年、152層。スキップ結合で残差を学ぶ）、Wide ResNet（2016年。層を減らして幅を広げる）、DenseNet（2016年。前の全層の出力と連結する）、SENet（2017年。チャネルの重みを付け直す）、MobileNet（2017年。深さ方向分離畳み込みで軽量化）、EfficientNet（2019年。深さ・幅・解像度をまとめて拡大）、ViT（2020年。画像をパッチに分けて Transformer で分類）。年は各モデルの論文の年。言葉：フィルタは画像の上をずらして当てる、小さな重みの格子（例 3×3）。チャネルは特徴マップの枚数。重みは掛ける数で、大きいほど重く見る。</desc>
 <text x="12" y="20" class="tm">年は論文の年。層数は主なもの</text>
+<rect x="12" y="34" width="296" height="106" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="57" class="tb">言葉：フィルタ・チャネル・重み</text>
+<text x="22" y="75">フィルタ：画像の上をずらして当てる、</text>
+<text x="22" y="93">　小さな重みの格子（例 3×3）</text>
+<text x="22" y="111">チャネル：特徴マップの枚数</text>
+<text x="22" y="129">重み：掛ける数。大きいほど重く見る</text>
+<g transform="translate(0,118)">
 <rect x="20" y="44" width="22" height="22" class="fs sa" stroke-width="1.5"/>
 <rect x="16" y="48" width="22" height="22" class="fs sa" stroke-width="1.5"/>
 <rect x="12" y="52" width="22" height="22" class="fas sa" stroke-width="1.5"/>
@@ -84,4 +91,5 @@
 <text x="66" y="596" class="tb">ViT</text>
 <text x="308" y="596" class="tm" text-anchor="end">2020年</text>
 <text x="66" y="618">パッチに分けて Transformer</text>
+</g>
 </svg>

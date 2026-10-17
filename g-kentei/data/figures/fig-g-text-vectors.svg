@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 838" role="img" aria-labelledby="fig-g-text-vectors-t fig-g-text-vectors-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 956" role="img" aria-labelledby="fig-g-text-vectors-t fig-g-text-vectors-d">
 <title id="fig-g-text-vectors-t">単語・文書の表し方：ワンホット・BoW・TF-IDF・分散表現</title>
-<desc id="fig-g-text-vectors-d">語彙が犬・猫・車・走る・好きの5語の例。ワンホットは、語彙の数の長さのベクトルで、その単語の位置だけが1。どの2語も直交し、意味の近さを表せない。BoW は、文書ごとに単語の出現回数を並べ、語順は捨てる。TF-IDF は、その文書によく出て、他の文書にあまり出ない語ほど重みが大きく、どの文書にも出る語は小さい。分散表現は、単語を数百次元ほどの連続値のベクトルで表し、意味の近い単語ほど近い。2次元の図では、犬と猫が近く、車とバスが近く、動物と乗り物は離れる。</desc>
+<desc id="fig-g-text-vectors-d">語彙が犬・猫・車・走る・好きの5語の例。ワンホットは、語彙の数の長さのベクトルで、その単語の位置だけが1。どの2語も直交し、意味の近さを表せない。BoW は、文書ごとに単語の出現回数を並べ、語順は捨てる。TF-IDF は、その文書によく出て、他の文書にあまり出ない語ほど重みが大きく、どの文書にも出る語は小さい。分散表現は、単語を数百次元ほどの連続値のベクトルで表し、意味の近い単語ほど近い。2次元の図では、犬と猫が近く、車とバスが近く、動物と乗り物は離れる。言葉：ベクトルは数を1列に並べたもの。次元は並べた数の個数で、①は5次元。直交は、同じ位置どうしを掛けて足すと0になること（重なるところが無い）。</desc>
+<rect x="12" y="6" width="296" height="106" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="29" class="tb">言葉：ベクトル・次元・直交</text>
+<text x="22" y="47">ベクトル：数を1列に並べたもの</text>
+<text x="22" y="65">次元：並べた数の個数（①は 5 次元）</text>
+<text x="22" y="83">直交：同じ位置どうしを掛けて足すと 0</text>
+<text x="22" y="101">　（重なるところが無い）</text>
+<g transform="translate(0,118)">
 <text x="12" y="20" class="tb">① ワンホット：1つだけ 1</text>
 <text x="77" y="44" class="tb" text-anchor="middle">犬</text>
 <text x="107" y="44" class="tb" text-anchor="middle">猫</text>
@@ -154,4 +161,5 @@
 <text x="271" y="690.5" class="tb">バス</text>
 <text x="12" y="806" class="tm">数百次元ほどの実数ベクトル</text>
 <text x="12" y="826" class="tm">（図は2次元に縮めた）</text>
+</g>
 </svg>

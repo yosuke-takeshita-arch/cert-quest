@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 632" role="img" aria-labelledby="fig-g-scaled-dot-product-t fig-g-scaled-dot-product-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 732" role="img" aria-labelledby="fig-g-scaled-dot-product-t fig-g-scaled-dot-product-d">
 <title id="fig-g-scaled-dot-product-t">Scaled Dot-Product Attention：4つの手順と、√dk で割る理由</title>
-<desc id="fig-g-scaled-dot-product-d">式は softmax(QKᵀ／√dk)V。上は4つの手順を順に並べ、式のどの部分かを右に書く。① クエリとキーの内積で関係の強さのスコアを出す（QKᵀ、問題の（ア））。② キーの次元数 dk の平方根で割る。ここが Scaled（大きさの調整）の部分で、dk＝64 なら8で割る（／√dk、問題の（イ））。③ ソフトマックスで合計1の重みにする（softmax）。④ 重みでバリューを足し合わせて出力する（V、問題の（ウ））。下は、なぜ割るのか。内積は64個の掛け算を足すので、次元が多いほど大きくなりやすく、散らばりはおよそ√64＝8倍になる。割る前のスコアが16、5.6、0なら、そのままソフトマックスにかけると e の16乗がおよそ8,886,111 で他を圧倒し、重みは1.00、0.00、0.00になる。1つの語に全部寄り、ほかの語はほぼ使われず、学習で重みを直す手がかり（勾配）もほとんど出ない。8で割ると2.0、0.7、0.0で、ソフトマックスの重みは0.71、0.19、0.10とほどよく分かれる。この数は Attention の計算の図（fig-g-qkv）と同じ。</desc>
+<desc id="fig-g-scaled-dot-product-d">式は softmax(QKᵀ／√dk)V。上は4つの手順を順に並べ、式のどの部分かを右に書く。① クエリとキーの内積で関係の強さのスコアを出す（QKᵀ、問題の（ア））。② キーの次元数 dk の平方根で割る。ここが Scaled（大きさの調整）の部分で、dk＝64 なら8で割る（／√dk、問題の（イ））。③ ソフトマックスで合計1の重みにする（softmax）。④ 重みでバリューを足し合わせて出力する（V、問題の（ウ））。下は、なぜ割るのか。内積は64個の掛け算を足すので、次元が多いほど大きくなりやすく、散らばりはおよそ√64＝8倍になる。割る前のスコアが16、5.6、0なら、そのままソフトマックスにかけると e の16乗がおよそ8,886,111 で他を圧倒し、重みは1.00、0.00、0.00になる。1つの語に全部寄り、ほかの語はほぼ使われず、学習で重みを直す手がかり（勾配）もほとんど出ない。8で割ると2.0、0.7、0.0で、ソフトマックスの重みは0.71、0.19、0.10とほどよく分かれる。この数は Attention の計算の図（fig-g-qkv）と同じ。言葉：内積は、2つの数の並びの同じ位置どうしを掛けて全部足した数。次元数はその並びの数の個数。</desc>
 <text x="12" y="20" class="tb">Scaled Dot-Product Attention</text>
 <text x="12" y="40" class="tm">式：softmax(QKᵀ／√dk) V（手順は上から順）</text>
+<rect x="12" y="54" width="296" height="88" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="77" class="tb">言葉：内積・次元</text>
+<text x="22" y="95">内積：2つの数の並びの、同じ位置どうし</text>
+<text x="22" y="113">　を掛けて全部足した数</text>
+<text x="22" y="131">次元数：その並びの数の個数</text>
+<g transform="translate(0,100)">
 <rect x="12" y="52" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="22" y="73" class="tb">① クエリとキーの内積</text>
 <text x="22" y="92" class="tm">＝関係の強さのスコア</text>
@@ -58,4 +64,5 @@
 <text x="12" y="588" class="twn">手がかり（勾配）もほとんど出ない</text>
 <text x="12" y="610" class="tb tok">割ると：重みがほどよく分かれる</text>
 <text x="12" y="628" class="tm">（2.0・0.7・0.0 は Attention の計算の図と同じ数）</text>
+</g>
 </svg>

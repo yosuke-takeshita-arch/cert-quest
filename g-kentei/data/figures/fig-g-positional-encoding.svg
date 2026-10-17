@@ -1,7 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 624" role="img" aria-labelledby="fig-g-positional-encoding-t fig-g-positional-encoding-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 760" role="img" aria-labelledby="fig-g-positional-encoding-t fig-g-positional-encoding-d">
 <title id="fig-g-positional-encoding-t">位置エンコーディング：埋め込みに位置のベクトルを足す</title>
-<desc id="fig-g-positional-encoding-d">①足さないと：文A「犬 が 人 を 噛んだ」と文B「人 が 犬 を 噛んだ」で、「犬」のベクトルはどちらも同じ。Self-Attention は語の組を比べるだけで並び順を見ないので、2つの「犬」を区別できない。②位置のベクトルを足す：文Aの「犬」は1番目なので、犬の埋め込みに1番目の位置のベクトルを足す。文Bの「犬」は3番目なので、3番目の位置のベクトルを足す。足した結果の棒の形が違うので、同じ「犬」でも何番目かが分かる。③位置のベクトルの作り方：速く変わる波と、ゆっくり変わる波の値を、何番目かの位置で読み取って並べる。1番目では速い波が高く遅い波は中くらい、3番目では速い波が低く遅い波が高い。この2つの値が②の緑の棒1と棒2の高さになる。元の論文は sin と cos を次元ごとに周期を変えて使う。棒の高さと波は2つに減らした作り例。</desc>
+<desc id="fig-g-positional-encoding-d">①足さないと：文A「犬 が 人 を 噛んだ」と文B「人 が 犬 を 噛んだ」で、「犬」のベクトルはどちらも同じ。Self-Attention は語の組を比べるだけで並び順を見ないので、2つの「犬」を区別できない。②位置のベクトルを足す：文Aの「犬」は1番目なので、犬の埋め込みに1番目の位置のベクトルを足す。文Bの「犬」は3番目なので、3番目の位置のベクトルを足す。足した結果の棒の形が違うので、同じ「犬」でも何番目かが分かる。③位置のベクトルの作り方：速く変わる波と、ゆっくり変わる波の値を、何番目かの位置で読み取って並べる。1番目では速い波が高く遅い波は中くらい、3番目では速い波が低く遅い波が高い。この2つの値が②の緑の棒1と棒2の高さになる。元の論文は sin と cos を次元ごとに周期を変えて使う。棒の高さと波は2つに減らした作り例。言葉：ベクトルは数を1列に並べたもの。埋め込みは、語を、意味が似たものほど近い数の並び（ベクトル）にしたもの。次元は並べた数の個数で、次元ごととは数1つずつのこと。</desc>
 <text x="12" y="20" class="tb">位置エンコーディング：語順を足す</text>
+<rect x="12" y="34" width="296" height="124" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="57" class="tb">言葉：ベクトル・埋め込み・次元</text>
+<text x="22" y="75">ベクトル：数を1列に並べたもの</text>
+<text x="22" y="93">埋め込み：語を、意味が似たものほど近い</text>
+<text x="22" y="111">　数の並び（ベクトル）にしたもの</text>
+<text x="22" y="129">次元：並べた数の個数</text>
+<text x="22" y="147">　（次元ごと＝並びの数1つずつ）</text>
+<g transform="translate(0,136)">
 <text x="12" y="46" class="tb">① 足さないと、順番が分からない</text>
 <text x="12" y="75">文A</text>
 <rect x="48" y="56" width="40" height="26" class="fas sa" stroke-width="2" rx="4"/>
@@ -84,4 +92,5 @@
 <text x="12" y="574" class="tm">右が遅い波）。時計の秒針と時針の組で</text>
 <text x="12" y="592" class="tm">時刻を表すのと似た考え方</text>
 <text x="12" y="614" class="tm">元の論文は sin・cos を次元ごとに使う。棒と波は作り例</text>
+</g>
 </svg>

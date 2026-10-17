@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 722" role="img" aria-labelledby="fig-g-autoencoder-vae-t fig-g-autoencoder-vae-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 840" role="img" aria-labelledby="fig-g-autoencoder-vae-t fig-g-autoencoder-vae-d">
 <title id="fig-g-autoencoder-vae-t">オートエンコーダと VAE：潜在表現を点で持つか、分布で持つか</title>
-<desc id="fig-g-autoencoder-vae-d">上はオートエンコーダ。入力をエンコーダで細い潜在表現に圧縮し、デコーダで元の入力を復元する。入力そのものが正解なので、正解ラベルは要らない。中は VAE。エンコーダが平均 μ と分散 σ の2つを出し、そこからサンプリングした値をデコーダに入れる。下の2次元の図では、オートエンコーダは入力ごとに潜在空間の1点、VAE は平均と分散でぼかした円になる。円が重なってつながるので、サンプリングして新しいデータを生成できる。VQ-VAE は連続値ではなく、表の中で最も近いベクトルを選ぶ離散的な潜在表現。積層オートエンコーダは、1層ずつオートエンコーダとして学習して積む。</desc>
+<desc id="fig-g-autoencoder-vae-d">上はオートエンコーダ。入力をエンコーダで細い潜在表現に圧縮し、デコーダで元の入力を復元する。入力そのものが正解なので、正解ラベルは要らない。中は VAE。エンコーダが平均 μ と分散 σ の2つを出し、そこからサンプリングした値をデコーダに入れる。下の2次元の図では、オートエンコーダは入力ごとに潜在空間の1点、VAE は平均と分散でぼかした円になる。円が重なってつながるので、サンプリングして新しいデータを生成できる。VQ-VAE は連続値ではなく、表の中で最も近いベクトルを選ぶ離散的な潜在表現。積層オートエンコーダは、1層ずつオートエンコーダとして学習して積む。言葉：潜在表現は、入力を少ない数にまとめ直した中身（大事な特徴を表す数の並び）。ベクトルは数を1列に並べたもの。ここでの重みは、入力に掛ける、学習で決まる数。</desc>
+<rect x="12" y="6" width="296" height="106" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="29" class="tb">言葉：潜在表現・ベクトル・重み</text>
+<text x="22" y="47">潜在表現：入力を少ない数にまとめ直した</text>
+<text x="22" y="65">　中身（大事な特徴を表す数の並び）</text>
+<text x="22" y="83">ベクトル：数を1列に並べたもの</text>
+<text x="22" y="101">重み：入力に掛ける、学習で決まる数</text>
+<g transform="translate(0,118)">
 <text x="12" y="20" class="tb">① オートエンコーダ</text>
 <rect x="12" y="54" width="28" height="52" class="fs sb" stroke-width="1.5"/>
 <line x1="40" y1="80" x2="48" y2="80" class="l w2"/>
@@ -79,4 +86,5 @@
 <text x="12" y="660" class="tb">ベクトルを選ぶ（連続値ではなく離散）</text>
 <text x="12" y="690" class="tb">積層オートエンコーダ：1層ずつ学習して積む</text>
 <text x="12" y="710" class="tm">（その重みを初期値に、全体を微調整する）</text>
+</g>
 </svg>

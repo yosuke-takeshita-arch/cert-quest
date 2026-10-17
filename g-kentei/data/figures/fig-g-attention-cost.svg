@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 790" role="img" aria-labelledby="fig-g-attention-cost-t fig-g-attention-cost-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 890" role="img" aria-labelledby="fig-g-attention-cost-t fig-g-attention-cost-d">
 <title id="fig-g-attention-cost-t">Self-Attention と RNN の1層の計算量（n²·d と n·d²）</title>
-<desc id="fig-g-attention-cost-d">n は系列の長さ（語の数）、d は表現の次元。①Self-Attention は語の全部の組を比べる。マス目の1マスが語の組1つで、n＝4 なら 4×4＝16組、n＝8 なら 8×8＝64組。n が2倍になると組の数は4倍になる。1組ごとに長さ d の計算をするので、1層の計算量は n×n×d。どの2語も1回でつながり、全部の組を同時に（並列に）計算できる。②RNN は語を1つずつ順に進む。箱1つが1歩で、1歩ごとに d×d の重みを掛ける。n＝4 なら4歩、n＝8 なら8歩で2倍。1層の計算量は n×d×d。前の結果を待つので順番に計算し、1番目の語が4番目に届くまで3回受け渡す。③数を入れて比べる例。d＝512 とすると、n＝100 で Self-Attention は 100×100×512＝512万、RNN は 100×512×512＝約2621万。n＝200 では Self-Attention は 2048万で4倍、RNN は約5243万で2倍。n が d より小さいときは Self-Attention のほうが軽い。『n が2倍で計算量も約2倍』は RNN の増え方で、Self-Attention は約4倍に増える。数は説明のための例。</desc>
+<desc id="fig-g-attention-cost-d">n は系列の長さ（語の数）、d は表現の次元。①Self-Attention は語の全部の組を比べる。マス目の1マスが語の組1つで、n＝4 なら 4×4＝16組、n＝8 なら 8×8＝64組。n が2倍になると組の数は4倍になる。1組ごとに長さ d の計算をするので、1層の計算量は n×n×d。どの2語も1回でつながり、全部の組を同時に（並列に）計算できる。②RNN は語を1つずつ順に進む。箱1つが1歩で、1歩ごとに d×d の重みを掛ける。n＝4 なら4歩、n＝8 なら8歩で2倍。1層の計算量は n×d×d。前の結果を待つので順番に計算し、1番目の語が4番目に届くまで3回受け渡す。③数を入れて比べる例。d＝512 とすると、n＝100 で Self-Attention は 100×100×512＝512万、RNN は 100×512×512＝約2621万。n＝200 では Self-Attention は 2048万で4倍、RNN は約5243万で2倍。n が d より小さいときは Self-Attention のほうが軽い。『n が2倍で計算量も約2倍』は RNN の増え方で、Self-Attention は約4倍に増える。数は説明のための例。言葉：次元は1語を表す数の個数で、d＝512なら1語を512個の数で表す。重みは入力に掛ける、学習で決まる数。</desc>
 <text x="12" y="22" class="tl">1層の計算量：n²·d と n·d²</text>
 <text x="12" y="42" class="tm">n＝系列の長さ（語の数）、d＝表現の次元</text>
+<rect x="12" y="56" width="296" height="88" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="79" class="tb">言葉：次元・重み</text>
+<text x="22" y="97">次元：1語を表す数の個数</text>
+<text x="22" y="115">　（d＝512 なら 512 個の数で1語）</text>
+<text x="22" y="133">重み：入力に掛ける、学習で決まる数</text>
+<g transform="translate(0,100)">
 <text x="12" y="70" class="tb">①Self-Attention：語の全部の組を比べる</text>
 <text x="12" y="88" class="tm">マス1つ＝語の組1つ（行の語が列の語を見る）</text>
 <rect x="24" y="100" width="56" height="56" class="fas sa" stroke-width="1"/>
@@ -85,4 +91,5 @@
 <text x="12" y="740" class="tok">n が d より小さいと Self-Attention が軽い</text>
 <text x="12" y="762" class="tb tng">『n が2倍で約2倍』は RNN の増え方</text>
 <text x="12" y="782" class="tm">（n の値と計算の数は説明のための例）</text>
+</g>
 </svg>

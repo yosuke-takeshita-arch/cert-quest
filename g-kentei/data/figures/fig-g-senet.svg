@@ -1,7 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 430" role="img" aria-labelledby="fig-g-senet-t fig-g-senet-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 548" role="img" aria-labelledby="fig-g-senet-t fig-g-senet-d">
 <title id="fig-g-senet-t">SENet：チャネルごとに 0〜1 の重みを掛け直す</title>
-<desc id="fig-g-senet-d">犬の画像の特徴マップのうち、縦の線・毛並み・空の色に反応する3つのチャネルを描いた。Squeeze（絞る）：各チャネルの面を縦横に平均して1つの数にする。Excitation（重みを出す）：3つの数をまとめて小さな全結合層2つに通し、チャネルごとに0〜1の重みを出す。縦の線は0.5、毛並みは0.9、空の色は0.1。最後に各チャネルの面全体にその重みを掛ける。毛並みの面はほぼそのまま残り、空の色の面はほとんど消える。重みはチャネルに1つで、同じ面の中はどの場所も同じ重み。実際は64チャネルなどで、3つだけ描いた。数は説明用の作り例。</desc>
+<desc id="fig-g-senet-d">犬の画像の特徴マップのうち、縦の線・毛並み・空の色に反応する3つのチャネルを描いた。Squeeze（絞る）：各チャネルの面を縦横に平均して1つの数にする。Excitation（重みを出す）：3つの数をまとめて小さな全結合層2つに通し、チャネルごとに0〜1の重みを出す。縦の線は0.5、毛並みは0.9、空の色は0.1。最後に各チャネルの面全体にその重みを掛ける。毛並みの面はほぼそのまま残り、空の色の面はほとんど消える。重みはチャネルに1つで、同じ面の中はどの場所も同じ重み。実際は64チャネルなどで、3つだけ描いた。数は説明用の作り例。言葉：チャネルは特徴マップの1枚1枚（図の「縦の線」「毛並み」「空の色」）。重みは掛ける数で、大きいほど強く残す（ここでは0〜1）。</desc>
 <text x="12" y="20" class="tb">SENet：チャネルごとに重みを掛け直す</text>
+<rect x="12" y="34" width="296" height="106" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="57" class="tb">言葉：チャネル・重み</text>
+<text x="22" y="75">チャネル：特徴マップの1枚1枚</text>
+<text x="22" y="93">　（下の『縦の線』『毛並み』など）</text>
+<text x="22" y="111">重み：掛ける数。大きいほど強く残す</text>
+<text x="22" y="129">　（ここでは 0〜1）</text>
+<g transform="translate(0,118)">
 <text x="76" y="48" class="tm" text-anchor="middle">面</text>
 <text x="128" y="48" class="tm" text-anchor="middle">絞る</text>
 <text x="212" y="48" class="tm" text-anchor="middle">重みを出す</text>
@@ -72,4 +79,5 @@
 <text x="12" y="368" class="tng">重みはチャネルに1つ。同じ面の中は</text>
 <text x="12" y="386" class="tng">どの場所も同じ重み（場所ごとではない）</text>
 <text x="12" y="412" class="tm">実際は64チャネルなど。3つだけ描いた作り例</text>
+</g>
 </svg>
