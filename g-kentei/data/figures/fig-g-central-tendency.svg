@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 932" role="img" aria-labelledby="fig-g-central-tendency-t fig-g-central-tendency-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 976" role="img" aria-labelledby="fig-g-central-tendency-t fig-g-central-tendency-d">
 <title id="fig-g-central-tendency-t">平均・中央値・最頻値と、外れ値の影響</title>
-<desc id="fig-g-central-tendency-d">上のヒストグラムは左右対称な山で、平均・中央値・最頻値が1か所に一致する。次のヒストグラムは右に裾が長い分布で、左から最頻値、中央値、平均の順に並ぶ。下は5人のテストの点40、60、60、70、120点を数直線に並べた例。平均は合計350を人数5で割って70点、中央値は小さい順に並べた3番目の60点、最頻値は2人いる60点。120点の人が70点だったとすると、平均は300÷5で60点に下がるが、中央値は60点のまま動かない。トリム平均は、小さい側と大きい側から同じ割合のデータを除いてから平均をとる。上の5人で両端から1人ずつ除くと(60＋60＋70)÷3で約63.3点。数は説明のための例。</desc>
-<text x="12" y="20" class="tb">① 左右対称な山</text>
+<desc id="fig-g-central-tendency-d">ヒストグラムは、横軸に値の区間、縦軸にその区間に入ったデータの数（度数）をとって棒を立てたグラフ。上のヒストグラムは左右対称な山で、平均・中央値・最頻値が1か所に一致する。次のヒストグラムは右に裾が長い分布で、左から最頻値、中央値、平均の順に並ぶ。下は5人のテストの点40、60、60、70、120点を数直線に並べた例。平均は合計350を人数5で割って70点、中央値は小さい順に並べた3番目の60点、最頻値は2人いる60点。120点の人が70点だったとすると、平均は300÷5で60点に下がるが、中央値は60点のまま動かない。トリム平均は、小さい側と大きい側から同じ割合のデータを除いてから平均をとる。上の5人で両端から1人ずつ除くと(60＋60＋70)÷3で約63.3点。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">① ヒストグラム：左右対称な山</text>
 <rect x="12" y="28" width="296" height="80" class="fs sb" stroke-width="1"/>
 <rect x="13" y="103.5" width="30.89" height="4.5" class="fas sa"/>
 <rect x="45.89" y="94.5" width="30.89" height="13.5" class="fas sa"/>
@@ -13,9 +13,11 @@
 <rect x="243.22" y="94.5" width="30.89" height="13.5" class="fas sa"/>
 <rect x="276.11" y="103.5" width="30.89" height="4.5" class="fas sa"/>
 <line x1="160" y1="26" x2="160" y2="108" class="l sng w2"/>
+<text x="12" y="126" class="tm">横：値の区間　縦：区間に入った人数（度数）</text>
+<g transform="translate(0,22)">
 <text x="12" y="130" class="tb">平均 ＝ 中央値 ＝ 最頻値（同じ位置）</text>
 <line x1="12" y1="150" x2="308" y2="150" class="l sb w1"/>
-<text x="12" y="178" class="tb">② 右に裾が長い山（年収など）</text>
+<text x="12" y="178" class="tb">② ヒストグラム：右に裾が長い山（年収など）</text>
 <rect x="12" y="216" width="296" height="80" class="fs sb" stroke-width="1"/>
 <rect x="13" y="283.29" width="22.67" height="12.71" class="fas sa"/>
 <rect x="37.67" y="245.18" width="22.67" height="50.82" class="fas sa"/>
@@ -35,6 +37,8 @@
 <text x="69.67" y="208" class="tb tok" text-anchor="end">最頻値</text>
 <text x="93.59" y="208" class="tb twn" text-anchor="middle">中央値</text>
 <text x="115.24" y="208" class="tb tng">平均</text>
+<text x="12" y="314" class="tm">横：値の区間　縦：区間に入った人数（度数）</text>
+<g transform="translate(0,22)">
 <text x="12" y="318" class="tb">最頻値 ＜ 中央値 ＜ 平均 の順になる</text>
 <line x1="12" y1="338" x2="308" y2="338" class="l sb w1"/>
 <text x="12" y="366" class="tb">③ 5人の点数で比べる</text>
@@ -91,4 +95,6 @@
 <text x="12" y="888" class="tb">トリム平均：両端から1人ずつ除くと</text>
 <text x="12" y="908">(60＋60＋70)÷3 ≒ 63.3点</text>
 <text x="12" y="928" class="tm">（数は説明のための例）</text>
+</g>
+</g>
 </svg>

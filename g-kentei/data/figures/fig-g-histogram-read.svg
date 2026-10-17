@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 776" role="img" aria-labelledby="fig-g-histogram-read-t fig-g-histogram-read-d">
+<title id="fig-g-histogram-read-t">ヒストグラムで分かること・分からないこと</title>
+<desc id="fig-g-histogram-read-d">上はヒストグラム。10人のテストの点（35、42、48、51、55、57、63、66、74、92点）を10点ずつの区間に分け、横軸を点数の区間、縦軸をその区間に入った人数（度数）にして棒を立てた。30点台1人、40点台2人、50点台3人、60点台2人、70点台1人、80点台0人、90点台1人で、合計10人。読み取れることは3つ。1、いちばん高い棒（50点台）が中心のあたり。2、棒が並ぶ横の幅が散らばりの大きさ。3、ほかから離れた90点台の棒が外れ値の候補で、裾が片側に長ければ偏り（ゆがみ）と分かる。下は同じ10人の散布図で、横軸が勉強時間、縦軸が点数、1つの点が1人。右上がりに並ぶので正の相関がある。ヒストグラムは点数という1つの変数だけを数えた図で、勉強時間は図に出ないため、2つの変数の関係（相関）は読み取れない。相関を見るには散布図を使う。数と勉強時間は説明のための例。</desc>
+<text x="12" y="22" class="tl">ヒストグラム</text>
+<text x="12" y="42" class="tm">例：10人のテストの点を10点ずつに分けて数えた</text>
+<text x="12" y="70" class="tb">縦：人数（度数）</text>
+<line x1="44" y1="76" x2="44" y2="170" class="l sm w1"/>
+<line x1="44" y1="170" x2="296" y2="170" class="l sm w1"/>
+<line x1="40" y1="170" x2="44" y2="170" class="l sm w1"/>
+<line x1="40" y1="140" x2="44" y2="140" class="l sm w1"/>
+<line x1="40" y1="110" x2="44" y2="110" class="l sm w1"/>
+<line x1="40" y1="80" x2="44" y2="80" class="l sm w1"/>
+<text x="36" y="174" class="tm" text-anchor="end">0</text>
+<text x="36" y="144" class="tm" text-anchor="end">1</text>
+<text x="36" y="114" class="tm" text-anchor="end">2</text>
+<text x="36" y="84" class="tm" text-anchor="end">3</text>
+<rect x="50" y="140" width="34" height="30" class="fas sa" stroke-width="1"/>
+<rect x="84" y="110" width="34" height="60" class="fas sa" stroke-width="1"/>
+<rect x="118" y="80" width="34" height="90" class="fas sa" stroke-width="1"/>
+<rect x="152" y="110" width="34" height="60" class="fas sa" stroke-width="1"/>
+<rect x="186" y="140" width="34" height="30" class="fas sa" stroke-width="1"/>
+<rect x="254" y="140" width="34" height="30" class="fas sa" stroke-width="1"/>
+<text x="67" y="160" class="tb" text-anchor="middle">1</text>
+<text x="101" y="130" class="tb" text-anchor="middle">2</text>
+<text x="135" y="100" class="tb" text-anchor="middle">3</text>
+<text x="169" y="130" class="tb" text-anchor="middle">2</text>
+<text x="203" y="160" class="tb" text-anchor="middle">1</text>
+<text x="237" y="165" class="tm" text-anchor="middle">0</text>
+<text x="271" y="160" class="tb" text-anchor="middle">1</text>
+<text x="50" y="188" class="tm" text-anchor="middle">30</text>
+<text x="84" y="188" class="tm" text-anchor="middle">40</text>
+<text x="118" y="188" class="tm" text-anchor="middle">50</text>
+<text x="152" y="188" class="tm" text-anchor="middle">60</text>
+<text x="186" y="188" class="tm" text-anchor="middle">70</text>
+<text x="220" y="188" class="tm" text-anchor="middle">80</text>
+<text x="254" y="188" class="tm" text-anchor="middle">90</text>
+<text x="288" y="188" class="tm" text-anchor="middle">100</text>
+<text x="169" y="208" class="tb" text-anchor="middle">横：点数の区間（10点ずつ）</text>
+<circle cx="135" cy="64" r="9" class="fok sok" stroke-width="1.5"/>
+<text x="135" y="69" class="tb tok" text-anchor="middle">1</text>
+<line x1="50" y1="222" x2="288" y2="222" class="l swn w2"/>
+<line x1="50" y1="216" x2="50" y2="228" class="l swn w2"/>
+<line x1="288" y1="216" x2="288" y2="228" class="l swn w2"/>
+<circle cx="169" cy="236" r="9" class="fwn swn" stroke-width="1.5"/>
+<text x="169" y="241" class="tb twn" text-anchor="middle">2</text>
+<circle cx="271" cy="124" r="9" class="fng sng" stroke-width="1.5"/>
+<text x="271" y="129" class="tb tng" text-anchor="middle">3</text>
+<text x="12" y="270" class="tb">読み取れること</text>
+<circle cx="21" cy="289" r="9" class="fok sok" stroke-width="1.5"/>
+<text x="21" y="294" class="tb tok" text-anchor="middle">1</text>
+<text x="36" y="294">いちばん高い棒＝中心のあたり（50点台）</text>
+<circle cx="21" cy="315" r="9" class="fwn swn" stroke-width="1.5"/>
+<text x="21" y="320" class="tb twn" text-anchor="middle">2</text>
+<text x="36" y="320">棒が並ぶ横の幅＝散らばりの大きさ</text>
+<circle cx="21" cy="341" r="9" class="fng sng" stroke-width="1.5"/>
+<text x="21" y="346" class="tb tng" text-anchor="middle">3</text>
+<text x="36" y="346">離れた棒（92点）＝外れ値の候補</text>
+<text x="36" y="366">裾が片側に長ければ偏り（ゆがみ）</text>
+<line x1="12" y1="386" x2="308" y2="386" class="l sb w1"/>
+<text x="12" y="412" class="tb tng">読み取れないこと：2つの変数の関係（相関）</text>
+<text x="12" y="434">数えたのは点数という1つの変数だけ。</text>
+<text x="12" y="454">2つの関係を見るのは散布図（同じ10人）</text>
+<text x="12" y="482" class="tb">縦：点数</text>
+<line x1="44" y1="488" x2="44" y2="630" class="l sm w1"/>
+<line x1="44" y1="630" x2="296" y2="630" class="l sm w1"/>
+<line x1="40" y1="630" x2="44" y2="630" class="l sm w1"/>
+<line x1="40" y1="590" x2="44" y2="590" class="l sm w1"/>
+<line x1="40" y1="550" x2="44" y2="550" class="l sm w1"/>
+<line x1="40" y1="510" x2="44" y2="510" class="l sm w1"/>
+<text x="36" y="634" class="tm" text-anchor="end">30</text>
+<text x="36" y="594" class="tm" text-anchor="end">50</text>
+<text x="36" y="554" class="tm" text-anchor="end">70</text>
+<text x="36" y="514" class="tm" text-anchor="end">90</text>
+<circle cx="78" cy="620" r="3.6" class="fa"/>
+<circle cx="106" cy="606" r="3.6" class="fa"/>
+<circle cx="106" cy="594" r="3.6" class="fa"/>
+<circle cx="134" cy="588" r="3.6" class="fa"/>
+<circle cx="162" cy="580" r="3.6" class="fa"/>
+<circle cx="134" cy="576" r="3.6" class="fa"/>
+<circle cx="190" cy="564" r="3.6" class="fa"/>
+<circle cx="162" cy="558" r="3.6" class="fa"/>
+<circle cx="218" cy="542" r="3.6" class="fa"/>
+<circle cx="246" cy="506" r="3.6" class="fa"/>
+<line x1="50" y1="630" x2="50" y2="634" class="l sm w1"/>
+<line x1="106" y1="630" x2="106" y2="634" class="l sm w1"/>
+<line x1="162" y1="630" x2="162" y2="634" class="l sm w1"/>
+<line x1="218" y1="630" x2="218" y2="634" class="l sm w1"/>
+<line x1="274" y1="630" x2="274" y2="634" class="l sm w1"/>
+<text x="50" y="648" class="tm" text-anchor="middle">0</text>
+<text x="106" y="648" class="tm" text-anchor="middle">2</text>
+<text x="162" y="648" class="tm" text-anchor="middle">4</text>
+<text x="218" y="648" class="tm" text-anchor="middle">6</text>
+<text x="274" y="648" class="tm" text-anchor="middle">8</text>
+<text x="169" y="666" class="tb" text-anchor="middle">横：勉強時間（時間）　1つの点＝1人</text>
+<text x="12" y="692">右上がりに並ぶ＝正の相関がある。</text>
+<text x="12" y="714">点数だけを数えて棒にすると上のヒストグラム。</text>
+<text x="12" y="736" class="tb tng">勉強時間が消えるので、相関は読み取れない。</text>
+<text x="12" y="762" class="tm">（数と勉強時間は説明のための例）</text>
+</svg>
