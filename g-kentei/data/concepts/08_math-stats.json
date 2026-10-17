@@ -725,9 +725,10 @@
       }
     ],
     "figures": [
-      "fig-g-stats-map",
+      "fig-g-covariance-calc",
       "fig-g-correlation",
-      "fig-g-cov-unit"
+      "fig-g-cov-unit",
+      "fig-g-stats-map"
     ],
     "sources": [
       {
@@ -789,8 +790,9 @@
     ],
     "figures": [
       "fig-g-correlation",
-      "fig-g-stats-map",
-      "fig-g-cov-unit"
+      "fig-g-covariance-calc",
+      "fig-g-cov-unit",
+      "fig-g-stats-map"
     ],
     "sources": [
       {

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 504" role="img" aria-labelledby="fig-g-covariance-calc-t fig-g-covariance-calc-d">
+<title id="fig-g-covariance-calc-t">共分散と相関係数を、5人の勉強時間とテストの点で計算する</title>
+<desc id="fig-g-covariance-calc-d">例（説明用の数）は5人の勉強時間Xとテストの点Y。平均はXが3時間、Yが70点。表は人ごとのX、Y、Xの偏差（平均との差）、Yの偏差、偏差どうしを掛けた値。1人目は1時間・50点で偏差−2と−20、掛けて40。2人目は2時間・70点で−1と0、掛けて0。3人目は3時間・60点で0と−10、掛けて0。4人目は4時間・80点で1と10、掛けて10。5人目は5時間・90点で2と20、掛けて40。合計90を5で割って共分散は18（4で割る流儀もある）。＋×＋と−×−は正、＋×−は負で、足すと正。相関係数は共分散を2つの標準偏差の積で割る。Xの標準偏差は√(10÷5)＝√2でおよそ1.41時間、Yの標準偏差は√(1000÷5)＝√200でおよそ14.1点。相関係数は18÷(√2×√200)＝18÷20＝0.9。時間を分で数え直すと共分散は18×60＝1080に変わるが、相関係数は1080÷(84.9×14.1)でおよそ0.9のまま変わらないので、単位によらず強さを比べられる。</desc>
+<text x="12" y="20" class="tb">共分散と相関係数を計算する</text>
+<text x="12" y="38" class="tm">例（説明用の数）：5人の勉強時間 X とテストの点 Y</text>
+<text x="12" y="56" class="tm">平均：X は 3 時間、Y は 70 点</text>
+<text x="26" y="80" class="tb" text-anchor="middle">人</text>
+<text x="62" y="80" class="tb" text-anchor="middle">X</text>
+<text x="100" y="80" class="tb" text-anchor="middle">Y</text>
+<text x="152" y="80" class="tb" text-anchor="middle">Xの偏差</text>
+<text x="218" y="80" class="tb" text-anchor="middle">Yの偏差</text>
+<text x="282" y="80" class="tb" text-anchor="middle">掛ける</text>
+<line x1="12" y1="88" x2="308" y2="88" class="l sb w1"/>
+<rect x="250" y="90" width="64" height="104" class="fas"/>
+<text x="26" y="106" class="tm" text-anchor="middle">1</text>
+<text x="62" y="106" text-anchor="middle">1</text>
+<text x="100" y="106" text-anchor="middle">50</text>
+<text x="152" y="106" text-anchor="middle">−2</text>
+<text x="218" y="106" text-anchor="middle">−20</text>
+<text x="282" y="106" class="tb ta" text-anchor="middle">40</text>
+<text x="26" y="126" class="tm" text-anchor="middle">2</text>
+<text x="62" y="126" text-anchor="middle">2</text>
+<text x="100" y="126" text-anchor="middle">70</text>
+<text x="152" y="126" text-anchor="middle">−1</text>
+<text x="218" y="126" text-anchor="middle">0</text>
+<text x="282" y="126" class="tb ta" text-anchor="middle">0</text>
+<text x="26" y="146" class="tm" text-anchor="middle">3</text>
+<text x="62" y="146" text-anchor="middle">3</text>
+<text x="100" y="146" text-anchor="middle">60</text>
+<text x="152" y="146" text-anchor="middle">0</text>
+<text x="218" y="146" text-anchor="middle">−10</text>
+<text x="282" y="146" class="tb ta" text-anchor="middle">0</text>
+<text x="26" y="166" class="tm" text-anchor="middle">4</text>
+<text x="62" y="166" text-anchor="middle">4</text>
+<text x="100" y="166" text-anchor="middle">80</text>
+<text x="152" y="166" text-anchor="middle">+1</text>
+<text x="218" y="166" text-anchor="middle">+10</text>
+<text x="282" y="166" class="tb ta" text-anchor="middle">10</text>
+<text x="26" y="186" class="tm" text-anchor="middle">5</text>
+<text x="62" y="186" text-anchor="middle">5</text>
+<text x="100" y="186" text-anchor="middle">90</text>
+<text x="152" y="186" text-anchor="middle">+2</text>
+<text x="218" y="186" text-anchor="middle">+20</text>
+<text x="282" y="186" class="tb ta" text-anchor="middle">40</text>
+<line x1="12" y1="196" x2="308" y2="196" class="l sb w1"/>
+<text x="26" y="214" class="tb" text-anchor="middle">合計</text>
+<text x="282" y="214" class="tb ta" text-anchor="middle">90</text>
+<text x="12" y="240" class="tb ta">共分散＝90÷5＝18</text>
+<text x="12" y="258" class="tm">（5−1＝4 で割る流儀もある）</text>
+<text x="12" y="278">＋×＋ と −×− は正、＋×− は負 → 足すと正</text>
+<line x1="12" y1="292" x2="308" y2="292" class="l sb w1"/>
+<text x="12" y="316" class="tb">相関係数＝共分散÷</text>
+<text x="12" y="334" class="tb">　（X の標準偏差×Y の標準偏差）</text>
+<text x="12" y="356">X の標準偏差：√(10÷5)＝√2≒1.41 時間</text>
+<text x="12" y="376">Y の標準偏差：√(1000÷5)＝√200≒14.1 点</text>
+<text x="12" y="398" class="tb ta">18÷(√2×√200)＝18÷20＝0.9</text>
+<line x1="12" y1="412" x2="308" y2="412" class="l sb w1"/>
+<text x="12" y="436" class="tb">単位を変えると（時間→分）</text>
+<text x="12" y="456">共分散：18×60＝1080（数が変わる）</text>
+<text x="12" y="476">相関係数：1080÷(84.9×14.1)≒0.9</text>
+<text x="12" y="496" class="tb tok">→ 単位によらず、強さを比べられる</text>
+</svg>
