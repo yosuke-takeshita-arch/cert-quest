@@ -2079,7 +2079,7 @@
       }
     ],
     "figures": [
-      "fig-g-dqn-family"
+      "fig-g-dqn"
     ],
     "sources": [
       {
@@ -2120,7 +2120,8 @@
       }
     ],
     "figures": [
-      "fig-g-dqn-family"
+      "fig-g-double-dqn",
+      "fig-g-dqn"
     ],
     "sources": [
       {
@@ -2157,8 +2158,7 @@
       }
     ],
     "figures": [
-      "fig-g-dueling-network",
-      "fig-g-dqn-family"
+      "fig-g-dueling-network"
     ],
     "sources": [
       {

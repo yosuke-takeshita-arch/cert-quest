@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 388" role="img" aria-labelledby="fig-g-double-dqn-t fig-g-double-dqn-d">
+<title id="fig-g-double-dqn-t">ダブル DQN：最大値をとると高めにずれる問題を、選ぶ係と評価する係を分けて減らす</title>
+<desc id="fig-g-double-dqn-d">困りごと：Q学習は次の状態での行動価値の最大値を目標に使う。例（説明用の数）：本当はどの行動の価値も0なのに、推定が行動1は＋0.5、行動2は−0.3、行動3は−0.2とばらつく。最大を選ぶと0.5で、本当の0より高い（過大評価）。誤差が上下にばらついていても、最大を選ぶと上にずれる。ダブル DQN は「最大をとる」を2つに分け、行動を選ぶのは学習中のネットワーク、その行動の価値を評価するのはターゲットネットワーク（一定期間固定した複製）にする。同じ誤差で両方が膨らむことが減り、Q 値の過大評価を減らす。</desc>
+<text x="12" y="20" class="tb">ダブル DQN：選ぶ係と評価する係を分ける</text>
+<text x="12" y="44" class="tb">困りごと：最大をとると上にずれる</text>
+<text x="12" y="62" class="tm">例（説明用の数）：本当の価値はどれも 0</text>
+<line x1="40" y1="128" x2="290" y2="128" class="l sm w1 dsh"/>
+<rect x="52" y="98" width="36" height="30" class="fa" stroke-width="1"/>
+<text x="70" y="92" class="tb ta" text-anchor="middle">+0.5</text>
+<text x="70" y="182" class="tm" text-anchor="middle">行動1</text>
+<rect x="132" y="128" width="36" height="18" class="fas sa" stroke-width="1"/>
+<text x="150" y="162" class="tb" text-anchor="middle">−0.3</text>
+<text x="150" y="182" class="tm" text-anchor="middle">行動2</text>
+<rect x="212" y="128" width="36" height="12" class="fas sa" stroke-width="1"/>
+<text x="230" y="156" class="tb" text-anchor="middle">−0.2</text>
+<text x="230" y="182" class="tm" text-anchor="middle">行動3</text>
+<text x="12" y="124" class="tm">0</text>
+<text x="196" y="96" class="tm">点線＝本当の価値 0</text>
+<text x="12" y="206">推定（棒）は上下にばらつくのに、</text>
+<text x="12" y="224">最大を選ぶと <tspan class="tb ta">0.5</tspan>。本当の 0 より高い</text>
+<text x="12" y="242" class="tm">（過大評価。最大を選ぶと上側の誤差を拾う）</text>
+<line x1="12" y1="256" x2="308" y2="256" class="l sb w1"/>
+<text x="12" y="280" class="tb">解き方：「最大をとる」を2つに分ける</text>
+<rect x="12" y="292" width="140" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="307.5" text-anchor="middle">どの行動を選ぶか</text>
+<text x="82" y="325.5" class="tm" text-anchor="middle">学習中のネットワーク</text>
+<rect x="168" y="292" width="140" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="238" y="307.5" text-anchor="middle">その価値はいくらか</text>
+<text x="238" y="325.5" class="tm" text-anchor="middle">ターゲット（固定の複製）</text>
+<line x1="152" y1="312" x2="162" y2="312" class="l w2"/>
+<polyline points="161,315.85 168,312 161,308.15" class="l w2"/>
+<text x="12" y="356">同じ誤差で両方が膨らむことが減る</text>
+<text x="12" y="378" class="tb tok">→ Q 値の過大評価を減らす</text>
+</svg>
