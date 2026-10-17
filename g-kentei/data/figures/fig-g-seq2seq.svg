@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 336" role="img" aria-labelledby="fig-g-seq2seq-t fig-g-seq2seq-d">
+<title id="fig-g-seq2seq-t">Seq2Seq：エンコーダが入力の文を1本のベクトルに詰め、デコーダがそこから訳を1語ずつ書く</title>
+<desc id="fig-g-seq2seq-d">例は「私は猫が好き」を「I like cats」に訳すこと。エンコーダ（LSTM）が私・は・猫・が・好きを1語ずつ読み、読み終えた状態を1本の固定長ベクトルにまとめる。デコーダ（LSTM）はそのベクトルから I・like・cats と1語ずつ書き、出した語を次の入力にして、文の終わりの印を出したら止まる。入力は5語、出力は3語で、長さが違ってよい。弱点は、長い文も1本のベクトルに詰めるので情報が入りきらないこと（Bahdanau らの指摘）。この弱点から、入力の全部を見直す Attention が生まれた。</desc>
+<text x="12" y="20" class="tb">Seq2Seq：読む係と書く係</text>
+<text x="12" y="38" class="tm">例：「私は猫が好き」→「I like cats」</text>
+<text x="12" y="60" class="tb">エンコーダ（LSTM）：1語ずつ読む</text>
+<rect x="24" y="70" width="40" height="24" class="fbg sb" stroke-width="1"/>
+<text x="44" y="87" text-anchor="middle">私</text>
+<line x1="64" y1="82" x2="74" y2="82" class="l sm w1"/>
+<polygon points="80,82 74,78.5 74,85.5" class="fm"/>
+<rect x="80" y="70" width="40" height="24" class="fbg sb" stroke-width="1"/>
+<text x="100" y="87" text-anchor="middle">は</text>
+<line x1="120" y1="82" x2="130" y2="82" class="l sm w1"/>
+<polygon points="136,82 130,78.5 130,85.5" class="fm"/>
+<rect x="136" y="70" width="40" height="24" class="fbg sb" stroke-width="1"/>
+<text x="156" y="87" text-anchor="middle">猫</text>
+<line x1="176" y1="82" x2="186" y2="82" class="l sm w1"/>
+<polygon points="192,82 186,78.5 186,85.5" class="fm"/>
+<rect x="192" y="70" width="40" height="24" class="fbg sb" stroke-width="1"/>
+<text x="212" y="87" text-anchor="middle">が</text>
+<line x1="232" y1="82" x2="242" y2="82" class="l sm w1"/>
+<polygon points="248,82 242,78.5 242,85.5" class="fm"/>
+<rect x="248" y="70" width="40" height="24" class="fbg sb" stroke-width="1"/>
+<text x="268" y="87" text-anchor="middle">好き</text>
+<line x1="268" y1="94" x2="218.52" y2="113.44" class="l w2"/>
+<polygon points="212,116 217.24,110.18 219.8,116.7" class="ft"/>
+<rect x="110" y="114" width="100" height="28" class="fa"/>
+<text x="160" y="133" class="tb ton" text-anchor="middle">固定長ベクトル</text>
+<text x="12" y="124" class="tm">読み終えた</text>
+<text x="12" y="140" class="tm">状態を1本に</text>
+<line x1="140" y1="142" x2="64.72" y2="164.03" class="l w2"/>
+<polygon points="58,166 63.74,160.67 65.7,167.39" class="ft"/>
+<rect x="24" y="166" width="60" height="24" class="fas sa" stroke-width="1"/>
+<text x="54" y="183" text-anchor="middle">I</text>
+<line x1="84" y1="178" x2="86" y2="178" class="l sm w1"/>
+<polygon points="92,178 86,174.5 86,181.5" class="fm"/>
+<rect x="92" y="166" width="60" height="24" class="fas sa" stroke-width="1"/>
+<text x="122" y="183" text-anchor="middle">like</text>
+<line x1="152" y1="178" x2="154" y2="178" class="l sm w1"/>
+<polygon points="160,178 154,174.5 154,181.5" class="fm"/>
+<rect x="160" y="166" width="60" height="24" class="fas sa" stroke-width="1"/>
+<text x="190" y="183" text-anchor="middle">cats</text>
+<line x1="220" y1="178" x2="222" y2="178" class="l sm w1"/>
+<polygon points="228,178 222,174.5 222,181.5" class="fm"/>
+<rect x="228" y="166" width="60" height="24" class="fas sa" stroke-width="1"/>
+<text x="258" y="183" text-anchor="middle">〈終〉</text>
+<text x="12" y="212" class="tb">デコーダ（LSTM）：1語ずつ書く</text>
+<text x="12" y="230" class="tm">出した語を次の入力にし、〈終〉で止まる</text>
+<text x="12" y="248" class="tm">入力5語・出力3語：長さが違ってよい</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<text x="12" y="286" class="tb twn">弱点：長い文も1本のベクトルに詰める</text>
+<text x="12" y="304" class="twn">→ 情報が入りきらない（Bahdanau らの指摘）</text>
+<text x="12" y="326" class="tm">→ 入力の全部を見直す Attention が生まれた</text>
+</svg>

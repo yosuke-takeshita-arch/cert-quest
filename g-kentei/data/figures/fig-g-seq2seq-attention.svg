@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 626" role="img" aria-labelledby="fig-g-seq2seq-attention-t fig-g-seq2seq-attention-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 542" role="img" aria-labelledby="fig-g-seq2seq-attention-t fig-g-seq2seq-attention-d">
 <title id="fig-g-seq2seq-attention-t">Seq2Seq（固定長ベクトル）と Attention</title>
-<desc id="fig-g-seq2seq-attention-d">上は Seq2Seq。エンコーダが入力文（I love cats）を順に読み、最後の状態1本（固定長ベクトル）だけをデコーダに渡して「猫が…」と出力する。長い文だと1本のベクトルに情報が入りきらず、ここが性能のボトルネックになる。下は Attention つき。デコーダが出力を作るたびに、エンコーダのすべての位置の状態に重みをつけて足し合わせる。「猫」を出すときは cats に0.8、I と love に0.1ずつの重みがかかる。Source-Target Attention では、クエリがデコーダ、キーとバリューがエンコーダから来る。</desc>
+<desc id="fig-g-seq2seq-attention-d">上は Seq2Seq。エンコーダが入力文（I love cats）を順に読み、最後の状態1本（固定長ベクトル）だけをデコーダに渡して「猫が…」と出力する。長い文だと1本のベクトルに情報が入りきらず、ここが性能のボトルネックになる。下は Attention つき。デコーダが出力を作るたびに、エンコーダのすべての位置の状態に重みをつけて足し合わせる。「猫」を出すときは cats に0.8、I と love に0.1ずつの重みがかかる。</desc>
 <text x="12" y="20" class="tb">① Seq2Seq：1本のベクトルに詰める</text>
 <text x="90" y="56" class="tb" text-anchor="middle">エンコーダ</text>
 <text x="262" y="56" class="tb" text-anchor="middle">デコーダ</text>
@@ -62,8 +62,4 @@
 <text x="270" y="472" class="tb ta" text-anchor="middle">重み 0.8</text>
 <text x="12" y="508" class="tb">すべての位置の状態に重みをかけて足す</text>
 <text x="12" y="530" class="tm">（重みは合計1）</text>
-<line x1="12" y1="548" x2="308" y2="548" class="l sb w1"/>
-<text x="12" y="572" class="tb">Source-Target Attention</text>
-<text x="12" y="594">クエリ（Q）＝デコーダから</text>
-<text x="12" y="614">キー（K）・バリュー（V）＝エンコーダから</text>
 </svg>
