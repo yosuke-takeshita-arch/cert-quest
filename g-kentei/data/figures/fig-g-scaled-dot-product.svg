@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 632" role="img" aria-labelledby="fig-g-scaled-dot-product-t fig-g-scaled-dot-product-d">
+<title id="fig-g-scaled-dot-product-t">Scaled Dot-Product Attention：4つの手順と、√dk で割る理由</title>
+<desc id="fig-g-scaled-dot-product-d">式は softmax(QKᵀ／√dk)V。上は4つの手順を順に並べ、式のどの部分かを右に書く。① クエリとキーの内積で関係の強さのスコアを出す（QKᵀ、問題の（ア））。② キーの次元数 dk の平方根で割る。ここが Scaled（大きさの調整）の部分で、dk＝64 なら8で割る（／√dk、問題の（イ））。③ ソフトマックスで合計1の重みにする（softmax）。④ 重みでバリューを足し合わせて出力する（V、問題の（ウ））。下は、なぜ割るのか。内積は64個の掛け算を足すので、次元が多いほど大きくなりやすく、散らばりはおよそ√64＝8倍になる。割る前のスコアが16、5.6、0なら、そのままソフトマックスにかけると e の16乗がおよそ8,886,111 で他を圧倒し、重みは1.00、0.00、0.00になる。1つの語に全部寄り、ほかの語はほぼ使われず、学習で重みを直す手がかり（勾配）もほとんど出ない。8で割ると2.0、0.7、0.0で、ソフトマックスの重みは0.71、0.19、0.10とほどよく分かれる。この数は Attention の計算の図（fig-g-qkv）と同じ。</desc>
+<text x="12" y="20" class="tb">Scaled Dot-Product Attention</text>
+<text x="12" y="40" class="tm">式：softmax(QKᵀ／√dk) V（手順は上から順）</text>
+<rect x="12" y="52" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="73" class="tb">① クエリとキーの内積</text>
+<text x="22" y="92" class="tm">＝関係の強さのスコア</text>
+<text x="298" y="73" class="tb ta" text-anchor="end">QKᵀ</text>
+<text x="298" y="92" class="tb twn" text-anchor="end">（ア）</text>
+<line x1="160" y1="102" x2="160" y2="108" class="l sm w1"/>
+<polygon points="160,114 156.5,108 163.5,108" class="fm"/>
+<rect x="12" y="114" width="296" height="50" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="135" class="tb">② √dk で割る ← Scaled</text>
+<text x="22" y="154" class="tm">dk＝キーの次元数（64 なら 8 で割る）</text>
+<text x="298" y="135" class="tb ta" text-anchor="end">／√dk</text>
+<text x="298" y="154" class="tb twn" text-anchor="end">（イ）</text>
+<line x1="160" y1="164" x2="160" y2="170" class="l sm w1"/>
+<polygon points="160,176 156.5,170 163.5,170" class="fm"/>
+<rect x="12" y="176" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="197" class="tb">③ ソフトマックス</text>
+<text x="22" y="216" class="tm">＝合計1の重みにする</text>
+<text x="298" y="197" class="tb ta" text-anchor="end">softmax</text>
+<line x1="160" y1="226" x2="160" y2="232" class="l sm w1"/>
+<polygon points="160,238 156.5,232 163.5,232" class="fm"/>
+<rect x="12" y="238" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="259" class="tb">④ 重みでバリューを足す</text>
+<text x="22" y="278" class="tm">＝出力</text>
+<text x="298" y="259" class="tb ta" text-anchor="end">V</text>
+<text x="298" y="278" class="tb twn" text-anchor="end">（ウ）</text>
+<text x="12" y="314" class="tm">（ア）（イ）（ウ）＝問題の空欄の場所</text>
+<line x1="12" y1="326" x2="308" y2="326" class="l sb w1"/>
+<text x="12" y="350" class="tb">なぜ √dk で割るのか（dk＝64 の例）</text>
+<text x="12" y="370">内積は 64 個の掛け算を足すので、次元が</text>
+<text x="12" y="388">多いほど大きくなりやすい（散らばり約 8 倍）</text>
+<text x="190" y="414" class="tm" text-anchor="middle">語1</text>
+<text x="240" y="414" class="tm" text-anchor="middle">語2</text>
+<text x="290" y="414" class="tm" text-anchor="middle">語3</text>
+<text x="12" y="436">割る前のスコア</text>
+<text x="190" y="436" class="tb" text-anchor="middle">16</text>
+<text x="240" y="436" class="tb" text-anchor="middle">5.6</text>
+<text x="290" y="436" class="tb" text-anchor="middle">0</text>
+<text x="12" y="458">割らずに重みに</text>
+<text x="190" y="458" class="tb twn" text-anchor="middle">1.00</text>
+<text x="240" y="458" class="tb twn" text-anchor="middle">0.00</text>
+<text x="290" y="458" class="tb twn" text-anchor="middle">0.00</text>
+<text x="12" y="476" class="tm">（e¹⁶≈8,886,111 が他を圧倒する）</text>
+<text x="12" y="502">8 で割ると</text>
+<text x="190" y="502" class="tb" text-anchor="middle">2.0</text>
+<text x="240" y="502" class="tb" text-anchor="middle">0.7</text>
+<text x="290" y="502" class="tb" text-anchor="middle">0.0</text>
+<text x="12" y="524">それを重みに</text>
+<text x="190" y="524" class="tb tok" text-anchor="middle">0.71</text>
+<text x="240" y="524" class="tb tok" text-anchor="middle">0.19</text>
+<text x="290" y="524" class="tb tok" text-anchor="middle">0.10</text>
+<text x="12" y="552" class="tb twn">割らないと：1つの語に全部寄る</text>
+<text x="12" y="570" class="twn">ほかの語はほぼ使われず、学習で重みを直す</text>
+<text x="12" y="588" class="twn">手がかり（勾配）もほとんど出ない</text>
+<text x="12" y="610" class="tb tok">割ると：重みがほどよく分かれる</text>
+<text x="12" y="628" class="tm">（2.0・0.7・0.0 は Attention の計算の図と同じ数）</text>
+</svg>
