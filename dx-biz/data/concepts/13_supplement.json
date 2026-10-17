@@ -743,7 +743,7 @@
     "confusions": [
       { "id": "DC-05-003", "point": "規模の経済＝同じものを「たくさん」作って安くする。範囲の経済＝「いろいろなもの」を一緒に扱って安くする。" }
     ],
-    "figures": ["fig-dx-economies"],
+    "figures": ["fig-dx-economies", "fig-dx-average-cost"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」プラットフォーム事業者の成長とその背景", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd113110.html" }
     ],
@@ -1051,7 +1051,7 @@
     "confusions": [
       { "title": "全国一斉出店", "point": "ドミナントは「地域を絞って密に」出す。広く薄く全国に出すのとは逆。" }
     ],
-    "figures": ["fig-dx-economies"],
+    "figures": ["fig-dx-dominant-store", "fig-dx-economies"],
     "sources": [
       { "title": "公正取引委員会「コンビニエンスストア本部と加盟店との取引等に関する実態調査報告書（概要）」（令和2年9月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/sep/kitori0902/200902_04-2.pdf" }
     ],
@@ -1154,7 +1154,7 @@
     "confusions": [
       { "title": "連鎖販売取引", "point": "DXの文脈のネットワークビジネスは「つながりが価値になる事業」。一方、大阪府の消費生活相談のFAQは、会員が次の会員を勧誘して紹介料などを得る仕組みの連鎖販売取引（マルチ商法）を、ネットワークビジネスと呼ばれることもあるとしている。同じ語で意味が違うので、文脈で見分ける。" }
     ],
-    "figures": ["fig-dx-network-effect"],
+    "figures": ["fig-dx-network-effect", "fig-dx-network-business"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" },
       { "title": "大阪府「「化粧品を買って会員になり、友人を誘って商品を販売するだけで簡単にお金がもうかる」といわれたが大丈夫か。」", "url": "https://www.pref.osaka.lg.jp/faq/o070120/faq_002094.html" }
@@ -1175,7 +1175,7 @@
       { "id": "DC-06-011", "point": "クラウドソーシング＝群衆に「仕事」を頼む。クラウドファンディング＝群衆から「お金」を集める。" },
       { "title": "クラウドコンピューティング", "point": "クラウドソーシングのクラウドはcrowd（群衆）。クラウドコンピューティングのクラウドはcloud（雲）。" }
     ],
-    "figures": ["fig-dx-crowd"],
+    "figures": ["fig-dx-crowd", "fig-dx-crowd-telework"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」クラウドソーシング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc243120.html" }
     ],
@@ -1813,7 +1813,7 @@
     "confusions": [
       { "id": "DC-05-006", "point": "ネットワーク外部性＝利用者が多いほど価値が上がる（シェアの大きい財がさらに有利）。スイッチング・コスト＝乗り換えの費用（シェアの大小にかかわらず働く）。どちらもロックインを生む。" }
     ],
-    "figures": ["fig-dx-lockin"],
+    "figures": ["fig-dx-lockin-share", "fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
       { "title": "総務省「平成18年版 情報通信白書」コラム ソフトウェアのネットワーク効果とロックイン効果", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1454000.html" },
@@ -1914,7 +1914,7 @@
     "confusions": [
       { "id": "DC-08-005", "point": "レベニューシェア＝収益を割合で分ける（共同事業）。成果報酬＝成果1件ごとに報酬（委託）。" }
     ],
-    "figures": ["fig-dx-revenue-models"],
+    "figures": ["fig-dx-revenue-share-fit", "fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -1995,7 +1995,7 @@
     "confusions": [
       { "id": "DC-08-007", "point": "カスタマーロイヤルティ（loyalty：愛着）と、ライセンスの使用料のロイヤルティ（royalty）は別の言葉。" }
     ],
-    "figures": ["fig-dx-churn-ltv"],
+    "figures": ["fig-dx-churn-ltv", "fig-dx-loyalty-royalty"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" },
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」第6章 CRM（顧客関係管理）の方法", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
@@ -2209,7 +2209,7 @@
     "confusions": [
       { "id": "DC-05-002", "point": "規模の経済は量が増えると単位あたりの費用が下がる。規模の不経済は一定の量を超えると上がり始める。" }
     ],
-    "figures": ["fig-dx-economies"],
+    "figures": ["fig-dx-average-cost", "fig-dx-economies"],
     "sources": [
       { "title": "政府統計の総合窓口（e-Stat）日英統計用語集「スケール・メリット：ECONOMIES OF SCALE」", "url": "https://www.e-stat.go.jp/classifications/terms/90/00/3056" }
     ],

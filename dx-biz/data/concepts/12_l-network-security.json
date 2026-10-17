@@ -50,7 +50,7 @@
     "confusions": [
       { "title": "同じ要素の重ねがけ", "point": "多要素認証で数えるのは確認の「回数」ではなく「種類」。知識情報を2つ重ねても1種類のまま。" }
     ],
-    "figures": ["fig-dx-mfa"],
+    "figures": ["fig-dx-mfa", "fig-dx-otp-phishing"],
     "sources": [
       { "title": "総務省「国民のためのサイバーセキュリティサイト」用語集（た行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" },
       { "title": "総務省「国民のためのサイバーセキュリティサイト」社員・職員全般の情報セキュリティ対策", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/staff/06/" }
@@ -298,6 +298,7 @@
     "confusions": [
       { "id": "DC-02-033", "point": "多要素認証は、知識・所持・生体の要素を2つ以上組み合わせる考え方。パスキーは、端末の鍵（所持）を生体やPINで使う仕組みで、パスワード＋ワンタイムパスワードの組合せよりフィッシングに強い。" }
     ],
+    "figures": ["fig-dx-otp-phishing"],
     "sources": [
       { "title": "FIDO Alliance「Passkeys」", "url": "https://fidoalliance.org/passkeys/" },
       { "title": "W3C「Web Authentication: An API for accessing Public Key Credentials Level 3」", "url": "https://www.w3.org/TR/webauthn-3/" },

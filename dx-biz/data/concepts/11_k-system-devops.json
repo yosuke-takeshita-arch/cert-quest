@@ -31,7 +31,7 @@
     "confusions": [
       { "title": "モノリシック", "point": "1つの大きなかたまりで作るのがモノリシック。マイクロサービスは小さく分けてAPIでつなぐ。" }
     ],
-    "figures": ["fig-dx-microservices"],
+    "figures": ["fig-dx-microservices", "fig-dx-eventual-consistency"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 マイクロサービスアーキテクチャー/API", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -71,7 +71,7 @@
     "confusions": [
       { "title": "ウォーターフォール型開発", "point": "ウォーターフォールは要件定義→設計→開発→テストを順に一度ずつ。アジャイルは短い周期で何度も回す。" }
     ],
-    "figures": ["fig-dx-agile"],
+    "figures": ["fig-dx-agile", "fig-dx-agile-waterfall-fit"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部（ITシステム開発手法・技術）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }

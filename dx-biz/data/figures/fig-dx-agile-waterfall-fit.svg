@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 458" role="img" aria-labelledby="fig-dx-agile-waterfall-fit-t fig-dx-agile-waterfall-fit-d">
+<title id="fig-dx-agile-waterfall-fit-t">アジャイルとウォーターフォールの向く場面</title>
+<desc id="fig-dx-agile-waterfall-fit-d">IPAのDX白書2023の説明を描いた図。要件の変わりやすさを横に並べると、要件が明確で改修の頻度が少ないシステムはウォーターフォール、俊敏性・柔軟性が要り要件が変わりやすいシステムはアジャイルが向く。この問いの経費精算システムは左側に当たり、ウォーターフォールのほうが費用と初期品質で良い結果を得られる可能性がある。ただし要件が固定でも、技術や実装基盤との相性の確かめや、導入する組織の事情の変化は起こりうるので、反復して段階的に確かめる利点も考える。理想は、システムを分けて、変化が少ない部分はウォーターフォール、変化が多い部分はアジャイルとDevOpsで使い分けること。全体で1つの手法にそろえる必要は無い。</desc>
+<text x="12" y="30" class="tb">要件の変わりやすさで見る</text>
+<rect x="12" y="40" width="148" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="86" y="65" class="tb" text-anchor="middle">ウォーターフォール</text>
+<rect x="160" y="40" width="148" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="234" y="65" class="tb" text-anchor="middle">アジャイル</text>
+<line x1="16" y1="94" x2="304" y2="94" class="l sm w1"/>
+<polyline points="298,90.7 304,94 298,97.3" class="l sm w1"/>
+<polyline points="22,90.7 16,94 22,97.3" class="l sm w1"/>
+<text x="16" y="112" class="tm">要件が明確・改修少</text>
+<text x="304" y="112" class="tm" text-anchor="end">要件が変わりやすい</text>
+<polygon points="40,120 33,132 47,132" class="fa"/>
+<text x="54" y="132" class="tb ta">経費精算システム（この問い）</text>
+<rect x="12" y="146" width="296" height="76" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="168" class="tb">ウォーターフォールが有利になりうる</text>
+<text x="24" y="188">要件が明確・改修の頻度が少ないなら</text>
+<text x="24" y="206">費用と初期品質で良い結果の可能性</text>
+<rect x="12" y="232" width="296" height="92" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="254" class="tb">ただし要件が固定でも</text>
+<text x="24" y="274">技術・基盤との相性の確かめや、導入</text>
+<text x="24" y="292">組織の事情の変化は起こりうる</text>
+<text x="24" y="312">→ 反復して確かめる利点も考える</text>
+<rect x="12" y="336" width="296" height="110" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="358" class="tb">理想：システムを分けて使い分ける</text>
+<rect x="24" y="370" width="136" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="92" y="388" text-anchor="middle">変化が少ない部分</text>
+<text x="92" y="406" class="tb" text-anchor="middle">ウォーターフォール</text>
+<rect x="160" y="370" width="136" height="44" class="fok sok" stroke-width="1.5"/>
+<text x="228" y="388" text-anchor="middle">変化が多い部分</text>
+<text x="228" y="406" class="tb" text-anchor="middle">アジャイル＋DevOps</text>
+<text x="24" y="434" class="tm">✕ 全体で1つにそろえる必要は無い</text>
+</svg>

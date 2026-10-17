@@ -746,7 +746,7 @@
     ],
     "memoryTip": "変わる物はアジャイル、決まっていて変わらない物はウォーターフォール。混ざるなら分けて使い分ける。",
     "concepts": ["DC-02-007"],
-    "figures": ["fig-dx-agile"],
+    "figures": ["fig-dx-agile-waterfall-fit", "fig-dx-agile"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部（ITシステム開発手法・技術）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -805,7 +805,7 @@
     ],
     "memoryTip": "DBを分ける＝独立して速く直せる。その代わり「いつでも一致」は手放す（結果整合性）。",
     "concepts": ["DC-02-008"],
-    "figures": ["fig-dx-microservices"],
+    "figures": ["fig-dx-eventual-consistency", "fig-dx-microservices"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部（ITシステム開発手法・技術）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],

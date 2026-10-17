@@ -1916,7 +1916,7 @@
     ],
     "memoryTip": "ドミナントは「密度の経済」の裏で「身内の客の奪い合い」。出店は原則自由、でも説明と違えば問題。",
     "concepts": ["DC-05-023", "DC-05-004", "DC-07-009"],
-    "figures": ["fig-dx-economies"],
+    "figures": ["fig-dx-dominant-store", "fig-dx-economies"],
     "sources": [
       { "title": "公正取引委員会「コンビニエンスストア本部と加盟店との取引等に関する実態調査報告書（概要）」（令和2年9月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/sep/kitori0902/200902_04-2.pdf" }
     ],
@@ -2251,7 +2251,7 @@
     ],
     "memoryTip": "テレワーク＝「どこで働くか」。クラウドソーシング＝「誰にどう頼むか」。",
     "concepts": ["DC-06-010"],
-    "figures": ["fig-dx-crowd"],
+    "figures": ["fig-dx-crowd-telework", "fig-dx-crowd"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」クラウドソーシング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc243120.html" }
     ],
@@ -3054,7 +3054,7 @@
     ],
     "memoryTip": "ネットワーク外部性＝勝ち組がもっと勝つ（雪だるま）。スイッチング・コスト＝今の陣地を固める（どの会社でも効く）。",
     "concepts": ["DC-07-022", "DC-05-006", "DC-07-013"],
-    "figures": ["fig-dx-lockin"],
+    "figures": ["fig-dx-lockin-share", "fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" }
     ],
@@ -3322,7 +3322,7 @@
     ],
     "memoryTip": "loyalty＝忠誠・愛着（顧客の気持ち）、royalty＝使用料（ライセンスのお金）。",
     "concepts": ["DC-08-012", "DC-08-011", "DC-08-007"],
-    "figures": ["fig-dx-revenue-models"],
+    "figures": ["fig-dx-loyalty-royalty", "fig-dx-revenue-models"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" },
       { "title": "消費者庁「令和4年版 消費者白書」COLUMN ライブ配信サービス（投げ銭等）に関する消費の動向", "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_column_03.html" },
@@ -3430,7 +3430,7 @@
     ],
     "memoryTip": "レベニューシェア＝「分ける収益」が測れないと始まらない。売上が見えるECは向く、後方事務の基幹系は向かない。",
     "concepts": ["DC-08-006", "DC-08-005"],
-    "figures": ["fig-dx-revenue-models"],
+    "figures": ["fig-dx-revenue-share-fit", "fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -3949,7 +3949,7 @@
     ],
     "memoryTip": "平均費用は『下がって、底を打って、上がる』。下り坂＝規模の経済、底＝最小効率規模、上り坂＝規模の不経済。",
     "concepts": ["DC-13-106", "DC-05-002"],
-    "figures": ["fig-dx-economies"],
+    "figures": ["fig-dx-average-cost", "fig-dx-economies"],
     "sources": [
       { "title": "政府統計の総合窓口（e-Stat）日英統計用語集「スケール・メリット：ECONOMIES OF SCALE」", "url": "https://www.e-stat.go.jp/classifications/terms/90/00/3056" }
     ],
@@ -4009,7 +4009,7 @@
     ],
     "memoryTip": "ネットワークビジネス＝①人が増えるほど価値が上がる事業 ②マルチ商法の言いかえ。文脈で読み分ける。",
     "concepts": ["DC-06-008", "DC-05-006"],
-    "figures": ["fig-dx-network-effect"],
+    "figures": ["fig-dx-network-business", "fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」プラットフォーム事業者の成長とその背景", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd113110.html" },
       { "title": "大阪府「「化粧品を買って会員になり、友人を誘って商品を販売するだけで簡単にお金がもうかる」といわれたが大丈夫か。」", "url": "https://www.pref.osaka.lg.jp/faq/o070120/faq_002094.html" }

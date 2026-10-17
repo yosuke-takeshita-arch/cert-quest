@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 410" role="img" aria-labelledby="fig-dx-average-cost-t fig-dx-average-cost-d">
+<title id="fig-dx-average-cost-t">生産量と1単位あたりの平均費用（平均費用曲線）</title>
+<desc id="fig-dx-average-cost-d">平均費用曲線を描いた説明のための図。縦軸は1単位あたりの平均費用、横軸は生産量。生産量が増えると、はじめは平均費用が下がる（規模の経済、下り坂）。いちばん低くなる規模が最小効率規模。ある水準を超えると平均費用が上がり始める（規模の不経済、上り坂）。下の段は、総費用と平均費用が別ものであることの説明のための例。100個作ると総費用200万円で1個あたり2万円、1,000個作ると総費用800万円で1個あたり0.8万円。総費用は増えても、1単位あたりの平均費用は下がる。規模の経済は、総費用ではなく平均費用が下がること。</desc>
+<rect x="12" y="14" width="296" height="238" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="34" class="tb">平均費用曲線（説明のための図）</text>
+<text x="24" y="52" class="tm">縦軸：1単位あたりの平均費用　横軸：生産量</text>
+<line x1="48" y1="64" x2="48" y2="220" class="l sm w1"/>
+<polyline points="44.7,70 48,64 51.3,70" class="l sm w1"/>
+<line x1="48" y1="220" x2="300" y2="220" class="l sm w1"/>
+<polyline points="294,216.7 300,220 294,223.3" class="l sm w1"/>
+<text x="28" y="96" class="tm">平</text>
+<text x="28" y="112" class="tm">均</text>
+<text x="28" y="128" class="tm">費</text>
+<text x="28" y="144" class="tm">用</text>
+<path d="M60 80 C 120 220, 220 220, 290 100" class="l sa w3"/>
+<text x="92" y="112" class="tb tok">規模の経済</text>
+<text x="92" y="130" class="tm">下り坂</text>
+<text x="268" y="112" class="tb tng" text-anchor="end">規模の不経済</text>
+<text x="268" y="130" class="tm" text-anchor="end">上り坂</text>
+<line x1="171" y1="187.5" x2="171" y2="220" class="l sm w1 dsh"/>
+<circle cx="171" cy="187.5" r="5" class="fa"/>
+<text x="171" y="174" class="tm" text-anchor="middle">いちばん低い</text>
+<text x="171" y="240" class="tb ta" text-anchor="middle">最小効率規模</text>
+<text x="300" y="240" class="tm" text-anchor="end">生産量</text>
+<rect x="12" y="262" width="296" height="136" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="284" class="tb">総費用と平均費用は別もの</text>
+<text x="24" y="304" class="tm">説明のための例</text>
+<text x="24" y="326">100個：総費用200万円 → 1個2万円</text>
+<text x="24" y="346">1,000個：総費用800万円 → 1個0.8万円</text>
+<text x="24" y="368" class="tb">総費用は増えても、1単位あたりは下がる</text>
+<text x="24" y="388" class="tm">規模の経済＝平均費用が下がること</text>
+</svg>

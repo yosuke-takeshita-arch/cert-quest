@@ -779,7 +779,7 @@
     ],
     "memoryTip": "多要素＝要素を重ねる。でも「打ち込む物」は偽サイトに打ち込まれうる。パスキー＝打ち込む物が無い。",
     "concepts": ["DC-12-107", "DC-02-033"],
-    "figures": ["fig-dx-mfa"],
+    "figures": ["fig-dx-otp-phishing", "fig-dx-mfa"],
     "sources": [
       { "title": "FIDO Alliance「Passkeys」", "url": "https://fidoalliance.org/passkeys/" },
       { "title": "総務省「国民のためのサイバーセキュリティサイト」社員・職員全般の情報セキュリティ対策", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/staff/06/" }
