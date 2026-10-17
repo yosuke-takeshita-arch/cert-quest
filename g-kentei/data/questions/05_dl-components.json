@@ -1515,7 +1515,9 @@
       "C-05-035"
     ],
     "figures": [
-      "fig-g-transformer"
+      "fig-g-transformer-flow",
+      "fig-g-transformer",
+      "fig-g-rnn-to-transformer"
     ],
     "sources": [
       {
@@ -1639,8 +1641,9 @@
       "C-05-033"
     ],
     "figures": [
-      "fig-g-transformer",
-      "fig-g-qkv"
+      "fig-g-self-attention-idea",
+      "fig-g-qkv",
+      "fig-g-transformer"
     ],
     "sources": [
       {
