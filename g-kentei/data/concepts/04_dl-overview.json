@@ -271,7 +271,7 @@
     ],
     "figures": [
       "fig-g-activation",
-      "fig-g-vanishing-gradient",
+      "fig-g-sigmoid-gradient",
       "fig-g-logistic-regression"
     ],
     "sources": [
@@ -1223,8 +1223,7 @@
       }
     ],
     "figures": [
-      "fig-g-exploding-gradient",
-      "fig-g-vanishing-gradient"
+      "fig-g-exploding-gradient"
     ],
     "sources": [
       {
