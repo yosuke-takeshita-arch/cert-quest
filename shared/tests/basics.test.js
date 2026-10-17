@@ -672,6 +672,16 @@ test('ソース: 窓の Esc は一番上の窓だけ閉じる（窓の上に窓�
   assert.match(ui, /all\[all\.length - 1\] === back/);
 });
 
+test('ソース: 窓（.sheet）は不透明な背景（--bg）を持ち、出る動きの終わりは opacity 1（動きの途中の撮影で半透明に見える。静止後は透けない）', () => {
+  const css = src('css/app.css');
+  const sheet = /\n\.sheet \{[^}]*\}/.exec(css);
+  assert.ok(sheet);
+  assert.match(sheet[0], /background: var\(--bg\)/);
+  assert.match(css, /@keyframes slide \{[^\n]*to \{[^}]*opacity: 1;/);
+  assert.doesNotMatch(sheet[0], /opacity:/); // 窓そのものに opacity を固定しない（動きの終わりに任せる）
+  assert.match(css, /\.sheet-back \{[^}]*z-index: 30/);
+});
+
 test('ソース: 印の文字の色は周りと同じ（--text 系）で、下線は点線（色だけに頼らない）。暗い配色専用の上書きは要らない', () => {
   const css = src('css/app.css');
   const rule = /button\.basic-term \{[^}]*\}/.exec(css);
