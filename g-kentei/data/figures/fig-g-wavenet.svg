@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 676" role="img" aria-labelledby="fig-g-wavenet-t fig-g-wavenet-d">
+<title id="fig-g-wavenet-t">WaveNet：音声の波形を、過去の点から次の1点を予測して1点ずつ作る</title>
+<desc id="fig-g-wavenet-d">WaveNet は Google DeepMind が2016年に発表した、音声の波形を作るモデル。音声は、細かい時間ごとの値（サンプル）の並びで、例えば1秒に16,000点ある。WaveNet は、それまでの点から次の1点を予測し、できた点を足して、また次を予測する（自己回帰）。1秒を作るのに16,000回予測する。遠い過去まで見るために、未来を見ない畳み込み（Causal）を、間隔を1、2、4、8と倍にして重ねる（Dilated）。図では4段で、出力の1点が過去の16サンプルを見ていて、未来のサンプルは見ない。原論文は間隔1から512までの10段を1組とし、1組で1024点を見る。これを何組か重ねる。</desc>
+<text x="12" y="20" class="tb">WaveNet：音の波形を1点ずつ作る</text>
+<text x="12" y="40" class="tm">Google DeepMind が 2016 年に発表した、</text>
+<text x="12" y="58" class="tm">音声の波形を作るモデル</text>
+<rect x="12" y="68" width="296" height="168" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="88">音声＝細かい時間ごとの値（サンプル）</text>
+<text x="24" y="106" class="tm">の並び（例：1秒に 16,000 点）</text>
+<polyline points="30,150 50,133.64 70,126.06 90,131.33 110,146.61 130,163.72 150,173.46 170,170.61 190,156.71 210,139.2 230,127.49 250,127.86" class="l sm w1"/>
+<line x1="250" y1="127.86" x2="270" y2="140.11" class="l sa w1 dsh"/>
+<circle cx="30" cy="150" r="3.5" class="fm"/>
+<circle cx="50" cy="133.64" r="3.5" class="fm"/>
+<circle cx="70" cy="126.06" r="3.5" class="fm"/>
+<circle cx="90" cy="131.33" r="3.5" class="fm"/>
+<circle cx="110" cy="146.61" r="3.5" class="fm"/>
+<circle cx="130" cy="163.72" r="3.5" class="fm"/>
+<circle cx="150" cy="173.46" r="3.5" class="fm"/>
+<circle cx="170" cy="170.61" r="3.5" class="fm"/>
+<circle cx="190" cy="156.71" r="3.5" class="fm"/>
+<circle cx="210" cy="139.2" r="3.5" class="fm"/>
+<circle cx="230" cy="127.49" r="3.5" class="fm"/>
+<circle cx="250" cy="127.86" r="3.5" class="fm"/>
+<circle cx="270" cy="140.11" r="6" class="fas sa" stroke-width="2"/>
+<text x="270" y="162.11" class="tb ta" text-anchor="middle">次の1点</text>
+<text x="24" y="194">それまでの点から次の1点を予測し、</text>
+<text x="24" y="212">できた点を足して、また次を予測する</text>
+<text x="24" y="230" class="tm">（自己回帰。1秒作るのに 16,000 回）</text>
+<text x="12" y="262" class="tb">遠い過去まで見るしくみ</text>
+<text x="12" y="282">未来を見ない畳み込み（Causal）を、</text>
+<text x="12" y="300">間隔を 1・2・4・8 と倍にして重ねる（Dilated）</text>
+<circle cx="62" cy="334" r="4.5" class="fs sb"/>
+<circle cx="77" cy="334" r="4.5" class="fs sb"/>
+<circle cx="92" cy="334" r="4.5" class="fs sb"/>
+<circle cx="107" cy="334" r="4.5" class="fs sb"/>
+<circle cx="122" cy="334" r="4.5" class="fs sb"/>
+<circle cx="137" cy="334" r="4.5" class="fs sb"/>
+<circle cx="152" cy="334" r="4.5" class="fs sb"/>
+<circle cx="167" cy="334" r="4.5" class="fs sb"/>
+<circle cx="182" cy="334" r="4.5" class="fs sb"/>
+<circle cx="197" cy="334" r="4.5" class="fs sb"/>
+<circle cx="212" cy="334" r="4.5" class="fs sb"/>
+<circle cx="227" cy="334" r="4.5" class="fs sb"/>
+<circle cx="242" cy="334" r="4.5" class="fs sb"/>
+<circle cx="257" cy="334" r="4.5" class="fs sb"/>
+<circle cx="272" cy="334" r="4.5" class="fs sb"/>
+<circle cx="287" cy="334" r="4.5" class="fa sa"/>
+<circle cx="62" cy="374" r="4.5" class="fs sb"/>
+<circle cx="77" cy="374" r="4.5" class="fs sb"/>
+<circle cx="92" cy="374" r="4.5" class="fs sb"/>
+<circle cx="107" cy="374" r="4.5" class="fs sb"/>
+<circle cx="122" cy="374" r="4.5" class="fs sb"/>
+<circle cx="137" cy="374" r="4.5" class="fs sb"/>
+<circle cx="152" cy="374" r="4.5" class="fs sb"/>
+<circle cx="167" cy="374" r="4.5" class="fa sa"/>
+<circle cx="182" cy="374" r="4.5" class="fs sb"/>
+<circle cx="197" cy="374" r="4.5" class="fs sb"/>
+<circle cx="212" cy="374" r="4.5" class="fs sb"/>
+<circle cx="227" cy="374" r="4.5" class="fs sb"/>
+<circle cx="242" cy="374" r="4.5" class="fs sb"/>
+<circle cx="257" cy="374" r="4.5" class="fs sb"/>
+<circle cx="272" cy="374" r="4.5" class="fs sb"/>
+<circle cx="287" cy="374" r="4.5" class="fa sa"/>
+<circle cx="62" cy="414" r="4.5" class="fs sb"/>
+<circle cx="77" cy="414" r="4.5" class="fs sb"/>
+<circle cx="92" cy="414" r="4.5" class="fs sb"/>
+<circle cx="107" cy="414" r="4.5" class="fa sa"/>
+<circle cx="122" cy="414" r="4.5" class="fs sb"/>
+<circle cx="137" cy="414" r="4.5" class="fs sb"/>
+<circle cx="152" cy="414" r="4.5" class="fs sb"/>
+<circle cx="167" cy="414" r="4.5" class="fa sa"/>
+<circle cx="182" cy="414" r="4.5" class="fs sb"/>
+<circle cx="197" cy="414" r="4.5" class="fs sb"/>
+<circle cx="212" cy="414" r="4.5" class="fs sb"/>
+<circle cx="227" cy="414" r="4.5" class="fa sa"/>
+<circle cx="242" cy="414" r="4.5" class="fs sb"/>
+<circle cx="257" cy="414" r="4.5" class="fs sb"/>
+<circle cx="272" cy="414" r="4.5" class="fs sb"/>
+<circle cx="287" cy="414" r="4.5" class="fa sa"/>
+<circle cx="62" cy="454" r="4.5" class="fs sb"/>
+<circle cx="77" cy="454" r="4.5" class="fa sa"/>
+<circle cx="92" cy="454" r="4.5" class="fs sb"/>
+<circle cx="107" cy="454" r="4.5" class="fa sa"/>
+<circle cx="122" cy="454" r="4.5" class="fs sb"/>
+<circle cx="137" cy="454" r="4.5" class="fa sa"/>
+<circle cx="152" cy="454" r="4.5" class="fs sb"/>
+<circle cx="167" cy="454" r="4.5" class="fa sa"/>
+<circle cx="182" cy="454" r="4.5" class="fs sb"/>
+<circle cx="197" cy="454" r="4.5" class="fa sa"/>
+<circle cx="212" cy="454" r="4.5" class="fs sb"/>
+<circle cx="227" cy="454" r="4.5" class="fa sa"/>
+<circle cx="242" cy="454" r="4.5" class="fs sb"/>
+<circle cx="257" cy="454" r="4.5" class="fa sa"/>
+<circle cx="272" cy="454" r="4.5" class="fs sb"/>
+<circle cx="287" cy="454" r="4.5" class="fa sa"/>
+<circle cx="62" cy="494" r="4.5" class="fa sa"/>
+<circle cx="77" cy="494" r="4.5" class="fa sa"/>
+<circle cx="92" cy="494" r="4.5" class="fa sa"/>
+<circle cx="107" cy="494" r="4.5" class="fa sa"/>
+<circle cx="122" cy="494" r="4.5" class="fa sa"/>
+<circle cx="137" cy="494" r="4.5" class="fa sa"/>
+<circle cx="152" cy="494" r="4.5" class="fa sa"/>
+<circle cx="167" cy="494" r="4.5" class="fa sa"/>
+<circle cx="182" cy="494" r="4.5" class="fa sa"/>
+<circle cx="197" cy="494" r="4.5" class="fa sa"/>
+<circle cx="212" cy="494" r="4.5" class="fa sa"/>
+<circle cx="227" cy="494" r="4.5" class="fa sa"/>
+<circle cx="242" cy="494" r="4.5" class="fa sa"/>
+<circle cx="257" cy="494" r="4.5" class="fa sa"/>
+<circle cx="272" cy="494" r="4.5" class="fa sa"/>
+<circle cx="287" cy="494" r="4.5" class="fa sa"/>
+<line x1="287" y1="334" x2="287" y2="374" class="l sa w1"/>
+<line x1="287" y1="334" x2="167" y2="374" class="l sa w1"/>
+<line x1="167" y1="374" x2="167" y2="414" class="l sa w1"/>
+<line x1="167" y1="374" x2="107" y2="414" class="l sa w1"/>
+<line x1="287" y1="374" x2="287" y2="414" class="l sa w1"/>
+<line x1="287" y1="374" x2="227" y2="414" class="l sa w1"/>
+<line x1="107" y1="414" x2="107" y2="454" class="l sa w1"/>
+<line x1="107" y1="414" x2="77" y2="454" class="l sa w1"/>
+<line x1="167" y1="414" x2="167" y2="454" class="l sa w1"/>
+<line x1="167" y1="414" x2="137" y2="454" class="l sa w1"/>
+<line x1="227" y1="414" x2="227" y2="454" class="l sa w1"/>
+<line x1="227" y1="414" x2="197" y2="454" class="l sa w1"/>
+<line x1="287" y1="414" x2="287" y2="454" class="l sa w1"/>
+<line x1="287" y1="414" x2="257" y2="454" class="l sa w1"/>
+<line x1="77" y1="454" x2="77" y2="494" class="l sa w1"/>
+<line x1="77" y1="454" x2="62" y2="494" class="l sa w1"/>
+<line x1="107" y1="454" x2="107" y2="494" class="l sa w1"/>
+<line x1="107" y1="454" x2="92" y2="494" class="l sa w1"/>
+<line x1="137" y1="454" x2="137" y2="494" class="l sa w1"/>
+<line x1="137" y1="454" x2="122" y2="494" class="l sa w1"/>
+<line x1="167" y1="454" x2="167" y2="494" class="l sa w1"/>
+<line x1="167" y1="454" x2="152" y2="494" class="l sa w1"/>
+<line x1="197" y1="454" x2="197" y2="494" class="l sa w1"/>
+<line x1="197" y1="454" x2="182" y2="494" class="l sa w1"/>
+<line x1="227" y1="454" x2="227" y2="494" class="l sa w1"/>
+<line x1="227" y1="454" x2="212" y2="494" class="l sa w1"/>
+<line x1="257" y1="454" x2="257" y2="494" class="l sa w1"/>
+<line x1="257" y1="454" x2="242" y2="494" class="l sa w1"/>
+<line x1="287" y1="454" x2="287" y2="494" class="l sa w1"/>
+<line x1="287" y1="454" x2="272" y2="494" class="l sa w1"/>
+<text x="12" y="458.5" class="tm">間隔1</text>
+<text x="12" y="418.5" class="tm">間隔2</text>
+<text x="12" y="378.5" class="tm">間隔4</text>
+<text x="12" y="338.5" class="tm">間隔8</text>
+<text x="12" y="498.5" class="tm">入力</text>
+<text x="251" y="320" class="tb ta" text-anchor="middle">出力 1点</text>
+<text x="62" y="518" class="tm">← 過去</text>
+<text x="287" y="518" class="tm" text-anchor="end">今 →</text>
+<text x="12" y="544" class="tb">出力の1点が、過去の 16 サンプルを見ている</text>
+<text x="12" y="564" class="tm">未来のサンプルは見ない（線は左下と真下だけ）</text>
+<text x="12" y="590" class="tm">間隔を倍にすると、見る範囲が倍々に広がる</text>
+<text x="12" y="608" class="tm">（Dilated 畳み込みの図の②と同じ考えを、</text>
+<text x="12" y="626" class="tm">　過去の側だけで使う）</text>
+<text x="12" y="650" class="tm">原論文は間隔 1・2・…・512 の10段を1組とし、</text>
+<text x="12" y="668" class="tm">1組で 1024 点を見る（これを何組か重ねる）</text>
+</svg>

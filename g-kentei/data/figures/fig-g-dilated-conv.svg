@@ -1,183 +1,177 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-g-dilated-conv-t fig-g-dilated-conv-d">
-<title id="fig-g-dilated-conv-t">Dilated（Atrous）畳み込みと、WaveNet の因果的な畳み込み</title>
-<desc id="fig-g-dilated-conv-d">上は2次元の格子。通常の3×3のフィルタは隣り合う9マスを見るので、見る範囲は3×3。間隔2のDilated畳み込みは、1マスおきの9マスを見るので、見る範囲は5×5になる。どちらも重みの数は9個で同じ。下は WaveNet の1次元の例。dilation（間隔）を1、2、4、8と倍にした4層を重ねると、出力の1点が過去の16サンプルを見る。未来のサンプルは見ない（因果的）。</desc>
-<text x="12" y="20" class="tb">① 隙間をあけて、広く見る</text>
-<rect x="20" y="40" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="37" y="40" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="54" y="40" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="71" y="40" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="88" y="40" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="20" y="57" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="37" y="57" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="54" y="57" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="71" y="57" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="88" y="57" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="20" y="74" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="37" y="74" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="54" y="74" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="71" y="74" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="88" y="74" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="20" y="91" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="37" y="91" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="54" y="91" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="71" y="91" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="88" y="91" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="20" y="108" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="37" y="108" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="54" y="108" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="71" y="108" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="88" y="108" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="180" y="40" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="197" y="40" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="214" y="40" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="231" y="40" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="248" y="40" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="180" y="57" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="197" y="57" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="214" y="57" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="231" y="57" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="248" y="57" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="180" y="74" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="197" y="74" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="214" y="74" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="231" y="74" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="248" y="74" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="180" y="91" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="197" y="91" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="214" y="91" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="231" y="91" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="248" y="91" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="180" y="108" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="197" y="108" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="214" y="108" width="17" height="17" class="fa sa" stroke-width="1"/>
-<rect x="231" y="108" width="17" height="17" class="fs sb" stroke-width="1"/>
-<rect x="248" y="108" width="17" height="17" class="fa sa" stroke-width="1"/>
-<text x="62.5" y="150" class="tb" text-anchor="middle">通常（間隔1）</text>
-<text x="222.5" y="150" class="tb" text-anchor="middle">Dilated（間隔2）</text>
-<text x="62.5" y="170" class="tm" text-anchor="middle">見る範囲 3×3</text>
-<text x="222.5" y="170" class="tm" text-anchor="middle">見る範囲 5×5</text>
-<text x="12" y="198" class="tb">どちらも重みは 9 個（パラメータ数は同じ）</text>
-<text x="12" y="218" class="tm">縮小せずに、広い範囲を見られる</text>
-<line x1="12" y1="236" x2="308" y2="236" class="l sb w1"/>
-<text x="12" y="260" class="tb">② WaveNet：過去だけを見る（因果的）</text>
-<circle cx="62" cy="450" r="4.5" class="fa sa"/>
-<circle cx="77" cy="450" r="4.5" class="fa sa"/>
-<circle cx="92" cy="450" r="4.5" class="fa sa"/>
-<circle cx="107" cy="450" r="4.5" class="fa sa"/>
-<circle cx="122" cy="450" r="4.5" class="fa sa"/>
-<circle cx="137" cy="450" r="4.5" class="fa sa"/>
-<circle cx="152" cy="450" r="4.5" class="fa sa"/>
-<circle cx="167" cy="450" r="4.5" class="fa sa"/>
-<circle cx="182" cy="450" r="4.5" class="fa sa"/>
-<circle cx="197" cy="450" r="4.5" class="fa sa"/>
-<circle cx="212" cy="450" r="4.5" class="fa sa"/>
-<circle cx="227" cy="450" r="4.5" class="fa sa"/>
-<circle cx="242" cy="450" r="4.5" class="fa sa"/>
-<circle cx="257" cy="450" r="4.5" class="fa sa"/>
-<circle cx="272" cy="450" r="4.5" class="fa sa"/>
-<circle cx="287" cy="450" r="4.5" class="fa sa"/>
-<circle cx="62" cy="410" r="4.5" class="fs sb"/>
-<circle cx="77" cy="410" r="4.5" class="fa sa"/>
-<circle cx="92" cy="410" r="4.5" class="fs sb"/>
-<circle cx="107" cy="410" r="4.5" class="fa sa"/>
-<circle cx="122" cy="410" r="4.5" class="fs sb"/>
-<circle cx="137" cy="410" r="4.5" class="fa sa"/>
-<circle cx="152" cy="410" r="4.5" class="fs sb"/>
-<circle cx="167" cy="410" r="4.5" class="fa sa"/>
-<circle cx="182" cy="410" r="4.5" class="fs sb"/>
-<circle cx="197" cy="410" r="4.5" class="fa sa"/>
-<circle cx="212" cy="410" r="4.5" class="fs sb"/>
-<circle cx="227" cy="410" r="4.5" class="fa sa"/>
-<circle cx="242" cy="410" r="4.5" class="fs sb"/>
-<circle cx="257" cy="410" r="4.5" class="fa sa"/>
-<circle cx="272" cy="410" r="4.5" class="fs sb"/>
-<circle cx="287" cy="410" r="4.5" class="fa sa"/>
-<circle cx="62" cy="370" r="4.5" class="fs sb"/>
-<circle cx="77" cy="370" r="4.5" class="fs sb"/>
-<circle cx="92" cy="370" r="4.5" class="fs sb"/>
-<circle cx="107" cy="370" r="4.5" class="fa sa"/>
-<circle cx="122" cy="370" r="4.5" class="fs sb"/>
-<circle cx="137" cy="370" r="4.5" class="fs sb"/>
-<circle cx="152" cy="370" r="4.5" class="fs sb"/>
-<circle cx="167" cy="370" r="4.5" class="fa sa"/>
-<circle cx="182" cy="370" r="4.5" class="fs sb"/>
-<circle cx="197" cy="370" r="4.5" class="fs sb"/>
-<circle cx="212" cy="370" r="4.5" class="fs sb"/>
-<circle cx="227" cy="370" r="4.5" class="fa sa"/>
-<circle cx="242" cy="370" r="4.5" class="fs sb"/>
-<circle cx="257" cy="370" r="4.5" class="fs sb"/>
-<circle cx="272" cy="370" r="4.5" class="fs sb"/>
-<circle cx="287" cy="370" r="4.5" class="fa sa"/>
-<circle cx="62" cy="330" r="4.5" class="fs sb"/>
-<circle cx="77" cy="330" r="4.5" class="fs sb"/>
-<circle cx="92" cy="330" r="4.5" class="fs sb"/>
-<circle cx="107" cy="330" r="4.5" class="fs sb"/>
-<circle cx="122" cy="330" r="4.5" class="fs sb"/>
-<circle cx="137" cy="330" r="4.5" class="fs sb"/>
-<circle cx="152" cy="330" r="4.5" class="fs sb"/>
-<circle cx="167" cy="330" r="4.5" class="fa sa"/>
-<circle cx="182" cy="330" r="4.5" class="fs sb"/>
-<circle cx="197" cy="330" r="4.5" class="fs sb"/>
-<circle cx="212" cy="330" r="4.5" class="fs sb"/>
-<circle cx="227" cy="330" r="4.5" class="fs sb"/>
-<circle cx="242" cy="330" r="4.5" class="fs sb"/>
-<circle cx="257" cy="330" r="4.5" class="fs sb"/>
-<circle cx="272" cy="330" r="4.5" class="fs sb"/>
-<circle cx="287" cy="330" r="4.5" class="fa sa"/>
-<circle cx="62" cy="290" r="4.5" class="fs sb"/>
-<circle cx="77" cy="290" r="4.5" class="fs sb"/>
-<circle cx="92" cy="290" r="4.5" class="fs sb"/>
-<circle cx="107" cy="290" r="4.5" class="fs sb"/>
-<circle cx="122" cy="290" r="4.5" class="fs sb"/>
-<circle cx="137" cy="290" r="4.5" class="fs sb"/>
-<circle cx="152" cy="290" r="4.5" class="fs sb"/>
-<circle cx="167" cy="290" r="4.5" class="fs sb"/>
-<circle cx="182" cy="290" r="4.5" class="fs sb"/>
-<circle cx="197" cy="290" r="4.5" class="fs sb"/>
-<circle cx="212" cy="290" r="4.5" class="fs sb"/>
-<circle cx="227" cy="290" r="4.5" class="fs sb"/>
-<circle cx="242" cy="290" r="4.5" class="fs sb"/>
-<circle cx="257" cy="290" r="4.5" class="fs sb"/>
-<circle cx="272" cy="290" r="4.5" class="fs sb"/>
-<circle cx="287" cy="290" r="4.5" class="fa sa"/>
-<line x1="287" y1="410" x2="287" y2="450" class="l sa w1"/>
-<line x1="287" y1="410" x2="272" y2="450" class="l sa w1"/>
-<line x1="257" y1="410" x2="257" y2="450" class="l sa w1"/>
-<line x1="257" y1="410" x2="242" y2="450" class="l sa w1"/>
-<line x1="227" y1="410" x2="227" y2="450" class="l sa w1"/>
-<line x1="227" y1="410" x2="212" y2="450" class="l sa w1"/>
-<line x1="197" y1="410" x2="197" y2="450" class="l sa w1"/>
-<line x1="197" y1="410" x2="182" y2="450" class="l sa w1"/>
-<line x1="167" y1="410" x2="167" y2="450" class="l sa w1"/>
-<line x1="167" y1="410" x2="152" y2="450" class="l sa w1"/>
-<line x1="137" y1="410" x2="137" y2="450" class="l sa w1"/>
-<line x1="137" y1="410" x2="122" y2="450" class="l sa w1"/>
-<line x1="107" y1="410" x2="107" y2="450" class="l sa w1"/>
-<line x1="107" y1="410" x2="92" y2="450" class="l sa w1"/>
-<line x1="77" y1="410" x2="77" y2="450" class="l sa w1"/>
-<line x1="77" y1="410" x2="62" y2="450" class="l sa w1"/>
-<line x1="287" y1="370" x2="287" y2="410" class="l sa w1"/>
-<line x1="287" y1="370" x2="257" y2="410" class="l sa w1"/>
-<line x1="227" y1="370" x2="227" y2="410" class="l sa w1"/>
-<line x1="227" y1="370" x2="197" y2="410" class="l sa w1"/>
-<line x1="167" y1="370" x2="167" y2="410" class="l sa w1"/>
-<line x1="167" y1="370" x2="137" y2="410" class="l sa w1"/>
-<line x1="107" y1="370" x2="107" y2="410" class="l sa w1"/>
-<line x1="107" y1="370" x2="77" y2="410" class="l sa w1"/>
-<line x1="287" y1="330" x2="287" y2="370" class="l sa w1"/>
-<line x1="287" y1="330" x2="227" y2="370" class="l sa w1"/>
-<line x1="167" y1="330" x2="167" y2="370" class="l sa w1"/>
-<line x1="167" y1="330" x2="107" y2="370" class="l sa w1"/>
-<line x1="287" y1="290" x2="287" y2="330" class="l sa w1"/>
-<line x1="287" y1="290" x2="167" y2="330" class="l sa w1"/>
-<text x="12" y="414.5" class="tm">間隔1</text>
-<text x="12" y="374.5" class="tm">間隔2</text>
-<text x="12" y="334.5" class="tm">間隔4</text>
-<text x="12" y="294.5" class="tm">間隔8</text>
-<text x="12" y="454.5" class="tm">入力</text>
-<text x="251" y="276" class="tb ta" text-anchor="middle">出力 1点</text>
-<text x="12" y="484" class="tb">出力の1点が、過去の 16 サンプルを見ている</text>
-<text x="12" y="506" class="tm">間隔を 1・2・4・8 と倍にすると、</text>
-<text x="12" y="526" class="tm">見る範囲が倍々に広がる</text>
-<text x="12" y="550" class="tm">未来のサンプルは見ない（左向きだけ）</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 642" role="img" aria-labelledby="fig-g-dilated-conv-t fig-g-dilated-conv-d">
+<title id="fig-g-dilated-conv-t">Dilated（Atrous）畳み込み：重みの間に隙間をあけて、広く見る</title>
+<desc id="fig-g-dilated-conv-d">なぜ欲しいか：セグメンテーション（画素ごとに何が写っているかを答える課題）では、広く見て文脈をつかみたいが、位置も要る。プーリングで縮めると特徴マップが小さくなり、細かい位置が失われる。フィルタを大きくすると重みが増える（7×7なら49個）。隙間をあければ、重み9個のまま、特徴マップも縮めずに広く見られる。①は2次元の格子で、黒丸が重み。通常の3×3は隣り合う9マスに重みが1つずつあり、見る範囲は3×3。間隔2のDilated畳み込みは1マスおきの9マスに重みがあり、見る範囲は5×5。どちらも重みは9個。見る範囲の1辺は（3−1）×間隔＋1。②は1列に並んだデータで、重み3個の畳み込みを、間隔1、2、4と3段重ねる。いちばん上の1点が、入力の15点を見ている。間隔1のまま3段なら7点しか見ない。間隔を倍にすると、見る範囲が倍々に広がる。</desc>
+<text x="12" y="20" class="tb">Dilated 畳み込み：隙間をあけて広く見る</text>
+<rect x="12" y="30" width="296" height="166" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="50" class="tb">なぜ欲しいか（例：セグメンテーション）</text>
+<text x="24" y="70">広く見て文脈をつかみたいが、位置も要る</text>
+<text x="24" y="92" class="tng">× プーリングで縮める → 特徴マップが</text>
+<text x="24" y="110" class="tng">　小さくなり、細かい位置が失われる</text>
+<text x="24" y="132" class="tng">× フィルタを大きくする → 重みが増える</text>
+<text x="24" y="150" class="tng">　（7×7 なら 49 個）</text>
+<text x="24" y="172" class="tb tok">○ 隙間をあける → 重み 9 個のまま、</text>
+<text x="24" y="190" class="tb tok">　特徴マップも縮めずに広く見る</text>
+<text x="12" y="222" class="tb">① ●＝重み。どちらも 9 個</text>
+<rect x="20" y="234" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="37" y="234" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="54" y="234" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="71" y="234" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="88" y="234" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="20" y="251" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="37" y="251" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="54" y="251" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="71" y="251" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="88" y="251" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="20" y="268" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="37" y="268" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="54" y="268" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="71" y="268" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="88" y="268" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="20" y="285" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="37" y="285" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="54" y="285" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="71" y="285" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="88" y="285" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="20" y="302" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="37" y="302" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="54" y="302" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="71" y="302" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="88" y="302" width="17" height="17" class="fs sb" stroke-width="1"/>
+<circle cx="45.5" cy="259.5" r="4" class="fa"/>
+<circle cx="62.5" cy="259.5" r="4" class="fa"/>
+<circle cx="79.5" cy="259.5" r="4" class="fa"/>
+<circle cx="45.5" cy="276.5" r="4" class="fa"/>
+<circle cx="62.5" cy="276.5" r="4" class="fa"/>
+<circle cx="79.5" cy="276.5" r="4" class="fa"/>
+<circle cx="45.5" cy="293.5" r="4" class="fa"/>
+<circle cx="62.5" cy="293.5" r="4" class="fa"/>
+<circle cx="79.5" cy="293.5" r="4" class="fa"/>
+<rect x="180" y="234" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="197" y="234" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="214" y="234" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="231" y="234" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="248" y="234" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="180" y="251" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="197" y="251" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="214" y="251" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="231" y="251" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="248" y="251" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="180" y="268" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="197" y="268" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="214" y="268" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="231" y="268" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="248" y="268" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="180" y="285" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="197" y="285" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="214" y="285" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="231" y="285" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="248" y="285" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="180" y="302" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="197" y="302" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="214" y="302" width="17" height="17" class="fas sa" stroke-width="1"/>
+<rect x="231" y="302" width="17" height="17" class="fs sb" stroke-width="1"/>
+<rect x="248" y="302" width="17" height="17" class="fas sa" stroke-width="1"/>
+<circle cx="188.5" cy="242.5" r="4" class="fa"/>
+<circle cx="222.5" cy="242.5" r="4" class="fa"/>
+<circle cx="256.5" cy="242.5" r="4" class="fa"/>
+<circle cx="188.5" cy="276.5" r="4" class="fa"/>
+<circle cx="222.5" cy="276.5" r="4" class="fa"/>
+<circle cx="256.5" cy="276.5" r="4" class="fa"/>
+<circle cx="188.5" cy="310.5" r="4" class="fa"/>
+<circle cx="222.5" cy="310.5" r="4" class="fa"/>
+<circle cx="256.5" cy="310.5" r="4" class="fa"/>
+<text x="62.5" y="344" class="tb" text-anchor="middle">通常（間隔1）</text>
+<text x="222.5" y="344" class="tb" text-anchor="middle">Dilated（間隔2）</text>
+<text x="62.5" y="364" class="tm" text-anchor="middle">見る範囲 3×3</text>
+<text x="222.5" y="364" class="tm" text-anchor="middle">見る範囲 5×5</text>
+<text x="12" y="388" class="tm">見る範囲の1辺＝（3−1）×間隔＋1</text>
+<line x1="12" y1="402" x2="308" y2="402" class="l sb w1"/>
+<text x="12" y="426" class="tb">② 間隔を 1・2・4 と重ねる（1列の例）</text>
+<line x1="174" y1="446" x2="110" y2="486" class="l sa w1"/>
+<line x1="174" y1="446" x2="174" y2="486" class="l sa w1"/>
+<line x1="174" y1="446" x2="238" y2="486" class="l sa w1"/>
+<line x1="110" y1="486" x2="78" y2="526" class="l sa w1"/>
+<line x1="110" y1="486" x2="110" y2="526" class="l sa w1"/>
+<line x1="110" y1="486" x2="142" y2="526" class="l sa w1"/>
+<line x1="174" y1="486" x2="142" y2="526" class="l sa w1"/>
+<line x1="174" y1="486" x2="174" y2="526" class="l sa w1"/>
+<line x1="174" y1="486" x2="206" y2="526" class="l sa w1"/>
+<line x1="238" y1="486" x2="206" y2="526" class="l sa w1"/>
+<line x1="238" y1="486" x2="238" y2="526" class="l sa w1"/>
+<line x1="238" y1="486" x2="270" y2="526" class="l sa w1"/>
+<line x1="78" y1="526" x2="62" y2="566" class="l sa w1"/>
+<line x1="78" y1="526" x2="78" y2="566" class="l sa w1"/>
+<line x1="78" y1="526" x2="94" y2="566" class="l sa w1"/>
+<line x1="110" y1="526" x2="94" y2="566" class="l sa w1"/>
+<line x1="110" y1="526" x2="110" y2="566" class="l sa w1"/>
+<line x1="110" y1="526" x2="126" y2="566" class="l sa w1"/>
+<line x1="142" y1="526" x2="126" y2="566" class="l sa w1"/>
+<line x1="142" y1="526" x2="142" y2="566" class="l sa w1"/>
+<line x1="142" y1="526" x2="158" y2="566" class="l sa w1"/>
+<line x1="174" y1="526" x2="158" y2="566" class="l sa w1"/>
+<line x1="174" y1="526" x2="174" y2="566" class="l sa w1"/>
+<line x1="174" y1="526" x2="190" y2="566" class="l sa w1"/>
+<line x1="206" y1="526" x2="190" y2="566" class="l sa w1"/>
+<line x1="206" y1="526" x2="206" y2="566" class="l sa w1"/>
+<line x1="206" y1="526" x2="222" y2="566" class="l sa w1"/>
+<line x1="238" y1="526" x2="222" y2="566" class="l sa w1"/>
+<line x1="238" y1="526" x2="238" y2="566" class="l sa w1"/>
+<line x1="238" y1="526" x2="254" y2="566" class="l sa w1"/>
+<line x1="270" y1="526" x2="254" y2="566" class="l sa w1"/>
+<line x1="270" y1="526" x2="270" y2="566" class="l sa w1"/>
+<line x1="270" y1="526" x2="286" y2="566" class="l sa w1"/>
+<circle cx="174" cy="446" r="4.5" class="fa sa"/>
+<circle cx="62" cy="486" r="4.5" class="fs sb"/>
+<circle cx="78" cy="486" r="4.5" class="fs sb"/>
+<circle cx="94" cy="486" r="4.5" class="fs sb"/>
+<circle cx="110" cy="486" r="4.5" class="fa sa"/>
+<circle cx="126" cy="486" r="4.5" class="fs sb"/>
+<circle cx="142" cy="486" r="4.5" class="fs sb"/>
+<circle cx="158" cy="486" r="4.5" class="fs sb"/>
+<circle cx="174" cy="486" r="4.5" class="fa sa"/>
+<circle cx="190" cy="486" r="4.5" class="fs sb"/>
+<circle cx="206" cy="486" r="4.5" class="fs sb"/>
+<circle cx="222" cy="486" r="4.5" class="fs sb"/>
+<circle cx="238" cy="486" r="4.5" class="fa sa"/>
+<circle cx="254" cy="486" r="4.5" class="fs sb"/>
+<circle cx="270" cy="486" r="4.5" class="fs sb"/>
+<circle cx="286" cy="486" r="4.5" class="fs sb"/>
+<circle cx="62" cy="526" r="4.5" class="fs sb"/>
+<circle cx="78" cy="526" r="4.5" class="fa sa"/>
+<circle cx="94" cy="526" r="4.5" class="fs sb"/>
+<circle cx="110" cy="526" r="4.5" class="fa sa"/>
+<circle cx="126" cy="526" r="4.5" class="fs sb"/>
+<circle cx="142" cy="526" r="4.5" class="fa sa"/>
+<circle cx="158" cy="526" r="4.5" class="fs sb"/>
+<circle cx="174" cy="526" r="4.5" class="fa sa"/>
+<circle cx="190" cy="526" r="4.5" class="fs sb"/>
+<circle cx="206" cy="526" r="4.5" class="fa sa"/>
+<circle cx="222" cy="526" r="4.5" class="fs sb"/>
+<circle cx="238" cy="526" r="4.5" class="fa sa"/>
+<circle cx="254" cy="526" r="4.5" class="fs sb"/>
+<circle cx="270" cy="526" r="4.5" class="fa sa"/>
+<circle cx="286" cy="526" r="4.5" class="fs sb"/>
+<circle cx="62" cy="566" r="4.5" class="fa sa"/>
+<circle cx="78" cy="566" r="4.5" class="fa sa"/>
+<circle cx="94" cy="566" r="4.5" class="fa sa"/>
+<circle cx="110" cy="566" r="4.5" class="fa sa"/>
+<circle cx="126" cy="566" r="4.5" class="fa sa"/>
+<circle cx="142" cy="566" r="4.5" class="fa sa"/>
+<circle cx="158" cy="566" r="4.5" class="fa sa"/>
+<circle cx="174" cy="566" r="4.5" class="fa sa"/>
+<circle cx="190" cy="566" r="4.5" class="fa sa"/>
+<circle cx="206" cy="566" r="4.5" class="fa sa"/>
+<circle cx="222" cy="566" r="4.5" class="fa sa"/>
+<circle cx="238" cy="566" r="4.5" class="fa sa"/>
+<circle cx="254" cy="566" r="4.5" class="fa sa"/>
+<circle cx="270" cy="566" r="4.5" class="fa sa"/>
+<circle cx="286" cy="566" r="4.5" class="fa sa"/>
+<text x="186" y="450.5" class="tb ta">出力 1点</text>
+<text x="12" y="450.5" class="tm">間隔4</text>
+<text x="12" y="490.5" class="tm">間隔2</text>
+<text x="12" y="530.5" class="tm">間隔1</text>
+<text x="12" y="570.5" class="tm">入力</text>
+<text x="12" y="596" class="tb">上の1点が、入力の 15 点を見ている</text>
+<text x="12" y="616" class="tm">各段の重みは 3 個。間隔1のまま3段なら 7 点</text>
+<text x="12" y="634" class="tm">間隔を倍にすると、見る範囲が倍々に広がる</text>
 </svg>
