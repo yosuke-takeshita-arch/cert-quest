@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-g-cross-entropy-t fig-g-cross-entropy-d">
+<title id="fig-g-cross-entropy-t">交差エントロピー：正解クラスに付けた確率だけで誤差が決まる</title>
+<desc id="fig-g-cross-entropy-d">正解が猫の画像に、3つの予測を比べる例。誤差は、正解の猫に付けた確率pを使って、−log pで計算する。予測Aは猫0.9・犬0.05・鳥0.05で、誤差は−log 0.9≈0.11。予測Bは猫0.5・犬0.3・鳥0.2で、誤差は−log 0.5≈0.69。予測Cは猫0.1・犬0.8・鳥0.1で、犬だと自信を持って間違えており、誤差は−log 0.1≈2.30と大きい。棒の長さが誤差の大きさ。犬や鳥の確率は計算に使わない。logは自然対数で、log pは、eを何乗するとpになるかを表す。pが1なら log 1＝0 で誤差は0、pが0に近いほど誤差は急に大きくなる。</desc>
+<text x="12" y="22" class="tb">正解は「猫」の画像。3つの予測を比べる（例）</text>
+<text x="12" y="42" class="tm">誤差＝−log（正解の猫に付けた確率）</text>
+<line x1="12" y1="56" x2="308" y2="56" class="l sb w1"/>
+<text x="12" y="80" class="tb">予測A</text>
+<text x="66" y="80"><tspan class="tb tok">猫 0.9</tspan>・犬 0.05・鳥 0.05</text>
+<text x="12" y="104">誤差＝−log 0.9≈0.11</text>
+<rect x="188" y="92" width="5" height="16" class="fok l sok w1"/>
+<text x="200" y="104" class="tb tok">0.11</text>
+<text x="12" y="134" class="tb">予測B</text>
+<text x="66" y="134"><tspan class="tb">猫 0.5</tspan>・犬 0.3・鳥 0.2</text>
+<text x="12" y="158">誤差＝−log 0.5≈0.69</text>
+<rect x="188" y="146" width="31" height="16" class="fwn l swn w1"/>
+<text x="226" y="158" class="tb twn">0.69</text>
+<text x="12" y="188" class="tb">予測C</text>
+<text x="66" y="188"><tspan class="tb tng">猫 0.1</tspan>・犬 0.8・鳥 0.1</text>
+<text x="12" y="212">誤差＝−log 0.1≈2.30</text>
+<rect x="188" y="200" width="104" height="16" class="fng l sng w1"/>
+<text x="292" y="236" class="tb tng" text-anchor="end">2.30</text>
+<text x="12" y="236" class="tm">犬だと自信を持って間違えた</text>
+<text x="12" y="262" class="tm">棒の長さ＝誤差の大きさ（同じ縮尺）</text>
+<line x1="12" y1="276" x2="308" y2="276" class="l sb w1"/>
+<text x="12" y="300" class="tb">読み方</text>
+<text x="12" y="324">・使うのは正解（猫）の確率だけ。</text>
+<text x="12" y="344">　犬・鳥の確率は計算に入らない</text>
+<text x="12" y="368">・猫の確率 0.9 → 0.5 → 0.1 と下がるほど、</text>
+<text x="12" y="388">　誤差は 0.11 → 0.69 → 2.30 と急に増える</text>
+<text x="12" y="412">・猫に 1 を付ければ −log 1＝0 で誤差 0</text>
+<line x1="12" y1="426" x2="308" y2="426" class="l sb w1"/>
+<text x="12" y="450" class="tb">log とは</text>
+<text x="12" y="472" class="tm">log p＝e（約2.72）を何乗すると p になるか</text>
+<text x="12" y="492" class="tm">p が 0〜1 なら log p は 0 以下なので、</text>
+<text x="12" y="512" class="tm">頭に − を付けて 0 以上の誤差にする</text>
+</svg>

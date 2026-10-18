@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 544" role="img" aria-labelledby="fig-g-momentum-t fig-g-momentum-d">
+<title id="fig-g-momentum-t">モーメンタム：同じ向きの勾配では勢いが育ち、交互の勾配では打ち消し合う</title>
+<desc id="fig-g-momentum-d">勢いの式は、今回の勢い＝0.9×前回の勢い＋今回の勾配。実際の一歩は学習率×勢い。灰色の棒はSGD（勾配そのもので進む）、青い棒はモーメンタムの勢い。①毎回同じ向きの勾配1が来る例。SGDは毎回1。勢いは1、0.9×1＋1＝1.9、0.9×1.9＋1＝2.71、3.44、4.10と育ち、最大は1÷(1−0.9)＝10で、勾配の10倍まで加速する。②向きが交互に変わる勾配＋1、−1、＋1、−1、＋1が来る例（細長い谷の左右の壁）。SGDは＋1と−1を行ったり来たりする。勢いは1、0.9×1−1＝−0.1、0.9×(−0.1)＋1＝0.91、0.9×0.91−1≈−0.18、0.84。戻る一歩は−1から−0.1、−0.18と小さくなる。続けると約±0.53（1÷1.9）で揺れ、振れ幅は約半分になる。同じ向きには加速し、行ったり来たりは打ち消すので、学習が速く安定する。</desc>
+<text x="12" y="22" class="tb">勢い＝0.9×前回の勢い＋今回の勾配（例）</text>
+<text x="12" y="42" class="tm">一歩＝学習率×勢い。灰＝SGD（勾配そのまま）、</text>
+<text x="12" y="62" class="tm">青＝モーメンタムの勢い。下の数字＝何回目</text>
+<text x="12" y="92" class="tb">① 毎回同じ向きの勾配 1（坂がずっと同じ）</text>
+<line x1="30" y1="176" x2="300" y2="176" class="l sm w1"/>
+<rect x="54" y="162" width="14" height="14" class="fm"/>
+<rect x="72" y="162" width="14" height="14" class="fa"/>
+<text x="79" y="156" class="tb ta" text-anchor="middle">1</text>
+<rect x="104" y="162" width="14" height="14" class="fm"/>
+<rect x="122" y="149.4" width="14" height="26.6" class="fa"/>
+<text x="129" y="143.4" class="tb ta" text-anchor="middle">1.9</text>
+<rect x="154" y="162" width="14" height="14" class="fm"/>
+<rect x="172" y="138.1" width="14" height="37.9" class="fa"/>
+<text x="179" y="132.1" class="tb ta" text-anchor="middle">2.71</text>
+<rect x="204" y="162" width="14" height="14" class="fm"/>
+<rect x="222" y="127.9" width="14" height="48.1" class="fa"/>
+<text x="229" y="121.9" class="tb ta" text-anchor="middle">3.44</text>
+<rect x="254" y="162" width="14" height="14" class="fm"/>
+<rect x="272" y="118.7" width="14" height="57.3" class="fa"/>
+<text x="279" y="112.7" class="tb ta" text-anchor="middle">4.10</text>
+<text x="70" y="194" class="tm" text-anchor="middle">1</text>
+<text x="120" y="194" class="tm" text-anchor="middle">2</text>
+<text x="170" y="194" class="tm" text-anchor="middle">3</text>
+<text x="220" y="194" class="tm" text-anchor="middle">4</text>
+<text x="270" y="194" class="tm" text-anchor="middle">5</text>
+<text x="12" y="218">0.9×1＋1＝1.9、0.9×1.9＋1＝2.71 …</text>
+<text x="12" y="240" class="tb ta">育ち続け、最大は 1÷(1−0.9)＝10（10倍）</text>
+<line x1="12" y1="256" x2="308" y2="256" class="l sb w1"/>
+<text x="12" y="280" class="tb">② 勾配が＋1・−1と交互（谷の左右の壁）</text>
+<line x1="30" y1="350" x2="300" y2="350" class="l sm w1"/>
+<rect x="54" y="320" width="14" height="30" class="fm"/>
+<rect x="72" y="320" width="14" height="30" class="fa"/>
+<text x="79" y="314" class="tb ta" text-anchor="middle">1</text>
+<rect x="104" y="350" width="14" height="30" class="fm"/>
+<rect x="122" y="350" width="14" height="3" class="fa"/>
+<text x="129" y="369" class="tb ta" text-anchor="middle">−0.1</text>
+<rect x="154" y="320" width="14" height="30" class="fm"/>
+<rect x="172" y="322.7" width="14" height="27.3" class="fa"/>
+<text x="179" y="316.7" class="tb ta" text-anchor="middle">0.91</text>
+<rect x="204" y="350" width="14" height="30" class="fm"/>
+<rect x="222" y="350" width="14" height="5.4" class="fa"/>
+<text x="229" y="371.4" class="tb ta" text-anchor="middle">−0.18</text>
+<rect x="254" y="320" width="14" height="30" class="fm"/>
+<rect x="272" y="324.9" width="14" height="25.1" class="fa"/>
+<text x="279" y="318.9" class="tb ta" text-anchor="middle">0.84</text>
+<text x="70" y="404" class="tm" text-anchor="middle">1</text>
+<text x="120" y="404" class="tm" text-anchor="middle">2</text>
+<text x="170" y="404" class="tm" text-anchor="middle">3</text>
+<text x="220" y="404" class="tm" text-anchor="middle">4</text>
+<text x="270" y="404" class="tm" text-anchor="middle">5</text>
+<text x="12" y="428">0.9×1−1＝−0.1、0.9×(−0.1)＋1＝0.91 …</text>
+<text x="12" y="450" class="tb ta">戻る一歩が −1 → −0.1・−0.18 に縮む</text>
+<text x="12" y="472" class="tm">続けると約 ±0.53（1÷1.9）で揺れる（約半分）</text>
+<rect x="12" y="486" width="296" height="48" class="fok l sok w1" rx="4"/>
+<text x="160" y="506" class="tb tok" text-anchor="middle">同じ向きは加速、行ったり来たりは打ち消す</text>
+<text x="160" y="525" class="tb tok" text-anchor="middle">→ 学習が速く、安定する</text>
+</svg>

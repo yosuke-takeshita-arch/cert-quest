@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 660" role="img" aria-labelledby="fig-g-vae-t fig-g-vae-d">
+<title id="fig-g-vae-t">VAE：中身を平均と標準偏差の分布で表し、そこから取り出した点を元に戻す</title>
+<desc id="fig-g-vae-d">①エンコーダは「3」の画像を、1点ではなく、平均と標準偏差で表す。例：平均は(0.5, −1.0)、標準偏差はどちらも0.1。②分布から点を1つ取り出す。点＝平均＋標準偏差×乱数。乱数が1.2と−0.5なら、0.5＋0.1×1.2＝0.62、−1.0＋0.1×(−0.5)＝−1.05で、点は(0.62, −1.05)。この点をデコーダに入れて「3」を復元させる。学習のたびに乱数が変わるので、平均のまわりの少しずれた点からも「3」が出るように学ぶ。乱数を外に出して足し算と掛け算の形にすることを再パラメータ化トリックと呼び、平均と標準偏差を微分して学習できる。③KL情報量の項で各分布を標準正規分布（平均0・標準偏差1）に近づけるので、潜在空間がすき間なくつながる。学習後は、標準正規分布から点を取り出してデコーダに入れると、新しいデータができる。</desc>
+<text x="12" y="22" class="tb">① 中身を「点」でなく「分布」で表す（例）</text>
+<rect x="12" y="36" width="56" height="56" class="fs l sm w1" rx="4"/>
+<text x="40" y="72" class="tl" text-anchor="middle">3</text>
+<line x1="72" y1="64" x2="90" y2="64" class="l sa w2"/>
+<polygon points="96,64 89,59 89,69" class="fa"/>
+<rect x="100" y="40" width="80" height="48" class="fas l sa w1" rx="4"/>
+<text x="140" y="68" class="tb" text-anchor="middle">エンコーダ</text>
+<line x1="184" y1="64" x2="196" y2="64" class="l sa w2"/>
+<polygon points="202,64 195,59 195,69" class="fa"/>
+<text x="206" y="58" class="tb">平均 (0.5, −1.0)</text>
+<text x="206" y="78" class="tb">標準偏差 0.1</text>
+<text x="12" y="116" class="tm">1枚の画像を、平均のまわりにぼかした円で表す</text>
+<line x1="12" y1="130" x2="308" y2="130" class="l sb w1"/>
+<text x="12" y="154" class="tb">② 分布から点を1つ取り出す</text>
+<text x="12" y="176" class="tm">点＝平均＋標準偏差×乱数（乱数は毎回変わる）</text>
+<text x="12" y="200">乱数が 1.2 と −0.5 なら</text>
+<text x="12" y="222">0.5＋0.1×1.2＝<tspan class="tb ta">0.62</tspan></text>
+<text x="12" y="244">−1.0＋0.1×(−0.5)＝<tspan class="tb ta">−1.05</tspan></text>
+<line x1="20" y1="290" x2="190" y2="290" class="l sm w1"/>
+<line x1="40" y1="276" x2="40" y2="420" class="l sm w1"/>
+<text x="44" y="282" class="tm">潜在空間（例）</text>
+<line x1="90" y1="286" x2="90" y2="294" class="l sm w1"/>
+<text x="90" y="306" class="tm" text-anchor="middle">0.5</text>
+<line x1="36" y1="390" x2="44" y2="390" class="l sm w1"/>
+<text x="32" y="394" class="tm" text-anchor="end">−1.0</text>
+<circle cx="90" cy="390" r="20" class="fas l sa w1 dsh"/>
+<circle cx="90" cy="390" r="3" class="fa"/>
+<circle cx="102" cy="395" r="4" class="fok l sok w2"/>
+<text x="200" y="306" class="tm">横＝1つ目の数</text>
+<text x="200" y="326" class="tm">縦＝2つ目の数</text>
+<text x="200" y="350" class="tm">（下ほどマイナス）</text>
+<text x="200" y="380" class="tb ta">青の点＝平均</text>
+<text x="200" y="400" class="tb tok">緑の丸＝</text>
+<text x="200" y="418" class="tb tok">取り出した点</text>
+<text x="12" y="446">(0.62, −1.05) → <tspan class="tb">デコーダ</tspan> → 「3」を復元</text>
+<text x="12" y="468" class="tm">平均のまわりの少しずれた点からも「3」が出る</text>
+<text x="12" y="488" class="tm">ように学ぶ。乱数を外に出したこの形（再パラ</text>
+<text x="12" y="508" class="tm">メータ化トリック）なら、微分して学習できる</text>
+<line x1="12" y1="522" x2="308" y2="522" class="l sb w1"/>
+<text x="12" y="546" class="tb">③ 新しいデータを作る</text>
+<text x="12" y="568">KL情報量で各分布を標準正規分布</text>
+<text x="12" y="588">（平均0・標準偏差1）に近づける → すき間なし</text>
+<rect x="12" y="600" width="296" height="48" class="fok l sok w1" rx="4"/>
+<text x="160" y="620" class="tb tok" text-anchor="middle">標準正規分布から点を取り出して</text>
+<text x="160" y="639" class="tb tok" text-anchor="middle">デコーダに入れる → 新しい画像</text>
+</svg>

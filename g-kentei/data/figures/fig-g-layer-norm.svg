@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-layer-norm-t fig-g-layer-norm-d">
+<title id="fig-g-layer-norm-t">レイヤー正規化：1件のデータの中で、全部の特徴を横にそろえる</title>
+<desc id="fig-g-layer-norm-d">①表の行がデータ、列が特徴1〜4。データ1（ある単語の位置の表現）の値は1、2、3、6。レイヤー正規化は、1件のデータの中で、全部の特徴を横にまとめて計算する。データ2は見ない。②データ1の計算。平均は(1＋2＋3＋6)÷4＝3。平均からのずれは−2、−1、0、3。分散はずれの2乗の平均で(4＋1＋0＋9)÷4＝3.5。標準偏差は√3.5≈1.87。ずれを1.87で割ると、−1.07、−0.53、0、1.60。③他のデータを見ないので、1件だけでも同じ計算ができ、学習時と推論時の計算が同じ。バッチ正規化は表の縦（同じ特徴を何件ものデータで）、レイヤー正規化は表の横（1件の中の全部の特徴）でまとめる。</desc>
+<text x="12" y="22" class="tb">① データ2件の表（例）</text>
+<text x="104" y="48" class="tm" text-anchor="middle">特徴1</text>
+<text x="156" y="48" class="tm" text-anchor="middle">特徴2</text>
+<text x="208" y="48" class="tm" text-anchor="middle">特徴3</text>
+<text x="260" y="48" class="tm" text-anchor="middle">特徴4</text>
+<line x1="12" y1="56" x2="290" y2="56" class="l sb w1"/>
+<rect x="12" y="62" width="278" height="28" class="fas l sa w2" rx="4"/>
+<text x="20" y="81" class="tb ta">データ1</text>
+<text x="104" y="81" class="tb" text-anchor="middle">1</text>
+<text x="156" y="81" class="tb" text-anchor="middle">2</text>
+<text x="208" y="81" class="tb" text-anchor="middle">3</text>
+<text x="260" y="81" class="tb" text-anchor="middle">6</text>
+<text x="20" y="114" class="tm">データ2</text>
+<text x="104" y="114" class="tm" text-anchor="middle">5</text>
+<text x="156" y="114" class="tm" text-anchor="middle">9</text>
+<text x="208" y="114" class="tm" text-anchor="middle">7</text>
+<text x="260" y="114" class="tm" text-anchor="middle">3</text>
+<text x="12" y="146" class="tb ta">1件の中で、全部の特徴を横にまとめる</text>
+<text x="12" y="166" class="tm">（データ2は見ない。データ2は自分の行で別に計算）</text>
+<line x1="12" y1="180" x2="308" y2="180" class="l sb w1"/>
+<text x="12" y="204" class="tb">② データ1を平均0・分散1にそろえる</text>
+<text x="12" y="228">平均＝(1＋2＋3＋6)÷4＝3</text>
+<text x="12" y="252">ずれ（値−平均）＝−2、−1、0、3</text>
+<text x="12" y="276">分散＝ずれの2乗の平均</text>
+<text x="12" y="298">　＝(4＋1＋0＋9)÷4＝3.5</text>
+<text x="12" y="322">標準偏差＝√3.5≈1.87（ばらつきの大きさ）</text>
+<text x="12" y="346">ずれ÷1.87 →</text>
+<rect x="12" y="356" width="296" height="30" class="fok l sok w1" rx="4"/>
+<text x="160" y="376" class="tb tok" text-anchor="middle">−1.07、−0.53、0、1.60</text>
+<line x1="12" y1="402" x2="308" y2="402" class="l sb w1"/>
+<text x="12" y="426" class="tb">③ 他のデータを見ないので</text>
+<text x="12" y="448">1件だけでも同じ計算ができる</text>
+<text x="12" y="468" class="tm">→ 学習時と推論時の計算が同じ。RNN・</text>
+<text x="12" y="488" class="tm">　Transformer（文を扱うモデル）で使われる</text>
+<rect x="12" y="502" width="296" height="48" class="fs l sm w1" rx="4"/>
+<text x="20" y="522">バッチ正規化＝表の<tspan class="tb">縦</tspan>（同じ特徴を何件も）</text>
+<text x="20" y="541">レイヤー正規化＝表の<tspan class="tb ta">横</tspan>（1件の全部の特徴）</text>
+</svg>

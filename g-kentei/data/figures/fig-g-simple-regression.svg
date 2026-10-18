@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 636" role="img" aria-labelledby="fig-g-simple-regression-t fig-g-simple-regression-d">
+<title id="fig-g-simple-regression-t">単回帰（線形回帰）：気温から売上を予測する直線と、その読み方</title>
+<desc id="fig-g-simple-regression-d">散布図。横軸は気温（℃）、縦軸はアイスの売上（個）。4日分のデータは、20℃で520個、25℃で580個、30℃で680個、35℃で820個。最小二乗法で当てはめた直線は、売上＝20×気温＋100。傾き20は、気温が1℃上がると予測売上が20個増えること。切片100は、直線を気温0℃まで延ばしたときの予測。予測の例：30℃なら20×30＝600、600＋100＝700個。直線の決め方：残差（実際−予測）は、520−500＝20、580−600＝−20、680−700＝−20、820−800＝20。2乗するとどれも400で、和は1,600。これより2乗の和が小さくなる直線は無い。</desc>
+<text x="12" y="22" class="tb">① データに直線を当てはめる（例）</text>
+<text x="12" y="42" class="tm">散布図：横＝気温（℃）、縦＝アイスの売上（個）</text>
+<line x1="50" y1="60" x2="50" y2="240" class="l sm w1"/>
+<line x1="50" y1="240" x2="300" y2="240" class="l sm w1"/>
+<text x="44" y="234" class="tm" text-anchor="end">500</text>
+<text x="44" y="184" class="tm" text-anchor="end">600</text>
+<text x="44" y="134" class="tm" text-anchor="end">700</text>
+<text x="44" y="84" class="tm" text-anchor="end">800</text>
+<text x="100" y="256" class="tm" text-anchor="middle">20</text>
+<text x="150" y="256" class="tm" text-anchor="middle">25</text>
+<text x="200" y="256" class="tm" text-anchor="middle">30</text>
+<text x="250" y="256" class="tm" text-anchor="middle">35</text>
+<line x1="90" y1="240" x2="270" y2="60" class="l sa w2"/>
+<line x1="100" y1="220" x2="100" y2="230" class="l sng w3"/>
+<line x1="150" y1="190" x2="150" y2="180" class="l sng w3"/>
+<line x1="200" y1="140" x2="200" y2="130" class="l sng w3"/>
+<line x1="250" y1="70" x2="250" y2="80" class="l sng w3"/>
+<circle cx="100" cy="220" r="5" class="fok sok"/>
+<circle cx="150" cy="190" r="5" class="fok sok"/>
+<circle cx="200" cy="140" r="5" class="fok sok"/>
+<circle cx="250" cy="70" r="5" class="fok sok"/>
+<text x="90" y="216" class="tm" text-anchor="end">520</text>
+<text x="160" y="206" class="tm">580</text>
+<text x="210" y="156" class="tm">680</text>
+<text x="240" y="74" class="tm" text-anchor="end">820</text>
+<circle cx="200" cy="130" r="4" class="fs sa"/>
+<text x="190" y="122" class="tb ta" text-anchor="end">予測 700</text>
+<text x="12" y="296" class="tb ta">青い線＝直線 売上＝20×気温＋100</text>
+<text x="12" y="276" class="tm">緑の点＝実際、赤い縦線＝残差（実際−予測）</text>
+<line x1="12" y1="310" x2="308" y2="310" class="l sb w1"/>
+<text x="12" y="334" class="tb">② 直線の読み方</text>
+<text x="12" y="356"><tspan class="tb">傾き 20</tspan>：気温が1℃上がると</text>
+<text x="12" y="376">　予測売上が20個増える</text>
+<text x="12" y="398"><tspan class="tb">切片 100</tspan>：直線を0℃まで延ばした予測</text>
+<text x="12" y="422" class="tb">予測（30℃）</text>
+<text x="12" y="444">20×30＝600、600＋100＝700個</text>
+<line x1="12" y1="460" x2="308" y2="460" class="l sb w1"/>
+<text x="12" y="484" class="tb">③ 直線の決め方（最小二乗法）</text>
+<text x="12" y="506">残差 520−500＝20、580−600＝−20、</text>
+<text x="12" y="526">　　 680−700＝−20、820−800＝20</text>
+<text x="12" y="548">2乗するとどれも400 → 和 400×4＝1,600</text>
+<rect x="12" y="562" width="296" height="48" class="fok l sok w1" rx="4"/>
+<text x="160" y="582" class="tb tok" text-anchor="middle">2乗の和が1,600より小さくなる直線は無い</text>
+<text x="160" y="601" class="tb tok" text-anchor="middle">→ この直線に決まる</text>
+<text x="12" y="630" class="tm">要因が2つ以上なら重回帰（直線が平面になる）</text>
+</svg>

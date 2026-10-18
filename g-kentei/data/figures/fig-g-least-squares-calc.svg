@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 596" role="img" aria-labelledby="fig-g-least-squares-calc-t fig-g-least-squares-calc-d">
+<title id="fig-g-least-squares-calc-t">最小二乗法：2本の直線の残差を2乗して足し、小さいほうを選ぶ</title>
+<desc id="fig-g-least-squares-calc-d">散布図。横軸は勉強時間（時間）、縦軸は点数（点）。3人の点は、1時間で50点、2時間で60点、3時間で70点。直線Aは y＝10x＋40 で、3つの点をちょうど通る。直線Bは y＝10x＋45 で、どの点よりも5点上を通る。残差は実際の点数から直線の予測を引いたもの。直線Aの予測は50、60、70で、残差は0、0、0、2乗の和は0。直線Bの予測は55、65、75で、残差はどれも−5、2乗するとどれも25、和は75。和が小さい直線Aを選ぶのが最小二乗法。なぜ2乗するか：残差が＋5と−5の2点なら、そのまま足すと0になり、外れていても合っているように見える。2乗すれば25＋25＝50で、外れが数に残る。</desc>
+<text x="12" y="22" class="tb">① 3つの点に、2本の直線を当てる（例）</text>
+<text x="12" y="42" class="tm">散布図：横＝勉強時間（時間）、縦＝点数（点）</text>
+<line x1="50" y1="64" x2="50" y2="230" class="l sm w1"/>
+<line x1="50" y1="230" x2="300" y2="230" class="l sm w1"/>
+<text x="44" y="234" class="tm" text-anchor="end">40</text>
+<text x="44" y="194" class="tm" text-anchor="end">50</text>
+<text x="44" y="154" class="tm" text-anchor="end">60</text>
+<text x="44" y="114" class="tm" text-anchor="end">70</text>
+<text x="44" y="74" class="tm" text-anchor="end">80</text>
+<text x="120" y="248" class="tm" text-anchor="middle">1</text>
+<text x="190" y="248" class="tm" text-anchor="middle">2</text>
+<text x="260" y="248" class="tm" text-anchor="middle">3</text>
+<line x1="50" y1="230" x2="295" y2="90" class="l sok w2"/>
+<line x1="50" y1="210" x2="295" y2="70" class="l swn w2 dsh"/>
+<line x1="120" y1="190" x2="120" y2="170" class="l sng w2"/>
+<line x1="190" y1="150" x2="190" y2="130" class="l sng w2"/>
+<line x1="260" y1="110" x2="260" y2="90" class="l sng w2"/>
+<circle cx="120" cy="190" r="5" class="fa"/>
+<circle cx="190" cy="150" r="5" class="fa"/>
+<circle cx="260" cy="110" r="5" class="fa"/>
+<text x="128" y="204" class="tm">50点</text>
+<text x="198" y="164" class="tm">60点</text>
+<text x="268" y="124" class="tm">70点</text>
+<text x="60" y="80" class="tb twn">直線B y＝10x＋45</text>
+<text x="160" y="222" class="tb tok">直線A y＝10x＋40</text>
+<text x="12" y="270" class="tm">赤い縦線＝直線Bの残差（どれも 5点ぶん）</text>
+<line x1="12" y1="284" x2="308" y2="284" class="l sb w1"/>
+<text x="12" y="308" class="tb">② 残差を2乗して足す</text>
+<text x="12" y="328" class="tm">残差＝実際の点数−直線の予測</text>
+<text x="12" y="354" class="tb tok">直線A</text>
+<text x="70" y="354">予測 50・60・70</text>
+<text x="70" y="376">残差 0・0・0 → 2乗の和 0</text>
+<text x="12" y="406" class="tb twn">直線B</text>
+<text x="70" y="406">予測 55・65・75</text>
+<text x="70" y="428">残差 −5・−5・−5</text>
+<text x="70" y="450">2乗 25・25・25 → 和 75</text>
+<rect x="12" y="462" width="296" height="30" class="fok l sok w1" rx="4"/>
+<text x="160" y="482" class="tb tok" text-anchor="middle">③ 和が小さい直線A（0＜75）を選ぶ</text>
+<line x1="12" y1="506" x2="308" y2="506" class="l sb w1"/>
+<text x="12" y="528" class="tb">なぜ2乗するか（例）</text>
+<text x="12" y="550">残差が＋5と−5なら、そのまま足すと 0</text>
+<text x="12" y="572" class="tm">（外れているのに合って見える）</text>
+<text x="12" y="590">2乗すれば 25＋25＝50 で外れが残る</text>
+</svg>

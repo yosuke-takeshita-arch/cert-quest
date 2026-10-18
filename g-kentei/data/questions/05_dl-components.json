@@ -542,6 +542,7 @@
       "C-05-014"
     ],
     "figures": [
+      "fig-g-batch-norm",
       "fig-g-normalization"
     ],
     "sources": [
@@ -679,6 +680,7 @@
       "C-04-020"
     ],
     "figures": [
+      "fig-g-layer-norm",
       "fig-g-normalization"
     ],
     "sources": [
@@ -1793,6 +1795,7 @@
       "C-05-039"
     ],
     "figures": [
+      "fig-g-autoencoder",
       "fig-g-autoencoder-vae"
     ],
     "sources": [
@@ -1882,6 +1885,7 @@
       "C-05-041"
     ],
     "figures": [
+      "fig-g-vae",
       "fig-g-autoencoder-vae"
     ],
     "sources": [
@@ -1964,6 +1968,7 @@
       "C-05-039"
     ],
     "figures": [
+      "fig-g-autoencoder",
       "fig-g-autoencoder-vae"
     ],
     "sources": [
@@ -2054,6 +2059,7 @@
       "C-05-044"
     ],
     "figures": [
+      "fig-g-cutout-erasing",
       "fig-g-data-augmentation"
     ],
     "sources": [
@@ -2141,6 +2147,7 @@
       "C-05-044"
     ],
     "figures": [
+      "fig-g-cutout-erasing",
       "fig-g-data-augmentation"
     ],
     "sources": [
@@ -2957,6 +2964,7 @@
       "C-05-046"
     ],
     "figures": [
+      "fig-g-cutout-erasing",
       "fig-g-data-augmentation",
       "fig-g-mixup-cutmix"
     ],
@@ -3217,6 +3225,7 @@
       "C-05-046"
     ],
     "figures": [
+      "fig-g-cutout-erasing",
       "fig-g-data-augmentation"
     ],
     "sources": [

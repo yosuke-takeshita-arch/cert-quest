@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-g-pca-calc-t fig-g-pca-calc-d">
+<title id="fig-g-pca-calc-t">主成分分析：散らばりがいちばん大きい向きに新しい軸を引き、2項目を1項目にまとめる</title>
+<desc id="fig-g-pca-calc-d">散布図。横軸は価格の安さ（点）、縦軸はお得感（点）。4人の回答は、Aが1と2、Bが2と1、Cが4と5、Dが5と4。点は右上がりに並ぶ。散らばりがいちばん大きい右上がりの向きに第1主成分の軸を、それと直角の向きに第2主成分の軸を引く。散らばりは分散（平均からのずれの2乗の平均）で測る。元の項目は、価格の安さが1、2、4、5で平均3、分散は(4＋1＋1＋4)÷4＝2.5。お得感も分散2.5で、2つは半々、合計5。新しい軸では、第1主成分の上の位置はA・Bが約−2.12、C・Dが約2.12で、分散は4.5（合計5の90％）。第2主成分の上の位置は約±0.71で、分散は0.5（10％）。合計は同じ5。第1主成分だけを残すと、2項目が1項目になり、散らばりの90％が残る。失うのは第2主成分の10％で、この例ではAとB、CとDの違い（2人ずつ第1主成分の同じ位置に落ちる）。</desc>
+<text x="12" y="22" class="tb">① 4人の回答に、新しい軸を引く（例）</text>
+<text x="12" y="42" class="tm">散布図：横＝価格の安さ（点）、縦＝お得感（点）</text>
+<line x1="60" y1="50" x2="60" y2="230" class="l sm w1"/>
+<line x1="60" y1="230" x2="250" y2="230" class="l sm w1"/>
+<text x="54" y="234" class="tm" text-anchor="end">0</text>
+<text x="54" y="144" class="tm" text-anchor="end">3</text>
+<text x="54" y="84" class="tm" text-anchor="end">5</text>
+<text x="150" y="246" class="tm" text-anchor="middle">3</text>
+<text x="210" y="246" class="tm" text-anchor="middle">5</text>
+<line x1="69" y1="221" x2="234" y2="56" class="l sa w2"/>
+<line x1="114" y1="104" x2="186" y2="176" class="l swn w2 dsh"/>
+<line x1="90" y1="170" x2="105" y2="185" class="l sm w1 dot"/>
+<line x1="120" y1="200" x2="105" y2="185" class="l sm w1 dot"/>
+<line x1="180" y1="80" x2="195" y2="95" class="l sm w1 dot"/>
+<line x1="210" y1="110" x2="195" y2="95" class="l sm w1 dot"/>
+<circle cx="90" cy="170" r="5" class="fok sok"/>
+<circle cx="120" cy="200" r="5" class="fok sok"/>
+<circle cx="180" cy="80" r="5" class="fok sok"/>
+<circle cx="210" cy="110" r="5" class="fok sok"/>
+<text x="82" y="166" class="tb" text-anchor="end">A</text>
+<text x="128" y="214" class="tb">B</text>
+<text x="172" y="76" class="tb" text-anchor="end">C</text>
+<text x="218" y="124" class="tb">D</text>
+<text x="240" y="62" class="tb ta">第1主成分</text>
+<text x="190" y="194" class="tb twn">第2主成分</text>
+<text x="12" y="268" class="tm">青＝散らばりがいちばん大きい向き。黄の点線＝</text>
+<text x="12" y="288" class="tm">それと直角の向き。点線＝点を青の軸に落とす</text>
+<line x1="12" y1="302" x2="308" y2="302" class="l sb w1"/>
+<text x="12" y="326" class="tb">② 散らばり（分散）を比べる</text>
+<text x="12" y="346" class="tm">分散＝平均からのずれの2乗の平均</text>
+<text x="12" y="370" class="tb">元の2項目</text>
+<text x="12" y="392">価格 1・2・4・5（平均3）</text>
+<text x="12" y="412">　→(4＋1＋1＋4)÷4＝2.5</text>
+<text x="12" y="434">お得感も 2.5 → 半々で、合計 5</text>
+<text x="12" y="460" class="tb">新しい軸（軸の上の位置）</text>
+<text x="12" y="482"><tspan class="tb ta">第1主成分</tspan> A・B 約−2.12、C・D 約2.12</text>
+<text x="12" y="502">　→ 分散 4.5（5 の 90％）</text>
+<text x="12" y="524"><tspan class="tb twn">第2主成分</tspan> 約±0.71 → 分散 0.5（10％）</text>
+<rect x="12" y="538" width="296" height="48" class="fok l sok w1" rx="4"/>
+<text x="160" y="558" class="tb tok" text-anchor="middle">③ 第1主成分だけ残す：2項目 → 1項目</text>
+<text x="160" y="577" class="tb tok" text-anchor="middle">散らばりの 90％ が残る</text>
+<text x="12" y="608" class="tm">失うのは 10％：A と B、C と D の違い（2人</text>
+<text x="12" y="628" class="tm">ずつ青の軸の同じ位置に落ちる）</text>
+</svg>
