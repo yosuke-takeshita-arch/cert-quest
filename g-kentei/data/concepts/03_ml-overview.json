@@ -2400,6 +2400,9 @@
         "point": "交差検証はデータを分けて実際に評価する。AIC・BICは1回の学習結果から式で評価する。"
       }
     ],
+    "figures": [
+      "fig-g-aic-bic"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models（Information-criteria based model selection）",
@@ -2915,6 +2918,9 @@
         "point": "ジニ不純度もエントロピーも「分けた後の混ざり具合」を測る量で、小さいほど良い。情報利得は「どれだけ減ったか」で、大きいほど良い。"
       }
     ],
+    "figures": [
+      "fig-g-info-gain"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Decision Trees",
@@ -3001,6 +3007,9 @@
         "id": "C-03-055",
         "point": "AUC の0.5は「でたらめな分類」の目安。決定係数の0は「平均値を答えるだけの回帰」。"
       }
+    ],
+    "figures": [
+      "fig-g-r2"
     ],
     "sources": [
       {

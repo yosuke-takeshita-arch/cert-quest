@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-g-r2-t fig-g-r2-d">
+<title id="fig-g-r2-t">決定係数 R²：いつも平均を答えるときより、外れの二乗の合計がどれだけ減ったか</title>
+<desc id="fig-g-r2-d">例（説明用の数）は、実測が2・4・6で平均は4。ことばの式は、R²＝1−（モデルの外れの二乗の合計）÷（平均で予測したときの外れの二乗の合計）。各段の小さな図は、横が何件目か、縦が値で、黒い点が実測、白い丸が予測、縦の線が外れ。①基準：いつも平均4で予測すると、外れの二乗は4・0・4で合計8。R²＝1−8÷8＝0。②モデルが3・4・5と予測すると、外れの二乗は1・0・1で合計2。R²＝1−2÷8＝1−0.25＝0.75で、外れが4分の1に減った。③6・4・2と逆向きに予測すると、外れの二乗は16・0・16で合計32。R²＝1−32÷8＝1−4＝−3で、平均より悪いとマイナスになる。全部当たれば外れの合計は0で、R²＝1−0÷8＝1が最良。</desc>
+<text x="12" y="20" class="tb">決定係数 R²：平均で答えるより良いか</text>
+<text x="12" y="40" class="tm">例：実測 2・4・6（平均4）</text>
+<text x="12" y="58" class="tm">R²＝1−（モデルの外れの二乗の合計）</text>
+<text x="12" y="76" class="tm">　　÷（平均で予測したときの合計）</text>
+<text x="12" y="98" class="tm">小さな図：●実測　○予測　縦の線＝外れ</text>
+<rect x="12" y="112" width="96" height="84" class="fs sb" stroke-width="1" rx="4"/>
+<line x1="20" y1="190" x2="100" y2="190" class="l sm w1"/>
+<line x1="40" y1="168" x2="40" y2="146" class="l sng w1"/>
+<line x1="90" y1="124" x2="90" y2="146" class="l sng w1"/>
+<circle cx="40" cy="146" r="5" class="l sa w1"/>
+<circle cx="65" cy="146" r="5" class="l sa w1"/>
+<circle cx="90" cy="146" r="5" class="l sa w1"/>
+<circle cx="40" cy="168" r="3" class="ft"/>
+<circle cx="65" cy="146" r="3" class="ft"/>
+<circle cx="90" cy="124" r="3" class="ft"/>
+<text x="120" y="130" class="tb">① 基準：いつも平均4</text>
+<text x="120" y="150" class="tm">外れの二乗 4・0・4</text>
+<text x="120" y="168" class="tm">→ 合計8（これが分母）</text>
+<text x="120" y="188" class="tb">R²＝1−8÷8＝0</text>
+<rect x="12" y="212" width="96" height="84" class="fs sb" stroke-width="1" rx="4"/>
+<line x1="20" y1="290" x2="100" y2="290" class="l sm w1"/>
+<line x1="40" y1="268" x2="40" y2="257" class="l sng w1"/>
+<line x1="90" y1="224" x2="90" y2="235" class="l sng w1"/>
+<circle cx="40" cy="257" r="5" class="l sa w1"/>
+<circle cx="65" cy="246" r="5" class="l sa w1"/>
+<circle cx="90" cy="235" r="5" class="l sa w1"/>
+<circle cx="40" cy="268" r="3" class="ft"/>
+<circle cx="65" cy="246" r="3" class="ft"/>
+<circle cx="90" cy="224" r="3" class="ft"/>
+<text x="120" y="230" class="tb">② モデル：3・4・5</text>
+<text x="120" y="250" class="tm">外れの二乗 1・0・1</text>
+<text x="120" y="268" class="tm">→ 合計2</text>
+<text x="120" y="288" class="tb tok">R²＝1−2÷8＝0.75</text>
+<rect x="12" y="312" width="96" height="84" class="fs sb" stroke-width="1" rx="4"/>
+<line x1="20" y1="390" x2="100" y2="390" class="l sm w1"/>
+<line x1="40" y1="368" x2="40" y2="324" class="l sng w1"/>
+<line x1="90" y1="324" x2="90" y2="368" class="l sng w1"/>
+<circle cx="40" cy="324" r="5" class="l sa w1"/>
+<circle cx="65" cy="346" r="5" class="l sa w1"/>
+<circle cx="90" cy="368" r="5" class="l sa w1"/>
+<circle cx="40" cy="368" r="3" class="ft"/>
+<circle cx="65" cy="346" r="3" class="ft"/>
+<circle cx="90" cy="324" r="3" class="ft"/>
+<text x="120" y="330" class="tb">③ 逆向き：6・4・2</text>
+<text x="120" y="350" class="tm">外れの二乗 16・0・16</text>
+<text x="120" y="368" class="tm">→ 合計32</text>
+<text x="120" y="388" class="tb tng">R²＝1−32÷8＝−3</text>
+<text x="12" y="424" class="tm">②は外れが4分の1に減った（1−0.25）</text>
+<text x="12" y="442" class="tm">③は平均より悪いのでマイナス（1−4）</text>
+<text x="12" y="460" class="tm">全部当たれば 1−0÷8＝1（最良）</text>
+</svg>

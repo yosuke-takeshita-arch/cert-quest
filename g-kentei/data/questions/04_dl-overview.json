@@ -1805,6 +1805,9 @@
     "concepts": [
       "C-04-043"
     ],
+    "figures": [
+      "fig-g-hyperparameter"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary（hyperparameter）",
@@ -1887,6 +1890,9 @@
     "concepts": [
       "C-04-032",
       "C-04-031"
+    ],
+    "figures": [
+      "fig-g-sgd-sampling"
     ],
     "sources": [
       {
@@ -2260,6 +2266,9 @@
       "C-04-009",
       "C-04-008"
     ],
+    "figures": [
+      "fig-g-leaky-relu"
+    ],
     "sources": [
       {
         "title": "He et al. (2015) Delving Deep into Rectifiers (arXiv:1502.01852)",
@@ -2427,6 +2436,9 @@
       "C-04-030",
       "C-04-029"
     ],
+    "figures": [
+      "fig-g-plateau"
+    ],
     "sources": [
       {
         "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
@@ -2469,6 +2481,9 @@
       "C-04-038",
       "C-04-034",
       "C-04-036"
+    ],
+    "figures": [
+      "fig-g-optimizers"
     ],
     "sources": [
       {
@@ -2513,6 +2528,10 @@
       "C-04-052",
       "C-04-029"
     ],
+    "figures": [
+      "fig-g-plateau",
+      "fig-g-local-min-saddle"
+    ],
     "sources": [
       {
         "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
@@ -2550,6 +2569,9 @@
     "concepts": [
       "C-04-040",
       "C-03-049"
+    ],
+    "figures": [
+      "fig-g-overfitting"
     ],
     "sources": [
       {
@@ -2594,6 +2616,9 @@
       "C-03-064",
       "C-04-021"
     ],
+    "figures": [
+      "fig-g-double-descent"
+    ],
     "sources": [
       {
         "title": "Nakkiran et al. (2019) Deep Double Descent: Where Bigger Models and More Data Hurt (arXiv:1912.02292)",
@@ -2631,6 +2656,9 @@
     "concepts": [
       "C-04-028",
       "C-04-027"
+    ],
+    "figures": [
+      "fig-g-learning-rate"
     ],
     "sources": [
       {
@@ -2719,6 +2747,9 @@
       "C-04-029",
       "C-04-034"
     ],
+    "figures": [
+      "fig-g-local-min-saddle"
+    ],
     "sources": [
       {
         "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
@@ -2762,6 +2793,10 @@
       "C-04-028",
       "C-04-030",
       "C-04-029"
+    ],
+    "figures": [
+      "fig-g-local-min-saddle",
+      "fig-g-learning-rate"
     ],
     "sources": [
       {
@@ -2849,6 +2884,9 @@
       "C-04-037",
       "C-04-039"
     ],
+    "figures": [
+      "fig-g-adaptive-learning-rate"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）",
@@ -2897,6 +2935,9 @@
       "C-04-031",
       "C-04-040"
     ],
+    "figures": [
+      "fig-g-adaptive-learning-rate"
+    ],
     "sources": [
       {
         "title": "Duchi, Hazan & Singer (2011) Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. JMLR",
@@ -2940,6 +2981,9 @@
       "C-04-031",
       "C-04-028"
     ],
+    "figures": [
+      "fig-g-batch-epoch"
+    ],
     "sources": [
       {
         "title": "Google for Developers: Machine Learning Glossary",
@@ -2977,6 +3021,9 @@
     "concepts": [
       "C-04-031",
       "C-04-044"
+    ],
+    "figures": [
+      "fig-g-batch-epoch"
     ],
     "sources": [
       {
@@ -3016,6 +3063,9 @@
       "C-04-036",
       "C-04-035"
     ],
+    "figures": [
+      "fig-g-adaptive-learning-rate"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）",
@@ -3054,6 +3104,9 @@
       "C-04-006",
       "C-04-007",
       "C-04-008"
+    ],
+    "figures": [
+      "fig-g-activation"
     ],
     "sources": [
       {
@@ -3098,6 +3151,10 @@
       "C-04-007",
       "C-04-024"
     ],
+    "figures": [
+      "fig-g-activation",
+      "fig-g-sigmoid-gradient"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 3 Probability and Information Theory（著者公開版）",
@@ -3141,6 +3198,9 @@
       "C-04-006",
       "C-04-008"
     ],
+    "figures": [
+      "fig-g-softmax"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - Neural networks: Multi-class classification",
@@ -3183,6 +3243,10 @@
       "C-04-008",
       "C-04-009",
       "C-04-007"
+    ],
+    "figures": [
+      "fig-g-relu",
+      "fig-g-leaky-relu"
     ],
     "sources": [
       {
@@ -3357,6 +3421,10 @@
       "C-04-007",
       "C-04-008"
     ],
+    "figures": [
+      "fig-g-sigmoid-gradient",
+      "fig-g-activation"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）",
@@ -3449,6 +3517,9 @@
       "C-04-009",
       "C-04-010"
     ],
+    "figures": [
+      "fig-g-activation"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Tanh",
@@ -3490,6 +3561,9 @@
     "concepts": [
       "C-04-010"
     ],
+    "figures": [
+      "fig-g-softmax"
+    ],
     "sources": [
       {
         "title": "PyTorch Documentation: torch.nn.Softmax",
@@ -3527,6 +3601,9 @@
     "concepts": [
       "C-04-009",
       "C-04-008"
+    ],
+    "figures": [
+      "fig-g-leaky-relu"
     ],
     "sources": [
       {

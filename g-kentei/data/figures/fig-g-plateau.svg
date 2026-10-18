@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-plateau-t fig-g-plateau-d">
+<title id="fig-g-plateau-t">プラトー：勾配がほぼ0の平らな所では、1回に動く量が小さく、誤差が長く下がらない</title>
+<desc id="fig-g-plateau-d">上のグラフは誤差の地形で、横軸が重み、縦軸が誤差。左に平らな台（プラトー）があり、その右で坂を下って谷になる。台の上の玉は、勾配（坂の傾き）がほぼ0なので、ほとんど進まない。勾配降下法で1回に動く量は、学習率×勾配。例（説明用の数）として学習率0.1のとき、台の上で勾配が0.001なら0.1×0.001＝0.0001しか動かない。坂に出て勾配が2なら0.1×2＝0.2で、2000倍の速さで進む。下のグラフは学習曲線で、横軸が学習の回数、縦軸が訓練誤差。誤差が長い間ほぼ横ばいで、台を抜けたところで急に下がる。止まっている間も大域最適解に着いたわけではない（その後さらに下がる）。高次元の誤差では鞍点のまわりにプラトーが広がることが多く、局所最適解に捕まったように見える（Dauphin ら、2014）。学習率が大きすぎるときは誤差が上下に振動するので、横ばいとは様子が違う。モーメンタムは、小さくても向きのそろった勾配を積み重ねるので、ここを抜ける助けになる。</desc>
+<text x="12" y="20" class="tb">プラトー：平らな所で学習が止まる</text>
+<text x="12" y="42" class="tb">誤差の地形（横軸＝重み、縦軸＝誤差）</text>
+<line x1="30" y1="200" x2="300" y2="200" class="l sm w1"/>
+<line x1="30" y1="56" x2="30" y2="200" class="l sm w1"/>
+<path d="M30 70 Q60 92 80 92 L170 92 Q200 92 220 140 Q240 186 260 186 Q280 186 300 168" class="l w2"/>
+<circle cx="125" cy="84" r="7" class="fa"/>
+<text x="125" y="114" class="tb ta" text-anchor="middle">プラトー（平らな台）</text>
+<text x="125" y="132" class="tm" text-anchor="middle">勾配≒0.001</text>
+<text x="226" y="120" class="tm">坂：勾配2</text>
+<text x="262" y="214" class="tm" text-anchor="middle">谷</text>
+<text x="12" y="238" class="tm">1回に動く量＝学習率×勾配（学習率0.1）</text>
+<rect x="12" y="246" width="144" height="46" class="fng sng" stroke-width="1" rx="4"/>
+<text x="84" y="264" class="tb tng" text-anchor="middle">台：0.1×0.001</text>
+<text x="84" y="284" class="tb tng" text-anchor="middle">＝0.0001</text>
+<rect x="164" y="246" width="144" height="46" class="fok sok" stroke-width="1" rx="4"/>
+<text x="236" y="264" class="tb tok" text-anchor="middle">坂：0.1×2</text>
+<text x="236" y="284" class="tb tok" text-anchor="middle">＝0.2（2000倍）</text>
+<text x="12" y="322" class="tb">学習曲線（横軸＝学習の回数、縦軸＝誤差）</text>
+<line x1="30" y1="440" x2="300" y2="440" class="l sm w1"/>
+<line x1="30" y1="336" x2="30" y2="440" class="l sm w1"/>
+<path d="M30 346 Q50 356 70 358 L190 362 Q210 364 222 400 Q234 428 260 430 L300 432" class="l sa w2"/>
+<text x="130" y="384" class="tm" text-anchor="middle">長い横ばい（台の上）</text>
+<text x="246" y="396" class="tm">抜けて</text>
+<text x="246" y="414" class="tm">急に下がる</text>
+<text x="12" y="468" class="tm">止まって見えても大域最適解ではない</text>
+<text x="12" y="486" class="tm">（後でさらに下がる）</text>
+<text x="12" y="508" class="tm">高次元では鞍点のまわりに台が広がりやすい</text>
+<text x="12" y="530" class="tm">学習率が大きすぎるときは上下に振動する</text>
+<text x="12" y="550" class="tm">モーメンタム（勢い）が抜ける助けになる</text>
+</svg>

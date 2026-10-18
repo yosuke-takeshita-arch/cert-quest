@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 600" role="img" aria-labelledby="fig-g-cot-variants-t fig-g-cot-variants-d">
+<title id="fig-g-cot-variants-t">Zero-shot CoT・Self-Consistency・ReAct：途中の考えを書かせる3つの工夫の違い</title>
+<desc id="fig-g-cot-variants-d">どれもモデルの重みは変えず、プロンプトと答えの取り出し方を工夫する。①Zero-shot CoT（Kojima ら、2022）：例を見せずに、問いの後ろに「順を追って考えよう（Let's think step by step）」と1文足す。問いは、16個のボールの半分がゴルフボールで、その半分が青い、青いゴルフボールは何個か。モデルは16÷2＝8、8÷2＝4と手順を書いてから4と答える。手順つきの例を数個見せるのは Few-shot CoT。②Self-Consistency（Wang ら、2022）：同じ問いで考えの筋を何本もランダムに生成し、最終の答えの多数決をとる。例（説明用の数）では5本の答えが18・18・26・18・17で、いちばん多い18を答えにする。いちばん確率の高い1本だけをたどる方法の代わりに使う。③ReAct（Yao ら、2022）：考え、行動（例：Wikipedia の検索）、結果を見る、を交互にくり返し、結果を次の考えに入れる。いつ何を調べるかはモデルが考えの中で決める。決まった流れで先に検索する RAG とは違う。</desc>
+<text x="12" y="20" class="tb">途中の考えを書かせる3つの工夫</text>
+<text x="12" y="40" class="tm">どれも重みは変えず、入力と答えの</text>
+<text x="12" y="58" class="tm">取り出し方を工夫する</text>
+<rect x="12" y="70" width="296" height="170" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="90" class="tb ta">① Zero-shot CoT（例は0個）</text>
+<text x="22" y="110" class="tm">問い：ボール16個の半分がゴルフ</text>
+<text x="22" y="128" class="tm">ボールで、その半分が青い。青い</text>
+<text x="22" y="146" class="tm">ゴルフボールは何個？</text>
+<rect x="22" y="154" width="276" height="26" class="fas" rx="4"/>
+<text x="160" y="172" class="tb" text-anchor="middle">＋「順を追って考えよう」の1文だけ</text>
+<text x="22" y="200" class="tm">→ 16÷2＝8、8÷2＝4 と書いてから</text>
+<text x="22" y="218" class="tb">　答え 4</text>
+<text x="22" y="234" class="tm">（手順つきの例を見せるのは Few-shot CoT）</text>
+<rect x="12" y="250" width="296" height="150" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="270" class="tb ta">② Self-Consistency（多数決）</text>
+<text x="22" y="290" class="tm">同じ問いで考えの筋を何本も出す</text>
+<text x="22" y="308" class="tm">（例：5本。数は説明用）</text>
+<rect x="28" y="318" width="44" height="26" class="fok sok" stroke-width="1" rx="4"/>
+<text x="50" y="336" class="tb tok" text-anchor="middle">18</text>
+<rect x="82" y="318" width="44" height="26" class="fok sok" stroke-width="1" rx="4"/>
+<text x="104" y="336" class="tb tok" text-anchor="middle">18</text>
+<rect x="136" y="318" width="44" height="26" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="158" y="336" class="tb" text-anchor="middle">26</text>
+<rect x="190" y="318" width="44" height="26" class="fok sok" stroke-width="1" rx="4"/>
+<text x="212" y="336" class="tb tok" text-anchor="middle">18</text>
+<rect x="244" y="318" width="44" height="26" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="266" y="336" class="tb" text-anchor="middle">17</text>
+<text x="22" y="366" class="tb tok">→ いちばん多い 18 を答えにする</text>
+<text x="22" y="386" class="tm">（1本だけたどる方法の代わり）</text>
+<rect x="12" y="410" width="296" height="150" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="430" class="tb ta">③ ReAct（考え＋行動を交互に）</text>
+<rect x="22" y="442" width="80" height="30" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="62" y="462" class="tb" text-anchor="middle">考え</text>
+<line x1="102" y1="457" x2="114.4" y2="457" class="l sm w1"/>
+<polygon points="120,457 114.4,453.5 114.4,460.5" class="fm"/>
+<rect x="120" y="442" width="80" height="30" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="160" y="462" class="tb" text-anchor="middle">行動：検索</text>
+<line x1="200" y1="457" x2="212.4" y2="457" class="l sm w1"/>
+<polygon points="218,457 212.4,453.5 212.4,460.5" class="fm"/>
+<rect x="218" y="442" width="80" height="30" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="258" y="462" class="tb" text-anchor="middle">結果を見る</text>
+<path d="M258 472 V488 H62 V478.6" class="l sm w1"/>
+<polygon points="62,473 58.5,478.6 65.5,478.6" class="fm"/>
+<text x="160" y="504" class="tm" text-anchor="middle">結果を次の考えに入れて、くり返す</text>
+<text x="22" y="526" class="tm">いつ何を調べるかはモデルが決める</text>
+<text x="22" y="546" class="tm">（先に必ず検索する決まった流れは RAG）</text>
+<text x="12" y="584" class="tm">行動の例：Wikipedia の検索</text>
+</svg>

@@ -28,6 +28,10 @@
     "concepts": [
       "C-06-005"
     ],
+    "figures": [
+      "fig-g-cnn-models",
+      "fig-g-skip-connection"
+    ],
     "sources": [
       {
         "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)",
@@ -934,6 +938,9 @@
       "C-06-035",
       "C-06-074",
       "C-06-115"
+    ],
+    "figures": [
+      "fig-g-few-zero-shot"
     ],
     "sources": [
       {
@@ -1907,6 +1914,9 @@
       "C-06-050",
       "C-06-061"
     ],
+    "figures": [
+      "fig-g-dqn"
+    ],
     "sources": [
       {
         "title": "Mnih et al. (2013) Playing Atari with Deep Reinforcement Learning (arXiv:1312.5602)",
@@ -2567,6 +2577,9 @@
       "C-06-077",
       "C-06-067"
     ],
+    "figures": [
+      "fig-g-clip"
+    ],
     "sources": [
       {
         "title": "Radford et al. (2021) Learning Transferable Visual Models From Natural Language Supervision (CLIP) (arXiv:2103.00020)",
@@ -3186,6 +3199,9 @@
       "C-06-015",
       "C-06-024"
     ],
+    "figures": [
+      "fig-g-rcnn-family"
+    ],
     "sources": [
       {
         "title": "Ren et al. (2015) Faster R-CNN (arXiv:1506.01497)",
@@ -3442,6 +3458,9 @@
     "concepts": [
       "C-06-029"
     ],
+    "figures": [
+      "fig-g-word2vec"
+    ],
     "sources": [
       {
         "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
@@ -3523,6 +3542,9 @@
     "memoryTip": "CoT＝「途中式を見せて、途中式を書かせる」。重みは変えず、プロンプトの工夫だけ。",
     "concepts": [
       "C-06-096"
+    ],
+    "figures": [
+      "fig-g-prompt-engineering"
     ],
     "sources": [
       {
@@ -4298,6 +4320,9 @@
       "C-06-002",
       "C-06-005"
     ],
+    "figures": [
+      "fig-g-alexnet"
+    ],
     "sources": [
       {
         "title": "Krizhevsky et al. (2012) ImageNet Classification with Deep Convolutional Neural Networks (NeurIPS)",
@@ -4376,6 +4401,9 @@
       "C-06-048",
       "C-06-049",
       "C-06-050"
+    ],
+    "figures": [
+      "fig-g-categorical-dqn"
     ],
     "sources": [
       {
@@ -4539,6 +4567,9 @@
       "C-06-073",
       "C-05-043"
     ],
+    "figures": [
+      "fig-g-fixmatch"
+    ],
     "sources": [
       {
         "title": "Sohn et al. (2020) FixMatch: Simplifying Semi-Supervised Learning with Consistency and Confidence (arXiv:2001.07685)",
@@ -4576,6 +4607,9 @@
     "concepts": [
       "C-06-104",
       "C-06-075"
+    ],
+    "figures": [
+      "fig-g-catastrophic-forgetting"
     ],
     "sources": [
       {
@@ -4654,6 +4688,9 @@
       "C-06-023",
       "C-06-022",
       "C-06-018"
+    ],
+    "figures": [
+      "fig-g-pspnet-deeplab"
     ],
     "sources": [
       {
@@ -4849,6 +4886,9 @@
     "memoryTip": "pretext＝口実。本当の目的（良い特徴）のために、口実として解かせる練習問題。",
     "concepts": [
       "C-06-072"
+    ],
+    "figures": [
+      "fig-g-self-supervised"
     ],
     "sources": [
       {
@@ -5091,6 +5131,9 @@
     "concepts": [
       "C-06-112",
       "C-06-094"
+    ],
+    "figures": [
+      "fig-g-bpe"
     ],
     "sources": [
       {
@@ -5394,6 +5437,9 @@
       "C-06-112",
       "C-06-094"
     ],
+    "figures": [
+      "fig-g-bpe"
+    ],
     "sources": [
       {
         "title": "Sennrich, Haddow & Birch (2016) Neural Machine Translation of Rare Words with Subword Units (arXiv:1508.07909)",
@@ -5487,6 +5533,9 @@
     "concepts": [
       "C-06-114",
       "C-06-096"
+    ],
+    "figures": [
+      "fig-g-cot-variants"
     ],
     "sources": [
       {
@@ -5729,6 +5778,9 @@
       "C-06-096",
       "C-06-074"
     ],
+    "figures": [
+      "fig-g-cot-variants"
+    ],
     "sources": [
       {
         "title": "Kojima et al. (2022) Large Language Models are Zero-Shot Reasoners (arXiv:2205.11916)",
@@ -5772,6 +5824,9 @@
       "C-06-110",
       "C-06-057"
     ],
+    "figures": [
+      "fig-g-cot-variants"
+    ],
     "sources": [
       {
         "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)",
@@ -5810,6 +5865,9 @@
       "C-06-116",
       "C-06-076",
       "C-06-067"
+    ],
+    "figures": [
+      "fig-g-unclip"
     ],
     "sources": [
       {
@@ -6311,6 +6369,10 @@
       "C-06-116",
       "C-06-063"
     ],
+    "figures": [
+      "fig-g-unclip",
+      "fig-g-dall-e"
+    ],
     "sources": [
       {
         "title": "Ramesh et al. (2021) Zero-Shot Text-to-Image Generation (DALL-E) (arXiv:2102.12092)",
@@ -6352,6 +6414,9 @@
     "concepts": [
       "C-06-116",
       "C-06-076"
+    ],
+    "figures": [
+      "fig-g-unclip"
     ],
     "sources": [
       {

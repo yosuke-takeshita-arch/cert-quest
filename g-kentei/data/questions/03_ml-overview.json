@@ -1372,6 +1372,9 @@
       "C-04-011",
       "C-04-005"
     ],
+    "figures": [
+      "fig-g-state-action-value"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -1954,6 +1957,9 @@
       "C-03-057",
       "C-03-058"
     ],
+    "figures": [
+      "fig-g-aic-bic"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models（Information-criteria based model selection）",
@@ -2290,6 +2296,9 @@
       "C-03-007",
       "C-03-005"
     ],
+    "figures": [
+      "fig-g-multiple-regression"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models",
@@ -2333,6 +2342,9 @@
       "C-04-020",
       "C-08-014",
       "C-04-024"
+    ],
+    "figures": [
+      "fig-g-multicollinearity"
     ],
     "sources": [
       {
@@ -2808,6 +2820,9 @@
       "C-03-018",
       "C-03-019"
     ],
+    "figures": [
+      "fig-g-adaboost"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Ensembles（AdaBoost）",
@@ -2849,6 +2864,9 @@
       "C-03-011",
       "C-03-008"
     ],
+    "figures": [
+      "fig-g-gradient-boosting"
+    ],
     "sources": [
       {
         "title": "Chen & Guestrin (2016) XGBoost: A Scalable Tree Boosting System (arXiv:1603.02754)",
@@ -2887,6 +2905,9 @@
       "C-03-067",
       "C-03-024",
       "C-03-022"
+    ],
+    "figures": [
+      "fig-g-cluster-linkage"
     ],
     "sources": [
       {
@@ -2964,6 +2985,9 @@
       "C-03-050",
       "C-03-048"
     ],
+    "figures": [
+      "fig-g-validation"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Cross-validation",
@@ -3007,6 +3031,9 @@
       "C-03-051",
       "C-03-020"
     ],
+    "figures": [
+      "fig-g-validation"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Cross-validation",
@@ -3044,6 +3071,9 @@
     "concepts": [
       "C-03-057",
       "C-03-058"
+    ],
+    "figures": [
+      "fig-g-aic-bic"
     ],
     "sources": [
       {
@@ -3086,6 +3116,9 @@
     "concepts": [
       "C-03-056"
     ],
+    "figures": [
+      "fig-g-regression-metrics"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Metrics and scoring",
@@ -3124,6 +3157,9 @@
       "C-03-049",
       "C-03-048"
     ],
+    "figures": [
+      "fig-g-overfitting"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - Overfitting",
@@ -3161,6 +3197,9 @@
     "concepts": [
       "C-03-053",
       "C-03-052"
+    ],
+    "figures": [
+      "fig-g-confusion-matrix"
     ],
     "sources": [
       {
@@ -3204,6 +3243,9 @@
       "C-03-070",
       "C-03-056"
     ],
+    "figures": [
+      "fig-g-r2"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Metrics and scoring",
@@ -3241,6 +3283,9 @@
     "concepts": [
       "C-03-049",
       "C-03-048"
+    ],
+    "figures": [
+      "fig-g-overfitting"
     ],
     "sources": [
       {
@@ -3321,6 +3366,9 @@
     "memoryTip": "情報量規準は「訓練データだけで済ませる近道」、交差検証は「分けて確かめる回り道」。",
     "concepts": [
       "C-03-057"
+    ],
+    "figures": [
+      "fig-g-aic-bic"
     ],
     "sources": [
       {
@@ -3407,6 +3455,9 @@
       "C-03-055",
       "C-03-054"
     ],
+    "figures": [
+      "fig-g-roc-auc"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - ROC and AUC",
@@ -3444,6 +3495,9 @@
     "concepts": [
       "C-03-051",
       "C-03-050"
+    ],
+    "figures": [
+      "fig-g-validation"
     ],
     "sources": [
       {
@@ -3520,6 +3574,9 @@
     "concepts": [
       "C-03-070"
     ],
+    "figures": [
+      "fig-g-r2"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Metrics and scoring",
@@ -3557,6 +3614,9 @@
     "concepts": [
       "C-03-064",
       "C-03-049"
+    ],
+    "figures": [
+      "fig-g-bias-variance"
     ],
     "sources": [
       {
@@ -3600,6 +3660,10 @@
       "C-03-054",
       "C-03-053"
     ],
+    "figures": [
+      "fig-g-roc-auc",
+      "fig-g-confusion-matrix"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - Thresholds and the confusion matrix",
@@ -3641,6 +3705,9 @@
     "concepts": [
       "C-03-051"
     ],
+    "figures": [
+      "fig-g-stratified-kfold"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Cross-validation",
@@ -3680,6 +3747,9 @@
       "C-03-054",
       "C-03-070"
     ],
+    "figures": [
+      "fig-g-roc-auc"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - ROC and AUC",
@@ -3717,6 +3787,9 @@
     "concepts": [
       "C-03-056",
       "C-03-070"
+    ],
+    "figures": [
+      "fig-g-regression-metrics"
     ],
     "sources": [
       {
@@ -3758,6 +3831,9 @@
       "C-03-055",
       "C-03-025"
     ],
+    "figures": [
+      "fig-g-confusion-matrix"
+    ],
     "sources": [
       {
         "title": "Google for Developers: ML Crash Course - Thresholds and the confusion matrix",
@@ -3794,6 +3870,9 @@
     "memoryTip": "MAE は「符号を外して平均」、RMSE は「二乗して平均して平方根」。RMSE は MAE より小さくならない。",
     "concepts": [
       "C-03-056"
+    ],
+    "figures": [
+      "fig-g-regression-metrics"
     ],
     "sources": [
       {
@@ -3832,6 +3911,9 @@
     "concepts": [
       "C-03-023",
       "C-03-022"
+    ],
+    "figures": [
+      "fig-g-kmeans"
     ],
     "sources": [
       {
@@ -3872,6 +3954,10 @@
       "C-03-029",
       "C-03-027",
       "C-03-023"
+    ],
+    "figures": [
+      "fig-g-pca",
+      "fig-g-t-sne"
     ],
     "sources": [
       {
@@ -3914,6 +4000,9 @@
     "concepts": [
       "C-03-032",
       "C-03-031"
+    ],
+    "figures": [
+      "fig-g-topic-model"
     ],
     "sources": [
       {
@@ -3958,6 +4047,9 @@
       "C-03-022",
       "C-03-001"
     ],
+    "figures": [
+      "fig-g-ml-three-types"
+    ],
     "sources": [
       {
         "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）",
@@ -3999,6 +4091,9 @@
     "concepts": [
       "C-03-023"
     ],
+    "figures": [
+      "fig-g-kmeans"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Clustering",
@@ -4038,6 +4133,9 @@
       "C-03-025",
       "C-03-024"
     ],
+    "figures": [
+      "fig-g-dendrogram"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Clustering",
@@ -4075,6 +4173,9 @@
     "concepts": [
       "C-03-026",
       "C-03-027"
+    ],
+    "figures": [
+      "fig-g-pca"
     ],
     "sources": [
       {
@@ -4161,6 +4262,9 @@
       "C-03-029",
       "C-03-026"
     ],
+    "figures": [
+      "fig-g-t-sne"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Manifold learning",
@@ -4201,6 +4305,9 @@
       "C-03-023",
       "C-03-026",
       "C-03-033"
+    ],
+    "figures": [
+      "fig-g-dendrogram"
     ],
     "sources": [
       {
@@ -4243,6 +4350,9 @@
       "C-03-023",
       "C-03-032"
     ],
+    "figures": [
+      "fig-g-mds"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Manifold learning",
@@ -4280,6 +4390,9 @@
     "concepts": [
       "C-03-068",
       "C-03-014"
+    ],
+    "figures": [
+      "fig-g-info-gain"
     ],
     "sources": [
       {
@@ -4319,6 +4432,9 @@
       "C-03-012",
       "C-03-011"
     ],
+    "figures": [
+      "fig-g-svm-margin"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Support Vector Machines",
@@ -4357,6 +4473,10 @@
       "C-03-065",
       "C-03-019",
       "C-03-018"
+    ],
+    "figures": [
+      "fig-g-adaboost",
+      "fig-g-gradient-boosting"
     ],
     "sources": [
       {
@@ -4477,6 +4597,9 @@
       "C-03-068",
       "C-03-014"
     ],
+    "figures": [
+      "fig-g-info-gain"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Decision Trees",
@@ -4563,6 +4686,9 @@
       "C-03-008",
       "C-03-003"
     ],
+    "figures": [
+      "fig-g-logistic-regression"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Linear Models（AIC and BIC criteria）",
@@ -4644,6 +4770,9 @@
       "C-03-059",
       "C-03-011"
     ],
+    "figures": [
+      "fig-g-decision-tree"
+    ],
     "sources": [
       {
         "title": "scikit-learn User Guide: Decision Trees",
@@ -4682,6 +4811,9 @@
       "C-03-042",
       "C-03-043",
       "C-03-036"
+    ],
+    "figures": [
+      "fig-g-explore-exploit"
     ],
     "sources": [
       {
@@ -4722,6 +4854,9 @@
       "C-03-045",
       "C-03-039"
     ],
+    "figures": [
+      "fig-g-reinforce-actor-critic"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -4761,6 +4896,9 @@
       "C-03-001",
       "C-03-042"
     ],
+    "figures": [
+      "fig-g-ml-three-types"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -4799,6 +4937,9 @@
       "C-03-038",
       "C-03-039"
     ],
+    "figures": [
+      "fig-g-rl-loop"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -4836,6 +4977,9 @@
     "concepts": [
       "C-03-037",
       "C-03-061"
+    ],
+    "figures": [
+      "fig-g-rl-loop"
     ],
     "sources": [
       {
@@ -4877,6 +5021,9 @@
       "C-03-043",
       "C-03-044"
     ],
+    "figures": [
+      "fig-g-policy-gradient"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -4916,6 +5063,9 @@
       "C-03-045",
       "C-03-047"
     ],
+    "figures": [
+      "fig-g-reinforce-actor-critic"
+    ],
     "sources": [
       {
         "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.",
@@ -4953,6 +5103,9 @@
     "concepts": [
       "C-03-039",
       "C-03-038"
+    ],
+    "figures": [
+      "fig-g-state-action-value"
     ],
     "sources": [
       {

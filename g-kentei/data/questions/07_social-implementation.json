@@ -155,6 +155,9 @@
     "concepts": [
       "C-07-004"
     ],
+    "figures": [
+      "fig-g-poc"
+    ],
     "sources": [
       {
         "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）",
@@ -1463,6 +1466,9 @@
     "memoryTip": "DevOpsの検査対象はコード。MLOpsはコード＋データ＋モデル。さらにCT（再学習）が加わる。",
     "concepts": [
       "C-07-007"
+    ],
+    "figures": [
+      "fig-g-mlops"
     ],
     "sources": [
       {

@@ -1109,6 +1109,9 @@
       "C-10-019",
       "C-10-018"
     ],
+    "figures": [
+      "fig-g-filter-bubble"
+    ],
     "sources": [
       {
         "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）別添（付属資料）」（令和8年3月31日）",
@@ -1957,6 +1960,9 @@
       "C-10-035",
       "C-10-015"
     ],
+    "figures": [
+      "fig-g-prompt-injection"
+    ],
     "sources": [
       {
         "title": "OWASP Gen AI Security Project「LLM01:2025 Prompt Injection」",
@@ -2304,6 +2310,9 @@
       "C-10-039",
       "C-10-005"
     ],
+    "figures": [
+      "fig-g-eu-ai-act"
+    ],
     "sources": [
       {
         "title": "European Commission「Ethics guidelines for trustworthy AI」（2019年4月8日）",
@@ -2594,6 +2603,10 @@
     "concepts": [
       "C-10-014",
       "C-10-015"
+    ],
+    "figures": [
+      "fig-g-ai-attacks",
+      "fig-g-adversarial-example"
     ],
     "sources": [
       {
