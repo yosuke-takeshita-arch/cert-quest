@@ -3251,7 +3251,7 @@
     ],
     "memoryTip": "レベニュー（収益）をシェア（分け合う）。初期は安く、成功したら分け前。",
     "concepts": ["DC-08-006"],
-    "figures": ["fig-dx-revenue-models"],
+    "figures": ["fig-dx-revenue-share-fit", "fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -3580,7 +3580,7 @@
     ],
     "memoryTip": "ロイヤルティ（loyalty：忠誠）と、ロイヤルティ（royalty：使用料）は別の言葉。顧客の「推し度」は loyalty。",
     "concepts": ["DC-08-012", "DC-07-010"],
-    "figures": ["fig-dx-churn-ltv"],
+    "figures": ["fig-dx-loyalty-royalty", "fig-dx-churn-ltv"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」第6章 CRM（顧客関係管理）の方法", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" }

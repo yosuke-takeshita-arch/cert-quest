@@ -155,7 +155,8 @@
       "C-05-004"
     ],
     "figures": [
-      "fig-g-conv-op"
+      "fig-g-conv-op",
+      "fig-g-padding"
     ],
     "sources": [
       {
@@ -627,7 +628,8 @@
       "C-05-013"
     ],
     "figures": [
-      "fig-g-normalization"
+      "fig-g-normalization",
+      "fig-g-group-norm"
     ],
     "sources": [
       {
@@ -850,7 +852,8 @@
       "C-05-006"
     ],
     "figures": [
-      "fig-g-pooling"
+      "fig-g-pooling",
+      "fig-g-pooling-channels"
     ],
     "sources": [
       {
@@ -890,6 +893,7 @@
       "C-05-018"
     ],
     "figures": [
+      "fig-g-invariance",
       "fig-g-pooling"
     ],
     "sources": [
@@ -1328,6 +1332,7 @@
       "C-03-020"
     ],
     "figures": [
+      "fig-g-teacher-forcing",
       "fig-g-rnn-unroll"
     ],
     "sources": [
@@ -1581,6 +1586,7 @@
       "C-05-026"
     ],
     "figures": [
+      "fig-g-positional-encoding",
       "fig-g-transformer"
     ],
     "sources": [
@@ -2525,6 +2531,7 @@
       "C-05-035"
     ],
     "figures": [
+      "fig-g-transformer-flow",
       "fig-g-qkv"
     ],
     "sources": [
@@ -2950,7 +2957,8 @@
       "C-05-046"
     ],
     "figures": [
-      "fig-g-data-augmentation"
+      "fig-g-data-augmentation",
+      "fig-g-mixup-cutmix"
     ],
     "sources": [
       {
@@ -3049,6 +3057,7 @@
       "C-05-045"
     ],
     "figures": [
+      "fig-g-mixup-cutmix",
       "fig-g-data-augmentation"
     ],
     "sources": [
@@ -3157,6 +3166,7 @@
       "C-05-046"
     ],
     "figures": [
+      "fig-g-mixup-cutmix",
       "fig-g-data-augmentation"
     ],
     "sources": [

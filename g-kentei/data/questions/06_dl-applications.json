@@ -66,6 +66,7 @@
       "C-06-003"
     ],
     "figures": [
+      "fig-g-vgg",
       "fig-g-cnn-models"
     ],
     "sources": [
@@ -156,6 +157,7 @@
       "C-06-010"
     ],
     "figures": [
+      "fig-g-senet",
       "fig-g-cnn-models"
     ],
     "sources": [
@@ -297,6 +299,7 @@
       "C-06-015"
     ],
     "figures": [
+      "fig-g-fpn",
       "fig-g-object-detection"
     ],
     "sources": [
@@ -354,7 +357,8 @@
       "C-06-024"
     ],
     "figures": [
-      "fig-g-object-detection"
+      "fig-g-object-detection",
+      "fig-g-ssd"
     ],
     "sources": [
       {
@@ -443,6 +447,7 @@
       "C-06-023"
     ],
     "figures": [
+      "fig-g-mask-rcnn",
       "fig-g-object-detection"
     ],
     "sources": [
@@ -486,6 +491,7 @@
       "C-06-015"
     ],
     "figures": [
+      "fig-g-u-net",
       "fig-g-segmentation-nets"
     ],
     "sources": [
@@ -532,6 +538,7 @@
       "C-06-020"
     ],
     "figures": [
+      "fig-g-pspnet-deeplab",
       "fig-g-segmentation-nets"
     ],
     "sources": [
@@ -1335,6 +1342,7 @@
       "C-06-041"
     ],
     "figures": [
+      "fig-g-mel-mfcc",
       "fig-g-speech-features"
     ],
     "sources": [
@@ -2128,6 +2136,7 @@
       "C-06-024"
     ],
     "figures": [
+      "fig-g-dcgan",
       "fig-g-gan"
     ],
     "sources": [
@@ -2170,6 +2179,7 @@
       "C-07-016"
     ],
     "figures": [
+      "fig-g-catastrophic-forgetting",
       "fig-g-transfer-learning"
     ],
     "sources": [
@@ -2607,7 +2617,8 @@
       "C-06-014"
     ],
     "figures": [
-      "fig-g-multimodal-tasks"
+      "fig-g-multimodal-tasks",
+      "fig-g-dall-e"
     ],
     "sources": [
       {
@@ -2881,6 +2892,7 @@
       "C-06-091"
     ],
     "figures": [
+      "fig-g-quantization",
       "fig-g-model-compression"
     ],
     "sources": [
@@ -3004,6 +3016,7 @@
       "C-06-089"
     ],
     "figures": [
+      "fig-g-quantization",
       "fig-g-model-compression"
     ],
     "sources": [
@@ -6461,6 +6474,8 @@
       "C-06-009"
     ],
     "figures": [
+      "fig-g-inception",
+      "fig-g-vgg",
       "fig-g-cnn-models"
     ],
     "sources": [
@@ -6659,6 +6674,7 @@
       "C-06-044"
     ],
     "figures": [
+      "fig-g-mel-mfcc",
       "fig-g-speech-features"
     ],
     "sources": [
@@ -6742,6 +6758,7 @@
       "C-06-040"
     ],
     "figures": [
+      "fig-g-mel-mfcc",
       "fig-g-speech-features"
     ],
     "sources": [

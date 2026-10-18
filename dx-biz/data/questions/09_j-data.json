@@ -630,7 +630,7 @@
     ],
     "memoryTip": "「組み合わせ＝バスケット」「似た者まとめ＝クラスタリング」「数式で予測＝回帰」「2つの動きの関係＝相関」。説明をずらすひっかけに注意。",
     "concepts": ["DC-03-018", "DC-03-022", "DC-03-019", "DC-03-020"],
-    "figures": ["fig-dx-analysis-methods"],
+    "figures": ["fig-dx-correlation", "fig-dx-analysis-methods"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
       { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" },
