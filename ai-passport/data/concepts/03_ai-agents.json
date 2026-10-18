@@ -141,6 +141,7 @@
     "confusions": [
       { "id": "C-AP-03-008", "point": "自律性のレベルは任せる度合いの物差し。Human-in-the-Loop は、そのどこに人の確認を入れるかの仕組み。" }
     ],
+    "figures": ["fig-ap-autonomy-levels"],
     "sources": [
       { "title": "Feng, McDonald, Zhang (2025) Levels of Autonomy for AI Agents (arXiv:2506.12469)", "url": "https://arxiv.org/abs/2506.12469" },
       { "title": "Mitchell et al. (2025) Fully Autonomous AI Agents Should Not be Developed (arXiv:2502.02649)", "url": "https://arxiv.org/abs/2502.02649" }
@@ -548,6 +549,7 @@
     "confusions": [
       { "id": "C-AP-03-030", "point": "構成はLLM・道具・指示・記憶の組み合わせ全体のこと。Function Calling は、その中でLLMが道具の呼び出し方を出力する仕組み。" }
     ],
+    "figures": ["fig-ap-agent-parts"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -799,6 +801,7 @@
     "confusions": [
       { "id": "C-AP-02-058", "point": "思考の連鎖は考えの途中を書き出すだけ。ReActは考えと行動を交互に行い、行動の結果を次の考えに使う。" }
     ],
+    "figures": ["fig-ap-react-loop"],
     "sources": [
       { "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)", "url": "https://arxiv.org/abs/2210.03629" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
@@ -971,6 +974,7 @@
     "confusions": [
       { "id": "C-AP-03-048", "point": "マルチエージェントは複数のエージェントで分担する作り方全体。サブエージェントは、その中で指揮役から仕事を任される1体。" }
     ],
+    "figures": ["fig-ap-multi-agent"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" },
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }

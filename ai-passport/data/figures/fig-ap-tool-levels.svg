@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 504" role="img" aria-labelledby="fig-ap-tool-levels-t fig-ap-tool-levels-d">
+<title id="fig-ap-tool-levels-t">AIツールの区分と、入力してよい情報の組み合わせ（一例）</title>
+<desc id="fig-ap-tool-levels-d">会社ごとに決めるもので、これは一例。左の列がツールの区分、右の3列が情報の区分（公開情報、社外秘、個人情報・機密）。丸は入力してよい、ばつは入力しない。一般向けの無料サービスは公開情報だけ丸。入力を学習に使わない業務向け契約のサービスは公開情報と社外秘が丸。社内の閉域網やオンプレミスで動かすローカルLLMは3つとも丸で、個人情報・機密はアクセス管理のもとで入れる。生成AIに機密は一切入れるな、だけでは安全な環境も使えず、何でも入れてよい、では漏えいする。ツールのデータの扱い（入力を学習に使うかなど）と情報の区分を組み合わせて決める。高い区分のツールでも、利用目的の範囲とアクセス権限の決まりは守る。</desc>
+<text x="12" y="20" class="tb">AIツールの区分と入れてよい情報</text>
+<text x="12" y="40" class="tm">例（会社ごとに決める。これは一例）</text>
+<text x="12" y="76" class="tb">ツールの区分</text>
+<text x="173" y="76" class="tb" text-anchor="middle">公開</text>
+<text x="227" y="76" class="tb" text-anchor="middle">社外秘</text>
+<text x="281" y="68" class="tb" text-anchor="middle">個人情報</text>
+<text x="281" y="86" class="tb" text-anchor="middle">・機密</text>
+<rect x="12" y="94" width="134" height="64" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="120" class="tb">一般向けの</text>
+<text x="20" y="140" class="tb">無料サービス</text>
+<rect x="146" y="94" width="54" height="64" class="fok sok" stroke-width="1.5"/>
+<text x="173" y="132" class="tb tok" text-anchor="middle">○</text>
+<rect x="200" y="94" width="54" height="64" class="fs sb" stroke-width="1.5"/>
+<text x="227" y="132" class="tm" text-anchor="middle">×</text>
+<rect x="254" y="94" width="54" height="64" class="fs sb" stroke-width="1.5"/>
+<text x="281" y="132" class="tm" text-anchor="middle">×</text>
+<rect x="12" y="164" width="134" height="64" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="186" class="tb">業務向け契約</text>
+<text x="20" y="204" class="tm">入力を学習に</text>
+<text x="20" y="220" class="tm">使わない</text>
+<rect x="146" y="164" width="54" height="64" class="fok sok" stroke-width="1.5"/>
+<text x="173" y="202" class="tb tok" text-anchor="middle">○</text>
+<rect x="200" y="164" width="54" height="64" class="fok sok" stroke-width="1.5"/>
+<text x="227" y="202" class="tb tok" text-anchor="middle">○</text>
+<rect x="254" y="164" width="54" height="64" class="fs sb" stroke-width="1.5"/>
+<text x="281" y="202" class="tm" text-anchor="middle">×</text>
+<rect x="12" y="234" width="134" height="64" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="256" class="tb">ローカルLLM</text>
+<text x="20" y="274" class="tm">社内の閉域網・</text>
+<text x="20" y="290" class="tm">オンプレミス</text>
+<rect x="146" y="234" width="54" height="64" class="fok sok" stroke-width="1.5"/>
+<text x="173" y="272" class="tb tok" text-anchor="middle">○</text>
+<rect x="200" y="234" width="54" height="64" class="fok sok" stroke-width="1.5"/>
+<text x="227" y="272" class="tb tok" text-anchor="middle">○</text>
+<rect x="254" y="234" width="54" height="64" class="fok sok" stroke-width="1.5"/>
+<text x="281" y="272" class="tb tok" text-anchor="middle">○※</text>
+<text x="12" y="320" class="tm">○入れてよい　×入れない</text>
+<text x="12" y="340" class="tm">※アクセス管理のもとで入れる</text>
+<line x1="12" y1="356" x2="308" y2="356" class="l sb w1"/>
+<text x="12" y="380" class="tb">なぜ区分に分けるか</text>
+<text x="12" y="402">『一切入れるな』→安全な環境も使えない</text>
+<text x="12" y="424">『何でも入れてよい』→漏えいする</text>
+<text x="12" y="446">→ツールのデータの扱い × 情報の区分</text>
+<text x="12" y="472" class="tb twn">高い区分でも、利用目的の範囲と</text>
+<text x="12" y="494" class="tb twn">アクセス権限の決まりは守る</text>
+</svg>

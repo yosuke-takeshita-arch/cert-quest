@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 538" role="img" aria-labelledby="fig-ap-similarity-reliance-t fig-ap-similarity-reliance-d">
+<title id="fig-ap-similarity-reliance-t">著作権侵害の2つの要件：類似性と依拠性がそろうとき</title>
+<desc id="fig-ap-similarity-reliance-d">2行2列のマス。横の列は依拠性（既存の著作物をもとに作ったか）で、左がもとにした、右が知らずに作った。縦の行は類似性（既存の著作物と似ているか）で、上が似ている、下が似ていない。左上の、似ていて、しかももとにしたマスだけが著作権侵害になる。ほかの3つのマスは2つの要件がそろわない。例：有名な漫画の主人公とそっくりの絵をAIで作り、グッズにして売るのは左上のマスに当たる。AIが作ったものも、人がAIを使わずに作る場合と同じ考え方で判断する。侵害なら、著作権者は差止請求や損害賠償請求ができ、故意なら刑事罰もありうる。段階で考え方が分かれ、開発・学習の段階は著作権法30条の4が中心、生成・利用の段階は類似性と依拠性で判断する。</desc>
+<text x="12" y="20" class="tb">著作権侵害：類似性と依拠性</text>
+<text x="12" y="40" class="tm">依拠性＝既存の作品をもとに作ったか</text>
+<text x="12" y="58" class="tm">類似性＝既存の作品と似ているか</text>
+<g transform="translate(0,14)">
+<text x="155" y="72" class="tb" text-anchor="middle">もとにした</text>
+<text x="155" y="88" class="tm" text-anchor="middle">依拠性あり</text>
+<text x="257" y="72" class="tb" text-anchor="middle">知らずに作った</text>
+<text x="257" y="88" class="tm" text-anchor="middle">依拠性なし</text>
+<rect x="12" y="94" width="92" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="58" y="128" class="tb" text-anchor="middle">似ている</text>
+<text x="58" y="150" class="tm" text-anchor="middle">類似性あり</text>
+<rect x="104" y="94" width="102" height="76" class="fng sng" stroke-width="2"/>
+<text x="155" y="126" class="tb tng" text-anchor="middle">侵害</text>
+<text x="155" y="148" class="tng" text-anchor="middle">両方そろう</text>
+<rect x="206" y="94" width="102" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="257" y="128" class="tm" text-anchor="middle">要件が</text>
+<text x="257" y="148" class="tm" text-anchor="middle">そろわない</text>
+<rect x="12" y="170" width="92" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="58" y="204" class="tb" text-anchor="middle">似ていない</text>
+<text x="58" y="226" class="tm" text-anchor="middle">類似性なし</text>
+<rect x="104" y="170" width="102" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="155" y="204" class="tm" text-anchor="middle">要件が</text>
+<text x="155" y="224" class="tm" text-anchor="middle">そろわない</text>
+<rect x="206" y="170" width="102" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="257" y="204" class="tm" text-anchor="middle">要件が</text>
+<text x="257" y="224" class="tm" text-anchor="middle">そろわない</text>
+<text x="12" y="272">例：有名な漫画の主人公とそっくりの絵を</text>
+<text x="12" y="292">AIで作り、グッズにして売る→「侵害」のマス</text>
+<text x="12" y="318" class="tb">AIが作っても、同じ考え方で判断する</text>
+<text x="12" y="340" class="tm">侵害なら差止め・損害賠償の請求、</text>
+<text x="12" y="360" class="tm">故意なら刑事罰もありうる</text>
+<line x1="12" y1="376" x2="308" y2="376" class="l sb w1"/>
+<text x="12" y="400" class="tb">段階で考え方が分かれる</text>
+<rect x="12" y="410" width="144" height="70" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="432" class="tb">開発・学習</text>
+<text x="22" y="454">30条の4が</text>
+<text x="22" y="472">中心</text>
+<rect x="164" y="410" width="144" height="70" class="fng sng" stroke-width="1.5"/>
+<text x="174" y="432" class="tb tng">生成・利用</text>
+<text x="174" y="454">類似性と依拠性で</text>
+<text x="174" y="472">判断</text>
+<text x="12" y="506" class="tm">（上のマスは、生成・利用の段階の話）</text>
+</g>
+</svg>

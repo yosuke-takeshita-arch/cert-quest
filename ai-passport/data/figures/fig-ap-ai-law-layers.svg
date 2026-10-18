@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-ap-ai-law-layers-t fig-ap-ai-law-layers-d">
+<title id="fig-ap-ai-law-layers-t">AI法・指針・ガイドラインと、既存の法律の重なり方</title>
+<desc id="fig-ap-ai-law-layers-d">左の列は推進の枠組みで、上から下へ3段。AI法が推進の枠組みと指針の根拠を定める。その下に、AI法13条に基づく適正性確保指針が取組の方針を示す。その下に、各府省庁のガイドライン（例：AI事業者ガイドライン、AIの利用・開発に関する契約チェックリストなど）があり、指針と整合するよう見直される。右の列は既存の法律で、個人情報保護法・著作権法・刑法・個別の業法など。左の列は取組の物差しとして、右の列は具体的な問題にそのままかかるものとして、どちらも下の、AIを作る・使う会社や人に届く。例：顧客の個人データを生成AIに入れるなら個人情報保護法、他人の作品に似た画像を公開するなら著作権法、偽の記事で会社の信用を傷つければ刑法がかかる。ガイドラインは法令の代わりではなく、法令を守ったうえでの自主的な物差し。</desc>
+<text x="12" y="20" class="tb">AI法・ガイドライン・既存の法律</text>
+<text x="12" y="38" class="tm">推進の枠組み（上から下へ）</text>
+<rect x="12" y="46" width="168" height="54" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="68" class="tb ta">AI法</text>
+<text x="22" y="88">推進の枠組みと指針の根拠</text>
+<line x1="40" y1="100" x2="40" y2="120" class="l w2"/>
+<polyline points="36.15,113 40,120 43.85,113" class="l w2"/>
+<text x="52" y="115" class="tm">13条に基づく</text>
+<rect x="12" y="122" width="168" height="54" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="144" class="tb">適正性確保指針</text>
+<text x="22" y="164">取組の方針を示す</text>
+<line x1="40" y1="176" x2="40" y2="196" class="l w2"/>
+<polyline points="36.15,189 40,196 43.85,189" class="l w2"/>
+<text x="52" y="191" class="tm">整合するよう見直す</text>
+<rect x="12" y="198" width="168" height="72" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="220" class="tb">各府省庁のガイドライン</text>
+<text x="22" y="240" class="tm">例：AI事業者ガイドライン</text>
+<text x="22" y="260" class="tm">契約チェックリストなど</text>
+<rect x="192" y="46" width="116" height="224" class="fok sok" stroke-width="1.5"/>
+<text x="202" y="72" class="tb tok">これまでの法律</text>
+<text x="202" y="104">個人情報保護法</text>
+<text x="202" y="132">著作権法</text>
+<text x="202" y="160">刑法</text>
+<text x="202" y="188">個別の業法</text>
+<text x="202" y="212" class="tm">など</text>
+<text x="202" y="246" class="tm">AI法ができても</text>
+<text x="202" y="264" class="tm">変わらずかかる</text>
+<line x1="96" y1="270" x2="96" y2="310" class="l w2"/>
+<polyline points="92.15,303 96,310 99.85,303" class="l w2"/>
+<text x="104" y="294" class="tm">取組の物差し</text>
+<line x1="250" y1="270" x2="250" y2="310" class="l sok w2"/>
+<polyline points="246.15,303 250,310 253.85,303" class="l sok w2"/>
+<text x="258" y="288" class="tok">そのまま</text>
+<text x="258" y="304" class="tok">かかる</text>
+<rect x="12" y="312" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="339" class="tb" text-anchor="middle">AIを作る・使う会社や人</text>
+<line x1="12" y1="372" x2="308" y2="372" class="l sb w1"/>
+<text x="12" y="396" class="tb">例：どの法律がかかるか</text>
+<text x="12" y="418">顧客の個人データを入れる→個人情報保護法</text>
+<text x="12" y="440">他人の作品に似た画像を公開→著作権法</text>
+<text x="12" y="462">偽の記事で会社の信用を傷つける→刑法</text>
+<line x1="12" y1="478" x2="308" y2="478" class="l sb w1"/>
+<text x="12" y="502" class="tb twn">ガイドラインは法令の代わりではない</text>
+<text x="12" y="524" class="tm">法令を守ったうえでの、自主的な物差し</text>
+</svg>

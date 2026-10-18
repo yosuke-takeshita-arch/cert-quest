@@ -219,6 +219,7 @@
     ],
     "memoryTip": "操作→協力→相談→承認→観察。右へ行くほど人の手が離れる。",
     "concepts": ["C-AP-03-007"],
+    "figures": ["fig-ap-autonomy-levels"],
     "sources": [
       { "title": "Feng, McDonald, Zhang (2025) Levels of Autonomy for AI Agents (arXiv:2506.12469)", "url": "https://arxiv.org/abs/2506.12469" }
     ],
@@ -247,6 +248,7 @@
     ],
     "memoryTip": "強いエージェントでも、低い段階で使える。段階は設計で選ぶ。",
     "concepts": ["C-AP-03-007"],
+    "figures": ["fig-ap-autonomy-levels"],
     "sources": [
       { "title": "Feng, McDonald, Zhang (2025) Levels of Autonomy for AI Agents (arXiv:2506.12469)", "url": "https://arxiv.org/abs/2506.12469" },
       { "title": "Mitchell et al. (2025) Fully Autonomous AI Agents Should Not be Developed (arXiv:2502.02649)", "url": "https://arxiv.org/abs/2502.02649" }
@@ -1186,6 +1188,7 @@
     ],
     "memoryTip": "考える（モデル）・動く（ツール）・決まり（指示）。",
     "concepts": ["C-AP-03-027"],
+    "figures": ["fig-ap-agent-parts"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
     ],
@@ -1214,6 +1217,7 @@
     ],
     "memoryTip": "LLMは『こう呼んで』と言うだけ。動かすのはアプリ。",
     "concepts": ["C-AP-03-027", "C-AP-03-030"],
+    "figures": ["fig-ap-agent-parts"],
     "sources": [
       { "title": "OpenAI API Docs『Function calling』", "url": "https://platform.openai.com/docs/guides/function-calling" },
       { "title": "Claude Docs『Tool use with Claude』", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" }
@@ -1440,6 +1444,7 @@
     ],
     "memoryTip": "モデル→アプリ→モデルの往復。",
     "concepts": ["C-AP-03-030", "C-AP-03-027"],
+    "figures": ["fig-ap-agent-parts"],
     "sources": [
       { "title": "OpenAI API Docs『Function calling』", "url": "https://platform.openai.com/docs/guides/function-calling" }
     ],
@@ -1806,6 +1811,7 @@
     ],
     "memoryTip": "ReAct＝Reason＋Act。考える・動く・見る、を繰り返す。",
     "concepts": ["C-AP-03-039"],
+    "figures": ["fig-ap-react-loop"],
     "sources": [
       { "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)", "url": "https://arxiv.org/abs/2210.03629" }
     ],
@@ -1834,6 +1840,7 @@
     ],
     "memoryTip": "考える→動く→見る→考える…。",
     "concepts": ["C-AP-03-039", "C-AP-03-040"],
+    "figures": ["fig-ap-react-loop"],
     "sources": [
       { "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)", "url": "https://arxiv.org/abs/2210.03629" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
@@ -2124,6 +2131,7 @@
     ],
     "memoryTip": "指揮役が配って、作業役が並んで調べる＝マルチエージェント。",
     "concepts": ["C-AP-03-047", "C-AP-03-048"],
+    "figures": ["fig-ap-multi-agent"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" }
     ],
@@ -2152,6 +2160,7 @@
     ],
     "memoryTip": "マルチエージェントは強いが高い（チャットの約15倍）。",
     "concepts": ["C-AP-03-047"],
+    "figures": ["fig-ap-multi-agent"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" }
     ],

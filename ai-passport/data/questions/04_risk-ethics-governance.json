@@ -598,6 +598,7 @@
     ],
     "memoryTip": "似た作品＝権利侵害、攻撃・悪用＝セキュリティ。",
     "concepts": ["C-AP-04-012", "C-AP-04-019"],
+    "figures": ["fig-ap-risk-5-views"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
     ],
@@ -2908,6 +2909,7 @@
     ],
     "memoryTip": "個人情報＝人を識別、プライバシー＝私生活、秘密保持＝約束と義務。",
     "concepts": ["C-AP-04-059"],
+    "figures": ["fig-ap-privacy-secrecy"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "経済産業省『秘密情報の保護ハンドブック』（最終改訂：令和6年2月）", "url": "https://www.meti.go.jp/policy/economy/chizai/chiteki/pdf/handbook/full.pdf" }
@@ -2937,6 +2939,7 @@
     ],
     "memoryTip": "人を識別→個人情報、私生活→プライバシー、預かった秘密→秘密保持。",
     "concepts": ["C-AP-04-059"],
+    "figures": ["fig-ap-privacy-secrecy"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "経済産業省『秘密情報の保護ハンドブック』（最終改訂：令和6年2月）", "url": "https://www.meti.go.jp/policy/economy/chizai/chiteki/pdf/handbook/full.pdf" }
@@ -3364,6 +3367,7 @@
     ],
     "memoryTip": "任せても、見張る義務は残る。",
     "concepts": ["C-AP-04-069"],
+    "figures": ["fig-ap-entrustment"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3986,6 +3990,7 @@
     ],
     "memoryTip": "秘密保持は、法律でも契約でも生じる。",
     "concepts": ["C-AP-04-059", "C-AP-04-076"],
+    "figures": ["fig-ap-privacy-secrecy"],
     "sources": [
       { "title": "経済産業省『秘密情報の保護ハンドブック』（最終改訂：令和6年2月）", "url": "https://www.meti.go.jp/policy/economy/chizai/chiteki/pdf/handbook/full.pdf" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
@@ -4338,6 +4343,7 @@
     ],
     "memoryTip": "似ている＋もとにした＝侵害。",
     "concepts": ["C-AP-04-088"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -4422,6 +4428,7 @@
     ],
     "memoryTip": "似ている＝類似性、もとにした＝依拠性。",
     "concepts": ["C-AP-04-088", "C-AP-04-089", "C-AP-04-090"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -4450,6 +4457,7 @@
     ],
     "memoryTip": "知っていて名前を入れた＝依拠あり。",
     "concepts": ["C-AP-04-090", "C-AP-04-088"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -7030,6 +7038,7 @@
     ],
     "memoryTip": "ツールの区分×情報の区分で決める。",
     "concepts": ["C-AP-04-142"],
+    "figures": ["fig-ap-tool-levels"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -7144,6 +7153,7 @@
     ],
     "memoryTip": "申請・承認＝確かめて、使える道を開く。",
     "concepts": ["C-AP-04-145"],
+    "figures": ["fig-ap-tool-approval-flow"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
     ],
@@ -7172,6 +7182,7 @@
     ],
     "memoryTip": "遅すぎる審査は、影の利用を生む。",
     "concepts": ["C-AP-04-145", "C-AP-04-038"],
+    "figures": ["fig-ap-tool-approval-flow"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
     ],
@@ -8002,6 +8013,7 @@
     ],
     "memoryTip": "AI法は上乗せ。既存の法律は消えない。",
     "concepts": ["C-AP-04-161"],
+    "figures": ["fig-ap-ai-law-layers"],
     "sources": [
       { "title": "内閣府『人工知能関連技術の研究開発及び活用の推進に関する法律（AI法）の概要』", "url": "https://www8.cao.go.jp/cstp/ai/ai_hou_gaiyou.pdf" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" },
@@ -8032,6 +8044,7 @@
     ],
     "memoryTip": "AI法→（13条）指針→ガイドラインは指針と整合。",
     "concepts": ["C-AP-04-161", "C-AP-04-158", "C-AP-04-110"],
+    "figures": ["fig-ap-ai-law-layers"],
     "sources": [
       { "title": "e-Gov法令検索 人工知能関連技術の研究開発及び活用の推進に関する法律（令和七年法律第五十三号）", "url": "https://laws.e-gov.go.jp/law/507AC0000000053" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" },

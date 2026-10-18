@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 606" role="img" aria-labelledby="fig-ap-privacy-secrecy-t fig-ap-privacy-secrecy-d">
+<title id="fig-ap-privacy-secrecy-t">個人情報・プライバシー・秘密保持の違い：何か・根拠・例</title>
+<desc id="fig-ap-privacy-secrecy-d">3つの箱を上から並べた図。個人情報：生きている個人を識別できる情報。根拠は個人情報保護法の定義。例は取引先の担当者の名刺。プライバシー：私生活の事柄をみだりに知られたり使われたりしない利益。根拠は裁判例で守られてきたこと。例は社員が病気で休んだ事情。秘密保持：知った秘密を漏らさず、目的外に使わない義務。根拠は秘密保持契約（NDA）のような契約や、不正競争防止法など。例は取引先から受け取った新製品の図面。下は取り違えやすい点。会社の未公表の製品計画は人の情報ではないので個人情報ではないが、秘密保持の対象。公開されている人の名前も個人情報に当たる。社員が病気で休んだ事情はプライバシーであり、要配慮個人情報でもあって、2つが重なる。個人情報保護法の義務を守っていても、プライバシーの侵害は起こりうる。</desc>
+<text x="12" y="20" class="tb">個人情報・プライバシー・秘密保持</text>
+<rect x="12" y="32" width="296" height="96" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="54" class="tb ta">個人情報</text>
+<text x="22" y="76">生きている個人を識別できる情報</text>
+<text x="22" y="96" class="tm">根拠：個人情報保護法の定義</text>
+<text x="22" y="116" class="tm">例：取引先の担当者の名刺</text>
+<rect x="12" y="136" width="296" height="116" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="158" class="tb twn">プライバシー</text>
+<text x="22" y="180">私生活の事柄をみだりに知られたり</text>
+<text x="22" y="200">使われたりしない利益</text>
+<text x="22" y="220" class="tm">根拠：裁判例で守られてきた</text>
+<text x="22" y="240" class="tm">例：社員が病気で休んだ事情</text>
+<rect x="12" y="260" width="296" height="116" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="282" class="tb tok">秘密保持</text>
+<text x="22" y="304">知った秘密を漏らさず、目的外に</text>
+<text x="22" y="324">使わない義務</text>
+<text x="22" y="344" class="tm">根拠：契約（NDA）・不正競争防止法など</text>
+<text x="22" y="364" class="tm">例：取引先から受け取った新製品の図面</text>
+<line x1="12" y1="392" x2="308" y2="392" class="l sb w1"/>
+<text x="12" y="416" class="tb">取り違えやすい点</text>
+<text x="12" y="438">未公表の製品計画：人の情報ではない</text>
+<text x="12" y="458" class="tm">→個人情報ではないが、秘密保持の対象</text>
+<text x="12" y="482">公開されている人の名前</text>
+<text x="12" y="502" class="tm">→それでも個人情報に当たる</text>
+<text x="12" y="526">病気で休んだ事情→プライバシーであり、</text>
+<text x="12" y="546">要配慮個人情報でもある（2つが重なる）</text>
+<text x="12" y="572" class="tb twn">個人情報保護法の義務を守っていても、</text>
+<text x="12" y="594" class="tb twn">プライバシーの侵害は起こりうる</text>
+</svg>
