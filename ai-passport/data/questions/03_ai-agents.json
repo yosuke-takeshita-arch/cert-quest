@@ -448,6 +448,7 @@
     ],
     "memoryTip": "しまう→探す→答える。準備は質問の前に済ませる。",
     "concepts": ["C-AP-03-010", "C-AP-03-015"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -476,6 +477,7 @@
     ],
     "memoryTip": "資料がよく変わる＋学習し直したくない＝RAG。",
     "concepts": ["C-AP-03-010", "C-AP-03-011"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -1950,6 +1952,7 @@
     ],
     "memoryTip": "ホスト（家）の中にクライアント（窓口）、外にサーバー（店）。",
     "concepts": ["C-AP-03-043", "C-AP-03-042"],
+    "figures": ["fig-ap-mcp-host-client-server"],
     "sources": [
       { "title": "Model Context Protocol Specification（2026-07-28 版）", "url": "https://modelcontextprotocol.io/specification/2026-07-28" }
     ],
@@ -1978,6 +1981,7 @@
     ],
     "memoryTip": "リソース＝読む材料、プロンプト＝ひな形、ツール＝動かす関数。",
     "concepts": ["C-AP-03-043"],
+    "figures": ["fig-ap-mcp-host-client-server"],
     "sources": [
       { "title": "Model Context Protocol Specification（2026-07-28 版）", "url": "https://modelcontextprotocol.io/specification/2026-07-28" }
     ],
@@ -2034,6 +2038,7 @@
     ],
     "memoryTip": "つないである≠勝手に使ってよい。呼ぶ前に同意。",
     "concepts": ["C-AP-03-045", "C-AP-03-043"],
+    "figures": ["fig-ap-mcp-host-client-server"],
     "sources": [
       { "title": "Model Context Protocol Specification（2026-07-28 版）", "url": "https://modelcontextprotocol.io/specification/2026-07-28" }
     ],
@@ -2263,6 +2268,7 @@
     ],
     "memoryTip": "MCP＝道具と、A2A＝仲間と。名刺は Agent Card。",
     "concepts": ["C-AP-03-049", "C-AP-03-042"],
+    "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Google for Developers Blog『Announcing the Agent2Agent Protocol (A2A)』（2025年4月9日）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
       { "title": "A2A Protocol Specification（A2A and MCP の節）", "url": "https://a2a-protocol.org/latest/specification/" }

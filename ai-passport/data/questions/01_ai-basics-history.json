@@ -48,6 +48,7 @@
     ],
     "memoryTip": "AI ⊃ 機械学習 ⊃ ディープラーニング。外側ほど広い。",
     "concepts": ["C-AP-01-002", "C-AP-01-001"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [{ "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }],
     "status": "verified"
   },
@@ -213,6 +214,7 @@
     ],
     "memoryTip": "ディープラーニングは機械学習の『中』。データをいちばんたくさん食べる方法。",
     "concepts": ["C-AP-01-002", "C-AP-01-026"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
@@ -1011,6 +1013,7 @@
     ],
     "memoryTip": "入る→隠れて計算→出る。",
     "concepts": ["C-AP-01-023"],
+    "figures": ["fig-ap-mlp-layers"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（hidden layer・layer）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1037,6 +1040,7 @@
     ],
     "memoryTip": "隠れ層＝『途中の正解が書かれていない層』。",
     "concepts": ["C-AP-01-023"],
+    "figures": ["fig-ap-mlp-layers"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/mlp.html" }],
     "status": "verified"
   },
@@ -2403,6 +2407,7 @@
     ],
     "memoryTip": "GAN＝偽札作り（生成器）vs 鑑定士（識別器）。",
     "concepts": ["C-AP-01-052", "C-AP-01-053"],
+    "figures": ["fig-ap-gan"],
     "sources": [{ "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" }],
     "status": "verified"
   },
@@ -2429,6 +2434,7 @@
     ],
     "memoryTip": "生成器＝作る係、識別器＝見破る係。",
     "concepts": ["C-AP-01-053", "C-AP-01-052"],
+    "figures": ["fig-ap-gan"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（discriminator・generator）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" }

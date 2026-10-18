@@ -163,6 +163,7 @@
     ],
     "memoryTip": "Q＝探しもの、K＝見出し、V＝中身。QとKで重みを決め、Vを混ぜる。",
     "concepts": ["C-AP-02-004", "C-AP-02-003"],
+    "figures": ["fig-ap-qkv"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "Google for Developers: Machine Learning Glossary（self-attention）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -192,6 +193,7 @@
     ],
     "memoryTip": "重みを決めるのはQとK、混ぜられるのはV。",
     "concepts": ["C-AP-02-004"],
+    "figures": ["fig-ap-qkv"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
     ],
@@ -421,6 +423,7 @@
     ],
     "memoryTip": "壊すのは決まった手順、直すのを学ぶ。",
     "concepts": ["C-AP-02-009", "C-AP-01-067"],
+    "figures": ["fig-ap-diffusion"],
     "sources": [
       { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" },
       { "title": "Ho, Jain & Abbeel (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)", "url": "https://arxiv.org/abs/2006.11239" }
@@ -537,6 +540,7 @@
     ],
     "memoryTip": "拡散＝壊す、逆拡散＝作る、潜在＝縮めた空間で。",
     "concepts": ["C-AP-02-009", "C-AP-02-010"],
+    "figures": ["fig-ap-diffusion"],
     "sources": [
       { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" },
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
@@ -708,6 +712,7 @@
     ],
     "memoryTip": "事前学習（読み込む）→ SFT（手本をまねる）→ RLHF（好みに合わせる）。",
     "concepts": ["C-AP-02-014", "C-AP-02-015", "C-AP-02-018", "C-AP-02-022"],
+    "figures": ["fig-ap-llm-training-stages"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" },
       { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" }
@@ -882,6 +887,7 @@
     ],
     "memoryTip": "SFT＝お手本をまねる。RLHF＝好みの順位で整える。",
     "concepts": ["C-AP-02-018", "C-AP-02-014"],
+    "figures": ["fig-ap-llm-training-stages"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
     ],
@@ -1025,6 +1031,7 @@
     ],
     "memoryTip": "人が順位 → 報酬モデルが採点 → 強化学習で仕上げ ＝ RLHF。",
     "concepts": ["C-AP-02-022", "C-AP-02-023"],
+    "figures": ["fig-ap-rlhf"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
     ],
@@ -1053,6 +1060,7 @@
     ],
     "memoryTip": "報酬モデル＝採点係。文は書かず、点数を出す。",
     "concepts": ["C-AP-02-023", "C-AP-02-022"],
+    "figures": ["fig-ap-rlhf"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
     ],

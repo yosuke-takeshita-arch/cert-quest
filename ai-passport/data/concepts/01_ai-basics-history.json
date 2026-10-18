@@ -35,6 +35,7 @@
     "confusions": [
       { "id": "C-AP-01-026", "point": "ディープラーニングは機械学習の一種で、機械学習と並ぶ別の方法ではない。" }
     ],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
@@ -447,6 +448,7 @@
     "confusions": [
       { "id": "C-AP-01-026", "point": "隠れ層が2つ以上あるものを深いニューラルネットワークと呼ぶ。層の数が多いことが『ディープ』の意味。" }
     ],
+    "figures": ["fig-ap-mlp-layers"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/mlp.html" },
       { "title": "Google for Developers: Machine Learning Glossary（hidden layer・layer・neural network）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1048,6 +1050,7 @@
     "confusions": [
       { "id": "C-AP-01-054", "point": "識別器は本物か作り物かを当てる、識別系の働き。生成器は新しいデータを作る、生成系の働き。" }
     ],
+    "figures": ["fig-ap-gan"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（generator・discriminator）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" }

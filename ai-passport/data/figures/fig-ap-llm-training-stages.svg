@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 476" role="img" aria-labelledby="fig-ap-llm-training-stages-t fig-ap-llm-training-stages-d">
+<title id="fig-ap-llm-training-stages-t">LLMの学習の3段階：事前学習→ファインチューニング→RLHF</title>
+<desc id="fig-ap-llm-training-stages-d">上から下へ3つの段階。①事前学習：大量の文章で、次のトークンを当てる学習をする。知識とことばの力の大部分はここで身につく。②ファインチューニング：人が書いた手本の答えをまねるよう仕上げる（教師ありファインチューニング）。③RLHF：同じ質問への答えに人が付けた順位から報酬モデルを作り、その点数が高くなるよう強化学習で仕上げる。②と③は答え方を整える段階で、新しい知識を大量に足すわけではない。例として、InstructGPT（2022年）は、事前学習済みのGPT-3を出発点に②と③を行った。</desc>
+<text x="12" y="20" class="tb">LLMを作る3つの段階</text>
+<rect x="12" y="34" width="296" height="84" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="58" class="tb ta">① 事前学習</text>
+<text x="22" y="80">大量の文章で、次のトークンを当てる</text>
+<text x="22" y="104" class="tm">知識とことばの力の大部分がここで付く</text>
+<line x1="160" y1="120" x2="160" y2="142" class="l w2"/>
+<polyline points="156.15,135 160,142 163.85,135" class="l w2"/>
+<rect x="12" y="144" width="296" height="84" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="168" class="tb tok">② ファインチューニング</text>
+<text x="22" y="190">人が書いた手本の答えをまねて仕上げる</text>
+<text x="22" y="214" class="tm">（教師ありファインチューニング）</text>
+<line x1="160" y1="230" x2="160" y2="252" class="l w2"/>
+<polyline points="156.15,245 160,252 163.85,245" class="l w2"/>
+<rect x="12" y="254" width="296" height="104" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="278" class="tb tok">③ RLHF</text>
+<text x="22" y="300">人が答えに付けた順位から報酬モデル</text>
+<text x="22" y="320">を作り、その点数が高くなるよう</text>
+<text x="22" y="340">強化学習で仕上げる</text>
+<text x="12" y="384" class="tb tok">②と③：答え方を整える段階</text>
+<text x="12" y="404" class="tm">新しい知識を大量に足すわけではない</text>
+<line x1="12" y1="420" x2="308" y2="420" class="l sb w1"/>
+<text x="12" y="444">例：InstructGPT（2022年）は、</text>
+<text x="12" y="464">事前学習済みのGPT-3から②③を行った</text>
+</svg>

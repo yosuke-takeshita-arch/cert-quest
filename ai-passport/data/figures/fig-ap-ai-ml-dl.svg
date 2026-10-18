@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-ap-ai-ml-dl-t fig-ap-ai-ml-dl-d">
+<title id="fig-ap-ai-ml-dl-t">AI・機械学習・ディープラーニングの入れ子の関係</title>
+<desc id="fig-ap-ai-ml-dl-d">入れ子の3つの楕円。一番外側がAI、その中に機械学習、さらにその中にディープラーニングがある。外側ほど広い呼び名。下は迷惑メールの見分けの例。AIだが機械学習ではないもの（ルールベース）：人が『件名に“当選”があれば迷惑メール』という規則を書いて判定する。機械学習：過去のメール1万通と、迷惑かどうかの答えから、見分け方をコンピュータに学ばせる。ディープラーニング：何層も重ねたニューラルネットワークで、どの言葉や特徴に注目するかまで自分で学ぶ。AIの全部が学習するわけではない。</desc>
+<ellipse cx="160" cy="118" rx="150" ry="104" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="40" class="tb" text-anchor="middle">AI</text>
+<ellipse cx="160" cy="146" rx="108" ry="68" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="106" class="tb" text-anchor="middle">機械学習</text>
+<ellipse cx="160" cy="158" rx="66" ry="36" class="fa"/>
+<text x="160" y="154" class="tb ton" text-anchor="middle">ディープ</text>
+<text x="160" y="172" class="tb ton" text-anchor="middle">ラーニング</text>
+<text x="160" y="246" class="tb" text-anchor="middle">AI ⊃ 機械学習 ⊃ ディープラーニング</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<text x="12" y="286" class="tb">例：迷惑メールを見分ける</text>
+<text x="12" y="312" class="tb">AI（ルールベース。学習しない）</text>
+<text x="12" y="332" class="tm">人が『“当選”なら迷惑』と規則を書く</text>
+<text x="12" y="360" class="tb ta">機械学習</text>
+<text x="12" y="380" class="tm">過去のメール1万通と答えから学ばせる</text>
+<text x="12" y="408" class="tb ta">ディープラーニング</text>
+<text x="12" y="428" class="tm">何層ものニューラルネットワークで、</text>
+<text x="12" y="446" class="tm">どの言葉に注目するかまで自分で学ぶ</text>
+</svg>

@@ -206,6 +206,7 @@
     "confusions": [
       { "id": "C-AP-01-036", "point": "ファインチューニングは追加の学習でモデルの重みを変える。RAGは重みを変えず、質問のたびに資料を探して添える。" }
     ],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" },
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" },
@@ -864,6 +865,7 @@
     "confusions": [
       { "id": "C-AP-03-049", "point": "MCPはエージェント（AIのアプリ）と道具・データをつなぐ。A2Aはエージェントどうしをつなぐ。" }
     ],
+    "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" },
       { "title": "Model Context Protocol Specification（2026-07-28 版）", "url": "https://modelcontextprotocol.io/specification/2026-07-28" },
@@ -886,6 +888,7 @@
     "confusions": [
       { "id": "C-AP-03-042", "point": "MCPは決まり（プロトコル）の名前。MCPサーバーは、その決まりでデータや道具を差し出すプログラム。" }
     ],
+    "figures": ["fig-ap-mcp-host-client-server"],
     "sources": [
       { "title": "Model Context Protocol Specification（2026-07-28 版）", "url": "https://modelcontextprotocol.io/specification/2026-07-28" },
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" }
@@ -1008,6 +1011,7 @@
     "confusions": [
       { "id": "C-AP-03-042", "point": "A2Aはエージェントどうし、MCPはエージェントと道具・データの間。" }
     ],
+    "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Google for Developers Blog『Announcing the Agent2Agent Protocol (A2A)』（2025年4月9日）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
       { "title": "Linux Foundation『Linux Foundation Launches the Agent2Agent Protocol Project』（2025年6月23日）", "url": "https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents" },

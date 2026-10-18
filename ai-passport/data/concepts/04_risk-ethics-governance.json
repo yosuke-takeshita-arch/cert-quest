@@ -1535,6 +1535,7 @@
       { "id": "C-AP-04-021", "relation": "対比" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
       { "title": "e-Gov法令検索 特許法（昭和三十四年法律第百二十一号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000121" },
@@ -3046,6 +3047,7 @@
     "confusions": [
       { "id": "C-AP-04-123", "point": "EUのリスクベース・アプローチは、法律として禁止や義務の区分を定める。日本のAI事業者ガイドラインのリスクベースアプローチは、事業者が自主的に対策の程度を決めるための考え方。" }
     ],
+    "figures": ["fig-ap-eu-ai-act"],
     "sources": [
       { "title": "European Commission『AI Act』（Shaping Europe's digital future）", "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" }
     ],

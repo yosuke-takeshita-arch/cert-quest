@@ -77,6 +77,7 @@
     "confusions": [
       { "id": "C-AP-02-003", "point": "Self-Attentionは仕組み全体の名前。Query・Key・Valueは、その中で重みを決めたり中身を渡したりする3種類のベクトル。" }
     ],
+    "figures": ["fig-ap-qkv"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "Google for Developers: Machine Learning Glossary（self-attention）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -179,6 +180,7 @@
     "confusions": [
       { "id": "C-AP-01-067", "point": "拡散モデルはモデル全体の名前。拡散過程（ノイズを足す）と逆拡散過程（ノイズを取り除く）は、その中の2つの向きの手順。" }
     ],
+    "figures": ["fig-ap-diffusion"],
     "sources": [
       { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" },
       { "title": "Ho, Jain & Abbeel (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)", "url": "https://arxiv.org/abs/2006.11239" }
@@ -284,6 +286,7 @@
     "confusions": [
       { "id": "C-AP-02-015", "point": "事前学習は3段階の1つ目で、大量の文章で次のトークンを当てる学習。3段階全体は、そのあとのファインチューニングとRLHFまで含む流れ。" }
     ],
+    "figures": ["fig-ap-llm-training-stages"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" },
       { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" },
@@ -451,6 +454,7 @@
     "confusions": [
       { "id": "C-AP-02-018", "point": "教師ありファインチューニングは、人が書いた手本の答えをまねる学習。RLHFは、人が答えに付けた順位から作った報酬モデルの点数を高めるよう、強化学習で仕上げる。" }
     ],
+    "figures": ["fig-ap-rlhf"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" },
       { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" },
