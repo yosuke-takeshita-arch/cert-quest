@@ -11,7 +11,7 @@
 // WARN にするもの（文中で見つけるときの働きが変わるが、アプリは動く）
 //   - term・aliases が2字より短い（文中では見つけない。lib/basics.js の MIN_TERM_LEN）
 //   - 同じ語が、別の語（または同じ語の別の呼び方）にもある（文中では先の語が勝つ）
-//   - 語が、試験範囲のカードの title（括弧の前・中を含む）と同じ（文中では必ずカードが勝ち、印は付かない）
+//   （語が試験範囲のカードの title と同じ形でも WARN にしない。要件定義書 §7-5 の決まりで、基礎のことばが勝ち、印が付く。titleForms は tests が使うので残す）
 //   - oneLine が長すぎる（80字超。一言ではなくなる）
 // 見ていないもの: 説明の正しさ・やさしさ・図の中身（人が読む）／語が実際の解説の文に出てくるか（出てこない語は、使われないだけ）
 'use strict';
@@ -48,8 +48,6 @@ function titleForms(title) {
 function checkBasics(ctx) {
   const { file: f, data, idRe, idLabel, seen, conceptIndex, checkFigureRefs, err, warn, isStr } = ctx;
   const base = require('path').basename(f);
-  const cardForms = new Map(); // 照合用の文字列 -> カードの title
-  for (const t of conceptIndex.values()) for (const form of titleForms(t)) { const k = fold(form).trim(); if (k && !cardForms.has(k)) cardForms.set(k, t); }
   const forms = new Map(); // 照合用の文字列 -> 先に出てきた語の id
   data.forEach((o, idx) => {
     if (!o || typeof o !== 'object' || Array.isArray(o)) { err(f, `#${idx}`, '基礎のことばが辞書でない'); return; }
@@ -74,7 +72,6 @@ function checkBasics(ctx) {
       mine.add(k);
       if (forms.has(k) && forms.get(k) !== id) warn(f, id, `「${w}」が ${forms.get(k)} にもある（文中では先の ${forms.get(k)} が勝つ）`);
       else forms.set(k, id);
-      if (cardForms.has(k)) warn(f, id, `「${w}」が試験範囲のカード「${cardForms.get(k)}」の title と同じ（文中ではカードが勝ち、印は付かない）`);
     }
     if ('notIn' in o) {
       if (!Array.isArray(o.notIn) || !o.notIn.every(isStr)) err(f, id, 'notIn が空でない文字列の配列でない（無いなら欄ごと省く）');

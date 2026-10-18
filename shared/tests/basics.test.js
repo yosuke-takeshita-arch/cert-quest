@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import vm from 'node:vm';
 import {
-  normalizeBasic, normalizeBasics, loadBasics, fold, titleForms, buildMatcher, segmentText, MIN_TERM_LEN, BASICS_FILE,
+  normalizeBasic, normalizeBasics, loadBasics, fold, titleForms, buildMatcher, segmentText, basicIdsOfTitle, MIN_TERM_LEN, BASICS_FILE,
 } from '../js/lib/basics.js';
 import { loadData, normalizeConcept, buildConceptIndex } from '../js/lib/data.js';
 import { APPS } from './apps.js';
@@ -131,11 +131,37 @@ test('同じ長さで重なるなら、後ろから始まるカードでも、�
   assert.deepEqual(linked(segmentText('基礎学習', m)), ['基礎学習:B-1']); // 重ならなければ付く
 });
 
-test('同じ文字列で、カードの title と基礎のことばが重なるなら、カードが勝つ（印は付かない）', () => {
+test('同じ文字列で、カードの title の形と基礎のことばが重なるなら、基礎のことばが勝つ（印が付く）。括弧の中・前・全体のどれでも', () => {
   const m = buildMatcher([B('B-001', '過学習')], [C('C-1', '過学習')]);
-  assert.deepEqual(linked(segmentText('過学習を防ぐ', m)), []);
-  const m2 = buildMatcher([B('B-001', '過学習')], []);
-  assert.deepEqual(linked(segmentText('過学習を防ぐ', m2)), ['過学習:B-001']);
+  assert.deepEqual(linked(segmentText('過学習を防ぐ', m)), ['過学習:B-001']);
+  const cnn = buildMatcher([B('B-036', 'CNN'), B('B-037', 'RNN')], [C('C-05-003', '畳み込みニューラルネットワーク (CNN)'), C('C-05-021', '再帰型ニューラルネットワーク（RNN）')]);
+  assert.deepEqual(linked(segmentText('CNNとRNNを使う', cnn)), ['CNN:B-036', 'RNN:B-037']);
+  const pre = buildMatcher([B('B-050', '主成分分析')], [C('C-1', '主成分分析（PCA）')]);
+  assert.deepEqual(linked(segmentText('主成分分析を行う', pre)), ['主成分分析:B-050']);
+});
+
+test('カードの title が基礎のことばの語より長いものは、今までどおり長い語が勝つ（Mask R-CNN・Vision Transformer・双方向 RNN の中には付かない）。notIn も効く', () => {
+  const m = buildMatcher(
+    [B('B-036', 'CNN'), B('B-037', 'RNN'), B('B-038', 'Transformer'), B('B-9', 'CNNモデル', { notIn: ['疑似CNNモデル'] })],
+    [C('C-1', 'Mask R-CNN'), C('C-2', 'Vision Transformer (ViT)'), C('C-3', '双方向 RNN'), C('C-4', '畳み込みニューラルネットワーク (CNN)')]);
+  assert.deepEqual(linked(segmentText('Mask R-CNN を使う', m)), []);
+  assert.deepEqual(linked(segmentText('Vision Transformer は画像向き', m)), []);
+  assert.deepEqual(linked(segmentText('双方向 RNN と RNN', m)), ['RNN:B-037']);
+  assert.deepEqual(linked(segmentText('Transformer が使われる', m)), ['Transformer:B-038']);
+  assert.deepEqual(linked(segmentText('疑似CNNモデル', m)), []);
+  assert.deepEqual(linked(segmentText('CNNモデル', m)), ['CNNモデル:B-9']);
+  // notIn が語そのものと同じ文字列なら notIn が勝つ（今までどおり）
+  const same = buildMatcher([B('B-1', 'フィルタ', { notIn: ['フィルタ'] })], [C('C-1', 'フィルタ')]);
+  assert.deepEqual(linked(segmentText('フィルタ', same)), []);
+});
+
+test('basicIdsOfTitle: そのカードの title の形（全体・括弧の前・中）と同じ基礎のことばの id だけ返す', () => {
+  const m = buildMatcher([B('B-036', 'CNN'), B('B-037', 'RNN'), B('B-001', '次元')], [C('C-05-003', '畳み込みニューラルネットワーク (CNN)'), C('C-1', '次元削減')]);
+  assert.deepEqual([...basicIdsOfTitle(m, '畳み込みニューラルネットワーク (CNN)')], ['B-036']);
+  assert.deepEqual([...basicIdsOfTitle(m, '次元削減')], []); // 次元 は title の形と同じではない
+  assert.deepEqual([...basicIdsOfTitle(m, 'cnn')], ['B-036']);
+  assert.deepEqual([...basicIdsOfTitle(null, 'CNN')], []);
+  assert.deepEqual([...basicIdsOfTitle(m, null)], []);
 });
 
 test('基礎のことば同士でも長い語が勝つ（ハイパーパラメータを基礎の語にしたら、パラメータではなくそちら）', () => {
@@ -331,8 +357,6 @@ test('検査: 図が実在すれば OK（図の SVG の決まりも同じ検査�
 const WARN_CASES = {
   '2字より短い語': [goodBasic({ term: '式', aliases: undefined })],
   '別の語と同じ語': [goodBasic(), goodBasic({ id: 'B-002', term: '次元' })],
-  '試験範囲のカードの title と同じ語': [goodBasic({ term: '次元削減', aliases: undefined })],
-  'カードの括弧の中（PCA）と同じ語': [goodBasic({ term: 'pca', aliases: undefined })],
   'oneLine が長い': [goodBasic({ oneLine: 'あ'.repeat(81) })],
 };
 for (const [name, data] of Object.entries(WARN_CASES)) {
@@ -343,10 +367,12 @@ for (const [name, data] of Object.entries(WARN_CASES)) {
   });
 }
 
-test('検査: 括弧の前の語（主成分分析）も、カードの title と同じ語として WARN する', () => {
-  const r = runTool('check-data.js', 'g-kentei', [goodBasic({ term: '主成分分析', aliases: undefined })], GOOD_CONCEPTS);
-  assert.equal(r.code, 0, r.out);
-  assert.match(r.out, /WARN basics\.json B-001: 「主成分分析」が試験範囲のカード/);
+test('検査: 語がカードの title の形（全体・括弧の前・括弧の中）と同じでも WARN しない（基礎のことばが勝つ決まり。§7-5）', () => {
+  for (const term of ['次元削減', '主成分分析', 'pca']) {
+    const r = runTool('check-data.js', 'g-kentei', [goodBasic({ term, aliases: undefined })], GOOD_CONCEPTS);
+    assert.equal(r.code, 0, r.out);
+    assert.doesNotMatch(r.out, /WARN basics\.json/, term + r.out);
+  }
 });
 
 test('検査: id の形はアプリごと（G検定 B-NNN・AIパスポート B-AP-NNN・DX DB-NNN）', () => {
@@ -366,7 +392,7 @@ test('検査（DX）: G検定と同じ検査（NG の例・WARN の例・図）'
   assert.equal(dx([goodBasic({ id: 'DB-001', figures: ['fig-dx-none'] })]).code, 1);
   assert.equal(dx([goodBasic({ id: 'DB-001', figures: ['fig-dx-a'] })], { figures: ['fig-dx-a'] }).code, 0);
   assert.equal(dx([goodBasic({ id: 'DB-001', term: '' })]).code, 1);
-  const w = dx([goodBasic({ id: 'DB-001', term: '次元削減', aliases: undefined })]);
+  const w = dx([goodBasic({ id: 'DB-001', term: '式', aliases: undefined })]);
   assert.equal(w.code, 0, w.out);
   assert.match(w.out, /WARN basics\.json DB-001/);
 });
@@ -552,6 +578,22 @@ test('カード: 一言と説明は続けて1区画（同じ語は最初の1回�
   const off = cardBody(mkApp(false), concepts[0], () => {});
   assert.equal(terms(off).length, 0);
   assert.equal(off.find((e) => e.className === 'one-line')[0].textContent, '次元を減らす。'); // これまでと同じ作り
+});
+
+test('カード自身の title と同じ基礎のことばには印を付けない。ほかのカードの画面・基礎のことばを押す前の本文では付く', () => {
+  const cs = [
+    normalizeConcept({ id: 'C-05-003', title: '畳み込みニューラルネットワーク (CNN)', oneLine: 'CNN は画像向き。', why: 'CNN は RNN とは違う。', syllabus: ['a'], confusions: [{ id: 'C-05-021', point: 'CNN と RNN の違い。' }] }),
+    normalizeConcept({ id: 'C-05-021', title: '再帰型ニューラルネットワーク（RNN）', oneLine: 'RNN は系列向き。CNN とは別。', why: 'w', syllabus: ['a'] }),
+  ];
+  const bs = normalizeBasics([{ id: 'B-036', term: 'CNN', oneLine: 'c', why: 'c' }, { id: 'B-037', term: 'RNN', oneLine: 'r', why: 'r' }]).items;
+  const app = { data: { concepts: cs, conceptIndex: buildConceptIndex(cs), backlinks: new Map(), questions: [], basics: bs, basicsMatcher: buildMatcher(bs, cs) }, state: { settings: {} }, go() {}, dataBase: 'http://localhost/g-kentei/data/' };
+  const ids = (el) => terms(el).map((t) => t.getAttribute('data-basic'));
+  // CNN のカード: 自分の CNN には付かず（本文・混同のどちらも）、RNN は付く
+  assert.deepEqual(ids(cardBody(app, cs[0], () => {})), ['B-037', 'B-037']);
+  // RNN のカード: RNN には付かず、CNN は付く
+  assert.deepEqual(ids(cardBody(app, cs[1], () => {})), ['B-036']);
+  // 問題の解説など、カードの外では CNN にも付く
+  assert.deepEqual(ids(richEl(app, 'p', {}, 'CNN と RNN', new Set())), ['B-036', 'B-037']);
 });
 
 const sq = (o = {}) => ({ q: { id: 'G-1', format: 'single', concepts: ['C-01-002'], explanation: '次元が高く、次元数も多い。', memoryTip: 'パラメータは調整できる数字。', figures: [], sources: [], ...o }, choices: ['甲', '乙', '丙'], answer: 0, whyWrong: [null, 'パラメータが違う。パラメータは別。', 'パラメータもベクトルも違う。ベクトルは並び。'] });

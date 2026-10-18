@@ -104,17 +104,20 @@ export function titleForms(title) {
 /**
  * 照合の道具を作る。basics … normalizeBasics の items、concepts … 試験範囲のカード（title だけ使う）。
  * 決まり（要件定義書 §7-5）: カードの title（と括弧の前・中）は『基礎のことばを付けない語』として、基礎のことばと同じ場所に入れる。
- * 同じ長さなら カードが勝つ。長い語が勝つので、「次元削減」というカードがあれば、その中の「次元」には印を付けない。
+ * 長い語が勝つので、「次元削減」というカードがあれば、その中の「次元」には印を付けない。
+ * 基礎のことばの語が、カードの title の形とちょうど同じ文字列のときは、基礎のことばが勝つ（印を付ける。『CNN』は『畳み込みニューラルネットワーク (CNN)』の括弧の中と同じ）。
+ * notIn と同じ文字列のときは notIn が勝つ（今までどおり）。
  */
 export function buildMatcher(basics, concepts) {
-  const byKey = new Map(); // 照合用の文字列 -> { key, len, id }。id が null ＝ カードの title（見つけても印を付けない）
-  const add = (form, id) => {
+  const byKey = new Map(); // 照合用の文字列 -> { key, len, id, card }。id が null ＝ 見つけても印を付けない語（card が true ＝ カードの title 由来）
+  const add = (form, id, card = false) => {
     const key = fold(form).trim();
     if (key.length < MIN_TERM_LEN) return;
-    if (!byKey.has(key)) byKey.set(key, { key, len: key.length, id });
+    const old = byKey.get(key);
+    if (!old) byKey.set(key, { key, len: key.length, id, card });
+    else if (old.card && !card) byKey.set(key, { key, len: key.length, id, card: false }); // カードの title と同じ形の基礎のことば（と notIn）は、カードに勝つ
   };
-  // カードを先に入れる。同じ文字列なら先に入ったほう（カード）が残る
-  for (const c of Array.isArray(concepts) ? concepts : []) for (const f of titleForms(c && c.title)) add(f, null);
+  for (const c of Array.isArray(concepts) ? concepts : []) for (const f of titleForms(c && c.title)) add(f, null, true);
   // notIn … 基礎のことばの語を含むが、別の言葉になる複合語（『スパムフィルタ』の中の『フィルタ』）。カードの title と同じ『付けない語』として入れる
   for (const b of Array.isArray(basics) ? basics : []) for (const n of b.notIn || []) add(n, null);
   for (const b of Array.isArray(basics) ? basics : []) for (const f of [b.term, ...(b.aliases || [])]) add(f, b.id);
@@ -125,7 +128,21 @@ export function buildMatcher(basics, concepts) {
     byFirst.get(k).push(e);
   }
   const hasBasics = [...byKey.values()].some((e) => e.id);
-  return { byFirst, hasBasics };
+  return { byFirst, byKey, hasBasics };
+}
+
+/**
+ * カード自身の title の形（title 全体・括弧の前・中）と同じ基礎のことばの id の集合を返す。
+ * カードの画面で seen の最初に入れる（CNN のカードを開いているのに、本文の CNN に印を付けて同じ説明の窓を開かせない）。
+ */
+export function basicIdsOfTitle(matcher, title) {
+  const ids = new Set();
+  if (!matcher || !matcher.byKey) return ids;
+  for (const f of titleForms(title)) {
+    const e = matcher.byKey.get(fold(f).trim());
+    if (e && e.id) ids.add(e.id);
+  }
+  return ids;
 }
 
 /**

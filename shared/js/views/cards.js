@@ -3,6 +3,7 @@ import { h, clear, externalLink } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { figureBlock } from './figure.js';
 import { richEl } from './richtext.js';
+import { basicIdsOfTitle } from '../lib/basics.js';
 import { reportButton } from './report.js';
 import { CARD_VIEWS, normalizeCardView, cardSections } from '../lib/cardtree.js';
 
@@ -40,7 +41,8 @@ export function cardBody(app, c, open) {
   const wrap = h('article', { class: 'card concept' });
   wrap.appendChild(h('p', { class: 'crumb small muted', text: c.syllabus.join(' › ') }));
   wrap.appendChild(h('h2', {}, c.title, ' ', statusChip(c.status)));
-  const seen = new Set(); // 基礎のことばの印。一言と『背景とポイント』は続けて読むので1区画（同じ語に印を付けるのは最初の1回だけ）
+  const own = () => basicIdsOfTitle(d.basicsMatcher, c.title); // このカード自身の題名と同じ基礎のことば（最初から『印を付けた』ことにして、自分の語には付けない）
+  const seen = own(); // 基礎のことばの印。一言と『背景とポイント』は続けて読むので1区画（同じ語に印を付けるのは最初の1回だけ）
   if (c.oneLine) wrap.appendChild(richEl(app, 'p', { class: 'one-line' }, c.oneLine, seen));
   const fig = figureBlock(app, c.figures);
   if (fig) wrap.appendChild(fig);
@@ -71,7 +73,7 @@ export function cardBody(app, c, open) {
   if (c.confusions.length) {
     const g = h('div', { class: 'confuse' }, h('h3', { text: 'よくある混同' }));
     const ul = h('ul', { class: 'conf-list' });
-    const confSeen = new Set(); // 『よくある混同』も1区画
+    const confSeen = own(); // 『よくある混同』も1区画
     for (const f of c.confusions) {
       const r = resolveRef(f, d.conceptIndex);
       ul.appendChild(h('li', {}, refChip(app, f, open), r.point ? richEl(app, 'p', { class: 'point' }, '違い: ' + r.point, confSeen) : null));
