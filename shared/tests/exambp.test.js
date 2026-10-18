@@ -1,7 +1,7 @@
 // 模擬試験の設計図（領域×型の配分）。DXビジネス検定の本番の枠。
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { blueprintCells, pickExamByBlueprint, readBlueprint, byQtype, examPlan } from '../js/lib/quiz.js';
+import { blueprintCells, pickExamByBlueprint, readBlueprint, byQtype, examPlan, orderExamUnseenFirst } from '../js/lib/quiz.js';
 import { normalizeQuestion, buildTree } from '../js/lib/data.js';
 
 const BP = { perRoot: 25, qtypeGroups: [{ types: ['term', 'relation'], count: 25 }, { types: ['causal', 'loop'], count: 50 }, { types: ['tradeoff', 'interdep', 'miscon'], count: 25 }] };
@@ -158,4 +158,18 @@ test('模試の記録: recordExamSeen で入り、壊れた保存値・無い保
   assert.deepEqual(mergeState({ examSeen: { a: 1, b: 'x', c: null } }).examSeen, { a: 1 });
   assert.deepEqual(mergeState({ examSeen: [1] }).examSeen, {});
   assert.deepEqual(mergeState({ xp: 3 }).examSeen, {}); // 古い保存データ（キー無し）
+});
+
+// ── 設計図の無い資格（G検定・AIパスポート）の模試: まだ出ていない → 古く出た順（2026-10-18） ──
+test('模試の並び（設計図なし）: まだ出ていない問題が先、出たものは古い順、記録が無ければ全部入る', () => {
+  const qs = Array.from({ length: 10 }, (_, i) => ({ id: 'q' + i }));
+  const seen = { q0: 300, q1: 100, q2: 200 };
+  for (let seed = 1; seed <= 5; seed++) {
+    const ids = orderExamUnseenFirst(qs, lcg(seed), seen).map((q) => q.id);
+    assert.equal(ids.length, 10);
+    assert.deepEqual(new Set(ids.slice(0, 7)), new Set(['q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9']));
+    assert.deepEqual(ids.slice(7), ['q1', 'q2', 'q0']);
+  }
+  assert.equal(orderExamUnseenFirst(qs, lcg(1), null).length, 10);
+  assert.equal(orderExamUnseenFirst(qs, lcg(1), { q0: 'x' }).length, 10);
 });

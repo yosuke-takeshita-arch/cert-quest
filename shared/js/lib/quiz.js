@@ -119,6 +119,21 @@ export function blueprintCells(blueprint, rootCount) {
  * 戻り値 { items: 並びをシャッフル済みの問題, filled: 型を満たせず別の型で補った数, perRoot, groupCounts }
  * 足りない数は乱数に依らない（rng は選ぶ問題と並びだけを変える）。
  */
+/**
+ * 設計図の無い資格（G検定・AIパスポート）の模試の並び: 模試でまだ出ていない問題 → 模試で出たのが古い順。
+ * 同じ順位の中はランダム（shuffle の後の安定ソート）。先頭から本番の問題数だけ使う。2026-10-18 先生決定 A
+ */
+export function orderExamUnseenFirst(questions, rng = Math.random, examSeen = null) {
+  const seenAt = (q) => {
+    const t = examSeen && typeof examSeen === 'object' ? examSeen[q.id] : undefined;
+    return typeof t === 'number' && Number.isFinite(t) ? t : -Infinity;
+  };
+  return shuffle(questions, rng).sort((a, b) => {
+    const x = seenAt(a), y = seenAt(b);
+    return x === y ? 0 : x < y ? -1 : 1;
+  });
+}
+
 export function pickExamByBlueprint(questions, blueprint, roots, rng = Math.random, examSeen = null) {
   const groups = blueprint.qtypeGroups;
   const groupOf = new Map();

@@ -3,7 +3,7 @@
 import { h, clear, burst, toast, mascotLine, confirmDialog, confirmQuit } from '../ui.js';
 import { examMascot, CHARACTER_TEXT } from '../lib/characters.js';
 import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
-import { shuffle, shuffleChoices, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
+import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -21,11 +21,11 @@ export function renderExam(app) {
     timer = null;
   };
   const cfg = app.config.exam || { questions: 100, minutes: 60 };
-  // 設計図（config.exam.blueprint）がある資格は、補足でない領域ごと・型ごとに本番の配分で選ぶ。無い資格は従来どおり全体からランダム。
+  // 設計図（config.exam.blueprint）がある資格は、補足でない領域ごと・型ごとに本番の配分で選ぶ。無い資格は全体から、模試でまだ出ていない問題・出たのが古い問題を先に選ぶ（2026-10-18）。
   const blueprint = readBlueprint(cfg);
   const roots = blueprint ? app.data.tree.roots.filter((r) => !r.supplement).map((r) => r.name) : [];
   const pickAll = () => {
-    if (!blueprint) return { items: shuffle(app.data.questions, app.rng), filled: 0 };
+    if (!blueprint) return { items: orderExamUnseenFirst(app.data.questions, app.rng, app.state.examSeen), filled: 0 };
     return pickExamByBlueprint(app.data.questions, blueprint, roots, app.rng, app.state.examSeen);
   };
   const preview = pickAll();
