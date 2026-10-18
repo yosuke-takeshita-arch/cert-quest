@@ -241,7 +241,7 @@ export function bucketText(bk) {
 }
 
 /**
- * 棒の上に出す短い数値。1分に満たなければ '<1分'、1時間に満たなければ '45分'、100時間までは '1:05'（時間:分）、それ以上は '120時間'。0は空（出さない）。
+ * 棒の上に出す短い数値。1分に満たなければ '<1分'、100時間までは '0:45'・'1:05'（時間:分。1時間未満も同じ書き方にそろえる）、それ以上は '120時間'。0は空（出さない）。
  * 正確な数字は棒の読み上げ・詳細の文（formatDuration）にもある。ここは狭い幅で読める短さを優先。
  */
 export function formatBarValue(seconds) {
@@ -249,7 +249,6 @@ export function formatBarValue(seconds) {
   if (s <= 0) return '';
   if (s < 60) return '<1分';
   const m = Math.floor(s / 60);
-  if (m < 60) return m + '分';
   const h = Math.floor(m / 60);
   return h >= 100 ? h + '時間' : h + ':' + pad(m % 60);
 }

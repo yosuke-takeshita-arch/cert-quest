@@ -393,9 +393,9 @@ test('棒の上の数値: 0は出さない。1分未満・分・時間:分・100
   assert.equal(formatBarValue(NaN), '');
   assert.equal(formatBarValue(1), '<1分');
   assert.equal(formatBarValue(59), '<1分');
-  assert.equal(formatBarValue(60), '1分');
-  assert.equal(formatBarValue(45 * 60), '45分');
-  assert.equal(formatBarValue(59 * 60 + 59), '59分');
+  assert.equal(formatBarValue(60), '0:01');
+  assert.equal(formatBarValue(45 * 60), '0:45');
+  assert.equal(formatBarValue(59 * 60 + 59), '0:59');
   assert.equal(formatBarValue(3600), '1:00');
   assert.equal(formatBarValue(3900), '1:05');
   assert.equal(formatBarValue(10 * 3600 + 9 * 60), '10:09');
