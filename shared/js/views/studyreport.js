@@ -66,7 +66,7 @@ function createChart(app) {
   let axisSec = 0;
   let first = true;
 
-  // 棒の上の数値は横書き1行。隣と重なるものは段を上げて出し、1段上げても重なるものだけ隠す（選んでいる棒と、右の新しい日を先に置く）
+  // 棒の上の数値は横書き1行。隣と重なるものは横に寄せるか段を上げて出し、それでも重なるものだけ隠す（選んでいる棒と、右の新しい日を先に置く）
   let curSlot = 0;
   function placeValues() {
     const live = items.filter((x) => !x.col.classList.contains('leaving'));
@@ -75,10 +75,11 @@ function createChart(app) {
     const slotPx = (width - PAD_X * 2) / live.length;
     const fontPx = parseFloat(getComputedStyle(live[0].val).fontSize) || BAR_VALUE_FONT_PX;
     const heights = live.map((x) => barPx(x.sec, axisSec, PLOT_PX));
-    const level = placeBarValues(live.map((x) => formatBarValue(x.sec)), heights, slotPx, { first: live.indexOf(selected), fontPx });
+    const { level, shift } = placeBarValues(live.map((x) => formatBarValue(x.sec)), heights, slotPx, { first: live.indexOf(selected), fontPx });
     live.forEach((x, i) => {
       x.val.classList.toggle('sr-val-hidden', level[i] < 0);
       x.val.style.marginBottom = BAR_VALUE_MARGIN_PX + Math.max(0, level[i]) * (fontPx + 2) + 'px';
+      x.val.style.transform = shift[i] ? 'translateX(' + shift[i] + 'px)' : '';
     });
   }
 

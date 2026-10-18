@@ -15,6 +15,8 @@ export const BAR_VALUE_FONT_PX = 11;
 export const BAR_VALUE_GAP_PX = 4;
 /** 棒の上端と数値のすき間（px。CSS の .sr-val の margin-bottom 6px と合わせる）。 */
 export const BAR_VALUE_MARGIN_PX = 6;
+/** 数値が棒の並びの左右へはみ出してよい幅（px。画面側の左右の余白 16px より少し内側）。 */
+export const BAR_VALUE_EDGE_PX = 14;
 /** 棒の高さの最大（px）。縦軸の上端（axisMax）がこの高さ。 */
 export const PLOT_PX = 160;
 /** 棒の上の数値を置ける高さ（グラフの下端から、上の余白の上端の 2px 下まで。CSS の .sr-cols の padding-top 44px と合わせる）と、上げてよい段の数。 */
@@ -260,14 +262,15 @@ export function barValueWidthPx(text, fontPx = BAR_VALUE_FONT_PX) {
 }
 
 /**
- * 棒の上の数値（横書き1行）を、どの段に置くか決める。
+ * 棒の上の数値（横書き1行）を、どの段・どの横位置に置くか決める。
  * texts は左からの数値（空は出さない）、heights は棒の高さ（px）、slotPx は棒1本の幅。
  * opts.first は必ず先に置く棒（選んでいる棒。無ければ -1）、opts.fontPx は数値の文字の大きさ（文字の大きさの設定で変わる）、
  * opts.roomPx はグラフの下端から上の余白の上端までの高さ。
- * 数値は棒の真上（0段）に置き、ほかの数値・ほかの棒と重なるなら1段ずつ上げる（2026-10-18 先生「タップしないと表示されない」。
- * 隣どうしの数値を隠さず、段をずらして両方出す）。1段上げても重なる・余白の上端を超えるときだけ出さない。
- * 置く順は、選んでいる棒、それから右（新しい日）から。
- * 戻り値は texts と同じ長さの段の番号（0, 1, 2…）。出さないものは -1（棒を押すと下の詳細の文で読める）。
+ * 数値は棒の真上（0段・真ん中）に置き、ほかの数値・ほかの棒と重なるなら、左に寄せる・右に寄せる・1段上げる、を順に試す
+ * （2026-10-18 先生「タップしないと表示されない」「前日のが出てこない」。隣どうしの数値を隠さず両方出す。
+ * 細い棒では数値が棒より長く、背の高い隣の棒にかかって隠れていたので、空いている側へ寄せる）。
+ * どれでも重なる・余白の上端を超えるときだけ出さない。置く順は、選んでいる棒、それから右（新しい日）から。
+ * 戻り値は { level, shift }。level は段の番号（0, 1）で出さないものは -1（棒を押すと下の詳細の文で読める）、shift は横にずらす px（左が負）。
  */
 export function placeBarValues(texts, heights, slotPx, opts = {}) {
   const first = opts.first ?? -1;
@@ -277,6 +280,7 @@ export function placeBarValues(texts, heights, slotPx, opts = {}) {
   const step = fontPx + 2;
   const n = texts.length;
   const level = new Array(n).fill(-1);
+  const shift = new Array(n).fill(0);
   const placed = []; // [左, 右, 下, 上]（下端から上向きの px）
   const order = [];
   if (first >= 0 && first < n) order.push(first);
@@ -284,28 +288,37 @@ export function placeBarValues(texts, heights, slotPx, opts = {}) {
   for (const i of order) {
     if (!texts[i]) continue;
     const c = (i + 0.5) * slotPx;
-    const half = barValueWidthPx(texts[i], fontPx) / 2;
-    const lo = c - half;
-    const hi = c + half;
-    // 横に重なる、ほかの棒のうち、いちばん高いもの（数値はその上に出す）
-    let under = heights[i] || 0;
-    for (let j = 0; j < n; j++) {
-      if (j === i) continue;
-      if (lo < (j + 1) * slotPx - 1 && hi > j * slotPx + 1) under = Math.max(under, heights[j] || 0);
-    }
+    const w = barValueWidthPx(texts[i], fontPx);
+    const lo0 = c - w / 2;
+    // 横位置の候補: 真ん中、自分の棒の右端にそろえる（左に寄せる）、自分の棒の左端にそろえる（右に寄せる）
+    const shifts = [0];
+    if (w > slotPx) shifts.push(Math.round((i + 1) * slotPx - 1 - w - lo0), Math.round(i * slotPx + 1 - lo0));
+    let done = false;
     // 上げるのは1段まで（2段上げると、どの棒の数値か分かりにくかった）
-    for (let lv = 0; lv <= BAR_VALUE_MAX_LEVEL; lv++) {
+    for (let lv = 0; lv <= BAR_VALUE_MAX_LEVEL && !done; lv++) {
       const bottom = (heights[i] || 0) + BAR_VALUE_MARGIN_PX + lv * step;
       const top = bottom + fontPx;
       if (top > roomPx) break;
-      if (bottom < under + 1) continue; // ほかの棒に重なる
-      if (placed.some(([a, b, d, u]) => lo < b + gap && hi > a - gap && bottom < u + 1 && top > d - 1)) continue;
-      placed.push([lo, hi, bottom, top]);
-      level[i] = lv;
-      break;
+      for (const dx of shifts) {
+        const lo = lo0 + dx;
+        const hi = lo + w;
+        if (lo < -BAR_VALUE_EDGE_PX || hi > n * slotPx + BAR_VALUE_EDGE_PX) continue; // グラフの左右の余白からはみ出す
+        // 横に重なる、ほかの棒のうち、いちばん高いもの（数値はその上に出す）
+        let under = heights[i] || 0;
+        for (let j = 0; j < n; j++) {
+          if (j !== i && lo < (j + 1) * slotPx - 1 && hi > j * slotPx + 1) under = Math.max(under, heights[j] || 0);
+        }
+        if (bottom < under + 1) continue; // ほかの棒に重なる
+        if (placed.some(([pa, pb, pd, pu]) => lo < pb + gap && hi > pa - gap && bottom < pu + 1 && top > pd - 1)) continue;
+        placed.push([lo, hi, bottom, top]);
+        level[i] = lv;
+        shift[i] = dx;
+        done = true;
+        break;
+      }
     }
   }
-  return level;
+  return { level, shift };
 }
 
 /** 棒の高さ（px）。0 は 2px の細い線、記録がある日は最低 3px（見えなくならないように）。 */
