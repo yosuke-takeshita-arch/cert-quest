@@ -56,22 +56,45 @@
 <text x="12" y="482">解像度の違う特徴マップに</text>
 <text x="12" y="502">デフォルトボックスを置く</text>
 <text x="12" y="536" class="tb">FPN</text>
-<rect x="12" y="608" width="90" height="12" class="fas sa" stroke-width="1"/>
-<rect x="188" y="608" width="90" height="12" class="fok sok" stroke-width="1"/>
-<line x1="102" y1="614" x2="188" y2="614" class="l sm w1 dsh"/>
-<rect x="24" y="588" width="66" height="12" class="fas sa" stroke-width="1"/>
-<rect x="200" y="588" width="66" height="12" class="fok sok" stroke-width="1"/>
-<line x1="90" y1="594" x2="200" y2="594" class="l sm w1 dsh"/>
-<rect x="35" y="568" width="44" height="12" class="fas sa" stroke-width="1"/>
-<rect x="211" y="568" width="44" height="12" class="fok sok" stroke-width="1"/>
-<line x1="79" y1="574" x2="211" y2="574" class="l sm w1 dsh"/>
-<rect x="44" y="548" width="26" height="12" class="fas sa" stroke-width="1"/>
-<rect x="220" y="548" width="26" height="12" class="fok sok" stroke-width="1"/>
-<line x1="70" y1="554" x2="220" y2="554" class="l sm w1 dsh"/>
-<text x="12" y="636" class="tm">↑ 下から上へ（CNN）</text>
-<text x="188" y="636" class="tm">↓ 上から下へ</text>
-<text x="12" y="660">上から下へ戻す道と、横の接続で</text>
-<text x="12" y="680">すべての解像度に強い特徴を作る</text>
+<rect x="52" y="550" width="36" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="222" y="550" width="36" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="564" class="tb" text-anchor="middle">C5</text>
+<text x="240" y="564" class="tb ta" text-anchor="middle">P5</text>
+<line x1="90" y1="559" x2="214.4" y2="559" class="l sm w1"/>
+<polygon points="220,559 214.4,562.5 214.4,555.5" class="fm"/>
+<line x1="70" y1="574" x2="70" y2="574.6" class="l sm w1"/>
+<polygon points="70,569 73.5,574.6 66.5,574.6" class="fm"/>
+<line x1="240" y1="569" x2="240" y2="568.4" class="l sa w1"/>
+<polygon points="240,574 236.5,568.4 243.5,568.4" class="fa"/>
+<rect x="45" y="574" width="50" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="215" y="574" width="50" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="588" class="tb" text-anchor="middle">C4</text>
+<text x="240" y="588" class="tb ta" text-anchor="middle">P4</text>
+<line x1="97" y1="583" x2="207.4" y2="583" class="l sm w1"/>
+<polygon points="213,583 207.4,586.5 207.4,579.5" class="fm"/>
+<line x1="70" y1="598" x2="70" y2="598.6" class="l sm w1"/>
+<polygon points="70,593 73.5,598.6 66.5,598.6" class="fm"/>
+<line x1="240" y1="593" x2="240" y2="592.4" class="l sa w1"/>
+<polygon points="240,598 236.5,592.4 243.5,592.4" class="fa"/>
+<rect x="37" y="598" width="66" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="207" y="598" width="66" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="612" class="tb" text-anchor="middle">C3</text>
+<text x="240" y="612" class="tb ta" text-anchor="middle">P3</text>
+<line x1="105" y1="607" x2="199.4" y2="607" class="l sm w1"/>
+<polygon points="205,607 199.4,610.5 199.4,603.5" class="fm"/>
+<line x1="70" y1="622" x2="70" y2="622.6" class="l sm w1"/>
+<polygon points="70,617 73.5,622.6 66.5,622.6" class="fm"/>
+<line x1="240" y1="617" x2="240" y2="616.4" class="l sa w1"/>
+<polygon points="240,622 236.5,616.4 243.5,616.4" class="fa"/>
+<rect x="27" y="622" width="86" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="197" y="622" width="86" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="636" class="tb" text-anchor="middle">C2</text>
+<text x="240" y="636" class="tb ta" text-anchor="middle">P2</text>
+<line x1="115" y1="631" x2="189.4" y2="631" class="l sm w1"/>
+<polygon points="195,631 189.4,634.5 189.4,627.5" class="fm"/>
+<text x="70" y="662" class="tm" text-anchor="middle">↑ CNN の段（C）</text>
+<text x="240" y="662" class="ta" text-anchor="middle">↓ 2倍に拡大して戻す（P）</text>
+<text x="12" y="684">横の接続で足し、どの段にも意味を持たせる</text>
 <line x1="12" y1="700" x2="308" y2="700" class="l sb w1"/>
 <text x="12" y="724" class="tb">精度は2段階型、速さは1段階型</text>
 </svg>
