@@ -177,6 +177,7 @@
     "confusions": [
       { "title": "KPIとKGI", "point": "KGI は「ゴールに着いたか」、KPI は「ゴールに向かう途中が順調か」。KPI を全部達成しても、KGI とのつながりが誤っていればゴールには届かない。" }
     ],
+    "figures": ["fig-dx-kgi-kpi-okr"],
     "sources": [
       { "title": "デジタル庁「標準ガイドライン群用語集」（デジタル社会推進標準ガイドライン）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/bb231f8c/20260715_resources_standard_guidelines_glossary_01.pdf" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" },
@@ -314,6 +315,7 @@
     "confusions": [
       { "id": "DC-05-006", "point": "ネットワーク効果は、利用者が増えるほど価値が上がり、さらに利用者を呼ぶ現象。キャズムは、その増え方が、初期の利用者から多数派へ移る所で止まってしまう溝の話。" }
     ],
+    "figures": ["fig-dx-chasm"],
     "sources": [
       { "title": "中小企業庁 第6回スマートSME研究会 参考資料4「現場支援実績からの認識と推進加速の要諦（ディスカッションペーパー）」（株式会社リブ・コンサルティング、2019年11月1日）", "url": "https://www.chusho.meti.go.jp/koukai/kenkyukai/smartsme/2019/191101smartsme040.pdf" }
     ],

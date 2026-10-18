@@ -522,6 +522,7 @@
     "confusions": [
       { "id": "DC-03-024", "point": "PPDACは「問題を解く手順」（問題→計画→データ→分析→結論）。データライフサイクルは「データの一生」（作る・使う・共有する・保存または捨てる）。" }
     ],
+    "figures": ["fig-dx-data-lifecycle"],
     "sources": [
       { "title": "NIST「Research Data Framework (RDaF)」", "url": "https://www.nist.gov/programs-projects/research-data-framework-rdaf" }
     ],

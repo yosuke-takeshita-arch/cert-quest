@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 466" role="img" aria-labelledby="fig-dx-tech-s-curve-t fig-dx-tech-s-curve-d">
+<title id="fig-dx-tech-s-curve-t">技術Sカーブ：同じ労力で得られる性能の伸びが、段階で変わる</title>
+<desc id="fig-dx-tech-s-curve-d">曲線のグラフ。縦軸は性能、横軸は開発に投じた労力や時間。曲線はS字の形をしている。同じ幅の労力を3か所で比べると、初期は性能の伸びが小さく、理解・制御・普及が進んだ中盤は伸びが大きく、成熟した段階では限界の線に近づいて伸びがまた小さくなる。ただし、その限界が自然・物理的な限界か、その時点の技術の限界かは見分けにくく、ハードディスク装置は技術の限界を何度もブレークスルーで越えてきた。</desc>
+<text x="12" y="22" class="tb">曲線のグラフ：労力と性能の伸び</text>
+<text x="12" y="42" class="tm">縦軸＝性能　横軸＝開発に投じた労力・時間</text>
+<line x1="40" y1="250" x2="40" y2="58" class="l sm w1"/>
+<polyline points="36.7,64 40,58 43.3,64" class="l sm w1"/>
+<line x1="40" y1="250" x2="304" y2="250" class="l sm w1"/>
+<polyline points="298,246.7 304,250 298,253.3" class="l sm w1"/>
+<text x="8" y="104" class="tm">性能</text>
+<line x1="40" y1="72" x2="300" y2="72" class="l sng w1 dsh"/>
+<text x="300" y="66" class="tng" text-anchor="end">限界</text>
+<polyline points="44,239.3 52,239.0 60,238.6 68,238.0 76,237.1 84,235.9 92,234.1 100,231.7 108,228.3 116,223.6 124,217.4 132,209.4 140,199.2 148,186.9 156,172.9 164,157.9 172,142.7 180,128.4 188,115.7 196,105.0 204,96.4 212,89.7 220,84.7 228,81.1 236,78.4 244,76.5 252,75.2 260,74.2 268,73.5 276,73.1 284,72.7 292,72.5 300,72.4" class="l sa w2"/>
+<line x1="60" y1="238.6" x2="110" y2="238.6" class="l sm w1 dsh"/>
+<line x1="110" y1="238.6" x2="110" y2="227.3" class="l sok w2"/>
+<text x="114" y="244" class="tok">伸び小</text>
+<line x1="140" y1="199.2" x2="190" y2="199.2" class="l sm w1 dsh"/>
+<line x1="190" y1="199.2" x2="190" y2="112.8" class="l sok w2"/>
+<text x="196" y="164" class="tok">伸び大</text>
+<line x1="230" y1="80.3" x2="280" y2="80.3" class="l sm w1 dsh"/>
+<line x1="280" y1="80.3" x2="280" y2="72.9" class="l sok w2"/>
+<text x="238" y="100" class="tok">伸び小</text>
+<line x1="60" y1="258" x2="110" y2="258" class="l sm w1"/>
+<line x1="60" y1="254" x2="60" y2="262" class="l sm w1"/>
+<line x1="110" y1="254" x2="110" y2="262" class="l sm w1"/>
+<line x1="140" y1="258" x2="190" y2="258" class="l sm w1"/>
+<line x1="140" y1="254" x2="140" y2="262" class="l sm w1"/>
+<line x1="190" y1="254" x2="190" y2="262" class="l sm w1"/>
+<line x1="230" y1="258" x2="280" y2="258" class="l sm w1"/>
+<line x1="230" y1="254" x2="230" y2="262" class="l sm w1"/>
+<line x1="280" y1="254" x2="280" y2="262" class="l sm w1"/>
+<text x="85" y="278" text-anchor="middle">同じ労力</text>
+<text x="165" y="278" text-anchor="middle">同じ労力</text>
+<text x="255" y="278" text-anchor="middle">同じ労力</text>
+<text x="85" y="296" class="tb" text-anchor="middle">初期</text>
+<text x="165" y="296" class="tb" text-anchor="middle">中盤</text>
+<text x="255" y="296" class="tb" text-anchor="middle">成熟</text>
+<line x1="12" y1="312" x2="308" y2="312" class="l sb w1"/>
+<text x="12" y="334">初期：性能の伸びは比較的遅い</text>
+<text x="12" y="354">中盤：理解・制御・普及が進み、速く伸びる</text>
+<text x="12" y="374">成熟：限界に近づき、少しの改善にも</text>
+<text x="12" y="392">　　　多くの時間や労力が要る</text>
+<text x="12" y="416" class="tng">ただし、限界が本当に物理的なものかは</text>
+<text x="12" y="434" class="tng">見分けにくい。ハードディスク装置は、</text>
+<text x="12" y="452" class="tng">その時点の技術の限界を何度も越えてきた</text>
+</svg>

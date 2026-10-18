@@ -403,6 +403,7 @@
     "confusions": [
       { "id": "DC-12-101", "point": "ランサムウェアは、データを暗号化するなどして身代金を求める攻撃の手段。サプライチェーン攻撃は、つながりの中の弱い所を足掛かりにする攻撃の経路で、委託先へのランサム攻撃のように両方が重なることもある。" }
     ],
+    "figures": ["fig-dx-supply-chain-attack"],
     "sources": [
       { "title": "IPA「情報セキュリティ10大脅威 2026」", "url": "https://www.ipa.go.jp/security/10threats/10threats2026.html" },
       { "title": "IPA「情報セキュリティ10大脅威 2026」解説書（組織編）", "url": "https://www.ipa.go.jp/security/10threats/omgdg50000008fi8-att/kaisetsu_2026_soshiki.pdf" }

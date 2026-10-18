@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 450" role="img" aria-labelledby="fig-dx-enterprise-architecture-t fig-dx-enterprise-architecture-d">
+<title id="fig-dx-enterprise-architecture-t">エンタープライズアーキテクチャの4つの層と、現状・理想像</title>
+<desc id="fig-dx-enterprise-architecture-d">組織全体を4つの層に分けて描く。上から、ビジネスアーキテクチャ（業務プロセス）、データアーキテクチャ（業務に利用する情報）、アプリケーションアーキテクチャ（情報システムの構成）、テクノロジアーキテクチャ（利用する情報技術）。いちばん上のビジネスアーキテクチャが、業務の仕組みを描く層。4つの層それぞれについて、現状（As-is モデル）と理想像（To-be モデル）を描き、業務とシステムを同時に改善して全体最適を図る。</desc>
+<text x="12" y="22" class="tb">組織全体を、4つの層に分けて描く</text>
+<rect x="12" y="36" width="296" height="52" class="fa l sa"/>
+<text x="22" y="58" class="tb ton">ビジネスアーキテクチャ</text>
+<text x="22" y="78" class="ton">業務プロセス（業務の仕組み）</text>
+<rect x="12" y="96" width="296" height="52" class="fs l sm"/>
+<text x="22" y="118" class="tb">データアーキテクチャ</text>
+<text x="22" y="138">業務に利用する情報</text>
+<rect x="12" y="156" width="296" height="52" class="fs l sm"/>
+<text x="22" y="178" class="tb">アプリケーションアーキテクチャ</text>
+<text x="22" y="198">情報システムの構成</text>
+<rect x="12" y="216" width="296" height="52" class="fs l sm"/>
+<text x="22" y="238" class="tb">テクノロジアーキテクチャ</text>
+<text x="22" y="258">利用する情報技術</text>
+<line x1="12" y1="290" x2="308" y2="290" class="l sb w1"/>
+<text x="12" y="314" class="tb">4つの層それぞれで、2枚を描いて比べる</text>
+<rect x="12" y="328" width="120" height="52" class="fwn l swn"/>
+<text x="72" y="350" class="tb" text-anchor="middle">現状</text>
+<text x="72" y="370" text-anchor="middle">As-is モデル</text>
+<line x1="136" y1="354" x2="182" y2="354" class="l sa w2"/>
+<polyline points="176,349 182,354 176,359" class="l sa w2"/>
+<rect x="188" y="328" width="120" height="52" class="fok l sok"/>
+<text x="248" y="350" class="tb" text-anchor="middle">理想像</text>
+<text x="248" y="370" text-anchor="middle">To-be モデル</text>
+<text x="12" y="406">業務とシステムを同時に改善して、</text>
+<text x="12" y="426">組織全体の最適（全体最適）を図る</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 426" role="img" aria-labelledby="fig-dx-data-lifecycle-t fig-dx-data-lifecycle-d">
+<title id="fig-dx-data-lifecycle-t">データライフサイクルの6段階（NIST の研究データの枠組み）</title>
+<desc id="fig-dx-data-lifecycle-d">上から順に6つの段階。1 構想（Envision）、2 計画（Plan）、3 生成・取得（Generate/Acquire）、4 処理・分析（Process/Analyze）、5 共有・利用・再利用（Share/Use/Reuse）、6 保存・廃棄（Preserve/Discard）。計画の段階では、データの形式や保管先を選び、共有・公開の方針を先に見越しておく。保存・廃棄の段階には、記録管理・アーカイブ・安全な廃棄が含まれる。計画から共有へ向かう点線の矢印は、後の段階で困らないよう、前の段階で決めておくことを表す。</desc>
+<text x="12" y="22" class="tb">データの「一生」を6つの段階で見る</text>
+<rect x="12" y="36" width="216" height="32" class="fs l sm"/>
+<text x="20" y="57">1 構想</text>
+<rect x="12" y="80" width="216" height="70" class="fa l sa"/>
+<text x="20" y="101" class="tb ton">2 計画</text>
+<text x="20" y="121" class="ton">形式・保管先を選び、</text>
+<text x="20" y="139" class="ton">共有・公開の方針を見越す</text>
+<rect x="12" y="162" width="216" height="32" class="fs l sm"/>
+<text x="20" y="183">3 生成・取得</text>
+<rect x="12" y="206" width="216" height="32" class="fs l sm"/>
+<text x="20" y="227">4 処理・分析</text>
+<rect x="12" y="250" width="216" height="32" class="fok l sok"/>
+<text x="20" y="271">5 共有・利用・再利用</text>
+<rect x="12" y="294" width="216" height="52" class="fok l sok"/>
+<text x="20" y="315">6 保存・廃棄</text>
+<text x="20" y="335" class="tm">記録管理・アーカイブ・安全な廃棄</text>
+<line x1="120" y1="68" x2="120" y2="80" class="l sm w1"/>
+<line x1="120" y1="150" x2="120" y2="162" class="l sm w1"/>
+<line x1="120" y1="194" x2="120" y2="206" class="l sm w1"/>
+<line x1="120" y1="238" x2="120" y2="250" class="l sm w1"/>
+<line x1="120" y1="282" x2="120" y2="294" class="l sm w1"/>
+<path d="M 228 115 L 262 115 L 262 266 L 234 266" class="l sa w2 dsh"/>
+<polyline points="240,261 234,266 240,271" class="l sa w2"/>
+<text x="268" y="180" class="ta tb">先に</text>
+<text x="268" y="198" class="ta tb">決めて</text>
+<text x="268" y="216" class="ta tb">おく</text>
+<line x1="12" y1="368" x2="308" y2="368" class="l sb w1"/>
+<text x="12" y="392">後の段階（共有など）で困らないよう、</text>
+<text x="12" y="412">前の段階（計画）で決めておく</text>
+</svg>

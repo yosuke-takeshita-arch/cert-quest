@@ -118,6 +118,7 @@
     "confusions": [
       { "title": "技術Sカーブ", "point": "プロダクトライフサイクルは製品の「売れ方」の段階。技術Sカーブは技術の「性能の伸び方」が、はじめゆっくり・途中で急に・やがて頭打ちになる形。見ている対象が違う。" }
     ],
+    "figures": ["fig-dx-product-lifecycle"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
       { "title": "Theodore Levitt「Exploit the Product Life Cycle」Harvard Business Review（1965年11月）", "url": "https://hbr.org/1965/11/exploit-the-product-life-cycle" }
@@ -335,6 +336,7 @@
     "confusions": [
       { "id": "DC-05-101", "point": "プロダクトライフサイクルは、製品の売上が導入期・成長期・成熟期・衰退期と移る「売れ方」の段階。技術Sカーブは、開発の労力に対する技術の「性能の伸び」の変わり方を表す。" }
     ],
+    "figures": ["fig-dx-tech-s-curve"],
     "sources": [
       { "title": "寺内衛・寺内かえで「『イノベーションのジレンマ』における『技術開発のSカーブ』という視点の限界について」Hirao School of Management Review Vol.14（2024年）（Christensen, \"Exploring the Limits of the Technology S-Curve. Part I: Component Technologies\", Production and Operations Management Vol.1（1992年）の引用を含む）", "url": "https://konan-u.repo.nii.ac.jp/record/2000125/files/K04557.pdf" }
     ],

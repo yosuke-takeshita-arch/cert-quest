@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 600" role="img" aria-labelledby="fig-dx-value-chain-analysis-t fig-dx-value-chain-analysis-d">
+<title id="fig-dx-value-chain-analysis-t">バリューチェーン分析：事業を活動に分けて並べ、上流・下流につなぐ</title>
+<desc id="fig-dx-value-chain-analysis-d">上から、仕入れ先（上流）、自社のバリューチェーン、流通チャネル（下流）、顧客の順に並ぶ。全体は、より大きな価値のシステム。自社のバリューチェーンは、戦略上意味のある活動に分けて並べたもので、各活動はコストではなく、価値を少しずつ足す段階として見る。各活動について、より高い価格・より低いコストにつながるかを見て、活動どうしのつながりも見る。DXでは、どの活動をデジタルで作り替えるか、どの活動を外に出すかを決める地図になる。効率よく行うこと（業務の効果）と、他社と違うやり方で行うこと（戦略）は別。</desc>
+<text x="12" y="22" class="tb">事業を活動に分けて並べ、つなぎ方を見る</text>
+<rect x="6" y="36" width="308" height="344" class="l sm w1 dsh"/>
+<text x="16" y="56" class="tm">より大きな価値のシステム</text>
+<rect x="60" y="66" width="200" height="34" class="fwn l swn"/>
+<text x="160" y="88" text-anchor="middle">仕入れ先（上流）</text>
+<line x1="160" y1="100" x2="160" y2="116" class="l sa w2"/>
+<polyline points="155,110 160,116 165,110" class="l sa w2"/>
+<rect x="20" y="118" width="280" height="194" class="fas l sa"/>
+<text x="30" y="138" class="tb">自社のバリューチェーン</text>
+<rect x="30" y="148" width="130" height="30" class="fs l sm"/>
+<text x="40" y="168">活動1</text>
+<text x="150" y="168" class="tok" text-anchor="end">＋価値</text>
+<rect x="30" y="188" width="130" height="30" class="fs l sm"/>
+<text x="40" y="208">活動2</text>
+<text x="150" y="208" class="tok" text-anchor="end">＋価値</text>
+<rect x="30" y="228" width="130" height="30" class="fs l sm"/>
+<text x="40" y="248">活動3</text>
+<text x="150" y="248" class="tok" text-anchor="end">＋価値</text>
+<rect x="30" y="268" width="130" height="30" class="fs l sm"/>
+<text x="40" y="288">活動4</text>
+<text x="150" y="288" class="tok" text-anchor="end">＋価値</text>
+<line x1="95" y1="178" x2="95" y2="188" class="l sa w2"/>
+<line x1="95" y1="218" x2="95" y2="228" class="l sa w2"/>
+<line x1="95" y1="258" x2="95" y2="268" class="l sa w2"/>
+<text x="168" y="208" class="ta">デジタルで</text>
+<text x="168" y="224" class="ta">作り替える？</text>
+<text x="168" y="284" class="ta">外に出す？</text>
+<line x1="160" y1="312" x2="160" y2="328" class="l sa w2"/>
+<polyline points="155,322 160,328 165,322" class="l sa w2"/>
+<rect x="60" y="330" width="200" height="34" class="fok l sok"/>
+<text x="160" y="352" text-anchor="middle">流通チャネル（下流）</text>
+<line x1="160" y1="364" x2="160" y2="392" class="l sa w2"/>
+<polyline points="155,386 160,392 165,386" class="l sa w2"/>
+<text x="160" y="410" class="tb" text-anchor="middle">顧客</text>
+<line x1="12" y1="426" x2="308" y2="426" class="l sb w1"/>
+<text x="12" y="450" class="tb">見ること</text>
+<text x="12" y="472">①どの活動が、より高い価格や</text>
+<text x="12" y="490">　より低いコストを生んでいるか</text>
+<text x="12" y="512">②活動をどう組み立て、どうつなぐか</text>
+<text x="12" y="538" class="tm">効率よく行う（業務の効果）と、</text>
+<text x="12" y="556" class="tm">他社と違うやり方で行う（戦略）は別。</text>
+<text x="12" y="574" class="tm">戦略は②の選び方に表れる</text>
+</svg>

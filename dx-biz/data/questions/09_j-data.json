@@ -948,6 +948,7 @@
     ],
     "memoryTip": "データの一生：構想 → 計画 → 生成・取得 → 処理・分析 → 共有・利用・再利用 → 保存・廃棄。後ろの困りごとは、前で決める。",
     "concepts": ["DC-09-102"],
+    "figures": ["fig-dx-data-lifecycle"],
     "sources": [
       { "title": "NIST「Research Data Framework (RDaF)」", "url": "https://www.nist.gov/programs-projects/research-data-framework-rdaf" }
     ],
@@ -977,6 +978,7 @@
     ],
     "memoryTip": "「考えて（構想）・決めて（計画）・作って（生成）・調べて（分析）・配って（共有）・しまうか捨てる（保存・廃棄）」。",
     "concepts": ["DC-09-102", "DC-03-024", "DC-03-013"],
+    "figures": ["fig-dx-data-lifecycle"],
     "sources": [
       { "title": "NIST「Research Data Framework (RDaF)」", "url": "https://www.nist.gov/programs-projects/research-data-framework-rdaf" }
     ],
