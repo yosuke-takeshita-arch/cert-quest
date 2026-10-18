@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 510" role="img" aria-labelledby="fig-dx-personalization-t fig-dx-personalization-d">
+<title id="fig-dx-personalization-t">パーソナライゼーション：同じアプリでも、人ごとに表示が変わる</title>
+<desc id="fig-dx-personalization-d">上から下への流れの図（人と内容は図の例）。1 利用者ごとの操作の記録（見た、買った、評価した）が集まる。2 機械学習で、一人ひとりの好みや次に取りそうな行動を学ぶ。3 同じ動画アプリでも、料理の動画をよく見るAさんのトップ画面には料理の動画が、サッカーの動画をよく見るBさんの画面にはサッカーの動画が並ぶ。データが多いほど精度が上がる。注意点として、行き過ぎると監視されていると感じさせたり、同じ傾向の情報ばかりになったりするので、データの扱いの説明と配慮が要る。</desc>
+<text x="12" y="22" class="tb">同じ動画アプリで（人と内容は図の例）</text>
+<circle cx="26" cy="54" r="13" class="fa"/>
+<text x="26" y="58.5" class="tb ton" text-anchor="middle">1</text>
+<text x="50" y="50" class="tb">操作の記録が集まる</text>
+<text x="50" y="68">見た・買った・評価した</text>
+<line x1="26" y1="72" x2="26" y2="96" class="l sa w2"/>
+<polyline points="22,90 26,96 30,90" class="l sa w2"/>
+<circle cx="26" cy="114" r="13" class="fa"/>
+<text x="26" y="118.5" class="tb ton" text-anchor="middle">2</text>
+<text x="50" y="110" class="tb">機械学習で好みを学ぶ</text>
+<text x="50" y="128">次に取りそうな行動も予測する</text>
+<line x1="26" y1="132" x2="26" y2="156" class="l sa w2"/>
+<polyline points="22,150 26,156 30,150" class="l sa w2"/>
+<circle cx="26" cy="174" r="13" class="fa"/>
+<text x="26" y="178.5" class="tb ton" text-anchor="middle">3</text>
+<text x="50" y="170" class="tb">人ごとに違う画面を出す</text>
+<text x="50" y="188">おすすめ・表示の順番を変える</text>
+<rect x="12" y="208" width="140" height="170" class="fs l sm"/>
+<text x="82" y="230" class="tb" text-anchor="middle">Aさんの画面</text>
+<text x="82" y="248" class="tm" text-anchor="middle">料理の動画をよく見る</text>
+<rect x="24" y="260" width="116" height="30" class="fok l sok"/>
+<text x="82" y="280" text-anchor="middle">料理の動画</text>
+<rect x="24" y="296" width="116" height="30" class="fok l sok"/>
+<text x="82" y="316" text-anchor="middle">料理の動画</text>
+<rect x="24" y="332" width="116" height="30" class="fok l sok"/>
+<text x="82" y="352" text-anchor="middle">台所の道具</text>
+<rect x="168" y="208" width="140" height="170" class="fs l sm"/>
+<text x="238" y="230" class="tb" text-anchor="middle">Bさんの画面</text>
+<text x="238" y="248" class="tm" text-anchor="middle">サッカーをよく見る</text>
+<rect x="180" y="260" width="116" height="30" class="fwn l swn"/>
+<text x="238" y="280" text-anchor="middle">サッカーの動画</text>
+<rect x="180" y="296" width="116" height="30" class="fwn l swn"/>
+<text x="238" y="316" text-anchor="middle">サッカーの動画</text>
+<rect x="180" y="332" width="116" height="30" class="fwn l swn"/>
+<text x="238" y="352" text-anchor="middle">試合の日程</text>
+<text x="12" y="402">同じアプリでも、トップ画面が違う。</text>
+<text x="12" y="420">データが多いほど、合わせる精度が上がる</text>
+<line x1="12" y1="436" x2="308" y2="436" class="l sb w1"/>
+<text x="12" y="458" class="tb">行き過ぎに注意</text>
+<text x="12" y="478">監視されている感じ・同じ傾向ばかり</text>
+<text x="12" y="496" class="tm">→ データの扱いを説明し、配慮する</text>
+</svg>

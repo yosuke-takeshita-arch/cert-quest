@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 600" role="img" aria-labelledby="fig-dx-regression-t fig-dx-regression-d">
+<title id="fig-dx-regression-t">回帰分析：気温から来店客数を予測する式を作る</title>
+<desc id="fig-dx-regression-d">数は図の例。上：散布図。横軸は気温（度）、縦軸はその日の来店客数（人）。点1つが1日分のデータで、7日分の点が右上がりに並ぶ。点の真ん中を通る直線を引き、それを式で表す。下：式の読み方。したいことは、気温から来店客数を予測すること。ことばの式は、来店客数＝基本の人数＋1度あたりの増え方×気温。例では基本の人数20人、1度あたりの増え方3人。気温30度の日は、20＋3×30＝20＋90＝110人と予測する。意味は、気温が1度上がるごとに客が約3人増えるということ。説明変数（要因）が気温の1つなので単回帰。曜日も加えて2つ以上にすると重回帰。相関分析は関係の強さを見て、回帰分析はどれだけ変わるかを式にする。</desc>
+<text x="12" y="22" class="tb">散布図：気温と来店客数（数は図の例）</text>
+<text x="12" y="40" class="tm">点1つ＝1日分のデータ</text>
+<line x1="56" y1="60" x2="56" y2="240" class="l w1"/>
+<line x1="56" y1="240" x2="300" y2="240" class="l w1"/>
+<text x="50" y="66" class="tm" text-anchor="end">120</text>
+<text x="50" y="126" class="tm" text-anchor="end">80</text>
+<text x="50" y="186" class="tm" text-anchor="end">40</text>
+<text x="50" y="244" class="tm" text-anchor="end">0</text>
+<text x="56" y="258" class="tm" text-anchor="middle">0</text>
+<text x="136" y="258" class="tm" text-anchor="middle">10</text>
+<text x="216" y="258" class="tm" text-anchor="middle">20</text>
+<text x="296" y="258" class="tm" text-anchor="middle">30</text>
+<line x1="56" y1="210" x2="296" y2="75" class="l sa w2"/>
+<circle cx="152" cy="153" r="4.5" class="ft"/>
+<circle cx="176" cy="133" r="4.5" class="ft"/>
+<circle cx="200" cy="130" r="4.5" class="ft"/>
+<circle cx="224" cy="111" r="4.5" class="ft"/>
+<circle cx="248" cy="108" r="4.5" class="ft"/>
+<circle cx="272" cy="84" r="4.5" class="ft"/>
+<circle cx="296" cy="78" r="4.5" class="ft"/>
+<circle cx="296" cy="75" r="7" class="l sng w2"/>
+<text x="62" y="80" class="tm">縦軸：来店客数（人）</text>
+<text x="300" y="278" class="tm" text-anchor="end">横軸：気温（度）</text>
+<text x="190" y="196" class="ta">点の真ん中を通る線</text>
+<text x="190" y="214" class="ta">＝ 式で表す</text>
+<line x1="12" y1="296" x2="308" y2="296" class="l sb w1"/>
+<text x="12" y="318" class="tb">したいこと：気温から客数を予測する</text>
+<text x="12" y="342">来店客数 ＝ 基本の人数</text>
+<text x="12" y="360">　　　　　 ＋ 1度あたりの増え方 × 気温</text>
+<text x="12" y="386" class="tm">例：基本の人数＝20人、増え方＝3人</text>
+<text x="12" y="410">気温30度の日（線の右端の大きな丸）：</text>
+<text x="12" y="430">20 ＋ 3 × 30 ＝ 20 ＋ 90</text>
+<text x="12" y="450" class="tb">　　　　　 ＝ 110人と予測</text>
+<text x="12" y="474">意味：気温が1度上がると、客が約3人増える</text>
+<line x1="12" y1="490" x2="308" y2="490" class="l sb w1"/>
+<text x="12" y="512">要因（説明変数）が気温だけ → <tspan class="tb">単回帰</tspan></text>
+<text x="12" y="532">曜日も足して2つ以上 → <tspan class="tb">重回帰</tspan></text>
+<text x="12" y="560" class="tm">相関分析＝関係の強さを見る</text>
+<text x="12" y="580" class="tm">回帰分析＝どれだけ変わるかを式にする</text>
+</svg>

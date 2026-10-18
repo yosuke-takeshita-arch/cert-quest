@@ -447,6 +447,7 @@
     ],
     "memoryTip": "価値は「足した機能の数」ではなく「顧客の課題との一致度」。",
     "concepts": ["DC-01-102", "DC-05-024"],
+    "figures": ["fig-dx-design-thinking"],
     "sources": [
       { "title": "Strategyzer「The Value Proposition Canvas」", "url": "https://www.strategyzer.com/library/the-value-proposition-canvas" },
       { "title": "IPA・経済産業省「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
@@ -538,6 +539,7 @@
     ],
     "memoryTip": "両面市場のループ：A側が増える→B側の魅力が増す→B側が増える→A側の魅力が増す。データはループを強める増幅器。",
     "concepts": ["DC-06-005", "DC-05-006"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -597,6 +599,7 @@
     ],
     "memoryTip": "ネットワーク効果は「集める力」と「一緒に去る力」の両方を持つ。仲間が移れば、自分も移る。",
     "concepts": ["DC-05-006", "DC-06-005"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -626,6 +629,7 @@
     ],
     "memoryTip": "立ち上げ期のばらまき＝「いまの採算」を「これからの雪だるま」と引き換える判断。",
     "concepts": ["DC-05-006", "DC-06-005", "DC-05-007"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -655,6 +659,7 @@
     ],
     "memoryTip": "移せない資産（写真・つながり）→乗り換えの負担→ロックイン→競争が効きにくくなる。",
     "concepts": ["DC-07-022", "DC-07-013", "DC-06-005"],
+    "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -684,6 +689,7 @@
     ],
     "memoryTip": "技術の数が増える→1社で抱えきれない→外の技術を取り込む。自前主義の限界は「複雑さ」から来る。",
     "concepts": ["DC-07-005", "DC-05-016"],
+    "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "NEDO「オープンイノベーション白書 第二版」第1章", "url": "https://www.nedo.go.jp/content/100879995.pdf" }
     ],
@@ -1208,6 +1214,7 @@
     ],
     "memoryTip": "基盤型の循環＝「入りやすい→アプリが増える→人が集まる→もっと作り手が来る」。起点は「自前で全部そろえなくてよい」こと。",
     "concepts": ["DC-06-006", "DC-05-006"],
+    "figures": ["fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],

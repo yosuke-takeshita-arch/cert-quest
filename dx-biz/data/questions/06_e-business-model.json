@@ -328,6 +328,7 @@
     ],
     "memoryTip": "1曲・1本ずつ払う（ダウンロード課金）→月いくらで聞き放題・見放題（サブスク）。",
     "concepts": ["DC-08-001"],
+    "figures": ["fig-dx-revenue-models"],
     "sources": [
       { "title": "総務省「平成28年版 情報通信白書」コンテンツ配信サービス市場", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc122220.html" }
     ],
@@ -495,6 +496,7 @@
     ],
     "memoryTip": "シェアの5類型＝モノ・空間・スキル・移動・お金。どれも「個人の持っているもの」を回す。",
     "concepts": ["DC-06-009", "DC-06-025", "DC-06-012"],
+    "figures": ["fig-dx-sharing"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」シェアリング・エコノミー（C to Cサービス）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112220.html" }
     ],
@@ -524,6 +526,7 @@
     ],
     "memoryTip": "デジタルCX＝「画面」ではなく「知る→使う→使い終える」までの流れ全体。",
     "concepts": ["DC-06-101", "DC-04-004"],
+    "figures": ["fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" },
       { "title": "デジタル庁「DS-100 デジタル・ガバメント推進標準ガイドライン」（2026年6月12日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/54d8725e/20260715_resources_standard_guidelines_guideline_01.pdf" }
@@ -554,6 +557,7 @@
     ],
     "memoryTip": "キャッチ→トライ→キャッチ→トライ。試作を試さずに出すと、輪は一回目で切れる。",
     "concepts": ["DC-06-101", "DC-05-024"],
+    "figures": ["fig-dx-design-thinking"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" }
     ],
@@ -583,6 +587,7 @@
     ],
     "memoryTip": "体験は「いちばん弱い接点」で決まる。画面だけ良くしても、店で途切れれば台無し。",
     "concepts": ["DC-06-101", "DC-04-008", "DC-04-004"],
+    "figures": ["fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" },
       { "title": "デジタル庁「DS-100 デジタル・ガバメント推進標準ガイドライン」（2026年6月12日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/54d8725e/20260715_resources_standard_guidelines_guideline_01.pdf" }
@@ -613,6 +618,7 @@
     ],
     "memoryTip": "解約率↑→LTV↓→LTV÷CAC↓→採算↓。解約率はLTVの分母、LTVはユニットエコノミクスの分子。",
     "concepts": ["DC-08-015", "DC-08-001"],
+    "figures": ["fig-dx-churn-ltv"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTV（Life Time Value：顧客生涯価値）とは」", "url": "https://www.salesforce.com/jp/marketing/what-is-life-time-value/" }
     ],
@@ -642,6 +648,7 @@
     ],
     "memoryTip": "定額制の成長＝新規の獲得 −解約。穴の空いたバケツに水を注いでも、たまらない。",
     "concepts": ["DC-08-015", "DC-08-001"],
+    "figures": ["fig-dx-churn-ltv"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTV（Life Time Value：顧客生涯価値）とは」", "url": "https://www.salesforce.com/jp/marketing/what-is-life-time-value/" }
     ],
@@ -671,6 +678,7 @@
     ],
     "memoryTip": "「みんなが使っている」＋「乗り換えが面倒」＝少し良いだけでは乗り換えない（ロックイン）。",
     "concepts": ["DC-06-005", "DC-05-006", "DC-07-022"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" }
     ],
@@ -700,6 +708,7 @@
     ],
     "memoryTip": "使う→記録→おすすめが合う→もっと使う。ループを止めるのは「データへの不安」。",
     "concepts": ["DC-06-021", "DC-05-105"],
+    "figures": ["fig-dx-personalization"],
     "sources": [
       { "title": "AWS ドキュメント「Amazon Personalize とは」", "url": "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html" },
       { "title": "総務省「令和2年版 情報通信白書」匿名加工情報のさらなる活用", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd133430.html" }
@@ -788,6 +797,7 @@
     ],
     "memoryTip": "CRMは『集める→まとめて分析→働きかける』の3段。真ん中が抜けると、集めたデータが関係づくりに届かない。",
     "concepts": ["DC-06-102", "DC-07-011"],
+    "figures": ["fig-dx-crm"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -817,6 +827,7 @@
     ],
     "memoryTip": "CRM＝関係づくりの経営。ツール＝その手段。道具を買っても、集める・分析・働きかけを回さなければ関係は深まらない。",
     "concepts": ["DC-06-102"],
+    "figures": ["fig-dx-crm"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -905,6 +916,7 @@
     ],
     "memoryTip": "結果だけ送る＝守れて安いが、元の映像は残らない。何を見たいかを先に決める。",
     "concepts": ["DC-06-104", "DC-05-105", "DC-02-003"],
+    "figures": ["fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "ソニーセミコンダクタソリューションズ「AITRIOS：エッジAIセンシングプラットフォーム」", "url": "https://www.aitrios.sony-semicon.com/ja/" }
     ],
@@ -963,6 +975,7 @@
     ],
     "memoryTip": "品ぞろえ・物流→見つかる・早く届く→接点が増える→合った提案→また品ぞろえ・物流へ。",
     "concepts": ["DC-06-105", "DC-06-013", "DC-05-002"],
+    "figures": ["fig-dx-long-tail"],
     "sources": [
       { "title": "MonotaRO「MonotaRO 事業概要」（2026年6月末時点）", "url": "https://corp.monotaro.com/ir/upload_file/m005-m005_08/MonotaRO_Business_JPN_FY26Q2.pdf" }
     ],
@@ -1196,6 +1209,7 @@
     ],
     "memoryTip": "自分で作る＝速さと供給を握る。代わりに、巨額の投資と「うまくいかないかも」を背負う。だから買うのもやめない。",
     "concepts": ["DC-06-108", "DC-06-001"],
+    "figures": ["fig-dx-value-chain-roles"],
     "sources": [
       { "title": "Space Exploration Technologies Corp. Form S-1 Registration Statement（米国証券取引委員会 EDGAR、2026年5月20日提出）", "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm" }
     ],

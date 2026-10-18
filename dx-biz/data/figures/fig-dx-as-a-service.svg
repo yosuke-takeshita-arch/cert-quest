@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-as-a-service-t fig-dx-as-a-service-d">
+<title id="fig-dx-as-a-service-t">アズアサービス：持たずに、必要な分だけ使う</title>
+<desc id="fig-dx-as-a-service-d">上：持つ形とアズアサービスの比べ。持つ形は、買って自分で持ち、大きな初期費用がかかり、管理も自分でする。アズアサービス（〇〇 as a Service）は、持たずに、必要なときに必要な分だけ使って払う。中：クラウドの3つの形を、事業者がどこまで用意するかで比べた表。下から、サーバーなどの基盤、アプリを動かす環境（OSや開発環境）、アプリ。IaaSは基盤だけを事業者が用意する。PaaSは基盤とアプリを動かす環境まで。SaaSはアプリまで全部。残りは利用者が用意する。下：ほかの例。MaaSは、複数の公共交通やそれ以外の移動サービスを組み合わせ、検索・予約・決済などを一括で行うサービス（国土交通省）。BaaSは金融の機能をAPI（プログラムから機能を呼び出す窓口）で非金融企業に提供する。</desc>
+<text x="12" y="22" class="tb">持つか、サービスとして使うか</text>
+<rect x="12" y="34" width="140" height="92" class="fs l sm"/>
+<text x="82" y="56" class="tb" text-anchor="middle">持つ（所有）</text>
+<text x="82" y="78" text-anchor="middle">買って持つ</text>
+<text x="82" y="96" text-anchor="middle">初期費用が大きい</text>
+<text x="82" y="114" text-anchor="middle">管理も自分で</text>
+<rect x="168" y="34" width="140" height="92" class="fok l sok"/>
+<text x="238" y="56" class="tb" text-anchor="middle">as a Service</text>
+<text x="238" y="78" text-anchor="middle">持たずに使う</text>
+<text x="238" y="96" text-anchor="middle">必要な分だけ</text>
+<text x="238" y="114" text-anchor="middle">使って払う</text>
+<line x1="12" y1="144" x2="308" y2="144" class="l sb w1"/>
+<text x="12" y="168" class="tb">クラウドの3つ：事業者がどこまで用意するか</text>
+<rect x="12" y="180" width="14" height="14" class="fa"/>
+<text x="32" y="192">＝事業者が用意</text>
+<rect x="160" y="180" width="14" height="14" class="fs l sm w1"/>
+<text x="180" y="192">＝利用者が用意</text>
+<text x="124" y="222" class="tb" text-anchor="middle">IaaS</text>
+<text x="188" y="222" class="tb" text-anchor="middle">PaaS</text>
+<text x="252" y="222" class="tb" text-anchor="middle">SaaS</text>
+<text x="12" y="250">アプリ</text>
+<rect x="94" y="232" width="60" height="28" class="fs l sm"/>
+<rect x="158" y="232" width="60" height="28" class="fs l sm"/>
+<rect x="222" y="232" width="60" height="28" class="fa"/>
+<text x="12" y="276">動かす環境</text>
+<text x="12" y="292" class="tm">（OSなど）</text>
+<rect x="94" y="264" width="60" height="28" class="fs l sm"/>
+<rect x="158" y="264" width="60" height="28" class="fa"/>
+<rect x="222" y="264" width="60" height="28" class="fa"/>
+<text x="12" y="318">基盤</text>
+<text x="12" y="334" class="tm">（サーバー）</text>
+<rect x="94" y="300" width="60" height="28" class="fa"/>
+<rect x="158" y="300" width="60" height="28" class="fa"/>
+<rect x="222" y="300" width="60" height="28" class="fa"/>
+<text x="124" y="356" text-anchor="middle">基盤だけ</text>
+<text x="188" y="356" text-anchor="middle">環境まで</text>
+<text x="252" y="356" text-anchor="middle">アプリまで</text>
+<text x="12" y="384" class="tm">右へ行くほど、利用者が用意する物が減る</text>
+<line x1="12" y1="402" x2="308" y2="402" class="l sb w1"/>
+<text x="12" y="426" class="tb">ほかの「〇〇 as a Service」</text>
+<text x="12" y="450" class="tb">MaaS</text>
+<text x="64" y="450">複数の交通・移動のサービスを組み</text>
+<text x="64" y="468">合わせ、検索・予約・決済を一括で</text>
+<text x="12" y="496" class="tb">BaaS</text>
+<text x="64" y="496">金融の機能を、APIで</text>
+<text x="64" y="514">金融ではない企業に提供</text>
+<text x="12" y="542" class="tm">API＝プログラムから機能を呼び出す窓口</text>
+</svg>

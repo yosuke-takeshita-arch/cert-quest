@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-data-cleansing-t fig-dx-data-cleansing-d">
+<title id="fig-dx-data-cleansing-t">データクレンジング：直す前と直した後で、集計が変わる</title>
+<desc id="fig-dx-data-cleansing-d">会員の表の例（名前と数は図の例）。直す前は4行。1行目は田中・東京都・35歳。2行目は田中・東京・35歳で、1行目と同じ人が別の書き方（表記ゆれ）で重複している。3行目は佐藤・住所が空欄・28歳で、欠損。4行目は鈴木・大阪府・350歳で、年齢の誤記。このまま数えると会員数は4人、東京都と東京が別々に数えられる。直した後は3行。田中・東京都・35歳。佐藤は住所を確かめて補う。鈴木の年齢は元の記録で確かめて直す。会員数は3人に正しくなる。重複・欠損・表記ゆれ・誤記があると、集計がずれたり、表を結合できなかったりし、BIや機械学習の判断もゆがむ。</desc>
+<text x="12" y="22" class="tb">会員の表（名前と数は図の例）</text>
+<text x="12" y="48" class="tb">直す前：4行</text>
+<rect x="12" y="58" width="296" height="28" class="fs l sm w1"/>
+<text x="24" y="77">田中</text>
+<text x="84" y="77">東京都</text>
+<text x="160" y="77">35歳</text>
+<rect x="12" y="86" width="296" height="28" class="fng l sng w1"/>
+<text x="24" y="105">田中</text>
+<text x="84" y="105" class="tb tng">東京</text>
+<text x="160" y="105">35歳</text>
+<text x="214" y="105" class="tng">重複・ゆれ</text>
+<rect x="12" y="114" width="296" height="28" class="fng l sng w1"/>
+<text x="24" y="133">佐藤</text>
+<text x="84" y="133" class="tb tng">（空欄）</text>
+<text x="160" y="133">28歳</text>
+<text x="214" y="133" class="tng">欠損</text>
+<rect x="12" y="142" width="296" height="28" class="fng l sng w1"/>
+<text x="24" y="161">鈴木</text>
+<text x="84" y="161">大阪府</text>
+<text x="160" y="161" class="tb tng">350歳</text>
+<text x="214" y="161" class="tng">誤記</text>
+<text x="12" y="192">このまま数えると</text>
+<text x="12" y="212">会員数 ＝ <tspan class="tb">4人</tspan>（同じ田中さんを2回数える）</text>
+<text x="12" y="232">「東京都」と「東京」が別々の地域になる</text>
+<line x1="160" y1="244" x2="160" y2="270" class="l sok w2"/>
+<polyline points="155,263 160,270 165,263" class="l sok w2"/>
+<text x="172" y="262" class="tm">見つけて直す</text>
+<text x="12" y="294" class="tb">直した後：3行</text>
+<rect x="12" y="304" width="296" height="28" class="fok l sok w1"/>
+<text x="24" y="323">田中</text>
+<text x="84" y="323">東京都</text>
+<text x="160" y="323">35歳</text>
+<rect x="12" y="332" width="296" height="28" class="fok l sok w1"/>
+<text x="24" y="351">佐藤</text>
+<text x="84" y="351">確かめて補う</text>
+<text x="214" y="351">28歳</text>
+<rect x="12" y="360" width="296" height="28" class="fok l sok w1"/>
+<text x="24" y="379">鈴木</text>
+<text x="84" y="379">大阪府</text>
+<text x="160" y="379">元の記録で確かめて直す</text>
+<text x="12" y="410">会員数 ＝ <tspan class="tb">3人</tspan>（正しく数えられる）</text>
+<line x1="12" y1="428" x2="308" y2="428" class="l sb w1"/>
+<text x="12" y="450" class="tb">直す4つ：重複・欠損・表記ゆれ・誤記</text>
+<text x="12" y="474">直さないと、集計がずれ、表を結合</text>
+<text x="12" y="492">できず、BI（見える化して判断に</text>
+<text x="12" y="510">生かすツール）や機械学習の判断も</text>
+<text x="12" y="528">ゆがむ</text>
+</svg>

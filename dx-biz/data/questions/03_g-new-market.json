@@ -517,6 +517,7 @@
     ],
     "memoryTip": "デザイン思考は「一方通行」ではなく「行き来する」。テストの気付き→問題定義へ戻る。",
     "concepts": ["DC-05-024"],
+    "figures": ["fig-dx-design-thinking"],
     "sources": [
       { "title": "IPA「DX白書2021」第4部 DXを支える手法と技術", "url": "https://www.ipa.go.jp/publish/wp-dx/qv6pgp0000000txx-att/000093702.pdf" }
     ],
@@ -546,6 +547,7 @@
     ],
     "memoryTip": "問題定義では「解決策を考えない」。考えた瞬間、解けそうな問題に引っぱられる。",
     "concepts": ["DC-05-024"],
+    "figures": ["fig-dx-design-thinking"],
     "sources": [
       { "title": "IPA「DX白書2021」第4部 DXを支える手法と技術", "url": "https://www.ipa.go.jp/publish/wp-dx/qv6pgp0000000txx-att/000093702.pdf" }
     ],
@@ -634,6 +636,7 @@
     ],
     "memoryTip": "宇宙もアジャイル：失敗を許して回数を増やす→安く・早く出せる→地上のデジタルと組んで市場が広がる。",
     "concepts": ["DC-03-105", "DC-02-007"],
+    "figures": ["fig-dx-agile"],
     "sources": [
       { "title": "宇宙開発戦略本部「宇宙基本計画」（令和5年6月13日 閣議決定）", "url": "https://www8.cao.go.jp/space/plan/plan2/kaitei_fy05/honbun_fy05.pdf" }
     ],
@@ -779,6 +782,7 @@
     ],
     "memoryTip": "土台（基本ソフト・部品・接続口）はそろえて仲間を増やす。上物（自律の頭脳）で競う。",
     "concepts": ["DC-03-107", "DC-01-103", "DC-05-016"],
+    "figures": ["fig-dx-open-close"],
     "sources": [
       { "title": "総合海洋政策本部「自律型無人探査機（AUV）の社会実装に向けた戦略」（令和5年12月22日）", "url": "https://www8.cao.go.jp/ocean/policies/auv/auv_strategy/pdf/auv_strategy2312.pdf" }
     ],
@@ -984,6 +988,7 @@
     ],
     "memoryTip": "標準設計＝基本設計は1か所で共通に、建造に向けた設計と建造は各造船所で、買い手の海運も出資で後押し。",
     "concepts": ["DC-03-113", "DC-01-014"],
+    "figures": ["fig-dx-coop-compete"],
     "sources": [
       { "title": "三菱重工業「MILESを活用した液化CO₂輸送船・新燃料船等の標準設計スキームに関する覚書締結について」（2025年12月1日）", "url": "https://www.mhi.com/jp/news/25120102.html" }
     ],

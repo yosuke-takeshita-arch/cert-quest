@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-dx-customer-data-t fig-dx-customer-data-d">
+<title id="fig-dx-customer-data-t">顧客データ活用：ばらばらのデータをつなぎ、一人の全体像を見る</title>
+<desc id="fig-dx-customer-data-d">上：店舗・EC・アプリ・コールセンターが、それぞれ別々に顧客データを持っている（購買履歴、利用履歴、問い合わせなど）。中：それらを統合すると、一人の顧客の全体像が見える（例：店でもECでも買い、アプリはよく開くが、先週問い合わせをした人）。下：使い道は、おすすめ、離脱しそうな顧客への働きかけ、アップセル・クロスセルの提案、商品開発やサービス改善。前提として、個人情報を扱うので、利用目的の特定と通知・公表など、個人情報保護法のルールを守る。</desc>
+<text x="12" y="22" class="tb">いまは、窓口ごとにばらばら</text>
+<rect x="12" y="34" width="68" height="64" class="fs l sm"/>
+<text x="46" y="60" text-anchor="middle">店舗</text>
+<text x="46" y="84" class="tm" text-anchor="middle">購買</text>
+<rect x="88" y="34" width="68" height="64" class="fs l sm"/>
+<text x="122" y="60" text-anchor="middle">EC</text>
+<text x="122" y="84" class="tm" text-anchor="middle">購買</text>
+<rect x="164" y="34" width="68" height="64" class="fs l sm"/>
+<text x="198" y="60" text-anchor="middle">アプリ</text>
+<text x="198" y="84" class="tm" text-anchor="middle">利用</text>
+<rect x="240" y="34" width="68" height="64" class="fs l sm"/>
+<text x="274" y="54" text-anchor="middle">コール</text>
+<text x="274" y="70" text-anchor="middle">センター</text>
+<text x="274" y="90" class="tm" text-anchor="middle">問い合わせ</text>
+<line x1="46" y1="98" x2="140" y2="132" class="l sa w1"/>
+<line x1="122" y1="98" x2="152" y2="132" class="l sa w1"/>
+<line x1="198" y1="98" x2="168" y2="132" class="l sa w1"/>
+<line x1="274" y1="98" x2="180" y2="132" class="l sa w1"/>
+<rect x="100" y="134" width="120" height="30" class="fa"/>
+<text x="160" y="154" class="tb ton" text-anchor="middle">つなげる（統合）</text>
+<line x1="160" y1="164" x2="160" y2="182" class="l sa w2"/>
+<polyline points="156,176 160,182 164,176" class="l sa w2"/>
+<rect x="12" y="184" width="296" height="104" class="fok l sok"/>
+<text x="24" y="206" class="tb">一人の全体像が見える（図の例）</text>
+<text x="24" y="230">・店でもECでも買う</text>
+<text x="24" y="252">・アプリはよく開く</text>
+<text x="24" y="274">・先週、問い合わせをした</text>
+<line x1="160" y1="288" x2="160" y2="306" class="l sa w2"/>
+<polyline points="156,300 160,306 164,300" class="l sa w2"/>
+<text x="12" y="330" class="tb">生かし方</text>
+<text x="12" y="354">・その人に合うおすすめ</text>
+<text x="12" y="376">・離れそうな人への働きかけ</text>
+<text x="12" y="398">・アップセル・クロスセルの提案</text>
+<text x="12" y="420">・商品開発・サービス改善</text>
+<rect x="12" y="440" width="296" height="80" class="fwn l swn"/>
+<text x="24" y="462" class="tb">前提：個人情報保護法を守る</text>
+<text x="24" y="484">利用目的を特定し、</text>
+<text x="24" y="504">通知・公表する など</text>
+</svg>

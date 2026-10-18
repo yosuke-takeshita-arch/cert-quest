@@ -243,6 +243,7 @@
     "confusions": [
       { "title": "教師あり学習", "point": "教師あり学習は正解の付いた例から学ぶ。強化学習は正解を教わらず、行動の結果として返ってくる報酬から学ぶ。" }
     ],
+    "figures": ["fig-dx-reinforcement"],
     "sources": [
       { "title": "Sutton & Barto「Reinforcement Learning: An Introduction」1.1 Reinforcement Learning", "url": "http://incompleteideas.net/book/ebook/node7.html" },
       { "title": "Sutton & Barto「Reinforcement Learning: An Introduction」1.2 Examples", "url": "http://incompleteideas.net/book/ebook/node8.html" },
@@ -396,7 +397,7 @@
     "confusions": [
       { "id": "DC-07-103", "point": "強化学習は、正解のラベルではなく、試行錯誤した行動に与える報酬から、長い目で見て良い行動を学ぶ。" }
     ],
-    "figures": ["fig-dx-ai-ml-dl"],
+    "figures": ["fig-dx-supervised-unsupervised", "fig-dx-ai-ml-dl"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」AIに関する基本的な仕組み", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113210.html" },
       { "title": "IPA「ITパスポート試験 シラバス Ver.6.4」", "url": "https://www.ipa.go.jp/shiken/syllabus/nl10bi0000007sxy-att/syllabus_ip_ver6_4.pdf" }

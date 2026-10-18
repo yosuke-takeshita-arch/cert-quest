@@ -133,6 +133,7 @@
     "confusions": [
       { "title": "仮想マシン（VM）", "point": "VM＝ハードウェアを仮想化し、VMごとにOSを丸ごと持つ（隔離が強い）。コンテナ＝OSのカーネルを共有し、アプリを箱に入れる（軽く持ち運びやすいが、隔離はVMより弱い）。" }
     ],
+    "figures": ["fig-dx-container-vm"],
     "sources": [
       { "title": "NIST SP 800-190「Application Container Security Guide」", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-190.pdf" }
     ],

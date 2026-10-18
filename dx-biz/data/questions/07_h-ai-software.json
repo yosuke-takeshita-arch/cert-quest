@@ -376,6 +376,7 @@
     ],
     "memoryTip": "活用＝知っている当たりを引く（今の報酬）／探索＝知らない手を試す（将来の報酬）。片方だけでは負ける。",
     "concepts": ["DC-07-103"],
+    "figures": ["fig-dx-reinforcement"],
     "sources": [
       { "title": "Sutton & Barto「Reinforcement Learning: An Introduction」1.1 Reinforcement Learning", "url": "http://incompleteideas.net/book/ebook/node7.html" }
     ],
@@ -405,6 +406,7 @@
     ],
     "memoryTip": "AIは「言われた数字」を最大にする。「言わなかった大事なこと」は守らない。（報酬の抜け → 意図しない行動 → 対策：報酬と制約の設計）",
     "concepts": ["DC-07-103"],
+    "figures": ["fig-dx-reinforcement"],
     "sources": [
       { "title": "Sutton & Barto「Reinforcement Learning: An Introduction」1.1 Reinforcement Learning", "url": "http://incompleteideas.net/book/ebook/node7.html" },
       { "title": "Amodei ほか「Concrete Problems in AI Safety」（arXiv:1606.06565, 2016）", "url": "https://arxiv.org/abs/1606.06565" }
@@ -465,6 +467,7 @@
     ],
     "memoryTip": "覚え込ませる（ファインチューニング）＝型はそろうが、中身の更新は学び直し。調べさせる（RAG）＝文書を差し替えれば最新。",
     "concepts": ["DC-07-104", "DC-02-019"],
+    "figures": ["fig-dx-rag"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft Foundry の微調整に関する考慮事項」", "url": "https://learn.microsoft.com/ja-jp/azure/foundry/openai/concepts/fine-tuning-considerations" },
       { "title": "Lewis ほか「Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks」（arXiv:2005.11401, 2020）", "url": "https://arxiv.org/abs/2005.11401" }
@@ -584,6 +587,7 @@
     ],
     "memoryTip": "RAGは誤りを「減らす」道具で「消す」道具ではない。（調べて答える → 根拠が付く → それでも最後は人が確かめる）",
     "concepts": ["DC-07-106", "DC-02-019"],
+    "figures": ["fig-dx-rag"],
     "sources": [
       { "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）」（2026年3月31日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf" },
       { "title": "総務省「令和6年版 情報通信白書」生成AIが抱える課題", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141100.html" }
@@ -907,6 +911,7 @@
     ],
     "memoryTip": "教師あり＝答え付きで学ぶ（付ける手間＝予測できる力）。教師なし＝答え無しでまとめる。",
     "concepts": ["DC-07-110"],
+    "figures": ["fig-dx-supervised-unsupervised"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」AIに関する基本的な仕組み", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113210.html" },
       { "title": "IPA「ITパスポート試験 シラバス Ver.6.4」", "url": "https://www.ipa.go.jp/shiken/syllabus/nl10bi0000007sxy-att/syllabus_ip_ver6_4.pdf" }
@@ -937,6 +942,7 @@
     ],
     "memoryTip": "教師なし＝『似たもの同士で分ける』まで。『それが何か』の名札は人が付ける。",
     "concepts": ["DC-07-110", "DC-03-020"],
+    "figures": ["fig-dx-supervised-unsupervised"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」AIに関する基本的な仕組み", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113210.html" }
     ],
@@ -1054,6 +1060,7 @@
     ],
     "memoryTip": "個別につなぐ＝データ源の数だけ作って保守する。MCP＝共通の差し込み口に合わせて作る（USB-C のたとえ）。",
     "concepts": ["DC-02-020", "DC-02-018"],
+    "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "Anthropic「Introducing the Model Context Protocol」（2024年11月）", "url": "https://www.anthropic.com/news/model-context-protocol" }
     ],

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 476" role="img" aria-labelledby="fig-dx-fractional-ownership-t fig-dx-fractional-ownership-d">
+<title id="fig-dx-fractional-ownership-t">部分所有モデル：1つの高価な資産を、複数の人で分けて持つ</title>
+<desc id="fig-dx-fractional-ownership-d">別荘の1住戸を4人で分けて持つ例で、数は図の例。上：買う値段。1人で買えば4,000万円。4人で分ければ、1人あたり4,000万円÷4人で1,000万円。中：使う期間。1年52週を4人で分け、52週÷4人で1人13週ずつ、毎年決まった期間を使う（Aさんは1〜13週、Bさんは14〜26週、Cさんは27〜39週、Dさんは40〜52週）。下：全部を1人で持つのでも、毎回借りるのでもない中間の形。利用日の調整や、管理・運営を担う主体が要る。</desc>
+<text x="12" y="22" class="tb">別荘の1住戸を4人で（数は図の例）</text>
+<text x="12" y="48" class="tb">買う値段</text>
+<rect x="12" y="58" width="296" height="30" class="fng l sng"/>
+<text x="160" y="78" text-anchor="middle">1人で買うと 4,000万円</text>
+<rect x="12" y="96" width="74" height="30" class="fok l sok"/>
+<rect x="86" y="96" width="74" height="30" class="fok l sok"/>
+<rect x="160" y="96" width="74" height="30" class="fok l sok"/>
+<rect x="234" y="96" width="74" height="30" class="fok l sok"/>
+<text x="49" y="116" text-anchor="middle">A</text>
+<text x="123" y="116" text-anchor="middle">B</text>
+<text x="197" y="116" text-anchor="middle">C</text>
+<text x="271" y="116" text-anchor="middle">D</text>
+<text x="12" y="150">4,000万円 ÷ 4人</text>
+<text x="12" y="170" class="tb">＝ 1人あたり 1,000万円</text>
+<line x1="12" y1="186" x2="308" y2="186" class="l sb w1"/>
+<text x="12" y="210" class="tb">使う期間（毎年くり返す）</text>
+<rect x="12" y="222" width="74" height="30" class="fas l sa"/>
+<rect x="86" y="222" width="74" height="30" class="fs l sa"/>
+<rect x="160" y="222" width="74" height="30" class="fas l sa"/>
+<rect x="234" y="222" width="74" height="30" class="fs l sa"/>
+<text x="49" y="242" text-anchor="middle">A</text>
+<text x="123" y="242" text-anchor="middle">B</text>
+<text x="197" y="242" text-anchor="middle">C</text>
+<text x="271" y="242" text-anchor="middle">D</text>
+<text x="12" y="270" class="tm">1週</text>
+<text x="308" y="270" class="tm" text-anchor="end">52週</text>
+<text x="12" y="296">1年52週 ÷ 4人</text>
+<text x="12" y="316" class="tb">＝ 1人13週ずつ、決まった期間を使う</text>
+<line x1="12" y1="332" x2="308" y2="332" class="l sb w1"/>
+<text x="12" y="356" class="tb">全部を持つ ／ 毎回借りる の中間</text>
+<text x="12" y="378">1人では買えない・使い切れない物に</text>
+<text x="12" y="396">手が届く</text>
+<rect x="12" y="414" width="296" height="48" class="fwn l swn"/>
+<text x="24" y="434">要るもの：利用日の調整と、</text>
+<text x="24" y="452">管理・運営を担う主体</text>
+</svg>

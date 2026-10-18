@@ -199,6 +199,7 @@
     ],
     "memoryTip": "ツール導入は「スタートライン」。ゴールではない。",
     "concepts": ["DC-01-013", "DC-01-001"],
+    "figures": ["fig-dx-3stages"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）4.1", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }
     ],
@@ -1300,6 +1301,7 @@
     ],
     "memoryTip": "おすすめの材料＝お客さんの「触った・見た・買った」の記録。",
     "concepts": ["DC-04-016", "DC-04-025"],
+    "figures": ["fig-dx-personalization"],
     "sources": [
       { "title": "AWS ドキュメント「Amazon Personalize とは」", "url": "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html" }
     ],
@@ -2446,6 +2448,7 @@
     ],
     "memoryTip": "〇〇 as a Service＝〇〇を持たずに、サービスとして使う。銀行の機能も例外ではない。",
     "concepts": ["DC-06-020", "DC-02-008"],
+    "figures": ["fig-dx-as-a-service"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -2469,6 +2472,7 @@
     ],
     "memoryTip": "家事代行＝「人の手間（スキルと時間）」を借りる。だからスキル×シェア。",
     "concepts": ["DC-06-025", "DC-06-009"],
+    "figures": ["fig-dx-sharing"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」シェアリング・エコノミー（C to Cサービス）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112220.html" }
     ],
@@ -3228,6 +3232,7 @@
     ],
     "memoryTip": "フリーミアムの落とし穴＝「無料」の言い過ぎ。無料の範囲ははっきり書く。",
     "concepts": ["DC-08-002"],
+    "figures": ["fig-dx-freemium"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -3413,6 +3418,7 @@
     ],
     "memoryTip": "フリーミアム＝無料（Free）で集めて、上質（Premium）で稼ぐ。ただし「完全無料」と言い過ぎない。",
     "concepts": ["DC-08-002", "DC-08-003"],
+    "figures": ["fig-dx-freemium"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -3639,6 +3645,7 @@
     ],
     "memoryTip": "LCC＝基本は安く、座席指定や荷物は「足したい人が足す」（アドオン）。",
     "concepts": ["DC-08-003"],
+    "figures": ["fig-dx-addon"],
     "sources": [
       { "title": "国土交通省「平成28年度 政策レビュー結果（評価書）LCCの事業展開の促進」（平成29年3月）", "url": "https://www.mlit.go.jp/common/001179271.pdf" }
     ],
@@ -3843,6 +3850,7 @@
     ],
     "memoryTip": "SEO＝広告でない検索結果で見つかる工夫。お金で枠を買う＝リスティング広告。AIの回答に載る＝GEO。",
     "concepts": ["DC-13-101", "DC-08-010", "DC-02-022"],
+    "figures": ["fig-dx-seo-listing"],
     "sources": [
       { "title": "Google 検索セントラル「検索エンジン最適化（SEO）スターター ガイド」", "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja" }
     ],
@@ -3872,6 +3880,7 @@
     ],
     "memoryTip": "クリック課金＝クリックで払う。率＝申込み÷クリック。クリックだけ増えたら、費用は増え、率は下がる。",
     "concepts": ["DC-13-102", "DC-13-103"],
+    "figures": ["fig-dx-cpc"],
     "sources": [
       { "title": "Google 広告 ヘルプ「クリック単価（CPC）」", "url": "https://support.google.com/google-ads/answer/116495?hl=ja" },
       { "title": "Google 広告 ヘルプ「コンバージョン率」", "url": "https://support.google.com/google-ads/answer/2684489?hl=ja" }
@@ -3902,6 +3911,7 @@
     ],
     "memoryTip": "デモ＝人口（年齢・性別・所得）。ジオ＝地理。サイコ＝心。行動＝ふるまい。",
     "concepts": ["DC-13-104", "DC-04-002"],
+    "figures": ["fig-dx-segmentation-variables"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],

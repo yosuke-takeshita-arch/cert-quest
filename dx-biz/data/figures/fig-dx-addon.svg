@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-dx-addon-t fig-dx-addon-d">
+<title id="fig-dx-addon-t">アドオン：基本は安く、要る人だけ追加を買う</title>
+<desc id="fig-dx-addon-d">格安航空会社（LCC）の例で、金額は図の例。基本の運賃は5,000円。座席指定は追加で500円、預け入れ荷物は追加で1,500円。Aさんは荷物を預けず、座席も指定しないので、払うのは運賃の5,000円だけ。Bさんは座席指定と預け入れ荷物を足すので、5,000円＋500円＋1,500円で7,000円。基本の価格を抑えて買いやすくし、必要な人だけが追加の機能やサービスを買う。注意：合計額が分かりにくくならないよう、表示の工夫が要る。</desc>
+<text x="12" y="22" class="tb">格安航空会社（LCC）の例（金額は図の例）</text>
+<rect x="12" y="36" width="296" height="34" class="fs l sm"/>
+<text x="24" y="58" class="tb">基本の運賃</text>
+<text x="296" y="58" class="tb" text-anchor="end">5,000円</text>
+<rect x="12" y="76" width="296" height="34" class="fwn l swn dsh"/>
+<text x="24" y="98">＋ 座席指定（追加）</text>
+<text x="296" y="98" text-anchor="end">500円</text>
+<rect x="12" y="116" width="296" height="34" class="fwn l swn dsh"/>
+<text x="24" y="138">＋ 預け入れ荷物（追加）</text>
+<text x="296" y="138" text-anchor="end">1,500円</text>
+<text x="12" y="168" class="tm">点線の枠＝選んだ人だけが払うアドオン</text>
+<line x1="12" y1="184" x2="308" y2="184" class="l sb w1"/>
+<text x="12" y="208" class="tb">Aさん：荷物なし・席はどこでもよい</text>
+<rect x="12" y="218" width="200" height="26" class="fs l sm"/>
+<text x="112" y="236" text-anchor="middle">運賃 5,000</text>
+<text x="296" y="236" class="tb" text-anchor="end">5,000円</text>
+<text x="12" y="276" class="tb">Bさん：座席指定と荷物を足す</text>
+<rect x="12" y="286" width="200" height="26" class="fs l sm"/>
+<text x="112" y="304" text-anchor="middle">運賃 5,000</text>
+<rect x="212" y="286" width="20" height="26" class="fwn l swn"/>
+<rect x="232" y="286" width="60" height="26" class="fwn l swn"/>
+<text x="262" y="304" text-anchor="middle">荷物</text>
+<text x="222" y="330" class="tm" text-anchor="middle">席</text>
+<text x="12" y="356">5,000円 ＋ 500円 ＋ 1,500円</text>
+<text x="12" y="376" class="tb">＝ 7,000円</text>
+<text x="12" y="398" class="tm">（棒の長さ＝金額。同じ目盛り）</text>
+<line x1="12" y1="412" x2="308" y2="412" class="l sb w1"/>
+<text x="12" y="434">基本を安くして買いやすくする。</text>
+<text x="12" y="454" class="tb">合計額が分かるように表示する</text>
+</svg>

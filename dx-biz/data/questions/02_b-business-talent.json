@@ -250,6 +250,7 @@
     ],
     "memoryTip": "合わない結果を捨てる→仮説が直らない→効かない施策が広がる。捨てる前に「データは確かか」を確かめる。",
     "concepts": ["DC-02-101", "DC-03-024"],
+    "figures": ["fig-dx-ppdac"],
     "sources": [
       { "title": "IPA・経済産業省「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -780,6 +781,7 @@
     ],
     "memoryTip": "答えが分からないときに完成形を先に決めると「正確に間違える」。分からないなら、小さく試して学ぶ。",
     "concepts": ["DC-02-107", "DC-05-021"],
+    "figures": ["fig-dx-lean-startup"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -1013,6 +1015,7 @@
     ],
     "memoryTip": "間接ネットワーク効果＝「向こう側が増えると、こちら側がうれしい」。片方を安くして集め、もう片方から回収する。",
     "concepts": ["DC-06-007", "DC-05-006"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "経済産業省「通商白書2016」第Ⅰ部第3章第2節 プラットフォーム化と産業構造の変化", "url": "https://www.meti.go.jp/report/tsuhaku2016/2016honbun/i1320000.html" }
     ],
@@ -1042,6 +1045,7 @@
     ],
     "memoryTip": "継ぎ足し→ブラックボックス→直せない・高い→足かせ。直すたびに中が見えなくなる。",
     "concepts": ["DC-01-007"],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }

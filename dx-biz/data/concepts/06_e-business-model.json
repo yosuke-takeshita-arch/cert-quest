@@ -137,7 +137,7 @@
     "confusions": [
       { "id": "DC-06-018", "point": "パーソナライゼーションは情報・サービスの個別化。マスカスタマイゼーションは製品そのものの個別生産。" }
     ],
-    "figures": ["fig-dx-segment-one2one"],
+    "figures": ["fig-dx-personalization", "fig-dx-segment-one2one"],
     "sources": [
       { "title": "AWS ドキュメント「Amazon Personalize とは」", "url": "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html" }
     ],
@@ -319,7 +319,7 @@
     "confusions": [
       { "id": "DC-04-107", "point": "CRMは顧客との関係を管理する。ERPは会計・調達・製造など社内の基幹業務のデータを共通の土台にまとめる。" }
     ],
-    "figures": ["fig-dx-customer-lifecycle"],
+    "figures": ["fig-dx-crm", "fig-dx-customer-lifecycle"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
       { "title": "IPA「ITパスポート試験 シラバス Ver.6.4」", "url": "https://www.ipa.go.jp/shiken/syllabus/nl10bi0000007sxy-att/syllabus_ip_ver6_4.pdf" }

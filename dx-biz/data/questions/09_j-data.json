@@ -1096,6 +1096,7 @@
     ],
     "memoryTip": "RAGは「調べてから答える」。調べる段階（検索）がずれると、答えもずれる。まず入口を疑う。",
     "concepts": ["DC-09-104", "DC-02-019"],
+    "figures": ["fig-dx-rag"],
     "sources": [
       { "title": "Lewis ほか「Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks」（arXiv:2005.11401, 2020）", "url": "https://arxiv.org/abs/2005.11401" },
       { "title": "Microsoft Learn「Azure AI Search のベクター検索」", "url": "https://learn.microsoft.com/ja-jp/azure/search/vector-search-overview" },
@@ -1127,6 +1128,7 @@
     ],
     "memoryTip": "ダッシュボードは「鏡」。映すデータが汚れていれば、きれいな鏡でも汚れが映る。先に整形・クレンジング。",
     "concepts": ["DC-03-016", "DC-03-013", "DC-03-014"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -1156,6 +1158,7 @@
     ],
     "memoryTip": "通常のRAG＝虫めがね（近い断片を拾う）。全体のテーマを聞くなら地図（ナレッジグラフで先にまとめる）。",
     "concepts": ["DC-09-105", "DC-02-019", "DC-09-104"],
+    "figures": ["fig-dx-rag"],
     "sources": [
       { "title": "Microsoft Research「GraphRAG: Unlocking LLM discovery on narrative private data」（2024年2月13日）", "url": "https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/" }
     ],
@@ -1447,6 +1450,7 @@
     ],
     "memoryTip": "RAGの知識の鮮度＝索引の鮮度。文書を替えたら索引も替える（モデルの学び直しは不要）。",
     "concepts": ["DC-02-019", "DC-09-104"],
+    "figures": ["fig-dx-rag"],
     "sources": [
       { "title": "Lewis ほか「Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks」（arXiv:2005.11401, 2020）", "url": "https://arxiv.org/abs/2005.11401" }
     ],
@@ -1535,6 +1539,7 @@
     ],
     "memoryTip": "土台（地図）は共同で・公開で、競争はその上（自社のデータ・サービス）で。協調領域と競争領域を分ける。",
     "concepts": ["DC-09-111", "DC-01-014"],
+    "figures": ["fig-dx-coop-compete"],
     "sources": [
       { "title": "Linux Foundation（Joint Development Foundation）「Joint Development Foundation Announces Overture Maps Foundation to Build Interoperable Open Map Data」（2022年12月）", "url": "https://www.linuxfoundation.org/press/linux-foundation-announces-overture-maps-foundation-to-build-interoperable-open-map-data" }
     ],
@@ -1594,6 +1599,7 @@
     ],
     "memoryTip": "汚れたデータ→歪んだモデル→外れた予測→誤った判断。掃除（クレンジング）は分析の前に。",
     "concepts": ["DC-03-014"],
+    "figures": ["fig-dx-data-cleansing"],
     "sources": [
       { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" }
     ],
@@ -1623,6 +1629,7 @@
     ],
     "memoryTip": "レイク＝「選べないから、そのままためる」→量が増える→クラウドに置き、直接つなげるものは置かない。加工済みはDWH。",
     "concepts": ["DC-03-009", "DC-03-010"],
+    "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],

@@ -223,6 +223,7 @@
     ],
     "memoryTip": "小さく分ける（疎結合）× 自動化 → 変更が「小さく・頻繁に・予測どおり」になる。",
     "concepts": ["DC-11-101", "DC-02-008", "DC-11-102"],
+    "figures": ["fig-dx-microservices"],
     "sources": [
       { "title": "CNCF「Cloud Native Definition v1.1」（日本語版を含む）", "url": "https://github.com/cncf/toc/blob/main/DEFINITION.md" }
     ],
@@ -252,6 +253,7 @@
     ],
     "memoryTip": "コンテナ＝カーネル相乗り（軽い・運びやすい ⇔ 壁は薄い）。VM＝OSごと別の部屋（壁は厚い ⇔ 重い）。",
     "concepts": ["DC-11-102"],
+    "figures": ["fig-dx-container-vm"],
     "sources": [
       { "title": "NIST SP 800-190「Application Container Security Guide」", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-190.pdf" }
     ],
@@ -281,6 +283,7 @@
     ],
     "memoryTip": "貨物のコンテナと同じ。中身（アプリ）と梱包（必要なもの）を規格の箱にまとめれば、どの船（環境）にも積める。",
     "concepts": ["DC-11-102"],
+    "figures": ["fig-dx-container-vm"],
     "sources": [
       { "title": "NIST SP 800-190「Application Container Security Guide」", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-190.pdf" }
     ],
@@ -369,6 +372,7 @@
     ],
     "memoryTip": "EAは4階建て：業務（何をするか）→ データ（何を使うか）→ アプリ（どう処理するか）→ 技術（何で動かすか）。1階だけ建て替えても家は良くならない。",
     "concepts": ["DC-11-103"],
+    "figures": ["fig-dx-enterprise-architecture"],
     "sources": [
       { "title": "IPA「応用情報技術者試験（レベル3）シラバス Ver.7.2」（中分類17 システム戦略 1.情報システム戦略（2）エンタープライズアーキテクチャ）", "url": "https://www.ipa.go.jp/shiken/syllabus/omgdg50000005kq5-att/syllabus_ap_ver7_2.pdf" }
     ],
@@ -398,6 +402,7 @@
     ],
     "memoryTip": "線形＝台数2倍で処理量2倍（同じ時間で）。2乗でも横ばいでもない。",
     "concepts": ["DC-11-105", "DC-03-005"],
+    "figures": ["fig-dx-scale"],
     "sources": [
       { "title": "NIST SP 1500-1r2「NIST Big Data Interoperability Framework: Volume 1, Definitions」（2019年10月）", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-1r2.pdf" }
     ],
@@ -719,6 +724,7 @@
     ],
     "memoryTip": "ハイブリッド＝別々の基盤のまま＋移せる技術でつなぐ。つながりがあって初めて「あふれ分だけ外へ」ができる。",
     "concepts": ["DC-02-009"],
+    "figures": ["fig-dx-cloud-models"],
     "sources": [
       { "title": "NIST SP 800-145「The NIST Definition of Cloud Computing」（2011年）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" }
     ],

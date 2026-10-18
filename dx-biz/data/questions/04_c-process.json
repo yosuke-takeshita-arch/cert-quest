@@ -249,6 +249,7 @@
     ],
     "memoryTip": "調べる段を飛ばす→問題点が抜ける→課題の選び方がずれる→作った仕組みが合わない。",
     "concepts": ["DC-04-103", "DC-04-101"],
+    "figures": ["fig-dx-asis-tobe"],
     "sources": [
       { "title": "デジタル庁「DS-100 デジタル・ガバメント推進標準ガイドライン」（2026年6月12日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/54d8725e/20260715_resources_standard_guidelines_guideline_01.pdf" }
     ],
@@ -367,6 +368,7 @@
     ],
     "memoryTip": "ラインの速さ＝いちばん遅い工程の速さ。遅い所以外を速くしても、手前に在庫が積もるだけ。",
     "concepts": ["DC-04-105", "DC-04-103"],
+    "figures": ["fig-dx-bottleneck-shift"],
     "sources": [
       { "title": "Theory of Constraints Institute「Theory of Constraints (TOC) of Dr. Eliyahu Goldratt」", "url": "https://www.tocinstitute.org/theory-of-constraints.html" }
     ],
@@ -396,6 +398,7 @@
     ],
     "memoryTip": "個別最適＝部の便利さ↑・全社の整合↓。全社最適＝整合↑・部の自由↓。どこで折り合うかを決める。",
     "concepts": ["DC-04-105", "DC-01-007"],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -1106,6 +1109,7 @@
     ],
     "memoryTip": "ロボット（動く）×仮想の工場（計画する）×本物の工場のデータ（合わせる）。どれか欠けると現場で動かない。",
     "concepts": ["DC-04-116", "DC-03-023"],
+    "figures": ["fig-dx-digital-twin"],
     "sources": [
       { "title": "国土交通省 海事局 報道発表資料「AI造船ロボット等に係る研究開発事業の公募を開始します」（令和8年2月13日）", "url": "https://www.mlit.go.jp/report/press/content/001981504.pdf" },
       { "title": "国土交通省 海事局 報道発表資料「日米連携によるAI造船技術の導入に向けた研究開発を本格始動」（令和8年7月17日）", "url": "https://www.mlit.go.jp/report/press/content/002012297.pdf" }

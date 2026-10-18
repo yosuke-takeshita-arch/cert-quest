@@ -754,6 +754,7 @@
     ],
     "memoryTip": "パスキー＝秘密はサイトと共有しない → 盗めるもの・打ち込ませるものが無い → フィッシングと使い回し攻撃に強い。",
     "concepts": ["DC-12-107", "DC-02-033"],
+    "figures": ["fig-dx-otp-phishing"],
     "sources": [
       { "title": "FIDO Alliance「Passkeys」", "url": "https://fidoalliance.org/passkeys/" }
     ],
@@ -901,6 +902,7 @@
     ],
     "memoryTip": "ゼロトラスト＝内側でも毎回確かめる → 守りは固い・運用と問い合わせは重い。最初から運用を設計する。",
     "concepts": ["DC-02-032"],
+    "figures": ["fig-dx-zero-trust"],
     "sources": [
       { "title": "デジタル庁「ゼロトラストアーキテクチャ適用方針」（2022年6月30日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/5efa5c3b/20220630_resources_standard_guidelines_guidelines_04.pdf" }
     ],

@@ -182,7 +182,7 @@
     "confusions": [
       { "id": "DC-03-018", "point": "散布図で右上がりに見えても、それは相関。原因と結果の関係（因果）とは限らない。" }
     ],
-    "figures": ["fig-dx-correlation"],
+    "figures": ["fig-dx-visualization", "fig-dx-correlation"],
     "sources": [
       { "title": "総務省統計局「なるほど統計学園」散布図", "url": "https://www.stat.go.jp/naruhodo/9_graph/jyokyu/sanpu.html" },
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
@@ -281,7 +281,7 @@
     "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
     "title": "回帰分析",
     "oneLine": "結果となる数値（目的変数）と、要因となる数値（説明変数）の関係を数式モデルで表す手法。説明変数が1つなら単回帰分析、2つ以上なら重回帰分析。",
-    "why": "「気温と曜日から来店客数を予測する」のように、要因から結果を予測したり、どの要因が効いているかを調べたりできる。推計の精度は決定係数で測る（統計局）。相関分析が「関係の強さ」を見るのに対し、回帰分析は「どれだけ変わるか」を式にする。",
+    "why": "「気温と曜日から来店客数を予測する」のように、要因から結果を予測したり、どの要因が効いているかを調べたりできる。推計の精度は決定係数で測る（統計局）。相関分析が「関係の強さ」を見るのに対し、回帰分析は「どれだけ変わるか」を式にする。数の例（図と同じ。数は例）：来店客数＝基本の人数20人＋1度あたりの増え方3人×気温、という式ができたら、気温30度の日は20＋3×30＝20＋90＝110人と予測する。要因が気温だけなら単回帰、曜日も足せば重回帰になる。",
     "links": [
       { "id": "DC-03-018", "relation": "発展形" },
       { "id": "DC-03-021", "relation": "使い道" },
@@ -290,7 +290,7 @@
     "confusions": [
       { "id": "DC-03-018", "point": "相関分析の2つの変数は対等。回帰分析は目的変数（結果）と説明変数（要因）を分ける。" }
     ],
-    "figures": ["fig-dx-analysis-methods"],
+    "figures": ["fig-dx-regression", "fig-dx-analysis-methods"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード（回帰分析）", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
     ],
@@ -301,7 +301,7 @@
     "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
     "title": "バスケット分析",
     "oneLine": "買い物かご（バスケット）の中身、つまり一度に一緒に買われる商品の組み合わせを分析して、商品どうしの関連を見つける手法。",
-    "why": "一緒に買われる商品の組み合わせが分かれば、売り場の配置、セット販売、レコメンデーション（「この商品を買った人はこれも」）に生かせる。Microsoft アソシエーション アルゴリズムの文書は、レコメンデーションエンジンでよく使われ、マーケットバスケット分析にも役立つとし、組み合わせの出現数（サポート）と、Xを含むときにYも含む割合（確率・信頼度）でルールを評価すると説明している。データマイニングの代表例。",
+    "why": "一緒に買われる商品の組み合わせが分かれば、売り場の配置、セット販売、レコメンデーション（「この商品を買った人はこれも」）に生かせる。Microsoft アソシエーション アルゴリズムの文書は、レコメンデーションエンジンでよく使われ、マーケットバスケット分析にも役立つとし、組み合わせの出現数（サポート）と、Xを含むときにYも含む割合（確率・信頼度）でルールを評価すると説明している。データマイニングの代表例。数の例（図と同じ。数は例）：レシート100枚のうち、パスタを含むのが20枚、そのうちパスタソースも含むのが12枚なら、サポート（組み合わせの出現数）は12件、信頼度は12÷20＝0.6、つまりパスタを買う人の60％がソースも買う。",
     "links": [
       { "id": "DC-03-012", "relation": "手法" },
       { "id": "DC-07-012", "relation": "使い道" },
@@ -310,7 +310,7 @@
     "confusions": [
       { "id": "DC-03-020", "point": "バスケット分析は「一緒に買われる商品」の関係を見る。クラスタリングは「似た客・似た商品」をまとめる。" }
     ],
-    "figures": ["fig-dx-analysis-methods"],
+    "figures": ["fig-dx-basket-rule", "fig-dx-analysis-methods"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" }
     ],
@@ -393,7 +393,7 @@
     "confusions": [
       { "title": "データプリパレーションツール", "point": "ETLツールは主にITエンジニアが使う。データプリパレーションツールは技術スキルの無い分析者やビジネスユーザーが使う。" }
     ],
-    "figures": ["fig-dx-data-pipeline"],
+    "figures": ["fig-dx-etl", "fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -414,7 +414,7 @@
     "confusions": [
       { "id": "DC-03-012", "point": "クレンジングはデータを「きれいにする」準備。データマイニングはきれいになったデータから「知見を掘り出す」分析。" }
     ],
-    "figures": ["fig-dx-data-pipeline"],
+    "figures": ["fig-dx-data-cleansing", "fig-dx-data-pipeline"],
     "sources": [
       { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" },
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }

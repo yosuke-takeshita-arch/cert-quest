@@ -54,7 +54,7 @@
     "confusions": [
       { "title": "バーコード", "point": "バーコードは1つずつ光で読む。RFIDは電波で、離れた場所から複数を一度に読める。" }
     ],
-    "figures": ["fig-dx-edge-cloud-iot"],
+    "figures": ["fig-dx-rfid-gps", "fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省 北陸総合通信局「RFIDについて」", "url": "https://www.soumu.go.jp/soutsu/hokuriku/denpa/about_rfid.html" },
       { "title": "内閣府 みちびき（準天頂衛星システム）「なぜ準天頂衛星システムが必要なのか」", "url": "https://qzss.go.jp/overview/services/sv02_why.html" },
