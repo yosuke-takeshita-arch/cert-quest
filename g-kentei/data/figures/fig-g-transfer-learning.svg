@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 710" role="img" aria-labelledby="fig-g-transfer-learning-t fig-g-transfer-learning-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 734" role="img" aria-labelledby="fig-g-transfer-learning-t fig-g-transfer-learning-d">
 <title id="fig-g-transfer-learning-t">転移学習・ファインチューニングと、破滅的忘却</title>
-<desc id="fig-g-transfer-learning-d">大量のデータで事前学習したモデルの知識を、別のタスクに生かすのが転移学習。使い方は2つ。事前学習した部分は更新せず、新しい出力層だけを学習する使い方と、事前学習済みの重みを初期値にして、新しいタスクのデータで全体（または一部）の重みを追加学習するファインチューニング。BERT は出力層を1つ足してファインチューニングする。下は破滅的忘却。タスクAを学んだあとにタスクBだけを学ぶと、タスクAの精度が大きく下がる。</desc>
+<desc id="fig-g-transfer-learning-d">大量のデータで事前学習したモデルの知識を、別のタスクに生かすのが転移学習。やり方は2つ。A の特徴抽出は、事前学習した部分を更新せず、新しい出力層だけを学習する。B のファインチューニングは、事前学習済みの重みを初期値にして、新しいタスクのデータで全体（または一部）の重みも追加学習する。BERT は出力層を1つ足してファインチューニングする。解説によっては、A だけを「転移学習」と呼んで、B のファインチューニングと分けることがある。下は破滅的忘却。前のタスク（タスク1）を学んだあとに、新しいタスク（タスク2）だけを学ぶと、タスク1の精度が大きく下がる。上の A・B（転移学習のやり方）とは別の呼び名。</desc>
 <text x="12" y="20" class="tb">① 事前学習：大量のデータで学ぶ</text>
 <rect x="12" y="36" width="130" height="54" class="fas sa" stroke-width="1.5"/>
 <text x="77" y="58.5" text-anchor="middle">特徴を取り出す部分</text>
@@ -10,8 +10,8 @@
 <text x="156" y="70">一般的な特徴を</text>
 <text x="156" y="90">あらかじめ学ぶ</text>
 <line x1="12" y1="140" x2="308" y2="140" class="l sb w1"/>
-<text x="12" y="164" class="tb">別のタスクに生かす：2つの使い方</text>
-<text x="12" y="188" class="tb ta">A　出力層だけ学ぶ</text>
+<text x="12" y="164" class="tb">転移学習の2つのやり方</text>
+<text x="12" y="188" class="tb ta">A　特徴抽出（出力層だけ学ぶ）</text>
 <rect x="12" y="198" width="130" height="40" class="fs sm" stroke-width="1.5"/>
 <text x="77" y="213.5" text-anchor="middle">学習済みの部分</text>
 <text x="77" y="231.5" text-anchor="middle">更新しない（固定）</text>
@@ -19,7 +19,7 @@
 <text x="77" y="258.5" class="tb" text-anchor="middle">新しい出力層</text>
 <text x="156" y="224">新しい出力層だけ</text>
 <text x="156" y="244">学習する</text>
-<text x="12" y="296" class="tb twn">B　ファインチューニング</text>
+<text x="12" y="296" class="tb twn">B　ファインチューニング（全体も学ぶ）</text>
 <rect x="12" y="306" width="130" height="40" class="fwn swn" stroke-width="1.5"/>
 <text x="77" y="321.5" text-anchor="middle">学習済みの重みを</text>
 <text x="77" y="339.5" text-anchor="middle">初期値にして更新</text>
@@ -28,21 +28,23 @@
 <text x="156" y="332">新しいデータで、</text>
 <text x="156" y="352">全体（一部）を追加学習</text>
 <text x="12" y="402" class="tm">BERT：出力層を1つ足して微調整する</text>
-<line x1="12" y1="420" x2="308" y2="420" class="l sb w1"/>
-<text x="12" y="444" class="tb tng">破滅的忘却：新しく学ぶと、前を忘れる</text>
-<line x1="18" y1="612" x2="308" y2="612" class="l sb w1"/>
-<rect x="40" y="531" width="28" height="81" class="fas sa" stroke-width="1.5"/>
-<rect x="74" y="601.2" width="28" height="10.8" class="fs sm" stroke-width="1.5"/>
-<rect x="174" y="598.5" width="28" height="13.5" class="fng sng" stroke-width="1.5"/>
-<rect x="208" y="531" width="28" height="81" class="fok sok" stroke-width="1.5"/>
-<text x="70" y="632" class="tm" text-anchor="middle">A を学んだ直後</text>
-<text x="204" y="632" class="tm" text-anchor="middle">B を学んだ直後</text>
-<text x="54" y="525" class="tb ta" text-anchor="middle">A</text>
-<text x="88" y="595.2" class="tb" text-anchor="middle">B</text>
-<text x="188" y="592.5" class="tb tng" text-anchor="middle">A</text>
-<text x="222" y="525" class="tb tok" text-anchor="middle">B</text>
-<text x="12" y="486" class="tm">縦＝そのタスクの精度（大きいほど良い）</text>
-<text x="12" y="656" class="tb tng">B だけを学ぶと、A の精度が大きく下がる</text>
-<text x="12" y="678" class="tm">対策の例：前のタスクに大切な重みの</text>
-<text x="12" y="698" class="tm">学習を遅くする（EWC）</text>
+<text x="12" y="426" class="tm">※A だけを「転移学習」と呼ぶ解説もある</text>
+<line x1="12" y1="444" x2="308" y2="444" class="l sb w1"/>
+<text x="12" y="468" class="tb tng">破滅的忘却：新しく学ぶと、前を忘れる</text>
+<line x1="18" y1="636" x2="308" y2="636" class="l sb w1"/>
+<rect x="40" y="555" width="28" height="81" class="fas sa" stroke-width="1.5"/>
+<rect x="74" y="625.2" width="28" height="10.8" class="fs sm" stroke-width="1.5"/>
+<rect x="174" y="622.5" width="28" height="13.5" class="fng sng" stroke-width="1.5"/>
+<rect x="208" y="555" width="28" height="81" class="fok sok" stroke-width="1.5"/>
+<text x="70" y="656" class="tm" text-anchor="middle">タスク1を学んだ直後</text>
+<text x="204" y="656" class="tm" text-anchor="middle">タスク2を学んだ直後</text>
+<text x="54" y="549" class="tb ta" text-anchor="middle">1</text>
+<text x="88" y="619.2" class="tb" text-anchor="middle">2</text>
+<text x="188" y="616.5" class="tb tng" text-anchor="middle">1</text>
+<text x="222" y="549" class="tb tok" text-anchor="middle">2</text>
+<text x="12" y="496" class="tm">1＝前のタスク　2＝新しいタスク</text>
+<text x="12" y="518" class="tm">縦＝そのタスクの精度（大きいほど良い）</text>
+<text x="12" y="680" class="tb tng">タスク2だけ学ぶと、タスク1の精度が急落</text>
+<text x="12" y="702" class="tm">対策の例：前のタスクに大切な重みの</text>
+<text x="12" y="722" class="tm">学習を遅くする（EWC）</text>
 </svg>
