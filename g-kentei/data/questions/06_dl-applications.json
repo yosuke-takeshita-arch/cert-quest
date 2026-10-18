@@ -4439,6 +4439,9 @@
       "C-06-101",
       "C-03-061"
     ],
+    "figures": [
+      "fig-g-world-models"
+    ],
     "sources": [
       {
         "title": "Ha & Schmidhuber (2018) World Models (arXiv:1803.10122)",
@@ -4986,6 +4989,9 @@
       "C-06-110",
       "C-06-035"
     ],
+    "figures": [
+      "fig-g-rag"
+    ],
     "sources": [
       {
         "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)",
@@ -5022,6 +5028,9 @@
     "memoryTip": "Sequence＝文まるごと同じ資料。Token＝1語ずつ資料を選び直せる（複数の資料を混ぜられる）。",
     "concepts": [
       "C-06-110"
+    ],
+    "figures": [
+      "fig-g-rag"
     ],
     "sources": [
       {
@@ -5106,6 +5115,9 @@
     "concepts": [
       "C-06-111",
       "C-05-035"
+    ],
+    "figures": [
+      "fig-g-moe"
     ],
     "sources": [
       {
@@ -5242,6 +5254,9 @@
     "memoryTip": "RAG の強み＝『資料（索引）を替えれば答えが新しくなる。学習し直さなくてよい』。",
     "concepts": [
       "C-06-110"
+    ],
+    "figures": [
+      "fig-g-rag"
     ],
     "sources": [
       {
@@ -5401,6 +5416,9 @@
     "memoryTip": "MoE＝『部屋（パラメータ）は多いが、入るのは数部屋だけ』。部屋を増やしても、1回に使う部屋の数は増えない。",
     "concepts": [
       "C-06-111"
+    ],
+    "figures": [
+      "fig-g-moe"
     ],
     "sources": [
       {
@@ -5596,6 +5614,9 @@
       "C-06-074",
       "C-06-057"
     ],
+    "figures": [
+      "fig-g-rag"
+    ],
     "sources": [
       {
         "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)",
@@ -5639,6 +5660,9 @@
       "C-03-015",
       "C-05-037",
       "C-06-090"
+    ],
+    "figures": [
+      "fig-g-moe"
     ],
     "sources": [
       {

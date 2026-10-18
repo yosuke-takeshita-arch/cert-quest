@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-g-patent-timeline-t fig-g-patent-timeline-d">
+<title id="fig-g-patent-timeline-t">特許の流れ：出願、1年6月で出願公開、登録で権利が発生、出願から20年で終わる（例の日付）と先願主義</title>
+<desc id="fig-g-patent-timeline-d">上は縦の時間の線で、上から下へ時間が進む。日付は説明のための例で、線の間隔は期間の長さに比例しない。2026年4月1日に特許出願する。出願の日から1年6月がたつと、内容が出願公開される（第64条）。審査を経て、設定の登録がされると、そこで特許権が発生する（第66条第1項）。存続期間は原則として出願の日から20年で、2046年4月1日に終わる（第67条第1項）。右の2本の括弧のうち、外側は出願から20年の数え方、内側は権利がある期間で、登録の日から終わりの日まで。20年を数え始めるのは出願の日で、登録の日ではない。下は先願主義（第39条第1項）。同じ発明について、B社が先に発明を完成させ、A社が先に出願した場合、特許を受けられるのは先に出願したA社だけ。</desc>
+<text x="12" y="20" class="tb">特許の流れ（日付は例）</text>
+<text x="12" y="40" class="tm">上から下へ時間が進む（点の間は等間隔でない）</text>
+<line x1="34" y1="70" x2="34" y2="392" class="l sm w2"/>
+<circle cx="34" cy="70" r="7" class="fa"/>
+<text x="50" y="66" class="tb ta">2026年4月1日 出願</text>
+<text x="50" y="86" class="tm">20年を数え始める日</text>
+<circle cx="34" cy="142" r="6" class="fm"/>
+<text x="50" y="138" class="tb">1年6月後 出願公開</text>
+<text x="50" y="158" class="tm">内容が世の中に出る</text>
+<circle cx="34" cy="206" r="6" class="fm"/>
+<text x="50" y="211">審査</text>
+<circle cx="34" cy="262" r="7" class="fok l sok"/>
+<text x="50" y="258" class="tb tok">登録 → 特許権が発生</text>
+<text x="50" y="278" class="tm">ここから独占できる</text>
+<circle cx="34" cy="392" r="7" class="fng l sng"/>
+<text x="50" y="388" class="tb tng">2046年4月1日 終わる</text>
+<text x="50" y="408" class="tm">原則、出願から20年</text>
+<path d="M 250 262 L 258 262 L 258 392 L 250 392" class="l sok w2" fill="none"/>
+<text x="270" y="327" class="tok tb" text-anchor="middle" writing-mode="vertical-rl">権利がある</text>
+<path d="M 282 70 L 292 70 L 292 392 L 282 392" class="l sa w2" fill="none"/>
+<text x="305" y="231" class="ta tb" text-anchor="middle" writing-mode="vertical-rl">出願から20年</text>
+<text x="12" y="438">終わりは<tspan class="tb">登録の日</tspan>ではなく</text>
+<text x="12" y="458"><tspan class="tb">出願の日</tspan>から数える</text>
+<line x1="12" y1="476" x2="308" y2="476" class="l sb w1"/>
+<text x="12" y="500" class="tb">同じ発明なら：先に出願した人だけ</text>
+<rect x="12" y="510" width="296" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="531">B社：先に発明を完成 → <tspan class="tng tb">受けられない</tspan></text>
+<rect x="12" y="550" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="571">A社：先に出願 → <tspan class="tok tb">特許を受けられる</tspan></text>
+<text x="12" y="602" class="tm">先願主義。先に発明した人ではない</text>
+</svg>

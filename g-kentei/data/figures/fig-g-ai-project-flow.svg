@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-ai-project-flow-t fig-g-ai-project-flow-d">
+<title id="fig-g-ai-project-flow-t">AIプロジェクトの進め方：課題と基準→データの確認→PoC→本開発→運用・監視、そして最初へ戻って改善（不良品検査の例）</title>
+<desc id="fig-g-ai-project-flow-d">例は工場の不良品を見つけるAIで、数は説明のための例。1 解くべき課題と成功の基準を決める。例は、見逃しを今の半分にする。2 データがあるかを確かめる。例は、過去の不良品の画像が何枚あるか。3 小さく検証する（PoC）。例は、300枚で試す。見込みが立てば次へ進む。4 本開発。5 運用し、性能を監視する。例は、見逃しが増えていないかを毎月確かめる。運用から右側の矢印で最初へ戻り、見直して改善し続ける。下の注記。目的はAIを入れることではなく、業務の課題を解くこと。PoCでできそうと分かっても、本番のデータや運用の条件で同じ性能が出るとは限らないので、一度に作り切らず、検証を挟みながら段階的に進める。</desc>
+<text x="12" y="20" class="tb">AIプロジェクトの進め方（例）</text>
+<text x="12" y="40" class="tm">工場の不良品を見つけるAI（数は例）</text>
+<rect x="12" y="52" width="262" height="52" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="72" class="tb">① 課題と成功の基準を決める</text>
+<text x="24" y="94" class="tm">例：見逃しを今の半分にする</text>
+<line x1="143" y1="104" x2="143" y2="114.4" class="l sm w1"/>
+<polygon points="143,120 139.5,114.4 146.5,114.4" class="fm"/>
+<rect x="12" y="122" width="262" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="142" class="tb">② データがあるかを確かめる</text>
+<text x="24" y="164" class="tm">例：過去の不良品の画像は何枚？</text>
+<line x1="143" y1="174" x2="143" y2="184.4" class="l sm w1"/>
+<polygon points="143,190 139.5,184.4 146.5,184.4" class="fm"/>
+<rect x="12" y="192" width="262" height="52" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="212" class="tb">③ 小さく検証する（PoC）</text>
+<text x="24" y="234" class="tm">例：300枚で試す</text>
+<line x1="143" y1="244" x2="143" y2="260.4" class="l sm w1"/>
+<polygon points="143,266 139.5,260.4 146.5,260.4" class="fm"/>
+<text x="153" y="259" class="tm">見込みが立てば</text>
+<rect x="12" y="268" width="262" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="293" class="tb">④ 本開発</text>
+<line x1="143" y1="308" x2="143" y2="318.4" class="l sm w1"/>
+<polygon points="143,324 139.5,318.4 146.5,318.4" class="fm"/>
+<rect x="12" y="326" width="262" height="52" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="346" class="tb">⑤ 運用し、性能を監視する</text>
+<text x="24" y="368" class="tm">例：見逃しが増えていないか毎月</text>
+<path d="M 274 352 L 294 352 L 294 78 L 280 78" class="l sa w2" fill="none"/>
+<polygon points="274,78 281,73.5 281,82.5" class="fa"/>
+<text x="309" y="215" class="ta tb" text-anchor="middle" writing-mode="vertical-rl">見直して改善</text>
+<line x1="12" y1="398" x2="308" y2="398" class="l sb w1"/>
+<text x="12" y="422" class="tb">目的は「業務の課題を解くこと」</text>
+<text x="12" y="442" class="tm">AIを入れること自体が目的ではない</text>
+<text x="12" y="472">PoCでできそうでも、本番のデータや</text>
+<text x="12" y="492">運用の条件で同じ性能が出るとは限らない</text>
+<text x="12" y="518" class="ta tb">→ 一度に作り切らず、検証を挟んで</text>
+<text x="12" y="538" class="ta tb">　段階的に進める</text>
+</svg>
