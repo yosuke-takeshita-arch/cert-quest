@@ -359,7 +359,9 @@
     ],
     "memoryTip": "Dilated＝膨らませた、Atrous＝穴あき。どちらも「すかすかのフィルタで遠くまで」。",
     "concepts": [
-      "C-05-010"
+      "C-05-010",
+      "C-05-016",
+      "C-05-007"
     ],
     "figures": [
       "fig-g-dilated-conv"
@@ -403,7 +405,9 @@
     ],
     "memoryTip": "DeepLab＝Atrous。名前の頭文字の組み合わせで覚えるより、「セグメンテーション＝解像度を落とさず広く見たい」と理由で覚える。",
     "concepts": [
-      "C-05-010"
+      "C-05-010",
+      "C-05-017",
+      "C-05-049"
     ],
     "figures": [
       "fig-g-dilated-conv"
@@ -575,7 +579,9 @@
     "memoryTip": "小さいバッチ＝バッチ正規化の天敵。バッチを使わない正規化（グループ・レイヤー）へ。",
     "concepts": [
       "C-05-013",
-      "C-05-012"
+      "C-05-012",
+      "C-04-019",
+      "C-05-016"
     ],
     "figures": [
       "fig-g-group-norm",
@@ -666,7 +672,9 @@
     ],
     "memoryTip": "Transformer＝レイヤー正規化。CNN＝バッチ正規化（が定番）。",
     "concepts": [
-      "C-05-014"
+      "C-05-014",
+      "C-05-015",
+      "C-04-020"
     ],
     "figures": [
       "fig-g-normalization"
@@ -706,7 +714,8 @@
     ],
     "memoryTip": "インスタンス（1枚1枚）＝1枚ごとの画風を扱うスタイル変換。",
     "concepts": [
-      "C-05-015"
+      "C-05-015",
+      "C-04-021"
     ],
     "figures": [
       "fig-g-instance-norm",
@@ -793,7 +802,10 @@
     "memoryTip": "GAP＝1枚まるごと平均→1つの数。全結合層の代わりに出力へ。",
     "concepts": [
       "C-05-017",
-      "C-05-001"
+      "C-05-001",
+      "C-05-007",
+      "C-05-010",
+      "C-05-016"
     ],
     "figures": [
       "fig-g-gap",
@@ -916,7 +928,10 @@
     "memoryTip": "2012 AlexNet → 2014 GoogLeNet → 2015 ResNet（スキップ結合）。",
     "concepts": [
       "C-05-020",
-      "C-05-019"
+      "C-05-019",
+      "C-02-036",
+      "C-06-002",
+      "C-06-003"
     ],
     "figures": [
       "fig-g-skip-connection"
@@ -1079,7 +1094,8 @@
     ],
     "memoryTip": "BPTT＝Back Propagation Through Time＝時間をさかのぼる逆伝播。",
     "concepts": [
-      "C-05-025"
+      "C-05-025",
+      "C-05-032"
     ],
     "figures": [
       "fig-g-bptt",
@@ -1307,7 +1323,9 @@
     ],
     "memoryTip": "教師強制＝学習時、次の時刻の入力にモデル自身の予測ではなく正解を入れる→学習初期の誤った予測が次の入力になり、誤りが連鎖するのを防ぐ。BPTTは勾配の計算方法で、入力の与え方ではない。",
     "concepts": [
-      "C-05-026"
+      "C-05-026",
+      "C-04-040",
+      "C-03-020"
     ],
     "figures": [
       "fig-g-rnn-unroll"
@@ -1347,7 +1365,8 @@
     ],
     "memoryTip": "双方向＝前後両方から読む。ただし文末まで揃っていないと使えない。",
     "concepts": [
-      "C-05-030"
+      "C-05-030",
+      "C-05-024"
     ],
     "figures": [
       "fig-g-bidirectional-rnn"
@@ -1387,7 +1406,9 @@
     ],
     "memoryTip": "ゲート＝0（閉）〜1（開）の蛇口。",
     "concepts": [
-      "C-05-029"
+      "C-05-029",
+      "C-05-038",
+      "C-05-019"
     ],
     "figures": [
       "fig-g-lstm-gru"
@@ -1512,7 +1533,8 @@
     ],
     "memoryTip": "論文名「Attention Is All You Need」＝Attentionだけで十分。",
     "concepts": [
-      "C-05-035"
+      "C-05-035",
+      "C-05-027"
     ],
     "figures": [
       "fig-g-transformer-flow",
@@ -1555,7 +1577,8 @@
     "memoryTip": "Transformerは全員同時に見る＝並び順が分からない→番号札（位置エンコーディング）を付ける。",
     "concepts": [
       "C-05-038",
-      "C-05-035"
+      "C-05-035",
+      "C-05-026"
     ],
     "figures": [
       "fig-g-transformer"
@@ -1890,7 +1913,8 @@
     ],
     "memoryTip": "VQ＝Vector Quantised（ベクトル量子化）＝連続をコード表の番号に置き換える。",
     "concepts": [
-      "C-05-042"
+      "C-05-042",
+      "C-05-040"
     ],
     "figures": [
       "fig-g-vae-variants",
@@ -2019,7 +2043,9 @@
     ],
     "memoryTip": "Erasing＝消しゴム。CutoutもRandom Erasingも「一部を消す」仲間。",
     "concepts": [
-      "C-05-045"
+      "C-05-045",
+      "C-05-046",
+      "C-05-044"
     ],
     "figures": [
       "fig-g-data-augmentation"
@@ -2186,7 +2212,9 @@
     ],
     "memoryTip": "RandAugment＝くじ引き（Rand）で変換を選ぶ。調整は「個数N」と「強さM」の2つだけ。",
     "concepts": [
-      "C-05-047"
+      "C-05-047",
+      "C-05-046",
+      "C-05-048"
     ],
     "figures": [
       "fig-g-randaugment",

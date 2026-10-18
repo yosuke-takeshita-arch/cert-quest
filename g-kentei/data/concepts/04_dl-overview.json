@@ -147,7 +147,7 @@
     ],
     "title": "CPU・GPU・TPU",
     "oneLine": "CPU：汎用の計算装置で、複雑な処理を順に速くこなす。GPU：もとはグラフィックス処理用で、多数の単純な計算を並列に行うのが得意。TPU：Googleが機械学習向けに独自開発した専用チップ（ASIC）で、大規模な行列演算に特化。",
-    "why": "CPU は Central Processing Unit、GPU は Graphics Processing Unit、TPU は Tensor Processing Unit の略。意味はそれぞれ『中央処理装置』『グラフィックス（画像）処理装置』『テンソル（多次元の数の配列）処理装置』。ディープラーニングの学習・推論は大量の行列演算の繰り返しで、並列に計算できる。だから並列処理に強いGPUや行列演算専用のTPUが向く。 画像処理以外の汎用の計算にGPUを使うことをGPGPU（General-Purpose computing on GPU）という。NVIDIA（GPUの大手メーカー）が2006年に発表したCUDA（Compute Unified Device Architecture）は、グラフィックスのAPI（プログラムから機能を呼び出す窓口）を通さずに、あらゆる計算にGPUの処理能力を使えるようにした。CPUは少数の処理（スレッド）を順に速くこなすよう、GPUは数千のスレッドを並列に実行するよう設計されている。",
+    "why": "CPU は Central Processing Unit、GPU は Graphics Processing Unit、TPU は Tensor Processing Unit の略。意味はそれぞれ『中央処理装置』『グラフィックス（画像）処理装置』『テンソル（多次元の数の配列）処理装置』。ディープラーニングの学習・推論は大量の行列演算の繰り返しで、並列に計算できる。だから並列処理に強いGPUや行列演算専用のTPUが向く。 画像処理以外の汎用の計算にGPUを使うことをGPGPU（General-Purpose computing on GPU）という。NVIDIA（GPUの大手メーカー）が2006年に発表したCUDA（Compute Unified Device Architecture）は、グラフィックスのAPI（プログラムから機能を呼び出す窓口）を通さずに、あらゆる計算にGPUの処理能力を使えるようにした。CPUは少数の処理（スレッド）を順に速くこなすよう、GPUは数千のスレッドを並列に実行するよう設計されている。 チップの種類の名前も並んで出る：ASIC（Application-Specific Integrated Circuit の略。特定の用途のために作り、作った後は働きを変えられない集積回路。TPUもその一種）と、FPGA（Field-Programmable Gate Array の略。作って現場に置いた後でも、使う人が中の回路を書き換えられるチップ）。どちらもチップそのものの名前で、CUDA のような開発基盤（ソフトウェア）ではない。",
     "links": [
       {
         "title": "ディープラーニング",
@@ -184,6 +184,10 @@
       {
         "title": "NVIDIA Blog: What's the Difference Between a CPU and a GPU?",
         "url": "https://blogs.nvidia.com/blog/whats-the-difference-between-a-cpu-and-a-gpu/"
+      },
+      {
+        "title": "Synopsys Glossary: What is an FPGA (Field-Programmable Gate Array)?",
+        "url": "https://www.synopsys.com/glossary/what-is-field-programmable-gate-array.html"
       }
     ],
     "status": "verified"
@@ -197,7 +201,7 @@
     ],
     "title": "活性化関数",
     "oneLine": "ニューロンの入力の重み付き和を変換して出力する関数。非線形の関数を使うことで、ネットワークが複雑な（非線形の）関係を学べるようになる。",
-    "why": "困りごと：ニューロンは入力の重み付き和を計算するが、足し算と掛け算だけだと、何層重ねても全体は1つの直線的な（線形の）計算にまとまってしまう。例：1層目で入力を3倍、2層目で2倍にしても、全体は「6倍する」1層と同じ。活性化関数は、この重み付き和を非線形の関数に通して変換してから次の層へ渡す。押さえどころ：非線形の関数をはさむから、層を重ねるほど複雑な関係を表せる。隠れ層ではReLU（負の値は0、正の値はそのまま出す関数）など、出力層では目的に合わせて、2値分類ならシグモイド、多クラス分類ならソフトマックス、回帰なら恒等関数（そのまま出す）を使う。欠点・混同：どの関数を使うかで勾配消失の起きやすさが変わる（シグモイドの傾きは最大0.25、ReLUは正の側で1）。",
+    "why": "困りごと：ニューロンは入力の重み付き和を計算するが、足し算と掛け算だけだと、何層重ねても全体は1つの直線的な（線形の）計算にまとまってしまう。例：1層目で入力を3倍、2層目で2倍にしても、全体は「6倍する」1層と同じ。活性化関数は、この重み付き和を非線形の関数に通して変換してから次の層へ渡す。押さえどころ：非線形の関数をはさむから、層を重ねるほど複雑な関係を表せる。隠れ層ではReLU（負の値は0、正の値はそのまま出す関数）など、出力層では目的に合わせて、2値分類ならシグモイド、多クラス分類ならソフトマックス、回帰なら恒等関数（そのまま出す）を使う。単純パーセプトロンのように、入力が境目（0など）より小さければ0、大きければ1だけを出す関数はステップ関数（階段のように段で切り替わる関数）という。0.7 のような中間の値を出さず、切り替わる1点の他では傾きが0になる。欠点・混同：どの関数を使うかで勾配消失の起きやすさが変わる（シグモイドの傾きは最大0.25、ReLUは正の側で1）。",
     "links": [
       {
         "id": "C-04-006",
@@ -235,6 +239,10 @@
       {
         "title": "Google for Developers: Machine Learning Glossary（activation function）",
         "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "PyTorch Documentation: torch.heaviside（Heaviside step function）",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.heaviside.html"
       }
     ],
     "status": "verified"
