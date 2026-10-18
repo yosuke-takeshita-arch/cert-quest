@@ -29,6 +29,7 @@ export function normalizeQuestion(q) {
     id: q.id,
     syllabus: q.syllabus,
     format: ['single', 'not', 'fill', 'scenario', 'combo'].includes(q.format) ? q.format : 'single',
+    negative: q.format === 'not' || q.negative === true, // 適切でないものを選ぶ問題か（場面問題でも付く。要件定義書 §7 の negative）
     qtype: ['term', 'relation', 'causal', 'loop', 'tradeoff', 'interdep', 'miscon'].includes(q.qtype) ? q.qtype : '', // 出題の型（任意。模試の配分に使う）
     difficulty: Number.isFinite(q.difficulty) ? q.difficulty : null,
     stem: q.stem,

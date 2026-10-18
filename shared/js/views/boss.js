@@ -404,7 +404,7 @@ export function renderBoss(app, key) {
     if (!S.log.length) ui.qarea.appendChild(h('p', { class: 'small muted boss-rule', text: '正解でボスにダメージ。何問で倒せるかは分かりません。間違えるとハートが1つ減り（3つなくなると負け）、その問題は最後にもう一度出ます。10秒以内に正解すると、会心の一撃が出ることがあります。' }));
     const card = h('div', { class: 'card q-card' });
     const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: q.syllabus.slice(1, 3).join(' › ') || q.syllabus[0] }), statusChip(q.status));
-    if (q.format === 'not') tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
+    if (q.negative) tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
     if (q.format === 'scenario') tags.appendChild(h('span', { class: 'chip', text: '場面問題' }));
     if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
     card.appendChild(tags);

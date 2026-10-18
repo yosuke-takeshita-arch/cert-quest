@@ -369,7 +369,7 @@ function checkAnswerLength(f, id, o) {
 // 相互依存の問題の言い回しの偏り（2026-10-06 追加。語の一覧はファイル先頭の INTERDEP_LINK / INTERDEP_DISMISS）
 const interdepStats = { n: 0, flagged: 0 };
 function checkInterdepWording(f, id, o) {
-  if (o.qtype !== 'interdep' || o.format === 'not') return;
+  if (o.qtype !== 'interdep' || o.format === 'not' || o.negative === true) return;
   if (!Array.isArray(o.choices) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
   const hits = (s, list) => list.filter((re) => re.test(String(s))).map((re) => String(s).match(re)[0]);
   const right = o.choices[o.answer];
@@ -437,6 +437,9 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
       checkCueWords(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
+      // 適切でないものを選ばせるのに札が出ない問題を止める（要件定義書 §7 の negative）
+      if ('negative' in o && o.negative !== true) err(f, id, 'negative は true だけ書く（違うなら欄ごと省く）');
+      if (/(不適切な|適切でない|誤っている|誤りを含む|正しくない)もの/.test(o.stem) && o.format !== 'not' && o.negative !== true) err(f, id, '問題文が適切でないものを選ばせるのに、format が not でも negative でもない（札が出ない）');
     } else {
       if (!/^DC-\d{2}-\d{3}$/.test(id)) err(f, id, 'id が DC-NN-NNN 形式でない');
       checkSyllabus(f, id, o.syllabus, syl);

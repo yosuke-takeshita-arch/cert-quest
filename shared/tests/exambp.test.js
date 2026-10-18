@@ -91,6 +91,11 @@ test('データ: qtype は決まった7つだけ通す／補足の領域は木�
   assert.equal(normalizeQuestion({ ...base, qtype: 'causal' }).qtype, 'causal');
   assert.equal(normalizeQuestion({ ...base, qtype: 'bogus' }).qtype, '');
   assert.equal(normalizeQuestion(base).qtype, '');
+  // negative: format が not か、場面問題で negative: true なら「適切でないものを選ぶ」問題（2026-10-18）
+  assert.equal(normalizeQuestion({ ...base, format: 'not' }).negative, true);
+  assert.equal(normalizeQuestion({ ...base, format: 'scenario', negative: true }).negative, true);
+  assert.equal(normalizeQuestion({ ...base, format: 'scenario' }).negative, false);
+  assert.equal(normalizeQuestion({ ...base, format: 'scenario', negative: 'yes' }).negative, false);
   const tree = buildTree([{ id: 'B', title: '基礎', children: [] }, { id: 'S', title: '補足', supplement: true, children: [] }], [], []);
   assert.equal(tree.roots.find((r) => r.name === '基礎').supplement, false);
   assert.equal(tree.roots.find((r) => r.name === '補足').supplement, true);

@@ -109,7 +109,7 @@ export function renderExam(app) {
         if (left <= 0) finish(true);
       }, 500);
       const card = h('div', { class: 'card q-card' },
-        h('div', { class: 'q-tags' }, statusChip(q.status), q.format === 'not' ? h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }) : null),
+        h('div', { class: 'q-tags' }, statusChip(q.status), q.negative ? h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }) : null),
         h('p', { class: 'stem', text: q.stem }));
       const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
       sq.choices.forEach((c, i) => {

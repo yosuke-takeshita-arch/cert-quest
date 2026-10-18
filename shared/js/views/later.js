@@ -91,7 +91,7 @@ function renderLaterOne(app, id) {
   const open = (cid) => openCardSheet(app, cid);
   const card = h('div', { class: 'card q-card' });
   const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: chapterOf(q) }), statusChip(q.status));
-  if (q.format === 'not') tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
+  if (q.negative) tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
   if (q.format === 'scenario') tags.appendChild(h('span', { class: 'chip', text: '場面問題' }));
   if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
   card.appendChild(tags);

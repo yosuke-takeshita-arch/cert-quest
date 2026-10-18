@@ -60,6 +60,7 @@
     "id": "D-01-027",
     "syllabus": ["コアDXBzイノベーション領域", "B ビジネスイノベーション/トレンド/人財", "基本概念"],
     "format": "scenario",
+    "negative": true,
     "qtype": "term",
     "difficulty": 2,
     "stem": "DX推進のための経営のあり方、仕組みについて、デジタルガバナンス・コード3.0の「組織づくり」の望ましい方向性に照らして、各社の取り組みのうち適切でないものを選びなさい。",
@@ -118,6 +119,7 @@
     "id": "D-01-034",
     "syllabus": ["コアDXBzイノベーション領域", "B ビジネスイノベーション/トレンド/人財", "基本概念"],
     "format": "scenario",
+    "negative": true,
     "qtype": "term",
     "difficulty": 2,
     "stem": "DX活動をけん引する人材を含むDX人材の確保について、デジタルガバナンス・コード3.0の「デジタル人材の育成・確保」の望ましい方向性に照らして、各社の取り組みのうち適切でないものを選びなさい。",
@@ -658,6 +660,7 @@
     ],
     "memoryTip": "キャンバスは1枚の網。顧客を動かせば、届け方・活動・コストも引っ張られて動く。",
     "concepts": ["DC-02-106"],
+    "figures": ["fig-dx-business-model-canvas"],
     "sources": [
       { "title": "Strategyzer「The Business Model Canvas」", "url": "https://www.strategyzer.com/library/the-business-model-canvas" }
     ],
@@ -687,6 +690,7 @@
     ],
     "memoryTip": "キャンバスの下2段（コスト・収益）は、上7段の上に乗った「仮の数字」。上が崩れれば一緒に崩れる。",
     "concepts": ["DC-02-106", "DC-05-021"],
+    "figures": ["fig-dx-business-model-canvas"],
     "sources": [
       { "title": "Strategyzer「The Business Model Canvas」", "url": "https://www.strategyzer.com/library/the-business-model-canvas" }
     ],
