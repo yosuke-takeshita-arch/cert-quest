@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 564" role="img" aria-labelledby="fig-g-self-supervised-t fig-g-self-supervised-d">
 <title id="fig-g-self-supervised-t">教師あり・半教師あり・自己教師あり学習</title>
-<desc id="fig-g-self-supervised-d">教師あり学習は、すべてのデータに人が付けたラベルがある。半教師あり学習は、少量のラベル付きデータと大量のラベルなしデータを組み合わせる。自己教師あり学習は、ラベルを使わず、データそのものから疑似的な正解を作って学ぶ。例は2つ。1つは、文の一部を隠して当てる（BERT の Masked Language Model）。もう1つは対照学習（SimCLR）で、同じ画像に2通りのデータ拡張をかけた2枚の表現を近づけ、別の画像から作ったものとは遠ざける。</desc>
+<desc id="fig-g-self-supervised-d">教師あり学習は、すべてのデータに人が付けたラベルがある。半教師あり学習は、少量のラベル付きデータと大量のラベルなしデータを組み合わせる。自己教師あり学習は、ラベルを使わず、データそのものから疑似的な正解を作って学ぶ。例は2つ。1つは、文の一部を隠して当てる（BERT の Masked Language Model）。もう1つは対照学習（SimCLR）で、同じ画像を2通りのデータ拡張で加工した2枚の表現を近づけ、別の画像から作ったものとは遠ざける。</desc>
 <text x="12" y="20" class="tb">教師あり：全部にラベル</text>
 <rect x="12" y="32" width="24" height="24" class="fas sa" stroke-width="1.5"/>
 <text x="24" y="49" class="tb ta" text-anchor="middle">正</text>
@@ -78,5 +78,5 @@
 <text x="47" y="510.5" class="tb" text-anchor="middle">別の画像</text>
 <line x1="82" y1="506" x2="220" y2="506" class="l sng w2 dsh"/>
 <text x="228" y="511" class="tb tng">遠ざける</text>
-<text x="12" y="552" class="tm">データ拡張を2通りかけて、組を作る（SimCLR）</text>
+<text x="12" y="552" class="tm">データ拡張で2通りに加工し、組を作る（SimCLR）</text>
 </svg>

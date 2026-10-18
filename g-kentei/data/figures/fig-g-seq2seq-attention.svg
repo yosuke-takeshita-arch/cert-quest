@@ -73,7 +73,7 @@
 <rect x="256" y="424" width="52" height="26" class="fs sb" stroke-width="1.5"/>
 <text x="282" y="441.5" text-anchor="middle">好き</text>
 <text x="282" y="472" class="tm" text-anchor="middle">0.05</text>
-<text x="12" y="502" class="tb">すべての位置の状態に重みをかけて足す</text>
+<text x="12" y="502" class="tb">すべての位置の状態に重みを掛けて足す</text>
 <text x="12" y="524" class="tm">重みは合計1：0.05＋0.05＋0.8＋0.05＋0.05＝1</text>
 <text x="12" y="546" class="tm">→ ほぼ「猫」の情報で cats を出す（数は例）</text>
 </svg>

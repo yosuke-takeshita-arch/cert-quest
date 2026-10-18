@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 758" role="img" aria-labelledby="fig-g-randaugment-t fig-g-randaugment-d">
-<title id="fig-g-randaugment-t">RandAugment：用意した変換からランダムに N 個を選び、共通の強さ M でかける。調整する値は N と M だけ</title>
-<desc id="fig-g-randaugment-d">①用意した変換は原論文の14種類：何もしない、自動コントラスト、ヒストグラム平坦化、回転、ソラリゼーション、色の濃さ、ポスタリゼーション、コントラスト、明るさ、シャープさ、横にせん断、縦にせん断、横に平行移動、縦に平行移動。青は画像1が引いた2つ（回転・明るさ）、茶は画像2が引いた2つ（横にせん断・コントラスト）。②例は N＝2・M＝9。画像1は回転と明るさを、画像2は横にせん断とコントラストを、どれも強さ9でかける。画像ごとに14種類から2つを引き直す。M が大きいほど、どの変換も強くかかる。③AutoAugment などは、変換・確率・強さなど30以上の値を、本番の前に別の段階で探し、小さなモデルや小さなデータで探しがちだった。RandAugment は N と M の組を本番で試すだけ。原論文の ResNet-50・ImageNet では、N を1・2・3、M を5・7・9・11・13・15とした18通りを試し、いちばん良かったのが N＝2・M＝9。Mixup・CutMix は2枚を混ぜる方法で、変換の選び方の話ではない。</desc>
-<text x="12" y="20" class="tb">RandAugment：N 個を選び、強さ M でかける</text>
+<title id="fig-g-randaugment-t">RandAugment：用意した変換からランダムに N 個を選び、共通の強さ M で加える。調整する値は N と M だけ</title>
+<desc id="fig-g-randaugment-d">①用意した変換は原論文の14種類：何もしない、自動コントラスト、ヒストグラム平坦化、回転、ソラリゼーション、色の濃さ、ポスタリゼーション、コントラスト、明るさ、シャープさ、横にせん断、縦にせん断、横に平行移動、縦に平行移動。青は画像1が引いた2つ（回転・明るさ）、茶は画像2が引いた2つ（横にせん断・コントラスト）。②例は N＝2・M＝9。画像1は回転と明るさを、画像2は横にせん断とコントラストを、どれも強さ9で加える。画像ごとに14種類から2つを引き直す。M が大きいほど、どの変換も強くかかる。③AutoAugment などは、変換・確率・強さなど30以上の値を、本番の前に別の段階で探し、小さなモデルや小さなデータで探しがちだった。RandAugment は N と M の組を本番で試すだけ。原論文の ResNet-50・ImageNet では、N を1・2・3、M を5・7・9・11・13・15とした18通りを試し、いちばん良かったのが N＝2・M＝9。Mixup・CutMix は2枚を混ぜる方法で、変換の選び方の話ではない。</desc>
+<text x="12" y="20" class="tb">RandAugment：N 個を選び、強さ M で加える</text>
 <text x="12" y="42" class="tm">調整する値は N と M の2つだけ</text>
 <rect x="12" y="54" width="296" height="190" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="24" y="74" class="tb">① 用意した変換（原論文の14種類）</text>
@@ -43,7 +43,7 @@
 <rect x="214" y="328" width="94" height="26" class="fwn swn" stroke-width="1.5" rx="4"/>
 <text x="261" y="345.5" text-anchor="middle">コントラスト 9</text>
 <text x="24" y="376">画像ごとに14種類から2つを引き直し、</text>
-<text x="24" y="394">どれも同じ強さ 9 でかける</text>
+<text x="24" y="394">どれも同じ強さ 9 で加える</text>
 <text x="24" y="418" class="tm">M が大きいほど、どの変換も強くかかる</text>
 <rect x="12" y="444" width="296" height="262" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="24" y="464" class="tb">③ 探す手間がちがう</text>

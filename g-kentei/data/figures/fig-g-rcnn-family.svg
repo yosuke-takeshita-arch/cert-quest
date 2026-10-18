@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-g-rcnn-family-t fig-g-rcnn-family-d">
 <title id="fig-g-rcnn-family-t">R-CNN・Fast R-CNN・Faster R-CNN の違い</title>
-<desc id="fig-g-rcnn-family-d">2段階型の物体検出 R-CNN 系の3つを、候補を出す・CNN をかける・分類する、の3つの役目に分けて並べた図。R-CNN は、選択的探索で候補を約2000個出し、候補ごとに CNN を2000回かけ直すので、1枚に47秒かかる（GPU、VGG16）。Fast R-CNN は、CNN を画像全体に1回だけかけ、できた特徴マップから候補の場所を切り出して分類する。推論は R-CNN の213倍速くなったが、候補出しの選択的探索は CPU で1枚約2秒かかり、遅いまま残った。Faster R-CNN は、候補を出す部分もネットワーク（RPN）にし、CNN の特徴を共有させて、候補出しを1枚約10ミリ秒にした。候補は約300個で、全体で毎秒5枚。色の付いた枠は、前の段から変えたところ。</desc>
+<desc id="fig-g-rcnn-family-d">2段階型の物体検出 R-CNN 系の3つを、候補を出す・CNN で特徴を取り出す・分類する、の3つの役目に分けて並べた図。R-CNN は、選択的探索で候補を約2000個出し、候補を1つずつ CNN に通し直す（2000回くり返す）ので、1枚に47秒かかる（GPU、VGG16）。Fast R-CNN は、画像全体を CNN に1回だけ通して特徴を取り出し、できた特徴マップから候補の場所を切り出して分類する。推論は R-CNN の213倍速くなったが、候補出しの選択的探索は CPU で1枚約2秒かかり、遅いまま残った。Faster R-CNN は、候補を出す部分もネットワーク（RPN）にし、CNN の特徴を共有させて、候補出しを1枚約10ミリ秒にした。候補は約300個で、全体で毎秒5枚。色の付いた枠は、前の段から変えたところ。</desc>
 <text x="12" y="20" class="tb">R-CNN → Fast → Faster：何を変えたか</text>
 <text x="59" y="46" class="tm" text-anchor="middle">候補を出す</text>
-<text x="160" y="46" class="tm" text-anchor="middle">CNNをかける</text>
+<text x="160" y="46" class="tm" text-anchor="middle">CNNで特徴を取り出す</text>
 <text x="261" y="46" class="tm" text-anchor="middle">分類する</text>
 <text x="12" y="74" class="tb">① R-CNN</text>
 <rect x="12" y="82" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
@@ -19,7 +19,7 @@
 <rect x="214" y="82" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="261" y="106" text-anchor="middle">候補ごとに</text>
 <text x="261" y="126" text-anchor="middle">分類と枠の補正</text>
-<text x="12" y="162" class="tng">1枚に47秒。CNN を2000回かけ直すのが重い</text>
+<text x="12" y="162" class="tng">1枚に47秒。CNN に2000回通し直すのが重い</text>
 <text x="12" y="196" class="tb">② Fast R-CNN</text>
 <rect x="12" y="204" width="94" height="60" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="59" y="228" text-anchor="middle">選択的探索</text>

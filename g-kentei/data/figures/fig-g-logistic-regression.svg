@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 586" role="img" aria-labelledby="fig-g-logistic-regression-t fig-g-logistic-regression-d">
 <title id="fig-g-logistic-regression-t">ロジスティック回帰：重み付き和からシグモイドで確率にして分類する</title>
-<desc id="fig-g-logistic-regression-d">入力x1、x2に重みをかけて足し、切片を足した値zを求める。ことばの式は z＝重み1×入力1＋重み2×入力2＋切片。例として重み0.5・入力2、重み1・入力1.5、切片−0.5なら、0.5×2＋1×1.5＋（−0.5）＝1＋1.5−0.5＝2。zをシグモイド関数に通すと0から1の確率pになる。zが0のときpは0.5、例のzが2のときpは約0.88で、zが大きいほど1に、小さいほど0に近づく。pがしきい値0.5以上なら陽性、未満なら陰性と判定する。名前は回帰だが、使い道は分類である。</desc>
+<desc id="fig-g-logistic-regression-d">入力x1、x2に重みを掛けて足し、切片を足した値zを求める。ことばの式は z＝重み1×入力1＋重み2×入力2＋切片。例として重み0.5・入力2、重み1・入力1.5、切片−0.5なら、0.5×2＋1×1.5＋（−0.5）＝1＋1.5−0.5＝2。zをシグモイド関数に通すと0から1の確率pになる。zが0のときpは0.5、例のzが2のときpは約0.88で、zが大きいほど1に、小さいほど0に近づく。pがしきい値0.5以上なら陽性、未満なら陰性と判定する。名前は回帰だが、使い道は分類である。</desc>
 <text x="12" y="20" class="tb">① 重み付き和 z を出す</text>
 <rect x="12" y="32" width="44" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
 <text x="34" y="52" class="tb" text-anchor="middle">x1</text>
