@@ -202,6 +202,7 @@
     ],
     "memoryTip": "TCO＝「買う値段」ではなく「持つ値段」。",
     "concepts": ["DC-05-102"],
+    "figures": ["fig-dx-tco"],
     "sources": [
       { "title": "デジタル庁「DS-110 デジタル・ガバメント推進標準ガイドライン 解説書」（2026年6月12日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/e2a06143-ed29-4f1d-9c31-0f06fca67afc/50952dae/20260715_resources_standard_guidelines_guideline_03.pdf" }
     ],
@@ -260,6 +261,7 @@
     ],
     "memoryTip": "PoCの精度は「その条件での」精度。条件が変われば、確かめ直す。",
     "concepts": ["DC-05-103", "DC-01-009"],
+    "figures": ["fig-dx-poc-production"],
     "sources": [
       { "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）", "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf" }
     ],
@@ -289,6 +291,7 @@
     ],
     "memoryTip": "性能を先に約束→見通せない→認識がずれる→止められない→もめる。だから段階に分けて確かめる。",
     "concepts": ["DC-05-103", "DC-01-009"],
+    "figures": ["fig-dx-poc-production"],
     "sources": [
       { "title": "経済産業省「AI・データの利用に関する契約ガイドライン 1.1版」（令和元年12月）", "url": "https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf" }
     ],

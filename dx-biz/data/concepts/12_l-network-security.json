@@ -90,6 +90,7 @@
     "confusions": [
       { "title": "情報を伏せる", "point": "被害を広げないための報告・公表もインシデント対応の一部。社内で隠して原因究明だけ進めるのは誤り。" }
     ],
+    "figures": ["fig-dx-incident-response"],
     "sources": [
       { "title": "IPA「中小企業のためのセキュリティインシデント対応の手引き」", "url": "https://www.ipa.go.jp/security/guide/sme/ug65p90000019cbk-att/security-incident.pdf" },
       { "title": "IPA「サイバーセキュリティ経営ガイドライン」指示7 インシデント発生時の緊急対応体制の整備", "url": "https://www.ipa.go.jp/security/economics/practices_navi/practice226.html" }

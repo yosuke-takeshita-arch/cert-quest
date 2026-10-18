@@ -2325,6 +2325,9 @@
         "point": "Triplet Loss は誤差関数の名前、Triplet Network はそれで学習するネットワークの構成（同じネットワークを3つ並べ、重みを共有する）。"
       }
     ],
+    "figures": [
+      "fig-g-siamese-triplet"
+    ],
     "sources": [
       {
         "title": "Hoffer & Ailon (2014) Deep metric learning using Triplet network (arXiv:1412.6622)",

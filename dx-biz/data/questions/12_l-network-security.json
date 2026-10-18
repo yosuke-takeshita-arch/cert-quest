@@ -165,6 +165,7 @@
     ],
     "memoryTip": "インシデント対応の3ステップ＝「止める（初動）→ 知らせる（報告・公表）→ 直して防ぐ（復旧・再発防止）」。",
     "concepts": ["DC-02-034", "DC-02-036"],
+    "figures": ["fig-dx-incident-response"],
     "sources": [
       { "title": "IPA「中小企業のためのセキュリティインシデント対応の手引き」", "url": "https://www.ipa.go.jp/security/guide/sme/ug65p90000019cbk-att/security-incident.pdf" },
       { "title": "IPA「サイバーセキュリティ経営ガイドライン」指示7 インシデント発生時の緊急対応体制の整備", "url": "https://www.ipa.go.jp/security/economics/practices_navi/practice226.html" }

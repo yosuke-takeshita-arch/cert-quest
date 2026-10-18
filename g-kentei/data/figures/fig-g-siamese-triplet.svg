@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 646" role="img" aria-labelledby="fig-g-siamese-triplet-t fig-g-siamese-triplet-d">
+<title id="fig-g-siamese-triplet-t">深層距離学習：重みを共有した同じネットワークを2つ並べる Siamese Network と、3つ並べる Triplet Network</title>
+<desc id="fig-g-siamese-triplet-d">顔の照合の例。上は Siamese Network。写真1と写真2を、重みを共有した（中身が同じ）2つのネットワークに1枚ずつ通し、出てきた特徴（写真を写した数の並び）どうしの距離を測る。距離が近ければ同じ人、遠ければ別人。下は Triplet Network。基準・同じ種類・違う種類の3つを、重みを共有した3つのネットワークに通し、基準と同じ種類の距離は近く、基準と違う種類の距離は遠くなるように学ぶ。どちらも、学習のときに見ていない人でも、写真を写して距離を測れば照合できる。</desc>
+<text x="12" y="20" class="tb">深層距離学習（顔の照合の例）</text>
+<text x="12" y="40" class="tm">似たものは近く、違うものは遠くに写す</text>
+<text x="12" y="68" class="tb">① Siamese：2つ並べてペアを比べる</text>
+<rect x="40" y="80" width="90" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="85" y="100" text-anchor="middle">写真1</text>
+<rect x="190" y="80" width="90" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="235" y="100" text-anchor="middle">写真2</text>
+<line x1="85" y1="110" x2="85" y2="124" class="l sm w1"/>
+<polygon points="85,128 81,121 89,121" class="fm"/>
+<line x1="235" y1="110" x2="235" y2="124" class="l sm w1"/>
+<polygon points="235,128 231,121 239,121" class="fm"/>
+<rect x="30" y="130" width="110" height="34" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="85" y="152" text-anchor="middle" class="tb">ネットワーク</text>
+<rect x="180" y="130" width="110" height="34" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="235" y="152" text-anchor="middle" class="tb">ネットワーク</text>
+<line x1="140" y1="147" x2="180" y2="147" class="l sa w2 dsh"/>
+<text x="160" y="180" text-anchor="middle" class="ta tb">重みを共有</text>
+<text x="160" y="197" text-anchor="middle" class="ta tb">中身は同じ</text>
+<line x1="85" y1="164" x2="85" y2="198" class="l sm w1"/>
+<polygon points="85,202 81,195 89,195" class="fm"/>
+<line x1="235" y1="164" x2="235" y2="198" class="l sm w1"/>
+<polygon points="235,202 231,195 239,195" class="fm"/>
+<rect x="50" y="204" width="70" height="26" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="85" y="222" text-anchor="middle">特徴</text>
+<rect x="200" y="204" width="70" height="26" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="235" y="222" text-anchor="middle">特徴</text>
+<line x1="120" y1="217" x2="200" y2="217" class="l w2"/>
+<text x="160" y="250" text-anchor="middle" class="tb">2つの特徴の距離を測る</text>
+<text x="160" y="272" text-anchor="middle"><tspan class="tok tb">近い→同じ人</tspan>　<tspan class="tng tb">遠い→別人</tspan></text>
+<text x="12" y="294" class="tm">特徴＝写真を写した数の並び</text>
+<line x1="12" y1="308" x2="308" y2="308" class="l sb w1"/>
+<text x="12" y="332" class="tb">② Triplet：3つ並べて3つ組を比べる</text>
+<rect x="14" y="344" width="84" height="30" class="fs l" stroke-width="1.5" rx="6"/>
+<text x="56" y="364" text-anchor="middle" class="tb">基準</text>
+<rect x="118" y="344" width="84" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="364" text-anchor="middle" class="tb tok">同じ種類</text>
+<rect x="222" y="344" width="84" height="30" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="264" y="364" text-anchor="middle" class="tb tng">違う種類</text>
+<line x1="56" y1="374" x2="56" y2="384" class="l sm w1"/>
+<polygon points="56,388 52,381 60,381" class="fm"/>
+<line x1="160" y1="374" x2="160" y2="384" class="l sm w1"/>
+<polygon points="160,388 156,381 164,381" class="fm"/>
+<line x1="264" y1="374" x2="264" y2="384" class="l sm w1"/>
+<polygon points="264,388 260,381 268,381" class="fm"/>
+<rect x="14" y="390" width="84" height="32" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="56" y="411" text-anchor="middle" class="tb">ネットワーク</text>
+<rect x="118" y="390" width="84" height="32" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="411" text-anchor="middle" class="tb">ネットワーク</text>
+<rect x="222" y="390" width="84" height="32" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="264" y="411" text-anchor="middle" class="tb">ネットワーク</text>
+<line x1="98" y1="406" x2="118" y2="406" class="l sa w2 dsh"/>
+<line x1="202" y1="406" x2="222" y2="406" class="l sa w2 dsh"/>
+<text x="160" y="442" text-anchor="middle" class="ta tb">3つとも重みを共有（中身は同じ）</text>
+<line x1="56" y1="450" x2="56" y2="458" class="l sm w1"/>
+<polygon points="56,462 52,455 60,455" class="fm"/>
+<line x1="160" y1="450" x2="160" y2="458" class="l sm w1"/>
+<polygon points="160,462 156,455 164,455" class="fm"/>
+<line x1="264" y1="450" x2="264" y2="458" class="l sm w1"/>
+<polygon points="264,462 260,455 268,455" class="fm"/>
+<rect x="26" y="464" width="60" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="56" y="481" text-anchor="middle">特徴</text>
+<rect x="130" y="464" width="60" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="160" y="481" text-anchor="middle">特徴</text>
+<rect x="234" y="464" width="60" height="24" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="264" y="481" text-anchor="middle">特徴</text>
+<line x1="56" y1="500" x2="160" y2="500" class="l sok w2"/>
+<line x1="56" y1="494" x2="56" y2="506" class="l sok w2"/>
+<line x1="160" y1="494" x2="160" y2="506" class="l sok w2"/>
+<text x="170" y="505" class="tok tb">近くする</text>
+<line x1="56" y1="526" x2="264" y2="526" class="l sng w2"/>
+<line x1="56" y1="520" x2="56" y2="532" class="l sng w2"/>
+<line x1="264" y1="520" x2="264" y2="532" class="l sng w2"/>
+<text x="56" y="550" class="tng tb">遠くする</text>
+<text x="12" y="576">基準と同じ種類の距離は近く、</text>
+<text x="12" y="594">基準と違う種類の距離は遠くなるよう学ぶ</text>
+<line x1="12" y1="606" x2="308" y2="606" class="l sb w1"/>
+<text x="12" y="626" class="tm">学習で見ていない人でも、写して</text>
+<text x="12" y="642" class="tm">距離を測れば照合できる</text>
+</svg>

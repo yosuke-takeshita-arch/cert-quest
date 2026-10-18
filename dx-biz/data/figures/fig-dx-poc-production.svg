@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 688" role="img" aria-labelledby="fig-dx-poc-production-t fig-dx-poc-production-d">
+<title id="fig-dx-poc-production-t">AI開発の探索的段階型（アセスメント・PoC・開発・追加学習と、段階ごとの進むかの判断）と、PoCと本番の条件の違い</title>
+<desc id="fig-dx-poc-production-d">上は、経済産業省のAI・データの利用に関する契約ガイドラインの探索的段階型。上から下へ、アセスメント段階（実現できそうかを検討する）、PoC段階（一定のサンプルデータでモデルを作り、開発してよいかを検証してレポートにまとめる）、開発段階、追加学習段階と進む。段階の間ごとに、目的を実現できるか・次へ進むかを確かめる。下は、PoCと本番の条件の違いの表。データは、PoCではサンプルデータ、本番では実際のデータ。範囲は、PoCでは限られた範囲、本番では現場と既存の仕組みの中。成果は、PoCでは検証の結果のレポート、本番では使い続けられる状態。学習済みモデルは、学習時と使うときのデータの分布が同じことを前提にし、大きく違うと機能しないことがあるので、PoCの結果を広げる前に本番の条件で確かめ直す。</desc>
+<text x="12" y="20" class="tb">AIの開発は段階に分けて進める</text>
+<text x="12" y="40" class="tm">探索的段階型（AI・データ契約ガイドライン）</text>
+<rect x="12" y="52" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="77"><tspan class="tb">アセスメント</tspan>：できそうかを検討</text>
+<polygon points="40,98 50,110 40,122 30,110" class="fwn swn" stroke-width="1.5"/>
+<text x="60" y="115" class="twn tb">次へ進むか確かめる</text>
+<rect x="12" y="128" width="296" height="60" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="152"><tspan class="tb">PoC</tspan>：サンプルデータでモデルを作り、</text>
+<text x="24" y="172">開発してよいかを検証→レポート</text>
+<polygon points="40,194 50,206 40,218 30,206" class="fwn swn" stroke-width="1.5"/>
+<text x="60" y="211" class="twn tb">次へ進むか確かめる</text>
+<rect x="12" y="224" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="249" class="tb">開発</text>
+<polygon points="40,270 50,282 40,294 30,282" class="fwn swn" stroke-width="1.5"/>
+<text x="60" y="287" class="twn tb">次へ進むか確かめる</text>
+<rect x="12" y="300" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="325" class="tb">追加学習</text>
+<text x="12" y="362" class="tm">ひし形＝段階の間で、進むかを決める所</text>
+<text x="12" y="382" class="tm">PoC＝概念実証。小さく試して確かめる</text>
+<line x1="12" y1="398" x2="308" y2="398" class="l sb w1"/>
+<text x="12" y="422" class="tb">PoC と本番では条件が違う</text>
+<rect x="72" y="434" width="114" height="28" class="fas sa" stroke-width="1"/>
+<text x="129" y="453" text-anchor="middle" class="tb">PoC</text>
+<rect x="190" y="434" width="118" height="28" class="fok sok" stroke-width="1"/>
+<text x="249" y="453" text-anchor="middle" class="tb">本番</text>
+<text x="14" y="486" class="tb">データ</text>
+<text x="80" y="486">サンプル</text>
+<text x="196" y="486">実際のデータ</text>
+<line x1="12" y1="496" x2="308" y2="496" class="l sb w1"/>
+<text x="14" y="518" class="tb">範囲</text>
+<text x="80" y="518">限られた範囲</text>
+<text x="196" y="518">現場・既存の</text>
+<text x="196" y="536">仕組みの中</text>
+<line x1="12" y1="546" x2="308" y2="546" class="l sb w1"/>
+<text x="14" y="568" class="tb">成果</text>
+<text x="80" y="568">検証のレポート</text>
+<text x="196" y="568">使い続けられる</text>
+<text x="196" y="586">状態</text>
+<rect x="12" y="604" width="296" height="70" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="626">学習時と使うときでデータの分布が</text>
+<text x="24" y="644">大きく違うと、モデルが機能しないことも</text>
+<text x="24" y="662" class="tng tb">→ 広げる前に本番の条件で確かめ直す</text>
+</svg>
