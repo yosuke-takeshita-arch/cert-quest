@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 510" role="img" aria-labelledby="fig-ap-vae-t fig-ap-vae-d">
+<title id="fig-ap-vae-t">VAE（変分オートエンコーダ）：縮めた先を範囲（分布）で持ち、そこから選んだ点を画像に戻す</title>
+<desc id="fig-ap-vae-d">例は手書きの「3」の画像（数は例）。784個の数でできた画像を、エンコーダ（縮める側）が、潜在ベクトルの平均とばらつきに縮める。下の四角は潜在ベクトルの空間で、2個の数で表す。点が平均、破線の円がばらつきで決まる範囲（分布）。円の中から点を1つ選ぶ。選ぶのに乱数（ノイズ）を使うので、1回目は緑の点、2回目は茶の点のように毎回ちがう。選んだ点をデコーダ（戻す側）が画像に戻すと、少しずつ違う新しい「3」ができる。学習では、円のどこを選んでも「3」に戻るように学ぶ。新しく作るときは、範囲から点を選んでデコーダに入れる。潜在ベクトルは、データの見えない特徴を少ない数の組で表したもの（784個から2個）。</desc>
+<text x="12" y="20" class="tb">VAE：縮めた先を「範囲（分布）」で持つ</text>
+<text x="12" y="40" class="tm">例：手書きの「3」の画像（数は例）</text>
+<rect x="12" y="52" width="80" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="52" y="72" class="tb" text-anchor="middle">画像「3」</text>
+<text x="52" y="92" class="tm" text-anchor="middle">784個の数</text>
+<line x1="94" y1="77" x2="116" y2="77" class="l sa w2"/>
+<polyline points="109.00,81.00 116,77 109.00,73.00" class="l sa w2"/>
+<rect x="118" y="52" width="90" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="163" y="72" class="tb" text-anchor="middle">エンコーダ</text>
+<text x="163" y="92" class="tm" text-anchor="middle">縮める</text>
+<line x1="210" y1="77" x2="232" y2="77" class="l sa w2"/>
+<polyline points="225.00,81.00 232,77 225.00,73.00" class="l sa w2"/>
+<rect x="234" y="52" width="74" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="271" y="72" class="tb" text-anchor="middle">平均と</text>
+<text x="271" y="92" class="tb" text-anchor="middle">ばらつき</text>
+<text x="12" y="130" class="tb ta">潜在ベクトルの空間（2個の数で表す）</text>
+<rect x="12" y="140" width="296" height="120" class="fs sb" stroke-width="1.5"/>
+<circle cx="150" cy="200" r="44" class="fas sa dsh" stroke-width="1.5"/>
+<circle cx="150" cy="200" r="4" class="fa"/>
+<circle cx="174" cy="186" r="6" class="fok sok" stroke-width="2.5"/>
+<circle cx="128" cy="222" r="6" class="fwn swn" stroke-width="2.5"/>
+<text x="204" y="166" class="tm">破線の円＝範囲</text>
+<text x="204" y="186" class="tok">緑の点＝1回目</text>
+<text x="204" y="206" class="twn">茶の点＝2回目</text>
+<text x="24" y="160" class="ta">点＝平均</text>
+<text x="12" y="282" class="tb">円の中から点を1つ選ぶ。</text>
+<text x="12" y="302">選ぶのに乱数（ノイズ）を使うので毎回ちがう</text>
+<rect x="12" y="316" width="140" height="50" class="fok sok" stroke-width="1.5"/>
+<text x="82" y="336" class="tb" text-anchor="middle">デコーダ</text>
+<text x="82" y="356" class="tm" text-anchor="middle">点 → 画像に戻す</text>
+<line x1="154" y1="341" x2="176" y2="341" class="l sa w2"/>
+<polyline points="169.00,345.00 176,341 169.00,337.00" class="l sa w2"/>
+<rect x="178" y="316" width="130" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="243" y="336" class="tb" text-anchor="middle">少しずつ違う</text>
+<text x="243" y="356" class="tb" text-anchor="middle">新しい「3」</text>
+<text x="12" y="392" class="tb">学習：円のどこを選んでも「3」に戻るように</text>
+<text x="12" y="412">新しく作る：範囲から点を選んでデコーダへ</text>
+<line x1="12" y1="428" x2="308" y2="428" class="l sb w1"/>
+<text x="12" y="450" class="tb">潜在ベクトル＝データの見えない特徴を、</text>
+<text x="12" y="470">少ない数の組で表したもの（784個→2個）</text>
+<text x="12" y="492" class="tm">エンコーダ＝縮める側、デコーダ＝戻す側</text>
+</svg>

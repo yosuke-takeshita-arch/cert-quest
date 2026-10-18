@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 786" role="img" aria-labelledby="fig-ap-linear-stack-t fig-ap-linear-stack-d">
+<title id="fig-ap-linear-stack-t">活性化関数の役目：直線の計算を重ねても直線のまま。間に活性化関数をはさむと折れ曲がる</title>
+<desc id="fig-ap-linear-stack-d">①2層とも直線の計算（3倍して、2倍）だと、最初から6倍する1層と同じで、グラフは1本の直線のまま。x＝1なら3、6。x＝−1なら−3、−6。何層重ねても同じ。②間にReLU（負なら0、正ならそのまま）をはさむと、x＝1は3、3、6、x＝−1は−3、0、0となり、グラフは原点で折れ曲がって1本の直線ではなくなる。活性化関数の役目は、この折れ曲がりを入れて、直線では表せない複雑な関係も学べるようにすること。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">線形を重ねても線形のまま</text>
+<text x="12" y="42" class="tm">線形＝グラフが1本の直線になる変換</text>
+<text x="12" y="68" class="tb">①2層とも線形（3倍して、2倍）</text>
+<rect x="12" y="80" width="60" height="26" rx="4" class="fs sm" stroke-width="1"/>
+<text x="42" y="98" text-anchor="middle">入力 x</text>
+<line x1="74" y1="93" x2="92" y2="93" class="l sm w1"/>
+<polyline points="87,89 92,93 87,97" class="l sm w1"/>
+<rect x="96" y="80" width="50" height="26" rx="4" class="fas sa" stroke-width="1"/>
+<text x="121" y="98" class="tb ta" text-anchor="middle">×3</text>
+<line x1="148" y1="93" x2="166" y2="93" class="l sm w1"/>
+<polyline points="161,89 166,93 161,97" class="l sm w1"/>
+<rect x="170" y="80" width="50" height="26" rx="4" class="fas sa" stroke-width="1"/>
+<text x="195" y="98" class="tb ta" text-anchor="middle">×2</text>
+<line x1="222" y1="93" x2="240" y2="93" class="l sm w1"/>
+<polyline points="235,89 240,93 235,97" class="l sm w1"/>
+<rect x="244" y="80" width="60" height="26" rx="4" class="fs sm" stroke-width="1"/>
+<text x="274" y="98" text-anchor="middle">出力 y</text>
+<text x="12" y="130" class="tb tng">＝ 最初から ×6 する1層と同じ</text>
+<text x="12" y="152" class="tm">x＝1 → 3 → 6　／　x＝−1 → −3 → −6</text>
+<line x1="92" y1="240" x2="228" y2="240" class="l sm w1"/>
+<line x1="160" y1="172" x2="160" y2="308" class="l sm w1"/>
+<line x1="100" y1="300" x2="220" y2="180" class="l sa w2"/>
+<circle cx="220" cy="180" r="3.6" class="fa"/>
+<circle cx="100" cy="300" r="3.6" class="fa"/>
+<text x="220" y="256" class="tm" text-anchor="middle">1</text>
+<text x="100" y="232" class="tm" text-anchor="middle">−1</text>
+<text x="154" y="184" class="tm" text-anchor="end">6</text>
+<text x="166" y="304" class="tm">−6</text>
+<text x="160" y="328" class="tm" text-anchor="middle">横：入力 x　縦：出力 y</text>
+<text x="12" y="350">1本の直線のまま（何層重ねても同じ）</text>
+<line x1="12" y1="366" x2="308" y2="366" class="l sb w1"/>
+<text x="12" y="392" class="tb">②間に ReLU（負なら0）をはさむ</text>
+<rect x="12" y="404" width="48" height="26" rx="4" class="fs sm" stroke-width="1"/>
+<text x="36" y="422" text-anchor="middle">x</text>
+<line x1="62" y1="417" x2="70" y2="417" class="l sm w1"/>
+<rect x="72" y="404" width="48" height="26" rx="4" class="fas sa" stroke-width="1"/>
+<text x="96" y="422" class="tb ta" text-anchor="middle">×3</text>
+<line x1="122" y1="417" x2="130" y2="417" class="l sm w1"/>
+<rect x="132" y="404" width="48" height="26" rx="4" class="fok sok" stroke-width="1"/>
+<text x="156" y="422" class="tb tok" text-anchor="middle">ReLU</text>
+<line x1="182" y1="417" x2="190" y2="417" class="l sm w1"/>
+<rect x="192" y="404" width="48" height="26" rx="4" class="fas sa" stroke-width="1"/>
+<text x="216" y="422" class="tb ta" text-anchor="middle">×2</text>
+<line x1="242" y1="417" x2="250" y2="417" class="l sm w1"/>
+<rect x="252" y="404" width="48" height="26" rx="4" class="fs sm" stroke-width="1"/>
+<text x="276" y="422" text-anchor="middle">y</text>
+<text x="12" y="454" class="tm">x＝1 → 3 → 3 → 6</text>
+<text x="12" y="474" class="tm">x＝−1 → −3 → 0（負なので0）→ 0</text>
+<line x1="92" y1="560" x2="228" y2="560" class="l sm w1"/>
+<line x1="160" y1="492" x2="160" y2="628" class="l sm w1"/>
+<polyline points="100,560 160,560 220,500" class="l sok w2"/>
+<circle cx="220" cy="500" r="3.6" class="fok sok" stroke-width="2"/>
+<circle cx="100" cy="560" r="3.6" class="fok sok" stroke-width="2"/>
+<text x="220" y="576" class="tm" text-anchor="middle">1</text>
+<text x="100" y="580" class="tm" text-anchor="middle">−1</text>
+<text x="154" y="504" class="tm" text-anchor="end">6</text>
+<text x="160" y="648" class="tm" text-anchor="middle">横：入力 x　縦：出力 y</text>
+<text x="12" y="672" class="tb tok">原点で折れ曲がる＝1本の直線ではない</text>
+<line x1="12" y1="688" x2="308" y2="688" class="l sb w1"/>
+<text x="12" y="712" class="tb tng">活性化関数（ReLUなど）の役目</text>
+<text x="12" y="732">折れ曲がりを入れ、直線では表せない</text>
+<text x="12" y="752">複雑な関係も学べるようにする</text>
+<text x="12" y="774" class="tm">（数は説明のための例）</text>
+</svg>

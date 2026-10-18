@@ -16,6 +16,7 @@
     "confusions": [
       { "id": "C-AP-01-040", "point": "RNNは1語ずつ順に読んで計算する。Transformerは全部の語の関係を一度に計算し、語の順番は位置の情報を足して補う。" }
     ],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "Google for Developers: Machine Learning Glossary（Transformer）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -98,6 +99,7 @@
     "confusions": [
       { "id": "C-AP-02-016", "point": "学習のときの文の中の計算は並列にできる。文章を作るときは、次のトークンの予測を1つずつ順に繰り返す。" }
     ],
+    "figures": ["fig-ap-rnn-vs-attention"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
@@ -118,6 +120,7 @@
     "confusions": [
       { "id": "C-AP-01-042", "point": "勾配消失は、学習の信号が前の段へ伝わるうちに小さくなる問題。長距離依存は、離れた語どうしのつながりのことで、RNNでは勾配消失のせいで学びにくかった。" }
     ],
+    "figures": ["fig-ap-rnn-vs-attention"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
     ],
@@ -138,6 +141,7 @@
     "confusions": [
       { "id": "C-AP-01-048", "point": "VAEのエンコーダは、データを潜在ベクトルの分布に縮める部分。Transformerのエンコーダは、入力の文の各語を、文脈を取り込んだ表現に変える部分。どちらも『内側の表現へ変える』側。" }
     ],
+    "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "Google for Developers: Machine Learning Glossary（encoder・decoder・Transformer）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -159,6 +163,7 @@
     "confusions": [
       { "id": "C-AP-02-007", "point": "エンコーダとデコーダは、Transformerの部品の名前。派生モデルの系譜は、そのどちらを使うかで分かれたモデルの流れ。" }
     ],
+    "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（Transformer・BERT）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" },
@@ -203,6 +208,7 @@
     "confusions": [
       { "id": "C-AP-01-067", "point": "拡散モデルは画素のままで動かすこともある。潜在拡散モデルは、画像を縮めた潜在空間の中で動かす拡散モデル。" }
     ],
+    "figures": ["fig-ap-latent-diffusion"],
     "sources": [
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" }
@@ -224,6 +230,7 @@
     "confusions": [
       { "id": "C-AP-01-068", "point": "基盤モデルは、用途を問わない土台のモデルの総称で、画像を扱うものも含む。LLMはその中の、文章を扱う大きな言語モデル。" }
     ],
+    "figures": ["fig-ap-foundation-model"],
     "sources": [
       { "title": "Bommasani et al. (2021) On the Opportunities and Risks of Foundation Models (arXiv:2108.07258)", "url": "https://arxiv.org/abs/2108.07258" },
       { "title": "Google for Developers: Machine Learning Glossary（foundation model）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -243,6 +250,7 @@
     "confusions": [
       { "id": "C-AP-02-013", "point": "モダリティはデータの種類そのもの。マルチモーダルは、その種類を複数扱えること。" }
     ],
+    "figures": ["fig-ap-modality"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（modality）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -263,6 +271,7 @@
     "confusions": [
       { "id": "C-AP-02-012", "point": "モダリティはデータの種類そのもの。マルチモーダルは、その種類を複数扱えること。" }
     ],
+    "figures": ["fig-ap-modality"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（multimodal model）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" },
@@ -309,6 +318,7 @@
     "confusions": [
       { "id": "C-AP-01-036", "point": "事前学習は、大量の一般的な文章での最初の学習。ファインチューニングは、事前学習済みのモデルを、目的の仕事のデータで追加学習して仕上げること。" }
     ],
+    "figures": ["fig-ap-llm-training-stages"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（pre-training）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
@@ -321,7 +331,7 @@
     "syllabus": ["生成AI", "生成AIの学習プロセス", "事前学習"],
     "title": "次トークン予測",
     "oneLine": "文章の続きとして、次に来るトークン（語や語の一部）を確率で予測すること。LLM（大規模言語モデル）の事前学習の目標であり、文章を作るときもこれを1つずつくり返す。",
-    "why": "名前：トークンは、言語モデルが文章を区切って扱う単位（語・語の一部・記号など）。困りごと：『ことばを理解させる』のは、そのままでは学習の目標にできない。そこで、『次に来るトークンを当てる』という、答え合わせのできる問題に置きかえた。例：『今日は天気が』の次として、モデルは例えば『良い』に0.6、『悪い』に0.2、『雨』に0.05…のような確率を出す。学習では、実際の文章の次のトークンの確率が高くなるよう重みを直す。文章を作るときは、確率にしたがって1つ選び（例えば『良い』）、それを足した『今日は天気が良い』の次をまた予測する、をくり返す。押さえどころ：GPT-4（OpenAI が2023年に出した、画像も入力できるモデル）の技術報告は、GPT-4を、文書の次のトークンを予測するように事前学習したTransformer（2017年に発表された、いまの生成AIの土台のモデル）のモデルとしている。Googleの用語集は、言語モデルを、トークンやトークンの並びが、長い並びの中に現れる確率を見積もるモデルとしている。混同しやすい点：次トークン予測は『正しい事実』ではなく『ありそうな続き』を当てる学習なので、もっともらしいが事実でない文を作ることがある。",
+    "why": "名前：トークンは、言語モデルが文章を区切って扱う単位（語・語の一部・記号など）。困りごと：『ことばを理解させる』のは、そのままでは学習の目標にできない。そこで、『次に来るトークンを当てる』という、答え合わせのできる問題に置きかえた。例：『今日は天気が』の次として、モデルは例えば『良い』に0.5、『悪い』に0.3、『雨』に0.15…のような確率を出す。学習では、実際の文章の次のトークンの確率が高くなるよう重みを直す。文章を作るときは、確率にしたがって1つ選び（例えば『良い』）、それを足した『今日は天気が良い』の次をまた予測する、をくり返す。押さえどころ：GPT-4（OpenAI が2023年に出した、画像も入力できるモデル）の技術報告は、GPT-4を、文書の次のトークンを予測するように事前学習したTransformer（2017年に発表された、いまの生成AIの土台のモデル）のモデルとしている。Googleの用語集は、言語モデルを、トークンやトークンの並びが、長い並びの中に現れる確率を見積もるモデルとしている。混同しやすい点：次トークン予測は『正しい事実』ではなく『ありそうな続き』を当てる学習なので、もっともらしいが事実でない文を作ることがある。",
     "links": [
       { "id": "C-AP-02-015", "relation": "全体" },
       { "id": "C-AP-02-031", "relation": "前提" },
@@ -331,6 +341,7 @@
     "confusions": [
       { "id": "C-AP-02-005", "point": "学習のときの文の中の計算は並列にできる。文章を作るときは、次トークン予測を1つずつ順にくり返す。" }
     ],
+    "figures": ["fig-ap-next-token"],
     "sources": [
       { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" },
       { "title": "Google for Developers: Machine Learning Glossary（language model・token）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -393,6 +404,7 @@
     "confusions": [
       { "id": "C-AP-02-045", "point": "指示チューニングは、指示の形のデータでモデルの重みを直す学習。プロンプト（指示文）は、使うときに入力する文で、重みは変わらない。" }
     ],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "Wei et al. (2021) Finetuned Language Models Are Zero-Shot Learners (arXiv:2109.01652)", "url": "https://arxiv.org/abs/2109.01652" },
       { "title": "Google for Developers: Machine Learning Glossary（instruction tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -413,6 +425,7 @@
     "confusions": [
       { "id": "C-AP-02-038", "point": "ドメイン適応は、分野の文章でモデルを追加学習させ、重みを変える。RAGは、学習し直さず、回答のたびに分野の資料を検索して入力に添える。" }
     ],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "Gururangan et al. (2020) Don't Stop Pretraining: Adapt Language Models to Domains and Tasks (arXiv:2004.10964)", "url": "https://arxiv.org/abs/2004.10964" }
     ],
@@ -433,6 +446,7 @@
     "confusions": [
       { "id": "C-AP-02-038", "point": "追加学習は重みを変える。RAGは重みを変えず、回答のたびに検索した文書を入力に添える。" }
     ],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
       { "title": "Google for Developers: Machine Learning Glossary（fine-tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -569,6 +583,7 @@
       { "id": "C-AP-02-021", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）第三十条の四", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -589,6 +604,7 @@
     "confusions": [
       { "id": "C-AP-02-030", "point": "スケーリング則は、規模を増やすと損失がなめらかに予測どおり下がる、という経験則。創発的能力は、ある規模を超えると急に現れ、小さいモデルからは予測できない能力。" }
     ],
+    "figures": ["fig-ap-scaling-law"],
     "sources": [
       { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" },
       { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" },
@@ -610,6 +626,7 @@
     "confusions": [
       { "id": "C-AP-02-029", "point": "スケーリング則は、規模を増やすと損失がなめらかに予測どおり下がる、という経験則。創発的能力は、ある規模を超えると急に現れ、小さいモデルからは予測できない能力。" }
     ],
+    "figures": ["fig-ap-emergent"],
     "sources": [
       { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" },
       { "title": "Google for Developers: Machine Learning Glossary（emergent behavior）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -631,6 +648,7 @@
     "confusions": [
       { "id": "C-AP-02-032", "point": "トークンは区切られた1つ1つの単位。トークン化は、文章をトークンに区切る処理。" }
     ],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（token）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" },
@@ -652,6 +670,7 @@
     "confusions": [
       { "id": "C-AP-02-034", "point": "トークン化は、文章を区切ってトークンの番号の並びにする処理。埋め込みは、その各トークンを、意味の近さを表す数の並び（ベクトル）に変える処理。" }
     ],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" },
       { "title": "Google for Developers: Machine Learning Glossary（token）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -671,6 +690,7 @@
     "confusions": [
       { "id": "C-AP-02-031", "point": "トークンは、モデルが扱う単位そのもの（単語のこともある）。サブワードは、そのうち、単語より細かい語の一部を単位にしたもの。" }
     ],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Sennrich, Haddow & Birch (2015) Neural Machine Translation of Rare Words with Subword Units (arXiv:1508.07909)", "url": "https://arxiv.org/abs/1508.07909" },
       { "title": "Google for Developers: Machine Learning Glossary（token）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -692,6 +712,7 @@
     "confusions": [
       { "id": "C-AP-02-032", "point": "トークン化は、文章を区切ってトークンの番号の並びにする処理。埋め込みは、その各トークンを、意味の近さを表す数の並び（ベクトル）に変える処理。" }
     ],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（embedding vector・embedding space）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)", "url": "https://arxiv.org/abs/1301.3781" }
@@ -775,6 +796,7 @@
     "confusions": [
       { "id": "C-AP-02-021", "point": "追加学習（ファインチューニングなど）はモデルの重みを変える。RAGは重みを変えず、回答のたびに検索した文書を入力に添える。" }
     ],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -806,7 +828,7 @@
     "syllabus": ["生成AI", "生成AIの生成（推論）プロセス", "生成パラメータ（Temperature・Top-p）"],
     "title": "Temperature（温度）",
     "oneLine": "次のトークンを選ぶときの、ばらつき（ランダムさ）の度合いを決める設定。低いと決まった答えに、高いと多様で意外な答えになりやすい。",
-    "why": "名前：temperature は『温度』。物理で、温度が高いほど粒の動きが乱れることにたとえて、値が高いほど選び方が乱れる（ランダムになる）設定をこう呼ぶ。部屋の温度とは関係ない。困りごと：いつも確率の一番高いトークンを選ぶと、決まりきった文になる。かといって、でたらめに選ぶと意味が通らなくなる。例：次の候補が『良い』0.6、『悪い』0.3、『雨』0.1だとする。Temperatureを0にすると、毎回『良い』が選ばれる。Temperatureを上げると、『悪い』や『雨』が選ばれる回数が増える。押さえどころ：Google Cloudの説明は、温度はトークンの選び方のランダムさの度合いを制御し、低いほど確定的で自由度を抑えた答えに、高いほど多様で創造的な答えになるとし、0なら常に最も確率の高いトークンが選ばれる（ただし、わずかに変わることはある）としている。Gemini（Google の生成AIのモデル）では0.0〜2.0の値を使え、既定は1.0。使い分けの例：社内規程の質問への回答は低め、キャッチコピーの案出しは高め。混同しやすい点：Temperatureを下げても、答えが事実として正しくなるわけではない。一番ありそうな続きが選ばれやすくなるだけ。",
+    "why": "名前：temperature は『温度』。物理で、温度が高いほど粒の動きが乱れることにたとえて、値が高いほど選び方が乱れる（ランダムになる）設定をこう呼ぶ。部屋の温度とは関係ない。困りごと：いつも確率の一番高いトークンを選ぶと、決まりきった文になる。かといって、でたらめに選ぶと意味が通らなくなる。例：次の候補が『良い』0.5、『悪い』0.3、『雨』0.15、『象』0.05だとする。Temperatureを0にすると、毎回『良い』が選ばれる。Temperatureを上げると、『悪い』や『雨』が選ばれる回数が増える。押さえどころ：Google Cloudの説明は、温度はトークンの選び方のランダムさの度合いを制御し、低いほど確定的で自由度を抑えた答えに、高いほど多様で創造的な答えになるとし、0なら常に最も確率の高いトークンが選ばれる（ただし、わずかに変わることはある）としている。Gemini（Google の生成AIのモデル）では0.0〜2.0の値を使え、既定は1.0。使い分けの例：社内規程の質問への回答は低め、キャッチコピーの案出しは高め。混同しやすい点：Temperatureを下げても、答えが事実として正しくなるわけではない。一番ありそうな続きが選ばれやすくなるだけ。",
     "links": [
       { "id": "C-AP-02-039", "relation": "全体" },
       { "id": "C-AP-02-041", "relation": "対比" },
@@ -815,6 +837,7 @@
     "confusions": [
       { "id": "C-AP-02-041", "point": "Temperatureは、選ぶときのばらつきの度合い。Top-pは、確率の高い順に合計がpになるまでの候補に絞ること。" }
     ],
+    "figures": ["fig-ap-temperature"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
       { "title": "Google for Developers: Machine Learning Glossary（temperature）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -835,6 +858,7 @@
     "confusions": [
       { "id": "C-AP-02-040", "point": "Temperatureは、選ぶときのばらつきの度合い。Top-pは、確率の高い順に合計がpになるまでの候補に絞ること。" }
     ],
+    "figures": ["fig-ap-top-p"],
     "sources": [
       { "title": "Holtzman et al. (2019) The Curious Case of Neural Text Degeneration (arXiv:1904.09751)", "url": "https://arxiv.org/abs/1904.09751" },
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
@@ -855,6 +879,7 @@
     "confusions": [
       { "id": "C-AP-02-025", "point": "学習データは、モデルを作るときに学ばせた材料。コンテキストウィンドウは、使うときに1回で入力できるトークンの上限。" }
     ],
+    "figures": ["fig-ap-context-window"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（context window）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
@@ -935,6 +960,7 @@
     "confusions": [
       { "id": "C-AP-02-047", "point": "クラウド型LLMは提供会社のサーバーで動き、入力はその会社に送られる。オンプレミスLLMは自分たちが管理するサーバーで動き、データを外に出さずに使える。" }
     ],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "NIST Special Publication 800-145 The NIST Definition of Cloud Computing（2011）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" },
       { "title": "デジタル庁『行政の進化と革新のための生成AIの調達・利活用に係るガイドライン2.0版について（概要）』（2026年6月）", "url": "https://www.digital.go.jp/assets/contents/node/information/field_ref_resources/decb64eb-f26e-41cb-8d37-f3dd173108b8/f8e1c3b8/20260612_resources_standard_guidelines_guideline_03.pdf" }
@@ -955,6 +981,7 @@
     "confusions": [
       { "id": "C-AP-02-049", "point": "オンプレミスは、モデルを自分たちのサーバーで動かすという置き場所の話。オープンウェイトは、モデルの重みが公開されているかという公開の話。" }
     ],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "NTIA『Dual-Use Foundation Models with Widely Available Model Weights』Report（2024年7月30日）", "url": "https://www.ntia.gov/issues/artificial-intelligence/open-model-weights-report" },
       { "title": "NIST Special Publication 800-145 The NIST Definition of Cloud Computing（2011）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" }
@@ -972,6 +999,7 @@
       { "id": "C-AP-02-046", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "経済産業省『インターネットその他の高度情報通信ネットワークを通じて電子計算機…を他人の情報処理の用に供するシステムに用いるプログラムに係る安定供給確保を図るための取組方針』（令和6年2月5日改定）", "url": "https://www.meti.go.jp/policy/economy/economic_security/cloud/cloud.pdf" },
       { "title": "デジタル庁『行政の進化と革新のための生成AIの調達・利活用に係るガイドライン2.0版について（概要）』（2026年6月）", "url": "https://www.digital.go.jp/assets/contents/node/information/field_ref_resources/decb64eb-f26e-41cb-8d37-f3dd173108b8/f8e1c3b8/20260612_resources_standard_guidelines_guideline_03.pdf" }
@@ -992,6 +1020,7 @@
     "confusions": [
       { "id": "C-AP-02-050", "point": "オープンウェイトは、重みだけを公開したもの。オープンソースのAIは、重みに加えて、学習のプログラムと学習データの詳しい情報まで公開し、利用・研究・改変・共有の自由を認めたもの。" }
     ],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Open Source Initiative『Open Weights: not quite what you've been told』", "url": "https://opensource.org/ai/open-weights" },
       { "title": "NTIA『Dual-Use Foundation Models with Widely Available Model Weights』Report（2024年7月30日）", "url": "https://www.ntia.gov/issues/artificial-intelligence/open-model-weights-report" }
@@ -1011,6 +1040,7 @@
     "confusions": [
       { "id": "C-AP-02-049", "point": "オープンウェイトは、重みだけを公開したもの。オープンソースのAIは、重みに加えて、学習のプログラムと学習データの詳しい情報まで公開し、利用・研究・改変・共有の自由を認めたもの。" }
     ],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Open Source Initiative『The Open Source AI Definition – 1.0』", "url": "https://opensource.org/ai/open-source-ai-definition" },
       { "title": "Open Source Initiative『Open Weights: not quite what you've been told』", "url": "https://opensource.org/ai/open-weights" },
@@ -1029,6 +1059,7 @@
       { "id": "C-AP-02-050", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Meta『Llama 3.1 Community License Agreement』（GitHub の meta-llama/llama-models）", "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE" },
       { "title": "Open Source Initiative『The Open Source AI Definition – 1.0』", "url": "https://opensource.org/ai/open-source-ai-definition" }
@@ -1071,6 +1102,7 @@
     "confusions": [
       { "id": "C-AP-02-054", "point": "GPT-1〜GPT-3.5は、ChatGPTが登場するまでの文章のモデルの流れ。GPT-4以降は、画像・音声を扱うマルチモーダル化や、考えてから答える推論が加わった流れ。" }
     ],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" },
       { "title": "Radford et al. (2019) Language Models are Unsupervised Multitask Learners（OpenAI）", "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" },
@@ -1094,6 +1126,7 @@
     "confusions": [
       { "id": "C-AP-02-053", "point": "GPT-1〜GPT-3.5は、ChatGPTが登場するまでの文章のモデルの流れ。GPT-4以降は、画像・音声を扱うマルチモーダル化や、考えてから答える推論が加わった流れ。" }
     ],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" },
       { "title": "OpenAI『Hello GPT-4o』（2024年5月13日）", "url": "https://openai.com/index/hello-gpt-4o/" },
@@ -1138,6 +1171,7 @@
     "confusions": [
       { "id": "C-AP-01-060", "point": "第1章の推論は、第一次AIブームで、人の考えの筋道を記号で表して結論を導く方法。推論モデルは、答える前に途中の考えを長く書き出すよう学習したLLM。" }
     ],
+    "figures": ["fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" },
       { "title": "OpenAI『Introducing GPT-5』（2025年8月7日）", "url": "https://openai.com/index/introducing-gpt-5/" },
@@ -1159,6 +1193,7 @@
     "confusions": [
       { "id": "C-AP-02-029", "point": "スケーリング則は、学習のときにモデル・データ・計算を大きくすると損失が下がる、という話。推論時の計算は、使うときに考える時間（計算）を増やすと成績が上がる、という話。" }
     ],
+    "figures": ["fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" },
       { "title": "OpenAI『Introducing GPT-5』（2025年8月7日）", "url": "https://openai.com/index/introducing-gpt-5/" }
@@ -1179,6 +1214,7 @@
     "confusions": [
       { "id": "C-AP-02-056", "point": "思考の連鎖は、途中の考えを書き出させるやり方（プロンプトの工夫として始まった）。推論モデルは、それを自分で長く行うよう学習したモデル。" }
     ],
+    "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" },
       { "title": "Google for Developers: Machine Learning Glossary（chain-of-thought prompting）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -1318,6 +1354,7 @@
     "confusions": [
       { "id": "C-AP-01-054", "point": "画像生成AIは新しい画像を作る生成系AI。画像に何が写っているかを当てる画像認識は、識別系AI。" }
     ],
+    "figures": ["fig-ap-latent-diffusion"],
     "sources": [
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" },
@@ -1356,6 +1393,7 @@
     "confusions": [
       { "id": "C-AP-02-068", "point": "電子透かしは、データの中身（画素など）に目に見えない目印を埋め込む。来歴情報は、いつ・何で作られ、どう編集されたかの記録を、データに添えるもの。" }
     ],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 偽・誤情報の流通・拡散", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" },
       { "title": "Google DeepMind『Identifying AI-generated images with SynthID』（2023年8月29日）", "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/" },
@@ -1377,6 +1415,7 @@
     "confusions": [
       { "id": "C-AP-02-067", "point": "電子透かしは、データの中身（画素など）に目に見えない目印を埋め込む。来歴情報は、いつ・何で作られ、どう編集されたかの記録を、データに添えるもの。" }
     ],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" },
       { "title": "C2PA（Coalition for Content Provenance and Authenticity）公式サイト", "url": "https://c2pa.org/" },
@@ -1398,6 +1437,7 @@
     "confusions": [
       { "id": "C-AP-02-068", "point": "来歴情報は、作られ方や編集の履歴の記録そのもの。C2PAは、その記録を、改ざんすると分かる形で付けるための標準。" }
     ],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" },
       { "title": "C2PA（Coalition for Content Provenance and Authenticity）公式サイト", "url": "https://c2pa.org/" },

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 526" role="img" aria-labelledby="fig-ap-prompt-parts-t fig-ap-prompt-parts-d">
+<title id="fig-ap-prompt-parts-t">プロンプトの組み立て（指示・文脈・入力データ・出力形式）と、答えを見ながらの手直し</title>
+<desc id="fig-ap-prompt-parts-d">①プロンプトを4つの部品に分けて書く例。【指示】次の文章を、大事な点3つの箇条書きに要約して。【文脈】読み手は新入社員。【入力データ】区切り記号で囲んだ会議メモの本文。【出力形式】・で始まる3行。区切り記号（"""や###）で指示と処理する文章を分け、指示はプロンプトの初めに置く。②答えを見て、足りない所を足す（対話的な改善）。1回目「新製品の案内文を書いて」は長すぎる。2回目に「200字以内で」を足すと硬すぎる。3回目に「取引先の担当者向けに、ていねいだが親しみのある調子で」を足すと、ねらいに近づく。どれもモデルの重みは変えない。</desc>
+<text x="12" y="20" class="tb">プロンプトの組み立てと、手直し</text>
+<text x="12" y="46" class="tb ta">① 4つの部品に分けて書く（例）</text>
+<rect x="12" y="56" width="296" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="74" class="tb">【指示】</text>
+<text x="22" y="92">次の文章を、大事な点3つの箇条書きに要約して</text>
+<rect x="12" y="106" width="296" height="44" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="124" class="tb">【文脈】</text>
+<text x="22" y="142">読み手は新入社員</text>
+<rect x="12" y="156" width="296" height="44" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="174" class="tb">【入力データ】</text>
+<text x="22" y="192">"""（会議メモの本文）"""</text>
+<rect x="12" y="206" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="224" class="tb">【出力形式】</text>
+<text x="22" y="242">・で始まる3行</text>
+<text x="12" y="266" class="tm">""" や ### の区切り記号で、指示と処理する</text>
+<text x="12" y="284" class="tm">文章を分ける。指示はプロンプトの初めに置く</text>
+<line x1="12" y1="300" x2="308" y2="300" class="l sb w1"/>
+<text x="12" y="324" class="tb ta">② 答えを見て、足りない所を足す（対話的な改善）</text>
+<rect x="12" y="334" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="352" class="tb">1回目　「新製品の案内文を書いて」</text>
+<text x="22" y="370" class="tng">→ 長すぎる</text>
+<line x1="160" y1="379" x2="160" y2="389" class="l sa w2"/>
+<polyline points="156.00,382.00 160,389 164.00,382.00" class="l sa w2"/>
+<rect x="12" y="390" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="408" class="tb">2回目　＋「200字以内で」</text>
+<text x="22" y="426" class="tng">→ 硬すぎる</text>
+<line x1="160" y1="435" x2="160" y2="445" class="l sa w2"/>
+<polyline points="156.00,438.00 160,445 164.00,438.00" class="l sa w2"/>
+<rect x="12" y="446" width="296" height="44" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="464" class="tb">3回目　＋「取引先の担当者向けに、</text>
+<text x="22" y="482">ていねいだが親しみのある調子で」</text>
+<text x="12" y="508" class="tb tok">→ ねらいに近づく。重みは変えない</text>
+</svg>

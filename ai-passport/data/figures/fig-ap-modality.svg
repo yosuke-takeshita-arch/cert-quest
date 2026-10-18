@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 432" role="img" aria-labelledby="fig-ap-modality-t fig-ap-modality-d">
+<title id="fig-ap-modality-t">モダリティ＝データの種類：文章・画像・音声・動画。言語が違うだけなら同じ種類</title>
+<desc id="fig-ap-modality-d">モダリティはデータの種類で、文章・画像・音声・動画など。2つのデータが別の種類かを見る例：料理の写真と作り方の説明文は画像と文章で別の種類。会議の録音と書き起こしの文は音声と文章で別の種類。商品の動画と字幕の文は動画と文章で別の種類。日本語の記事とその英語訳は、文章と文章で同じ種類（言語が違っても、どちらも文章）。マルチモーダルは、入力・出力に2種類以上のモダリティを含むこと。例：冷蔵庫の写真（画像）を見せて、作れる料理を文で提案させる（文章）。日本語で聞いて英語で答えるのは文章だけで、マルチモーダルではない。</desc>
+<text x="12" y="20" class="tb">モダリティ＝データの種類</text>
+<rect x="12" y="32" width="68" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="46" y="53" class="tb" text-anchor="middle">文章</text>
+<rect x="88" y="32" width="68" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="122" y="53" class="tb" text-anchor="middle">画像</text>
+<rect x="164" y="32" width="68" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="198" y="53" class="tb" text-anchor="middle">音声</text>
+<rect x="240" y="32" width="68" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="274" y="53" class="tb" text-anchor="middle">動画</text>
+<text x="12" y="92" class="tb ta">2つのデータは別の種類か？</text>
+<rect x="12" y="102" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="120">料理の写真＋作り方の説明文</text>
+<text x="22" y="138" class="tm">画像＋文章</text>
+<text x="298" y="138" class="tb tok" text-anchor="end">別の種類</text>
+<rect x="12" y="152" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="170">会議の録音＋書き起こしの文</text>
+<text x="22" y="188" class="tm">音声＋文章</text>
+<text x="298" y="188" class="tb tok" text-anchor="end">別の種類</text>
+<rect x="12" y="202" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="220">商品の動画＋字幕の文</text>
+<text x="22" y="238" class="tm">動画＋文章</text>
+<text x="298" y="238" class="tb tok" text-anchor="end">別の種類</text>
+<rect x="12" y="252" width="296" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="270">日本語の記事＋その英語訳</text>
+<text x="22" y="288" class="tm">文章＋文章</text>
+<text x="298" y="288" class="tb tng" text-anchor="end">同じ種類</text>
+<text x="12" y="312" class="tm">言語が違っても、どちらも「文章」</text>
+<line x1="12" y1="328" x2="308" y2="328" class="l sb w1"/>
+<text x="12" y="350" class="tb">マルチモーダル：入力・出力に2種類以上</text>
+<text x="12" y="372">例 冷蔵庫の写真（画像）を見せて、</text>
+<text x="12" y="392">　作れる料理を文で提案させる（文章）</text>
+<text x="12" y="414" class="tm">日本語で聞いて英語で答える：文章だけ</text>
+</svg>

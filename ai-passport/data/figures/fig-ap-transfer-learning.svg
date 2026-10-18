@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" role="img" aria-labelledby="fig-ap-transfer-learning-t fig-ap-transfer-learning-d">
+<title id="fig-ap-transfer-learning-t">転移学習とファインチューニング：学習済みモデルを出発点にする</title>
+<desc id="fig-ap-transfer-learning-d">①事前学習：大量のデータで、特徴を取り出す部分と出力層を学んでおく。一般的な特徴をあらかじめ学ぶ。転移学習の2つのやり方。A 特徴抽出：学習済みの部分は更新しない（固定）で、新しい出力層だけを学習する。B ファインチューニング：学習済みの重みを初期値にして、新しいデータで全体（または一部）を追加で学習する。例：たくさんの写真で学んだモデルを、工場の部品の良品・不良品の判定に使う。どちらも一から学ぶよりデータが少なくて済む。Aだけを転移学習と呼ぶ解説もある。</desc>
+<text x="12" y="20" class="tb">① 事前学習：大量のデータで学ぶ</text>
+<rect x="12" y="36" width="130" height="54" class="fas sa" stroke-width="1.5"/>
+<text x="77" y="58.5" text-anchor="middle">特徴を取り出す部分</text>
+<text x="77" y="76.5" text-anchor="middle">（学習済み）</text>
+<rect x="12" y="92" width="130" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="77" y="110.5" text-anchor="middle">出力層</text>
+<text x="156" y="70">一般的な特徴を</text>
+<text x="156" y="90">あらかじめ学ぶ</text>
+<line x1="12" y1="140" x2="308" y2="140" class="l sb w1"/>
+<text x="12" y="164" class="tb">転移学習の2つのやり方</text>
+<text x="12" y="188" class="tb ta">A　特徴抽出（出力層だけ学ぶ）</text>
+<rect x="12" y="198" width="130" height="40" class="fs sm" stroke-width="1.5"/>
+<text x="77" y="213.5" text-anchor="middle">学習済みの部分</text>
+<text x="77" y="231.5" text-anchor="middle">更新しない（固定）</text>
+<rect x="12" y="240" width="130" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="77" y="258.5" class="tb" text-anchor="middle">新しい出力層</text>
+<text x="156" y="224">新しい出力層だけ</text>
+<text x="156" y="244">学習する</text>
+<text x="12" y="296" class="tb twn">B　ファインチューニング（全体も学ぶ）</text>
+<rect x="12" y="306" width="130" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="77" y="321.5" text-anchor="middle">学習済みの重みを</text>
+<text x="77" y="339.5" text-anchor="middle">初期値にして更新</text>
+<rect x="12" y="348" width="130" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="77" y="366.5" class="tb" text-anchor="middle">新しい出力層</text>
+<text x="156" y="332">新しいデータで、</text>
+<text x="156" y="352">全体（一部）を追加学習</text>
+<text x="12" y="402" class="tm">例：写真で学んだモデル→部品の良品／不良品</text>
+<text x="12" y="426" class="tm">※A だけを「転移学習」と呼ぶ解説もある</text>
+</svg>

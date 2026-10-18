@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 412" role="img" aria-labelledby="fig-ap-gen-vs-disc-t fig-ap-gen-vs-disc-d">
+<title id="fig-ap-gen-vs-disc-t">識別系AIと生成系AI：出力が見分けた結果か、新しく作ったものかで見分ける</title>
+<desc id="fig-ap-gen-vs-disc-d">識別系AIは、入力が何かを見分けたり数を当てたりする。例：写真から「猫」、届いたメールから「迷惑」、家の広さ・築年数から3,200万円。答えは決まった種類か数。生成系AIは、新しいデータを作り出す。例：「夕焼けの海の絵を」から新しいイラスト、「春の詩を書いて」から新しい詩。出力は元に無い新しい文・画像・音声。見分け方：選ぶ・当てるなら識別系、新しく作るなら生成系。</desc>
+<text x="12" y="20" class="tb">識別系AI と 生成系AI：出力で見分ける</text>
+<text x="12" y="46" class="tb ta">識別系AI：入力が何かを見分ける・数を当てる</text>
+<rect x="12" y="56" width="150" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="87" y="77" text-anchor="middle">写真</text>
+<line x1="164" y1="72" x2="190" y2="72" class="l sa w2"/>
+<polyline points="183.00,76.00 190,72 183.00,68.00" class="l sa w2"/>
+<rect x="192" y="56" width="116" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="250" y="77" class="tb" text-anchor="middle">「猫」</text>
+<rect x="12" y="96" width="150" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="87" y="117" text-anchor="middle">届いたメール</text>
+<line x1="164" y1="112" x2="190" y2="112" class="l sa w2"/>
+<polyline points="183.00,116.00 190,112 183.00,108.00" class="l sa w2"/>
+<rect x="192" y="96" width="116" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="250" y="117" class="tb" text-anchor="middle">「迷惑」</text>
+<rect x="12" y="136" width="150" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="87" y="157" text-anchor="middle">家の広さ・築年数</text>
+<line x1="164" y1="152" x2="190" y2="152" class="l sa w2"/>
+<polyline points="183.00,156.00 190,152 183.00,148.00" class="l sa w2"/>
+<rect x="192" y="136" width="116" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="250" y="157" class="tb" text-anchor="middle">3,200万円</text>
+<text x="12" y="186" class="tm">答えは決まった種類か、数</text>
+<text x="12" y="216" class="tb tok">生成系AI：新しいデータを作り出す</text>
+<rect x="12" y="226" width="150" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="87" y="247" text-anchor="middle">「夕焼けの海の絵を」</text>
+<line x1="164" y1="242" x2="190" y2="242" class="l sa w2"/>
+<polyline points="183.00,246.00 190,242 183.00,238.00" class="l sa w2"/>
+<rect x="192" y="226" width="116" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="250" y="247" class="tb" text-anchor="middle">新しいイラスト</text>
+<rect x="12" y="266" width="150" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="87" y="287" text-anchor="middle">「春の詩を書いて」</text>
+<line x1="164" y1="282" x2="190" y2="282" class="l sa w2"/>
+<polyline points="183.00,286.00 190,282 183.00,278.00" class="l sa w2"/>
+<rect x="192" y="266" width="116" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="250" y="287" class="tb" text-anchor="middle">新しい詩</text>
+<text x="12" y="316" class="tm">出力が、元に無い新しい文・画像・音声</text>
+<line x1="12" y1="332" x2="308" y2="332" class="l sb w1"/>
+<text x="12" y="354" class="tb">見分け方</text>
+<text x="12" y="374">選ぶ・当てる → 識別系</text>
+<text x="12" y="394">新しく作る → 生成系</text>
+</svg>

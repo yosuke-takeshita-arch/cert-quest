@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 492" role="img" aria-labelledby="fig-ap-excessive-agency-t fig-ap-excessive-agency-d">
+<title id="fig-ap-excessive-agency-t">権限の過剰付与：過剰な機能・過剰な権限・過剰な自律と、それぞれの対策</title>
+<desc id="fig-ap-excessive-agency-d">OWASPのLLM06が挙げる3つの原因。例はメールを要約するだけのエージェント。過剰な機能：読むだけでよいのに送信もできる道具を渡す。対策は読み取りだけの道具にする。過剰な権限：読むだけなのに更新・削除できるアカウントでつなぐ。対策は読み取り専用の範囲でつなぐ。過剰な自律：影響の大きい操作を確認なしに実行させる。対策は実行の前に人が承認する。悪意のあるメールに隠された指示で機密が外へ転送されることも、送信の機能が無ければ起きない。効かない対策：指示文で「削除しないこと」と強く書く、賢いモデルに替える、温度を下げる。だまされる余地が残るので、権限はつなぐ先の側で絞る。</desc>
+<text x="12" y="20" class="tb">権限の過剰付与（OWASP の LLM06）</text>
+<text x="12" y="40" class="tm">例：メールを要約するだけのエージェント</text>
+<rect x="12" y="52" width="296" height="84" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="70" class="tb tng">過剰な機能</text>
+<text x="22" y="90" class="tm">読むだけでよいのに、</text>
+<text x="22" y="108" class="tm">送信もできる道具を渡す</text>
+<text x="22" y="128" class="tok">→ 読み取りだけの道具にする</text>
+<rect x="12" y="142" width="296" height="84" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="160" class="tb tng">過剰な権限</text>
+<text x="22" y="180" class="tm">読むだけなのに、更新・削除できる</text>
+<text x="22" y="198" class="tm">アカウントでつなぐ</text>
+<text x="22" y="218" class="tok">→ 読み取り専用の範囲でつなぐ</text>
+<rect x="12" y="232" width="296" height="84" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="250" class="tb tng">過剰な自律</text>
+<text x="22" y="270" class="tm">影響の大きい操作を、</text>
+<text x="22" y="288" class="tm">確認なしに実行させる</text>
+<text x="22" y="308" class="tok">→ 実行の前に人が承認する</text>
+<text x="12" y="336" class="tb">悪意のあるメールに隠された指示で</text>
+<text x="12" y="356" class="tb">機密が外へ転送される → 送信の機能が無ければ</text>
+<text x="12" y="376" class="tb">起きない</text>
+<line x1="12" y1="392" x2="308" y2="392" class="l sb w1"/>
+<text x="12" y="414" class="tb tng">効かない対策</text>
+<text x="12" y="434">・指示文で「削除しないこと」と強く書く</text>
+<text x="12" y="454">・賢いモデルに替える、温度を下げる</text>
+<text x="12" y="474" class="tm">→ だまされる余地が残る。権限は相手側で絞る</text>
+</svg>

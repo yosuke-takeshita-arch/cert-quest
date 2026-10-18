@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 744" role="img" aria-labelledby="fig-ap-rnn-to-transformer-t fig-ap-rnn-to-transformer-d">
+<title id="fig-ap-rnn-to-transformer-t">RNN から Transformer まで：それぞれ前の何に困り、どう解いたか</title>
+<desc id="fig-ap-rnn-to-transformer-d">例は「私は猫が好き」を「I like cats」に訳すこと。①RNN：1語ずつ順に読み、前の語の情報を次へ渡して覚えておく。長い文だと前のほうを忘れる（勾配消失）。②LSTM（1997）：記憶をそのまま渡す道と、出し入れを開け閉めするゲートを足した長く覚えるRNN。前のほうも忘れにくくなった。③Seq2Seq（2014）：エンコーダ（LSTM）が入力を1つのベクトルに詰め、デコーダ（LSTM）が訳す。長い文は1つのベクトルに詰め切れない。④Attention（2014）：訳す1語ごとに入力の全部の語から要る語を選んで使う（catsを出すとき猫に0.8、重みは例）。ただし読む・書くはRNNのままで1語ずつ順に計算するので、並列にできず遅い。⑤Transformer（2017）：RNNをやめ、Attentionだけで全部の語を一度に見比べる（Self-Attention）。並列に計算でき学習が速い。BERT・GPTなど大規模言語モデルの土台。</desc>
+<text x="12" y="20" class="tb">RNN から Transformer まで</text>
+<text x="12" y="38" class="tm">例：「私は猫が好き」→「I like cats」</text>
+<rect x="12" y="48" width="296" height="104" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="68" class="tb">① RNN：1語ずつ順に読む</text>
+<rect x="24" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="44" y="94" text-anchor="middle">私</text>
+<rect x="80" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="100" y="94" text-anchor="middle">は</text>
+<rect x="136" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="156" y="94" text-anchor="middle">猫</text>
+<rect x="192" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="212" y="94" text-anchor="middle">が</text>
+<rect x="248" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="268" y="94" text-anchor="middle">好き</text>
+<line x1="64" y1="89" x2="74" y2="89" class="l sm w1"/>
+<polygon points="80,89 74,85.5 74,92.5" class="fm"/>
+<line x1="120" y1="89" x2="130" y2="89" class="l sm w1"/>
+<polygon points="136,89 130,85.5 130,92.5" class="fm"/>
+<line x1="176" y1="89" x2="186" y2="89" class="l sm w1"/>
+<polygon points="192,89 186,85.5 186,92.5" class="fm"/>
+<line x1="232" y1="89" x2="242" y2="89" class="l sm w1"/>
+<polygon points="248,89 242,85.5 242,92.5" class="fm"/>
+<text x="24" y="120">前の語の情報を次へ渡して覚えておく</text>
+<text x="24" y="142" class="tb tng">× 長い文だと前のほうを忘れる（勾配消失）</text>
+<line x1="160" y1="152" x2="160" y2="164" class="l sm w1"/>
+<polygon points="160,170 156.5,164 163.5,164" class="fm"/>
+<rect x="12" y="172" width="296" height="90" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="192" class="tb">② LSTM（1997）：長く覚える RNN</text>
+<text x="24" y="212">記憶をそのまま渡す道と、出し入れを</text>
+<text x="24" y="230">開け閉めするゲートを足した</text>
+<text x="24" y="252" class="tb tok">○ 前のほうも忘れにくくなった</text>
+<line x1="160" y1="262" x2="160" y2="272" class="l sm w1"/>
+<polygon points="160,278 156.5,272 163.5,272" class="fm"/>
+<rect x="12" y="280" width="296" height="124" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="300" class="tb">③ Seq2Seq（2014）：読む係と書く係</text>
+<rect x="24" y="310" width="96" height="24" class="fbg sb" stroke-width="1"/>
+<text x="72" y="327" text-anchor="middle">私は猫が好き</text>
+<line x1="120" y1="322" x2="128" y2="322" class="l sm w1"/>
+<polygon points="134,322 128,318.5 128,325.5" class="fm"/>
+<rect x="134" y="310" width="68" height="24" class="fa"/>
+<text x="168" y="327" class="tb ton" text-anchor="middle">ベクトル</text>
+<line x1="202" y1="322" x2="210" y2="322" class="l sm w1"/>
+<polygon points="216,322 210,318.5 210,325.5" class="fm"/>
+<rect x="216" y="310" width="80" height="24" class="fbg sb" stroke-width="1"/>
+<text x="256" y="327" text-anchor="middle">I like cats</text>
+<text x="24" y="354">エンコーダ（LSTM）が入力を1つの</text>
+<text x="24" y="372">ベクトルに詰め、デコーダ（LSTM）が訳す</text>
+<text x="24" y="394" class="tb tng">× 長い文は1つのベクトルに詰め切れない</text>
+<line x1="160" y1="404" x2="160" y2="414" class="l sm w1"/>
+<polygon points="160,420 156.5,414 163.5,414" class="fm"/>
+<rect x="12" y="422" width="296" height="186" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="442" class="tb">④ Attention（2014）：入力を見直す</text>
+<rect x="24" y="452" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="44" y="468" text-anchor="middle">私</text>
+<rect x="80" y="452" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="100" y="468" text-anchor="middle">は</text>
+<rect x="136" y="452" width="40" height="22" class="fas sa" stroke-width="1.5"/>
+<text x="156" y="468" class="tb" text-anchor="middle">猫</text>
+<rect x="192" y="452" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="212" y="468" text-anchor="middle">が</text>
+<rect x="248" y="452" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="268" y="468" text-anchor="middle">好き</text>
+<line x1="156" y1="500" x2="44" y2="474" class="l sm w1"/>
+<line x1="156" y1="500" x2="100" y2="474" class="l sm w1"/>
+<line x1="156" y1="500" x2="156" y2="474" class="l sa w3"/>
+<line x1="156" y1="500" x2="212" y2="474" class="l sm w1"/>
+<line x1="156" y1="500" x2="268" y2="474" class="l sm w1"/>
+<text x="168" y="492" class="tb ta">0.8</text>
+<rect x="126" y="500" width="60" height="22" class="fas sa" stroke-width="1.5"/>
+<text x="156" y="516" class="tb ta" text-anchor="middle">cats</text>
+<text x="194" y="516" class="tm">← 訳す1語</text>
+<text x="24" y="542">訳す1語ごとに、入力の全部の語から</text>
+<text x="24" y="560">要る語を選んで使う（重みは例）</text>
+<text x="24" y="582" class="tb tng">× 読む・書くは RNN のまま。1語ずつ</text>
+<text x="24" y="600" class="tb tng">　順に計算するので、並列にできず遅い</text>
+<line x1="160" y1="608" x2="160" y2="618" class="l sm w1"/>
+<polygon points="160,624 156.5,618 163.5,618" class="fm"/>
+<rect x="12" y="626" width="296" height="110" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="646" class="tb">⑤ Transformer（2017）：Attention だけ</text>
+<text x="24" y="666">RNN をやめ、全部の語を一度に見比べる</text>
+<text x="24" y="684">（Self-Attention）</text>
+<text x="24" y="706" class="tb tok">○ 並列に計算でき、学習が速い</text>
+<text x="24" y="726" class="tm">→ BERT・GPT など大規模言語モデルの土台</text>
+</svg>

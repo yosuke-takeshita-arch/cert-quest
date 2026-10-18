@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 374" role="img" aria-labelledby="fig-ap-agile-governance-t fig-ap-agile-governance-d">
+<title id="fig-ap-agile-governance-t">アジャイル・ガバナンスのサイクル：環境・リスク分析、ゴール設定、システムデザイン、運用、評価</title>
+<desc id="fig-ap-agile-governance-d">事前にルールや手続を固定せず、サイクルを回し続けて見直す。円の上から時計回りに、環境・リスク分析、ゴール設定、システムデザイン、運用、評価と進み、また環境・リスク分析に戻る。マルチステークホルダーで継続的かつ高速に回す。外の環境が変われば、運用の後も分析し直す。一度作ったルールを使い続けるのではない。</desc>
+<text x="12" y="20" class="tb">アジャイル・ガバナンスのサイクル</text>
+<text x="12" y="40" class="tm">事前にルールを固定せず、回し続けて見直す</text>
+<line x1="187.99910383972932" y1="88.34253968560155" x2="219.4980956594248" y2="111.2278968319033" class="l sa w2"/>
+<polyline points="211.48,110.35 219.4980956594248,111.2278968319033 216.19,103.88" class="l sa w2"/>
+<line x1="236.8024934869152" y1="164.48535714630174" x2="224.77094922314646" y2="201.51464285369826" class="l sa w2"/>
+<polyline points="223.13,193.62 224.77094922314646,201.51464285369826 230.74,196.09" class="l sa w2"/>
+<line x1="179.46744755592673" y1="234.42956348249515" x2="140.5325524440733" y2="234.42956348249515" class="l sa w2"/>
+<polyline points="147.53,230.43 140.5325524440733,234.42956348249515 147.53,238.43" class="l sa w2"/>
+<line x1="95.22905077685357" y1="201.51464285369826" x2="83.19750651308479" y2="164.48535714630174" class="l sa w2"/>
+<polyline points="89.16,169.91 83.19750651308479,164.48535714630174 81.56,172.38" class="l sa w2"/>
+<line x1="100.50190434057518" y1="111.2278968319033" x2="132.00089616027066" y2="88.34253968560155" class="l sa w2"/>
+<polyline points="128.69,95.69 132.00089616027066,88.34253968560155 123.99,89.22" class="l sa w2"/>
+<rect x="100" y="53" width="120" height="30" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="73" class="tb" text-anchor="middle">環境・リスク分析</text>
+<rect x="206.99719949915414" y="116.57043651750485" width="81" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="247.49719949915414" y="136.57043651750485" class="tb" text-anchor="middle">ゴール設定</text>
+<rect x="154.07624321090753" y="219.42956348249515" width="120" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="214.07624321090753" y="239.42956348249515" class="tb" text-anchor="middle">システムデザイン</text>
+<rect x="84.92375678909248" y="219.42956348249515" width="42" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="105.92375678909248" y="239.42956348249515" class="tb" text-anchor="middle">運用</text>
+<rect x="51.502800500845865" y="116.57043651750485" width="42" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="72.50280050084586" y="136.57043651750485" class="tb" text-anchor="middle">評価</text>
+<text x="160" y="156" class="tm" text-anchor="middle">マルチステーク</text>
+<text x="160" y="174" class="tm" text-anchor="middle">ホルダーで回す</text>
+<text x="12" y="292" class="tb">順番：環境・リスク分析 → ゴール設定</text>
+<text x="12" y="312" class="tb">→ システムデザイン → 運用 → 評価 → また分析</text>
+<text x="12" y="336">外の環境が変われば、運用の後も分析し直す</text>
+<text x="12" y="356" class="tng">一度作ったルールを使い続けるのではない</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 556" role="img" aria-labelledby="fig-ap-semi-supervised-t fig-ap-semi-supervised-d">
+<title id="fig-ap-semi-supervised-t">半教師あり学習：少しの正解付きデータと、大量の正解なしデータを組み合わせる</title>
+<desc id="fig-ap-semi-supervised-d">例（説明用の数）は医療画像で、正解（ラベル）付きが100枚、正解なしが10,000枚。①正解付きの100枚で学習する。②正解なしの画像をそのモデルで予測させる。③確信度が高い予測だけに仮の正解（疑似ラベル）を付ける。例：画像Aは病変あり0.97なので採用、画像Bは病変なし0.55なので見送り（しきい値は例で0.9）。④仮の正解の分を足して、また学習する。①〜④をくり返す。確信度が高くても間違うことがあり、そのまま学ぶと誤りも覚えるので、しきい値が大事。人が付ける正解の量で比べると、教師ありは全部に付け、半教師ありは少しだけ付け、教師なしは付けない。</desc>
+<text x="12" y="20" class="tb">半教師あり学習：正解（ラベル）は少し</text>
+<text x="12" y="38" class="tm">例（説明用の数）：医療画像</text>
+<rect x="12" y="48" width="110" height="56" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="67" y="70" class="tb" text-anchor="middle">ラベル付き</text>
+<text x="67" y="92" text-anchor="middle">100 枚</text>
+<rect x="134" y="48" width="174" height="56" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="221" y="70" class="tb" text-anchor="middle">ラベルなし</text>
+<text x="221" y="92" text-anchor="middle">10,000 枚</text>
+<rect x="12" y="120" width="266" height="34" class="fas sa" stroke-width="1"/>
+<text x="24" y="142">① ラベル付き 100 枚で学習する</text>
+<line x1="145" y1="154" x2="145" y2="163" class="l sm w1"/>
+<polygon points="145,169 141.5,163 148.5,163" class="fm"/>
+<rect x="12" y="170" width="266" height="34" class="fs sb" stroke-width="1"/>
+<text x="24" y="192">② ラベルなしの画像を予測させる</text>
+<line x1="145" y1="204" x2="145" y2="213" class="l sm w1"/>
+<polygon points="145,219 141.5,213 148.5,213" class="fm"/>
+<rect x="12" y="220" width="266" height="102" class="fs sb" stroke-width="1"/>
+<text x="24" y="240">③ 確信度が高い予測だけに、</text>
+<text x="24" y="258">　仮のラベル（疑似ラベル）を付ける</text>
+<text x="24" y="280" class="tb tok">画像A：病変あり 0.97 → 採用</text>
+<text x="24" y="298" class="tm">画像B：病変なし 0.55 → 見送り</text>
+<text x="24" y="316" class="tm">（しきい値は例：0.9）</text>
+<line x1="145" y1="322" x2="145" y2="331" class="l sm w1"/>
+<polygon points="145,337 141.5,331 148.5,331" class="fm"/>
+<rect x="12" y="338" width="266" height="34" class="fas sa" stroke-width="1"/>
+<text x="24" y="360">④ 疑似ラベルの分を足して、また学習</text>
+<polyline points="278,355 298,355 298,137 285,137" class="l sa w1"/>
+<polygon points="278,137 285,133.5 285,140.5" class="fa"/>
+<text x="12" y="394" class="tm">①〜④をくり返す（自己訓練）</text>
+<text x="12" y="418" class="tb tng">注意：確信度が高くても間違うことがある</text>
+<text x="12" y="436" class="tng">→ そのまま学ぶと誤りも覚える。しきい値が大事</text>
+<line x1="12" y1="450" x2="308" y2="450" class="l sb w1"/>
+<text x="12" y="472" class="tb">人手のラベルをどれだけ使うか</text>
+<text x="12" y="492">教師あり：全部に付ける</text>
+<text x="12" y="510" class="tb ta">半教師あり：少しだけ付ける（この図）</text>
+<text x="12" y="530">教師なし：付けない</text>
+<text x="12" y="548" class="tm">（まとまりを見つけるだけ）</text>
+</svg>

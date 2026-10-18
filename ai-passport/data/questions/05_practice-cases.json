@@ -22,6 +22,7 @@
     ],
     "memoryTip": "入力を変えるのがプロンプト、重みを変えるのが学習。",
     "concepts": ["C-AP-05-001", "C-AP-02-045"],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
@@ -79,6 +80,7 @@
     ],
     "memoryTip": "一発で決めず、見て、足して、また見る。",
     "concepts": ["C-AP-05-002", "C-AP-05-001"],
+    "figures": ["fig-ap-prompt-parts"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
     ],
@@ -107,6 +109,7 @@
     ],
     "memoryTip": "指示＝何を、入力＝何に対して、文脈＝誰のため、形式＝どの形で。",
     "concepts": ["C-AP-05-003"],
+    "figures": ["fig-ap-prompt-parts"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
@@ -136,6 +139,7 @@
     ],
     "memoryTip": "指示と材料の間に、はっきりした仕切り。",
     "concepts": ["C-AP-05-003"],
+    "figures": ["fig-ap-prompt-parts"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
       { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
@@ -193,6 +197,7 @@
     ],
     "memoryTip": "zero＝例0個。指示だけ。",
     "concepts": ["C-AP-05-005", "C-AP-05-006"],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
     ],
@@ -221,6 +226,7 @@
     ],
     "memoryTip": "例の数で名前が変わる。重みはどれも動かない。",
     "concepts": ["C-AP-05-006", "C-AP-05-005", "C-AP-05-007"],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
     ],
@@ -307,6 +313,7 @@
     ],
     "memoryTip": "重みはそのまま、文脈で学ぶ。",
     "concepts": ["C-AP-05-007", "C-AP-05-006"],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
     ],
@@ -335,6 +342,7 @@
     ],
     "memoryTip": "文脈で覚えたことは、その場かぎり。",
     "concepts": ["C-AP-05-007"],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
     ],
@@ -363,6 +371,7 @@
     ],
     "memoryTip": "例はいらない。『ステップごとに』の1文で考えを引き出す。",
     "concepts": ["C-AP-05-008", "C-AP-05-005"],
+    "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Kojima et al. (2022) Large Language Models are Zero-Shot Reasoners (arXiv:2205.11916)", "url": "https://arxiv.org/abs/2205.11916" }
     ],
@@ -391,6 +400,7 @@
     ],
     "memoryTip": "途中を書かせると、間違いが減る。",
     "concepts": ["C-AP-05-008", "C-AP-02-058"],
+    "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" }
     ],
@@ -419,6 +429,7 @@
     ],
     "memoryTip": "考えを書かせても、確かめは残る。",
     "concepts": ["C-AP-05-008"],
+    "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" },
       { "title": "Kojima et al. (2022) Large Language Models are Zero-Shot Reasoners (arXiv:2205.11916)", "url": "https://arxiv.org/abs/2205.11916" },
@@ -621,6 +632,7 @@
     ],
     "memoryTip": "校正＝文字の誤り。添削＝表現と構成。整形＝見た目の形。",
     "concepts": ["C-AP-05-014", "C-AP-05-015", "C-AP-05-016"],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
     ],
@@ -649,6 +661,7 @@
     ],
     "memoryTip": "誤り→校正、より良く→添削、形→整形。",
     "concepts": ["C-AP-05-014", "C-AP-05-015", "C-AP-05-016", "C-AP-05-019"],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
     ],
@@ -677,6 +690,7 @@
     ],
     "memoryTip": "整形は形だけ。中身は足さない、削らない。",
     "concepts": ["C-AP-05-016", "C-AP-05-010"],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
     ],
@@ -705,6 +719,7 @@
     ],
     "memoryTip": "全体を縮めるのが要約、項目を拾うのが要点抽出。",
     "concepts": ["C-AP-05-017", "C-AP-05-019"],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
@@ -734,6 +749,7 @@
     ],
     "memoryTip": "音→文字（文字起こし）→拾う（要点抽出）／縮める（要約）。",
     "concepts": ["C-AP-05-020", "C-AP-05-019", "C-AP-05-017"],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "Microsoft Support『Catch up on meetings with Microsoft Copilot in Teams』", "url": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1" },
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
@@ -822,6 +838,7 @@
     ],
     "memoryTip": "拾う項目と形を先に決める。",
     "concepts": ["C-AP-05-019", "C-AP-05-010"],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
       { "title": "Microsoft Support『Catch up on meetings with Microsoft Copilot in Teams』", "url": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1" }
@@ -1282,6 +1299,7 @@
     ],
     "memoryTip": "作る→試しの環境で確かめる→承認→本番にデプロイ。",
     "concepts": ["C-AP-05-030", "C-AP-05-029"],
+    "figures": ["fig-ap-deploy"],
     "sources": [
       { "title": "GitHub Docs『Deploying with GitHub Actions』", "url": "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/control-deployments" }
     ],
@@ -1310,6 +1328,7 @@
     ],
     "memoryTip": "誰が作っても、本番の前には確かめと承認。",
     "concepts": ["C-AP-05-030", "C-AP-05-029"],
+    "figures": ["fig-ap-deploy"],
     "sources": [
       { "title": "GitHub Docs『Deploying with GitHub Actions』", "url": "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/control-deployments" },
       { "title": "Google Ads Help『Landing page』", "url": "https://support.google.com/google-ads/answer/14086?hl=en" },
@@ -1511,6 +1530,7 @@
     ],
     "memoryTip": "似ていて（類似）、元にした（依拠）なら侵害になりうる。",
     "concepts": ["C-AP-05-037", "C-AP-02-028"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -1624,6 +1644,7 @@
     ],
     "memoryTip": "Text→Speech が TTS、Speech→Text が文字起こし。",
     "concepts": ["C-AP-05-035", "C-AP-05-020"],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "OpenAI『Introducing next-generation audio models in the API』（2025年3月20日）", "url": "https://openai.com/index/introducing-our-next-generation-audio-models/" }
     ],
@@ -1765,6 +1786,7 @@
     ],
     "memoryTip": "規約＝サービスとの約束、権利＝他人との関係。",
     "concepts": ["C-AP-05-039", "C-AP-05-037"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -1913,6 +1935,7 @@
     ],
     "memoryTip": "学習させずに、読ませて分ける。",
     "concepts": ["C-AP-05-042", "C-AP-01-009", "C-AP-05-007"],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" },
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
@@ -2027,6 +2050,7 @@
     ],
     "memoryTip": "大量の社内文書から答える＝RAG。参照元つき。",
     "concepts": ["C-AP-05-045", "C-AP-02-038", "C-AP-05-032"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "三井住友フィナンシャルグループ『社内向け汎用型AIアシスタントツール「SMBC-GAI」へのRAG技術を活用した社内情報検索機能の導入について』（2025年10月6日）", "url": "https://www.smbc.co.jp/news/pdf/j20251006_01.pdf" }
     ],
@@ -2055,6 +2079,7 @@
     ],
     "memoryTip": "RAGの答えは、元の文書より新しくならない。",
     "concepts": ["C-AP-05-045"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "三井住友フィナンシャルグループ『社内向け汎用型AIアシスタントツール「SMBC-GAI」へのRAG技術を活用した社内情報検索機能の導入について』（2025年10月6日）", "url": "https://www.smbc.co.jp/news/pdf/j20251006_01.pdf" }
     ],
@@ -2111,6 +2136,7 @@
     ],
     "memoryTip": "毎回同じ手順なら、手順を固定する。",
     "concepts": ["C-AP-05-047", "C-AP-03-004", "C-AP-03-005"],
+    "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
     ],
@@ -2310,6 +2336,7 @@
     ],
     "memoryTip": "全部読ませず、探して読ませる。",
     "concepts": ["C-AP-05-050", "C-AP-02-042"],
+    "figures": ["fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
     ],
@@ -2338,6 +2365,7 @@
     ],
     "memoryTip": "詰め込むほど、思い出しにくくなる。",
     "concepts": ["C-AP-05-050", "C-AP-02-042", "C-AP-03-037"],
+    "figures": ["fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
     ],
@@ -2478,6 +2506,7 @@
     ],
     "memoryTip": "テストに書いていない弱点は、テストでは見つからない。",
     "concepts": ["C-AP-05-053", "C-AP-05-055"],
+    "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "Pearce et al. (2021) Asleep at the Keyboard? Assessing the Security of GitHub Copilot's Code Contributions (arXiv:2108.09293)", "url": "https://arxiv.org/abs/2108.09293" },
       { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" }
@@ -2535,6 +2564,7 @@
     ],
     "memoryTip": "書く→動かす→結果を見て直す、の輪。",
     "concepts": ["C-AP-05-055", "C-AP-03-039"],
+    "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
       { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" }
@@ -2564,6 +2594,7 @@
     ],
     "memoryTip": "テストを曲げて通しても、直ったことにはならない。",
     "concepts": ["C-AP-05-055"],
+    "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -2593,6 +2624,7 @@
     ],
     "memoryTip": "まず単純に。足りなければ足す。",
     "concepts": ["C-AP-05-056", "C-AP-05-070", "C-AP-03-004"],
+    "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
     ],
@@ -2621,6 +2653,7 @@
     ],
     "memoryTip": "自動化は、まちがいも自動でくり返す。",
     "concepts": ["C-AP-05-056", "C-AP-05-047"],
+    "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
       { "title": "OpenAI Help Center『Scheduled tasks in ChatGPT』", "url": "https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt" }
@@ -2706,6 +2739,7 @@
     ],
     "memoryTip": "AIとツールをつなぐ共通の差し込み口＝MCP。",
     "concepts": ["C-AP-05-058", "C-AP-03-042", "C-AP-03-049"],
+    "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" },
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" }
@@ -2735,6 +2769,7 @@
     ],
     "memoryTip": "分ける→つなぐ→途中で確かめる。",
     "concepts": ["C-AP-05-059", "C-AP-03-029"],
+    "figures": ["fig-ap-prompt-chain"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -2764,6 +2799,7 @@
     ],
     "memoryTip": "要約だけなら、読むだけ。",
     "concepts": ["C-AP-05-060", "C-AP-03-060", "C-AP-03-064"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
     ],
@@ -2792,6 +2828,7 @@
     ],
     "memoryTip": "権限は、必要な分だけ。",
     "concepts": ["C-AP-05-060", "C-AP-03-045"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" },
       { "title": "OpenAI『Introducing Operator』（2025年1月23日。2025年7月17日の更新を含む）", "url": "https://openai.com/index/introducing-operator/" }
@@ -2850,6 +2887,7 @@
     ],
     "memoryTip": "データ→業務→全社と事業、の順に広がる。",
     "concepts": ["C-AP-05-061"],
+    "figures": ["fig-ap-dx-3stages"],
     "sources": [
       { "title": "経済産業省『第2回 AX時代におけるスキルのあり方検討WG』資料（2026年6月1日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/society_digital/ax_skill/pdf/002_02_00.pdf" }
     ],

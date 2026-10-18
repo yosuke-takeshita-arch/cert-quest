@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 476" role="img" aria-labelledby="fig-ap-ai-fields-t fig-ap-ai-fields-d">
+<title id="fig-ap-ai-fields-t">AIの分野は、扱うデータの種類で分かれる：画像・文章・音声・数値</title>
+<desc id="fig-ap-ai-fields-d">画像・映像を扱うのはコンピュータビジョンで、例は顔を見分けて画面のロックを解く、スキャンした書類の文字を読む、映像の人や車を四角で囲む、部品の傷を見つける。文章（ことば）を扱うのは自然言語処理で、例は日本語のメールを英語に訳す、議事録を3行に要約する、書き込みを苦情か質問かに分ける。音声を扱うのは音声認識などで、例は会議の録音を文字に起こす、通話の声から話し手の感情を推す。数値の記録を扱うのは予測や異常の検知で、例は過去の売上から来月を予測する、機械の振動から故障の前ぶれを見つける。同じ人の気持ちでも、声から推すなら音声、文から推すなら自然言語処理。</desc>
+<text x="12" y="20" class="tb">何のデータを扱うかで分野が分かれる</text>
+<rect x="12" y="32" width="296" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="50" class="tb">画像・映像 → コンピュータビジョン</text>
+<text x="22" y="76">・顔を見分けて画面ロックを解く</text>
+<text x="22" y="95">・スキャンした書類の文字を読む</text>
+<text x="22" y="114">・映像の人や車を四角で囲む</text>
+<text x="22" y="133">・部品の傷を見つける</text>
+<rect x="12" y="154" width="296" height="26" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="172" class="tb">文章（ことば） → 自然言語処理</text>
+<text x="22" y="198">・日本語のメールを英語に訳す</text>
+<text x="22" y="217">・議事録を3行に要約する</text>
+<text x="22" y="236">・書き込みを苦情か質問かに分ける</text>
+<rect x="12" y="257" width="296" height="26" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="275" class="tb">音声 → 音声認識など</text>
+<text x="22" y="301">・会議の録音を文字に起こす</text>
+<text x="22" y="320">・通話の声から話し手の感情を推す</text>
+<rect x="12" y="341" width="296" height="26" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="359" class="tb">数値の記録 → 予測・異常の検知</text>
+<text x="22" y="385">・過去の売上から来月を予測する</text>
+<text x="22" y="404">・機械の振動から故障の前ぶれ</text>
+<text x="12" y="439" class="tm">同じ「人の気持ち」でも、声から推すなら</text>
+<text x="12" y="458" class="tm">音声、文から推すなら自然言語処理</text>
+</svg>

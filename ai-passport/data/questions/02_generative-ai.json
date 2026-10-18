@@ -22,6 +22,7 @@
     ],
     "memoryTip": "Transformer＝変換器。最初の腕試しは『英語→ドイツ語・フランス語』の翻訳。",
     "concepts": ["C-AP-02-001", "C-AP-02-002"],
+    "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
     ],
@@ -50,6 +51,7 @@
     ],
     "memoryTip": "学習は『一度に』、文章づくりは『1語ずつ』。",
     "concepts": ["C-AP-02-001", "C-AP-02-005", "C-AP-02-007"],
+    "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
     ],
@@ -78,6 +80,7 @@
     ],
     "memoryTip": "自然言語＝人のことば。プログラミング言語は『人工』の言語。",
     "concepts": ["C-AP-02-002"],
+    "figures": ["fig-ap-ai-fields"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（natural language processing）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -106,6 +109,7 @@
     ],
     "memoryTip": "自然言語処理かどうかは『入力がことばか』で決める。センサーの数値はことばではない。",
     "concepts": ["C-AP-02-002"],
+    "figures": ["fig-ap-ai-fields"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（natural language processing）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -134,6 +138,7 @@
     ],
     "memoryTip": "Self-Attention＝同じ文の中で『誰が誰を見るか』を重みで決める。",
     "concepts": ["C-AP-02-003", "C-AP-02-006"],
+    "figures": ["fig-ap-qkv"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（self-attention）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
@@ -222,6 +227,7 @@
     ],
     "memoryTip": "RNN＝行列に並んで1人ずつ、Self-Attention＝全員いっせいに。",
     "concepts": ["C-AP-02-005", "C-AP-01-040"],
+    "figures": ["fig-ap-rnn-vs-attention"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
     ],
@@ -250,6 +256,7 @@
     ],
     "memoryTip": "並列処理で減るのは『時間』。減ったぶんで、データとモデルを大きくした。",
     "concepts": ["C-AP-02-005", "C-AP-02-001"],
+    "figures": ["fig-ap-rnn-vs-attention"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" },
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
@@ -279,6 +286,7 @@
     ],
     "memoryTip": "長距離依存＝『遠くの語とつながっている』。課題の名前で、Self-Attention（自己注意機構。文の中の語どうしの関係を計算する仕組み）が解決策。",
     "concepts": ["C-AP-02-006"],
+    "figures": ["fig-ap-rnn-vs-attention"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
@@ -308,6 +316,7 @@
     ],
     "memoryTip": "LSTM＝記憶を長持ちさせた、Transformer＝遠くの語と直接つないだ。",
     "concepts": ["C-AP-02-006", "C-AP-02-003", "C-AP-01-044"],
+    "figures": ["fig-ap-rnn-vs-attention"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
     ],
@@ -336,6 +345,7 @@
     ],
     "memoryTip": "エンコーダ＝読む、デコーダ＝書く。",
     "concepts": ["C-AP-02-007", "C-AP-02-001"],
+    "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
     ],
@@ -364,6 +374,7 @@
     ],
     "memoryTip": "GPT＝デコーダの系統＝文章を作る側。",
     "concepts": ["C-AP-02-008", "C-AP-02-007"],
+    "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（Transformer）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" },
@@ -394,6 +405,7 @@
     ],
     "memoryTip": "GPT＝デコーダだけ。次の語を当て続けて文章を書く。",
     "concepts": ["C-AP-02-008", "C-AP-02-007"],
+    "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" },
       { "title": "Google for Developers: Machine Learning Glossary（Transformer・BERT）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -453,6 +465,7 @@
     ],
     "memoryTip": "拡散モデルは『少しずつ』が命。1回で消さないから品質が高く、そのぶん遅い。",
     "concepts": ["C-AP-02-009", "C-AP-01-067"],
+    "figures": ["fig-ap-diffusion"],
     "sources": [
       { "title": "Ho, Jain & Abbeel (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)", "url": "https://arxiv.org/abs/2006.11239" },
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
@@ -482,6 +495,7 @@
     ],
     "memoryTip": "Latent（潜在）＝縮めた空間で拡散する。",
     "concepts": ["C-AP-02-010", "C-AP-01-050"],
+    "figures": ["fig-ap-latent-diffusion"],
     "sources": [
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" }
@@ -511,6 +525,7 @@
     ],
     "memoryTip": "画素で拡散＝重い、潜在で拡散＝軽い。",
     "concepts": ["C-AP-02-010"],
+    "figures": ["fig-ap-latent-diffusion"],
     "sources": [
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" }
@@ -570,6 +585,7 @@
     ],
     "memoryTip": "基盤モデル＝いろいろな仕事の『土台』になる、大きな学習済みモデル。",
     "concepts": ["C-AP-02-011"],
+    "figures": ["fig-ap-foundation-model"],
     "sources": [
       { "title": "Bommasani et al. (2021) On the Opportunities and Risks of Foundation Models (arXiv:2108.07258)", "url": "https://arxiv.org/abs/2108.07258" },
       { "title": "Google for Developers: Machine Learning Glossary（foundation model）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -599,6 +615,7 @@
     ],
     "memoryTip": "基盤モデル＝文章も画像も。LLM（大規模言語モデル）は、その中の文章のもの。",
     "concepts": ["C-AP-02-011"],
+    "figures": ["fig-ap-foundation-model"],
     "sources": [
       { "title": "Bommasani et al. (2021) On the Opportunities and Risks of Foundation Models (arXiv:2108.07258)", "url": "https://arxiv.org/abs/2108.07258" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
@@ -628,6 +645,7 @@
     ],
     "memoryTip": "モダリティ＝データの『種類』。言語の違い（日本語と英語）は種類の違いではない。",
     "concepts": ["C-AP-02-012", "C-AP-02-013"],
+    "figures": ["fig-ap-modality"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（modality）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -656,6 +674,7 @@
     ],
     "memoryTip": "マルチモーダル＝『見せて、文章で答える』のように種類をまたぐ。",
     "concepts": ["C-AP-02-013", "C-AP-02-012"],
+    "figures": ["fig-ap-modality"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（multimodal model）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -684,6 +703,7 @@
     ],
     "memoryTip": "マルチ（複数の）＋モーダル（モダリティ＝データの種類）。",
     "concepts": ["C-AP-02-013", "C-AP-02-012"],
+    "figures": ["fig-ap-modality"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（multimodal model・modality）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -742,6 +762,7 @@
     ],
     "memoryTip": "事前学習＝『次の語当て』を大量にくり返す。正解は文章の中にある。",
     "concepts": ["C-AP-02-015", "C-AP-02-016"],
+    "figures": ["fig-ap-llm-training-stages", "fig-ap-next-token"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（pre-training）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" }
@@ -771,6 +792,7 @@
     ],
     "memoryTip": "事前学習の文章には『正しい／誤り』の印は付いていない。だからもっともらしい誤りが生まれる。",
     "concepts": ["C-AP-02-015", "C-AP-02-016", "C-AP-02-037"],
+    "figures": ["fig-ap-next-token"],
     "sources": [
       { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" },
       { "title": "Google for Developers: Machine Learning Glossary（pre-training）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -801,6 +823,7 @@
     ],
     "memoryTip": "1つの文から『次の語当て』がいくつも作れる。だから人が正解を付けなくてよい。",
     "concepts": ["C-AP-02-016", "C-AP-02-015"],
+    "figures": ["fig-ap-next-token"],
     "sources": [
       { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" },
       { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" }
@@ -945,6 +968,7 @@
     ],
     "memoryTip": "チューニング＝重みを直す。書き方の工夫だけなら、それはプロンプトの工夫。",
     "concepts": ["C-AP-02-019", "C-AP-02-045"],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（instruction tuning）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Wei et al. (2021) Finetuned Language Models Are Zero-Shot Learners (arXiv:2109.01652)", "url": "https://arxiv.org/abs/2109.01652" }
@@ -974,6 +998,7 @@
     ],
     "memoryTip": "ドメイン＝分野。分野の文章で追加学習してその分野に強くする。",
     "concepts": ["C-AP-02-020", "C-AP-02-021"],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "Gururangan et al. (2020) Don't Stop Pretraining: Adapt Language Models to Domains and Tasks (arXiv:2004.10964)", "url": "https://arxiv.org/abs/2004.10964" }
     ],
@@ -1002,6 +1027,7 @@
     ],
     "memoryTip": "重みが変わる＝追加学習。入力を変えるだけ＝RAGやプロンプトの工夫。",
     "concepts": ["C-AP-02-021", "C-AP-02-038", "C-AP-02-020"],
+    "figures": ["fig-ap-weight-change", "fig-ap-rag"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" }
@@ -1089,6 +1115,7 @@
     ],
     "memoryTip": "RLHFは『好まれる答え方』に整える。事実の誤りまでは消せない。",
     "concepts": ["C-AP-02-022", "C-AP-02-024", "C-AP-02-037"],
+    "figures": ["fig-ap-rlhf"],
     "sources": [
       { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" },
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
@@ -1118,6 +1145,7 @@
     ],
     "memoryTip": "人の評価で整えた小さなモデル（13億）＞ 整えていない大きなモデル（1,750億）。",
     "concepts": ["C-AP-02-024", "C-AP-02-022"],
+    "figures": ["fig-ap-rlhf"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
     ],
@@ -1230,6 +1258,7 @@
     ],
     "memoryTip": "Chinchilla＝モデルとデータは『半々で』増やす。",
     "concepts": ["C-AP-02-025", "C-AP-02-029"],
+    "figures": ["fig-ap-chinchilla"],
     "sources": [
       { "title": "Hoffmann et al. (2022) Training Compute-Optimal Large Language Models (arXiv:2203.15556)", "url": "https://arxiv.org/abs/2203.15556" }
     ],
@@ -1315,6 +1344,7 @@
     ],
     "memoryTip": "30条の4＝『味わう目的でない利用』はOK。ただし味わう目的が混ざればNG。",
     "concepts": ["C-AP-02-028"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）第三十条の四", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -1344,6 +1374,7 @@
     ],
     "memoryTip": "『そっくり出させる』目的の学習＝味わう目的あり＝30条の4は使えない。",
     "concepts": ["C-AP-02-028", "C-AP-02-021"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）第三十条の四", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
@@ -1373,6 +1404,7 @@
     ],
     "memoryTip": "スケーリング則＝大きくすれば『予測どおり』良くなる。創発＝『予測できず』急に良くなる。",
     "concepts": ["C-AP-02-029", "C-AP-02-030"],
+    "figures": ["fig-ap-emergent"],
     "sources": [
       { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" }
     ],
@@ -1401,6 +1433,7 @@
     ],
     "memoryTip": "10倍ごとに同じ割合ずつ減る。100倍＝0.84を2回掛ける。",
     "concepts": ["C-AP-02-029"],
+    "figures": ["fig-ap-scaling-law"],
     "sources": [
       { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" }
     ],
@@ -1429,6 +1462,7 @@
     ],
     "memoryTip": "創発＝ある大きさで『急に』できるようになる。",
     "concepts": ["C-AP-02-030", "C-AP-02-029"],
+    "figures": ["fig-ap-emergent"],
     "sources": [
       { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" }
     ],
@@ -1457,6 +1491,7 @@
     ],
     "memoryTip": "スケーリング則＝なだらかな坂、創発＝急な段差。",
     "concepts": ["C-AP-02-029", "C-AP-02-030"],
+    "figures": ["fig-ap-emergent"],
     "sources": [
       { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" },
       { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" }
@@ -1486,6 +1521,7 @@
     ],
     "memoryTip": "トークン＝文章を区切った札。英語ならおよそ4文字で1枚。",
     "concepts": ["C-AP-02-031"],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（token）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
@@ -1515,6 +1551,7 @@
     ],
     "memoryTip": "トークン数≠文字数。言語やモデルで変わる。",
     "concepts": ["C-AP-02-031", "C-AP-02-032"],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
     ],
@@ -1543,6 +1580,7 @@
     ],
     "memoryTip": "トークン化（区切って番号）→ 埋め込み（数の並びに）→ 計算。",
     "concepts": ["C-AP-02-032", "C-AP-02-034"],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
     ],
@@ -1571,6 +1609,7 @@
     ],
     "memoryTip": "サブワード＝単語のかけら。知らない語もかけらの組み合わせで読める。",
     "concepts": ["C-AP-02-033", "C-AP-02-032"],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Sennrich, Haddow & Birch (2015) Neural Machine Translation of Rare Words with Subword Units (arXiv:1508.07909)", "url": "https://arxiv.org/abs/1508.07909" },
       { "title": "Google for Developers: Machine Learning Glossary（token）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1600,6 +1639,7 @@
     ],
     "memoryTip": "区切る（トークン化）→ かけら（サブワード）→ 数の並びに（埋め込み）。",
     "concepts": ["C-AP-02-032", "C-AP-02-033", "C-AP-02-034"],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（token・embedding space）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
@@ -1629,6 +1669,7 @@
     ],
     "memoryTip": "埋め込み＝意味の地図。似た意味は近くに置かれる。",
     "concepts": ["C-AP-02-034", "C-AP-02-035"],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（embedding vector・embedding space）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)", "url": "https://arxiv.org/abs/1301.3781" }
@@ -1658,6 +1699,7 @@
     ],
     "memoryTip": "ベクトル＝数の並び。語は数百個の数の並びで表される。",
     "concepts": ["C-AP-02-035", "C-AP-02-034"],
+    "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "Google for Developers: Machine Learning Glossary（embedding vector）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1687,6 +1729,7 @@
     ],
     "memoryTip": "LLM（大規模言語モデル）は『次に来るもの』の確率表を毎回作り、1つ選ぶ。",
     "concepts": ["C-AP-02-036", "C-AP-02-016"],
+    "figures": ["fig-ap-next-token"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（language model）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -1715,6 +1758,7 @@
     ],
     "memoryTip": "確率＝『ありそう』の度合い。『正しい』の度合いではない。",
     "concepts": ["C-AP-02-036", "C-AP-02-037", "C-AP-02-040"],
+    "figures": ["fig-ap-next-token"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
       { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" }
@@ -1772,6 +1816,7 @@
     ],
     "memoryTip": "まれな事実は『パターンから当てられない』→ あてずっぽう → ハルシネーション。",
     "concepts": ["C-AP-02-037", "C-AP-02-015"],
+    "figures": ["fig-ap-next-token"],
     "sources": [
       { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" },
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
@@ -1830,6 +1875,7 @@
     ],
     "memoryTip": "学習し直さず最新の資料で答える＝RAG。",
     "concepts": ["C-AP-02-038", "C-AP-02-037", "C-AP-02-020"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" }
     ],
@@ -1858,6 +1904,7 @@
     ],
     "memoryTip": "RAG＝毎回『資料を手渡す』。モデルの中身は変わらない。",
     "concepts": ["C-AP-02-038", "C-AP-02-021"],
+    "figures": ["fig-ap-rag", "fig-ap-weight-change"],
     "sources": [
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -1887,6 +1934,7 @@
     ],
     "memoryTip": "生成パラメータ＝『選び方』と『長さ』の設定。重みは学習で決まり、使う人は触らない。",
     "concepts": ["C-AP-02-039", "C-AP-02-017"],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
     ],
@@ -1915,6 +1963,7 @@
     ],
     "memoryTip": "決まった答え＝低温、アイデア出し＝高温。",
     "concepts": ["C-AP-02-040", "C-AP-02-039"],
+    "figures": ["fig-ap-temperature"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
       { "title": "Google for Developers: Machine Learning Glossary（temperature）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1944,6 +1993,7 @@
     ],
     "memoryTip": "温度0＝いつも一番人気を選ぶ。",
     "concepts": ["C-AP-02-040", "C-AP-02-036"],
+    "figures": ["fig-ap-temperature"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
     ],
@@ -1972,6 +2022,7 @@
     ],
     "memoryTip": "Top-p＝確率の高い順に『合計p』まで残す。0.5＋0.3＝0.8で止まる。",
     "concepts": ["C-AP-02-041", "C-AP-02-036"],
+    "figures": ["fig-ap-top-p"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
       { "title": "Holtzman et al. (2019) The Curious Case of Neural Text Degeneration (arXiv:1904.09751)", "url": "https://arxiv.org/abs/1904.09751" }
@@ -2001,6 +2052,7 @@
     ],
     "memoryTip": "Temperature＝ばらつきのつまみ、Top-p＝候補のふるい。",
     "concepts": ["C-AP-02-040", "C-AP-02-041"],
+    "figures": ["fig-ap-top-p"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
     ],
@@ -2029,6 +2081,7 @@
     ],
     "memoryTip": "コンテキストウィンドウ＝一度に見渡せる『窓』の広さ（トークン数）。",
     "concepts": ["C-AP-02-042"],
+    "figures": ["fig-ap-context-window"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（context window）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -2057,6 +2110,7 @@
     ],
     "memoryTip": "窓の広さ（1回に読める量）と、学んだ量（学習データ）は別物。",
     "concepts": ["C-AP-02-042", "C-AP-02-025"],
+    "figures": ["fig-ap-context-window"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（context window）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
@@ -2086,6 +2140,7 @@
     ],
     "memoryTip": "言語モデル＝『この並びはどれくらいありそうか』を確率で出す。",
     "concepts": ["C-AP-02-043"],
+    "figures": ["fig-ap-next-token"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（language model）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -2228,6 +2283,7 @@
     ],
     "memoryTip": "プロンプト＝入力を変える。チューニング＝重みを変える。",
     "concepts": ["C-AP-02-045", "C-AP-02-019"],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（prompt・instruction tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -2256,6 +2312,7 @@
     ],
     "memoryTip": "データを外に出さない＝自前のサーバーで動かす（オンプレミス）。",
     "concepts": ["C-AP-02-047", "C-AP-02-046", "C-AP-02-049"],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "NTIA『Dual-Use Foundation Models with Widely Available Model Weights』Report（2024年7月30日）", "url": "https://www.ntia.gov/issues/artificial-intelligence/open-model-weights-report" }
     ],
@@ -2284,6 +2341,7 @@
     ],
     "memoryTip": "クラウド＝よそで動かす、オンプレミス＝自分の敷地で動かす。データ主権＝自分で決められること。",
     "concepts": ["C-AP-02-046", "C-AP-02-047", "C-AP-02-048"],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "NIST Special Publication 800-145 The NIST Definition of Cloud Computing（2011）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" },
       { "title": "経済産業省『インターネットその他の高度情報通信ネットワークを通じて電子計算機…を他人の情報処理の用に供するシステムに用いるプログラムに係る安定供給確保を図るための取組方針』（令和6年2月5日改定）", "url": "https://www.meti.go.jp/policy/economy/economic_security/cloud/cloud.pdf" }
@@ -2313,6 +2371,7 @@
     ],
     "memoryTip": "クラウド＝設備はおまかせ・データは外へ。オンプレミス＝データは手元・設備は自前。",
     "concepts": ["C-AP-02-046", "C-AP-02-047"],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "NIST Special Publication 800-145 The NIST Definition of Cloud Computing（2011）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" },
       { "title": "デジタル庁『行政の進化と革新のための生成AIの調達・利活用に係るガイドライン2.0版について（概要）』（2026年6月）", "url": "https://www.digital.go.jp/assets/contents/node/information/field_ref_resources/decb64eb-f26e-41cb-8d37-f3dd173108b8/f8e1c3b8/20260612_resources_standard_guidelines_guideline_03.pdf" },
@@ -2343,6 +2402,7 @@
     ],
     "memoryTip": "データ主権＝自分たちのデータは自分たちで決める。",
     "concepts": ["C-AP-02-048"],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "経済産業省『インターネットその他の高度情報通信ネットワークを通じて電子計算機…を他人の情報処理の用に供するシステムに用いるプログラムに係る安定供給確保を図るための取組方針』（令和6年2月5日改定）", "url": "https://www.meti.go.jp/policy/economy/economic_security/cloud/cloud.pdf" },
       { "title": "デジタル庁『行政の進化と革新のための生成AIの調達・利活用に係るガイドライン2.0版について（概要）』（2026年6月）", "url": "https://www.digital.go.jp/assets/contents/node/information/field_ref_resources/decb64eb-f26e-41cb-8d37-f3dd173108b8/f8e1c3b8/20260612_resources_standard_guidelines_guideline_03.pdf" }
@@ -2372,6 +2432,7 @@
     ],
     "memoryTip": "オープンウェイト＝重みだけ公開。オープンソース＝重み＋作り方まで公開。",
     "concepts": ["C-AP-02-049", "C-AP-02-050"],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Open Source Initiative『Open Weights: not quite what you've been told』", "url": "https://opensource.org/ai/open-weights" }
     ],
@@ -2400,6 +2461,7 @@
     ],
     "memoryTip": "重みが公開＝オープンソース、ではない。",
     "concepts": ["C-AP-02-049", "C-AP-02-050"],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Open Source Initiative『The Open Source AI Definition – 1.0』", "url": "https://opensource.org/ai/open-source-ai-definition" },
       { "title": "Open Source Initiative『Open Weights: not quite what you've been told』", "url": "https://opensource.org/ai/open-weights" },
@@ -2430,6 +2492,7 @@
     ],
     "memoryTip": "重みが公開されていても、ライセンスの条件を読む。",
     "concepts": ["C-AP-02-051", "C-AP-02-049"],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Meta『Llama 3.1 Community License Agreement』（GitHub の meta-llama/llama-models）", "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE" }
     ],
@@ -2458,6 +2521,7 @@
     ],
     "memoryTip": "ダウンロードできる≠何をしてもよい。ライセンスを読む。",
     "concepts": ["C-AP-02-051"],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Meta『Llama 3.1 Community License Agreement』（GitHub の meta-llama/llama-models）", "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE" }
     ],
@@ -2486,6 +2550,7 @@
     ],
     "memoryTip": "オープンソースの4つの自由＝使う・調べる・変える・配る。",
     "concepts": ["C-AP-02-050"],
+    "figures": ["fig-ap-open-weight"],
     "sources": [
       { "title": "Open Source Initiative『The Open Source AI Definition – 1.0』", "url": "https://opensource.org/ai/open-source-ai-definition" }
     ],
@@ -2514,6 +2579,7 @@
     ],
     "memoryTip": "ChatGPT＝OpenAI、2022年11月30日、GPT-3.5（OpenAI の、ChatGPT のもとになったモデルの系列）＋RLHF（人間のフィードバックによる強化学習）。",
     "concepts": ["C-AP-02-052"],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "OpenAI『Introducing ChatGPT』（2022年11月30日）", "url": "https://openai.com/index/chatgpt/" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
@@ -2571,6 +2637,7 @@
     ],
     "memoryTip": "GPT→GPT-2→GPT-3＝約1億→約15億→1,750億（ほぼ10倍、100倍と跳ねる）。",
     "concepts": ["C-AP-02-053", "C-AP-02-017"],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "Radford et al. (2019) Language Models are Unsupervised Multitask Learners（OpenAI）", "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" },
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
@@ -2600,6 +2667,7 @@
     ],
     "memoryTip": "GPT＝事前学習＋仕事ごとの仕上げ、GPT-2＝仕上げなしでも、GPT-3＝例を数個見せるだけで。",
     "concepts": ["C-AP-02-053"],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "Radford et al. (2019) Language Models are Unsupervised Multitask Learners（OpenAI）", "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" }
     ],
@@ -2628,6 +2696,7 @@
     ],
     "memoryTip": "GPT＝Generative Pre-Training（生成的な事前学習）＋ファインチューニング。",
     "concepts": ["C-AP-02-053", "C-AP-02-015"],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" }
     ],
@@ -2656,6 +2725,7 @@
     ],
     "memoryTip": "GPT-4o より前＝3つのモデルのリレー、GPT-4o＝1つのモデルで全部。",
     "concepts": ["C-AP-02-054", "C-AP-02-055"],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "OpenAI (2023) GPT-4 Technical Report (arXiv:2303.08774)", "url": "https://arxiv.org/abs/2303.08774" },
       { "title": "OpenAI『Hello GPT-4o』（2024年5月13日）", "url": "https://openai.com/index/hello-gpt-4o/" },
@@ -2687,6 +2757,7 @@
     ],
     "memoryTip": "GPT-5＝速い係と考える係を、ルーターが振り分ける。",
     "concepts": ["C-AP-02-054", "C-AP-02-056", "C-AP-02-057"],
+    "figures": ["fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI『Introducing GPT-5』（2025年8月7日）", "url": "https://openai.com/index/introducing-gpt-5/" }
     ],
@@ -2715,6 +2786,7 @@
     ],
     "memoryTip": "GPT-6 Astra（2026年9月）＝『パソコンを操作して仕事を進める』が売り。",
     "concepts": ["C-AP-02-054"],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "OpenAI『GPT-6 Astra: A new generation of intelligence』（2026年9月3日）", "url": "https://openai.com/index/gpt-6-astra/" }
     ],
@@ -2743,6 +2815,7 @@
     ],
     "memoryTip": "4o の o は omni＝『全部入り』。",
     "concepts": ["C-AP-02-055"],
+    "figures": ["fig-ap-gpt-timeline"],
     "sources": [
       { "title": "OpenAI『Hello GPT-4o』（2024年5月13日）", "url": "https://openai.com/index/hello-gpt-4o/" }
     ],
@@ -2771,6 +2844,7 @@
     ],
     "memoryTip": "推論モデル＝『考えてから答える』LLM（大規模言語モデル）。",
     "concepts": ["C-AP-02-056", "C-AP-02-058"],
+    "figures": ["fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" }
     ],
@@ -2799,6 +2873,7 @@
     ],
     "memoryTip": "見えない『考えるトークン』も料金に入る。",
     "concepts": ["C-AP-02-056", "C-AP-02-057"],
+    "figures": ["fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" },
       { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" },
@@ -2829,6 +2904,7 @@
     ],
     "memoryTip": "作るときに鍛える＝学習時の計算、答えるときに考える＝推論時の計算。",
     "concepts": ["C-AP-02-057", "C-AP-02-056"],
+    "figures": ["fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" }
     ],
@@ -2857,6 +2933,7 @@
     ],
     "memoryTip": "思考の連鎖＝途中式を書かせると、正解しやすい。",
     "concepts": ["C-AP-02-058"],
+    "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" }
     ],
@@ -2885,6 +2962,7 @@
     ],
     "memoryTip": "思考の連鎖が効くのは『大きなモデル』から。",
     "concepts": ["C-AP-02-058", "C-AP-02-030"],
+    "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" },
       { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" },
@@ -2999,6 +3077,7 @@
     ],
     "memoryTip": "4o Image Generation の画像には C2PA の来歴の情報が付く。",
     "concepts": ["C-AP-02-061", "C-AP-02-069"],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "OpenAI『Introducing 4o Image Generation』（2025年3月25日）", "url": "https://openai.com/index/introducing-4o-image-generation/" },
       { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" }
@@ -3143,6 +3222,7 @@
     ],
     "memoryTip": "いまの画像生成AI＝拡散モデル（とくに潜在拡散）。",
     "concepts": ["C-AP-02-065", "C-AP-02-010"],
+    "figures": ["fig-ap-latent-diffusion"],
     "sources": [
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" },
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
@@ -3200,6 +3280,7 @@
     ],
     "memoryTip": "AIが作った画像も、既存の作品に似ていないか確かめてから使う。",
     "concepts": ["C-AP-02-065", "C-AP-02-028"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" },
@@ -3231,6 +3312,7 @@
     ],
     "memoryTip": "電子透かし＝目に見えない『しるし』を中に埋め込む。",
     "concepts": ["C-AP-02-067"],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 偽・誤情報の流通・拡散", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" },
       { "title": "Google DeepMind『Identifying AI-generated images with SynthID』（2023年8月29日）", "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/" }
@@ -3260,6 +3342,7 @@
     ],
     "memoryTip": "透かしは強いが、万能ではない。来歴の記録や検出と組み合わせる。",
     "concepts": ["C-AP-02-067", "C-AP-02-068"],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "Google DeepMind『Identifying AI-generated images with SynthID』（2023年8月29日）", "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/" }
     ],
@@ -3288,6 +3371,7 @@
     ],
     "memoryTip": "来歴＝作品の『履歴書』。",
     "concepts": ["C-AP-02-068"],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" }
     ],
@@ -3316,6 +3400,7 @@
     ],
     "memoryTip": "C2PAの記録は『改ざんは分かる』が『消されることはある』。",
     "concepts": ["C-AP-02-069", "C-AP-02-068"],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" }
     ],
@@ -3344,6 +3429,7 @@
     ],
     "memoryTip": "透かし＝中に埋める、来歴＝履歴の記録、C2PA＝記録を改ざんできない形で付ける決まり。",
     "concepts": ["C-AP-02-067", "C-AP-02-068", "C-AP-02-069"],
+    "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" },
       { "title": "Google DeepMind『Identifying AI-generated images with SynthID』（2023年8月29日）", "url": "https://deepmind.google/blog/identifying-ai-generated-images-with-synthid/" }

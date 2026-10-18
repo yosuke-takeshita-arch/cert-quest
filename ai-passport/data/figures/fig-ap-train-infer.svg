@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 550" role="img" aria-labelledby="fig-ap-train-infer-t fig-ap-train-infer-d">
+<title id="fig-ap-train-infer-t">学習と推論：教師データで重みを決めて学習済みモデルを作り、新しいデータで予測を出す</title>
+<desc id="fig-ap-train-infer-d">例は迷惑メールの見分け。①学習：メール1万通と、それぞれが迷惑かどうかの正解（教師データ）を使い、予測を正解と比べ、ずれが減るように重みを直していく。終わると、中の重みの値が決まった学習済みモデルができる。②推論：新しいメールを学習済みモデルに入れると「迷惑」と予測が出る。推論は学習済みモデルで予測を出すこと。下は役割の分け方。人が決めることは、何を予測するか、学習に使うデータ、学習の前の設定（層の数や学習の回数）。学習で決まることは、モデルの中の重みの値で、人が1つずつ決めるものではない。</desc>
+<text x="12" y="20" class="tb">学習と推論（例：迷惑メールの見分け）</text>
+<text x="12" y="46" class="tb ta">① 学習（使う前に、まとめて行う）</text>
+<rect x="12" y="56" width="296" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="79" text-anchor="middle">教師データ：メール1万通</text>
+<text x="160" y="99" class="tm" text-anchor="middle">＋ 迷惑かどうかの正解</text>
+<line x1="160" y1="114" x2="160" y2="134" class="l sa w2"/>
+<polyline points="156.00,127.00 160,134 164.00,127.00" class="l sa w2"/>
+<rect x="12" y="136" width="296" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="159" text-anchor="middle">予測を正解と比べ、</text>
+<text x="160" y="179" text-anchor="middle">ずれが減るよう重みを直す</text>
+<line x1="160" y1="194" x2="160" y2="214" class="l sa w2"/>
+<polyline points="156.00,207.00 160,214 164.00,207.00" class="l sa w2"/>
+<rect x="12" y="216" width="296" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="239" class="tb" text-anchor="middle">学習済みモデル</text>
+<text x="160" y="259" class="tm" text-anchor="middle">中の重みの値が決まったモデル</text>
+<text x="12" y="302" class="tb ta">② 推論（新しいデータが来るたびに）</text>
+<rect x="12" y="314" width="84" height="52" class="fs sb" stroke-width="1.5"/>
+<text x="54" y="335" text-anchor="middle">新しい</text>
+<text x="54" y="355" text-anchor="middle">メール</text>
+<line x1="98" y1="340" x2="116" y2="340" class="l sa w2"/>
+<polyline points="109.00,344.00 116,340 109.00,336.00" class="l sa w2"/>
+<rect x="118" y="314" width="96" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="166" y="335" text-anchor="middle">学習済み</text>
+<text x="166" y="355" text-anchor="middle">モデル</text>
+<line x1="216" y1="340" x2="234" y2="340" class="l sa w2"/>
+<polyline points="227.00,344.00 234,340 227.00,336.00" class="l sa w2"/>
+<rect x="236" y="314" width="72" height="52" class="fwn swn" stroke-width="1.5"/>
+<text x="272" y="345" class="tb" text-anchor="middle">「迷惑」</text>
+<text x="12" y="388" class="tm">推論＝学習済みモデルで予測を出すこと</text>
+<line x1="12" y1="404" x2="308" y2="404" class="l sb w1"/>
+<text x="12" y="426" class="tb">人が決めること</text>
+<text x="12" y="446">・何を予測するか（迷惑かどうか）</text>
+<text x="12" y="466">・学習に使うデータ（どのメールを集めるか）</text>
+<text x="12" y="486">・学習の前の設定（層の数・学習の回数）</text>
+<text x="12" y="512" class="tb">学習で決まること</text>
+<text x="12" y="532">・モデルの中の重みの値（1つずつ人は決めない）</text>
+</svg>

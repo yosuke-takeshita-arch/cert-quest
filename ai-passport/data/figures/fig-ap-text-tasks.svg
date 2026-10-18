@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 518" role="img" aria-labelledby="fig-ap-text-tasks-t fig-ap-text-tasks-d">
+<title id="fig-ap-text-tasks-t">文章の仕事の呼び分け：文字起こし・要点抽出・要約、校正・添削・整形</title>
+<desc id="fig-ap-text-tasks-d">①会議の録音から。録音（話し声）を文字にするのが文字起こし（音声から文字）。文字にした記録から、決めた項目（決定事項・担当・期限）を拾い出すのが要点抽出。流れ全体を短くまとめる（例：3行に）のが要約。逆向きに、文字から読み上げの声を作るのがTTS（音声合成）。②書いた文章を直す（例：報告書）。校正は誤字・脱字・表記のゆれを直す（「お問合せ」を「お問い合わせ」に。中身は変えない）。添削は構成や表現を直す（結論を先に、長い文を分ける）。整形は見た目の形をそろえる（見出しと箇条書き、日付の形をそろえる）。整形では中身を足したり削ったりしない。</desc>
+<text x="12" y="20" class="tb">文章の仕事の呼び分け</text>
+<text x="12" y="46" class="tb ta">① 会議の録音から（例）</text>
+<rect x="12" y="56" width="296" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="76" class="tb" text-anchor="middle">録音（話し声）</text>
+<line x1="160" y1="88" x2="160" y2="102" class="l sa w2"/>
+<polyline points="156.00,95.00 160,102 164.00,95.00" class="l sa w2"/>
+<text x="170" y="100" class="tm">文字起こし（音声→文字）</text>
+<rect x="12" y="104" width="296" height="30" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="124" class="tb" text-anchor="middle">文字にした会議の記録</text>
+<line x1="90" y1="136" x2="82" y2="156" class="l sa w2"/>
+<polyline points="80.89,148.02 82,156 88.31,150.99" class="l sa w2"/>
+<line x1="230" y1="136" x2="238" y2="156" class="l sa w2"/>
+<polyline points="231.69,150.99 238,156 239.11,148.02" class="l sa w2"/>
+<rect x="12" y="158" width="140" height="76" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="181" class="tb" text-anchor="middle">要点抽出</text>
+<text x="82" y="201" text-anchor="middle">決めた項目を拾う</text>
+<text x="82" y="221" class="tm" text-anchor="middle">決定事項・担当・期限</text>
+<rect x="168" y="158" width="140" height="76" class="fok sok" stroke-width="1.5"/>
+<text x="238" y="181" class="tb" text-anchor="middle">要約</text>
+<text x="238" y="201" text-anchor="middle">流れ全体を短く</text>
+<text x="238" y="221" class="tm" text-anchor="middle">例：3行に</text>
+<text x="12" y="250" class="tm">逆向き：文字→読み上げの声 ＝ TTS（音声合成）</text>
+<line x1="12" y1="266" x2="308" y2="266" class="l sb w1"/>
+<text x="12" y="290" class="tb ta">② 書いた文章を直す（例：報告書）</text>
+<rect x="12" y="300" width="296" height="58" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="319" class="tb">校正：誤字・脱字・表記のゆれを直す</text>
+<text x="22" y="339" class="tm">「お問合せ」→「お問い合わせ」。</text>
+<text x="22" y="354" class="tm">中身は変えない</text>
+<rect x="12" y="364" width="296" height="58" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="383" class="tb">添削：構成や表現を直す</text>
+<text x="22" y="403" class="tm">結論を先に、長い文を分ける</text>
+<rect x="12" y="428" width="296" height="58" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="447" class="tb">整形：見た目の形をそろえる</text>
+<text x="22" y="467" class="tm">見出しと箇条書き、日付の形をそろえる</text>
+<text x="12" y="500" class="tng">整形では中身を足したり削ったりしない</text>
+</svg>

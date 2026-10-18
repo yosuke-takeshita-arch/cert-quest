@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 354" role="img" aria-labelledby="fig-ap-search-vs-genai-t fig-ap-search-vs-genai-d">
+<title id="fig-ap-search-vs-genai-t">検索エンジンと生成AI：既存のページを探して示すか、学習した傾向から文を新しく作るか</title>
+<desc id="fig-ap-search-vs-genai-d">①検索エンジンは、質問に対して既存のページを探し、一覧で示す。元のページを開いて、書いた人を確かめられる。②生成AIは、学習した傾向から、次に来そうな語を確率で選んでつなぎ、文を新しく作る。自然な文でも、実在しない店や数字が混ざりうる。毎回ネットを調べ直しているわけではない。だから生成AIの答えは、数字・固有名詞・日付を元の情報で確かめ、参照元のURLが付いていてもそのページに本当に書いてあるかを開いて確かめる。同じ質問をくり返して一致しても確認にはならない。</desc>
+<text x="12" y="20" class="tb">検索エンジン と 生成AI：答えの作り方</text>
+<text x="12" y="46" class="tb ta">① 検索エンジン：既存のページを探して示す</text>
+<rect x="12" y="56" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="79" text-anchor="middle">質問 → ページの一覧（A社のページ・B市のページ…）</text>
+<text x="160" y="99" class="tm" text-anchor="middle">元のページを開いて、書いた人を確かめられる</text>
+<text x="12" y="132" class="tb twn">② 生成AI：学習した傾向から文を新しく作る</text>
+<rect x="12" y="142" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="165" text-anchor="middle">質問 → 次に来そうな語を確率で選んでつなぐ</text>
+<text x="160" y="185" class="tm" text-anchor="middle">自然な文でも、実在しない店や数字が混ざりうる</text>
+<text x="12" y="220" class="tm">毎回ネットを調べ直しているわけではない</text>
+<line x1="12" y1="236" x2="308" y2="236" class="l sb w1"/>
+<text x="12" y="258" class="tb">だから生成AIの答えは</text>
+<text x="12" y="278">・数字・固有名詞・日付を元の情報で確かめる</text>
+<text x="12" y="298">・参照元のURLが付いていても、そのページに</text>
+<text x="12" y="316">　本当に書いてあるかを開いて確かめる</text>
+<text x="12" y="336" class="tm">・同じ質問をくり返して一致しても、確認にならない</text>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-ap-token-flow-t fig-ap-token-flow-d">
+<title id="fig-ap-token-flow-t">LLMが文章を受け取ってから：トークン化、番号への置きかえ、埋め込み</title>
+<desc id="fig-ap-token-flow-d">①トークン化：文章を区切る。英語の例 taller を tall と er の2つ（語の一部＝サブワード）に区切る（Googleの用語集の例。区切り方はモデルで違う）。辞書に無い語も、知っている部分の組で表せる。②区切ったトークンを番号に置きかえる（番号は例）。③埋め込み：各トークンを、意味を表す数の並び（ベクトル）に変える。下の四角の中では、犬・猫・子犬が近くに、自動車・電車が別の場所に集まる。意味の近い語ほど近い場所になり、文字の数や五十音順の近さではない。Transformerの原論文では1トークンを512個の数で表した。トークンの数は文字の数と同じではない。OpenAIの説明では英語でおよそ1トークンが4文字、100トークンが約75語。料金や入力の上限はトークンで数える。</desc>
+<text x="12" y="20" class="tb">LLM が文章を受け取ってから</text>
+<text x="12" y="46" class="tb ta">① トークン化：文章を区切る</text>
+<text x="12" y="66" class="tm">英語の例「taller」（Google の用語集の例）</text>
+<rect x="12" y="74" width="54" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="39" y="94" text-anchor="middle">tall</text>
+<rect x="72" y="74" width="38" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="91" y="94" text-anchor="middle">er</text>
+<text x="12" y="126">1つ1つがトークン。ここでは語の一部（サブワード）</text>
+<text x="12" y="146">辞書に無い語も、知っている部分の組で表せる</text>
+<text x="12" y="166" class="tm">区切り方はモデルで違う（図は例）</text>
+<text x="12" y="192" class="tb ta">② 番号に置きかえる（番号は例）</text>
+<rect x="12" y="200" width="66" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="45" y="219" text-anchor="middle">8191</text>
+<rect x="84" y="200" width="66" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="117" y="219" text-anchor="middle">263</text>
+<text x="12" y="254" class="tb ta">③ 埋め込み：意味を表す数の並び（ベクトル）に</text>
+<rect x="12" y="264" width="296" height="120" class="fs sb" stroke-width="1.5"/>
+<circle cx="80" cy="300" r="5" class="fok sok" stroke-width="1.5"/>
+<text x="89" y="305">犬</text>
+<circle cx="112" cy="316" r="5" class="fok sok" stroke-width="1.5"/>
+<text x="121" y="321">猫</text>
+<circle cx="70" cy="332" r="5" class="fok sok" stroke-width="1.5"/>
+<text x="79" y="337">子犬</text>
+<circle cx="236" cy="354" r="5" class="fwn swn" stroke-width="1.5"/>
+<text x="245" y="359">自動車</text>
+<circle cx="262" cy="338" r="5" class="fwn swn" stroke-width="1.5"/>
+<text x="271" y="343">電車</text>
+<text x="150" y="282" class="tm">意味の近い語ほど近い場所</text>
+<text x="12" y="404">数の並び＝ベクトル（例 512個の数）</text>
+<text x="12" y="424" class="tm">文字の数や五十音順の近さではない</text>
+<line x1="12" y1="440" x2="308" y2="440" class="l sb w1"/>
+<text x="12" y="462" class="tb">トークンの数は、文字の数と同じではない</text>
+<text x="12" y="482" class="tm">英語のおよその目安（OpenAIの説明）</text>
+<text x="12" y="502">1トークン≒4文字、100トークン≒75語</text>
+<text x="12" y="522" class="tm">料金や入力の上限はトークンで数える</text>
+</svg>

@@ -38,6 +38,7 @@
     "confusions": [
       { "id": "C-AP-05-013", "point": "対話的な改善は、答えの書き方や中身をやり取りで整えること。事実確認は、答えに書かれた事実が本当かを出典で確かめること。" }
     ],
+    "figures": ["fig-ap-prompt-parts"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
       { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』", "url": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" }
@@ -60,6 +61,7 @@
     "confusions": [
       { "id": "C-AP-05-010", "point": "入力データは、処理してほしい材料（要約する本文など）。出力形式は、答えをどんな形（表・箇条書き・字数）で返すか。" }
     ],
+    "figures": ["fig-ap-prompt-parts"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
@@ -102,6 +104,7 @@
     "confusions": [
       { "id": "C-AP-05-006", "point": "Zero-Shotは、例を見せずに指示だけで頼む。Few-Shotは、入力と答えの組のお手本を数個見せてから頼む。" }
     ],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
@@ -123,6 +126,7 @@
     "confusions": [
       { "id": "C-AP-05-007", "point": "Few-Shotは、例を数個見せる頼み方の名前。In-Context Learningは、例や指示をその場の文脈から読み取って課題をこなす、モデルの側の働きの名前。" }
     ],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
@@ -146,6 +150,7 @@
     "confusions": [
       { "id": "C-AP-01-036", "point": "In-Context Learningは、重みを変えずに、その場の文脈から課題をつかむ。ファインチューニングは、追加の学習で重みを変える。" }
     ],
+    "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
     ],
@@ -166,6 +171,7 @@
     "confusions": [
       { "id": "C-AP-02-056", "point": "CoTプロンプティングは、プロンプトで途中の考えを書かせる頼み方。推論モデルは、答える前に自分で長く考えるよう学習で鍛えたモデル。" }
     ],
+    "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" },
       { "title": "Kojima et al. (2022) Large Language Models are Zero-Shot Reasoners (arXiv:2205.11916)", "url": "https://arxiv.org/abs/2205.11916" },
@@ -290,6 +296,7 @@
     "confusions": [
       { "id": "C-AP-05-015", "point": "校正は、誤字や表記の誤りを直し、内容は変えない。添削は、表現や構成まで踏み込んで、より良い文章に直す。" }
     ],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
@@ -308,6 +315,7 @@
       { "id": "C-AP-05-016", "relation": "対比" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
     ],
@@ -327,6 +335,7 @@
     "confusions": [
       { "id": "C-AP-05-041", "point": "文章の整形は、読みやすいよう見た目の形をそろえること。データの整形は、集計や分析ができるよう表の形（1行に1件など）を整えること。" }
     ],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
@@ -348,6 +357,7 @@
     "confusions": [
       { "id": "C-AP-05-019", "point": "要約は、文章全体を短く言い直す。要点抽出は、決まったこと・期限など、決めた項目に当たる所だけを拾い出す。" }
     ],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
@@ -388,6 +398,7 @@
       { "id": "C-AP-05-010", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
       { "title": "Microsoft Support『Catch up on meetings with Microsoft Copilot in Teams』", "url": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1" }
@@ -409,6 +420,7 @@
     "confusions": [
       { "id": "C-AP-05-035", "point": "文字起こしは、話し声を文字にする（音声認識）。TTSは、文字を読み上げる声を作る（音声合成）。" }
     ],
+    "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "Radford et al. (2022) Robust Speech Recognition via Large-Scale Weak Supervision (arXiv:2212.04356)", "url": "https://arxiv.org/abs/2212.04356" },
       { "title": "OpenAI『Introducing next-generation audio models in the API』（2025年3月20日）", "url": "https://openai.com/index/introducing-our-next-generation-audio-models/" },
@@ -605,6 +617,7 @@
       { "id": "C-AP-03-008", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-deploy"],
     "sources": [
       { "title": "GitHub Docs『Deploying with GitHub Actions』", "url": "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/control-deployments" }
     ],
@@ -1167,6 +1180,7 @@
       { "id": "C-AP-05-060", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-prompt-chain"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -1187,6 +1201,7 @@
       { "id": "C-AP-05-057", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" },
       { "title": "OpenAI『Introducing Operator』（2025年1月23日。2025年7月17日の更新を含む）", "url": "https://openai.com/index/introducing-operator/" }
@@ -1204,6 +1219,7 @@
       { "id": "C-AP-05-070", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-dx-3stages"],
     "sources": [
       { "title": "経済産業省『デジタルガバナンス・コード3.0 〜DX経営による企業価値向上に向けて〜』（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" },
       { "title": "経済産業省『第2回 AX時代におけるスキルのあり方検討WG』資料（2026年6月1日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/society_digital/ax_skill/pdf/002_02_00.pdf" }

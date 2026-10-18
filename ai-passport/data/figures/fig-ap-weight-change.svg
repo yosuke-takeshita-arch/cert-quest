@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 574" role="img" aria-labelledby="fig-ap-weight-change-t fig-ap-weight-change-d">
+<title id="fig-ap-weight-change-t">モデルの重みを変える方法と、変えない方法</title>
+<desc id="fig-ap-weight-change-d">重みを変える（学習する）方法：事前学習（大量の文章で次のトークンを当てる）、ファインチューニング（追加学習。仕事の例でさらに学ぶ）、ドメイン適応（専門の文章でさらに事前学習）、指示チューニング（指示の形にしたデータで学ぶ）、RLHF（人の評価をもとに強化学習）、LoRA（少しのパラメータを足して学ぶ）。重みを変えない（使い方の工夫）方法：プロンプト（指示文の書き方を工夫する）、Few-shot（指示の中で例を見せる）、RAG（検索した資料を質問に添える）、TemperatureやTop-p（次のトークンの選び方の設定）。重みを変えない工夫はその場かぎりで、次の会話には学んだ形では残らない。</desc>
+<text x="12" y="20" class="tb">モデルの重みを変えるか、変えないか</text>
+<text x="12" y="46" class="tb twn">重みを変える（学習する）</text>
+<rect x="12" y="54" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="71" class="tb">事前学習</text>
+<text x="22" y="88" class="tm">大量の文章で次のトークンを当てる</text>
+<rect x="12" y="98" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="115" class="tb">ファインチューニング（追加学習）</text>
+<text x="22" y="132" class="tm">仕事の例でさらに学ぶ</text>
+<rect x="12" y="142" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="159" class="tb">ドメイン適応</text>
+<text x="22" y="176" class="tm">専門の文章でさらに事前学習</text>
+<rect x="12" y="186" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="203" class="tb">指示チューニング</text>
+<text x="22" y="220" class="tm">指示の形にしたデータで学ぶ</text>
+<rect x="12" y="230" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="247" class="tb">RLHF</text>
+<text x="22" y="264" class="tm">人の評価をもとに強化学習</text>
+<rect x="12" y="274" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="291" class="tb">LoRA</text>
+<text x="22" y="308" class="tm">少しのパラメータを足して学ぶ</text>
+<text x="12" y="336" class="tb tok">重みを変えない（使い方の工夫）</text>
+<rect x="12" y="344" width="296" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="361" class="tb">プロンプト</text>
+<text x="22" y="378" class="tm">指示文の書き方を工夫する</text>
+<rect x="12" y="388" width="296" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="405" class="tb">Few-shot</text>
+<text x="22" y="422" class="tm">指示の中で例を見せる</text>
+<rect x="12" y="432" width="296" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="449" class="tb">RAG</text>
+<text x="22" y="466" class="tm">検索した資料を質問に添える</text>
+<rect x="12" y="476" width="296" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="493" class="tb">Temperature・Top-p</text>
+<text x="22" y="510" class="tm">次のトークンの選び方の設定</text>
+<text x="12" y="536" class="tb">重みを変えない工夫は、その場かぎり</text>
+<text x="12" y="556" class="tm">次の会話には、学んだ形では残らない</text>
+</svg>

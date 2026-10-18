@@ -22,6 +22,7 @@
     ],
     "memoryTip": "エージェント＝代理人。決めて、動いて、やり遂げる。",
     "concepts": ["C-AP-03-001", "C-AP-03-006"],
+    "figures": ["fig-ap-chat-vs-agent"],
     "sources": [
       { "title": "総務省 令和7年版 情報通信白書 AI研究開発における最近の動向（AIエージェント）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }
     ],
@@ -50,6 +51,7 @@
     ],
     "memoryTip": "LLM（大規模言語モデル）を使う＝エージェント、ではない。流れを動かすかどうか。",
     "concepts": ["C-AP-03-001", "C-AP-03-003"],
+    "figures": ["fig-ap-chat-vs-agent"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -79,6 +81,7 @@
     ],
     "memoryTip": "文を返すだけなら対話。道具で外を動かせばエージェント。",
     "concepts": ["C-AP-03-003", "C-AP-03-001"],
+    "figures": ["fig-ap-chat-vs-agent"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
     ],
@@ -107,6 +110,7 @@
     ],
     "memoryTip": "ワークフロー＝道筋を人が敷く。自律型＝道をLLM（大規模言語モデル）が選ぶ。",
     "concepts": ["C-AP-03-004", "C-AP-03-005"],
+    "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
     ],
@@ -135,6 +139,7 @@
     ],
     "memoryTip": "道を敷くのが人ならワークフロー、道を選ぶのがLLM（大規模言語モデル）なら自律型。",
     "concepts": ["C-AP-03-004", "C-AP-03-005"],
+    "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
     ],
@@ -163,6 +168,7 @@
     ],
     "memoryTip": "任せるほど、柵（ガードレール）と砂場（サンドボックス）が要る。",
     "concepts": ["C-AP-03-005", "C-AP-03-065", "C-AP-03-028"],
+    "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
     ],
@@ -278,6 +284,7 @@
     ],
     "memoryTip": "ループの中に人がいる＝大事な一手の前で人が止められる。",
     "concepts": ["C-AP-03-008"],
+    "figures": ["fig-ap-autonomy-levels"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" },
@@ -309,6 +316,7 @@
     ],
     "memoryTip": "人に戻すのは『失敗が続く』か『取り返しがつかない』とき。",
     "concepts": ["C-AP-03-008"],
+    "figures": ["fig-ap-autonomy-levels"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
     ],
@@ -337,6 +345,7 @@
     ],
     "memoryTip": "買う前に聞く。いつでも人が割り込める。",
     "concepts": ["C-AP-03-008", "C-AP-03-056"],
+    "figures": ["fig-ap-autonomy-levels"],
     "sources": [
       { "title": "OpenAI『Introducing ChatGPT agent』（2025年7月17日）", "url": "https://openai.com/index/introducing-chatgpt-agent/" }
     ],
@@ -421,6 +430,7 @@
     ],
     "memoryTip": "RAG＝探して（Retrieval）、添えて（Augmented）、答える（Generation）。",
     "concepts": ["C-AP-03-010"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" },
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" }
@@ -508,6 +518,7 @@
     ],
     "memoryTip": "RAGの新しさ＝索引の資料の新しさ。",
     "concepts": ["C-AP-03-011", "C-AP-03-012"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -536,6 +547,7 @@
     ],
     "memoryTip": "RAGで増えるのは『根拠』。増えないのは『独創性』。",
     "concepts": ["C-AP-03-011", "C-AP-03-025"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "経済産業省・総務省『AI事業者ガイドライン（第1.1版）本編』（2025年3月28日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20250328_1.pdf" }
     ],
@@ -564,6 +576,7 @@
     ],
     "memoryTip": "古い資料→古い答え。最新性は索引の手入れで守る。",
     "concepts": ["C-AP-03-012", "C-AP-03-017"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -621,6 +634,7 @@
     ],
     "memoryTip": "チャンク＝検索用のかたまり。トークン＝モデル用の細かい単位。",
     "concepts": ["C-AP-03-014"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Microsoft Learn『Chunk Documents - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents" },
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -679,6 +693,7 @@
     ],
     "memoryTip": "意味を数の並びにして、近さで探す置き場＝ベクトルDB。",
     "concepts": ["C-AP-03-015"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" },
       { "title": "Microsoft Learn『Vector Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/vector-search-overview" }
@@ -708,6 +723,7 @@
     ],
     "memoryTip": "質問と文書は同じ物差し（同じ埋め込みのモデル）で測る。",
     "concepts": ["C-AP-03-015", "C-AP-03-016"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -736,6 +752,7 @@
     ],
     "memoryTip": "言い方が違っても意味で拾う＝意味的検索。",
     "concepts": ["C-AP-03-016"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Microsoft Learn『RAG and Generative AI - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" },
       { "title": "Microsoft Learn『Vector Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/vector-search-overview" }
@@ -765,6 +782,7 @@
     ],
     "memoryTip": "型番に強いキーワード＋言い換えに強いベクトル＝ハイブリッド。",
     "concepts": ["C-AP-03-018", "C-AP-03-016"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Microsoft Learn『Hybrid Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview" }
     ],
@@ -793,6 +811,7 @@
     ],
     "memoryTip": "BM25（語）とベクトル（意味）の順位を、RRFで1本に。",
     "concepts": ["C-AP-03-018"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Microsoft Learn『Hybrid Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview" }
     ],
@@ -821,6 +840,7 @@
     ],
     "memoryTip": "集めてから、丁寧に並べ直して、上だけ渡す。",
     "concepts": ["C-AP-03-019"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -849,6 +869,7 @@
     ],
     "memoryTip": "リランキングは『並べ直し』。新しく探すのではない。",
     "concepts": ["C-AP-03-019"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -877,6 +898,7 @@
     ],
     "memoryTip": "前は質問を直す、後は並べ直す。流れは一直線のまま。",
     "concepts": ["C-AP-03-020", "C-AP-03-021", "C-AP-03-019"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -905,6 +927,7 @@
     ],
     "memoryTip": "Naive（素朴）→ Advanced（前後を工夫）→ Modular（組み替え）。",
     "concepts": ["C-AP-03-020"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -933,6 +956,7 @@
     ],
     "memoryTip": "『それ』を言い直してから探す＝クエリの書き換え（検索の前）。",
     "concepts": ["C-AP-03-021"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" },
       { "title": "Microsoft Learn『RAG and Generative AI - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" }
@@ -962,6 +986,7 @@
     ],
     "memoryTip": "Agentic＝探し方・回数をエージェントが決める。",
     "concepts": ["C-AP-03-022"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Singh et al. (2025) Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG (arXiv:2501.09136)", "url": "https://arxiv.org/abs/2501.09136" }
     ],
@@ -990,6 +1015,7 @@
     ],
     "memoryTip": "足りなければ探し直す。これができるのがAgentic。",
     "concepts": ["C-AP-03-022"],
+    "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Singh et al. (2025) Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG (arXiv:2501.09136)", "url": "https://arxiv.org/abs/2501.09136" }
     ],
@@ -1018,6 +1044,7 @@
     ],
     "memoryTip": "全体のテーマを聞くなら、関係の網（グラフ）と要約で答える。",
     "concepts": ["C-AP-03-023", "C-AP-03-024"],
+    "figures": ["fig-ap-graph-rag"],
     "sources": [
       { "title": "Edge et al. (2024) From Local to Global: A GraphRAG Approach to Query-Focused Summarization (arXiv:2404.16130)", "url": "https://arxiv.org/abs/2404.16130" }
     ],
@@ -1046,6 +1073,7 @@
     ],
     "memoryTip": "グラフで分けて、要約を作っておき、要約から答える。",
     "concepts": ["C-AP-03-023", "C-AP-03-024"],
+    "figures": ["fig-ap-graph-rag"],
     "sources": [
       { "title": "Edge et al. (2024) From Local to Global: A GraphRAG Approach to Query-Focused Summarization (arXiv:2404.16130)", "url": "https://arxiv.org/abs/2404.16130" }
     ],
@@ -1074,6 +1102,7 @@
     ],
     "memoryTip": "知識グラフ＝点（物事）と線（関係）の網。",
     "concepts": ["C-AP-03-024"],
+    "figures": ["fig-ap-graph-rag"],
     "sources": [
       { "title": "Google『Introducing the Knowledge Graph: things, not strings』（2012年5月16日）", "url": "https://blog.google/products-and-platforms/products/search/introducing-knowledge-graph-things-not/" },
       { "title": "Edge et al. (2024) From Local to Global: A GraphRAG Approach to Query-Focused Summarization (arXiv:2404.16130)", "url": "https://arxiv.org/abs/2404.16130" }
@@ -1103,6 +1132,7 @@
     ],
     "memoryTip": "中身で探すのは埋め込み、付け札で絞るのはメタデータ。",
     "concepts": ["C-AP-03-017"],
+    "figures": ["fig-ap-rag-filter"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
     ],
@@ -1247,6 +1277,7 @@
     ],
     "memoryTip": "ガードレール＝機械の柵。人の確認は Human-in-the-Loop。",
     "concepts": ["C-AP-03-028", "C-AP-03-008"],
+    "figures": ["fig-ap-defense-in-depth"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
     ],
@@ -1275,6 +1306,7 @@
     ],
     "memoryTip": "ガードレールは守りの1層。権限や認証の代わりにはならない。",
     "concepts": ["C-AP-03-028", "C-AP-03-067"],
+    "figures": ["fig-ap-defense-in-depth"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
     ],
@@ -1331,6 +1363,7 @@
     ],
     "memoryTip": "分け方を前もって決める＝連鎖。その場で決めて配る＝指揮役と作業役。",
     "concepts": ["C-AP-03-029", "C-AP-03-004"],
+    "figures": ["fig-ap-multi-agent"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
     ],
@@ -1388,6 +1421,7 @@
     ],
     "memoryTip": "関数を呼んでほしいとき、モデルはJSON（データを書く決まった形式）で『こう呼んで』と書く。",
     "concepts": ["C-AP-03-030"],
+    "figures": ["fig-ap-function-calling"],
     "sources": [
       { "title": "OpenAI『Function calling and other API updates』（2023年6月13日）", "url": "https://openai.com/index/function-calling-and-other-api-updates/" }
     ],
@@ -1416,6 +1450,7 @@
     ],
     "memoryTip": "モデル『呼んで』→アプリ『実行』→モデル『答える』。",
     "concepts": ["C-AP-03-030"],
+    "figures": ["fig-ap-function-calling", "fig-ap-agent-parts"],
     "sources": [
       { "title": "OpenAI API Docs『Function calling』", "url": "https://platform.openai.com/docs/guides/function-calling" }
     ],
@@ -1585,6 +1620,7 @@
     ],
     "memoryTip": "経験＝エピソード、事実＝意味、やり方＝手続き、いま＝作業。",
     "concepts": ["C-AP-03-033", "C-AP-03-035"],
+    "figures": ["fig-ap-agent-memory"],
     "sources": [
       { "title": "Sumers et al. (2023) Cognitive Architectures for Language Agents (arXiv:2309.02427)", "url": "https://arxiv.org/abs/2309.02427" }
     ],
@@ -1613,6 +1649,7 @@
     ],
     "memoryTip": "短期＝この会話の中。長期＝会話をまたぐ。",
     "concepts": ["C-AP-03-034", "C-AP-03-035"],
+    "figures": ["fig-ap-agent-memory"],
     "sources": [
       { "title": "Docs by LangChain『Memory overview』", "url": "https://docs.langchain.com/oss/python/concepts/memory" }
     ],
@@ -1641,6 +1678,7 @@
     ],
     "memoryTip": "別の日も覚えている＝長期メモリ。",
     "concepts": ["C-AP-03-035", "C-AP-03-034"],
+    "figures": ["fig-ap-agent-memory"],
     "sources": [
       { "title": "OpenAI『Memory and new controls for ChatGPT』（2024年2月13日。2025年4月10日などの更新を含む）", "url": "https://openai.com/index/memory-and-new-controls-for-chatgpt/" }
     ],
@@ -1669,6 +1707,7 @@
     ],
     "memoryTip": "メモリは外の引き出し。重みに焼き付けるのではない。",
     "concepts": ["C-AP-03-035"],
+    "figures": ["fig-ap-agent-memory"],
     "sources": [
       { "title": "OpenAI『Memory and new controls for ChatGPT』（2024年2月13日。2025年4月10日などの更新を含む）", "url": "https://openai.com/index/memory-and-new-controls-for-chatgpt/" },
       { "title": "Docs by LangChain『Memory overview』", "url": "https://docs.langchain.com/oss/python/concepts/memory" }
@@ -1698,6 +1737,7 @@
     ],
     "memoryTip": "いっぱいになったら、要約して詰め直す＝コンパクション。",
     "concepts": ["C-AP-03-036"],
+    "figures": ["fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
     ],
@@ -1726,6 +1766,7 @@
     ],
     "memoryTip": "詰め込むほど思い出せなくなる。だから選んで入れる。",
     "concepts": ["C-AP-03-036", "C-AP-03-037"],
+    "figures": ["fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
     ],
@@ -1871,6 +1912,7 @@
     ],
     "memoryTip": "だめだと分かったら、道を変える＝再計画。",
     "concepts": ["C-AP-03-041", "C-AP-03-040"],
+    "figures": ["fig-ap-react-loop"],
     "sources": [
       { "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)", "url": "https://arxiv.org/abs/2210.03629" },
       { "title": "OpenAI『Introducing deep research』（2025年2月2日）", "url": "https://openai.com/index/introducing-deep-research/" }
@@ -1900,6 +1942,7 @@
     ],
     "memoryTip": "MCP＝AIと道具・データをつなぐ共通の差し込み口。",
     "concepts": ["C-AP-03-042"],
+    "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" }
     ],
@@ -1928,6 +1971,7 @@
     ],
     "memoryTip": "MCP＝Anthropic・道具とつなぐ。A2A＝Google・エージェントどうし。",
     "concepts": ["C-AP-03-042", "C-AP-03-049"],
+    "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" },
       { "title": "Model Context Protocol Specification（2026-07-28 版）", "url": "https://modelcontextprotocol.io/specification/2026-07-28" },
@@ -2074,6 +2118,7 @@
     ],
     "memoryTip": "『するな』と書くより、『できない』ようにする。",
     "concepts": ["C-AP-03-045", "C-AP-03-064", "C-AP-03-060"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
     ],
@@ -2102,6 +2147,7 @@
     ],
     "memoryTip": "見せてはいけないものは、探す段階で外す。",
     "concepts": ["C-AP-03-046", "C-AP-03-017"],
+    "figures": ["fig-ap-rag-filter"],
     "sources": [
       { "title": "Microsoft Learn『RAG and Generative AI - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" },
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
@@ -2189,6 +2235,7 @@
     ],
     "memoryTip": "深く調べて、短く返す＝サブエージェント。",
     "concepts": ["C-AP-03-048", "C-AP-03-036"],
+    "figures": ["fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" },
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" }
@@ -2218,6 +2265,7 @@
     ],
     "memoryTip": "任せるときは『何を・どんな形で・何を使って・どこまで』。",
     "concepts": ["C-AP-03-048", "C-AP-03-058"],
+    "figures": ["fig-ap-multi-agent"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" }
     ],
@@ -2246,6 +2294,7 @@
     ],
     "memoryTip": "A2A＝Agent to Agent。エージェントどうしの共通語。",
     "concepts": ["C-AP-03-049"],
+    "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Google for Developers Blog『Announcing the Agent2Agent Protocol (A2A)』（2025年4月9日）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
       { "title": "Linux Foundation『Linux Foundation Launches the Agent2Agent Protocol Project』（2025年6月23日）", "url": "https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents" },
@@ -2336,6 +2385,7 @@
     ],
     "memoryTip": "直して、試して、プルリクエストで人に見せる＝コーディングエージェント。",
     "concepts": ["C-AP-03-051", "C-AP-03-052"],
+    "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "GitHub Blog『GitHub Copilot: Meet the new coding agent』（2025年5月19日）", "url": "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/" },
       { "title": "Anthropic『Introducing Claude 4』（2025年5月22日）", "url": "https://www.anthropic.com/news/claude-4" },
@@ -2366,6 +2416,7 @@
     ],
     "memoryTip": "テストが通る≠全体の要求に合う。最後は人が見る。",
     "concepts": ["C-AP-03-051"],
+    "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
       { "title": "GitHub Blog『GitHub Copilot: Meet the new coding agent』（2025年5月19日）", "url": "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/" },
@@ -2396,6 +2447,7 @@
     ],
     "memoryTip": "自分のブランチだけ・頼んだ本人は承認不可・CIは人の承認後。",
     "concepts": ["C-AP-03-051", "C-AP-03-052"],
+    "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "GitHub Blog『GitHub Copilot: Meet the new coding agent』（2025年5月19日）", "url": "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/" }
     ],
@@ -2424,6 +2476,7 @@
     ],
     "memoryTip": "ブランチで作って、プルリクエストで見てもらって、取り込む。",
     "concepts": ["C-AP-03-052"],
+    "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "GitHub Docs『Pull requests』", "url": "https://docs.github.com/en/pull-requests/reference/pull-requests" }
     ],
@@ -2652,6 +2705,7 @@
     ],
     "memoryTip": "画面を読むエージェントは、画面に隠れた罠も読む。",
     "concepts": ["C-AP-03-056", "C-AP-03-062"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "OpenAI『Introducing ChatGPT agent』（2025年7月17日）", "url": "https://openai.com/index/introducing-chatgpt-agent/" },
       { "title": "Anthropic『Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku』（2024年10月22日）", "url": "https://www.anthropic.com/news/3-5-models-and-computer-use" }
@@ -2794,6 +2848,7 @@
     ],
     "memoryTip": "きっかけは誤りやだまし、被害を大きくするのは与えすぎ。",
     "concepts": ["C-AP-03-060"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
     ],
@@ -2822,6 +2877,7 @@
     ],
     "memoryTip": "道具の中身＝機能、つなぐ先の鍵＝権限、確認なし＝自律。",
     "concepts": ["C-AP-03-060"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
     ],
@@ -2850,6 +2906,7 @@
     ],
     "memoryTip": "要約に送信は要らない。要らない機能と権限は外す。",
     "concepts": ["C-AP-03-060", "C-AP-03-064"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
     ],
@@ -2878,6 +2935,7 @@
     ],
     "memoryTip": "1つの誤りが、次の手の前提になって広がる＝連鎖的なエラー。",
     "concepts": ["C-AP-03-061"],
+    "figures": ["fig-ap-cascading-error"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -2907,6 +2965,7 @@
     ],
     "memoryTip": "最初からやり直すより、止まった所から再開。",
     "concepts": ["C-AP-03-061"],
+    "figures": ["fig-ap-cascading-error"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" }
     ],
@@ -2935,6 +2994,7 @@
     ],
     "memoryTip": "何手も続けて動く＋前の結果を使う＝誤りが連鎖する。",
     "concepts": ["C-AP-03-061", "C-AP-03-039"],
+    "figures": ["fig-ap-cascading-error"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" },
       { "title": "Mitchell et al. (2025) Fully Autonomous AI Agents Should Not be Developed (arXiv:2502.02649)", "url": "https://arxiv.org/abs/2502.02649" }
@@ -2964,6 +3024,7 @@
     ],
     "memoryTip": "指示の注入＝プロンプトインジェクション。",
     "concepts": ["C-AP-03-062"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM01:2025 Prompt Injection』", "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/" }
     ],
@@ -2992,6 +3053,7 @@
     ],
     "memoryTip": "利用者が打つ＝直接。読みに行った先に仕込む＝間接。",
     "concepts": ["C-AP-03-062", "C-AP-03-040"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM01:2025 Prompt Injection』", "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/" },
       { "title": "Greshake et al. (2023) Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection (arXiv:2302.12173)", "url": "https://arxiv.org/abs/2302.12173" },
@@ -3022,6 +3084,7 @@
     ],
     "memoryTip": "指示の一文では防ぎきれない。重ねて守る。",
     "concepts": ["C-AP-03-062", "C-AP-03-067"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM01:2025 Prompt Injection』", "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/" }
     ],
@@ -3050,6 +3113,7 @@
     ],
     "memoryTip": "エージェントがだまされると、文ではなく行動が乗っ取られる。",
     "concepts": ["C-AP-03-062", "C-AP-03-063"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM01:2025 Prompt Injection』", "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/" },
       { "title": "OpenAI『Introducing ChatGPT agent』（2025年7月17日）", "url": "https://openai.com/index/introducing-chatgpt-agent/" }
@@ -3079,6 +3143,7 @@
     ],
     "memoryTip": "公開の場所の文を読む→だまされる→利用者の権限で機密に届く→外へ出す。",
     "concepts": ["C-AP-03-063", "C-AP-03-062"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "Invariant Labs『GitHub MCP Exploited: Accessing private repositories via MCP』（2025年5月26日）", "url": "https://invariantlabs.ai/blog/mcp-github-vulnerability" }
     ],
@@ -3107,6 +3172,7 @@
     ],
     "memoryTip": "サーバーの修正では足りない。エージェントの側で権限を絞る。",
     "concepts": ["C-AP-03-063", "C-AP-03-064", "C-AP-03-046"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "Invariant Labs『GitHub MCP Exploited: Accessing private repositories via MCP』（2025年5月26日）", "url": "https://invariantlabs.ai/blog/mcp-github-vulnerability" }
     ],
@@ -3135,6 +3201,7 @@
     ],
     "memoryTip": "AIへの命令の注入→情報漏えい、が実際の脆弱性になった例。",
     "concepts": ["C-AP-03-063", "C-AP-03-062"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "NIST National Vulnerability Database『CVE-2025-32711』", "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-32711" }
     ],
@@ -3163,6 +3230,7 @@
     ],
     "memoryTip": "要るぶんだけ渡す＝最小権限。",
     "concepts": ["C-AP-03-064"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "NIST CSRC Glossary『least privilege』", "url": "https://csrc.nist.gov/glossary/term/least_privilege" }
     ],
@@ -3191,6 +3259,7 @@
     ],
     "memoryTip": "読むだけの仕事には、読むだけの鍵。",
     "concepts": ["C-AP-03-064", "C-AP-03-060"],
+    "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" },
       { "title": "NIST CSRC Glossary『least privilege』", "url": "https://csrc.nist.gov/glossary/term/least_privilege" }
@@ -3249,6 +3318,7 @@
     ],
     "memoryTip": "ホワイト＝載ったものだけ通す。ブラック＝載ったものだけ止める。",
     "concepts": ["C-AP-03-066"],
+    "figures": ["fig-ap-allowlist"],
     "sources": [
       { "title": "NIST CSRC Glossary『whitelist』", "url": "https://csrc.nist.gov/glossary/term/whitelist" },
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
@@ -3278,6 +3348,7 @@
     ],
     "memoryTip": "1枚の壁ではなく、性質の違う壁を何枚も。",
     "concepts": ["C-AP-03-067", "C-AP-03-064", "C-AP-03-008"],
+    "figures": ["fig-ap-defense-in-depth"],
     "sources": [
       { "title": "NIST CSRC Glossary『defense-in-depth』", "url": "https://csrc.nist.gov/glossary/term/defense_in_depth" },
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
@@ -3307,6 +3378,7 @@
     ],
     "memoryTip": "同じ壁を並べるのではなく、違う壁を重ねる。",
     "concepts": ["C-AP-03-067"],
+    "figures": ["fig-ap-defense-in-depth"],
     "sources": [
       { "title": "NIST CSRC Glossary『defense-in-depth』", "url": "https://csrc.nist.gov/glossary/term/defense_in_depth" },
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
@@ -3337,6 +3409,7 @@
     ],
     "memoryTip": "言ったことではなく、起きたことを確かめる。",
     "concepts": ["C-AP-03-068"],
+    "figures": ["fig-ap-agent-eval"],
     "sources": [
       { "title": "Anthropic『Demystifying evals for AI agents』（2026年1月9日）", "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" }
     ],
@@ -3365,6 +3438,7 @@
     ],
     "memoryTip": "試み＝trial、採点＝grader、記録＝transcript、結果＝outcome。",
     "concepts": ["C-AP-03-068"],
+    "figures": ["fig-ap-agent-eval"],
     "sources": [
       { "title": "Anthropic『Demystifying evals for AI agents』（2026年1月9日）", "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" }
     ],
@@ -3393,6 +3467,7 @@
     ],
     "memoryTip": "出す前は評価、出した後は見張り。両方やる。",
     "concepts": ["C-AP-03-068", "C-AP-03-069"],
+    "figures": ["fig-ap-agent-eval"],
     "sources": [
       { "title": "Anthropic『Demystifying evals for AI agents』（2026年1月9日）", "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" },
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 464" role="img" aria-labelledby="fig-ap-input-leak-t fig-ap-input-leak-d">
+<title id="fig-ap-input-leak-t">生成AIへの入力から情報が漏れる道すじと、止めるところ</title>
+<desc id="fig-ap-input-leak-d">総務省『生成AIはじめの一歩』の説明から。①社員が入力する（例：社内の会議の議事録、顧客の名前）。②提供事業者のサーバーに保存される。③学習データとして使われる。④他人の質問への答えに出る。止めるところ：入力してよい情報を会社で決める（①）、学習に使わない設定（オプトアウト）や業務向けの契約のサービスを使う（③を止める）、規約で保存と学習への利用を分けて確かめる。効かないこと：入力した後に画面の履歴を消す（保存や学習は残りうる）、社名だけ消す、英語に訳してから入れる。</desc>
+<text x="12" y="20" class="tb">生成AI への入力から情報が漏れる道すじ</text>
+<text x="12" y="40" class="tm">総務省『生成AIはじめの一歩』の説明から</text>
+<rect x="12" y="52" width="296" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="75" class="tb">① 社員が入力</text>
+<text x="22" y="95">例：社内の会議の議事録、顧客の名前</text>
+<line x1="160" y1="110" x2="160" y2="124" class="l sa w2"/>
+<polyline points="156.00,117.00 160,124 164.00,117.00" class="l sa w2"/>
+<rect x="12" y="126" width="296" height="34" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="148" class="tb">② 提供事業者のサーバーに保存</text>
+<line x1="160" y1="162" x2="160" y2="176" class="l sa w2"/>
+<polyline points="156.00,169.00 160,176 164.00,169.00" class="l sa w2"/>
+<rect x="12" y="178" width="296" height="34" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="200" class="tb">③ 学習データとして使われる</text>
+<line x1="160" y1="214" x2="160" y2="228" class="l sng w2"/>
+<polyline points="156.00,221.00 160,228 164.00,221.00" class="l sng w2"/>
+<rect x="12" y="230" width="296" height="34" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="252" class="tb tng">④ 他人の質問への答えに出る</text>
+<text x="12" y="290" class="tb tok">止めるところ</text>
+<text x="12" y="310">・入力してよい情報を会社で決める（①）</text>
+<text x="12" y="330">・学習に使わない設定（オプトアウト）・業務向け</text>
+<text x="12" y="348">　の契約のサービスを使う（③を止める）</text>
+<text x="12" y="368">・規約で、保存と学習への利用を分けて確かめる</text>
+<line x1="12" y1="384" x2="308" y2="384" class="l sb w1"/>
+<text x="12" y="406" class="tb tng">効かないこと</text>
+<text x="12" y="426">・入力した後に画面の履歴を消す（②③は残りうる）</text>
+<text x="12" y="446">・社名だけ消す、英語に訳してから入れる</text>
+</svg>

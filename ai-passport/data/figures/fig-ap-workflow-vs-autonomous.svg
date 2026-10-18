@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" role="img" aria-labelledby="fig-ap-workflow-vs-autonomous-t fig-ap-workflow-vs-autonomous-d">
+<title id="fig-ap-workflow-vs-autonomous-t">ワークフロー型と自律型のエージェント：順番を人のプログラムが決めるか、LLMが決めるか</title>
+<desc id="fig-ap-workflow-vs-autonomous-d">①ワークフロー型：LLMと道具を呼ぶ順番を、人が書いたプログラムが前もって決めておく。例は毎週月曜の売上レポートで、取り込み、集計、AIが文章にする、人が確認する、の順に毎回同じ流れで動く。予測しやすく、ぶれにくいが、決めていない手順には対応できない。②自律型：LLMが、次に何をするか（検索・表を読む・計算などのどの道具を使うか）を自分で決め、結果を見て繰り返す。例は初めての市場の調べもの。何手かかるか分からない仕事に向くが、費用が高くなりやすく、誤りが積み重なるおそれがある。回数の上限などの止める条件、ガードレール、事前のテストが要る。選び方：まず単純な形から始め、決まった手順なら①、手順を決め打ちできないときだけ②にする。</desc>
+<text x="12" y="20" class="tb">ワークフロー型 と 自律型のエージェント</text>
+<text x="12" y="46" class="tb ta">① ワークフロー型：順番を人のプログラムが決める</text>
+<text x="12" y="64" class="tm">例：毎週月曜の売上レポート</text>
+<rect x="12" y="74" width="68" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="46" y="96" text-anchor="middle">取り込み</text>
+<line x1="81" y1="91" x2="87" y2="91" class="l sa w1"/>
+<polyline points="80.00,95.00 87,91 80.00,87.00" class="l sa w1"/>
+<rect x="88" y="74" width="68" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="122" y="96" text-anchor="middle">集計</text>
+<line x1="157" y1="91" x2="163" y2="91" class="l sa w1"/>
+<polyline points="156.00,95.00 163,91 156.00,87.00" class="l sa w1"/>
+<rect x="164" y="74" width="68" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="198" y="96" text-anchor="middle">AIが文章に</text>
+<line x1="233" y1="91" x2="239" y2="91" class="l sa w1"/>
+<polyline points="232.00,95.00 239,91 232.00,87.00" class="l sa w1"/>
+<rect x="240" y="74" width="68" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="274" y="96" text-anchor="middle">人が確認</text>
+<text x="12" y="130" class="tok">○ 毎回同じ流れ。予測しやすく、ぶれにくい</text>
+<text x="12" y="150" class="twn">× 決めていない手順には対応できない</text>
+<line x1="12" y1="166" x2="308" y2="166" class="l sb w1"/>
+<text x="12" y="190" class="tb tok">② 自律型：進め方と道具を LLM が決める</text>
+<text x="12" y="208" class="tm">例：初めての市場の調べもの</text>
+<rect x="110" y="218" width="100" height="46" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="236" text-anchor="middle">LLM</text>
+<text x="160" y="256" class="tm" text-anchor="middle">次に何をするか</text>
+<line x1="160" y1="266" x2="62" y2="280" class="l sok w1"/>
+<polyline points="68.36,275.05 62,280 69.50,282.97" class="l sok w1"/>
+<rect x="22" y="282" width="80" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="62" y="301" text-anchor="middle">検索</text>
+<line x1="160" y1="266" x2="160" y2="290" class="l sok w1"/>
+<polyline points="156.00,283.00 160,290 164.00,283.00" class="l sok w1"/>
+<rect x="120" y="292" width="80" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="311" text-anchor="middle">表を読む</text>
+<line x1="160" y1="266" x2="258" y2="280" class="l sok w1"/>
+<polyline points="250.50,282.97 258,280 251.64,275.05" class="l sok w1"/>
+<rect x="218" y="282" width="80" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="258" y="301" text-anchor="middle">計算</text>
+<path d="M 230,240 C 300,230 300,270 262,270" class="l sm w1 dsh"/>
+<text x="12" y="344" class="tok">○ 何手かかるか分からない仕事に向く</text>
+<text x="12" y="364" class="twn">× 費用が高くなりやすく、誤りが積み重なる</text>
+<text x="12" y="384" class="tb">→ 回数の上限などの止める条件、ガードレール、</text>
+<text x="12" y="404" class="tb">　事前のテストが要る</text>
+<line x1="12" y1="420" x2="308" y2="420" class="l sb w1"/>
+<text x="12" y="442" class="tb">選び方：まず単純な形から。決まった手順なら</text>
+<text x="12" y="462">①、手順を決め打ちできないときだけ②</text>
+</svg>

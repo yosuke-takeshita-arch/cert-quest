@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 444" role="img" aria-labelledby="fig-ap-watermark-c2pa-t fig-ap-watermark-c2pa-d">
+<title id="fig-ap-watermark-c2pa-t">電子透かしと来歴情報（C2PA）：中身に目印を埋め込むか、作り方の記録を添えるか</title>
+<desc id="fig-ap-watermark-c2pa-d">①電子透かし：画素や音の中に、目に見えない目印を埋め込む（例 GoogleのSynthID）。色の変更などの加工にも強いとされるが、透かしの有無で本物か偽物かを確実に決めることはできない。②来歴情報：いつ・何で作り、どう編集したかの記録をファイルに付ける。電子署名とハッシュを含むので、書き換えると分かる。C2PAは来歴情報を付けるための標準で、その記録をContent Credentialsと呼ぶ。記録はファイルから取り除かれることがあるので、透かしなどで記録を探し直す仕組みもある。2つは別のもので、組み合わせて使う。透かしは中身に、来歴は記録として添える。</desc>
+<text x="12" y="20" class="tb">AI で作ったものを見分ける2つのやり方</text>
+<text x="12" y="46" class="tb ta">① 電子透かし：中身に目印を埋め込む</text>
+<rect x="12" y="56" width="296" height="80" class="fas sa" stroke-width="1.5"/>
+<circle cx="40" cy="74" r="2" class="fa"/>
+<circle cx="40" cy="96" r="2" class="fa"/>
+<circle cx="70" cy="74" r="2" class="fa"/>
+<circle cx="70" cy="96" r="2" class="fa"/>
+<circle cx="100" cy="74" r="2" class="fa"/>
+<circle cx="100" cy="96" r="2" class="fa"/>
+<circle cx="130" cy="74" r="2" class="fa"/>
+<circle cx="130" cy="96" r="2" class="fa"/>
+<circle cx="160" cy="74" r="2" class="fa"/>
+<circle cx="160" cy="96" r="2" class="fa"/>
+<circle cx="190" cy="74" r="2" class="fa"/>
+<circle cx="190" cy="96" r="2" class="fa"/>
+<circle cx="220" cy="74" r="2" class="fa"/>
+<circle cx="220" cy="96" r="2" class="fa"/>
+<circle cx="250" cy="74" r="2" class="fa"/>
+<circle cx="250" cy="96" r="2" class="fa"/>
+<text x="160" y="128" class="tm" text-anchor="middle">画素や音の中の、目に見えない目印（例 SynthID）</text>
+<text x="12" y="158">色の変更などの加工にも強いとされる</text>
+<text x="12" y="178" class="tng">ただし、有無で本物か偽物かを確実には決めない</text>
+<line x1="12" y1="194" x2="308" y2="194" class="l sb w1"/>
+<text x="12" y="218" class="tb tok">② 来歴情報：作り方の記録をファイルに付ける</text>
+<rect x="12" y="228" width="296" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="251" text-anchor="middle">いつ・何で作り、どう編集したかの記録</text>
+<text x="160" y="271" class="tm" text-anchor="middle">電子署名とハッシュ → 書き換えると分かる</text>
+<text x="12" y="306" class="tb">C2PA＝来歴情報を付けるための標準</text>
+<text x="12" y="326" class="tm">（その記録を Content Credentials と呼ぶ）</text>
+<text x="12" y="348" class="tng">ファイルから取り除かれることがある</text>
+<text x="12" y="368">→ 透かしなどで記録を探し直す仕組みも</text>
+<line x1="12" y1="384" x2="308" y2="384" class="l sb w1"/>
+<text x="12" y="406" class="tb">2つは別のもの。組み合わせて使う</text>
+<text x="12" y="426" class="tm">透かし＝中身に、来歴＝記録として添える</text>
+</svg>

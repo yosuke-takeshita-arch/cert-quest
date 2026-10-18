@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-ap-latent-diffusion-t fig-ap-latent-diffusion-d">
+<title id="fig-ap-latent-diffusion-t">潜在拡散モデル：画像を小さく縮めた潜在空間の中で拡散と逆拡散を行う</title>
+<desc id="fig-ap-latent-diffusion-d">Rombachら（2021）のLatent Diffusion Model。言葉：潜在表現は画像を少ない数にまとめ直した中身（大事な特徴を表す数の並び）、特徴マップはフィルタで画像をなぞった結果の表。①従来は画素の空間のまま、ノイズの除去を何度もくり返すので、学習に何百日分ものGPUがかかり、生成も重い。②潜在拡散：画像（512×512）を、学習済みのオートエンコーダのエンコーダEで潜在表現z（64×64）に縮める。その潜在空間で、ノイズを少しずつ取り除く（U-Net）。文章など（例：夕日と猫）の条件は、クロスアテンションの層で入れる。最後にデコーダDで画像に戻す。64×64は縦横8分の1で、マスの数は64分の1（8分の1は論文が試した倍率の1つ。大きさは例）。この考え方はStable Diffusionの土台になった。</desc>
+<text x="12" y="22" class="tl">潜在拡散モデル：縮めてから拡散</text>
+<text x="12" y="42" class="tm">Rombach ら（2021）の Latent Diffusion Model</text>
+<rect x="12" y="56" width="296" height="106" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="79" class="tb">言葉：潜在表現・特徴マップ</text>
+<text x="22" y="97">潜在表現：画像を少ない数にまとめ直した</text>
+<text x="22" y="115">　中身（大事な特徴を表す数の並び）</text>
+<text x="22" y="133">特徴マップ：フィルタで画像をなぞった</text>
+<text x="22" y="151">　結果の表</text>
+<g transform="translate(0,118)">
+<text x="12" y="68" class="tb">①従来：画素の空間のまま</text>
+<text x="12" y="88">画素のまま、ノイズ除去を何度もくり返す</text>
+<text x="12" y="106" class="tm">→ 学習に何百日分もの GPU。生成も重い</text>
+<line x1="12" y1="120" x2="308" y2="120" class="l sb w1"/>
+<text x="12" y="146" class="tb">②潜在拡散：潜在空間で動かす</text>
+<rect x="12" y="158" width="148" height="30" rx="4" class="fs sm" stroke-width="1"/>
+<text x="86" y="178" text-anchor="middle">画像（512×512）</text>
+<line x1="86" y1="190" x2="86" y2="206" class="l sm w1"/>
+<polyline points="82,201 86,206 90,201" class="l sm w1"/>
+<text x="94" y="203" class="tm">E で縮める</text>
+<rect x="12" y="210" width="148" height="40" rx="4" class="fas sa" stroke-width="1"/>
+<text x="86" y="227" class="tb ta" text-anchor="middle">潜在表現 z</text>
+<text x="86" y="244" class="ta" text-anchor="middle">（64×64）</text>
+<rect x="176" y="210" width="132" height="40" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="242" y="227" class="tb twn" text-anchor="middle">条件：文章など</text>
+<text x="242" y="244" class="twn" text-anchor="middle">例：夕日と猫</text>
+<line x1="86" y1="252" x2="86" y2="268" class="l sm w1"/>
+<polyline points="82,263 86,268 90,263" class="l sm w1"/>
+<line x1="235" y1="252" x2="235" y2="280" class="l swn w1"/>
+<polyline points="231,275 235,280 239,275" class="l swn w1"/>
+<rect x="12" y="270" width="296" height="76" rx="6" class="fok sok" stroke-width="1"/>
+<text x="20" y="292" class="tb tok">潜在空間で</text>
+<text x="20" y="312" class="tok">ノイズを少しずつ</text>
+<text x="20" y="332" class="tok">取り除く（U-Net）</text>
+<rect x="168" y="282" width="134" height="56" rx="4" class="fwn swn" stroke-width="1"/>
+<text x="235" y="304" class="tb twn" text-anchor="middle">クロスアテンション</text>
+<text x="235" y="326" class="twn" text-anchor="middle">の層で条件を入れる</text>
+<line x1="86" y1="348" x2="86" y2="366" class="l sm w1"/>
+<polyline points="82,361 86,366 90,361" class="l sm w1"/>
+<text x="94" y="362" class="tm">デコーダ D で画像に戻す</text>
+<rect x="12" y="370" width="148" height="30" rx="4" class="fs sm" stroke-width="1"/>
+<text x="86" y="390" text-anchor="middle">できた画像</text>
+<text x="12" y="424" class="tm">64×64 は縦横 8分の1。マスの数は 64分の1</text>
+<text x="12" y="442" class="tm">（8分の1 は論文が試した倍率の1つ。大きさは例）</text>
+</g>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 758" role="img" aria-labelledby="fig-ap-chinchilla-t fig-ap-chinchilla-d">
+<title id="fig-ap-chinchilla-t">計算を10倍にするときの配分：Kaplan はモデルを優先、Chinchilla は同じ割合で</title>
+<desc id="fig-ap-chinchilla-d">学習の計算量はおよそ6×モデルの大きさ×トークン数（論文が使う近似。2つの倍率を掛けると約10）。言葉：トークンは文章を区切った1つ1つの単位、パラメータは学習で決まる数で、モデルの大きさはその個数。①Kaplanら（2020）はモデルを優先し、モデル×5.5、データ×1.8（5.5×1.8＝9.9≒10）。②Chinchilla（2022）は同じ割合で、モデル×3.16、データ×3.16（3.16×3.16≒10。√10≒3.16。3.16は近似の式から導いた値で、論文の数ではない）。つまりモデルを2倍にするならトークン数も2倍にする。③論文の比較：同じ計算量で、Gopherはモデル2800億・トークン3000億、Chinchillaはモデル700億（4分の1）・トークン1.4兆。小さく長く学んだChinchillaが上回った。取り違えやすい数：1.8はKaplanでのデータの倍率、10は計算の予算そのものの倍率。棒の長さは数に比例させた。</desc>
+<text x="12" y="22" class="tl">計算を10倍にするときの配分</text>
+<text x="12" y="42" class="tm">学習の計算量 ≒ 6×モデルの大きさ×トークン数</text>
+<text x="12" y="60" class="tm">（論文が使う近似。2つの倍率を掛けると約10）</text>
+<rect x="12" y="74" width="296" height="106" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="97" class="tb">言葉：トークン・パラメータ</text>
+<text x="22" y="115">トークン：文章を区切った1つ1つの単位</text>
+<text x="22" y="133">　（単語や、その断片）</text>
+<text x="22" y="151">パラメータ：学習で決まる数（重みなど）</text>
+<text x="22" y="169">　モデルの大きさ＝その個数</text>
+<g transform="translate(0,118)">
+<text x="12" y="88" class="tb">①Kaplan ら（2020）：モデルを優先</text>
+<text x="12" y="113">モデル</text>
+<rect x="84" y="100" width="198" height="18" class="fas sa" stroke-width="1"/>
+<text x="276" y="114" class="tb ta" text-anchor="end">×5.5</text>
+<text x="12" y="139">データ</text>
+<rect x="84" y="126" width="65" height="18" class="fwn swn" stroke-width="1"/>
+<text x="156" y="140" class="tb twn">×1.8</text>
+<text x="12" y="166" class="tm">5.5×1.8＝9.9 ≒ 10</text>
+<line x1="12" y1="182" x2="308" y2="182" class="l sb w1"/>
+<text x="12" y="208" class="tb">②Chinchilla（2022）：同じ割合で</text>
+<text x="12" y="233">モデル</text>
+<rect x="84" y="220" width="114" height="18" class="fas sa" stroke-width="1"/>
+<text x="206" y="234" class="tb ta">×3.16</text>
+<text x="12" y="259">データ</text>
+<rect x="84" y="246" width="114" height="18" class="fwn swn" stroke-width="1"/>
+<text x="206" y="260" class="tb twn">×3.16</text>
+<text x="12" y="286" class="tm">3.16×3.16 ≒ 10（√10 ≒ 3.16）</text>
+<text x="12" y="304" class="tm">3.16 は近似の式から導いた値で、論文の数ではない</text>
+<line x1="12" y1="320" x2="308" y2="320" class="l sb w1"/>
+<text x="12" y="346" class="tb">③論文の比較：同じ計算量で勝負</text>
+<text x="12" y="368" class="tm">モデルの大きさ（パラメータ数）</text>
+<text x="12" y="391">Gopher</text>
+<rect x="96" y="378" width="180" height="18" class="fas sa" stroke-width="1"/>
+<text x="270" y="392" class="tb ta" text-anchor="end">2800億</text>
+<text x="12" y="417">Chinchilla</text>
+<rect x="96" y="404" width="45" height="18" class="fas sa" stroke-width="1"/>
+<text x="148" y="418" class="tb ta">700億（4分の1）</text>
+<text x="12" y="446" class="tm">学習のトークン数（データの量）</text>
+<text x="12" y="469">Gopher</text>
+<rect x="96" y="456" width="39" height="18" class="fwn swn" stroke-width="1"/>
+<text x="142" y="470" class="tb twn">3000億</text>
+<text x="12" y="495">Chinchilla</text>
+<rect x="96" y="482" width="180" height="18" class="fwn swn" stroke-width="1"/>
+<text x="270" y="496" class="tb twn" text-anchor="end">1.4兆</text>
+<text x="12" y="524" class="tb tok">小さく・長く学んだ Chinchilla が上回った</text>
+<line x1="12" y1="542" x2="308" y2="542" class="l sb w1"/>
+<text x="12" y="566" class="tb tng">取り違えやすい数</text>
+<text x="12" y="588">1.8＝Kaplan でのデータ（トークン数）の倍率</text>
+<text x="12" y="608">10＝計算の予算そのものの倍率</text>
+<text x="12" y="630" class="tm">（棒の長さは数に比例させた）</text>
+</g>
+</svg>

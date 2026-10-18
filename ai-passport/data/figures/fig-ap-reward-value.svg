@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 548" role="img" aria-labelledby="fig-ap-reward-value-t fig-ap-reward-value-d">
+<title id="fig-ap-reward-value-t">強化学習の報酬・価値・方策：将棋の例で、報酬は高いが価値は低い手</title>
+<desc id="fig-ap-reward-value-d">上はエージェント（指す側のAI）と環境（盤面と相手）のやり取り。エージェントが行動（手）を出し、環境から状態と報酬が返る。方策は、いまの状態でどの手を指すかの決め方。報酬は1手ごとにすぐ返る点で、その場の良し悪し。価値は、その局面から先にもらえそうな報酬の合計の見込み。2つの手を比べる例（数は説明のための例）。手A：相手の駒を1枚取るので報酬は＋1だが、3手後に自分の王将が詰むので価値は低い（−10）。手B：守りを固めるので報酬は0だが、先で有利な局面になるので価値は高い（＋5）。報酬が高くても価値が低い手がある。長い目で見た報酬の合計が多くなるように方策を直していく。正解の手を人が1手ずつ教えるのではない。</desc>
+<text x="12" y="20" class="tb">強化学習のことば（将棋の例）</text>
+<text x="160" y="42" class="ta" text-anchor="middle">行動（手）</text>
+<rect x="12" y="50" width="120" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="72" y="70" class="tb" text-anchor="middle">エージェント</text>
+<text x="72" y="90" class="tm" text-anchor="middle">指す側のAI</text>
+<rect x="188" y="50" width="120" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="248" y="70" class="tb" text-anchor="middle">環境</text>
+<text x="248" y="90" class="tm" text-anchor="middle">盤面と相手</text>
+<line x1="134" y1="62" x2="186" y2="62" class="l sa w2"/>
+<polyline points="179.00,66.00 186,62 179.00,58.00" class="l sa w2"/>
+<line x1="186" y1="88" x2="134" y2="88" class="l sok w2"/>
+<polyline points="141.00,84.00 134,88 141.00,92.00" class="l sok w2"/>
+<text x="160" y="118" class="tok" text-anchor="middle">状態と報酬</text>
+<text x="12" y="142" class="tb">方策：いまの状態で、どの手を指すかの決め方</text>
+<text x="12" y="162" class="tb">報酬：1手ごとにすぐ返る点（その場の良し悪し）</text>
+<text x="12" y="182" class="tb">価値：その局面から先にもらえそうな</text>
+<text x="12" y="200" class="tb">　　　報酬の合計の見込み</text>
+<line x1="12" y1="214" x2="308" y2="214" class="l sb w1"/>
+<text x="12" y="236" class="tb ta">2つの手を比べる（数は説明のための例）</text>
+<rect x="12" y="246" width="296" height="96" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="269" class="tb">手A：相手の駒を1枚取る</text>
+<text x="22" y="289">報酬 ＋1（すぐ得をする）</text>
+<text x="22" y="309">3手後に自分の王将が詰む</text>
+<text x="22" y="329" class="tb tng">価値 低い（−10）</text>
+<rect x="12" y="350" width="296" height="96" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="373" class="tb">手B：守りを固める</text>
+<text x="22" y="393">報酬 0（すぐの得は無い）</text>
+<text x="22" y="413">先で有利な局面になる</text>
+<text x="22" y="433" class="tb tok">価値 高い（＋5）</text>
+<text x="12" y="470" class="tb">報酬が高くても、価値が低い手がある</text>
+<text x="12" y="490">→ 長い目で見た報酬の合計が多くなるよう</text>
+<text x="12" y="510">　方策（手の選び方）を直していく</text>
+<text x="12" y="530" class="tm">正解の手を人が1手ずつ教えるのではない</text>
+</svg>

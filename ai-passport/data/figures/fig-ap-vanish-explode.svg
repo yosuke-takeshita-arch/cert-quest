@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 522" role="img" aria-labelledby="fig-ap-vanish-explode-t fig-ap-vanish-explode-d">
+<title id="fig-ap-vanish-explode-t">勾配消失と勾配爆発：1段さかのぼるごとに掛ける数が、0.5なら消え、2なら爆発する</title>
+<desc id="fig-ap-vanish-explode-d">勾配は重みをどれだけ直すかの量。誤差逆伝播法では、出力側から1段さかのぼるたびに数を掛ける。①1段ごとに0.5を掛ける場合（勾配消失）：棒グラフは右端の出力側の勾配を1として、左へ1段さかのぼるごとに0.5、0.25と半分になる。棒の下の数はさかのぼった段。10段さかのぼると0.5を10回掛けるので1÷1,024≒0.00098（約0.001）。入力に近い層の重みはほとんど直らず、RNNでは文の前のほうの語を学べない。対策の例はLSTM。②1段ごとに2を掛ける場合（勾配爆発）：1、2、4、8と増え、10段で1,024。重みが一気に動きすぎて学習が壊れる。対策は勾配クリッピングで、勾配の大きさに上限をかけ、超えたら縮める。例：上限5なら1,024でも5に縮める。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">勾配＝重みをどれだけ直すかの量</text>
+<text x="12" y="40" class="tm">誤差逆伝播法では、1段さかのぼるたびに数を掛ける</text>
+<text x="12" y="66" class="tb tng">① 1段ごとに ×0.5 → 勾配消失</text>
+<rect x="282" y="86.0" width="22" height="90.0" class="fas sa" stroke-width="1"/>
+<text x="293" y="192" class="tm" text-anchor="middle">0</text>
+<rect x="256" y="131.0" width="22" height="45.0" class="fwn swn" stroke-width="1"/>
+<text x="267" y="192" class="tm" text-anchor="middle">1</text>
+<rect x="230" y="153.5" width="22" height="22.5" class="fwn swn" stroke-width="1"/>
+<text x="241" y="192" class="tm" text-anchor="middle">2</text>
+<rect x="204" y="164.8" width="22" height="11.3" class="fwn swn" stroke-width="1"/>
+<text x="215" y="192" class="tm" text-anchor="middle">3</text>
+<rect x="178" y="170.4" width="22" height="5.6" class="fwn swn" stroke-width="1"/>
+<text x="189" y="192" class="tm" text-anchor="middle">4</text>
+<rect x="152" y="173.2" width="22" height="2.8" class="fwn swn" stroke-width="1"/>
+<text x="163" y="192" class="tm" text-anchor="middle">5</text>
+<rect x="126" y="174.6" width="22" height="1.4" class="fwn swn" stroke-width="1"/>
+<text x="137" y="192" class="tm" text-anchor="middle">6</text>
+<rect x="100" y="175.0" width="22" height="1.0" class="fwn swn" stroke-width="1"/>
+<text x="111" y="192" class="tm" text-anchor="middle">7</text>
+<rect x="74" y="175.0" width="22" height="1.0" class="fwn swn" stroke-width="1"/>
+<text x="85" y="192" class="tm" text-anchor="middle">8</text>
+<rect x="48" y="175.0" width="22" height="1.0" class="fwn swn" stroke-width="1"/>
+<text x="59" y="192" class="tm" text-anchor="middle">9</text>
+<rect x="22" y="175.0" width="22" height="1.0" class="fwn swn" stroke-width="1"/>
+<text x="33" y="192" class="tm" text-anchor="middle">10</text>
+<text x="293" y="80" class="tb" text-anchor="middle">1</text>
+<text x="267" y="125" class="tm" text-anchor="middle">0.5</text>
+<text x="241" y="147.5" class="tm" text-anchor="middle">0.25</text>
+<text x="12" y="212" class="tm">棒の高さ＝その段に届く勾配の大きさ</text>
+<text x="12" y="230" class="tm">下の数＝出力側からさかのぼった段の数</text>
+<text x="12" y="254">10段さかのぼると 0.5 を10回掛ける</text>
+<text x="12" y="274" class="tb">1 ÷ 1,024 ≒ 0.00098（約0.001）</text>
+<text x="12" y="296">→ 入力に近い層の重みはほとんど直らない</text>
+<text x="12" y="316">→ RNN では、文の前のほうの語を学べない</text>
+<text x="12" y="336" class="tm">対策の例：LSTM（記憶の道とゲート）</text>
+<line x1="12" y1="352" x2="308" y2="352" class="l sb w1"/>
+<text x="12" y="376" class="tb tng">② 1段ごとに ×2 → 勾配爆発</text>
+<text x="12" y="398">1 → 2 → 4 → 8 → … → 1,024（10段）</text>
+<text x="12" y="418">→ 重みが一気に動きすぎて、学習が壊れる</text>
+<text x="12" y="444" class="tb tok">対策：勾配クリッピング</text>
+<text x="12" y="464">勾配の大きさに上限をかけ、超えたら縮める</text>
+<text x="12" y="484" class="tm">例：上限 5 なら、1,024 でも 5 に縮める</text>
+<text x="12" y="504" class="tm">（数は説明のための例）</text>
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 484" role="img" aria-labelledby="fig-ap-graph-rag-t fig-ap-graph-rag-d">
+<title id="fig-ap-graph-rag-t">Graph RAG：文書から知識グラフを作り、まとまりごとの要約から答える</title>
+<desc id="fig-ap-graph-rag-d">例は1年分の議事録（名前は例）。①LLMが文書から知識グラフを作る。点は実体（人・組織・物事）で、例は営業部・納期・A社・開発部・品質・新製品・物流。線は関係。破線の囲みは関係の深いまとまり（コミュニティ）。②まとまりごとに要約を作っておく（要約A：納期の遅れが続く、要約B：品質の確認が不足）。③質問が来たら、要約ごとに部分の答えを作り、最後に1つの答えにまとめる。向くのは資料全体を見渡す質問で、例は「今年、部署をまたいで繰り返し出た課題は？」。ふつうのRAGは質問に近いかたまりを数件探すだけ。</desc>
+<text x="12" y="20" class="tb">Graph RAG：知識グラフとまとまりの要約</text>
+<text x="12" y="40" class="tm">例：1年分の議事録（名前は例）</text>
+<text x="12" y="64" class="tb ta">① 文書から知識グラフを作る（LLM が）</text>
+<rect x="12" y="74" width="296" height="150" class="fs sb" stroke-width="1.5"/>
+<line x1="50" y1="104" x2="120" y2="96" class="l sm w1"/>
+<line x1="50" y1="104" x2="76" y2="160" class="l sm w1"/>
+<line x1="120" y1="96" x2="76" y2="160" class="l sm w1"/>
+<line x1="120" y1="96" x2="128" y2="200" class="l sm w1"/>
+<line x1="214" y1="108" x2="270" y2="150" class="l sm w1"/>
+<line x1="214" y1="108" x2="196" y2="186" class="l sm w1"/>
+<line x1="270" y1="150" x2="196" y2="186" class="l sm w1"/>
+<line x1="196" y1="186" x2="128" y2="200" class="l sm w1"/>
+<line x1="120" y1="96" x2="214" y2="108" class="l sm w1"/>
+<circle cx="50" cy="104" r="5" class="fa"/>
+<text x="50" y="124" class="tb" text-anchor="middle">営業部</text>
+<circle cx="120" cy="96" r="5" class="fa"/>
+<text x="120" y="87" class="tb" text-anchor="middle">納期</text>
+<circle cx="76" cy="160" r="5" class="fa"/>
+<text x="76" y="180" class="tb" text-anchor="middle">A社</text>
+<circle cx="214" cy="108" r="5" class="fa"/>
+<text x="214" y="99" class="tb" text-anchor="middle">開発部</text>
+<circle cx="270" cy="150" r="5" class="fa"/>
+<text x="262" y="142" class="tb" text-anchor="end">品質</text>
+<circle cx="196" cy="186" r="5" class="fa"/>
+<text x="196" y="206" class="tb" text-anchor="middle">新製品</text>
+<circle cx="128" cy="200" r="5" class="fa"/>
+<text x="128" y="220" class="tb" text-anchor="middle">物流</text>
+<ellipse cx="90" cy="150" rx="72" ry="66" class="sok dsh" stroke-width="1.5"/>
+<ellipse cx="222" cy="150" rx="78" ry="62" class="swn dsh" stroke-width="1.5"/>
+<text x="12" y="244" class="tm">点＝実体（人・組織・物事）、線＝関係</text>
+<text x="12" y="262" class="tm">破線の囲み＝関係の深いまとまり（コミュニティ）</text>
+<text x="12" y="288" class="tb ta">② まとまりごとに要約を作っておく</text>
+<rect x="12" y="298" width="140" height="46" class="fok sok" stroke-width="1.5"/>
+<text x="82" y="316" text-anchor="middle">要約A：</text>
+<text x="82" y="336" text-anchor="middle">納期の遅れが続く</text>
+<rect x="168" y="298" width="140" height="46" class="fwn swn" stroke-width="1.5"/>
+<text x="238" y="316" text-anchor="middle">要約B：</text>
+<text x="238" y="336" text-anchor="middle">品質の確認が不足</text>
+<text x="12" y="368" class="tb ta">③ 質問が来たら、要約ごとに部分の答え →</text>
+<text x="12" y="388" class="tb ta">　最後に1つの答えにまとめる</text>
+<line x1="12" y1="404" x2="308" y2="404" class="l sb w1"/>
+<text x="12" y="426" class="tb">向く質問：資料全体を見渡す質問</text>
+<text x="12" y="446">「今年、部署をまたいで繰り返し出た課題は？」</text>
+<text x="12" y="466" class="tm">ふつうのRAG は近いかたまりを数件探すだけ</text>
+</svg>

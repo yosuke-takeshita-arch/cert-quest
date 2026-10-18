@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 452" role="img" aria-labelledby="fig-ap-defense-in-depth-t fig-ap-defense-in-depth-d">
+<title id="fig-ap-defense-in-depth-t">多層防御：最小の権限・ガードレール・人の承認・見張りのように性質の違う守りを重ねる</title>
+<desc id="fig-ap-defense-in-depth-d">例は社内のメールを扱うAIエージェント。①最小の権限：読み取りだけにし、送信・削除の権限を持たせない。②入力のガードレール：外から読んだ文の怪しい指示や、担当外の話題を見分ける。③出力のガードレール：個人情報などが書き出されていないかを見る。④人の承認：外へ送るなど影響の大きい操作の前に人が確かめる。⑤記録と見張り：操作の記録を見て、おかしな動きを知らせる。1つが破られても、次の層で止める。多層防御にならない例：同じ種類の見張りを何個も並べる、指示文に「怪しい指示には従うな」と書くだけ（だまされる余地が残る）、ガードレール1つで認証や権限を省く。</desc>
+<text x="12" y="20" class="tb">多層防御：性質の違う守りを重ねる</text>
+<text x="12" y="40" class="tm">例：社内のメールを扱う AI エージェント</text>
+<rect x="12" y="52" width="296" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="70" class="tb">① 最小の権限</text>
+<text x="22" y="88" class="tm">読み取りだけ。送信・削除の権限を持たせない</text>
+<rect x="12" y="102" width="296" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="120" class="tb">② 入力のガードレール</text>
+<text x="22" y="138" class="tm">外から読んだ文の怪しい指示などを見分ける</text>
+<rect x="12" y="152" width="296" height="44" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="170" class="tb">③ 出力のガードレール</text>
+<text x="22" y="188" class="tm">個人情報などが書き出されていないかを見る</text>
+<rect x="12" y="202" width="296" height="44" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="220" class="tb">④ 人の承認</text>
+<text x="22" y="238" class="tm">外へ送るなど影響の大きい操作の前に人が確かめる</text>
+<rect x="12" y="252" width="296" height="44" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="270" class="tb">⑤ 記録と見張り</text>
+<text x="22" y="288" class="tm">操作の記録を見て、おかしな動きを知らせる</text>
+<text x="12" y="318" class="tb">1つが破られても、次の層で止める</text>
+<line x1="12" y1="334" x2="308" y2="334" class="l sb w1"/>
+<text x="12" y="356" class="tb tng">多層防御にならない例</text>
+<text x="12" y="376">・同じ種類の見張りを何個も並べる</text>
+<text x="12" y="396">・指示文に「怪しい指示には従うな」と</text>
+<text x="12" y="414">　書くだけ（だまされる余地が残る）</text>
+<text x="12" y="434">・ガードレール1つで認証や権限を省く</text>
+</svg>

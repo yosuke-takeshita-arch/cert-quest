@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 404" role="img" aria-labelledby="fig-ap-cascading-error-t fig-ap-cascading-error-d">
+<title id="fig-ap-cascading-error-t">連鎖的なエラー：前の結果を前提にして何手も続けるので、小さな誤りが積み重なる</title>
+<desc id="fig-ap-cascading-error-d">例は出張の手配（数は例）。1手目で日付を3日ではなく8日と読み誤る。2手目は前の結果を前提に8日の便を探し、3手目で8日のホテルを予約し、4手目で8日の会議室を押さえる。状態を持って何手も続けるので、誤りが広がる。備え：定期的に保存の地点を作り、誤りが起きた地点から再開する（毎回いちばん最初からやり直さない）。道具の失敗をエージェントに知らせて対応させる。やり直しの回数を決めておく。</desc>
+<text x="12" y="20" class="tb">連鎖的なエラー：小さな誤りが積み重なる</text>
+<text x="12" y="40" class="tm">例：出張の手配（数は例）</text>
+<rect x="12" y="52" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="69" class="tb">1手目</text>
+<text x="22" y="86">日付を「3日」ではなく「8日」と読む</text>
+<line x1="160" y1="93" x2="160" y2="103" class="l sng w2"/>
+<polyline points="156.00,96.00 160,103 164.00,96.00" class="l sng w2"/>
+<rect x="12" y="104" width="296" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="121" class="tb">2手目</text>
+<text x="22" y="138">8日の便を探す（前の結果が前提）</text>
+<line x1="160" y1="145" x2="160" y2="155" class="l sng w2"/>
+<polyline points="156.00,148.00 160,155 164.00,148.00" class="l sng w2"/>
+<rect x="12" y="156" width="296" height="40" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="173" class="tb">3手目</text>
+<text x="22" y="190">8日のホテルを予約</text>
+<line x1="160" y1="197" x2="160" y2="207" class="l sng w2"/>
+<polyline points="156.00,200.00 160,207 164.00,200.00" class="l sng w2"/>
+<rect x="12" y="208" width="296" height="40" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="225" class="tb">4手目</text>
+<text x="22" y="242">8日の会議室を押さえる</text>
+<text x="12" y="268" class="tb tng">状態を持って何手も続けるので、誤りが広がる</text>
+<line x1="12" y1="284" x2="308" y2="284" class="l sb w1"/>
+<text x="12" y="306" class="tb tok">備え</text>
+<text x="12" y="326">・定期的に保存の地点を作り、誤りの地点から再開</text>
+<text x="12" y="346" class="tm">　（毎回いちばん最初からやり直さない）</text>
+<text x="12" y="366">・道具の失敗をエージェントに知らせて対応させる</text>
+<text x="12" y="386">・やり直しの回数を決めておく</text>
+</svg>

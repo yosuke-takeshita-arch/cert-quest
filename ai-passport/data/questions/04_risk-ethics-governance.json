@@ -80,6 +80,7 @@
     ],
     "memoryTip": "検索は探す、生成AIは作る。",
     "concepts": ["C-AP-04-002"],
+    "figures": ["fig-ap-search-vs-genai"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -109,6 +110,7 @@
     ],
     "memoryTip": "参照元が付いても、中身は自分で開いて確かめる。",
     "concepts": ["C-AP-04-002", "C-AP-04-005"],
+    "figures": ["fig-ap-search-vs-genai"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" },
@@ -198,6 +200,7 @@
     ],
     "memoryTip": "in＝輪の中で手を動かす、on＝輪の上から見張る、lead＝先頭で決める。",
     "concepts": ["C-AP-04-004", "C-AP-04-129"],
+    "figures": ["fig-ap-human-loop"],
     "sources": [
       { "title": "内閣府『人工知能基本計画』（令和8年7月14日閣議決定）", "url": "https://www8.cao.go.jp/cstp/ai/ai_plan/aiplan_20260714.pdf" }
     ],
@@ -226,6 +229,7 @@
     ],
     "memoryTip": "自然な文＝正しい文、ではない。",
     "concepts": ["C-AP-04-005", "C-AP-02-037"],
+    "figures": ["fig-ap-search-vs-genai"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -255,6 +259,7 @@
     ],
     "memoryTip": "確かめるのは、AIの外にある元の情報で。",
     "concepts": ["C-AP-04-005"],
+    "figures": ["fig-ap-search-vs-genai"],
     "sources": [
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -342,6 +347,7 @@
     ],
     "memoryTip": "誤っても困らない所から使う。困る所ほど人と専門家が見る。",
     "concepts": ["C-AP-04-007"],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -371,6 +377,7 @@
     ],
     "memoryTip": "もっともらしさは確認の代わりにならない。",
     "concepts": ["C-AP-04-008"],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
     ],
@@ -399,6 +406,7 @@
     ],
     "memoryTip": "承認されていない所に、機密は入れない。",
     "concepts": ["C-AP-04-009", "C-AP-04-016"],
+    "figures": ["fig-ap-tool-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -768,6 +776,7 @@
     ],
     "memoryTip": "入れたものは学習され、だれかの答えに出るかもしれない。",
     "concepts": ["C-AP-04-015", "C-AP-04-017"],
+    "figures": ["fig-ap-input-leak"],
     "sources": [
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
     ],
@@ -824,6 +833,7 @@
     ],
     "memoryTip": "有名でも規約は読む。保存と学習は別々に確かめる。",
     "concepts": ["C-AP-04-017"],
+    "figures": ["fig-ap-input-leak"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -853,6 +863,7 @@
     ],
     "memoryTip": "個人データを入れる前に、学習に使わないかを確かめる。",
     "concepts": ["C-AP-04-017", "C-AP-04-060"],
+    "figures": ["fig-ap-entrustment"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" }
     ],
@@ -881,6 +892,7 @@
     ],
     "memoryTip": "法を守る≠プライバシーを守る。プライバシーのほうが広い。",
     "concepts": ["C-AP-04-018"],
+    "figures": ["fig-ap-privacy-secrecy"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" },
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" }
@@ -938,6 +950,7 @@
     ],
     "memoryTip": "知らなくても、学習していれば『依拠』と推認されうる。",
     "concepts": ["C-AP-04-019", "C-AP-04-090"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -995,6 +1008,7 @@
     ],
     "memoryTip": "肖像権＝人格の権利。知的財産権＝頭で生んだ成果の権利。",
     "concepts": ["C-AP-04-021", "C-AP-04-082"],
+    "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" },
       { "title": "e-Gov法令検索 特許法（昭和三十四年法律第百二十一号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000121" },
@@ -1025,6 +1039,7 @@
     ],
     "memoryTip": "顔＝肖像権、マーク＝商標権、作品＝著作権。",
     "concepts": ["C-AP-04-021", "C-AP-04-097", "C-AP-04-019"],
+    "figures": ["fig-ap-ip-map", "fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" },
       { "title": "e-Gov法令検索 商標法（昭和三十四年法律第百二十七号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000127" },
@@ -1056,6 +1071,7 @@
     ],
     "memoryTip": "有名人の顔で物を売る→パブリシティ権。",
     "concepts": ["C-AP-04-022"],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
     ],
@@ -1084,6 +1100,7 @@
     ],
     "memoryTip": "肖像権＝だれにでも。パブリシティ権＝売る力（顧客吸引力）。",
     "concepts": ["C-AP-04-021", "C-AP-04-022", "C-AP-04-100"],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
     ],
@@ -1112,6 +1129,7 @@
     ],
     "memoryTip": "鑑賞用の商品・差別化・広告＝違法の3類型。記事の添え物は違法とされなかった。",
     "concepts": ["C-AP-04-022"],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
     ],
@@ -1454,6 +1472,7 @@
     ],
     "memoryTip": "知っている・持っている・本人自身、から2種類以上。",
     "concepts": ["C-AP-04-032"],
+    "figures": ["fig-ap-mfa"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト 用語集（た行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" },
       { "title": "総務省 国民のためのサイバーセキュリティサイト 用語集（な行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_05/" }
@@ -1628,6 +1647,7 @@
     ],
     "memoryTip": "自分で打ち込む＝直接、読ませる資料に仕込む＝間接。",
     "concepts": ["C-AP-04-034"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "総務省『AIのセキュリティ確保のための技術的対策に係るガイドライン』（令和8年3月）", "url": "https://www.soumu.go.jp/main_content/001064122.pdf" }
     ],
@@ -1656,6 +1676,7 @@
     ],
     "memoryTip": "一文の注意書きでは守れない。検証・区分・人の承認を重ねる。",
     "concepts": ["C-AP-04-034", "C-AP-04-035"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "総務省『AIのセキュリティ確保のための技術的対策に係るガイドライン』（令和8年3月）", "url": "https://www.soumu.go.jp/main_content/001064122.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -1713,6 +1734,7 @@
     ],
     "memoryTip": "承認の前に、自分の言葉で『なぜOKか』。",
     "concepts": ["C-AP-04-035", "C-AP-04-128"],
+    "figures": ["fig-ap-human-loop"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -1741,6 +1763,7 @@
     ],
     "memoryTip": "入力に細工＝インジェクション（直接・間接）。学習データに細工＝ポイズニング。",
     "concepts": ["C-AP-04-034"],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "総務省『AIのセキュリティ確保のための技術的対策に係るガイドライン』（令和8年3月）", "url": "https://www.soumu.go.jp/main_content/001064122.pdf" }
     ],
@@ -1769,6 +1792,7 @@
     ],
     "memoryTip": "入れる情報を決める＋学習させない設定。",
     "concepts": ["C-AP-04-015", "C-AP-04-017"],
+    "figures": ["fig-ap-input-leak"],
     "sources": [
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -1798,6 +1822,7 @@
     ],
     "memoryTip": "シャドー＝会社から見えない。",
     "concepts": ["C-AP-04-036"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
     ],
@@ -1855,6 +1880,7 @@
     ],
     "memoryTip": "見えない所で使う＝シャドー。",
     "concepts": ["C-AP-04-036"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
     ],
@@ -1883,6 +1909,7 @@
     ],
     "memoryTip": "足りない・遅い・決まっていない、が影を生む。",
     "concepts": ["C-AP-04-038"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -1912,6 +1939,7 @@
     ],
     "memoryTip": "使える道を用意すれば、影の道は細る。",
     "concepts": ["C-AP-04-038"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -1941,6 +1969,7 @@
     ],
     "memoryTip": "個人のアカウント＋業務の情報＝シャドーAI。",
     "concepts": ["C-AP-04-036", "C-AP-04-039"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
     ],
@@ -1969,6 +1998,7 @@
     ],
     "memoryTip": "拡張機能は、見ている画面を読めることがある。",
     "concepts": ["C-AP-04-040"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "Chrome for Developers『Permissions list』（拡張機能の権限と警告の一覧）", "url": "https://developer.chrome.com/docs/extensions/reference/permissions-list" }
     ],
@@ -1997,6 +2027,7 @@
     ],
     "memoryTip": "個人のアカウントでも、会社の情報なら会社の責任。",
     "concepts": ["C-AP-04-039"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" }
@@ -2026,6 +2057,7 @@
     ],
     "memoryTip": "承認されたのは『サービス名』ではなく『会社の契約での使い方』。",
     "concepts": ["C-AP-04-039", "C-AP-04-042"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
@@ -2112,6 +2144,7 @@
     ],
     "memoryTip": "ログ（記録）→トレーサビリティ（たどれる）→アカウンタビリティ（説明と責任）。",
     "concepts": ["C-AP-04-044", "C-AP-04-045", "C-AP-04-118"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省 国民のためのサイバーセキュリティサイト『監査ログの管理』", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/admin/12/" }
@@ -2141,6 +2174,7 @@
     ],
     "memoryTip": "影の利用は、記録も影になる。",
     "concepts": ["C-AP-04-036", "C-AP-04-044"],
+    "figures": ["fig-ap-tool-levels"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト『監査ログの管理』", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/admin/12/" },
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
@@ -2170,6 +2204,7 @@
     ],
     "memoryTip": "入れる前に区分を見る、使う前に出力を見る。",
     "concepts": ["C-AP-04-046", "C-AP-04-042"],
+    "figures": ["fig-ap-tool-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -2227,6 +2262,7 @@
     ],
     "memoryTip": "必要な人に、必要なだけ。入れ替わりで見直す。",
     "concepts": ["C-AP-04-043"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト『アクセス制御・管理』", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/admin/11/" }
     ],
@@ -2255,6 +2291,7 @@
     ],
     "memoryTip": "禁止だけでは影が濃くなる。道・ルール・見張り・教育。",
     "concepts": ["C-AP-04-036", "C-AP-04-042", "C-AP-04-046"],
+    "figures": ["fig-ap-tool-approval-flow"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -2284,6 +2321,7 @@
     ],
     "memoryTip": "承認済み＝会社が確かめて、条件つきで認めた。",
     "concepts": ["C-AP-04-042"],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
     ],
@@ -2312,6 +2350,7 @@
     ],
     "memoryTip": "承認＝道具の確認、出力確認＝結果の確認。",
     "concepts": ["C-AP-04-047"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -2340,6 +2379,7 @@
     ],
     "memoryTip": "社内の承認は、著作権者の許諾ではない。",
     "concepts": ["C-AP-04-047", "C-AP-04-055"],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
       { "title": "文化庁著作権課『AIと著作権に関するチェックリスト＆ガイダンス』（令和6年7月31日）", "url": "https://www.bunka.go.jp/seisaku/chosakuken/pdf/94097701_01.pdf" },
@@ -2370,6 +2410,7 @@
     ],
     "memoryTip": "害が大きいほど、確認を厚く。",
     "concepts": ["C-AP-04-048"],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -2398,6 +2439,7 @@
     ],
     "memoryTip": "物差し＝影響度、照らす先＝一次情報、最後の砦＝専門家。",
     "concepts": ["C-AP-04-048", "C-AP-04-058"],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -2712,6 +2754,7 @@
     ],
     "memoryTip": "公開の前に、似ていないかを検索で。",
     "concepts": ["C-AP-04-055", "C-AP-04-019"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化庁著作権課『AIと著作権に関するチェックリスト＆ガイダンス』（令和6年7月31日）", "url": "https://www.bunka.go.jp/seisaku/chosakuken/pdf/94097701_01.pdf" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -2769,6 +2812,7 @@
     ],
     "memoryTip": "見せる範囲が広いほど、確認は厚く。",
     "concepts": ["C-AP-04-056", "C-AP-04-048"],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -2797,6 +2841,7 @@
     ],
     "memoryTip": "大筋OK・一部誤り＝修正。",
     "concepts": ["C-AP-04-057"],
+    "figures": ["fig-ap-adopt-fix-discard"],
     "sources": [
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
     ],
@@ -2825,6 +2870,7 @@
     ],
     "memoryTip": "OK→採用、一部NG→修正、根本NG→破棄。",
     "concepts": ["C-AP-04-057"],
+    "figures": ["fig-ap-adopt-fix-discard"],
     "sources": [
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
     ],
@@ -2853,6 +2899,7 @@
     ],
     "memoryTip": "土台から崩れていたら破棄。",
     "concepts": ["C-AP-04-057", "C-AP-04-052"],
+    "figures": ["fig-ap-adopt-fix-discard"],
     "sources": [
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
     ],
@@ -2881,6 +2928,7 @@
     ],
     "memoryTip": "根拠らしく書かれていても、根拠かどうかは専門家が見る。",
     "concepts": ["C-AP-04-058"],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
     ],
@@ -3026,6 +3074,7 @@
     ],
     "memoryTip": "生きている人＋識別できる＝個人情報。",
     "concepts": ["C-AP-04-061"],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3054,6 +3103,7 @@
     ],
     "memoryTip": "生存する人に限る。",
     "concepts": ["C-AP-04-061"],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -3083,6 +3133,7 @@
     ],
     "memoryTip": "個人データ＝データベースの中の1件1件。",
     "concepts": ["C-AP-04-062"],
+    "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3111,6 +3162,7 @@
     ],
     "memoryTip": "名前が無くても、照らせば分かるなら個人情報。",
     "concepts": ["C-AP-04-061", "C-AP-04-072"],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行令（平成十五年政令第五百七号）", "url": "https://laws.e-gov.go.jp/law/415CO0000000507" }
@@ -3140,6 +3192,7 @@
     ],
     "memoryTip": "国が個人ごとに振った番号＝個人識別符号の代表。",
     "concepts": ["C-AP-04-063"],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行令（平成十五年政令第五百七号）", "url": "https://laws.e-gov.go.jp/law/415CO0000000507" }
     ],
@@ -3168,6 +3221,7 @@
     ],
     "memoryTip": "身体型＝顔・指紋など、番号型＝国が個人に振った番号。",
     "concepts": ["C-AP-04-063"],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行令（平成十五年政令第五百七号）", "url": "https://laws.e-gov.go.jp/law/415CO0000000507" }
@@ -3311,6 +3365,7 @@
     ],
     "memoryTip": "頼まれた、は同意の代わりにならない。",
     "concepts": ["C-AP-04-068"],
+    "figures": ["fig-ap-entrustment"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3424,6 +3479,7 @@
     ],
     "memoryTip": "匿名＝識別できない＋戻せない。",
     "concepts": ["C-AP-04-070"],
+    "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3452,6 +3508,7 @@
     ],
     "memoryTip": "仮名＝照らせば分かる、匿名＝もう戻れない。",
     "concepts": ["C-AP-04-070", "C-AP-04-071"],
+    "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3480,6 +3537,7 @@
     ],
     "memoryTip": "仮名加工情報は社内で使うもの。同意があっても外に出さない。",
     "concepts": ["C-AP-04-071"],
+    "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3508,6 +3566,7 @@
     ],
     "memoryTip": "伏せ字は手段。分かるなら個人情報のまま。",
     "concepts": ["C-AP-04-072", "C-AP-04-061"],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3536,6 +3595,7 @@
     ],
     "memoryTip": "伏せ字だけで個人情報が消えるとは限らない。",
     "concepts": ["C-AP-04-072"],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3735,6 +3795,7 @@
     ],
     "memoryTip": "預かった資料は、まず契約を見る。",
     "concepts": ["C-AP-04-076"],
+    "figures": ["fig-ap-privacy-secrecy"],
     "sources": [
       { "title": "経済産業省『秘密情報の保護ハンドブック』（最終改訂：令和6年2月）", "url": "https://www.meti.go.jp/policy/economy/chizai/chiteki/pdf/handbook/full.pdf" }
     ],
@@ -3819,6 +3880,7 @@
     ],
     "memoryTip": "AIの目も、使う人の権限の範囲まで。",
     "concepts": ["C-AP-04-079", "C-AP-04-043"],
+    "figures": ["fig-ap-rag-filter"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト『アクセス制御・管理』", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/admin/11/" }
     ],
@@ -3875,6 +3937,7 @@
     ],
     "memoryTip": "要配慮・財産被害・不正目的・千人超、のどれかで報告。",
     "concepts": ["C-AP-04-080", "C-AP-04-064"],
+    "figures": ["fig-ap-breach-report"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行規則（平成二十八年個人情報保護委員会規則第三号）", "url": "https://laws.e-gov.go.jp/law/428M60020000003" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行令（平成十五年政令第五百七号）", "url": "https://laws.e-gov.go.jp/law/415CO0000000507" }
@@ -3904,6 +3967,7 @@
     ],
     "memoryTip": "速やかに速報、30日（不正目的は60日）で確報。",
     "concepts": ["C-AP-04-080"],
+    "figures": ["fig-ap-breach-report"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行規則（平成二十八年個人情報保護委員会規則第三号）", "url": "https://laws.e-gov.go.jp/law/428M60020000003" }
     ],
@@ -3932,6 +3996,7 @@
     ],
     "memoryTip": "気づいたら、すぐ伝える。自分で片づけない。",
     "concepts": ["C-AP-04-081", "C-AP-04-080"],
+    "figures": ["fig-ap-breach-report"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト『インシデントレスポンス体制整備』", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/admin/16/" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行規則（平成二十八年個人情報保護委員会規則第三号）", "url": "https://laws.e-gov.go.jp/law/428M60020000003" }
@@ -3961,6 +4026,7 @@
     ],
     "memoryTip": "委員会への報告と本人への通知は、両方。",
     "concepts": ["C-AP-04-080"],
+    "figures": ["fig-ap-breach-report"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "個人情報保護委員会事務局『個人情報保護法等の一部を改正する法律について』（令和8年7月）", "url": "https://www.ppc.go.jp/files/pdf/260717_kaiseihounitsuite.pdf" }
@@ -4147,6 +4213,7 @@
     ],
     "memoryTip": "作風（アイデア）は守られない。守られるのは具体的な表現。",
     "concepts": ["C-AP-04-083", "C-AP-04-089"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -4372,6 +4439,7 @@
     ],
     "memoryTip": "知らない＋学習していない＝偶然の一致。",
     "concepts": ["C-AP-04-090"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -4400,6 +4468,7 @@
     ],
     "memoryTip": "類似性＝本質的な特徴が感じ取れる。",
     "concepts": ["C-AP-04-089"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -4514,6 +4583,7 @@
     ],
     "memoryTip": "味わわない利用（解析）なら30条の4。味わう・出させるなら別。",
     "concepts": ["C-AP-04-092"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -4543,6 +4613,7 @@
     ],
     "memoryTip": "30条の4にもただし書（不当に害する場合は除く）。",
     "concepts": ["C-AP-04-092"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -4600,6 +4671,7 @@
     ],
     "memoryTip": "似せるための入力は、入力の段階で許諾が要りうる。",
     "concepts": ["C-AP-04-093", "C-AP-04-092"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "文化庁著作権課『AIと著作権に関するチェックリスト＆ガイダンス』（令和6年7月31日）", "url": "https://www.bunka.go.jp/seisaku/chosakuken/pdf/94097701_01.pdf" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -4629,6 +4701,7 @@
     ],
     "memoryTip": "法律が許しても、規約が禁じていれば守る。",
     "concepts": ["C-AP-04-093", "C-AP-04-101"],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "文化庁著作権課『AIと著作権に関するチェックリスト＆ガイダンス』（令和6年7月31日）", "url": "https://www.bunka.go.jp/seisaku/chosakuken/pdf/94097701_01.pdf" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -4799,6 +4872,7 @@
     ],
     "memoryTip": "商標＝商品の目印（名前・ロゴ・マーク）。",
     "concepts": ["C-AP-04-097"],
+    "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "e-Gov法令検索 商標法（昭和三十四年法律第百二十七号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000127" },
       { "title": "e-Gov法令検索 特許法（昭和三十四年法律第百二十一号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000121" },
@@ -4830,6 +4904,7 @@
     ],
     "memoryTip": "意匠＝見た目のデザイン（物・建物・画面）。",
     "concepts": ["C-AP-04-098"],
+    "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "e-Gov法令検索 意匠法（昭和三十四年法律第百二十五号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000125" }
     ],
@@ -4858,6 +4933,7 @@
     ],
     "memoryTip": "発明＝自然法則を利用した、高度な技術的思想の創作。",
     "concepts": ["C-AP-04-099"],
+    "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "e-Gov法令検索 特許法（昭和三十四年法律第百二十一号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000121" },
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
@@ -4888,6 +4964,7 @@
     ],
     "memoryTip": "AIが作っても、似ていれば権利の問題。",
     "concepts": ["C-AP-04-097", "C-AP-04-098", "C-AP-04-099"],
+    "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "e-Gov法令検索 商標法（昭和三十四年法律第百二十七号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000127" },
       { "title": "e-Gov法令検索 意匠法（昭和三十四年法律第百二十五号）", "url": "https://laws.e-gov.go.jp/law/334AC0000000125" },
@@ -4918,6 +4995,7 @@
     ],
     "memoryTip": "パブリシティ権＝顧客吸引力（商業的価値）、人格権由来。",
     "concepts": ["C-AP-04-100", "C-AP-04-022"],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
     ],
@@ -4946,6 +5024,7 @@
     ],
     "memoryTip": "売る力が無くても、顔には肖像権がある。",
     "concepts": ["C-AP-04-100", "C-AP-04-021"],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
     ],
@@ -5144,6 +5223,7 @@
     ],
     "memoryTip": "規約の許可は、権利者の許可ではない。",
     "concepts": ["C-AP-04-104"],
+    "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化庁著作権課『AIと著作権に関するチェックリスト＆ガイダンス』（令和6年7月31日）", "url": "https://www.bunka.go.jp/seisaku/chosakuken/pdf/94097701_01.pdf" }
     ],
@@ -5172,6 +5252,7 @@
     ],
     "memoryTip": "生成の記録は、説明のための証拠。",
     "concepts": ["C-AP-04-104", "C-AP-04-106"],
+    "figures": ["fig-ap-ai-generated-work"],
     "sources": [
       { "title": "文化庁著作権課『AIと著作権に関するチェックリスト＆ガイダンス』（令和6年7月31日）", "url": "https://www.bunka.go.jp/seisaku/chosakuken/pdf/94097701_01.pdf" }
     ],
@@ -5200,6 +5281,7 @@
     ],
     "memoryTip": "会社の発意・職務上・会社名義で公表→会社が著作者。",
     "concepts": ["C-AP-04-105"],
+    "figures": ["fig-ap-work-for-hire"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
     ],
@@ -5228,6 +5310,7 @@
     ],
     "memoryTip": "回数より、創作的な指示と手直しの中身。",
     "concepts": ["C-AP-04-106"],
+    "figures": ["fig-ap-ai-generated-work"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -5256,6 +5339,7 @@
     ],
     "memoryTip": "AIは著作者になれない。創作した人が著作者。",
     "concepts": ["C-AP-04-107", "C-AP-04-106"],
+    "figures": ["fig-ap-ai-generated-work"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -5284,6 +5368,7 @@
     ],
     "memoryTip": "要件＝創作意図＋創作的寄与。回数ではない。",
     "concepts": ["C-AP-04-106"],
+    "figures": ["fig-ap-ai-generated-work"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -5312,6 +5397,7 @@
     ],
     "memoryTip": "選ぶだけ・回すだけでは、創作的寄与にならない。",
     "concepts": ["C-AP-04-106"],
+    "figures": ["fig-ap-ai-generated-work"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -5452,6 +5538,7 @@
     ],
     "memoryTip": "対象＝開発者・提供者・利用者（事業者）。一般の利用者は対象外。",
     "concepts": ["C-AP-04-110"],
+    "figures": ["fig-ap-guideline-actors"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -5480,6 +5567,7 @@
     ],
     "memoryTip": "作る＝開発者、届ける＝提供者、事業で使う＝利用者。",
     "concepts": ["C-AP-04-110"],
+    "figures": ["fig-ap-guideline-actors"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -5508,6 +5596,7 @@
     ],
     "memoryTip": "ガイドライン＝ソフトロー。罰則は無い。",
     "concepts": ["C-AP-04-110", "C-AP-04-160"],
+    "figures": ["fig-ap-guideline-actors"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -5536,6 +5625,7 @@
     ],
     "memoryTip": "2024年4月策定→2025年3月 第1.1版→2026年3月 第1.2版。",
     "concepts": ["C-AP-04-110"],
+    "figures": ["fig-ap-guideline-actors"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省『「AI事業者ガイドライン」掲載ページ』", "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/ai_network/02ryutsu20_04000019.html" }
@@ -5565,6 +5655,7 @@
     ],
     "memoryTip": "7つ（各主体）＋3つ（社会と連携：教育・公正競争・イノベーション）。",
     "concepts": ["C-AP-04-111"],
+    "figures": ["fig-ap-common-guidelines"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "e-Gov法令検索 人工知能関連技術の研究開発及び活用の推進に関する法律（令和七年法律第五十三号）", "url": "https://laws.e-gov.go.jp/law/507AC0000000053" }
@@ -5594,6 +5685,7 @@
     ],
     "memoryTip": "各主体7つの終わり＝透明性・アカウンタビリティ。",
     "concepts": ["C-AP-04-111"],
+    "figures": ["fig-ap-common-guidelines"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -5931,6 +6023,7 @@
     ],
     "memoryTip": "示す＝透明性、負う＝アカウンタビリティ、たどる＝トレーサビリティ。",
     "concepts": ["C-AP-04-117", "C-AP-04-118", "C-AP-04-045"],
+    "figures": ["fig-ap-common-guidelines"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -5959,6 +6052,7 @@
     ],
     "memoryTip": "人を介在させる＋形だけにしない。",
     "concepts": ["C-AP-04-129", "C-AP-04-128"],
+    "figures": ["fig-ap-human-loop"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -6156,6 +6250,7 @@
     ],
     "memoryTip": "リスクの大きさに合わせて、対策の強さを変える。",
     "concepts": ["C-AP-04-123"],
+    "figures": ["fig-ap-risk-based-approach"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -6184,6 +6279,7 @@
     ],
     "memoryTip": "リスク＝害の大きさ×起こりやすさ。",
     "concepts": ["C-AP-04-123"],
+    "figures": ["fig-ap-risk-based-approach"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -6212,6 +6308,7 @@
     ],
     "memoryTip": "フィルター（ふるい）で絞られ、泡（バブル）に閉じこもる。",
     "concepts": ["C-AP-04-124"],
+    "figures": ["fig-ap-filter-bubble"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省 令和8年版 情報通信白書 人間の情報行動・情報空間とAI（考察）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r08/html/nd132200.html" }
@@ -6241,6 +6338,7 @@
     ],
     "memoryTip": "バブル＝見たい情報の泡、チェンバー＝同じ声が響く部屋。",
     "concepts": ["C-AP-04-124", "C-AP-04-125"],
+    "figures": ["fig-ap-filter-bubble"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" },
       { "title": "総務省 令和8年版 情報通信白書 人間の情報行動・情報空間とAI（考察）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r08/html/nd132200.html" }
@@ -6581,6 +6679,7 @@
     ],
     "memoryTip": "分析→ゴール→設計→運用→評価→（また分析）。",
     "concepts": ["C-AP-04-133"],
+    "figures": ["fig-ap-agile-governance"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -6609,6 +6708,7 @@
     ],
     "memoryTip": "アジャイル＝決めて、回して、すぐ直す。",
     "concepts": ["C-AP-04-133"],
+    "figures": ["fig-ap-agile-governance"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
@@ -6667,6 +6767,7 @@
     ],
     "memoryTip": "社内ガイドラインも見直し続ける。",
     "concepts": ["C-AP-04-134", "C-AP-04-133"],
+    "figures": ["fig-ap-agile-governance"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
@@ -6981,6 +7082,7 @@
     ],
     "memoryTip": "SSO（入口をまとめる）＋多要素認証（入口を固める）。",
     "concepts": ["C-AP-04-150", "C-AP-04-032"],
+    "figures": ["fig-ap-mfa"],
     "sources": [
       { "title": "Microsoft Learn『What is single sign-on in Microsoft Entra ID?』", "url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-sign-on" },
       { "title": "総務省 国民のためのサイバーセキュリティサイト 用語集（た行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" }
@@ -7068,6 +7170,7 @@
     ],
     "memoryTip": "閉域網＝インターネットから閉じた専用の道。",
     "concepts": ["C-AP-04-143"],
+    "figures": ["fig-ap-tool-levels"],
     "sources": [
       { "title": "NTT東日本『閉域ネットワーク（閉域網）とは？専用線・VPN・広域イーサネットを比較』", "url": "https://business.ntt-east.co.jp/content/cloudsolution/column-238.html" }
     ],
@@ -7096,6 +7199,7 @@
     ],
     "memoryTip": "ローカル＝データは外に出ない、手間は自分持ち。",
     "concepts": ["C-AP-04-144", "C-AP-02-047"],
+    "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "Ollama（GitHub の公式リポジトリ ollama/ollama）", "url": "https://github.com/ollama/ollama" }
     ],
@@ -7124,6 +7228,7 @@
     ],
     "memoryTip": "閉じた網でも、社内の権限は別。",
     "concepts": ["C-AP-04-143", "C-AP-04-144", "C-AP-04-079"],
+    "figures": ["fig-ap-tool-levels"],
     "sources": [
       { "title": "NTT東日本『閉域ネットワーク（閉域網）とは？専用線・VPN・広域イーサネットを比較』", "url": "https://business.ntt-east.co.jp/content/cloudsolution/column-238.html" },
       { "title": "総務省 国民のためのサイバーセキュリティサイト『アクセス制御・管理』", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/admin/11/" }
@@ -7556,6 +7661,7 @@
     ],
     "memoryTip": "見直しのきっかけは、法改正だけではない。",
     "concepts": ["C-AP-04-152", "C-AP-04-133"],
+    "figures": ["fig-ap-agile-governance"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" }
@@ -7927,6 +8033,7 @@
     ],
     "memoryTip": "指針＝AI法13条、本部決定（2025/12/19）、全主体向け。",
     "concepts": ["C-AP-04-158"],
+    "figures": ["fig-ap-ai-law-layers"],
     "sources": [
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" },
       { "title": "e-Gov法令検索 人工知能関連技術の研究開発及び活用の推進に関する法律（令和七年法律第五十三号）", "url": "https://laws.e-gov.go.jp/law/507AC0000000053" }
@@ -7985,6 +8092,7 @@
     ],
     "memoryTip": "ソフトロー＝拘束力の無い規範（ガイドラインなど）。",
     "concepts": ["C-AP-04-160"],
+    "figures": ["fig-ap-ai-law-layers"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -8160,6 +8268,7 @@
     ],
     "memoryTip": "EU AI Act＝4つのリスク区分、最上位は禁止。",
     "concepts": ["C-AP-04-164", "C-AP-04-165"],
+    "figures": ["fig-ap-eu-ai-act"],
     "sources": [
       { "title": "European Commission『AI Act』（Shaping Europe's digital future）", "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" }
     ],

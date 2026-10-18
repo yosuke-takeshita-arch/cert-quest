@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 482" role="img" aria-labelledby="fig-ap-cot-t fig-ap-cot-d">
+<title id="fig-ap-cot-t">思考の連鎖（Chain-of-Thought）：途中の考えを書かせてから答えさせる</title>
+<desc id="fig-ap-cot-d">問い（数は例）：クッキーが15枚あった。8枚食べて、12枚焼き足した。いま何枚？答えだけを出させると「27枚」のように食べた分を落として誤ることがある（誤る例）。①Zero-shot CoT（例は0個）：問いに「ステップごとに考えよう」の1文を添えると、15−8＝7、7＋12＝19と書いてから19枚と答える。②Few-shot CoT：途中の考えを書いたお手本を数個見せてから問う。Weiら（2022）はお手本8個。注意：途中を書いても答えの正しさは保証されない。十分に大きなモデルで効き、小さいモデルでは効きにくい。推論モデル（o1など）は、答える前に内部で長い思考の連鎖を作るよう学習している。</desc>
+<text x="12" y="20" class="tb">思考の連鎖（Chain-of-Thought）</text>
+<text x="12" y="40" class="tm">途中の考えを書かせてから答えさせる</text>
+<rect x="12" y="52" width="296" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="75">問い：クッキーが15枚あった。8枚食べて、</text>
+<text x="22" y="95">12枚焼き足した。いま何枚？（数は例）</text>
+<text x="12" y="130" class="tb">答えだけを出させると</text>
+<rect x="12" y="138" width="296" height="36" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="161">→「27枚」（食べた分を落として誤る例）</text>
+<text x="12" y="196" class="tb ta">① Zero-shot CoT（例は0個）</text>
+<rect x="12" y="204" width="296" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="227">問い＋「ステップごとに考えよう」の1文</text>
+<text x="22" y="247" class="tb tok">15−8＝7、7＋12＝19 → 19枚</text>
+<text x="12" y="282" class="tb ta">② Few-shot CoT（お手本を数個）</text>
+<rect x="12" y="290" width="296" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="313">途中の考えを書いたお手本を見せてから問う</text>
+<text x="22" y="333" class="tm">Wei ら（2022）はお手本8個</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="384" class="tb tng">注意</text>
+<text x="12" y="404">・途中を書いても、答えの正しさは保証されない</text>
+<text x="12" y="424">・十分に大きなモデルで効く（小さいと効きにくい）</text>
+<text x="12" y="444">・推論モデル（o1 など）は、答える前に内部で</text>
+<text x="12" y="464">　長い思考の連鎖を作るよう学習している</text>
+</svg>

@@ -75,6 +75,7 @@
     ],
     "memoryTip": "『誰が判断のしかたを決めたか』で切る。人が書いた→ルールベース、データから学んだ→機械学習。",
     "concepts": ["C-AP-01-003", "C-AP-01-004"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },
@@ -101,6 +102,7 @@
     ],
     "memoryTip": "例と答えを見せて学ばせる＝機械学習。規則を書く＝ルールベース。",
     "concepts": ["C-AP-01-004", "C-AP-01-007"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
@@ -130,6 +132,7 @@
     ],
     "memoryTip": "ルールベースは『書いたとおりにしか動かない』。賢くするには人が書き直す。",
     "concepts": ["C-AP-01-003", "C-AP-01-005"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }
@@ -159,6 +162,7 @@
     ],
     "memoryTip": "ルール＝人が書く、学習＝データから。",
     "concepts": ["C-AP-01-003", "C-AP-01-004"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "生成AIパスポート試験シラバス（2027年2月試験より適用）", "url": "https://guga.or.jp/assets/syllabus.pdf" },
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
@@ -188,6 +192,7 @@
     ],
     "memoryTip": "第二次の壁＝『書き切れない』。だから第三次は『データから自分で獲得』。",
     "concepts": ["C-AP-01-005", "C-AP-01-062"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },
@@ -244,6 +249,7 @@
     ],
     "memoryTip": "人が決める＝『何を当てるか』と『何で学ぶか』。機械が決める＝『どう当てるか』。",
     "concepts": ["C-AP-01-004", "C-AP-01-005"],
+    "figures": ["fig-ap-train-infer"],
     "sources": [{ "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }],
     "status": "verified"
   },
@@ -270,6 +276,7 @@
     ],
     "memoryTip": "教師データ（材料）→ 学習 → 学習済みモデル（結果）→ 推論（使う）。",
     "concepts": ["C-AP-01-006", "C-AP-01-008"],
+    "figures": ["fig-ap-train-infer"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（training・inference・weight）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -296,6 +303,7 @@
     ],
     "memoryTip": "学習＝作る、推論＝使う。",
     "concepts": ["C-AP-01-006"],
+    "figures": ["fig-ap-train-infer"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（inference）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -322,6 +330,7 @@
     ],
     "memoryTip": "正解付きで学ぶ＝教師あり。答えが数なら回帰、種類なら分類。",
     "concepts": ["C-AP-01-007", "C-AP-01-010"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（label・regression model）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }
@@ -351,6 +360,7 @@
     ],
     "memoryTip": "答えが数（個数・値段・気温）→回帰。種類→分類。",
     "concepts": ["C-AP-01-010", "C-AP-01-009"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（regression model・classification model）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -377,6 +387,7 @@
     ],
     "memoryTip": "2択なら二値、3つ以上なら多値。",
     "concepts": ["C-AP-01-011", "C-AP-01-009"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（binary classification）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -403,6 +414,7 @@
     ],
     "memoryTip": "数字を答えても『どの種類か』なら分類。大きさに意味があれば回帰。",
     "concepts": ["C-AP-01-011", "C-AP-01-010"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（multi-class classification・regression model）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -429,6 +441,7 @@
     ],
     "memoryTip": "正解率＝当たり÷全部。割る数は『全部』。",
     "concepts": ["C-AP-01-012"],
+    "figures": ["fig-ap-accuracy"],
     "sources": [{ "title": "Google for Developers: ML Crash Course - Accuracy, precision, recall", "url": "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall" }],
     "status": "verified"
   },
@@ -455,6 +468,7 @@
     ],
     "memoryTip": "珍しいものを探すときは、正解率99％でも安心しない（全部『いいえ』でも99％）。",
     "concepts": ["C-AP-01-012"],
+    "figures": ["fig-ap-accuracy"],
     "sources": [{ "title": "Google for Developers: ML Crash Course - Accuracy, precision, recall", "url": "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall" }],
     "status": "verified"
   },
@@ -481,6 +495,7 @@
     ],
     "memoryTip": "教師データ＝問題（入力）と答え（ラベル）のセット。",
     "concepts": ["C-AP-01-008", "C-AP-01-007"],
+    "figures": ["fig-ap-train-infer"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（label・labeled example）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -507,6 +522,7 @@
     ],
     "memoryTip": "正解なしでまとめる＝クラスタリング。正解ありで種類を当てる＝分類。",
     "concepts": ["C-AP-01-014", "C-AP-01-013"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "scikit-learn User Guide: Clustering（K-means）", "url": "https://scikit-learn.org/stable/modules/clustering.html" }
@@ -536,6 +552,7 @@
     ],
     "memoryTip": "次元削減は『列』を減らす。クラスタリングは『行』をまとめる。",
     "concepts": ["C-AP-01-015", "C-AP-01-014"],
+    "figures": ["fig-ap-dim-reduction"],
     "sources": [
       { "title": "scikit-learn User Guide: Decomposing signals in components（PCA）", "url": "https://scikit-learn.org/stable/modules/decomposition.html" },
       { "title": "Google for Developers: Machine Learning Glossary（dimension reduction）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -565,6 +582,7 @@
     ],
     "memoryTip": "教師なし＝ラベル無し。ラベルを付けた時点で教師あり。",
     "concepts": ["C-AP-01-013", "C-AP-01-014", "C-AP-01-015"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }],
     "status": "verified"
   },
@@ -591,6 +609,7 @@
     ],
     "memoryTip": "教師あり＝分類・回帰、教師なし＝クラスタリング・次元削減。",
     "concepts": ["C-AP-01-007", "C-AP-01-013", "C-AP-01-014"],
+    "figures": ["fig-ap-ml-three-types"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }],
     "status": "verified"
   },
@@ -617,6 +636,7 @@
     ],
     "memoryTip": "正解は無いが『点数』がある→強化学習。",
     "concepts": ["C-AP-01-016", "C-AP-01-017"],
+    "figures": ["fig-ap-ml-three-types"],
     "sources": [{ "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }],
     "status": "verified"
   },
@@ -643,6 +663,7 @@
     ],
     "memoryTip": "報酬＝いまの点、価値＝これからの点の見込み、方策＝動き方のルール。",
     "concepts": ["C-AP-01-017", "C-AP-01-018", "C-AP-01-019"],
+    "figures": ["fig-ap-reward-value"],
     "sources": [{ "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（1.3 Elements of Reinforcement Learning）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }],
     "status": "verified"
   },
@@ -669,6 +690,7 @@
     ],
     "memoryTip": "目先の得＝報酬、先々の得＝価値。強いエージェントは価値で選ぶ。",
     "concepts": ["C-AP-01-017", "C-AP-01-018"],
+    "figures": ["fig-ap-reward-value"],
     "sources": [{ "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（1.3 Elements of Reinforcement Learning）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }],
     "status": "verified"
   },
@@ -695,6 +717,7 @@
     ],
     "memoryTip": "方策＝policy＝ふるまいの方針。",
     "concepts": ["C-AP-01-019", "C-AP-01-017", "C-AP-01-018"],
+    "figures": ["fig-ap-reward-value"],
     "sources": [{ "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（1.3 Elements of Reinforcement Learning）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }],
     "status": "verified"
   },
@@ -721,6 +744,7 @@
     ],
     "memoryTip": "強化学習の先生は『点数』だけ。正解の答えは教えてくれない。",
     "concepts": ["C-AP-01-016", "C-AP-01-007"],
+    "figures": ["fig-ap-reward-value"],
     "sources": [{ "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（1.3 Elements of Reinforcement Learning）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }],
     "status": "verified"
   },
@@ -747,6 +771,7 @@
     ],
     "memoryTip": "正解あり少し＋正解なしたくさん＝半教師あり。",
     "concepts": ["C-AP-01-020"],
+    "figures": ["fig-ap-semi-supervised"],
     "sources": [{ "title": "scikit-learn User Guide: Semi-supervised learning", "url": "https://scikit-learn.org/stable/modules/semi_supervised.html" }],
     "status": "verified"
   },
@@ -773,6 +798,7 @@
     ],
     "memoryTip": "『半』は、正解ありと正解なしの両方を使うという意味。",
     "concepts": ["C-AP-01-020"],
+    "figures": ["fig-ap-semi-supervised"],
     "sources": [{ "title": "scikit-learn User Guide: Semi-supervised learning", "url": "https://scikit-learn.org/stable/modules/semi_supervised.html" }],
     "status": "verified"
   },
@@ -851,6 +877,7 @@
     ],
     "memoryTip": "分類＝種類、回帰＝数。",
     "concepts": ["C-AP-01-010", "C-AP-01-009"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（regression model）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -877,6 +904,7 @@
     ],
     "memoryTip": "教師あり＝答え合わせ→直す、の繰り返し。",
     "concepts": ["C-AP-01-007"],
+    "figures": ["fig-ap-train-infer"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（training・label）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -903,6 +931,7 @@
     ],
     "memoryTip": "グループの名前が先にある＝分類。後から分かる＝クラスタリング。",
     "concepts": ["C-AP-01-009", "C-AP-01-014"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }],
     "status": "verified"
   },
@@ -929,6 +958,7 @@
     ],
     "memoryTip": "次元＝項目（列）。次元削減＝列を減らす。",
     "concepts": ["C-AP-01-015"],
+    "figures": ["fig-ap-dim-reduction"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（dimension reduction）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -955,6 +985,7 @@
     ],
     "memoryTip": "強化学習の例は『行動して点をもらう』場面（ゲーム・ロボット）。",
     "concepts": ["C-AP-01-016", "C-AP-01-007", "C-AP-01-013", "C-AP-01-020"],
+    "figures": ["fig-ap-ml-three-types"],
     "sources": [
       { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }
@@ -984,6 +1015,7 @@
     ],
     "memoryTip": "ニューラル＝神経の、ネットワーク＝網。脳を『ヒント』にした計算の網。",
     "concepts": ["C-AP-01-022"],
+    "figures": ["fig-ap-mlp-layers"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/mlp.html" },
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
@@ -1067,6 +1099,7 @@
     ],
     "memoryTip": "学習で変わる＝重み。変わらない＝活性化関数の形・層の数。",
     "concepts": ["C-AP-01-024", "C-AP-01-025"],
+    "figures": ["fig-ap-mlp-layers"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（weight・training）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1093,6 +1126,7 @@
     ],
     "memoryTip": "活性化関数＝『曲げる』部品。曲げないと何層あっても直線。",
     "concepts": ["C-AP-01-025", "C-AP-01-027", "C-AP-01-028"],
+    "figures": ["fig-ap-linear-stack"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（activation function）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1145,6 +1179,7 @@
     ],
     "memoryTip": "ディープ＝層が深い。特徴量まで自分で学ぶ。",
     "concepts": ["C-AP-01-026"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "Google for Developers: Machine Learning Glossary（neural network・hidden layer）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1174,6 +1209,7 @@
     ],
     "memoryTip": "人が特徴量を作る（機械学習）→ AIが特徴量を作る（ディープラーニング）。",
     "concepts": ["C-AP-01-026", "C-AP-01-004"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },
@@ -1200,6 +1236,7 @@
     ],
     "memoryTip": "ディープラーニングは機械学習（データから学ぶ）側。ルールベース（人が書く）の反対。",
     "concepts": ["C-AP-01-026", "C-AP-01-003"],
+    "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 1 Introduction（著者公開版）", "url": "https://www.deeplearningbook.org/contents/intro.html" }
@@ -1229,6 +1266,7 @@
     ],
     "memoryTip": "損失関数＝ずれの物差し。小さいほど良い。",
     "concepts": ["C-AP-01-027", "C-AP-01-025"],
+    "figures": ["fig-ap-learning-cycle"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（loss function）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1255,6 +1293,7 @@
     ],
     "memoryTip": "勾配（傾き）を見て降下（下る）＝勾配降下法。",
     "concepts": ["C-AP-01-028", "C-AP-01-029"],
+    "figures": ["fig-ap-gradient-descent"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1281,6 +1320,7 @@
     ],
     "memoryTip": "逆伝播＝誤差を『後ろ向き』に伝える。前向きは予測の計算。",
     "concepts": ["C-AP-01-029", "C-AP-01-028"],
+    "figures": ["fig-ap-learning-cycle"],
     "sources": [
       { "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature 323", "url": "https://www.nature.com/articles/323533a0" },
       { "title": "Google for Developers: Machine Learning Glossary（backpropagation）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1310,6 +1350,7 @@
     ],
     "memoryTip": "測る（損失関数）→ 計算する（誤差逆伝播法）→ 直す（勾配降下法）。",
     "concepts": ["C-AP-01-027", "C-AP-01-028", "C-AP-01-029"],
+    "figures": ["fig-ap-learning-cycle"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（loss function・backpropagation・gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1336,6 +1377,7 @@
     ],
     "memoryTip": "学習率は大きすぎると飛び越え、小さすぎると遅い。",
     "concepts": ["C-AP-01-028"],
+    "figures": ["fig-ap-gradient-descent"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（gradient descent・learning rate）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）", "url": "https://www.deeplearningbook.org/contents/optimization.html" }
@@ -1365,6 +1407,7 @@
     ],
     "memoryTip": "逆伝播は『いくら直すか』を計算、勾配降下は『実際に直す』。",
     "concepts": ["C-AP-01-029", "C-AP-01-028"],
+    "figures": ["fig-ap-learning-cycle"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（backpropagation・gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1391,6 +1434,7 @@
     ],
     "memoryTip": "学習用◎・新しいデータ×＝過学習（丸暗記）。両方×＝未学習。",
     "concepts": ["C-AP-01-030", "C-AP-01-031"],
+    "figures": ["fig-ap-overfitting"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（5.2 Capacity, Overfitting and Underfitting）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "Google for Developers: Machine Learning Glossary（overfitting）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1420,6 +1464,7 @@
     ],
     "memoryTip": "汎化＝初見でも当たる力。",
     "concepts": ["C-AP-01-031", "C-AP-01-030"],
+    "figures": ["fig-ap-overfitting"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "Google for Developers: Machine Learning Glossary（generalization）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1449,6 +1494,7 @@
     ],
     "memoryTip": "過学習の対策＝データを増やす・正則化（ドロップアウト・早めに止める）。複雑にして学び続けるのは逆効果。",
     "concepts": ["C-AP-01-030", "C-AP-01-032", "C-AP-01-033", "C-AP-01-034"],
+    "figures": ["fig-ap-overfitting"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（overfitting・early stopping）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR 15", "url": "https://www.jmlr.org/papers/v15/srivastava14a.html" }
@@ -1478,6 +1524,7 @@
     ],
     "memoryTip": "検証の損失が上がったら止める。学習の損失は見ない。",
     "concepts": ["C-AP-01-033", "C-AP-01-030"],
+    "figures": ["fig-ap-overfitting"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（early stopping）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1504,6 +1551,7 @@
     ],
     "memoryTip": "ドロップアウト＝ノードを『休ませる』。止めるのはアーリーストッピング。",
     "concepts": ["C-AP-01-034", "C-AP-01-033", "C-AP-01-032"],
+    "figures": ["fig-ap-dropout"],
     "sources": [{ "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR 15", "url": "https://www.jmlr.org/papers/v15/srivastava14a.html" }],
     "status": "verified"
   },
@@ -1530,6 +1578,7 @@
     ],
     "memoryTip": "休むのは学習中だけ。本番（推論）は全員出勤。",
     "concepts": ["C-AP-01-034"],
+    "figures": ["fig-ap-dropout"],
     "sources": [
       { "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR 15", "url": "https://www.jmlr.org/papers/v15/srivastava14a.html" },
       { "title": "Google for Developers: Machine Learning Glossary（regularization）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1559,6 +1608,7 @@
     ],
     "memoryTip": "正『則』化＝過学習の対策。正『規』化＝値の範囲をそろえる前処理。",
     "concepts": ["C-AP-01-032", "C-AP-01-033", "C-AP-01-034"],
+    "figures": ["fig-ap-overfitting", "fig-ap-dropout"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（regularization・early stopping）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 7 Regularization for Deep Learning（著者公開版）", "url": "https://www.deeplearningbook.org/contents/regularization.html" }
@@ -1588,6 +1638,7 @@
     ],
     "memoryTip": "正則化のねらい＝学習用の点ではなく、本番の点を上げる。",
     "concepts": ["C-AP-01-032", "C-AP-01-031"],
+    "figures": ["fig-ap-overfitting"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }],
     "status": "verified"
   },
@@ -1614,6 +1665,7 @@
     ],
     "memoryTip": "学んだことを『移す（transfer）』＝転移学習。少ないデータで済む。",
     "concepts": ["C-AP-01-035", "C-AP-01-006"],
+    "figures": ["fig-ap-transfer-learning"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 15 Representation Learning（15.2 Transfer Learning and Domain Adaptation）", "url": "https://www.deeplearningbook.org/contents/representation.html" }],
     "status": "verified"
   },
@@ -1640,6 +1692,7 @@
     ],
     "memoryTip": "事前学習（何でも屋）→ ファインチューニング（専門家に仕上げる）。",
     "concepts": ["C-AP-01-036", "C-AP-01-035"],
+    "figures": ["fig-ap-transfer-learning"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（fine-tuning）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1666,6 +1719,7 @@
     ],
     "memoryTip": "ファインチューニング＝学習済みの重みから『微調整』。ゼロからではない。",
     "concepts": ["C-AP-01-035", "C-AP-01-036"],
+    "figures": ["fig-ap-transfer-learning"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（fine-tuning・transfer learning）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 15 Representation Learning（15.2 Transfer Learning and Domain Adaptation）", "url": "https://www.deeplearningbook.org/contents/representation.html" }
@@ -1695,6 +1749,7 @@
     ],
     "memoryTip": "転移学習のうれしさ＝『少ないデータで済む』。",
     "concepts": ["C-AP-01-035"],
+    "figures": ["fig-ap-transfer-learning"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 15 Representation Learning（15.2 Transfer Learning and Domain Adaptation）", "url": "https://www.deeplearningbook.org/contents/representation.html" }],
     "status": "verified"
   },
@@ -1721,6 +1776,7 @@
     ],
     "memoryTip": "CNN＝画像（格子）、RNN＝文章や音声（順番）。",
     "concepts": ["C-AP-01-037", "C-AP-01-041"],
+    "figures": ["fig-ap-convolution"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 9 Convolutional Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/convnets.html" },
       { "title": "Google for Developers: Machine Learning Glossary（convolutional neural network）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1750,6 +1806,7 @@
     ],
     "memoryTip": "畳み込み＝小窓をずらして『掛けて足す』。",
     "concepts": ["C-AP-01-038", "C-AP-01-037"],
+    "figures": ["fig-ap-convolution"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 9 Convolutional Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/convnets.html" }],
     "status": "verified"
   },
@@ -1776,6 +1833,7 @@
     ],
     "memoryTip": "同じ窓を使い回す＝重みが少ない＋どこにあっても見つかる。",
     "concepts": ["C-AP-01-038", "C-AP-01-037"],
+    "figures": ["fig-ap-convolution"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 9 Convolutional Networks（9.2 Motivation: parameter sharing）", "url": "https://www.deeplearningbook.org/contents/convnets.html" }],
     "status": "verified"
   },
@@ -1802,6 +1860,7 @@
     ],
     "memoryTip": "ビジョン＝視覚。画像・動画を扱えばコンピュータビジョン。",
     "concepts": ["C-AP-01-039"],
+    "figures": ["fig-ap-ai-fields"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 12 Applications（12.2 Computer Vision）", "url": "https://www.deeplearningbook.org/contents/applications.html" }],
     "status": "verified"
   },
@@ -1828,6 +1887,7 @@
     ],
     "memoryTip": "入力が画像・映像ならビジョン。音声ならビジョンではない。",
     "concepts": ["C-AP-01-039"],
+    "figures": ["fig-ap-ai-fields"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 12 Applications（12.2 Computer Vision）", "url": "https://www.deeplearningbook.org/contents/applications.html" },
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
@@ -1857,6 +1917,7 @@
     ],
     "memoryTip": "RNN＝前のメモを次へ回しながら1つずつ読む。",
     "concepts": ["C-AP-01-040", "C-AP-01-037", "C-AP-01-046"],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets", "url": "https://www.deeplearningbook.org/contents/rnn.html" },
       { "title": "Google for Developers: Machine Learning Glossary（recurrent neural network）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -1912,6 +1973,7 @@
     ],
     "memoryTip": "勾配が『消える』＝前の層まで直す合図が届かない。",
     "concepts": ["C-AP-01-042", "C-AP-01-040"],
+    "figures": ["fig-ap-vanish-explode"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)", "url": "https://arxiv.org/abs/1211.5063" }
@@ -1941,6 +2003,7 @@
     ],
     "memoryTip": "1より小さい数を何回も掛けると、すぐ0に近づく（0.5の10乗≒0.001）。",
     "concepts": ["C-AP-01-042", "C-AP-01-043"],
+    "figures": ["fig-ap-vanish-explode"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1967,6 +2030,7 @@
     ],
     "memoryTip": "爆発には『上限をかける』（クリッピング）。消失には LSTM（長い文でも前の情報を覚えておける、順に読むモデル）。",
     "concepts": ["C-AP-01-043"],
+    "figures": ["fig-ap-vanish-explode"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（exploding gradient problem・gradient clipping）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)", "url": "https://arxiv.org/abs/1211.5063" }
@@ -1996,6 +2060,7 @@
     ],
     "memoryTip": "消える（小）・爆発（大）。消えるのを防ぐのが LSTM。",
     "concepts": ["C-AP-01-042", "C-AP-01-043", "C-AP-01-044"],
+    "figures": ["fig-ap-vanish-explode"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem・exploding gradient problem・Long Short-Term Memory）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation", "url": "https://www.bioinf.jku.at/publications/older/2604.pdf" }
@@ -2025,6 +2090,7 @@
     ],
     "memoryTip": "LSTM＝RNN＋ゲート＋記憶の通り道。",
     "concepts": ["C-AP-01-044", "C-AP-01-040"],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [{ "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation", "url": "https://www.bioinf.jku.at/publications/older/2604.pdf" }],
     "status": "verified"
   },
@@ -2051,6 +2117,7 @@
     ],
     "memoryTip": "LSTMの敵＝勾配消失。長く覚えるための工夫。",
     "concepts": ["C-AP-01-044", "C-AP-01-042"],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation", "url": "https://www.bioinf.jku.at/publications/older/2604.pdf" },
       { "title": "Google for Developers: Machine Learning Glossary（Long Short-Term Memory）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -2080,6 +2147,7 @@
     ],
     "memoryTip": "LSTMも『順番に読む』。並列にしたのは Transformer。",
     "concepts": ["C-AP-01-044", "C-AP-01-046"],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation", "url": "https://www.bioinf.jku.at/publications/older/2604.pdf" },
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
@@ -2109,6 +2177,7 @@
     ],
     "memoryTip": "Attention＝『どこに注目するか』の重み付け。",
     "concepts": ["C-AP-01-045"],
+    "figures": ["fig-ap-seq2seq-attention"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（attention）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -2135,6 +2204,7 @@
     ],
     "memoryTip": "長い文を1本に詰めると苦しい→必要な所を毎回見に行く（Attention）。",
     "concepts": ["C-AP-01-045", "C-AP-01-048"],
+    "figures": ["fig-ap-seq2seq-attention"],
     "sources": [{ "title": "Bahdanau, Cho & Bengio (2014) Neural Machine Translation by Jointly Learning to Align and Translate (arXiv:1409.0473)", "url": "https://arxiv.org/abs/1409.0473" }],
     "status": "verified"
   },
@@ -2161,6 +2231,7 @@
     ],
     "memoryTip": "Transformer＝Attention だけ。だから並列で速い。",
     "concepts": ["C-AP-01-046", "C-AP-01-045"],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [{ "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }],
     "status": "verified"
   },
@@ -2187,6 +2258,7 @@
     ],
     "memoryTip": "Transformerは順番に読まないので、位置の情報を別に足す。",
     "concepts": ["C-AP-01-046"],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
@@ -2216,6 +2288,7 @@
     ],
     "memoryTip": "RNN → LSTM → Transformer（Attention）。",
     "concepts": ["C-AP-01-040", "C-AP-01-044", "C-AP-01-046"],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets", "url": "https://www.deeplearningbook.org/contents/rnn.html" }
@@ -2245,6 +2318,7 @@
     ],
     "memoryTip": "VAE＝縮めて（エンコーダ）戻す（デコーダ）。間を『分布』で持つ。",
     "concepts": ["C-AP-01-047", "C-AP-01-052", "C-AP-01-067"],
+    "figures": ["fig-ap-vae"],
     "sources": [
       { "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)", "url": "https://arxiv.org/abs/1312.6114" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 20 Deep Generative Models（20.10.3 Variational Autoencoders）", "url": "https://www.deeplearningbook.org/contents/generative_models.html" }
@@ -2274,6 +2348,7 @@
     ],
     "memoryTip": "エン（入り口で縮める）→ 潜在ベクトル → デ（出口で戻す）。",
     "concepts": ["C-AP-01-048", "C-AP-01-049", "C-AP-01-050", "C-AP-01-047"],
+    "figures": ["fig-ap-vae"],
     "sources": [{ "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)", "url": "https://arxiv.org/abs/1312.6114" }],
     "status": "verified"
   },
@@ -2300,6 +2375,7 @@
     ],
     "memoryTip": "デコーダ＝内側→外側（戻す・作る）。",
     "concepts": ["C-AP-01-049", "C-AP-01-048"],
+    "figures": ["fig-ap-vae"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（decoder・encoder）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -2326,6 +2402,7 @@
     ],
     "memoryTip": "翻訳：エンコーダ（読む・まとめる）→ デコーダ（書く）。",
     "concepts": ["C-AP-01-048", "C-AP-01-049"],
+    "figures": ["fig-ap-seq2seq-attention"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（encoder・decoder）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -2352,6 +2429,7 @@
     ],
     "memoryTip": "潜在＝表に出ない。少ない数で特徴を表す。",
     "concepts": ["C-AP-01-050"],
+    "figures": ["fig-ap-vae"],
     "sources": [{ "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)", "url": "https://arxiv.org/abs/1312.6114" }],
     "status": "verified"
   },
@@ -2378,6 +2456,7 @@
     ],
     "memoryTip": "生成モデルのノイズ＝『毎回ちがう物を作るためのサイコロ』。",
     "concepts": ["C-AP-01-051", "C-AP-01-047", "C-AP-01-052"],
+    "figures": ["fig-ap-vae"],
     "sources": [
       { "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)", "url": "https://arxiv.org/abs/1312.6114" },
       { "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" }
@@ -2464,6 +2543,7 @@
     ],
     "memoryTip": "完成後に使うのは生成器。識別器は練習相手。",
     "concepts": ["C-AP-01-052", "C-AP-01-053"],
+    "figures": ["fig-ap-gan"],
     "sources": [
       { "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" },
       { "title": "Google for Developers: Machine Learning Glossary（generator）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -2493,6 +2573,7 @@
     ],
     "memoryTip": "答え（ラベル・数）を出す＝識別系。新しいデータを出す＝生成系。",
     "concepts": ["C-AP-01-055", "C-AP-01-054"],
+    "figures": ["fig-ap-gen-vs-disc"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（generative model・discriminative model）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
@@ -2522,6 +2603,7 @@
     ],
     "memoryTip": "『当てる』は識別系、『作る』は生成系。",
     "concepts": ["C-AP-01-054", "C-AP-01-055"],
+    "figures": ["fig-ap-gen-vs-disc"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（discriminative model・generative model）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -2603,6 +2685,7 @@
     ],
     "memoryTip": "1956年・ダートマス・マッカーシー・『AI』命名。",
     "concepts": ["C-AP-01-057"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
       { "title": "McCarthy et al. A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence (1955)", "url": "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf" }
@@ -2632,6 +2715,7 @@
     ],
     "memoryTip": "マッカーシー＝AIの名付け親（1956年）。",
     "concepts": ["C-AP-01-057"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" }
@@ -2687,6 +2771,7 @@
     ],
     "memoryTip": "第一次＝探索・推論、第二次＝知識、第三次＝機械学習。",
     "concepts": ["C-AP-01-058", "C-AP-01-059", "C-AP-01-060"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },
@@ -2713,6 +2798,7 @@
     ],
     "memoryTip": "おもちゃの問題（トイ・プロブレム）しか解けなかった＝第一次。",
     "concepts": ["C-AP-01-058", "C-AP-01-061"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
@@ -2797,6 +2883,7 @@
     ],
     "memoryTip": "探索・推論 → 知識 → 機械学習（人が書く量がだんだん減る）。",
     "concepts": ["C-AP-01-058", "C-AP-01-062", "C-AP-01-065"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }],
     "status": "verified"
   },
@@ -2823,6 +2910,7 @@
     ],
     "memoryTip": "エキスパート＝専門家。知識を入れて専門家のまねをする＝第二次ブーム。",
     "concepts": ["C-AP-01-063", "C-AP-01-062"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }
@@ -2852,6 +2940,7 @@
     ],
     "memoryTip": "MYCIN＝エキスパートシステムの代表（約500ルール）。",
     "concepts": ["C-AP-01-063"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }],
     "status": "verified"
   },
@@ -2907,6 +2996,7 @@
     ],
     "memoryTip": "第二次の弱点＝知識を全部人が書く。",
     "concepts": ["C-AP-01-062", "C-AP-01-063"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },
@@ -2933,6 +3023,7 @@
     ],
     "memoryTip": "第一次の壁＝現実が複雑、第二次の壁＝知識が書き切れない。",
     "concepts": ["C-AP-01-062", "C-AP-01-005", "C-AP-01-061"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },
@@ -2985,6 +3076,7 @@
     ],
     "memoryTip": "第三次＝ビッグデータ×機械学習→ディープラーニング。",
     "concepts": ["C-AP-01-065", "C-AP-01-066", "C-AP-01-026"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },
@@ -3011,6 +3103,7 @@
     ],
     "memoryTip": "データが増えた＋計算が速くなった→機械学習が伸びた。",
     "concepts": ["C-AP-01-066", "C-AP-01-065"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }],
     "status": "verified"
   },
@@ -3037,6 +3130,7 @@
     ],
     "memoryTip": "第三次の主役はデータから学ぶAI。人が書くAIは第二次。",
     "concepts": ["C-AP-01-065", "C-AP-01-062"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }
@@ -3066,6 +3160,7 @@
     ],
     "memoryTip": "2012年・画像認識の大会・ディープラーニング圧勝。",
     "concepts": ["C-AP-01-065", "C-AP-01-026"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }],
     "status": "verified"
   },
@@ -3092,6 +3187,7 @@
     ],
     "memoryTip": "拡散モデル＝砂嵐から少しずつノイズを消して絵を浮かび上がらせる。",
     "concepts": ["C-AP-01-067", "C-AP-01-051"],
+    "figures": ["fig-ap-diffusion"],
     "sources": [
       { "title": "Ho, Jain & Abbeel (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)", "url": "https://arxiv.org/abs/2006.11239" },
       { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" }
@@ -3121,6 +3217,7 @@
     ],
     "memoryTip": "拡散（壊す）→ 逆拡散（作る）。学ぶのは作る側。",
     "concepts": ["C-AP-01-067"],
+    "figures": ["fig-ap-diffusion"],
     "sources": [{ "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" }],
     "status": "verified"
   },
@@ -3231,6 +3328,7 @@
     ],
     "memoryTip": "生成AIブーム＝深層学習・Transformer（2017年に発表された、いまの生成AIの土台のモデル）の大規模化＋基盤モデル＋計算資源＋オープン化。",
     "concepts": ["C-AP-01-069", "C-AP-01-068"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }],
     "status": "verified"
   },
@@ -3257,6 +3355,7 @@
     ],
     "memoryTip": "1956ダートマス → 1980年代 知識 → 2017 Transformer → 2022 ChatGPT。",
     "concepts": ["C-AP-01-069", "C-AP-01-057", "C-AP-01-062", "C-AP-01-046"],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" },
@@ -3368,6 +3467,7 @@
     ],
     "memoryTip": "学び方は『教師あり・教師なし・半教師あり・強化』の4つ。『過学習』『未学習』は学び方ではなく、学んだ結果の状態の名前。",
     "concepts": ["C-AP-01-016", "C-AP-01-030", "C-AP-01-007"],
+    "figures": ["fig-ap-ml-three-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（reinforcement learning・overfitting）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
@@ -3397,6 +3497,7 @@
     ],
     "memoryTip": "正解付きのデータで当てさせる＝教師あり。『未学習』『過学習』は学び方ではなく状態。",
     "concepts": ["C-AP-01-007", "C-AP-01-008", "C-AP-01-030"],
+    "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（supervised machine learning・underfitting）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }
@@ -3426,6 +3527,7 @@
     ],
     "memoryTip": "ディープフェイクは『作る側』（生成系AI）の技術。顔の入れ替え＝エンコーダとデコーダ、本物らしさ＝GANの生成器と識別器の競争。",
     "concepts": ["C-AP-01-056", "C-AP-01-052", "C-AP-01-055", "C-AP-01-048"],
+    "figures": ["fig-ap-gan"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 偽・誤情報の流通・拡散", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" },
       { "title": "U.S. Department of Homeland Security, Public-Private Analytic Exchange Program \"Increasing Threats of Deepfake Identities\"", "url": "https://www.dhs.gov/sites/default/files/publications/increasing_threats_of_deepfake_identities_0.pdf" }
@@ -3455,6 +3557,7 @@
     ],
     "memoryTip": "GAN＝偽札づくり（生成器）と警察（識別器）の競争。作る役＝生成器、見破る役＝識別器。",
     "concepts": ["C-AP-01-052", "C-AP-01-053", "C-AP-01-056"],
+    "figures": ["fig-ap-gan"],
     "sources": [
       { "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" },
       { "title": "U.S. Department of Homeland Security, Public-Private Analytic Exchange Program \"Increasing Threats of Deepfake Identities\"", "url": "https://www.dhs.gov/sites/default/files/publications/increasing_threats_of_deepfake_identities_0.pdf" }

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 454" role="img" aria-labelledby="fig-ap-convolution-t fig-ap-convolution-d">
+<title id="fig-ap-convolution-t">畳み込み：小さなフィルタを画像の上でずらしながら、重みを掛けて足す</title>
+<desc id="fig-ap-convolution-d">左は5×5の画像の数、中は3×3のフィルタ（重みの組）、右は出力3×3。出力の左上は、画像の左上の太い枠の9マスにフィルタを重ね、対応する数を掛けて全部足したもの：2×1＋1×0＋0×1＋0×0＋2×1＋1×0＋3×1＋0×0＋1×1＝8。枠を1マスずつずらして同じ計算をすると、残りのマスが出る（出力は上の行から8・7・2、2・6・8、11・3・6）。同じフィルタを画像全体で使い回すので、重みはフィルタの9個だけで済み、画素ごとに別の重みを持たない。また、模様が画像のどこにあっても同じフィルタで見つけられる。だから画像のような縦横の格子のデータに強い。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">畳み込み：小さなフィルタをずらし、掛けて足す</text>
+<rect x="12" y="34" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="49.5" text-anchor="middle">2</text>
+<rect x="34" y="34" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="49.5" text-anchor="middle">1</text>
+<rect x="56" y="34" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="49.5" text-anchor="middle">0</text>
+<rect x="78" y="34" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="49.5" text-anchor="middle">3</text>
+<rect x="100" y="34" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="49.5" text-anchor="middle">1</text>
+<rect x="12" y="56" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="71.5" text-anchor="middle">0</text>
+<rect x="34" y="56" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="71.5" text-anchor="middle">2</text>
+<rect x="56" y="56" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="71.5" text-anchor="middle">1</text>
+<rect x="78" y="56" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="71.5" text-anchor="middle">0</text>
+<rect x="100" y="56" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="71.5" text-anchor="middle">2</text>
+<rect x="12" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="93.5" text-anchor="middle">3</text>
+<rect x="34" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="93.5" text-anchor="middle">0</text>
+<rect x="56" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="93.5" text-anchor="middle">1</text>
+<rect x="78" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="93.5" text-anchor="middle">2</text>
+<rect x="100" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="93.5" text-anchor="middle">0</text>
+<rect x="12" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="115.5" text-anchor="middle">1</text>
+<rect x="34" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="115.5" text-anchor="middle">2</text>
+<rect x="56" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="115.5" text-anchor="middle">0</text>
+<rect x="78" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="115.5" text-anchor="middle">1</text>
+<rect x="100" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="115.5" text-anchor="middle">3</text>
+<rect x="12" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="23" y="137.5" text-anchor="middle">2</text>
+<rect x="34" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="45" y="137.5" text-anchor="middle">0</text>
+<rect x="56" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="67" y="137.5" text-anchor="middle">3</text>
+<rect x="78" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="89" y="137.5" text-anchor="middle">1</text>
+<rect x="100" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="111" y="137.5" text-anchor="middle">1</text>
+<rect x="12" y="34" width="66" height="66" class="sa" stroke-width="3"/>
+<text x="67" y="162" class="tm" text-anchor="middle">画像 5×5</text>
+<text x="132" y="93" class="tb" text-anchor="middle">×</text>
+<rect x="144" y="56" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="155" y="71.5" text-anchor="middle">1</text>
+<rect x="166" y="56" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="177" y="71.5" text-anchor="middle">0</text>
+<rect x="188" y="56" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="199" y="71.5" text-anchor="middle">1</text>
+<rect x="144" y="78" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="155" y="93.5" text-anchor="middle">0</text>
+<rect x="166" y="78" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="177" y="93.5" text-anchor="middle">1</text>
+<rect x="188" y="78" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="199" y="93.5" text-anchor="middle">0</text>
+<rect x="144" y="100" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="155" y="115.5" text-anchor="middle">1</text>
+<rect x="166" y="100" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="177" y="115.5" text-anchor="middle">0</text>
+<rect x="188" y="100" width="22" height="22" class="fas sa" stroke-width="1"/>
+<text x="199" y="115.5" text-anchor="middle">1</text>
+<text x="177" y="162" class="tm" text-anchor="middle">フィルタ 3×3</text>
+<text x="220" y="93" class="tb" text-anchor="middle">＝</text>
+<rect x="236" y="56" width="22" height="22" class="fok sok" stroke-width="1"/>
+<text x="247" y="71.5" class="tb" text-anchor="middle">8</text>
+<rect x="258" y="56" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="269" y="71.5" text-anchor="middle">7</text>
+<rect x="280" y="56" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="291" y="71.5" text-anchor="middle">2</text>
+<rect x="236" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="247" y="93.5" text-anchor="middle">2</text>
+<rect x="258" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="269" y="93.5" text-anchor="middle">6</text>
+<rect x="280" y="78" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="291" y="93.5" text-anchor="middle">8</text>
+<rect x="236" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="247" y="115.5" text-anchor="middle">11</text>
+<rect x="258" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="269" y="115.5" text-anchor="middle">3</text>
+<rect x="280" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<text x="291" y="115.5" text-anchor="middle">6</text>
+<text x="269" y="162" class="tm" text-anchor="middle">出力 3×3</text>
+<text x="12" y="188" class="tb">出力の左上＝太い枠の9マスの計算</text>
+<text x="12" y="208">2×1＋1×0＋0×1</text>
+<text x="12" y="228">＋0×0＋2×1＋1×0</text>
+<text x="12" y="248" class="tb">＋3×1＋0×0＋1×1 ＝ 8</text>
+<text x="12" y="270" class="tm">枠を1マスずつずらし、同じ計算で残りを出す</text>
+<line x1="12" y1="286" x2="308" y2="286" class="l sb w1"/>
+<text x="12" y="308" class="tb ta">同じフィルタを画像全体で使い回す</text>
+<text x="12" y="330">・重みはフィルタの9個だけで済む</text>
+<text x="12" y="350" class="tm">　（画素ごとに別の重みを持たない）</text>
+<text x="12" y="372">・模様が左上にあっても右下にあっても、</text>
+<text x="12" y="392">　同じフィルタで見つけられる</text>
+<text x="12" y="416" class="tb">画像のような縦横の格子のデータに強い</text>
+<text x="12" y="436" class="tm">（数は説明のための例）</text>
+</svg>

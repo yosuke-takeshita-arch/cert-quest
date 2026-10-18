@@ -119,6 +119,7 @@
     "confusions": [
       { "id": "C-AP-01-008", "point": "教師データは学習に使う材料（入力と答えの組）。学習済みモデルは、その材料から学んだ結果。" }
     ],
+    "figures": ["fig-ap-train-infer"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（inference・training・weight）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -140,6 +141,7 @@
     "confusions": [
       { "id": "C-AP-01-013", "point": "教師あり学習は正解付きのデータで学ぶ。教師なし学習は正解を使わず、データどうしの似かたなどから構造を見つける。" }
     ],
+    "figures": ["fig-ap-ml-three-types"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "Google for Developers: Machine Learning Glossary（label・classification model・regression model）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -160,6 +162,7 @@
     "confusions": [
       { "id": "C-AP-01-006", "point": "教師データは学習に使う入力と正解の組。学習済みモデルは、そこから学んだ数値の集まり。" }
     ],
+    "figures": ["fig-ap-train-infer"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（label・labeled example）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }
@@ -182,6 +185,7 @@
       { "id": "C-AP-01-014", "point": "分類は正解の種類を決めてから、正解付きのデータで学ぶ。クラスタリングは正解なしで、似たもの同士をまとめる。" },
       { "id": "C-AP-01-010", "point": "分類は種類を答える。回帰は数を答える。" }
     ],
+    "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（classification model・regression model）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -200,6 +204,7 @@
     "confusions": [
       { "id": "C-AP-01-009", "point": "回帰は数（値段・個数）を答える。分類は種類を答える。" }
     ],
+    "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（regression model）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -218,6 +223,7 @@
     "confusions": [
       { "id": "C-AP-01-010", "point": "手書きの数字を0〜9のどれかに当てるのは多値分類。数の大きさそのもの（値段など）を当てるのが回帰。" }
     ],
+    "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（binary classification・multi-class classification）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -228,7 +234,7 @@
     "syllabus": ["AIの基礎と歴史", "機械学習", "教師あり学習"],
     "title": "正解率",
     "oneLine": "分類したもののうち、正しく当たった割合。正解率＝当たった数÷全部の数。",
-    "why": "困りごと：分類のモデルがどれくらい使えるかを、1つの数で表したい。例：テスト用の画像200枚を分類させて、180枚が当たったら、正解率＝180÷200＝0.9（90％）。押さえどころ：分かりやすく、2つの種類の数がほぼ同じデータでは大まかな良さの目安になる。混同しやすい点：片方の種類がとても少ないデータでは当てにならない。例えば100件のうち病気の人が1件だけなら、全員に『病気でない』と答えるだけのモデルでも、当たるのは99件なので正解率は99％になる。病気の人を1人も見つけていないのに数字だけは高い。このようなときは、見つけたいものをどれだけ見つけたか（再現率）など別の指標も見る。",
+    "why": "困りごと：分類のモデルがどれくらい使えるかを、1つの数で表したい。例：テスト用の画像200枚を分類させて、170枚が当たったら、正解率＝170÷200＝0.85（85％）。押さえどころ：分かりやすく、2つの種類の数がほぼ同じデータでは大まかな良さの目安になる。混同しやすい点：片方の種類がとても少ないデータでは当てにならない。例えば100件のうち病気の人が1件だけなら、全員に『病気でない』と答えるだけのモデルでも、当たるのは99件なので正解率は99％になる。病気の人を1人も見つけていないのに数字だけは高い。このようなときは、見つけたいものをどれだけ見つけたか（再現率）など別の指標も見る。",
     "links": [
       { "id": "C-AP-01-009", "relation": "対象" },
       { "id": "C-AP-01-011", "relation": "関連" }
@@ -236,6 +242,7 @@
     "confusions": [
       { "id": "C-AP-01-011", "point": "正解率は分類の当たり具合の指標。種類の偏ったデータでは、高くてもよいモデルとは限らない。" }
     ],
+    "figures": ["fig-ap-accuracy"],
     "sources": [
       { "title": "Google for Developers: ML Crash Course - Accuracy, precision, recall", "url": "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall" }
     ],
@@ -256,6 +263,7 @@
     "confusions": [
       { "id": "C-AP-01-007", "point": "教師なし学習は正解を使わない。教師あり学習は正解付きのデータで学ぶ。" }
     ],
+    "figures": ["fig-ap-ml-three-types"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }
     ],
@@ -274,6 +282,7 @@
     "confusions": [
       { "id": "C-AP-01-009", "point": "分類は正解付きのデータで『どの種類か』を学ぶ。クラスタリングは正解なしで似たもの同士をまとめる。" }
     ],
+    "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "scikit-learn User Guide: Clustering（K-means）", "url": "https://scikit-learn.org/stable/modules/clustering.html" }
@@ -293,6 +302,7 @@
     "confusions": [
       { "id": "C-AP-01-014", "point": "クラスタリングはデータ（行）をグループに分ける。次元削減は項目（列）の数を減らす。" }
     ],
+    "figures": ["fig-ap-dim-reduction"],
     "sources": [
       { "title": "scikit-learn User Guide: Decomposing signals in components（PCA）", "url": "https://scikit-learn.org/stable/modules/decomposition.html" },
       { "title": "Google for Developers: Machine Learning Glossary（dimension reduction）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -314,6 +324,7 @@
     "confusions": [
       { "id": "C-AP-01-007", "point": "教師あり学習は1件ごとに正解がある。強化学習は行動の結果の報酬だけを手がかりにする。" }
     ],
+    "figures": ["fig-ap-ml-three-types"],
     "sources": [
       { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" },
       { "title": "Google for Developers: Machine Learning Glossary（reinforcement learning）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -334,6 +345,7 @@
     "confusions": [
       { "id": "C-AP-01-018", "point": "報酬はその場ですぐもらえる点。価値は、その状態から先にもらえそうな報酬の合計の見込み。" }
     ],
+    "figures": ["fig-ap-reward-value"],
     "sources": [
       { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（1.3 Elements of Reinforcement Learning）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
     ],
@@ -353,6 +365,7 @@
     "confusions": [
       { "id": "C-AP-01-017", "point": "報酬は目先の点。価値はその先も含めた点の合計の見込み。" }
     ],
+    "figures": ["fig-ap-reward-value"],
     "sources": [
       { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（1.3 Elements of Reinforcement Learning）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
     ],
@@ -372,6 +385,7 @@
     "confusions": [
       { "id": "C-AP-01-018", "point": "方策は行動の決め方。価値は状態の良さの見込み。" }
     ],
+    "figures": ["fig-ap-reward-value"],
     "sources": [
       { "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（1.3 Elements of Reinforcement Learning）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }
     ],
@@ -391,6 +405,7 @@
     "confusions": [
       { "id": "C-AP-01-013", "point": "教師なし学習は正解を全く使わない。半教師あり学習は少量の正解付きデータも使う。" }
     ],
+    "figures": ["fig-ap-semi-supervised"],
     "sources": [
       { "title": "scikit-learn User Guide: Semi-supervised learning", "url": "https://scikit-learn.org/stable/modules/semi_supervised.html" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 7 Regularization for Deep Learning（7.6 Semi-Supervised Learning）", "url": "https://www.deeplearningbook.org/contents/regularization.html" }
@@ -487,6 +502,7 @@
     "confusions": [
       { "id": "C-AP-01-027", "point": "活性化関数はノードの中で値を変換する関数。損失関数は、予測と正解のずれを測る関数。" }
     ],
+    "figures": ["fig-ap-linear-stack"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（activation function）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/mlp.html" }
@@ -530,6 +546,7 @@
     "confusions": [
       { "id": "C-AP-01-025", "point": "損失関数は予測と正解のずれを測る。活性化関数はノードの中で値を変換する。" }
     ],
+    "figures": ["fig-ap-learning-cycle"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（loss function・loss）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -549,6 +566,7 @@
     "confusions": [
       { "id": "C-AP-01-029", "point": "勾配降下法は、傾きを使って重みを直すやり方。誤差逆伝播法は、その傾きを出口側から順に計算するやり方。" }
     ],
+    "figures": ["fig-ap-gradient-descent"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）", "url": "https://www.deeplearningbook.org/contents/optimization.html" }
@@ -569,6 +587,7 @@
     "confusions": [
       { "id": "C-AP-01-028", "point": "誤差逆伝播法は勾配の計算方法。勾配降下法は、その勾配で重みを更新する方法。" }
     ],
+    "figures": ["fig-ap-learning-cycle"],
     "sources": [
       { "title": "Rumelhart, Hinton & Williams (1986) Learning representations by back-propagating errors. Nature 323", "url": "https://www.nature.com/articles/323533a0" },
       { "title": "Google for Developers: Machine Learning Glossary（backpropagation）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -590,6 +609,7 @@
     "confusions": [
       { "id": "C-AP-01-031", "point": "過学習は新しいデータで当たらない状態。汎化は新しいデータでも当たる力。" }
     ],
+    "figures": ["fig-ap-overfitting"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（5.2 Capacity, Overfitting and Underfitting）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "Google for Developers: Machine Learning Glossary（overfitting）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -609,6 +629,7 @@
     "confusions": [
       { "id": "C-AP-01-030", "point": "汎化は新しいデータでも当たる力。過学習は、学習用に合わせすぎて汎化できていない状態。" }
     ],
+    "figures": ["fig-ap-overfitting"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "Google for Developers: Machine Learning Glossary（generalization）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -649,6 +670,7 @@
     "confusions": [
       { "id": "C-AP-01-034", "point": "アーリーストッピングは学習を止める時期を決める方法。ドロップアウトは学習中にノードを休ませる方法。" }
     ],
+    "figures": ["fig-ap-overfitting"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（early stopping）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 7 Regularization for Deep Learning（7.8 Early Stopping）", "url": "https://www.deeplearningbook.org/contents/regularization.html" }
@@ -660,7 +682,7 @@
     "syllabus": ["AIの基礎と歴史", "ニューラルネットワーク", "過学習と対策"],
     "title": "ドロップアウト",
     "oneLine": "学習のたびに、ニューラルネットワークのノードの一部をランダムに休ませて学ぶ方法。特定のノードに頼りすぎるのを防ぎ、過学習をおさえる。",
-    "why": "名前：drop out（抜け落ちる）。困りごと：ノード同士が互いに頼り合って、学習用データのくせに合わせた複雑な連携を作ると、過学習しやすい。例：隠れ層のノードが10個あるとき、学習の1回ごとに、ランダムに選んだ5個を0にして（休ませて）計算する。毎回ちがうノードが休むので、どのノードも『ほかが休んでも役に立つ』特徴を学ぶ。押さえどころ：Srivastavaら（2014）の論文は、学習中にノードを（つながりごと）ランダムに落とし、テストのときは落とさない1つのネットワークを（重みを小さくして）使うと説明し、過学習を大きく減らすとしている。たくさんの小さなネットワークを平均したような効果がある。混同しやすい点：休ませるのは学習中だけ。予測（推論）のときは全部のノードを使う。",
+    "why": "名前：drop out（抜け落ちる）。困りごと：ノード同士が互いに頼り合って、学習用データのくせに合わせた複雑な連携を作ると、過学習しやすい。例：隠れ層のノードが5個（A〜E）あるとき、学習の1回ごとに、ランダムに選んだ2個を0にして（休ませて）計算する。毎回ちがうノードが休むので、どのノードも『ほかが休んでも役に立つ』特徴を学ぶ。押さえどころ：Srivastavaら（2014）の論文は、学習中にノードを（つながりごと）ランダムに落とし、テストのときは落とさない1つのネットワークを（重みを小さくして）使うと説明し、過学習を大きく減らすとしている。たくさんの小さなネットワークを平均したような効果がある。混同しやすい点：休ませるのは学習中だけ。予測（推論）のときは全部のノードを使う。",
     "links": [
       { "id": "C-AP-01-032", "relation": "全体" },
       { "id": "C-AP-01-030", "relation": "目的" }
@@ -668,6 +690,7 @@
     "confusions": [
       { "id": "C-AP-01-033", "point": "ドロップアウトは学習中にノードを休ませる。アーリーストッピングは学習を止める時期を決める。" }
     ],
+    "figures": ["fig-ap-dropout"],
     "sources": [
       { "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR 15", "url": "https://www.jmlr.org/papers/v15/srivastava14a.html" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 7 Regularization for Deep Learning（7.12 Dropout）", "url": "https://www.deeplearningbook.org/contents/regularization.html" }
@@ -687,6 +710,7 @@
     "confusions": [
       { "id": "C-AP-01-036", "point": "よくある呼び分けでは、転移学習は学習済みの部分を固定して付け足した層だけを学ぶ。ファインチューニングは学習済みの重みも一緒に学び直す。" }
     ],
+    "figures": ["fig-ap-transfer-learning"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 15 Representation Learning（15.2 Transfer Learning and Domain Adaptation）", "url": "https://www.deeplearningbook.org/contents/representation.html" },
       { "title": "Google for Developers: Machine Learning Glossary（transfer learning・fine-tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -706,6 +730,7 @@
     "confusions": [
       { "id": "C-AP-01-035", "point": "ファインチューニングは学習済みの重みも学び直す。（狭い意味の）転移学習は学習済みの部分を固定する。" }
     ],
+    "figures": ["fig-ap-transfer-learning"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（fine-tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -726,6 +751,7 @@
     "confusions": [
       { "id": "C-AP-01-040", "point": "CNNは画像のような格子状のデータが得意。RNNは順番に並んだデータ（文章・音声）が得意。" }
     ],
+    "figures": ["fig-ap-convolution"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 9 Convolutional Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/convnets.html" },
       { "title": "Google for Developers: Machine Learning Glossary（convolutional neural network）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -745,6 +771,7 @@
     "confusions": [
       { "id": "C-AP-01-037", "point": "畳み込みは計算のしかたの名前。CNNは、その計算を層に使ったニューラルネットワーク全体。" }
     ],
+    "figures": ["fig-ap-convolution"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 9 Convolutional Networks（著者公開版）", "url": "https://www.deeplearningbook.org/contents/convnets.html" }
     ],
@@ -763,6 +790,7 @@
     "confusions": [
       { "id": "C-AP-01-037", "point": "コンピュータビジョンは画像を扱う研究分野。CNNはそこでよく使われるモデル。" }
     ],
+    "figures": ["fig-ap-ai-fields"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 12 Applications（12.2 Computer Vision）", "url": "https://www.deeplearningbook.org/contents/applications.html" },
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
@@ -785,6 +813,7 @@
       { "id": "C-AP-01-037", "point": "RNNは順番に並んだデータが得意。CNNは画像のような格子状のデータが得意。" },
       { "id": "C-AP-01-046", "point": "RNNは1語ずつ順に処理する。Transformerは文の全部の語の関係を一度に計算でき、並列に計算しやすい。" }
     ],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets", "url": "https://www.deeplearningbook.org/contents/rnn.html" },
       { "title": "Google for Developers: Machine Learning Glossary（recurrent neural network）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -824,6 +853,7 @@
     "confusions": [
       { "id": "C-AP-01-043", "point": "勾配消失は勾配が小さくなりすぎて学べない。勾配爆発は大きくなりすぎて重みが暴れる。" }
     ],
+    "figures": ["fig-ap-vanish-explode"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)", "url": "https://arxiv.org/abs/1211.5063" }
@@ -843,6 +873,7 @@
     "confusions": [
       { "id": "C-AP-01-042", "point": "勾配爆発は大きくなりすぎ、勾配消失は小さくなりすぎ。爆発の対策の代表は勾配クリッピング。" }
     ],
+    "figures": ["fig-ap-vanish-explode"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（exploding gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "Pascanu, Mikolov & Bengio (2013) On the difficulty of training Recurrent Neural Networks (arXiv:1211.5063)", "url": "https://arxiv.org/abs/1211.5063" }
@@ -863,6 +894,7 @@
     "confusions": [
       { "id": "C-AP-01-040", "point": "LSTMはRNNの一種。ゲートと記憶の通り道を足して、長い依存関係を学べるようにした。" }
     ],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Hochreiter & Schmidhuber (1997) Long Short-Term Memory. Neural Computation", "url": "https://www.bioinf.jku.at/publications/older/2604.pdf" },
       { "title": "Google for Developers: Machine Learning Glossary（Long Short-Term Memory）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -903,6 +935,7 @@
     "confusions": [
       { "id": "C-AP-01-040", "point": "RNNは1語ずつ順に処理する。Transformerは全部の語の関係を一度に計算し、並列に計算しやすい。" }
     ],
+    "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
@@ -926,6 +959,7 @@
     "confusions": [
       { "id": "C-AP-01-052", "point": "VAEはエンコーダとデコーダの組で、縮めて戻すことを学ぶ。GANは生成器と識別器を競わせて学ぶ。" }
     ],
+    "figures": ["fig-ap-vae"],
     "sources": [
       { "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)", "url": "https://arxiv.org/abs/1312.6114" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 20 Deep Generative Models（20.10.3 Variational Autoencoders）", "url": "https://www.deeplearningbook.org/contents/generative_models.html" }
@@ -1030,6 +1064,7 @@
     "confusions": [
       { "id": "C-AP-01-047", "point": "GANは生成器と識別器を競わせる。VAEはエンコーダとデコーダで縮めて戻す。" }
     ],
+    "figures": ["fig-ap-gan"],
     "sources": [
       { "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" },
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 20 Deep Generative Models（20.10.4 Generative Adversarial Networks）", "url": "https://www.deeplearningbook.org/contents/generative_models.html" }
@@ -1071,6 +1106,7 @@
     "confusions": [
       { "id": "C-AP-01-055", "point": "識別系AIは見分ける・予測する。生成系AIは新しい文章・画像などを作る。" }
     ],
+    "figures": ["fig-ap-gen-vs-disc"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（discriminative model・generative model）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -1092,6 +1128,7 @@
     "confusions": [
       { "id": "C-AP-01-054", "point": "生成系AIは新しいデータを作る。識別系AIは入力を見分けたり数を予測したりする。" }
     ],
+    "figures": ["fig-ap-gen-vs-disc"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（generative model）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "総務省 令和6年版 情報通信白書 生成AIの急速な進化と普及", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131210.html" }
@@ -1151,6 +1188,7 @@
     "confusions": [
       { "id": "C-AP-01-062", "point": "第一次は探索・推論の時代。第二次は知識（エキスパートシステム）の時代。" }
     ],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
@@ -1211,6 +1249,7 @@
     "confusions": [
       { "id": "C-AP-01-005", "point": "ルールベースの限界は、2回目の冬の原因の1つ。AIの冬は、その結果として研究が冷え込んだ時期の呼び名。" }
     ],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }
@@ -1232,6 +1271,7 @@
     "confusions": [
       { "id": "C-AP-01-065", "point": "第二次は人が知識を書き込む。第三次はデータからAIが自分で知識を獲得する。" }
     ],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }
@@ -1294,6 +1334,7 @@
     "confusions": [
       { "id": "C-AP-01-062", "point": "第二次は人が知識を書き込んだ。第三次はデータからAIが自分で知識を獲得する。" }
     ],
+    "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
       { "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" },
@@ -1335,6 +1376,7 @@
     "confusions": [
       { "id": "C-AP-01-052", "point": "拡散モデルはノイズを少しずつ取り除いて作る。GANは生成器と識別器を競わせて、生成器が一度に作る。" }
     ],
+    "figures": ["fig-ap-diffusion"],
     "sources": [
       { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" },
       { "title": "Ho, Jain & Abbeel (2020) Denoising Diffusion Probabilistic Models (arXiv:2006.11239)", "url": "https://arxiv.org/abs/2006.11239" },

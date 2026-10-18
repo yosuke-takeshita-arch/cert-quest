@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 406" role="img" aria-labelledby="fig-ap-foundation-model-t fig-ap-foundation-model-d">
+<title id="fig-ap-foundation-model-t">基盤モデル：広く大量のデータで学んだ1つの大きなモデルを、多くの仕事に合わせて使い回す</title>
+<desc id="fig-ap-foundation-model-d">上から下へ。文章・画像・コードなど広く大量のデータで事前学習して、基盤モデルを作る。例はBERT・GPT-3・DALL-E。基盤モデルを、少しの追加学習や指示で合わせて、翻訳・要約・質問応答・画像を作る、といった多くの仕事に使い回す。仕事ごとに一から作り直さなくてよい（白書は、新しいタスクのたびに学習し直す必要がなくなったとしている）。注意：基盤の欠点（偏りや誤り）は、そこから作ったすべてのモデルに引き継がれうる。基盤モデルは文章だけの呼び名ではなく、画像を作るモデルも含む。</desc>
+<text x="12" y="20" class="tb">基盤モデル：1つの大きなモデルを使い回す</text>
+<rect x="12" y="32" width="296" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="55" class="tb" text-anchor="middle">広く大量のデータ</text>
+<text x="160" y="75" text-anchor="middle">文章・画像・コードなど</text>
+<line x1="160" y1="90" x2="160" y2="110" class="l sa w2"/>
+<polyline points="156.00,103.00 160,110 164.00,103.00" class="l sa w2"/>
+<text x="170" y="104" class="tm">事前学習</text>
+<rect x="12" y="112" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="135" class="tb" text-anchor="middle">基盤モデル</text>
+<text x="160" y="155" class="tm" text-anchor="middle">例 BERT・GPT-3・DALL-E</text>
+<line x1="160" y1="170" x2="46" y2="196" class="l sm w1"/>
+<polyline points="51.94,190.54 46,196 53.71,198.34" class="l sm w1"/>
+<rect x="12" y="196" width="68" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="46" y="217" text-anchor="middle">翻訳</text>
+<line x1="160" y1="170" x2="122" y2="196" class="l sm w1"/>
+<polyline points="125.52,188.75 122,196 130.04,195.35" class="l sm w1"/>
+<rect x="88" y="196" width="68" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="122" y="217" text-anchor="middle">要約</text>
+<line x1="160" y1="170" x2="198" y2="196" class="l sm w1"/>
+<polyline points="189.96,195.35 198,196 194.48,188.75" class="l sm w1"/>
+<rect x="164" y="196" width="68" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="198" y="217" text-anchor="middle">質問応答</text>
+<line x1="160" y1="170" x2="274" y2="196" class="l sm w1"/>
+<polyline points="266.29,198.34 274,196 268.06,190.54" class="l sm w1"/>
+<rect x="240" y="196" width="68" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="274" y="217" text-anchor="middle">画像を作る</text>
+<text x="12" y="246" class="tm">矢印＝少しの追加学習や指示で仕事に合わせる</text>
+<text x="12" y="270" class="tb">仕事ごとに一から作り直さなくてよい</text>
+<text x="12" y="290" class="tm">（白書：新しいタスクのたびの学習し直しが不要に）</text>
+<line x1="12" y1="306" x2="308" y2="306" class="l sb w1"/>
+<text x="12" y="328" class="tb tng">注意</text>
+<text x="12" y="348">・基盤の欠点（偏り・誤り）は、そこから</text>
+<text x="12" y="368">　作ったすべてのモデルに引き継がれうる</text>
+<text x="12" y="388">・文章だけの呼び名ではない（画像も含む）</text>
+</svg>

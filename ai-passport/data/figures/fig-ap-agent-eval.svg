@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" role="img" aria-labelledby="fig-ap-agent-eval-t fig-ap-agent-eval-d">
+<title id="fig-ap-agent-eval-t">AIエージェントの評価（Eval）：trial・transcript・grader、何を見て合否を決めるか</title>
+<desc id="fig-ap-agent-eval-d">例は航空券の予約エージェント。trial（試み）は仕事への1回の試みで、何回もくり返す。transcript（全記録）は出力・道具の呼び出し・途中の結果のすべて。grader（採点の決まり）は出来の一面に点を付ける。合否は、答えの文（「予約しました」）だけでは不十分で、試みが終わったときの環境の状態（outcome）、つまり予約の記録が本当にできているかを確かめる。自動の評価は変更のたびに回す最初の守り、本番のモニタリングは想定外の失敗を見つけるもので、どちらかだけで足りるのではない。</desc>
+<text x="12" y="20" class="tb">AI エージェントの評価（Eval）</text>
+<text x="12" y="40" class="tm">例：航空券の予約エージェント</text>
+<rect x="12" y="52" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="75" class="tb">trial（試み）</text>
+<text x="22" y="95">仕事への1回の試み。何回もくり返す</text>
+<rect x="12" y="120" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="143" class="tb">transcript（全記録）</text>
+<text x="22" y="163">出力・道具の呼び出し・途中の結果のすべて</text>
+<rect x="12" y="188" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="211" class="tb">grader（採点の決まり）</text>
+<text x="22" y="231">出来の一面に点を付ける</text>
+<text x="12" y="270" class="tb">何を見て合否を決めるか</text>
+<rect x="12" y="280" width="140" height="76" class="fng sng" stroke-width="1.5"/>
+<text x="82" y="303" class="tb" text-anchor="middle">答えの文</text>
+<text x="82" y="323" class="tm" text-anchor="middle">「予約しました」</text>
+<text x="82" y="343" class="tng" text-anchor="middle">× 文だけでは不十分</text>
+<rect x="168" y="280" width="140" height="76" class="fok sok" stroke-width="1.5"/>
+<text x="238" y="303" class="tb" text-anchor="middle">終わりの状態</text>
+<text x="238" y="323" class="tm" text-anchor="middle">予約の記録が本当に</text>
+<text x="238" y="343" class="tok" text-anchor="middle">できているか ○</text>
+<text x="238" y="368" class="tm" text-anchor="middle">（outcome）</text>
+<line x1="12" y1="380" x2="308" y2="380" class="l sb w1"/>
+<text x="12" y="402" class="tb">2つを組み合わせる</text>
+<text x="12" y="422">自動の評価：変更のたびに回す最初の守り</text>
+<text x="12" y="442">本番のモニタリング：想定外の失敗を見つける</text>
+<text x="12" y="462" class="tm">どちらかだけで足りるのではない</text>
+</svg>

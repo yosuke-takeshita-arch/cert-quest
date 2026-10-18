@@ -35,6 +35,7 @@
     "confusions": [
       { "id": "C-AP-02-038", "point": "RAGは、生成AIが答える前に外部の情報を検索して使う仕組み。生成AIであることは変わらないので、要約の誤りは起こりうる。" }
     ],
+    "figures": ["fig-ap-search-vs-genai"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" },
@@ -133,6 +134,7 @@
       { "id": "C-AP-04-009", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
@@ -289,6 +291,7 @@
       { "id": "C-AP-04-080", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-input-leak"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -330,6 +333,7 @@
       { "id": "C-AP-04-136", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-input-leak"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -411,6 +415,7 @@
     "confusions": [
       { "id": "C-AP-04-022", "point": "肖像権は、だれもが持つ、顔や姿をみだりに使われない権利（人格的な利益）。パブリシティ権は、有名人などの肖像等が持つ顧客吸引力を独り占めする権利。" }
     ],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -429,6 +434,7 @@
       { "id": "C-AP-04-027", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
     ],
@@ -616,6 +622,7 @@
       { "id": "C-AP-04-029", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-mfa"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト 用語集（た行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_04/" },
       { "title": "総務省 国民のためのサイバーセキュリティサイト 用語集（な行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_05/" }
@@ -654,6 +661,7 @@
     "confusions": [
       { "id": "C-AP-04-013", "point": "プロンプトインジェクションは、入力や参照データへの細工による外からの攻撃。ハルシネーションは攻撃が無くても起こる、AI自身の誤り。" }
     ],
+    "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "総務省『AIのセキュリティ確保のための技術的対策に係るガイドライン』（令和8年3月）", "url": "https://www.soumu.go.jp/main_content/001064122.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -673,6 +681,7 @@
       { "id": "C-AP-04-128", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-human-loop"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -693,6 +702,7 @@
     "confusions": [
       { "id": "C-AP-04-037", "point": "シャドーITは、IT部門の承認の無いソフトウェアや機器全般。シャドーAIは、そのうちAIツールの利用に絞ったもの。" }
     ],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -728,6 +738,7 @@
       { "id": "C-AP-04-042", "relation": "解決策" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -746,6 +757,7 @@
       { "id": "C-AP-04-017", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" },
       { "title": "IBM『What is shadow IT?』", "url": "https://www.ibm.com/think/topics/shadow-it" }
@@ -802,6 +814,7 @@
       { "id": "C-AP-04-142", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-shadow-ai"],
     "sources": [
       { "title": "IBM『What is shadow AI?』", "url": "https://www.ibm.com/think/topics/shadow-ai" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -910,6 +923,7 @@
       { "id": "C-AP-04-058", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
@@ -1054,6 +1068,7 @@
       { "id": "C-AP-04-126", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "埼玉県教育委員会『一生消えないデジタルタトゥー』", "url": "https://www.pref.saitama.lg.jp/documents/44152/r6_nettrouble03.pdf" }
@@ -1073,6 +1088,7 @@
       { "id": "C-AP-04-004", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-adopt-fix-discard"],
     "sources": [
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
     ],
@@ -1151,6 +1167,7 @@
     "confusions": [
       { "id": "C-AP-04-062", "point": "個人情報は1つ1つの情報。個人データは、そのうち検索できるよう体系的に整理されたデータベース等を構成するもの。第三者提供の制限などは個人データにかかる。" }
     ],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" }
@@ -1169,6 +1186,7 @@
       { "id": "C-AP-04-080", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "個人情報保護委員会『生成AIサービスの利用に関する注意喚起等』（令和5年6月2日）", "url": "https://www.ppc.go.jp/files/pdf/230602_alert_generative_AI_service.pdf" }
@@ -1186,6 +1204,7 @@
       { "id": "C-AP-04-021", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行令（平成十五年政令第五百七号）", "url": "https://laws.e-gov.go.jp/law/415CO0000000507" }
@@ -1321,6 +1340,7 @@
     "confusions": [
       { "id": "C-AP-04-071", "point": "匿名加工情報は、識別できず復元もできないように加工したもの。決められた手順で第三者に提供できる。仮名加工情報は、他の情報と照合しない限り識別できないように加工したもので、原則として第三者に提供できない。" }
     ],
+    "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -1337,6 +1357,7 @@
       { "id": "C-AP-04-072", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -1355,6 +1376,7 @@
       { "id": "C-AP-04-076", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-personal-info"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -1499,6 +1521,7 @@
       { "id": "C-AP-04-153", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-breach-report"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行規則（平成二十八年個人情報保護委員会規則第三号）", "url": "https://laws.e-gov.go.jp/law/428M60020000003" },
@@ -1518,6 +1541,7 @@
       { "id": "C-AP-04-015", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-breach-report"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト『インシデントレスポンス体制整備』", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/security/business/admin/16/" },
       { "title": "e-Gov法令検索 個人情報の保護に関する法律施行規則（平成二十八年個人情報保護委員会規則第三号）", "url": "https://laws.e-gov.go.jp/law/428M60020000003" }
@@ -1722,6 +1746,7 @@
       { "id": "C-AP-04-088", "relation": "対比" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-copyright-stages"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -1861,6 +1886,7 @@
       { "id": "C-AP-02-074", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
     ],
@@ -1953,6 +1979,7 @@
       { "id": "C-AP-04-084", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-work-for-hire"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
     ],
@@ -1970,6 +1997,7 @@
       { "id": "C-AP-04-105", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-ai-generated-work"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
     ],
@@ -1987,6 +2015,7 @@
       { "id": "C-AP-04-101", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-ai-generated-work"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
@@ -2040,6 +2069,7 @@
     "confusions": [
       { "id": "C-AP-04-158", "point": "AI事業者ガイドラインは総務省・経済産業省が作った事業者向けの手引き。適正性確保指針は、AI法13条に基づき人工知能戦略本部が決めた、国民も含むすべての主体向けの指針。" }
     ],
+    "figures": ["fig-ap-guideline-actors"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省『「AI事業者ガイドライン」掲載ページ』", "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/ai_network/02ryutsu20_04000019.html" }
@@ -2061,6 +2091,7 @@
       { "id": "C-AP-04-118", "relation": "部分" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-common-guidelines"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
@@ -2273,6 +2304,7 @@
       { "id": "C-AP-04-048", "relation": "具体例" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-risk-based-approach"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
@@ -2292,6 +2324,7 @@
     "confusions": [
       { "id": "C-AP-04-125", "point": "フィルターバブルは、アルゴリズムが見たい情報ばかりを表示して、ほかの情報から隔離される状態。エコーチェンバーは、自分と同じような考えばかりが周囲から返ってきて、その考えが強まる現象。" }
     ],
+    "figures": ["fig-ap-filter-bubble"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" }
@@ -2309,6 +2342,7 @@
       { "id": "C-AP-04-050", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-filter-bubble"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -2382,6 +2416,7 @@
       { "id": "C-AP-04-164", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-human-loop"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "内閣府『人工知能基本計画』（令和8年7月14日閣議決定）", "url": "https://www8.cao.go.jp/cstp/ai/ai_plan/aiplan_20260714.pdf" },
@@ -2456,6 +2491,7 @@
       { "id": "C-AP-04-157", "relation": "関連" }
     ],
     "confusions": [],
+    "figures": ["fig-ap-agile-governance"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" },

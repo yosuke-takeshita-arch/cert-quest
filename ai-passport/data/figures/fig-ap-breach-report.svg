@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 484" role="img" aria-labelledby="fig-ap-breach-report-t fig-ap-breach-report-d">
+<title id="fig-ap-breach-report-t">個人データの漏えい等：報告が要る事態と、報告の時期、本人への通知</title>
+<desc id="fig-ap-breach-report-d">個人情報保護法と施行規則7条・8条から。報告が要る事態（施行規則7条）は4つ：①要配慮個人情報が含まれる（例：健康診断の結果）、②不正に使われると財産の被害のおそれがある、③不正の目的で行われたおそれがある、④本人の数が1,000人を超える。1つでも当たれば報告が要り、①なら1人分でも当たる。いつまでに（施行規則8条）：事態を知った後、速やかに、その時点で分かっていることを報告する（速報）。知った日から30日以内に、所定の事項をそろえて報告する（確報）。③の事態は60日以内。本人への通知（法26条2項）は委員会への報告とは別の義務で、報告しても本人への通知は要る（難しければ代わりの措置）。社員が気づいたら、すぐ上司と担当部署に伝える。</desc>
+<text x="12" y="20" class="tb">個人データの漏えい等：報告と本人への通知</text>
+<text x="12" y="40" class="tm">個人情報保護法と施行規則7条・8条から</text>
+<text x="12" y="64" class="tb ta">報告が要る事態（施行規則7条）</text>
+<rect x="12" y="72" width="296" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="20" y="91">① 要配慮個人情報が含まれる</text>
+<text x="20" y="109" class="tm">　（例：健康診断の結果）</text>
+<rect x="12" y="124" width="296" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="20" y="143">② 不正に使われると財産の被害のおそれ</text>
+<rect x="12" y="158" width="296" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="20" y="177">③ 不正の目的で行われたおそれがある</text>
+<rect x="12" y="192" width="296" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="20" y="211">④ 本人の数が 1,000人を超える</text>
+<text x="12" y="238" class="tb">1つでも当たれば報告（①なら1人分でも）</text>
+<text x="12" y="266" class="tb ta">いつまでに（施行規則8条）</text>
+<line x1="20" y1="300" x2="300" y2="300" class="l sm w2"/>
+<circle cx="20" cy="300" r="5" class="fa"/>
+<text x="20" y="288" class="tb" text-anchor="start">知った日</text>
+<circle cx="100" cy="300" r="5" class="fa"/>
+<text x="100" y="288" class="tb" text-anchor="middle">速やかに</text>
+<circle cx="200" cy="300" r="5" class="fa"/>
+<text x="200" y="288" class="tb" text-anchor="middle">30日以内</text>
+<circle cx="290" cy="300" r="5" class="fa"/>
+<text x="290" y="288" class="tb" text-anchor="end">60日以内</text>
+<text x="100" y="322" class="tm" text-anchor="middle">速報</text>
+<text x="200" y="322" class="tm" text-anchor="middle">確報</text>
+<text x="300" y="322" class="tm" text-anchor="end">③の確報</text>
+<text x="12" y="346" class="tm">速報＝その時点で分かっていることを報告</text>
+<text x="12" y="364" class="tm">確報＝所定の事項をそろえて報告</text>
+<line x1="12" y1="380" x2="308" y2="380" class="l sb w1"/>
+<text x="12" y="402" class="tb">本人への通知（法26条2項）</text>
+<text x="12" y="422">委員会への報告とは別の義務。報告しても</text>
+<text x="12" y="442">本人への通知は要る（難しければ代わりの措置）</text>
+<text x="12" y="466" class="tb tok">社員が気づいたら：すぐ上司と担当部署へ</text>
+</svg>

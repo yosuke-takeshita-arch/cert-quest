@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 474" role="img" aria-labelledby="fig-ap-emergent-t fig-ap-emergent-d">
+<title id="fig-ap-emergent-t">スケーリング則と創発的能力：なめらかに予測どおり下がるか、ある規模で急に現れるか</title>
+<desc id="fig-ap-emergent-d">①スケーリング則：横軸はモデル・データ・計算量の大きさ、縦軸は損失。大きくするほど、損失が点の並ぶ直線のようになめらかに予測どおり下がり、先が読める。②創発的能力：横軸はモデルの大きさ、縦軸は正解率。例はGPT-3の3けたの足し算で、ある大きさまでは正解がほぼ0のままだが、130億パラメータあたりで急に上がる。小さいモデルの成績からは予測できない。グラフの形は説明のための模式図。</desc>
+<text x="12" y="20" class="tb">スケーリング則 と 創発的能力</text>
+<text x="12" y="46" class="tb ta">① スケーリング則：なめらかに下がる</text>
+<line x1="40" y1="58" x2="40" y2="158" class="l sm w1"/>
+<line x1="40" y1="158" x2="300" y2="158" class="l sm w1"/>
+<polyline points="45,68 290,143" class="l sa w2"/>
+<circle cx="45" cy="68" r="3.5" class="fa"/>
+<circle cx="94" cy="83" r="3.5" class="fa"/>
+<circle cx="143" cy="98" r="3.5" class="fa"/>
+<circle cx="192" cy="113" r="3.5" class="fa"/>
+<circle cx="241" cy="128" r="3.5" class="fa"/>
+<circle cx="290" cy="143" r="3.5" class="fa"/>
+<text x="34" y="70" class="tm" text-anchor="end">大</text>
+<text x="34" y="158" class="tm" text-anchor="end">小</text>
+<text x="10" y="112" class="tm">損失</text>
+<text x="300" y="176" class="tm" text-anchor="end">モデル・データ・計算量を大きく →</text>
+<text x="12" y="200">予測どおりに下がる（先が読める）</text>
+<line x1="12" y1="216" x2="308" y2="216" class="l sb w1"/>
+<text x="12" y="240" class="tb tok">② 創発的能力：ある規模で急に現れる</text>
+<line x1="40" y1="252" x2="40" y2="352" class="l sm w1"/>
+<line x1="40" y1="352" x2="300" y2="352" class="l sm w1"/>
+<polyline points="45.0,349.0 94.0,348.0 143.0,347.0 192.0,345.0 241.0,297.0 290.0,267.0" class="l sok w2"/>
+<circle cx="45.0" cy="349.0" r="3.5" class="fok sok" stroke-width="1.5"/>
+<circle cx="94.0" cy="348.0" r="3.5" class="fok sok" stroke-width="1.5"/>
+<circle cx="143.0" cy="347.0" r="3.5" class="fok sok" stroke-width="1.5"/>
+<circle cx="192.0" cy="345.0" r="3.5" class="fok sok" stroke-width="1.5"/>
+<circle cx="241.0" cy="297.0" r="3.5" class="fok sok" stroke-width="1.5"/>
+<circle cx="290.0" cy="267.0" r="3.5" class="fok sok" stroke-width="1.5"/>
+<text x="10" y="306" class="tm">正解率</text>
+<text x="216.5" y="274" class="tb tok" text-anchor="middle">130億パラメータあたり</text>
+<text x="300" y="370" class="tm" text-anchor="end">モデルの大きさ →</text>
+<text x="12" y="394">例：GPT-3 の3けたの足し算</text>
+<text x="12" y="414">それまでほぼ0 → 急に上がる</text>
+<text x="12" y="434" class="tb">小さいモデルの成績からは予測できない</text>
+<text x="12" y="456" class="tm">グラフの形は説明のための模式図</text>
+</svg>
