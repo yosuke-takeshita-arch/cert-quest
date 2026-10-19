@@ -1,7 +1,7 @@
-// 「どっち？」早押し（要件定義書 §3-5）。一行目（題名は〇〇に伏せる）を読んで、2つの題名のどちらかを5秒で選ぶ。
+// 「どっち？」早押し（要件定義書 §3-5）。一行目（題名は〇〇に伏せる）を読んで、2つの題名のどちらかを選ぶ。秒数は説明の長さで決める（dochiSeconds）。
 // 出題・伏せ方・記録の直し方は lib/dochi.js。ここは画面だけ。問題の記録（qstats）・XP には入れない。
 import { h, clear, icon, burst, vibrate, beep, confirmQuit } from '../ui.js';
-import { buildPairs, pickRound, isCorrect, nextCombo, recordDochi, normalizeDochi, DOCHI_ROUNDS, DOCHI_SECONDS, DOCHI_POINT_MS } from '../lib/dochi.js';
+import { buildPairs, pickRound, isCorrect, nextCombo, recordDochi, normalizeDochi, DOCHI_ROUNDS, DOCHI_POINT_MS, dochiSeconds } from '../lib/dochi.js';
 import { CHOICE_LABELS } from './explain.js';
 import { openCardSheet } from './cards.js';
 
@@ -42,9 +42,9 @@ export function renderDochi(app) {
     root.appendChild(h('h1', { text: 'どっち？早押し' }));
     const d = normalizeDochi(app.state.dochi);
     const card = h('div', { class: 'card' },
-      h('p', { text: '用語の説明を読んで、どの用語の説明か、2つのうちから' + DOCHI_SECONDS + '秒で選びます。似ていて間違えやすい組を、遊びながら見分けましょう。' }),
+      h('p', { text: '用語の説明を読んで、どの用語の説明か、2つのうちから選びます。似ていて間違えやすい組を、遊びながら見分けましょう。' }),
       h('ul', { class: 'plain' },
-        h('li', { text: DOCHI_ROUNDS + '問・1問' + DOCHI_SECONDS + '秒（時間切れは不正解）' }),
+        h('li', { text: DOCHI_ROUNDS + '問。1問の秒数は説明の長さで決まります（長い説明ほど長い。時間切れは不正解）' }),
         h('li', { text: '正解が続くとコンボが伸びます' }),
         h('li', { text: '間違えたら、2つの違いを少しの間だけ出します' }),
         h('li', { text: '問題の記録・経験値（XP）には入りません' })));
@@ -102,8 +102,9 @@ export function renderDochi(app) {
       h('div', { class: 'play-title' }, h('strong', { text: 'どっち？' }), h('span', { class: 'small muted', text: (S.idx + 1) + ' / ' + n })),
       combo,
       h('div', { class: 'progress', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(n), 'aria-valuenow': String(S.idx) }, h('div', { class: 'progress-fill', style: { width: (S.idx / n) * 100 + '%' } }))));
+    const secs = dochiSeconds(item.pair.text);
     const fill = h('div', { class: 'timer-fill' });
-    const left = h('span', { class: 'timer-left', text: 'あと ' + DOCHI_SECONDS + ' 秒' });
+    const left = h('span', { class: 'timer-left', text: 'あと ' + secs + ' 秒' });
     const card = h('div', { class: 'card q-card' },
       h('div', { class: 'timer', 'aria-hidden': 'true' }, fill),
       left,
@@ -123,8 +124,8 @@ export function renderDochi(app) {
     S.ui = { btns, after, combo, left };
     S.t0 = Date.now();
     S.timer = setInterval(() => {
-      const rest = Math.max(0, DOCHI_SECONDS - (Date.now() - S.t0) / 1000);
-      fill.style.width = (rest / DOCHI_SECONDS) * 100 + '%';
+      const rest = Math.max(0, secs - (Date.now() - S.t0) / 1000);
+      fill.style.width = (rest / secs) * 100 + '%';
       left.textContent = 'あと ' + Math.ceil(rest) + ' 秒';
       if (rest <= 0) answer(null);
     }, 100);

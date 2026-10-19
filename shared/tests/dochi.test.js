@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   titleTerms, maskOneLine, buildPairs, pickRound, isCorrect, nextCombo, normalizeDochi, recordDochi,
-  DOCHI_ROUNDS, DOCHI_SECONDS, DOCHI_POINT_MS, DOCHI_MASK,
+  DOCHI_ROUNDS, DOCHI_POINT_MS, DOCHI_MASK, dochiSeconds,
 } from '../js/lib/dochi.js';
 import { buildConceptIndex } from '../js/lib/data.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
@@ -17,10 +17,18 @@ function seeded(seed) {
   };
 }
 
-test('決まり: 20問・5秒・違いは2秒', () => {
+test('決まり: 20問・違いは2秒', () => {
   assert.equal(DOCHI_ROUNDS, 20);
-  assert.equal(DOCHI_SECONDS, 5);
   assert.equal(DOCHI_POINT_MS, 2000);
+});
+
+test('1問の秒数: 選ぶ3秒＋1秒に8字で読む時間を切り上げ（2026-10-19 先生「5秒じゃ無理」）', () => {
+  assert.equal(dochiSeconds(''), 3);
+  assert.equal(dochiSeconds('あ'.repeat(8)), 4); // 3＋1
+  assert.equal(dochiSeconds('あ'.repeat(9)), 5); // 3＋1.125 → 切り上げ
+  assert.equal(dochiSeconds('あ'.repeat(104)), 16); // G検定の真ん中の長さ
+  assert.equal(dochiSeconds('あ'.repeat(75)), 13); // AIパスポートの真ん中
+  assert.equal(dochiSeconds(null), 3);
 });
 
 // ---- 伏せ方 ----

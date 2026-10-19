@@ -3,7 +3,17 @@
 import { resolveRef } from './data.js';
 
 export const DOCHI_ROUNDS = 20; // 1回の問題数
-export const DOCHI_SECONDS = 5; // 1問の制限秒数（時間切れは不正解）
+export const DOCHI_PICK_SECONDS = 3; // 1問の秒数のうち、読んだあと2つから選ぶ分
+export const DOCHI_READ_CHARS_PER_SEC = 8; // 読む速さ（1秒に何字）
+
+/**
+ * 1問の制限秒数（時間切れは不正解）。選ぶ3秒＋説明を読む時間（1秒に8字）を切り上げる。
+ * 2026-10-19 先生「問題文が長すぎて5秒じゃ無理」。それまでは一律5秒で、G検定の一行目（真ん中で104字）は1秒に20字ほど読まないと間に合わなかった。
+ */
+export function dochiSeconds(text) {
+  const len = [...String(text == null ? '' : text)].length;
+  return Math.ceil(DOCHI_PICK_SECONDS + len / DOCHI_READ_CHARS_PER_SEC);
+}
 export const DOCHI_POINT_MS = 2000; // 間違えたとき、違いを出しておく長さ
 export const DOCHI_MASK = '〇〇';
 

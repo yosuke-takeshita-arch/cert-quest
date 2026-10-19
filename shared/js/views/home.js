@@ -191,7 +191,7 @@ export function renderHome(app) {
     // 似た2つの語の早押し。40秒チャレンジの近く（出せる組があるときだけ）
     if (dochiPairs(app).length) {
       root.appendChild(h('button', { class: 'btn big tile dochi-tile', type: 'button', 'data-home-dochi': '1', onClick: () => app.go('#/dochi') },
-        h('strong', { text: 'どっち？早押し' }), h('span', { class: 'small muted', text: '似た2つの語を5秒で見分ける' })));
+        h('strong', { text: 'どっち？早押し' }), h('span', { class: 'small muted', text: '似た2つの語を早押しで見分ける' })));
     }
 
     const goals = nextGoals(data.tree, badgeDefs(data.tree, config), state, dateKey(now), 3);
