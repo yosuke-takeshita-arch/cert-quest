@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 920" role="img" aria-labelledby="fig-g-cam-t fig-g-cam-d">
+<title id="fig-g-cam-t">CAM：CNN が画像のどこを見て判断したかの地図</title>
+<desc id="fig-g-cam-d">①知りたいこと：CNN（画像向けのニューラルネットワーク）は写真を犬と当てられるが、画像のどこを見てそう判断したかは分からない。判断の根拠を明るさの地図（ヒートマップ）で見たい。②CNNの最後の部分の作り：最後の畳み込み層は、場所ごとに耳っぽさ・毛並みっぽさ・背景っぽさなどを測った地図（特徴マップ）を何枚も出す。CAMが使う作りでは、犬のスコア＝耳の地図の平均×2＋毛並みの地図の平均×1＋背景の地図の平均×0のように、地図を平均して1つの数にし（GAP、グローバルアベレージプーリング）、犬のための重みを掛けて足す。重みは学習で決まり、2・1・0は例。③平均する前の地図に同じ重みを掛けて足すと、場所ごとに犬のスコアにどれだけ効いたかが分かる。耳のある場所は地図の値が0.8・0.5・0.1で、0.8×2＋0.5×1＋0.1×0＝1.6＋0.5＋0＝2.1と明るい。空だけの場所は0.1・0.1・0.9で、0.1×2＋0.1×1＋0.9×0＝0.2＋0.1＋0＝0.3と暗い。地図にすると犬の耳と体の場所が明るくなる。④画像全体のラベルだけで学習しても物体の位置を示せる。欠点はGAPを持つ作りでないと使えないことで、全結合層を持つモデルは作りを変えて学習し直す必要がある。作りを変えずに使えるようにしたのが勾配を使うGrad-CAM。CAMはClass Activation Mappingの略で、クラスの活性化の地図を作ること。</desc>
+<text x="12" y="20" class="tb">CAM：CNN が画像のどこを見たかの地図</text>
+<text x="12" y="48" class="tb">① 知りたいこと</text>
+<text x="12" y="68" class="tm">CNN（画像向けのニューラルネットワーク）は、</text>
+<text x="12" y="86" class="tm">写真を『犬』と当てられるが、画像のどこを</text>
+<text x="12" y="104" class="tm">見てそう判断したかは分からない</text>
+<text x="12" y="126" class="tb tok">→ 判断の根拠を、明るさの地図で見たい</text>
+<line x1="12" y1="140" x2="308" y2="140" class="l sb w1"/>
+<text x="12" y="162" class="tb">② CNN の最後の部分の作り</text>
+<text x="12" y="182" class="tm">最後の畳み込み層は、場所ごとに『耳っぽさ』</text>
+<text x="12" y="200" class="tm">『毛並みっぽさ』『背景っぽさ』などを測った</text>
+<text x="12" y="218" class="tm">地図（特徴マップ）を何枚も出す</text>
+<text x="12" y="242">犬のスコア ＝ 耳の地図の平均 × <tspan class="tb ta">2</tspan></text>
+<text x="12" y="262">　　　＋ 毛並みの地図の平均 × <tspan class="tb ta">1</tspan></text>
+<text x="12" y="282">　　　＋ 背景の地図の平均 × <tspan class="tb ta">0</tspan></text>
+<text x="12" y="304" class="tm">地図を平均して1つの数にする所＝GAP</text>
+<text x="12" y="322" class="tm">（グローバルアベレージプーリング）</text>
+<text x="12" y="340" class="tm"><tspan class="tb ta">2・1・0</tspan>＝『犬』のための重み（学習で決まる）</text>
+<line x1="12" y1="354" x2="308" y2="354" class="l sb w1"/>
+<text x="12" y="376" class="tb">③ 平均する前の地図に、同じ重みを掛けて足す</text>
+<text x="12" y="396" class="tm">→ 場所ごとに、犬のスコアにどれだけ効いた</text>
+<text x="12" y="414" class="tm">　かが分かる（数は説明用の例）</text>
+<text x="12" y="438" class="tb">耳のある場所</text>
+<text x="12" y="458">0.8×<tspan class="tb ta">2</tspan>＋0.5×<tspan class="tb ta">1</tspan>＋0.1×<tspan class="tb ta">0</tspan></text>
+<text x="12" y="478">＝1.6＋0.5＋0＝<tspan class="tb tok">2.1</tspan></text>
+<rect x="200" y="466" width="84" height="14" class="fwn swn" stroke-width="1.5"/>
+<text x="12" y="502" class="tb">空だけの場所</text>
+<text x="12" y="522">0.1×<tspan class="tb ta">2</tspan>＋0.1×<tspan class="tb ta">1</tspan>＋0.9×<tspan class="tb ta">0</tspan></text>
+<text x="12" y="542">＝0.2＋0.1＋0＝<tspan class="tb">0.3</tspan></text>
+<rect x="200" y="530" width="12" height="14" class="fwn swn" stroke-width="1.5"/>
+<text x="12" y="564" class="tm">（3つの数＝耳・毛並み・背景の地図の値）</text>
+<text x="12" y="588" class="tb">→ 地図にすると（ヒートマップ）</text>
+<rect x="12" y="600" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="600" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="48" y="600" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="66" y="600" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="84" y="600" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="102" y="600" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="618" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="618" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="48" y="618" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="66" y="618" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="84" y="618" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="102" y="618" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="636" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="636" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="48" y="636" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="66" y="636" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="84" y="636" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="102" y="636" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="654" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="654" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="48" y="654" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="66" y="654" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="84" y="654" width="18" height="18" class="fwn swn" stroke-width="1"/>
+<rect x="102" y="654" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="672" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="672" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="48" y="672" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="66" y="672" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="84" y="672" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="102" y="672" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="130" y="604" width="14" height="14" class="fwn swn" stroke-width="1"/>
+<text x="150" y="616" class="tb twn">明るい＝犬の根拠</text>
+<text x="150" y="634" class="tm">（耳と体の場所。2.1 など）</text>
+<rect x="130" y="650" width="14" height="14" class="fs sb" stroke-width="1"/>
+<text x="150" y="662">暗い＝効いていない</text>
+<text x="150" y="680" class="tm">（空など。0.3 など）</text>
+<line x1="12" y1="706" x2="308" y2="706" class="l sb w1"/>
+<text x="12" y="728" class="tb">④ 押さえどころ</text>
+<text x="12" y="748" class="tm">画像全体のラベル（犬）だけで学習しても、</text>
+<text x="12" y="766" class="tm">物体がどこにあるかを示せる</text>
+<text x="12" y="790" class="tb tng">欠点：GAP を持つ作りでないと使えない</text>
+<text x="12" y="810" class="tm">全結合層を持つモデルは、作りを変えて</text>
+<text x="12" y="828" class="tm">学習し直す必要がある</text>
+<text x="12" y="850" class="tm">→ 作りを変えずに使えるようにしたのが</text>
+<text x="12" y="868" class="tm">　 Grad-CAM（勾配を使う）</text>
+<text x="12" y="892">CAM＝Class Activation Mapping</text>
+<text x="12" y="910" class="tm">（クラスの活性化の地図を作ること）</text>
+</svg>

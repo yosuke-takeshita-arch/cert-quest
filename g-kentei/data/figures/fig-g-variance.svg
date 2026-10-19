@@ -1,6 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-g-variance-t fig-g-variance-d">
-<title id="fig-g-variance-t">分散と標準偏差：偏差の2乗の平均</title>
-<desc id="fig-g-variance-d">8個のデータ6、6、8、10、10、12、14、14を数直線に置いた例。平均は10。各データの平均からの差（偏差）は−4、−4、−2、0、0、2、4、4。偏差を1辺とする正方形の面積が偏差の2乗で、16、16、4、0、0、4、16、16。面積の合計72を8で割った平均9が分散、その平方根の3が標準偏差（3×3＝9）。下は変換のしかた。データを2倍すると散らばりの幅が2倍になり、分散は2の2乗で4倍になる。5を足すと位置が動くだけで、散らばりは変わらず、分散も変わらない。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 850" role="img" aria-labelledby="fig-g-variance-t fig-g-variance-d">
+<title id="fig-g-variance-t">分散と標準偏差：散らばりを1つの数にする（偏差の2乗の平均）</title>
+<desc id="fig-g-variance-d">まず、平均だけでは散らばりが分からない。8人ずつの2クラスで、平均点はどちらも10点。Aクラスは9、9、10、10、10、10、11、11点でそろっている。Bクラスは6、6、8、10、10、12、14、14点でばらばら。散らばりを1つの数で比べたいので、分散と標準偏差を使う。①Bクラスの8個のデータを数直線に置いた例。平均は10。各データの平均からの差（偏差）は−4、−4、−2、0、0、2、4、4。そのまま足すと＋と−が打ち消し合って0になるので、2乗してから足す。偏差を1辺とする正方形の面積が偏差の2乗で、16、16、4、0、0、4、16、16。面積の合計72を8で割った平均9が分散、その平方根の3が標準偏差（3×3＝9）。②変換のしかた。データを2倍すると散らばりの幅が2倍になり、分散は2の2乗で4倍になる。5を足すと位置が動くだけで、散らばりは変わらず、分散も変わらない。</desc>
+<text x="12" y="20" class="tb">分散と標準偏差：散らばりを1つの数にする</text>
+<text x="12" y="48" class="tb">まず：平均だけでは、散らばりが分からない</text>
+<text x="12" y="68" class="tm">8人ずつの2クラス。平均点はどちらも10点</text>
+<line x1="160" y1="82" x2="160" y2="160" class="l sng w1 dsh"/>
+<text x="12" y="114" class="tb">A</text>
+<circle cx="137.33" cy="110" r="4.5" class="fa"/>
+<circle cx="137.33" cy="100" r="4.5" class="fa"/>
+<circle cx="160.00" cy="110" r="4.5" class="fa"/>
+<circle cx="160.00" cy="100" r="4.5" class="fa"/>
+<circle cx="160.00" cy="90" r="4.5" class="fa"/>
+<circle cx="160.00" cy="80" r="4.5" class="fa"/>
+<circle cx="182.67" cy="110" r="4.5" class="fa"/>
+<circle cx="182.67" cy="100" r="4.5" class="fa"/>
+<text x="214" y="114" class="tb tok">そろっている</text>
+<text x="12" y="152" class="tb">B</text>
+<circle cx="69.33" cy="148" r="4.5" class="fa"/>
+<circle cx="69.33" cy="138" r="4.5" class="fa"/>
+<circle cx="114.67" cy="148" r="4.5" class="fa"/>
+<circle cx="160.00" cy="148" r="4.5" class="fa"/>
+<circle cx="160.00" cy="138" r="4.5" class="fa"/>
+<circle cx="205.33" cy="148" r="4.5" class="fa"/>
+<circle cx="250.67" cy="148" r="4.5" class="fa"/>
+<circle cx="250.67" cy="138" r="4.5" class="fa"/>
+<text x="69.33" y="176" text-anchor="middle">6</text>
+<text x="160" y="176" class="tng" text-anchor="middle">10</text>
+<text x="250.67" y="176" text-anchor="middle">14</text>
+<text x="262" y="152" class="tb tng">ばらばら</text>
+<text x="12" y="200" class="tb">→ 散らばりを1つの数で比べたい</text>
+<text x="12" y="218" class="tm">（B クラスの点数で、下の①で数える）</text>
+<line x1="12" y1="232" x2="308" y2="232" class="l sb w1"/>
+<g transform="translate(0,230)">
 <text x="12" y="20" class="tb">① 偏差の2乗の平均が分散</text>
 <line x1="12" y1="84" x2="308" y2="84" class="l sm w1"/>
 <circle cx="69.33" cy="84" r="5" class="fa"/>
@@ -16,6 +47,10 @@
 <text x="69.33" y="112" class="tm" text-anchor="middle">6</text>
 <text x="160" y="112" class="tm" text-anchor="middle">10</text>
 <text x="250.67" y="112" class="tm" text-anchor="middle">14</text>
+</g>
+<text x="12" y="370" class="tm">偏差（平均との差）をそのまま足すと、＋と−</text>
+<text x="12" y="388" class="tm">が打ち消し合って 0 → 2乗してから足す</text>
+<g transform="translate(0,270)">
 <text x="12" y="138" class="tm">偏差を1辺とする正方形（面積＝偏差の2乗）</text>
 <rect x="14" y="180" width="24" height="24" class="fwn swn" stroke-width="1.5"/>
 <text x="26" y="224" class="tm" text-anchor="middle">-4</text>
@@ -55,4 +90,5 @@
 <text x="12" y="524" class="tb">2倍すると、分散は 2×2＝4倍</text>
 <text x="12" y="546" class="tb">足した数は、位置を動かすだけ</text>
 <text x="12" y="568" class="tb">分散は変わらない</text>
+</g>
 </svg>
