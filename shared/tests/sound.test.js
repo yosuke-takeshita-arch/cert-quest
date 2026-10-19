@@ -6,7 +6,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BOSS_SFX, BGM_TRACKS, TITLE_BGM, BOSS_BGM,
+  DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, BGM_GAIN_MAX, TARGET_BGM_RMS, BGM_AUTO, SFX_FILES, BOSS_SFX, BGM_TRACKS, TITLE_BGM, BOSS_BGM, RUSH_BGM,
   normalizeVolume, normalizeSoundSettings, normalizeBgmTrack, normalizeHomeTrack, bgmPlan, bgmTrackIndex, sfxGain, bgmGain, celebrateSfx, nextBgmPosition,
 } from '../js/lib/sound.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
@@ -593,4 +593,89 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   assert.equal((bo.match(/playBossSfx\(app\.state\.settings, 'win'\)/g) || []).length, 2); // 動きを減らす設定のときと、ふつうの演出
   assert.ok(!/playSynth\(app\.state\.settings, 'fanfare'\)/.test(bo));
   assert.match(bo, /playSynth\(app\.state\.settings, 'appear'\)/);
+});
+
+// ---- 時間制限つきの遊びの曲（秒数チャレンジ・どっち？早押し。2026-10-19 先生が8曲を聞き比べて選んだ） ----
+test('遊びの曲(ファイル): BGM_TRACKS に入らず、ファイルが実在し、ライセンスの記録と about にある。sw-core.js はインストール時に取らない', () => {
+  assert.ok(!BGM_TRACKS.some((t) => t.id === RUSH_BGM.id || t.file === RUSH_BGM.file));
+  assert.equal(normalizeBgmTrack(RUSH_BGM.id), 'auto'); // 設定の選択肢にならない
+  const p = join(shared, 'audio', 'bgm', RUSH_BGM.file);
+  assert.ok(existsSync(p));
+  assert.match(RUSH_BGM.file, /\.(ogg|mp3)$/);
+  assert.ok(statSync(p).size <= 4 * 1024 * 1024, '長い曲なので一覧の曲の3MBより大きいが、4MB以下に収める');
+  const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
+  assert.ok(doc.includes(RUSH_BGM.file) && doc.includes('DST') && doc.includes('DST-TowerDefenseTheme_1.mp3'));
+  assert.ok(!readFileSync(join(shared, 'sw-core.js'), 'utf8').includes(RUSH_BGM.file)); // 使ったときに取ってキャッシュに入れる
+  assert.ok(readFileSync(join(shared, 'js', 'views', 'about.js'), 'utf8').includes('DST'));
+});
+
+test('遊びの曲(補正): 実測の大きさ×倍率が、ほかの BGM と同じ目盛り40の大きさ。目盛り100でも割れない', () => {
+  const t = RUSH_BGM;
+  assert.ok(t.trim > 0 && t.rms > 0 && t.peak > 0 && t.peak <= 1.2);
+  assert.ok(Math.abs(t.rms * bgmGain(40, t.trim) - TARGET_BGM_RMS) / TARGET_BGM_RMS < 0.03);
+  assert.ok(t.peak * bgmGain(100, t.trim) < 1);
+  assert.equal(bgmGain(0, t.trim), 0);
+});
+
+test('遊びの曲(場面の切り替え): 遊びの間はこの曲、終わったら元の曲に戻る。BGM がオフなら流さない。ボス戦が優先', () => {
+  const on = { bgm: true, bgmTrack: 'calm-loop', bgmHome: true, bgmHomeTrack: 'title' };
+  // 遊びの間（問題中の画面の中）は、問題中の曲の代わりにこの曲
+  assert.deepEqual(bgmPlan(on, { inQuiz: true, inRush: true }), { scene: 'rush', track: 'rush' });
+  // 終わったら（inRush が false）元の問題中の曲
+  assert.deepEqual(bgmPlan(on, { inQuiz: true, inRush: false }), { scene: 'quiz', track: 'calm-loop' });
+  assert.deepEqual(bgmPlan(on, { inQuiz: true }), { scene: 'quiz', track: 'calm-loop' }); // 何も言わなければ今までどおり
+  // おまかせのときも、元の曲は選択どおり
+  assert.deepEqual(bgmPlan({ ...on, bgmTrack: 'auto' }, { inQuiz: true }), { scene: 'quiz', track: 'auto' });
+  // BGM（問題中）がオフなら流さない。『それ以外』だけオンでも、遊びの間は無音
+  assert.equal(bgmPlan({ ...on, bgm: false }, { inQuiz: true, inRush: true }), null);
+  assert.equal(bgmPlan({ bgm: false, bgmHome: true }, { inQuiz: true, inRush: true }), null);
+  assert.equal(bgmPlan({ bgm: true, bgmHome: false }, { inQuiz: true, inRush: true }).track, 'rush'); // 『それ以外』がオフでも、問題中がオンなら流す
+  // アプリが裏に回ったら止める
+  assert.equal(bgmPlan(on, { inQuiz: true, inRush: true, hidden: true }), null);
+  assert.equal(bgmPlan(null, { inQuiz: true, inRush: true }), null);
+  // ボス戦はいつもボス戦の曲
+  assert.deepEqual(bgmPlan(on, { inQuiz: true, inRush: true, inBoss: true }), { scene: 'boss', track: 'boss' });
+  // 遊びの外の場面は変わらない（タイトル・それ以外）
+  assert.deepEqual(bgmPlan(on, { inTitle: true }), { scene: 'title', track: 'title' });
+  assert.deepEqual(bgmPlan(on, {}), { scene: 'other', track: 'title' });
+});
+
+test('遊びの曲(結線): 秒数チャレンジとどっち？の問題中だけ setBgmRush(true)。終わる・出るときに false。取れなければ問題中の曲に戻る', () => {
+  const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
+  const play = readFileSync(join(shared, 'js', 'views', 'play.js'), 'utf8');
+  const dochi = readFileSync(join(shared, 'js', 'views', 'dochi.js'), 'utf8');
+  // 秒数チャレンジ（timed）だけ。ステージ・復習では呼ばない
+  assert.match(play, /const timed = spec\.mode === 'challenge'/);
+  assert.match(play, /if \(timed\) setBgmRush\(true\)/);
+  assert.match(functionBody(play, 'renderPlay').replace(/\n/g, ' '), /const cleanup = \(\) => \{\s*stop\(\);\s*if \(timed\) setBgmRush\(false\)/);
+  assert.equal((play.match(/setBgmRush\(true\)/g) || []).length, 1);
+  // どっち？: 始めたら true、はじめの画面・結果・画面を出るとき false
+  assert.match(functionBody(dochi, 'start'), /setBgmRush\(true\)/);
+  assert.match(functionBody(dochi, 'drawIntro'), /setBgmRush\(false\)/);
+  assert.match(functionBody(dochi, 'drawResult'), /setBgmRush\(false\)/);
+  assert.match(dochi, /cleanup: \(\) => \{ cleanup\(\); setBgmRush\(false\); \}/);
+  // 場面の判定は plan() を通る。取れなかったとき（R.failed）は inRush を渡さない＝問題中の曲に戻る
+  assert.match(functionBody(au, 'plan'), /inRush: B\.rush && !R\.failed/);
+  const start = functionBody(au, 'startRush');
+  assert.match(start, /RUSH_BGM|rushFileUrl\(\)/);
+  assert.match(functionBody(au, 'rushFileUrl'), /BGM_BASE \+ RUSH_BGM\.file/);
+  assert.match(start, /R\.el\.loop = true/);
+  assert.match(start, /catch \(e\)[\s\S]*failed = true/); // 取れない・鳴らせない → 失敗
+  assert.match(start, /NotAllowedError[\s\S]*waitingGesture/); // 画面をさわる前は失敗にしない
+  assert.match(start, /if \(failed\) \{ R\.failed = true; syncBgm\(\); \}/); // 失敗したら再判定（問題中の曲が始まる）
+  assert.match(functionBody(au, 'setBgmRush'), /R\.failed = false/); // 入り直したらもう一度取ってみる
+  // 音量は BGM の設定に従い、曲ごとの補正がかかる
+  assert.match(functionBody(au, 'rushGainValue'), /bgmGain\(s \? s\.bgmVolume : undefined, RUSH_BGM\.trim\)/);
+  // 止めるときは小さくしてから。ほかの曲はその間に始めない
+  const stop = functionBody(au, 'stopRush');
+  assert.match(stop, /linearRampToValueAtTime\(0,/);
+  assert.match(stop, /R\.token\+\+/);
+  assert.match(functionBody(au, 'startBgm'), /R\.fading/);
+  // 流す側・止める側が syncBgm にある。遊び中は問題中の曲（B）を流さない
+  const sync = functionBody(au, 'syncBgm');
+  assert.match(sync, /startRush\(\)/);
+  assert.match(sync, /!wantRushNow && R\.running\) stopRush\(/);
+  assert.match(sync, /const wantB = !!p && !wantT && !wantBoss && !wantRushNow/);
+  assert.match(functionBody(au, 'wantBgm'), /RUSH_BGM\.id/);
+  assert.match(functionBody(au, 'applyVolumes'), /applyRushVolume\(\)/);
 });

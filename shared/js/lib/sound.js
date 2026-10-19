@@ -45,13 +45,15 @@ export function normalizeHomeTrack(v, tracks = BGM_TRACKS) {
  *  title … タイトル画面（inTitle）。『それ以外』のオン／オフ（bgmHome）に従い、曲は選択にかかわらずいつもタイトル曲で固定
  *  other … それ以外（ホーム・地図・カード・設定など）。『それ以外』のオン／オフと曲（bgmHomeTrack）に従う
  *  boss … 章のボス戦の間（inBoss）。問題中のオン／オフ（bgm）に従い、曲はいつもボス戦の曲（プログラムで鳴らす。BGM_TRACKS には入れない）。最優先
+ *  rush … 時間制限つきの遊び（秒数チャレンジ・どっち？早押し）の問題中（inRush）。問題中のオン／オフ（bgm）に従い、曲はいつも RUSH_BGM。ボス戦の次に優先（問題中の曲の代わり）
  * 次に、問題中の判定（タイトル画面の歯車で問題中の曲を試し聴きしている間は、その曲）。
  * その場面のオン／オフが切れている・アプリが裏に回っている（hidden）なら null。
- * 返すもの: { scene: 'boss' | 'quiz' | 'title' | 'other', track: 'boss' | 'auto' | 'title' | BGM_TRACKS の id }
+ * 返すもの: { scene: 'boss' | 'rush' | 'quiz' | 'title' | 'other', track: 'boss' | 'rush' | 'auto' | 'title' | BGM_TRACKS の id }
  */
-export function bgmPlan(s, { inQuiz = false, preview = false, inTitle = false, hidden = false, inBoss = false } = {}) {
+export function bgmPlan(s, { inQuiz = false, preview = false, inTitle = false, hidden = false, inBoss = false, inRush = false } = {}) {
   if (!s || hidden) return null;
   if (inBoss) return s.bgm ? { scene: 'boss', track: BOSS_BGM.id } : null;
+  if (inRush) return s.bgm ? { scene: 'rush', track: RUSH_BGM.id } : null;
   if (inQuiz || preview) return s.bgm ? { scene: 'quiz', track: normalizeBgmTrack(s.bgmTrack) } : null;
   if (inTitle) return s.bgmHome ? { scene: 'title', track: TITLE_BGM.id } : null;
   return s.bgmHome ? { scene: 'other', track: normalizeHomeTrack(s.bgmHomeTrack) } : null;
@@ -144,6 +146,13 @@ export const TITLE_BGM = { id: 'title', file: 'title_once-upon-a-time.mp3', name
 // trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.539）。
 // synthTrim … 戻り先のプログラムの曲の補正。矩形波は振幅が一定なので、素材の目標 RMS から見積もった（耳で聞き比べて決めた値ではない）。
 export const BOSS_BGM = { id: 'boss', file: 'boss_8-bit-danger-strong-boss.mp3', name: '8-bit Danger!! Strong Boss', trim: 0.212, rms: 0.1902, peak: 0.976, synthTrim: 0.04 };
+
+// 時間制限つきの遊びの曲（2026-10-19 先生が8曲を聞き比べて選んだ。OpenGameArt「Tower Defense Theme」DST、CC0）。BGM の設定（オン／オフ・音量）に従う。
+// 秒数チャレンジ（challengeName）と「どっち？早押し」の問題中だけ、ふつうの問題中の曲（bgm・bgmTrack）の代わりに流す。BGM_TRACKS（設定の曲の一覧・おまかせ）には入れない。
+// ファイルが取れない・鳴らせないときは、ふつうの問題中の曲に戻る（無音で止まらない）。
+// trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-19。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.575）。
+export const RUSH_BGM = { id: 'rush', file: 'rush_tower-defense-theme.mp3', name: 'Tower Defense Theme', trim: 0.22, rms: 0.1834, peak: 1.0042 };
 
 /** お祝いの種類 → 効果音のキー。 */
 export function celebrateSfx(kind) {

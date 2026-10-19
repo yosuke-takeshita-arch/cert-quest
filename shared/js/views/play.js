@@ -4,6 +4,7 @@ import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.js';
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
+import { setBgmRush } from '../audio.js';
 import { explanation, laterButton, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
 
 /**
@@ -47,6 +48,7 @@ export function renderPlay(app) {
   };
   const cleanup = () => {
     stop();
+    if (timed) setBgmRush(false); // 秒数チャレンジが終わった・出た。ふつうの問題中の曲に戻る
     if (keyHandler) document.removeEventListener('keydown', keyHandler);
   };
 
@@ -215,6 +217,7 @@ export function renderPlay(app) {
     }
   };
   document.addEventListener('keydown', keyHandler);
+  if (timed) setBgmRush(true); // 秒数チャレンジの問題中は、遊び専用の曲（BGM がオンのときだけ）
   draw();
   return { el: root, cleanup };
 }

@@ -4,6 +4,7 @@ import { h, clear, icon, burst, vibrate, beep, confirmQuit } from '../ui.js';
 import { buildPairs, pickRound, isCorrect, nextCombo, recordDochi, normalizeDochi, DOCHI_ROUNDS, DOCHI_POINT_MS, dochiSeconds } from '../lib/dochi.js';
 import { CHOICE_LABELS } from './explain.js';
 import { openCardSheet } from './cards.js';
+import { setBgmRush } from '../audio.js';
 
 const OK_PAUSE_MS = 600; // 正解のとき、次へ進むまでの間
 
@@ -36,6 +37,7 @@ export function renderDochi(app) {
   // ---- はじめの画面 ----
   function drawIntro() {
     cleanup();
+    setBgmRush(false);
     S = null;
     clear(root);
     root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/home') }, '← ホーム'));
@@ -65,6 +67,7 @@ export function renderDochi(app) {
     cleanup();
     S = { items: pickRound(pairs, DOCHI_ROUNDS, app.rng), idx: 0, combo: 0, bestCombo: 0, results: [], answered: false, t0: 0, timer: null, next: null };
     document.addEventListener('keydown', (keyHandler = onKey));
+    setBgmRush(true); // 問題中は、遊び専用の曲（BGM がオンのときだけ）
     drawQuestion();
   }
 
@@ -187,6 +190,7 @@ export function renderDochi(app) {
   function drawResult() {
     clear(root);
     cleanup();
+    setBgmRush(false); // 結果の画面は、ふつうの問題中の曲に戻る
     const total = S.results.length;
     const ok = S.results.filter((r) => r.correct).length;
     const rec = recordDochi(app.state, ok, S.bestCombo);
@@ -220,5 +224,5 @@ export function renderDochi(app) {
   }
 
   drawIntro();
-  return { el: root, cleanup };
+  return { el: root, cleanup: () => { cleanup(); setBgmRush(false); } };
 }

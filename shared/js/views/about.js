@@ -10,6 +10,7 @@ export const AUDIO_CREDITS = [
   { what: 'BGM', who: 'Joth、Kistol、wipics、cynicmusic、omfgdude（いずれも OpenGameArt）' },
   { what: 'タイトル画面の曲', who: 'TAD（OpenGameArt「Once Upon a Time (loop)」）' },
   { what: 'ボス戦の曲', who: 'HydroGene（OpenGameArt「8-bit Danger!! Strong Boss」）' },
+  { what: '秒数チャレンジ・どっち？早押しの曲', who: 'DST（OpenGameArt「Tower Defense Theme」）' },
   { what: 'ボス戦の効果音', who: 'celestialghost8・Spring Spring・crazyduckgames・Baŝto（いずれも OpenGameArt）' },
 ];
 

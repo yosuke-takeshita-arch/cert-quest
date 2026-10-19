@@ -3,7 +3,7 @@
 // - BGM: 大きいので、最初に流すときに取ってきてキャッシュに入る（sw-core.js が /audio/ をキャッシュ優先で返す）
 //   音量は iOS でも効くよう WebAudio の GainNode でかける
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
-import { SFX_FILES, BOSS_SFX, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
+import { SFX_FILES, BOSS_SFX, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, RUSH_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
 import { bossTheme, SYNTH_SFX } from './lib/bossmusic.js';
 
 const SFX_BASE = new URL('../audio/sfx/', import.meta.url).href;
@@ -106,6 +106,7 @@ const B = {
   title: true, // タイトル画面にいるか（起動時は true。『タップしてはじめる』で出たら setBgmTitle(false)）
   preview: false, // 設定画面の「試しに聴く」（問題中の曲）
   boss: false, // 章のボス戦の間か（ほかの BGM の代わりに、ボス戦の曲だけを流す）
+  rush: false, // 時間制限つきの遊び（秒数チャレンジ・どっち？早押し）の問題中か（問題中の曲の代わりに、RUSH_BGM を流す）
   el: null,
   gainNode: null,
   track: 0,
@@ -118,7 +119,7 @@ const B = {
 };
 
 function plan() {
-  return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, inTitle: B.title, hidden: document.hidden, inBoss: B.boss });
+  return bgmPlan(getSettings(), { inQuiz: B.scene, preview: B.preview, inTitle: B.title, hidden: document.hidden, inBoss: B.boss, inRush: B.rush && !R.failed });
 }
 
 // 設定が選んでいる曲（BGM_TRACKS の番号。おまかせ・タイトル曲・流さないときは -1）
@@ -130,7 +131,7 @@ function selectedIndex() {
 // B（BGM_TRACKS の曲）を流したいか
 function wantBgm() {
   const p = plan();
-  return !!p && p.track !== TITLE_BGM.id && p.track !== BOSS_BGM.id;
+  return !!p && p.track !== TITLE_BGM.id && p.track !== BOSS_BGM.id && p.track !== RUSH_BGM.id;
 }
 
 async function trackUrl(i) {
@@ -190,7 +191,7 @@ function followSelectedTrack() {
 }
 
 async function startBgm() {
-  if (B.starting || B.fading || T.fading || !wantBgm()) return;
+  if (B.starting || B.fading || T.fading || R.fading || !wantBgm()) return;
   B.starting = true;
   try {
     const el = ensureEl();
@@ -287,7 +288,7 @@ function dropTitleSource() {
 }
 
 async function startTitle() {
-  if (T.src || T.loading || T.fading || B.fading || !wantTitle()) return;
+  if (T.src || T.loading || T.fading || B.fading || R.fading || !wantTitle()) return;
   const c = audioCtx();
   if (!c) return;
   T.loading = true;
@@ -491,6 +492,120 @@ function stopBossMusic(immediate) {
   }
 }
 
+// ---- 時間制限つきの遊びの曲 ----
+// 秒数チャレンジ・どっち？早押しの問題中だけ、RUSH_BGM（<audio> を loop でくり返す）を、問題中の曲の代わりに流す。BGM の設定（オン／オフ・音量）に従う。
+// 取れない・鳴らせないとき（R.failed）は plan が問題中の曲に戻る（無音で止まらない）。画面をさわる前（自動再生の制限）は失敗にせず、さわったときにもう一度。
+const R = {
+  el: null,
+  src: null, // el をつなぐ音の源（createMediaElementSource は1つの el に1回しか作れない）
+  gain: null,
+  url: null, // 取ったファイルの blob の URL
+  running: false, // 鳴らしている（止める手続きに入ったら false）
+  loading: false,
+  fading: false, // 小さくして止めている最中（その間は、ほかの曲を始めない）
+  failed: false, // 取れなかった・鳴らせなかった（この遊びの間は、問題中の曲に戻す）
+  waitingGesture: false,
+  token: 0,
+};
+
+function wantRush() {
+  const p = plan();
+  return !!p && p.track === RUSH_BGM.id;
+}
+
+function rushGainValue() {
+  const s = getSettings();
+  return bgmGain(s ? s.bgmVolume : undefined, RUSH_BGM.trim);
+}
+
+function applyRushVolume() {
+  if (R.gain && R.running && !R.fading) R.gain.gain.value = rushGainValue();
+}
+
+async function rushFileUrl() {
+  if (R.url) return R.url;
+  const res = await fetch(BGM_BASE + RUSH_BGM.file);
+  if (!res.ok) throw new Error('rush bgm ' + res.status);
+  R.url = URL.createObjectURL(await res.blob());
+  return R.url;
+}
+
+async function startRush() {
+  if (R.running || R.loading || R.fading || B.fading || T.fading || !wantRush()) return;
+  const c = audioCtx();
+  if (!c) { R.failed = true; syncBgm(); return; }
+  R.loading = true;
+  const token = ++R.token;
+  let failed = false;
+  try {
+    const url = await rushFileUrl();
+    if (token !== R.token || !wantRush()) return; // 取っている間に切られた
+    if (!R.el) {
+      R.el = new Audio();
+      R.el.preload = 'auto';
+      R.el.loop = true;
+    }
+    if (!R.src) {
+      R.src = c.createMediaElementSource(R.el);
+      R.gain = c.createGain();
+      R.src.connect(R.gain);
+      R.gain.connect(c.destination);
+    }
+    if (R.el.src !== url) R.el.src = url;
+    R.el.currentTime = 0;
+    try { R.gain.gain.cancelScheduledValues(c.currentTime); } catch (e) { /* 予約が無ければ何もしない */ }
+    R.gain.gain.value = rushGainValue();
+    resumeCtx();
+    await R.el.play();
+    if (token !== R.token || !wantRush()) { R.el.pause(); return; }
+    R.running = true;
+    R.waitingGesture = false;
+  } catch (e) {
+    if (R.el && !R.el.paused) R.el.pause();
+    if (e && e.name === 'NotAllowedError') R.waitingGesture = true; // まだ画面をさわっていない。さわったときにもう一度
+    else failed = true;
+  } finally {
+    R.loading = false;
+  }
+  if (failed) { R.failed = true; syncBgm(); } // 問題中の曲に戻す
+}
+
+// 小さくして止める（immediate なら、すぐ）。止まったら syncBgm をもう一度呼ぶ（次に流すものがあれば、そこで始まる）
+function stopRush(immediate) {
+  R.token++;
+  if (!R.running) return;
+  R.running = false;
+  const el = R.el;
+  const g = R.gain;
+  const c = ctx;
+  const finish = () => {
+    R.fading = false;
+    if (!R.running && !R.loading && el && !el.paused) el.pause();
+    syncBgm();
+  };
+  if (immediate || !g || !c) {
+    if (g) { try { g.gain.value = 0; } catch (e) { /* 止めはする */ } }
+    if (el && !el.paused) el.pause();
+    return;
+  }
+  R.fading = true;
+  try {
+    const t = c.currentTime;
+    g.gain.cancelScheduledValues(t);
+    g.gain.setValueAtTime(g.gain.value, t);
+    g.gain.linearRampToValueAtTime(0, t + 0.3);
+  } catch (e) { /* 小さくできなくても、止まりはする */ }
+  setTimeout(finish, 380);
+}
+
+/** 時間制限つきの遊び（秒数チャレンジ・どっち？早押し）の問題中かどうかを伝える。問題中の曲の代わりに RUSH_BGM を流す（BGM がオンのときだけ）。 */
+export function setBgmRush(on) {
+  const v = !!on;
+  if (v && !B.rush) R.failed = false; // 入り直したら、もう一度ファイルを取ってみる
+  B.rush = v;
+  syncBgm();
+}
+
 /** ボス戦の画面に入った・出た。入っている間は、ほかの BGM は鳴らさない（BGM がオンのときだけ。曲そのものは startBossTheme で始まる）。 */
 export function setBgmBoss(on) {
   B.boss = !!on;
@@ -536,7 +651,7 @@ export function playBossSfx(settings, kind) {
 /** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */
 export function titleAudioLocked() {
   const p = plan();
-  return !!p && p.scene !== 'quiz' && p.scene !== 'boss' && !!ctx && ctx.state !== 'running';
+  return !!p && p.scene !== 'quiz' && p.scene !== 'boss' && p.scene !== 'rush' && !!ctx && ctx.state !== 'running';
 }
 
 /** 動作確認用: いまのタイトル曲の状態。 */
@@ -553,16 +668,22 @@ export function syncBgm() {
   const hidden = document.hidden;
   const wantT = !!p && p.track === TITLE_BGM.id;
   const wantBoss = !!p && p.track === BOSS_BGM.id;
-  const wantB = !!p && !wantT && !wantBoss;
+  const wantRushNow = !!p && p.track === RUSH_BGM.id;
+  const wantB = !!p && !wantT && !wantBoss && !wantRushNow;
   // 止める側（アプリが裏に回ったときは、すぐ止める）
   if (!wantBoss && M.running) stopBossMusic(hidden);
+  if (!wantRushNow && R.running) stopRush(hidden);
   if (!wantT && T.src && !T.fading) { if (hidden) dropTitleSource(); else fadeOutTitle(); }
   if (B.el && !B.el.paused && !B.fading && (!wantB || (selectedIndex() >= 0 && selectedIndex() !== B.track))) {
     if (hidden) stopBgm(); else fadeOutBgm();
   }
   // 流す側
-  if (wantBoss && M.armed && !M.running && !B.fading && !T.fading) startBossMusic();
+  if (wantBoss && M.armed && !M.running && !B.fading && !T.fading && !R.fading) startBossMusic();
   if (wantBoss && M.running) applyBossVolume();
+  if (wantRushNow) {
+    if (R.running) applyRushVolume();
+    else startRush();
+  }
   if (wantT) {
     if (T.src) applyTitleVolume();
     else startTitle();
@@ -599,6 +720,7 @@ export function applyVolumes() {
   applyBgmVolume();
   applyTitleVolume();
   applyBossVolume();
+  applyRushVolume();
 }
 
 /** 起動時に1回。getSettings は「いまの設定」を返す関数（学習記録を消すと設定の入れ物が替わるため）。 */
@@ -614,6 +736,7 @@ export function initAudio(settingsGetter) {
     if (s && (s.sound || s.bgm || s.bgmHome) && ctx && ctx.state !== 'running') unlockAudio(s);
     else resumeCtx();
     if (B.waitingGesture || (wantBgm() && (!B.el || B.el.paused))) startBgm();
+    if (wantRush() && !R.running) startRush();
   };
   ['pointerdown', 'keydown', 'touchend', 'click'].forEach((t) => document.addEventListener(t, onGesture, { passive: true }));
   syncBgm(); // 『それ以外』がオンなら、タイトル画面の前から流す準備（さわる前は予約。さわったところから鳴る）
@@ -651,6 +774,10 @@ export function bgmStatus() {
     volume: B.gainNode ? B.gainNode.gain.value : B.el ? B.el.volume : null,
     waitingGesture: B.waitingGesture,
     fading: B.fading || T.fading,
+    rush: {
+      on: B.rush, failed: R.failed, playing: R.running, fading: R.fading, volume: R.gain ? R.gain.gain.value : null,
+      file: R.el ? { src: R.el.src, paused: R.el.paused, loop: R.el.loop, currentTime: R.el.currentTime } : null,
+    },
     boss: {
       on: B.boss, armed: M.armed, playing: M.running, volume: M.gain ? M.gain.gain.value : null,
       mode: M.mode, // 'file'＝ファイルの曲／'synth'＝プログラムの曲／null＝鳴らしていない（ファイルを取っている最中を含む）

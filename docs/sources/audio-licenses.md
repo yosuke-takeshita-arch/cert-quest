@@ -62,6 +62,14 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 
 - **F**（2026-10-09 に配布ページを curl で取得して確かめた）: 投稿情報の欄に『Author: HydroGene』『License(s): CC0』（リンクは <http://creativecommons.org/publicdomain/zero/1.0/>、ページ内のライセンスのリンクはこの1種類だけ）があり、`CC-BY` を求める記載は無い。Copyright/Attribution Notice 欄は『credits are NOT mandatory, but I'm curious to know what you will do with it, so don't hesitate to share :)』（表示は必須でない）。ファイルはページの mp3 のリンク（`https://opengameart.org/sites/default/files/8-bit_danger_strong_boss_0.mp3`、ページに `length=5348902`）から取り直し、手元の原本（5,348,902 バイト）と cmp で一致することを確かめた。先生が8曲を聞き比べて選んだ（2026-10-09）。章のボス戦の間だけ流す（問題中の BGM の設定に従う）。ファイルが取れない・鳴らせないときは、プログラムで鳴らす昔のゲーム機風の曲（`lib/bossmusic.js`。素材を使わない）に戻る。
 
+### 時間制限つきの遊びの曲（`shared/audio/bgm/` に置く。`BGM_TRACKS`（設定の曲の一覧・おまかせ）には入れない。`sound.js` の `RUSH_BGM`）
+
+| ファイル | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス | 確かめた箇所 |
+|---|---|---|---|---|---|---|
+| `rush_tower-defense-theme.mp3` | `DST-TowerDefenseTheme_1.mp3`（「Tower Defense Theme」。ページ上のファイル名は `DST-TowerDefenseTheme.mp3`） | 約199.4秒・3,191,580 バイト（元は 320kbps・7,979,070 バイト。ffmpeg で 128kbps・ID3 なしに変換した版。先生が聞いたのは元の 320kbps の原本で、曲は同じ） | DST | <https://opengameart.org/content/tower-defense-theme> | CC0 | 下の G |
+
+- **G**（2026-10-19 に配布ページを curl で取得して確かめた）: 投稿情報の欄に『Author: DST』『License(s): CC0』（リンクは <https://creativecommons.org/publicdomain/zero/1.0/>、ページ内のライセンスのリンクはこの1種類だけ）があり、`CC-BY` や表示（Attribution）を求める記載は無い（ページの本文にあるのは『Made exclusively for OpenGameArt.org』『Get more free game music from DST at http://www.nosoapradio.us !』と、利用者のコメントだけ）。ファイルはページの mp3 のリンク（`https://opengameart.org/sites/default/files/DST-TowerDefenseTheme_1.mp3`）から取り直し、手元の原本（7,979,070 バイト）と cmp で一致することを確かめた。先生が8曲を聞き比べて選んだ（2026-10-19）。秒数チャレンジ（`challengeName`）と「どっち？早押し」の問題中だけ、ふつうの問題中の曲（`bgm`・`bgmTrack`）の代わりに流す（問題中の BGM の設定に従う）。ファイルが取れない・鳴らせないときは、ふつうの問題中の曲に戻る。長いので 3MB を少し超える（BGM の一覧の曲は 3MB 以下の決まりだが、この曲は一覧に入れない）。
+
 ## 確かめていないこと
 
 - 音そのものは聞いていない（ライセンスとファイルの大きさ・長さを確かめただけ）。曲・効果音の「合っているか」は、実機で先生が聞いて決める。差し替えるときは `shared/js/lib/sound.js` の表と `shared/sw-core.js` の `SFX` と、この表を直す。
