@@ -6,7 +6,7 @@ import { h, clear } from '../ui.js';
 import { dateKey } from '../lib/srs.js';
 import {
   UNITS, UNIT_LABEL, MIN_SLOT_PX, PLOT_PX, DAY_UNIT_HINT_OVER, defaultRange, normalizeRange, studyReport, formatDuration, formatAxis, bucketText,
-  formatBarValue, placeBarValues, BAR_VALUE_FONT_PX, BAR_VALUE_MARGIN_PX, barPx, labelEvery, matchColumns,
+  formatBarValue, placeBarValues, barRightPadPx, BAR_VALUE_FONT_PX, BAR_VALUE_MARGIN_PX, barPx, labelEvery, matchColumns,
 } from '../lib/studyreport.js';
 
 const RANGE_MSG = {
@@ -71,16 +71,24 @@ function createChart(app) {
   function placeValues() {
     const live = items.filter((x) => !x.col.classList.contains('leaving'));
     if (!live.length) return;
-    const width = Math.max(scroll.clientWidth || 0, live.length * curSlot + PAD_X * 2);
-    const slotPx = (width - PAD_X * 2) / live.length;
     const fontPx = parseFloat(getComputedStyle(live[0].val).fontSize) || BAR_VALUE_FONT_PX;
+    // 右の余白は、いちばん右（今日）の数値が収まるだけ広げる（文字を大きくしても隠れないように）
+    const padR = barRightPadPx(formatBarValue(live[live.length - 1].sec), curSlot, fontPx, PAD_X);
+    setWidth(live.length, padR);
+    const width = Math.max(scroll.clientWidth || 0, live.length * curSlot + PAD_X + padR);
+    const slotPx = (width - PAD_X - padR) / live.length;
     const heights = live.map((x) => barPx(x.sec, axisSec, PLOT_PX));
-    const { level, shift } = placeBarValues(live.map((x) => formatBarValue(x.sec)), heights, slotPx, { first: live.indexOf(selected), fontPx });
+    const { level, shift } = placeBarValues(live.map((x) => formatBarValue(x.sec)), heights, slotPx, { first: live.indexOf(selected), fontPx, edgeRightPx: padR - 2 });
     live.forEach((x, i) => {
       x.val.classList.toggle('sr-val-hidden', level[i] < 0);
       x.val.style.marginBottom = BAR_VALUE_MARGIN_PX + Math.max(0, level[i]) * (fontPx + 2) + 'px';
       x.val.style.transform = shift[i] ? 'translateX(' + shift[i] + 'px)' : '';
     });
+  }
+
+  function setWidth(n, padR) {
+    const minW = n * curSlot + PAD_X + padR + 'px';
+    for (const e of [cols, xs]) { e.style.minWidth = minW; e.style.paddingRight = padR + 'px'; }
   }
 
   function select(it) {
@@ -144,9 +152,7 @@ function createChart(app) {
 
     curSlot = slot;
     cols.setAttribute('aria-label', UNIT_LABEL[unit] + 'の学習時間の棒グラフ。' + n + '本');
-    const minW = n * slot + PAD_X * 2 + 'px';
-    cols.style.minWidth = minW;
-    xs.style.minWidth = minW;
+    setWidth(n, PAD_X);
     title.textContent = UNIT_LABEL[unit] + 'の学習時間';
 
     const every = labelEvery(slot);

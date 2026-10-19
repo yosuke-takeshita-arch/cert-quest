@@ -6,7 +6,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   UNITS, MAX_RANGE_DAYS, keyToNum, numToKey, bucketStart, nextBucketStart, defaultRange, normalizeRange,
-  studyReport, formatDuration, formatAxis, axisMax, bucketText, formatBarValue, barPx, labelEvery, matchColumns, MIN_SLOT_PX, PLOT_PX, placeBarValues, barValueWidthPx,
+  studyReport, formatDuration, formatAxis, axisMax, bucketText, formatBarValue, barPx, labelEvery, matchColumns, MIN_SLOT_PX, PLOT_PX, placeBarValues, barValueWidthPx, barRightPadPx,
 } from '../js/lib/studyreport.js';
 import { addStudySeconds, normalizeStudyDays, isDateKey, MAX_DAY_SECONDS, MAX_STUDY_DAYS } from '../js/lib/studytime.js';
 import { defaultState, mergeState, recordAnswer } from '../js/lib/progress.js';
@@ -500,6 +500,23 @@ test('画面: 4つの単位・期間の指定・読み上げ用の名前・横�
   for (const u of UNITS) assert.ok(MIN_SLOT_PX_OK(u), u + ' の最小幅');
   const css = read('css/app.css');
   for (const c of ['.sr-cols', '.sr-col', '.sr-bar', '.sr-scroll', '.sr-tab', '.sr-date', '.sr-stats', '.sr-detail']) assert.ok(css.includes(c + ' ') || css.includes(c + '{') || css.includes(c + ','), c + ' が app.css に無い');
+});
+
+test('今日（右端）の数値: 文字を大きくしても、背の高い前日の棒に挟まれて隠れない（右の余白を広げる）', () => {
+  // 先生の画面（2026-10-19 16:11）: 10/18 が 3:01、今日 10/19 が 0:08。文字「とても大きい」(14.3px)・棒の幅14px
+  const texts = ['0:38', '3:01', '0:08'];
+  const heights = [25, 121, 5];
+  const fontPx = 14.3;
+  // 余白が既定のままだと隠れる（直す前の動き）
+  assert.equal(placeBarValues(texts, heights, 14, { first: 2, fontPx }).level[2], -1);
+  const padR = barRightPadPx('0:08', 14, fontPx);
+  assert.ok(padR > 16);
+  const r = placeBarValues(texts, heights, 14, { first: 2, fontPx, edgeRightPx: padR - 2 });
+  assert.equal(r.level[2], 0); // 真上の段に出る
+  assert.ok(r.shift[2] > 0); // 右の余白へ寄せる
+  // 数値が短く棒が太ければ、余白は既定のまま
+  assert.equal(barRightPadPx('0:08', 56), 16);
+  assert.equal(barRightPadPx('', 14), 16);
 });
 
 function MIN_SLOT_PX_OK(u) {

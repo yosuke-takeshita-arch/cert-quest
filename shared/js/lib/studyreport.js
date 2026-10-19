@@ -269,10 +269,12 @@ export function barValueWidthPx(text, fontPx = BAR_VALUE_FONT_PX) {
  * （2026-10-18 先生「タップしないと表示されない」「前日のが出てこない」。隣どうしの数値を隠さず両方出す。
  * 細い棒では数値が棒より長く、背の高い隣の棒にかかって隠れていたので、空いている側へ寄せる）。
  * どれでも重なる・余白の上端を超えるときだけ出さない。置く順は、選んでいる棒、それから右（新しい日）から。
+ * opts.edgeRightPx は右の余白に、はみ出してよい幅（既定は BAR_VALUE_EDGE_PX。画面は barRightPadPx で余白を広げて渡す）。
  * 戻り値は { level, shift }。level は段の番号（0, 1）で出さないものは -1（棒を押すと下の詳細の文で読める）、shift は横にずらす px（左が負）。
  */
 export function placeBarValues(texts, heights, slotPx, opts = {}) {
   const first = opts.first ?? -1;
+  const edgeRight = opts.edgeRightPx ?? BAR_VALUE_EDGE_PX;
   const fontPx = opts.fontPx || BAR_VALUE_FONT_PX;
   const roomPx = opts.roomPx || BAR_VALUE_ROOM_PX;
   const gap = BAR_VALUE_GAP_PX;
@@ -301,7 +303,7 @@ export function placeBarValues(texts, heights, slotPx, opts = {}) {
       for (const dx of shifts) {
         const lo = lo0 + dx;
         const hi = lo + w;
-        if (lo < -BAR_VALUE_EDGE_PX || hi > n * slotPx + BAR_VALUE_EDGE_PX) continue; // グラフの左右の余白からはみ出す
+        if (lo < -BAR_VALUE_EDGE_PX || hi > n * slotPx + edgeRight) continue; // グラフの左右の余白からはみ出す
         // 横に重なる、ほかの棒のうち、いちばん高いもの（数値はその上に出す）
         let under = heights[i] || 0;
         for (let j = 0; j < n; j++) {
@@ -318,6 +320,14 @@ export function placeBarValues(texts, heights, slotPx, opts = {}) {
     }
   }
   return { level, shift };
+}
+
+/**
+ * グラフの右の余白（px）。いちばん右（今日）の数値を、自分の棒の左端から右へ伸ばして置けるだけ取る（最低 padPx）。
+ * 2026-10-19 先生「何故か今日の時間が出てないな」。文字を大きくすると、今日の数値が背の高い前日の棒と右端に挟まれて隠れていた。
+ */
+export function barRightPadPx(lastText, slotPx, fontPx = BAR_VALUE_FONT_PX, padPx = 16) {
+  return Math.max(padPx, Math.ceil(barValueWidthPx(lastText, fontPx) - slotPx) + 4);
 }
 
 /** 棒の高さ（px）。0 は 2px の細い線、記録がある日は最低 3px（見えなくならないように）。 */
