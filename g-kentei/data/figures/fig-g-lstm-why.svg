@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1116" role="img" aria-labelledby="fig-g-lstm-why-t fig-g-lstm-why-d">
+<title id="fig-g-lstm-why-t">LSTM：前のことを長い間覚えておくための、メモの道とゲート</title>
+<desc id="fig-g-lstm-why-d">LSTMが何のためで、なぜメモの道とゲートが要るかを示す図。何をするものか：RNNは、文のように順番のあるデータを1語ずつ読み、それまでの内容をメモにして次の語へ持ち越しながら読むネットワーク。例：彼は大阪で生まれた、のあと30語ほど続いて、だから彼は（　）弁を話す、の空欄を当てるには、ずっと前の大阪を覚えておく必要がある。困りごと：学習では、答えの外れ（誤差）を前の語へさかのぼって届け、どこを直すかを決める。ふつうのRNNは1語さかのぼるたびに1より小さい数が掛かる。例として毎回0.5を掛けると、その語に届く誤差の大きさは32、16、8、4、2、1と減り、10語さかのぼると32÷1024≈0.03でほぼ0。遠い語まで誤差が届かず、長い間覚えることを学べない（勾配消失）。どう解決するか：部品1はメモ専用の道で、毎回1を掛けるので、何語さかのぼっても32のままで、遠い語まで誤差が届く。部品2はゲートで、道への出入り口。0〜1の数を掛けて開け閉めする。何でも書き込むと要らない語でメモが上書きされてしまうため。例：大阪で入力ゲートを開いて（1）メモに書き、間の30語は閉じて（0）メモを守り、（　）弁の所で出力ゲートを開いて読み出す。どこで開けるかは学習で決まり、数は例。入力ゲートはメモに書き込む量、出力ゲートはメモを読み出す量、忘却ゲートは前のメモを残す量（2000年に追加）。試験で出る語：LSTMはLong Short-Term Memory（長く保てる短期記憶）。メモはセルの状態、メモの道はCEC（Constant Error Carousel）。1997年にHochreiterとSchmidhuberが提案。</desc>
+<text x="12" y="20" class="tb">LSTM：前のことを、長い間覚えておける</text>
+<text x="12" y="48" class="tb">① 何をするものか</text>
+<text x="12" y="68" class="tm">RNN＝文のように順番のあるデータを1語ずつ</text>
+<text x="12" y="88" class="tm">読み、それまでの内容をメモにして、次の語へ</text>
+<text x="12" y="108" class="tm">持ち越しながら読むネットワーク</text>
+<text x="12" y="132">例：『彼は大阪で生まれた。……（30語）……</text>
+<text x="12" y="152">　 だから彼は（　）弁を話す』</text>
+<text x="12" y="174" class="tm">（　）を当てるには、ずっと前の『大阪』を</text>
+<text x="12" y="194" class="tm">覚えておく必要がある</text>
+<line x1="12" y1="208" x2="308" y2="208" class="l sb w1"/>
+<text x="12" y="232" class="tb">② 困りごと</text>
+<text x="12" y="252" class="tm">学習では、答えの外れ（誤差）を、前の語へ</text>
+<text x="12" y="272" class="tm">さかのぼって届け、どこを直すかを決める。</text>
+<text x="12" y="292" class="tm">ふつうの RNN は、1語さかのぼるたびに</text>
+<text x="12" y="312" class="tm">1 より小さい数が掛かる</text>
+<text x="12" y="336" class="tb tng">ふつうの RNN（例：毎回 ×0.5）</text>
+<rect x="26" y="358.0" width="28" height="48.0" class="fng sng" stroke-width="1.5"/>
+<text x="40" y="353" class="tb" text-anchor="middle">32</text>
+<rect x="72" y="382.0" width="28" height="24.0" class="fng sng" stroke-width="1.5"/>
+<text x="86" y="377" class="tb" text-anchor="middle">16</text>
+<rect x="118" y="394.0" width="28" height="12.0" class="fng sng" stroke-width="1.5"/>
+<text x="132" y="389" class="tb" text-anchor="middle">8</text>
+<rect x="164" y="400.0" width="28" height="6.0" class="fng sng" stroke-width="1.5"/>
+<text x="178" y="395" class="tb" text-anchor="middle">4</text>
+<rect x="210" y="403.0" width="28" height="3.0" class="fng sng" stroke-width="1.5"/>
+<text x="224" y="398" class="tb" text-anchor="middle">2</text>
+<rect x="256" y="404.5" width="28" height="1.5" class="fng sng" stroke-width="1.5"/>
+<text x="270" y="399.5" class="tb" text-anchor="middle">1</text>
+<line x1="12" y1="406" x2="308" y2="406" class="l sm w1"/>
+<text x="12" y="424" class="tm">いまの語 ← 1語前 ← 2語前 … さかのぼる</text>
+<text x="12" y="442" class="tm">棒と数＝その語に届く誤差の大きさ</text>
+<text x="12" y="464" class="tb tng">10語さかのぼると 32÷1024≈0.03。ほぼ0</text>
+<text x="12" y="486" class="tb tng">→ 遠い語まで誤差が届かず、長い間覚える</text>
+<text x="12" y="508" class="tb tng">　 ことを学べない（勾配消失）</text>
+<line x1="12" y1="522" x2="308" y2="522" class="l sb w1"/>
+<text x="12" y="546" class="tb">③ どう解決するか（部品2つ）</text>
+<text x="12" y="570" class="tb tok">部品1：メモ専用の道（毎回 ×1）</text>
+<rect x="26" y="592.0" width="28" height="48.0" class="fok sok" stroke-width="1.5"/>
+<text x="40" y="587" class="tb" text-anchor="middle">32</text>
+<rect x="72" y="592.0" width="28" height="48.0" class="fok sok" stroke-width="1.5"/>
+<text x="86" y="587" class="tb" text-anchor="middle">32</text>
+<rect x="118" y="592.0" width="28" height="48.0" class="fok sok" stroke-width="1.5"/>
+<text x="132" y="587" class="tb" text-anchor="middle">32</text>
+<rect x="164" y="592.0" width="28" height="48.0" class="fok sok" stroke-width="1.5"/>
+<text x="178" y="587" class="tb" text-anchor="middle">32</text>
+<rect x="210" y="592.0" width="28" height="48.0" class="fok sok" stroke-width="1.5"/>
+<text x="224" y="587" class="tb" text-anchor="middle">32</text>
+<rect x="256" y="592.0" width="28" height="48.0" class="fok sok" stroke-width="1.5"/>
+<text x="270" y="587" class="tb" text-anchor="middle">32</text>
+<line x1="12" y1="640" x2="308" y2="640" class="l sm w1"/>
+<text x="12" y="662" class="tm">×1 なので、何語さかのぼっても 32 のまま</text>
+<text x="12" y="684" class="tm">→ 遠い語まで誤差が届く</text>
+<text x="12" y="712" class="tb ta">部品2：ゲート（道への出入り口）</text>
+<text x="12" y="732" class="tm">0〜1 の数を掛けて、開け閉めする係。</text>
+<text x="12" y="752" class="tm">何でも書き込むと、要らない語でメモが</text>
+<text x="12" y="772" class="tm">上書きされてしまうため</text>
+<text x="12" y="796">例：『大阪』で入力ゲートを開いて（1）</text>
+<text x="12" y="816">　 メモに書く → 間の30語は閉じて（0）</text>
+<text x="12" y="836">　 メモを守る → 『（　）弁』で出力ゲート</text>
+<text x="12" y="856">　 を開いて読み出す</text>
+<text x="12" y="876" class="tm">（どこで開けるかは学習で決まる。数は例）</text>
+<text x="12" y="898" class="tm">入力ゲート＝メモに書き込む量</text>
+<text x="12" y="920" class="tm">出力ゲート＝メモを読み出す量</text>
+<text x="12" y="942" class="tm">忘却ゲート＝前のメモを残す量（2000年に追加）</text>
+<line x1="12" y1="956" x2="308" y2="956" class="l sb w1"/>
+<text x="12" y="980" class="tb">試験で出る語</text>
+<text x="12" y="1000" class="tm">LSTM＝Long Short-Term Memory</text>
+<text x="12" y="1020" class="tm">（長く保てる短期記憶）</text>
+<text x="12" y="1040" class="tm">メモ＝セルの状態</text>
+<text x="12" y="1060" class="tm">メモの道＝CEC（Constant Error Carousel）</text>
+<text x="12" y="1080" class="tm">1997年、Hochreiter と Schmidhuber が提案</text>
+<text x="12" y="1100" class="tm">部品の並び方は次の図</text>
+</svg>

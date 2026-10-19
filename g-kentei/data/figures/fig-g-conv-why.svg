@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 884" role="img" aria-labelledby="fig-g-conv-why-t fig-g-conv-why-d">
+<title id="fig-g-conv-why-t">畳み込み：小さな模様を、どこにあっても見つける</title>
+<desc id="fig-g-conv-why-d">畳み込みが何のためで、なぜ模様が見つかるかを示す図。何をしたいか：画像の中から斜めの線・縦線・角のような小さな模様を、画像のどこにあっても見つけたい。どう考えるか：模様の見本（フィルタ）を1枚だけ作り、画像の上を1マスずつずらしながら重ねる。重なったマスどうしを掛けて足すと、見本に似ている所ほど大きな数になる。例：数は明るさで、1は線がある、0は何もない。4×4の画像に、左上から右下へ斜めに1が並ぶ。見本は2×2の［1, 0／0, 1］で、＼の斜め線。左上に重ねると1×1＋0×0＋0×0＋1×1＝2で、見本にぴったりなので大きな数。1マス右に重ねると0×1＋0×0＋1×0＋0×1＝0で、似ていない。ずらし続けると、3×3の地図の斜めに2が並び、ほかは0になる。同じ見本を全部の場所で使い回すので、線がどこにあっても見つかる。逆向きの／［0, 1／1, 0］に重ねると0×1＋1×0＋1×0＋0×1＝0で反応しない。うれしいこと：見本は2×2＝4つの数だけで、画像が大きくなっても増えない。見本の数は学習で決まり、どんな模様に反応するかは学習しだい。試験で出る語：見本はフィルタ（カーネル）、掛けて足す計算は畳み込み演算、できた地図は特徴マップ、同じフィルタを使い回すことは重み共有。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">畳み込み：小さな模様を、どこにあっても見つける</text>
+<text x="12" y="48" class="tb">① 何をしたいか</text>
+<text x="12" y="68" class="tm">画像の中から、斜めの線・縦線・角のような</text>
+<text x="12" y="88" class="tm">小さな模様を、画像のどこにあっても見つけたい</text>
+<line x1="12" y1="102" x2="308" y2="102" class="l sb w1"/>
+<text x="12" y="126" class="tb">② どう考えるか</text>
+<text x="12" y="146" class="tm">模様の見本（フィルタ）を1枚だけ作り、画像の</text>
+<text x="12" y="166" class="tm">上を1マスずつずらしながら重ねる。重なった</text>
+<text x="12" y="186" class="tm">マスどうしを掛けて足すと、見本に似ている</text>
+<text x="12" y="206" class="tm">所ほど大きな数になる</text>
+<line x1="12" y1="220" x2="308" y2="220" class="l sb w1"/>
+<text x="12" y="244" class="tb">③ 例：＼の斜め線を探す</text>
+<text x="12" y="264" class="tm">数は明るさ。1＝線がある、0＝何もない</text>
+<rect x="12" y="276" width="24" height="24" class="fas sb" stroke-width="1"/>
+<text x="24" y="293" class="tb" text-anchor="middle">1</text>
+<rect x="36" y="276" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="48" y="293" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="276" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="72" y="293" class="tm" text-anchor="middle">0</text>
+<rect x="84" y="276" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="96" y="293" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="300" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="24" y="317" class="tm" text-anchor="middle">0</text>
+<rect x="36" y="300" width="24" height="24" class="fas sb" stroke-width="1"/>
+<text x="48" y="317" class="tb" text-anchor="middle">1</text>
+<rect x="60" y="300" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="72" y="317" class="tm" text-anchor="middle">0</text>
+<rect x="84" y="300" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="96" y="317" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="324" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="24" y="341" class="tm" text-anchor="middle">0</text>
+<rect x="36" y="324" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="48" y="341" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="324" width="24" height="24" class="fas sb" stroke-width="1"/>
+<text x="72" y="341" class="tb" text-anchor="middle">1</text>
+<rect x="84" y="324" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="96" y="341" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="348" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="24" y="365" class="tm" text-anchor="middle">0</text>
+<rect x="36" y="348" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="48" y="365" class="tm" text-anchor="middle">0</text>
+<rect x="60" y="348" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="72" y="365" class="tm" text-anchor="middle">0</text>
+<rect x="84" y="348" width="24" height="24" class="fas sb" stroke-width="1"/>
+<text x="96" y="365" class="tb" text-anchor="middle">1</text>
+<rect x="12" y="276" width="48" height="48" class="l sng w2"/>
+<rect x="36" y="276" width="48" height="48" class="l swn w2 dsh"/>
+<text x="60" y="390" class="tm" text-anchor="middle">画像 4×4</text>
+<rect x="136" y="300" width="24" height="24" class="fok sb" stroke-width="1"/>
+<text x="148" y="317" class="tb" text-anchor="middle">1</text>
+<rect x="160" y="300" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="172" y="317" class="tb" text-anchor="middle">0</text>
+<rect x="136" y="324" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="148" y="341" class="tb" text-anchor="middle">0</text>
+<rect x="160" y="324" width="24" height="24" class="fok sb" stroke-width="1"/>
+<text x="172" y="341" class="tb" text-anchor="middle">1</text>
+<text x="160" y="292" class="tm" text-anchor="middle">見本（＼）</text>
+<text x="160" y="366" class="tm" text-anchor="middle">フィルタ</text>
+<text x="118" y="329" class="tb" text-anchor="middle">＊</text>
+<text x="196" y="329" class="tb" text-anchor="middle">＝</text>
+<rect x="212" y="288" width="24" height="24" class="fas sb" stroke-width="1"/>
+<text x="224" y="305" class="tb ta" text-anchor="middle">2</text>
+<rect x="236" y="288" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="248" y="305" class="tm" text-anchor="middle">0</text>
+<rect x="260" y="288" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="272" y="305" class="tm" text-anchor="middle">0</text>
+<rect x="212" y="312" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="224" y="329" class="tm" text-anchor="middle">0</text>
+<rect x="236" y="312" width="24" height="24" class="fas sb" stroke-width="1"/>
+<text x="248" y="329" class="tb ta" text-anchor="middle">2</text>
+<rect x="260" y="312" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="272" y="329" class="tm" text-anchor="middle">0</text>
+<rect x="212" y="336" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="224" y="353" class="tm" text-anchor="middle">0</text>
+<rect x="236" y="336" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="248" y="353" class="tm" text-anchor="middle">0</text>
+<rect x="260" y="336" width="24" height="24" class="fas sb" stroke-width="1"/>
+<text x="272" y="353" class="tb ta" text-anchor="middle">2</text>
+<text x="248" y="378" class="tm" text-anchor="middle">地図 3×3</text>
+<text x="12" y="420" class="tb tng">赤枠（左上）：1×1＋0×0＋0×0＋1×1＝2</text>
+<text x="12" y="440" class="tm">　→ 見本にぴったり。大きな数</text>
+<text x="12" y="462" class="tb twn">点線（1マス右）：0×1＋0×0＋1×0＋0×1＝0</text>
+<text x="12" y="482" class="tm">　→ 似ていない。0</text>
+<text x="12" y="506">ずらし続けると、線のある場所に 2 が並ぶ</text>
+<text x="12" y="526">地図ができる。同じ見本を全部の場所で</text>
+<text x="12" y="546">使い回すので、線がどこにあっても見つかる</text>
+<text x="12" y="570" class="tm">逆向きの／［0, 1／1, 0］に重ねると</text>
+<text x="12" y="590" class="tm">0×1＋1×0＋1×0＋0×1＝0 → 反応しない</text>
+<line x1="12" y1="604" x2="308" y2="604" class="l sb w1"/>
+<text x="12" y="628" class="tb">④ うれしいこと</text>
+<text x="12" y="648" class="tm">見本は 2×2＝4つの数だけ。画像が大きく</text>
+<text x="12" y="668" class="tm">なっても増えない（場所ごとに別の見本を</text>
+<text x="12" y="688" class="tm">用意しなくてよい）</text>
+<text x="12" y="708" class="tm">見本の数は、人が決めずに学習で決まる。</text>
+<text x="12" y="728" class="tm">どんな模様に反応するかは学習しだい</text>
+<line x1="12" y1="742" x2="308" y2="742" class="l sb w1"/>
+<text x="12" y="766" class="tb">試験で出る語</text>
+<text x="12" y="786" class="tm">見本＝フィルタ（カーネル）</text>
+<text x="12" y="806" class="tm">掛けて足す計算＝畳み込み演算</text>
+<text x="12" y="826" class="tm">できた地図＝特徴マップ</text>
+<text x="12" y="846" class="tm">同じフィルタを使い回す＝重み共有</text>
+<text x="12" y="868" class="tm">（数は説明のための例）</text>
+</svg>
