@@ -1,64 +1,113 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 916" role="img" aria-labelledby="fig-g-lora-t fig-g-lora-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1362" role="img" aria-labelledby="fig-g-lora-t fig-g-lora-d">
 <title id="fig-g-lora-t">LoRA：元の重みは固定し、小さな行列 B と A だけを学ぶ</title>
-<desc id="fig-g-lora-d">①ふつうのファインチューニングは、縦1000×横1000の重み W の100万個を全部学習し直す。②LoRA は元の重み W0 を固定し、縦1000×横8の行列 B と、縦8×横1000の行列 A の積 BA を足す。学習するのは B と A だけで、8000＋8000＝16000個。100万個の約1.6%。この 8 をランク r と呼ぶ。数は説明のための例。棒で比べると、学習する数の差が分かる。③使うときは W＝W0＋BA を先に計算して1枚の行列にしておけるので、層が増えず、推論の遅れが増えない。アダプタは層を足すので遅れが出る。④用途を替えるときは、共通の W0 はそのままで、用途ごとの小さい B と A だけを差し替える。言葉：重みは入力に掛ける、学習で決まる数。行列は数を縦×横の表に並べたもので、W・B・Aはどれも重みの行列。</desc>
+<desc id="fig-g-lora-d">①ふつうのファインチューニングは、縦1000×横1000の重み W の100万個を全部学習し直す。②LoRA は元の重み W0 を固定し、大きな表を直接決める代わりに、細い表 B（縦1000×横8）と A（縦8×横1000）を決めて、掛け算 B×A で大きな表を作り、W0 に足す。B×A を計算すると縦1000×横1000の100万マスの表になり、W0 と同じ形なので足せる。決める（学習する）のは B と A に書く数だけで、8000＋8000＝16000個。100万マスは、この16000個から掛け算で出てくる。100万個の約1.6%。この 8 をランク r と呼ぶ。数は説明のための例。小さな例：B を縦3×横1（1、2、3）、A を縦1×横3（10、20、30）にすると、B×A は九九の表と同じで、マスは左の B の数×上の A の数。1行目は10、20、30、2行目は20、40、60、3行目は30、60、90。決めた数は3＋3＝6個で、できるマスは3×3＝9個。数える個数は足し算、できる表の大きさは縦×横。本物は B が横8・A が縦8なので、1マスは8つの掛け算の合計になる。棒で比べると、学習する数の差が分かる。③使うときは W＝W0＋BA を先に計算して1枚の行列にしておけるので、層が増えず、推論の遅れが増えない。アダプタは層を足すので遅れが出る。④用途を替えるときは、共通の W0 はそのままで、用途ごとの小さい B と A だけを差し替える。言葉：重みは入力に掛ける、学習で決まる数。行列は数を縦×横の表に並べたもので、W・B・Aはどれも重みの行列。</desc>
 <rect x="12" y="6" width="296" height="88" class="fs sb" stroke-width="1" rx="6"/>
 <text x="22" y="29" class="tb">言葉：重み・行列</text>
 <text x="22" y="47">重み：入力に掛ける、学習で決まる数</text>
 <text x="22" y="65">行列：数を縦×横の表に並べたもの</text>
 <text x="22" y="83">　（W・B・A はどれも重みの行列）</text>
-<g transform="translate(0,100)">
-<text x="12" y="20" class="tb">① ふつうのファインチューニング</text>
-<rect x="12" y="34" width="100" height="100" class="fwn swn" stroke-width="1.5"/>
-<text x="62" y="89" class="tl" text-anchor="middle">W</text>
-<text x="128" y="58">縦1000×横1000 の重み</text>
-<text x="128" y="80" class="tb twn">100万個を全部</text>
-<text x="128" y="100" class="tb twn">学習し直す</text>
-<text x="128" y="124" class="tm">用途ごとに全部を複製</text>
-<line x1="12" y1="150" x2="308" y2="150" class="l sb w1"/>
-<text x="12" y="174" class="tb">② LoRA：元の重みは固定、小さな行列を足す</text>
-<rect x="12" y="190" width="100" height="100" class="fs sm" stroke-width="1.5"/>
-<text x="62" y="238" class="tl" text-anchor="middle">W0</text>
-<text x="62" y="258" class="tm" text-anchor="middle">固定</text>
-<text x="62" y="274" class="tm" text-anchor="middle">（学習しない）</text>
-<text x="124" y="246" class="tl" text-anchor="middle">＋</text>
-<rect x="138" y="190" width="14" height="100" class="fok sok" stroke-width="1.5"/>
-<text x="145" y="306" class="tb tok" text-anchor="middle">B</text>
-<text x="166" y="246" class="tl" text-anchor="middle">×</text>
-<rect x="180" y="233" width="100" height="14" class="fok sok" stroke-width="1.5"/>
-<text x="230" y="226" class="tb tok" text-anchor="middle">A</text>
-<text x="12" y="332">B：縦1000×横8＝8000個</text>
-<text x="12" y="352">A：縦8×横1000＝8000個</text>
-<text x="12" y="374" class="tb tok">学習するのは B と A だけ：計16000個</text>
-<text x="12" y="394">100万個の約1.6%（この 8 がランク r）</text>
-<text x="12" y="414" class="tm">※ B と A の細さは、見やすく太く描いた</text>
-<text x="12" y="440" class="tm">学習する数の比べ（横の長さ＝個数）</text>
-<rect x="12" y="450" width="296" height="16" class="fwn swn" stroke-width="1.5"/>
-<text x="12" y="484">ふつう：100万個</text>
-<rect x="12" y="494" width="5" height="16" class="fok sok" stroke-width="1.5"/>
-<text x="24" y="507" class="tb tok">LoRA：16000個（約1.6%）</text>
-<line x1="12" y1="528" x2="308" y2="528" class="l sb w1"/>
-<text x="12" y="552" class="tb">③ 使うとき：先に足して1枚にする</text>
-<rect x="12" y="566" width="60" height="60" class="fs sm" stroke-width="1.5"/>
-<text x="42" y="601" class="tb" text-anchor="middle">W0</text>
-<text x="86" y="601" class="tl" text-anchor="middle">＋</text>
-<rect x="100" y="566" width="60" height="60" class="fok sok" stroke-width="1.5"/>
-<text x="130" y="601" class="tb tok" text-anchor="middle">BA</text>
-<text x="174" y="601" class="tl" text-anchor="middle">＝</text>
-<rect x="188" y="566" width="60" height="60" class="fas sa" stroke-width="1.5"/>
-<text x="218" y="601" class="tb ta" text-anchor="middle">W</text>
-<text x="12" y="652">W＝W0＋BA を先に計算しておける</text>
-<text x="12" y="672" class="tb tok">→ 層が増えず、推論の遅れが増えない</text>
-<text x="12" y="692" class="tm">（アダプタは層を足すので、遅れが出る）</text>
-<line x1="12" y1="710" x2="308" y2="710" class="l sb w1"/>
-<text x="12" y="734" class="tb">④ 用途を替える：B と A だけ差し替え</text>
-<rect x="12" y="746" width="44" height="44" class="fs sm" stroke-width="1.5"/>
-<text x="34" y="773" class="tb" text-anchor="middle">W0</text>
-<text x="34" y="806" class="tm" text-anchor="middle">共通</text>
-<rect x="70" y="746" width="110" height="20" class="fok sok" stroke-width="1.5"/>
-<text x="125" y="761" text-anchor="middle">翻訳用の B・A</text>
-<rect x="70" y="770" width="110" height="20" class="fas sa" stroke-width="1.5"/>
-<text x="125" y="785" text-anchor="middle">要約用の B'・A'</text>
-<text x="192" y="764">小さい B・A を</text>
-<text x="192" y="784">用途ごとに持つ</text>
-</g>
+<text x="12" y="120" class="tb">① ふつうのファインチューニング</text>
+<rect x="12" y="134" width="100" height="100" class="fwn swn" stroke-width="1.5"/>
+<text x="62" y="189" class="tl" text-anchor="middle">W</text>
+<text x="128" y="158">縦1000×横1000 の重み</text>
+<text x="128" y="180" class="tb twn">100万個を全部</text>
+<text x="128" y="200" class="tb twn">学習し直す</text>
+<text x="128" y="224" class="tm">用途ごとに全部を複製</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="274" class="tb">② LoRA：元の重みは固定、小さな行列を足す</text>
+<text x="12" y="296" class="tm">大きな表を直接決めずに、細い表 B と A を</text>
+<text x="12" y="314" class="tm">決めて、掛け算 B×A で大きな表を作る</text>
+<rect x="12" y="330" width="100" height="100" class="fs sm" stroke-width="1.5"/>
+<text x="62" y="378" class="tl" text-anchor="middle">W0</text>
+<text x="62" y="398" class="tm" text-anchor="middle">固定</text>
+<text x="62" y="414" class="tm" text-anchor="middle">（学習しない）</text>
+<text x="124" y="386" class="tl" text-anchor="middle">＋</text>
+<rect x="138" y="330" width="14" height="100" class="fok sok" stroke-width="1.5"/>
+<text x="145" y="446" class="tb tok" text-anchor="middle">B</text>
+<text x="166" y="386" class="tl" text-anchor="middle">×</text>
+<rect x="180" y="373" width="100" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="230" y="366" class="tb tok" text-anchor="middle">A</text>
+<text x="12" y="474" class="tb">B×A を計算すると、縦1000×横1000 の表</text>
+<text x="12" y="494">（100万マス）になる。W0 と同じ形なので、</text>
+<text x="12" y="514">W0 に足せる</text>
+<text x="12" y="542" class="tb">決める（学習する）のは、B と A に書く数だけ</text>
+<text x="12" y="562">B：縦1000×横8＝8000個</text>
+<text x="12" y="582">A：縦8×横1000＝8000個</text>
+<text x="12" y="604" class="tb tok">合計 8000＋8000＝16000個</text>
+<text x="12" y="626">100万マスは、この16000個から掛け算で出る</text>
+<text x="12" y="646">100万個の約1.6%（この 8 がランク r）</text>
+<text x="12" y="666" class="tm">※ B と A の細さは、見やすく太く描いた</text>
+<rect x="12" y="680" width="296" height="268" class="fs sb" stroke-width="1" rx="6"/>
+<text x="22" y="702" class="tb">小さな例：B（縦3×横1）×A（縦1×横3）</text>
+<text x="128" y="737" class="tb tok" text-anchor="end">A（決める）</text>
+<rect x="136" y="718" width="40" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="176" y="718" width="40" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="216" y="718" width="40" height="26" class="fok sok" stroke-width="1.5"/>
+<text x="156" y="736" class="tb tok" text-anchor="middle">10</text>
+<text x="196" y="736" class="tb tok" text-anchor="middle">20</text>
+<text x="236" y="736" class="tb tok" text-anchor="middle">30</text>
+<text x="86" y="791" class="tb tok" text-anchor="end">B（決める）</text>
+<rect x="92" y="748" width="40" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="92" y="774" width="40" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="92" y="800" width="40" height="26" class="fok sok" stroke-width="1.5"/>
+<text x="112" y="766" class="tb tok" text-anchor="middle">1</text>
+<text x="112" y="792" class="tb tok" text-anchor="middle">2</text>
+<text x="112" y="818" class="tb tok" text-anchor="middle">3</text>
+<rect x="136" y="748" width="40" height="26" class="fs sm" stroke-width="1"/>
+<rect x="176" y="748" width="40" height="26" class="fs sm" stroke-width="1"/>
+<rect x="216" y="748" width="40" height="26" class="fs sm" stroke-width="1"/>
+<rect x="136" y="774" width="40" height="26" class="fs sm" stroke-width="1"/>
+<rect x="176" y="774" width="40" height="26" class="fs sm" stroke-width="1"/>
+<rect x="216" y="774" width="40" height="26" class="fas sa" stroke-width="2"/>
+<rect x="136" y="800" width="40" height="26" class="fs sm" stroke-width="1"/>
+<rect x="176" y="800" width="40" height="26" class="fs sm" stroke-width="1"/>
+<rect x="216" y="800" width="40" height="26" class="fs sm" stroke-width="1"/>
+<text x="156" y="766" text-anchor="middle">10</text>
+<text x="196" y="766" text-anchor="middle">20</text>
+<text x="236" y="766" text-anchor="middle">30</text>
+<text x="156" y="792" text-anchor="middle">20</text>
+<text x="196" y="792" text-anchor="middle">40</text>
+<text x="236" y="792" class="tb ta" text-anchor="middle">60</text>
+<text x="156" y="818" text-anchor="middle">30</text>
+<text x="196" y="818" text-anchor="middle">60</text>
+<text x="236" y="818" text-anchor="middle">90</text>
+<text x="196" y="844" class="tm" text-anchor="middle">B×A（掛け算でできる表）</text>
+<text x="22" y="868">マス＝左の B の数×上の A の数</text>
+<text x="22" y="886" class="tm">（九九の表と同じ。例：<tspan class="tb ta">2×30＝60</tspan>）</text>
+<text x="22" y="910" class="tb tok">決めた数：3＋3＝6個</text>
+<text x="22" y="930" class="tb">できるマス：縦3×横3＝9個</text>
+<text x="12" y="970" class="tm">本物も同じ：決める数は 8000＋8000（足し算）、</text>
+<text x="12" y="988" class="tm">できる表は 縦1000×横1000（縦×横）</text>
+<text x="12" y="1006" class="tm">（本物は B が横8・A が縦8なので、1マスは</text>
+<text x="12" y="1024" class="tm">8つの掛け算の合計になる）</text>
+<text x="12" y="1050" class="tm">学習する数の比べ（横の長さ＝個数）</text>
+<rect x="12" y="1060" width="296" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="12" y="1094">ふつう：100万個</text>
+<rect x="12" y="1104" width="5" height="16" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="1117" class="tb tok">LoRA：16000個（約1.6%）</text>
+<line x1="12" y1="1134" x2="308" y2="1134" class="l sb w1"/>
+<text x="12" y="1156" class="tb">③ 使うとき：先に足して1枚にする</text>
+<rect x="12" y="1166" width="40" height="40" class="fs sm" stroke-width="1.5"/>
+<text x="32" y="1191" class="tb" text-anchor="middle">W0</text>
+<text x="64" y="1191" class="tl" text-anchor="middle">＋</text>
+<rect x="76" y="1166" width="40" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="96" y="1191" class="tb tok" text-anchor="middle">BA</text>
+<text x="128" y="1191" class="tl" text-anchor="middle">＝</text>
+<rect x="140" y="1166" width="40" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="1191" class="tb ta" text-anchor="middle">W</text>
+<text x="190" y="1184" class="tm">先に計算して</text>
+<text x="190" y="1202" class="tm">1枚にしておく</text>
+<text x="12" y="1228" class="tb tok">→ 層が増えず、推論の遅れが増えない</text>
+<text x="12" y="1246" class="tm">（アダプタは層を足すので、遅れが出る）</text>
+<line x1="12" y1="1258" x2="308" y2="1258" class="l sb w1"/>
+<text x="12" y="1280" class="tb">④ 用途を替える：B と A だけ差し替え</text>
+<rect x="12" y="1292" width="44" height="44" class="fs sm" stroke-width="1.5"/>
+<text x="34" y="1319" class="tb" text-anchor="middle">W0</text>
+<text x="34" y="1352" class="tm" text-anchor="middle">共通</text>
+<rect x="70" y="1292" width="110" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="125" y="1307" text-anchor="middle">翻訳用の B・A</text>
+<rect x="70" y="1316" width="110" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="125" y="1331" text-anchor="middle">要約用の B'・A'</text>
+<text x="192" y="1310">小さい B・A を</text>
+<text x="192" y="1330">用途ごとに持つ</text>
 </svg>
