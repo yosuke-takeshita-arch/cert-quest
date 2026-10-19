@@ -235,7 +235,6 @@ export function renderStudyReport(app, { today = dateKey(new Date()) } = {}) {
   let range = defaultRange(unit, today);
   let message = '';
   const top = h('div', { class: 'sr-top' });
-  const noteHost = h('div', { class: 'sr-note-host' });
   const chart = createChart({ srToWeek: () => setUnit('week', true) });
 
   function setUnit(u, keepRange) {
@@ -261,7 +260,6 @@ export function renderStudyReport(app, { today = dateKey(new Date()) } = {}) {
 
   function draw() {
     clear(top);
-    clear(noteHost);
     const rep = studyReport(app.state, unit, range.from, range.to, today);
     const t = rep.total;
 
@@ -295,17 +293,10 @@ export function renderStudyReport(app, { today = dateKey(new Date()) } = {}) {
 
     // 4. グラフ（入れ物は作り直さず、中身をなめらかに入れ替える）
     chart.update(rep, unit);
-
-    // 5. 注意書き
-    const first = rep.firstRecord;
-    noteHost.appendChild(h('p', { class: 'small muted', 'data-sr-note': '1', text: first
-      ? 'この画面の記録は ' + first.replace(/^(\d+)-(\d+)-(\d+)$/, (m, y, mo, d) => y + '年' + Number(mo) + '月' + Number(d) + '日') + ' から始まっています。それ以前の分は日ごとに分けられないので、ホームの総学習時間にだけ入っています。記録の無い日は 0 分として数えます。'
-      : 'まだ記録がありません。アプリを開いて学ぶと、この日から日ごとにたまっていきます。ホームの総学習時間には、それ以前の分も入っています。' }));
   }
 
   root.appendChild(top);
   root.appendChild(chart.el);
-  root.appendChild(noteHost);
   draw();
   return root;
 }
