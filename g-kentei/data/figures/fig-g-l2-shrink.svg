@@ -1,43 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 548" role="img" aria-labelledby="fig-g-l2-shrink-t fig-g-l2-shrink-d">
-<title id="fig-g-l2-shrink-t">L2 正則化：縮める力は重みに比例する</title>
-<desc id="fig-g-l2-shrink-d">重みが3と0.1の2つある例。L2の罰則は重みの2乗で、w掛けるwの傾きは2掛けるwなので、罰則が重みを0のほうへ押す力は2掛けるw。重み3には2掛ける3で6、重み0.1には2掛ける0.1で0.2の力がかかる。矢印の長さが力を表し、L1の図と同じ縮尺。重み3の矢印は長く、0.1の矢印はほとんど無い。次に、1回で縮む量を0.05掛ける縮める力とした例で、くり返し縮める。重み3は1回目に0.3減って2.70、続けて2.43、2.19と大きく縮む。重み0.1は1回目に0.01減って0.090、続けて0.081、0.073とほとんど動かない。力はそのときの重みで計算し直すので、毎回いまの重みの1割ずつ減り、0に近づくほど遅くなって、0には着かない。結果、重み全体がなめらかに小さくなる（0にはなりにくい）。大きすぎる重みほど強く抑えられる。</desc>
-<text x="12" y="20" class="tb">L2：縮める力は重みに比例する</text>
-<text x="12" y="46" class="tb">① 罰則が重みを 0 のほうへ押す力（例）</text>
-<text x="12" y="66" class="tm">罰則は w×w。傾きは 2×w → 力は 2×w</text>
-<text x="296" y="88" class="tb ta" text-anchor="end">縮める力 2×3＝6</text>
-<line x1="296" y1="98" x2="122" y2="98" class="l sa w2"/>
-<polygon points="116,98 123,93 123,103" class="fa"/>
-<text x="12" y="103" class="tb">重み 3</text>
-<text x="296" y="126" class="tb ta" text-anchor="end">縮める力 2×0.1＝0.2（ほぼ押さない）</text>
-<polygon points="290,136 297,131 297,141" class="fa"/>
-<text x="12" y="141" class="tb">重み 0.1</text>
-<text x="12" y="166" class="tm">矢印の長さ＝力（L1 の図と同じ縮尺）</text>
-<line x1="12" y1="180" x2="308" y2="180" class="l sb w1"/>
-<text x="12" y="204" class="tb">② くり返し縮める（例）</text>
-<text x="12" y="224" class="tm">1回で縮む量＝0.05×縮める力</text>
-<text x="12" y="244" class="tm">3 は 0.05×6＝0.3、0.1 は 0.05×0.2＝0.01</text>
-<text x="145" y="272" class="tb" text-anchor="middle">重み 3</text>
-<text x="255" y="272" class="tb" text-anchor="middle">重み 0.1</text>
-<line x1="12" y1="280" x2="308" y2="280" class="l sb w1"/>
-<text x="12" y="300" class="tm">最初</text>
-<text x="145" y="300" text-anchor="middle">3</text>
-<text x="255" y="300" text-anchor="middle">0.1</text>
-<text x="12" y="326" class="tm">1回後</text>
-<text x="145" y="326" text-anchor="middle">2.70（−0.30）</text>
-<text x="255" y="326" text-anchor="middle">0.090（−0.010）</text>
-<text x="12" y="352" class="tm">2回後</text>
-<text x="145" y="352" text-anchor="middle">2.43（−0.27）</text>
-<text x="255" y="352" text-anchor="middle">0.081（−0.009）</text>
-<text x="12" y="378" class="tm">3回後</text>
-<text x="145" y="378" text-anchor="middle">2.19（−0.24）</text>
-<rect x="198" y="362" width="110" height="22" class="fwn swn" stroke-width="1.5" rx="4"/>
-<text x="253" y="378" class="tb twn" text-anchor="middle">0.073（0 でない）</text>
-<text x="12" y="408" class="tm">力はそのときの重みで計算し直す（2.7 なら 5.4）</text>
-<text x="12" y="428" class="tm">→ 毎回いまの重みの1割ずつ減り、0 に近づく</text>
-<text x="12" y="448" class="tm">ほど遅くなる。0.1 は 0 に着かない</text>
-<rect x="12" y="460" width="296" height="48" class="fas sa" stroke-width="1.5" rx="6"/>
-<text x="160" y="480" class="tb ta" text-anchor="middle">③ 重み全体がなめらかに小さくなる</text>
-<text x="160" y="499" class="tb ta" text-anchor="middle">（0 にはなりにくい）</text>
-<text x="12" y="524" class="tm">実際は誤差を減らす力と釣り合う所で止まる。</text>
-<text x="12" y="542" class="tm">大きすぎる重みほど強く抑えられる</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1050" role="img" aria-labelledby="fig-g-l2-shrink-t fig-g-l2-shrink-d">
+<title id="fig-g-l2-shrink-t">L2 正則化：小さい重みは減点がほぼ0なので残る</title>
+<desc id="fig-g-l2-shrink-d">家の値段を、値段＝広さ×○＋駅までの距離×○＋玄関マットの色×○で予想する。○は重みで、その項目を予想にどれくらい効かせるかの目盛り。学習は、過去に売れた家のデータを見て、値段がよく当たるように○を決めること。困りごと：玄関マットの色は値段に関係ないはずなのに、データがたまたまそう見えると重みが少し付き、過去の家には当たるが新しい家で外れる。そこで重みが大きいほど減点という決まりを足す。これが正則化。コンピュータは外れ（予想と実際の値段のずれ）と減点を足していちばん小さくなる○を探すので、重みを付けるなら、減点を取り返せるだけ外れが減らないと損。L2の減点は重みを2回掛けた値。例：マットの色に重み0.1を付けると外れが0.05減り、減点は0.1×0.1＝0.01なので差し引き0.04の得。重みを0.05にしても外れの減りは0.025、減点は0.0025で得。重み0にすると外れの減りも0で、得が消える。小さい重みは2回掛けるとさらに小さくなり減点はほぼ0なので、少しでも外れが減るなら小さいまま残る。だから重みは0になりにくい。大きい重みは減点が大きく、重み3ならL2の減点は3×3＝9（L1なら3）で強く抑えられる。結果、重み全体が0にはならずになめらかに小さくなる。線形回帰にL2正則化を加えたものがリッジ回帰で、ニューラルネットでは重み減衰とも呼ぶ。L1なら減点は0.1で外れの減り0.05より大きく、重みは0になる。数は説明のための例で、減点の強さを1とした。</desc>
+<text x="12" y="20" class="tb">L2：小さい重みは減点がほぼ 0 で、残る</text>
+<text x="12" y="48" class="tb">① 家の値段を、こう予想する</text>
+<rect x="12" y="58" width="296" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="78">値段 ＝ 広さ × <tspan class="tb ta">○</tspan></text>
+<text x="66" y="98">＋ 駅までの距離 × <tspan class="tb ta">○</tspan></text>
+<text x="66" y="118">＋ 玄関マットの色 × <tspan class="tb ta">○</tspan></text>
+<text x="12" y="148" class="tm"><tspan class="tb ta">○</tspan>＝重み。その項目を予想にどれくらい</text>
+<text x="12" y="166" class="tm">効かせるかの目盛り</text>
+<text x="12" y="186" class="tm">学習＝過去に売れた家のデータを見て、</text>
+<text x="12" y="204" class="tm">値段がよく当たるように <tspan class="tb ta">○</tspan> を決めること</text>
+<line x1="12" y1="218" x2="308" y2="218" class="l sb w1"/>
+<text x="12" y="240" class="tb">② 困りごと</text>
+<text x="12" y="260" class="tm">玄関マットの色は値段に関係ないはずなのに、</text>
+<text x="12" y="278" class="tm">データがたまたまそう見えると、重みが少し付く</text>
+<text x="12" y="298" class="tng">→ 過去の家には当たるが、新しい家で外れる</text>
+<line x1="12" y1="312" x2="308" y2="312" class="l sb w1"/>
+<text x="12" y="334" class="tb">③ そこで『重みが大きいほど減点』を足す</text>
+<text x="12" y="354" class="tm">これが正則化。外れ（予想と実際の値段のずれ）</text>
+<text x="12" y="372" class="tm">と減点を足して、いちばん小さくなる <tspan class="tb ta">○</tspan> を探す</text>
+<text x="12" y="392" class="tb">→ 重みを付けるなら、減点を取り返せる</text>
+<text x="12" y="410" class="tb">　 だけ外れが減らないと損</text>
+<line x1="12" y1="424" x2="308" y2="424" class="l sb w1"/>
+<text x="12" y="446" class="tb">④ L2 の減点＝重みを 2 回掛けた値</text>
+<text x="12" y="466" class="tm">例：マットの色に重み 0.1 を付けると、</text>
+<text x="12" y="484" class="tm">外れが 0.05 減る。L2 の減点は 0.1×0.1＝0.01</text>
+<text x="12" y="508" class="tb tok">外れが減る 0.05</text>
+<rect x="150" y="497" width="75" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="12" y="532" class="tb tng">L2 の減点 0.01</text>
+<rect x="150" y="521" width="15" height="14" class="fng sng" stroke-width="1.5"/>
+<text x="12" y="556" class="tb tok">→ 差し引き 0.04 の得</text>
+<text x="12" y="580" class="tm">重みを小さくすると、減点はもっと小さい：</text>
+<text x="44" y="602" class="tm" text-anchor="middle">重み</text>
+<text x="120" y="602" class="tm" text-anchor="middle">外れが減る</text>
+<text x="194" y="602" class="tm" text-anchor="middle">減点</text>
+<text x="266" y="602" class="tm" text-anchor="middle">差し引き</text>
+<line x1="12" y1="609" x2="308" y2="609" class="l sb w1"/>
+<rect x="12" y="612" width="296" height="24" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="44" y="629" class="tb tok" text-anchor="middle">0.1</text>
+<text x="120" y="629" class="tb tok" text-anchor="middle">0.05</text>
+<text x="194" y="629" class="tb tok" text-anchor="middle">0.01</text>
+<text x="266" y="629" class="tb tok" text-anchor="middle">0.04 の得</text>
+<text x="44" y="656" text-anchor="middle">0.05</text>
+<text x="120" y="656" text-anchor="middle">0.025</text>
+<text x="194" y="656" text-anchor="middle">0.0025</text>
+<text x="266" y="656" class="tok" text-anchor="middle">0.0225 の得</text>
+<text x="44" y="680" text-anchor="middle">0</text>
+<text x="120" y="680" text-anchor="middle">0</text>
+<text x="194" y="680" text-anchor="middle">0</text>
+<text x="266" y="680" class="tng" text-anchor="middle">得が消える</text>
+<text x="12" y="706" class="tm">小さい重みは 2 回掛けるとさらに小さくなり、</text>
+<text x="12" y="724" class="tm">減点はほぼ 0。少しでも外れが減るなら残す</text>
+<text x="12" y="744" class="tb tok">→ 重みは 0 になりにくい</text>
+<rect x="12" y="756" width="296" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="776">値段 ＝ 広さ × <tspan class="tb ta">○</tspan></text>
+<text x="66" y="796">＋ 駅までの距離 × <tspan class="tb ta">○</tspan></text>
+<text x="66" y="816">＋ 玄関マットの色 × <tspan class="tb tok">小</tspan></text>
+<text x="222" y="816" class="tb tok">← 小さく残る</text>
+<text x="12" y="852" class="tm">大きい重みは減点が大きい。重み 3 なら</text>
+<text x="12" y="870" class="tm">L2 の減点は 3×3＝9（L1 なら 3）</text>
+<text x="12" y="890" class="tb ta">→ 大きい重みほど強く抑えられ、重み全体が</text>
+<text x="12" y="908" class="tb ta">　 0 にはならずに、なめらかに小さくなる</text>
+<line x1="12" y1="922" x2="308" y2="922" class="l sb w1"/>
+<text x="12" y="944" class="tm">線形回帰＋L2 正則化＝リッジ回帰</text>
+<text x="12" y="962" class="tm">ニューラルネットでは重み減衰とも呼ぶ</text>
+<text x="12" y="980" class="tm">減点は、罰則項・正則化項とも呼ぶ</text>
+<line x1="12" y1="994" x2="308" y2="994" class="l sb w1"/>
+<text x="12" y="1016" class="tm">L1 なら減点 0.1 が外れの減り 0.05 より大きく、</text>
+<text x="12" y="1034" class="tm">重みは 0 になる（数は説明のための例）</text>
 </svg>
