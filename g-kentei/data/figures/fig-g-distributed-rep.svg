@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1062" role="img" aria-labelledby="fig-g-distributed-rep-t fig-g-distributed-rep-d">
+<title id="fig-g-distributed-rep-t">分散表現：意味の似た単語ほど近い数の並び（ベクトル）にする。ワンホットではどの2語も似ている度合いが0</title>
+<desc id="fig-g-distributed-rep-d">困りごと：ワンホット表現では、語彙が犬・猫・車の3語なら、犬＝(1,0,0)、猫＝(0,1,0)、車＝(0,0,1)。似ている度合いを、同じ位置どうしを掛けて足した数（大きいほど似ている）で測ると、犬と猫は1×0＋0×1＋0×0＝0、犬と車も0で、どの2語も0になり、犬と猫は似ているを表せない。語彙が1万語なら1万個の数で、ほとんどが0のむだの多い表し方でもある。どう考えるか：単語を数百個ほどの0でない数の並び（ベクトル）で表し、使われ方の似た語ほど近くにする。例（数を2個に縮めた例）：犬＝(0.8,0.7)、猫＝(0.7,0.8)、車＝(−0.6,0.1)。散布図では犬と猫が近く、車は離れている。犬と猫は0.8×0.7＋0.7×0.8＝1.12、犬と車は0.8×(−0.6)＋0.7×0.1＝−0.41で、犬と猫が近い。うれしいこと：意味の関係が足し算・引き算に出て、King−Man＋Woman に最も近い語が Queen になる（word2vec の論文が紹介する例）。単語どうしの近さを計算でき、ほかのタスクの精度が上がった。作り方の2系統：カウントベースは一緒に出てくる回数を数えた表を重み付けや次元削減で変換し、推論ベースは word2vec のように周りの単語を予測するよう学習する。比べた研究では推論ベースが多くの課題で上回った（Baroni ら 2014）。欠点：1語に1つの並びなので、bank（銀行／土手）のような多義語を文脈で分けられず、ELMo・BERT（文脈に応じた表現）が解いた。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">分散表現：意味の似た語ほど、近い数の並びに</text>
+<text x="12" y="48" class="tb">① 困りごと：ワンホット表現</text>
+<text x="12" y="68" class="tm">語彙が『犬・猫・車』の3語なら、</text>
+<text x="12" y="88" class="tm">犬＝(1, 0, 0)、猫＝(0, 1, 0)、車＝(0, 0, 1)</text>
+<text x="12" y="110" class="tm">似ている度合い＝同じ位置どうしを掛けて足し</text>
+<text x="12" y="132" class="tm">た数（大きいほど似ている）</text>
+<text x="12" y="154">犬と猫：1×0＋0×1＋0×0＝0</text>
+<text x="12" y="176">犬と車：1×0＋0×0＋0×1＝0</text>
+<text x="12" y="198" class="tb tng">→ どの2語も 0。『犬と猫は似ている』を</text>
+<text x="12" y="220" class="tb tng">　 表せない</text>
+<text x="12" y="242" class="tm">語彙が1万語なら1万個の数で、ほとんどが 0</text>
+<text x="12" y="264" class="tm">（むだが多い）</text>
+<line x1="12" y1="278" x2="308" y2="278" class="l sb w1"/>
+<text x="12" y="302" class="tb">② どう考えるか</text>
+<text x="12" y="322" class="tm">単語を、数百個ほどの 0 でない数の並び</text>
+<text x="12" y="342" class="tm">（ベクトル）で表し、使われ方の似た語ほど</text>
+<text x="12" y="362" class="tm">近くにする</text>
+<text x="12" y="384" class="tm">例（数を2個に縮めた例）：</text>
+<text x="12" y="406">犬＝(0.8, 0.7)、猫＝(0.7, 0.8)、車＝(−0.6, 0.1)</text>
+<rect x="40" y="418" width="240" height="140" class="sb" stroke-width="1"/>
+<line x1="44" y1="488" x2="276" y2="488" class="l sm w1"/>
+<line x1="160" y1="422" x2="160" y2="554" class="l sm w1"/>
+<circle cx="236.8" cy="446.0" r="6" class="fas sa" stroke-width="2"/>
+<text x="248.8" y="451.0" class="tb ta" text-anchor="start">犬</text>
+<circle cx="227.2" cy="440.0" r="6" class="fas sa" stroke-width="2"/>
+<text x="213.2" y="432.0" class="tb ta" text-anchor="end">猫</text>
+<circle cx="102.4" cy="482.0" r="6" class="fwn swn" stroke-width="2"/>
+<text x="114.4" y="487.0" class="tb twn" text-anchor="start">車</text>
+<text x="272" y="482" class="tm" text-anchor="end">1個目の数</text>
+<text x="154" y="436" class="tm" text-anchor="end">2個目の数</text>
+<text x="12" y="582">犬と猫：0.8×0.7＋0.7×0.8＝0.56＋0.56＝1.12</text>
+<text x="12" y="606">犬と車：0.8×(−0.6)＋0.7×0.1＝−0.41</text>
+<text x="12" y="628" class="tb tok">→ 犬と猫が近い（似ている度合いが大きい）</text>
+<text x="12" y="648" class="tm">（数は説明のための例）</text>
+<line x1="12" y1="662" x2="308" y2="662" class="l sb w1"/>
+<text x="12" y="686" class="tb">③ うれしいこと</text>
+<text x="12" y="706" class="tm">意味の関係が、足し算・引き算に出る：</text>
+<text x="12" y="726" class="tm">King − Man ＋ Woman に最も近い語が Queen</text>
+<text x="12" y="746" class="tm">（word2vec の論文が紹介する例）</text>
+<text x="12" y="768" class="tm">単語どうしの近さを計算でき、ほかのタスク</text>
+<text x="12" y="790" class="tm">の精度が上がった</text>
+<line x1="12" y1="804" x2="308" y2="804" class="l sb w1"/>
+<text x="12" y="828" class="tb">④ 作り方の2系統</text>
+<text x="12" y="848" class="tm">カウントベース：一緒に出てくる回数を数えた</text>
+<text x="12" y="868" class="tm">　表を、重み付けや次元削減で変換する</text>
+<text x="12" y="888" class="tm">推論ベース：word2vec のように、周りの単語を</text>
+<text x="12" y="908" class="tm">　予測するよう学習する</text>
+<text x="12" y="928" class="tm">比べた研究では、推論ベースが多くの課題で</text>
+<text x="12" y="948" class="tm">上回った（Baroni ら 2014）</text>
+<line x1="12" y1="962" x2="308" y2="962" class="l sb w1"/>
+<text x="12" y="986" class="tb">⑤ 欠点</text>
+<text x="12" y="1006" class="tm">1語に1つの並びなので、bank（銀行／土手）</text>
+<text x="12" y="1026" class="tm">のような多義語を文脈で分けられない</text>
+<text x="12" y="1046" class="tm">→ ELMo・BERT（文脈に応じた表現）が解いた</text>
+</svg>

@@ -1,13 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 816" role="img" aria-labelledby="fig-g-skip-connection-t fig-g-skip-connection-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1326" role="img" aria-labelledby="fig-g-skip-connection-t fig-g-skip-connection-d">
 <title id="fig-g-skip-connection-t">スキップ結合：ResNet は足し算、DenseNet は連結</title>
-<desc id="fig-g-skip-connection-d">上は ResNet の残差ブロック。入力 x は、重み層、ReLU、重み層を通って F(x) になる。迂回路（スキップ結合）で x はそのまま運ばれ、足し合わされて F(x) と x の和になり、そのあと ReLU を通る。層は差分（残差）F(x) だけを学べばよい。下は DenseNet のブロック。各層が、それより前のすべての層の出力を連結して受け取る。4層なら、層1は入力から1本、層2は2本、層3は3本、層4は4本を受け取るので、接続は1＋2＋3＋4で10本。Wide ResNet は、層の数を減らす代わりに各層の幅（チャネル数）を広げた構造。言葉：重み層は入力に重みを掛けて足す層で、重みは学習で決まる数。チャネルは特徴マップの枚数。</desc>
+<desc id="fig-g-skip-connection-d">困りごと：層を深くすると、誤差の勾配（重みをどれだけ直すかの量）が入力に近い層まで届きにくい。また、過学習ではないのに訓練誤差まで悪くなる（劣化問題）。原論文では CIFAR-10（小さな画像を10種類に分けるデータ）で、近道の無い56層が20層より訓練誤差もテスト誤差も高かった。どう考えるか：浅いモデルに何もしない層を足しただけなら悪くならないはずだが、普通の層に入力をそのまま出すことを学ばせるのは難しい。そこで入力を、層を飛ばしてそのまま出力に足す（出力＝F(x)＋x）。例：入力 x＝10、層の出力 F(x)＝0.5 なら 10＋0.5＝10.5。何もしなくてよいなら F(x)＝0 を学べば済む（数は説明のための例）。なぜ深くても学べるか：足し算の近道では勾配がそのまま通るので、層の中の道で勾配が小さく縮んでも、近道を通って浅い層まで届く。下の図：上は ResNet の残差ブロック。入力 x は、重み層、ReLU、重み層を通って F(x) になる。迂回路（スキップ結合）で x はそのまま運ばれ、足し合わされて F(x) と x の和になり、そのあと ReLU を通る。層は差分（残差）F(x) だけを学べばよい。下は DenseNet のブロック。各層が、それより前のすべての層の出力を連結して受け取る。4層なら、層1は入力から1本、層2は2本、層3は3本、層4は4本を受け取るので、接続は1＋2＋3＋4で10本。Wide ResNet は、層の数を減らす代わりに各層の幅（チャネル数）を広げた構造。言葉：重み層は入力に重みを掛けて足す層で、重みは学習で決まる数。チャネルは特徴マップの枚数。</desc>
+<text x="12" y="20" class="tb">スキップ結合：層を飛ばして、入力を足す近道</text>
+<text x="12" y="48" class="tb">① 困りごと：層を深くすると</text>
+<text x="12" y="68" class="tm">・誤差の勾配（重みをどれだけ直すかの量）が、</text>
+<text x="12" y="88" class="tm">　入力に近い層まで届きにくい</text>
+<text x="12" y="108" class="tm">・過学習ではないのに、訓練誤差まで悪くなる</text>
+<text x="12" y="128" class="tm">　（劣化問題）</text>
+<text x="12" y="148" class="tm">例：原論文では CIFAR-10（小さな画像を10種類</text>
+<text x="12" y="168" class="tm">に分けるデータ）で、近道の無い 56 層が 20 層</text>
+<text x="12" y="188" class="tm">より訓練誤差もテスト誤差も高かった</text>
+<line x1="12" y1="202" x2="308" y2="202" class="l sb w1"/>
+<text x="12" y="226" class="tb">② どう考えるか</text>
+<text x="12" y="246" class="tm">浅いモデルに『何もしない層』を足しただけ</text>
+<text x="12" y="266" class="tm">なら、悪くならないはず。ところが普通の層に</text>
+<text x="12" y="286" class="tm">『入力をそのまま出す』を学ばせるのは難しい</text>
+<text x="12" y="310" class="tb ta">→ 入力を、層を飛ばしてそのまま出力に足す</text>
+<text x="12" y="332" class="tb">出力 ＝ F(x)（層の出力）＋ x（入力）</text>
+<text x="12" y="354" class="tm">例：x＝10、F(x)＝0.5 なら 10＋0.5＝10.5</text>
+<text x="12" y="376" class="tm">何もしなくてよいなら F(x)＝0 を学べば済む</text>
+<text x="12" y="398" class="tm">（数は説明のための例）</text>
+<line x1="12" y1="412" x2="308" y2="412" class="l sb w1"/>
+<text x="12" y="436" class="tb">③ なぜ深くても学べるか</text>
+<text x="12" y="456" class="tm">足し算の近道では、勾配がそのまま通る。</text>
+<text x="12" y="476" class="tm">層の中の道で勾配が小さく縮んでも、近道を</text>
+<text x="12" y="496" class="tm">通って浅い層まで届く</text>
+<line x1="12" y1="506" x2="308" y2="506" class="l sb w1"/>
+<g transform="translate(0,510)">
 <rect x="12" y="6" width="296" height="88" class="fs sb" stroke-width="1" rx="6"/>
 <text x="22" y="29" class="tb">言葉：重み・チャネル</text>
 <text x="22" y="47">重み層：入力に重みを掛けて足す層</text>
 <text x="22" y="65">　（重み＝学習で決まる数）</text>
 <text x="22" y="83">チャネル：特徴マップの枚数</text>
 <g transform="translate(0,100)">
-<text x="12" y="20" class="tb">① ResNet：残差ブロック</text>
+<text x="12" y="20" class="tb">④ ResNet：残差ブロック</text>
 <text x="112" y="48" class="tb" text-anchor="middle">入力 x</text>
 <line x1="112" y1="54" x2="112" y2="68" class="l w2"/>
 <polyline points="108.15,61 112,68 115.85,61" class="l w2"/>
@@ -42,7 +68,7 @@
 <text x="12" y="210" class="tb">F(x)＋x</text>
 <text x="12" y="286" class="tb">層は差分（残差）F(x) だけを学べばよい</text>
 <line x1="12" y1="306" x2="308" y2="306" class="l sb w1"/>
-<text x="12" y="330" class="tb">② DenseNet：全部をつなぐ</text>
+<text x="12" y="330" class="tb">⑤ DenseNet：全部をつなぐ</text>
 <line x1="44" y1="420" x2="80" y2="420" class="l sm w2"/>
 <polyline points="73,423.85 80,420 73,416.15" class="l sm w2"/>
 <polyline points="30,420 35,414.25 40,409 45,404.25 50,400 55,396.25 60,393 65,390.25 70,388 75,386.25 80,385 85,384.25 90,384 95,384.25 100,385 105,386.25 110,388 115,390.25 120,393 125,396.25 130,400 135,404.25 140,409 145,414.25 150,420" class="l sm w1"/>
@@ -90,5 +116,6 @@
 <rect x="12" y="660" width="296" height="48" class="fs sb" stroke-width="1.5"/>
 <text x="160" y="679.5" text-anchor="middle">Wide ResNet：層を減らして、</text>
 <text x="160" y="697.5" text-anchor="middle">各層の幅（チャネル数）を広げた</text>
+</g>
 </g>
 </svg>

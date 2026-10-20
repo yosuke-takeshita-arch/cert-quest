@@ -1,7 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 528" role="img" aria-labelledby="fig-g-nerf-t fig-g-nerf-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1182" role="img" aria-labelledby="fig-g-nerf-t fig-g-nerf-d">
 <title id="fig-g-nerf-t">NeRF：位置と視線方向から、密度と色を出す</title>
-<desc id="fig-g-nerf-d">少数の視点から撮った画像をもとに、場面を1つの全結合ネットワークで表す。カメラから場面へ伸びる光線の上に標本点を取り、各点の位置（x, y, z）と視線方向（θ, φ）の5つの値をネットワークに入れると、その点の密度と色が出る。光線の上の色を積み上げる（ボリュームレンダリング）と、その画素の色になる。撮影していない角度からの画像を合成できる。</desc>
-<text x="12" y="20" class="tb">① カメラから、光線を飛ばす</text>
+<desc id="fig-g-nerf-d">何をしたいか：物や部屋を何枚かの写真で撮ったとき、撮っていない角度から見た画像も作りたい。どう考えるか：場面を、空間のこの点をこの向きから見ると、物があるか（密度）と何色か、を答える計算（全結合ネットワーク）として覚える。写真の1画素は、カメラから伸びる視線の上の点を手前から重ねた結果なので、撮った写真と同じ画像になるようにネットワークを直して学習する。例：新しい角度の1画素を作るとき、視線の上の点を手前から聞く。点1は空気（密度0）で透ける。点2は赤いおもちゃの表面（密度が大きく赤）で、ここで止まる。点3はおもちゃの中で手前に隠れて見えない。だから画素は赤（例）。まず読み方：5つの値は、位置 x・y・z の3つと見る向きの角度 θ・φ の2つ。密度はその点に物がある度合い（空気なら0）。ボリュームレンダリングは、視線の上の点の色を、手前の点を優先し、密度に応じて重ね合わせる計算。下の図：少数の視点から撮った画像をもとに、場面を1つの全結合ネットワークで表す。カメラから場面へ伸びる光線の上に標本点を取り、各点の位置（x, y, z）と視線方向（θ, φ）の5つの値をネットワークに入れると、その点の密度と色が出る。光線の上の色を積み上げる（ボリュームレンダリング）と、その画素の色になる。撮影していない角度からの画像を合成できる。</desc>
+<text x="12" y="20" class="tb">NeRF：撮っていない角度の画像を作る</text>
+<text x="12" y="48" class="tb">① 何をしたいか</text>
+<text x="12" y="68" class="tm">物や部屋を何枚かの写真で撮った。撮って</text>
+<text x="12" y="88" class="tm">いない角度から見た画像も作りたい</text>
+<line x1="12" y1="102" x2="308" y2="102" class="l sb w1"/>
+<text x="12" y="126" class="tb">② どう考えるか</text>
+<text x="12" y="146" class="tm">場面を『空間のこの点を、この向きから見ると、</text>
+<text x="12" y="166" class="tm">物があるか（密度）と何色か』を答える計算</text>
+<text x="12" y="186" class="tm">（全結合ネットワーク）として覚える</text>
+<text x="12" y="206" class="tm">写真の1画素＝カメラから伸びる視線の上の</text>
+<text x="12" y="226" class="tm">点を、手前から重ねた結果。撮った写真と同じ</text>
+<text x="12" y="246" class="tm">画像になるように、ネットワークを直して学ぶ</text>
+<line x1="12" y1="260" x2="308" y2="260" class="l sb w1"/>
+<text x="12" y="284" class="tb">③ 例：新しい角度の1画素を作る</text>
+<text x="12" y="304" class="tm">視線の上の点を、手前から順に聞く</text>
+<line x1="20" y1="340" x2="300" y2="340" class="l sm w1 dsh"/>
+<rect x="12" y="326" width="52" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="38" y="345" class="tb" text-anchor="middle">カメラ</text>
+<circle cx="104" cy="340" r="7" class="fs sm" stroke-width="2"/>
+<rect x="150" y="314" width="120" height="52" class="fng sng" stroke-width="2" rx="8"/>
+<circle cx="160" cy="340" r="7" class="fng sng" stroke-width="3"/>
+<circle cx="230" cy="340" r="7" class="fs sm" stroke-width="2"/>
+<text x="104" y="372" class="tb" text-anchor="middle">点1</text>
+<text x="160" y="384" class="tb tng" text-anchor="middle">点2</text>
+<text x="230" y="384" class="tb" text-anchor="middle">点3</text>
+<text x="250" y="308" class="tm" text-anchor="middle">赤いおもちゃ</text>
+<text x="12" y="412">点1：空気（密度 0）→ 透けて、次の点へ</text>
+<text x="12" y="434">点2：おもちゃの表面（密度が大きく、赤）</text>
+<text x="12" y="456">　→ ここで止まる</text>
+<text x="12" y="478">点3：おもちゃの中。手前に隠れて見えない</text>
+<text x="12" y="502" class="tb tng">→ この画素は赤（例）</text>
+<line x1="12" y1="516" x2="308" y2="516" class="l sb w1"/>
+<text x="12" y="540" class="tb">まず読み方（下の図）</text>
+<text x="12" y="560" class="tm">5つの値＝位置 x・y・z の3つ＋見る向きの</text>
+<text x="12" y="580" class="tm">　角度 θ・φ の2つ</text>
+<text x="12" y="600" class="tm">密度＝その点に物がある度合い（空気なら 0）</text>
+<text x="12" y="620" class="tm">ボリュームレンダリング＝視線の上の点の色を、</text>
+<text x="12" y="640" class="tm">　手前の点を優先し、密度に応じて重ねる計算</text>
+<line x1="12" y1="650" x2="308" y2="650" class="l sb w1"/>
+<g transform="translate(0,654)">
+<text x="12" y="20" class="tb">④ カメラから、光線を飛ばす</text>
 <polygon points="22,80 46,64 46,96" class="fas sa"/>
 <circle cx="220" cy="80" r="30" class="fs sm"/>
 <line x1="46" y1="80" x2="296" y2="80" class="l sm w1 dsh"/>
@@ -16,7 +56,7 @@
 <text x="220" y="130" class="tm" text-anchor="middle">場面</text>
 <text x="12" y="152">光線の上に、標本点を取る（●）</text>
 <line x1="12" y1="170" x2="308" y2="170" class="l sb w1"/>
-<text x="12" y="194" class="tb">② 各点を、ネットワークに入れる</text>
+<text x="12" y="194" class="tb">⑤ 各点を、ネットワークに入れる</text>
 <rect x="12" y="210" width="120" height="56" class="fs sb" stroke-width="1.5"/>
 <text x="72" y="233.5" text-anchor="middle">位置（x, y, z）</text>
 <text x="72" y="251.5" text-anchor="middle">視線方向（θ, φ）</text>
@@ -33,7 +73,7 @@
 <text x="275" y="251.5" class="tb" text-anchor="middle">と色</text>
 <text x="12" y="296" class="tm">5つの値（5次元の座標）→ その点の密度と色</text>
 <line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
-<text x="12" y="338" class="tb">③ 光線の上の色を積み上げる</text>
+<text x="12" y="338" class="tb">⑥ 光線の上の色を積み上げる</text>
 <rect x="12" y="354" width="40" height="26" class="fs sb" stroke-width="1.5"/>
 <rect x="58" y="354" width="40" height="26" class="fok sb" stroke-width="1.5"/>
 <rect x="104" y="354" width="40" height="26" class="fok sb" stroke-width="1.5"/>
@@ -47,4 +87,5 @@
 <text x="12" y="470" class="tb">ボリュームレンダリングで</text>
 <text x="12" y="492" class="tb">新しい視点の画像を合成する</text>
 <text x="12" y="516" class="tm">撮っていない角度からの画像も作れる</text>
+</g>
 </svg>

@@ -1,7 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 686" role="img" aria-labelledby="fig-g-rnn-unroll-t fig-g-rnn-unroll-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1258" role="img" aria-labelledby="fig-g-rnn-unroll-t fig-g-rnn-unroll-d">
 <title id="fig-g-rnn-unroll-t">RNN：回帰結合を時間方向に展開し、誤差をさかのぼる（BPTT）と教師強制</title>
-<desc id="fig-g-rnn-unroll-d">上は RNN の回帰結合。入力 x から隠れ層 h、出力 y へ進み、h は自分自身（次の時刻）にも戻る。中は同じものを時刻 t−1、t、t+1 に展開した図。h が横につながり、状態は右へ運ばれる。学習では誤差を時刻をさかのぼって伝える（BPTT）。各時刻で同じ重みを使う。下は教師強制。学習時は次の時刻の入力に正解を与え、推論時はモデル自身の予測を入力する。</desc>
-<text x="12" y="20" class="tb">① 回帰結合：h を自分に戻す</text>
+<desc id="fig-g-rnn-unroll-d">何をしたいか：文・音声・株価のように、順番に意味があり長さもまちまちなデータを扱いたい。例：私／は／犬／が／好き を1語ずつ読むとき、好きの意味をつかむには前の4語を覚えておく必要がある。困りごと：ふつうのネットワークは1回に入った入力だけを見て答えるので、前に読んだ語を持ち越せず、長さの違う文も扱いにくい。どう考えるか：1語読むたびに、それまでの内容のメモ（隠れ状態 h）を作り、次の語を読むときに一緒に入れる。5語目を読むころの h には前の4語の情報が混ざっている。毎回同じ重みを使うので、文の長さが違っても同じネットワークで読める。まず読み方：x はその時刻の入力（例：1語）、h は隠れ状態（それまでのメモ）、y は出力、t は時刻（t−1 は1つ前）。下の図：上は RNN の回帰結合。入力 x から隠れ層 h、出力 y へ進み、h は自分自身（次の時刻）にも戻る。中は同じものを時刻 t−1、t、t+1 に展開した図。h が横につながり、状態は右へ運ばれる。学習では誤差を時刻をさかのぼって伝える（BPTT）。各時刻で同じ重みを使う。下は教師強制。学習時は次の時刻の入力に正解を与え、推論時はモデル自身の予測を入力する。</desc>
+<text x="12" y="20" class="tb">RNN：前に読んだ内容を、メモにして持ち越す</text>
+<text x="12" y="48" class="tb">① 何をしたいか</text>
+<text x="12" y="68" class="tm">文・音声・株価のように、順番に意味があり、</text>
+<text x="12" y="88" class="tm">長さもまちまちなデータを扱いたい</text>
+<text x="12" y="108" class="tm">例：『好き』の意味をつかむには、前の『私／</text>
+<text x="12" y="128" class="tm">は／犬／が』を覚えておく必要がある</text>
+<line x1="12" y1="142" x2="308" y2="142" class="l sb w1"/>
+<text x="12" y="166" class="tb">② 困りごと</text>
+<text x="12" y="186" class="tm">ふつうのネットワークは、1回に入った入力</text>
+<text x="12" y="206" class="tm">だけを見て答える。前に読んだ語を持ち越せず、</text>
+<text x="12" y="226" class="tm">長さの違う文も扱いにくい</text>
+<line x1="12" y1="240" x2="308" y2="240" class="l sb w1"/>
+<text x="12" y="264" class="tb">③ どう考えるか</text>
+<text x="12" y="284" class="tm">1語読むたびに、それまでの内容のメモ（隠れ</text>
+<text x="12" y="304" class="tm">状態 h）を作り、次の語と一緒に入れる</text>
+<rect x="12" y="318" width="50" height="26" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="37" y="336" class="tb" text-anchor="middle">私</text>
+<line x1="37" y1="345" x2="37" y2="359" class="l sm w2"/>
+<polygon points="37,366 32.5,358.5 41.5,358.5" class="fm"/>
+<rect x="12" y="368" width="50" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="37" y="386" class="tb" text-anchor="middle">メモ1</text>
+<line x1="62" y1="381" x2="65" y2="381" class="l sa w2"/>
+<polygon points="72,381 64.5,376.5 64.5,385.5" class="fa"/>
+<rect x="72" y="318" width="50" height="26" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="97" y="336" class="tb" text-anchor="middle">は</text>
+<line x1="97" y1="345" x2="97" y2="359" class="l sm w2"/>
+<polygon points="97,366 92.5,358.5 101.5,358.5" class="fm"/>
+<rect x="72" y="368" width="50" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="97" y="386" class="tb" text-anchor="middle">メモ2</text>
+<line x1="122" y1="381" x2="125" y2="381" class="l sa w2"/>
+<polygon points="132,381 124.5,376.5 124.5,385.5" class="fa"/>
+<rect x="132" y="318" width="50" height="26" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="157" y="336" class="tb" text-anchor="middle">犬</text>
+<line x1="157" y1="345" x2="157" y2="359" class="l sm w2"/>
+<polygon points="157,366 152.5,358.5 161.5,358.5" class="fm"/>
+<rect x="132" y="368" width="50" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="157" y="386" class="tb" text-anchor="middle">メモ3</text>
+<line x1="182" y1="381" x2="185" y2="381" class="l sa w2"/>
+<polygon points="192,381 184.5,376.5 184.5,385.5" class="fa"/>
+<rect x="192" y="318" width="50" height="26" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="217" y="336" class="tb" text-anchor="middle">が</text>
+<line x1="217" y1="345" x2="217" y2="359" class="l sm w2"/>
+<polygon points="217,366 212.5,358.5 221.5,358.5" class="fm"/>
+<rect x="192" y="368" width="50" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="217" y="386" class="tb" text-anchor="middle">メモ4</text>
+<line x1="242" y1="381" x2="245" y2="381" class="l sa w2"/>
+<polygon points="252,381 244.5,376.5 244.5,385.5" class="fa"/>
+<rect x="252" y="318" width="50" height="26" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="277" y="336" class="tb" text-anchor="middle">好き</text>
+<line x1="277" y1="345" x2="277" y2="359" class="l sm w2"/>
+<polygon points="277,366 272.5,358.5 281.5,358.5" class="fm"/>
+<rect x="252" y="368" width="50" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="277" y="386" class="tb" text-anchor="middle">メモ5</text>
+<text x="12" y="416" class="tm">メモ5 には、前の4語の情報も混ざっている</text>
+<text x="12" y="438" class="tm">毎回同じ重みを使うので、文の長さが違っても</text>
+<text x="12" y="460" class="tm">同じネットワークで読める</text>
+<line x1="12" y1="474" x2="308" y2="474" class="l sb w1"/>
+<text x="12" y="498" class="tb">まず読み方（下の図）</text>
+<text x="12" y="518" class="tm">x＝その時刻の入力（例：1語）</text>
+<text x="12" y="538" class="tm">h＝隠れ状態（それまでのメモ）、y＝出力</text>
+<text x="12" y="558" class="tm">t＝時刻（t−1 は1つ前、t+1 は1つ後）</text>
+<line x1="12" y1="568" x2="308" y2="568" class="l sb w1"/>
+<g transform="translate(0,572)">
+<text x="12" y="20" class="tb">④ 回帰結合：h を自分に戻す</text>
 <rect x="36" y="34" width="60" height="26" class="fs sb" stroke-width="1.5"/>
 <text x="66" y="51.5" text-anchor="middle">y 出力</text>
 <rect x="36" y="80" width="60" height="26" class="fas sa" stroke-width="1.5"/>
@@ -20,7 +83,7 @@
 <text x="142" y="110">次の入力に戻す</text>
 <text x="142" y="132" class="tm">同じ重みを毎回使う</text>
 <line x1="12" y1="172" x2="308" y2="172" class="l sb w1"/>
-<text x="12" y="196" class="tb">② 時間方向に展開する</text>
+<text x="12" y="196" class="tb">⑤ 時間方向に展開する</text>
 <text x="56" y="222" class="tm" text-anchor="middle">時刻 t−1</text>
 <rect x="26" y="232" width="60" height="24" class="fs sb" stroke-width="1.5"/>
 <text x="56" y="248.5" text-anchor="middle">y(t−1)</text>
@@ -70,7 +133,7 @@
 <text x="12" y="446" class="tm">長い系列ほど展開が深くなり、</text>
 <text x="12" y="465" class="tm">勾配消失・勾配爆発が起きやすい</text>
 <line x1="12" y1="484" x2="308" y2="484" class="l sb w1"/>
-<text x="12" y="508" class="tb">③ 教師強制：次の入力に何を入れるか</text>
+<text x="12" y="508" class="tb">⑥ 教師強制：次の入力に何を入れるか</text>
 <text x="12" y="536" class="tb ta">学習時：正解を入れる</text>
 <rect x="12" y="548" width="70" height="28" class="fs sb" stroke-width="1.5"/>
 <text x="47" y="566.5" text-anchor="middle">予測</text>
@@ -92,4 +155,5 @@
 <rect x="238" y="610" width="70" height="28" class="fs sb" stroke-width="1.5" stroke-dasharray="4 3"/>
 <text x="273" y="629" class="tm" text-anchor="middle">使えない</text>
 <text x="12" y="674" class="tm">学習時と推論時で条件がずれる問題がある</text>
+</g>
 </svg>

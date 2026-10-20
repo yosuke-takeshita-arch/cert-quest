@@ -1,7 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 444" role="img" aria-labelledby="fig-g-metric-learning-t fig-g-metric-learning-d">
-<title id="fig-g-metric-learning-t">Contrastive Loss と Triplet Loss</title>
-<desc id="fig-g-metric-learning-d">上はContrastive Loss。2つのデータの組を使い、似ている組は埋め込み空間で近づけ、似ていない組は一定の余裕（マージン）以上に遠ざける。下はTriplet Loss。基準（アンカー）、同じ種類（ポジティブ）、違う種類（ネガティブ）の3つ組を使い、アンカーとポジティブの距離にマージンを足したものが、アンカーとネガティブの距離より小さくなるように学習する。</desc>
-<text x="12" y="20" class="tb">① Contrastive Loss：2つ組</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1040" role="img" aria-labelledby="fig-g-metric-learning-t fig-g-metric-learning-d">
+<title id="fig-g-metric-learning-t">Contrastive Loss と Triplet Loss：同じものは近く、違うものは余白ぶん遠くに置く距離を学ぶ</title>
+<desc id="fig-g-metric-learning-d">何をしたいか：顔の照合のように、2枚の写真が同じ人かを判断したい。人が増えるたびに人ごとのクラスを作り直すのは大変。どう考えるか：写真を数の並びに写して、平面の点のように置く（この置き場所を埋め込み空間と呼ぶ）。同じ人の写真は近くに、別人は遠くに置けば、距離を測るだけで同じ人か分かる。近づけるだけだと、全部の写真を1点に置けば損失0になってしまうので、別人を離す決まりも要る（Hadsell ら 2006）。まず読み方：d(A,P) は A と P の距離（d は distance の頭文字）。マージンは余白で、別人をこれだけは離したい幅。例：Triplet Loss で余白0.2、d(A,P)＝0.5 のとき、d(A,N)＝0.7 なら 0.5−0.7＋0.2＝0 で損失0、d(A,N)＝0.6 なら 0.5−0.6＋0.2＝0.1 で損失0.1 になり、N を遠ざける。損失は、この値と0の大きいほう（数は説明のための例）。下の図：上はContrastive Loss。2つのデータの組を使い、似ている組は埋め込み空間で近づけ、似ていない組は一定の余裕（マージン）以上に遠ざける。下はTriplet Loss。基準（アンカー）、同じ種類（ポジティブ）、違う種類（ネガティブ）の3つ組を使い、アンカーとポジティブの距離にマージンを足したものが、アンカーとネガティブの距離より小さくなるように学習する。</desc>
+<text x="12" y="20" class="tb">距離学習：同じものは近く、違うものは遠くに</text>
+<text x="12" y="48" class="tb">① 何をしたいか</text>
+<text x="12" y="68" class="tm">顔の照合のように『2枚の写真が同じ人か』を</text>
+<text x="12" y="88" class="tm">判断したい。人が増えるたびに、人ごとの</text>
+<text x="12" y="108" class="tm">クラスを作り直すのは大変</text>
+<line x1="12" y1="122" x2="308" y2="122" class="l sb w1"/>
+<text x="12" y="146" class="tb">② どう考えるか</text>
+<text x="12" y="166" class="tm">写真を数の並びに写し、平面の点のように置く</text>
+<text x="12" y="186" class="tm">（この置き場所を埋め込み空間と呼ぶ）。</text>
+<text x="12" y="206" class="tm">同じ人は近くに、別人は遠くに置けば、</text>
+<text x="12" y="226" class="tm">距離を測るだけで同じ人か分かる</text>
+<text x="12" y="252" class="tm">近づけるだけだと、全部の写真を1点に置けば</text>
+<text x="12" y="272" class="tm">損失 0 になってしまう → 別人を離す決まりも</text>
+<text x="12" y="292" class="tm">要る（Hadsell ら 2006）</text>
+<line x1="12" y1="310" x2="308" y2="310" class="l sb w1"/>
+<text x="12" y="334" class="tb">まず読み方（下の図）</text>
+<text x="12" y="354" class="tm">d(A,P)＝A と P の距離（d は distance の頭文字）</text>
+<text x="12" y="374" class="tm">マージン＝余白。別人をこれだけは離したい幅</text>
+<text x="12" y="394" class="tm">A＝基準（アンカー）、P＝同じ人（ポジティブ）、</text>
+<text x="12" y="414" class="tm">N＝別人（ネガティブ）</text>
+<line x1="12" y1="428" x2="308" y2="428" class="l sb w1"/>
+<text x="12" y="452" class="tb">③ 例：Triplet Loss（余白 0.2）</text>
+<text x="12" y="472" class="tm">損失＝d(A,P)−d(A,N)＋余白（負なら 0）</text>
+<text x="12" y="496">d(A,P)＝0.5、d(A,N)＝0.7 のとき</text>
+<text x="12" y="516" class="tb tok">0.5−0.7＋0.2＝0 → 損失 0（十分に遠い）</text>
+<text x="12" y="540">d(A,P)＝0.5、d(A,N)＝0.6 のとき</text>
+<text x="12" y="560" class="tb tng">0.5−0.6＋0.2＝0.1 → 損失 0.1（N を遠ざける）</text>
+<text x="12" y="582" class="tm">（数は説明のための例）</text>
+<line x1="12" y1="592" x2="308" y2="592" class="l sb w1"/>
+<g transform="translate(0,596)">
+<text x="12" y="20" class="tb">④ Contrastive Loss：2つ組</text>
 <rect x="12" y="30" width="296" height="120" class="sb" stroke-width="1"/>
 <circle cx="40" cy="70" r="8" class="fs sa" stroke-width="2.5"/>
 <circle cx="112" cy="70" r="8" class="fs sa" stroke-width="2.5"/>
@@ -23,7 +53,7 @@
 <text x="220" y="138" class="tb tng" text-anchor="middle">マージン以上に遠ざける</text>
 <text x="12" y="176">2つのデータの組で、距離を学ぶ</text>
 <line x1="12" y1="192" x2="308" y2="192" class="l sb w1"/>
-<text x="12" y="216" class="tb">② Triplet Loss：3つ組</text>
+<text x="12" y="216" class="tb">⑤ Triplet Loss：3つ組</text>
 <rect x="12" y="226" width="296" height="160" class="sb" stroke-width="1"/>
 <circle cx="90" cy="266" r="0.1" class="fm"/>
 <circle cx="90" cy="290" r="8" class="fa sa"/>
@@ -46,4 +76,5 @@
 <polygon points="292,290 285.6,294 285.6,286" class="ft"/>
 <text x="12" y="410" class="tb">d(A,P) ＋ マージン ＜ d(A,N) になるよう動かす</text>
 <text x="12" y="432" class="tm">同じ種類は近く、違う種類はマージン分遠く</text>
+</g>
 </svg>

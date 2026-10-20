@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 780" role="img" aria-labelledby="fig-g-gate-t fig-g-gate-d">
+<title id="fig-g-gate-t">ゲート機構：情報を何割通すかを、0〜1の数を掛けて決める弁</title>
+<desc id="fig-g-gate-d">何のためか：RNN（文を1語ずつ読み、内容をメモにして持ち越すネットワーク）で、何をメモに書き、何を捨て、何を外に出すかを、読んでいる語によって切り替えたい。例：彼は大阪で生まれた。……だから彼は（　）弁を話す、なら、大阪はメモに書き、間の語では書かずにメモを守る。しくみ：通す量＝情報×ゲートの値。情報が10のとき、×1なら10（全部通す）、×0.9なら9（9割）、×0.1なら1（1割）、×0なら0（閉じる）。0〜1の値の作り方：シグモイド関数（どんな数も0〜1に押し込む関数）を使う。入れる数が−4なら約0.02（ほぼ閉じる）、0なら0.5、4なら約0.98（ほぼ開く）。入れる数は、その時刻の語と前の状態から重みを使って毎回計算する。混同に注意：ゲートの値は時刻ごとに変わり、ゲートの重みは学習で決まってどの時刻でも同じ。LSTMのゲートは入力・忘却・出力の3つ、GRUはリセット・更新の2つ。Attentionは複数の候補をどれだけずつ混ぜるか、ゲートは1つの情報を何割通すかを決める。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">ゲート機構：情報を何割通すかを決める弁</text>
+<text x="12" y="48" class="tb">① 何のためか</text>
+<text x="12" y="68" class="tm">RNN（文を1語ずつ読み、内容をメモにして</text>
+<text x="12" y="88" class="tm">持ち越すネットワーク）で、『何をメモに書き、</text>
+<text x="12" y="108" class="tm">何を捨て、何を外に出すか』を、読んでいる語</text>
+<text x="12" y="128" class="tm">によって切り替えたい</text>
+<text x="12" y="148" class="tm">例：『彼は大阪で生まれた。……だから彼は</text>
+<text x="12" y="168" class="tm">（　）弁を話す』なら、『大阪』はメモに書き、</text>
+<text x="12" y="188" class="tm">間の語では書かずにメモを守る</text>
+<line x1="12" y1="202" x2="308" y2="202" class="l sb w1"/>
+<text x="12" y="226" class="tb">② しくみ：0〜1 の数を掛ける弁</text>
+<text x="12" y="248" class="tb">通す量 ＝ 情報 × ゲートの値</text>
+<text x="12" y="270" class="tm">例：情報が 10 のとき</text>
+<text x="12" y="296" class="tb">×1</text>
+<rect x="60" y="284" width="150" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="218" y="296" class="tb">10（全部通す）</text>
+<text x="12" y="320" class="tb">×0.9</text>
+<rect x="60" y="308" width="135" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="203" y="320" class="tb">9（9割）</text>
+<text x="12" y="344" class="tb">×0.1</text>
+<rect x="60" y="332" width="15" height="14" class="fwn swn" stroke-width="1.5"/>
+<text x="83" y="344" class="tb">1（1割）</text>
+<text x="12" y="368" class="tb">×0</text>
+<rect x="60" y="356" width="0" height="14" class="fng sng" stroke-width="1.5"/>
+<text x="68" y="368" class="tb">0（閉じる）</text>
+<text x="12" y="390" class="tm">（数は説明のための例）</text>
+<line x1="12" y1="404" x2="308" y2="404" class="l sb w1"/>
+<text x="12" y="428" class="tb">③ 0〜1 の値の作り方</text>
+<text x="12" y="448" class="tm">シグモイド関数（どんな数も 0〜1 に押し込む</text>
+<text x="12" y="468" class="tm">関数）を使う</text>
+<text x="12" y="490" class="tb">入れる数 −4 → 約 0.02（ほぼ閉じる）</text>
+<text x="12" y="512" class="tb">入れる数　0 → 0.5（半分通す）</text>
+<text x="12" y="534" class="tb">入れる数　4 → 約 0.98（ほぼ開く）</text>
+<text x="12" y="556" class="tm">入れる数は、その時刻の語と前の状態から、</text>
+<text x="12" y="578" class="tm">重みを使って毎回計算する</text>
+<line x1="12" y1="592" x2="308" y2="592" class="l sb w1"/>
+<text x="12" y="616" class="tb">④ 混同に注意</text>
+<text x="12" y="636" class="tm">ゲートの値：時刻ごとに変わる（語ごとに</text>
+<text x="12" y="656" class="tm">　開け閉めが変わる）</text>
+<text x="12" y="676" class="tm">ゲートの重み：学習で決まり、どの時刻でも同じ</text>
+<text x="12" y="698" class="tm">LSTM のゲート：入力・忘却・出力の3つ</text>
+<text x="12" y="720" class="tm">GRU のゲート：リセット・更新の2つ</text>
+<text x="12" y="742" class="tm">Attention＝複数の候補を、どれだけずつ混ぜるか</text>
+<text x="12" y="764" class="tm">ゲート＝1つの情報を、何割通すか</text>
+</svg>

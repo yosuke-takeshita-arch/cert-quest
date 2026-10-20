@@ -1,7 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-layer-norm-t fig-g-layer-norm-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 902" role="img" aria-labelledby="fig-g-layer-norm-t fig-g-layer-norm-d">
 <title id="fig-g-layer-norm-t">レイヤー正規化：1件のデータの中で、全部の特徴を横にそろえる</title>
-<desc id="fig-g-layer-norm-d">①表の行がデータ、列が特徴1〜4。データ1（ある単語の位置の表現）の値は1、2、3、6。レイヤー正規化は、1件のデータの中で、全部の特徴を横にまとめて計算する。データ2は見ない。②データ1の計算。平均は(1＋2＋3＋6)÷4＝3。平均からのずれは−2、−1、0、3。分散はずれの2乗の平均で(4＋1＋0＋9)÷4＝3.5。標準偏差は√3.5≈1.87。ずれを1.87で割ると、−1.07、−0.53、0、1.60。③他のデータを見ないので、1件だけでも同じ計算ができ、学習時と推論時の計算が同じ。バッチ正規化は表の縦（同じ特徴を何件ものデータで）、レイヤー正規化は表の横（1件の中の全部の特徴）でまとめる。</desc>
-<text x="12" y="22" class="tb">① データ2件の表（例）</text>
+<desc id="fig-g-layer-norm-d">困りごと：バッチ正規化は、まとめて学習する何件ものデータ（ミニバッチ）で、同じ特徴の平均とばらつきを出してそろえる。そのため、バッチの件数に左右され（件数が少ないと平均がぶれる）、文の長さが毎回違い1語ずつ順に読む RNN にはそのまま当てはめにくい。どう考えるか：他のデータを見ず、1件のデータの中の全部の値で平均とばらつきを出してそろえる。1件だけでも、学習時と推論時で同じ計算ができる。下の図（数で見る）：③表の行がデータ、列が特徴1〜4。データ1（ある単語の位置の表現）の値は1、2、3、6。レイヤー正規化は、1件のデータの中で、全部の特徴を横にまとめて計算する。データ2は見ない。④データ1の計算。平均は(1＋2＋3＋6)÷4＝3。平均からのずれは−2、−1、0、3。分散はずれの2乗の平均で(4＋1＋0＋9)÷4＝3.5。標準偏差は√3.5≈1.87。ずれを1.87で割ると、−1.07、−0.53、0、1.60。⑤他のデータを見ないので、1件だけでも同じ計算ができ、学習時と推論時の計算が同じ。バッチ正規化は表の縦（同じ特徴を何件ものデータで）、レイヤー正規化は表の横（1件の中の全部の特徴）でまとめる。</desc>
+<text x="12" y="20" class="tb">レイヤー正規化：1件の中だけで数をそろえる</text>
+<text x="12" y="48" class="tb">① 困りごと</text>
+<text x="12" y="68" class="tm">バッチ正規化は、まとめて学習する何件もの</text>
+<text x="12" y="88" class="tm">データ（ミニバッチ）で、同じ特徴の平均と</text>
+<text x="12" y="108" class="tm">ばらつきを出してそろえる。そのため、</text>
+<text x="12" y="128" class="tm">・バッチの件数に左右される（件数が少ないと</text>
+<text x="12" y="148" class="tm">　平均がぶれる）</text>
+<text x="12" y="168" class="tm">・文の長さが毎回違い、1語ずつ順に読む RNN</text>
+<text x="12" y="188" class="tm">　には、そのまま当てはめにくい</text>
+<line x1="12" y1="202" x2="308" y2="202" class="l sb w1"/>
+<text x="12" y="226" class="tb">② どう考えるか</text>
+<text x="12" y="246" class="tm">他のデータを見ず、1件のデータの中の全部の</text>
+<text x="12" y="266" class="tm">値で、平均とばらつきを出してそろえる</text>
+<text x="12" y="290" class="tb ta">→ 1件だけでも、学習時と推論時で同じ計算</text>
+<line x1="12" y1="304" x2="308" y2="304" class="l sb w1"/>
+<text x="12" y="328" class="tb">下の図：数で見る</text>
+<line x1="12" y1="338" x2="308" y2="338" class="l sb w1"/>
+<g transform="translate(0,342)">
+<text x="12" y="22" class="tb">③ データ2件の表（例）</text>
 <text x="104" y="48" class="tm" text-anchor="middle">特徴1</text>
 <text x="156" y="48" class="tm" text-anchor="middle">特徴2</text>
 <text x="208" y="48" class="tm" text-anchor="middle">特徴3</text>
@@ -21,7 +39,7 @@
 <text x="12" y="146" class="tb ta">1件の中で、全部の特徴を横にまとめる</text>
 <text x="12" y="166" class="tm">（データ2は見ない。データ2は自分の行で別に計算）</text>
 <line x1="12" y1="180" x2="308" y2="180" class="l sb w1"/>
-<text x="12" y="204" class="tb">② データ1を平均0・分散1にそろえる</text>
+<text x="12" y="204" class="tb">④ データ1を平均0・分散1にそろえる</text>
 <text x="12" y="228">平均＝(1＋2＋3＋6)÷4＝3</text>
 <text x="12" y="252">ずれ（値−平均）＝−2、−1、0、3</text>
 <text x="12" y="276">分散＝ずれの2乗の平均</text>
@@ -31,11 +49,12 @@
 <rect x="12" y="356" width="296" height="30" class="fok l sok w1" rx="4"/>
 <text x="160" y="376" class="tb tok" text-anchor="middle">−1.07、−0.53、0、1.60</text>
 <line x1="12" y1="402" x2="308" y2="402" class="l sb w1"/>
-<text x="12" y="426" class="tb">③ 他のデータを見ないので</text>
+<text x="12" y="426" class="tb">⑤ 他のデータを見ないので</text>
 <text x="12" y="448">1件だけでも同じ計算ができる</text>
 <text x="12" y="468" class="tm">→ 学習時と推論時の計算が同じ。RNN・</text>
 <text x="12" y="488" class="tm">　Transformer（文を扱うモデル）で使われる</text>
 <rect x="12" y="502" width="296" height="48" class="fs l sm w1" rx="4"/>
 <text x="20" y="522">バッチ正規化＝表の<tspan class="tb">縦</tspan>（同じ特徴を何件も）</text>
 <text x="20" y="541">レイヤー正規化＝表の<tspan class="tb ta">横</tspan>（1件の全部の特徴）</text>
+</g>
 </svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 878" role="img" aria-labelledby="fig-g-gru-why-t fig-g-gru-why-d">
+<title id="fig-g-gru-why-t">GRU：LSTM を簡単にして軽くした RNN。メモの道を持たず、前の状態と新しい候補を更新ゲートの割合で混ぜる</title>
+<desc id="fig-g-gru-why-d">何をするものか：LSTM（メモの道とゲート3つで、前のことを長く覚えておけるようにした RNN）と同じく、長い間覚えておける RNN。困りごと：LSTM は部品が多く、ゲート3つとメモの道（セル）を持ち、重みの組は4つで計算が重い。GRU の考え：メモの道を別に持たず、前の状態と新しい候補（今の語から作った中身）を、更新ゲートの割合で混ぜて次の状態にする。例：前の状態10、新しい候補2、更新ゲート0.8（前の状態を8割残す）なら、次の状態＝0.8×前の状態＋（1−0.8）×候補で、残りの2割を新しい候補で埋めるので、0.8×10＋0.2×2＝8＋0.4＝8.4。更新ゲートが1に近いと前の状態がほぼそのまま次へ渡るので長く覚えられる（原論文は LSTM のメモの道に似た働きと説明）。リセットゲートは、候補を作るとき前の状態をどれだけ使うかを決め、0に近いと前を無視して今の語だけで作り直す。くらべる：ゲートは LSTM 3つ・GRU 2つ、メモの道（セル）は LSTM あり・GRU なし、重みの組は LSTM 4つ・GRU 3つ。GRU のほうが部品が少なく計算が軽く、長く覚える力は LSTM と同じくらいのことが多い。GRU は Gated Recurrent Unit（ゲート付きの回帰ユニット）の略で、2014年に Cho らが提案。数は説明のための例で、混ぜ方は PyTorch の式。</desc>
+<text x="12" y="20" class="tb">GRU：LSTM を簡単にして、軽くした RNN</text>
+<text x="12" y="48" class="tb">① 何をするものか</text>
+<text x="12" y="68" class="tm">LSTM（メモの道とゲート3つで、前のことを</text>
+<text x="12" y="88" class="tm">長く覚えておけるようにした RNN）と同じく、</text>
+<text x="12" y="108" class="tm">長い間覚えておける RNN</text>
+<line x1="12" y1="122" x2="308" y2="122" class="l sb w1"/>
+<text x="12" y="146" class="tb">② 困りごと</text>
+<text x="12" y="166" class="tm">LSTM は部品が多い：ゲート3つ＋メモの道</text>
+<text x="12" y="186" class="tm">（セル）。重みの組は4つ → 計算が重い</text>
+<line x1="12" y1="200" x2="308" y2="200" class="l sb w1"/>
+<text x="12" y="224" class="tb">③ GRU の考え：メモの道を別に持たない</text>
+<text x="12" y="244" class="tm">前の状態と、新しい候補（今の語から作った</text>
+<text x="12" y="264" class="tm">中身）を、更新ゲートの割合で混ぜて、次の</text>
+<text x="12" y="284" class="tm">状態にする</text>
+<text x="12" y="308">例：前の状態 10、新しい候補 2、</text>
+<text x="12" y="328">　 更新ゲート 0.8（前の状態を8割残す）</text>
+<text x="12" y="350" class="tm">次の状態＝0.8×前の状態＋（1−0.8）×候補</text>
+<text x="12" y="372" class="tm">（残りの2割を、新しい候補で埋める）</text>
+<text x="12" y="396" class="tb ta">0.8×10 ＋ 0.2×2 ＝ 8 ＋ 0.4 ＝ 8.4</text>
+<text x="12" y="418" class="tm">更新ゲートが 1 に近いと、前の状態がほぼ</text>
+<text x="12" y="440" class="tm">そのまま次へ → 長く覚えられる（原論文は、</text>
+<text x="12" y="462" class="tm">LSTM のメモの道に似た働きと説明）</text>
+<text x="12" y="484" class="tm">リセットゲート：候補を作るとき、前の状態を</text>
+<text x="12" y="506" class="tm">どれだけ使うか（0 に近いと、前を無視して</text>
+<text x="12" y="528" class="tm">今の語だけで作り直す）</text>
+<text x="12" y="550" class="tm">（数は説明のための例。混ぜ方は PyTorch の式）</text>
+<line x1="12" y1="564" x2="308" y2="564" class="l sb w1"/>
+<text x="12" y="588" class="tb">④ くらべる</text>
+<text x="200" y="612" class="tb" text-anchor="middle">LSTM</text>
+<text x="276" y="612" class="tb ta" text-anchor="middle">GRU</text>
+<text x="12" y="638">ゲート</text>
+<text x="200" y="638" text-anchor="middle">3つ</text>
+<text x="276" y="638" class="tb ta" text-anchor="middle">2つ</text>
+<text x="12" y="662">メモの道（セル）</text>
+<text x="200" y="662" text-anchor="middle">あり</text>
+<text x="276" y="662" class="tb ta" text-anchor="middle">なし</text>
+<text x="12" y="686">重みの組</text>
+<text x="200" y="686" text-anchor="middle">4つ</text>
+<text x="276" y="686" class="tb ta" text-anchor="middle">3つ</text>
+<line x1="12" y1="620" x2="308" y2="620" class="l sb w1"/>
+<text x="12" y="712" class="tb">→ GRU のほうが部品が少なく、計算が軽い</text>
+<text x="12" y="738" class="tb">長く覚える力は、LSTM と同じくらいのことが</text>
+<text x="12" y="764" class="tb">多い</text>
+<line x1="12" y1="778" x2="308" y2="778" class="l sb w1"/>
+<text x="12" y="802" class="tb">試験で出る語</text>
+<text x="12" y="822" class="tm">GRU＝Gated Recurrent Unit</text>
+<text x="12" y="842" class="tm">（ゲート付きの回帰ユニット）</text>
+<text x="12" y="862" class="tm">2014年、Cho らが提案</text>
+</svg>

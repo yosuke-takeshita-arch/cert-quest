@@ -1,7 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-g-clip-t fig-g-clip-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1026" role="img" aria-labelledby="fig-g-clip-t fig-g-clip-d">
 <title id="fig-g-clip-t">CLIP：画像と文を同じ空間に置く学習と、ゼロショット分類</title>
-<desc id="fig-g-clip-d">上は CLIP の学習。画像エンコーダと文章エンコーダを同時に学習する。ミニバッチの N 枚の画像と N 個の説明文について、画像と文の類似度の N×N の表を作り、対角（正しい組）を高く、それ以外（誤った組）を低くするように学ぶ。下はゼロショット分類。クラス名を文にして埋め込み、画像の埋め込みと最も似た文のクラスを答えにする。その分類タスク専用の学習例は使わない。</desc>
-<text x="12" y="20" class="tb">① 学習：正しい組を当てる</text>
+<desc id="fig-g-clip-d">困りごと：従来の画像認識は、決まったクラス（例：ImageNet の1000クラス）の名前付き画像で学ぶので、新しいクラスを見分けるには、そのクラスの名前付き画像を集めて学び直す必要があった。一方、インターネットには画像と説明文の組が大量にある。どう考えるか：画像も文も同じ数の並び（埋め込み）に写し、合う画像と文ほど似ている度合いが高くなるように学ぶ。4億組の画像と文を使った。学習後は、クラスを文で書くだけで分類できる（A photo of a dog. など）。そのクラス専用の学習例は要らない（ゼロショット）。まず読み方：高・低は画像と文の似ている度合い（コサイン類似度）。エンコーダは、画像や文を読んで数の並びに写す部分。下の図：上は CLIP の学習。画像エンコーダと文章エンコーダを同時に学習する。ミニバッチの N 枚の画像と N 個の説明文について、画像と文の類似度の N×N の表を作り、対角（正しい組）を高く、それ以外（誤った組）を低くするように学ぶ。下はゼロショット分類。クラス名を文にして埋め込み、画像の埋め込みと最も似た文のクラスを答えにする。その分類タスク専用の学習例は使わない。</desc>
+<text x="12" y="20" class="tb">CLIP：画像と文を、同じ数の並びに写す</text>
+<text x="12" y="48" class="tb">① 困りごと</text>
+<text x="12" y="68" class="tm">従来の画像認識は、決まったクラス（例：</text>
+<text x="12" y="88" class="tm">ImageNet の1000クラス）の名前付き画像で</text>
+<text x="12" y="108" class="tm">学ぶ。新しいクラスを見分けるには、その</text>
+<text x="12" y="128" class="tm">クラスの名前付き画像を集めて学び直す</text>
+<text x="12" y="148" class="tm">一方、インターネットには『画像と説明文の</text>
+<text x="12" y="168" class="tm">組』が大量にある</text>
+<line x1="12" y1="182" x2="308" y2="182" class="l sb w1"/>
+<text x="12" y="206" class="tb">② どう考えるか</text>
+<text x="12" y="226" class="tm">画像も文も、同じ『数の並び』（埋め込み）</text>
+<text x="12" y="246" class="tm">に写す。合う画像と文ほど、似ている度合いが</text>
+<text x="12" y="266" class="tm">高くなるように学ぶ（4億組を使った）</text>
+<text x="12" y="288" class="tb ta">→ 学習後は、クラスを文で書くだけで分類</text>
+<text x="12" y="310" class="tb ta">　 できる（『A photo of a dog.』など）。その</text>
+<text x="12" y="332" class="tb ta">　 クラス専用の学習例は要らない（ゼロショット）</text>
+<line x1="12" y1="346" x2="308" y2="346" class="l sb w1"/>
+<text x="12" y="370" class="tb">まず読み方（下の図）</text>
+<text x="12" y="390" class="tm">高・低＝画像と文の似ている度合い</text>
+<text x="12" y="410" class="tm">　（コサイン類似度）</text>
+<text x="12" y="430" class="tm">エンコーダ＝画像や文を読んで、数の並びに</text>
+<text x="12" y="450" class="tm">　写す部分</text>
+<line x1="12" y1="460" x2="308" y2="460" class="l sb w1"/>
+<g transform="translate(0,464)">
+<text x="12" y="20" class="tb">③ 学習：正しい組を当てる</text>
 <rect x="60" y="34" width="32" height="26" class="fs sb" stroke-width="1.5"/>
 <text x="76" y="51.5" text-anchor="middle">文1</text>
 <rect x="96" y="34" width="32" height="26" class="fs sb" stroke-width="1.5"/>
@@ -45,7 +69,7 @@
 <text x="12" y="232">画像エンコーダと文章エンコーダを同時に学習</text>
 <text x="12" y="252" class="tm">（ゼロから。インターネットの画像と文の組）</text>
 <line x1="12" y1="272" x2="308" y2="272" class="l sb w1"/>
-<text x="12" y="296" class="tb">② ゼロショット分類：クラス名を文にする</text>
+<text x="12" y="296" class="tb">④ ゼロショット分類：クラス名を文にする</text>
 <rect x="12" y="314" width="78" height="40" class="fs sb" stroke-width="1.5"/>
 <text x="51" y="338.5" class="tb" text-anchor="middle">画像</text>
 <line x1="90" y1="334" x2="112" y2="334" class="l w2"/>
@@ -81,4 +105,5 @@
 <text x="12" y="506" class="tm">棒が長い ＝ 画像に似ている</text>
 <text x="12" y="528" class="tb tok">一番似た文のクラス（猫）を答える</text>
 <text x="12" y="550" class="tm">そのタスク専用の学習例は使わない</text>
+</g>
 </svg>

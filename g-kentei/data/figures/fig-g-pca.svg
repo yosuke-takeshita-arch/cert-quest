@@ -1,7 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 552" role="img" aria-labelledby="fig-g-pca-t fig-g-pca-d">
-<title id="fig-g-pca-t">主成分分析：ばらつきの大きい方向に軸をとる</title>
-<desc id="fig-g-pca-d">①は散布図で、横軸が変数1、縦軸が変数2、点1つがデータ1件。斜めに細長く広がった2次元の点の集まり。点が最も広がる方向に第1主成分の軸、それに直交する方向に第2主成分の軸をとる。点を第1主成分の軸の上に落とすと、2次元のデータが1次元になる（次元削減）。第1主成分は、分散が最大の方向である。下に、t-SNE（非線形で近い点の関係を保ち、可視化向き）、MDS（点の間の距離が保たれるよう配置）、SVD（行列を3つの行列の積に分ける）を一行ずつ対比する。</desc>
-<text x="12" y="20" class="tb">① 点が広がる方向に軸をとる</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1046" role="img" aria-labelledby="fig-g-pca-t fig-g-pca-d">
+<title id="fig-g-pca-t">次元削減：情報をなるべく失わずに項目の数を減らす。代表の主成分分析は、ばらつきの大きい方向に軸をとる</title>
+<desc id="fig-g-pca-d">困りごと：特徴量（項目）が多すぎると、計算が重く、必要なデータの量も急に増えて学びにくい（次元の呪い）。4つ以上の項目があるデータは図に描けない。どう考えるか：データの情報をなるべく失わずに、項目の数（次元）を減らす。例：顧客データ100項目を10項目にまとめると計算が軽く、2項目まで落とせば散布図で見られる（数は説明のための例）。何らかの情報は必ず失われるので、どれだけ残ったかを確かめて使う。まず読み方：次元はデータを表す数（項目）の個数で、点1つがデータ1件。下の図は、代表の手法の主成分分析（PCA。散らばりがいちばん大きい向きに新しい軸を引く）で、2次元を1次元にする例。下の図：③は散布図で、横軸が変数1、縦軸が変数2、点1つがデータ1件。斜めに細長く広がった2次元の点の集まり。点が最も広がる方向に第1主成分の軸、それに直交する方向に第2主成分の軸をとる。点を第1主成分の軸の上に落とすと、2次元のデータが1次元になる（次元削減）。第1主成分は、分散が最大の方向である。下に、t-SNE（非線形で近い点の関係を保ち、可視化向き）、MDS（点の間の距離が保たれるよう配置）、SVD（行列を3つの行列の積に分ける）を一行ずつ対比する。</desc>
+<text x="12" y="20" class="tb">次元削減：情報を残して、項目の数を減らす</text>
+<text x="12" y="48" class="tb">① 困りごと</text>
+<text x="12" y="68" class="tm">特徴量（項目）が多すぎると、計算が重く、</text>
+<text x="12" y="88" class="tm">必要なデータの量も急に増えて学びにくい</text>
+<text x="12" y="108" class="tm">（次元の呪い）</text>
+<text x="12" y="128" class="tm">4つ以上の項目があるデータは、図に描けない</text>
+<line x1="12" y1="142" x2="308" y2="142" class="l sb w1"/>
+<text x="12" y="166" class="tb">② どう考えるか</text>
+<text x="12" y="186" class="tm">データの情報をなるべく失わずに、項目の数</text>
+<text x="12" y="206" class="tm">（次元）を減らす</text>
+<text x="12" y="232" class="tb">100 項目</text>
+<rect x="96" y="220" width="180" height="14" class="fs sb" stroke-width="1.5"/>
+<text x="12" y="254" class="tb">10 項目</text>
+<rect x="96" y="242" width="18" height="14" class="fas sa" stroke-width="1.5"/>
+<text x="122" y="254" class="tm">計算が軽い</text>
+<text x="12" y="276" class="tb">2 項目</text>
+<rect x="96" y="264" width="4" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="108" y="276" class="tm">散布図で見られる</text>
+<text x="12" y="298" class="tm">（顧客データの例。数は説明のための例）</text>
+<text x="12" y="320" class="tm">何らかの情報は必ず失われる。どれだけ残った</text>
+<text x="12" y="342" class="tm">かを確かめて使う</text>
+<line x1="12" y1="356" x2="308" y2="356" class="l sb w1"/>
+<text x="12" y="380" class="tb">まず読み方（下の図）</text>
+<text x="12" y="400" class="tm">次元＝データを表す数（項目）の個数</text>
+<text x="12" y="420" class="tm">点1つ＝データ1件</text>
+<text x="12" y="440" class="tm">下の図は、代表の手法の主成分分析（PCA。</text>
+<text x="12" y="460" class="tm">散らばりがいちばん大きい向きに新しい軸を</text>
+<text x="12" y="480" class="tm">引く）で、2次元を1次元にする例</text>
+<line x1="12" y1="490" x2="308" y2="490" class="l sb w1"/>
+<g transform="translate(0,494)">
+<text x="12" y="20" class="tb">③ 点が広がる方向に軸をとる</text>
 <rect x="12" y="32" width="296" height="190" class="sb" stroke-width="1"/>
 <line x1="131.32" y1="157.81" x2="127.6" y2="153.41" class="l sm w1 dot"/>
 <line x1="142.74" y1="146.88" x2="139.64" y2="143.22" class="l sm w1 dot"/>
@@ -65,7 +95,7 @@
 <text x="18" y="52" class="tm">点線：第1主成分へ落とす</text>
 <text x="12" y="240" class="tm">散布図：横＝変数1、縦＝変数2。点1つが1件</text>
 <g transform="translate(0,22)">
-<text x="12" y="250" class="tb">② 第1主成分の軸の上に並べる（1次元）</text>
+<text x="12" y="250" class="tb">④ 第1主成分の軸の上に並べる（1次元）</text>
 <line x1="30" y1="282" x2="290" y2="282" class="l sa w2"/>
 <circle cx="95.58" cy="282" r="4.5" class="fs sa" stroke-width="1.8"/>
 <circle cx="114.17" cy="282" r="4.5" class="fs sa" stroke-width="1.8"/>
@@ -104,5 +134,6 @@
 <text x="12" y="476" class="tm">　　　（主に可視化）</text>
 <text x="12" y="498">MDS：点の間の距離を保って配置</text>
 <text x="12" y="518">SVD：行列を3つの行列の積に分ける</text>
+</g>
 </g>
 </svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 898" role="img" aria-labelledby="fig-g-stride-t fig-g-stride-d">
+<title id="fig-g-stride-t">ストライド：フィルタを1回にずらす幅。大きくすると出力が小さくなり、計算が減る</title>
+<desc id="fig-g-stride-d">何のためか：畳み込みはフィルタ（模様の見本）を画像の上でずらしながら、重なったマスを掛けて足す。1マスずつずらすと出力は入力とほぼ同じ大きさで計算も多いので、ずらす幅を大きくして出力を小さく、計算を少なくしたい。例：横7マスの入力に幅3のフィルタ（縦も同じ、パディング0）。ストライド1では窓の置き場所が5か所で出力は5×5＝25マス。ストライド2では3か所で出力は3×3＝9マス。数え方：窓の左端は7−3＝4マス先まで動けるので、ストライド1は4÷1＝4回＋最初の1か所＝5、ストライド2は4÷2＝2回＋最初の1か所＝3。計算する回数が25回から9回に減る。ことばの式：出力の大きさ＝（入力＋2×パディング−フィルタ）÷ストライド＋1。例：(7＋2×0−3)÷2＋1＝3。割り切れなければ小数点以下を切り捨てる。押さえどころ：ストライド2で縦横がおよそ半分になり、プーリングの代わりに縮める役にも使う（ResNet など）。ずらす幅がフィルタより大きいと一度も見ない画素が出る。パディングは周りを埋めて大きさを保つ側、ストライドは小さくする側。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">ストライド：フィルタを1回にずらす幅</text>
+<text x="12" y="48" class="tb">① 何のためか</text>
+<text x="12" y="68" class="tm">畳み込みは、フィルタ（模様の見本）を画像の</text>
+<text x="12" y="88" class="tm">上でずらしながら、重なったマスを掛けて足す。</text>
+<text x="12" y="108" class="tm">1マスずつずらすと、出力は入力とほぼ同じ</text>
+<text x="12" y="128" class="tm">大きさで、計算も多い</text>
+<text x="12" y="152" class="tb ta">→ ずらす幅を大きくして、出力を小さく、</text>
+<text x="12" y="172" class="tb ta">　 計算を少なくしたい</text>
+<line x1="12" y1="186" x2="308" y2="186" class="l sb w1"/>
+<text x="12" y="210" class="tb">② 例：横7マスの入力に、幅3のフィルタ</text>
+<text x="12" y="230" class="tm">（縦も同じ。パディング 0。数は説明のための例）</text>
+<text x="12" y="254" class="tb ta">ストライド 1：1マスずつ</text>
+<rect x="40" y="262" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="74" y="262" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="108" y="262" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="142" y="262" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="176" y="262" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="210" y="262" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="244" y="262" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<line x1="43" y1="292" x2="139" y2="292" class="l sa w3"/>
+<text x="32" y="296" class="tb ta" text-anchor="middle">1</text>
+<line x1="77" y1="304" x2="173" y2="304" class="l sa w3"/>
+<text x="66" y="308" class="tb ta" text-anchor="middle">2</text>
+<line x1="111" y1="316" x2="207" y2="316" class="l sa w3"/>
+<text x="100" y="320" class="tb ta" text-anchor="middle">3</text>
+<line x1="145" y1="328" x2="241" y2="328" class="l sa w3"/>
+<text x="134" y="332" class="tb ta" text-anchor="middle">4</text>
+<line x1="179" y1="340" x2="275" y2="340" class="l sa w3"/>
+<text x="168" y="344" class="tb ta" text-anchor="middle">5</text>
+<text x="12" y="382" class="tb">窓の置き場所 5 か所 → 出力 5×5＝25 マス</text>
+<text x="12" y="408" class="tb twn">ストライド 2：2マスずつ</text>
+<rect x="40" y="416" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="74" y="416" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="108" y="416" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="142" y="416" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="176" y="416" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="210" y="416" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<rect x="244" y="416" width="34" height="24" class="fs sb" stroke-width="1.5"/>
+<line x1="43" y1="446" x2="139" y2="446" class="l swn w3"/>
+<text x="32" y="450" class="tb twn" text-anchor="middle">1</text>
+<line x1="111" y1="458" x2="207" y2="458" class="l swn w3"/>
+<text x="100" y="462" class="tb twn" text-anchor="middle">2</text>
+<line x1="179" y1="470" x2="275" y2="470" class="l swn w3"/>
+<text x="168" y="474" class="tb twn" text-anchor="middle">3</text>
+<text x="12" y="512" class="tb">窓の置き場所 3 か所 → 出力 3×3＝9 マス</text>
+<text x="12" y="534" class="tm">数え方：窓の左端は 7−3＝4 マス先まで動ける</text>
+<text x="12" y="556" class="tm">ストライド1：4÷1＝4回＋最初の1か所＝5</text>
+<text x="12" y="578" class="tm">ストライド2：4÷2＝2回＋最初の1か所＝3</text>
+<text x="12" y="602" class="tb tok">→ 計算する回数が 25 回から 9 回に減る</text>
+<line x1="12" y1="616" x2="308" y2="616" class="l sb w1"/>
+<text x="12" y="640" class="tb">③ ことばの式</text>
+<text x="12" y="660" class="tb">出力の大きさ＝（入力＋2×パディング</text>
+<text x="12" y="680" class="tb">　−フィルタ）÷ストライド＋1</text>
+<text x="12" y="702" class="tm">例：(7＋2×0−3)÷2＋1＝4÷2＋1＝3</text>
+<text x="12" y="724" class="tm">割り切れなければ、小数点以下を切り捨てる</text>
+<line x1="12" y1="738" x2="308" y2="738" class="l sb w1"/>
+<text x="12" y="762" class="tb">④ 押さえどころ</text>
+<text x="12" y="782" class="tm">・ストライド2で縦横がおよそ半分。プーリング</text>
+<text x="12" y="802" class="tm">　の代わりに縮める役にも使う（ResNet など）</text>
+<text x="12" y="822" class="tm">・ずらす幅がフィルタより大きい（幅3で</text>
+<text x="12" y="842" class="tm">　ストライド4など）と、一度も見ない画素が出る</text>
+<text x="12" y="862" class="tm">・パディング＝周りを埋めて大きさを保つ側、</text>
+<text x="12" y="882" class="tm">　ストライド＝小さくする側</text>
+</svg>

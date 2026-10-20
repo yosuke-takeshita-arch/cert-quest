@@ -1,7 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1064" role="img" aria-labelledby="fig-g-cec-t fig-g-cec-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1494" role="img" aria-labelledby="fig-g-cec-t fig-g-cec-d">
 <title id="fig-g-cec-t">CEC：LSTM の中の、重み1で自分へ戻る記憶の道</title>
-<desc id="fig-g-cec-d">① LSTM の図のうち、上を横切るオレンジの太い線（セルの状態 c の道）が CEC。灰色で描いたゲート（σ）と候補（tanh）は CEC ではなく、CEC への出入りを開け閉めする係。② 1997年の原論文の記憶セル：セルが自分自身へ重み1（固定）でつながり、値がそのまま次の時刻へ渡る。このつながりが CEC。入力ゲートが書き込みを、出力ゲートが読み出しを開け閉めする。③ 誤差が消えないわけ：ふつうの RNN では時刻をさかのぼるたびに1より小さい数（例 0.5）が掛かり、誤差が 32、16、8、4 と小さくなる。CEC では毎回1が掛かるので 32 のまま変わらない。④ 2000年に忘却ゲートが加わり、前のセルの値に掛ける数が固定の1から忘却ゲートの値 f（0から1）になった。f が1に近い間は CEC と同じく誤差が残り、0に近いとセルの中身を消せる。1997年の形は中身を消せないため、区切りの無い長い入力では値が増え続けて壊れた。まとめ：LSTM は CEC（記憶の道）とゲート（その出入り口）でできている。</desc>
-<text x="12" y="20" class="tb">① CEC は LSTM の中のここ</text>
+<desc id="fig-g-cec-d">何のためか：ふつうの RNN は、時刻を1つさかのぼるたびに誤差に1より小さい数（例：0.5）が掛かり、10時刻さかのぼると届く誤差は1024分の1になる。遠い過去まで誤差が届かず、長い間覚えることを学べない（勾配消失）。CEC は、記憶（セルの状態）が自分へ重み1でつながる道で、何時刻さかのぼっても×1なので誤差の大きさが変わらず、1000ステップを超える時間差も学べた。名前：Constant Error Carousel の略。直訳は一定の誤差の回転木馬。下の図：③ LSTM の図のうち、上を横切るオレンジの太い線（セルの状態 c の道）が CEC。灰色で描いたゲート（σ）と候補（tanh）は CEC ではなく、CEC への出入りを開け閉めする係。④ 1997年の原論文の記憶セル：セルが自分自身へ重み1（固定）でつながり、値がそのまま次の時刻へ渡る。このつながりが CEC。入力ゲートが書き込みを、出力ゲートが読み出しを開け閉めする。⑤ 誤差が消えないわけ：ふつうの RNN では時刻をさかのぼるたびに1より小さい数（例 0.5）が掛かり、誤差が 32、16、8、4 と小さくなる。CEC では毎回1が掛かるので 32 のまま変わらない。⑥ 2000年に忘却ゲートが加わり、前のセルの値に掛ける数が固定の1から忘却ゲートの値 f（0から1）になった。f が1に近い間は CEC と同じく誤差が残り、0に近いとセルの中身を消せる。1997年の形は中身を消せないため、区切りの無い長い入力では値が増え続けて壊れた。まとめ：LSTM は CEC（記憶の道）とゲート（その出入り口）でできている。</desc>
+<text x="12" y="20" class="tb">CEC：記憶を ×1 のまま次の時刻へ渡す道</text>
+<text x="12" y="48" class="tb">① 何のためか</text>
+<text x="12" y="68" class="tm">ふつうの RNN は、時刻を1つさかのぼるたび</text>
+<text x="12" y="88" class="tm">に、誤差に1より小さい数（例：0.5）が掛かる</text>
+<text x="12" y="112" class="tb">いま</text>
+<rect x="84" y="100" width="160" height="14" class="fas sa" stroke-width="1.5"/>
+<text x="252" y="112" class="tb">1</text>
+<text x="12" y="134" class="tb">5時刻前</text>
+<rect x="84" y="122" width="5" height="14" class="fas sa" stroke-width="1.5"/>
+<text x="97" y="134" class="tb">1/32</text>
+<text x="12" y="156" class="tb">10時刻前</text>
+<rect x="84" y="144" width="1" height="14" class="fas sa" stroke-width="1.5"/>
+<text x="93" y="156" class="tng">1/1024（ほぼ0）</text>
+<text x="12" y="180" class="tb">→ 遠い過去まで誤差が届かず、長い間覚える</text>
+<text x="12" y="204" class="tb">　ことを学べない（勾配消失）</text>
+<text x="12" y="228" class="tm">CEC は、記憶（セルの状態）が自分へ重み 1</text>
+<text x="12" y="252" class="tm">でつながる道。何時刻さかのぼっても ×1 なの</text>
+<text x="12" y="276" class="tm">で、誤差の大きさが変わらない</text>
+<text x="12" y="300" class="tb ta">→ 1000 ステップを超える時間差も学べた</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="338" class="tb">② 名前</text>
+<text x="12" y="358" class="tm">Constant Error Carousel の略</text>
+<text x="12" y="378" class="tm">（直訳は『一定の誤差の回転木馬』）</text>
+<line x1="12" y1="392" x2="308" y2="392" class="l sb w1"/>
+<text x="12" y="416" class="tb">下の図：LSTM の中のどこか、なぜ消えないか</text>
+<line x1="12" y1="426" x2="308" y2="426" class="l sb w1"/>
+<g transform="translate(0,430)">
+<text x="12" y="20" class="tb">③ CEC は LSTM の中のここ</text>
 <text x="115" y="48" class="tb twn" text-anchor="middle">ここが CEC</text>
 <text x="304" y="50" class="tm" text-anchor="end">セルの状態 c</text>
 <line x1="16" y1="62" x2="300" y2="62" class="l swn w3"/>
@@ -28,7 +55,7 @@
 <text x="12" y="160">灰色（ゲートと候補）は CEC ではない。</text>
 <text x="12" y="180">CEC への出入りを開け閉めする係</text>
 <line x1="12" y1="198" x2="308" y2="198" class="l sb w1"/>
-<text x="12" y="222" class="tb">② 1997年：自分へ重み 1 で戻る</text>
+<text x="12" y="222" class="tb">④ 1997年：自分へ重み 1 で戻る</text>
 <polyline points="184,282 184,256 136,256 136,275" class="l swn w3"/>
 <polyline points="132.15,275 136,282 139.85,275" class="l swn w3"/>
 <text x="128" y="260.5" class="tb twn" text-anchor="end">ここが CEC</text>
@@ -60,7 +87,7 @@
 <text x="12" y="404">セルの値は、次の時刻へそのまま渡る</text>
 <text x="12" y="424" class="tm">（自分へのつながりの重みが 1 だから）</text>
 <line x1="12" y1="440" x2="308" y2="440" class="l sb w1"/>
-<text x="12" y="464" class="tb">③ 誤差が消えないわけ</text>
+<text x="12" y="464" class="tb">⑤ 誤差が消えないわけ</text>
 <text x="12" y="494" class="tb">ふつうの RNN（例：毎回 ×0.5）</text>
 <rect x="40" y="514" width="30" height="32" class="fng sng" stroke-width="1.5"/>
 <text x="55" y="562" class="tm" text-anchor="middle">t</text>
@@ -90,7 +117,7 @@
 <text x="12" y="716">1 より小さい数を掛け続けると消え、</text>
 <text x="12" y="734">1 より大きいと爆発する。1 なら変わらない</text>
 <line x1="12" y1="750" x2="308" y2="750" class="l sb w1"/>
-<text x="12" y="774" class="tb">④ 2000年：忘却ゲートが 1 を可変に</text>
+<text x="12" y="774" class="tb">⑥ 2000年：忘却ゲートが 1 を可変に</text>
 <polyline points="184,848 184,836" class="l swn w3"/>
 <polyline points="184,816 184,804 136,804 136,841" class="l swn w3"/>
 <polyline points="132.15,841 136,848 139.85,841" class="l swn w3"/>
@@ -112,4 +139,5 @@
 <line x1="12" y1="1006" x2="308" y2="1006" class="l sb w1"/>
 <text x="12" y="1030" class="tb">LSTM ＝ CEC ＋ ゲート</text>
 <text x="12" y="1050" class="tm">CEC＝記憶の道　ゲート＝その出入り口</text>
+</g>
 </svg>
