@@ -9,7 +9,7 @@ import { loadBosses } from './lib/bossdata.js';
 import { loadBasics, buildMatcher } from './lib/basics.js';
 import { createStorage } from './lib/storage.js';
 import { defaultState, recordAnswer } from './lib/progress.js';
-import { badgeDefs, awardBadges, badgeArtName, badgeImageUrl } from './lib/badges.js';
+import { badgeDefs, awardBadges, badgeArtName, badgeImageUrl, badgeTier, SECRET_BADGE_TEXT } from './lib/badges.js';
 import { dateKey } from './lib/srs.js';
 import { forecast as calcForecast, recordForecast } from './lib/forecast.js';
 import { STAR_THRESHOLDS, levelFromXp } from './lib/scoring.js';
@@ -29,6 +29,7 @@ import { needsExamDateAsk, examStatus } from './lib/examdate.js';
 import { createExamDateAsk } from './views/examdate.js';
 import { renderAbout } from './views/about.js';
 import { renderCharacters } from './views/characters.js';
+import { markTapBadge } from './lib/characters.js';
 import { renderWeak } from './views/weak.js';
 import { renderLater } from './views/later.js';
 import { renderStudyReport } from './views/studyreport.js';
@@ -258,7 +259,7 @@ export async function start() {
       app.lastLevel = lv;
       // 合格予想の推移。今日 1問でも答えていれば、その日の予想を記録する（1日1件、同じ日は上書き）
       if (app.state.daily[key]) recordForecast(app.state, key, calcForecast(app.data.questions, app.state.qstats).score);
-      awardBadges(app.state, app.defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc, image: badgeImageUrl(badgeArtName(b), badgeBases()) }));
+      awardBadges(app.state, app.defs, key).forEach((b) => app.pending.push({ kind: 'badge', name: b.name, desc: b.desc, image: badgeImageUrl(badgeArtName(b), badgeBases()), note: badgeTier(b) === 'secret' ? SECRET_BADGE_TEXT.found : null }));
       if (awardDailyGoal(app.state, key)) app.pending.push({ kind: 'goal', goal: dailyProgress(app.state, key).goal });
       app.storage.save(app.state);
     },
@@ -359,7 +360,8 @@ export async function start() {
   };
   // キャラクターをタップする遊び: 回数はこの起動の間だけ数える（保存しない。起動ごとに0から）と、効果音（音の設定に従う）
   const tapSession = { charTaps: { shiba: 0, sensei: 0 } };
-  setTapHost({ state: () => tapSession, save: () => {}, sfx: (name) => playSfx(app.state.settings, name) });
+  // 100回に達したら、その事実だけを（いま開いている）学習記録に残してバッジを判定する（お祝いは結果画面かホームに戻ったときに出る）
+  setTapHost({ state: () => tapSession, save: () => {}, sfx: (name) => playSfx(app.state.settings, name), reached: (who, count) => { if (markTapBadge(app.state, who, count)) app.commit(); } });
   // 動作確認用に外から触れるようにする（テストが状態を調べる）
   window.__app = app;
   // 総学習時間（§6-1）。画面が前に出ていて、操作が2分以内の間だけ app.state.studySeconds に足す

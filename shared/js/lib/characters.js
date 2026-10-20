@@ -269,3 +269,28 @@ export function recordTap(state, who) {
   state.charTaps = taps;
   return { count: taps[who], line: tapLine(who, taps[who]) };
 }
+
+// ---- タップのバッジ（要件定義書 §3-8-b）。回数は保存しないまま、『100回に達した』事実だけを state.charTap100 に残す ----
+/** この回数に達したら、そのキャラのタップのバッジの条件を満たす。 */
+export const TAP_BADGE_COUNT = 100;
+
+/** 保存された charTap100 を {shiba, sensei} の真偽の形に直す。true でないもの（欠け・文字・数）は false。 */
+export function normalizeCharTap100(v) {
+  const o = v && typeof v === 'object' && !Array.isArray(v) ? v : {};
+  const out = {};
+  for (const k of TAP_WHO) out[k] = o[k] === true;
+  return out;
+}
+
+/**
+ * タップが count 回になった時点で、100回に達していれば state.charTap100[who] を true にする。
+ * 新しく true になったときだけ true を返す（すでに true なら false。100回未満・知らないキャラも false）。
+ */
+export function markTapBadge(state, who, count) {
+  if (!state || typeof state !== 'object' || !TAP_WHO.includes(who)) return false;
+  const flags = normalizeCharTap100(state.charTap100);
+  state.charTap100 = flags;
+  if (!Number.isInteger(count) || count < TAP_BADGE_COUNT || flags[who]) return false;
+  flags[who] = true;
+  return true;
+}

@@ -1,7 +1,7 @@
 // 「次の目標」の選び方。純粋な関数だけ。
 // 候補 = まだ取っていないバッジ ＋ 星3になっていないステージ（1回は挑戦したもの）。
 // 「近さ」は、達成までの残りの割合（1 - 進み具合）が小さい順。同じなら定義の順。
-import { badgeProgress, badgeArtName } from './badges.js';
+import { badgeProgress, badgeArtName, badgeTier } from './badges.js';
 
 export const MAX_STAGE_STARS = 3;
 
@@ -17,6 +17,7 @@ export function nextGoals(tree, defs, state, todayKey, limit = 3) {
   const chapterIds = new Set(defs.filter((d) => typeof d.id === 'string' && d.id.startsWith('chapter:')).map((d) => d.id));
   for (const d of defs) {
     if (state.badges[d.id]) continue;
+    if (badgeTier(d) === 'secret') continue; // ひみつのバッジは、条件がばれるので候補に出さない（要件定義書 §3-8-b）
     const p = badgeProgress(d, state, todayKey);
     if (!p.max) continue;
     out.push({

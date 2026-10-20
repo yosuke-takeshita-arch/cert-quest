@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DEFAULT_DAILY_GOAL, normalizeDailyGoal, answeredOn, dailyProgress, awardDailyGoal } from '../js/lib/daily.js';
-import { badgeDefs, badgeProgress, awardBadges } from '../js/lib/badges.js';
+import { badgeDefs, badgeProgress, awardBadges, badgeTier } from '../js/lib/badges.js';
 import { nextGoals } from '../js/lib/goals.js';
 import { defaultState, mergeState, recordAnswer } from '../js/lib/progress.js';
 import { dateKey } from '../js/lib/srs.js';
@@ -199,7 +199,7 @@ test('次の目標: 件数の上限（0・1・多すぎ）と、同じ割合な�
   assert.equal(nextGoals(t, defs, s, k, 0).length, 0);
   assert.equal(nextGoals(t, defs, s, k, 1).length, 1);
   const all = nextGoals(t, defs, s, k, 999);
-  assert.equal(all.length, defs.length, '星の候補は無いので、未取得のバッジ全部');
+  assert.equal(all.length, defs.filter((d) => badgeTier(d) !== 'secret').length, '星の候補は無いので、未取得のバッジ全部（ひみつの段は候補に出さない）');
   assert.equal(all[0].id, 'first-answer', '全部0なら定義の先頭から');
 });
 

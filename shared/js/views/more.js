@@ -1,7 +1,7 @@
 // 「もっと」: バッジ・設定・公式リンク・データの状態。
 import { h, externalLink, icon, badgeBases, badgeImg, confirmDialog } from '../ui.js';
 import { appTitle } from '../lib/appname.js';
-import { badgeDefs, badgeProgress, badgeArtName, badgeImageUrl } from '../lib/badges.js';
+import { badgeDefs, badgeProgress, badgeArtName, badgeImageUrl, badgeView } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
 import { TEXT_SIZES, TEXT_SIZE_LABEL, normalizeTextSize } from '../lib/textsize.js';
@@ -49,11 +49,13 @@ export function renderBadges(app) {
   const bases = badgeBases();
   for (const d of defs) {
     const date = app.state.badges[d.id];
-    const p = date ? null : badgeProgress(d, app.state, today);
-    grid.appendChild(h('div', { class: 'badge' + (date ? ' got' : '') },
-      badgeIcon(d, date, bases),
-      h('strong', { text: d.name }),
-      h('span', { class: 'small', text: d.desc }),
+    const v = badgeView(d, date); // 取っていないバッジの見せ方（ふつう／姿がわからない／ひみつ。要件定義書 §3-8-b）
+    const p = v.showProgress ? badgeProgress(d, app.state, today) : null;
+    grid.appendChild(h('div', { class: 'badge tier-' + v.tier + (date ? ' got' : '') + (v.silhouette ? ' shadow' : '') + (v.tier === 'secret' && !date ? ' secret' : ''), 'data-badge': d.id },
+      v.showArt ? badgeIcon(d, date, bases, v.silhouette) : h('span', { class: 'badge-ic secret-ic', 'aria-hidden': 'true', text: '？' }),
+      // ひみつは名前の代わりの『？』を読み上げない（条件の文『ひみつのバッジ』だけ読む）
+      h('strong', v.tier === 'secret' && !date ? { text: v.name, 'aria-hidden': 'true' } : { text: v.name }),
+      h('span', { class: 'small', text: v.desc }),
       h('span', { class: 'small muted', text: date ? date + ' 取得' : '未取得' }),
       p && p.max ? h('div', { class: 'badge-prog' },
         h('div', { class: 'progress', role: 'progressbar', 'aria-label': d.name + ' の進み具合', 'aria-valuemin': '0', 'aria-valuemax': String(p.max), 'aria-valuenow': String(p.cur) }, h('div', { class: 'progress-fill', style: { width: Math.round(p.ratio * 100) + '%' } })),
@@ -64,10 +66,10 @@ export function renderBadges(app) {
 }
 
 // バッジ一覧の絵。絵があれば円形の絵（取っていなければ灰色で薄く＝CSS）、無ければ（読み込めなくても）これまでの記号。
-function badgeIcon(d, got, bases) {
-  const symbol = got ? 'star' : 'close';
+function badgeIcon(d, got, bases, silhouette = false) {
+  const symbol = got ? 'star' : silhouette ? 'star' : 'close'; // 姿がわからない段で絵が無いときは、記号（星）を影にする
   const url = badgeImageUrl(badgeArtName(d), bases);
-  return h('span', { class: 'badge-ic' + (url ? ' art' : '') }, url ? badgeImg(url, 'badge-grid-img', symbol) : icon(symbol));
+  return h('span', { class: 'badge-ic' + (url ? ' art' : '') + (silhouette ? ' silhouette' : '') }, url ? badgeImg(url, 'badge-grid-img', symbol) : icon(symbol));
 }
 
 export function renderSettings(app) {

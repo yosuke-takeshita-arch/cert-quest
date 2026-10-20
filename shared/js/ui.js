@@ -1,7 +1,7 @@
 // 画面部品の小さな道具。データ由来の文字は必ず textContent で入れる（innerHTML は使わない）。
 import { playSfx } from './audio.js';
 import { celebrateSfx } from './lib/sound.js';
-import { characterImageUrl, celebrationMascot, characterName, tapWho, recordTap, CHARACTER_NAMES, CHARACTER_TEXT } from './lib/characters.js';
+import { characterImageUrl, celebrationMascot, characterName, tapWho, recordTap, TAP_BADGE_COUNT, CHARACTER_NAMES, CHARACTER_TEXT } from './lib/characters.js';
 
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
@@ -113,6 +113,7 @@ export function tappable(img, say) {
     if (!r) return;
     tapHost.save();
     tapHost.sfx('tap'); // タップのたびに毎回『ポンッ』（節目でも同じ音だけ）
+    if (tapHost.reached && r.count >= TAP_BADGE_COUNT) tapHost.reached(who, r.count); // 100回に達した事実を記録（タップのバッジ）
     if (!r.line) return;
     if (say && say.isConnected) {
       const t = Array.from(say.childNodes).reverse().find((n) => n.nodeType === 3);
@@ -241,7 +242,7 @@ export function celebrate(events, opts = {}) {
 
   function describe(ev) {
     if (ev.kind === 'level') return { head: 'レベルアップ！', title: 'Lv ' + ev.level, sub: 'レベル ' + ev.level + ' になりました', emblem: h('div', { class: 'celebrate-emblem lv' }, h('span', { class: 'lv-label', text: 'Lv' }), h('strong', { text: String(ev.level) })) };
-    if (ev.kind === 'badge') return { head: 'バッジ獲得！', title: ev.name, sub: ev.desc || '', emblem: ev.image ? h('div', { class: 'celebrate-emblem badge art' }, badgeImg(ev.image, 'celebrate-badge-img', 'star')) : h('div', { class: 'celebrate-emblem badge' }, icon('star')) };
+    if (ev.kind === 'badge') return { head: 'バッジ獲得！', title: ev.name, sub: ev.desc || '', note: ev.note || '', emblem: ev.image ? h('div', { class: 'celebrate-emblem badge art' }, badgeImg(ev.image, 'celebrate-badge-img', 'star')) : h('div', { class: 'celebrate-emblem badge' }, icon('star')) };
     if (ev.kind === 'stars') return { head: '星が増えました！', title: ev.title, sub: '星 ' + ev.stars + ' つ', emblem: h('div', { class: 'celebrate-emblem stars' }, stars(ev.stars)) };
     return { head: '今日の目標を達成！', title: ev.goal + '問 達成', sub: '今日の目標の ' + ev.goal + '問に答えました', emblem: h('div', { class: 'celebrate-emblem goal' }, icon('check')) };
   }
@@ -260,6 +261,7 @@ export function celebrate(events, opts = {}) {
       h('div', { class: 'celebrate-stage' }, d.emblem, characterImg(celebrationMascot(ev.kind), 'celebrate-mascot')),
       h('h2', { id: 'celebrate-title', class: 'celebrate-title', text: d.title }),
       d.sub ? h('p', { class: 'celebrate-sub', text: d.sub }) : null,
+      d.note ? h('p', { class: 'celebrate-secret', text: d.note }) : null,
       events.length > 1 ? h('p', { class: 'small muted', text: (idx + 1) + ' / ' + events.length }) : null);
     let main;
     if (!isLast) {

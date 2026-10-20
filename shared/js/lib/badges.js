@@ -5,6 +5,7 @@ import { levelFromXp, totalXpForLevel, currentStreak } from './scoring.js';
 import { secondsPerQuestion } from './quiz.js';
 import { DOCHI_ROUNDS, normalizeDochi } from './dochi.js';
 import { normalizeBoss, normalizeBossFlawless } from './boss.js';
+import { normalizeCharTap100 } from './characters.js';
 
 // 絵のあるバッジ。共通の12個は shared/images/badges/<id>.webp（id と同じ名前）。
 // 「どっち？」とボス戦の5つ（dochi-perfect・dochi-combo-10・boss-first・boss-all・boss-flawless）は絵がまだ無く、記号の表示。
@@ -46,6 +47,35 @@ export function badgeImageUrl(art, { sharedBase, appBase } = {}) {
   return COMMON_BADGE_ART.includes(art) && sharedBase ? sharedBase + art + '.webp' : null;
 }
 
+// 取っていないバッジの見せ方の段（要件定義書 §3-8-b）。段の無いバッジ（章の制覇など）は 'normal'（ふつう）。
+//   shadow … 姿がわからない（絵は黒い影。名前・条件・棒は出す）／ secret … ひみつ（絵も名前も『？』。条件も棒も出さない）
+export const SHADOW_BADGE_IDS = Object.freeze(['correct-100', 'streak-7', 'level-10', 'challenge-8', 'exam-70', 'dochi-combo-10']);
+export const SECRET_BADGE_IDS = Object.freeze(['streak-30', 'exam-90', 'dochi-perfect', 'boss-flawless', 'boss-all', 'tap-shiba-100', 'tap-sensei-100']);
+/** ひみつのバッジの表示（名前の代わり・条件の代わり）と、取ったときのお祝いの一言。文言はここ1か所。 */
+export const SECRET_BADGE_TEXT = Object.freeze({ name: 'ひみつのバッジ', title: '？', desc: 'ひみつのバッジ', found: 'ひみつのバッジを見つけた！' });
+
+/** バッジの段。'normal' | 'shadow' | 'secret'。 */
+export function badgeTier(def) {
+  if (!def) return 'normal';
+  if (SECRET_BADGE_IDS.includes(def.id)) return 'secret';
+  if (SHADOW_BADGE_IDS.includes(def.id)) return 'shadow';
+  return 'normal';
+}
+
+/**
+ * バッジ一覧での見え方を決める（画面の部品ではなく、何を出すかだけ）。
+ *   tier … 段／ got … 取ったか／ showArt … 絵（または記号）を出すか／ silhouette … 黒い影にするか
+ *   name … 見出し／ desc … 条件の文／ showProgress … 「いま n/m」の棒を出すか
+ *   label … 読み上げ・aria-label 用の名前（ひみつは中身を言わない）
+ * 取ったバッジは、どの段でも全部出す。
+ */
+export function badgeView(def, got) {
+  const tier = badgeTier(def);
+  if (got || tier === 'normal') return { tier, got: !!got, showArt: true, silhouette: false, name: def.name, desc: def.desc, showProgress: !got, label: def.name };
+  if (tier === 'shadow') return { tier, got: false, showArt: true, silhouette: true, name: def.name, desc: def.desc, showProgress: true, label: def.name };
+  return { tier, got: false, showArt: false, silhouette: false, name: SECRET_BADGE_TEXT.title, desc: SECRET_BADGE_TEXT.desc, showProgress: false, label: SECRET_BADGE_TEXT.name };
+}
+
 const count = (cur, max, unit) => ({ cur, max, unit, action: { kind: 'study' } });
 
 /** 模擬試験（10問以上）のうち、いちばんよかった正答率（%・整数。切り捨て）。 */
@@ -82,6 +112,9 @@ export function badgeDefs(tree, config) {
     { id: 'dochi-combo-10', name: 'コンボ10', desc: '「どっち？」でコンボ（連続正解）10', test: (s) => normalizeDochi(s.dochi).bestCombo >= 10, progress: (s) => ({ cur: normalizeDochi(s.dochi).bestCombo, max: 10, unit: 'コンボ', action: { kind: 'dochi' } }) },
     { id: 'boss-first', name: 'はじめての撃破', desc: '章のボスを初めて倒す', test: (s) => bossTotal(s) >= 1, progress: (s) => ({ cur: bossTotal(s), max: 1, unit: '回', action: { kind: 'boss' } }) },
     { id: 'boss-flawless', name: 'ノーダメージ', desc: 'ハートを1つも減らさずにボスを倒す', test: (s) => normalizeBossFlawless(s.bossFlawless) >= 1, progress: (s) => ({ cur: normalizeBossFlawless(s.bossFlawless), max: 1, unit: '回', action: { kind: 'boss' } }) },
+    // タップのバッジ（要件定義書 §3-8-b）。回数は保存せず、100回に達した事実（charTap100）だけで判定する
+    { id: 'tap-shiba-100', name: 'サニーとなかよし', desc: '1回の起動のあいだに、サニーを100回タップした', test: (s) => normalizeCharTap100(s.charTap100).shiba, progress: (s) => ({ cur: normalizeCharTap100(s.charTap100).shiba ? 1 : 0, max: 1, unit: '回' }) },
+    { id: 'tap-sensei-100', name: 'あい先生の根気くらべ', desc: '1回の起動のあいだに、あい先生を100回タップした', test: (s) => normalizeCharTap100(s.charTap100).sensei, progress: (s) => ({ cur: normalizeCharTap100(s.charTap100).sensei ? 1 : 0, max: 1, unit: '回' }) },
   ];
   // 問題のある章が1つも無いときは作らない（every が空で true になり、何もしなくても取れてしまうため）
   if (bossStages.length) {

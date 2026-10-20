@@ -59,12 +59,12 @@ test('badgeImageUrl: 共通→shared、major-◯◯→アプリ、不正・未�
 });
 
 // 共通のバッジ＝12個（絵あり）＋「どっち？」とボス戦の5つ（絵が届いたら COMMON_BADGE_ART に足し、ここから外す）
-const PENDING_ART = [];
+const PENDING_ART = ['tap-shiba-100', 'tap-sensei-100']; // タップのバッジ2つ（要件定義書 §3-8-b）。絵は先生が後で作る
 
 test('badgeDefs: 共通12個は絵あり、5つは絵なし、章の制覇は major-◯◯ の絵の名前（シラバス id 優先）', () => {
   const defs = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 });
   const common = defs.filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:'));
-  assert.equal(common.length, 17);
+  assert.equal(common.length, 19);
   for (const d of common) assert.equal(badgeArtName(d), PENDING_ART.includes(d.id) ? null : d.id, d.id);
   const majors = defs.filter((d) => d.id.startsWith('major:'));
   assert.deepEqual(majors.map((d) => badgeArtName(d)), ['major-T', 'major-_u6cd5__u30fb__u502b__u7406__u20__u5206__u91ce_']);
@@ -126,7 +126,8 @@ test('章の制覇: 並びは 共通12個 → 大項目 → 章。既存の12個
   const ids = defs.map((d) => d.id);
   assert.deepEqual([...ids.slice(0, 12)].sort(), [...COMMON_BADGE_ART.slice(0, 12)].sort());
   assert.deepEqual(ids.slice(12, 17), ['dochi-perfect', 'dochi-combo-10', 'boss-first', 'boss-all', 'boss-flawless']);
-  assert.deepEqual(ids.slice(17), ['major:T', 'major:L', 'chapter:T|C1', 'chapter:T|C2', 'chapter:L|D1']);
+  assert.deepEqual(ids.slice(17, 19), ['tap-shiba-100', 'tap-sensei-100']);
+  assert.deepEqual(ids.slice(19), ['major:T', 'major:L', 'chapter:T|C1', 'chapter:T|C2', 'chapter:L|D1']);
 });
 
 test('章の制覇: 星2では取れない・星3で取れる・ほかの章の星3では取れない', () => {

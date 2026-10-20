@@ -372,6 +372,14 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .badge-grid-img { width: 72px; height: 72px; }
 /* 取っていないバッジの絵は、灰色で薄く */
 .badge-grid .badge:not(.got) .badge-img, .goal-badge-img { filter: grayscale(1); opacity: 0.5; }
+/* 取っていないバッジの見せ方（要件定義書 §3-8-b）。姿がわからない＝絵は黒い影（形だけ）。ひみつ＝絵も名前も『？』 */
+.badge.shadow .badge-ic { color: var(--text); }
+.badge-grid .badge.shadow .badge-img { filter: grayscale(1) brightness(0.22); opacity: 1; box-shadow: 0 0 0 2px var(--muted); }
+.badge.shadow .badge-ic:not(.art) .icon { filter: brightness(0); opacity: 0.85; }
+:root[data-theme="dark"] .badge-grid .badge.shadow .badge-img { filter: grayscale(1) brightness(0.45); }
+.badge .secret-ic { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.25rem; font-weight: 800; line-height: 1; color: var(--muted); border: 2px dashed var(--muted); }
+.badge.secret strong { font-size: 1.25rem; line-height: 1.2; color: var(--muted); }
+.celebrate-secret { color: var(--accent); font-weight: 800; margin: 0 0 12px; }
 .goal-head { display: flex; align-items: center; gap: 12px; }
 .goal-badge-img { flex: none; width: 40px; height: 40px; }
 
