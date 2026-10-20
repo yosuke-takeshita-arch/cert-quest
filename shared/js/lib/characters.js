@@ -46,6 +46,11 @@ export const CHARACTER_TEXT = {
   aboutShiba: 'Aisunia のマスコット、サニーだよ！ 解説では、あい先生が案内してくれるよ',
   weakFound: 'ここから解くと、いちばん伸びるよ',
   weakClear: '苦手と言える所は、いまのところ無いよ。この調子！',
+  // 「どっち？」の結果発表（要件定義書 §3-5。2026-10-20 先生決定 A）。ランクは lib/dochi.js の dochiRank
+  dochiS: '完璧！ 見分けの達人です',
+  dochiA: 'よくできました！ 見分ける力がついてきましたね',
+  dochiB: 'いい調子です。まちがえた組を見直せば、もっと伸びますよ',
+  dochiC: 'まちがえた組を見直して、もう一回！',
   // 確かめの小窓（ui.js の confirmDialog。要件定義書 §6 キャラクター「確かめの小窓」。2026-10-15 先生決定 A）
   confirmQuit: 'もう少しだけ、いっしょにがんばろう？',
   confirmGrade: '見直しは済みましたか？',
@@ -77,7 +82,7 @@ export const CHARACTER_PROFILE = {
       { label: '好きなもの', text: '甘いもの。あんみつ、ティラミス' },
       { label: '苦手なもの', text: '昆虫、秘密の多い人' },
     ],
-    where: ['問題の解説（正解の理由・覚え方）', '模擬試験の結果', '模擬試験の「採点しますか？」の小窓', '苦手の分析', '使い方の案内'],
+    where: ['問題の解説（正解の理由・覚え方）', '模擬試験の結果', '「どっち？」の結果発表', '模擬試験の「採点しますか？」の小窓', '苦手の分析', '使い方の案内'],
   },
 };
 /** 紹介の画面の切り替えの順（上のキーと同じ）。 */
@@ -186,6 +191,14 @@ export function weakMascot(state, remaining) {
   if (state === 'clear') return { art: 'sensei-ok', text: CHARACTER_TEXT.weakClear };
   if (state === 'learning' && Number.isFinite(remaining) && remaining > 0) return { art: 'sensei-think', text: 'あと' + remaining + '問、同じ項目の問題に答えると、苦手が分かるよ' };
   return null;
+}
+
+/** 「どっち？」の結果発表の先生。rank は 'S'｜'A'｜'B'｜'C'。知らない値は C と同じ（はげます一言）。 */
+export function dochiMascot(rank) {
+  if (rank === 'S') return { art: 'sensei-clap', text: CHARACTER_TEXT.dochiS };
+  if (rank === 'A') return { art: 'sensei-ok', text: CHARACTER_TEXT.dochiA };
+  if (rank === 'B') return { art: 'sensei-point', text: CHARACTER_TEXT.dochiB };
+  return { art: 'sensei-comfort', text: CHARACTER_TEXT.dochiC };
 }
 
 /** お祝いの柴犬。レベルアップと1日の目標＝バンザイ、バッジと星＝拍手。知らない種類は出さない。 */

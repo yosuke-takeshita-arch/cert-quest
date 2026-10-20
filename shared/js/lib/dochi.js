@@ -168,6 +168,29 @@ export function nextCombo(combo, correct) {
   return correct ? combo + 1 : 0;
 }
 
+// ---- 結果発表のランク（要件定義書 §3-5） ----
+
+/**
+ * ランクの区切り（正解の割合。百分率）。S は全問正解（割合ではなく全問）。
+ * 20問なら A＝16問以上・B＝11問以上。出せる組が足りず 20問に満たないときも、同じ割合で決める。
+ */
+export const DOCHI_RANK_A_PERCENT = 80;
+export const DOCHI_RANK_B_PERCENT = 55;
+
+/**
+ * 正解数と出題数から、ランク（'S'｜'A'｜'B'｜'C'）を返す。
+ * 小数の比べを避けるため、百分率を掛け算で比べる（11/20 が 55% ちょうどでも外れない）。出題数が0・数でないときは C。
+ */
+export function dochiRank(correct, total) {
+  const t = toCount(total);
+  const c = Math.min(toCount(correct), t);
+  if (t <= 0) return 'C';
+  if (c === t) return 'S';
+  if (c * 100 >= DOCHI_RANK_A_PERCENT * t) return 'A';
+  if (c * 100 >= DOCHI_RANK_B_PERCENT * t) return 'B';
+  return 'C';
+}
+
 // ---- 記録（state.dochi = { runs, best, bestCombo }） ----
 
 const toCount = (v) => (typeof v === 'number' && Number.isFinite(v) && v >= 0 && Number.isSafeInteger(Math.floor(v)) ? Math.floor(v) : 0);

@@ -311,3 +311,18 @@ test('キャラクター紹介: 「もっと」に項目があり、経路・オ
   assert.ok(v.includes('tappable('), '絵は隠しセリフのタップに乗る');
   assert.ok(!v.includes('innerHTML'));
 });
+
+test('どっち？の結果発表の先生: ランクごとに絵と一言。絵は素材にあり、知らないランクは C と同じ', async () => {
+  const m = await import('../js/lib/characters.js');
+  const seen = new Set();
+  for (const rank of ['S', 'A', 'B', 'C']) {
+    const x = m.dochiMascot(rank);
+    assert.ok(m.isCharacterArt(x.art), rank);
+    assert.ok(x.art.startsWith('sensei-'), rank + ' はあい先生');
+    assert.ok(x.text.length > 0);
+    seen.add(x.text);
+  }
+  assert.equal(seen.size, 4, '一言がランクごとに違う');
+  assert.deepEqual(m.dochiMascot('Z'), m.dochiMascot('C'));
+  assert.equal(m.dochiMascot('S').text, '完璧！ 見分けの達人です');
+});

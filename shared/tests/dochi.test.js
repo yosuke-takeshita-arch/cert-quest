@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   titleTerms, maskOneLine, buildPairs, pickRound, isCorrect, nextCombo, normalizeDochi, recordDochi,
-  DOCHI_ROUNDS, DOCHI_POINT_MS, DOCHI_MASK, dochiSeconds,
+  DOCHI_ROUNDS, DOCHI_POINT_MS, DOCHI_MASK, dochiSeconds, dochiRank,
 } from '../js/lib/dochi.js';
 import { buildConceptIndex } from '../js/lib/data.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
@@ -249,4 +249,41 @@ test('一行目に相手の題名が書いてある組は出さない（全角�
   const { pairs, skipped } = buildPairs(cs, buildConceptIndex(cs));
   assert.deepEqual(pairs.map((p) => p.key), ['v>q']);
   assert.equal(skipped.oppInText, 3);
+});
+
+// ---- 結果発表のランク（要件定義書 §3-5） ----
+
+test('ランク: 20問の境界（全問=S・16=A・15=B・11=B・10=C・0=C）', () => {
+  const r = (n) => dochiRank(n, 20);
+  assert.equal(r(20), 'S');
+  assert.equal(r(19), 'A');
+  assert.equal(r(16), 'A');
+  assert.equal(r(15), 'B');
+  assert.equal(r(11), 'B');
+  assert.equal(r(10), 'C');
+  assert.equal(r(1), 'C');
+  assert.equal(r(0), 'C');
+});
+
+test('ランク: 出題数が20問に満たないときも、同じ割合（S=全問・A=80%以上・B=55%以上）', () => {
+  assert.equal(dochiRank(10, 10), 'S');
+  assert.equal(dochiRank(8, 10), 'A');
+  assert.equal(dochiRank(7, 10), 'B');
+  assert.equal(dochiRank(6, 10), 'B');
+  assert.equal(dochiRank(5, 10), 'C');
+  assert.equal(dochiRank(1, 1), 'S'); // 1問だけで正解なら全問正解
+  assert.equal(dochiRank(0, 1), 'C');
+  assert.equal(dochiRank(4, 5), 'A'); // ちょうど80%
+  assert.equal(dochiRank(11, 20), 'B'); // ちょうど55%（小数の比べだと外れうる）
+  assert.equal(dochiRank(55, 100), 'B');
+  assert.equal(dochiRank(54, 100), 'C');
+});
+
+test('ランク: 出題数0・壊れた値は C。正解数が出題数を超えても S を超えない', () => {
+  assert.equal(dochiRank(0, 0), 'C');
+  assert.equal(dochiRank(5, 0), 'C');
+  assert.equal(dochiRank(null, undefined), 'C');
+  assert.equal(dochiRank(NaN, 20), 'C');
+  assert.equal(dochiRank(-3, 20), 'C');
+  assert.equal(dochiRank(25, 20), 'S');
 });
