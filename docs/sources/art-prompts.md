@@ -289,7 +289,7 @@
 
 ### タップのバッジ 2個（2026-10-20。要件定義書 §3-8-b）
 
-- 置き場: shared/images/badges/tap-shiba-100.webp ・ tap-sensei-100.webp（両アプリ共通）。置いたあと、門番が badges.js の COMMON_BADGE_ART と sw-core.js の SHARED に足し、badges-art.test.js の PENDING_ART から外す
+- 置き場: shared/images/badges/tap-shiba-100.webp ・ tap-sensei-100.webp（両アプリ共通）。2026-10-21 に置いた（1枚ずつ描いてもらい、tools/badgesheet.cjs で緑を抜いて 256px に切った。COMMON_BADGE_ART・sw-core.js の SHARED に足し済み）
 - 2つとも「ひみつ」の段のバッジ。取るまでは絵も名前も出ないので、絵は取ったときのお祝いと一覧で初めて見える
 - 作り方は上の5つと同じ（正方形1024×1024・緑の背景を tools/chromakey.cjs（green）で抜く）。1枚に2つ並べるなら、上の5つの文の「5つ」を「2つ」にして、左から順に tap-shiba-100・tap-sensei-100 とし、tools/badgesheet.cjs で切り分ける
 - キャラクターの見た目は shared/images/characters/ の絵に合わせた（サニー＝赤いバンダナを巻いた柴犬。あい先生＝赤い羽織に袴・本を抱えた先生。どちらも、胸の印は『半円の太陽に横線』の丸い模様で、文字ではない）

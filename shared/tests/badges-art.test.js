@@ -59,9 +59,9 @@ test('badgeImageUrl: 共通→shared、major-◯◯→アプリ、不正・未�
 });
 
 // 共通のバッジ＝12個（絵あり）＋「どっち？」とボス戦の5つ（絵が届いたら COMMON_BADGE_ART に足し、ここから外す）
-const PENDING_ART = ['tap-shiba-100', 'tap-sensei-100']; // タップのバッジ2つ（要件定義書 §3-8-b）。絵は先生が後で作る
+const PENDING_ART = []; // 絵待ちのバッジ。新しいバッジを足して絵が後になるときは、ここに id を入れる
 
-test('badgeDefs: 共通12個は絵あり、5つは絵なし、章の制覇は major-◯◯ の絵の名前（シラバス id 優先）', () => {
+test('badgeDefs: 共通19個は絵あり、章の制覇は major-◯◯ の絵の名前（シラバス id 優先）', () => {
   const defs = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 });
   const common = defs.filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:'));
   assert.equal(common.length, 19);
@@ -74,7 +74,7 @@ test('絵の素材: 共通の12個が全部 shared/images/badges/ にあり、�
   assert.ok(COMMON_BADGE_ART.length >= 12);
   assert.equal(new Set(COMMON_BADGE_ART).size, COMMON_BADGE_ART.length);
   const ids = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 }).filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:')).map((d) => d.id);
-  // 絵のあるものは、全部が定義の id にある。定義の id で絵が無いものは、絵待ちの5つだけ
+  // 絵のあるものは、全部が定義の id にある。定義の id で絵が無いものは、PENDING_ART に挙げたものだけ
   assert.deepEqual(COMMON_BADGE_ART.filter((a) => !ids.includes(a)), []);
   assert.deepEqual(ids.filter((i) => !COMMON_BADGE_ART.includes(i)).sort(), PENDING_ART.filter((i) => !COMMON_BADGE_ART.includes(i)).sort());
   const sw = readFileSync(join(shared, 'sw-core.js'), 'utf8');
