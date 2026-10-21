@@ -28,7 +28,7 @@
     "syllabus": ["生成AIの実践と活用事例", "プロンプトエンジニアリング", "プロンプトエンジニアリングとは"],
     "title": "対話的な改善（プロンプトの手直し）",
     "oneLine": "一度で完璧な頼み方を目指さず、答えを見て足りない点を伝え、やり取りを重ねて仕上げていくこと。言い方を変える、条件を足す、手順を分けるなどを試す。",
-    "why": "困りごと：最初のプロンプトで思いどおりの答えが出ることは少ない。何が足りないかは、答えを見て初めて分かることが多い。例：①『新製品の案内文を書いて』→長すぎる ②『200字以内で』と足す→硬すぎる ③『取引先の担当者向けに、ていねいだが親しみのある調子で』と足す→ねらいに近づく。押さえどころ：Googleの手引きは、プロンプトの工夫は繰り返しの作業だとし、思いどおりにならないときの手直しのやり方として、同じ意味でも言い方を変えてみる、似た別の課題に置き換えて頼む、などを挙げている。MicrosoftのPowerPointのCopilot（Microsoft の生成AIのアシスタント）の説明でも、作られた骨組みに対して会話を続けて手直しし、スライドを作った後も会話で編集・調整できるとしている。混同しやすい点：対話で直すのは、答えの書き方や中身を整える作業。答えに書かれた事実が正しいかの確かめ（事実確認）は、それとは別に人が行う。",
+    "why": "困りごと：最初のプロンプトで思いどおりの答えが出ることは少ない。何が足りないかは、答えを見て初めて分かることが多い。例：①『新製品の案内文を書いて』→長すぎる ②『200字以内で』と足す→硬すぎる ③『取引先の担当者向けに、ていねいだが親しみのある調子で』と足す→ねらいに近づく。押さえどころ：Googleの手引きは、プロンプトの工夫は繰り返しの作業だとし、思いどおりにならないときの手直しのやり方として、同じ意味でも言い方を変えてみる、似た別の課題に置き換えて頼む、などを挙げている。MicrosoftのPowerPointのCopilot（Microsoft の生成AIのアシスタント）の説明（2026年10月更新）でも、作りたいプレゼンを入力すると、Copilotが聴き手・枚数・ひな形やデザインの方向・画像の種類などを質問することがあり、答えて条件を足してから作る流れになっている（質問は飛ばしてCopilotに任せることもできる）。混同しやすい点：対話で直すのは、答えの書き方や中身を整える作業。答えに書かれた事実が正しいかの確かめ（事実確認）は、それとは別に人が行う。",
     "links": [
       { "id": "C-AP-05-001", "relation": "全体" },
       { "id": "C-AP-05-013", "relation": "対比" },
@@ -41,7 +41,7 @@
     "figures": ["fig-ap-prompt-parts"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
-      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』", "url": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" }
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月更新。2026年10月21日に確認）", "url": "https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" }
     ],
     "status": "verified"
   },
@@ -472,8 +472,8 @@
     "id": "C-AP-05-023",
     "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "プレゼンテーションスライドの作成"],
     "title": "スライドの作成（プレゼン資料）",
-    "oneLine": "伝えたい内容や元の文書から、生成AIにプレゼンの骨組みとスライドの下書きを作らせ、人が手直しして仕上げること。会社のひな形を使えば、デザインもそろえやすい。",
-    "why": "困りごと：構成を考え、1枚ずつ文と図を配置するのに時間がかかる。例：『新サービスの社内説明会用、10枚程度。対象は営業部。課題→解決策→料金→導入の流れ→質疑の順で』と頼み、骨組みを確かめてからスライドにさせる。押さえどころ：MicrosoftのPowerPointのCopilot（Microsoft の生成AIのアシスタント）の説明（2026年10月13日時点）では、作りたいプレゼンの説明を入力すると、対象の聴き手や画像の好みなどを確かめる質問をしてから骨組みを作り、骨組みを会話で直してからスライドを作る。組織のひな形から始めるとテーマとデザインを保ったまま作れ、AIが作った画像にはC2PA（コンテンツに来歴の情報を付けるための技術の標準）にもとづく来歴情報が付くとしている。パナソニック コネクトの発表（2026年7月29日）は、2026年度から自社のデザインのひな形に沿ったプレゼンの生成の機能を足したとした。混同しやすい点：AIの資料は、見た目が整っていても、数字やグラフの元のデータが正しいとは限らない。数字は元の資料と照らす。",
+    "oneLine": "伝えたい内容を生成AIに伝えてプレゼンのスライドを作らせ、人が中身を確かめて手直しし、仕上げること。会社のひな形を使えば、デザインもそろえやすい。",
+    "why": "困りごと：構成を考え、1枚ずつ文と図を配置するのに時間がかかる。例：『新サービスの社内説明会用、10枚程度。対象は営業部。課題→解決策→料金→導入の流れ→質疑の順で』と頼む。聴き手・枚数・順番を頼む文に書いておくと、AIに条件がはじめから伝わる。押さえどころ：MicrosoftのPowerPointのCopilot（Microsoft の生成AIのアシスタント）の説明（2026年10月更新、10月21日に確認）では、Copilot Chat を開いて作りたいプレゼンを入力すると、Copilotが聴き手・枚数・ひな形やデザインの方向・画像の種類などを質問することがあり、答えるか、飛ばしてCopilotに任せる。その後、Copilotが内容を作り、選んだひな形でプレゼンを作る。組織がブランドキット（ロゴ・ひな形・フォント・色などをまとめたもの）を求めるときは先に選び、Copilotがそれも当てはめる。2026年10月中ごろまでの説明には、質問の後に骨組み（アウトライン。章立ての案）を作り、会話で直してからスライドにする段があったが、いまの説明には無い。MicrosoftのFAQは、Copilotの画像作成の機能で作った画像にC2PA（コンテンツに来歴の情報を付けるための技術の標準）にもとづく来歴情報を付けているとしている。パナソニック コネクトの発表（2026年7月29日）は、2026年度から自社のデザインのひな形に沿ったプレゼンの生成の機能を足したとした。混同しやすい点：AIの資料は、見た目が整っていても、数字やグラフの元のデータが正しいとは限らない。数字は元の資料と照らす。",
     "links": [
       { "id": "C-AP-05-012", "relation": "関連" },
       { "id": "C-AP-05-013", "relation": "関連" },
@@ -482,7 +482,9 @@
     ],
     "confusions": [],
     "sources": [
-      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』", "url": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" },
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月更新。2026年10月21日に確認）", "url": "https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" },
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月15日の保存版。インターネットアーカイブ。骨組みを直す段があったころの説明）", "url": "https://web.archive.org/web/20261015121731/https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" },
+      { "title": "Microsoft Support『Copilot in PowerPoint image suggestions FAQ』", "url": "https://support.microsoft.com/en-us/powerpoint/copilot-in-powerpoint-image-suggestions-faq" },
       { "title": "パナソニック コネクト『AI活用で総労働時間の3.4％削減 AIエージェントの活用を拡大し2030年に10％削減を目指す』（2026年7月29日）", "url": "https://news.panasonic.com/jp/press/jn260729-1" }
     ],
     "status": "verified"

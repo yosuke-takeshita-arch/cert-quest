@@ -935,27 +935,28 @@
     "syllabus": ["生成AIの実践と活用事例", "文書作成・コミュニケーション業務での活用", "プレゼンテーションスライドの作成"],
     "format": "single",
     "difficulty": 2,
-    "stem": "MicrosoftのPowerPointのCopilotでプレゼンを作る流れ（2026年10月13日時点の説明）として適切なものを１つ選びなさい。",
-    "stemPlain": "AIでスライドを作るとき、どんな順で進むかを選ぶ問題。",
+    "stem": "MicrosoftのPowerPointのCopilotで新しいプレゼンを作る流れ（2026年10月21日時点の説明）として適切なものを１つ選びなさい。",
+    "stemPlain": "PowerPointのCopilot（Microsoftの生成AIのアシスタント）にプレゼンを作らせるとき、途中で何を聞かれ、どう進むかを選ぶ問題。",
     "choices": [
-      "Copilotが作れるのは1枚ずつのスライドで、プレゼン全体をまとめて作ることはできない",
-      "元の文書を渡すと、文書の文をそのまま1文ずつ、1枚のスライドに順に貼り付けていく",
-      "聴き手などを確かめる質問の後に骨組みを作り、会話で直してからスライドにする",
-      "会社のひな形は読み込めないので、スライドのデザインは毎回Copilotが新しく決める"
+      "ブランドキットは、個人で使う人も選んでおかないとプレゼンを作れない",
+      "説明を入力すると章立ての一覧だけが返り、スライドは人が1枚ずつ作る",
+      "聴き手や枚数を聞かれても、答えずに飛ばしてCopilotに任せられる",
+      "使うAIのモデルは管理者が決めるので、使う人がその場で選ぶことはない"
     ],
     "answer": 2,
-    "explanation": "Microsoftの説明では、作りたいプレゼンの説明を入力すると、Copilot（Microsoft の生成AIのアシスタント）が聴き手や画像の好みなどを確かめる質問をしてから骨組みを作り、その骨組みを会話で直してからスライドを作る。作った後も会話で手直しできる。この説明は、2026年10月15日にインターネットアーカイブが保存したページで確かめた（『before generating an outline』『continue to chat with Copilot to refine your outline』）。その後、2026年10月に更新されたいまのページでは、質問（聴き手・枚数・ひな形・画像の種類）の後、Copilot が内容を作り、選んだひな形でそのままプレゼンを作る流れになり、骨組みを直す段の記述が無くなった。機能の説明は変わりやすいので、問題文の日付の時点の説明として読む。",
+    "explanation": "Microsoftのいまの説明（2026年10月更新）の流れは、①PowerPointで新しいプレゼンを始め、画面右下のアイコンから Copilot Chat を開く ②組織がブランドキットを求めるなら選ぶ ③入力欄に作りたいプレゼンを書く ④Copilotが聴き手・枚数・ひな形やデザインの方向・画像の種類などを質問することがある ⑤Copilotが内容を作り、選んだひな形でプレゼンを作る。④の質問について説明は『Answer the questions or skip them and let Copilot decide.』（日本語版は「質問に答えるか、スキップして Copilot に決定を任せます。」）としている。だから、答えずに飛ばして任せてもよい。たとえば『営業部向けの新サービス説明会』とだけ書き、枚数の質問を飛ばすと、枚数はCopilotが決める。なお、2026年10月中ごろまでの説明には、質問の後に骨組み（アウトライン。章立ての案）を作り、会話で直してからスライドにする段があった（インターネットアーカイブの2026年10月15日の保存版）。いまの説明にはその段が無い。機能の説明は変わりやすいので、問題文の日付の時点の説明として読む。",
     "whyWrong": [
-      "説明では、作りたいプレゼンを入力すると、Copilotが内容を作り、選んだひな形でプレゼン全体を作る。1枚ずつしか作れないわけではない。",
-      "文書から作るときは、Wordのスタイル（見出しなど）から文書の構造を読み取り、スライドに分けるとしている。1文ずつ貼るのではない。",
+      "ブランドキットは、組織のロゴ・ひな形・フォント・色などをまとめたもの。説明は、組織が求めるときに選ぶものとし、個人で使う人や、組織が求めていない・まだ作っていない場合は飛ばしてよいとしている。だから、選ばないと作れないわけではない。",
+      "説明では、入力と質問の後、Copilotが内容を作り、選んだひな形でプレゼンそのものを作る。章立ての一覧だけを返して、スライドを人に任せる流れではない。",
       null,
-      "説明は、組織のひな形から始めると、テーマとデザインを保って作れるとしている。"
+      "説明では、使う人がモデルの選択欄（model selector）からAIのモデルを選ぶか、自動（Auto）のままにしておける。管理者が決めて使う人が選べない、という流れではない。"
     ],
-    "memoryTip": "骨組み→直す→スライド→また直す。",
+    "memoryTip": "説明を入れる→質問は答えても飛ばしてもよい→Copilotがひな形で作る。",
     "concepts": ["C-AP-05-023", "C-AP-05-002"],
     "sources": [
-      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月15日の保存版。インターネットアーカイブ）", "url": "https://web.archive.org/web/20261015121731/https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" },
-      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（いまのページ。2026年10月更新）", "url": "https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" }
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月更新。2026年10月21日に確認）", "url": "https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" },
+      { "title": "Microsoft サポート『PowerPoint の Copilot を使用して新しいプレゼンテーションを作成する』（日本語版。2026年10月更新）", "url": "https://support.microsoft.com/ja-jp/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" },
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月15日の保存版。インターネットアーカイブ。骨組みを直す段があったころの説明）", "url": "https://web.archive.org/web/20261015121731/https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" }
     ],
     "status": "verified"
   },
@@ -970,20 +971,21 @@
       "見た目が整っていれば、グラフの数字も元のデータと一致していると考えてよい",
       "PowerPointのCopilotが作った画像には、C2PAにもとづく来歴情報が付けられる",
       "自社のデザインのひな形から始めると、スライドのデザインをそろえやすい",
-      "骨組みを先に作らせ、聴き手や構成を確かめてからスライドにさせる"
+      "Copilotに聴き手や枚数を尋ねられたら、答えて条件を伝えることができる"
     ],
     "answer": 0,
     "explanation": "見た目の整い方と、数字の正しさは別。OpenAIの利用規約なども、出力を使う前に正確さを評価するよう求めている。数字やグラフは元の資料と照らす。",
     "whyWrong": [
       null,
-      "適切。Microsoftの説明は、Copilot（生成AIのアシスタント）が作った画像に C2PA（コンテンツに来歴の情報を付けるための技術の標準） にもとづく来歴情報を付け、スライドのノートに AI が作った画像だと記すとしている。",
-      "適切。Microsoftの説明は組織のひな形から始めるよう勧め、パナソニック コネクトは自社のひな形に沿った生成の機能を足した。",
-      "適切。Microsoftの説明では、骨組みを会話で直してからスライドを作る流れになっている。"
+      "適切。Microsoftの『Copilot in PowerPoint image suggestions FAQ』は、Copilot（Microsoft の生成AIのアシスタント）の画像作成の機能（Image Creator）で作った画像に、C2PA（コンテンツに来歴の情報を付けるための技術の標準）にもとづく来歴情報（content credentials）を付け、AIが作った画像だと分かるようにしているとしている。",
+      "適切。Microsoftのいまの説明では、組織のブランドキット（ロゴ・ひな形・フォント・色などをまとめたもの）を選ぶと、Copilotは選んだひな形でプレゼンを作り、ブランドキットも当てはめる。パナソニック コネクトは自社のひな形に沿った生成の機能を足した。",
+      "適切。Microsoftのいまの説明（2026年10月更新）では、作りたいプレゼンを入力すると、Copilotが聴き手・枚数・ひな形やデザインの方向・画像の種類などを質問することがあり、答えるか、飛ばしてCopilotに任せるかを選べる。"
     ],
     "memoryTip": "整った見た目は、正しい数字の証明にならない。",
     "concepts": ["C-AP-05-023", "C-AP-05-013"],
     "sources": [
-      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』", "url": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" },
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月更新。2026年10月21日に確認）", "url": "https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" },
+      { "title": "Microsoft Support『Copilot in PowerPoint image suggestions FAQ』", "url": "https://support.microsoft.com/en-us/powerpoint/copilot-in-powerpoint-image-suggestions-faq" },
       { "title": "パナソニック コネクト『AI活用で総労働時間の3.4％削減 AIエージェントの活用を拡大し2030年に10％削減を目指す』（2026年7月29日）", "url": "https://news.panasonic.com/jp/press/jn260729-1" },
       { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" }
     ],
