@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 596" role="img" aria-labelledby="fig-ap-human-intervention-triggers-t fig-ap-human-intervention-triggers-d">
+<title id="fig-ap-human-intervention-triggers-t">AIエージェントが人に判断を戻す2つのきっかけ（OpenAIの手引き）と、当たらない操作</title>
+<desc id="fig-ap-human-intervention-triggers-d">OpenAIの手引き『A practical guide to building agents』が挙げる、人の介入が要る主な2つのきっかけ。例はお客さまの問い合わせに答えるエージェント。1つ目は失敗の上限を超えたとき。例：何度やり取りを繰り返しても、お客さまの求めていることがつかめない。このときは人の担当者に引き継ぐ。2つ目は取り消せない・影響の大きい操作。例：注文の取り消し、高額の返金の承認、支払い。このときは実行の前に人が確かめる。どちらにも当たらない操作の例は、社内の手順書を検索して関係する段落を読むこと。読むだけで何も書き換えず、取り消しの心配もないので、エージェントがそのまま続ける。手引きは、道具ごとの危なさを、読むだけか書き込むか、取り消せるか、必要な権限、お金への影響から低・中・高で付け、高い操作の前で止めるか人に回すとしている。人の確認は、エージェントを信頼できると分かるまで続ける。</desc>
+<text x="12" y="20" class="tb">人に判断を戻す2つのきっかけ</text>
+<text x="12" y="40" class="tm">（OpenAIの手引き）</text>
+<text x="12" y="60" class="tm">例：お客さまの問い合わせに答えるエージェント</text>
+<rect x="12" y="72" width="296" height="104" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="22" y="94" class="tb twn">① 失敗の上限を超えたとき</text>
+<text x="22" y="116">例：何度やり取りを繰り返しても、</text>
+<text x="22" y="134">お客さまの求めていることが</text>
+<text x="22" y="152">つかめない</text>
+<text x="298" y="168" class="tb" text-anchor="end">→ 人の担当者に引き継ぐ</text>
+<rect x="12" y="186" width="296" height="104" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="22" y="208" class="tb twn">② 取り消せない・影響の大きい操作</text>
+<text x="22" y="230">例：注文の取り消し</text>
+<text x="22" y="248">　　高額の返金の承認</text>
+<text x="22" y="266">　　支払い</text>
+<text x="298" y="282" class="tb" text-anchor="end">→ 実行の前に人が確かめる</text>
+<rect x="12" y="300" width="296" height="122" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="322" class="tb tok">どちらにも当たらない操作</text>
+<text x="22" y="344">例：社内の手順書を検索して、</text>
+<text x="22" y="362">関係する段落を読む</text>
+<text x="22" y="384" class="tm">読むだけで何も書き換えない。</text>
+<text x="22" y="400" class="tm">取り消しの心配もない</text>
+<text x="298" y="414" class="tb" text-anchor="end">→ エージェントがそのまま続ける</text>
+<line x1="12" y1="438" x2="308" y2="438" class="l sb w1"/>
+<text x="12" y="460" class="tb">操作の危なさの付け方（手引き）</text>
+<text x="12" y="482">次の4つで、道具ごとに低・中・高を付ける</text>
+<text x="22" y="502" class="tm">・読むだけか、書き込むか</text>
+<text x="22" y="520" class="tm">・取り消せるか</text>
+<text x="22" y="538" class="tm">・必要な権限の強さ　・お金への影響</text>
+<text x="12" y="562">高い操作の前で止める・人に回す</text>
+<text x="12" y="584" class="tm">人の確認は、信頼できると分かるまで続ける</text>
+</svg>

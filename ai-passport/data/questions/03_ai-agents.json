@@ -307,7 +307,7 @@
       "何度やり取りを繰り返しても、顧客の求めている意図をつかめないとき"
     ],
     "answer": 0,
-    "explanation": "OpenAIの手引きは、人の介入が要る主なきっかけとして、①失敗の上限を超えたとき ②取り消せない・影響の大きい操作（注文の取り消し、高額の返金、支払いなど）の2つを挙げている。手順書を読んで答えるだけの操作は、読み取りだけで取り消しの問題も起きないので、この2つに当たらない。",
+    "explanation": "OpenAIの手引きは、人の介入が要る主なきっかけとして、①失敗の上限を超えたとき（何度やり取りしても顧客の意図をつかめない、など）②取り消せない・影響の大きい操作（注文の取り消し、高額の返金、支払いなど）の2つを挙げている。手引きは、道具ごとの危なさを、読むだけか書き込むか、取り消せるか、必要な権限、お金への影響から付けるとしている。手順書を検索して段落を読み上げる操作は、読むだけで何も書き換えず、取り消しの心配もないので、2つのどちらにも当たらない。",
     "whyWrong": [
       null,
       "適切。手引きは、大きな額の返金の承認を、人の確認を入れる影響の大きい操作の例に挙げている。",
@@ -316,7 +316,7 @@
     ],
     "memoryTip": "人に戻すのは『失敗が続く』か『取り返しがつかない』とき。",
     "concepts": ["C-AP-03-008"],
-    "figures": ["fig-ap-autonomy-levels"],
+    "figures": ["fig-ap-human-intervention-triggers"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
     ],
@@ -345,7 +345,7 @@
     ],
     "memoryTip": "買う前に聞く。いつでも人が割り込める。",
     "concepts": ["C-AP-03-008", "C-AP-03-056"],
-    "figures": ["fig-ap-autonomy-levels"],
+    "figures": ["fig-ap-chatgpt-agent"],
     "sources": [
       { "title": "OpenAI『Introducing ChatGPT agent』（2025年7月17日）", "url": "https://openai.com/index/introducing-chatgpt-agent/" }
     ],

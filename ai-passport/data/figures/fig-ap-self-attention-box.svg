@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 738" role="img" aria-labelledby="fig-ap-self-attention-box-t fig-ap-self-attention-box-d">
+<title id="fig-ap-self-attention-box-t">Self-Attention：「それ」が同じ文の全部の語を見比べて、「箱」の中身を多く取り込む</title>
+<desc id="fig-ap-self-attention-box-d">例の文は「そのロボットは箱を持ち上げられなかった。それが重すぎたからだ。」。ロボット・箱・それの3つの語で描く（数は説明のための例）。いま考えている語「それ」から、同じ文の全部の語へ線を引く。線の太さは、どれだけ注目するかの重みで、合計は1。箱に0.7、ロボットに0.1、それ自身に0.2。「それ」の新しい中身は、各語の中身をこの割合で混ぜたもので、箱が70％、それが20％、ロボットが10％。だから「それ」の中身に箱の情報が強く入り、「それ」は箱のことだと分かる。重すぎて持ち上げられないのは、持ち上げられる側の箱だから。重みは、語どうしの合い方から毎回計算し、その計算のしかたは学習で身につける。下は畳み込みとの違い。畳み込みは、近くの語だけ（例：前後1語の窓）を一度に見るので、「それ」の窓には持ち上げ・重すぎたしか入らず、離れた「箱」に届かない。Self-Attentionは、「それ」と「箱」が離れていても1回で直接つながる。離れた語どうしがつながっていることを長距離依存と言い、これは課題の名前で、仕組みの名前ではない。</desc>
+<text x="12" y="20" class="tb">Self-Attention：「それ」はどの語のこと？</text>
+<text x="12" y="42" class="tm">例の文：そのロボットは箱を持ち上げられ</text>
+<text x="12" y="60" class="tm">なかった。それが重すぎたからだ。</text>
+<text x="12" y="78" class="tm">（3つの語だけで描く。数は説明の例）</text>
+<rect x="28" y="92" width="72" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="64" y="111" class="tb" text-anchor="middle">ロボット</text>
+<rect x="128" y="92" width="64" height="28" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="111" class="tb" text-anchor="middle">箱</text>
+<rect x="228" y="92" width="64" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="260" y="111" class="tb" text-anchor="middle">それ</text>
+<line x1="160" y1="200" x2="64" y2="120" class="l sm w1"/>
+<line x1="160" y1="200" x2="160" y2="120" class="l sa w3"/>
+<line x1="160" y1="200" x2="260" y2="120" class="l w2"/>
+<text x="104" y="165" class="tb" text-anchor="end">0.1</text>
+<text x="166" y="165" class="tb ta" text-anchor="start">0.7</text>
+<text x="222" y="165" class="tb" text-anchor="start">0.2</text>
+<rect x="60" y="200" width="200" height="30" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="220" class="tb ta" text-anchor="middle">それ（いま考えている語）</text>
+<text x="12" y="250" class="tm">線の太さ＝どれだけ注目するか</text>
+<text x="12" y="268" class="tm">（重み。3本の合計は 1）</text>
+<text x="12" y="294" class="tb">「それ」の新しい中身</text>
+<text x="12" y="312" class="tm">各語の中身を、重みの割合で混ぜる</text>
+<rect x="24" y="322" width="190.4" height="28" class="fa"/>
+<rect x="214.4" y="322" width="54.4" height="28" class="fs sb" stroke-width="1"/>
+<rect x="268.8" y="322" width="27.2" height="28" class="fs sm" stroke-width="1"/>
+<text x="119.2" y="341" class="tb ton" text-anchor="middle">箱 70%</text>
+<text x="241.6" y="341" class="tm" text-anchor="middle">それ</text>
+<text x="296" y="368" class="tm" text-anchor="end">右の2つ：それ 20%・ロボット 10%</text>
+<text x="12" y="392" class="tb ta">→「それ」の中身に「箱」が強く入る</text>
+<text x="12" y="410">＝「それ」は箱のこと、と分かる</text>
+<text x="12" y="432" class="tm">重すぎて持ち上げられないのは、持ち上げ</text>
+<text x="12" y="450" class="tm">られる側の箱。重みは語どうしの合い方から</text>
+<text x="12" y="468" class="tm">計算し、計算のしかたは学習で身につける</text>
+<line x1="12" y1="482" x2="308" y2="482" class="l sb w1"/>
+<text x="12" y="504" class="tb">畳み込み：近くの語だけを見る</text>
+<rect x="12" y="514" width="54" height="26" class="fs sb" stroke-width="1"/>
+<text x="39" y="532" text-anchor="middle">ロボット</text>
+<rect x="72.5" y="514" width="54" height="26" class="fs sb" stroke-width="1"/>
+<text x="99.5" y="532" text-anchor="middle">箱</text>
+<rect x="133" y="514" width="54" height="26" class="fs sb" stroke-width="1"/>
+<text x="160" y="532" text-anchor="middle">持ち上げ</text>
+<rect x="193.5" y="514" width="54" height="26" class="fas sa" stroke-width="1"/>
+<text x="220.5" y="532" text-anchor="middle">それ</text>
+<rect x="254" y="514" width="54" height="26" class="fs sb" stroke-width="1"/>
+<text x="281" y="532" text-anchor="middle">重すぎた</text>
+<rect x="129" y="509" width="183" height="36" class="l swn w2" fill="none" rx="6"/>
+<text x="12" y="564" class="tm">窓（例：前後1語）の中しか一度に見ない</text>
+<text x="12" y="582" class="tng">→ 離れた「箱」に届かない</text>
+<text x="12" y="608" class="tb">Self-Attention：全部の語と1回で比べる</text>
+<rect x="12" y="618" width="54" height="26" class="fs sb" stroke-width="1"/>
+<text x="39" y="636" text-anchor="middle">ロボット</text>
+<rect x="72.5" y="618" width="54" height="26" class="fas sa" stroke-width="1"/>
+<text x="99.5" y="636" text-anchor="middle">箱</text>
+<rect x="133" y="618" width="54" height="26" class="fs sb" stroke-width="1"/>
+<text x="160" y="636" text-anchor="middle">持ち上げ</text>
+<rect x="193.5" y="618" width="54" height="26" class="fas sa" stroke-width="1"/>
+<text x="220.5" y="636" text-anchor="middle">それ</text>
+<rect x="254" y="618" width="54" height="26" class="fs sb" stroke-width="1"/>
+<text x="281" y="636" text-anchor="middle">重すぎた</text>
+<path d="M220.5,644 Q160,676 99.5,644" class="l sa w2"/>
+<text x="160" y="682" class="tb ta" text-anchor="middle">離れていても1回で直接つながる</text>
+<text x="12" y="708" class="tm">離れた語どうしのつながり＝長距離依存</text>
+<text x="12" y="726" class="tm">（解きたい課題の名前。仕組みの名前ではない）</text>
+</svg>
