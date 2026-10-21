@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 664" role="img" aria-labelledby="fig-g-weak-learner-boosting-t fig-g-weak-learner-boosting-d">
+<title id="fig-g-weak-learner-boosting-t">ブースティングは作り方、弱学習器はその材料：弱いモデルを順に作ってまとめると強くなる</title>
+<desc id="fig-g-weak-learner-boosting-d">ブースティングは作り方（手順）で、弱学習器はその手順で1つずつ順に作って足していく材料の1つ1つ。図では、矢印が作り方、箱が材料を表す。例：6つのデータA〜Fを2つの組に分ける。でたらめに答えると平均で6つ中3つ当たる。弱学習器1はD・Eを外し、6つ中4つ当てる。ブースティングは外したD・Eを次に重く学ばせ、弱学習器2はD・Eを当てるがA・Fを外して、6つ中4つ。外したA・Fを次に重く学ばせ、弱学習器3はA・Fを当てるがB・Cを外して、6つ中4つ。どれも、でたらめ（3つ）より少しましなだけ。3つを多数決でまとめると、どのデータも3つのうち2つが当てているので、6つとも当たる。1つずつは弱くても、まとめると強くなる。AdaBoostでは成績のよい学習器の票を重くするが、この例は1票ずつの多数決でも同じ結果になる。</desc>
+<text x="12" y="20" class="tb">ブースティングと弱学習器の関係</text>
+<text x="12" y="44" class="tb ta">ブースティング＝作り方（下の矢印）</text>
+<text x="12" y="64" class="tb">弱学習器＝材料の1つ1つ（下の箱）</text>
+<line x1="12" y1="78" x2="308" y2="78" class="l sb w1"/>
+<text x="12" y="100" class="tb">例：6つのデータA〜Fを2つの組に分ける</text>
+<text x="12" y="120" class="tm">でたらめに答えると、平均で6つ中3つ当たる</text>
+<text x="12" y="140" class="tm">当＝当てた　外＝外した（赤）</text>
+<text x="105" y="164" class="tb" text-anchor="middle">A</text>
+<text x="135" y="164" class="tb" text-anchor="middle">B</text>
+<text x="165" y="164" class="tb" text-anchor="middle">C</text>
+<text x="195" y="164" class="tb" text-anchor="middle">D</text>
+<text x="225" y="164" class="tb" text-anchor="middle">E</text>
+<text x="255" y="164" class="tb" text-anchor="middle">F</text>
+<text x="308" y="164" class="tm" text-anchor="end">当たり</text>
+<rect x="12" y="172" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="20" y="197" class="tb">弱学習器1</text>
+<rect x="92" y="180" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="105" y="197" class="tm" text-anchor="middle">当</text>
+<rect x="122" y="180" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="135" y="197" class="tm" text-anchor="middle">当</text>
+<rect x="152" y="180" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="165" y="197" class="tm" text-anchor="middle">当</text>
+<rect x="182" y="180" width="26" height="24" class="fng sng" stroke-width="1.5" rx="3"/>
+<text x="195" y="197" class="tb tng" text-anchor="middle">外</text>
+<rect x="212" y="180" width="26" height="24" class="fng sng" stroke-width="1.5" rx="3"/>
+<text x="225" y="197" class="tb tng" text-anchor="middle">外</text>
+<rect x="242" y="180" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="255" y="197" class="tm" text-anchor="middle">当</text>
+<text x="300" y="197" class="tb" text-anchor="end">4/6</text>
+<line x1="40" y1="212" x2="40" y2="234" class="l sa w2"/>
+<polygon points="40,240 35,232 45,232" class="fa"/>
+<text x="54" y="231" class="tb ta">外したD・Eを、次に重く学ばせる</text>
+<rect x="12" y="240" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="20" y="265" class="tb">弱学習器2</text>
+<rect x="92" y="248" width="26" height="24" class="fng sng" stroke-width="1.5" rx="3"/>
+<text x="105" y="265" class="tb tng" text-anchor="middle">外</text>
+<rect x="122" y="248" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="135" y="265" class="tm" text-anchor="middle">当</text>
+<rect x="152" y="248" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="165" y="265" class="tm" text-anchor="middle">当</text>
+<rect x="182" y="248" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="195" y="265" class="tm" text-anchor="middle">当</text>
+<rect x="212" y="248" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="225" y="265" class="tm" text-anchor="middle">当</text>
+<rect x="242" y="248" width="26" height="24" class="fng sng" stroke-width="1.5" rx="3"/>
+<text x="255" y="265" class="tb tng" text-anchor="middle">外</text>
+<text x="300" y="265" class="tb" text-anchor="end">4/6</text>
+<line x1="40" y1="280" x2="40" y2="302" class="l sa w2"/>
+<polygon points="40,308 35,300 45,300" class="fa"/>
+<text x="54" y="299" class="tb ta">外したA・Fを、次に重く学ばせる</text>
+<rect x="12" y="308" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="20" y="333" class="tb">弱学習器3</text>
+<rect x="92" y="316" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="105" y="333" class="tm" text-anchor="middle">当</text>
+<rect x="122" y="316" width="26" height="24" class="fng sng" stroke-width="1.5" rx="3"/>
+<text x="135" y="333" class="tb tng" text-anchor="middle">外</text>
+<rect x="152" y="316" width="26" height="24" class="fng sng" stroke-width="1.5" rx="3"/>
+<text x="165" y="333" class="tb tng" text-anchor="middle">外</text>
+<rect x="182" y="316" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="195" y="333" class="tm" text-anchor="middle">当</text>
+<rect x="212" y="316" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="225" y="333" class="tm" text-anchor="middle">当</text>
+<rect x="242" y="316" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="255" y="333" class="tm" text-anchor="middle">当</text>
+<text x="300" y="333" class="tb" text-anchor="end">4/6</text>
+<line x1="40" y1="348" x2="40" y2="370" class="l sa w2"/>
+<polygon points="40,376 35,368 45,368" class="fa"/>
+<text x="54" y="367" class="tb ta">3つを多数決でまとめる</text>
+<rect x="12" y="376" width="296" height="70" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="20" y="396" class="tb tok">まとめた強いモデル（3つの多数決）</text>
+<rect x="92" y="410" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="105" y="427" class="tm" text-anchor="middle">当</text>
+<rect x="122" y="410" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="135" y="427" class="tm" text-anchor="middle">当</text>
+<rect x="152" y="410" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="165" y="427" class="tm" text-anchor="middle">当</text>
+<rect x="182" y="410" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="195" y="427" class="tm" text-anchor="middle">当</text>
+<rect x="212" y="410" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="225" y="427" class="tm" text-anchor="middle">当</text>
+<rect x="242" y="410" width="26" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="255" y="427" class="tm" text-anchor="middle">当</text>
+<text x="20" y="427" class="tb tok">答え</text>
+<text x="300" y="427" class="tb tok" text-anchor="end">6/6</text>
+<text x="12" y="470" class="tm">どのデータも、3つのうち2つが当てている</text>
+<text x="12" y="490" class="tm">→ 多数決にすると6つとも当たる</text>
+<line x1="12" y1="504" x2="308" y2="504" class="l sb w1"/>
+<text x="12" y="526" class="tb">まとめ</text>
+<text x="12" y="546" class="tm">ブースティング（作り方）は、</text>
+<text x="12" y="566" class="tm">弱学習器（材料）を1つずつ順に作り、</text>
+<text x="12" y="586" class="tm">前が外したデータを次に重く学ばせ、最後にまとめる</text>
+<text x="12" y="606" class="tb">1つずつは弱くても、まとめると強くなる</text>
+<text x="12" y="632" class="tm">AdaBoostでは成績のよい学習器の票を重く</text>
+<text x="12" y="652" class="tm">する。この例は1票ずつの多数決でも同じ結果</text>
+</svg>
