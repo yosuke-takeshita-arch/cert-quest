@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-g-mask-5words-t fig-g-mask-5words-d">
+<title id="fig-g-mask-5words-t">デコーダの Self-Attention のマスク（5語の文で、3語目の位置から見る）</title>
+<desc id="fig-g-mask-5words-d">5語の文（1語目〜5語目）のスコアの表。スコアは、ある語が別の語にどれだけ注目するかの点数。行は見る側の位置、列は見られる側の位置。文を作るとき後ろの語はまだ無いので、学習のときも各位置は自分より後ろの位置を見ないように、表の右上の三角（自分より後ろ）のスコアを マイナス無限大 にする。3語目の行を囲んで目立たせてある。3語目の行は、1語目・2語目・3語目（自分も含む）は見てよく、スコアは例で 0.3、0.9、1.1。4語目と5語目はまだ作っていない後ろの語なので マイナス無限大。この行をソフトマックスに通すと、重みは例で 0.20、0.36、0.44、0、0 になる。e の マイナス無限大 乗は0なので、マイナス無限大 の所の重みはちょうど0になり、残りの3つで合計1になる。</desc>
+<text x="12" y="20" class="tb">5語の文のスコアの表（デコーダ）</text>
+<text x="12" y="40" class="tm">スコア＝その語にどれだけ注目するかの点数</text>
+<text x="12" y="58" class="tm">行＝見る側の位置　列＝見られる側の位置</text>
+<text x="12" y="80" class="tm">文を作るとき後ろの語はまだ無い。だから</text>
+<text x="12" y="98" class="tm">学習でも、自分より後ろの語を見ないよう隠す</text>
+<text x="186" y="124" class="tb" text-anchor="middle">見られる側の位置（列）</text>
+<text x="12" y="146" class="tb">見る側↓</text>
+<text x="98" y="146" class="tm" text-anchor="middle">1語目</text>
+<text x="142" y="146" class="tm" text-anchor="middle">2語目</text>
+<text x="186" y="146" class="tm" text-anchor="middle">3語目</text>
+<text x="230" y="146" class="tm" text-anchor="middle">4語目</text>
+<text x="274" y="146" class="tm" text-anchor="middle">5語目</text>
+<text x="12" y="172" class="tm">1語目</text>
+<rect x="76" y="152" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="98" y="172" class="tm" text-anchor="middle">○</text>
+<rect x="120" y="152" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="142" y="172" class="tm" text-anchor="middle">−∞</text>
+<rect x="164" y="152" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="186" y="172" class="tm" text-anchor="middle">−∞</text>
+<rect x="208" y="152" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="230" y="172" class="tm" text-anchor="middle">−∞</text>
+<rect x="252" y="152" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="274" y="172" class="tm" text-anchor="middle">−∞</text>
+<text x="12" y="202" class="tm">2語目</text>
+<rect x="76" y="182" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="98" y="202" class="tm" text-anchor="middle">○</text>
+<rect x="120" y="182" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="142" y="202" class="tm" text-anchor="middle">○</text>
+<rect x="164" y="182" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="186" y="202" class="tm" text-anchor="middle">−∞</text>
+<rect x="208" y="182" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="230" y="202" class="tm" text-anchor="middle">−∞</text>
+<rect x="252" y="182" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="274" y="202" class="tm" text-anchor="middle">−∞</text>
+<text x="12" y="232" class="tb ta">3語目</text>
+<rect x="76" y="212" width="44" height="30" class="fok sok" stroke-width="1"/>
+<text x="98" y="232" class="tb tok" text-anchor="middle">0.3</text>
+<rect x="120" y="212" width="44" height="30" class="fok sok" stroke-width="1"/>
+<text x="142" y="232" class="tb tok" text-anchor="middle">0.9</text>
+<rect x="164" y="212" width="44" height="30" class="fok sok" stroke-width="1"/>
+<text x="186" y="232" class="tb tok" text-anchor="middle">1.1</text>
+<rect x="208" y="212" width="44" height="30" class="fng sng" stroke-width="1"/>
+<text x="230" y="232" class="tb tng" text-anchor="middle">−∞</text>
+<rect x="252" y="212" width="44" height="30" class="fng sng" stroke-width="1"/>
+<text x="274" y="232" class="tb tng" text-anchor="middle">−∞</text>
+<text x="12" y="262" class="tm">4語目</text>
+<rect x="76" y="242" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="98" y="262" class="tm" text-anchor="middle">○</text>
+<rect x="120" y="242" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="142" y="262" class="tm" text-anchor="middle">○</text>
+<rect x="164" y="242" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="186" y="262" class="tm" text-anchor="middle">○</text>
+<rect x="208" y="242" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="230" y="262" class="tm" text-anchor="middle">○</text>
+<rect x="252" y="242" width="44" height="30" class="fbg sb" stroke-width="1"/>
+<text x="274" y="262" class="tm" text-anchor="middle">−∞</text>
+<text x="12" y="292" class="tm">5語目</text>
+<rect x="76" y="272" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="98" y="292" class="tm" text-anchor="middle">○</text>
+<rect x="120" y="272" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="142" y="292" class="tm" text-anchor="middle">○</text>
+<rect x="164" y="272" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="186" y="292" class="tm" text-anchor="middle">○</text>
+<rect x="208" y="272" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="230" y="292" class="tm" text-anchor="middle">○</text>
+<rect x="252" y="272" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="274" y="292" class="tm" text-anchor="middle">○</text>
+<rect x="8" y="209" width="292" height="36" rx="4" class="l sa w2"/>
+<text x="12" y="322" class="tm">○＝見てよい（スコアをそのまま使う）</text>
+<text x="12" y="340" class="tm">−∞＝見ない（右上の三角＝自分より後ろ）</text>
+<text x="12" y="366" class="tb ta">3語目の行（囲みの中）</text>
+<text x="12" y="386" class="tok tb">1〜3語目は見てよい（自分も含む）</text>
+<text x="12" y="406" class="tng tb">4・5語目は −∞（まだ作っていない後ろの語）</text>
+<line x1="186" y1="414" x2="186" y2="426" class="l w2"/>
+<polyline points="182.15,421 186,428 189.85,421" class="l w2"/>
+<text x="12" y="446" class="tb">ソフトマックスに通すと（例）</text>
+<text x="12" y="475" class="tm">重み</text>
+<rect x="76" y="456" width="44" height="30" class="fok sok" stroke-width="1"/>
+<text x="98" y="475" class="tb tok" text-anchor="middle">0.20</text>
+<rect x="120" y="456" width="44" height="30" class="fok sok" stroke-width="1"/>
+<text x="142" y="475" class="tb tok" text-anchor="middle">0.36</text>
+<rect x="164" y="456" width="44" height="30" class="fok sok" stroke-width="1"/>
+<text x="186" y="475" class="tb tok" text-anchor="middle">0.44</text>
+<rect x="208" y="456" width="44" height="30" class="fng sng" stroke-width="1"/>
+<text x="230" y="475" class="tb tng" text-anchor="middle">0</text>
+<rect x="252" y="456" width="44" height="30" class="fng sng" stroke-width="1"/>
+<text x="274" y="475" class="tb tng" text-anchor="middle">0</text>
+<text x="12" y="506" class="tm">e の −∞ 乗は0。−∞ の所は重みがちょうど0</text>
+</svg>
