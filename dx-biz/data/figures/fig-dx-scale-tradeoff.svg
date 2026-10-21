@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 358" role="img" aria-labelledby="fig-dx-scale-tradeoff-t fig-dx-scale-tradeoff-d">
+<title id="fig-dx-scale-tradeoff-t">垂直スケーリングと水平スケーリング：得るものと手放すもの</title>
+<desc id="fig-dx-scale-tradeoff-d">何のための図か：利用者が急に増えたサービスで、1台を高性能な機種に入れ替える垂直スケーリングと、同じ性能の機械を足して並列に処理する水平スケーリングの得失を比べる。垂直は、作りを変えずに済むが、部品（処理装置・メモリなど）の改良による性能の伸びには物理的な限界がある。水平は、資源を足していけば伸ばせるが、独立した資源に処理を分けて並列に動かせる作り（分散処理）にしておく必要がある。NISTのビッグデータ相互運用性フレームワーク第1巻の説明にもとづく。</desc>
+<text x="12" y="20" class="tb">縦に伸ばすか、横に増やすか</text>
+<text x="12" y="50" class="tb">A 垂直：1台を高性能な機種に替える</text>
+<rect x="12" y="80" width="40" height="30" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="32" y="100" text-anchor="middle">小</text>
+<line x1="56" y1="95" x2="78" y2="95" class="l sa w2"/>
+<polyline points="77,90 84,95 77,100" class="l sa w2" fill="none"/>
+<rect x="88" y="60" width="60" height="50" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="118" y="90" text-anchor="middle">大</text>
+<rect x="12" y="118" width="296" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="140" class="tok">得：作りを変えずに済む</text>
+<text x="22" y="158" class="tng">損：部品の性能の伸びには物理的な限界</text>
+<text x="22" y="176" class="tm">　（天井がある）</text>
+<text x="12" y="218" class="tb">B 水平：同じ機械を足して並列に処理</text>
+<rect x="12" y="228" width="40" height="30" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="32" y="248" text-anchor="middle">1台</text>
+<rect x="62" y="228" width="40" height="30" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="82" y="248" text-anchor="middle">1台</text>
+<rect x="112" y="228" width="40" height="30" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="132" y="248" text-anchor="middle">1台</text>
+<rect x="162" y="228" width="40" height="30" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="182" y="248" text-anchor="middle">1台</text>
+<text x="214" y="248" class="tm">＋足していく</text>
+<rect x="12" y="266" width="296" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="288" class="tok">得：足していけば伸ばせる（天井が高い）</text>
+<text x="22" y="306" class="tng">損：処理を分けて並列に動かせる作りが要る</text>
+<text x="12" y="344" class="tb ta">得と損が入れ替わる関係</text>
+</svg>

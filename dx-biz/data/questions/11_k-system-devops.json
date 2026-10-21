@@ -393,7 +393,7 @@
       "計算機を8台に増やしても1時間に100万件のままである。台数を増やすと台数どうしのやり取りが増え、増やした分の能力を打ち消すからである"
     ],
     "answer": 1,
-    "explanation": "NIST（米国国立標準技術研究所）のビッグデータ相互運用性フレームワーク第1巻は、並列化が理想的に働くと線形スケーラビリティになり、データノード（計算機）の数を2倍にすれば2倍のデータを同じ時間で処理できると説明している。4台で100万件なら、8台で200万件になる。",
+    "explanation": "NIST（米国国立標準技術研究所）のビッグデータ相互運用性フレームワーク第1巻は、並列化が理想的に働くと線形スケーラビリティになり、データノード（計算機）の数を2倍にすれば2倍のデータを同じ時間で処理できると説明している。4台で100万件なら、8台で200万件になる。1台あたりは 100万÷4＝25万件なので、200万件には 200万÷25万＝8台。",
     "whyWrong": [
       "線形とは比例して伸びることで、2乗で伸びることではない。8台で200万件になる。",
       null,
@@ -402,7 +402,7 @@
     ],
     "memoryTip": "線形＝台数2倍で処理量2倍（同じ時間で）。2乗でも横ばいでもない。",
     "concepts": ["DC-11-105", "DC-03-005"],
-    "figures": ["fig-dx-scale"],
+    "figures": ["fig-dx-linear-scalability"],
     "sources": [
       { "title": "NIST SP 1500-1r2「NIST Big Data Interoperability Framework: Volume 1, Definitions」（2019年10月）", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-1r2.pdf" }
     ],
@@ -432,7 +432,7 @@
     ],
     "memoryTip": "縦（1台を強く）＝作りはそのまま・天井あり。横（台数を足す）＝天井は高い・分けて動かす作りが要る。",
     "concepts": ["DC-11-105", "DC-03-005"],
-    "figures": ["fig-dx-scale"],
+    "figures": ["fig-dx-scale-tradeoff"],
     "sources": [
       { "title": "NIST SP 1500-1r2「NIST Big Data Interoperability Framework: Volume 1, Definitions」（2019年10月）", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-1r2.pdf" }
     ],
@@ -724,7 +724,7 @@
     ],
     "memoryTip": "ハイブリッド＝別々の基盤のまま＋移せる技術でつなぐ。つながりがあって初めて「あふれ分だけ外へ」ができる。",
     "concepts": ["DC-02-009"],
-    "figures": ["fig-dx-cloud-models"],
+    "figures": ["fig-dx-cloud-bursting"],
     "sources": [
       { "title": "NIST SP 800-145「The NIST Definition of Cloud Computing」（2011年）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" }
     ],
@@ -754,7 +754,7 @@
     ],
     "memoryTip": "変わる物はアジャイル、決まっていて変わらない物はウォーターフォール。混ざるなら分けて使い分ける。",
     "concepts": ["DC-02-007"],
-    "figures": ["fig-dx-agile-waterfall-fit", "fig-dx-agile"],
+    "figures": ["fig-dx-agile-waterfall-fit"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部（ITシステム開発手法・技術）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
@@ -813,7 +813,7 @@
     ],
     "memoryTip": "DBを分ける＝独立して速く直せる。その代わり「いつでも一致」は手放す（結果整合性）。",
     "concepts": ["DC-02-008"],
-    "figures": ["fig-dx-eventual-consistency", "fig-dx-microservices"],
+    "figures": ["fig-dx-eventual-consistency"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部（ITシステム開発手法・技術）", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],

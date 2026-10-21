@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 360" role="img" aria-labelledby="fig-dx-linear-scalability-t fig-dx-linear-scalability-d">
+<title id="fig-dx-linear-scalability-t">線形スケーラビリティ：計算機4台で1時間100万件なら、8台で200万件</title>
+<desc id="fig-dx-linear-scalability-d">何のための図か：計算機4台で1時間に100万件を処理しているサービスで、1時間に200万件にするには何台が要るかを、線形スケーラビリティ（台数に比例して処理量が伸びること）で見る。1台あたりは100万÷4＝25万件。200万件にするには200万÷25万＝8台。横棒グラフで棒の長さは1時間に処理できる件数。比べるために、台数を2倍にすると2乗で伸びるとした場合（400万件）と、台数を増やしても伸びない場合（100万件のまま）も並べたが、どちらも線形ではない。NISTのビッグデータ相互運用性フレームワークは、並列化が理想的に働くと線形スケーラビリティになり、データノードの数を2倍にすれば2倍のデータを同じ時間で処理できるとしている。</desc>
+<text x="12" y="20" class="tb">線形＝台数に比例して、処理量が伸びる</text>
+<text x="12" y="42" class="tm">問題の数：4台で1時間に100万件</text>
+<rect x="12" y="54" width="296" height="72" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="76">1台あたり：100万 ÷ 4 ＝ 25万件</text>
+<text x="22" y="94">200万件には：200万 ÷ 25万 ＝ 8台</text>
+<text x="22" y="114" class="tb tok">→ 8台で、1時間に200万件</text>
+<text x="12" y="152" class="tm">横棒グラフ。棒の長さ＝1時間に処理できる件数</text>
+<text x="12" y="182">4台</text>
+<rect x="112" y="167" width="35" height="20" class="fs sm" stroke-width="1.5"/>
+<text x="153" y="182">100万件</text>
+<text x="12" y="212">8台（線形）</text>
+<rect x="112" y="197" width="70" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="188" y="212" class="tb tok">200万件</text>
+<text x="12" y="242" class="tb">線形でないもの（比べる）</text>
+<text x="12" y="272">8台（2乗）</text>
+<rect x="112" y="257" width="140" height="20" class="fng sng" stroke-width="1.5"/>
+<text x="258" y="272" class="tng">400万件</text>
+<text x="12" y="302">8台（横ばい）</text>
+<rect x="112" y="287" width="35" height="20" class="fng sng" stroke-width="1.5"/>
+<text x="153" y="302" class="tng">100万件</text>
+<text x="12" y="328" class="tm">2乗に伸びる・伸びない、はどちらも線形ではない</text>
+<text x="12" y="346" class="tm">1台の性能を上げるのは、別の方法（垂直）</text>
+</svg>

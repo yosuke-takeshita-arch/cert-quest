@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 376" role="img" aria-labelledby="fig-dx-complexity-open-t fig-dx-complexity-open-d">
+<title id="fig-dx-complexity-open-t">載せる技術が増える→1社では抱えきれない→外の技術を取り込む</title>
+<desc id="fig-dx-complexity-open-d">何のための図か：製品に載せる技術が増えると、なぜ自社だけで作る体制（自前主義）が限界を迎えるかを、NEDOのオープンイノベーション白書の例で見る。例はスマートフォンで、通話・データ通信・カメラ・それを制御するソフトウェアなど様々な技術が1台に載る。流れは、①載せる技術が増えて製品が複雑になる、②1社がすべてを自前で作るのは難しくなる、③他社の技術を取り込む必要が出る、④自前主義・垂直統合型（クローズドイノベーション）は限界を迎え、オープンイノベーションが重要になる。背景には、新興国企業を含む競争の激化と、製品の売れる期間（プロダクト・ライフサイクル）の短期化もある。</desc>
+<text x="12" y="20" class="tb">自前主義の限界は「複雑さ」から来る</text>
+<text x="12" y="42" class="tm">例：スマートフォン1台に載る技術（白書の例）</text>
+<rect x="12" y="52" width="70" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="47" y="80" text-anchor="middle">通話</text>
+<rect x="87" y="52" width="70" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="122" y="71" text-anchor="middle">データ</text>
+<text x="122" y="89" text-anchor="middle">通信</text>
+<rect x="162" y="52" width="70" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="197" y="80" text-anchor="middle">カメラ</text>
+<rect x="237" y="52" width="70" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="272" y="71" text-anchor="middle">制御の</text>
+<text x="272" y="89" text-anchor="middle">ソフト</text>
+<rect x="12" y="112" width="296" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="133" text-anchor="middle">① 載せる技術が増え、製品が複雑になる</text>
+<line x1="160" y1="148" x2="160" y2="158" class="l sa w2"/>
+<polyline points="155,157 160,164 165,157" class="l sa w2" fill="none"/>
+<rect x="12" y="164" width="296" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="185" text-anchor="middle">② 1社がすべてを自前で作るのは難しい</text>
+<line x1="160" y1="200" x2="160" y2="210" class="l sa w2"/>
+<polyline points="155,209 160,216 165,209" class="l sa w2" fill="none"/>
+<rect x="12" y="216" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="237" text-anchor="middle" class="tok">③ 他社の技術を取り込む必要が出る</text>
+<line x1="160" y1="252" x2="160" y2="262" class="l sa w2"/>
+<polyline points="155,261 160,268 165,261" class="l sa w2" fill="none"/>
+<rect x="12" y="268" width="296" height="50" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="289" text-anchor="middle" class="tok">④ 自前主義（クローズド）の限界</text>
+<text x="160" y="307" text-anchor="middle" class="tok">→ オープンイノベーションが重要に</text>
+<text x="12" y="344" class="tm">背景：新興国企業を含む競争の激化と、</text>
+<text x="12" y="362" class="tm">製品の売れる期間が短くなったこと</text>
+</svg>

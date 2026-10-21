@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 390" role="img" aria-labelledby="fig-dx-edge-result-only-t fig-dx-edge-result-only-d">
+<title id="fig-dx-edge-result-only-t">映像を全部送るか、カメラの近くで処理して結果だけ送るか：得るものと手放すもの</title>
+<desc id="fig-dx-edge-result-only-d">何のための図か：カメラの映像を、全部中央（本部のサーバーやクラウド）に送って処理する方式と、カメラの中や近く（エッジ）で処理して人数などの結果だけを送る方式を比べる。全部送る方式は、送る量が多くサーバーと通信の費用がかかり、個人が分かる映像が中央に集まるが、映像が残るので後から別の分析ができる。結果だけ送る方式は、送る量が軽く、個人が分かる映像を集める危険も減る（前の段階で加工することは負荷の分散と情報セキュリティ対策の両方になる：IPAのDX SQUARE。推論の結果のテキストやメタデータだけを送る：ソニーのAITRIOS）。代わりに、元の映像は中央に残らないので、映像を使う別の分析は後からできず、何を数えるか（何を推論させるか）を先に決めておく必要がある。この手放す部分は、送るものを結果に限る仕組みから導いた帰結。</desc>
+<text x="12" y="20" class="tb">映像を送るか、結果だけ送るか</text>
+<text x="12" y="42" class="tm">例：店や通路のカメラで、人の数を知りたい</text>
+<text x="12" y="70" class="tb">A 映像を全部、中央に送って処理する</text>
+<rect x="12" y="78" width="296" height="88" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="100" class="tm">送る量：多い</text>
+<text x="22" y="118" class="tm">（サーバー・通信の費用が大きい）</text>
+<text x="22" y="136" class="tm tng">個人が分かる映像が中央に集まる</text>
+<text x="22" y="154" class="tm tok">映像が残る → 後から別の分析ができる</text>
+<text x="12" y="196" class="tb">B カメラの近くで数えて、結果だけ送る</text>
+<rect x="12" y="204" width="296" height="88" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="226" class="tm tok">送る量：人数などの結果だけ（軽い）</text>
+<text x="22" y="244" class="tm tok">個人が分かる映像を集める危険が減る</text>
+<text x="22" y="262" class="tm tng">元の映像は中央に残らない</text>
+<text x="22" y="280" class="tm tng">→ 映像を使う別の分析は後からできない</text>
+<rect x="12" y="304" width="296" height="72" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="328" class="tb">B を選ぶなら、何を数えるかを先に決める</text>
+<text x="22" y="346" class="tm">（手放す部分は、送るものを結果に限る</text>
+<text x="22" y="364" class="tm">　仕組みから導いた帰結）</text>
+</svg>

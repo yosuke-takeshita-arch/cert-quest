@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 602" role="img" aria-labelledby="fig-dx-ltv-cac-calc-t fig-dx-ltv-cac-calc-d">
+<title id="fig-dx-ltv-cac-calc-t">解約率が月5%から10%に上がると、LTVは20万円から10万円、LTV÷CACは4から2に下がる</title>
+<desc id="fig-dx-ltv-cac-calc-d">何のための図か：月の平均売上（ARPA）1万円、獲得費用（CAC）5万円のサービスで、解約率が月5%から10%に上がると採算がどう変わるかを、問題の数で見る。LTV（顧客生涯価値）は1社の顧客が使い続ける間にもたらす売上の合計で、ことばの式はLTV＝月の平均売上÷月の解約率。解約率で割るのは、毎月5%がやめるなら平均して1÷0.05＝20か月使い続けると見込めるため（この見方は出典の式から導いたもの）。解約率5%：20か月×1万円＝20万円。解約率10%：1÷0.10＝10か月なので10万円。横棒グラフで、棒の長さは金額。濃い棒がLTV（回収できる売上）、薄い棒がCAC（1社の獲得にかける5万円）。ユニットエコノミクス（LTV÷CAC。獲得にかけた費用の何倍を回収できるか）は、20÷5＝4から10÷5＝2に下がる。出典のセールスフォースの解説は3〜5を一般的な基準としているので、2は基準を下回り、解約を減らすか獲得費用を見直す必要がある。</desc>
+<text x="12" y="20" class="tb">解約率↑ → LTV↓ → LTV÷CAC↓</text>
+<text x="12" y="42" class="tm">問題の数：月の平均売上（ARPA）1万円</text>
+<text x="12" y="60" class="tm">　　　　　1社の獲得費用（CAC）5万円</text>
+<rect x="12" y="72" width="296" height="86" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="92" class="tb">LTV ＝ 月の平均売上 ÷ 月の解約率</text>
+<text x="22" y="110" class="tm">（1社がやめるまでにもたらす売上の合計）</text>
+<text x="22" y="128" class="tm">なぜ割る：毎月5%がやめるなら、平均して</text>
+<text x="22" y="146" class="tm">1÷0.05＝20か月使う → 20か月×1万円と同じ</text>
+<text x="12" y="182" class="tm">横棒グラフ。棒の長さ＝金額（万円）</text>
+<line x1="12" y1="194" x2="308" y2="194" class="l sb w1"/>
+<text x="12" y="218" class="tb">① これまで：解約率 月5%</text>
+<text x="12" y="236" class="tm">LTV ＝ 1万 ÷ 0.05 ＝ 1万 × 20か月 ＝ 20万円</text>
+<text x="12" y="264">LTV</text>
+<rect x="64" y="249" width="200" height="20" class="fm" stroke-width="1.5"/>
+<text x="270" y="264" class="tb">20万円</text>
+<text x="12" y="292">CAC</text>
+<rect x="64" y="277" width="50" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="120" y="292">5万円</text>
+<text x="12" y="318" class="tb tok">LTV ÷ CAC ＝ 20 ÷ 5 ＝ 4</text>
+<line x1="12" y1="330" x2="308" y2="330" class="l sb w1"/>
+<text x="12" y="354" class="tb">② 競合の参入後：解約率 月10%</text>
+<text x="12" y="372" class="tm">LTV ＝ 1万 ÷ 0.10 ＝ 1万 × 10か月 ＝ 10万円</text>
+<text x="12" y="400">LTV</text>
+<rect x="64" y="385" width="100" height="20" class="fm" stroke-width="1.5"/>
+<text x="170" y="400" class="tb">10万円</text>
+<text x="12" y="428">CAC</text>
+<rect x="64" y="413" width="50" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="120" y="428">5万円（変わらない）</text>
+<text x="12" y="454" class="tb tng">LTV ÷ CAC ＝ 10 ÷ 5 ＝ 2</text>
+<line x1="12" y1="466" x2="308" y2="466" class="l sb w1"/>
+<text x="12" y="490" class="tb">③ 何を意味するか</text>
+<text x="12" y="508">LTV÷CAC＝獲得費用の何倍を回収できるか</text>
+<text x="12" y="526" class="tm">一般的な基準は 3〜5（セールスフォースの解説）</text>
+<rect x="12" y="538" width="296" height="50" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="558" class="tb tng">2 は基準を下回る → 採算が取りにくい</text>
+<text x="22" y="576" class="tm">解約を減らすか、獲得費用を見直す</text>
+</svg>

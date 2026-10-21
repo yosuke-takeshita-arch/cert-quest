@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 358" role="img" aria-labelledby="fig-dx-cloud-bursting-t fig-dx-cloud-bursting-d">
+<title id="fig-dx-cloud-bursting-t">クラウドバースティング：あふれた分だけ公開のクラウドへ。前提は、移せる技術で結び付いていること</title>
+<desc id="fig-dx-cloud-bursting-d">何のための図か：ふだんは自社専用のクラウド（プライベートクラウド）で動かし、年末の繁忙期だけ、あふれた処理を公開のクラウド（パブリッククラウド）に回す流れを見る。上の棒は繁忙期の処理量で、点線が自社の基盤の処理能力の上限。上限を超えた部分（あふれた分）だけを公開のクラウドで処理する。下の図で、2つの基盤はそれぞれ独立した存在のままで、1つにまとまるわけではないが、データとアプリケーションを移せる標準の技術または独自の技術で結び付いている。この結び付きが無ければ、処理を回せない。NIST SP 800-145 はハイブリッドクラウドをこのように定義し、クラウドバースティングを例に挙げている。</desc>
+<text x="12" y="20" class="tb">あふれた分だけ、外のクラウドへ</text>
+<text x="12" y="42" class="tm">繁忙期の処理量（イメージ）</text>
+<rect x="12" y="54" width="190" height="24" class="fs sm" stroke-width="1.5"/>
+<rect x="202" y="54" width="80" height="24" class="fng sng" stroke-width="1.5"/>
+<line x1="202" y1="46" x2="202" y2="86" class="l sm w2 dsh"/>
+<text x="107" y="71" text-anchor="middle">自社で処理</text>
+<text x="242" y="71" class="tng" text-anchor="middle">あふれた分</text>
+<text x="202" y="102" class="tm" text-anchor="middle">自社の基盤の上限</text>
+<rect x="12" y="122" width="120" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="72" y="144" text-anchor="middle" class="tb">プライベート</text>
+<text x="72" y="162" text-anchor="middle" class="tm">自社専用</text>
+<text x="72" y="180" text-anchor="middle" class="tm">（ふだん使う）</text>
+<rect x="188" y="122" width="120" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="248" y="144" text-anchor="middle" class="tb">パブリック</text>
+<text x="248" y="162" text-anchor="middle" class="tm">公開のクラウド</text>
+<text x="248" y="180" text-anchor="middle" class="tm">（あふれた分）</text>
+<line x1="134" y1="148" x2="180" y2="148" class="l sa w2"/>
+<polyline points="179,143 186,148 179,153" class="l sa w2" fill="none"/>
+<text x="160" y="140" class="tm" text-anchor="middle">回す</text>
+<line x1="134" y1="174" x2="186" y2="174" class="l sok w2"/>
+<rect x="12" y="204" width="296" height="74" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="228" class="tb tok">前提：2つの基盤を、データとアプリを</text>
+<text x="22" y="248" class="tb tok">移せる技術で結び付けておく（下の線）</text>
+<text x="22" y="266">2つの基盤は独立したまま（1つにならない）</text>
+<text x="12" y="304" class="tm tng">× 結び付きが無い → 処理を回せない</text>
+<text x="12" y="322" class="tm tng">× 全部を移して戻さない → 別のやり方</text>
+<text x="12" y="344" class="tm">NIST SP 800-145 のハイブリッドクラウドの定義</text>
+</svg>

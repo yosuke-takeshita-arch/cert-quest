@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 442" role="img" aria-labelledby="fig-dx-hypothesis-loop-t fig-dx-hypothesis-loop-d">
+<title id="fig-dx-hypothesis-loop-t">合わない結果を捨てると、仮説を直す輪が回らない</title>
+<desc id="fig-dx-hypothesis-loop-d">何のための図か：データドリブンな判断で、期待と違う結果が出たときに、仮説を直す輪がどう回るかを見る。上の輪：①仮説を立てる（例：案内表示を変えれば客単価が上がる）、②実験してデータで確かめる、③合わない結果が出たら、データの確かさ（誤りや偏りがないか、量は十分か、出所は明確か）を確かめる、④確かなら仮説を直して、また確かめる。デジタルスキル標準は、期待と違う分析結果もそれ自体が重要な知見になるとしている。下：X社のように、合わない結果を確かめずに失敗として記録から外すと、仮説は直らないまま施策が全店に広がり、客単価を下げうる施策に費用をかけ続け、なぜ下がったかという知見も残らない。</desc>
+<text x="12" y="20" class="tb">合わない結果こそ、仮説を直す材料</text>
+<text x="12" y="42" class="tm">例：案内表示を変えた店で、客単価が下がった</text>
+<rect x="12" y="56" width="132" height="62" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="78" y="74" text-anchor="middle">① 仮説を立てる</text>
+<text x="78" y="92" text-anchor="middle">表示を変えれば</text>
+<text x="78" y="110" text-anchor="middle">客単価が上がる</text>
+<rect x="176" y="56" width="132" height="62" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="242" y="74" text-anchor="middle">② 実験して</text>
+<text x="242" y="92" text-anchor="middle">データで</text>
+<text x="242" y="110" text-anchor="middle">確かめる</text>
+<rect x="176" y="168" width="132" height="62" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="242" y="186" text-anchor="middle">③ 合わない結果</text>
+<text x="242" y="204" text-anchor="middle">データの確かさ</text>
+<text x="242" y="222" text-anchor="middle">を確かめる</text>
+<rect x="12" y="168" width="132" height="62" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="78" y="186" text-anchor="middle" class="tok">④ 確かなら</text>
+<text x="78" y="204" text-anchor="middle" class="tok">仮説を直して</text>
+<text x="78" y="222" text-anchor="middle" class="tok">また確かめる</text>
+<line x1="146" y1="87" x2="168" y2="87" class="l sa w2"/>
+<polyline points="167,82 174,87 167,92" class="l sa w2" fill="none"/>
+<line x1="242" y1="120" x2="242" y2="160" class="l sa w2"/>
+<polyline points="237,159 242,166 247,159" class="l sa w2" fill="none"/>
+<line x1="174" y1="199" x2="152" y2="199" class="l sa w2"/>
+<polyline points="153,194 146,199 153,204" class="l sa w2" fill="none"/>
+<line x1="78" y1="166" x2="78" y2="126" class="l sa w2"/>
+<polyline points="73,127 78,120 83,127" class="l sa w2" fill="none"/>
+<text x="160" y="140" class="tm" text-anchor="middle">期待と違う結果も</text>
+<text x="160" y="156" class="tm" text-anchor="middle">大事な知見</text>
+<text x="12" y="254" class="tm">データの確かさ：誤りや偏りがないか・量は</text>
+<text x="12" y="272" class="tm">十分か・出所や更新日は明確か</text>
+<text x="12" y="290" class="tm">（デジタルスキル標準）</text>
+<text x="12" y="318" class="tb tng">× X社：③で結果を『失敗』として外した</text>
+<rect x="12" y="326" width="296" height="32" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="347" text-anchor="middle">仮説が直らないまま、施策が全店に広がる</text>
+<line x1="160" y1="362" x2="160" y2="372" class="l sa w2"/>
+<polyline points="155,371 160,378 165,371" class="l sa w2" fill="none"/>
+<rect x="12" y="378" width="296" height="50" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="399" text-anchor="middle" class="tng">客単価を下げうる施策に費用をかけ続け、</text>
+<text x="160" y="417" text-anchor="middle" class="tng">なぜ下がったかの知見も残らない</text>
+</svg>

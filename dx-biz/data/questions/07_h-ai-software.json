@@ -437,7 +437,7 @@
     ],
     "memoryTip": "深層学習：特徴量を自分で作る（強み）⇔ 根拠が見えにくい（弱み）。精度と説明は引っ張り合う。",
     "concepts": ["DC-02-012", "DC-02-011"],
-    "figures": ["fig-dx-dl-tradeoff", "fig-dx-ai-ml-dl"],
+    "figures": ["fig-dx-dl-tradeoff"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」AIに関する基本的な仕組み", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113210.html" }
     ],
@@ -467,7 +467,7 @@
     ],
     "memoryTip": "覚え込ませる（ファインチューニング）＝型はそろうが、中身の更新は学び直し。調べさせる（RAG）＝文書を差し替えれば最新。",
     "concepts": ["DC-07-104", "DC-02-019"],
-    "figures": ["fig-dx-rag"],
+    "figures": ["fig-dx-finetune-vs-rag"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft Foundry の微調整に関する考慮事項」", "url": "https://learn.microsoft.com/ja-jp/azure/foundry/openai/concepts/fine-tuning-considerations" },
       { "title": "Lewis ほか「Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks」（arXiv:2005.11401, 2020）", "url": "https://arxiv.org/abs/2005.11401" }

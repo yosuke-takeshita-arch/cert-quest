@@ -230,7 +230,7 @@
       "相関係数が正なので、どちらかが原因であることは統計的に証明された"
     ],
     "answer": 2,
-    "explanation": "相関関係は因果関係を意味しない。背後にある共通の要因（ここでは気温の高さ）が両方を動かしているために相関が見える状態を疑似相関（見せかけの相関）という。統計局のセミナーの回答も、アイスクリームの販売数と溺死数の高い相関を、暑さで両方が増えた疑似相関の例として挙げている。",
+    "explanation": "相関関係は因果関係を意味しない。背後にある共通の要因（ここでは気温の高さ）が両方を動かしているために相関が見える状態を疑似相関（見せかけの相関）という。統計局のセミナーの回答も、アイスクリームの販売数と溺死数の高い相関を、暑さで両方が増えた疑似相関の例として挙げている。問いの熱中症の例も同じ形で、気温が高い日はアイスクリームがよく売れ、熱中症で運ばれる人も増える。図の『溺死数』を『熱中症で搬送された人の数』に置き換えて読めばよい（暑さという共通の要因が、2つの数を同時に増やす）。",
     "whyWrong": [
       "相関は一緒に動く傾向にすぎず、一方を操作すれば他方が必ず変わるとは言えない。",
       "相関から因果を決めつけている。共通の要因（気温）を見落としている。",
@@ -521,7 +521,7 @@
     ],
     "memoryTip": "厳密に整合させたい取引＝RDB（ACID）。形がばらばらで量が急増するデータ＝NoSQL（柔軟なスキーマ・スケールアウト）。",
     "concepts": ["DC-03-007", "DC-03-005"],
-    "figures": ["fig-dx-scale", "fig-dx-rdb-nosql"],
+    "figures": ["fig-dx-rdb-nosql"],
     "sources": [
       { "title": "AWS「NoSQL とは」", "url": "https://aws.amazon.com/jp/nosql/" },
       { "title": "AWS「リレーショナルデータベースとは」", "url": "https://aws.amazon.com/jp/relational-database/" }
@@ -630,7 +630,7 @@
     ],
     "memoryTip": "「組み合わせ＝バスケット」「似た者まとめ＝クラスタリング」「数式で予測＝回帰」「2つの動きの関係＝相関」。説明をずらすひっかけに注意。",
     "concepts": ["DC-03-018", "DC-03-022", "DC-03-019", "DC-03-020"],
-    "figures": ["fig-dx-correlation", "fig-dx-analysis-methods"],
+    "figures": ["fig-dx-correlation"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
       { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" },
@@ -661,7 +661,7 @@
     ],
     "memoryTip": "グルーピング＝人が切り口を決めて「分ける・比べる」。クラスタリング＝データに切り口を見つけさせる。",
     "concepts": ["DC-03-020", "DC-03-008"],
-    "figures": ["fig-dx-join", "fig-dx-analysis-methods"],
+    "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "PostgreSQL 16 文書「2.7. 集約関数」", "url": "https://www.postgresql.jp/document/16/html/tutorial-agg.html" },
       { "title": "総務省統計局「Data StaRt」EBPM活用塾 ゼミナール編（1）A（analysis、分析）", "url": "https://www.stat.go.jp/dstart/point/seminar1/05.html" },
@@ -717,8 +717,8 @@
     "whyWrong": [
       null,
       "順序が違う。最初に取り出し（抽出）、整えて（変換）、最後に入れる（格納）。",
-      "Extract・Transform・Loadの意味と違う。",
-      "Extract・Transform・Loadの意味と違う。"
+      "ETL の3語は Extract（抽出：元のデータを取り出す）・Transform（変換：使いやすい形に整える）・Load（格納：データウェアハウスなどへ積み込む）。暗号化は第三者に読めないようにすること、転送は送り届けること、記録は書き残すことで、どれもこの3語の訳ではない。",
+      "入力・検証・削除は ETL の3語の訳ではない。Extract は元のデータから取り出す（抽出）ことで、人が打ち込む入力ではない。Transform は形をそろえる変換で、正しいかを確かめるだけの検証ではない。Load はデータウェアハウスなどへ積み込む（格納）ことで、削除とは逆の向き。"
     ],
     "memoryTip": "E（取り出す）→ T（整える）→ L（積み込む）。",
     "concepts": ["DC-03-013"],
@@ -746,7 +746,7 @@
     ],
     "memoryTip": "クレンジング＝洗う。重複・欠損・表記ゆれを洗い落としてから分析する。",
     "concepts": ["DC-03-014", "DC-03-012"],
-    "figures": ["fig-dx-data-pipeline"],
+    "figures": ["fig-dx-data-cleansing"],
     "sources": [
       { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" }
     ],
@@ -1149,7 +1149,7 @@
       "意味の近い断片を拾うだけでは全体を見渡せないので、原因は検索の方式にある → 検索をやめ、数千件の報告書をすべて一度にプロンプトへ入れれば、どんな量でも全体の質問に答えられる"
     ],
     "answer": 0,
-    "explanation": "Microsoft Research（マイクロソフトの研究所）は、意味の近さ（ベクトルの類似）で探す通常のRAG（生成AIが答える前に外部の文書を検索して参照する仕組み）は、データ全体から情報を集めて答える質問（「データの上位5つのテーマは何か」など）が苦手だとする。質問の中に正しい情報へ導くものが無いためである。GraphRAGは、生成AIにデータ全体を処理させて実体と関係のナレッジグラフを作り、意味のまとまりに階層的に分けて先に要約しておくので、データ全体の構造（テーマ）が分かり、こうした質問に答えられるとしている。",
+    "explanation": "Microsoft Research（マイクロソフトの研究所）は、意味の近さ（ベクトルの類似）で探す通常のRAG（生成AIが答える前に外部の文書を検索して参照する仕組み）は、データ全体から情報を集めて答える質問（「データの上位5つのテーマは何か」など）が苦手だとする。質問の中に正しい情報へ導くものが無いためである。GraphRAGは、生成AIにデータ全体を処理させて実体と関係のナレッジグラフを作り、意味のまとまりに階層的に分けて先に要約しておくので、データ全体の構造（テーマ）が分かり、こうした質問に答えられるとしている。図は、ふつうのRAGが質問の言葉に近い数件の断片しか拾わないのに対し、GraphRAGは質問の前に作ったまとまりの要約を集めて答える様子を比べたもの（名前と数は説明用の例）。",
     "whyWrong": [
       null,
       "問題は文体ではなく、検索の段階で全体を見渡す材料が集まらないこと。言い回しを整えても、渡される断片が的外れなら答えも的外れになる。",
@@ -1158,7 +1158,7 @@
     ],
     "memoryTip": "通常のRAG＝虫めがね（近い断片を拾う）。全体のテーマを聞くなら地図（ナレッジグラフで先にまとめる）。",
     "concepts": ["DC-09-105", "DC-02-019", "DC-09-104"],
-    "figures": ["fig-dx-rag"],
+    "figures": ["fig-dx-graphrag"],
     "sources": [
       { "title": "Microsoft Research「GraphRAG: Unlocking LLM discovery on narrative private data」（2024年2月13日）", "url": "https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/" }
     ],
@@ -1530,7 +1530,7 @@
       "各社の地図の表記がばらばらで互いに使えない → 1社の地図を業界の標準として全社が買い取り、他社は自前の地図をやめる → 標準の地図を持つ1社に利用料が集まる"
     ],
     "answer": 1,
-    "explanation": "設立の発表は、AWS（Amazon のクラウドサービス）・Meta・Microsoft・TomTom（地図とナビの技術の会社）が、互いにつなげて使えるオープンな地図データを、地図サービスを強める共有の資産として作るとした。AWS は、正確で網羅的な地図データを維持し続けるのは費用がかかりすぎて複雑で、多くの顧客の手が届かないものになりうるとし、地図データはオープンなデータのライセンスで、誰でも使い、広げられるとしている。TomTom は、Overture（この4社が立ち上げた地図データの団体）の土台の地図と自社のデータを組み合わせて顧客に提供するとした。差がつきにくい土台は共同で作り、その上で競う形である。",
+    "explanation": "設立の発表は、AWS（Amazon のクラウドサービス）・Meta・Microsoft・TomTom（地図とナビの技術の会社）が、互いにつなげて使えるオープンな地図データを、地図サービスを強める共有の資産として作るとした。AWS は、正確で網羅的な地図データを維持し続けるのは費用がかかりすぎて複雑で、多くの顧客の手が届かないものになりうるとし、地図データはオープンなデータのライセンスで、誰でも使い、広げられるとしている。TomTom は、Overture（この4社が立ち上げた地図データの団体）の土台の地図と自社のデータを組み合わせて顧客に提供するとした。差がつきにくい土台は共同で作り、その上で競う形である。図の協調領域（下の共通の部分）が、共同で作って公開する土台の地図に当たり、競争領域（上の各社の部分）が、各社が重ねる自社のデータやサービスに当たる（図は業務システムの例で描いている）。",
     "whyWrong": [
       "発表は、地図データをオープンなデータのライセンスで、誰でも使い、広げられるとしている。参加した企業だけに閉じる形ではない。",
       null,
@@ -1599,7 +1599,7 @@
     ],
     "memoryTip": "汚れたデータ→歪んだモデル→外れた予測→誤った判断。掃除（クレンジング）は分析の前に。",
     "concepts": ["DC-03-014"],
-    "figures": ["fig-dx-data-cleansing"],
+    "figures": ["fig-dx-dirty-data-forecast"],
     "sources": [
       { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" }
     ],

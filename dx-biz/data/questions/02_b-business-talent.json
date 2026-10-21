@@ -80,7 +80,7 @@
     ],
     "memoryTip": "DX投資は「コスト」ではなく「投資」。確実な案件しか通さない仕組みでは挑戦が生まれない。",
     "concepts": ["DC-01-006", "DC-01-025"],
-    "figures": ["fig-dx-dgc"],
+    "figures": ["fig-dx-dgc-investment"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -109,7 +109,7 @@
     ],
     "memoryTip": "「全社最適」の反対語は「個別最適」。部門ごとの最適の寄せ集めは、ブラックボックス化のもと。",
     "concepts": ["DC-01-007", "DC-02-037", "DC-01-027"],
-    "figures": ["fig-dx-dgc", "fig-dx-silo"],
+    "figures": ["fig-dx-silo"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -139,7 +139,7 @@
     ],
     "memoryTip": "育てる・採る・借りる・動かす、に加えて「評価して報いる」までがセット。",
     "concepts": ["DC-01-018", "DC-01-017", "DC-01-019"],
-    "figures": ["fig-dx-dgc"],
+    "figures": ["fig-dx-dgc-talent"],
     "sources": [
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
     ],
@@ -250,7 +250,7 @@
     ],
     "memoryTip": "合わない結果を捨てる→仮説が直らない→効かない施策が広がる。捨てる前に「データは確かか」を確かめる。",
     "concepts": ["DC-02-101", "DC-03-024"],
-    "figures": ["fig-dx-ppdac"],
+    "figures": ["fig-dx-hypothesis-loop"],
     "sources": [
       { "title": "IPA・経済産業省「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -1045,7 +1045,7 @@
     ],
     "memoryTip": "継ぎ足し→ブラックボックス→直せない・高い→足かせ。直すたびに中が見えなくなる。",
     "concepts": ["DC-01-007"],
-    "figures": ["fig-dx-silo"],
+    "figures": ["fig-dx-legacy-flow"],
     "sources": [
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }

@@ -22,7 +22,7 @@
     ],
     "memoryTip": "定義は「ニーズ起点 → モデルも文化も変える → 競争優位」。ツールの話しかしていない選択肢は外れ。",
     "concepts": ["DC-01-001", "DC-01-013"],
-    "figures": ["fig-dx-3stages"],
+    "figures": ["fig-dx-dx-definition"],
     "sources": [
       { "title": "経済産業省「DX推進ガイドライン Ver.1.0」（2018年12月）", "url": "https://www.meti.go.jp/press/2018/12/20181212004/20181212004-1.pdf" },
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }
@@ -82,7 +82,7 @@
     ],
     "memoryTip": "2025年の崖＝「古いシステムを放置すると崖から落ちる（年12兆円）」。だから刷新とDXを同時に。",
     "concepts": ["DC-01-027"],
-    "figures": ["fig-dx-silo"],
+    "figures": ["fig-dx-2025-cliff"],
     "sources": [
       { "title": "経済産業省「DXレポート～ITシステム「2025年の崖」の克服とDXの本格的な展開～」（2018年9月7日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/digital_transformation/pdf/20180907_03.pdf" }
     ],
@@ -140,7 +140,7 @@
     ],
     "memoryTip": "攻めのIT経営銘柄（2015〜）→ DX銘柄（2020〜）。どちらも「攻め」を評価する。",
     "concepts": ["DC-01-004", "DC-01-023"],
-    "figures": ["fig-dx-dgc"],
+    "figures": ["fig-dx-dx-meigara"],
     "sources": [
       { "title": "経済産業省「DX銘柄／攻めのIT経営銘柄」ページ（2026年版の掲載）", "url": "https://www.meti.go.jp/policy/it_policy/investment/keiei_meigara/dx_meigara.html" },
       { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
@@ -199,7 +199,7 @@
     ],
     "memoryTip": "ツール導入は「スタートライン」。ゴールではない。",
     "concepts": ["DC-01-013", "DC-01-001"],
-    "figures": ["fig-dx-3stages"],
+    "figures": ["fig-dx-dx-definition"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）4.1", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }
     ],
@@ -346,7 +346,7 @@
     ],
     "memoryTip": "生成AIの3姿勢＝「掛け合わせて使う・疑って確かめる・学び続ける」。",
     "concepts": ["DC-01-028", "DC-01-019"],
-    "figures": ["fig-dx-dss"],
+    "figures": ["fig-dx-genai-mindset"],
     "sources": [
       { "title": "IPA「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -721,7 +721,7 @@
     "whyWrong": [
       null,
       "逆。全員向けがリテラシー（L）、推進する専門人材向けが推進スキル（P）。",
-      "デジタルスキル標準のもう1つは「DX推進スキル標準」。",
+      "イの ITスキル標準（ITSS）は、IPA が示してきた、IT のプロフェッショナルを育てるためのものさしとなる別のスキル標準で、デジタルスキル標準を構成する2つには入らない。デジタルスキル標準のもう1つは DX推進スキル標準（DSS-P）。",
       "セキュリティは、DXリテラシー標準の項目の1つ（Howのセキュリティ）と、DX推進スキル標準の6つの類型の1つ（サイバーセキュリティ）に含まれる内容で、デジタルスキル標準を構成する2つの標準の名前ではない。"
     ],
     "memoryTip": "L＝Literacy（全員の素養）、P＝Promotion（推進する専門家）。",
@@ -784,7 +784,7 @@
     ],
     "memoryTip": "生成AIは「掛け合わせて使う・疑って確かめる・学び続ける」。",
     "concepts": ["DC-01-028", "DC-01-019", "DC-02-017"],
-    "figures": ["fig-dx-dss"],
+    "figures": ["fig-dx-genai-mindset"],
     "sources": [
       { "title": "IPA・経済産業省「デジタルスキル標準 ver.2.0」（2026年4月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
     ],
@@ -1657,7 +1657,7 @@
     ],
     "memoryTip": "範囲の経済＝サービスの種類（幅）が多いほど、データを組み合わせて質が上がり、人も集まる。密度の経済は、近くに客が多いほど効率が上がる「近さ」の話。",
     "concepts": ["DC-05-003", "DC-05-006"],
-    "figures": ["fig-dx-economies"],
+    "figures": ["fig-dx-scope-returns-loop"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」デジタル経済におけるデジタル・プラットフォーマーの位置付け", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd113110.html" }
     ],
@@ -1824,7 +1824,7 @@
     ],
     "memoryTip": "デジタルは「もう1個」がタダ同然。だから無料サービスや世界規模の事業が成り立つ。",
     "concepts": ["DC-05-015", "DC-05-002"],
-    "figures": ["fig-dx-economies"],
+    "figures": ["fig-dx-marginal-cost"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」2つ目のキーワード：限界費用", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd121120.html" },
       { "title": "総務省「令和元年版 情報通信白書」1つ目のキーワード：デジタルデータ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd121110.html" }
@@ -1927,7 +1927,7 @@
     ],
     "memoryTip": "ドミナントは「密度の経済」の裏で「身内の客の奪い合い」。出店は原則自由、でも説明と違えば問題。",
     "concepts": ["DC-05-023", "DC-05-004", "DC-07-009"],
-    "figures": ["fig-dx-dominant-store", "fig-dx-economies"],
+    "figures": ["fig-dx-dominant-store"],
     "sources": [
       { "title": "公正取引委員会「コンビニエンスストア本部と加盟店との取引等に関する実態調査報告書（概要）」（令和2年9月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2020/sep/kitori0902/200902_04-2.pdf" }
     ],
@@ -2181,7 +2181,7 @@
     ],
     "memoryTip": "垂直統合＝全部自前で重い。共通の土台（プラットフォーム）があれば、上に載せるだけで参入できる。",
     "concepts": ["DC-06-001", "DC-06-006", "DC-05-018"],
-    "figures": ["fig-dx-modular-layer", "fig-dx-platform-types"],
+    "figures": ["fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],
@@ -2263,7 +2263,7 @@
     ],
     "memoryTip": "テレワーク＝「どこで働くか」。クラウドソーシング＝「誰にどう頼むか」。",
     "concepts": ["DC-06-010"],
-    "figures": ["fig-dx-crowd-telework", "fig-dx-crowd"],
+    "figures": ["fig-dx-crowd-telework"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」クラウドソーシング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc243120.html" }
     ],
@@ -2468,11 +2468,11 @@
       null,
       "「モノ×シェア」は、個人間で利用していないモノを共有するサービスで、フリマアプリやレンタルサービスが代表例。",
       "「空間×シェア」は、民泊や駐車場、会議室など、個人の持つスペースを共有するサービス。",
-      "「お金×シェア」は、お金に関するシェアで、家事の依頼ではない。"
+      "「お金×シェア」は、お金に関するシェアで、クラウドファンディングが代表例。人に家事を頼むサービスではない。"
     ],
     "memoryTip": "家事代行＝「人の手間（スキルと時間）」を借りる。だからスキル×シェア。",
     "concepts": ["DC-06-025", "DC-06-009"],
-    "figures": ["fig-dx-sharing"],
+    "figures": ["fig-dx-sharing-5types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」シェアリング・エコノミー（C to Cサービス）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112220.html" }
     ],
@@ -2494,7 +2494,7 @@
     "answer": 1,
     "explanation": "販売店を通さずに自社で直接売るのが直販（ダイレクトセル）、注文を受けてから作るのがメイクトゥオーダー（受注生産）。日本政策金融公庫総合研究所のレポートは、自社のECサイトで自社製品を売るDtoCを「デジタル化されたメーカー直販」としている。生産管理の論文は、受注生産を、顧客の受注があってはじめて仕様が決まり生産される形態と説明している。在庫を減らし、顧客ごとの仕様に応えられる。",
     "whyWrong": [
-      "どちらも店舗網の広げ方で、この場面とは関係が無い。",
+      "フランチャイズは、本部が加盟者に商標の使用やノウハウを提供して対価を受け取る事業形態、ボランタリーチェーンは、独立した事業者どうしが共同で仕入れなどを行う仕組み。どちらも店の網をどう組むかの話で、販売店を通さず、注文を受けてから組み立てて直接届けるこの場面には当たらない。",
       null,
       "アフィリエイトは他人のサイトに紹介してもらう広告手法、見込み生産は注文の前に在庫を持っておく方式で、どちらも当てはまらない。",
       "OEMは他社ブランドの製品を受託製造すること、グローサラントは食料品店とレストランの組み合わせ。"
@@ -2922,7 +2922,7 @@
     ],
     "memoryTip": "個人情報は「目的を決める（17条）→知らせる（21条）→目的の中で使う」の順。",
     "concepts": ["DC-07-011", "DC-07-010"],
-    "figures": ["fig-dx-customer-lifecycle"],
+    "figures": ["fig-dx-purpose-17-21"],
     "sources": [
       { "title": "e-Gov法令検索「個人情報の保護に関する法律」第17条・第21条", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
     ],
@@ -3068,7 +3068,7 @@
     ],
     "memoryTip": "ネットワーク外部性＝勝ち組がもっと勝つ（雪だるま）。スイッチング・コスト＝今の陣地を固める（どの会社でも効く）。",
     "concepts": ["DC-07-022", "DC-05-006", "DC-07-013"],
-    "figures": ["fig-dx-lockin-share", "fig-dx-lockin"],
+    "figures": ["fig-dx-lockin-share"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" }
     ],
@@ -3097,7 +3097,7 @@
     ],
     "memoryTip": "データが持ち出せない→ロックイン。データを持ち出せる（ポータビリティ）→鍵がゆるむ。",
     "concepts": ["DC-07-022", "DC-07-013"],
-    "figures": ["fig-dx-lockin"],
+    "figures": ["fig-dx-data-portability"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター「データと競争政策に関する検討会 報告書」（平成29年6月6日）", "url": "https://www.jftc.go.jp/cprc/conference/index_files/170606data01.pdf" }
     ],
@@ -3178,7 +3178,7 @@
     ],
     "memoryTip": "直販は「自分で決められる」代わりに「自分で集めて売る」。中抜きの分、小売の仕事を背負う。",
     "concepts": ["DC-07-003"],
-    "figures": ["fig-dx-make-sell-models"],
+    "figures": ["fig-dx-dtoc-vs-retail"],
     "sources": [
       { "title": "日本政策金融公庫総合研究所「中小企業の売る力を強化するDtoC」（日本公庫総研レポート No.2022-2、2022年3月）", "url": "https://www.jfc.go.jp/n/findings/pdf/soukenrepo_22_03_07.pdf" }
     ],
@@ -3202,7 +3202,7 @@
     ],
     "memoryTip": "フリーミアム＝Free＋Premium。「基本タダ、上は有料」。",
     "concepts": ["DC-08-002"],
-    "figures": ["fig-dx-revenue-models"],
+    "figures": ["fig-dx-freemium"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
     ],
@@ -3256,7 +3256,7 @@
     ],
     "memoryTip": "レベニュー（収益）をシェア（分け合う）。初期は安く、成功したら分け前。",
     "concepts": ["DC-08-006"],
-    "figures": ["fig-dx-revenue-share-fit", "fig-dx-revenue-models"],
+    "figures": ["fig-dx-revenue-share-fit"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -3338,7 +3338,7 @@
     ],
     "memoryTip": "loyalty＝忠誠・愛着（顧客の気持ち）、royalty＝使用料（ライセンスのお金）。",
     "concepts": ["DC-08-012", "DC-08-011", "DC-08-007"],
-    "figures": ["fig-dx-loyalty-royalty", "fig-dx-revenue-models"],
+    "figures": ["fig-dx-loyalty-royalty"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" },
       { "title": "消費者庁「令和4年版 消費者白書」COLUMN ライブ配信サービス（投げ銭等）に関する消費の動向", "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_column_03.html" },
@@ -3365,7 +3365,7 @@
     ],
     "memoryTip": "アドオン＝add on（付け足す）。基本は安く、オプションで稼ぐ。",
     "concepts": ["DC-08-003"],
-    "figures": ["fig-dx-revenue-models"],
+    "figures": ["fig-dx-addon"],
     "sources": [
       { "title": "国土交通省「平成28年度 政策レビュー結果（評価書）LCCの事業展開の促進」（平成29年3月）", "url": "https://www.mlit.go.jp/common/001179271.pdf" }
     ],
@@ -3389,7 +3389,7 @@
     ],
     "memoryTip": "部分所有＝「みんなで少しずつ持つ」。シェアリング＝「持っている人から借りる」。",
     "concepts": ["DC-08-004", "DC-06-009"],
-    "figures": ["fig-dx-revenue-models"],
+    "figures": ["fig-dx-fractional-ownership"],
     "sources": [
       { "title": "タイムシェア型住宅供給研究会（国土交通省）「タイムシェア型住宅供給研究会 報告書」（平成20年8月）", "url": "https://www.mlit.go.jp/common/000022776.pdf" }
     ],
@@ -3447,7 +3447,7 @@
     ],
     "memoryTip": "レベニューシェア＝「分ける収益」が測れないと始まらない。売上が見えるECは向く、後方事務の基幹系は向かない。",
     "concepts": ["DC-08-006", "DC-08-005"],
-    "figures": ["fig-dx-revenue-share-fit", "fig-dx-revenue-models"],
+    "figures": ["fig-dx-revenue-share-fit"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
     ],
@@ -3533,7 +3533,7 @@
     ],
     "memoryTip": "検索連動型（リスティング）＝探している人に、探した言葉で出す。ディスプレイ＝見ている人に、属性や興味で出す。",
     "concepts": ["DC-08-010", "DC-08-009"],
-    "figures": ["fig-dx-ad-model"],
+    "figures": ["fig-dx-search-display-ads"],
     "sources": [
       { "title": "公正取引委員会「デジタル広告分野の取引実態に関する最終報告書（概要）」（令和3年2月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2021/feb/digital/210217_gaiyou2.pdf" }
     ],
@@ -3586,7 +3586,7 @@
     ],
     "memoryTip": "ロイヤルティ（loyalty：忠誠）と、ロイヤルティ（royalty：使用料）は別の言葉。顧客の「推し度」は loyalty。",
     "concepts": ["DC-08-012", "DC-07-010"],
-    "figures": ["fig-dx-loyalty-royalty", "fig-dx-churn-ltv"],
+    "figures": ["fig-dx-loyalty-royalty"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」第6章 CRM（顧客関係管理）の方法", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" },
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" }
@@ -3616,7 +3616,7 @@
     ],
     "memoryTip": "縛って続けさせるのは「見かけのロイヤルティ」。好きで続けるのが本物。",
     "concepts": ["DC-08-012", "DC-08-015", "DC-07-013"],
-    "figures": ["fig-dx-churn-ltv"],
+    "figures": ["fig-dx-apparent-loyalty"],
     "sources": [
       { "title": "セールスフォース・ジャパン「LTVの向上に貢献する、ロイヤルカスタマーの育て方」", "url": "https://www.salesforce.com/jp/crm/nurturing-the-loyal-customer/" }
     ],
@@ -3703,7 +3703,7 @@
     ],
     "memoryTip": "規模の経済＝作るほど安くなる。ネットワーク外部性＝集まるほど価値が上がる。",
     "concepts": ["DC-09-001", "DC-05-006", "DC-06-005", "DC-05-002"],
-    "figures": ["fig-dx-network-effect", "fig-dx-case-types"],
+    "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス 09（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -3843,10 +3843,10 @@
     "answer": 2,
     "explanation": "Googleの『検索エンジン最適化（SEO）スターターガイド』は、SEOを、検索エンジンにコンテンツを理解させ、利用者が検索からサイトを見つけてアクセスすべきか判断できるようにすることと説明している。費用を払う広告ではない。",
     "whyWrong": [
-      "これはリスティング広告（検索連動型広告）の説明である。",
-      "これはGEO（生成エンジン最適化）の説明である。",
+      "これはリスティング広告（検索連動型広告）の説明で、費用を払って広告枠に出してもらう取り組み。SEO は広告枠を買わず、広告ではない検索結果の中で見つけてもらいやすくする工夫なので、お金を払って枠を得る点が違う。",
+      "これはGEO（生成エンジン最適化）の説明で、生成AIが作る回答の中で引用されることを狙う。SEO が狙うのは、検索エンジンの広告ではない検索結果で見つかることで、狙う場所が違う。",
       null,
-      "これはリターゲティング広告の説明である。"
+      "これはリターゲティング広告の説明で、過去にサイトを訪れた人に、別のサイトを見ているときに自社の広告をくり返し出す有料の広告。広告ではない検索結果で見つかるようにする SEO とは別の取り組み。"
     ],
     "memoryTip": "SEO＝広告でない検索結果で見つかる工夫。お金で枠を買う＝リスティング広告。AIの回答に載る＝GEO。",
     "concepts": ["DC-13-101", "DC-08-010", "DC-02-022"],
@@ -3970,7 +3970,7 @@
     ],
     "memoryTip": "平均費用は『下がって、底を打って、上がる』。下り坂＝規模の経済、底＝最小効率規模、上り坂＝規模の不経済。",
     "concepts": ["DC-13-106", "DC-05-002"],
-    "figures": ["fig-dx-average-cost", "fig-dx-economies"],
+    "figures": ["fig-dx-average-cost"],
     "sources": [
       { "title": "政府統計の総合窓口（e-Stat）日英統計用語集「スケール・メリット：ECONOMIES OF SCALE」", "url": "https://www.e-stat.go.jp/classifications/terms/90/00/3056" }
     ],
@@ -4030,7 +4030,7 @@
     ],
     "memoryTip": "ネットワークビジネス＝①人が増えるほど価値が上がる事業 ②マルチ商法の言いかえ。文脈で読み分ける。",
     "concepts": ["DC-06-008", "DC-05-006"],
-    "figures": ["fig-dx-network-business", "fig-dx-network-effect"],
+    "figures": ["fig-dx-network-business"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」プラットフォーム事業者の成長とその背景", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd113110.html" },
       { "title": "大阪府「「化粧品を買って会員になり、友人を誘って商品を販売するだけで簡単にお金がもうかる」といわれたが大丈夫か。」", "url": "https://www.pref.osaka.lg.jp/faq/o070120/faq_002094.html" }

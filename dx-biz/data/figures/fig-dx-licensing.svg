@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 336" role="img" aria-labelledby="fig-dx-licensing-t fig-dx-licensing-d">
+<title id="fig-dx-licensing-t">ライセンシング：知的財産の使用を許して、使用料を受け取る</title>
+<desc id="fig-dx-licensing-d">何のための図か：キャラクターの商標を持つX社（ライセンサー）が、雑貨メーカーY社（ライセンシー）に、商標を文具に使うことを許す流れを見る。X社はY社に商標の使用を許し、Y社は使用料（ライセンス料）をX社に払う。Y社は自らのリスクで文具を作って売る。X社の収益は使用料。比べるOEMは、委託者のブランドの製品を受託者が作って委託者に納める形で、受託者は自分では売らない。ジェトロの説明にもとづく。</desc>
+<text x="12" y="20" class="tb">ライセンシング：許して、使用料を得る</text>
+<rect x="12" y="38" width="108" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="66" y="57" text-anchor="middle" class="tb">X社</text>
+<text x="66" y="75" text-anchor="middle" class="tm">ライセンサー</text>
+<text x="66" y="93" text-anchor="middle" class="tm">商標を持つ</text>
+<rect x="200" y="38" width="108" height="64" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="254" y="57" text-anchor="middle" class="tb">Y社</text>
+<text x="254" y="75" text-anchor="middle" class="tm">ライセンシー</text>
+<text x="254" y="93" text-anchor="middle" class="tm">雑貨メーカー</text>
+<line x1="122" y1="64" x2="192" y2="64" class="l sa w2"/>
+<polyline points="191,59 198,64 191,69" class="l sa w2" fill="none"/>
+<text x="160" y="56" class="tm" text-anchor="middle">使用を許す</text>
+<line x1="198" y1="84" x2="128" y2="84" class="l sa w2"/>
+<polyline points="129,79 122,84 129,89" class="l sa w2" fill="none"/>
+<text x="160" y="100" class="tok tb" text-anchor="middle">使用料</text>
+<line x1="248" y1="104" x2="248" y2="122" class="l sa w2"/>
+<polyline points="243,121 248,128 253,121" class="l sa w2" fill="none"/>
+<rect x="168" y="130" width="140" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="238" y="151" text-anchor="middle">自らのリスクで</text>
+<text x="238" y="169" text-anchor="middle">文具を作って売る</text>
+<text x="12" y="208" class="tb tok">X社の収益＝使用料（ライセンス料）</text>
+<line x1="12" y1="220" x2="308" y2="220" class="l sb w1"/>
+<text x="12" y="244" class="tb">比べる：OEM</text>
+<text x="12" y="262" class="tm">委託者のブランドの製品を作り、委託者に納める</text>
+<text x="12" y="280" class="tm">作った側は自分では売らない</text>
+<text x="12" y="304" class="tb">比べる：レベニューシェア</text>
+<text x="12" y="322" class="tm">協力して生んだ収益を、決めた率で分ける</text>
+</svg>

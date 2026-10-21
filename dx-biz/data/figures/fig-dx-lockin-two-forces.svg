@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 386" role="img" aria-labelledby="fig-dx-lockin-two-forces-t fig-dx-lockin-two-forces-d">
+<title id="fig-dx-lockin-two-forces-t">少し良いだけでは乗り換えない：ネットワーク外部性とスイッチングコスト</title>
+<desc id="fig-dx-lockin-two-forces-d">何のための図か：利用者の多いプラットフォームAに対し、機能が少し優れ料金も少し安いBが出ても、利用者がAから移りにくい理由を、公正取引委員会 競争政策研究センターの共同研究の説明で見る。1つ目の力はネットワーク外部性で、利用者が多いこと自体がAの価値になり、機能や価格で劣っていてもシェアが高いという理由で選ばれ続ける。2つ目の力はスイッチングコストで、操作方法の覚え直し、手持ちの補完財やファイルが無駄になること、工事や設置の費用など。2つはどちらもロックイン効果を生む。その結果、Bが少し優れていてもAが使われ続け、Bに人が集まりにくい。</desc>
+<text x="12" y="20" class="tb">Aから移りにくくする2つの力</text>
+<text x="12" y="42" class="tm">A：利用者が多い　B：少し良くて少し安い</text>
+<rect x="12" y="56" width="296" height="72" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="80" class="tb">① ネットワーク外部性</text>
+<text x="22" y="98">利用者が多いこと自体が、Aの価値</text>
+<text x="22" y="116">シェアが高いという理由で選ばれ続ける</text>
+<rect x="12" y="138" width="296" height="90" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="162" class="tb">② スイッチングコスト（乗り換えの費用）</text>
+<text x="22" y="180">操作の覚え直し</text>
+<text x="22" y="198">手持ちの補完財・ファイルが無駄になる</text>
+<text x="22" y="216">工事・設置の費用</text>
+<line x1="160" y1="232" x2="160" y2="246" class="l sa w2"/>
+<polyline points="155,245 160,252 165,245" class="l sa w2" fill="none"/>
+<rect x="12" y="256" width="296" height="72" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="280" class="tb tng">どちらもロックイン効果を生む</text>
+<text x="22" y="298">Bが少し優れていても、Aが使われ続ける</text>
+<text x="22" y="316">→ Bに人が集まりにくい</text>
+<text x="12" y="354" class="tm">× 混雑でAの価値が下がる、という話ではない</text>
+<text x="12" y="372" class="tm">× 料金を下げるだけでは、①が残る</text>
+</svg>

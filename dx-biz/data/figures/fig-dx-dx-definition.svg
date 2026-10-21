@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 414" role="img" aria-labelledby="fig-dx-dx-definition-t fig-dx-dx-definition-d">
+<title id="fig-dx-dx-definition-t">DXの定義の4つの要素と、ツール導入の位置づけ</title>
+<desc id="fig-dx-dx-definition-d">何のための図か：経済産業省のDX推進ガイドラインが示すDXの定義を要素に分け、ツールの導入がどこに位置づくかを見る。出発点は顧客や社会のニーズ。データとデジタル技術を活用して、製品・サービス・ビジネスモデルを変革するとともに、業務そのものや組織・プロセス・企業文化・風土を変革する。目的は競争上の優位性を確立すること。下：OCR・SaaS・RPAなどのツールの導入は手段で、DXレポート2はこれを事業継続とDXのファーストステップと位置づけ、ツール導入が完了したからといってDXが達成されるわけではないとしている。</desc>
+<text x="12" y="20" class="tb">DXの定義（DX推進ガイドライン）</text>
+<text x="12" y="42" class="tm">データとデジタル技術を活用して</text>
+<rect x="12" y="54" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="75" text-anchor="middle" class="tb">出発点</text>
+<text x="160" y="93" text-anchor="middle">顧客や社会のニーズ</text>
+<line x1="160" y1="108" x2="160" y2="118" class="l sa w2"/>
+<polyline points="155,117 160,124 165,117" class="l sa w2" fill="none"/>
+<rect x="12" y="124" width="296" height="68" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="145" text-anchor="middle" class="tb">変える</text>
+<text x="160" y="163" text-anchor="middle">製品・サービス・ビジネスモデル</text>
+<text x="160" y="181" text-anchor="middle">業務・組織・プロセス・企業文化・風土</text>
+<line x1="160" y1="196" x2="160" y2="206" class="l sa w2"/>
+<polyline points="155,205 160,212 165,205" class="l sa w2" fill="none"/>
+<rect x="12" y="212" width="296" height="50" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="233" text-anchor="middle" class="tb">目的</text>
+<text x="160" y="251" text-anchor="middle" class="tok">競争上の優位性を確立する</text>
+<line x1="12" y1="274" x2="308" y2="274" class="l sb w1"/>
+<text x="12" y="298" class="tb">ツールの導入はどこに入るか</text>
+<text x="12" y="316" class="tm">OCR・SaaS・RPA などの導入＝手段</text>
+<text x="12" y="334" class="tm">DXレポート2：事業継続とDXのファーストステップ</text>
+<rect x="12" y="346" width="296" height="54" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="370" class="tb tng">導入が完了 ≠ DXの達成</text>
+<text x="22" y="388">その先の変革（上の『変える』）まで続ける</text>
+</svg>

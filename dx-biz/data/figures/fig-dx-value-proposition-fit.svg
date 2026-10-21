@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 434" role="img" aria-labelledby="fig-dx-value-proposition-fit-t fig-dx-value-proposition-fit-d">
+<title id="fig-dx-value-proposition-fit-t">価値は機能の数ではなく、顧客の用事・悩み・得たい効果に合うかで決まる</title>
+<desc id="fig-dx-value-proposition-fit-d">何のための図か：家計簿アプリの例（内容は説明用の例）で、価値が機能の数ではなく、顧客の課題との一致で決まることを見る。上の箱は顧客の側で、先に確かめる3つ。用事（ジョブ）は毎月の支出をつかみたい、悩み（ペイン）はレシートの手入力が面倒、得たい効果（ゲイン）は使いすぎに早く気づくこと。下の箱は製品の側。レシートを撮るだけで入力できる機能は悩みに合い、予算を超えそうなら知らせる機能は得たい効果に合う。顧客が求めていない機能を10個足しても、どの課題にも合わなければ価値は増えない。X社の誤りは、顧客の側を確かめず、機能の数を価値の物差しにしたこと。ジョブ・ペイン・ゲインは、バリュー・プロポジション・キャンバス（Strategyzer）の言葉。</desc>
+<text x="12" y="20" class="tb">価値＝顧客の課題にどれだけ合うか</text>
+<text x="12" y="42" class="tm">例：家計簿アプリ（内容は説明用の例）</text>
+<text x="12" y="68" class="tb ta">① 先に、顧客の側を確かめる</text>
+<rect x="12" y="76" width="296" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="98">用事（ジョブ）：毎月の支出をつかみたい</text>
+<text x="22" y="116">悩み（ペイン）：レシートの手入力が面倒</text>
+<text x="22" y="134">得たい効果（ゲイン）：使いすぎに早く気づく</text>
+<line x1="160" y1="150" x2="160" y2="162" class="l sa w2"/>
+<polyline points="155,161 160,168 165,161" class="l sa w2" fill="none"/>
+<text x="12" y="190" class="tb ta">② それに合う機能を作る（製品の側）</text>
+<rect x="12" y="198" width="296" height="124" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="220" class="tok">○ レシートを撮るだけで入力</text>
+<text x="22" y="238" class="tm">　→ 悩みに合う</text>
+<text x="22" y="256" class="tok">○ 予算を超えそうなら知らせる</text>
+<text x="22" y="274" class="tm">　→ 得たい効果に合う</text>
+<text x="22" y="292" class="tng">× 求められていない機能を10個足す</text>
+<text x="22" y="310" class="tm">　→ どの課題にも合わず、価値は増えない</text>
+<line x1="12" y1="334" x2="308" y2="334" class="l sb w1"/>
+<text x="12" y="358" class="tb tng">X社の誤り：顧客の側を確かめず、</text>
+<text x="12" y="378" class="tb tng">機能の数を価値の物差しにした</text>
+<text x="12" y="402" class="tm">ジョブ・ペイン・ゲイン：バリュー・プロポ</text>
+<text x="12" y="420" class="tm">ジション・キャンバス（Strategyzer）の言葉</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 484" role="img" aria-labelledby="fig-dx-dirty-data-forecast-t fig-dx-dirty-data-forecast-d">
+<title id="fig-dx-dirty-data-forecast-t">汚れたデータで需要予測のモデルを作ると、本番で外れた予測が判断を誤らせる</title>
+<desc id="fig-dx-dirty-data-forecast-d">何のための図か：日付や通貨の書き方の誤り、外れ値、重複した行が残った販売データで、需要を予測する機械学習のモデルを作ったときの流れを見る。表は説明用の例の5行で、2行目は日付の書き方が違い、3行目は単位の誤りで1件だけ極端に大きい（外れ値）、5行目は4行目と同じ行（重複）。AWSの説明では、誤った日付・通貨・測定単位などの書式エラーは予測に大きな影響を及ぼしうり、外れ値は確実に結果をゆがめるので特に懸念される。質の低い学習データで鍛えたモデルは、本番（デプロイ後）で誤った予測をする可能性があり、その予測をもとにした判断がビジネスに悪影響を及ぼす。主なステップは、重複の削除、無関係なデータの削除、外れ値の扱いを決めること、不足データの削除・補完、構造上のエラーの修正。</desc>
+<text x="12" y="20" class="tb">汚れ→ゆがんだモデル→外れた予測→誤った判断</text>
+<text x="12" y="42" class="tm">販売データの例（説明用の5行）</text>
+<rect x="12" y="50" width="160" height="22" class="fs sb" stroke-width="1"/>
+<text x="20" y="66">2026/4/1</text>
+<text x="164" y="66" text-anchor="end">1,200円</text>
+<rect x="12" y="74" width="160" height="22" class="fng sng" stroke-width="1"/>
+<text x="20" y="90">4/1/2026</text>
+<text x="164" y="90" text-anchor="end">1,200円</text>
+<text x="178" y="90" class="tm tng">← 日付の書き方の誤り</text>
+<rect x="12" y="98" width="160" height="22" class="fng sng" stroke-width="1"/>
+<text x="20" y="114">2026/4/2</text>
+<text x="164" y="114" text-anchor="end">1,200万円</text>
+<text x="178" y="114" class="tm tng">← 単位の誤り・外れ値</text>
+<rect x="12" y="122" width="160" height="22" class="fs sb" stroke-width="1"/>
+<text x="20" y="138">2026/4/2</text>
+<text x="164" y="138" text-anchor="end">1,300円</text>
+<rect x="12" y="146" width="160" height="22" class="fng sng" stroke-width="1"/>
+<text x="20" y="162">2026/4/2</text>
+<text x="164" y="162" text-anchor="end">1,300円</text>
+<text x="178" y="162" class="tm tng">← 重複した行</text>
+<rect x="12" y="184" width="296" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="205" text-anchor="middle">① 汚れたまま、需要予測のモデルを学習する</text>
+<line x1="160" y1="220" x2="160" y2="230" class="l sa w2"/>
+<polyline points="155,229 160,236 165,229" class="l sa w2" fill="none"/>
+<rect x="12" y="236" width="296" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="257" text-anchor="middle">② 質の低いデータで、モデルがゆがむ</text>
+<line x1="160" y1="272" x2="160" y2="282" class="l sa w2"/>
+<polyline points="155,281 160,288 165,281" class="l sa w2" fill="none"/>
+<rect x="12" y="288" width="296" height="32" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="309" text-anchor="middle" class="tng">③ 本番に出したモデルが、外れた予測をする</text>
+<line x1="160" y1="324" x2="160" y2="334" class="l sa w2"/>
+<polyline points="155,333 160,340 165,333" class="l sa w2" fill="none"/>
+<rect x="12" y="340" width="296" height="32" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="361" text-anchor="middle" class="tng">④ その予測で、ビジネスの判断を誤る</text>
+<text x="12" y="398" class="tm">学習中の数値に、誤りが表れるとは限らない</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="434" class="tb tok">分析の前に洗う（データクレンジング・AWS）</text>
+<text x="12" y="452" class="tm">重複・無関係な行を消す／外れ値の扱いを決める／</text>
+<text x="12" y="470" class="tm">足りない値を補う／書式などの誤りを直す</text>
+</svg>
