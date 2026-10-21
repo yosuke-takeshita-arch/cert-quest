@@ -944,7 +944,7 @@
       "会社のひな形は読み込めないので、スライドのデザインは毎回Copilotが新しく決める"
     ],
     "answer": 2,
-    "explanation": "Microsoftの説明では、作りたいプレゼンの説明を入力すると、Copilot（Microsoft の生成AIのアシスタント）が聴き手や画像の好みなどを確かめる質問をしてから骨組みを作り、その骨組みを会話で直してからスライドを作る。作った後も会話で手直しできる。",
+    "explanation": "Microsoftの説明では、作りたいプレゼンの説明を入力すると、Copilot（Microsoft の生成AIのアシスタント）が聴き手や画像の好みなどを確かめる質問をしてから骨組みを作り、その骨組みを会話で直してからスライドを作る。作った後も会話で手直しできる。この説明は、2026年10月15日にインターネットアーカイブが保存したページで確かめた（『before generating an outline』『continue to chat with Copilot to refine your outline』）。その後、2026年10月に更新されたいまのページでは、質問（聴き手・枚数・ひな形・画像の種類）の後、Copilot が内容を作り、選んだひな形でそのままプレゼンを作る流れになり、骨組みを直す段の記述が無くなった。機能の説明は変わりやすいので、問題文の日付の時点の説明として読む。",
     "whyWrong": [
       "説明では、作りたいプレゼンを入力すると、Copilotが内容を作り、選んだひな形でプレゼン全体を作る。1枚ずつしか作れないわけではない。",
       "文書から作るときは、Wordのスタイル（見出しなど）から文書の構造を読み取り、スライドに分けるとしている。1文ずつ貼るのではない。",
@@ -954,7 +954,8 @@
     "memoryTip": "骨組み→直す→スライド→また直す。",
     "concepts": ["C-AP-05-023", "C-AP-05-002"],
     "sources": [
-      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』", "url": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" }
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（2026年10月15日の保存版。インターネットアーカイブ）", "url": "https://web.archive.org/web/20261015121731/https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" },
+      { "title": "Microsoft Support『Create a new presentation with Copilot in PowerPoint』（いまのページ。2026年10月更新）", "url": "https://support.microsoft.com/en-us/powerpoint/copilot/create-a-new-presentation-with-copilot-in-powerpoint" }
     ],
     "status": "verified"
   },

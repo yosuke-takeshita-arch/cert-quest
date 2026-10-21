@@ -653,7 +653,7 @@
     "stemPlain": "word2vec（単語を数字の並びに置き換える手法）には2つのやり方がある。1つは「周りの単語から真ん中の単語を当てる」、もう1つは「真ん中の単語から周りの単語を当てる」。それぞれの名前を、この順番で並べた組み合わせを選ぶ問題。",
     "choices": [
       "fastText／スキップグラム",
-      "スキップグラム／CBOW",
+      "fastText／ELMo",
       "CBOW／ELMo",
       "CBOW／スキップグラム"
     ],
@@ -661,7 +661,7 @@
     "explanation": "word2vecの論文はCBOW（Continuous Bag-of-Words）とスキップグラムの2つの構造を提案した。例（図と同じ例）：『私 は 魚 を 食べる』で、真ん中の『魚』の前後2語ずつ（私・は・を・食べる）から『魚』を当てるのが CBOW、『魚』から周りの『私』『は』『を』『食べる』をそれぞれ当てるのがスキップグラム。",
     "whyWrong": [
       "fastText は、単語を文字の n-gram の集まり（例：where を <wh・whe・her・ere・re> などに分ける）として表し、そのベクトルの和で単語のベクトルを作る手法。スキップグラムを土台にしているが、word2vec の2つのモデルの1つではなく、周囲から中心を当てるモデルの名前でもない。",
-      "逆になっている。スキップグラムは中心の単語から周囲の単語を当て、CBOW は周囲の単語から中心の単語を当てる。例：『私・は・を・食べる』から『魚』を当てるのが CBOW。",
+      "前半も後半も違う。fastText は、単語を文字の n-gram の集まり（例：where を <wh・whe・her・ere・re> などに分ける）として表し、そのベクトルの和で単語のベクトルを作る手法で、周囲から中心を当てる word2vec のモデルではない。ELMo は、前向きと後ろ向きの言語モデル（LSTM）の内部状態から、文脈に応じて変わる単語の表現を作る手法で、中心から周囲を当てる word2vec のモデルでもない。周囲から中心を当てるのは CBOW、中心から周囲を当てるのはスキップグラム。",
       "前半の CBOW は合っているが、後半が違う。ELMo は、前向きと後ろ向きの言語モデル（LSTM）の内部状態から、文脈に応じて変わる単語の表現を作る手法で、word2vec のモデルではない。中心の単語から周囲を当てるのはスキップグラム。",
       null
     ],
@@ -678,6 +678,14 @@
       {
         "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
         "url": "https://arxiv.org/abs/1301.3781"
+      },
+      {
+        "title": "Bojanowski et al. (2017) Enriching Word Vectors with Subword Information (arXiv:1607.04606)",
+        "url": "https://arxiv.org/abs/1607.04606"
+      },
+      {
+        "title": "Peters et al. (2018) Deep contextualized word representations (arXiv:1802.05365)",
+        "url": "https://arxiv.org/abs/1802.05365"
       }
     ],
     "status": "verified"
