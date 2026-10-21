@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 574" role="img" aria-labelledby="fig-g-gen-models-compare-t fig-g-gen-models-compare-d">
+<title id="fig-g-gen-models-compare-t">GAN・VAE・拡散モデル：画像の作り方を並べて見分ける</title>
+<desc id="fig-g-gen-models-compare-d">何のための図か：画像を作る3つのモデルを、作り方の決め手で見分ける。①GAN：ノイズ z を生成器に通して偽の画像を作り、識別器が本物の画像と見分ける。生成器は識別器をだまし、識別器は見破るように、2つを競わせて学ぶ。②VAE（変分オートエンコーダ）：エンコーダが画像を読み、潜在変数の分布（平均とばらつき）を出す。そこから値を1つ取り出し、デコーダで画像に戻す。学習後は分布から値を取り出してデコーダに通せば新しい画像ができる。③拡散モデル：画像にノイズを少しずつ足してノイズだけにする過程の逆、つまりノイズを少しずつ取り除く過程を学ぶ。作るときは、ノイズだけの画像から、取り除く計算を何百〜千回くり返す。④見分け方：競わせる＝GAN、分布から取り出して戻す＝VAE、ノイズを少しずつ除く＝拡散モデル。ふつうのオートエンコーダは、入力を縮めて戻すだけで潜在を点で持ち、分布を持たない（VAE はそれを分布にした改良）。</desc>
+<text x="12" y="20" class="tb">画像を作る3つのモデルの見分け方</text>
+<text x="12" y="42" class="tm">何のための図か：作り方の決め手で並べる</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">① GAN：2つを競わせる</text>
+<rect x="12" y="86" width="52" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="38" y="103" class="tm" text-anchor="middle">ノイズ</text>
+<text x="38" y="120" class="tm" text-anchor="middle">z</text>
+<line x1="64" y1="106" x2="73" y2="106" class="l sm w1"/>
+<polygon points="78,106 72,102.5 72,109.5" class="fm"/>
+<rect x="78" y="86" width="62" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="109" y="111" class="tm" text-anchor="middle">生成器</text>
+<line x1="140" y1="106" x2="149" y2="106" class="l sm w1"/>
+<polygon points="154,106 148,102.5 148,109.5" class="fm"/>
+<rect x="154" y="86" width="60" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="184" y="103" class="tm" text-anchor="middle">偽の</text>
+<text x="184" y="120" class="tm" text-anchor="middle">画像</text>
+<line x1="214" y1="106" x2="223" y2="106" class="l sm w1"/>
+<polygon points="228,106 222,102.5 222,109.5" class="fm"/>
+<rect x="228" y="86" width="80" height="40" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="268" y="103" class="tm" text-anchor="middle">識別器</text>
+<text x="268" y="120" class="tm" text-anchor="middle">本物？偽物？</text>
+<rect x="154" y="136" width="60" height="36" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="184" y="151" class="tm" text-anchor="middle">本物の</text>
+<text x="184" y="168" class="tm" text-anchor="middle">画像</text>
+<line x1="214" y1="154" x2="268" y2="154" class="l sm w1"/>
+<line x1="268" y1="154" x2="268" y2="131" class="l sm w1"/>
+<polygon points="268,126 264.5,132 271.5,132" class="fm"/>
+<text x="12" y="194" class="tm">生成器はだまし、識別器は見破るように学ぶ</text>
+<line x1="12" y1="206" x2="308" y2="206" class="l sb w1"/>
+<text x="12" y="228" class="tb">② VAE：分布から取り出して、戻す</text>
+<rect x="12" y="238" width="44" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="34" y="263" class="tm" text-anchor="middle">画像</text>
+<line x1="56" y1="258" x2="63" y2="258" class="l sm w1"/>
+<polygon points="68,258 62,254.5 62,261.5" class="fm"/>
+<rect x="68" y="238" width="72" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="104" y="263" class="tm" text-anchor="middle">エンコーダ</text>
+<line x1="140" y1="258" x2="147" y2="258" class="l sm w1"/>
+<polygon points="152,258 146,254.5 146,261.5" class="fm"/>
+<rect x="152" y="238" width="70" height="40" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="187" y="255" class="tm" text-anchor="middle">平均と</text>
+<text x="187" y="272" class="tm" text-anchor="middle">ばらつき</text>
+<line x1="222" y1="258" x2="229" y2="258" class="l sm w1"/>
+<polygon points="234,258 228,254.5 228,261.5" class="fm"/>
+<rect x="234" y="238" width="74" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="271" y="263" class="tm" text-anchor="middle">デコーダ</text>
+<text x="12" y="300" class="tm">分布から値を1つ取り出して、デコーダで画像</text>
+<text x="12" y="318" class="tm">に戻す。学習後は取り出すだけで新しい画像</text>
+<line x1="12" y1="330" x2="308" y2="330" class="l sb w1"/>
+<text x="12" y="352" class="tb">③ 拡散モデル：ノイズを少しずつ除く</text>
+<rect x="12" y="362" width="70" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="47" y="379" class="tm" text-anchor="middle">ノイズ</text>
+<text x="47" y="396" class="tm" text-anchor="middle">だけ</text>
+<line x1="82" y1="382" x2="91" y2="382" class="l sm w1"/>
+<polygon points="96,382 90,378.5 90,385.5" class="fm"/>
+<rect x="96" y="362" width="128" height="40" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="379" class="tm" text-anchor="middle">少しずつ取り除く</text>
+<text x="160" y="396" class="tm" text-anchor="middle">×何百〜千回</text>
+<line x1="224" y1="382" x2="233" y2="382" class="l sm w1"/>
+<polygon points="238,382 232,378.5 232,385.5" class="fm"/>
+<rect x="238" y="362" width="70" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="273" y="387" class="tm" text-anchor="middle">画像</text>
+<text x="12" y="424" class="tm">学ぶのは、ノイズを足す過程の逆（除く過程）</text>
+<line x1="12" y1="436" x2="308" y2="436" class="l sb w1"/>
+<text x="12" y="458" class="tb">④ 見分け方</text>
+<text x="12" y="478" class="tb tok">競わせる → GAN</text>
+<text x="12" y="498" class="tb tok">分布から取り出して戻す → VAE</text>
+<text x="12" y="518" class="tb tok">ノイズを少しずつ除く → 拡散モデル</text>
+<text x="12" y="542" class="tm">ふつうのオートエンコーダは、縮めて戻す</text>
+<text x="12" y="560" class="tm">だけで、潜在を点で持つ（分布を持たない）</text>
+</svg>

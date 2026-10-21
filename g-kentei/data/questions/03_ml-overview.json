@@ -73,8 +73,7 @@
       "C-03-009"
     ],
     "figures": [
-      "fig-g-multiple-regression",
-      "fig-g-least-squares"
+      "fig-g-multiple-regression"
     ],
     "sources": [
       {
@@ -366,8 +365,7 @@
       "C-03-020"
     ],
     "figures": [
-      "fig-g-random-forest",
-      "fig-g-bagging-boosting"
+      "fig-g-random-forest"
     ],
     "sources": [
       {
@@ -456,8 +454,7 @@
       "C-03-018"
     ],
     "figures": [
-      "fig-g-gradient-boosting",
-      "fig-g-bagging-boosting"
+      "fig-g-gradient-boosting"
     ],
     "sources": [
       {
@@ -545,8 +542,7 @@
       "C-03-018"
     ],
     "figures": [
-      "fig-g-ensemble-diversity",
-      "fig-g-bagging-boosting"
+      "fig-g-ensemble-diversity"
     ],
     "sources": [
       {
@@ -633,8 +629,7 @@
       "C-03-029"
     ],
     "figures": [
-      "fig-g-ward",
-      "fig-g-dendrogram"
+      "fig-g-ward"
     ],
     "sources": [
       {
@@ -720,8 +715,7 @@
       "C-03-023"
     ],
     "figures": [
-      "fig-g-pca-calc",
-      "fig-g-pca"
+      "fig-g-pca-calc"
     ],
     "sources": [
       {
@@ -764,8 +758,7 @@
       "C-03-030"
     ],
     "figures": [
-      "fig-g-svd",
-      "fig-g-pca"
+      "fig-g-svd"
     ],
     "sources": [
       {
@@ -809,8 +802,7 @@
       "C-03-029"
     ],
     "figures": [
-      "fig-g-t-sne",
-      "fig-g-pca"
+      "fig-g-t-sne"
     ],
     "sources": [
       {
@@ -897,8 +889,7 @@
       "C-03-026"
     ],
     "figures": [
-      "fig-g-recommender",
-      "fig-g-cold-start"
+      "fig-g-recommender"
     ],
     "sources": [
       {
@@ -946,8 +937,7 @@
       "C-04-024"
     ],
     "figures": [
-      "fig-g-cold-start",
-      "fig-g-recommender"
+      "fig-g-cold-start"
     ],
     "sources": [
       {
@@ -1073,8 +1063,7 @@
       "C-03-036"
     ],
     "figures": [
-      "fig-g-rl-loop",
-      "fig-g-ml-three-types"
+      "fig-g-rl-loop"
     ],
     "sources": [
       {
@@ -1198,8 +1187,7 @@
       "C-03-041"
     ],
     "figures": [
-      "fig-g-q-sarsa-td",
-      "fig-g-sarsa"
+      "fig-g-q-sarsa-td"
     ],
     "sources": [
       {
@@ -1270,7 +1258,7 @@
       "ホールドアウト検証"
     ],
     "answer": 2,
-    "explanation": "問題文の状況は、クリックされやすさの分からない選択肢（広告）から選び続けて、報酬（クリック）の合計を増やす問題で、多腕バンディット問題という。バンディットアルゴリズムはその解き方。例（数は説明のための例。1枚目の図と同じ数で、図のスロットマシンの台を広告に置き換えた）：広告4つ A〜D の本当のクリック率が 0.4・0.6・0.3・0.2 でも、出す側には見えない。5回ずつ出してクリックが A 3回・B 1回なら、見かけは A 0.6・B 0.2 で、A が良く見える。ここで A だけを残り80回出し続ける（活用）と、クリックは平均 80×0.4＝32回で、本当は良い B（80×0.6＝48回）を見逃す。B なども出してみる（探索）と B の良さに気づけるが、外れの広告を出した回数だけ目先のクリックは減る。この探索と活用の釣り合いをとる選び方（ε-greedy方策・UCB方策など）がバンディットアルゴリズムで、問題文の『今よく見える広告を出し続けるか、まだ試していない広告を試すか』がこれにあたる。",
+    "explanation": "問題文の状況は、クリックされやすさの分からない選択肢（広告）から選び続けて、報酬（クリック）の合計を増やす問題で、多腕バンディット問題という。バンディットアルゴリズムはその解き方。例（数は説明のための例。図と同じ数で、図のスロットマシンの台を広告に置き換えた）：広告4つ A〜D の本当のクリック率が 0.4・0.6・0.3・0.2 でも、出す側には見えない。5回ずつ出してクリックが A 3回・B 1回なら、見かけは A 0.6・B 0.2 で、A が良く見える。ここで A だけを残り80回出し続ける（活用）と、クリックは平均 80×0.4＝32回で、本当は良い B（80×0.6＝48回）を見逃す。B なども出してみる（探索）と B の良さに気づけるが、外れの広告を出した回数だけ目先のクリックは減る。この探索と活用の釣り合いをとる選び方（ε-greedy方策・UCB方策など）がバンディットアルゴリズムで、問題文の『今よく見える広告を出し続けるか、まだ試していない広告を試すか』がこれにあたる。",
     "whyWrong": [
       "主成分分析は、多数の変数を、ばらつきの大きい少数の軸にまとめる次元削減の手法（例：アンケート20項目を2つの軸に要約）。手元のデータを要約する方法で、広告を出しながらどれを出し続けるかを決める方法ではない。",
       "k-means法は、データをk個のグループに分けるクラスタリング（例：顧客を3つのグループに分ける）。広告を出した結果のクリック（報酬）を見ながら、次にどの広告を出すかを選び続ける問題は扱わない。",
@@ -1287,8 +1275,7 @@
       "C-03-050"
     ],
     "figures": [
-      "fig-g-bandit",
-      "fig-g-explore-exploit"
+      "fig-g-bandit"
     ],
     "sources": [
       {
@@ -1416,8 +1403,7 @@
       "C-03-040"
     ],
     "figures": [
-      "fig-g-policy-gradient",
-      "fig-g-rl-taxonomy"
+      "fig-g-policy-gradient"
     ],
     "sources": [
       {
@@ -2125,8 +2111,7 @@
       "C-08-026"
     ],
     "figures": [
-      "fig-g-naive-bayes",
-      "fig-g-bayes-area"
+      "fig-g-naive-bayes"
     ],
     "sources": [
       {
@@ -2255,8 +2240,7 @@
       "C-03-020"
     ],
     "figures": [
-      "fig-g-adaboost",
-      "fig-g-bagging-boosting"
+      "fig-g-adaboost"
     ],
     "sources": [
       {
@@ -2519,8 +2503,7 @@
       "C-03-039"
     ],
     "figures": [
-      "fig-g-bellman",
-      "fig-g-rl-taxonomy"
+      "fig-g-bellman"
     ],
     "sources": [
       {
@@ -2646,7 +2629,6 @@
       "C-03-039"
     ],
     "figures": [
-      "fig-g-reinforce-actor-critic",
       "fig-g-rl-taxonomy"
     ],
     "sources": [
@@ -3660,8 +3642,7 @@
       "C-03-053"
     ],
     "figures": [
-      "fig-g-roc-auc",
-      "fig-g-confusion-matrix"
+      "fig-g-roc-auc"
     ],
     "sources": [
       {
@@ -3955,8 +3936,7 @@
       "C-03-023"
     ],
     "figures": [
-      "fig-g-pca",
-      "fig-g-t-sne"
+      "fig-g-pca"
     ],
     "sources": [
       {

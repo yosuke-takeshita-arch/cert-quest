@@ -85,8 +85,7 @@
       "C-05-016"
     ],
     "figures": [
-      "fig-g-mlp-layers",
-      "fig-g-perceptron-xor"
+      "fig-g-mlp-layers"
     ],
     "sources": [
       {
@@ -204,8 +203,7 @@
       "C-04-005"
     ],
     "figures": [
-      "fig-g-linear-stack",
-      "fig-g-activation"
+      "fig-g-linear-stack"
     ],
     "sources": [
       {
@@ -246,7 +244,6 @@
       "C-04-024"
     ],
     "figures": [
-      "fig-g-activation",
       "fig-g-vanishing-gradient"
     ],
     "sources": [
@@ -306,8 +303,7 @@
       "C-04-010"
     ],
     "figures": [
-      "fig-g-relu",
-      "fig-g-activation"
+      "fig-g-relu"
     ],
     "sources": [
       {
@@ -352,8 +348,7 @@
       "C-04-008"
     ],
     "figures": [
-      "fig-g-leaky-relu",
-      "fig-g-activation"
+      "fig-g-leaky-relu"
     ],
     "sources": [
       {
@@ -441,8 +436,7 @@
       "C-04-010"
     ],
     "figures": [
-      "fig-g-activation",
-      "fig-g-softmax"
+      "fig-g-activation"
     ],
     "sources": [
       {
@@ -545,8 +539,7 @@
       "C-04-014"
     ],
     "figures": [
-      "fig-g-kl-divergence",
-      "fig-g-loss-functions"
+      "fig-g-kl-divergence"
     ],
     "sources": [
       {
@@ -679,8 +672,7 @@
       "C-04-012"
     ],
     "figures": [
-      "fig-g-cross-entropy",
-      "fig-g-loss-functions"
+      "fig-g-cross-entropy"
     ],
     "sources": [
       {
@@ -992,7 +984,6 @@
       "C-05-019"
     ],
     "figures": [
-      "fig-g-activation",
       "fig-g-vanishing-gradient"
     ],
     "sources": [
@@ -1100,8 +1091,7 @@
       "C-03-035"
     ],
     "figures": [
-      "fig-g-credit-assignment",
-      "fig-g-backprop"
+      "fig-g-credit-assignment"
     ],
     "sources": [
       {
@@ -1151,7 +1141,6 @@
       "C-04-023"
     ],
     "figures": [
-      "fig-g-vanishing-gradient",
       "fig-g-exploding-gradient"
     ],
     "sources": [
@@ -1196,8 +1185,7 @@
       "C-04-027"
     ],
     "figures": [
-      "fig-g-gd-steps",
-      "fig-g-gradient-descent"
+      "fig-g-gd-steps"
     ],
     "sources": [
       {
@@ -1237,8 +1225,7 @@
       "C-04-028"
     ],
     "figures": [
-      "fig-g-learning-rate",
-      "fig-g-gradient-descent"
+      "fig-g-learning-rate"
     ],
     "sources": [
       {
@@ -1447,9 +1434,7 @@
       "C-04-021"
     ],
     "figures": [
-      "fig-g-momentum",
-      "fig-g-local-min-saddle",
-      "fig-g-optimizers"
+      "fig-g-momentum"
     ],
     "sources": [
       {
@@ -1587,8 +1572,7 @@
       "C-04-037"
     ],
     "figures": [
-      "fig-g-adabound",
-      "fig-g-optimizers"
+      "fig-g-adabound"
     ],
     "sources": [
       {
@@ -1634,8 +1618,7 @@
       "C-04-039"
     ],
     "figures": [
-      "fig-g-adadelta",
-      "fig-g-optimizers"
+      "fig-g-adadelta"
     ],
     "sources": [
       {
@@ -2525,8 +2508,7 @@
       "C-04-029"
     ],
     "figures": [
-      "fig-g-plateau",
-      "fig-g-local-min-saddle"
+      "fig-g-plateau"
     ],
     "sources": [
       {
@@ -2791,8 +2773,7 @@
       "C-04-029"
     ],
     "figures": [
-      "fig-g-local-min-saddle",
-      "fig-g-learning-rate"
+      "fig-g-local-min-saddle"
     ],
     "sources": [
       {
@@ -3148,8 +3129,7 @@
       "C-04-024"
     ],
     "figures": [
-      "fig-g-activation",
-      "fig-g-sigmoid-gradient"
+      "fig-g-activation"
     ],
     "sources": [
       {
@@ -3241,8 +3221,7 @@
       "C-04-007"
     ],
     "figures": [
-      "fig-g-relu",
-      "fig-g-leaky-relu"
+      "fig-g-relu"
     ],
     "sources": [
       {
@@ -3418,7 +3397,6 @@
       "C-04-008"
     ],
     "figures": [
-      "fig-g-sigmoid-gradient",
       "fig-g-activation"
     ],
     "sources": [

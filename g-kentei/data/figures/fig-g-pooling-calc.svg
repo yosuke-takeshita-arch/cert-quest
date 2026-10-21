@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 462" role="img" aria-labelledby="fig-g-pooling-calc-t fig-g-pooling-calc-d">
+<title id="fig-g-pooling-calc-t">プーリングの計算：窓の 2・10・6・8 から、最大値は10、平均値は6.5</title>
+<desc id="fig-g-pooling-calc-d">何のための図か：2×2の窓に2・10・6・8が入っているとき、最大値プーリングが10、平均値プーリングが6.5を出す理由を、問題と同じ数で見る。①窓：1行目2と10、2行目6と8。②最大値プーリング：4つのうちいちばん大きい値を出す。答えは10。③平均値プーリング：4つを足して個数で割る。2＋10＋6＋8＝26、26÷4＝6.5。④取り違えやすい数：26は足しただけの合計で、まだ4で割っていない。7は小さい順に並べた2・6・8・10の真ん中の2つ（6と8）の平均で、中央値。どちらのプーリングも、学習する重みを使わない決まった計算。</desc>
+<text x="12" y="20" class="tb">窓の4つを、1つの数にまとめる</text>
+<text x="12" y="42" class="tm">何のための図か：最大値と平均値が、なぜ</text>
+<text x="12" y="60" class="tm">10 と 6.5 になるかを、問題の数で見る</text>
+<line x1="12" y1="72" x2="308" y2="72" class="l sb w1"/>
+<text x="12" y="94" class="tb">① 2×2 の窓</text>
+<rect x="12" y="106" width="36" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="30" y="129" class="tb" text-anchor="middle">2</text>
+<rect x="48" y="106" width="36" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="66" y="129" class="tb" text-anchor="middle">10</text>
+<rect x="12" y="142" width="36" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="30" y="165" class="tb" text-anchor="middle">6</text>
+<rect x="48" y="142" width="36" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="66" y="165" class="tb" text-anchor="middle">8</text>
+<text x="100" y="130" class="tm">特徴マップの一部</text>
+<text x="100" y="152" class="tm">（学習する重みは使わない</text>
+<text x="100" y="170" class="tm">　決まった計算）</text>
+<line x1="12" y1="190" x2="308" y2="190" class="l sb w1"/>
+<text x="12" y="212" class="tb">② 最大値プーリング（ア）</text>
+<text x="12" y="230" class="tm">4つのうち、いちばん大きい値</text>
+<text x="12" y="250" class="tb tok">2・10・6・8 → 10</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<text x="12" y="284" class="tb">③ 平均値プーリング（イ）</text>
+<text x="12" y="302" class="tm">4つを足して、個数の4で割る</text>
+<text x="12" y="320" class="tm">足す：2＋10＋6＋8＝26</text>
+<rect x="12" y="330" width="296" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="350" class="tb tok" text-anchor="middle">割る：26 ÷ 4 ＝ 6.5</text>
+<line x1="12" y1="372" x2="308" y2="372" class="l sb w1"/>
+<text x="12" y="394" class="tb">④ 取り違えやすい数</text>
+<text x="12" y="412" class="tng">26：足しただけの合計（まだ4で割っていない）</text>
+<text x="12" y="430" class="tng">7：小さい順 2・6・8・10 の真ん中の6と8の</text>
+<text x="12" y="448" class="tm">　平均＝中央値。平均値プーリングではない</text>
+</svg>

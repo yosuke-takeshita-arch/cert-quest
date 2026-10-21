@@ -112,8 +112,7 @@
       "C-05-007"
     ],
     "figures": [
-      "fig-g-padding",
-      "fig-g-conv-op"
+      "fig-g-padding"
     ],
     "sources": [
       {
@@ -155,8 +154,7 @@
       "C-05-004"
     ],
     "figures": [
-      "fig-g-conv-op",
-      "fig-g-padding"
+      "fig-g-conv-op"
     ],
     "sources": [
       {
@@ -196,8 +194,7 @@
       "C-05-007"
     ],
     "figures": [
-      "fig-g-padding",
-      "fig-g-conv-op"
+      "fig-g-padding"
     ],
     "sources": [
       {
@@ -241,7 +238,7 @@
       "C-05-008"
     ],
     "figures": [
-      "fig-g-conv-params"
+      "fig-g-conv-params-calc"
     ],
     "sources": [
       {
@@ -492,8 +489,7 @@
       "C-05-009"
     ],
     "figures": [
-      "fig-g-kernel-two",
-      "fig-g-conv-op"
+      "fig-g-kernel-two"
     ],
     "sources": [
       {
@@ -542,8 +538,7 @@
       "C-05-014"
     ],
     "figures": [
-      "fig-g-batch-norm",
-      "fig-g-normalization"
+      "fig-g-batch-norm"
     ],
     "sources": [
       {
@@ -586,8 +581,7 @@
       "C-05-016"
     ],
     "figures": [
-      "fig-g-group-norm",
-      "fig-g-normalization"
+      "fig-g-group-norm"
     ],
     "sources": [
       {
@@ -629,8 +623,7 @@
       "C-05-013"
     ],
     "figures": [
-      "fig-g-normalization",
-      "fig-g-group-norm"
+      "fig-g-normalization"
     ],
     "sources": [
       {
@@ -680,8 +673,7 @@
       "C-04-020"
     ],
     "figures": [
-      "fig-g-layer-norm",
-      "fig-g-normalization"
+      "fig-g-layer-norm"
     ],
     "sources": [
       {
@@ -722,8 +714,7 @@
       "C-04-021"
     ],
     "figures": [
-      "fig-g-instance-norm",
-      "fig-g-normalization"
+      "fig-g-instance-norm"
     ],
     "sources": [
       {
@@ -812,8 +803,7 @@
       "C-05-016"
     ],
     "figures": [
-      "fig-g-gap",
-      "fig-g-pooling"
+      "fig-g-gap"
     ],
     "sources": [
       {
@@ -854,8 +844,7 @@
       "C-05-006"
     ],
     "figures": [
-      "fig-g-pooling",
-      "fig-g-pooling-channels"
+      "fig-g-pooling"
     ],
     "sources": [
       {
@@ -895,8 +884,7 @@
       "C-05-018"
     ],
     "figures": [
-      "fig-g-invariance",
-      "fig-g-pooling"
+      "fig-g-invariance"
     ],
     "sources": [
       {
@@ -1104,8 +1092,7 @@
       "C-05-032"
     ],
     "figures": [
-      "fig-g-bptt",
-      "fig-g-rnn-unroll"
+      "fig-g-bptt"
     ],
     "sources": [
       {
@@ -1133,7 +1120,7 @@
       "時間方向に何度も同じ重みを掛けるため、勾配消失や勾配爆発が起きやすい"
     ],
     "answer": 3,
-    "explanation": "BPTT（時刻をさかのぼって誤差を伝える計算）で時刻をさかのぼるたびに、同じ重みとの掛け算が繰り返される。たとえば1回ごとに0.5倍になるなら、20時刻さかのぼると0.5を20回掛けて（0.5の20乗）約100万分の1になり（勾配消失）、1回ごとに2倍なら2を20回掛けて約100万倍になる（勾配爆発。数は例）。そのため遠い過去の情報を学びにくい。これを改善したのがLSTMやGRU（どちらも、ゲートで記憶を長く保てるようにした RNN）で、勾配爆発には勾配クリッピングも使う。",
+    "explanation": "BPTT（時刻をさかのぼって誤差を伝える計算）で時刻をさかのぼるたびに、同じ重みとの掛け算が繰り返される。たとえば1回ごとに0.9倍になるなら、100時刻さかのぼると0.9を100回掛けて（0.9の100乗）約0.00003になり、昔の時刻に届く勾配はほぼ0になる（勾配消失）。1回ごとに1.1倍なら、1.1を100回掛けて約13781倍になり、重みを直しすぎて学習が発散する（勾配爆発）。1に近い数でも、100回掛けると0か巨大な数に振り切れる（数は例。図の④と同じ数）。そのため遠い過去の情報を学びにくい。これを改善したのがLSTMやGRU（どちらも、ゲートで記憶を長く保てるようにした RNN）で、勾配爆発には勾配クリッピングも使う。",
     "whyWrong": [
       "正解ラベルを使わずに学ぶのは教師なし学習で、RNNの多くは次の語や正しい訳を正解にした教師あり学習で使われる。正解の有無はRNNが遠い過去を学びにくい理由とは関係しない。",
       "RNNは各時刻で同じ重みを使い回すので、5語の文も50語の文も同じネットワークで扱える（長さが違ってもよい）。長さをそろえるために切り詰めることは必須ではなく、遠い過去を学びにくい主な理由ではない。",
@@ -1146,7 +1133,7 @@
       "C-05-027"
     ],
     "figures": [
-      "fig-g-rnn-unroll"
+      "fig-g-bptt"
     ],
     "sources": [
       {
@@ -1192,8 +1179,7 @@
       "C-06-038"
     ],
     "figures": [
-      "fig-g-lstm-gru",
-      "fig-g-cec"
+      "fig-g-lstm-gru"
     ],
     "sources": [
       {
@@ -1334,8 +1320,7 @@
       "C-03-020"
     ],
     "figures": [
-      "fig-g-teacher-forcing",
-      "fig-g-rnn-unroll"
+      "fig-g-teacher-forcing"
     ],
     "sources": [
       {
@@ -1544,9 +1529,7 @@
       "C-05-027"
     ],
     "figures": [
-      "fig-g-transformer-flow",
-      "fig-g-transformer",
-      "fig-g-rnn-to-transformer"
+      "fig-g-transformer-flow"
     ],
     "sources": [
       {
@@ -1588,8 +1571,7 @@
       "C-05-026"
     ],
     "figures": [
-      "fig-g-positional-encoding",
-      "fig-g-transformer"
+      "fig-g-positional-encoding"
     ],
     "sources": [
       {
@@ -1630,8 +1612,7 @@
       "C-05-036"
     ],
     "figures": [
-      "fig-g-source-target-attention",
-      "fig-g-qkv"
+      "fig-g-source-target-attention"
     ],
     "sources": [
       {
@@ -1672,9 +1653,7 @@
       "C-05-033"
     ],
     "figures": [
-      "fig-g-self-attention-idea",
-      "fig-g-qkv",
-      "fig-g-transformer"
+      "fig-g-self-attention-idea"
     ],
     "sources": [
       {
@@ -1714,8 +1693,7 @@
       "C-05-037"
     ],
     "figures": [
-      "fig-g-multi-head-attention",
-      "fig-g-transformer"
+      "fig-g-multi-head-attention"
     ],
     "sources": [
       {
@@ -1795,8 +1773,7 @@
       "C-05-039"
     ],
     "figures": [
-      "fig-g-autoencoder",
-      "fig-g-autoencoder-vae"
+      "fig-g-autoencoder"
     ],
     "sources": [
       {
@@ -1836,8 +1813,7 @@
       "C-05-040"
     ],
     "figures": [
-      "fig-g-stacked-autoencoder",
-      "fig-g-autoencoder-vae"
+      "fig-g-stacked-autoencoder"
     ],
     "sources": [
       {
@@ -1885,8 +1861,7 @@
       "C-05-041"
     ],
     "figures": [
-      "fig-g-vae",
-      "fig-g-autoencoder-vae"
+      "fig-g-vae"
     ],
     "sources": [
       {
@@ -1927,8 +1902,7 @@
       "C-05-040"
     ],
     "figures": [
-      "fig-g-vae-variants",
-      "fig-g-autoencoder-vae"
+      "fig-g-vae-variants"
     ],
     "sources": [
       {
@@ -1968,8 +1942,7 @@
       "C-05-039"
     ],
     "figures": [
-      "fig-g-autoencoder",
-      "fig-g-autoencoder-vae"
+      "fig-g-autoencoder"
     ],
     "sources": [
       {
@@ -2059,8 +2032,7 @@
       "C-05-044"
     ],
     "figures": [
-      "fig-g-cutout-erasing",
-      "fig-g-data-augmentation"
+      "fig-g-cutout-erasing"
     ],
     "sources": [
       {
@@ -2101,8 +2073,7 @@
       "C-05-045"
     ],
     "figures": [
-      "fig-g-mixup-cutmix",
-      "fig-g-data-augmentation"
+      "fig-g-mixup-cutmix"
     ],
     "sources": [
       {
@@ -2147,8 +2118,7 @@
       "C-05-044"
     ],
     "figures": [
-      "fig-g-cutout-erasing",
-      "fig-g-data-augmentation"
+      "fig-g-cutout-erasing"
     ],
     "sources": [
       {
@@ -2230,8 +2200,7 @@
       "C-05-048"
     ],
     "figures": [
-      "fig-g-randaugment",
-      "fig-g-data-augmentation"
+      "fig-g-randaugment"
     ],
     "sources": [
       {
@@ -2312,7 +2281,7 @@
       "C-05-004"
     ],
     "figures": [
-      "fig-g-conv-op"
+      "fig-g-conv-op-calc"
     ],
     "sources": [
       {
@@ -2394,8 +2363,7 @@
       "C-05-028"
     ],
     "figures": [
-      "fig-g-cec",
-      "fig-g-lstm-gru"
+      "fig-g-cec"
     ],
     "sources": [
       {
@@ -2538,7 +2506,6 @@
       "C-05-035"
     ],
     "figures": [
-      "fig-g-transformer-flow",
       "fig-g-qkv"
     ],
     "sources": [
@@ -2580,8 +2547,7 @@
       "C-05-026"
     ],
     "figures": [
-      "fig-g-exposure-bias",
-      "fig-g-teacher-forcing"
+      "fig-g-exposure-bias"
     ],
     "sources": [
       {
@@ -2625,7 +2591,7 @@
       "C-05-016"
     ],
     "figures": [
-      "fig-g-pooling"
+      "fig-g-pooling-calc"
     ],
     "sources": [
       {
@@ -2670,8 +2636,7 @@
       "C-05-018"
     ],
     "figures": [
-      "fig-g-pooling-channels",
-      "fig-g-pooling"
+      "fig-g-pooling-channels"
     ],
     "sources": [
       {
@@ -2716,8 +2681,7 @@
       "C-05-016"
     ],
     "figures": [
-      "fig-g-gap",
-      "fig-g-pooling"
+      "fig-g-gap"
     ],
     "sources": [
       {
@@ -2757,8 +2721,7 @@
       "C-05-017"
     ],
     "figures": [
-      "fig-g-gap",
-      "fig-g-pooling"
+      "fig-g-gap"
     ],
     "sources": [
       {
@@ -2800,8 +2763,7 @@
       "C-05-035"
     ],
     "figures": [
-      "fig-g-scaled-dot-product",
-      "fig-g-qkv"
+      "fig-g-scaled-dot-product"
     ],
     "sources": [
       {
@@ -2880,8 +2842,7 @@
       "C-05-035"
     ],
     "figures": [
-      "fig-g-attention-cost",
-      "fig-g-transformer"
+      "fig-g-attention-cost"
     ],
     "sources": [
       {
@@ -2922,8 +2883,7 @@
       "C-05-035"
     ],
     "figures": [
-      "fig-g-pe-extrapolate",
-      "fig-g-positional-encoding"
+      "fig-g-pe-extrapolate"
     ],
     "sources": [
       {
@@ -2964,9 +2924,7 @@
       "C-05-046"
     ],
     "figures": [
-      "fig-g-cutout-erasing",
-      "fig-g-data-augmentation",
-      "fig-g-mixup-cutmix"
+      "fig-g-data-augmentation"
     ],
     "sources": [
       {
@@ -3015,8 +2973,7 @@
       "C-05-045"
     ],
     "figures": [
-      "fig-g-mixup-cutmix",
-      "fig-g-data-augmentation"
+      "fig-g-mixup-cutmix"
     ],
     "sources": [
       {
@@ -3065,8 +3022,7 @@
       "C-05-045"
     ],
     "figures": [
-      "fig-g-mixup-cutmix",
-      "fig-g-data-augmentation"
+      "fig-g-mixup-cutmix"
     ],
     "sources": [
       {
@@ -3120,8 +3076,7 @@
       "C-05-045"
     ],
     "figures": [
-      "fig-g-randaugment",
-      "fig-g-data-augmentation"
+      "fig-g-randaugment"
     ],
     "sources": [
       {
@@ -3174,8 +3129,7 @@
       "C-05-046"
     ],
     "figures": [
-      "fig-g-mixup-cutmix",
-      "fig-g-data-augmentation"
+      "fig-g-mixup-cutmix"
     ],
     "sources": [
       {
@@ -3225,8 +3179,7 @@
       "C-05-046"
     ],
     "figures": [
-      "fig-g-cutout-erasing",
-      "fig-g-data-augmentation"
+      "fig-g-cutout-erasing"
     ],
     "sources": [
       {
@@ -3307,8 +3260,7 @@
       "C-05-046"
     ],
     "figures": [
-      "fig-g-mixup-cutmix",
-      "fig-g-data-augmentation"
+      "fig-g-mixup-cutmix"
     ],
     "sources": [
       {
