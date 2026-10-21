@@ -3341,7 +3341,7 @@
     "stemPlain": "AIの歴史の4つの出来事を、起きた年の古い順に正しく並べたものを選ぶ問題。",
     "choices": [
       "ダートマス会議 → 第二次AIブーム → Transformerの発表 → ChatGPTの公開",
-      "ダートマス会議 → Transformerの発表 → 第二次AIブーム → ChatGPTの公開",
+      "第二次AIブーム → ダートマス会議 → Transformerの発表 → ChatGPTの公開",
       "第二次AIブーム → ダートマス会議 → ChatGPTの公開 → Transformerの発表",
       "ダートマス会議 → 第二次AIブーム → ChatGPTの公開 → Transformerの発表"
     ],
@@ -3349,7 +3349,7 @@
     "explanation": "ダートマス会議は1956年、第二次AIブームは1980年代、Transformerの発表は2017年、ChatGPTの公開は2022年。Transformerが土台になって、その後のChatGPTのような生成AIが生まれた。",
     "whyWrong": [
       null,
-      "Transformer（2017年）は、第二次AIブーム（1980年代）より後。",
+      "後の2つは合っているが、前の2つが逆。ダートマス会議（1956年）はAI研究の出発点で、第二次AIブーム（1980年代）より前。",
       "ダートマス会議（1956年）はAI研究の出発点で、第二次ブームより前。また、ChatGPT（2022年）はTransformer（2017年）より後。",
       "ChatGPT（2022年）はTransformer（2017年）を土台にした流れの上にあり、Transformerより後。"
     ],
