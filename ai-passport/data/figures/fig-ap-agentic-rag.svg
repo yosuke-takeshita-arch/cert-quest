@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-ap-agentic-rag-t fig-ap-agentic-rag-d">
+<title id="fig-ap-agentic-rag-t">Agentic RAG：エージェントが結果を見て、どこを・何回探すかを決め、足りなければ探し直す</title>
+<desc id="fig-ap-agentic-rag-d">困りごと：従来のRAGは決まった流れで、質問ごとに決まった回数だけ探し、足りなくてもそのまま答える。何段階もの調べが要る質問に向かない。Agentic RAGは、RAGの流れにAIエージェントを入れ、検索の進め方をエージェントが結果を見ながら決める（Singhらの総説、2025）。例（数は例）：質問は、A社とB社の昨年の売上を比べて。①計画：エージェントが、A社の売上とB社の売上の2つに分けて探すと決める。②1回目の検索：A社の売上が見つかる。③2回目の検索：B社の資料が見つからない。結果を見て、足りないと判断する（振り返り）。④探し方を変えて3回目の検索：B社の決算の資料を別の道具（社外の検索）で探し、見つかる。⑤2つそろったので比べて答える。ここでは3回探したが、回数は前もって決まっておらず、エージェントが結果を見て決めた。総説が挙げる型は、振り返り・計画・道具の使用・複数エージェントの協力。比べると、従来の決まった流れのRAGは1回探してそのまま答えるので、この例ではB社の売上が無いまま答えてしまう。</desc>
+<text x="12" y="20" class="tb">Agentic RAG：探し方をエージェントが決める</text>
+<text x="12" y="42" class="tm">例（数は例）：A社とB社の昨年の売上を比べて</text>
+<rect x="12" y="54" width="296" height="48" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="74" class="tb">① 計画</text>
+<text x="22" y="92" class="tm">A社の売上・B社の売上の2つに分けて探す</text>
+<line x1="160" y1="102" x2="160" y2="116" class="l sa"/>
+<polygon points="155,112 165,112 160,120" class="fa"/>
+<rect x="12" y="120" width="296" height="48" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="140" class="tb">② 1回目の検索：A社</text>
+<text x="22" y="158" class="tok">→ 見つかった</text>
+<line x1="160" y1="168" x2="160" y2="182" class="l sa"/>
+<polygon points="155,178 165,178 160,186" class="fa"/>
+<rect x="12" y="186" width="296" height="66" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="206" class="tb">③ 2回目の検索：B社</text>
+<text x="22" y="224" class="tng">→ 見つからない</text>
+<text x="22" y="242" class="tm">結果を見て『足りない』と判断（振り返り）</text>
+<line x1="160" y1="252" x2="160" y2="266" class="l sa"/>
+<polygon points="155,262 165,262 160,270" class="fa"/>
+<text x="172" y="264" class="tb ta">探し直す</text>
+<rect x="12" y="270" width="296" height="66" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="290" class="tb">④ 探し方を変えて3回目：B社の決算</text>
+<text x="22" y="308" class="tm">別の道具（社外の検索）を使う</text>
+<text x="22" y="326" class="tok">→ 見つかった</text>
+<line x1="160" y1="336" x2="160" y2="350" class="l sa"/>
+<polygon points="155,346 165,346 160,354" class="fa"/>
+<rect x="12" y="354" width="296" height="48" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="374" class="tb">⑤ 2つそろったので、比べて答える</text>
+<text x="22" y="392" class="tm">何回探すかは前もって決まっていない（今回は3回）</text>
+<text x="12" y="428" class="tb">総説が挙げる型</text>
+<text x="12" y="448" class="tm">振り返り・計画・道具の使用・複数エージェントの協力</text>
+<line x1="12" y1="466" x2="308" y2="466" class="l sb w1"/>
+<text x="12" y="490" class="tb">比べると：決まった流れのRAG</text>
+<rect x="12" y="500" width="296" height="98" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="522">質問 → 1回探す → 答える（1本道）</text>
+<text x="22" y="544" class="tm">この例では、B社が見つからなくても</text>
+<text x="22" y="562" class="tm">そのまま答える</text>
+<text x="22" y="584" class="tng">→ B社の売上が無いまま、比べてしまう</text>
+<text x="12" y="626" class="tm">出典：Singhらの総説（2025、arXiv:2501.09136）</text>
+</svg>

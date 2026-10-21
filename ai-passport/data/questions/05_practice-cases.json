@@ -1926,7 +1926,7 @@
       "正解つきのデータでモデルを学習させずに、指示と例を読ませて振り分ける"
     ],
     "answer": 3,
-    "explanation": "生成AIの分類は、指示と数個の例から、その場で振り分け方をつかむ（in-context learning）。デジタル庁のガイドブックは、パブリックコメントにAIで類型のラベルを付け、職員が確かめる流れを示している。",
+    "explanation": "生成AIの分類は、指示と数個の例から、その場で振り分け方をつかむ（in-context learning）。デジタル庁のガイドブックは、パブリックコメントにAIで類型のラベルを付け、職員が確かめる流れを示している。図は翻訳の例（cheese => fromage）だが、分類でも同じで、指示と数個の例を見せるだけで、モデルの重みは更新しない。",
     "whyWrong": [
       "これは教師あり学習の分類のやり方。問題文の方法は、学習をせずにプロンプトで振り分けている。",
       "これは教師なし学習のクラスタリング（似たものをまとめる）。問題文では、種類を人が先に決めている。",
@@ -2444,14 +2444,15 @@
     "explanation": "Googleの指針は、コードレビューの第一の目的を、コードベース全体の健全さが時間とともに良くなっていくようにすることとし、レビューする人は見ているコードに責任を持つとしている。AIが書いたコードも同じ基準で見る。",
     "whyWrong": [
       "指針は、変更が全体の健全さを確かに良くするなら、完璧でなくても承認する方に傾くべきだとしている。完璧になるまで止めると、改善が進まない。",
-      "人事の評価は、指針が挙げる目的ではない。",
+      "指針は、レビューのコメントを、コードを書いた人ではなくコードについて書くよう勧めている。レビューは変更の中身を良くしてコードベース全体の健全さを保つための場で、書いた人の能力を採点する仕組みとしては書かれていない。",
       null,
-      "行数を減らすことは、目的として挙げられていない。"
+      "指針が見るのは、その変更でコードベース全体の健全さが良くなるかどうか。指針は、時間に追われた近道の小さな変更が積み重なって健全さが下がっていくことに注意しており、行数が少なくても健全さを下げる変更は通さない（指針の目的からの帰結）。"
     ],
     "memoryTip": "レビューは、全体を良くし続けるため。",
     "concepts": ["C-AP-05-052"],
     "sources": [
-      { "title": "Google Engineering Practices『The Standard of Code Review』", "url": "https://google.github.io/eng-practices/review/reviewer/standard.html" }
+      { "title": "Google Engineering Practices『The Standard of Code Review』", "url": "https://google.github.io/eng-practices/review/reviewer/standard.html" },
+      { "title": "Google Engineering Practices『How to write code review comments』", "url": "https://google.github.io/eng-practices/review/reviewer/comments.html" }
     ],
     "status": "verified"
   },

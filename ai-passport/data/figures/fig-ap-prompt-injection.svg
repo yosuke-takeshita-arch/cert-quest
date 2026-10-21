@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-ap-prompt-injection-t fig-ap-prompt-injection-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 592" role="img" aria-labelledby="fig-ap-prompt-injection-t fig-ap-prompt-injection-d">
 <title id="fig-ap-prompt-injection-t">プロンプトインジェクション：入力や読んだ文書に命令を紛れ込ませる。直接型と間接型</title>
-<desc id="fig-ap-prompt-injection-d">LLMが受け取るもの（開発者の指示・利用者の質問・読んだ文書）は、どれも文章。読んだ文書の中の1文が、指示として働いてしまう。①直接型：利用者が自分で細工した入力をLLMに打ち込む。②間接型（例）：攻撃者が共有の資料に白い文字で命令を書く。社員がチャットボットに質問すると、チャットボットが検索でその資料を読み込み、回答に不審なURLが入って社員に届く。対策：権限を最小にし、重要な操作は人が承認する。RAGやファインチューニングだけでは防げない。混同しやすいもの：データポイズニングは学習データに細工すること、敵対的サンプルは小さなノイズで誤分類させること。</desc>
+<desc id="fig-ap-prompt-injection-d">LLMが受け取るもの（開発者の指示・利用者の質問・読んだ文書）は、どれも文章。読んだ文書の中の1文が、指示として働いてしまう。①直接型：利用者が自分で細工した入力をLLMに打ち込む。②間接型（例）：攻撃者が共有の資料に白い文字で命令を書く。社員がチャットボットに質問すると、チャットボットが検索でその資料を読み込み、回答に不審なURLが入って社員に届く。対策：読み込む外部のデータに不正な指示が無いかを検証する、利用者の指示と外部のデータを区分する、権限を最小にする、重要な操作は人が承認する。RAGやファインチューニングだけでは防げない。混同しやすいもの：データポイズニングは学習データに細工すること、敵対的サンプルは小さなノイズで誤分類させること。</desc>
 <text x="12" y="20" class="tb">プロンプトインジェクション</text>
 <rect x="12" y="32" width="296" height="66" class="fas sa" stroke-width="1.5" rx="6"/>
 <text x="22" y="52" class="tb ta">LLMが受け取るもの（どれも文章）</text>
@@ -49,9 +49,10 @@
 <line x1="57" y1="411" x2="57" y2="371.6" class="l sng"/>
 <polygon points="57,366 53.5,371.6 60.5,371.6" class="fm"/>
 <text x="122" y="404" class="tng" text-anchor="middle">社員に届く</text>
-<text x="12" y="466" class="tm">対策：権限を最小に・重要な操作は人が承認</text>
-<text x="12" y="486" class="tm">RAGやファインチューニングだけでは防げない</text>
-<text x="12" y="514" class="tb">混同しやすいもの</text>
-<text x="12" y="534" class="tm">データポイズニング：学習データに細工する</text>
-<text x="12" y="554" class="tm">敵対的サンプル：小さなノイズで誤分類させる</text>
+<text x="12" y="466" class="tm">対策：読み込むデータを検証・指示とデータを区分</text>
+<text x="12" y="484" class="tm">　　　権限を最小に・重要な操作は人が承認</text>
+<text x="12" y="506" class="tm">RAGやファインチューニングだけでは防げない</text>
+<text x="12" y="534" class="tb">混同しやすいもの</text>
+<text x="12" y="554" class="tm">データポイズニング：学習データに細工する</text>
+<text x="12" y="574" class="tm">敵対的サンプル：小さなノイズで誤分類させる</text>
 </svg>

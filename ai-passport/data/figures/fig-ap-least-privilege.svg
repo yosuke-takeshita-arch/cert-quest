@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-ap-least-privilege-t fig-ap-least-privilege-d">
+<title id="fig-ap-least-privilege-t">アクセス管理：必要な人に、必要なだけ許し、人が入れ替わるたびに見直す</title>
+<desc id="fig-ap-least-privilege-d">権限とは、だれが、どの情報に、何をしてよいかの設定。総務省の『国民のためのサイバーセキュリティサイト』のアクセス制御・管理のページによる。すべての利用者にすべての権限を与えるのは避ける。触れる人が多いほど、漏れたり消されたりする道が増える。最低限必要な利用者にだけ、必要最低限のアクセスを許す。ページの例：開発中の製品のデータのファイルには、開発部門に編集・削除・閲覧を許し、営業部門には閲覧だけを許す（または許さない）。人事異動・退職・新入社員の受け入れなどで人が入れ替わるたびに見直し、定期的に棚卸をして、一時的な権限やテスト用の利用者、退職した人の利用者が残っていないかを確かめる。一度決めたら変えない、本人が自分で権限を足す、という形では、必要最低限が崩れる。</desc>
+<text x="12" y="20" class="tb">アクセス管理：必要な人に、必要なだけ</text>
+<text x="12" y="42" class="tm">権限＝だれが、どの情報に、何をしてよいか</text>
+<rect x="12" y="56" width="296" height="58" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="78" class="tb tng">× すべての人に、すべての権限</text>
+<text x="22" y="100" class="tm">触れる人が多いほど、漏れる・消される道が増える</text>
+<text x="12" y="140" class="tb tok">○ 最低限必要な人に、必要最低限だけ</text>
+<text x="12" y="160" class="tm">例：開発中の製品のデータのファイル</text>
+<rect x="12" y="170" width="296" height="108" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="194" class="tb">開発部門</text>
+<text x="118" y="194">閲覧・編集・削除</text>
+<line x1="22" y1="206" x2="298" y2="206" class="l sb w1"/>
+<text x="22" y="228" class="tb">営業部門</text>
+<text x="118" y="228">閲覧だけ（または無し）</text>
+<line x1="22" y1="240" x2="298" y2="240" class="l sb w1"/>
+<text x="22" y="262" class="tb">ほかの人</text>
+<text x="118" y="262">触れない</text>
+<text x="12" y="306" class="tb ta">人が入れ替わるたびに見直す</text>
+<rect x="12" y="316" width="296" height="128" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="338">異動・退職・入社 → そのつど直す</text>
+<text x="22" y="358" class="tm">例：営業部門へ異動した開発の人から、</text>
+<text x="22" y="376" class="tm">　　編集・削除の権限を外す</text>
+<text x="22" y="402">定期的に棚卸 → 残っていないか見る</text>
+<text x="22" y="422" class="tm">一時的な権限・テスト用の利用者・</text>
+<text x="22" y="438" class="tm">退職した人の利用者</text>
+<line x1="12" y1="462" x2="308" y2="462" class="l sb w1"/>
+<text x="12" y="486" class="tb tng">こうすると必要最低限が崩れる</text>
+<text x="12" y="508" class="tm">・一度決めた権限を、人が替わっても変えない</text>
+<text x="12" y="528" class="tm">・利用者が自分で権限を足す</text>
+<text x="12" y="550" class="tm">出典：総務省『アクセス制御・管理』</text>
+</svg>

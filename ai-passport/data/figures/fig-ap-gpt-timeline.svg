@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 602" role="img" aria-labelledby="fig-ap-gpt-timeline-t fig-ap-gpt-timeline-d">
 <title id="fig-ap-gpt-timeline-t">OpenAIのモデルの流れ：GPTからGPT-6 Astraまで</title>
-<desc id="fig-ap-gpt-timeline-d">上から下へ年が進む。2018年 GPT：約1億1,700万パラメータ。本の文章で事前学習し、仕事ごとに追加学習した。2019年 GPT-2：最大約15億。例を見せずに多くの仕事に取り組めた。2020年 GPT-3：1,750億。少数の例を見せるだけで多くの仕事をこなした。2022年 ChatGPT：GPT-3.5系列のモデルをRLHFで仕上げた会話型。公開は11月30日。2023年 GPT-4：画像と文章を入力に取り、文章を出すマルチモーダル。2024年 GPT-4o：oはomni（あらゆる）で、文章・音声・画像を1つのモデルで扱う。2024年 o1：推論モデルで、答える前に長く考える。2025年 GPT-5：ルーターが速いモデルと深く推論するモデルを選ぶ。2026年 GPT-6 Astra：9月3日発表。PCやブラウザを操作して作業を進める。パラメータは約1億、約15億、1,750億と、2年ほどで1,000倍以上になった。</desc>
+<desc id="fig-ap-gpt-timeline-d">上から下へ年が進む。2018年 GPT：約1億1,700万パラメータ。本の文章で事前学習し、仕事ごとに追加学習した。2019年 GPT-2：最大約15億。例を見せずに多くの仕事に取り組めた。2020年 GPT-3：1,750億。少数の例を見せるだけで多くの仕事をこなした。2022年 ChatGPT：GPT-3.5系列のモデルをRLHFで仕上げた会話型。公開は11月30日。2023年 GPT-4：画像と文章を入力に取り、文章を出すマルチモーダル。2024年 GPT-4o：oはomni（あらゆる）で、文章・音声・画像・動画のどの組み合わせも入力でき、文章・音声・画像を出力する1つのモデル。2024年 o1：推論モデルで、答える前に長く考える。2025年 GPT-5：ルーターが速いモデルと深く推論するモデルを選ぶ。2026年 GPT-6 Astra：9月3日発表。PCやブラウザを操作して作業を進める。パラメータは約1億、約15億、1,750億と、2年ほどで1,000倍以上になった。</desc>
 <text x="12" y="20" class="tb">OpenAI のモデルの流れ</text>
 <line x1="40" y1="34" x2="40" y2="546" class="l sm w2"/>
 <circle cx="40" cy="46" r="5" class="fa"/>
@@ -32,7 +32,8 @@
 <text x="32" y="340" class="tm" text-anchor="end">2024</text>
 <text x="54" y="340" class="tb ta">GPT-4o</text>
 <text x="122" y="340" class="tb">o＝omni（あらゆる）</text>
-<text x="54" y="360" class="tm">文章・音声・画像を1つのモデルで</text>
+<text x="54" y="360" class="tm">文章・音声・画像・動画を入力に取り、</text>
+<text x="54" y="378" class="tm">文章・音声・画像を出す1つのモデル</text>
 <circle cx="40" cy="394" r="5" class="fa"/>
 <text x="32" y="398" class="tm" text-anchor="end">2024</text>
 <text x="54" y="398" class="tb ta">o1</text>

@@ -129,7 +129,7 @@
       "並列処理（Parallel Processing）"
     ],
     "answer": 2,
-    "explanation": "同じ文の中で、各語がほかのどの語とどれだけ関係が深いかを計算し、その重みで情報を混ぜるのが Self-Attention。この文では、『それ』と『箱』の関係が強く計算されれば、『それ』の表現に『箱』の意味が多く入る。Googleの用語集も、self-attention の層は、各語について文の全部の要素との関係の強さを点数にし、その点数でほかの語の表現をどれだけ取り込むかを決めると説明している。",
+    "explanation": "同じ文の中で、各語がほかのどの語とどれだけ関係が深いかを計算し、その重みで情報を混ぜるのが Self-Attention。この文では、『それ』と『箱』の関係が強く計算されれば、『それ』の表現に『箱』の意味が多く入る。Googleの用語集も、self-attention の層は、各語について文の全部の要素との関係の強さを点数にし、その点数でほかの語の表現をどれだけ取り込むかを決めると説明している。図は別の例文（『その動物は道を渡らなかった。それはとても疲れていたからだ。』）で、『それ』が『動物』を指す場合を描いている。仕組みは同じで、この問いの文なら、図の『動物』の位置に『箱』が来て、『箱』の重みが大きくなる。",
     "whyWrong": [
       "畳み込みは、画像の上で小さなフィルタ（重みの組）をずらしながら掛け合わせ、近くの画素の模様を拾う計算。近くの範囲しか一度に見ず、文の全部の語との関係を重みで混ぜる仕組みではない。",
       "長距離依存は、離れた語どうしが意味の上でつながっていること、という課題の名前。この文の『それ』と『箱』の関係はその例だが、関係を計算する仕組みの名前ではない。",
@@ -546,7 +546,7 @@
       "（ア）拡散過程　（イ）逆拡散過程　（ウ）潜在拡散モデル"
     ],
     "answer": 3,
-    "explanation": "ノイズを足して壊す向きが拡散過程、ノイズを取り除いて作る向きが逆拡散過程。これを、学習済みのオートエンコーダで縮めた潜在空間の中で行うのが潜在拡散モデル（Rombachら、2021）。",
+    "explanation": "ノイズを足して壊す向きが拡散過程、ノイズを取り除いて作る向きが逆拡散過程。これを、学習済みのオートエンコーダで縮めた潜在空間の中で行うのが潜在拡散モデル（Rombachら、2021）。図は（ア）（イ）の拡散過程と逆拡散過程を描いている。（ウ）の潜在拡散モデルは、この逆拡散（ノイズを少しずつ取り除く）を、画素のままではなく、画像を縮めた潜在表現（例：512×512の画像を64×64に）の上で行う形。",
     "whyWrong": [
       "（ア）と（イ）が逆。逆拡散過程は、ノイズを取り除いてデータを作る向き。",
       "（イ）（ウ）が違う。誤差逆伝播法は、ニューラルネットワークの学習で、誤差を出力側から入力側へたどって各重みの勾配を求める方法。名前に『逆』が付くが、ノイズを取り除いてデータを作る過程ではない。GANは、生成器と識別器を競わせて画像を作るモデルで、拡散と逆拡散の仕組みを持たない。",
@@ -762,7 +762,7 @@
     ],
     "memoryTip": "事前学習＝『次の語当て』を大量にくり返す。正解は文章の中にある。",
     "concepts": ["C-AP-02-015", "C-AP-02-016"],
-    "figures": ["fig-ap-llm-training-stages", "fig-ap-next-token"],
+    "figures": ["fig-ap-llm-training-stages"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（pre-training）", "url": "https://developers.google.com/machine-learning/glossary" },
       { "title": "OpenAI『Why language models hallucinate』（2025年9月5日）", "url": "https://openai.com/index/why-language-models-hallucinate/" }
@@ -1027,7 +1027,7 @@
     ],
     "memoryTip": "重みが変わる＝追加学習。入力を変えるだけ＝RAGやプロンプトの工夫。",
     "concepts": ["C-AP-02-021", "C-AP-02-038", "C-AP-02-020"],
-    "figures": ["fig-ap-weight-change", "fig-ap-rag"],
+    "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" },
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" }
@@ -1249,14 +1249,14 @@
       "モデルの大きさもデータの量も性能には関係しないので、配分を気にする必要はない"
     ],
     "answer": 1,
-    "explanation": "Hoffmannら（2022）は、計算量に対して最も効率よく学習するには、モデルの大きさと学習のトークン数を同じ割合で増やすべきで、モデルを2倍にするたびにトークン数も2倍にするのがよいとした。当時の多くのLLMは学習不足だったとし、700億パラメータのChinchillaに4倍のデータを使わせて、2,800億パラメータのGopherやGPT-3（OpenAI が2020年に出した1,750億パラメータの言語モデル）を多くの仕事で上回った。",
+    "explanation": "Hoffmannら（2022）は、計算量に対して最も効率よく学習するには、モデルの大きさと学習のトークン数を同じ割合で増やすべきで、モデルを2倍にするたびにトークン数も2倍にするのがよいとした。当時の多くのLLMは学習不足だったとし、700億パラメータのChinchillaに約4倍のデータ（論文の要旨は4倍と書く。図の数では、Gopherの3,000億トークンに対して1.4兆トークンで、1.4兆÷3,000億≒4.7倍）を使わせて、2,800億パラメータのGopherやGPT-3（OpenAI が2020年に出した1,750億パラメータの言語モデル）を多くの仕事で上回った。",
     "whyWrong": [
       "論文は、当時のLLMが、データの量をそのままにモデルだけを大きくしてきた結果、学習不足になっていると指摘した。モデルだけを増やすのは、論文が問題にした配分。",
       null,
       "モデルを小さいままにするのではなく、モデルとデータを同じ割合で増やすのが論文の結論。",
       "論文は、モデルの大きさもデータの量も性能に関係するからこそ、配分を調べている。"
     ],
-    "memoryTip": "Chinchilla＝モデルとデータは『半々で』増やす。",
+    "memoryTip": "Chinchilla＝モデルとデータは『同じ倍率で』増やす（モデル2倍ならデータも2倍）。",
     "concepts": ["C-AP-02-025", "C-AP-02-029"],
     "figures": ["fig-ap-chinchilla"],
     "sources": [
@@ -1904,7 +1904,7 @@
     ],
     "memoryTip": "RAG＝毎回『資料を手渡す』。モデルの中身は変わらない。",
     "concepts": ["C-AP-02-038", "C-AP-02-021"],
-    "figures": ["fig-ap-rag", "fig-ap-weight-change"],
+    "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Lewis et al. (2020) Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (arXiv:2005.11401)", "url": "https://arxiv.org/abs/2005.11401" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -3271,7 +3271,7 @@
       "Stable Diffusionは、10GB以上のメモリを持つGPUで動く、比較的軽いモデルとして公開された"
     ],
     "answer": 2,
-    "explanation": "画像生成AIの出力が、学習データの作品などに似ることはありうる。生成の仕組みのうえでも、音楽の生成AIの研究（MusicLM）が学習データの覚え込みを調べているように、生成AIが学習データに近いものを出すことは確かめるべき問題とされている。公開や利用の前に、既存の作品に似ていないかを確かめる必要がある（著作権との関係は第4章）。",
+    "explanation": "画像生成AIの出力が、学習データの作品などに似ることはありうる。Carliniら（2023）は、Stable Diffusion などの画像の拡散モデルが学習データの個々の画像を覚え込み、生成のときにそのまま出すことがあると示し、人物の写真や会社のロゴなど、千件を超える学習データの画像を取り出した。音楽の生成AIの研究（MusicLM）も学習データの覚え込みを調べており、生成AIが学習データに近いものを出すことは確かめるべき問題とされている。公開や利用の前に、既存の作品に似ていないかを確かめる必要がある（著作権との関係は第4章）。",
     "whyWrong": [
       "適切。Rombachら（2021）は、Cross-Attention（文章などの別の入力を条件として取り込む注意機構）の層を入れて、文章や囲み枠などを条件にして画像を作れるようにしたとしている。",
       "適切。4o Image Generationの発表は、作ったすべての画像にC2PA（コンテンツに来歴の情報を付けるための技術の標準）のメタデータを付けるとしている。",
@@ -3285,7 +3285,8 @@
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" },
       { "title": "OpenAI『Introducing 4o Image Generation』（2025年3月25日）", "url": "https://openai.com/index/introducing-4o-image-generation/" },
-      { "title": "Agostinelli et al. (2023) MusicLM: Generating Music From Text (arXiv:2301.11325)", "url": "https://arxiv.org/abs/2301.11325" }
+      { "title": "Agostinelli et al. (2023) MusicLM: Generating Music From Text (arXiv:2301.11325)", "url": "https://arxiv.org/abs/2301.11325" },
+      { "title": "Carlini et al. (2023) Extracting Training Data from Diffusion Models (arXiv:2301.13188)", "url": "https://arxiv.org/abs/2301.13188" }
     ],
     "status": "verified"
   },

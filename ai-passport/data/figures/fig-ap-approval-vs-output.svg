@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-ap-approval-vs-output-t fig-ap-approval-vs-output-d">
+<title id="fig-ap-approval-vs-output-t">会社の承認が確かめること、出力の確認が確かめること</title>
+<desc id="fig-ap-approval-vs-output-d">会社の承認は道具の確認で、使い始める前に1回、入力したデータをどう扱うか（学習に使わないか）、契約や規約、安全性を確かめる。承認しても、出力ごとに起こることは残る。1つは事実でない内容がもっともらしく出ること（ハルシネーション）。例：資料では売上が前年の112％なのに、AIの要約では120％になっていた。もう1つは既存の作品に似たものが出ること。だから出力は毎回確かめる。事実や数字は一次情報（もとの資料）で確かめ、外に出す絵や文は検索で既存の作品に似ていないかを確かめる。著作権侵害になるかは、類似性と依拠性で決まり、ツールが社内で承認されているかどうかは関係しない。社内の承認は、著作権者の許諾ではない。</desc>
+<text x="12" y="20" class="tb">承認が確かめること・出力の確認</text>
+<text x="12" y="48" class="tb tok">会社の承認＝道具の確認（使う前に1回）</text>
+<rect x="12" y="58" width="296" height="76" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="80">・入力したデータをどう扱うか</text>
+<text x="22" y="98" class="tm">　（入力を学習に使わないか など）</text>
+<text x="22" y="120">・契約・規約・安全性</text>
+<text x="12" y="160" class="tb tng">承認しても残ること（出力ごとに起こる）</text>
+<rect x="12" y="170" width="296" height="134" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="192">・事実でない内容がもっともらしく出る</text>
+<text x="22" y="210" class="tm">　（ハルシネーション）</text>
+<text x="22" y="232" class="tm">　例：資料では売上が前年の112％なのに、</text>
+<text x="22" y="250" class="tm">　　　AIの要約では120％になっていた</text>
+<text x="22" y="276">・既存の作品に似たものが出る</text>
+<text x="22" y="294" class="tm">　（承認したツールでも同じ）</text>
+<text x="12" y="332" class="tb ta">だから、出力は毎回確かめる</text>
+<rect x="12" y="342" width="296" height="98" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="364">・事実・数字 → もとの資料（一次情報）</text>
+<text x="22" y="382" class="tm">　で確かめる。例なら112％に直す</text>
+<text x="22" y="408">・外に出す絵・文 → 検索で、既存の</text>
+<text x="22" y="426" class="tm">　作品に似ていないかを確かめる</text>
+<line x1="12" y1="458" x2="308" y2="458" class="l sb w1"/>
+<text x="12" y="482" class="tb">著作権侵害かは、類似性と依拠性で決まる</text>
+<text x="12" y="504" class="tm">ツールが社内で承認されているかは関係しない</text>
+<text x="12" y="530" class="tb tng">社内の承認は、著作権者の許諾ではない</text>
+</svg>

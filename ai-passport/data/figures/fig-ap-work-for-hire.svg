@@ -1,22 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 222" role="img" aria-labelledby="fig-ap-work-for-hire-t fig-ap-work-for-hire-d">
-<title id="fig-ap-work-for-hire-t">職務著作：会社の仕事で作った著作物は、条件を満たすと会社が著作者になる</title>
-<desc id="fig-ap-work-for-hire-d">職務著作（著作権法第15条）。社員が仕事として前処理のプログラムを書くと、著作者は会社になり、社員は著作者でない。条件は、会社の発意、職務上作ったもの、別の定めが無いこと。プログラム以外は、会社名義で公表することも要る。権利は書いた時に、手続なしで発生する。</desc>
-<text x="12" y="20" class="tb">職務著作：作者は誰か</text>
-<text x="12" y="44" class="tb ta">著作権法 第15条</text>
-<rect x="12" y="56" width="84" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
-<text x="54" y="78" class="tb" text-anchor="middle">社員</text>
-<text x="112" y="66" class="tm" text-anchor="middle">書く</text>
-<line x1="96" y1="73" x2="124.4" y2="73" class="l sm w1"/>
-<polygon points="130,73 124.4,69.5 124.4,76.5" class="fm"/>
-<rect x="130" y="56" width="178" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
-<text x="219" y="78" text-anchor="middle">前処理のプログラム</text>
-<line x1="219" y1="90" x2="219" y2="104.4" class="l sm w1"/>
-<polygon points="219,110 215.5,104.4 222.5,104.4" class="fm"/>
-<rect x="130" y="110" width="178" height="36" class="fok sok" stroke-width="1.5" rx="6"/>
-<text x="219" y="133" class="tb tok" text-anchor="middle">著作者＝会社</text>
-<text x="54" y="122" class="tng" text-anchor="middle">社員は</text>
-<text x="54" y="140" class="tng" text-anchor="middle">著作者でない</text>
-<text x="12" y="170" class="tm">条件：会社の発意・職務上・別の定めが無い</text>
-<text x="12" y="190" class="tm">プログラム以外は、会社名義の公表も要る</text>
-<text x="12" y="210" class="tm">権利は書いた時に、手続なしで発生</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 446" role="img" aria-labelledby="fig-ap-work-for-hire-t fig-ap-work-for-hire-d">
+<title id="fig-ap-work-for-hire-t">職務著作：会社の仕事で作った著作物は、条件を満たすと会社が著作者になる。1項（プログラム以外）と2項（プログラム）</title>
+<desc id="fig-ap-work-for-hire-d">職務著作（著作権法15条）。1項はプログラム以外の著作物：会社の発意に基づき、社員が職務上作り、会社が自分の名義で公表するものは、作った時の契約や勤務規則などに別の定めが無い限り、著作者は会社になる。例：上司の指示で社員が書き、会社の名前で発行する会社案内の文章。2項はプログラムの著作物：会社の発意に基づき、社員が職務上作るものは、別の定めが無い限り著作者は会社。会社名義で公表することは条件に入らない。例：社員が仕事で書いた、社内で使う前処理のプログラム（公表しなくても会社が著作者）。どちらも、著作者が会社なら社員は著作者でない。権利は作った時に、手続なしで発生する。</desc>
+<text x="12" y="20" class="tb">職務著作：作者は誰か（著作権法15条）</text>
+<text x="12" y="42" class="tm">会社の仕事で作ったとき、条件を満たせば</text>
+<text x="12" y="60" class="tm">著作者は社員ではなく会社になる</text>
+<text x="12" y="88" class="tb ta">1項：プログラム以外</text>
+<rect x="12" y="98" width="296" height="128" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="120">例：上司の指示で社員が書いた会社案内の文章</text>
+<text x="22" y="138" class="tm">（会社の名前で発行する）</text>
+<text x="22" y="162">条件：①会社の発意 ②職務上作る</text>
+<text x="22" y="180" class="tb">　③会社の名義で公表する</text>
+<text x="22" y="198">　④別の定めが無い</text>
+<text x="22" y="218" class="tb tok">→ 著作者＝会社（社員は著作者でない）</text>
+<text x="12" y="254" class="tb ta">2項：プログラム</text>
+<rect x="12" y="264" width="296" height="110" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="286">例：社員が仕事で書いた、社内で使う</text>
+<text x="22" y="304">前処理のプログラム（公表しない）</text>
+<text x="22" y="328">条件：①会社の発意 ②職務上作る</text>
+<text x="22" y="346">　④別の定めが無い（③の公表は要らない）</text>
+<text x="22" y="366" class="tb tok">→ 著作者＝会社</text>
+<text x="12" y="400" class="tb">違いは③：プログラム（2項）は、会社の</text>
+<text x="12" y="418" class="tb">名義で公表するかを問わない</text>
+<text x="12" y="438" class="tm">権利は作った時に、手続なしで発生</text>
 </svg>

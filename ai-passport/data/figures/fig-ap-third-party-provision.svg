@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 600" role="img" aria-labelledby="fig-ap-third-party-provision-t fig-ap-third-party-provision-d">
+<title id="fig-ap-third-party-provision-t">個人データの第三者提供：原則は本人の同意。例外と、第三者に当たらない場合</title>
+<desc id="fig-ap-third-party-provision-d">個人情報保護法27条による。原則（27条1項）：個人データをほかの会社などの第三者に渡すには、あらかじめ本人の同意が要る。同意なしで渡せる例外（27条1項各号）：法令に基づく場合、人の生命・身体・財産を守るのに必要で同意を得るのが難しいとき、公衆衛生や児童の健全な育成に特に必要で同意を得るのが難しいとき、国や地方公共団体の事務に協力する必要があるとき、学術研究の場合の一部。オプトアウト（27条2項）：本人が求めれば止めると決め、決められた事項を本人に知らせて委員会に届け出れば渡せる。ただし要配慮個人情報はオプトアウトでは渡せない。第三者に当たらない（27条5項）：委託に伴って渡す（利用目的の達成に必要な範囲で）、合併などの事業の承継、決められた事項を前もって本人に知らせた共同利用。例：取引先から顧客の名簿を頼まれた。頼まれたことは、例外にも、第三者に当たらない場合にも入らないので、本人の同意が要る。</desc>
+<text x="12" y="20" class="tb">個人データを第三者に渡すとき（27条）</text>
+<rect x="12" y="32" width="296" height="54" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="54" class="tb">原則（1項）：本人の同意が要る</text>
+<text x="22" y="74" class="tm">あらかじめ同意を得てから渡す</text>
+<text x="12" y="112" class="tb tok">同意なしで渡せる例外（1項各号）</text>
+<rect x="12" y="122" width="296" height="98" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="144">・法令に基づく場合</text>
+<text x="22" y="164">・命・体・財産を守るのに必要で、同意が</text>
+<text x="22" y="182">　難しいとき</text>
+<text x="22" y="204" class="tm">・公衆衛生・国の事務への協力・学術研究 など</text>
+<text x="12" y="246" class="tb tok">第三者に当たらない（5項）</text>
+<rect x="12" y="256" width="296" height="80" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="278">・委託に伴って渡す（目的に必要な範囲）</text>
+<text x="22" y="298">・合併などの事業の承継</text>
+<text x="22" y="318">・前もって本人に知らせた共同利用</text>
+<text x="12" y="362" class="tb">オプトアウト（2項）</text>
+<text x="12" y="382" class="tm">本人が求めれば止める、と決めて本人に知らせ、</text>
+<text x="12" y="400" class="tm">委員会に届け出れば渡せる</text>
+<text x="12" y="420" class="tb tng">ただし要配慮個人情報はオプトアウト不可</text>
+<line x1="12" y1="438" x2="308" y2="438" class="l sb w1"/>
+<text x="12" y="462" class="tb">例：取引先から顧客の名簿を頼まれた</text>
+<rect x="12" y="472" width="296" height="98" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="494">法令に基づく？ → いいえ</text>
+<text x="22" y="514">委託・承継・共同利用？ → いいえ</text>
+<text x="22" y="534" class="tm">（取引先が自分の目的で使う）</text>
+<text x="22" y="556" class="tb tng">→ 原則どおり、本人の同意が要る</text>
+<text x="12" y="590" class="tm">頼まれた、は同意の代わりにならない</text>
+</svg>

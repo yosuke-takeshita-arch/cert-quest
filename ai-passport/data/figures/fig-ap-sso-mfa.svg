@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-ap-sso-mfa-t fig-ap-sso-mfa-d">
+<title id="fig-ap-sso-mfa-t">SSOは入口をまとめる、多要素認証は入口を固める。役割が違うので組み合わせる</title>
+<desc id="fig-ap-sso-mfa-d">SSO（シングルサインオン）は、1組の資格情報（IDとパスワードなど）で、割り当てられた複数のアプリに入れる仕組みで、入口を1つにまとめる。例：会社のIDで1回ログインすると、文章生成AI・メール・ファイル共有の3つが使える。会社のIDを止めれば、3つともまとめて止められる。多要素認証は、知っているもの・持っているもの・本人自身に関するもののうち2種類以上で本人を確かめる仕組みで、入口を固める。SSOだけでは、入口の鍵が1つになるので、パスワードが盗まれると3つとも入られる。SSOに多要素認証を組み合わせると、パスワードが盗まれても、持っているもの（スマホなど）が無ければ入れない。SSOは本人確認の強さを上げる仕組みではないので、SSOを入れても多要素認証は要る（2つの仕組みの役割から導いた帰結）。</desc>
+<text x="12" y="20" class="tb">SSO と 多要素認証：役割が違う</text>
+<rect x="12" y="32" width="296" height="114" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="54" class="tb ta">SSO＝入口をまとめる</text>
+<text x="22" y="74" class="tm">1組のIDとパスワードで、複数のアプリへ</text>
+<text x="22" y="98">例：会社のIDで1回ログイン →</text>
+<text x="22" y="116">　文章生成AI・メール・ファイル共有</text>
+<text x="22" y="134" class="tm">会社のIDを止めれば、3つともまとめて止まる</text>
+<rect x="12" y="152" width="296" height="74" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="174" class="tb ta">多要素認証＝入口を固める</text>
+<text x="22" y="194" class="tm">知っている・持っている・本人自身のもの</text>
+<text x="22" y="212" class="tm">のうち、2種類以上で本人を確かめる</text>
+<text x="12" y="254" class="tb">パスワードが盗まれたら？</text>
+<rect x="12" y="264" width="296" height="64" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="286" class="tb tng">SSOだけ</text>
+<text x="22" y="306">入口の鍵が1つ → 3つとも入られる</text>
+<rect x="12" y="336" width="296" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="358" class="tb tok">SSO＋多要素認証</text>
+<text x="22" y="378">スマホの確認が無ければ入れない</text>
+<text x="12" y="428" class="tb">SSOを入れても、多要素認証は要る</text>
+<text x="12" y="450" class="tm">（2つの仕組みの役割から導いた帰結）</text>
+</svg>
