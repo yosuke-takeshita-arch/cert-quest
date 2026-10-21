@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 544" role="img" aria-labelledby="fig-g-gan-no-density-t fig-g-gan-no-density-d">
+<title id="fig-g-gan-no-density-t">GAN は画像を作れるが、ある画像のもっともらしさ（確率の値 pg(x)）は計算できない</title>
+<desc id="fig-g-gan-no-density-d">何のための図か：GAN の原論文が欠点として挙げた『生成器の分布 pg(x) を明示的に表すものが無い』を、できることとできないことに分けて見る。①できること：ノイズ z（乱数の並び）を生成器に通すと、画像が1枚できる。何枚でも作れる。②できないこと：手元の画像 x を渡して、生成器がその x を作る確率 pg(x) がいくつかを答えること。生成器は z から x への一方向の変換で、pg(x) を計算する式を持たない。③取り違えやすい点：識別器の出す値 D(x) は、x が本物のデータから来た確率（本物か偽物かの見分け）で、pg(x) ではない。④原論文のまとめ：欠点は pg(x) を明示的に表すものが無いことと、識別器と生成器の学習のつり合いを保つ必要があること（識別器を更新せずに生成器だけ学習しすぎると、多くの z が同じ x に写される）。利点はマルコフ連鎖が要らず、誤差逆伝播だけで勾配が得られること。</desc>
+<text x="12" y="20" class="tb">GAN：作れるが、確率の値は言えない</text>
+<text x="12" y="42" class="tm">何のための図か：原論文が欠点とした点を、</text>
+<text x="12" y="60" class="tm">できること・できないことに分けて見る</text>
+<text x="12" y="78" class="tm">z ＝ ノイズ（乱数の並び）</text>
+<line x1="12" y1="90" x2="308" y2="90" class="l sb w1"/>
+<text x="12" y="112" class="tb">① できること：画像を作る</text>
+<rect x="12" y="124" width="70" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="47" y="149" class="tb" text-anchor="middle">ノイズ z</text>
+<line x1="84" y1="144" x2="106" y2="144" class="l sm w1"/>
+<polygon points="112,144 106,140.5 106,147.5" class="fm"/>
+<rect x="114" y="124" width="82" height="40" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="155" y="149" class="tb" text-anchor="middle">生成器 G</text>
+<line x1="198" y1="144" x2="220" y2="144" class="l sm w1"/>
+<polygon points="226,144 220,140.5 220,147.5" class="fm"/>
+<rect x="228" y="124" width="80" height="40" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="268" y="149" class="tb" text-anchor="middle">画像 x</text>
+<text x="12" y="186" class="tb tok">○ z を変えれば、何枚でも作れる</text>
+<line x1="12" y1="198" x2="308" y2="198" class="l sb w1"/>
+<text x="12" y="220" class="tb">② できないこと：確率の値を言う</text>
+<rect x="12" y="232" width="80" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="52" y="248.5" class="tm" text-anchor="middle">手元の</text>
+<text x="52" y="265.5" class="tm" text-anchor="middle">画像 x</text>
+<line x1="94" y1="252" x2="116" y2="252" class="l sm w1"/>
+<polygon points="122,252 116,248.5 116,255.5" class="fm"/>
+<rect x="124" y="232" width="184" height="40" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="216" y="257" class="tb" text-anchor="middle">pg(x) ＝ ？</text>
+<text x="12" y="294" class="tm">pg(x)＝生成器がその x を作る確率</text>
+<text x="12" y="314" class="tb tng">× 生成器は z → x の一方向の変換で、</text>
+<text x="12" y="334" class="tb tng">　pg(x) を計算する式を持たない</text>
+<line x1="12" y1="346" x2="308" y2="346" class="l sb w1"/>
+<text x="12" y="368" class="tb">③ 取り違えやすい点：識別器の値</text>
+<text x="12" y="386" class="tm">D(x)＝x が本物のデータから来た確率</text>
+<text x="12" y="404" class="tm">（本物か偽物かの見分けの値）</text>
+<text x="12" y="424" class="tb">→ pg(x) とは別のもの</text>
+<line x1="12" y1="436" x2="308" y2="436" class="l sb w1"/>
+<text x="12" y="458" class="tb">④ 原論文のまとめ</text>
+<text x="12" y="476" class="tng">欠点：pg(x) を明示的に表すものが無い</text>
+<text x="12" y="494" class="tng">　　　D と G の学習のつり合いが要る</text>
+<text x="12" y="512" class="tok">利点：マルコフ連鎖が要らない</text>
+<text x="12" y="530" class="tok">　　　誤差逆伝播だけで勾配が得られる</text>
+</svg>
