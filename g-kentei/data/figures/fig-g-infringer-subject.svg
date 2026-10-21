@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 488" role="img" aria-labelledby="fig-g-infringer-subject-t fig-g-infringer-subject-d">
+<title id="fig-g-infringer-subject-t">生成物で著作権侵害が起きたとき、だれが侵害の主体と評価されるか</title>
+<desc id="fig-g-infringer-subject-d">何のための図か：生成AIの生成・利用段階で侵害が起きたとき、だれが侵害の主体（責任を負う人）と評価されるかを見る（文化庁「AIと著作権に関する考え方について」）。①AI利用者：生成物を作って使った人がまず主体になる。自分のパソコンで生成するまでは私的使用の範囲でも、ネットで公開（公衆送信）すれば侵害になりうる。②事業者（AIを開発・提供する会社）：侵害物が高い頻度で生成されるAIや、類似物が出やすいと知りながら抑止する措置をとっていない場合は、主体と評価される可能性が高まる。類似物の生成を防止する措置をとっていれば、利用者が類似物を狙ってプロンプトを入れても、主体と評価される可能性は低くなる。③依拠性（もとにしたこと）の立証：学習データの開示を求めなくても、既存の作品との高度の類似性などから認められうる。</desc>
+<text x="12" y="20" class="tb">侵害が起きたとき、だれが主体か</text>
+<text x="12" y="42" class="tm">生成・利用段階（文化庁の整理）</text>
+<rect x="12" y="50" width="296" height="108" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="72" class="tb">① AI利用者：まず主体になる</text>
+<text x="24" y="90">生成物を作って使った人</text>
+<text x="24" y="108" class="tm">自分のパソコンで生成（私的使用の範囲）</text>
+<text x="24" y="126" class="tm">→ ネットで公開（公衆送信）</text>
+<text x="24" y="146" class="tb tng">→ 公開の段階で侵害になりうる</text>
+<text x="12" y="188" class="tb">② 事業者（AIを開発・提供する会社）</text>
+<rect x="12" y="196" width="296" height="88" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="218" class="tb tng">主体と評価されやすい</text>
+<text x="24" y="236">・侵害物が高い頻度で生成されるAI</text>
+<text x="24" y="254">・類似物が出やすいと知りながら、抑止する</text>
+<text x="24" y="272">　措置をとっていない</text>
+<rect x="12" y="296" width="296" height="106" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="318" class="tb tok">主体と評価されにくい</text>
+<text x="24" y="336">・類似物の生成を防止する措置をとっている</text>
+<text x="24" y="354" class="tm">　例：特定の作品名を入れると出力を止める</text>
+<text x="24" y="372">→ 利用者が類似物を狙って指示しても、</text>
+<text x="24" y="390">　 事業者は主体と評価されにくい</text>
+<line x1="12" y1="414" x2="308" y2="414" class="l sb w1"/>
+<text x="12" y="438" class="tb">③ 依拠性（もとにしたこと）の立証</text>
+<text x="12" y="456">学習データの開示を求めなくても、</text>
+<text x="12" y="474">高度の類似性などから認められうる</text>
+</svg>

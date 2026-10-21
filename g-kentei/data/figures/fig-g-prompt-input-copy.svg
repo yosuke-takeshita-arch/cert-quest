@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-g-prompt-input-copy-t fig-g-prompt-input-copy-d">
+<title id="fig-g-prompt-input-copy-t">他人の作品をプロンプトとして入力するとき、第30条の4が使えるか</title>
+<desc id="fig-g-prompt-input-copy-d">何のための図か：既存のイラストなどを生成AIへのプロンプトとして入力するとき、入力に伴う複製に第30条の4が使えるかを、目的で分けて見る（文化庁「AIと著作権に関する考え方について」）。原則：生成AIへの入力は、生成のためにプロンプトを情報解析するものなので、入力に伴う複製には第30条の4の適用が考えられる。例外：入力した作品と似た生成物を作らせる目的で入力する場合は、情報解析の目的のほかに、その作品の表現を味わう（享受する）目的も併存すると考えられ、第30条の4は適用されないと考えられる。第30条の4は、目的の中に1つでも享受の目的があれば使えない。</desc>
+<text x="12" y="20" class="tb">作品をプロンプトとして入力すると</text>
+<text x="12" y="42" class="tm">入力に伴う複製に、第30条の4が使えるか</text>
+<text x="12" y="60" class="tm">（文化庁の整理）</text>
+<rect x="12" y="68" width="296" height="90" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="90" class="tb tok">原則</text>
+<text x="24" y="108">AIは、生成のためにプロンプトを解析する</text>
+<text x="24" y="126">＝ 情報解析</text>
+<text x="24" y="146" class="tb tok">→ 第30条の4の適用が考えられる</text>
+<rect x="12" y="170" width="296" height="126" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="192" class="tb tng">例外：似た生成物を作らせる目的</text>
+<text x="24" y="210">例：あるイラストを入力し、そっくりな絵を</text>
+<text x="24" y="228">作らせる</text>
+<text x="24" y="246">情報解析の目的 ＋ 作品の表現を味わう</text>
+<text x="24" y="264">（享受する）目的も併存する</text>
+<text x="24" y="284" class="tb tng">→ 第30条の4は適用されないと考えられる</text>
+<line x1="12" y1="308" x2="308" y2="308" class="l sb w1"/>
+<text x="12" y="332" class="tb">なぜか</text>
+<text x="12" y="350">第30条の4は、楽しむ（享受する）目的で</text>
+<text x="12" y="368">ない利用のための規定。目的の中に1つでも</text>
+<text x="12" y="386">享受の目的があれば使えない</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 588" role="img" aria-labelledby="fig-g-variance-calc-t fig-g-variance-calc-d">
+<title id="fig-g-variance-calc-t">2, 4, 4, 4, 5, 5, 7, 9 の分散と標準偏差</title>
+<desc id="fig-g-variance-calc-d">何のための図か：8つの数 2, 4, 4, 4, 5, 5, 7, 9 の散らばりを、分散と標準偏差で1つの数にする。手順：①平均は合計40÷8＝5。②偏差（値−平均）は−3, −1, −1, −1, 0, 0, 2, 4。そのまま足すと＋6と−6が打ち消して0になる。③偏差を2乗すると9, 1, 1, 1, 0, 0, 4, 16 で、すべて0以上。合計32。④分散は32÷8＝4。⑤2乗したので単位も2乗になっている。平方根で元の単位に戻すと、標準偏差は√4＝2（2×2＝4）。途中の数との違い：32は割る前の合計、4は分散、5は平均、2が標準偏差。</desc>
+<text x="12" y="20" class="tb">分散と標準偏差を、問題の数で求める</text>
+<text x="12" y="42" class="tm">データ：2, 4, 4, 4, 5, 5, 7, 9（8つ）</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="78" class="tb">① 平均</text>
+<text x="12" y="96">合計 40 ÷ 8 ＝ 5</text>
+<line x1="12" y1="108" x2="308" y2="108" class="l sb w1"/>
+<text x="12" y="132" class="tb">② 偏差（値 − 平均）と、その2乗</text>
+<text x="70" y="154" class="tm" text-anchor="middle">値</text>
+<text x="150" y="154" class="tm" text-anchor="middle">偏差</text>
+<text x="240" y="154" class="tm" text-anchor="middle">偏差の2乗</text>
+<line x1="24" y1="162" x2="296" y2="162" class="l sb w1"/>
+<text x="70" y="180" text-anchor="middle">2</text>
+<text x="150" y="180" class="tng" text-anchor="middle">−3</text>
+<text x="240" y="180" text-anchor="middle">9</text>
+<text x="70" y="199" text-anchor="middle">4</text>
+<text x="150" y="199" class="tng" text-anchor="middle">−1</text>
+<text x="240" y="199" text-anchor="middle">1</text>
+<text x="70" y="218" text-anchor="middle">4</text>
+<text x="150" y="218" class="tng" text-anchor="middle">−1</text>
+<text x="240" y="218" text-anchor="middle">1</text>
+<text x="70" y="237" text-anchor="middle">4</text>
+<text x="150" y="237" class="tng" text-anchor="middle">−1</text>
+<text x="240" y="237" text-anchor="middle">1</text>
+<text x="70" y="256" text-anchor="middle">5</text>
+<text x="150" y="256" class="tm" text-anchor="middle">0</text>
+<text x="240" y="256" text-anchor="middle">0</text>
+<text x="70" y="275" text-anchor="middle">5</text>
+<text x="150" y="275" class="tm" text-anchor="middle">0</text>
+<text x="240" y="275" text-anchor="middle">0</text>
+<text x="70" y="294" text-anchor="middle">7</text>
+<text x="150" y="294" class="tok" text-anchor="middle">+2</text>
+<text x="240" y="294" text-anchor="middle">4</text>
+<text x="70" y="313" text-anchor="middle">9</text>
+<text x="150" y="313" class="tok" text-anchor="middle">+4</text>
+<text x="240" y="313" text-anchor="middle">16</text>
+<line x1="24" y1="322" x2="296" y2="322" class="l sb w1"/>
+<text x="70" y="340" class="tb" text-anchor="middle">合計</text>
+<text x="150" y="340" class="tb" text-anchor="middle">0</text>
+<text x="240" y="340" class="tb" text-anchor="middle">32</text>
+<text x="12" y="364" class="tm">偏差をそのまま足すと、＋6 と −6 が</text>
+<text x="12" y="382" class="tm">打ち消して 0 → 2乗して、すべて0以上にする</text>
+<line x1="12" y1="394" x2="308" y2="394" class="l sb w1"/>
+<text x="12" y="418" class="tb">③ 分散 ＝ 2乗の合計 ÷ 個数</text>
+<text x="12" y="438" class="tb">32 ÷ 8 ＝ 4</text>
+<line x1="12" y1="450" x2="308" y2="450" class="l sb w1"/>
+<text x="12" y="474" class="tb">④ 標準偏差 ＝ 分散の平方根</text>
+<text x="12" y="492">2乗したので、単位も2乗になっている</text>
+<text x="12" y="510">平方根で元の単位に戻す</text>
+<rect x="12" y="518" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="538" class="tb tok">√4 ＝ 2（2 × 2 ＝ 4 だから）</text>
+<text x="12" y="574" class="tm">32 は割る前の合計、4 は分散、5 は平均</text>
+</svg>

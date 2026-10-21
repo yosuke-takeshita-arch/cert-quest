@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 780" role="img" aria-labelledby="fig-g-roc-point-calc-t fig-g-roc-point-calc-d">
+<title id="fig-g-roc-point-calc-t">ROC曲線上の1点の計算：不良品50個・良品150個の検査</title>
+<desc id="fig-g-roc-point-calc-d">何のための図か：不良品50個・良品150個で評価し、不良品のうち40個を不良と判定し、良品のうち15個を誤って不良と判定したとき、ROC曲線上の点が真陽性率0.8・偽陽性率0.1になる理由を、問題と同じ数で見る。①混同行列（行が実際、列が判定）。不良を陽性とする。実際が不良品の行：不良と判定40（TP）、良品と判定50−40＝10（FN、見逃し）。実際が良品の行：不良と判定15（FP、誤検知）、良品と判定150−15＝135（TN）。②真陽性率は実際の不良品の行の中で見つけた割合で、40÷50＝0.8。偽陽性率は実際の良品の行の中で誤って不良とした割合で、15÷150＝0.1。分母はどちらも実際のクラスの数。③ROC曲線のグラフは横軸が偽陽性率、縦軸が真陽性率なので、点は横0.1、縦0.8の位置。問題は（真陽性率, 偽陽性率）の順で聞いているので(0.8, 0.1)。取り違えやすい数：0.73は不良と判定した55個のうち本当に不良だった割合（適合率40÷55）、0.9は良品を良品と判定した割合（135÷150）。</desc>
+<text x="12" y="20" class="tb">ROC曲線の上の1点を、表から計算する</text>
+<text x="12" y="42" class="tm">何のための図か：不良品50個・良品150個の</text>
+<text x="12" y="60" class="tm">検査で、点がなぜ (0.8, 0.1) かを見る</text>
+<text x="12" y="88" class="tb">① 混同行列（不良を陽性とする）</text>
+<text x="200" y="110" class="tm" text-anchor="middle">判定</text>
+<text x="150" y="130" class="tb" text-anchor="middle">不良</text>
+<text x="250" y="130" class="tb" text-anchor="middle">良品</text>
+<text x="12" y="130" class="tm">実際</text>
+<text x="12" y="164" class="tb">不良品</text>
+<text x="12" y="182" class="tm">50個</text>
+<rect x="100" y="140" width="100" height="50" class="fok sok" stroke-width="1.5"/>
+<text x="150" y="164" class="tb tok" text-anchor="middle">40</text>
+<text x="150" y="182" class="tm" text-anchor="middle">TP</text>
+<rect x="200" y="140" width="100" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="250" y="164" class="tb" text-anchor="middle">50−40＝10</text>
+<text x="250" y="182" class="tm" text-anchor="middle">FN（見逃し）</text>
+<text x="12" y="214" class="tb">良品</text>
+<text x="12" y="232" class="tm">150個</text>
+<rect x="100" y="190" width="100" height="50" class="fng sng" stroke-width="1.5"/>
+<text x="150" y="214" class="tb tng" text-anchor="middle">15</text>
+<text x="150" y="232" class="tm" text-anchor="middle">FP（誤検知）</text>
+<rect x="200" y="190" width="100" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="250" y="214" class="tb" text-anchor="middle">150−15＝135</text>
+<text x="250" y="232" class="tm" text-anchor="middle">TN</text>
+<line x1="12" y1="256" x2="308" y2="256" class="l sb w1"/>
+<text x="12" y="278" class="tb">② 割合は、実際のクラスの行の中で数える</text>
+<text x="12" y="300" class="tok">真陽性率＝不良品の行で、見つけた割合</text>
+<rect x="12" y="308" width="296" height="28" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="327" class="tb tok" text-anchor="middle">40 ÷ 50 ＝ 0.8</text>
+<text x="12" y="358" class="tng">偽陽性率＝良品の行で、誤って不良とした割合</text>
+<rect x="12" y="366" width="296" height="28" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="160" y="385" class="tb tng" text-anchor="middle">15 ÷ 150 ＝ 0.1</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="432" class="tb">③ ROC曲線のグラフに置く</text>
+<text x="12" y="452" class="tm">横軸：偽陽性率　縦軸：真陽性率</text>
+<line x1="60" y1="660" x2="260" y2="660" class="l sm w1"/>
+<line x1="60" y1="660" x2="60" y2="470" class="l sm w1"/>
+<line x1="60" y1="660" x2="250" y2="470" class="l sm w1 dot"/>
+<text x="60" y="678" class="tm" text-anchor="middle">0</text>
+<text x="250" y="678" class="tm" text-anchor="middle">1</text>
+<text x="160" y="696" class="tm" text-anchor="middle">偽陽性率（横）</text>
+<text x="52" y="474" class="tm" text-anchor="end">1</text>
+<text x="52" y="512" class="tm" text-anchor="end">0.8</text>
+<line x1="60" y1="508" x2="79" y2="508" class="l sm w1 dsh"/>
+<line x1="79" y1="660" x2="79" y2="508" class="l sm w1 dsh"/>
+<text x="79" y="678" class="tm" text-anchor="middle">0.1</text>
+<circle cx="79" cy="508" r="6" class="fa sa"/>
+<text x="92" y="504" class="tb ta">横 0.1、縦 0.8 の点</text>
+<text x="44" y="580" class="tm" text-anchor="end">真</text>
+<text x="44" y="596" class="tm" text-anchor="end">陽</text>
+<text x="44" y="612" class="tm" text-anchor="end">性</text>
+<text x="44" y="628" class="tm" text-anchor="end">率</text>
+<text x="12" y="720" class="tb">問いの順（真陽性率, 偽陽性率）で書くと</text>
+<rect x="12" y="730" width="296" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="750" class="tb tok" text-anchor="middle">(0.8, 0.1)</text>
+</svg>

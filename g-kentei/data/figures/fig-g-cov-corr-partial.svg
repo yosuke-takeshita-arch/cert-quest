@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 514" role="img" aria-labelledby="fig-g-cov-corr-partial-t fig-g-cov-corr-partial-d">
+<title id="fig-g-cov-corr-partial-t">共分散 → 相関係数 → 偏相関係数のつながり</title>
+<desc id="fig-g-cov-corr-partial-d">何のための図か：共分散、相関係数、偏相関係数の3つが、どの順に何をして作られるかを、5人の勉強時間とテストの点の例（説明用の数）で見る。①共分散：2つの変数それぞれの偏差（平均との差）を掛け合わせ、その平均をとる。5人の掛けた値は40, 0, 0, 10, 40 で合計90、90÷5＝18。単位（時間×点）によって数が変わる。②相関係数：共分散を2つの標準偏差の積で割る。勉強時間の標準偏差は√2≒1.41時間、点の標準偏差は√200≒14.1点で、積は20。18÷20＝0.9。−1〜1にそろうので、単位によらず強さを比べられる。③偏相関係数：第3の変数の影響を取り除いてから求めた相関。例えば塾に通っているかが勉強時間と点の両方に効いているなら、その影響を取り除いて、勉強時間と点だけの関係を見る。分散は1つの変数の偏差の2乗の平均で、2つの変数の関係ではない。</desc>
+<text x="12" y="20" class="tb">共分散 → 相関係数 → 偏相関係数</text>
+<text x="12" y="42" class="tm">5人の勉強時間と点数（説明用の数）で見る</text>
+<rect x="12" y="50" width="296" height="126" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="72" class="tb">① 共分散</text>
+<text x="24" y="90">2つの変数の偏差（平均との差）を掛けて、</text>
+<text x="24" y="108">その平均をとる</text>
+<text x="24" y="126" class="tm">5人分の掛けた値 40, 0, 0, 10, 40 → 合計90</text>
+<text x="24" y="146" class="tb ta">90 ÷ 5 ＝ 18</text>
+<text x="24" y="164" class="tm">単位（時間×点）で数が変わってしまう</text>
+<line x1="160" y1="180" x2="160" y2="186" class="l sm w1"/>
+<polygon points="160,192 156.5,186 163.5,186" class="fm"/>
+<rect x="12" y="200" width="296" height="126" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="222" class="tb">② 相関係数</text>
+<text x="24" y="240">共分散を、2つの標準偏差の積で割る</text>
+<text x="24" y="258" class="tm">標準偏差：時間 √2≒1.41、点 √200≒14.1</text>
+<text x="24" y="276" class="tm">積 √2 × √200 ＝ √400 ＝ 20</text>
+<text x="24" y="296" class="tb ta">18 ÷ 20 ＝ 0.9</text>
+<text x="24" y="314" class="tm">−1〜1にそろい、単位によらず比べられる</text>
+<line x1="160" y1="330" x2="160" y2="336" class="l sm w1"/>
+<polygon points="160,342 156.5,336 163.5,336" class="fm"/>
+<rect x="12" y="350" width="296" height="106" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="372" class="tb">③ 偏相関係数</text>
+<text x="24" y="390">第3の変数の影響を取り除いてから求めた相関</text>
+<text x="24" y="408" class="tm">例：塾に通っているかが、勉強時間と点の</text>
+<text x="24" y="426" class="tm">両方に効いているなら、その影響を除いて、</text>
+<text x="24" y="444" class="tm">勉強時間と点だけの関係を見る</text>
+<text x="12" y="482" class="tm">分散は1つの変数の偏差の2乗の平均。</text>
+<text x="12" y="500" class="tm">2つの変数の関係を表すものではない</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 422" role="img" aria-labelledby="fig-g-style-vs-expression-t fig-g-style-vs-expression-d">
+<title id="fig-g-style-vs-expression-t">作風が共通するだけか、創作的表現が直接感得できるか</title>
+<desc id="fig-g-style-vs-expression-d">何のための図か：1人のイラストレーターの作品だけで追加学習したAIの生成物が、著作権侵害になるかどうかの境目を見る（文化庁「AIと著作権に関する考え方について」）。侵害にならない側：生成物と作品群の作風が共通するだけ。例えば色づかいやタッチの雰囲気は似ているが、描かれた構図・人物・線は別。作風は表現に至らないアイデアの側なので、侵害にならない。侵害になりうる側：生成物に、作品群の創作的表現が直接感得できる。例えば構図・線・色の置き方まで同じで、見た人が元の作品の表現の特徴をじかに感じ取れる。表現のレベルで共通しているので、生成と利用は侵害に当たりうる。別の物差し：学習データに入っていたことは、もとにしたこと（依拠性）を推認させる事情で、似ているか（類似性）を決めるものではない。</desc>
+<text x="12" y="20" class="tb">作風どまりか、表現まで感じ取れるか</text>
+<text x="12" y="42" class="tm">1人のイラストレーターの作品だけで追加</text>
+<text x="12" y="60" class="tm">学習したAIの生成物（文化庁の整理）</text>
+<rect x="12" y="68" width="296" height="108" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="90" class="tb tok">作風が共通するだけ</text>
+<text x="24" y="108">例：色づかいやタッチの雰囲気は似ているが、</text>
+<text x="24" y="126">描かれた構図・人物・線は別</text>
+<text x="24" y="144" class="tm">作風は、表現に至らないアイデアの側</text>
+<text x="24" y="164" class="tb tok">→ 侵害にならない</text>
+<rect x="12" y="188" width="296" height="108" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="210" class="tb tng">創作的表現が直接感得できる</text>
+<text x="24" y="228">例：構図・線・色の置き方まで同じ。見た人が</text>
+<text x="24" y="246">元の作品の表現の特徴をじかに感じ取れる</text>
+<text x="24" y="264" class="tm">表現のレベルで共通している</text>
+<text x="24" y="284" class="tb tng">→ 生成・利用は侵害に当たりうる</text>
+<line x1="12" y1="308" x2="308" y2="308" class="l sb w1"/>
+<text x="12" y="332" class="tb">別の物差しと混ぜない</text>
+<text x="12" y="350">学習データに入っていた</text>
+<text x="12" y="368" class="tm">→ もとにしたこと（依拠性）を推認させる</text>
+<text x="12" y="386" class="tm">　 事情。似ているか（類似性）は別に見る</text>
+<text x="12" y="408" class="tm">侵害は、類似性と依拠性の両方がそろうとき</text>
+</svg>

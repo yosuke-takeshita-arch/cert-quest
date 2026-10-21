@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 510" role="img" aria-labelledby="fig-g-mean-median-mode-calc-t fig-g-mean-median-mode-calc-d">
+<title id="fig-g-mean-median-mode-calc-t">2, 3, 3, 5, 7 の平均・中央値・最頻値</title>
+<desc id="fig-g-mean-median-mode-calc-d">何のための図か：5つの数 2, 3, 3, 5, 7 の「真ん中あたり」を、平均・中央値・最頻値の3通りの決め方で求める。点の図：横軸が値、丸1つが1個のデータ。3だけ丸が2つ積み重なる。①平均は全部足して個数で割る。2＋3＋3＋5＋7＝20、20÷5＝4。大きい7に引っ張られて、3より右に来る。②中央値は小さい順に並べた真ん中。2、3、3、5、7 の3番目で3。③最頻値はいちばん多く出る値。3が2回で、ほかは1回なので3。答え：平均4、中央値3、最頻値3。</desc>
+<text x="12" y="20" class="tb">平均・中央値・最頻値を、問題の数で求める</text>
+<text x="12" y="42" class="tm">データ：2, 3, 3, 5, 7（5つ）</text>
+<text x="12" y="60" class="tm">点の図：横軸＝値、丸1つ＝データ1個</text>
+<line x1="24" y1="140" x2="300" y2="140" class="l sm w1"/>
+<line x1="32" y1="140" x2="32" y2="145" class="l sm w1"/>
+<text x="32" y="159" class="tm" text-anchor="middle">1</text>
+<line x1="68.6" y1="140" x2="68.6" y2="145" class="l sm w1"/>
+<text x="68.6" y="159" class="tm" text-anchor="middle">2</text>
+<line x1="105.1" y1="140" x2="105.1" y2="145" class="l sm w1"/>
+<text x="105.1" y="159" class="tm" text-anchor="middle">3</text>
+<line x1="141.7" y1="140" x2="141.7" y2="145" class="l sm w1"/>
+<text x="141.7" y="159" class="tm" text-anchor="middle">4</text>
+<line x1="178.3" y1="140" x2="178.3" y2="145" class="l sm w1"/>
+<text x="178.3" y="159" class="tm" text-anchor="middle">5</text>
+<line x1="214.9" y1="140" x2="214.9" y2="145" class="l sm w1"/>
+<text x="214.9" y="159" class="tm" text-anchor="middle">6</text>
+<line x1="251.4" y1="140" x2="251.4" y2="145" class="l sm w1"/>
+<text x="251.4" y="159" class="tm" text-anchor="middle">7</text>
+<line x1="288" y1="140" x2="288" y2="145" class="l sm w1"/>
+<text x="288" y="159" class="tm" text-anchor="middle">8</text>
+<circle cx="68.6" cy="130" r="8" class="fas sa" stroke-width="1.5"/>
+<circle cx="105.1" cy="130" r="8" class="fa sa" stroke-width="1.5"/>
+<circle cx="105.1" cy="112" r="8" class="fa sa" stroke-width="1.5"/>
+<circle cx="178.3" cy="130" r="8" class="fas sa" stroke-width="1.5"/>
+<circle cx="251.4" cy="130" r="8" class="fas sa" stroke-width="1.5"/>
+<line x1="141.7" y1="100" x2="141.7" y2="140" class="l sok w2 dsh"/>
+<text x="147.7" y="110" class="tb tok">平均 4</text>
+<text x="105.1" y="90" class="tb ta" text-anchor="middle">3 が2個</text>
+<line x1="12" y1="174" x2="308" y2="174" class="l sb w1"/>
+<text x="12" y="198" class="tb">① 平均：全部足して、個数で割る</text>
+<text x="12" y="216">2 ＋ 3 ＋ 3 ＋ 5 ＋ 7 ＝ 20</text>
+<text x="12" y="236" class="tb tok">20 ÷ 5 ＝ 4</text>
+<text x="12" y="254" class="tm">大きい 7 に引っ張られて、3 より右に来る</text>
+<line x1="12" y1="266" x2="308" y2="266" class="l sb w1"/>
+<text x="12" y="290" class="tb">② 中央値：小さい順に並べた真ん中</text>
+<rect x="32" y="302" width="44" height="30" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="54" y="322" class="" text-anchor="middle">2</text>
+<text x="54" y="350" class="tm" text-anchor="middle">1番目</text>
+<rect x="86" y="302" width="44" height="30" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="108" y="322" class="" text-anchor="middle">3</text>
+<text x="108" y="350" class="tm" text-anchor="middle">2番目</text>
+<rect x="140" y="302" width="44" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="162" y="322" class="tb tok" text-anchor="middle">3</text>
+<text x="162" y="350" class="tm" text-anchor="middle">3番目</text>
+<rect x="194" y="302" width="44" height="30" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="216" y="322" class="" text-anchor="middle">5</text>
+<text x="216" y="350" class="tm" text-anchor="middle">4番目</text>
+<rect x="248" y="302" width="44" height="30" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="270" y="322" class="" text-anchor="middle">7</text>
+<text x="270" y="350" class="tm" text-anchor="middle">5番目</text>
+<text x="12" y="378" class="tb tok">5つなら3番目（前に2つ・後に2つ）＝ 3</text>
+<line x1="12" y1="390" x2="308" y2="390" class="l sb w1"/>
+<text x="12" y="414" class="tb">③ 最頻値：いちばん多く出る値</text>
+<text x="12" y="432">3 が2回。2・5・7 は1回ずつ</text>
+<text x="12" y="452" class="tb tok">→ 最頻値 ＝ 3</text>
+<rect x="12" y="464" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="484" class="tb tok">答え：平均 4、中央値 3、最頻値 3</text>
+</svg>

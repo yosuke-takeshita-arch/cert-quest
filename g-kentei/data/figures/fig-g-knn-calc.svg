@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 556" role="img" aria-labelledby="fig-g-knn-calc-t fig-g-knn-calc-d">
+<title id="fig-g-knn-calc-t">k近傍法の計算：近い順が B・A・A・B・B のとき、k＝3 なら A</title>
+<desc id="fig-g-knn-calc-d">何のための図か：新しいデータに近い順が、1位クラスB（距離1.0）、2位クラスA（1.5）、3位クラスA（2.0）、4位クラスB（2.5）、5位クラスB（3.0）のとき、k＝3の予測がAになる理由を、問題と同じ数で見る。①横軸は新しいデータ（星）からの距離。左端の星から右へ、近い順に5つの点を置く。丸がクラスA、四角がクラスB。②k＝3なら近い3つ（1位B、2位A、3位A）だけで多数決をとる。A2票、B1票で、予測はA。4位と5位のBは票に入らない。③同じ並びでkを変えると、k＝1は1位のBだけでB、k＝5は5つ全部でA2票、B3票なのでB。kは何個に聞くかで、kを変えると答えが変わる。</desc>
+<text x="12" y="20" class="tb">近い k 個の多数決（問題の並びで見る）</text>
+<text x="12" y="42" class="tm">何のための図か：近い順が B・A・A・B・B の</text>
+<text x="12" y="60" class="tm">とき、k＝3 ならなぜ A かを見る</text>
+<text x="12" y="88" class="tb">① 新しいデータ（★）からの距離</text>
+<line x1="24" y1="150" x2="300" y2="150" class="l sm w1"/>
+<polygon points="24,139 26.94,145.95 34.46,146.6 28.76,151.55 30.47,158.9 24,155 17.53,158.9 19.24,151.55 13.54,146.6 21.06,145.95" class="ft"/>
+<rect x="98.5" y="144.5" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<circle cx="144" cy="150" r="6" class="fs sa" stroke-width="2"/>
+<circle cx="184" cy="150" r="6" class="fs sa" stroke-width="2"/>
+<rect x="218.5" y="144.5" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<rect x="258.5" y="144.5" width="11" height="11" class="fm sm" stroke-width="1.5"/>
+<text x="104" y="132" class="tb" text-anchor="middle">1位</text>
+<text x="144" y="132" class="tb" text-anchor="middle">2位</text>
+<text x="184" y="132" class="tb" text-anchor="middle">3位</text>
+<text x="224" y="132" class="tm" text-anchor="middle">4位</text>
+<text x="264" y="132" class="tm" text-anchor="middle">5位</text>
+<text x="104" y="176" class="tm" text-anchor="middle">1.0</text>
+<text x="144" y="176" class="tm" text-anchor="middle">1.5</text>
+<text x="184" y="176" class="tm" text-anchor="middle">2.0</text>
+<text x="224" y="176" class="tm" text-anchor="middle">2.5</text>
+<text x="264" y="176" class="tm" text-anchor="middle">3.0</text>
+<text x="104" y="194" class="tb" text-anchor="middle">B</text>
+<text x="144" y="194" class="tb ta" text-anchor="middle">A</text>
+<text x="184" y="194" class="tb ta" text-anchor="middle">A</text>
+<text x="224" y="194" class="tm" text-anchor="middle">B</text>
+<text x="264" y="194" class="tm" text-anchor="middle">B</text>
+<rect x="88" y="112" width="112" height="92" class="sok w2 dsh" fill="none" rx="6"/>
+<text x="144" y="222" class="tb tok" text-anchor="middle">k＝3 の範囲</text>
+<text x="12" y="246" class="tm">○：クラスA　■：クラスB　数：距離</text>
+<line x1="12" y1="260" x2="308" y2="260" class="l sb w1"/>
+<text x="12" y="282" class="tb">② k＝3：近い3つだけで多数決</text>
+<text x="12" y="304">1位 B・2位 A・3位 A</text>
+<text x="12" y="324" class="tm">A が 2票、B が 1票</text>
+<rect x="12" y="334" width="296" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="354" class="tb tok" text-anchor="middle">予測：クラスA（2票対1票）</text>
+<text x="12" y="384" class="tm">4位・5位の B は、k＝3 では票に入らない</text>
+<text x="12" y="402" class="tm">一番近い1位が B でも、1票にすぎない</text>
+<line x1="12" y1="416" x2="308" y2="416" class="l sb w1"/>
+<text x="12" y="438" class="tb">③ 同じ並びで k を変えると</text>
+<text x="12" y="460" class="twn">k＝1：1位の B だけ → B</text>
+<text x="12" y="482" class="tok">k＝3：A 2票・B 1票 → A</text>
+<text x="12" y="504" class="twn">k＝5：A 2票・B 3票 → B</text>
+<text x="12" y="532" class="tb">k は「何個に聞くか」。k で答えが変わる</text>
+</svg>

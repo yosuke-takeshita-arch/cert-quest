@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 627" role="img" aria-labelledby="fig-g-poisson-calc-t fig-g-poisson-calc-d">
+<title id="fig-g-poisson-calc-t">1時間に平均4件の問い合わせ：ポアソン分布で分散も4</title>
+<desc id="fig-g-poisson-calc-d">何のための図か：問い合わせが1時間あたり平均4件、ばらばらに届くとき、件数の分布がポアソン分布になり、分散も4になる理由を見る。①なぜポアソン分布か：1時間に届く件数は0件、1件、2件…と数え、上限が決まっていない。1時間を3,600秒に分けると、1秒ごとに届くか届かないかで、届く確率は4÷3,600ととても小さい。回数がとても多く、1回ごとにはめったに起きない出来事の回数はポアソン分布になる。②棒グラフ：横軸は1時間に届く件数、縦軸はその確率。0件2%、1件7%、2件15%、3件20%、4件20%、5件16%、6件10%、7件6%、8件3%、9件1%、10件以上は1%未満。③なぜ分散も4か：3,600回のうち何回届くかとみると、分散は回数×確率×（1−確率）＝3,600×（4÷3,600）×（1−4÷3,600）＝4×0.9989で、ほぼ4。1−確率がほぼ1なので、分散は平均とほぼ同じになる。ポアソン分布では平均も分散もλ（ラムダ）で、λ＝4。標準偏差は√4＝2件で、2は分散ではない。</desc>
+<text x="12" y="20" class="tb">1時間に平均4件：件数の分布と分散</text>
+<text x="12" y="42" class="tm">この問題の数（平均4件）で見る</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="78" class="tb">① なぜポアソン分布か</text>
+<text x="12" y="96">件数は 0, 1, 2, … と数え、上限が無い</text>
+<text x="12" y="114">1時間を3,600秒に分けると、1秒ごとに</text>
+<text x="12" y="132">届く確率は 4 ÷ 3,600 と、とても小さい</text>
+<text x="12" y="152" class="tb ta">→ 機会がとても多く、1回ごとはまれな</text>
+<text x="12" y="172" class="tb ta">　 出来事の回数 ＝ ポアソン分布</text>
+<line x1="12" y1="184" x2="308" y2="184" class="l sb w1"/>
+<text x="12" y="208" class="tb">② 1時間に届く件数と、その確率</text>
+<text x="12" y="226" class="tm">横軸＝件数、縦軸＝その件数になる確率</text>
+<line x1="26" y1="384" x2="298" y2="384" class="l sm w1"/>
+<rect x="32" y="373.9" width="18.3" height="10.1" class="fas sa" stroke-width="1"/>
+<text x="41.2" y="399" text-anchor="middle">0</text>
+<text x="41.2" y="368.9" class="tm" text-anchor="middle">2%</text>
+<rect x="54.3" y="343.7" width="18.3" height="40.3" class="fas sa" stroke-width="1"/>
+<text x="63.5" y="399" text-anchor="middle">1</text>
+<text x="63.5" y="338.7" class="tm" text-anchor="middle">7%</text>
+<rect x="76.7" y="303.4" width="18.3" height="80.6" class="fas sa" stroke-width="1"/>
+<text x="85.8" y="399" text-anchor="middle">2</text>
+<text x="85.8" y="298.4" class="tm" text-anchor="middle">15%</text>
+<rect x="99" y="276.5" width="18.3" height="107.5" class="fa sa" stroke-width="1"/>
+<text x="108.2" y="399" text-anchor="middle">3</text>
+<text x="108.2" y="271.5" class="tb ta" text-anchor="middle">20%</text>
+<rect x="121.3" y="276.5" width="18.3" height="107.5" class="fa sa" stroke-width="1"/>
+<text x="130.5" y="399" text-anchor="middle">4</text>
+<rect x="143.7" y="298" width="18.3" height="86" class="fas sa" stroke-width="1"/>
+<text x="152.8" y="399" text-anchor="middle">5</text>
+<text x="152.8" y="293" class="tm" text-anchor="middle">16%</text>
+<rect x="166" y="326.7" width="18.3" height="57.3" class="fas sa" stroke-width="1"/>
+<text x="175.2" y="399" text-anchor="middle">6</text>
+<text x="175.2" y="321.7" class="tm" text-anchor="middle">10%</text>
+<rect x="188.3" y="351.3" width="18.3" height="32.7" class="fas sa" stroke-width="1"/>
+<text x="197.5" y="399" text-anchor="middle">7</text>
+<text x="197.5" y="346.3" class="tm" text-anchor="middle">6%</text>
+<rect x="210.7" y="367.6" width="18.3" height="16.4" class="fas sa" stroke-width="1"/>
+<text x="219.8" y="399" text-anchor="middle">8</text>
+<text x="219.8" y="362.6" class="tm" text-anchor="middle">3%</text>
+<rect x="233" y="376.7" width="18.3" height="7.3" class="fas sa" stroke-width="1"/>
+<text x="242.2" y="399" text-anchor="middle">9</text>
+<rect x="255.3" y="381.1" width="18.3" height="2.9" class="fas sa" stroke-width="1"/>
+<text x="264.5" y="399" text-anchor="middle">10</text>
+<rect x="277.7" y="382.9" width="18.3" height="1.1" class="fas sa" stroke-width="1"/>
+<text x="286.8" y="399" text-anchor="middle">11</text>
+<line x1="130.5" y1="248" x2="130.5" y2="384" class="l sok w1 dsh"/>
+<text x="136.5" y="250" class="tb tok">平均 4件</text>
+<text x="12" y="421" class="tm">3件と4件がいちばん出やすい（約20%ずつ）</text>
+<line x1="12" y1="433" x2="308" y2="433" class="l sb w1"/>
+<text x="12" y="457" class="tb">③ なぜ分散も4か</text>
+<text x="12" y="475">3,600回のうち何回届くか、とみると</text>
+<text x="12" y="493" class="tm">分散 ＝ 回数 × 確率 × （1 − 確率）</text>
+<text x="12" y="511">＝ 3,600 × 4/3,600 × （1 − 4/3,600）</text>
+<text x="12" y="529">＝ 4 × 0.9989 ≒ 4</text>
+<text x="12" y="549" class="tb ta">1 − 確率がほぼ1 → 分散 ≒ 平均</text>
+<rect x="12" y="557" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="577" class="tb tok">ポアソン分布：平均も分散も λ ＝ 4</text>
+<text x="12" y="613" class="tm">標準偏差は √4 ＝ 2件。2 は分散ではない</text>
+</svg>

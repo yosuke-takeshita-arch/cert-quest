@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 590" role="img" aria-labelledby="fig-g-toy-problem-t fig-g-toy-problem-d">
+<title id="fig-g-toy-problem-t">トイ・プロブレム：第1次AIブームのAIが解けた「おもちゃの問題」</title>
+<desc id="fig-g-toy-problem-d">何のための図か：第1次AIブームのAIが解けた簡単な問題を、なぜトイ・プロブレム（おもちゃの問題）と呼ぶかを、迷路と現実の問題を比べて見る。①迷路：通れる道、スタート、ゴールが全部決まっていて、調べる範囲が閉じている。手を順に試す探索で、スタートからゴールまでの道が見つかる。②現実の問題（例：病気を診断する）：症状、検査値、体質、生活習慣など、関係する要因がいくつあるかも決まらず、要因どうしが複雑に絡む。調べる範囲が閉じていないので、探索だけでは解けない。③ルールとゴールが明確で範囲が閉じた簡単な問題をトイ・プロブレムと呼ぶ。第1次AIブームのAIはこれしか解けないと分かり、冬の時代を迎えた。混同しやすい点：トイ・プロブレムは解けた問題の呼び名で、フレーム問題のようなAIの難問の名前ではない。</desc>
+<text x="12" y="20" class="tb">トイ・プロブレム＝おもちゃの問題</text>
+<text x="12" y="42" class="tm">何のための図か：第1次ブームのAIが解けた</text>
+<text x="12" y="60" class="tm">問題と、解けなかった問題を比べる</text>
+<text x="12" y="88" class="tb">① 迷路（解けた）</text>
+<rect x="42" y="100" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="42" y="122" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="42" y="144" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="86" y="122" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="86" y="144" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="86" y="166" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="86" y="188" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="20" y="188" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="42" y="188" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="64" y="188" width="22" height="22" class="fm sm" stroke-width="1"/>
+<rect x="20" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="20" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="20" y="144" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="20" y="166" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="42" y="166" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="64" y="166" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="64" y="144" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="64" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="64" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="86" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="100" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="122" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="144" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="166" width="22" height="22" class="fs sb" stroke-width="1"/>
+<rect x="108" y="188" width="22" height="22" class="fs sb" stroke-width="1"/>
+<polyline points="31,122 31,133 31,155 31,177 53,177 75,177 75,155 75,133 75,111 97,111 119,111 119,133 119,155 119,177 119,188" class="l sa w2" fill="none"/>
+<text x="31" y="116" class="tb" text-anchor="middle">S</text>
+<text x="119" y="204" class="tb tok" text-anchor="middle">G</text>
+<text x="140" y="116" class="tm">道・スタート（S）・</text>
+<text x="140" y="134" class="tm">ゴール（G）が</text>
+<text x="140" y="152" class="tm">全部決まっている</text>
+<text x="140" y="176" class="tm">調べる範囲が閉じて</text>
+<text x="140" y="194" class="tm">いる</text>
+<text x="12" y="234" class="tb tok">→ 手を順に試す（探索）と、道が見つかる</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="272" class="tb">② 現実の問題（解けなかった）</text>
+<text x="12" y="292" class="tm">例：病気を診断する</text>
+<rect x="12" y="302" width="296" height="96" class="fng sng" stroke-width="1.5" rx="8"/>
+<text x="60" y="328" text-anchor="middle">症状</text>
+<text x="150" y="328" text-anchor="middle">検査値</text>
+<text x="250" y="328" text-anchor="middle">体質</text>
+<text x="90" y="358" text-anchor="middle">生活習慣</text>
+<text x="200" y="358" text-anchor="middle">ほかの病気</text>
+<text x="60" y="386" text-anchor="middle">年齢</text>
+<text x="150" y="386" text-anchor="middle">飲んでいる薬</text>
+<text x="260" y="386" class="tb" text-anchor="middle">…</text>
+<text x="12" y="420" class="tm">要因がいくつあるかも決まらず、絡み合う</text>
+<text x="12" y="442" class="tb tng">→ 範囲が閉じていないので、探索では解けない</text>
+<line x1="12" y1="458" x2="308" y2="458" class="l sb w1"/>
+<rect x="12" y="470" width="296" height="48" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="490" class="tb ta" text-anchor="middle">①のような簡単な問題 ＝ トイ・プロブレム</text>
+<text x="160" y="508" class="tm" text-anchor="middle">これしか解けず、第1次ブームは冬の時代へ</text>
+<text x="12" y="544" class="tm">トイ・プロブレムは「解けた問題」の呼び名。</text>
+<text x="12" y="562" class="tm">フレーム問題のような難問の名前ではない</text>
+</svg>

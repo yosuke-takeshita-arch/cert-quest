@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 650" role="img" aria-labelledby="fig-g-outlier-mae-rmse-t fig-g-outlier-mae-rmse-d">
+<title id="fig-g-outlier-mae-rmse-t">大きな外れ1件で、MAE はおだやか、RMSE は跳ね上がる</title>
+<desc id="fig-g-outlier-mae-rmse-d">何のための図か：1件だけ大きく外れたデータがあるとき、MAEは跳ね上がりにくく、RMSEは大きな外れを重く数えて跳ね上がることを、4件の例（説明のための例）で見る。①外れの大きさ：例1は1、1、1、1。例2は1、1、1、9で、1件だけ大きく外れる。②MAE（大きさをそのまま平均）：例1は(1＋1＋1＋1)÷4＝1。例2は(1＋1＋1＋9)÷4＝12÷4＝3。1から3へ。③RMSE（2回掛けて平均し、平方根）：例1は二乗が1、1、1、1で平均1、√1＝1。例2は二乗が1、1、1、81で、平均は(1＋1＋1＋81)÷4＝84÷4＝21（ここまでがMSE）、平方根で√21≒4.58。1から4.58へ。④9の外れは二乗で81と重く数えられるので、RMSEは跳ね上がる。MAEは大きさのまま9と数えるので、跳ね上がりにくい。MSEは平方根の前の21で、単位も二乗になる。</desc>
+<text x="12" y="20" class="tb">大きな外れ1件で、指標はどう動くか</text>
+<text x="12" y="42" class="tm">何のための図か：MAE は跳ね上がりにくく、</text>
+<text x="12" y="60" class="tm">RMSE は跳ね上がることを、例の数で見る</text>
+<text x="12" y="88" class="tb">① 4件の外れの大きさ（例）</text>
+<text x="12" y="112" class="tm">例1</text>
+<line x1="44" y1="160" x2="148" y2="160" class="l sm w1"/>
+<rect x="50" y="154" width="16" height="6" class="fas sa" stroke-width="1.5"/>
+<rect x="74" y="154" width="16" height="6" class="fas sa" stroke-width="1.5"/>
+<rect x="98" y="154" width="16" height="6" class="fas sa" stroke-width="1.5"/>
+<rect x="122" y="154" width="16" height="6" class="fas sa" stroke-width="1.5"/>
+<text x="96" y="180" class="tm" text-anchor="middle">1・1・1・1</text>
+<text x="168" y="112" class="tm">例2</text>
+<line x1="200" y1="160" x2="304" y2="160" class="l sm w1"/>
+<rect x="206" y="154" width="16" height="6" class="fas sa" stroke-width="1.5"/>
+<rect x="230" y="154" width="16" height="6" class="fas sa" stroke-width="1.5"/>
+<rect x="254" y="154" width="16" height="6" class="fas sa" stroke-width="1.5"/>
+<rect x="278" y="106" width="16" height="54" class="fng sng" stroke-width="1.5"/>
+<text x="286" y="100" class="tb tng" text-anchor="middle">9</text>
+<text x="252" y="180" class="tm" text-anchor="middle">1・1・1・9</text>
+<line x1="12" y1="196" x2="308" y2="196" class="l sb w1"/>
+<text x="12" y="218" class="tb">② MAE：大きさをそのまま平均</text>
+<text x="12" y="240">例1：(1＋1＋1＋1)÷4 ＝ 1</text>
+<text x="12" y="260">例2：(1＋1＋1＋9)÷4 ＝ 12÷4 ＝ 3</text>
+<rect x="12" y="270" width="296" height="28" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="289" class="tb tok" text-anchor="middle">1 → 3（9 は 9 のまま数える）</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="336" class="tb">③ RMSE：2回掛けて平均し、平方根</text>
+<text x="12" y="358">例1：二乗 1・1・1・1、平均 1、√1 ＝ 1</text>
+<text x="12" y="380">例2：二乗 1・1・1・81（9×9＝81）</text>
+<text x="12" y="400">　平均 (1＋1＋1＋81)÷4 ＝ 84÷4 ＝ 21</text>
+<text x="12" y="418" class="tm">　（ここまでが MSE。単位も二乗になる）</text>
+<text x="12" y="438">　平方根 √21 ≒ 4.58（4.58×4.58≒21）</text>
+<rect x="12" y="448" width="296" height="28" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="160" y="467" class="tb tng" text-anchor="middle">1 → 4.58（9 を 81 と重く数える）</text>
+<line x1="12" y1="492" x2="308" y2="492" class="l sb w1"/>
+<text x="12" y="514" class="tb">④ まとめ</text>
+<text x="12" y="536" class="tok">MAE（絶対値の平均）：跳ね上がりにくい</text>
+<text x="12" y="558" class="tng">RMSE（二乗の平均の平方根）：大きな外れを</text>
+<text x="12" y="576" class="tng">　重く数え、跳ね上がる</text>
+<text x="12" y="600" class="tm">MSE は平方根の前で止めた値（例2 で 21）。</text>
+<text x="12" y="618" class="tm">平方根をとらないので、単位が二乗のまま</text>
+</svg>

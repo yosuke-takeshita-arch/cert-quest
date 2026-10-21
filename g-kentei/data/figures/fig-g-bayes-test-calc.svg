@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-g-bayes-test-calc-t fig-g-bayes-test-calc-d">
+<title id="fig-g-bayes-test-calc-t">有病率1％の検査：陽性の人が病気である確率は約9％</title>
+<desc id="fig-g-bayes-test-calc-d">何のための図か：有病率1％の病気で、検査が病気の人の90％、病気でない人の9％を陽性にするとき、陽性の人が本当に病気である確率を、1万人の人数で数える。木の図：1万人のうち病気の人は1％の100人、病気でない人は9,900人。病気の100人のうち90％の90人が陽性、10人が陰性。病気でない9,900人のうち9％の891人が陽性、9,009人が陰性。陽性の人だけを集めると90＋891＝981人で、そのうち病気の人は90人。帯の図：981人の帯のうち、病気の90人は左の細い部分だけで、残りの891人は病気でないのに陽性になった人。90÷981≒0.092で約9％。検査の前の確率1％（事前確率）が、陽性と分かった後に約9％（事後確率）に上がるが、90％にはならない。90％は病気の人が陽性になる確率で、向きが逆。91％は病気でない人が陰性になる確率。</desc>
+<text x="12" y="20" class="tb">陽性の人が、本当に病気である確率</text>
+<text x="12" y="42" class="tm">この問題の数で、1万人いると考えて数える</text>
+<text x="12" y="60" class="tm">（人数は割合から計算した例）</text>
+<rect x="105" y="72" width="110" height="27" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="160" y="90" class="tb" text-anchor="middle">1万人</text>
+<line x1="140" y1="99" x2="84" y2="133" class="l sm w1"/>
+<text x="106" y="120" class="tm" text-anchor="end">1%</text>
+<line x1="180" y1="99" x2="236" y2="133" class="l sm w1"/>
+<text x="214" y="120" class="tm" text-anchor="start">99%</text>
+<rect x="14" y="133" width="140" height="27" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="84" y="151" class="tb" text-anchor="middle">病気 100人</text>
+<rect x="166" y="133" width="140" height="27" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="236" y="151" class="tb" text-anchor="middle">病気でない 9,900人</text>
+<line x1="70" y1="160" x2="46" y2="194" class="l sm w1"/>
+<text x="52" y="181" class="tm" text-anchor="end">90%</text>
+<line x1="98" y1="160" x2="120" y2="194" class="l sm w1"/>
+<text x="115" y="181" class="tm" text-anchor="start">10%</text>
+<line x1="222" y1="160" x2="200" y2="194" class="l sm w1"/>
+<text x="205" y="181" class="tm" text-anchor="end">9%</text>
+<line x1="250" y1="160" x2="274" y2="194" class="l sm w1"/>
+<text x="268" y="181" class="tm" text-anchor="start">91%</text>
+<rect x="11" y="194" width="70" height="44" class="fok sok" stroke-width="1.5" rx="5"/>
+<text x="46" y="212" class="tb tok" text-anchor="middle">陽性</text>
+<text x="46" y="229" class="tok" text-anchor="middle">90人</text>
+<rect x="85" y="194" width="70" height="44" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="120" y="212" class="tb" text-anchor="middle">陰性</text>
+<text x="120" y="229" class="tm" text-anchor="middle">10人</text>
+<rect x="165" y="194" width="70" height="44" class="fng sng" stroke-width="1.5" rx="5"/>
+<text x="200" y="212" class="tb tng" text-anchor="middle">陽性</text>
+<text x="200" y="229" class="tng" text-anchor="middle">891人</text>
+<rect x="239" y="194" width="70" height="44" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="274" y="212" class="tb" text-anchor="middle">陰性</text>
+<text x="274" y="229" class="tm" text-anchor="middle">9,009人</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="274" class="tb">陽性の人だけを集める</text>
+<text x="12" y="292">90 ＋ 891 ＝ 981人（帯の全体）</text>
+<rect x="12" y="306" width="27.2" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="39.2" y="306" width="268.8" height="26" class="fng sng" stroke-width="1.5"/>
+<text x="173.6" y="324" class="tng" text-anchor="middle">病気でないのに陽性 891人</text>
+<text x="12" y="350" class="tok">← 左の細い部分：病気の 90人</text>
+<rect x="12" y="358" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="378" class="tb tok">90 ÷ 981 ≒ 0.092 → 約9%</text>
+<text x="12" y="414" class="tm">病気でない人がとても多いので、間違って</text>
+<text x="12" y="432" class="tm">陽性になる人（891人）が、病気で陽性の人</text>
+<text x="12" y="450" class="tm">（90人）の約10倍になる</text>
+<line x1="12" y1="462" x2="308" y2="462" class="l sb w1"/>
+<text x="12" y="486" class="tb">呼び名と、取り違えやすい数</text>
+<text x="12" y="504">事前確率 1%：検査の前（有病率）</text>
+<text x="12" y="522" class="tok">事後確率 約9%：陽性と分かった後</text>
+<text x="12" y="540">90%：病気の人が陽性になる確率（向きが逆）</text>
+<text x="12" y="558">91%：病気でない人が陰性になる確率</text>
+</svg>

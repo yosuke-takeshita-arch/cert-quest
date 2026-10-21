@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 616" role="img" aria-labelledby="fig-g-leaky-relu-calc-t fig-g-leaky-relu-calc-d">
+<title id="fig-g-leaky-relu-calc-t">負の側の傾き0.1の Leaky ReLU に −20・−1・5 を入れる</title>
+<desc id="fig-g-leaky-relu-calc-d">何のための図か：負の側の傾きを0.1にしたLeaky ReLUに、入力−20、−1、5を入れたときの出力が−2、−0.1、5になる理由を、問題と同じ数で見る。①決まり：入力が0以上ならそのまま出し、負なら0.1倍して出す。②計算：−20は負なので0.1×(−20)＝−2。−1は負なので0.1×(−1)＝−0.1。5は0以上なのでそのまま5。出力は−2、−0.1、5。③グラフ：横軸が入力、縦軸が出力。正の側は傾き1の直線で、入力5は出力5。負の側は傾き0.1のなだらかな直線で、入力−20でも出力は−2までしか下がらない。比べるReLUは負の側がずっと0。④取り違えやすい組：0、0、5はReLUの出力（負を0にする）。−20、−1、5は入力をそのまま出しただけ。−2、−0.1、0.5は正の入力5にまで0.1を掛けている。傾きを変えるのは負の側だけ。</desc>
+<text x="12" y="20" class="tb">Leaky ReLU（負の側の傾き 0.1）の計算</text>
+<text x="12" y="42" class="tm">何のための図か：−20・−1・5 を入れると、</text>
+<text x="12" y="60" class="tm">なぜ −2・−0.1・5 が出るかを見る</text>
+<text x="12" y="88" class="tb">① 決まり</text>
+<text x="12" y="108">0以上なら、そのまま出す</text>
+<text x="12" y="126">負なら、0.1倍して出す（少しだけ漏らす）</text>
+<line x1="12" y1="140" x2="308" y2="140" class="l sb w1"/>
+<text x="12" y="162" class="tb">② 3つの入力を、負かどうかで分ける</text>
+<text x="12" y="186" class="ta">−20：負 → 0.1 × (−20) ＝ −2</text>
+<text x="12" y="208" class="ta">−1　：負 → 0.1 × (−1) ＝ −0.1</text>
+<text x="12" y="230">5　　：0以上 → そのまま 5</text>
+<rect x="12" y="240" width="296" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="260" class="tb tok" text-anchor="middle">出力：−2、−0.1、5</text>
+<line x1="12" y1="286" x2="308" y2="286" class="l sb w1"/>
+<text x="12" y="308" class="tb">③ グラフ（横：入力、縦：出力）</text>
+<line x1="20" y1="400" x2="300" y2="400" class="l sm w1"/>
+<line x1="230" y1="330" x2="230" y2="436" class="l sm w1"/>
+<line x1="30" y1="400" x2="230" y2="400" class="l sng w2 dsh"/>
+<line x1="30" y1="424" x2="230" y2="400" class="l sa w2"/>
+<line x1="230" y1="400" x2="280" y2="340" class="l sa w2"/>
+<circle cx="30" cy="424" r="5" class="fa sa"/>
+<circle cx="220" cy="401.2" r="5" class="fa sa"/>
+<circle cx="280" cy="340" r="5" class="fa sa"/>
+<text x="38" y="446" class="tb ta">(−20, −2)</text>
+<text x="222" y="426" class="tb ta" text-anchor="end">(−1, −0.1)</text>
+<text x="272" y="344" class="tb ta" text-anchor="end">(5, 5)</text>
+<text x="238" y="440" class="tm">0</text>
+<text x="40" y="388" class="tng">ReLU は負の側がずっと 0（破線）</text>
+<text x="12" y="472" class="tm">負の側は傾き 0.1。−20 でも −2 まで</text>
+<text x="12" y="490" class="tm">（縦は横より 1.2倍に伸ばして描いた）</text>
+<line x1="12" y1="504" x2="308" y2="504" class="l sb w1"/>
+<text x="12" y="526" class="tb">取り違えやすい組</text>
+<text x="12" y="548" class="tng">0、0、5：ReLU（負をすべて 0 にする）</text>
+<text x="12" y="570" class="tng">−20、−1、5：入力をそのまま出しただけ</text>
+<text x="12" y="592" class="tng">−2、−0.1、0.5：正の 5 まで 0.1倍している</text>
+</svg>

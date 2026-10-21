@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 722" role="img" aria-labelledby="fig-g-exploratory-vs-others-t fig-g-exploratory-vs-others-d">
+<title id="fig-g-exploratory-vs-others-t">探索的段階型は、ウォーターフォール型・アジャイル型とどこが違うか</title>
+<desc id="fig-g-exploratory-vs-others-d">何のための図か：経済産業省の契約ガイドライン（AI編）が提唱する探索的段階型が、ウォーターフォール型とアジャイル型のそれぞれとどこが違うかを、2つの点で見る。①ウォーターフォール型との違い：ウォーターフォール型は、最初に要件を確定し、それを前提に順に詳しくしていく。探索的段階型は、開発の初期に成果物を確定しない。AIは試すまで精度が分からないので、段階ごとの結果を見て次に進むかを決める。②アジャイル型との違い：アジャイル型は、開発全体に共通する基本契約を1つ結び、その下で、開発する対象が確定した部分から個別契約を順に結ぶ。探索的段階型は、全体を1つの基本契約でまとめない。アセスメントは秘密保持契約書等、PoCは導入検証契約書等、開発はソフトウェア開発契約書のように、段階ごとに別の契約を結ぶ。共通点：開発を段階に分けること自体は、3つの方式に共通する。</desc>
+<text x="12" y="20" class="tb">探索的段階型は、2つの点で違う</text>
+<text x="12" y="42" class="tm">経済産業省の契約ガイドライン（AI編）</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="78" class="tb">① ウォーターフォール型との違い</text>
+<text x="12" y="96" class="tm">成果物を最初に確定するか</text>
+<rect x="12" y="104" width="296" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="126" class="tb">ウォーターフォール型</text>
+<text x="24" y="144">最初に要件を確定 → それを前提に順に作る</text>
+<rect x="12" y="164" width="296" height="88" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="186" class="tb tok">探索的段階型</text>
+<text x="24" y="204">初期に成果物を確定しない。AIは試すまで</text>
+<text x="24" y="222">精度が分からないので、段階の結果を見て</text>
+<text x="24" y="240">次に進むかを決める</text>
+<line x1="12" y1="264" x2="308" y2="264" class="l sb w1"/>
+<text x="12" y="288" class="tb">② アジャイル型との違い</text>
+<text x="12" y="306" class="tm">全体を1つの基本契約でまとめるか</text>
+<text x="12" y="332" class="tb">アジャイル型</text>
+<rect x="12" y="340" width="296" height="62" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="360" class="tb">基本契約（開発全体に共通）</text>
+<rect x="24" y="370" width="84" height="24" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="66" y="387" text-anchor="middle">個別契約1</text>
+<rect x="116" y="370" width="84" height="24" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="158" y="387" text-anchor="middle">個別契約2</text>
+<rect x="208" y="370" width="84" height="24" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="250" y="387" text-anchor="middle">個別契約3</text>
+<text x="12" y="422" class="tm">対象が確定した部分から、個別契約を順に結ぶ</text>
+<text x="12" y="450" class="tb tok">探索的段階型</text>
+<rect x="12" y="458" width="296" height="44" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="476" class="tb">アセスメント</text>
+<text x="24" y="494">契約：秘密保持契約書等</text>
+<text x="300" y="476" class="tm" text-anchor="end">↓ 門で判断</text>
+<rect x="12" y="512" width="296" height="44" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="530" class="tb">PoC</text>
+<text x="24" y="548">契約：導入検証契約書等</text>
+<text x="300" y="530" class="tm" text-anchor="end">↓ 門で判断</text>
+<rect x="12" y="566" width="296" height="44" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="584" class="tb">開発</text>
+<text x="24" y="602">契約：ソフトウェア開発契約書</text>
+<text x="12" y="634" class="tb tok">全体を1つの基本契約でまとめず、</text>
+<text x="12" y="654" class="tb tok">段階ごとに別の契約を結ぶ</text>
+<line x1="12" y1="666" x2="308" y2="666" class="l sb w1"/>
+<text x="12" y="690" class="tm">共通する点：開発を段階に分けること自体は</text>
+<text x="12" y="708" class="tm">3つの方式とも同じ</text>
+</svg>

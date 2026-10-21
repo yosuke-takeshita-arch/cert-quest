@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 660" role="img" aria-labelledby="fig-g-alphabeta-calc-t fig-g-alphabeta-calc-d">
+<title id="fig-g-alphabeta-calc-t">αβ法の判断：Aが13、Bの最初の子が11のとき（αカット）</title>
+<desc id="fig-g-alphabeta-calc-d">何のための図か：自分（最大を選ぶ）の根から、相手（最小を選ぶ）の節点AとBを順に調べ、Aの値が13、Bの最初の子が11と分かったとき、Bの残りの子を調べなくてよい理由を、問題と同じ数で見る。①木：根の下にAとB。Aは子を全部調べて13。Bは最初の子が11で、残りの子はまだ調べていない。②判断の流れ：自分はAを選べば13を確保できる（α＝13）。Bは相手の番なので、相手は子の中で一番小さい値を選ぶ。子に11があるので、Bの値は11以下に決まる。11は13より小さいので、根の自分はBを選ばず、Aを選ぶ。Bの残りの子に何が出ても（13を超える値でも）、相手は小さいほうを選ぶのでBは11以下のままで、結果は変わらない。だから調べない。③名前：相手（最小）の節点で、値が確保済みのα以下と決まって残りを省くのがαカット。βカットは向きが逆で、自分（最大）の節点で、上の相手が抑え込める値β以上と決まって省く枝刈り。</desc>
+<text x="12" y="20" class="tb">αβ法：調べなくてよい枝を見分ける</text>
+<text x="12" y="42" class="tm">何のための図か：A＝13、B の最初の子＝11 の</text>
+<text x="12" y="60" class="tm">とき、B の残りを調べない理由を見る</text>
+<rect x="100" y="76" width="120" height="40" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="93" class="tb ta" text-anchor="middle">根（自分）</text>
+<text x="160" y="109" class="tm" text-anchor="middle">大きいほうを選ぶ</text>
+<line x1="140" y1="116" x2="80" y2="150" class="l sm w1"/>
+<line x1="180" y1="116" x2="240" y2="150" class="l sm w1"/>
+<rect x="20" y="150" width="120" height="40" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="80" y="167" class="tb tok" text-anchor="middle">A（相手）</text>
+<text x="80" y="183" class="tb tok" text-anchor="middle">値 ＝ 13</text>
+<rect x="180" y="150" width="120" height="40" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="240" y="167" class="tb" text-anchor="middle">B（相手）</text>
+<text x="240" y="183" class="tb twn" text-anchor="middle">値 ≦ 11</text>
+<text x="80" y="210" class="tm" text-anchor="middle">子を全部調べた</text>
+<line x1="220" y1="190" x2="200" y2="224" class="l sm w1"/>
+<line x1="240" y1="190" x2="240" y2="224" class="l sm w1"/>
+<line x1="260" y1="190" x2="280" y2="224" class="l sm w1"/>
+<rect x="186" y="224" width="28" height="26" class="fs sa" stroke-width="1.5" rx="4"/>
+<text x="200" y="242" class="tb" text-anchor="middle">11</text>
+<rect x="226" y="224" width="28" height="26" class="fs sng w1 dsh" rx="4"/>
+<text x="240" y="242" class="tng" text-anchor="middle">？</text>
+<rect x="266" y="224" width="28" height="26" class="fs sng w1 dsh" rx="4"/>
+<text x="280" y="242" class="tng" text-anchor="middle">？</text>
+<text x="200" y="268" class="tm" text-anchor="middle">最初</text>
+<text x="260" y="268" class="tng" text-anchor="middle">調べない</text>
+<line x1="12" y1="284" x2="308" y2="284" class="l sb w1"/>
+<text x="12" y="306" class="tb">判断の流れ</text>
+<text x="12" y="328">1. A を選べば 13 は確保できる（α＝13）</text>
+<text x="12" y="352">2. B は相手の番。相手は一番小さい子を選ぶ</text>
+<text x="12" y="370">　子に 11 があるので、B の値は 11 以下</text>
+<text x="12" y="394">3. 11 ≦ 13。根の自分は B を選ばず A を選ぶ</text>
+<text x="12" y="418">4. B の残りに何が出ても、B は 11 以下の</text>
+<text x="12" y="436">　まま。結果が変わらないので調べない</text>
+<text x="12" y="454" class="tm">　（13 を超える値が出ても、相手は選ばない）</text>
+<rect x="12" y="466" width="296" height="46" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="485" class="tb tok" text-anchor="middle">相手（最小）の節点で、α 以下と決まって</text>
+<text x="160" y="503" class="tb tok" text-anchor="middle">残りを省く ＝ αカット</text>
+<line x1="12" y1="528" x2="308" y2="528" class="l sb w1"/>
+<text x="12" y="550" class="tb">βカットとの違い</text>
+<text x="12" y="572" class="tm">βカットは向きが逆。自分（最大）の節点で、</text>
+<text x="12" y="590" class="tm">上の相手が抑え込める値（β）以上と決まって</text>
+<text x="12" y="608" class="tm">残りを省く枝刈り</text>
+<text x="12" y="634" class="tb">α は相手の節点、β は自分の節点で起きる</text>
+</svg>
