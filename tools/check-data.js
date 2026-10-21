@@ -32,6 +32,10 @@
 //   語が出る位置（文頭の「ただし」も文中も同じに数える）・誤答の一部だけに偏る形（4択のうち2つだけ等）・選択肢以外の欄（問題文と正解の語の重なりは見ない）
 //   （語の一覧と判定は DX 版の写し。片方を直したら、もう片方も直す。検査が別ファイルの実行スクリプトなので、共有の部品にはしていない）
 //
+// 部分ごとの多数決（WARN のみ。2026-10-21 追加。下の checkSegMajority。tools/check-data-dx.js と同じ判定）
+//   combo 以外の問題で、選択肢を部分に分け、違いのある部分が2つ以上あり、そのすべてで正解の言い方がほかより多く出るなら WARN（SEG-MAJORITY）。SEG 行に件数を出す
+//   見ていないものは checkSegMajority の前のコメント
+//
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか
 'use strict';
 
@@ -298,6 +302,71 @@ function checkComboMode(f, id, o) {
   });
   if (leak.length) err(f, id, `COMBO-MODE: 欄 ${leak.map((k) => `（${k}）`).join('')} で正解の語がいちばん多く出る（各欄の最多の語を選ぶと正解できる。正解の語の回数をほかの語以下にする）`);
 }
+// SEG-MAJORITY（WARN のみ。2026-10-21 追加。tools/check-data-dx.js の写し。片方を直したら、もう片方も直す）
+// COMBO-MODE と同じ型を、組み合わせ以外の文の選択肢（single・not・scenario・fill）で見る。
+// 誤答3つがどれも正解の文を1か所だけ書き換えた形だと、どの部分でも正解の言い方が4つ中3回出て、
+// 部分ごとに多数派の言い方を選べば中身を知らなくても正解に当たる（実例 D-01-125。2026-10-21 の点検で3アプリの誤答を並べ直した）。
+// 判定:
+//   1. 選択肢を SEG_SPLIT（→ ⇒ 。 、 ， ； ／ 全角の空白）で部分に分ける。比べる前に NFKC にし、空白・括弧・中黒を除く
+//   2. 正解の部分ごとに、誤答の同じ部分を決める。4つとも部分の数が同じなら位置で並べる（並べ替えの問題も位置で比べる）。
+//      数が違うときは、同じ部分の最長の並び（LCS）で対応を取り、対応しなかった正解の部分は、前後の対応した部分のあいだにある誤答の部分すべてと比べる
+//   3. 部分ごとに「正解と同じ言い方の数（正解を含む）」と「ほかの言い方でいちばん多い数」を比べる。
+//      誤答どうしの言い方は、あいだの部分を1つでも共有していれば同じ言い方として数える（数え上げを多めにして、誤検出を減らす側に倒す）
+//   4. 4つとも同じ部分は数えない。違いのある部分が2つ以上あり、そのすべてで正解の言い方がほかより多い（同数はよい）なら WARN
+// 「ほぼ同じ言い回し」: 正規化した文字列が同じか、ひらがなを除いた文字列と打ち消しの語（ない・なく・ず・ぬ・ません）の数が同じなら同じ言い方とする
+//   （「IT投資が非効率になり」と「IT投資は非効率になるが」は同じ。「できる」と「できない」・「α」と「β」・「1㎡」と「10㎡」は別）。
+// 見ていないもの:
+//   - 区切りの無い文（1つの部分にしかならない文。語の差し替えだけの選択肢）。区切りの記号の無い所で言い換えた部分（「〜ので」「〜ため」でつないだ1文の中）
+//   - 言い回しが違うが意味が同じもの（「ランタイムが読める形」と「各機器のランタイムが読める形」は別の言い方と数える）。漢字やカタカナが1字でも違えば別の言い方
+//   - 同数で止まるが、大半の部分で正解が多数派の形（例: 4つの部分のうち3つで正解が多数派、1つは正解だけ）。ほかの3つと最も似た選択肢が正解、という似ている度合いの偏り
+//   - 部分の数が違う選択肢の対応の取り違え（LCS は同じ言い方の部分だけを手がかりにする）
+//   - combo と、選択肢が「（ア）〇〇　（イ）△△」の組の問題（COMBO-MODE が見る）
+const SEG_SPLIT = /→|⇒|。|、|，|；|／|　/;
+const SEG_NEG = /ない|なく|ず|ぬ|ません/g;
+const segNorm = (s) => String(s).normalize('NFKC').replace(/[\s「」『』（）()・。、，]/g, '');
+const segKey = (s) => s.replace(/[ぁ-ゖ]/g, '') + '#' + (s.match(SEG_NEG) || []).length;
+const segSame = (a, b) => a === b || segKey(a) === segKey(b);
+const segsOf = (c) => String(c).split(SEG_SPLIT).map(segNorm).filter((x) => x.length > 0);
+function segAlign(A, D) {
+  // 正解の部分 A[i] ごとに { kept: 同じ言い方の部分が対応した } か { kept: false, span: 対応先の候補の誤答の部分 } を返す
+  if (A.length === D.length) return A.map((a, i) => (segSame(a, D[i]) ? { kept: true } : { kept: false, span: [D[i]] }));
+  const n = A.length; const m = D.length;
+  const L = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = segSame(A[i], D[j]) ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const map = new Array(n).fill(-1);
+  for (let i = 0, j = 0; i < n && j < m;) {
+    if (segSame(A[i], D[j]) && L[i][j] === L[i + 1][j + 1] + 1) { map[i] = j; i++; j++; } else if (L[i + 1][j] >= L[i][j + 1]) i++; else j++;
+  }
+  return map.map((v, k) => {
+    if (v >= 0) return { kept: true };
+    let lo = -1; for (let x = k - 1; x >= 0; x--) if (map[x] >= 0) { lo = map[x]; break; }
+    let hi = m; for (let x = k + 1; x < n; x++) if (map[x] >= 0) { hi = map[x]; break; }
+    return { kept: false, span: D.slice(lo + 1, hi) };
+  });
+}
+const segStats = { n: 0, flagged: 0 };
+function checkSegMajority(f, id, o) {
+  if (!Array.isArray(o.choices) || o.choices.length < 3 || !o.choices.every(isStr) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
+  segStats.n++;
+  const all = o.choices.map(segsOf);
+  const A = all[o.answer];
+  if (A.length < 2) return;
+  const others = all.filter((_, i) => i !== o.answer).map((D) => segAlign(A, D));
+  const meet = (x, y) => (x.length === 0 && y.length === 0) || x.some((a) => y.some((b) => segSame(a, b)));
+  let informative = 0;
+  for (let i = 0; i < A.length; i++) {
+    const kept = others.filter((r) => r[i].kept).length;
+    if (kept === others.length) continue;
+    informative++;
+    const spans = others.filter((r) => !r[i].kept).map((r) => r[i].span);
+    let rival = 0;
+    for (const s of spans) rival = Math.max(rival, spans.filter((x) => meet(x, s)).length);
+    if (1 + kept <= rival) return;
+  }
+  if (informative < 2) return;
+  segStats.flagged++;
+  warn(f, id, `SEG-MAJORITY: 違いのある部分 ${informative} か所のどれでも、正解の言い方がほかの言い方より多く出る（部分ごとに多数派を選ぶと正解できる。部分ごとに正解の言い方の回数をほかの言い方以下にする。3つの部分なら誤答を abb・bab・bba）`);
+}
 const cueStats = { n: 0, flagged: 0 };
 function checkCueWords(f, id, o) {
   if (!Array.isArray(o.choices) || !Number.isInteger(o.answer) || o.answer < 0 || o.answer >= o.choices.length) return;
@@ -369,6 +438,8 @@ for (const { file: f, kind, data, syl } of loaded) {
       } else if (Array.isArray(o.choices) && o.choices.every((c) => isStr(c) && /^（ア）/.test(c.trim()) && /（イ）/.test(c))) {
         // fill 等でも選択肢が「（ア）〇〇　（イ）△△」の組なら、同じ手がかりが出るので同じ検査をかける
         checkComboMode(f, id, o);
+      } else {
+        checkSegMajority(f, id, o);
       }
     } else {
       if (!idForm.c.test(id)) err(f, id, `id が ${idForm.cLabel} 形式でない`);
@@ -418,6 +489,8 @@ for (const { file: f, kind, data } of loaded) {
 }
 // 選択肢の語の偏り（全体）
 if (cueStats.n) console.log(`CUE 全体: 語の偏りがある ${cueStats.flagged}/${cueStats.n}`);
+// 部分ごとの多数決で正解に当たる（全体）
+if (segStats.n) console.log(`SEG 全体: 部分ごとの多数派が正解になる ${segStats.flagged}/${segStats.n}`);
 warns.forEach((w) => console.log(w));
 errors.forEach((e) => console.log(e));
 console.log(errors.length ? `結果: NG ${errors.length}件` : '結果: OK');
