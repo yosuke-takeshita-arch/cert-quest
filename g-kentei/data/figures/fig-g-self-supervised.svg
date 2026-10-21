@@ -61,7 +61,7 @@
 <rect x="220" y="284" width="48" height="28" class="fs sb" stroke-width="1.5"/>
 <text x="244" y="302.5" class="tb" text-anchor="middle">食べた</text>
 <text x="12" y="336" class="tm">隠した語を、まわりから当てる（BERT）</text>
-<text x="12" y="368" class="tb ta">② 同じ画像どうしを近づける（対照学習）</text>
+<text x="12" y="368" class="tb ta">② 同じ画像から作った2枚を近づける（対照学習）</text>
 <rect x="12" y="402" width="70" height="40" class="fs sb" stroke-width="1.5"/>
 <text x="47" y="426.5" class="tb" text-anchor="middle">画像 A</text>
 <line x1="82" y1="412" x2="112" y2="400" class="l w2"/>
