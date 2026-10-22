@@ -18,6 +18,7 @@ import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
+import { trueBossPlace } from './trueboss.js';
 import { cardBody } from './cards.js';
 import { installHint } from '../lib/install.js';
 
@@ -274,6 +275,8 @@ export function renderMap(app) {
     btns.list = h('button', { class: 'map-switch-btn', type: 'button', onClick: () => choose('list') }, '一覧で見る'));
   root.appendChild(sw);
   root.appendChild(h('p', { class: 'small muted', text: '色は「最後に解いたとき正解だった問題の割合」。ステージを選ぶと出題されます。' }));
+  const tbPlace = trueBossPlace(app, '#/map'); // 真ボスの入口（真ボスを出すアプリだけ。要件定義書 §3-9）
+  if (tbPlace) root.appendChild(tbPlace);
   const body = h('div', { class: 'map-body' });
   root.appendChild(body);
   function draw(toggled) {
@@ -493,6 +496,8 @@ export function renderReview(app) {
     bbox.appendChild(h('p', { class: 'small muted', text: BOSS_TEXT.quiet }));
   }
   root.appendChild(bbox);
+  const tbPlace = trueBossPlace(app, '#/review'); // 真ボス（全章のボスを倒すと現れる）
+  if (tbPlace) root.appendChild(tbPlace);
   // 「あとで見る」へ入る（ゆっくり理解したい問題に自分で付けた印。復習の予定とは別）
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: 'あとで見る' }),
     h('p', { class: 'small muted', text: '自分で印を付けた問題を、まとめて読み返せます。' }),

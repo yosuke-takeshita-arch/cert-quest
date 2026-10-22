@@ -11,6 +11,7 @@ import { normalizeLater } from './later.js';
 import { normalizeDochi } from './dochi.js';
 import { normalizeForecast } from './forecast.js';
 import { normalizeBoss, normalizeBossFlawless, normalizeBossMet } from './boss.js';
+import { normalizeTrueBoss } from './trueboss.js';
 import { normalizeStudySeconds, normalizeStudyDays } from './studytime.js';
 import { normalizeCharTap100 } from './characters.js';
 import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
@@ -35,6 +36,7 @@ export function defaultState() {
     boss: {}, // 章のボスの撃破回数（章のキー → 回数）
     bossMet: {}, // 一度でも現れた章のボス（章のキー → true）。会うまでは名前も姿も隠す
     bossFlawless: 0, // ハートを1つも減らさずにボスを倒した回数（バッジ「ノーダメージ」用）
+    trueBoss: { wins: 0 }, // 真ボスを倒した回数（要件定義書 §3-9。バッジ『真ボス』用）
     charTap100: { shiba: false, sensei: false }, // サニー／あい先生を100回タップした事実（バッジ用）。回数そのものは保存しない
     goalAwarded: null,
     reviewToday: { day: null, n: 0 }, // 「復習」として解いた数（その日の dayNumber と数）。1日60問の枠から引く。日が変われば数え直し。要件定義書 §6-3
@@ -66,6 +68,7 @@ export function mergeState(saved) {
   o.boss = normalizeBoss(saved.boss); // 章のボスの撃破回数。古い記録（項目なし）は空
   o.bossMet = normalizeBossMet(saved.bossMet); // 一度でも現れた章のボス。古い記録（項目なし）は空（倒したことがあれば会ったことにする。hasMetBoss）
   o.bossFlawless = normalizeBossFlawless(saved.bossFlawless); // ノーダメージで倒した回数。古い記録（項目なし）・壊れた値は0
+  o.trueBoss = normalizeTrueBoss(saved.trueBoss); // 真ボスを倒した回数。古い記録（項目なし）・壊れた値は0
   o.charTap100 = normalizeCharTap100(saved.charTap100); // タップのバッジ用。古い記録（項目なし）・壊れた値は両方 false
   o.reviewToday = normalizeReviewToday(saved.reviewToday); // 今日の復習として解いた数。古い記録（項目なし）・壊れた値は「記録なし」
   o.studySeconds = normalizeStudySeconds(saved.studySeconds); // 総学習時間。古い記録（項目なし）・壊れた値は0

@@ -35,6 +35,9 @@ import { renderLater } from './views/later.js';
 import { renderStudyReport } from './views/studyreport.js';
 import { renderDochi } from './views/dochi.js';
 import { renderBoss } from './views/boss.js';
+import { renderTrueBoss } from './views/trueboss.js';
+import { loadTrueBossData, normalizeTrueBossData, TRUE_BOSS_FILE } from './lib/trueboss-data.js';
+import { trueBossEnabled } from './lib/trueboss.js';
 import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
@@ -129,6 +132,8 @@ export async function start() {
   const loadExtras = async (loaded) => {
     // 章のボスの名前・せりふ。無い・壊れているときは空（ボスは汎用の名前とせりふで動く）。読み込みの進み具合には数えない
     loaded.data.bosses = (await loadBosses(new URL(loaded.data.bossesFile, loaded.dataBase).href)).bosses;
+    // 真ボスの名前・せりふ（config の trueBoss が true のアプリだけ。無い・壊れているときは仮の名前とせりふ）
+    loaded.data.trueBoss = trueBossEnabled(config) ? await loadTrueBossData(new URL(TRUE_BOSS_FILE, loaded.dataBase).href) : normalizeTrueBossData(null);
     // 基礎のことば（要件定義書 §7-5）。無い・空・壊れているときは、基礎のことばの無いアプリとして動く。進み具合には数えない。
     // 文中で見つける道具は、試験範囲のカードの title も知っている（「次元削減」というカードがあれば、その中の「次元」には印を付けない）
     loaded.data.basics = (await loadBasics(new URL(loaded.data.basicsFile, loaded.dataBase).href)).items;
@@ -404,6 +409,7 @@ export async function start() {
     ['play', 'home', () => renderPlay(app), true],
     ['dochi', 'home', () => renderDochi(app), true], // 出題の遊びなので、下のメニューを隠し、BGM も問題中の設定に従う
     ['boss', 'map', (k) => renderBoss(app, k), true], // 章のボス戦。問題を解く画面なので同じく下のメニューを隠す
+    ['trueboss', 'map', () => renderTrueBoss(app), true], // 真ボス戦（G検定だけ。config の trueBoss）。同じく下のメニューを隠す
   ];
 
   function renderSubjects() {

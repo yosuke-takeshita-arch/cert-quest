@@ -5,6 +5,7 @@
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
 import { SFX_FILES, BOSS_SFX, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, RUSH_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
 import { bossTheme, SYNTH_SFX } from './lib/bossmusic.js';
+import { trueBossTheme, TRUE_SFX } from './lib/trueboss-music.js';
 
 const SFX_BASE = new URL('../audio/sfx/', import.meta.url).href;
 const BGM_BASE = new URL('../audio/bgm/', import.meta.url).href;
@@ -349,6 +350,7 @@ const M = {
   timer: null,
   loopAt: 0,
   theme: null,
+  trueForm: 0, // 0＝章のボスの曲／1〜3＝真ボスの曲（形態。第3形態だけ別の曲）。真ボスの曲はプログラムの曲だけ（ファイルの曲は使わない）
   el: null, // ファイルの曲の <audio>（1つを使い回す）
   elSource: null, // el をつなぐ音の源（createMediaElementSource は1つの el に1回しか作れない）
   url: null, // 取ったファイルの blob の URL
@@ -391,7 +393,7 @@ function scheduleEvents(c, dest, events, t0, extraGain = 1) {
 function scheduleThemeAhead() {
   const c = ctx;
   if (!c || !M.running || !M.gain) return;
-  if (!M.theme) M.theme = bossTheme();
+  if (!M.theme) M.theme = M.trueForm ? trueBossTheme(M.trueForm) : bossTheme();
   while (M.loopAt < c.currentTime + 2) {
     M.theme.voices.forEach((v) => scheduleEvents(c, M.gain, v.events.map((e) => ({ ...e, wave: v.wave, gain: v.gain })), M.loopAt));
     M.loopAt += M.theme.loopSec;
@@ -458,6 +460,7 @@ function startBossMusic() {
   M.running = true;
   M.mode = null;
   const token = ++M.token;
+  if (M.trueForm) { startBossSynth(); return; } // 真ボスの専用曲はプログラムの曲だけ（ファイルを取らない）
   // ファイルを取っている間は、まだ鳴らさない（取れなければプログラムの曲）
   startBossFile(token).then((ok) => { if (!ok && token === M.token && M.running) startBossSynth(); });
 }
@@ -613,8 +616,16 @@ export function setBgmBoss(on) {
   syncBgm();
 }
 
-/** ボスが現れた。ボス戦の曲を鳴らす（BGM がオフなら何もしない）。 */
-export function startBossTheme() {
+/**
+ * ボスが現れた。ボス戦の曲を鳴らす（BGM がオフなら何もしない）。
+ * trueForm を渡すと真ボスの曲（1〜3 ＝ 形態。省くと章のボスの曲）。鳴っている曲と違う曲になるときは、小さくして止めてから新しい曲を始める。
+ */
+export function startBossTheme(trueForm = 0) {
+  const f = Number.isInteger(trueForm) && trueForm >= 1 ? Math.min(trueForm, 3) : 0;
+  const themeChanged = f === 0 ? M.trueForm !== 0 : M.trueForm === 0 || (f === 3) !== (M.trueForm === 3);
+  M.trueForm = f;
+  M.theme = null;
+  if (themeChanged && M.running) stopBossMusic(false); // 止まりきったら、armed のままなので syncBgm が新しい曲を始める
   M.armed = true;
   syncBgm();
 }
@@ -627,7 +638,8 @@ export function stopBossTheme() {
 
 /** プログラムで鳴らす効果音（SYNTH_SFX のキー）。効果音がオンのときだけ、効果音の音量で。 */
 export function playSynth(settings, name) {
-  if (!settings || !settings.sound || !SYNTH_SFX[name]) return;
+  const score = SYNTH_SFX[name] || TRUE_SFX[name];
+  if (!settings || !settings.sound || !score) return;
   const c = audioCtx();
   if (!c) return;
   const gain = sfxGain(settings.sfxVolume);
@@ -637,7 +649,7 @@ export function playSynth(settings, name) {
     const g = c.createGain();
     g.gain.value = 0.25 * gain;
     g.connect(c.destination);
-    scheduleEvents(c, g, SYNTH_SFX[name], c.currentTime + 0.02);
+    scheduleEvents(c, g, score, c.currentTime + 0.02);
   } catch (e) { /* 音が出せなくても学習は続ける */ }
 }
 

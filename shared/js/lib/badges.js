@@ -5,6 +5,7 @@ import { levelFromXp, totalXpForLevel, currentStreak } from './scoring.js';
 import { secondsPerQuestion } from './quiz.js';
 import { DOCHI_ROUNDS, normalizeDochi } from './dochi.js';
 import { normalizeBoss, normalizeBossFlawless } from './boss.js';
+import { trueBossEnabled, trueBossWins } from './trueboss.js';
 import { normalizeCharTap100 } from './characters.js';
 
 // 絵のあるバッジ。共通の19個は shared/images/badges/<id>.webp（id と同じ名前）。
@@ -49,7 +50,7 @@ export function badgeImageUrl(art, { sharedBase, appBase } = {}) {
 // 取っていないバッジの見せ方の段（要件定義書 §3-8-b）。段の無いバッジ（章の制覇など）は 'normal'（ふつう）。
 //   shadow … 姿がわからない（絵は黒い影。名前・条件・棒は出す）／ secret … ひみつ（絵も名前も『？』。条件も棒も出さない）
 export const SHADOW_BADGE_IDS = Object.freeze(['correct-100', 'streak-7', 'level-10', 'challenge-8', 'exam-70', 'dochi-combo-10']);
-export const SECRET_BADGE_IDS = Object.freeze(['streak-30', 'exam-90', 'dochi-perfect', 'boss-flawless', 'boss-all', 'tap-shiba-100', 'tap-sensei-100']);
+export const SECRET_BADGE_IDS = Object.freeze(['streak-30', 'exam-90', 'dochi-perfect', 'boss-flawless', 'boss-all', 'true-boss', 'tap-shiba-100', 'tap-sensei-100']);
 /** ひみつのバッジの表示（名前の代わり・条件の代わり）と、取ったときのお祝いの一言。文言はここ1か所。 */
 export const SECRET_BADGE_TEXT = Object.freeze({ name: 'ひみつのバッジ', title: '？', desc: 'ひみつのバッジ', found: 'ひみつのバッジを見つけた！' });
 
@@ -124,6 +125,16 @@ export function badgeDefs(tree, config) {
       desc: '問題のある全' + bossStages.length + '章のボスを、1回以上倒す',
       test: (s) => beaten(s) >= bossStages.length,
       progress: (s) => ({ cur: beaten(s), max: bossStages.length, unit: '章', action: { kind: 'boss' } }),
+    });
+  }
+  // 真ボス（要件定義書 §3-9）。真ボスを出すアプリ（config.trueBoss）だけ。ひみつの段。絵は無いので記号の表示
+  if (trueBossEnabled(config)) {
+    defs.splice(defs.findIndex((d) => d.id === 'tap-shiba-100'), 0, {
+      id: 'true-boss',
+      name: '塔を きわめし もの',
+      desc: '真ボスを倒す',
+      test: (s) => trueBossWins(s) >= 1,
+      progress: (s) => ({ cur: Math.min(1, trueBossWins(s)), max: 1, unit: '回', action: { kind: 'boss' } }),
     });
   }
   for (const major of (tree && tree.roots) || []) {

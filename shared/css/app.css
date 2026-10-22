@@ -903,6 +903,56 @@ body.boss-on { background: #000; }
   .boss-flash.on { opacity: 0; }
 }
 
+/* ---- 真ボス（views/trueboss.js。要件定義書 §3-9）。章のボスの戦いの画面（.boss-rpg）に足す分だけ ---- */
+.tb-head-name { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.chip.tb-form { background: #2b0a33; color: #ffd36b; border: 1px solid #ff6a1f; font-weight: 700; }
+.tb-skill { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 12px; padding: 12px; border: 2px solid var(--warn); border-radius: 8px; background: var(--warn-bg); color: var(--warn); }
+.tb-skill-name { font-size: 1.0625rem; }
+.tb-skill-turns { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tb-skill-rule { flex-basis: 100%; color: var(--text); }
+.tb-timer { flex-basis: 100%; height: 10px; border-radius: 5px; background: #3a3a3a; overflow: hidden; }
+.tb-timer-fill { display: block; height: 100%; background: var(--warn); width: calc(var(--left, 1) * 100%); }
+.tb-timer-text { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tb-timer-text.low { color: var(--ng); }
+.tb-noexp { margin: 8px 0 0; }
+.tb-review h2 { margin-top: 0; }
+.tb-review-form { margin: 16px 0 4px; font-size: 1rem; color: var(--muted); }
+.tb-row { border-top: 1px solid var(--border); padding: 4px 0; }
+.tb-row summary { display: flex; align-items: flex-start; gap: 8px; min-height: 48px; padding: 8px 0; cursor: pointer; }
+.tb-mark { flex: none; width: 1.5em; font-weight: 700; text-align: center; }
+.tb-row.right .tb-mark { color: var(--ok); }
+.tb-row.wrong .tb-mark { color: var(--ng); }
+.tb-stem { min-width: 0; overflow-wrap: anywhere; }
+.tb-ending { position: relative; min-height: 78vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 16px 96px; text-align: center; overflow: hidden; background: #000; color: #fff; border: 2px solid #fff; border-radius: 8px; cursor: pointer; }
+.tb-sky { position: absolute; inset: 0; pointer-events: none; }
+.tb-star { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #ffe082; animation: tb-twinkle var(--dur, 2s) ease-in-out var(--delay, 0s) infinite alternate; }
+.tb-ending-title, .tb-ending-line { position: relative; margin: 0; opacity: 0; transition: opacity 1.2s ease-out; }
+.tb-ending-title { font-size: 1.5rem; font-weight: 700; color: #ffe082; margin-bottom: 12px; }
+.tb-ending-line { font-size: 1.0625rem; line-height: 1.9; max-width: 30em; overflow-wrap: anywhere; }
+.tb-ending-title.shown, .tb-ending-line.shown { opacity: 1; }
+.tb-ending-btn { position: absolute; left: 16px; right: 16px; bottom: 16px; }
+.tb-ending-go { width: 100%; }
+.boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; }
+.boss-fig.shake { animation: tb-shake 0.18s linear infinite; }
+.boss-fig.swell { animation: tb-swell 1.7s ease-in forwards; }
+.boss-fig.emerge { animation: tb-emerge 1s ease-out; }
+.boss-fig.spread { animation: tb-spread 1s ease-out; }
+.tb-crack { position: absolute; left: var(--x); top: var(--y); width: 3px; height: var(--len); background: #fff; box-shadow: 0 0 8px #ffd36b, 0 0 2px #000; transform-origin: 50% 0; transform: rotate(var(--rot)); animation: tb-crack 0.25s ease-out forwards; }
+.tb-burst { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, #fff 0%, rgba(255, 224, 130, 0.85) 25%, rgba(255, 224, 130, 0) 65%); opacity: 0; animation: tb-burst 1s ease-out forwards; }
+.tb-burst.strong { animation-duration: 1.6s; }
+@keyframes tb-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px) rotate(-1deg); } 75% { transform: translateX(4px) rotate(1deg); } }
+@keyframes tb-swell { 0% { transform: scale(1); } 100% { transform: scale(1.12); filter: brightness(2.2); } }
+@keyframes tb-emerge { 0% { opacity: 0; transform: scale(0.8); filter: brightness(4); } 60% { opacity: 1; filter: brightness(1.8); } 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes tb-spread { 0% { transform: scaleX(0.55); filter: brightness(4); } 100% { transform: none; filter: none; } }
+@keyframes tb-crack { 0% { clip-path: inset(0 0 100% 0); } 100% { clip-path: inset(0 0 0 0); } }
+@keyframes tb-burst { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes tb-twinkle { 0% { opacity: 0.15; transform: scale(0.6); } 100% { opacity: 1; transform: scale(1.4); } }
+@media (prefers-reduced-motion: reduce) {
+  .tb-star { animation: none; opacity: 0.8; }
+  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack, .tb-burst { animation: none; }
+  .tb-ending-title, .tb-ending-line { transition: none; }
+}
+
 /* 科目を選ぶ画面（科目のあるアプリ。views/subjects.js）と、ホームの「科目をかえる」 */
 .subject-list { display: grid; gap: 8px; }
 .btn.big.subject-card { justify-content: flex-start; text-align: left; gap: 12px; margin-bottom: 0; padding: 12px 16px; }

@@ -14,12 +14,13 @@ function tree() {
   const b = st('T|B', 10);
   return { roots: [{ key: 'T', id: 'T', name: 'T', children: [a, b] }], stages: [a, b] };
 }
-const defs = () => badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 });
+// 真ボスを出すアプリ（G検定。config の trueBoss）の定義。ひみつの『真ボス』のバッジ（要件定義書 §3-9）も入る
+const defs = () => badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40, trueBoss: true });
 const def = (id) => defs().find((d) => d.id === id);
 
-test('段: 姿がわからない6つ・ひみつ7つ、それ以外（章の制覇・大項目の制覇を含む）はふつう', () => {
+test('段: 姿がわからない6つ・ひみつ8つ（真ボスを含む）、それ以外（章の制覇・大項目の制覇を含む）はふつう', () => {
   assert.equal(SHADOW_BADGE_IDS.length, 6);
-  assert.equal(SECRET_BADGE_IDS.length, 7);
+  assert.equal(SECRET_BADGE_IDS.length, 8);
   const all = defs();
   for (const id of SHADOW_BADGE_IDS) assert.equal(badgeTier(all.find((d) => d.id === id)), 'shadow', id);
   for (const id of SECRET_BADGE_IDS) assert.equal(badgeTier(all.find((d) => d.id === id)), 'secret', id); // boss-all・タップの2つも定義に在る
@@ -27,11 +28,11 @@ test('段: 姿がわからない6つ・ひみつ7つ、それ以外（章の制�
   for (const id of normal) assert.equal(badgeTier(def(id)), 'normal', id);
   assert.equal(badgeTier(def('major:T')), 'normal');
   assert.equal(badgeTier(def('chapter:T|A')), 'normal');
-  // 3つの段は重ならず、全部で 8 + 6 + 7 の共通バッジ（+ 大項目・章）
+  // 3つの段は重ならず、全部で 8 + 6 + 8 の共通バッジ（+ 大項目・章）
   const tiers = all.map((d) => badgeTier(d));
   assert.equal(tiers.filter((x) => x === 'shadow').length, 6);
-  assert.equal(tiers.filter((x) => x === 'secret').length, 7);
-  assert.equal(new Set([...SHADOW_BADGE_IDS, ...SECRET_BADGE_IDS]).size, 13);
+  assert.equal(tiers.filter((x) => x === 'secret').length, 8);
+  assert.equal(new Set([...SHADOW_BADGE_IDS, ...SECRET_BADGE_IDS]).size, 14);
   assert.equal(badgeTier(null), 'normal');
 });
 

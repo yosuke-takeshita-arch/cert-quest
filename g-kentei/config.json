@@ -19,6 +19,7 @@
   "mapImage": "images/map.webp",
   "exam": { "questions": 145, "minutes": 100 },
   "secondsPerQuestion": 40,
+  "trueBoss": true,
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
   "challenge": { "questions": 10 },
   "reportUrl": "mailto:support@aisunia.com",

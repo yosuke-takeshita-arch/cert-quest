@@ -105,6 +105,10 @@ const SHARED = [
   '../shared/js/lib/install.js',
   '../shared/js/lib/bossmusic.js',
   '../shared/js/views/boss.js',
+  '../shared/js/lib/trueboss.js',
+  '../shared/js/lib/trueboss-data.js',
+  '../shared/js/lib/trueboss-music.js',
+  '../shared/js/views/trueboss.js',
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',
@@ -175,6 +179,12 @@ async function prefetchData(cache, dir) {
       const bu = new URL(base + (typeof idx.bosses === 'string' && idx.bosses ? idx.bosses : 'bosses.json'), self.location).href;
       const br = await fetch(bu, { cache: 'reload' });
       if (br.ok) await cache.put(bu, br);
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
+    // 真ボスの名前・せりふ（<置き場>/trueboss.json。真ボスを出すアプリだけが持つ）。無い(404)ときは飛ばす
+    try {
+      const tu = new URL(base + 'trueboss.json', self.location).href;
+      const tr = await fetch(tu, { cache: 'reload' });
+      if (tr.ok) await cache.put(tu, tr);
     } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
     // 基礎のことば（<置き場>/basics.json。index.json の basics で名前を変えてもよい）。無い(404)ときは飛ばす。図を持っていれば、その図も取る
     try {
