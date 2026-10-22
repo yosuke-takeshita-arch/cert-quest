@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { applyAnswer, isDue, dueIds, upcoming, dayNumber, INTERVALS } from '../js/lib/srs.js';
-import { REVIEW_DAILY_LIMIT, sortedDueIds, reviewPlan, moreIds, normalizeReviewToday, reviewDoneToday, bumpReviewToday } from '../js/lib/review.js';
+import { REVIEW_DAILY_LIMIT, REVIEW_SESSION_SIZE, sortedDueIds, reviewPlan, moreIds, normalizeReviewToday, reviewDoneToday, bumpReviewToday } from '../js/lib/review.js';
 import { defaultState, mergeState, recordAnswer, todayReviewPlan } from '../js/lib/progress.js';
 import { examDayNumber } from '../js/lib/examdate.js';
 
@@ -147,8 +147,9 @@ test('今日の枠: 解くほど減り、60問を解き終えたら ids は空�
   for (const id of first.ids.slice(20, 60)) qs = { ...qs, [id]: applyAnswer(qs[id], true, 5) };
   const end = reviewPlan(qs, 5, 60);
   assert.deepEqual([end.ids.length, end.finished, end.total, end.over], [0, true, 40, 40]);
-  assert.deepEqual(moreIds(end), end.rest.slice(0, 60));
-  assert.equal(moreIds(end).length, 40);
+  assert.deepEqual(moreIds(end), end.rest.slice(0, 20));
+  assert.equal(moreIds(end).length, 20);
+  assert.equal(REVIEW_SESSION_SIZE, 20);
   // 全部終えたら finished ではなく 0 件
   const none = reviewPlan({}, 5, 60);
   assert.deepEqual([none.ids.length, none.finished, none.total], [0, false, 0]);

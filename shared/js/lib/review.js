@@ -43,8 +43,11 @@ export function reviewPlan(qstats, today, done = 0, validIds, limit = REVIEW_DAI
   return { total: rest.length, ids, over: rest.length - ids.length, rest, done: d, finished: quota === 0 && rest.length > 0 };
 }
 
+/** 1回の出題の数。今日の枠（最大60問）の中から、苦手な順に20問ずつ出す。 */
+export const REVIEW_SESSION_SIZE = 20;
+
 /** 「もっと復習する」で出す問題。残りの先頭から limit 問（同じ苦手な順）。 */
-export function moreIds(plan, limit = REVIEW_DAILY_LIMIT) {
+export function moreIds(plan, limit = REVIEW_SESSION_SIZE) {
   return plan.rest.slice(0, limit);
 }
 
