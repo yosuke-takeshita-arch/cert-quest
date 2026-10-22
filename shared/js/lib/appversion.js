@@ -17,6 +17,11 @@ export function isSwVersion(v) {
   return (typeof v === 'string' || typeof v === 'number') && SW_VERSION_RE.test(String(v));
 }
 
+/** タイトル画面に出す文字「Ver. 0.9.0」。人に見せる版だけ（service worker の番号は出さない）。取れないときは null（何も出さない）。 */
+export function formatTitleVersion(appVersion) {
+  return isAppVersion(appVersion) ? 'Ver. ' + appVersion : null;
+}
+
 /** 画面に出す文字。どちらかが取れていなければ、その側を「—」にする（画面は壊さない）。 */
 export function formatAppVersion(appVersion, swVersion) {
   const a = isAppVersion(appVersion) ? appVersion : VERSION_UNKNOWN;

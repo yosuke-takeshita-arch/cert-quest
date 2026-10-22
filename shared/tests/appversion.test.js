@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import vm from 'node:vm';
 import { root, APPS } from './apps.js';
 import {
-  isAppVersion, isSwVersion, formatAppVersion, VERSION_UNKNOWN,
+  isAppVersion, isSwVersion, formatAppVersion, formatTitleVersion, VERSION_UNKNOWN,
   swVersionFromCacheName, swVersionFromCacheNames, readSwVersion,
 } from '../js/lib/appversion.js';
 
@@ -108,4 +108,25 @@ test('設定画面のいちばん下に版が出る（データの状態のカ�
   const j = src.indexOf('data-app-version');
   assert.ok(i > 0 && j > i, '版の行が「データの状態」のカードより後ろに無い');
   assert.ok(src.indexOf('return { el: root, cleanup: sound.dispose }') > j, '版の行が画面の返り値より後ろになっている');
+});
+
+test('タイトル画面の版: 「Ver. 0.9.0」だけ。sw の番号は出さず、取れないときは何も出さない', () => {
+  assert.equal(formatTitleVersion('0.9.0'), 'Ver. 0.9.0');
+  assert.equal(formatTitleVersion('1.12.3'), 'Ver. 1.12.3');
+  for (const ng of [undefined, null, '', '1.0', 'abc', 9, {}]) assert.equal(formatTitleVersion(ng), null, String(ng));
+  for (const app of ALL) assert.match(formatTitleVersion(readJson(app + '/config.json').appVersion), /^Ver\. \d+\.\d+\.\d+$/);
+});
+
+test('タイトル画面: 「非公式アプリ」のあとに版を置き、押せる範囲に触らない（CSS は pointer-events なし・小さく薄い）', () => {
+  const src = readFileSync(join(root, 'shared', 'js', 'views', 'title.js'), 'utf8');
+  assert.match(src, /formatTitleVersion\(config && config\.appVersion\)/);
+  const bottom = src.slice(src.indexOf("const bottom = h('div', { class: 'title-bottom' }"));
+  assert.ok(bottom.indexOf('title-unofficial') > 0 && bottom.indexOf('titleVersionEl(config)') > bottom.indexOf('title-unofficial'), '版は「非公式アプリ」より下');
+  const css = readFileSync(join(root, 'shared', 'css', 'app.css'), 'utf8');
+  const rule = /\.title-version \{([^}]*)\}/.exec(css);
+  assert.ok(rule, '.title-version の規則が無い');
+  assert.match(rule[1], /pointer-events:\s*none/);
+  assert.match(rule[1], /font-size:\s*0\.75rem/, '「非公式アプリ」（0.8125rem）より小さい');
+  assert.match(rule[1], /rgba\(255, 255, 255, 0\.[0-9]+\)/, '薄い白');
+  assert.match(rule[1], /text-shadow/, '背景の絵の上で読めるよう影を付ける');
 });

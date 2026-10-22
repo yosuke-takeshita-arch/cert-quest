@@ -5,6 +5,7 @@ import { daysUntil } from '../lib/scoring.js';
 import { unlockAudio, titleAudioLocked } from '../audio.js';
 import { buildSoundCard } from './sound-settings.js';
 import { appTitle } from '../lib/appname.js';
+import { formatTitleVersion } from '../lib/appversion.js';
 import { outlinePath } from '../lib/outline.js';
 import { validTrace, partPath, lineLength, traceSchedule } from '../lib/logotrace.js';
 
@@ -126,6 +127,12 @@ function sparkle(d) {
  *   fail(message, detail) … 読み込みに失敗したとき。ゲージ・ボタンの上に、原因と「再読み込み」を出す
  */
 // sound … { settings, commit }。あれば右上に歯車を出し、押すと音の設定のポップアップを開く（変えたら commit() で保存する）
+// いちばん下の小さな「Ver. 0.9.0」。取れないときは何も出さない。押せる要素ではない（pointer-events なし）
+function titleVersionEl(config) {
+  const t = formatTitleVersion(config && config.appVersion);
+  return t ? h('p', { class: 'title-version', 'data-title-version': '', text: t }) : null;
+}
+
 export function createTitleScreen({ config, examDate = null, now = new Date(), sound = null }) {
   const name = config.name || '';
   // 受験日は利用者が決めた日（決めていなければ null＝日数を出さない）
@@ -167,7 +174,7 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
   const soundHint = h('p', { class: 'title-unofficial title-sound-hint hidden', 'aria-live': 'polite', text: '画面をさわると音楽が流れます' });
   // 輪はボタンを包む枠の中に出す（枠の大きさ＝ボタンの大きさなので、位置・形がボタンに必ず重なる）
   const startWrap = h('div', { class: 'title-start-wrap' }, startBtn);
-  const bottom = h('div', { class: 'title-bottom' }, loading, startWrap, soundHint, h('p', { class: 'title-unofficial', text: '非公式アプリ' }));
+  const bottom = h('div', { class: 'title-bottom' }, loading, startWrap, soundHint, h('p', { class: 'title-unofficial', text: '非公式アプリ' }), titleVersionEl(config));
 
   const el = h('div', { class: 'title-screen', 'data-title': '1' },
     bg,
