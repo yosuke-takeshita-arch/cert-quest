@@ -1,6 +1,7 @@
 // 受験日（利用者が決める）の扱い。純粋な処理だけ（画面・localStorage には触らない）。
 // 保存するのは settings.examDate（'YYYY-MM-DD' または null＝まだ決めていない）と settings.examAsked（聞いたか）。
 import { daysUntil } from './scoring.js';
+import { dayNumber } from './srs.js';
 
 const YMD = /^(\d{4})-(\d{2})-(\d{2})$/;
 /** 受験日として受け付ける年の範囲（これを外れたら、ありえない値として捨てる）。 */
@@ -63,6 +64,14 @@ export function examStatus(settings, now = new Date()) {
   if (days > 0) return { kind: 'upcoming', date: d, days };
   if (days === 0) return { kind: 'today', date: d, days };
   return { kind: 'past', date: d, days };
+}
+
+/** 受験日の dayNumber（srs.js と同じ「1970-01-01 からの日数」）。決めていない・読めないときは null。復習の間隔を受験日で打ち切るのに使う。 */
+export function examDayNumber(settings) {
+  const d = settings && settings.examAsked === true ? normalizeExamDate(settings.examDate) : null;
+  if (!d) return null;
+  const [y, m, day] = d.split('-').map(Number);
+  return dayNumber(new Date(y, m - 1, day));
 }
 
 /** 聞くときの日付の初期値。config.examDate が読めて、まだ過ぎていなければそれ。そうでなければ空。 */

@@ -2,7 +2,8 @@
 import { applyAnswer, dayNumber, dateKey, dueIds } from './srs.js';
 import { DEFAULT_DAILY_GOAL, normalizeDailyGoal } from './daily.js';
 import { DEFAULT_SFX_VOLUME, DEFAULT_BGM_VOLUME, normalizeSoundSettings } from './sound.js';
-import { normalizeExamSettings } from './examdate.js';
+import { normalizeExamSettings, examDayNumber } from './examdate.js';
+import { reviewPlan, normalizeReviewToday, reviewDoneToday, bumpReviewToday } from './review.js';
 import { DEFAULT_TEXT_SIZE, normalizeTextSize } from './textsize.js';
 import { DEFAULT_MAP_VIEW, normalizeMapView } from './maplayout.js';
 import { DEFAULT_CARD_VIEW, normalizeCardView } from './cardtree.js';
@@ -36,6 +37,7 @@ export function defaultState() {
     bossFlawless: 0, // ハートを1つも減らさずにボスを倒した回数（バッジ「ノーダメージ」用）
     charTap100: { shiba: false, sensei: false }, // サニー／あい先生を100回タップした事実（バッジ用）。回数そのものは保存しない
     goalAwarded: null,
+    reviewToday: { day: null, n: 0 }, // 「復習」として解いた数（その日の dayNumber と数）。1日60問の枠から引く。日が変われば数え直し。要件定義書 §6-3
     studySeconds: 0, // 総学習時間（秒）。アプリを開いて画面が前に出ている時間（studytime.js）。過去の分は記録が無いので0から
     studyDays: {}, // 学習時間の日ごとの記録（'YYYY-MM-DD' → その日の秒数）。古い日は消さない。daily には混ぜない（daily に記録がある日＝答えた日、の判定に使っているため）。要件定義書 §6-2
   };
@@ -65,6 +67,7 @@ export function mergeState(saved) {
   o.bossMet = normalizeBossMet(saved.bossMet); // 一度でも現れた章のボス。古い記録（項目なし）は空（倒したことがあれば会ったことにする。hasMetBoss）
   o.bossFlawless = normalizeBossFlawless(saved.bossFlawless); // ノーダメージで倒した回数。古い記録（項目なし）・壊れた値は0
   o.charTap100 = normalizeCharTap100(saved.charTap100); // タップのバッジ用。古い記録（項目なし）・壊れた値は両方 false
+  o.reviewToday = normalizeReviewToday(saved.reviewToday); // 今日の復習として解いた数。古い記録（項目なし）・壊れた値は「記録なし」
   o.studySeconds = normalizeStudySeconds(saved.studySeconds); // 総学習時間。古い記録（項目なし）・壊れた値は0
   o.studyDays = normalizeStudyDays(saved.studyDays); // 学習時間の日ごと。古い記録（項目なし）は空、日付でないキー・壊れた値は捨てる
   if (!Number.isFinite(o.xp)) o.xp = 0;
@@ -89,12 +92,14 @@ export function mergeState(saved) {
  * 1問の回答を記録する。state を直接更新し、獲得XPなどを返す。
  * sessionStreak: 今回を含む連続正解数（呼び出し側が数える）
  */
-export function recordAnswer(state, q, { correct, seconds = null, sessionStreak = 0, now = new Date(), limit = 40, exam = false }) {
+export function recordAnswer(state, q, { correct, seconds = null, sessionStreak = 0, now = new Date(), limit = 40, exam = false, review = false }) {
   const prev = state.qstats[q.id];
   const firstTry = !prev || !prev.seen;
   const levelBefore = levelFromXp(state.xp).level;
   const xp = answerXp({ correct, firstTry, streak: sessionStreak, seconds, limit, exam });
-  state.qstats[q.id] = applyAnswer(prev, correct, dayNumber(now));
+  const today = dayNumber(now);
+  state.qstats[q.id] = applyAnswer(prev, correct, today, undefined, examDayNumber(state.settings)); // 受験日より後になる復習は卒業
+  if (review) state.reviewToday = bumpReviewToday(state.reviewToday, today); // 「復習」として解いた数（1日60問の枠から引く）
   state.xp += xp.total;
   state.totals.answered += 1;
   if (correct) state.totals.correct += 1;
@@ -151,6 +156,12 @@ export function nodeProgress(node, qstats) {
 
 export function dueQuestions(state, questionById, now = new Date()) {
   return dueIds(state.qstats, dayNumber(now)).map((id) => questionById.get(id)).filter(Boolean);
+}
+
+/** 今日の復習の計画（上限を当てた数・あふれ・残り）。決まりは lib/review.js の reviewPlan。データにある問題だけ数える。 */
+export function todayReviewPlan(state, questionById, now = new Date()) {
+  const today = dayNumber(now);
+  return reviewPlan(state.qstats, today, reviewDoneToday(state.reviewToday, today), questionById);
 }
 
 /** 次に学ぶステージの提案: 未着手のうち先頭 → 要復習 → あと少し。 */

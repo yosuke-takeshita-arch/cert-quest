@@ -3,7 +3,8 @@ import { h, icon, stars, externalLink, badgeBases, badgeImg, mascotLine, charact
 import { levelFromXp, currentStreak, MASTERY_LABEL } from '../lib/scoring.js';
 import { examStatus, formatExamDate } from '../lib/examdate.js';
 import { dateKey, dayNumber, upcoming } from '../lib/srs.js';
-import { nodeProgress, dueQuestions, suggestStage } from '../lib/progress.js';
+import { nodeProgress, todayReviewPlan, suggestStage } from '../lib/progress.js';
+import { moreIds, REVIEW_DAILY_LIMIT } from '../lib/review.js';
 import { pickQuestions, challengeName } from '../lib/quiz.js';
 import { dailyProgress } from '../lib/daily.js';
 import { formatStudyTime } from '../lib/studytime.js';
@@ -49,13 +50,22 @@ export function weakSpec(app, unit, backHash) {
   };
 }
 
-function reviewSpec(app) {
+/** 今日の復習。more=true は「もっと復習する」（今日の枠を使い切ったあと、残りの先頭から同じ苦手な順に出す）。 */
+function reviewSpec(app, more = false) {
   return {
     mode: 'review',
-    title: '今日の復習',
+    title: more ? 'もっと復習する' : '今日の復習',
     backHash: '#/review',
-    pick: (a) => dueQuestions(a.state, a.data.questionById, new Date()).slice(0, 20),
+    pick: (a) => {
+      const plan = todayReviewPlan(a.state, a.data.questionById, new Date());
+      return (more ? moreIds(plan) : plan.ids).map((id) => a.data.questionById.get(id));
+    },
   };
+}
+
+/** あふれの一言（ホーム・復習で同じ文）。 */
+function reviewOverNote(over) {
+  return h('p', { class: 'small muted review-over', 'data-review-over': '1', text: 'ほかに' + over + '問が待っています（苦手な問題から出しています）' });
 }
 
 function challengeSpec(app) {
@@ -137,7 +147,8 @@ export function renderHome(app) {
   const left = exam.days;
   const lv = levelFromXp(state.xp);
   const streak = currentStreak(state.streak, dateKey(now));
-  const due = dueQuestions(state, data.questionById, now).length;
+  const plan = todayReviewPlan(state, data.questionById, now);
+  const due = plan.ids.length; // 上限（60問）を当てた数
   const mascot = homeMascot(state, now);
 
   root.appendChild(h('header', { class: 'hero' },
@@ -177,6 +188,13 @@ export function renderHome(app) {
     const next = suggestStage(data.tree.stages, state.qstats);
     if (due > 0) {
       root.appendChild(h('button', { class: 'btn primary big cta', type: 'button', onClick: () => startSession(app, reviewSpec(app)) }, '今日の復習 ', h('span', { class: 'badge-count', text: due + '問' })));
+      if (plan.over > 0) root.appendChild(reviewOverNote(plan.over));
+    } else if (plan.finished) {
+      // 今日の枠（60問）を終えた。続けたい人だけ、残りを同じ順で出せる
+      root.appendChild(h('div', { class: 'card done-today', 'data-review-finished': '1' },
+        h('p', {}, '今日の復習の ', h('strong', { text: REVIEW_DAILY_LIMIT + '問' }), ' を終えました。'),
+        reviewOverNote(plan.over),
+        h('button', { class: 'btn', type: 'button', 'data-review-more': '1', onClick: () => startSession(app, reviewSpec(app, true)) }, 'もっと復習する')));
     } else {
       root.appendChild(h('div', { class: 'card done-today' }, h('p', {}, '今日の復習は ', h('strong', { text: '0件' }), ' です。')));
     }
@@ -442,11 +460,19 @@ export function renderStage(app, key) {
 export function renderReview(app) {
   const root = h('section', { class: 'view review' }, h('h1', { text: '復習' }));
   const today = dayNumber(new Date());
-  const due = dueQuestions(app.state, app.data.questionById, new Date());
+  const plan = todayReviewPlan(app.state, app.data.questionById, new Date());
   const up = upcoming(app.state.qstats, today, app.data.questionById);
-  root.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は、翌日・3日後・7日後・14日後に出ます。正解で次の間隔へ、まちがえると最初に戻ります。' }));
-  if (due.length) {
-    root.appendChild(h('div', { class: 'card' }, h('p', {}, h('strong', { class: 'big-num', text: due.length + '問' }), ' が復習の日です'), h('button', { class: 'btn primary big', type: 'button', onClick: () => startSession(app, reviewSpec(app)) }, '復習を始める' + (due.length > 20 ? '（まず20問）' : ''))));
+  root.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は、翌日・3日後・7日後に出ます。3回続けて正解すると卒業、まちがえると最初に戻ります。受験日を決めていると、受験日より後になる復習は入れません。1日に出すのは最大' + REVIEW_DAILY_LIMIT + '問で、苦手な問題から選びます。' }));
+  if (plan.ids.length) {
+    root.appendChild(h('div', { class: 'card' },
+      h('p', {}, h('strong', { class: 'big-num', text: plan.ids.length + '問' }), ' が今日の復習です'),
+      plan.over > 0 ? reviewOverNote(plan.over) : null,
+      h('button', { class: 'btn primary big', type: 'button', onClick: () => startSession(app, reviewSpec(app)) }, '復習を始める')));
+  } else if (plan.finished) {
+    root.appendChild(h('div', { class: 'card done-today', 'data-review-finished': '1' },
+      h('p', {}, '今日の復習の ', h('strong', { text: REVIEW_DAILY_LIMIT + '問' }), ' を終えました。'),
+      reviewOverNote(plan.over),
+      h('button', { class: 'btn', type: 'button', 'data-review-more': '1', onClick: () => startSession(app, reviewSpec(app, true)) }, 'もっと復習する')));
   } else {
     root.appendChild(h('div', { class: 'card empty' }, h('p', { text: '今日の復習はありません。' }), h('p', { class: 'small muted', text: up.tomorrow || up.later ? 'つぎの復習が来たら、ここに出ます。' : 'ステージで問題を解くと、まちがえた問題がここに入ります。' })));
   }

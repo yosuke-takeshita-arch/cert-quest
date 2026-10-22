@@ -52,6 +52,7 @@ const SHARED = [
   '../shared/js/audio.js',
   '../shared/js/lib/sound.js',
   '../shared/js/lib/srs.js',
+  '../shared/js/lib/review.js',
   '../shared/js/lib/scoring.js',
   '../shared/js/lib/quiz.js',
   '../shared/js/lib/data.js',

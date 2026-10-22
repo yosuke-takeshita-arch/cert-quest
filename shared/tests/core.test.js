@@ -18,8 +18,8 @@ function seeded(seed) {
   };
 }
 
-test('復習間隔: 誤答→翌日→3日→7日→14日→卒業', () => {
-  assert.deepEqual(INTERVALS, [1, 3, 7, 14]);
+test('復習間隔: 誤答→翌日→3日→7日→卒業（14日後はやめた）', () => {
+  assert.deepEqual(INTERVALS, [1, 3, 7]);
   let r = applyAnswer(newRecord(), false, 100);
   assert.equal(r.step, 0);
   assert.equal(r.due, 101);
@@ -28,8 +28,6 @@ test('復習間隔: 誤答→翌日→3日→7日→14日→卒業', () => {
   r = applyAnswer(r, true, 104);
   assert.equal(r.due, 111);
   r = applyAnswer(r, true, 111);
-  assert.equal(r.due, 125);
-  r = applyAnswer(r, true, 125);
   assert.equal(r.step, -1);
   assert.equal(r.due, null);
   assert.equal(isDue(r, 999), false);

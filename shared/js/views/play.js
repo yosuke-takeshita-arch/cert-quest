@@ -125,7 +125,7 @@ export function renderPlay(app) {
     const correct = chosen !== null && chosen === sq.answer;
     const seconds = (Date.now() - S.t0) / 1000;
     S.streak = correct ? S.streak + 1 : 0;
-    const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit });
+    const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit, review: spec.mode === 'review' });
     S.xp += r.xp;
     S.results.push({ q: sq.q, sq, correct, chosen });
     const { btns, after } = S.ui;
