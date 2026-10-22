@@ -1,6 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-upsampling-t fig-g-upsampling-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 700" role="img" aria-labelledby="fig-g-upsampling-t fig-g-upsampling-d">
 <title id="fig-g-upsampling-t">アップサンプリング：逆プーリングと転置畳み込み</title>
-<desc id="fig-g-upsampling-d">上は逆プーリング。最大値プーリングで、各2×2の窓の最大値の位置を記録しておく。小さくなった特徴マップの値を、記録した位置に戻し、ほかのマスは0にして4×4に広げる。下は転置畳み込み。2×2の入力の各値に2×2のフィルタを掛け、ストライド2でずらして並べると、4×4の出力になる。2つ目の値は1つ目から2マス先に置かれ、そこからフィルタの2マスぶん広がるので、2＋2で4マス。フィルタの値は学習で決められる。逆畳み込みと呼ばれるが、畳み込みの真の逆演算ではない。</desc>
+<desc id="fig-g-upsampling-d">図のいちばん上：アップサンプリングは、畳み込みやプーリングで小さくなった特徴マップ（画像の位置ごとの特徴を数で書いた表）を、大きな解像度に戻す操作。方法は2つで、①逆プーリングと②転置畳み込み。上は逆プーリング。最大値プーリングで、各2×2の窓の最大値の位置を記録しておく。小さくなった特徴マップの値を、記録した位置に戻し、ほかのマスは0にして4×4に広げる。下は転置畳み込み。2×2の入力の各値に2×2のフィルタを掛け、ストライド2でずらして並べると、4×4の出力になる。2つ目の値は1つ目から2マス先に置かれ、そこからフィルタの2マスぶん広がるので、2＋2で4マス。フィルタの値は学習で決められる。逆畳み込みと呼ばれるが、畳み込みの真の逆演算ではない。</desc>
+<g>
+<rect x="12" y="8" width="296" height="114" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="28" class="tb ta">アップサンプリング＝</text>
+<text x="22" y="48">畳み込みやプーリングで小さくなった特徴</text>
+<text x="22" y="68">マップを、大きな解像度に戻す操作</text>
+<text x="22" y="88" class="tb">方法は2つ：① 逆プーリング　② 転置畳み込み</text>
+<text x="22" y="108" class="tm">特徴マップ＝画像の位置ごとの特徴を数で書いた表</text>
+</g>
+<g transform="translate(0,140)">
 <text x="12" y="20" class="tb">① 逆プーリング：位置を覚えておく</text>
 <text x="48" y="48" class="tm" text-anchor="middle">入力</text>
 <text x="150" y="48" class="tm" text-anchor="middle">縮小</text>
@@ -151,4 +160,5 @@
 <text x="12" y="504" class="tb">フィルタの値は学習で決められる</text>
 <text x="12" y="528">「逆畳み込み」と呼ばれるが、</text>
 <text x="12" y="548" class="tb twn">畳み込みの真の逆演算ではない</text>
+</g>
 </svg>

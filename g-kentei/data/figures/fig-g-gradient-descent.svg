@@ -1,6 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 592" role="img" aria-labelledby="fig-g-gradient-descent-t fig-g-gradient-descent-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 732" role="img" aria-labelledby="fig-g-gradient-descent-t fig-g-gradient-descent-d">
 <title id="fig-g-gradient-descent-t">勾配降下法と、学習率の大きさ</title>
-<desc id="fig-g-gradient-descent-d">3つの図とも、縦軸が誤差、横軸が重み（パラメータ）で、U字の曲線は重みを変えたときの誤差の大きさ。大きい丸が出発点、小さい丸が1歩ごとの位置。U字の誤差の曲線の上を、傾きの逆向きに、学習率×傾きの分だけ進むことを繰り返す。3つの図は学習率だけが違う。小さすぎると歩幅が小さく、何回進んでも谷底に着かない。ちょうどよいと、数歩で谷底に着く。大きすぎると、谷底を飛び越えて両側を行き来しながら、だんだん外へ飛び出す（発散）。各図の最初の点には、その点の接線（傾き）を示す。</desc>
+<desc id="fig-g-gradient-descent-d">図のいちばん上：勾配降下法は、誤差の坂（U字の線）を下り坂の向きへ一歩ずつ進み、誤差がいちばん小さい谷底を探す方法。一歩の大きさは学習率×傾き。下の①から③は、学習率だけを変えたもの。3つの図とも、縦軸が誤差、横軸が重み（パラメータ）で、U字の曲線は重みを変えたときの誤差の大きさ。大きい丸が出発点、小さい丸が1歩ごとの位置。U字の誤差の曲線の上を、傾きの逆向きに、学習率×傾きの分だけ進むことを繰り返す。3つの図は学習率だけが違う。小さすぎると歩幅が小さく、何回進んでも谷底に着かない。ちょうどよいと、数歩で谷底に着く。大きすぎると、谷底を飛び越えて両側を行き来しながら、だんだん外へ飛び出す（発散）。各図の最初の点には、その点の接線（傾き）を示す。</desc>
+<g>
+<rect x="12" y="8" width="296" height="114" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="28" class="tb ta">勾配降下法＝</text>
+<text x="22" y="48">誤差の坂（U字の線）を、下り坂の向きへ</text>
+<text x="22" y="68">一歩ずつ進み、誤差がいちばん小さい谷底を探す</text>
+<text x="22" y="88" class="tb">一歩の大きさ＝学習率 × 傾き</text>
+<text x="22" y="108" class="tm">①〜③は、学習率だけを変えたもの</text>
+</g>
+<g transform="translate(0,140)">
 <text x="12" y="22" class="tb">3つとも：縦＝誤差、横＝重み（パラメータ）</text>
 <text x="12" y="42" class="tm">U字の線＝重みを変えたときの誤差の大きさ</text>
 <g transform="translate(0,44)">
@@ -60,5 +69,6 @@
 <text x="12" y="496">傾きの逆向き（下り坂）へ進む</text>
 <text x="12" y="516" class="tm">短い線＝最初の点での接線（傾き）</text>
 <text x="12" y="536" class="tm">大きい丸＝出発点　小さい丸＝1歩ごとの位置</text>
+</g>
 </g>
 </svg>

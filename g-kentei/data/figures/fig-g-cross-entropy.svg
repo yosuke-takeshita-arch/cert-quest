@@ -1,6 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-g-cross-entropy-t fig-g-cross-entropy-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-g-cross-entropy-t fig-g-cross-entropy-d">
 <title id="fig-g-cross-entropy-t">交差エントロピー：正解クラスに付けた確率だけで誤差が決まる</title>
-<desc id="fig-g-cross-entropy-d">正解が猫の画像に、3つの予測を比べる例。誤差は、正解の猫に付けた確率pを使って、−log pで計算する。予測Aは猫0.9・犬0.05・鳥0.05で、誤差は−log 0.9≈0.11。予測Bは猫0.5・犬0.3・鳥0.2で、誤差は−log 0.5≈0.69。予測Cは猫0.1・犬0.8・鳥0.1で、犬だと自信を持って間違えており、誤差は−log 0.1≈2.30と大きい。棒の長さが誤差の大きさ。犬や鳥の確率は計算に使わない。logは自然対数で、log pは、eを何乗するとpになるかを表す。pが1なら log 1＝0 で誤差は0、pが0に近いほど誤差は急に大きくなる。</desc>
+<desc id="fig-g-cross-entropy-d">図のいちばん上：交差エントロピーは、分類の誤差の測り方。正解のクラス（答えの候補。ここでは猫・犬・鳥）に付けた確率が小さいほど、誤差が大きくなる。正解が猫の画像に、3つの予測を比べる例。誤差は、正解の猫に付けた確率pを使って、−log pで計算する。予測Aは猫0.9・犬0.05・鳥0.05で、誤差は−log 0.9≈0.11。予測Bは猫0.5・犬0.3・鳥0.2で、誤差は−log 0.5≈0.69。予測Cは猫0.1・犬0.8・鳥0.1で、犬だと自信を持って間違えており、誤差は−log 0.1≈2.30と大きい。棒の長さが誤差の大きさ。犬や鳥の確率は計算に使わない。logは自然対数で、log pは、eを何乗するとpになるかを表す。pが1なら log 1＝0 で誤差は0、pが0に近いほど誤差は急に大きくなる。</desc>
+<g>
+<rect x="12" y="8" width="296" height="94" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="28" class="tb ta">交差エントロピー＝</text>
+<text x="22" y="48">分類の誤差の測り方。正解のクラスに付けた</text>
+<text x="22" y="68">確率が小さいほど、誤差が大きくなる</text>
+<text x="22" y="88" class="tm">クラス＝答えの候補（ここでは猫・犬・鳥）</text>
+</g>
+<g transform="translate(0,120)">
 <text x="12" y="22" class="tb">正解は「猫」の画像。3つの予測を比べる（例）</text>
 <text x="12" y="42" class="tm">誤差＝−log（正解の猫に付けた確率）</text>
 <line x1="12" y1="56" x2="308" y2="56" class="l sb w1"/>
@@ -33,4 +41,5 @@
 <text x="12" y="472" class="tm">log p＝e（約2.72）を何乗すると p になるか</text>
 <text x="12" y="492" class="tm">p が 0〜1 なら log p は 0 以下なので、</text>
 <text x="12" y="512" class="tm">頭に − を付けて 0 以上の誤差にする</text>
+</g>
 </svg>

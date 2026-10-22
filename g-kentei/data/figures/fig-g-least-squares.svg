@@ -1,6 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 600" role="img" aria-labelledby="fig-g-least-squares-t fig-g-least-squares-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 740" role="img" aria-labelledby="fig-g-least-squares-t fig-g-least-squares-d">
 <title id="fig-g-least-squares-t">最小二乗法：残差の二乗和を最小にする直線と、外れ値の影響</title>
-<desc id="fig-g-least-squares-d">上は散布図と、最小二乗法で引いた直線。各点から直線までの縦の長さが残差で、その長さを1辺とする正方形の面積の合計（残差の二乗和）が最小になるように直線を決める。下は、同じ点に外れ値を1つ足した場合。外れ値の残差の二乗は大きいので、直線は外れ値に引っ張られて傾きが変わる。破線が外れ値を足す前の直線（傾きが急）、実線が外れ値を足したあとの直線で、外れ値のほうへ引かれて傾きがゆるやかになる。単回帰はy＝ax＋bの直線（予測値＝傾きa×x＋切片b）、重回帰は説明変数が複数になり、平面になる。</desc>
+<desc id="fig-g-least-squares-d">図のいちばん上：最小二乗法は、データの点に直線を当てはめる方法。残差（点と直線の縦のずれ）を2乗して足し、その合計が最小になる直線を選ぶ。①がその選び方、②は外れ値に弱いこと。上は散布図と、最小二乗法で引いた直線。各点から直線までの縦の長さが残差で、その長さを1辺とする正方形の面積の合計（残差の二乗和）が最小になるように直線を決める。下は、同じ点に外れ値を1つ足した場合。外れ値の残差の二乗は大きいので、直線は外れ値に引っ張られて傾きが変わる。破線が外れ値を足す前の直線（傾きが急）、実線が外れ値を足したあとの直線で、外れ値のほうへ引かれて傾きがゆるやかになる。単回帰はy＝ax＋bの直線（予測値＝傾きa×x＋切片b）、重回帰は説明変数が複数になり、平面になる。</desc>
+<g>
+<rect x="12" y="8" width="296" height="114" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="28" class="tb ta">最小二乗法＝</text>
+<text x="22" y="48">データの点に直線を当てはめる方法。残差</text>
+<text x="22" y="68">（点と直線の縦のずれ）を2乗して足し、</text>
+<text x="22" y="88">その合計が最小になる直線を選ぶ</text>
+<text x="22" y="108" class="tm">①がその選び方、②は外れ値に弱いこと</text>
+</g>
+<g transform="translate(0,140)">
 <text x="12" y="20" class="tb">① 残差の二乗（正方形の面積）の合計を最小に</text>
 <rect x="12" y="30" width="296" height="150" class="sb" stroke-width="1"/>
 <line x1="24" y1="153.23" x2="304" y2="49.74" class="l sa w3"/>
@@ -51,4 +60,5 @@
 <line x1="12" y1="546" x2="308" y2="546" class="l sb w1"/>
 <text x="12" y="570" class="tb">単回帰：y ＝ ax ＋ b（a＝傾き、b＝切片）</text>
 <text x="12" y="590" class="tb">重回帰：説明変数が複数（平面になる）</text>
+</g>
 </svg>

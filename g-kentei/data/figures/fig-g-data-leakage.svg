@@ -1,7 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-data-leakage-t fig-g-data-leakage-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 680" role="img" aria-labelledby="fig-g-data-leakage-t fig-g-data-leakage-d">
 <title id="fig-g-data-leakage-t">データリーケージ：同じ患者が学習用と評価用の両方に入る</title>
-<desc id="fig-g-data-leakage-d">4人の患者A、B、C、Dがそれぞれ3枚の画像を持つ例。画像を1枚ずつランダムに分けると、同じ患者の画像が学習用と評価用の両方に入る。モデルは評価の答えを見てしまっているので、評価の数値が実力以上に良く出て、未知の患者では精度が出ない。患者単位で分けると、評価用の患者は学習用に1枚も入らず、未知の患者への実力を測れる。下は、予測の時点では使えない情報、たとえば正解そのものや未来の情報を特徴量に入れるのも同じリーケージの例。</desc>
+<desc id="fig-g-data-leakage-d">図のいちばん上：データリーケージは、予測の時点で使えないはずの情報（評価用データの中身や正解）が、学習に紛れ込むこと。下の①が起きている例で、赤い点線の枠で囲んである。②が防いだ分け方。4人の患者A、B、C、Dがそれぞれ3枚の画像を持つ例。画像を1枚ずつランダムに分けると、同じ患者の画像が学習用と評価用の両方に入る。モデルは評価の答えを見てしまっているので、評価の数値が実力以上に良く出て、未知の患者では精度が出ない。患者単位で分けると、評価用の患者は学習用に1枚も入らず、未知の患者への実力を測れる。下は、予測の時点では使えない情報、たとえば正解そのものや未来の情報を特徴量に入れるのも同じリーケージの例。</desc>
+<g>
+<rect x="12" y="8" width="296" height="94" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="28" class="tb ta">データリーケージ＝</text>
+<text x="22" y="48">予測の時点で使えないはずの情報（評価用</text>
+<text x="22" y="68">データの中身や正解）が、学習に紛れ込むこと</text>
+<text x="22" y="88" class="tm">下の①が起きている例、②が防いだ分け方</text>
+</g>
+<g transform="translate(0,120)">
 <text x="12" y="20" class="tm">患者A〜Dが、それぞれ画像3枚</text>
+<rect x="4" y="28" width="312" height="188" rx="6" class="l sng w2 dsh"/>
 <text x="12" y="46" class="tb">① 画像を1枚ずつランダムに分ける</text>
 <text x="12" y="68" class="tb">学習用</text>
 <rect x="12" y="76" width="28" height="28" class="fa" stroke-width="1.5"/>
@@ -29,10 +38,10 @@
 <text x="90" y="155" class="tb" text-anchor="middle">C</text>
 <rect x="108" y="136" width="28" height="28" class="fok sok" stroke-width="1.5"/>
 <text x="122" y="155" class="tb" text-anchor="middle">D</text>
-<text x="12" y="182" class="tb tng">A〜D全員が両側にいる</text>
+<text x="12" y="182" class="tb tng">A〜D全員が両側にいる＝ここがリーケージ</text>
 <text x="12" y="202" class="tng">→ 評価が実力より高く出る</text>
 <line x1="12" y1="224" x2="308" y2="224" class="l sb w1"/>
-<text x="12" y="252" class="tb">② 患者単位で分ける</text>
+<text x="12" y="252" class="tb">② 防ぐ分け方：患者単位で分ける</text>
 <text x="12" y="274" class="tb">学習用</text>
 <rect x="12" y="282" width="28" height="28" class="fa" stroke-width="1.5"/>
 <text x="26" y="301" class="tb ton" text-anchor="middle">A</text>
@@ -67,4 +76,5 @@
 <text x="12" y="500">特徴量に入れてしまう</text>
 <text x="12" y="528" class="tm">『予測するとき、その情報は手元に</text>
 <text x="12" y="548" class="tm">あるか』を、毎回確かめる</text>
+</g>
 </svg>
