@@ -21,6 +21,7 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
    - `shindanshi/1ji/sw.js` の7行目 `version: 'N'` も独自の番号（2026-10-13 に版 1 のまま初めて公開）。shared/ か shindanshi/1ji/ を変えたら1つ上げる
    - **上げたあと、もう一度 `npm --prefix shared test` を回す**（2026-10-14、版を上げる前にだけ回して公開し、版を '1' に固定したテストが落ちたまま出た）
    - shared/ を変えたら4つとも上げる（どのアプリを入れた人にも古い shared/ が出続けるため）
+   - **人に見せる版の番号も上げる**（2026-10-22 先生決定。要件定義書 §3-2-b）: 各アプリの `config.json` の `"appVersion"`（3行目）。前の公開からのコミット（`git log <前の公開>..HEAD -- <アプリ> shared`）を見て、作り直し→1つ目／機能を足した→2つ目／直しだけ→3つ目を1つ上げ、右は0に戻す。アプリごとに別の番号。中身が変わっていないアプリは上げない（sw の版も上げないとき）。ストアに出す日に 1.0.0。コミットメッセージに「G検定 0.9.1」のように書く
 4. **新しいファイルを先取りに載せたか**: 新しい JS は `shared/sw-core.js` の `SHARED`、効果音は `SFX`、ボスの絵は各アプリの `sw.js` の `appFiles`（`./images/bosses/boss-N.webp`）。BGM は初めて流したときに取る（載せない）
    - ai-passport は地図・ボス・章のバッジの絵がまだ無い（2026-10-13。タイトルは置いた）。置いたら `appFiles` に足し、地図は config.json の `mapImage` も足す（`shared/tests/appframe.test.js`・`maplayout.test.js` が、絵の有無と一覧・config の食い違いで落とす）
 5. **コミットして push**: メッセージは「公開のため service worker の版を NN に上げる（何が入るか）」。`git push origin main`
