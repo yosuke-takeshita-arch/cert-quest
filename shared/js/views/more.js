@@ -1,6 +1,7 @@
 // 「もっと」: バッジ・設定・公式リンク・データの状態。
 import { h, externalLink, icon, badgeBases, badgeImg, confirmDialog } from '../ui.js';
 import { appTitle } from '../lib/appname.js';
+import { formatAppVersion, readSwVersion } from '../lib/appversion.js';
 import { badgeDefs, badgeProgress, badgeArtName, badgeImageUrl, badgeView } from '../lib/badges.js';
 import { DAILY_GOAL_CHOICES, normalizeDailyGoal } from '../lib/daily.js';
 import { THEMES } from '../lib/progress.js';
@@ -149,5 +150,10 @@ export function renderSettings(app) {
   }
   info.appendChild(h('p', { class: 'small muted', text: 'アプリ: ' + appTitle(app.config) + (app.sample ? '（サンプルデータ表示中）' : '') }));
   root.appendChild(info);
+  // いちばん下: アプリの版。前が人に見せる版（config.json の appVersion）、括弧が service worker の版（動いている service worker に聞く）
+  const cfg = app.baseConfig || app.config || {};
+  const verEl = h('p', { class: 'small muted version-note', 'data-app-version': '', text: formatAppVersion(cfg.appVersion, null) });
+  root.appendChild(verEl);
+  readSwVersion(cfg.id).then((sw) => { verEl.textContent = formatAppVersion(cfg.appVersion, sw); });
   return { el: root, cleanup: sound.dispose }; // 画面を出るとき、試聴のBGMを止める
 }

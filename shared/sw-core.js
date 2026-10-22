@@ -83,6 +83,7 @@ const SHARED = [
   '../shared/js/lib/maplayout.js',
   '../shared/js/lib/cardtree.js',
   '../shared/js/lib/appname.js',
+  '../shared/js/lib/appversion.js',
   '../shared/js/lib/outline.js',
   '../shared/js/lib/logotrace.js',
   '../shared/js/lib/weakness.js',
@@ -210,6 +211,12 @@ self.addEventListener('install', (event) => {
       await self.skipWaiting();
     })()
   );
+});
+
+// 設定画面が「いま動いている版」を聞いてくる（画面の「版 0.9.0（117）」の括弧の数字）
+self.addEventListener('message', (event) => {
+  const d = event.data;
+  if (d && d.type === 'cq-version' && event.ports && event.ports[0]) event.ports[0].postMessage({ version: String(CFG.version) });
 });
 
 self.addEventListener('activate', (event) => {
