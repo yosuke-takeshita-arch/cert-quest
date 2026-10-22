@@ -1,63 +1,145 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 614" role="img" aria-labelledby="fig-g-dendrogram-t fig-g-dendrogram-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1146" role="img" aria-labelledby="fig-g-dendrogram-t fig-g-dendrogram-d">
 <title id="fig-g-dendrogram-t">階層的クラスタリングとデンドログラム</title>
-<desc id="fig-g-dendrogram-d">上は平面上の5点AからE。近い組から順に結合する。1番目はAとB（青の輪）、2番目はDとE（茶の輪）、3番目はCとDEのまとまり、4番目はABのまとまりと残り全部で、全体が1つになる。下はその結合の順を木にしたデンドログラムで、横棒の番号は上の結合の番号と同じ。横棒の高さはその結合のときの距離で、近い組ほど低い位置でつながる。点線で切ると、AとB（青）、C（緑）、DとE（茶）の3クラスタになり、これは上の図の3つの色のまとまりと同じ。ウォード法は、結合したときのクラスタ内のばらつきの増え方が最小の組を順に結合する。</desc>
-<text x="12" y="20" class="tb">① 平面上の5点</text>
-<rect x="12" y="30" width="296" height="140" class="sb" stroke-width="1"/>
-<ellipse cx="62" cy="88" rx="38" ry="26" class="sa w2"/>
-<ellipse cx="250" cy="126" rx="42" ry="28" class="swn w2"/>
-<line x1="157" y1="114" x2="209" y2="124" class="l w2"/>
-<path d="M 90,68 Q 130,44 184,108" class="l w2 dsh"/>
-<circle cx="52" cy="80" r="7" class="fs sa" stroke-width="2"/>
-<text x="44" y="78" class="tb" text-anchor="end">A</text>
-<circle cx="70" cy="96" r="7" class="fs sa" stroke-width="2"/>
-<text x="80" y="100" class="tb">B</text>
-<rect x="143" y="105" width="14" height="14" class="fs sok" stroke-width="2"/>
-<text x="150" y="138" class="tb" text-anchor="middle">C</text>
-<polygon points="240,128 248,143 232,143" class="fs swn" stroke-width="2"/>
-<text x="228" y="142" class="tb" text-anchor="end">D</text>
-<polygon points="260,106 268,121 252,121" class="fs swn" stroke-width="2"/>
-<text x="276" y="117" class="tb">E</text>
-<circle cx="62" cy="62" r="8" class="fs l w1"/>
-<text x="62" y="66.5" class="tb" text-anchor="middle">1</text>
-<circle cx="250" cy="98" r="8" class="fs l w1"/>
-<text x="250" y="102.5" class="tb" text-anchor="middle">2</text>
-<circle cx="184" cy="118" r="8" class="fs l w1"/>
-<text x="184" y="122.5" class="tb" text-anchor="middle">3</text>
-<circle cx="133" cy="66" r="8" class="fs l w1"/>
-<text x="133" y="70.5" class="tb" text-anchor="middle">4</text>
-<text x="12" y="192" class="tb">番号＝結合の順（1が最初）</text>
-<text x="12" y="212" class="tm">輪や線は、そのとき結ばれた組</text>
-<text x="12" y="244" class="tb">② 結合の順と距離（デンドログラム）</text>
-<rect x="12" y="254" width="296" height="176" class="sb" stroke-width="1"/>
-<polyline points="68,396 68,372 122,372 122,396" class="l sa w2"/>
-<line x1="95" y1="372" x2="95" y2="349" class="l sa w2"/>
-<line x1="176" y1="396" x2="176" y2="349" class="l sok w2"/>
-<polyline points="230,396 230,368 284,368 284,396" class="l swn w2"/>
-<line x1="257" y1="368" x2="257" y2="349" class="l swn w2"/>
-<polyline points="95,349 95,282 216.5,282 216.5,330" class="l w2"/>
-<polyline points="176,349 176,330 257,330 257,349" class="l w2"/>
-<line x1="16" y1="349" x2="304" y2="349" class="l sng w2 dsh"/>
-<circle cx="80" cy="372" r="8" class="fs l w1"/>
-<text x="80" y="376.5" class="tb" text-anchor="middle">1</text>
-<circle cx="243" cy="368" r="8" class="fs l w1"/>
-<text x="243" y="372.5" class="tb" text-anchor="middle">2</text>
-<circle cx="192" cy="330" r="8" class="fs l w1"/>
-<text x="192" y="334.5" class="tb" text-anchor="middle">3</text>
-<circle cx="150" cy="282" r="8" class="fs l w1"/>
-<text x="150" y="286.5" class="tb" text-anchor="middle">4</text>
-<text x="68" y="418" class="tb" text-anchor="middle">A</text>
-<text x="122" y="418" class="tb" text-anchor="middle">B</text>
-<text x="176" y="418" class="tb" text-anchor="middle">C</text>
-<text x="230" y="418" class="tb" text-anchor="middle">D</text>
-<text x="284" y="418" class="tb" text-anchor="middle">E</text>
-<text x="20" y="272" class="tm">距離（上ほど遠い）</text>
-<text x="20" y="343" class="tb tng">切る線</text>
-<text x="12" y="456" class="tb">横棒の高さ＝結合したときの距離</text>
-<text x="12" y="476" class="tm">（近い組ほど低い位置で結合する）</text>
-<text x="12" y="502" class="tb">点線で切ると、①の3つの色の</text>
-<text x="12" y="522" class="tb">まとまり（青・緑・茶）になる</text>
-<text x="12" y="548">ウォード法：結合したとき、クラスタ内の</text>
-<text x="12" y="568">ばらつきの増え方が最小の組から結合</text>
-<text x="12" y="594" class="tb">切る高さで、クラスタ数を後から選べる</text>
-<text x="12" y="612" class="tm">（k-means は先に k を決める）</text>
+<desc id="fig-g-dendrogram-d">いちばん上の囲み：階層的クラスタリングは、いちばん近い2つをまとめる、をくり返す手順。デンドログラムは、その順と距離を記録した木。①例として5つの店AからEを、売上の伸び（前年より何％増えたか）の数直線に置く。Aは1、Bは2、Cは9、Dは13、Eは15。近いとは伸びの差が小さいこと。②の太い囲みが階層的クラスタリングそのもの。1回目はいちばん近いAとB（差1）、2回目はDとE（差2）、3回目はCとDEのまとまり（差4）、4回目はABのまとまりとCDEのまとまり（差7）をまとめ、全部が1つになる。まとまりどうしの差は、いちばん近い店どうしの差で測った（CとDは13引く9で4）。前のまとまりは次の大きなまとまりの中にそのまま入る（入れ子）。この段が階層。③は②の記録であるデンドログラム（樹形図）。縦軸はまとめたときの差（距離）で上ほど遠い。横棒の番号は②の何回目と同じで、店の左右の位置は①と同じ。AとBは高さ1、DとEは高さ2、CとDEは高さ4、全部は高さ7でつながる。高さ3で切るとAB、C、DEの3つ、高さ5で切るとABとCDEの2つになる。切る高さでグループの数を後から選べる。④k-means法は先に数kを決めて一度にk個へ分けるので、まとめた順の木は残らない。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">階層的クラスタリング：近いものから順にまとめる</text>
+<rect x="12" y="32" width="296" height="72" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="54" class="tb ta">階層的クラスタリング＝</text>
+<text x="22" y="72">いちばん近い2つをまとめる、をくり返す手順</text>
+<text x="22" y="94" class="tb">デンドログラム＝その順と距離を記録した木</text>
+<text x="12" y="132" class="tb">① 例：5つの店を、数直線に置く</text>
+<text x="12" y="152" class="tm">目盛り＝売上の伸び（前年より何％増えたか）</text>
+<text x="12" y="170" class="tm">数は説明のための例</text>
+<line x1="14" y1="204" x2="306" y2="204" class="l sm w1"/>
+<circle cx="30" cy="204" r="7" class="fs sa" stroke-width="2"/>
+<text x="30" y="208.5" class="tb" text-anchor="middle">A</text>
+<circle cx="48.5" cy="204" r="7" class="fs sa" stroke-width="2"/>
+<text x="48.5" y="208.5" class="tb" text-anchor="middle">B</text>
+<circle cx="178" cy="204" r="7" class="fs sok" stroke-width="2"/>
+<text x="178" y="208.5" class="tb" text-anchor="middle">C</text>
+<circle cx="252" cy="204" r="7" class="fs swn" stroke-width="2"/>
+<text x="252" y="208.5" class="tb" text-anchor="middle">D</text>
+<circle cx="289" cy="204" r="7" class="fs swn" stroke-width="2"/>
+<text x="289" y="208.5" class="tb" text-anchor="middle">E</text>
+<text x="30" y="190" class="tm" text-anchor="middle">1</text>
+<text x="48.5" y="190" class="tm" text-anchor="middle">2</text>
+<text x="178" y="190" class="tm" text-anchor="middle">9</text>
+<text x="252" y="190" class="tm" text-anchor="middle">13</text>
+<text x="289" y="190" class="tm" text-anchor="middle">15</text>
+<text x="12" y="232" class="tm">近い＝伸びの差が小さい（A と B は 2−1＝1）</text>
+<rect x="6" y="248" width="308" height="446" class="sa" stroke-width="2.5" rx="6"/>
+<text x="16" y="272" class="tb ta">② ここが階層的クラスタリング</text>
+<text x="16" y="290" class="tm">（いちばん近い2つをまとめる、をくり返す）</text>
+<text x="16" y="318" class="tb">1回目：いちばん近い A と B（差 1）</text>
+<rect x="19" y="336" width="40.5" height="24" rx="12" class="sa w2"/>
+<circle cx="30" cy="348" r="7" class="fs sa" stroke-width="2"/>
+<text x="30" y="352.5" class="tb" text-anchor="middle">A</text>
+<circle cx="48.5" cy="348" r="7" class="fs sa" stroke-width="2"/>
+<text x="48.5" y="352.5" class="tb" text-anchor="middle">B</text>
+<circle cx="178" cy="348" r="7" class="fs sok" stroke-width="2"/>
+<text x="178" y="352.5" class="tb" text-anchor="middle">C</text>
+<circle cx="252" cy="348" r="7" class="fs swn" stroke-width="2"/>
+<text x="252" y="352.5" class="tb" text-anchor="middle">D</text>
+<circle cx="289" cy="348" r="7" class="fs swn" stroke-width="2"/>
+<text x="289" y="352.5" class="tb" text-anchor="middle">E</text>
+<text x="16" y="392" class="tb">2回目：次に近い D と E（差 2）</text>
+<rect x="19" y="410" width="40.5" height="24" rx="12" class="sa w1"/>
+<rect x="241" y="410" width="59" height="24" rx="12" class="swn w2"/>
+<circle cx="30" cy="422" r="7" class="fs sa" stroke-width="2"/>
+<text x="30" y="426.5" class="tb" text-anchor="middle">A</text>
+<circle cx="48.5" cy="422" r="7" class="fs sa" stroke-width="2"/>
+<text x="48.5" y="426.5" class="tb" text-anchor="middle">B</text>
+<circle cx="178" cy="422" r="7" class="fs sok" stroke-width="2"/>
+<text x="178" y="426.5" class="tb" text-anchor="middle">C</text>
+<circle cx="252" cy="422" r="7" class="fs swn" stroke-width="2"/>
+<text x="252" y="426.5" class="tb" text-anchor="middle">D</text>
+<circle cx="289" cy="422" r="7" class="fs swn" stroke-width="2"/>
+<text x="289" y="426.5" class="tb" text-anchor="middle">E</text>
+<text x="16" y="466" class="tb">3回目：C と {D, E}（差 4）</text>
+<rect x="19" y="484" width="40.5" height="24" rx="12" class="sa w1"/>
+<rect x="163" y="480" width="141" height="32" rx="16" class="l w2"/>
+<rect x="241" y="484" width="59" height="24" rx="12" class="swn w1"/>
+<circle cx="30" cy="496" r="7" class="fs sa" stroke-width="2"/>
+<text x="30" y="500.5" class="tb" text-anchor="middle">A</text>
+<circle cx="48.5" cy="496" r="7" class="fs sa" stroke-width="2"/>
+<text x="48.5" y="500.5" class="tb" text-anchor="middle">B</text>
+<circle cx="178" cy="496" r="7" class="fs sok" stroke-width="2"/>
+<text x="178" y="500.5" class="tb" text-anchor="middle">C</text>
+<circle cx="252" cy="496" r="7" class="fs swn" stroke-width="2"/>
+<text x="252" y="500.5" class="tb" text-anchor="middle">D</text>
+<circle cx="289" cy="496" r="7" class="fs swn" stroke-width="2"/>
+<text x="289" y="500.5" class="tb" text-anchor="middle">E</text>
+<text x="16" y="540" class="tb">4回目：{A, B} と {C, D, E}（差 7）</text>
+<rect x="12" y="549" width="295" height="42" rx="21" class="l w2 dsh"/>
+<rect x="19" y="558" width="40.5" height="24" rx="12" class="sa w1"/>
+<rect x="163" y="554" width="141" height="32" rx="16" class="l w1"/>
+<rect x="241" y="558" width="59" height="24" rx="12" class="swn w1"/>
+<text x="106" y="574.5" class="tm" text-anchor="middle">全部で1つ</text>
+<circle cx="30" cy="570" r="7" class="fs sa" stroke-width="2"/>
+<text x="30" y="574.5" class="tb" text-anchor="middle">A</text>
+<circle cx="48.5" cy="570" r="7" class="fs sa" stroke-width="2"/>
+<text x="48.5" y="574.5" class="tb" text-anchor="middle">B</text>
+<circle cx="178" cy="570" r="7" class="fs sok" stroke-width="2"/>
+<text x="178" y="574.5" class="tb" text-anchor="middle">C</text>
+<circle cx="252" cy="570" r="7" class="fs swn" stroke-width="2"/>
+<text x="252" y="574.5" class="tb" text-anchor="middle">D</text>
+<circle cx="289" cy="570" r="7" class="fs swn" stroke-width="2"/>
+<text x="289" y="574.5" class="tb" text-anchor="middle">E</text>
+<text x="16" y="620" class="tm">まとまりどうしの差は、いちばん近い店</text>
+<text x="16" y="638" class="tm">どうしの差で測った（C と D は 13−9＝4）</text>
+<text x="16" y="664" class="tb">前のまとまりは、次の大きなまとまりの中に</text>
+<text x="16" y="682" class="tb">そのまま入る（入れ子）。この段が『階層』</text>
+<text x="12" y="724" class="tb">③ ②の記録＝デンドログラム（樹形図）</text>
+<text x="12" y="744" class="tm">縦軸＝まとめたときの差（距離）。上ほど遠い</text>
+<text x="12" y="762" class="tm">横棒の番号＝②の何回目。店の左右は①と同じ</text>
+<line x1="18" y1="950" x2="18" y2="790" class="l sm w1"/>
+<line x1="14" y1="950" x2="18" y2="950" class="l sm w1"/>
+<text x="12" y="954.5" class="tm" text-anchor="end">0</text>
+<line x1="14" y1="928" x2="18" y2="928" class="l sm w1"/>
+<text x="12" y="932.5" class="tm" text-anchor="end">1</text>
+<line x1="14" y1="906" x2="18" y2="906" class="l sm w1"/>
+<text x="12" y="910.5" class="tm" text-anchor="end">2</text>
+<line x1="14" y1="884" x2="18" y2="884" class="l sm w1"/>
+<text x="12" y="888.5" class="tm" text-anchor="end">3</text>
+<line x1="14" y1="862" x2="18" y2="862" class="l sm w1"/>
+<text x="12" y="866.5" class="tm" text-anchor="end">4</text>
+<line x1="14" y1="840" x2="18" y2="840" class="l sm w1"/>
+<text x="12" y="844.5" class="tm" text-anchor="end">5</text>
+<line x1="14" y1="818" x2="18" y2="818" class="l sm w1"/>
+<text x="12" y="822.5" class="tm" text-anchor="end">6</text>
+<line x1="14" y1="796" x2="18" y2="796" class="l sm w1"/>
+<text x="12" y="800.5" class="tm" text-anchor="end">7</text>
+<polyline points="30,950 30,928 48.5,928 48.5,950" class="l sa w2"/>
+<line x1="39.25" y1="928" x2="39.25" y2="796" class="l sa w2"/>
+<polyline points="252,950 252,906 289,906 289,950" class="l swn w2"/>
+<line x1="270.5" y1="906" x2="270.5" y2="862" class="l swn w2"/>
+<line x1="178" y1="950" x2="178" y2="862" class="l sok w2"/>
+<line x1="178" y1="862" x2="270.5" y2="862" class="l w2"/>
+<line x1="224.25" y1="862" x2="224.25" y2="796" class="l w2"/>
+<line x1="39.25" y1="796" x2="224.25" y2="796" class="l w2"/>
+<line x1="131.75" y1="796" x2="131.75" y2="782" class="l w2"/>
+<line x1="20" y1="884" x2="306" y2="884" class="l sng w2 dsh"/>
+<text x="113" y="878" class="tb tng" text-anchor="middle">高さ3で切る</text>
+<line x1="20" y1="840" x2="306" y2="840" class="l sng w1 dsh"/>
+<text x="131" y="834" class="tb tng" text-anchor="middle">高さ5で切る</text>
+<circle cx="39.25" cy="914" r="8" class="fs l w1"/>
+<text x="39.25" y="918.5" class="tb" text-anchor="middle">1</text>
+<circle cx="270.5" cy="892" r="8" class="fs l w1"/>
+<text x="270.5" y="896.5" class="tb" text-anchor="middle">2</text>
+<circle cx="224.25" cy="862" r="8" class="fs l w1"/>
+<text x="224.25" y="866.5" class="tb" text-anchor="middle">3</text>
+<circle cx="131.75" cy="796" r="8" class="fs l w1"/>
+<text x="131.75" y="800.5" class="tb" text-anchor="middle">4</text>
+<text x="30" y="968" class="tb" text-anchor="middle">A</text>
+<text x="48.5" y="968" class="tb" text-anchor="middle">B</text>
+<text x="178" y="968" class="tb" text-anchor="middle">C</text>
+<text x="252" y="968" class="tb" text-anchor="middle">D</text>
+<text x="289" y="968" class="tb" text-anchor="middle">E</text>
+<text x="12" y="996">高さ3で切る → {A, B}・{C}・{D, E} の3つ</text>
+<text x="12" y="1016">高さ5で切る → {A, B}・{C, D, E} の2つ</text>
+<text x="12" y="1040" class="tb">切る高さで、グループの数を後から選べる</text>
+<line x1="12" y1="1056" x2="308" y2="1056" class="l sb w1"/>
+<text x="12" y="1078" class="tb">④ k-means法との違い</text>
+<text x="12" y="1098" class="tm">k-means法：先に数 k を決め、一度に k 個へ</text>
+<text x="12" y="1116" class="tm">分ける。まとめた順の木は残らない</text>
+<text x="12" y="1138" class="tb ta">階層的：木を作ってから、数を後で選ぶ</text>
 </svg>
