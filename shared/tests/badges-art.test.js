@@ -73,7 +73,8 @@ test('badgeDefs: 共通19個は絵あり、章の制覇は major-◯◯ の絵�
 test('絵の素材: 共通の12個が全部 shared/images/badges/ にあり、各 badgeDefs の id と一致し、オフライン登録（sw-core.js）にも入っている', () => {
   assert.ok(COMMON_BADGE_ART.length >= 12);
   assert.equal(new Set(COMMON_BADGE_ART).size, COMMON_BADGE_ART.length);
-  const ids = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40 }).filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:')).map((d) => d.id);
+  // 真ボスのバッジ（true-boss）は真ボスを出すアプリだけに定義があるので、trueBoss を付けて全部の定義を出す
+  const ids = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40, trueBoss: true }).filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:')).map((d) => d.id);
   // 絵のあるものは、全部が定義の id にある。定義の id で絵が無いものは、PENDING_ART に挙げたものだけ
   assert.deepEqual(COMMON_BADGE_ART.filter((a) => !ids.includes(a)), []);
   assert.deepEqual(ids.filter((i) => !COMMON_BADGE_ART.includes(i)).sort(), PENDING_ART.filter((i) => !COMMON_BADGE_ART.includes(i)).sort());

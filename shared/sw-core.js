@@ -35,6 +35,7 @@ const SHARED = [
   '../shared/images/badges/boss-flawless.webp',
   '../shared/images/badges/tap-shiba-100.webp',
   '../shared/images/badges/tap-sensei-100.webp',
+  '../shared/images/badges/true-boss.webp',
   '../shared/images/characters/shiba-hello.webp',
   '../shared/images/characters/shiba-banzai.webp',
   '../shared/images/characters/shiba-clap.webp',

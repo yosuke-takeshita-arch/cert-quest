@@ -10,7 +10,7 @@ import { normalizeCharTap100 } from './characters.js';
 
 // 絵のあるバッジ。共通の19個は shared/images/badges/<id>.webp（id と同じ名前）。
 // 絵を足すときは、ここの配列に id を足し、shared/sw-core.js の SHARED に '../shared/images/badges/<id>.webp' の行を足す。
-export const COMMON_BADGE_ART = Object.freeze(['first-answer', 'correct-10', 'correct-100', 'streak-3', 'streak-7', 'streak-30', 'level-5', 'level-10', 'challenge-8', 'exam-first', 'exam-70', 'exam-90', 'dochi-perfect', 'dochi-combo-10', 'boss-first', 'boss-all', 'boss-flawless', 'tap-shiba-100', 'tap-sensei-100']);
+export const COMMON_BADGE_ART = Object.freeze(['first-answer', 'correct-10', 'correct-100', 'streak-3', 'streak-7', 'streak-30', 'level-5', 'level-10', 'challenge-8', 'exam-first', 'exam-70', 'exam-90', 'dochi-perfect', 'dochi-combo-10', 'boss-first', 'boss-all', 'boss-flawless', 'tap-shiba-100', 'tap-sensei-100', 'true-boss']);
 // 章の制覇バッジを取る星の数（ステージの最大＝完全クリア）。
 export const CHAPTER_STARS = 3;
 const SAFE_NAME = /^[A-Za-z0-9_-]+$/;
