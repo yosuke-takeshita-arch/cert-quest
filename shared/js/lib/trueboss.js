@@ -14,17 +14,21 @@ export function trueBossEnabled(config) {
 export const TRUE_FORMS = 3; // 第1〜第3形態
 export const TRUE_HP_MIN = 5; // 形態ごとのボスの体力（戦いを始めるとき・進化したときに決める）
 export const TRUE_HP_MAX = 10;
-export const TRUE_HEAL_EVERY = 10; // 形態の中で、この問数ごとにボスが回復する（10問に1回。強さの目安に合わせて 5 から延ばした）
+export const TRUE_HEAL_GAP_MIN = 7; // 形態の中で、ボスが回復するまでの問数（7〜10問に1回。回復のたびに次の間隔を決め直す。先生決定）
+export const TRUE_HEAL_GAP_MAX = 10;
 export const TRUE_HEAL_AMOUNT = 1; // 1回で回復する体力（仮。要件定義書 §3-9 は「ときどき回復する（目安：5問に1回）」としか決めていない）
 export const TRUE_QUEUE_PER_FORM = 25; // 形態ごとに並べる問題の数（苦手 15 : それ以外 10 ＝ 6:4）。倒すのに要る数より十分多い
 export const TRUE_WEAK_RATIO = 0.6; // 苦手な問題の割合
 export const TRUE_DIFFICULTY = Object.freeze({ 1: [1, 2], 2: [2, 3], 3: [3, 4] }); // 形態ごとの問題の難しさ（difficulty）の範囲
 export const DEFAULT_DIFFICULTY = 2; // difficulty が無い・壊れている問題は、いちばん多い 2 として扱う（仮）
-export const STREAK_HEAL = 3; // 続けて正解したらこちらの HP が 1 回復する数
+export const STREAK_HEAL = 2; // 続けて正解したらこちらの HP が 1 回復する数（先生決定: 2連続）
 export const SKILL_TURNS = 3; // 技が続くターン（問題）の数
 export const SKILL_SECONDS = 15; // 「1問15秒以内」
 export const SKILL_CURSE_DAMAGE = 2; // 「間違えると HP が 2 減る」
-export const SKILL_CHANCE = Object.freeze({ 1: 0.03, 2: 0.05, 3: 0.07 }); // 問題が出る前に技を使ってくる確率（第3形態ほど多い。強さの目安に合わせて調整。試算は報告）
+export const SKILL_CHANCE = Object.freeze({ 1: 0.05, 2: 0.08, 3: 0.3 }); // 問題が出る前に技を使ってくる確率（第3形態ほど多い。先生決定）
+// 技の種類: 第1・第2形態は時間制限だけ。『HP が2減る』は第3形態だけで、第3形態の技のうち、この割合（残りは時間制限）。
+// 第3形態にたどり着いた戦いのうち『HP が2減る』が1回以上来るのが約4回に1回になるように決めた（先生: 2回に1回はやりすぎ。試算は報告）
+export const CURSE_SHARE = 0.2;
 export const SKILL_KINDS = Object.freeze(['timed', 'curse']);
 
 // ---- 状態（学習記録の trueBoss） ----
@@ -156,9 +160,17 @@ export function rollFormHp(rng = Math.random) {
 }
 
 /** 戦いの始まり（第1形態）。boss／bossMax はいまの形態のボスの体力（boss.js の bossMood がそのまま使える名前）。 */
+/** 次にボスが回復するまでの問数（形態の中で数える）。TRUE_HEAL_GAP_MIN〜TRUE_HEAL_GAP_MAX のどれか。 */
+export function rollHealGap(rng = Math.random) {
+  let r = Number(rng());
+  if (!Number.isFinite(r)) r = 0;
+  r = Math.min(Math.max(r, 0), 0.999999999);
+  return TRUE_HEAL_GAP_MIN + Math.floor(r * (TRUE_HEAL_GAP_MAX - TRUE_HEAL_GAP_MIN + 1));
+}
+
 export function newTrueBattle(rng = Math.random) {
   const hp = rollFormHp(rng);
-  return { form: 1, boss: hp, bossMax: hp, player: PLAYER_HP, playerMax: PLAYER_HP, streak: 0, asked: 0, skill: null, result: null };
+  return { form: 1, boss: hp, bossMax: hp, player: PLAYER_HP, playerMax: PLAYER_HP, streak: 0, asked: 0, skill: null, result: null, nextHeal: rollHealGap(rng) };
 }
 
 /** 負けたあと、もう一度挑むとき。第1形態からやり直す。負けていない戦いはそのまま（写しを返す）。 */
@@ -185,7 +197,7 @@ export function rollSkill(battle, rng = Math.random) {
   if (!battle || battle.result || battle.skill || !(battle.asked > 0)) return { battle: { ...battle }, started: null };
   const chance = SKILL_CHANCE[battle.form] || 0;
   if (!(rng() < chance)) return { battle: { ...battle }, started: null };
-  const kind = rng() < 0.5 ? 'timed' : 'curse';
+  const kind = battle.form === 3 && rng() < CURSE_SHARE ? 'curse' : 'timed';
   return { battle: { ...battle, skill: { kind, turns: SKILL_TURNS } }, started: kind };
 }
 
@@ -193,7 +205,7 @@ export function rollSkill(battle, rng = Math.random) {
  * 1問の結果を反映する。戻り値 { battle, events }（元は変えない）。終わった後の答えは無視する。
  *   correct … 正解か。timedOut … 時間切れ（不正解として数える）。damage … 正解のときボスが減る数（会心の一撃は 2）
  * 順序: ①正解ならボスが減り・不正解ならこちらが減る（呪いの間は 2）→ ②3問続けて正解で HP が 1 回復 → ③技のターンが 1 減る
- *       → ④HP 0 で負け ／ ボスの体力 0 で進化（第3形態なら勝ち）→ ⑤進化も決着もしなければ、形態の中で TRUE_HEAL_EVERY 問ごとにボスが回復。
+ *       → ④HP 0 で負け ／ ボスの体力 0 で進化（第3形態なら勝ち）→ ⑤進化も決着もしなければ、形態の中で 7〜10問に1回（TRUE_HEAL_GAP_MIN〜MAX。回復のたびに決め直す）ボスが回復。
  * events: { hit, miss, damage, lost, playerHealed, bossHealed, evolved: {from,to}|null, skillEnded: 種類|null, timedOut }
  */
 export function answerTrueBattle(battle, { correct = false, damage = 1, timedOut = false } = {}, rng = Math.random) {
@@ -235,13 +247,15 @@ export function answerTrueBattle(battle, { correct = false, damage = 1, timedOut
       b.boss = hp;
       b.bossMax = hp;
       b.asked = 0;
+      b.nextHeal = rollHealGap(rng);
       if (b.skill) { ev.skillEnded = b.skill.kind; b.skill = null; } // 進化すると技は解ける
     } else {
       b.result = 'win';
     }
     return { battle: b, events: ev };
   }
-  if (b.asked % TRUE_HEAL_EVERY === 0 && b.boss < b.bossMax) {
+  if (b.asked >= b.nextHeal && b.boss < b.bossMax) { // 間隔が来ても満タンなら回復しない（減ったらすぐ回復する）
+    b.nextHeal = b.asked + rollHealGap(rng);
     b.boss = Math.min(b.bossMax, b.boss + TRUE_HEAL_AMOUNT);
     ev.bossHealed = true;
   }

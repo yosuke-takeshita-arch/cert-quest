@@ -8,7 +8,7 @@ import {
   trueBossEnabled, trueBossUnlocked, normalizeTrueBoss, trueBossWins, recordTrueBossWin,
   difficultyOf, buildTrueBossPlan, rollFormHp, newTrueBattle, restartAfterLose, answerTrueBattle, rollSkill,
   timeLimitFor, isTimedOut, newTrueRun, currentTrueQuestion, answerTrueRun, rollRunSkill,
-  TRUE_FORMS, TRUE_HP_MIN, TRUE_HP_MAX, TRUE_HEAL_EVERY, TRUE_QUEUE_PER_FORM, TRUE_DIFFICULTY, SKILL_TURNS, SKILL_SECONDS,
+  TRUE_FORMS, TRUE_HP_MIN, TRUE_HP_MAX, TRUE_HEAL_GAP_MIN, TRUE_HEAL_GAP_MAX, CURSE_SHARE, rollHealGap, TRUE_QUEUE_PER_FORM, TRUE_DIFFICULTY, SKILL_TURNS, SKILL_SECONDS,
   SKILL_CURSE_DAMAGE, SKILL_CHANCE, STREAK_HEAL,
 } from '../js/lib/trueboss.js';
 import { bossMood, PLAYER_HP } from '../js/lib/boss.js';
@@ -297,7 +297,7 @@ test('戦いの始まり: 第1形態・体力5〜10・自分の HP は 3（上�
   assert.equal(bossMood({ ...b, boss: Math.ceil(b.bossMax / 2) }), 'half');
 });
 
-const fresh = (hp = 10, over = {}) => ({ form: 1, boss: hp, bossMax: hp, player: 3, playerMax: 3, streak: 0, asked: 0, skill: null, result: null, ...over });
+const fresh = (hp = 10, over = {}) => ({ form: 1, boss: hp, bossMax: hp, player: 3, playerMax: 3, streak: 0, asked: 0, skill: null, result: null, nextHeal: 10, ...over });
 
 test('正解でボスが1減る（会心の一撃は2）。不正解でこちらが1減る', () => {
   let r = answerTrueBattle(fresh(10), { correct: true });
@@ -325,7 +325,7 @@ test('元の状態は変えない', () => {
 });
 
 test('進化: 体力が0になると次の形態になり、体力を決め直す（5〜10）。問題の数・技は数え直し。連続正解は引き継ぐ。第3形態を倒すと勝ち', () => {
-  let b = fresh(1, { asked: 4, streak: 1, skill: { kind: 'timed', turns: 2 } });
+  let b = fresh(1, { asked: 4, streak: 0, skill: { kind: 'timed', turns: 2 } });
   let r = answerTrueBattle(b, { correct: true }, () => 0.5);
   assert.deepEqual(r.events.evolved, { from: 1, to: 2 });
   assert.equal(r.battle.form, 2);
@@ -334,7 +334,7 @@ test('進化: 体力が0になると次の形態になり、体力を決め直�
   assert.equal(r.battle.asked, 0);
   assert.equal(r.battle.skill, null, '進化すると技は解ける');
   assert.equal(r.events.skillEnded, 'timed');
-  assert.equal(r.battle.streak, 2, '連続正解は進化をまたいで続く');
+  assert.equal(r.battle.streak, 1, '連続正解は進化をまたいで続く');
   assert.equal(r.battle.result, null);
   b = { ...r.battle, boss: 1 };
   r = answerTrueBattle(b, { correct: true }, () => 0.5);
@@ -385,42 +385,41 @@ test('負けたら第1形態からやり直す（体力・HP・技・連続も�
 
 // ---------------------------------------------------------------- 自分の HP の回復
 
-test('3問続けて正解すると HP が1回復する（上限3）。回復したら数え直し', () => {
+test('2問続けて正解すると HP が1回復する（上限3）。回復したら数え直し', () => {
+  assert.equal(STREAK_HEAL, 2);
   let b = fresh(50, { player: 1 });
   const step = (c) => { const r = answerTrueBattle(b, { correct: c }); b = r.battle; return r.events; };
   assert.equal(step(true).playerHealed, false);
   assert.equal(b.streak, 1);
-  assert.equal(step(true).playerHealed, false);
-  assert.equal(b.streak, 2);
   assert.equal(b.player, 1);
-  assert.equal(step(true).playerHealed, true, '3問目で回復');
+  assert.equal(step(true).playerHealed, true, '2問目で回復');
   assert.equal(b.player, 2);
   assert.equal(b.streak, 0, '回復したら数え直し');
-  step(true); step(true);
-  assert.equal(b.player, 2, '2問ではまだ');
+  step(true);
+  assert.equal(b.player, 2, '1問ではまだ');
   assert.equal(step(true).playerHealed, true);
   assert.equal(b.player, 3);
-  step(true); step(true);
+  step(true);
   const e = step(true);
   assert.equal(b.player, 3, '上限3を超えない');
   assert.equal(e.playerHealed, false, '満タンのときは回復の知らせを出さない');
   assert.equal(b.streak, 0);
 });
 
-test('連続正解は、不正解で切れる（2問正解のあとの不正解 → 次は1から数える）。回復は不正解の分を取り戻さない', () => {
+test('連続正解は、不正解で切れる（1問正解のあとの不正解 → 次は1から数える）。回復は不正解の分を取り戻さない', () => {
   let b = fresh(50, { player: 2 });
   const step = (c) => { const r = answerTrueBattle(b, { correct: c }); b = r.battle; return r.events; };
-  step(true); step(true); step(false);
+  step(true); step(false);
   assert.equal(b.streak, 0);
   assert.equal(b.player, 1);
-  step(true); step(true);
-  assert.equal(b.player, 1, '切れたあとは3問そろうまで回復しない');
+  step(true);
+  assert.equal(b.player, 1, '切れたあとは2問そろうまで回復しない');
   step(true);
   assert.equal(b.player, 2);
 });
 
 test('時間切れの不正解も連続を切る。正解でも timedOut なら不正解として数える', () => {
-  let b = fresh(50, { player: 2, streak: 2 });
+  let b = fresh(50, { player: 2, streak: 1 });
   const r = answerTrueBattle(b, { correct: true, timedOut: true });
   assert.equal(r.battle.player, 1);
   assert.equal(r.battle.streak, 0);
@@ -430,59 +429,69 @@ test('時間切れの不正解も連続を切る。正解でも timedOut なら�
 });
 
 test('HP の回復は進化をまたいで続く', () => {
-  let b = fresh(1, { player: 2, streak: 2 });
+  let b = fresh(1, { player: 2, streak: 1 });
   const r = answerTrueBattle(b, { correct: true }, () => 0.5);
   assert.equal(r.battle.form, 2);
-  assert.equal(r.battle.player, 3, '進化したその1問でも、3問目の正解なら回復する');
+  assert.equal(r.battle.player, 3, '進化したその1問でも、2問目の正解なら回復する');
 });
 
 // ---------------------------------------------------------------- ボスの回復
 
-test('ボスは、形態の中で10問ごとに1回復する。体力が満タンなら回復しない', () => {
-  assert.equal(TRUE_HEAL_EVERY, 10);
-  let b = fresh(30, { player: 3 });
-  const heals = [];
-  for (let i = 1; i <= 20; i++) {
-    const r = answerTrueBattle(b, { correct: i % 4 !== 0 }, () => 0.5); // 4 と 8 問目は不正解
-    b = r.battle;
-    if (b.player === 0) b = { ...b, player: 3, result: null };
-    heals.push(r.events.bossHealed);
-  }
-  assert.deepEqual(heals.map((x, i) => (x ? i + 1 : 0)).filter(Boolean), [10, 20], '10問目と20問目だけ回復');
-  // 満タン（全部不正解でボスが減っていない）では回復しない
-  let c = fresh(10, { player: 3, asked: 9 });
-  const r = answerTrueBattle(c, { correct: false });
-  assert.equal(r.battle.asked, 10);
+test('ボスの回復の間隔: 7〜10問のどれか。乱数の両端と壊れた値でも範囲内。全部の値が出る。戦いの始まり・進化のたびに決まる', () => {
+  assert.equal(TRUE_HEAL_GAP_MIN, 7);
+  assert.equal(TRUE_HEAL_GAP_MAX, 10);
+  assert.equal(rollHealGap(() => 0), 7);
+  assert.equal(rollHealGap(() => 0.999999), 10);
+  assert.equal(rollHealGap(() => 1), 10);
+  assert.equal(rollHealGap(() => NaN), 7);
+  assert.equal(rollHealGap(() => -2), 7);
+  const seen = new Set();
+  const r = seeded(77);
+  for (let i = 0; i < 300; i++) seen.add(rollHealGap(r));
+  assert.deepEqual([...seen].sort((x, y) => x - y), [7, 8, 9, 10]);
+  assert.equal(newTrueBattle(() => 0).nextHeal, 7);
+  assert.equal(newTrueBattle(() => 0.999).nextHeal, 10);
+});
+
+test('ボスは、形態の中で nextHeal 問目に1回復し、回復のたびに次の間隔を 7〜10 から決め直す', () => {
+  let r = answerTrueBattle(fresh(10, { boss: 7, asked: 8, nextHeal: 9 }), { correct: true }, () => 0);
+  assert.equal(r.events.bossHealed, true);
+  assert.equal(r.battle.boss, 7, '1減って 6、回復で 7');
+  assert.equal(r.battle.asked, 9);
+  assert.equal(r.battle.nextHeal, 9 + 7, '次は 9 問目から数えて 7 問後（乱数 0 → 間隔 7）');
+  r = answerTrueBattle(fresh(10, { boss: 7, asked: 8, nextHeal: 9 }), { correct: true }, () => 0.999);
+  assert.equal(r.battle.nextHeal, 9 + 10, '乱数が大きければ間隔 10');
+  // まだ間隔が来ていなければ回復しない
+  r = answerTrueBattle(fresh(10, { boss: 7, asked: 6, nextHeal: 9 }), { correct: true });
   assert.equal(r.events.bossHealed, false);
+  assert.equal(r.battle.boss, 6);
+  assert.equal(r.battle.nextHeal, 9);
+});
+
+test('ボスの回復: 満タンなら回復しない（最大を超えない）。減ったら、間隔が来ていればすぐ回復する', () => {
+  let r = answerTrueBattle(fresh(10, { boss: 10, asked: 8, nextHeal: 9 }), { correct: false });
+  assert.equal(r.events.bossHealed, false);
+  assert.equal(r.battle.boss, 10);
+  assert.equal(r.battle.nextHeal, 9, '回復していないので間隔は決め直さない');
+  r = answerTrueBattle({ ...r.battle, player: 3 }, { correct: true }, () => 0);
+  assert.equal(r.events.bossHealed, true, '10問目: 9 に減ったので回復する');
   assert.equal(r.battle.boss, 10);
 });
 
-test('ボスの回復は、体力が減っているときだけで、最大を超えない。倒したその問題では回復しない', () => {
-  const r = answerTrueBattle(fresh(10, { boss: 6, asked: 9 }), { correct: true });
-  assert.equal(r.events.bossHealed, true);
-  assert.equal(r.battle.boss, 6, '1減って 5、10問目の回復で 6');
-  const r2 = answerTrueBattle(fresh(10, { boss: 10, asked: 19 }), { correct: true });
-  assert.equal(r2.events.bossHealed, true, '10問目: 9 に減って、回復で 10 に戻る');
-  assert.equal(r2.battle.boss, 10);
-  const r3 = answerTrueBattle(fresh(10, { boss: 10, asked: 19 }), { correct: false });
-  assert.equal(r3.events.bossHealed, false, '満タンなら回復しない（最大を超えない）');
-  assert.equal(r3.battle.boss, 10);
-});
-
-test('ボスの回復: 形態が替わると問題の数は数え直し（進化直後の5問ごと）', () => {
-  let b = fresh(1, { asked: 3 });
+test('ボスの回復: 形態が替わると問題の数と回復の間隔を決め直す', () => {
+  let b = fresh(1, { asked: 3, nextHeal: 4 });
   b = answerTrueBattle(b, { correct: true }, () => 0).battle;
   assert.equal(b.form, 2);
   assert.equal(b.asked, 0);
-  // 進化後は 5 問目まで回復なし
-  for (let i = 1; i <= 4; i++) { const r = answerTrueBattle(b, { correct: false }); b = r.battle; if (b.player === 0) b = { ...b, player: 3 }; assert.equal(r.events.bossHealed, false); }
+  assert.equal(b.nextHeal, 7, '進化後の間隔（乱数 0 → 7）');
+  for (let i = 1; i <= 6; i++) { const r = answerTrueBattle(b, { correct: false }); b = r.battle; if (b.player === 0) b = { ...b, player: 3 }; assert.equal(r.events.bossHealed, false); }
 });
 
 test('倒した問題・負けた問題では、ボスの回復は起きない', () => {
-  const win = answerTrueBattle(fresh(1, { form: 3, asked: 4 }), { correct: true });
+  const win = answerTrueBattle(fresh(1, { form: 3, asked: 9, nextHeal: 10 }), { correct: true });
   assert.equal(win.battle.result, 'win');
   assert.equal(win.events.bossHealed, false);
-  const lose = answerTrueBattle(fresh(10, { asked: 4, boss: 5, player: 1 }), { correct: false });
+  const lose = answerTrueBattle(fresh(10, { asked: 9, boss: 5, player: 1, nextHeal: 10 }), { correct: false });
   assert.equal(lose.battle.result, 'lose');
   assert.equal(lose.events.bossHealed, false);
 });
@@ -548,24 +557,36 @@ test('技を使うか: 技がかかっている・形態の最初の問題・終
   assert.equal(rollSkill(null, rng).started, null);
 });
 
-test('技を使うか: 第3形態ほど使ってくる（1:3% 2:5% 3:7%）。種類は乱数で時間制限か呪い', () => {
-  assert.deepEqual(SKILL_CHANCE, { 1: 0.03, 2: 0.05, 3: 0.07 });
+test('技を使うか: 第3形態ほど使ってくる（1:5% 2:8% 3:30%）。第1・第2形態は時間制限だけ。HP2減るは第3形態だけで、技の2割', () => {
+  assert.deepEqual(SKILL_CHANCE, { 1: 0.05, 2: 0.08, 3: 0.3 });
+  assert.equal(CURSE_SHARE, 0.2);
   const roll = (form, v1, v2 = 0) => rollSkill(fresh(10, { form, asked: 2 }), seq(v1, v2));
-  assert.equal(roll(1, 0.029).started !== null, true);
-  assert.equal(roll(1, 0.03).started, null, 'ちょうど 3% は使わない');
-  assert.equal(roll(2, 0.049).started !== null, true);
-  assert.equal(roll(1, 0.04).started, null);
-  assert.equal(roll(3, 0.069).started !== null, true);
-  assert.equal(roll(2, 0.06).started, null);
+  assert.equal(roll(1, 0.049).started !== null, true);
+  assert.equal(roll(1, 0.05).started, null, 'ちょうど 5% は使わない');
+  assert.equal(roll(2, 0.079).started !== null, true);
+  assert.equal(roll(1, 0.07).started, null);
+  assert.equal(roll(3, 0.299).started !== null, true);
+  assert.equal(roll(2, 0.1).started, null);
+  assert.equal(roll(3, 0.3).started, null);
   assert.equal(roll(3, 0.99).started, null);
-  assert.equal(roll(1, 0, 0.1).started, 'timed');
-  assert.equal(roll(1, 0, 0.9).started, 'curse');
-  const r = roll(3, 0, 0.9);
-  assert.deepEqual(r.battle.skill, { kind: 'curse', turns: 3 });
+  // 第1・第2形態は、乱数がどうでも時間制限だけ
+  for (const v2 of [0, 0.01, 0.5, 0.99]) { assert.equal(roll(1, 0, v2).started, 'timed'); assert.equal(roll(2, 0, v2).started, 'timed'); }
+  // 第3形態: 技のうち 2割（CURSE_SHARE 未満）が HP2減る、残りは時間制限
+  assert.equal(roll(3, 0, 0.19).started, 'curse');
+  assert.equal(roll(3, 0, 0.2).started, 'timed');
+  assert.deepEqual(roll(3, 0, 0.1).battle.skill, { kind: 'curse', turns: 3 });
   // 元は変えない
-  const b = fresh(10, { form: 1, asked: 2 });
-  rollSkill(b, seq(0, 0));
-  assert.equal(b.skill, null);
+  const bt = fresh(10, { form: 1, asked: 2 });
+  rollSkill(bt, seq(0, 0));
+  assert.equal(bt.skill, null);
+});
+
+test('技の種類の割合: 第3形態で技が出たうち HP2減るは約2割。第1・第2形態では0', () => {
+  const r = seeded(91);
+  let curse = 0; let all = 0;
+  for (let i = 0; i < 20000; i++) { const x = rollSkill(fresh(10, { form: 3, asked: 2 }), r).started; if (x) { all++; if (x === 'curse') curse++; } }
+  assert.ok(Math.abs(curse / all - 0.2) < 0.03, String(curse / all));
+  for (const form of [1, 2]) for (let i = 0; i < 3000; i++) assert.notEqual(rollSkill(fresh(10, { form, asked: 2 }), r).started, 'curse');
 });
 
 test('技を使う頻度: 第3形態は第1形態より多い（乱数を回して数える）', () => {
@@ -579,7 +600,7 @@ test('技を使う頻度: 第3形態は第1形態より多い（乱数を回し�
   const c2 = count(2);
   const c3 = count(3);
   assert.ok(c1 < c2 && c2 < c3, c1 + ' < ' + c2 + ' < ' + c3);
-  assert.ok(Math.abs(c3 / 4000 - 0.07) < 0.02);
+  assert.ok(Math.abs(c3 / 4000 - 0.3) < 0.03);
 });
 
 // ---------------------------------------------------------------- 1回の戦い（問題の順番つき）
@@ -647,7 +668,9 @@ test('技の判定を戦いに反映する（rollRunSkill）。反映後の技�
   const first = rollRunSkill(run0, seq(0, 0)); // 最初の問題（asked=0）は使わない
   assert.equal(first.started, null);
   const run1 = answerTrueRun(run0, { correct: true }, () => 0).run;
-  const r = rollRunSkill(run1, seq(0, 0.9));
+  const run3 = { ...run1, battle: { ...run1.battle, form: 3, asked: 2 } }; // HP2減るは第3形態だけ
+  assert.equal(rollRunSkill(run1, seq(0, 0.1)).started, 'timed', '第1形態は時間制限だけ');
+  const r = rollRunSkill(run3, seq(0, 0.1));
   assert.equal(r.started, 'curse');
   assert.deepEqual(r.run.battle.skill, { kind: 'curse', turns: 3 });
   assert.equal(run1.battle.skill, null, '元は変えない');
