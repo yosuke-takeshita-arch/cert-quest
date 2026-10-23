@@ -43,32 +43,57 @@ export function trueBossImageUrl(form) {
   return new URL('bosses/' + trueBossImageName(form), appImagesBase()).href;
 }
 
-/** 絵を読み込んで、読めたときだけ wrap の中身を絵に入れ替える。wrap.dataset.form が変わっていたら（進化した後に遅れて届いたら）捨てる。 */
-function loadFormImage(form, wrap, onLoad) {
-  const img = new Image();
-  img.className = 'boss-img';
-  img.alt = '';
-  img.decoding = 'async';
-  img.addEventListener('load', () => {
-    if (wrap.dataset.form !== String(form)) return;
-    clear(wrap);
-    wrap.appendChild(img);
-    if (onLoad) onLoad(img);
-  });
-  img.src = trueBossImageUrl(form);
+// ---- 形態ごとの絵: 先に読み込み、decode（画面に出せる形にすること）まで済ませておく ----
+// 絵を替えるときに、新しい絵がまだ読めていないと、絵の無いときの代わりの記号（四角い枠）や壊れた画像が一瞬出てしまう
+// （先生の指摘「形態が変わる時に四角い枠が一瞬出る」）。だから、(1) 戦いを始める前（入口を出したとき・画面を開いたとき）に3枚とも読み込んで decode まで済ませ、
+// (2) 絵を替えるのは、新しい絵の decode が済んでから。読み込み中は何も出さない（記号は出さない）。読み込みに失敗したときだけ、記号に替える。
+const formImages = new Map(); // 形態 → Promise<decode 済みの img | null>
+
+/** 形態の絵を先に読み込む。decode まで済んだ img（コピー元）で解決する。失敗は null（次に呼んだとき、もう一度読む）。 */
+export function preloadFormImage(form) {
+  if (!formImages.has(form)) {
+    const p = new Promise((resolve) => {
+      const img = new Image();
+      img.className = 'boss-img';
+      img.alt = '';
+      img.decoding = 'async';
+      img.src = trueBossImageUrl(form);
+      if (typeof img.decode === 'function') img.decode().then(() => resolve(img), () => resolve(null));
+      else { img.onload = () => resolve(img); img.onerror = () => resolve(null); }
+    });
+    formImages.set(form, p);
+    p.then((v) => { if (!v) formImages.delete(form); });
+  }
+  return formImages.get(form);
 }
 
-/** 小さな丸（顔の切り抜き）。unknown なら絵を読まず「？」。 */
+export function preloadFormImages() {
+  for (let f = 1; f <= TRUE_FORMS; f++) preloadFormImage(f);
+}
+
+/** 表示用のコピー（decode まで済ませて返す）。絵が読めなければ null。 */
+async function readyImage(form) {
+  const src = await preloadFormImage(form);
+  if (!src) return null;
+  const el = src.cloneNode();
+  el.decoding = 'sync';
+  try { await el.decode(); } catch (e) { /* 読み込み済みなので、そのまま出す */ }
+  return el;
+}
+
+/** 小さな丸（顔の切り抜き）。unknown なら絵を読まず「？」。絵が届くまでは、何も出さない（記号は、読み込みに失敗したときだけ）。 */
 function fillArt(wrap, form, unknown) {
-  clear(wrap);
   wrap.dataset.form = String(form);
-  wrap.appendChild(h('span', { class: 'boss-sym', text: unknown ? '？' : TRUE_BOSS_SYMBOL }));
-  if (unknown) return;
-  loadFormImage(form, wrap, (img) => {
+  if (unknown) { clear(wrap); wrap.appendChild(h('span', { class: 'boss-sym', text: '？' })); return Promise.resolve(); }
+  return readyImage(form).then((img) => {
+    if (wrap.dataset.form !== String(form)) return; // 進化したあとに遅れて届いたら捨てる
+    clear(wrap);
+    if (!img) { wrap.appendChild(h('span', { class: 'boss-sym', text: TRUE_BOSS_SYMBOL })); return; }
     const c = faceCrop(img.naturalWidth, img.naturalHeight, TRUE_FACE[form]);
     img.style.setProperty('--zoom', String(c.zoom));
     img.style.setProperty('--tx', String(c.tx));
     img.style.setProperty('--ty', String(c.ty));
+    wrap.appendChild(img);
   });
 }
 
@@ -79,13 +104,17 @@ export function trueBossArt(form, cls) {
   return wrap;
 }
 
-/** 全身の絵（戦いの画面）。 */
+/**
+ * 全身の絵（戦いの画面）。新しい絵の decode が済んでから、中身を入れ替える（それまでは前の中身のまま。記号は出さない）。
+ * 戻り値の Promise は、入れ替えが済んだら解決する。読み込みに失敗したときだけ、記号を出す。
+ */
 function fillFigure(wrap, form) {
-  clear(wrap);
-  wrap.classList.remove('has-img');
   wrap.dataset.form = String(form);
-  wrap.appendChild(h('span', { class: 'boss-fig-sym', text: TRUE_BOSS_SYMBOL }));
-  loadFormImage(form, wrap, () => wrap.classList.add('has-img'));
+  return readyImage(form).then((img) => {
+    if (wrap.dataset.form !== String(form)) return;
+    clear(wrap);
+    if (img) { wrap.appendChild(img); wrap.classList.add('has-img'); } else { wrap.classList.remove('has-img'); wrap.appendChild(h('span', { class: 'boss-fig-sym', text: TRUE_BOSS_SYMBOL })); }
+  });
 }
 
 /** 真ボスに挑む。back は終わったあとに戻る先（無ければ地図）。 */
@@ -103,6 +132,7 @@ export function trueBossPlace(app, back) {
       h('div', { class: 'boss-place-head' }, trueBossArt(1, 'off unknown'),
         h('div', { class: 'boss-place-text' }, h('strong', { text: TRUE_BOSS_TEXT.unknownName }), h('span', { class: 'small muted', text: TRUE_BOSS_TEXT.locked }))));
   }
+  preloadFormImages(); // 入口を出したときに、3枚の絵を先に読み込む
   const wins = trueBossWins(app.state);
   return h('div', { class: 'card boss-place on', 'data-true-boss-place': 'on' },
     h('div', { class: 'boss-place-head' }, trueBossArt(1, 'on'),
@@ -197,6 +227,7 @@ export function renderTrueBoss(app) {
   const back = app.trueBossBack || '#/map';
   app.trueBossBack = null;
   const data = dataOf(app);
+  if (trueBossEnabled(app.config) && trueBossUnlocked(app.state, app.data.tree.stages)) preloadFormImages(); // 3形態の絵を先に読み込む（戦いの途中で絵を替えるとき、待たずに済むように）
   if (!trueBossEnabled(app.config) || !trueBossUnlocked(app.state, app.data.tree.stages)) {
     root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go(back) }, '← 戻る'));
     root.appendChild(h('h1', { text: TRUE_BOSS_TEXT.unknownName }));
@@ -304,12 +335,13 @@ export function renderTrueBoss(app) {
   }
 
   // ---- 自分の体力 ----
-  function paintHp(b, crackAt) {
+  // gainAt … 増えたばかりのハートの番号（緑に光る）。割れる動き（crackAt）とは別
+  function paintHp(b, crackAt, gainAt) {
     [ui.hp, ui.miniHp].forEach((box) => {
       if (!box) return;
       clear(box);
       const hearts = h('span', { class: 'boss-hearts', role: 'img', 'aria-label': 'あなたの体力 ' + b.player + '／' + b.playerMax });
-      for (let i = 0; i < b.playerMax; i++) hearts.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off') + (i === crackAt ? ' crack' : '')));
+      for (let i = 0; i < b.playerMax; i++) hearts.appendChild(icon('heart', 'heart ' + (i < b.player ? 'on' : 'off') + (i === crackAt ? ' crack' : '') + (i === gainAt ? ' gain' : '')));
       box.appendChild(h('span', { class: 'boss-hp-label', 'aria-hidden': 'true', text: 'HP ' + b.player }));
       box.appendChild(hearts);
     });
@@ -370,9 +402,9 @@ export function renderTrueBoss(app) {
     ui.mini.style.setProperty('--boss-color', p.color);
     ui.float.classList.toggle('f2', battle().form === 2); // 第2・第3形態だけ、ゆっくり上下に浮かぶ（第1形態は動かさない）
     ui.float.classList.toggle('f3', battle().form === 3);
-    fillFigure(ui.fig, battle().form);
-    fillArt(ui.miniArt, battle().form, false);
     ui.fig.style.setProperty('--boss-color', p.color);
+    // 絵は、新しい絵の decode が済んでから替わる（それまでは、前の中身のまま。記号は出さない）。戻り値は、替わったら解決する
+    return Promise.all([fillFigure(ui.fig, battle().form), fillArt(ui.miniArt, battle().form, false)]);
   }
 
   // ---- 画面の骨組み ----
@@ -576,7 +608,7 @@ export function renderTrueBoss(app) {
     const ev = res.events;
     const b = battle();
     S.log.push({ q: sq.q, sq, correct, chosen, form: before.form, late, skill: before.skill ? before.skill.kind : null });
-    paintHp(b, -1);
+    paintHp({ ...b, player: b.player - (ev.playerHealed ? 1 : 0) }, -1); // 自分の回復は、あとのページで増やす（それまではハートを増やさない）
     const { btns, after } = ui;
     // 戦いの最中は、合っていたか・違っていたかだけ。正解の選択肢は教えない（解説は結果で）
     btns.forEach((bt, i) => {
@@ -629,26 +661,51 @@ export function renderTrueBoss(app) {
         lines.push(b.result === 'lose' ? 'あなたは たおれてしまった…' : 'あなたは ' + ev.lost + ' ダメージを うけた！');
         if (b.result === 'lose') lines.push(quoted(pickTrueLine(oldProfile, 'gloat', app.rng)));
       }
-      if (ev.playerHealed) lines.push('あなたの きずが すこし いえた。', quoted(pickTrueLine({ lines: { x: data.playerHeal } }, 'x', app.rng)));
       if (ev.skillEnded && !ev.evolved && b.result !== 'win') lines.push(skillInfo(ev.skillEnded).name + ' の ちからが きえた。');
+      if (b.result === 'win' || ev.evolved) paintHp(b, -1); // 進化・撃破のときは、回復をページにせず、ハートをそのまま出す
       if (b.result === 'win') defeatSequence(bar, next, ev);
       else if (ev.evolved) evolveSequence(ev, bar, next);
-      else if (ev.bossHealed) { // 正解のときも、間違えたときも（回復は答えの正誤に関わらず起きる）
-        // ボスの回復は、ダメージの文が出終わってから、窓を新しいページにして出す（要件定義書 §3-9『ボスの回復の見せ方』）。
-        // ページの送り方: ダメージの文が出終わると ▼ が出て、窓をタップするか、約1.4秒たつと、前の文を消して次のページになる
-        const showHeal = () => {
-          if (!S.healWait || S.item !== sq || !ui || !ui.stage.isConnected) return;
+      else if (ev.playerHealed || ev.bossHealed) {
+        // 回復は、ダメージの文が出終わってから、窓を新しいページにして1つずつ出す（要件定義書 §3-9『ボスの回復の見せ方』『自分の回復の見せ方』）。
+        // 同じ答えで両方起きたら、自分の回復 → ボスの回復の順。
+        // ページの送り方: ダメージの文が出終わると ▼ が出て、窓をタップするか、約1.4秒たつと、前の文を消して次のページになる。
+        const pages = [];
+        if (ev.playerHealed) {
+          pages.push(() => {
+            playerHealEffect(b); // ハートを1つ増やして緑に光らせる（それまでは増やさない）+ 自分の回復の音
+            say(['あなたの きずが すこし いえた。', quoted(pickTrueLine({ lines: { x: data.playerHeal } }, 'x', app.rng))], { onDone: arm });
+          });
+        }
+        if (ev.bossHealed) {
+          pages.push(() => {
+            healEffect(); // 緑の光ときらきら + 回復の音（同時）
+            say([oldProfile.name + ' は 傷を癒やした！', quoted(pickTrueLine(oldProfile, 'heal', app.rng))], { onDone: arm });
+          });
+        }
+        const turnPage = () => {
+          if (!S.healWait || S.item !== sq || !ui || !ui.stage.isConnected || !pages.length) return;
           S.healWait = null;
-          healEffect(); // 緑の光ときらきら + 回復の音（同時）
-          say([oldProfile.name + ' は 傷を癒やした！', quoted(pickTrueLine(oldProfile, 'heal', app.rng))]);
+          pages.shift()();
         };
-        say(lines, { onDone: () => { if (S.item !== sq) return; S.healWait = showHeal; later(showHeal, 1400); } });
+        function arm() {
+          if (S.item !== sq || !pages.length) return;
+          S.healWait = turnPage;
+          later(turnPage, 1400);
+        }
+        say(lines, { onDone: arm });
       } else {
         say(lines);
         if (b.result === 'lose') stopBossTheme();
       }
     };
     atTop(perform);
+  }
+
+  // ---- 自分の回復の見せ方: 戻るハート1つを緑に光らせて増やす（上の帯のハートも同じ）+ 自分の回復の音（フック playerheal）。それまでハートは増やさない ----
+  function playerHealEffect(b) {
+    playBossSfx(app.state.settings, 'playerheal');
+    paintHp(b, -1, b.player - 1); // b.player は回復後。増えたハート（左から b.player 番目）が緑に光る
+    later(() => { [ui.hp, ui.miniHp].forEach((box) => { if (box) box.querySelectorAll('.gain').forEach((e) => e.classList.remove('gain')); }); }, 1500); // 光は約1.5秒で、ふつうの赤に戻る
   }
 
   // ---- ボスの回復の見せ方: 絵の形に沿った緑の光 + きらきらした粒（絵の箱に重ねる。四角い面は使わない）+ 回復の音（フック heal）。約1.4秒 ----
@@ -688,14 +745,16 @@ export function renderTrueBoss(app) {
       if (swapped) return;
       swapped = true;
       if (markTrueBossSeenForm2(app.state)) app.commit(); // 第2形態を見た（これ以降、『形態』を画面に出してよい）
-      figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive', 'swell');
       ui.float.classList.remove('still');
       root.classList.remove('tb-dim');
-      paintForm();
       paintHp(battle(), -1);
-      // 形態が替わったら曲も替える。第3形態は、決めぜりふのあとに曲を始める（第2形態は、すぐ）
-      if (immediate || from1) startMusic(); else later(startMusic, T.music - T.swap);
-      if (!R) flash(ui.fig, from1 ? 'emerge' : 'spread', 1000);
+      // 新しい絵の decode が済んでから、前の絵を消して（gone などを外して）新しい絵を出す。済む前に外すと、前の絵や記号の枠が一瞬出る
+      paintForm().then(() => {
+        figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive', 'swell');
+        // 形態が替わったら曲も替える。第3形態は、決めぜりふのあとに曲を始める（第2形態は、すぐ）
+        if (immediate || from1) startMusic(); else later(startMusic, T.music - T.swap);
+        if (!R) flash(ui.fig, from1 ? 'emerge' : 'spread', 1000);
+      });
     };
     const newP = () => prof();
     const lines = () => [oldP.name + ' は しんかした！', quoted(pickTrueLine(oldP, 'evolve', app.rng)), newP().name + ' が あらわれた！', quoted(pickTrueLine(newP(), 'appear', app.rng))];

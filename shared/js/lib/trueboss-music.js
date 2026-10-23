@@ -104,6 +104,10 @@ const ORB_SFX = Object.fromEntries(ORB_NOTES.map((n, i) => ['orb' + i, [
 
 export const TRUE_SFX = {
   ...ORB_SFX,
+  playerheal: [ // 自分の回復（ボスの回復 heal より高く短い、上る3音）
+    ...seq('square', 0.4, ['D5', 'F#5', 'A5', 'D6'], 0.09),
+    { wave: 'triangle', gain: 0.5, t: 0, dur: 0.4, freq: noteFreq('D4') },
+  ],
   heartbeat: [
     { wave: 'triangle', gain: 0.95, t: 0, dur: 0.14, freq: noteFreq('D2'), to: noteFreq('A1') },
     { wave: 'triangle', gain: 0.8, t: 0.17, dur: 0.16, freq: noteFreq('D2'), to: noteFreq('A1') },

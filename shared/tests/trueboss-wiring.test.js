@@ -345,29 +345,102 @@ test('第2形態を見るまでは「形態」「進化」を画面に出さな�
   assert.doesNotMatch(read('shared/js/lib/badges.js').match(/id: 'true-boss'[\s\S]*?progress/)[0], /形態|進化/);
 });
 
-test('ボスの回復の見せ方: ダメージの文が出終わってから、窓を新しいページにして「傷を癒やした！」と回復のせりふ。緑の光ときらきらと音を同時に。ダメージの文には混ぜない', () => {
+test('回復の見せ方: ダメージの文が出終わってから、窓を新しいページにして1つずつ出す。自分の回復 → ボスの回復の順。ダメージの文には混ぜない', () => {
   const src = code('shared/js/views/trueboss.js');
   const fn = fnBody(src, 'answer');
-  // ダメージのページ（lines）に、回復の文を足していない
   const perform = fn.slice(fn.indexOf('const perform = () => {'));
-  assert.doesNotMatch(perform.slice(0, perform.indexOf('else if (ev.bossHealed)')), /傷を癒やした/);
-  // 回復のページ: ダメージの文が出終わってから（onDone）、タップか約1.4秒で、前の文を消して（say は keep なしで窓を消す）次のページに
-  assert.match(perform, /say\(lines, \{ onDone: \(\) => \{ if \(S\.item !== sq\) return; S\.healWait = showHeal; later\(showHeal, 1400\); \} \}\)/);
-  assert.match(perform, /healEffect\(\);[^\n]*\n\s*say\(\[oldProfile\.name \+ ' は 傷を癒やした！', quoted\(pickTrueLine\(oldProfile, 'heal', app\.rng\)\)\]\)/);
-  assert.match(perform, /S\.healWait = null;/);
-  // 窓のタップで次のページへ（文を出している途中のタップは、文を一度に出すだけ）
+  // ダメージのページ（lines）に、回復の文を足していない
+  const damage = perform.slice(0, perform.indexOf('else if (ev.playerHealed || ev.bossHealed)'));
+  assert.doesNotMatch(damage, /傷を癒やした|いえた/);
+  // ページの順: 自分の回復 → ボスの回復
+  const pi = perform.indexOf("'あなたの きずが すこし いえた。'");
+  const bi = perform.indexOf("' は 傷を癒やした！'");
+  assert.ok(pi > 0 && bi > pi, '自分の回復が先');
+  assert.match(perform, /if \(ev\.playerHealed\) \{\n\s*pages\.push/);
+  assert.match(perform, /if \(ev\.bossHealed\) \{\n\s*pages\.push/);
+  // ページの送り: 出終わると arm → タップか約1.4秒で、前の文を消して次のページ
+  assert.match(perform, /say\(lines, \{ onDone: arm \}\)/);
+  assert.match(perform, /S\.healWait = turnPage;\n\s*later\(turnPage, 1400\);/);
+  assert.match(perform, /pages\.shift\(\)\(\)/);
   assert.match(fnBody(src, 'onTap'), /else if \(typing\) typing\.finish\(\);\n\s*else if \(S\.healWait\) S\.healWait\(\);/);
-  // 緑の光（絵の形に沿う filter）+ きらきら（絵の箱に重ねた SVG）+ 音（フック heal）
+  // ボスの回復: 緑の光（絵のふちに沿う）+ きらきら + 音
   const he = fnBody(src, 'healEffect');
   assert.match(he, /playBossSfx\(app\.state\.settings, 'heal'\)/);
   assert.match(he, /figClass\('add', 'healing'\)/);
   assert.match(he, /reduced\(\) \? null : buildSparkLayer\(ui\.fig\)/, '動きを減らす設定では粒を出さない');
-  assert.match(he, /\}, 1500\)/);
   const css = read('shared/css/app.css');
-  assert.match(css, /\.boss-fig\.healing \.boss-img, \.boss-fig\.healing \.boss-fig-sym \{ filter: drop-shadow\(0 0 4px #9dffb0\) drop-shadow\(0 0 12px #2ecc71\)/, '絵のふちに沿った緑の光（四角い面ではない）');
+  assert.match(css, /\.boss-fig\.healing \.boss-img, \.boss-fig\.healing \.boss-fig-sym \{ filter: drop-shadow\(0 0 4px #9dffb0\) drop-shadow\(0 0 12px #2ecc71\)/);
   assert.match(css, /\.tb-spark-layer \{ position: absolute; inset: 0; width: 100%; height: 100%;/);
   const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
   assert.match(red, /\.boss-fig\.healing \.boss-img, \.boss-fig\.healing \.boss-fig-sym, \.tb-spark \{ animation: none; \}/);
-  // 回復の音のフック（素材が入るまでは、プログラムの音）
   assert.match(read('shared/js/lib/sound.js'), /heal: \{ key: 'trueheal', synth: 'heal' \}/);
+});
+
+test('自分の回復の見せ方: 答えた瞬間はハートを増やさない。回復のページになった瞬間に、増えるハート1つが緑に光る（上の帯のハートも）。専用の音（playerheal）。進化・撃破のときは、そのまま出す', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'answer');
+  // 答えた瞬間のハートは、回復の分を引いた数
+  assert.match(fn, /paintHp\(\{ \.\.\.b, player: b\.player - \(ev\.playerHealed \? 1 : 0\) \}, -1\);/);
+  // 回復のページ: ハートを増やして緑に光らせる（paintHp の gainAt）。音
+  const eff = fnBody(src, 'playerHealEffect');
+  assert.match(eff, /playBossSfx\(app\.state\.settings, 'playerheal'\)/);
+  assert.match(eff, /paintHp\(b, -1, b\.player - 1\)/);
+  // paintHp は、帯のハート（miniHp）も同じ関数で描く。増えたハートに gain を付ける
+  const ph = fnBody(src, 'paintHp');
+  assert.match(ph, /\[ui\.hp, ui\.miniHp\]\.forEach/);
+  assert.match(ph, /\(i === gainAt \? ' gain' : ''\)/);
+  // 進化・撃破のときは、回復のページを出さず、ハートをそのまま出す
+  assert.match(fn, /if \(b\.result === 'win' \|\| ev\.evolved\) paintHp\(b, -1\);/);
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.boss-hearts \.icon\.heart\.gain \{ color: #5fe37a;/, '緑に光る');
+  // 動きを減らす設定: 動き（animation）は止め、緑の色だけ残る（gain の color は animation の外）
+  const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
+  assert.match(red, /\.boss-hearts \.icon\.heart\.gain \{ animation: none; \}/);
+  // 音のフック: 専用のファイル。ボスの回復（trueheal）とは別
+  const snd = read('shared/js/lib/sound.js');
+  assert.match(snd, /playerheal: \{ key: 'trueplayerheal', synth: 'playerheal' \}/);
+  assert.match(snd, /trueplayerheal: 'true-playerheal_magical-1\.ogg'/);
+  assert.notEqual(snd.match(/trueplayerheal: '([^']+)'/)[1], snd.match(/trueheal: '([^']+)'/)[1]);
+});
+
+test('形態の絵の入れ替え: 先に読み込んで decode まで済ませる。新しい絵が済んでから前の絵を外す。読み込み中は記号を出さず、失敗したときだけ記号', () => {
+  const src = code('shared/js/views/trueboss.js');
+  // 先読み: decode まで。失敗は null（次の呼び出しで読み直す）
+  const pre = src.slice(src.indexOf('export function preloadFormImage(form)'), src.indexOf('export function preloadFormImages'));
+  assert.match(pre, /img\.decode\(\)\.then\(\(\) => resolve\(img\), \(\) => resolve\(null\)\)/);
+  assert.match(pre, /formImages\.delete\(form\)/);
+  // 表示用のコピーも decode を待つ
+  const ready = src.slice(src.indexOf('async function readyImage'), src.indexOf('/** 小さな丸'));
+  assert.match(ready, /await preloadFormImage\(form\)/);
+  assert.match(ready, /await el\.decode\(\)/);
+  // 記号を出すのは、絵が無い（読み込みに失敗した）ときだけ。読み込み中（最初の呼び出しの時点）には出さない
+  const fig = src.slice(src.indexOf('function fillFigure(wrap, form)'), src.indexOf('/** 真ボスに挑む'));
+  assert.doesNotMatch(fig.slice(0, fig.indexOf('return readyImage(form).then')), /boss-fig-sym|clear\(wrap\)/, '読み込み中に、中身を消したり記号を出したりしない');
+  assert.match(fig, /if \(img\) \{ wrap\.appendChild\(img\); wrap\.classList\.add\('has-img'\); \} else \{[^}]*boss-fig-sym/);
+  const art = src.slice(src.indexOf('function fillArt('), src.indexOf('export function trueBossArt'));
+  assert.doesNotMatch(art.slice(0, art.indexOf('return readyImage(form).then')), /TRUE_BOSS_SYMBOL/, '丸の絵も、読み込み中に記号を出さない');
+  // 進化で替えるとき: 新しい絵の入れ替えが済んでから、前の絵を隠していた gone などを外す
+  const evo = fnBody(src, 'evolveSequence');
+  assert.match(evo, /paintForm\(\)\.then\(\(\) => \{\n\s*figClass\('remove', 'glow', 'blinkoff', 'gone'/);
+  assert.doesNotMatch(evo.slice(0, evo.indexOf('paintForm().then')), /figClass\('remove', [^)]*'gone'/, '入れ替えの前に gone を外さない');
+  assert.match(fnBody(src, 'paintForm'), /return Promise\.all\(\[fillFigure\(ui\.fig, battle\(\)\.form\), fillArt\(ui\.miniArt, battle\(\)\.form, false\)\]\)/);
+  // 先読みの場所: 入口を出したとき・画面を開いたとき
+  assert.match(src, /preloadFormImages\(\); \/\/ 入口を出したときに/);
+  assert.match(src, /preloadFormImages\(\); \/\/ 3形態の絵を先に読み込む/);
+  assert.doesNotMatch(src, /function loadFormImage/, '読み込み中に記号を出す古い読み込みは無い');
+});
+
+test('自分の回復の音のファイル: 実在し、ライセンスの記録・sw-core.js にある。ボスの回復の音とは別のファイル', () => {
+  const doc = read('docs/sources/audio-licenses.md');
+  const f = 'true-playerheal_magical-1.ogg';
+  assert.ok(existsSync(root + 'shared/audio/sfx/' + f));
+  assert.equal(readFileSync(root + 'shared/audio/sfx/' + f).length, 14993);
+  assert.ok(doc.includes(f) && doc.includes('magical_1_0.ogg') && doc.includes('59,071'));
+  assert.ok(read('shared/sw-core.js').includes("'" + f + "'"));
+  assert.ok(read('shared/js/views/about.js').includes('JaggedStone'));
+});
+
+test('自分の回復の光は、約1.5秒でふつうの赤に戻る（gain を外す）', () => {
+  const eff = fnBody(code('shared/js/views/trueboss.js'), 'playerHealEffect');
+  assert.match(eff, /later\(\(\) => \{ \[ui\.hp, ui\.miniHp\]\.forEach\(\(box\) => \{ if \(box\) box\.querySelectorAll\('\.gain'\)\.forEach\(\(e\) => e\.classList\.remove\('gain'\)\); \}\); \}, 1500\)/);
 });

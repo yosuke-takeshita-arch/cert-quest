@@ -113,6 +113,7 @@ export const SFX_FILES = {
   trueorb: 'true-orb_bell-ding.ogg', // 2→3 で光の玉が灯る音（OpenGameArt「Bell dings/chimes」PWL の bell_ding3、CC0。0.55 秒に切った。13回、再生速度で高くしていく）
   truecharge: 'true-charge_rocket-launch.ogg', // 2→3 の力をためる音（OpenGameArt「Weird Rocket Launch Sound」qzlocx の beepbox-song_1、CC0。3.2 秒に切って後ろをフェードアウト）
   trueheal: 'true-heal_magical-3.ogg', // 2026-10-23 先生『推奨のままでいい』。ボスの回復の音（OpenGameArt「Magic Spell SFX」JaggedStone の magical_3、CC0。1.5秒に切って後ろをフェードアウト）
+  trueplayerheal: 'true-playerheal_magical-1.ogg', // 2026-10-23 先生決定。自分の HP が回復するときの音（OpenGameArt「Magic Spell SFX」JaggedStone の magical_1_0、CC0。1.4秒に切ってフェードアウト。元が小さいので 2 倍にして頭打ち）。ボスの回復（trueheal）と聞き分けられる別の音
   trueimpact: 'true-impact_chunky-explosion.ogg', // 2→3 の大きな衝撃（OpenGameArt「Chunky Explosion」Joth、CC0。頭から1.8秒に切って後ろをフェードアウト）
   truehit: 'true-impact_transformation-hit.ogg', // 衝撃と同時に鳴らす決めの一撃（OpenGameArt「Epic Transformation」Dizzy Crow の 37.6〜39.8 秒、CC0）
   bosscrit: 'boss-crit_cut.ogg', // 2026-10-10 先生が聞き比べて選んだ。ボス戦で会心の一撃が出たとき（OpenGameArt「NES Sounds」Baŝto の cut、CC0。元の ogg のまま。ふつうの当たり bosshit より約6dB 小さいので BOSS_SFX.crit.boost で持ち上げる）
@@ -137,6 +138,7 @@ export const BOSS_SFX = {
   shatter2: { key: 'trueshatter2', synth: null },
   rumble: { key: 'truerumble', synth: 'skill' },
   // 進化のタメの効果音のフック（要件定義書 §3-9）。素材のファイルは今は無く、プログラムの音で鳴る。素材が入ったら SFX_FILES に key を足すだけで、ファイルが先に鳴る
+  playerheal: { key: 'trueplayerheal', synth: 'playerheal' }, // 自分の HP の回復の音のフック
   heal: { key: 'trueheal', synth: 'heal' }, // ボスの回復の音のフック。素材のファイル（trueheal）が入るまでは、プログラムの音
   heartbeat: { key: 'trueheartbeat', synth: 'heartbeat' },
   heartbeatfast: { key: 'trueheartbeatfast', synth: 'heartbeat' },

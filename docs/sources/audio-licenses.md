@@ -128,9 +128,11 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 | ファイル | 使う場面 | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス |
 |---|---|---|---|---|---|---|
 | `true-heal_magical-3.ogg` | ボスの回復（「傷を癒やした！」の新しいページと、緑の光・きらきらに合わせて鳴らす。2026-10-23 先生が『推奨のままでいい』で選んだ） | `magical_3.ogg`（38,266 バイト・約1.82秒） | 1.5秒・16,749 バイト（頭から1.5秒に切り、1.0秒から0.5秒かけてフェードアウト。モノラルに変換。音量は元のまま。緑の光の約1.5秒に合わせた） | JaggedStone | <https://opengameart.org/content/magic-spell-sfx> | CC0 |
+| `true-playerheal_magical-1.ogg` | 自分の HP の回復（「あなたの きずが すこし いえた。」の新しいページで、ハートが緑に光って増えるのに合わせて鳴らす。ボスの回復の音と聞き分けられる別の音。2026-10-23 先生が選んだ） | `magical_1_0.ogg`（59,071 バイト・約1.61秒） | 1.4秒・14,993 バイト（頭から1.4秒に切り、0.9秒から0.5秒かけてフェードアウト。モノラルに変換。元が小さい（rms 0.069）ので音量を2倍にして 0.8 で頭打ち） | JaggedStone | <https://opengameart.org/content/magic-spell-sfx> | CC0 |
 
 - **確かめた逐語（Magic Spell SFX）**: 投稿情報の欄に『Author: JaggedStone』『Art Type: Sound Effect』『License(s): CC0』。Copyright/Attribution Notice 欄は『None needed』。タグは『dungeon RPG magic spellcasting』。2026-10-23 に配布ページとファイル（magical_3.ogg）を取り直し、手元の原本と cmp で一致を確かめた。同じページの magical_4 は、別の場面（第1→2の進化の候補）で聞き比べに出ただけで、使っていない。
 - 加工後の rms は約 0.16（ボスの当たり 0.16 と同じ）、peak は約 0.59。実際の聞こえ方は、耳では確かめていない。
+- 確かめた逐語は上と同じページ（『Author: JaggedStone』『License(s): CC0』『None needed』）。2026-10-23 に配布ページのファイル（magical_1_0.ogg）を取り直し、手元の原本と cmp で一致を確かめた。加工後の rms は約 0.14、peak は約 0.72。実際の聞こえ方は、耳では確かめていない。
 
 ## 確かめていないこと
 

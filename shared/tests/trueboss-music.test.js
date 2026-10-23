@@ -79,7 +79,7 @@ test('第3形態の曲は、声が3つ（旋律・伴奏・低音）で、第1�
 test('効果音: 進化・技・回復・エンディング。全部の音が正の周波数・長さで、長さは 進化 1〜2.5 秒・技 1 秒以内・回復 1 秒以内・エンディング 4〜7 秒', () => {
   const len = (name) => TRUE_SFX[name].reduce((m, e) => Math.max(m, e.t + e.dur), 0);
   const orbs = Array.from({ length: 13 }, (_, i) => 'orb' + i);
-  assert.deepEqual(Object.keys(TRUE_SFX).sort(), ['charge', 'ending', 'evolve', 'heal', 'heartbeat', 'impact', ...orbs, 'skill'].sort());
+  assert.deepEqual(Object.keys(TRUE_SFX).sort(), ['charge', 'ending', 'evolve', 'heal', 'heartbeat', 'impact', 'playerheal', ...orbs, 'skill'].sort());
   // 光の玉が灯る音は、1つごとに高くなる
   const f0 = (k) => TRUE_SFX['orb' + k][0].freq;
   for (let k = 1; k < 13; k++) assert.ok(f0(k) > f0(k - 1), 'orb' + k + ' は orb' + (k - 1) + ' より高い');
