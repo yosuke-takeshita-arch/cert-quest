@@ -131,7 +131,7 @@ export function badgeDefs(tree, config) {
   if (trueBossEnabled(config)) {
     defs.splice(defs.findIndex((d) => d.id === 'tap-shiba-100'), 0, {
       id: 'true-boss',
-      name: '塔を きわめし もの',
+      name: '特異点を こえし もの',
       desc: '真ボスを倒す',
       test: (s) => trueBossWins(s) >= 1,
       progress: (s) => ({ cur: Math.min(1, trueBossWins(s)), max: 1, unit: '回', action: { kind: 'boss' } }),
