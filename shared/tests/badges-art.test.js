@@ -104,7 +104,8 @@ test('真ボスのバッジの絵: アプリごと（<アプリ>/images/badges/t
   const repo = join(shared, '..');
   for (const app of APPS) {
     const c = JSON.parse(readFileSync(join(repo, app, 'config.json'), 'utf8'));
-    const d = badgeDefs(tree(), c).find((x) => x.id === 'true-boss');
+    // trueBoss が false のアプリ（絵が届くまで）も、true にしたときの定義を確かめる
+    const d = badgeDefs(tree(), { ...c, trueBoss: true }).find((x) => x.id === 'true-boss');
     assert.ok(d, app + ' に真ボスのバッジが無い');
     const p = join(repo, app, 'images', 'badges', 'true-boss.webp');
     if (c.trueBossBadge.art) {

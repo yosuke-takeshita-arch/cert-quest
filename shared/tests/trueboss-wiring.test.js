@@ -20,11 +20,14 @@ function fnBody(src, name) {
   return src.slice(i, n ? n.index : src.length);
 }
 
-test('config: 真ボスを出すのは G検定・DX・AIパスポートの3つ（trueBoss が true）。データ・バッジの名前を持つ。バッジの絵はG検定だけ（届いたら art を true に）', () => {
+test('config: 3アプリとも真ボスのデータ・バッジの名前・言い回しを持つ。trueBoss が true なのは絵の届いたアプリ（G検定）。DX・AIパスポートは絵が届くまで false でよい（届いたら門番が true にする）', () => {
   const art = { 'g-kentei': true, 'dx-biz': false, 'ai-passport': false };
   for (const app of Object.keys(art)) {
     const c = JSON.parse(read(app + '/config.json'));
-    assert.equal(c.trueBoss, true, app);
+    assert.equal(typeof c.trueBoss, 'boolean', app);
+    if (app === 'g-kentei') assert.equal(c.trueBoss, true, app);
+    if (c.trueBoss) assert.equal(c.trueBossBadge.art, art[app], app + ': 真ボスを出すアプリは、絵が届いているか確かめる');
+    assert.equal(typeof c.trueBossWords.place, 'string', app);
     assert.equal(existsSync(root + app + '/data/trueboss.json'), true, app + ' に真ボスのデータが無い');
     assert.equal(typeof c.trueBossBadge.name, 'string', app);
     assert.ok(c.trueBossBadge.name.length > 0 && c.trueBossBadge.name.length <= 20, app + ' のバッジの名前');

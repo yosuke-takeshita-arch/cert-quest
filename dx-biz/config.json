@@ -21,7 +21,7 @@
     }
   },
   "secondsPerQuestion": 48,
-  "trueBoss": true,
+  "trueBoss": false,
   "trueBossBadge": { "name": "みやこを かえし もの", "art": false },
   "trueBossWords": { "place": "みやこの いちばん おく", "ending": "みやこを かえた！", "reached": "みやこの いちばん おくまで たどりついたよ！" },
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
