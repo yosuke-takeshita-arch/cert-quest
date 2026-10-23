@@ -139,7 +139,7 @@ test('CSS: 新しい部品の動き（星のまたたき・文字の現れ）は
   assert.match(red, /\.tb-star \{ animation: none;/);
   assert.match(red, /\.tb-ending-title, \.tb-ending-line \{ transition: none; \}/);
   // 進化の演出（殻のひび・揺れ・光）も、動きを減らす設定では止まる
-  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack-line\.on, \.tb-eye-glow\.on, \.tb-burst, \.tb-glow\.on, \.tb-orb\.on, \.tb-gold-flash \{ animation: none; \}/);
+  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack-line\.on, \.tb-eye-glow\.on, \.tb-burst, \.tb-glow\.on, \.tb-orb\.on, \.tb-gold-flash, \.tb-rays, \.tb-ring, \.boss-fig\.spread3 \{ animation: none; \}/);
   const view = read('shared/js/views/trueboss.js');
   assert.doesNotMatch(view, /setAttribute\('style'|innerHTML|\bstyle:\s*['"{]/, 'インライン style / innerHTML');
 });
@@ -193,7 +193,10 @@ test('第2→3の進化: 曲が止まって暗く → 宙で静止 → 光の玉
   assert.match(to3, /orbTimes\(T\)\.forEach\(\(t, k\) => at\(t, \(\) => \{ orbLayer\.orbs\[k\]\.classList\.add\('on'\); evoSfx\('orb', k\); \}\)\)/, '玉が1つずつ灯り、そのたびに音（k が大きいほど高い）');
   assert.match(to3, /at\(T\.charge, \(\) => evoSfx\('charge'\)\)/);
   assert.match(to3, /T\.quakes\.forEach\(\(t, k\) => at\(t, \(\) => \{ flash\(ui\.scene, k >= T\.strongQuakeFrom \? 'quake2' : 'quake'/);
-  assert.match(to3, /h\('div', \{ class: 'tb-gold-flash'/, '金色の光');
+  assert.match(to3, /mk\('tb-gold-flash'\);/, '画面いっぱいの金色の光');
+  assert.match(to3, /mk\('tb-rays', true\);/, '体のうしろから光の筋');
+  assert.match(to3, /mk\('tb-ring'\);[\s\S]*mk\('tb-ring r2'\)/, '光の輪を2本');
+  assert.match(to3, /at\(T\.impact, \(\) => \{ evoSfx\('impact'\); evoSfx\('finalhit'\); \}\)/, '衝撃と決めの一撃は、光のピークの時刻（T.impact）');
   assert.match(to3, /evoSfx\('impact'\)/);
   const order = ["'tb-dim'", "'still'", "classList.add('on'); evoSfx('orb'", 'evoSfx(\'charge\')', "'quake2'", 'tb-gold-flash', "evoSfx('impact')", 'at(T.swap, () => swap())', 'finishText(T.text)'];
   let last = -1;
@@ -204,7 +207,8 @@ test('第2→3の進化: 曲が止まって暗く → 宙で静止 → 光の玉
   // 動きを減らす設定: 玉は最初から全部金色（動かない）。揺れ・点滅・金色の光の動きなし
   assert.match(fn, /orbLayer\.orbs\.forEach\(\(o\) => o\.classList\.add\('on'\)\);/);
   const reduced2 = fn.slice(fn.indexOf('if (R) {'), fn.indexOf("figClass('add', 'glow');"));
-  assert.doesNotMatch(reduced2, /quake|tb-gold-flash|blink/);
+  assert.doesNotMatch(reduced2, /quake|blink|tb-rays|tb-ring/); // 揺れ・点滅・回る光の筋・光の輪は出さない
+  assert.match(reduced2, /class: 'tb-gold-flash calm'/, 'ゆっくり明るくなって引く光だけ');
 });
 
 test('進化の効果音のフック: 名前つきで、鳴らす時刻の表（EVO_1_TO_2・EVO_2_TO_3）に合わせて呼ぶ。素材が無い間は、プログラムの音で鳴る', () => {
@@ -443,4 +447,30 @@ test('自分の回復の音のファイル: 実在し、ライセンスの記録
 test('自分の回復の光は、約1.5秒でふつうの赤に戻る（gain を外す）', () => {
   const eff = fnBody(code('shared/js/views/trueboss.js'), 'playerHealEffect');
   assert.match(eff, /later\(\(\) => \{ \[ui\.hp, ui\.miniHp\]\.forEach\(\(box\) => \{ if \(box\) box\.querySelectorAll\('\.gain'\)\.forEach\(\(e\) => e\.classList\.remove\('gain'\)\); \}\); \}, 1500\)/);
+});
+
+test('2→3 の光を強くする: 画面いっぱい（fixed）の白金色の光が、約0.25秒でピーク・不透明度1・1.5秒かけて引く。縁は画面の端だけ。光の筋は体のうしろ、輪は外へ広がる。第3形態は明るく光ってから落ち着く', () => {
+  const css = read('shared/css/app.css');
+  const gold = css.match(/\.tb-gold-flash \{[^\n]*\}/)[0];
+  assert.match(gold, /position: fixed; inset: 0;/, '画面いっぱい（舞台の箱の中ではない）');
+  assert.match(gold, /radial-gradient\(circle at var\(--cx, 50%\) var\(--cy, 30%\), #fff 0%/, '中心は真っ白');
+  const alphas = [...gold.matchAll(/rgba\(\d+, \d+, \d+, ([0-9.]+)\)/g)].map((m) => Number(m[1]));
+  assert.ok(alphas.length >= 3 && Math.min(...alphas) >= 0.9, '外側の不透明度も 0.9 以上（ほぼ見えなくなる）: ' + alphas);
+  const kf = css.match(/@keyframes tb-gold \{[^\n]*\}/)[0];
+  assert.match(kf, /13% \{ opacity: 1; \}[^}]*21% \{ opacity: 1; \}[^}]*100% \{ opacity: 0; \}/, '約0.25秒（1.9秒の13%）でピーク → 約0.4秒まで保つ → 引く');
+  assert.match(gold, /animation: tb-gold 1\.9s ease-out forwards/);
+  // 光の筋: 体のうしろ（DOM の先頭に入れる。舞台の背景は透明にする）。ゆっくり回る。先端は円形のマスクで消える（四角い縁なし）
+  assert.match(css, /\.tb-rays \{[^\n]*repeating-conic-gradient[^\n]*mask-image: radial-gradient\(circle closest-side[^\n]*tb-rays-spin 12s linear infinite/);
+  assert.match(css, /\.boss-rpg\.tb-rays-on \.boss-stage \{ background: transparent; \}/);
+  // 光の輪: 丸い輪が広がって消える（2本目は少し遅れる）
+  assert.match(css, /\.tb-ring \{[^\n]*border-radius: 50%;[^\n]*animation: tb-ring 1\.4s ease-out forwards/);
+  // 第3形態: 現れてから明るく光る
+  assert.match(css, /@keyframes tb-spread3 \{ 0% \{ transform: scaleX\(0\.55\); filter: brightness\(3\.4\)/);
+  const fn = fnBody(code('shared/js/views/trueboss.js'), 'evolveSequence');
+  assert.match(fn, /'spread3'/);
+  assert.match(fn, /root\.insertBefore\(e, root\.firstChild\)/, '光の筋はうしろ');
+  // 動きを減らす設定: 点滅させず、ゆっくり明るくなって引く形だけ
+  const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
+  assert.match(red, /\.tb-gold-flash\.calm \{ animation: tb-gold-calm 2\.2s ease-in-out forwards; \}/);
+  assert.match(css, /@keyframes tb-gold-calm \{ 0% \{ opacity: 0; \} 40% \{ opacity: 1; \} 100% \{ opacity: 0; \} \}/);
 });

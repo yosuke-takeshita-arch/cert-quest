@@ -253,3 +253,11 @@ test('光の玉が灯る音の高さ（再生速度）: 13個とも、1つごと
   assert.ok(peak < EVO_2_TO_3.gold && EVO_2_TO_3.gold - peak < 1500, '力をためる音の山が金色の光の直前に来ない: ' + (EVO_2_TO_3.gold - peak));
   assert.equal(EVO_1_TO_2.heartbeatFastFrom, 3, '鼓動の前半3回は遅い素材・後半3回は速い素材');
 });
+
+test('2→3 の光の時刻: 衝撃と決めの一撃の音は、光のピーク（光が始まって約250ms後）に合わせる。光の始まりは最後の揺れのあと、姿が替わるのはピークのあと', () => {
+  const T = EVO_2_TO_3;
+  assert.equal(T.impact - T.gold, 250);
+  assert.ok(T.quakes.at(-1) < T.gold && T.gold < T.impact && T.impact < T.swap, '揺れ → 光 → 音（ピーク）→ 姿が替わる');
+  assert.ok(T.swap - T.gold >= 400 && T.swap - T.gold <= 700, '姿が替わるのは、光がまだほぼ最大のあいだ（光の始まりの 0.4〜0.7 秒後）');
+  assert.ok(T.text > T.swap && T.music > T.text);
+});

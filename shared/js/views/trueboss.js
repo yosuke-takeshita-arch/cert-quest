@@ -738,8 +738,8 @@ export function renderTrueBoss(app) {
     const cleanupFx = () => {
       root.classList.remove('tb-dim');
       ui.float.classList.remove('still');
-      const gold = root.querySelector('.tb-gold-flash');
-      if (gold) gold.remove();
+      root.classList.remove('tb-rays-on');
+      root.querySelectorAll('.tb-gold-flash, .tb-rays, .tb-ring').forEach((e) => e.remove());
     };
     const swap = (immediate) => {
       if (swapped) return;
@@ -753,7 +753,7 @@ export function renderTrueBoss(app) {
         figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive', 'swell');
         // 形態が替わったら曲も替える。第3形態は、決めぜりふのあとに曲を始める（第2形態は、すぐ）
         if (immediate || from1) startMusic(); else later(startMusic, T.music - T.swap);
-        if (!R) flash(ui.fig, from1 ? 'emerge' : 'spread', 1000);
+        if (!R) flash(ui.fig, from1 ? 'emerge' : 'spread3', from1 ? 1000 : 1800); // 第3形態は、現れてから約1.8秒、明るく光ってから落ち着く
       });
     };
     const newP = () => prof();
@@ -791,7 +791,9 @@ export function renderTrueBoss(app) {
       }
       orbLayer.orbs.forEach((o) => o.classList.add('on')); // 玉は最初から全部金色（動かない）
       say(['……'], { instant: true });
-      later(() => { evoSfx('impact'); finish(); }, 1500);
+      // 光は点滅させず、ゆっくり明るくなって引く（回る光の筋・光の輪は出さない）。いちばん明るいときに、姿を替える
+      later(() => { root.appendChild(h('div', { class: 'tb-gold-flash calm', 'aria-hidden': 'true' })); evoSfx('impact'); evoSfx('finalhit'); }, 1200);
+      later(finish, 2100);
       return;
     }
     if (from1) {
@@ -847,16 +849,27 @@ export function renderTrueBoss(app) {
       at(T.charge, () => evoSfx('charge'));
       T.quakes.forEach((t, k) => at(t, () => { flash(ui.scene, k >= T.strongQuakeFrom ? 'quake2' : 'quake', 450); vibrate(app.state.settings, k >= T.strongQuakeFrom ? [90, 40, 90] : [50, 40, 50]); }));
       at(T.gold, () => {
-        // 画面いっぱいの金色の放射の光（四角い面ではなく、中心から広がって消える丸い光）。玉も一斉に強く光る
-        root.appendChild(h('div', { class: 'tb-gold-flash', 'aria-hidden': 'true' }));
+        // 画面いっぱい（position: fixed。舞台の箱の中ではない）のまぶしい白金色の光。ほぼ見えなくなるほど光って、ゆっくり引く。縁は画面の端だけ
+        // 体のうしろから、ゆっくり回る放射状の光の筋と、外へ広がる光の輪（衝撃波）を2本。玉も一斉に強く光る
+        const r = ui.fig.getBoundingClientRect();
+        const mk = (cls, first) => {
+          const e = h('div', { class: cls, 'aria-hidden': 'true' });
+          e.style.setProperty('--cx', Math.round(r.left + r.width / 2) + 'px');
+          e.style.setProperty('--cy', Math.round(r.top + r.height * 0.45) + 'px');
+          if (first) root.insertBefore(e, root.firstChild); else root.appendChild(e); // 光の筋は、体（舞台）のうしろ
+        };
+        root.classList.add('tb-rays-on');
+        mk('tb-rays', true);
+        mk('tb-gold-flash');
+        mk('tb-ring');
+        at(T.gold + 250, () => mk('tb-ring r2'));
         orbLayer.svg.classList.add('blaze');
         ui.fx.appendChild(h('span', { class: 'tb-burst strong' }));
-        evoSfx('impact');
-        evoSfx('finalhit'); // 衝撃と同時に、決めの一撃
         vibrate(app.state.settings, [40, 30, 40, 30, 120]);
       });
-      at(T.swap, () => swap());
-      at(T.swap + 1500, () => { ui.fx.textContent = ''; const g = root.querySelector('.tb-gold-flash'); if (g) g.remove(); });
+      at(T.impact, () => { evoSfx('impact'); evoSfx('finalhit'); }); // 衝撃と決めの一撃は、光のピークに合わせる
+      at(T.swap, () => swap()); // 光がいちばん強いあいだに、姿を替える（引いていく中から第3形態が現れる）
+      at(T.swap + 2200, () => { ui.fx.textContent = ''; cleanupFx(); });
       finishText(T.text);
     }
   }
