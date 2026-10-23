@@ -13,7 +13,7 @@ import {
   trueBossEnabled, trueBossUnlocked, trueBossWins, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_SECONDS, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
-import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE } from '../lib/trueboss-data.js';
+import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE, TRUE_CRACKS, TRUE_EYE } from '../lib/trueboss-data.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -106,6 +106,37 @@ export function trueBossPlace(app, back) {
         h('span', { class: 'small', text: '塔の いちばん うえの 真ボス。すべての分野から出ます' }),
         wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + wins + ' 回' }) : null)),
     h('button', { class: 'btn primary big', type: 'button', 'data-true-boss-go': '1', onClick: () => openTrueBoss(app, back) }, '真ボスに挑む'));
+}
+
+/**
+ * ひびの層。絵（.boss-fig。絵と同じ大きさの箱）の上に、絵と同じ正方形（viewBox 0 0 100 100）の SVG を重ねる。
+ * ひびの形は TRUE_CRACKS（絵の中の割合）。画面の幅・文字の大きさが変わっても、絵と一緒に拡大縮小するのでずれない。
+ */
+function buildCrackLayer(fig) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 100 100');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  svg.setAttribute('class', 'tb-crack-layer');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('data-tb-cracks', '1');
+  const lines = TRUE_CRACKS.map((d) => {
+    const p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('pathLength', '1');
+    p.setAttribute('class', 'tb-crack-line');
+    svg.appendChild(p);
+    return p;
+  });
+  const eye = document.createElementNS(NS, 'ellipse'); // 一つ目が再び青白く光る
+  eye.setAttribute('cx', String(TRUE_EYE.x));
+  eye.setAttribute('cy', String(TRUE_EYE.y));
+  eye.setAttribute('rx', String(TRUE_EYE.rx));
+  eye.setAttribute('ry', String(TRUE_EYE.ry));
+  eye.setAttribute('class', 'tb-eye-glow');
+  svg.appendChild(eye);
+  fig.appendChild(svg);
+  return { svg, lines, eye };
 }
 
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -573,7 +604,7 @@ export function renderTrueBoss(app) {
     const swap = () => {
       if (swapped) return;
       swapped = true;
-      figClass('remove', 'glow', 'blinkoff', 'gone', 'shake');
+      figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive');
       paintForm();
       paintHp(battle(), -1);
       startBossTheme(battle().form); // 形態が替わったら曲も替える（第2・第3形態は別の曲）
@@ -597,12 +628,13 @@ export function renderTrueBoss(app) {
     S.skipFx = finish;
     const from1 = ev.evolved.from === 1;
     const P = from1 ? 4900 : 0; // 第1→2 は、先に偽の撃破と地鳴りがある
+    const crackLayer = from1 && !R ? buildCrackLayer(ui.fig) : null; // ひびは絵（fig）の上に重ねる。絵と同じ正方形の座標で決める
     if (R) {
       if (from1) {
         // 動きを減らす設定: 点滅・揺れなしで、撃破の文 → 少しして進化の文
         say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))], { instant: true });
-        figClass('add', 'down');
-        later(() => { figClass('remove', 'down'); playBossSfx(app.state.settings, 'shatter1'); playBossSfx(app.state.settings, 'shatter2'); finish(); }, 1200);
+        figClass('add', 'slump'); // 色（暗い灰色）だけ。動きは無い
+        later(() => { figClass('remove', 'slump'); playBossSfx(app.state.settings, 'shatter1'); playBossSfx(app.state.settings, 'shatter2'); finish(); }, 1200);
         return;
       }
       playSynth(app.state.settings, 'evolve');
@@ -610,45 +642,40 @@ export function renderTrueBoss(app) {
       return;
     }
     if (from1) {
-      // 偽の撃破（章のボスの撃破と同じ演出で、勝ったと思わせる）: 白く光る → 点滅 → 崩れて消える → 「たおした！」とせりふ
+      // 偽の撃破（章のボスの撃破と同じく、白く光って「たおした！」とせりふ。ただし粒に崩れて消えない。要件定義書 §3-9）:
+      // 白く光る → 点滅 → 殻は残ったまま光を失って暗い灰色になり、少し沈んで動かなくなる（目の光も消える）
       figClass('add', 'glow');
       [350, 620, 890, 1160].forEach((t) => {
         later(() => figClass('add', 'blinkoff'), t);
         later(() => figClass('remove', 'blinkoff'), t + 120);
       });
       later(() => {
-        crumble(oldP.color);
         figClass('remove', 'glow', 'blinkoff');
-        figClass('add', 'gone');
+        figClass('add', 'slump');
         playBossSfx(app.state.settings, 'win');
         vibrate(app.state.settings, [40, 30, 40, 30, 80]);
       }, 1350);
       later(() => say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))]), 1450);
-      // 地鳴り → 崩れたはずの殻がもどってくる
-      later(() => { ui.fx.textContent = ''; say(['……ゴゴゴゴ……']); playBossSfx(app.state.settings, 'rumble'); }, 3300); // 地鳴り（約3.6秒。後ろをフェードアウト）
+      // 地鳴りと揺れ → 一つ目が再び青白く光り、灰色が戻りはじめる
+      later(() => { say(['……ゴゴゴゴ……']); playBossSfx(app.state.settings, 'rumble'); }, 3300); // 地鳴り（約3.6秒。後ろをフェードアウト）
       [3400, 3800, 4200].forEach((t) => later(() => { flash(ui.scene, 'quake', 450); vibrate(app.state.settings, [60, 40, 60]); }, t));
-      later(() => { figClass('remove', 'gone'); flash(ui.fig, 'appear', 700); }, 4500);
+      later(() => { figClass('remove', 'slump'); figClass('add', 'revive'); if (crackLayer) crackLayer.eye.classList.add('on'); }, 4200);
     } else {
       playSynth(app.state.settings, 'evolve');
     }
     if (from1) {
-      // 第1形態→第2形態: ずんぐりした真鍮の殻が揺れてひびが入り、割れて破片が飛び散り、中からすらりとした姿が光とともに現れる
+      // 第1形態→第2形態: ずんぐりした真鍮の殻が揺れて、胸の核からひびが体に広がり、割れて破片が飛び散り、中からすらりとした姿が光とともに現れる
       later(() => figClass('add', 'shake'), P);
       [150, 420, 690, 900].forEach((t, k) => later(() => {
-        const c = h('span', { class: 'tb-crack' });
-        c.style.setProperty('--x', [50, 38, 62, 50][k] + '%');
-        c.style.setProperty('--y', [30, 52, 48, 70][k] + '%');
-        c.style.setProperty('--rot', [8, -35, 40, -12][k] + 'deg');
-        c.style.setProperty('--len', [38, 30, 30, 40][k] + '%');
-        ui.fx.appendChild(c);
+        if (crackLayer) crackLayer.lines[k].classList.add('on');
         vibrate(app.state.settings, 25);
         playBossSfx(app.state.settings, k % 2 ? 'crack2' : 'crack1', [0.7, 0.85, 1, 1.1][k]); // ひびが入るたびの小さな音（だんだん大きく）
       }, P + t));
       later(() => {
         ui.fx.textContent = '';
-        figClass('remove', 'shake');
+        figClass('remove', 'shake', 'revive');
         ui.flash.classList.add('on'); // 割れた瞬間の白い光
-        crumble('#b08d3c');
+        crumble('#b08d3c'); // 殻が崩れるのは、ここ（割れる瞬間）だけ
         figClass('add', 'gone');
         playBossSfx(app.state.settings, 'shatter1'); // 砕ける瞬間の大きな音（2つ重ねる）
         playBossSfx(app.state.settings, 'shatter2');

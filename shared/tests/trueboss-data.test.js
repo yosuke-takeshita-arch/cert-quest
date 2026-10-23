@@ -150,3 +150,27 @@ test('g-kentei/data/trueboss.json: 長すぎるせりふ・ID・開発用の語�
     assert.doesNotMatch(t, /(UC|SCR|TST|LAW)-|§|MVP|未実装|TODO/, '開発用の語: ' + t);
   }
 });
+
+// ---- 第1形態の殻のひび（絵の上の位置。絵の幅・高さに対する割合 0〜100）----
+import { TRUE_CORE, TRUE_EYE, TRUE_CRACKS } from '../js/lib/trueboss-data.js';
+
+test('ひびの位置: 胸の核から出て、体の上（絵の不透明な範囲の中）に収まる。4本とも核を始点にする', () => {
+  // true-1.webp（512×512）の実測: 水色のひし形（核）の重心 (49.7, 37.5)、一つ目の重心 (49.9, 19.7)、不透明な範囲 x 8.2〜95.7・y 3.5〜96.9
+  assert.deepEqual([TRUE_CORE.x, TRUE_CORE.y], [49.7, 37.5]);
+  assert.ok(Math.abs(TRUE_EYE.x - 49.9) < 0.5 && Math.abs(TRUE_EYE.y - 19.7) < 0.5);
+  assert.equal(TRUE_CRACKS.length, 4);
+  for (const d of TRUE_CRACKS) {
+    assert.match(d, /^M49\.7 37\.5( L[0-9.]+ [0-9.]+)+$/, '核から始まる折れ線: ' + d);
+    const pts = [...d.matchAll(/([0-9.]+) ([0-9.]+)/g)].map((m) => [Number(m[1]), Number(m[2])]);
+    assert.ok(pts.length >= 5, '折れ曲がりが少ない: ' + d);
+    for (const [x, y] of pts) {
+      assert.ok(x >= 20 && x <= 80, 'x が体の外: ' + x);
+      assert.ok(y >= 30 && y <= 70, 'y が胸〜腹の外: ' + y); // 頭（y < 25）や脚（y > 75）には出さない
+    }
+  }
+  // 1本目・2本目は下へ、3本目・4本目は肩のほうへ広がる（左右に分かれる）
+  const end = (d) => d.split(' L').pop().split(' ').map(Number);
+  assert.ok(end(TRUE_CRACKS[0])[0] < TRUE_CORE.x && end(TRUE_CRACKS[1])[0] > TRUE_CORE.x);
+  assert.ok(end(TRUE_CRACKS[2])[0] < TRUE_CORE.x && end(TRUE_CRACKS[3])[0] > TRUE_CORE.x);
+  assert.ok(end(TRUE_CRACKS[0])[1] > TRUE_CORE.y + 20 && end(TRUE_CRACKS[2])[1] < TRUE_CORE.y + 5);
+});

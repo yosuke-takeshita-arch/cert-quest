@@ -139,7 +139,7 @@ test('CSS: 新しい部品の動き（星のまたたき・文字の現れ）は
   assert.match(red, /\.tb-star \{ animation: none;/);
   assert.match(red, /\.tb-ending-title, \.tb-ending-line \{ transition: none; \}/);
   // 進化の演出（殻のひび・揺れ・光）も、動きを減らす設定では止まる
-  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack, \.tb-burst \{ animation: none; \}/);
+  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack-line\.on, \.tb-eye-glow\.on, \.tb-burst \{ animation: none; \}/);
   const view = read('shared/js/views/trueboss.js');
   assert.doesNotMatch(view, /setAttribute\('style'|innerHTML|\bstyle:\s*['"{]/, 'インライン style / innerHTML');
 });
@@ -153,15 +153,48 @@ test('第1形態のあいだは「第1形態」を出さない（札・問題の
   assert.doesNotMatch(src, /'第1形態'|第' \+ 1 \+ '形態/, '第1形態の文字を直に書いていない');
 });
 
-test('第1→2の進化は、先に偽の撃破（崩れて消える・「たおした！」・せりふ）→ 地鳴り → 殻がもどってひびが入る → 割れる → 第2形態', () => {
+test('第1→2の進化: 偽の撃破では崩れて消えない（殻は残って暗い灰色に沈む）→ 地鳴りと揺れ → 一つ目が再び光る → ひび → 割れる（崩れるのはここだけ）→ 第2形態', () => {
   const src = code('shared/js/views/trueboss.js');
   const fn = fnBody(src, 'evolveSequence');
-  const order = ['crumble(oldP.color)', "' を たおした！'", "'defeat'", '……ゴゴゴゴ……', "flash(ui.scene, 'quake'", "figClass('remove', 'gone'); flash(ui.fig, 'appear'", "figClass('add', 'shake')", "crumble('#b08d3c')", 'swap();'];
-  let at = -1;
-  for (const k of order) { const i = fn.indexOf(k, at + 1); assert.ok(i > at, k + ' が順番どおりに無い'); at = i; }
-  assert.match(fn, /const P = from1 \? 4900 : 0;/);
-  // 動きを減らす設定では、撃破の文のあとに進化の文だけ（揺れ・崩れなし）
-  assert.match(fn, /if \(R\) \{\n      if \(from1\) \{/);
+  const fake = fn.slice(fn.indexOf("figClass('add', 'glow');"), fn.indexOf("later(() => figClass('add', 'shake'), P)")); // 偽の撃破の区画（コメントは code() が除く）
+  assert.ok(fake.length > 300, '偽の撃破の区画が見つからない');
+  // 偽の撃破の区画では、崩れる処理（crumble）も、消える（gone）も呼ばない
+  assert.doesNotMatch(fake, /crumble\(/);
+  assert.doesNotMatch(fake, /'gone'/);
+  assert.match(fake, /figClass\('add', 'slump'\)/, '暗い灰色に沈む');
+  assert.match(fake, /' を たおした！'/);
+  assert.match(fake, /playBossSfx\(app\.state\.settings, 'win'\)/, '勝利の音はそのまま');
+  assert.match(fake, /playBossSfx\(app\.state\.settings, 'rumble'\)/);
+  assert.match(fake, /figClass\('remove', 'slump'\); figClass\('add', 'revive'\); if \(crackLayer\) crackLayer\.eye\.classList\.add\('on'\)/, '地鳴りのあと、目が光り灰色が戻りはじめる');
+  assert.doesNotMatch(fake, /flash\(ui\.fig, 'appear'/, '崩れた殻がもどってくる段は無い');
+  // 崩れる処理は、evolveSequence の中で1回だけ（割れる瞬間）
+  assert.equal((fn.match(/crumble\(/g) || []).length, 1);
+  assert.match(fn, /crumble\('#b08d3c'\); \/\/ 殻が崩れるのは、ここ/);
+  // 順番: 偽の撃破 → 地鳴り → 目が光る → ひび → 割れる（砕ける音は割れる瞬間）
+  const at = (k) => fn.indexOf(k);
+  const order = ["figClass('add', 'slump')", "'rumble'", "crackLayer.eye.classList.add('on')", 'crackLayer.lines[k].classList.add', 'crumble(', "'shatter1'"];
+  let last = -1;
+  for (const k of order) { const i = fn.indexOf(k, last + 1); assert.ok(i > last, k + ' が順番どおりに無い'); last = i; }
+  assert.ok(at("'win'") < at("'rumble'"));
+  // 動きを減らす設定では、色（暗い灰色）と文だけ
+  assert.match(fn, /figClass\('add', 'slump'\); \/\/ 色（暗い灰色）だけ/);
+});
+
+test('ひびは絵の箱に重ねる: 絵（.boss-fig）の中に、絵と同じ正方形（viewBox 0 0 100 100）の SVG を置く。位置は絵の中の割合。絵が浮かんでも揺れても一緒に動く', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'evolveSequence');
+  assert.match(fn, /buildCrackLayer\(ui\.fig\)/);
+  const b = src.slice(src.indexOf('function buildCrackLayer'), src.indexOf('const rand ='));
+  assert.match(b, /setAttribute\('viewBox', '0 0 100 100'\)/);
+  assert.match(b, /setAttribute\('preserveAspectRatio', 'xMidYMid meet'\)/, '絵（contain で中央）と同じ正方形に収める');
+  assert.match(b, /fig\.appendChild\(svg\)/);
+  assert.match(b, /TRUE_CRACKS\.map/);
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.boss-fig \{ position: relative; \}/, '絵の箱が基準になる');
+  assert.match(css, /\.tb-crack-layer \{ position: absolute; inset: 0; width: 100%; height: 100%;/, 'SVG は絵の箱いっぱい');
+  assert.doesNotMatch(css, /\.tb-crack \{/, '絵の外に置く古いひび（span）は無い');
+  // 絵が入る箱と SVG が同じ箱: SVG は fig の子で、img も fig の子（stage の子ではない）
+  assert.doesNotMatch(src, /ui\.fx\.appendChild\(c\)/);
 });
 
 test('浮かぶ動き: 第2・第3形態だけ、絵の外側の入れ物（.tb-float）にゆっくり上下の動きが付く。第1形態は付かない。動きを減らす設定で止まる', () => {

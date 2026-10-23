@@ -937,24 +937,35 @@ body.boss-on { background: #000; }
 .tb-float.f2 { height: calc(100% - 16px); animation: tb-float 3.4s ease-in-out infinite; --amp: 8px; }
 .tb-float.f3 { height: calc(100% - 28px); animation: tb-float 4.4s ease-in-out infinite; --amp: 14px; }
 @keyframes tb-float { 0%, 100% { transform: translateY(calc(var(--amp) * 0.5)); } 50% { transform: translateY(calc(var(--amp) * -0.5)); } }
+.boss-fig { position: relative; }
+.boss-fig.slump { top: 8px; transition: top 0.9s ease-out; }
+.boss-fig.revive { top: 3px; transition: top 0.9s ease-out; }
+.boss-fig.slump .boss-img, .boss-fig.slump .boss-fig-sym { filter: grayscale(0.85) brightness(0.42) contrast(0.9); transition: filter 0.9s ease-out; }
+.boss-fig.revive .boss-img, .boss-fig.revive .boss-fig-sym { filter: grayscale(0.4) brightness(0.72); transition: filter 0.9s ease-out; }
+.tb-crack-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.tb-crack-line { fill: none; stroke: #fff; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 1px #ffd36b); }
+.tb-crack-line.on { animation: tb-crack-draw 0.25s ease-out forwards; }
+.tb-eye-glow { fill: #bfeaff; opacity: 0; filter: drop-shadow(0 0 2px #5ec8ff); }
+.tb-eye-glow.on { animation: tb-eye-on 0.9s ease-out forwards; }
+@keyframes tb-crack-draw { to { stroke-dashoffset: 0; } }
+@keyframes tb-eye-on { to { opacity: 0.95; } }
 .boss-fig.shake { animation: tb-shake 0.18s linear infinite; }
 .boss-fig.swell { animation: tb-swell 1.7s ease-in forwards; }
 .boss-fig.emerge { animation: tb-emerge 1s ease-out; }
 .boss-fig.spread { animation: tb-spread 1s ease-out; }
-.tb-crack { position: absolute; left: var(--x); top: var(--y); width: 3px; height: var(--len); background: #fff; box-shadow: 0 0 8px #ffd36b, 0 0 2px #000; transform-origin: 50% 0; transform: rotate(var(--rot)); animation: tb-crack 0.25s ease-out forwards; }
 .tb-burst { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, #fff 0%, rgba(255, 224, 130, 0.85) 25%, rgba(255, 224, 130, 0) 65%); opacity: 0; animation: tb-burst 1s ease-out forwards; }
 .tb-burst.strong { animation-duration: 1.6s; }
 @keyframes tb-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px) rotate(-1deg); } 75% { transform: translateX(4px) rotate(1deg); } }
 @keyframes tb-swell { 0% { transform: scale(1); } 100% { transform: scale(1.12); filter: brightness(2.2); } }
 @keyframes tb-emerge { 0% { opacity: 0; transform: scale(0.8); filter: brightness(4); } 60% { opacity: 1; filter: brightness(1.8); } 100% { opacity: 1; transform: none; filter: none; } }
 @keyframes tb-spread { 0% { transform: scaleX(0.55); filter: brightness(4); } 100% { transform: none; filter: none; } }
-@keyframes tb-crack { 0% { clip-path: inset(0 0 100% 0); } 100% { clip-path: inset(0 0 0 0); } }
 @keyframes tb-burst { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes tb-twinkle { 0% { opacity: 0.15; transform: scale(0.6); } 100% { opacity: 1; transform: scale(1.4); } }
 @media (prefers-reduced-motion: reduce) {
   .tb-star { animation: none; opacity: 0.8; }
   .tb-float.f2, .tb-float.f3 { animation: none; }
-  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack, .tb-burst { animation: none; }
+  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack-line.on, .tb-eye-glow.on, .tb-burst { animation: none; }
+  .boss-fig.slump, .boss-fig.revive, .boss-fig.slump .boss-img, .boss-fig.revive .boss-img, .boss-fig.slump .boss-fig-sym, .boss-fig.revive .boss-fig-sym { transition: none; }
   .tb-ending-title, .tb-ending-line { transition: none; }
 }
 

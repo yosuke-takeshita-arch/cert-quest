@@ -13,6 +13,18 @@ export const TRUE_BOSS_FILE = 'trueboss.json';
 /** 形態ごとの絵で、顔の中心の位置（絵の幅・高さに対する割合）。顔の丸の切り抜き（faceCrop）に使う。絵を差し替えたらここを合わせる。 */
 export const TRUE_FACE = Object.freeze({ 1: { x: 0.5, y: 0.19 }, 2: { x: 0.5, y: 0.17 }, 3: { x: 0.5, y: 0.135 } });
 
+// 第1形態の絵（true-1.webp。512×512）の上の位置。数は絵の幅・高さに対する割合（%。0〜100）。実測（絵の水色の部分の重心）: 胸の核 (49.7, 37.5)・一つ目 (49.9, 19.7)。
+// 第1形態の殻が割れる演出（ひび）は、絵と同じ正方形の SVG に、この座標で描く。絵を差し替えたら測り直す。
+export const TRUE_CORE = Object.freeze({ x: 49.7, y: 37.5 });
+export const TRUE_EYE = Object.freeze({ x: 49.9, y: 19.7, rx: 3.6, ry: 2.2 });
+// ひびの形（SVG の path。4本。胸の核から体に広がる。1本目・2本目は下へ、3本目・4本目は肩のほうへ）
+export const TRUE_CRACKS = Object.freeze([
+  'M49.7 37.5 L46 43 L48 48 L42 54 L44 60 L39 66',
+  'M49.7 37.5 L54 43 L52 49 L58 55 L56 61 L61 67',
+  'M49.7 37.5 L44 34 L40 37 L33 34 L27 38',
+  'M49.7 37.5 L55 34 L59 37 L66 34 L72 38',
+]);
+
 /** 形態ごとの絵のファイル名（<アプリ>/images/bosses/ の中）。 */
 export function trueBossImageName(form) {
   return 'true-' + form + '.webp';
