@@ -385,41 +385,43 @@ test('負けたら第1形態からやり直す（体力・HP・技・連続も�
 
 // ---------------------------------------------------------------- 自分の HP の回復
 
-test('2問続けて正解すると HP が1回復する（上限3）。回復したら数え直し', () => {
-  assert.equal(STREAK_HEAL, 2);
+test('3問続けて正解すると HP が1回復する（上限3）。回復したら数え直し', () => {
+  assert.equal(STREAK_HEAL, 3);
   let b = fresh(50, { player: 1 });
   const step = (c) => { const r = answerTrueBattle(b, { correct: c }); b = r.battle; return r.events; };
   assert.equal(step(true).playerHealed, false);
   assert.equal(b.streak, 1);
+  assert.equal(step(true).playerHealed, false);
+  assert.equal(b.streak, 2);
   assert.equal(b.player, 1);
-  assert.equal(step(true).playerHealed, true, '2問目で回復');
+  assert.equal(step(true).playerHealed, true, '3問目で回復');
   assert.equal(b.player, 2);
   assert.equal(b.streak, 0, '回復したら数え直し');
-  step(true);
-  assert.equal(b.player, 2, '1問ではまだ');
+  step(true); step(true);
+  assert.equal(b.player, 2, '2問ではまだ');
   assert.equal(step(true).playerHealed, true);
   assert.equal(b.player, 3);
-  step(true);
+  step(true); step(true);
   const e = step(true);
   assert.equal(b.player, 3, '上限3を超えない');
   assert.equal(e.playerHealed, false, '満タンのときは回復の知らせを出さない');
   assert.equal(b.streak, 0);
 });
 
-test('連続正解は、不正解で切れる（1問正解のあとの不正解 → 次は1から数える）。回復は不正解の分を取り戻さない', () => {
+test('連続正解は、不正解で切れる（2問正解のあとの不正解 → 次は1から数える）。回復は不正解の分を取り戻さない', () => {
   let b = fresh(50, { player: 2 });
   const step = (c) => { const r = answerTrueBattle(b, { correct: c }); b = r.battle; return r.events; };
-  step(true); step(false);
+  step(true); step(true); step(false);
   assert.equal(b.streak, 0);
   assert.equal(b.player, 1);
-  step(true);
-  assert.equal(b.player, 1, '切れたあとは2問そろうまで回復しない');
+  step(true); step(true);
+  assert.equal(b.player, 1, '切れたあとは3問そろうまで回復しない');
   step(true);
   assert.equal(b.player, 2);
 });
 
 test('時間切れの不正解も連続を切る。正解でも timedOut なら不正解として数える', () => {
-  let b = fresh(50, { player: 2, streak: 1 });
+  let b = fresh(50, { player: 2, streak: 2 });
   const r = answerTrueBattle(b, { correct: true, timedOut: true });
   assert.equal(r.battle.player, 1);
   assert.equal(r.battle.streak, 0);
@@ -429,10 +431,10 @@ test('時間切れの不正解も連続を切る。正解でも timedOut なら�
 });
 
 test('HP の回復は進化をまたいで続く', () => {
-  let b = fresh(1, { player: 2, streak: 1 });
+  let b = fresh(1, { player: 2, streak: 2 });
   const r = answerTrueBattle(b, { correct: true }, () => 0.5);
   assert.equal(r.battle.form, 2);
-  assert.equal(r.battle.player, 3, '進化したその1問でも、2問目の正解なら回復する');
+  assert.equal(r.battle.player, 3, '進化したその1問でも、3問目の正解なら回復する');
 });
 
 // ---------------------------------------------------------------- ボスの回復

@@ -208,3 +208,18 @@ test('進化のタメの効果音のファイル（外部の素材）: 6つと�
   assert.equal(BOSS_SFX.finalhit.synth, null);
   assert.ok(BOSS_SFX.charge.boost > 1 && BOSS_SFX.charge.boost <= 2);
 });
+
+test('ボスの回復の音（外部の素材）: ファイルが実在し、1.5秒ほどの ogg。SFX_FILES・sw-core.js・ライセンスの記録・作者の表示がそろい、フック heal がこのファイルを指す。読めないときはプログラムの heal', () => {
+  const f = 'true-heal_magical-3.ogg';
+  assert.equal(SFX_FILES.trueheal, f);
+  assert.ok(existsSync(sharedDir + 'audio/sfx/' + f));
+  assert.ok(statSync(sharedDir + 'audio/sfx/' + f).size < 200 * 1024);
+  assert.equal(statSync(sharedDir + 'audio/sfx/' + f).size, 16749);
+  assert.ok(readFileSync(sharedDir + 'sw-core.js', 'utf8').includes("'" + f + "'"));
+  const doc = licenses();
+  for (const w of [f, 'JaggedStone', 'magic-spell-sfx', 'None needed']) assert.ok(doc.includes(w), w);
+  assert.ok(readFileSync(sharedDir + 'js/views/about.js', 'utf8').includes('JaggedStone'));
+  assert.equal(BOSS_SFX.heal.key, 'trueheal');
+  assert.equal(BOSS_SFX.heal.synth, 'heal');
+  assert.ok(TRUE_SFX.heal, '読めないときの、プログラムの heal');
+});

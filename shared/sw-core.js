@@ -145,6 +145,7 @@ const SFX = [
   'true-charge_rocket-launch.ogg',
   'true-impact_chunky-explosion.ogg',
   'true-impact_transformation-hit.ogg',
+  'true-heal_magical-3.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
 // 上の2つのリストは '../shared/' から始まる形で書いてある。sw.js が深い場所にあるとき
