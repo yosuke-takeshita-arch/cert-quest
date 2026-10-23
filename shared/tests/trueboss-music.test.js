@@ -78,7 +78,12 @@ test('第3形態の曲は、声が3つ（旋律・伴奏・低音）で、第1�
 
 test('効果音: 進化・技・回復・エンディング。全部の音が正の周波数・長さで、長さは 進化 1〜2.5 秒・技 1 秒以内・回復 1 秒以内・エンディング 4〜7 秒', () => {
   const len = (name) => TRUE_SFX[name].reduce((m, e) => Math.max(m, e.t + e.dur), 0);
-  assert.deepEqual(Object.keys(TRUE_SFX).sort(), ['ending', 'evolve', 'heal', 'skill']);
+  const orbs = Array.from({ length: 13 }, (_, i) => 'orb' + i);
+  assert.deepEqual(Object.keys(TRUE_SFX).sort(), ['charge', 'ending', 'evolve', 'heal', 'heartbeat', 'impact', ...orbs, 'skill'].sort());
+  // 光の玉が灯る音は、1つごとに高くなる
+  const f0 = (k) => TRUE_SFX['orb' + k][0].freq;
+  for (let k = 1; k < 13; k++) assert.ok(f0(k) > f0(k - 1), 'orb' + k + ' は orb' + (k - 1) + ' より高い');
+  assert.ok(len('heartbeat') > 0.2 && len('heartbeat') < 0.6 && len('impact') > 0.5 && len('impact') <= 1.5 && len('charge') >= 2 && len('charge') <= 4);
   for (const [name, ev] of Object.entries(TRUE_SFX)) {
     assert.ok(ev.length > 0, name);
     for (const e of ev) {
@@ -180,16 +185,3 @@ test('真ボスの効果音のファイル: 実在し、200KB 未満の ogg。SF
   for (const w of ['IgnasD', 'mieki256', 'ice-breakingshattering', 'earthquake-and-open-sesame', 'LedasLuzta5.ogg', 'shake.flac']) assert.ok(doc.includes(w), w);
 });
 
-test('殻が割れる進化の音の並べ方: ひびが入るたびに小さな音（だんだん大きく）→ 砕ける瞬間に大きな音を2つ重ねる。地鳴りはその前。時刻は演出（亀裂・砕け）と同じ', () => {
-  const view = readFileSync(fileURLToPath(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8').replace(/\r\n/g, '\n');
-  const start = view.indexOf('function evolveSequence');
-  const fn = view.slice(start, view.indexOf('// ---- 撃破の演出', start));
-  // 地鳴り（3300ms）→ ひび4つ（P+150・420・690・900ms。音は交互に2種類、倍率 0.7・0.85・1・1.1）→ 砕ける（P+1150ms。音は2つ）
-  assert.match(fn, /playBossSfx\(app\.state\.settings, 'rumble'\); \}, 3300\)/);
-  assert.match(fn, /\[150, 420, 690, 900\]\.forEach\(\(t, k\) => later\(\(\) => \{/);
-  assert.match(fn, /playBossSfx\(app\.state\.settings, k % 2 \? 'crack2' : 'crack1', \[0\.7, 0\.85, 1, 1\.1\]\[k\]\)/);
-  assert.match(fn, /playBossSfx\(app\.state\.settings, 'shatter1'\);[^\n]*\n\s*playBossSfx\(app\.state\.settings, 'shatter2'\);\n\s*\}, P \+ 1150\)/);
-  assert.ok(fn.indexOf("'rumble'") < fn.indexOf("'crack1'") && fn.indexOf("'crack1'") < fn.lastIndexOf("'shatter1'"), '地鳴り → ひび → 砕ける の順');
-  // 2→3 の進化は、今のプログラムの音のまま
-  assert.match(fn, /\} else \{\n\s*playSynth\(app\.state\.settings, 'evolve'\);/);
-});

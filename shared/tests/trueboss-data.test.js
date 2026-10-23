@@ -174,3 +174,65 @@ test('ひびの位置: 胸の核から出て、体の上（絵の不透明な範
   assert.ok(end(TRUE_CRACKS[2])[0] < TRUE_CORE.x && end(TRUE_CRACKS[3])[0] > TRUE_CORE.x);
   assert.ok(end(TRUE_CRACKS[0])[1] > TRUE_CORE.y + 20 && end(TRUE_CRACKS[2])[1] < TRUE_CORE.y + 5);
 });
+
+// ---- 進化の時刻の表（要件定義書 §3-9『進化のタメと第3形態の最強感』）----
+import { EVO_1_TO_2, EVO_2_TO_3, TRUE_ORBS, orbTimes } from '../js/lib/trueboss-data.js';
+
+test('進化の時刻（第1→2）: 順番どおり。鼓動はだんだん速く、揺れは後ろのほど強く、ひびは1本ずつゆっくり。割れて替わるまで約 8〜10 秒', () => {
+  const T = EVO_1_TO_2;
+  const inc = (a) => a.every((v, i) => i === 0 || v > a[i - 1]);
+  assert.ok(inc(T.glowBlink) && inc(T.heartbeats) && inc(T.quakes) && inc(T.eyeBlinks) && inc(T.cracks));
+  // 順番: 光る → 沈む → 鼓動・地鳴り → 目がまたたく → 目が強く光る → 揺れる → ひび → 割れる → 替わる → せりふ
+  const seq = [T.glowBlink.at(-1), T.slump, T.defeatText, T.heartbeats[0], T.rumble, T.eyeBlinks[0], T.eyeStrong, T.shake, T.cracks[0], T.cracks.at(-1), T.shatter, T.swap, T.text];
+  seq.forEach((v, i) => { if (i) assert.ok(v >= seq[i - 1], i + ' 番目の時刻が前より早い'); });
+  // 鼓動の間隔がだんだん短くなる（だんだん速く）
+  const gaps = T.heartbeats.slice(1).map((v, i) => v - T.heartbeats[i]);
+  gaps.forEach((g, i) => { if (i) assert.ok(g < gaps[i - 1], '鼓動が速くなっていない: ' + gaps); });
+  assert.equal(T.heartbeats.length, 6);
+  // 目は3回またたいてから、強く光る
+  assert.equal(T.eyeBlinks.length, 3);
+  assert.ok(T.eyeBlinks.at(-1) < T.eyeStrong);
+  // ひびは4本。1本ずつゆっくり（間隔 450ms 以上）
+  assert.equal(T.cracks.length, 4);
+  T.cracks.slice(1).forEach((v, i) => assert.ok(v - T.cracks[i] >= 450, 'ひびの間隔が短い'));
+  assert.ok(T.cracks[0] > T.shake && T.shatter - T.cracks.at(-1) >= 400, '最後のひびのあと、少し間を置いて割れる');
+  // 揺れは4つ目から強い。姿が替わるまで 8〜10 秒
+  assert.equal(T.strongQuakeFrom, 3);
+  assert.ok(T.swap >= 8000 && T.swap <= 10000, '姿が替わる時刻 ' + T.swap);
+  assert.ok(T.text > T.swap && T.text - T.swap <= 500);
+});
+
+test('進化の時刻（第2→3）: 玉は1つずつ灯り、だんだん速く（間隔が縮む）。力をためる音は玉の途中から、揺れはだんだん強く、金色の光のあとに替わり、曲は決めぜりふのあと。約 7〜10 秒', () => {
+  const T = EVO_2_TO_3;
+  const times = orbTimes();
+  assert.equal(times.length, TRUE_ORBS.length);
+  assert.equal(times[0], T.orbStart);
+  times.slice(1).forEach((v, i) => assert.ok(v > times[i]));
+  const gaps = times.slice(1).map((v, i) => v - times[i]);
+  gaps.forEach((g, i) => { if (i) assert.ok(g < gaps[i - 1], '玉が速くなっていない: ' + gaps); });
+  assert.equal(T.orbGaps.length, TRUE_ORBS.length - 1);
+  assert.ok(T.charge > T.orbStart && T.charge < times.at(-1), '力をためる音は、玉が灯っている途中から');
+  assert.ok(T.quakes[0] > T.orbStart && T.quakes.every((v, i) => !i || v > T.quakes[i - 1]));
+  assert.equal(T.strongQuakeFrom, 4);
+  assert.ok(T.quakes.at(-1) < T.gold && times.at(-1) < T.gold, '全部灯ってから、金色の光が弾ける');
+  assert.ok(T.gold < T.swap && T.swap < T.text && T.text < T.music, '光 → 姿が替わる → 決めぜりふ → 曲');
+  assert.ok(T.swap >= 6500 && T.swap <= 10000 && T.music <= 10000, '姿が替わる ' + T.swap + '、曲 ' + T.music);
+  assert.equal(T.dim, 0);
+  assert.equal(T.still, 0);
+});
+
+test('光の玉の位置: 第2形態の頭のうしろの輪。頭の上を回る形で、左右対称に近く、体の外（y が小さい）にある。玉どうしは重ならない', () => {
+  assert.equal(TRUE_ORBS.length, 13); // 絵の玉は10個ではなく13個だった（設計は10個。玉の数は TRUE_ORBS の長さで決まる）
+  for (const o of TRUE_ORBS) {
+    assert.ok(o.x > 38 && o.x < 62 && o.y > 4 && o.y < 24, '輪の外: ' + o.x + ',' + o.y);
+    assert.ok(o.r >= 1.2 && o.r <= 2);
+  }
+  // 輪の中心 (50, 13) からの距離がそろっている（最上部の玉と、左右の玉の差が小さい）
+  const d = TRUE_ORBS.map((o) => Math.hypot((o.x - 50) * 1.0, (o.y - 13) * 1.15));
+  assert.ok(Math.max(...d) - Math.min(...d) < 4, '輪の形から外れている: ' + d.map((v) => v.toFixed(1)));
+  // 左右対称（x が 50 をはさんで対）
+  const xs = TRUE_ORBS.map((o) => o.x).sort((a, b) => a - b);
+  assert.ok(Math.abs((xs[0] + xs.at(-1)) / 2 - 50) < 1.5);
+  // 重ならない
+  for (let i = 0; i < TRUE_ORBS.length; i++) for (let j = i + 1; j < TRUE_ORBS.length; j++) assert.ok(Math.hypot(TRUE_ORBS[i].x - TRUE_ORBS[j].x, TRUE_ORBS[i].y - TRUE_ORBS[j].y) > 2.5, i + '-' + j);
+});

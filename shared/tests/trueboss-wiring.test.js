@@ -139,7 +139,7 @@ test('CSS: 新しい部品の動き（星のまたたき・文字の現れ）は
   assert.match(red, /\.tb-star \{ animation: none;/);
   assert.match(red, /\.tb-ending-title, \.tb-ending-line \{ transition: none; \}/);
   // 進化の演出（殻のひび・揺れ・光）も、動きを減らす設定では止まる
-  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack-line\.on, \.tb-eye-glow\.on, \.tb-burst, \.tb-glow\.on \{ animation: none; \}/);
+  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack-line\.on, \.tb-eye-glow\.on, \.tb-burst, \.tb-glow\.on, \.tb-orb\.on, \.tb-gold-flash \{ animation: none; \}/);
   const view = read('shared/js/views/trueboss.js');
   assert.doesNotMatch(view, /setAttribute\('style'|innerHTML|\bstyle:\s*['"{]/, 'インライン style / innerHTML');
 });
@@ -153,31 +153,95 @@ test('第1形態のあいだは「第1形態」を出さない（札・問題の
   assert.doesNotMatch(src, /'第1形態'|第' \+ 1 \+ '形態/, '第1形態の文字を直に書いていない');
 });
 
-test('第1→2の進化: 偽の撃破では崩れて消えない（殻は残って暗い灰色に沈む）→ 地鳴りと揺れ → 一つ目が再び光る → ひび → 割れる（崩れるのはここだけ）→ 第2形態', () => {
+test('第1→2の進化: 偽の撃破では崩れて消えない → 鼓動（だんだん速く）と地鳴りと揺れ → 一つ目がまたたいてから強く光る → ひびが1本ずつ → 割れる（崩れるのはここだけ）→ 第2形態', () => {
   const src = code('shared/js/views/trueboss.js');
   const fn = fnBody(src, 'evolveSequence');
-  const fake = fn.slice(fn.indexOf("figClass('add', 'glow');"), fn.indexOf("later(() => figClass('add', 'shake'), P)")); // 偽の撃破の区画（コメントは code() が除く）
-  assert.ok(fake.length > 300, '偽の撃破の区画が見つからない');
+  const fake = fn.slice(fn.indexOf("figClass('add', 'glow');"), fn.indexOf('at(T.shake'));
+  assert.ok(fake.length > 500, '偽の撃破〜目が光るまでの区画が見つからない');
   // 偽の撃破の区画では、崩れる処理（crumble）も、消える（gone）も呼ばない
   assert.doesNotMatch(fake, /crumble\(/);
   assert.doesNotMatch(fake, /'gone'/);
   assert.match(fake, /figClass\('add', 'slump'\)/, '暗い灰色に沈む');
   assert.match(fake, /' を たおした！'/);
   assert.match(fake, /playBossSfx\(app\.state\.settings, 'win'\)/, '勝利の音はそのまま');
-  assert.match(fake, /playBossSfx\(app\.state\.settings, 'rumble'\)/);
-  assert.match(fake, /figClass\('remove', 'slump'\); figClass\('add', 'revive'\); if \(crackLayer\) crackLayer\.eye\.classList\.add\('on'\)/, '地鳴りのあと、目が光り灰色が戻りはじめる');
+  assert.match(fake, /T\.heartbeats\.forEach\(\(t\) => at\(t, \(\) => \{ evoSfx\('heartbeat'\)/, '鼓動');
+  assert.match(fake, /evoSfx\('rumble'\)/);
+  assert.match(fake, /k >= T\.strongQuakeFrom \? 'quake2' : 'quake'/, '揺れがだんだん強く');
+  assert.match(fake, /T\.eyeBlinks\.forEach/, '目がまたたく');
+  assert.match(fake, /crackLayer\.eye\.classList\.add\('blink'\)/);
+  assert.match(fake, /figClass\('remove', 'slump'\); figClass\('add', 'revive'\); crackLayer\.eye\.classList\.add\('on'\)/, 'そのあと強く光り、灰色が戻りはじめる');
   assert.doesNotMatch(fake, /flash\(ui\.fig, 'appear'/, '崩れた殻がもどってくる段は無い');
   // 崩れる処理は、evolveSequence の中で1回だけ（割れる瞬間）
   assert.equal((fn.match(/crumble\(/g) || []).length, 1);
   assert.match(fn, /crumble\('#b08d3c'\); \/\/ 殻が崩れるのは、ここ/);
-  // 順番: 偽の撃破 → 地鳴り → 目が光る → ひび → 割れる（砕ける音は割れる瞬間）
-  const at = (k) => fn.indexOf(k);
-  const order = ["figClass('add', 'slump')", "'rumble'", "crackLayer.eye.classList.add('on')", 'crackLayer.lines[k].classList.add', 'crumble(', "'shatter1'"];
+  // 順番
+  const order = ["figClass('add', 'slump')", "evoSfx('heartbeat')", "evoSfx('rumble')", "classList.add('blink')", "classList.add('on')", "at(T.shake", 'crackLayer.lines[k]', 'crumble(', "evoSfx('shatter1')", 'at(T.swap'];
   let last = -1;
   for (const k of order) { const i = fn.indexOf(k, last + 1); assert.ok(i > last, k + ' が順番どおりに無い'); last = i; }
-  assert.ok(at("'win'") < at("'rumble'"));
-  // 動きを減らす設定では、色（暗い灰色）と文だけ
+  // 動きを減らす設定では、色（暗い灰色）と文と音だけ
   assert.match(fn, /figClass\('add', 'slump'\); \/\/ 色（暗い灰色）だけ/);
+  assert.match(fn, /if \(R\) \{/);
+});
+
+test('第2→3の進化: 曲が止まって暗く → 宙で静止 → 光の玉が1つずつ金色に灯る → 力をためる音と揺れがだんだん強く → 金色の光が弾ける → 第3形態と決めぜりふ → 第3形態の曲', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'evolveSequence');
+  assert.match(fn, /stopBossTheme\(\);\n\s*const R = reduced\(\);/, '最初に曲を止める');
+  const to3 = fn.slice(fn.indexOf("root.classList.add('tb-dim')"));
+  assert.ok(to3.length > 600);
+  assert.match(to3, /ui\.float\.classList\.add\('still'\)/, '宙で静止（浮かぶ動きを止める）');
+  assert.match(to3, /orbTimes\(T\)\.forEach\(\(t, k\) => at\(t, \(\) => \{ orbLayer\.orbs\[k\]\.classList\.add\('on'\); evoSfx\('orb', k\); \}\)\)/, '玉が1つずつ灯り、そのたびに音（k が大きいほど高い）');
+  assert.match(to3, /at\(T\.charge, \(\) => evoSfx\('charge'\)\)/);
+  assert.match(to3, /T\.quakes\.forEach\(\(t, k\) => at\(t, \(\) => \{ flash\(ui\.scene, k >= T\.strongQuakeFrom \? 'quake2' : 'quake'/);
+  assert.match(to3, /h\('div', \{ class: 'tb-gold-flash'/, '金色の光');
+  assert.match(to3, /evoSfx\('impact'\)/);
+  const order = ["'tb-dim'", "'still'", "classList.add('on'); evoSfx('orb'", 'evoSfx(\'charge\')', "'quake2'", 'tb-gold-flash', "evoSfx('impact')", 'at(T.swap, () => swap())', 'finishText(T.text)'];
+  let last = -1;
+  for (const k of order) { const i = to3.indexOf(k, last + 1); assert.ok(i > last, k + ' が順番どおりに無い'); last = i; }
+  // 第3形態の曲は、決めぜりふのあと（swap のなかで、T.music - T.swap 後に始める）。飛ばしたときは、すぐ
+  assert.match(fn, /if \(immediate \|\| from1\) startMusic\(\); else later\(startMusic, T\.music - T\.swap\);/);
+  assert.match(fn, /startMusic\(\); \/\/ タップで飛ばしたとき/);
+  // 動きを減らす設定: 玉は最初から全部金色（動かない）。揺れ・点滅・金色の光の動きなし
+  assert.match(fn, /orbLayer\.orbs\.forEach\(\(o\) => o\.classList\.add\('on'\)\);/);
+  const reduced2 = fn.slice(fn.indexOf('if (R) {'), fn.indexOf("figClass('add', 'glow');"));
+  assert.doesNotMatch(reduced2, /quake|tb-gold-flash|blink/);
+});
+
+test('進化の効果音のフック: 名前つきで、鳴らす時刻の表（EVO_1_TO_2・EVO_2_TO_3）に合わせて呼ぶ。素材が無い間は、プログラムの音で鳴る', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'evolveSequence');
+  for (const name of ['heartbeat', 'rumble', 'shatter1', 'shatter2', 'charge', 'impact']) assert.ok(fn.includes("evoSfx('" + name + "'"), name);
+  assert.ok(fn.includes("evoSfx(k % 2 ? 'crack2' : 'crack1', 0, [0.7, 0.85, 1, 1.1][k])"), 'ひび');
+  assert.match(fn, /evoSfx\('orb', k\)/);
+  assert.match(src, /function evoSfx\(name, i = 0, boost = 1\) \{\n\s*if \(name === 'orb'\) playSynth\(app\.state\.settings, 'orb' \+ Math\.min/);
+  const snd = read('shared/js/lib/sound.js');
+  for (const name of ['heartbeat', 'charge', 'impact']) assert.match(snd, new RegExp(name + ": \\{ key: 'true" + name + "', synth: '" + name + "' \\}"));
+  const au = read('shared/js/audio.js');
+  assert.match(au, /if \(!SFX_FILES\[e\.key\]\) \{ if \(e\.synth\) playSynth\(settings, e\.synth\); return; \}/, 'ファイルが無い種類は、プログラムの音');
+  // 素材の SFX_FILES のキーは、まだ無い（素材が入ったら足す）
+  assert.doesNotMatch(snd, /trueheartbeat:|truecharge:|trueimpact:|trueorb/);
+});
+
+test('進化の演出は、四角い白い面を使わない: 割れる光・金色の光は丸い放射の光。タップで飛ばせる', () => {
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.tb-glow \{[^}]*radial-gradient\(circle closest-side/);
+  assert.match(css, /\.tb-gold-flash \{[^}]*position: fixed; inset: 0;[^}]*radial-gradient\(circle at/);
+  assert.doesNotMatch(css, /\.tb-gold-flash \{[^}]*background: #fff/);
+  const fn = fnBody(code('shared/js/views/trueboss.js'), 'evolveSequence');
+  assert.doesNotMatch(fn, /ui\.flash\.classList\.add\('on'\)/, '全面の白いフラッシュ（.boss-flash）を使わない');
+  assert.match(fn, /S\.skipFx = finish;/);
+  assert.match(fn, /clearTimers\(\);\n\s*ui\.fx\.textContent = '';\n\s*ui\.flash\.classList\.remove\('on'\);\n\s*cleanupFx\(\);\n\s*swap\(true\);/, '飛ばすと、暗さ・静止・金色の光を消して、すぐ第2・第3形態にする');
+});
+
+test('光の玉は絵の箱に重ねる: 絵と同じ正方形の SVG に、TRUE_ORBS の位置（絵の中の割合）で置く', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const b = src.slice(src.indexOf('function buildOrbLayer'), src.indexOf('const rand ='));
+  assert.match(b, /setAttribute\('viewBox', '0 0 100 100'\)/);
+  assert.match(b, /setAttribute\('preserveAspectRatio', 'xMidYMid meet'\)/);
+  assert.match(b, /TRUE_ORBS\.map/);
+  assert.match(b, /fig\.appendChild\(svg\)/);
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.tb-orb-layer \{ position: absolute; inset: 0; width: 100%; height: 100%;/);
 });
 
 test('ひびは絵の箱に重ねる: 絵（.boss-fig）の中に、絵と同じ正方形（viewBox 0 0 100 100）の SVG を置く。位置は絵の中の割合。絵が浮かんでも揺れても一緒に動く', () => {

@@ -94,7 +94,29 @@ const seq = (wave, gain, notes, step, len = 0.9) => notes.reduce((acc, n, i) => 
  * evolve … 進化（低い唸りから、音が駆け上がる。約1.6秒）／skill … 技を使ってきた（低く不穏な2音）／
  * heal … 回復（やわらかく上る）／ending … エンディング（ゆっくり上って長く伸ばす。約5秒）
  */
+// 進化のタメ用のプログラムの音（外部の素材が入るまでの代わり。素材が入ったら、これは「ファイルが読めないとき」の代わりになる）:
+//  heartbeat … 低い鼓動（どん・どん）／ charge … 力をためる（上りつづける）／ impact … 大きな衝撃／ orb0〜orb12 … 光の玉が灯る（1つごとに音が高くなる）
+const ORB_NOTES = ['D5', 'E5', 'F#5', 'A5', 'B5', 'D6', 'E6', 'F#6', 'A6', 'B6', 'D7', 'E7', 'F#7'];
+const ORB_SFX = Object.fromEntries(ORB_NOTES.map((n, i) => ['orb' + i, [
+  { wave: 'square', gain: 0.35, t: 0, dur: 0.32, freq: noteFreq(n) },
+  { wave: 'triangle', gain: 0.6, t: 0, dur: 0.32, freq: noteFreq(n) / 2 },
+]]));
+
 export const TRUE_SFX = {
+  ...ORB_SFX,
+  heartbeat: [
+    { wave: 'triangle', gain: 0.95, t: 0, dur: 0.14, freq: noteFreq('D2'), to: noteFreq('A1') },
+    { wave: 'triangle', gain: 0.8, t: 0.17, dur: 0.16, freq: noteFreq('D2'), to: noteFreq('A1') },
+  ],
+  charge: [
+    { wave: 'square', gain: 0.3, t: 0, dur: 3.0, freq: noteFreq('D3'), to: noteFreq('D6') },
+    { wave: 'triangle', gain: 0.8, t: 0, dur: 3.0, freq: noteFreq('D2'), to: noteFreq('D4') },
+  ],
+  impact: [
+    { wave: 'triangle', gain: 1, t: 0, dur: 0.9, freq: noteFreq('D2'), to: noteFreq('D1') },
+    { wave: 'square', gain: 0.5, t: 0, dur: 0.4, freq: noteFreq('A5'), to: noteFreq('A2') },
+    { wave: 'square', gain: 0.35, t: 0.05, dur: 1.2, freq: noteFreq('D5'), to: noteFreq('D4') },
+  ],
   evolve: [
     { wave: 'triangle', gain: 0.9, t: 0, dur: 0.9, freq: noteFreq('D2'), to: noteFreq('D3') },
     { wave: 'square', gain: 0.4, t: 0.1, dur: 0.8, freq: noteFreq('A2'), to: noteFreq('A3') },

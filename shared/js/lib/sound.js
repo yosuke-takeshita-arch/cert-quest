@@ -129,6 +129,10 @@ export const BOSS_SFX = {
   shatter1: { key: 'trueshatter1', synth: 'evolve' },
   shatter2: { key: 'trueshatter2', synth: null },
   rumble: { key: 'truerumble', synth: 'skill' },
+  // 進化のタメの効果音のフック（要件定義書 §3-9）。素材のファイルは今は無く、プログラムの音で鳴る。素材が入ったら SFX_FILES に key を足すだけで、ファイルが先に鳴る
+  heartbeat: { key: 'trueheartbeat', synth: 'heartbeat' },
+  charge: { key: 'truecharge', synth: 'charge' },
+  impact: { key: 'trueimpact', synth: 'impact' },
 };
 
 // BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。

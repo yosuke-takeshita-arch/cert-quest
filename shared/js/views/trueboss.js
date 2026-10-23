@@ -13,7 +13,7 @@ import {
   trueBossEnabled, trueBossUnlocked, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_SECONDS, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
-import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE, TRUE_CRACKS, TRUE_EYE } from '../lib/trueboss-data.js';
+import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE, TRUE_CRACKS, TRUE_EYE, TRUE_ORBS, EVO_1_TO_2, EVO_2_TO_3, orbTimes } from '../lib/trueboss-data.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -141,6 +141,28 @@ function buildCrackLayer(fig) {
   svg.appendChild(eye);
   fig.appendChild(svg);
   return { svg, lines, eye };
+}
+
+/** 第2→3の進化の光の玉の層。絵（.boss-fig）と同じ正方形の SVG に、TRUE_ORBS の位置（絵の中の割合）で金色の玉を重ねる。1つずつ on を付けて灯す。 */
+function buildOrbLayer(fig) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 100 100');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  svg.setAttribute('class', 'tb-orb-layer');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('data-tb-orbs', '1');
+  const orbs = TRUE_ORBS.map((o) => {
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', String(o.x));
+    c.setAttribute('cy', String(o.y));
+    c.setAttribute('r', String(o.r));
+    c.setAttribute('class', 'tb-orb');
+    svg.appendChild(c);
+    return c;
+  });
+  fig.appendChild(svg);
+  return { svg, orbs };
 }
 
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -598,22 +620,42 @@ export function renderTrueBoss(app) {
   }
 
   // ---- 進化の演出（白く光る → 点滅 → 次の形態の姿に替わって現れる → せりふ。タップでとばせる） ----
+  // 進化の効果音のフック（要件定義書 §3-9）。名前: heartbeat（鼓動）・rumble（地鳴り）・crack1/crack2（ひび）・shatter1/shatter2（割れる）・orb（光の玉が灯る。i 番目ほど高い）・charge（力をためる）・impact（大きな衝撃）。
+  // 素材のファイルが無い間は、プログラムの音（無ければ無音）で鳴る（lib/sound.js の BOSS_SFX・lib/trueboss-music.js の TRUE_SFX）。
+  function evoSfx(name, i = 0, boost = 1) {
+    if (name === 'orb') playSynth(app.state.settings, 'orb' + Math.min(Math.max(i, 0), TRUE_ORBS.length - 1));
+    else playBossSfx(app.state.settings, name, boost);
+  }
+
   function evolveSequence(ev, bar, next) {
     S.phase = 'evolve';
     stopBossTheme();
     const R = reduced();
     const oldP = trueBossForm(data, ev.evolved.from);
+    const from1 = ev.evolved.from === 1;
+    const T = from1 ? EVO_1_TO_2 : EVO_2_TO_3; // 時刻の表（lib/trueboss-data.js）
     let done = false;
     let swapped = false;
-    const swap = () => {
+    let musicStarted = false;
+    const startMusic = () => { if (musicStarted) return; musicStarted = true; startBossTheme(battle().form); };
+    const cleanupFx = () => {
+      root.classList.remove('tb-dim');
+      ui.float.classList.remove('still');
+      const gold = root.querySelector('.tb-gold-flash');
+      if (gold) gold.remove();
+    };
+    const swap = (immediate) => {
       if (swapped) return;
       swapped = true;
       if (markTrueBossSeenForm2(app.state)) app.commit(); // 第2形態を見た（これ以降、『形態』を画面に出してよい）
-      figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive');
+      figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive', 'swell');
+      ui.float.classList.remove('still');
+      root.classList.remove('tb-dim');
       paintForm();
       paintHp(battle(), -1);
-      startBossTheme(battle().form); // 形態が替わったら曲も替える（第2・第3形態は別の曲）
-      if (!R) flash(ui.fig, ev.evolved.from === 1 ? 'emerge' : 'spread', 1000);
+      // 形態が替わったら曲も替える。第3形態は、決めぜりふのあとに曲を始める（第2形態は、すぐ）
+      if (immediate || from1) startMusic(); else later(startMusic, T.music - T.swap);
+      if (!R) flash(ui.fig, from1 ? 'emerge' : 'spread', 1000);
     };
     const newP = () => prof();
     const lines = () => [oldP.name + ' は しんかした！', quoted(pickTrueLine(oldP, 'evolve', app.rng)), newP().name + ' が あらわれた！', quoted(pickTrueLine(newP(), 'appear', app.rng))];
@@ -623,7 +665,9 @@ export function renderTrueBoss(app) {
       clearTimers();
       ui.fx.textContent = '';
       ui.flash.classList.remove('on');
-      swap();
+      cleanupFx();
+      swap(true);
+      startMusic(); // タップで飛ばしたとき、曲の予約も消えているので、ここで始める
       S.skipFx = null;
       S.phase = 'evolved';
       say(lines(), { instant: true });
@@ -631,77 +675,90 @@ export function renderTrueBoss(app) {
       next.focus({ preventScroll: true });
     };
     S.skipFx = finish;
-    const from1 = ev.evolved.from === 1;
-    const P = from1 ? 4900 : 0; // 第1→2 は、先に偽の撃破と地鳴りがある
     const crackLayer = from1 && !R ? buildCrackLayer(ui.fig) : null; // ひびは絵（fig）の上に重ねる。絵と同じ正方形の座標で決める
+    const orbLayer = !from1 ? buildOrbLayer(ui.fig) : null; // 光の玉も同じ（絵の箱に重ねる）
+    const at = (t, fn) => later(fn, t);
+    const finishText = (t) => at(t, () => {
+      if (done) return;
+      say(lines(), { onDone: () => { if (S.phase === 'evolve') { done = true; S.skipFx = null; S.phase = 'evolved'; bar.classList.remove('hidden'); next.focus({ preventScroll: true }); } } });
+    });
     if (R) {
+      // 動きを減らす設定: 点滅・揺れ・光の動きなし。色（暗い灰色／金色の玉）と文と音だけ
       if (from1) {
-        // 動きを減らす設定: 点滅・揺れなしで、撃破の文 → 少しして進化の文
         say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))], { instant: true });
         figClass('add', 'slump'); // 色（暗い灰色）だけ。動きは無い
-        later(() => { figClass('remove', 'slump'); playBossSfx(app.state.settings, 'shatter1'); playBossSfx(app.state.settings, 'shatter2'); finish(); }, 1200);
+        later(() => { figClass('remove', 'slump'); evoSfx('shatter1'); evoSfx('shatter2'); finish(); }, 1200);
         return;
       }
-      playSynth(app.state.settings, 'evolve');
-      finish();
+      orbLayer.orbs.forEach((o) => o.classList.add('on')); // 玉は最初から全部金色（動かない）
+      say(['……'], { instant: true });
+      later(() => { evoSfx('impact'); finish(); }, 1500);
       return;
     }
     if (from1) {
       // 偽の撃破（章のボスの撃破と同じく、白く光って「たおした！」とせりふ。ただし粒に崩れて消えない。要件定義書 §3-9）:
       // 白く光る → 点滅 → 殻は残ったまま光を失って暗い灰色になり、少し沈んで動かなくなる（目の光も消える）
       figClass('add', 'glow');
-      [350, 620, 890, 1160].forEach((t) => {
-        later(() => figClass('add', 'blinkoff'), t);
-        later(() => figClass('remove', 'blinkoff'), t + 120);
+      T.glowBlink.forEach((t) => {
+        at(t, () => figClass('add', 'blinkoff'));
+        at(t + 120, () => figClass('remove', 'blinkoff'));
       });
-      later(() => {
+      at(T.slump, () => {
         figClass('remove', 'glow', 'blinkoff');
         figClass('add', 'slump');
         playBossSfx(app.state.settings, 'win');
         vibrate(app.state.settings, [40, 30, 40, 30, 80]);
-      }, 1350);
-      later(() => say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))]), 1450);
-      // 地鳴りと揺れ → 一つ目が再び青白く光り、灰色が戻りはじめる
-      later(() => { say(['……ゴゴゴゴ……']); playBossSfx(app.state.settings, 'rumble'); }, 3300); // 地鳴り（約3.6秒。後ろをフェードアウト）
-      [3400, 3800, 4200].forEach((t) => later(() => { flash(ui.scene, 'quake', 450); vibrate(app.state.settings, [60, 40, 60]); }, t));
-      later(() => { figClass('remove', 'slump'); figClass('add', 'revive'); if (crackLayer) crackLayer.eye.classList.add('on'); }, 4200);
-    } else {
-      playSynth(app.state.settings, 'evolve');
-    }
-    if (from1) {
-      // 第1形態→第2形態: ずんぐりした真鍮の殻が揺れて、胸の核からひびが体に広がり、割れて破片が飛び散り、中からすらりとした姿が光とともに現れる
-      later(() => figClass('add', 'shake'), P);
-      [150, 420, 690, 900].forEach((t, k) => later(() => {
-        if (crackLayer) crackLayer.lines[k].classList.add('on');
+      });
+      at(T.defeatText, () => say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))]));
+      // 心臓の鼓動のような低い音が、だんだん速く。地鳴りと揺れがだんだん強く
+      T.heartbeats.forEach((t) => at(t, () => { evoSfx('heartbeat'); vibrate(app.state.settings, [30, 40, 30]); }));
+      at(T.rumble, () => { say(['……ゴゴゴゴ……']); evoSfx('rumble'); });
+      T.quakes.forEach((t, k) => at(t, () => { flash(ui.scene, k >= T.strongQuakeFrom ? 'quake2' : 'quake', 450); vibrate(app.state.settings, k >= T.strongQuakeFrom ? [90, 40, 90] : [60, 40, 60]); }));
+      // 消えた一つ目が、何度かまたたいてから強く光る（灰色が戻りはじめる）
+      T.eyeBlinks.forEach((t) => {
+        at(t, () => crackLayer.eye.classList.add('blink'));
+        at(t + 130, () => crackLayer.eye.classList.remove('blink'));
+      });
+      at(T.eyeStrong, () => { figClass('remove', 'slump'); figClass('add', 'revive'); crackLayer.eye.classList.add('on'); });
+      // 殻が揺れて、胸の核からひびが体に1本ずつゆっくり広がり、割れて破片が飛び散り、中からすらりとした姿が光とともに現れる
+      at(T.shake, () => figClass('add', 'shake'));
+      T.cracks.forEach((t, k) => at(t, () => {
+        crackLayer.lines[k].classList.add('on');
         vibrate(app.state.settings, 25);
-        playBossSfx(app.state.settings, k % 2 ? 'crack2' : 'crack1', [0.7, 0.85, 1, 1.1][k]); // ひびが入るたびの小さな音（だんだん大きく）
-      }, P + t));
-      later(() => {
+        evoSfx(k % 2 ? 'crack2' : 'crack1', 0, [0.7, 0.85, 1, 1.1][k]); // ひびが入るたびの小さな音（だんだん大きく）
+      }));
+      at(T.shatter, () => {
         ui.fx.textContent = '';
         figClass('remove', 'shake', 'revive');
         crumble('#b08d3c'); // 殻が崩れるのは、ここ（割れる瞬間）だけ
-        ui.fx.appendChild(h('span', { class: 'tb-glow on' })); // 割れた瞬間の白い光。ふちの無い丸い光（四角い白い面にしない。先生の指摘『四角い枠みたいなのが出てきた』）
+        ui.fx.appendChild(h('span', { class: 'tb-glow on' })); // 割れた瞬間の光。ふちの無い丸い光（四角い白い面にしない）
         figClass('add', 'gone');
-        playBossSfx(app.state.settings, 'shatter1'); // 砕ける瞬間の大きな音（2つ重ねる）
-        playBossSfx(app.state.settings, 'shatter2');
-      }, P + 1150);
-      later(() => { ui.flash.classList.remove('on'); swap(); ui.fx.appendChild(h('span', { class: 'tb-burst' })); }, P + 1400);
-      later(() => { ui.fx.textContent = ''; }, P + 2400);
-    } else {
-      // 第2形態→第3形態: 光がどんどん強まり、強い光の中で翼が広がるように、横にぐっと開いた姿が現れる
-      figClass('add', 'glow', 'swell');
-      [600, 1000, 1300].forEach((t) => {
-        later(() => ui.fx.appendChild(h('span', { class: 'tb-glow on' })), t);
+        evoSfx('shatter1'); // 砕ける瞬間の大きな音（2つ重ねる）
+        evoSfx('shatter2');
       });
-      later(() => ui.fx.appendChild(h('span', { class: 'tb-burst strong' })), 1000);
-      later(() => ui.fx.appendChild(h('span', { class: 'tb-glow on' })), 1700);
-      later(() => { ui.flash.classList.remove('on'); figClass('remove', 'swell'); swap(); }, 1900);
-      later(() => { ui.fx.textContent = ''; }, 3000);
+      at(T.swap, () => { swap(); ui.fx.appendChild(h('span', { class: 'tb-burst' })); });
+      at(T.swap + 1000, () => { ui.fx.textContent = ''; });
+      finishText(T.text);
+    } else {
+      // 第2→3: 曲が止まり、画面が暗くなる → 宙で静止 → 光の玉が1つずつ（だんだん速く）金色に灯る → 力をためる音と揺れがだんだん強く → 金色の光が弾ける → 第3形態と決めぜりふ → 第3形態の曲
+      root.classList.add('tb-dim');
+      ui.float.classList.add('still');
+      at(200, () => say(['……']));
+      orbTimes(T).forEach((t, k) => at(t, () => { orbLayer.orbs[k].classList.add('on'); evoSfx('orb', k); }));
+      at(T.charge, () => evoSfx('charge'));
+      T.quakes.forEach((t, k) => at(t, () => { flash(ui.scene, k >= T.strongQuakeFrom ? 'quake2' : 'quake', 450); vibrate(app.state.settings, k >= T.strongQuakeFrom ? [90, 40, 90] : [50, 40, 50]); }));
+      at(T.gold, () => {
+        // 画面いっぱいの金色の放射の光（四角い面ではなく、中心から広がって消える丸い光）。玉も一斉に強く光る
+        root.appendChild(h('div', { class: 'tb-gold-flash', 'aria-hidden': 'true' }));
+        orbLayer.svg.classList.add('blaze');
+        ui.fx.appendChild(h('span', { class: 'tb-burst strong' }));
+        evoSfx('impact');
+        vibrate(app.state.settings, [40, 30, 40, 30, 120]);
+      });
+      at(T.swap, () => swap());
+      at(T.swap + 1500, () => { ui.fx.textContent = ''; const g = root.querySelector('.tb-gold-flash'); if (g) g.remove(); });
+      finishText(T.text);
     }
-    later(() => {
-      if (done) return;
-      say(lines(), { onDone: () => { if (S.phase === 'evolve') { done = true; S.skipFx = null; S.phase = 'evolved'; bar.classList.remove('hidden'); next.focus({ preventScroll: true }); } } });
-    }, from1 ? P + 1700 : 2100);
   }
 
   // ---- 撃破の演出（章のボスと同じ：白く光る → 点滅 → 細かい粒に崩れて消える → 紙吹雪 → XP。タップでとばせる）。このあとエンディング ----

@@ -968,6 +968,19 @@ body.boss-on { background: #000; }
 .boss-fig.swell { animation: tb-swell 1.7s ease-in forwards; }
 .boss-fig.emerge { animation: tb-emerge 1s ease-out; }
 .boss-fig.spread { animation: tb-spread 1s ease-out; }
+.tb-eye-glow.blink { opacity: 0.75; }
+.tb-orb-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.tb-orb { fill: #ffd54a; opacity: 0; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 1.4px #fff1a8) drop-shadow(0 0 2.4px #ffb300); }
+.tb-orb.on { opacity: 1; animation: tb-orb-on 0.4s ease-out; }
+.tb-orb-layer.blaze .tb-orb { filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #ffb300); }
+@keyframes tb-orb-on { 0% { opacity: 0; transform: scale(0.3); } 60% { opacity: 1; transform: scale(1.6); } 100% { opacity: 1; transform: none; } }
+.boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top { opacity: 0.12; transition: opacity 0.6s; }
+.boss-rpg.tb-dim .boss-fig .boss-img { filter: brightness(0.4); transition: filter 0.8s; }
+.tb-float.still { animation-play-state: paused; }
+.boss-scene.quake2 { animation: boss-quake2 0.45s ease-out; }
+@keyframes boss-quake2 { 0%, 100% { transform: translate(0, 0); } 15% { transform: translate(-11px, 4px); } 35% { transform: translate(11px, -4px); } 55% { transform: translate(-9px, 3px); } 75% { transform: translate(7px, -2px); } }
+.tb-gold-flash { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 28%, rgba(255, 244, 190, 1) 0%, rgba(255, 205, 80, 0.75) 30%, rgba(255, 190, 60, 0) 78%); animation: tb-gold 1.6s ease-out forwards; }
+@keyframes tb-gold { 0% { opacity: 0; } 18% { opacity: 1; } 100% { opacity: 0; } }
 .tb-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle closest-side at 50% 50%, #fff 0%, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%); }
 .tb-glow.on { animation: tb-glow 0.5s ease-out forwards; }
 @keyframes tb-glow { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
@@ -982,7 +995,8 @@ body.boss-on { background: #000; }
 @media (prefers-reduced-motion: reduce) {
   .tb-star { animation: none; opacity: 0.8; }
   .tb-float.f2, .tb-float.f3 { animation: none; }
-  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack-line.on, .tb-eye-glow.on, .tb-burst, .tb-glow.on { animation: none; }
+  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack-line.on, .tb-eye-glow.on, .tb-burst, .tb-glow.on, .tb-orb.on, .tb-gold-flash { animation: none; }
+  .boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top, .boss-rpg.tb-dim .boss-fig .boss-img { transition: none; }
   .boss-fig.slump, .boss-fig.revive, .boss-fig.slump .boss-img, .boss-fig.revive .boss-img, .boss-fig.slump .boss-fig-sym, .boss-fig.revive .boss-fig-sym { transition: none; }
   .tb-ending-title, .tb-ending-line { transition: none; }
 }

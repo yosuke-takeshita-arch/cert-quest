@@ -659,7 +659,8 @@ export function playSynth(settings, name) {
 /** ボス戦の効果音（BOSS_SFX の種類: hit＝ボスに当たった・win＝倒した・hurt＝ダメージをもらった）。効果音の設定に従う。ファイルが無い種類は何も鳴らさず、ファイルが読めなかったときはプログラムの音に戻る。 */
 export function playBossSfx(settings, kind, boostMul = 1) {
   const e = BOSS_SFX[kind];
-  if (!e || !SFX_FILES[e.key]) return;
+  if (!e) return;
+  if (!SFX_FILES[e.key]) { if (e.synth) playSynth(settings, e.synth); return; } // 素材のファイルがまだ無い種類は、プログラムの音（無ければ無音）
   playSfx(settings, e.key, e.synth ? () => playSynth(settings, e.synth) : e.sfx ? () => playSfx(settings, e.sfx) : undefined, (e.boost || 1) * boostMul);
 }
 
