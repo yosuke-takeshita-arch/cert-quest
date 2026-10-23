@@ -34,8 +34,25 @@ export const SKILL_KINDS = Object.freeze(['timed', 'curse']);
 // ---- 状態（学習記録の trueBoss） ----
 /** 読んだ保存データの trueBoss を正しい形にする。古い記録（項目なし）・壊れた値は wins 0。 */
 export function normalizeTrueBoss(raw) {
-  const w = raw && typeof raw === 'object' && !Array.isArray(raw) ? raw.wins : 0;
-  return { wins: Number.isInteger(w) && w > 0 ? w : 0 };
+  const ok = raw && typeof raw === 'object' && !Array.isArray(raw);
+  const w = ok ? raw.wins : 0;
+  // seen2 … 第2形態を一度でも見たか（見るまでは『形態』があることを画面に出さない。要件定義書 §3-9）。古い記録（項目なし）は『見ていない』
+  return { wins: Number.isInteger(w) && w > 0 ? w : 0, seen2: !!(ok && raw.seen2 === true) };
+}
+
+/** 第2形態を見たことがあるか（倒したことがあれば、見たことになる）。 */
+export function trueBossSeenForm2(state) {
+  const t = normalizeTrueBoss(state && state.trueBoss);
+  return t.seen2 || t.wins > 0;
+}
+
+/** 第2形態を見たと記録する。初めてなら true。 */
+export function markTrueBossSeenForm2(state) {
+  const t = normalizeTrueBoss(state.trueBoss);
+  const first = !t.seen2;
+  t.seen2 = true;
+  state.trueBoss = t;
+  return first;
 }
 
 /** 真ボスを倒した回数。 */

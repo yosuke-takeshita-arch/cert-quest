@@ -10,7 +10,7 @@ import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
 import { isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { quoted, faceCrop } from '../lib/bossdata.js';
 import {
-  trueBossEnabled, trueBossUnlocked, trueBossWins, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
+  trueBossEnabled, trueBossUnlocked, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_SECONDS, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
 import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE, TRUE_CRACKS, TRUE_EYE } from '../lib/trueboss-data.js';
@@ -26,8 +26,12 @@ export const TRUE_BOSS_TEXT = {
   locked: '塔の いちばん うえに、なにかが ひそんでいる……',
   awake: '塔の いちばん うえで、おおきな なにかが めざめた……',
   none: 'まだ 戦えません。',
-  rule: 'すべての分野から出ます。正解でボスにダメージ。ボスは進化して、だんだん 手ごわくなります。3問続けて正解すると、HP が 1 回復します。戦いの最中は解説が出ません。くわしい解説は、戦いのあとの結果で読めます。',
 };
+
+/** 最初の問題の上に出す決まりの文。第2形態を見るまでは、形態・進化があることに触れない（要件定義書 §3-9）。 */
+export function ruleText(seen2) {
+  return 'すべての分野から出ます。正解でボスにダメージ。' + (seen2 ? 'ボスは進化して、だんだん 手ごわくなります。' : '') + STREAK_HEAL + '問続けて正解すると、HP が 1 回復します。戦いの最中は解説が出ません。くわしい解説は、戦いのあとの結果で読めます。';
+}
 
 /** 真ボスのデータ（名前・せりふ）。app.data.trueBoss が無ければ仮。 */
 function dataOf(app) {
@@ -203,7 +207,7 @@ export function renderTrueBoss(app) {
     app.go(back);
   }
 
-  const askExit = () => !(S && !battle().result && S.log.length) || confirmQuit('途中で終了します。ここまでの回答の記録は残ります。やり直すときは第1形態からです。');
+  const askExit = () => !(S && !battle().result && S.log.length) || confirmQuit('途中で終了します。ここまでの回答の記録は残ります。やり直すときは' + (trueBossSeenForm2(app.state) ? '第1形態から' : '最初から') + 'です。');
   app.guardBack(askExit);
 
   async function onExit() {
@@ -483,7 +487,7 @@ export function renderTrueBoss(app) {
     ui.qarea.appendChild(h('div', { class: 'play-head boss-qhead' },
       h('span', { class: 'small muted boss-round', text: roundLabel() })));
     if (skill) ui.qarea.appendChild(skillBanner(skill)); else ui.timer = null;
-    if (!S.log.length) ui.qarea.appendChild(h('p', { class: 'small muted boss-rule', text: TRUE_BOSS_TEXT.rule }));
+    if (!S.log.length) ui.qarea.appendChild(h('p', { class: 'small muted boss-rule', text: ruleText(trueBossSeenForm2(app.state)) }));
     const card = h('div', { class: 'card q-card' });
     const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: q.syllabus.slice(1, 3).join(' › ') || q.syllabus[0] }), statusChip(q.status));
     if (q.negative) tags.appendChild(h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }));
@@ -604,6 +608,7 @@ export function renderTrueBoss(app) {
     const swap = () => {
       if (swapped) return;
       swapped = true;
+      if (markTrueBossSeenForm2(app.state)) app.commit(); // 第2形態を見た（これ以降、『形態』を画面に出してよい）
       figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive');
       paintForm();
       paintHp(battle(), -1);
@@ -674,8 +679,8 @@ export function renderTrueBoss(app) {
       later(() => {
         ui.fx.textContent = '';
         figClass('remove', 'shake', 'revive');
-        ui.flash.classList.add('on'); // 割れた瞬間の白い光
         crumble('#b08d3c'); // 殻が崩れるのは、ここ（割れる瞬間）だけ
+        ui.fx.appendChild(h('span', { class: 'tb-glow on' })); // 割れた瞬間の白い光。ふちの無い丸い光（四角い白い面にしない。先生の指摘『四角い枠みたいなのが出てきた』）
         figClass('add', 'gone');
         playBossSfx(app.state.settings, 'shatter1'); // 砕ける瞬間の大きな音（2つ重ねる）
         playBossSfx(app.state.settings, 'shatter2');
@@ -686,11 +691,10 @@ export function renderTrueBoss(app) {
       // 第2形態→第3形態: 光がどんどん強まり、強い光の中で翼が広がるように、横にぐっと開いた姿が現れる
       figClass('add', 'glow', 'swell');
       [600, 1000, 1300].forEach((t) => {
-        later(() => ui.flash.classList.add('on'), t);
-        later(() => ui.flash.classList.remove('on'), t + 140);
+        later(() => ui.fx.appendChild(h('span', { class: 'tb-glow on' })), t);
       });
       later(() => ui.fx.appendChild(h('span', { class: 'tb-burst strong' })), 1000);
-      later(() => { ui.flash.classList.add('on'); }, 1700);
+      later(() => ui.fx.appendChild(h('span', { class: 'tb-glow on' })), 1700);
       later(() => { ui.flash.classList.remove('on'); figClass('remove', 'swell'); swap(); }, 1900);
       later(() => { ui.fx.textContent = ''; }, 3000);
     }
@@ -894,7 +898,7 @@ export function renderTrueBoss(app) {
       h('h1', { text: win ? data.name + ' を たおした！' : '負けてしまった…' }),
       win
         ? h('p', { class: 'score' }, '真ボスを ', h('strong', { text: S.wins + ' 回' }), ' たおしました')
-        : h('p', { text: '第' + battle().form + '形態で、HP がなくなりました。解説を読んで、もう一度挑みましょう（第1形態からです）。' }),
+        : h('p', { text: (trueBossSeenForm2(app.state) ? '第' + battle().form + '形態で、' : '') + 'HP がなくなりました。解説を読んで、もう一度挑みましょう' + (trueBossSeenForm2(app.state) ? '（第1形態からです）' : '') + '。' }),
       h('p', { class: 'small muted', text: S.log.length + ' 回答えて、' + ok + ' 回正解しました' }),
       h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
     root.appendChild(card);
@@ -950,7 +954,7 @@ export function renderTrueBoss(app) {
       group('right', '正解だった問題', S.log.filter((x) => x.correct)));
     root.appendChild(list);
     const row = h('div', { class: 'btn-row' });
-    row.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-tb-again': '1', onClick: again }, win ? 'もう一度挑む' : 'もう一度挑む（第1形態から）'));
+    row.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-tb-again': '1', onClick: again }, win || !trueBossSeenForm2(app.state) ? 'もう一度挑む' : 'もう一度挑む（第1形態から）'));
     row.appendChild(h('button', { class: 'btn big', type: 'button', 'data-boss-back': '1', onClick: leave }, '戻る'));
     root.appendChild(row);
     window.scrollTo(0, 0);

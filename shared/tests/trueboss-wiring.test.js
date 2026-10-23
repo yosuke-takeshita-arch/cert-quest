@@ -139,7 +139,7 @@ test('CSS: 新しい部品の動き（星のまたたき・文字の現れ）は
   assert.match(red, /\.tb-star \{ animation: none;/);
   assert.match(red, /\.tb-ending-title, \.tb-ending-line \{ transition: none; \}/);
   // 進化の演出（殻のひび・揺れ・光）も、動きを減らす設定では止まる
-  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack-line\.on, \.tb-eye-glow\.on, \.tb-burst \{ animation: none; \}/);
+  assert.match(red, /\.boss-fig\.shake, \.boss-fig\.swell, \.boss-fig\.emerge, \.boss-fig\.spread, \.tb-crack-line\.on, \.tb-eye-glow\.on, \.tb-burst, \.tb-glow\.on \{ animation: none; \}/);
   const view = read('shared/js/views/trueboss.js');
   assert.doesNotMatch(view, /setAttribute\('style'|innerHTML|\bstyle:\s*['"{]/, 'インライン style / innerHTML');
 });
@@ -249,4 +249,33 @@ test('結果の一覧のCSS: 押せる高さ48px以上。問題文は2行まで�
   assert.match(css, /\.tb-group\.right \.tb-group-btn \{ border-color: var\(--ok\); \}/);
   assert.match(css, /\.tb-q-btn\[aria-expanded="true"\] \.tb-stem \{ display: block; -webkit-line-clamp: unset; \}/);
   assert.doesNotMatch(css, /\.tb-group-body \{[^}]*display:|\.tb-q-panel \{[^}]*display:/, 'display を決めると hidden が効かなくなる');
+});
+
+test('第2形態を見るまでは「形態」「進化」を画面に出さない（負けた結果・決まりの文・やめる確認・やり直しのボタン）。見たあとは出してよい', async () => {
+  const src = code('shared/js/views/trueboss.js');
+  const { ruleText } = await import('../js/views/trueboss.js').catch(() => ({}));
+  // 結果の画面（負け）
+  const r = fnBody(src, 'showResult');
+  assert.match(r, /\(trueBossSeenForm2\(app\.state\) \? '第' \+ battle\(\)\.form \+ '形態で、' : ''\) \+ 'HP がなくなりました/);
+  assert.match(r, /win \|\| !trueBossSeenForm2\(app\.state\) \? 'もう一度挑む' : 'もう一度挑む（第1形態から）'/);
+  // やめる確認
+  assert.match(src, /やり直すときは' \+ \(trueBossSeenForm2\(app\.state\) \? '第1形態から' : '最初から'\) \+ 'です/);
+  // 決まりの文（最初の問題の上）
+  assert.match(src, /text: ruleText\(trueBossSeenForm2\(app\.state\)\)/);
+  assert.match(src, /\(seen2 \? 'ボスは進化して、だんだん 手ごわくなります。' : ''\) \+ STREAK_HEAL \+ '問続けて正解すると/);
+  // 第2形態を見た印は、第2形態に替わる瞬間（swap）に付ける
+  assert.match(fnBody(src, 'evolveSequence'), /if \(markTrueBossSeenForm2\(app\.state\)\) app\.commit\(\)/);
+  // 「形態」の文字を直に書いている行は、すべて『見たあと』に出るものだけ（札・問題の上・結果）。許可した行以外に無い
+  const lines = src.split('\n').filter((l) => /形態/.test(l) && /['"`].*形態.*['"`]/.test(l));
+  for (const l of lines) {
+    const ok = /battle\(\)\.form > 1|trueBossSeenForm2|seen2|ev\.evolved|' \+ f \+ '形態|第' \+ battle\(\)\.form|形態から' : '最初から'/.test(l);
+    assert.ok(ok, '第2形態を見る前に出るかもしれない「形態」の文: ' + l.trim().slice(0, 100));
+  }
+  // 入口（地図・復習）と、データ（せりふ）には「形態」を出さない
+  const entry = src.slice(src.indexOf('export function trueBossPlace'), src.indexOf('function buildCrackLayer'));
+  assert.doesNotMatch(entry, /形態|進化/);
+  const data = JSON.parse(read('g-kentei/data/trueboss.json'));
+  for (const f of data.forms) for (const arr of Object.values(f.lines)) for (const t of arr) assert.doesNotMatch(t, /形態/, t);
+  for (const t of data.lines.ending) assert.doesNotMatch(t, /形態/);
+  assert.doesNotMatch(read('shared/js/lib/badges.js').match(/id: 'true-boss'[\s\S]*?progress/)[0], /形態|進化/);
 });

@@ -968,7 +968,10 @@ body.boss-on { background: #000; }
 .boss-fig.swell { animation: tb-swell 1.7s ease-in forwards; }
 .boss-fig.emerge { animation: tb-emerge 1s ease-out; }
 .boss-fig.spread { animation: tb-spread 1s ease-out; }
-.tb-burst { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, #fff 0%, rgba(255, 224, 130, 0.85) 25%, rgba(255, 224, 130, 0) 65%); opacity: 0; animation: tb-burst 1s ease-out forwards; }
+.tb-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle closest-side at 50% 50%, #fff 0%, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%); }
+.tb-glow.on { animation: tb-glow 0.5s ease-out forwards; }
+@keyframes tb-glow { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
+.tb-burst { position: absolute; inset: 0; background: radial-gradient(circle closest-side at 50% 50%, #fff 0%, rgba(255, 224, 130, 0.85) 40%, rgba(255, 224, 130, 0) 100%); opacity: 0; animation: tb-burst 1s ease-out forwards; }
 .tb-burst.strong { animation-duration: 1.6s; }
 @keyframes tb-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px) rotate(-1deg); } 75% { transform: translateX(4px) rotate(1deg); } }
 @keyframes tb-swell { 0% { transform: scale(1); } 100% { transform: scale(1.12); filter: brightness(2.2); } }
@@ -979,7 +982,7 @@ body.boss-on { background: #000; }
 @media (prefers-reduced-motion: reduce) {
   .tb-star { animation: none; opacity: 0.8; }
   .tb-float.f2, .tb-float.f3 { animation: none; }
-  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack-line.on, .tb-eye-glow.on, .tb-burst { animation: none; }
+  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack-line.on, .tb-eye-glow.on, .tb-burst, .tb-glow.on { animation: none; }
   .boss-fig.slump, .boss-fig.revive, .boss-fig.slump .boss-img, .boss-fig.revive .boss-img, .boss-fig.slump .boss-fig-sym, .boss-fig.revive .boss-fig-sym { transition: none; }
   .tb-ending-title, .tb-ending-line { transition: none; }
 }

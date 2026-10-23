@@ -78,13 +78,13 @@ test('出る条件: 問題のある章が1つも無い・壊れた入力では�
 });
 
 test('倒した回数の記録: 古い記録・壊れた値は0。倒すと1ずつ増える', () => {
-  assert.deepEqual(normalizeTrueBoss(undefined), { wins: 0 });
-  assert.deepEqual(normalizeTrueBoss(null), { wins: 0 });
-  assert.deepEqual(normalizeTrueBoss([3]), { wins: 0 });
-  assert.deepEqual(normalizeTrueBoss({ wins: -1 }), { wins: 0 });
-  assert.deepEqual(normalizeTrueBoss({ wins: 1.5 }), { wins: 0 });
-  assert.deepEqual(normalizeTrueBoss({ wins: '3' }), { wins: 0 });
-  assert.deepEqual(normalizeTrueBoss({ wins: 4 }), { wins: 4 });
+  assert.deepEqual(normalizeTrueBoss(undefined), { wins: 0, seen2: false });
+  assert.deepEqual(normalizeTrueBoss(null), { wins: 0, seen2: false });
+  assert.deepEqual(normalizeTrueBoss([3]), { wins: 0, seen2: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: -1 }), { wins: 0, seen2: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: 1.5 }), { wins: 0, seen2: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: '3' }), { wins: 0, seen2: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: 4 }), { wins: 4, seen2: false });
   const s = {};
   assert.equal(trueBossWins(s), 0);
   assert.equal(recordTrueBossWin(s), 1);
@@ -96,11 +96,11 @@ test('倒した回数の記録: 古い記録・壊れた値は0。倒すと1ず�
 });
 
 test('学習記録: defaultState に入っていて、読み込みで正しい形になる', () => {
-  assert.deepEqual(defaultState().trueBoss, { wins: 0 });
-  assert.deepEqual(mergeState({}).trueBoss, { wins: 0 });
-  assert.deepEqual(mergeState({ trueBoss: { wins: 3 } }).trueBoss, { wins: 3 });
-  assert.deepEqual(mergeState({ trueBoss: { wins: 'x' } }).trueBoss, { wins: 0 });
-  assert.deepEqual(mergeState({ trueBoss: 7 }).trueBoss, { wins: 0 });
+  assert.deepEqual(defaultState().trueBoss, { wins: 0, seen2: false });
+  assert.deepEqual(mergeState({}).trueBoss, { wins: 0, seen2: false });
+  assert.deepEqual(mergeState({ trueBoss: { wins: 3 } }).trueBoss, { wins: 3, seen2: false });
+  assert.deepEqual(mergeState({ trueBoss: { wins: 'x' } }).trueBoss, { wins: 0, seen2: false });
+  assert.deepEqual(mergeState({ trueBoss: 7 }).trueBoss, { wins: 0, seen2: false });
 });
 
 // ---------------------------------------------------------------- 出題の組み立て
@@ -792,4 +792,26 @@ test('ひみつのバッジの並び: ノーダメージの次（タップのバ
   const i = ids2.indexOf('true-boss');
   assert.equal(ids2[i - 1], 'boss-flawless');
   assert.equal(ids2[i + 1], 'tap-shiba-100');
+});
+
+// ---------------------------------------------------------------- 第2形態を見たか（見るまでは『形態』を画面に出さない）
+
+test('第2形態を見たかの記録: 古い記録・壊れた値は「見ていない」。記録すると true。倒したことがあれば見たことになる。記録しても倒した回数は変わらない', async () => {
+  const { trueBossSeenForm2, markTrueBossSeenForm2 } = await import('../js/lib/trueboss.js');
+  assert.deepEqual(normalizeTrueBoss({ wins: 2, seen2: true }), { wins: 2, seen2: true });
+  for (const bad of [undefined, null, {}, { seen2: 'true' }, { seen2: 1 }, { seen2: false }, [true]]) assert.equal(normalizeTrueBoss(bad).seen2, false, JSON.stringify(bad));
+  assert.equal(trueBossSeenForm2({}), false);
+  assert.equal(trueBossSeenForm2({ trueBoss: { wins: 0 } }), false);
+  assert.equal(trueBossSeenForm2(null), false);
+  assert.equal(trueBossSeenForm2({ trueBoss: { wins: 1 } }), true, '倒した人は見たことになる');
+  const s = { trueBoss: { wins: 3 } };
+  const st = { trueBoss: { wins: 0 } };
+  assert.equal(markTrueBossSeenForm2(st), true, '初めて');
+  assert.equal(markTrueBossSeenForm2(st), false, '2回目は初めてではない');
+  assert.equal(trueBossSeenForm2(st), true);
+  assert.equal(trueBossWins(st), 0);
+  recordTrueBossWin(st);
+  assert.deepEqual(st.trueBoss, { wins: 1, seen2: true }, '倒しても見た印は消えない');
+  assert.equal(s.trueBoss.seen2, undefined);
+  assert.equal(mergeState({ trueBoss: { wins: 0, seen2: true } }).trueBoss.seen2, true);
 });
