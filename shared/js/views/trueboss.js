@@ -576,7 +576,7 @@ export function renderTrueBoss(app) {
       figClass('remove', 'glow', 'blinkoff', 'gone', 'shake');
       paintForm();
       paintHp(battle(), -1);
-      startBossTheme(battle().form === 3 ? 3 : 2);
+      startBossTheme(battle().form); // 形態が替わったら曲も替える（第2・第3形態は別の曲）
       if (!R) flash(ui.fig, ev.evolved.from === 1 ? 'emerge' : 'spread', 1000);
     };
     const newP = () => prof();
@@ -602,7 +602,7 @@ export function renderTrueBoss(app) {
         // 動きを減らす設定: 点滅・揺れなしで、撃破の文 → 少しして進化の文
         say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))], { instant: true });
         figClass('add', 'down');
-        later(() => { figClass('remove', 'down'); playSynth(app.state.settings, 'evolve'); finish(); }, 1200);
+        later(() => { figClass('remove', 'down'); playBossSfx(app.state.settings, 'shatter1'); playBossSfx(app.state.settings, 'shatter2'); finish(); }, 1200);
         return;
       }
       playSynth(app.state.settings, 'evolve');
@@ -625,7 +625,7 @@ export function renderTrueBoss(app) {
       }, 1350);
       later(() => say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))]), 1450);
       // 地鳴り → 崩れたはずの殻がもどってくる
-      later(() => { ui.fx.textContent = ''; say(['……ゴゴゴゴ……']); }, 3300);
+      later(() => { ui.fx.textContent = ''; say(['……ゴゴゴゴ……']); playBossSfx(app.state.settings, 'rumble'); }, 3300); // 地鳴り（約3.6秒。後ろをフェードアウト）
       [3400, 3800, 4200].forEach((t) => later(() => { flash(ui.scene, 'quake', 450); vibrate(app.state.settings, [60, 40, 60]); }, t));
       later(() => { figClass('remove', 'gone'); flash(ui.fig, 'appear', 700); }, 4500);
     } else {
@@ -633,7 +633,7 @@ export function renderTrueBoss(app) {
     }
     if (from1) {
       // 第1形態→第2形態: ずんぐりした真鍮の殻が揺れてひびが入り、割れて破片が飛び散り、中からすらりとした姿が光とともに現れる
-      later(() => { playSynth(app.state.settings, 'evolve'); figClass('add', 'shake'); }, P);
+      later(() => figClass('add', 'shake'), P);
       [150, 420, 690, 900].forEach((t, k) => later(() => {
         const c = h('span', { class: 'tb-crack' });
         c.style.setProperty('--x', [50, 38, 62, 50][k] + '%');
@@ -642,6 +642,7 @@ export function renderTrueBoss(app) {
         c.style.setProperty('--len', [38, 30, 30, 40][k] + '%');
         ui.fx.appendChild(c);
         vibrate(app.state.settings, 25);
+        playBossSfx(app.state.settings, k % 2 ? 'crack2' : 'crack1', [0.7, 0.85, 1, 1.1][k]); // ひびが入るたびの小さな音（だんだん大きく）
       }, P + t));
       later(() => {
         ui.fx.textContent = '';
@@ -649,6 +650,8 @@ export function renderTrueBoss(app) {
         ui.flash.classList.add('on'); // 割れた瞬間の白い光
         crumble('#b08d3c');
         figClass('add', 'gone');
+        playBossSfx(app.state.settings, 'shatter1'); // 砕ける瞬間の大きな音（2つ重ねる）
+        playBossSfx(app.state.settings, 'shatter2');
       }, P + 1150);
       later(() => { ui.flash.classList.remove('on'); swap(); ui.fx.appendChild(h('span', { class: 'tb-burst' })); }, P + 1400);
       later(() => { ui.fx.textContent = ''; }, P + 2400);
@@ -824,7 +827,7 @@ export function renderTrueBoss(app) {
       clearTimers();
       done();
     }
-    playSynth(app.state.settings, 'ending');
+    startBossTheme(4); // エンディングの曲（約105秒。BGM がオフなら鳴らさない。取れなければ短いファンファーレ）
     vibrate(app.state.settings, [40, 30, 40, 30, 80]);
     window.scrollTo(0, 0);
     if (R) { revealAll(); return; }

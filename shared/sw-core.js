@@ -134,6 +134,11 @@ const SFX = [
   'boss-win_victory.mp3',
   'boss-hurt_explosion02.ogg',
   'boss-crit_cut.ogg',
+  'true-crack_ice-small-1.ogg',
+  'true-crack_ice-small-2.ogg',
+  'true-shatter_ice-big-1.ogg',
+  'true-shatter_ice-big-2.ogg',
+  'true-rumble_earthquake-shake.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
 // 上の2つのリストは '../shared/' から始まる形で書いてある。sw.js が深い場所にあるとき

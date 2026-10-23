@@ -3,13 +3,13 @@
 // 実行: cd shared && node --test tests/trueboss-music.test.js
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { noteFreq, bossTheme, SYNTH_SFX, sfxLength } from '../js/lib/bossmusic.js';
 import {
   trueBossTheme, TRUE_SFX, TRUE_LEAD, TRUE_BASS, TRUE_FINAL_LEAD, TRUE_FINAL_ARP, TRUE_THEME_BPM, TRUE_FINAL_BPM, TRUE_STEP_SEC, TRUE_FINAL_STEP_SEC,
 } from '../js/lib/trueboss-music.js';
-import { bgmPlan } from '../js/lib/sound.js';
+import { bgmPlan, TRUE_BOSS_BGM, BGM_TRACKS, BGM_GAIN_MAX, TARGET_BGM_RMS, bgmGain, normalizeBgmTrack, SFX_FILES, BOSS_SFX } from '../js/lib/sound.js';
 
 const WAVES = ['square', 'triangle'];
 
@@ -96,21 +96,26 @@ test('効果音: 進化・技・回復・エンディング。全部の音が正
   assert.ok(sfxLength('fanfare') > 0, '（比較）章のボスの効果音の長さの数え方は変えていない');
 });
 
-test('audio.js の結線: 真ボスの曲は章のボスの曲と同じ仕組み（予約して8小節をくり返す）で、ファイルを取らずプログラムの曲だけ。形態3で曲を替える。効果音は playSynth で引く', () => {
+test('audio.js の結線: 真ボスの曲は形態ごとのファイル（TRUE_BOSS_BGM）をくり返し、取れなければプログラムの曲。形態が替わったら曲を替える。効果音は playSynth で引く', () => {
   const src = readFileSync(fileURLToPath(new URL('../js/audio.js', import.meta.url)), 'utf8').replace(/\r\n/g, '\n');
   assert.match(src, /import \{ trueBossTheme, TRUE_SFX \} from '\.\/lib\/trueboss-music\.js';/);
-  assert.match(src, /M\.theme = M\.trueForm \? trueBossTheme\(M\.trueForm\) : bossTheme\(\)/, '予約する曲を選ぶところ');
-  assert.match(src, /if \(M\.trueForm\) \{ startBossSynth\(\); return; \}/, '真ボスはファイルの曲を取らない');
+  assert.match(src, /M\.theme = M\.trueForm \? trueBossTheme\(Math\.min\(M\.trueForm, 3\)\) : bossTheme\(\)/, 'プログラムの曲（ファイルが取れないとき）を選ぶところ');
+  assert.match(src, /\(M\.trueForm \? TRUE_BOSS_BGM\[M\.trueForm\] : BOSS_BGM\)\.file/, 'ファイルの曲を選ぶところ');
+  assert.match(src, /M\.el\.loop = M\.trueForm !== 4/, 'エンディング（4）だけくり返さない');
+  assert.match(src, /if \(M\.trueForm === 4\) \{ scheduleEvents\(c, M\.gain, TRUE_SFX\.ending/, 'エンディングの曲が取れないときは短いファンファーレ');
   assert.match(src, /export function startBossTheme\(trueForm = 0\)/);
   assert.match(src, /const score = SYNTH_SFX\[name\] \|\| TRUE_SFX\[name\];/, '効果音の引き方');
   assert.match(src, /scheduleEvents\(c, g, score, /);
-  // 曲を替えるとき（第3形態）は、鳴っている曲を小さくして止め、armed のまま新しい曲を始める
+  // 曲が替わるとき（形態が替わった）は、鳴っている曲を小さくして止め、armed のまま新しい曲を始める
   const fn = src.slice(src.indexOf('export function startBossTheme'), src.indexOf('export function stopBossTheme'));
+  assert.match(fn, /const themeChanged = f !== M\.trueForm;/);
   assert.match(fn, /if \(themeChanged && M\.running\) stopBossMusic\(false\)/);
   assert.match(fn, /M\.armed = true;\s*syncBgm\(\);/);
   // 章のボス（引数なし）に戻ったら、真ボスの曲の印を外す
-  assert.match(fn, /const f = Number\.isInteger\(trueForm\) && trueForm >= 1 \? Math\.min\(trueForm, 3\) : 0;/);
+  assert.match(fn, /const f = Number\.isInteger\(trueForm\) && trueForm >= 1 \? Math\.min\(trueForm, 4\) : 0;/);
   assert.match(fn, /M\.trueForm = f;/);
+  // 音量は曲ごとの trim（ファイルが取れないときは synth の補正）
+  assert.match(src, /TRUE_BOSS_SYNTH_TRIM : BOSS_BGM\.synthTrim\) : e\.trim/);
 });
 
 test('BGM の設定に従う: 真ボスの間も、章のボスと同じ boss 場面。BGM（問題中）がオンなら鳴り、オフなら何も鳴らさない', () => {
@@ -122,7 +127,69 @@ test('BGM の設定に従う: 真ボスの間も、章のボスと同じ boss �
   const view = readFileSync(fileURLToPath(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8').replace(/\r\n/g, '\n');
   assert.match(view, /setBgmBoss\(true\)/);
   assert.match(view, /startBossTheme\(1\)/);
-  assert.match(view, /startBossTheme\(battle\(\)\.form === 3 \? 3 : 2\)/, '進化したら、第3形態だけ別の曲');
+  assert.match(view, /startBossTheme\(battle\(\)\.form\)/, '進化したら、その形態の曲に替える');
+  assert.match(view, /startBossTheme\(4\)/, 'エンディングの曲');
   assert.match(view, /stopBossTheme\(\)/);
   assert.match(view, /setBgmBoss\(false\)/);
+});
+
+// ---- 外部の素材（2026-10-23。CC0）----
+const sharedDir = fileURLToPath(new URL('..', import.meta.url));
+const licenses = () => readFileSync(sharedDir + '../docs/sources/audio-licenses.md', 'utf8');
+
+test('真ボスの曲のファイル: 4つとも実在し、mp3 で 1曲3MB 以下。ライセンスの記録に載っている。設定の曲の一覧には入らない。trim は目盛り100でも割れない値', () => {
+  assert.deepEqual(Object.keys(TRUE_BOSS_BGM), ['1', '2', '3', '4']);
+  const doc = licenses();
+  for (const [form, t] of Object.entries(TRUE_BOSS_BGM)) {
+    const p = sharedDir + 'audio/bgm/' + t.file;
+    assert.ok(existsSync(p), p);
+    assert.match(t.file, /\.mp3$/);
+    assert.ok(statSync(p).size <= 3 * 1024 * 1024, t.file + ' が3MBを超えている');
+    assert.ok(doc.includes(t.file), t.file + ' が audio-licenses.md に無い');
+    assert.ok(!BGM_TRACKS.some((x) => x.file === t.file), '設定の曲の一覧に入っている');
+    assert.ok(t.trim > 0 && t.trim < 1, form);
+    assert.ok(t.peak * t.trim * BGM_GAIN_MAX < 1, '目盛り100で割れる: ' + form);
+    // rms から決めた trim と合っている（素材を替えたら測り直す）
+    assert.ok(Math.abs(t.trim - TARGET_BGM_RMS / (t.rms * bgmGain(40))) < 0.002, 'trim が rms と合っていない: ' + form);
+  }
+  for (const w of ['Centurion_of_war', 'Yoiyami', 'final-stand-0', 'CC0 1.0 Universal']) assert.ok(doc.includes(w), w);
+  assert.equal(statSync(sharedDir + 'audio/bgm/' + TRUE_BOSS_BGM[1].file).size, 1365889);
+  assert.equal(statSync(sharedDir + 'audio/bgm/' + TRUE_BOSS_BGM[4].file).size, 1680768);
+  // 設定画面・タイトル画面の「BGM の一覧」に、真ボスの曲の名前が出ない
+  assert.equal(normalizeBgmTrack('true-boss'), 'auto');
+});
+
+test('真ボスの効果音のファイル: 実在し、200KB 未満の ogg。SFX_FILES・sw-core.js の先取りの一覧・ライセンスの記録がそろっている。ひびと砕ける音は BOSS_SFX にある', () => {
+  const doc = licenses();
+  const sw = readFileSync(sharedDir + 'sw-core.js', 'utf8');
+  const files = { truecrack1: 'true-crack_ice-small-1.ogg', truecrack2: 'true-crack_ice-small-2.ogg', trueshatter1: 'true-shatter_ice-big-1.ogg', trueshatter2: 'true-shatter_ice-big-2.ogg', truerumble: 'true-rumble_earthquake-shake.ogg' };
+  for (const [k, f] of Object.entries(files)) {
+    assert.equal(SFX_FILES[k], f);
+    const p = sharedDir + 'audio/sfx/' + f;
+    assert.ok(existsSync(p), p);
+    assert.ok(statSync(p).size < 200 * 1024, f);
+    assert.match(f, /\.ogg$/);
+    assert.ok(doc.includes(f), f + ' が audio-licenses.md に無い');
+    assert.ok(sw.includes("'" + f + "'"), f + ' が sw-core.js の SFX に無い');
+  }
+  assert.deepEqual([BOSS_SFX.crack1.key, BOSS_SFX.crack2.key, BOSS_SFX.shatter1.key, BOSS_SFX.shatter2.key, BOSS_SFX.rumble.key], ['truecrack1', 'truecrack2', 'trueshatter1', 'trueshatter2', 'truerumble']);
+  // ファイルが読めないときは、砕ける音だけ昔のプログラムの進化の音、地鳴りは低い警告音に戻る
+  assert.equal(BOSS_SFX.shatter1.synth, 'evolve');
+  assert.equal(BOSS_SFX.rumble.synth, 'skill');
+  assert.ok(TRUE_SFX.evolve && TRUE_SFX.skill);
+  for (const w of ['IgnasD', 'mieki256', 'ice-breakingshattering', 'earthquake-and-open-sesame', 'LedasLuzta5.ogg', 'shake.flac']) assert.ok(doc.includes(w), w);
+});
+
+test('殻が割れる進化の音の並べ方: ひびが入るたびに小さな音（だんだん大きく）→ 砕ける瞬間に大きな音を2つ重ねる。地鳴りはその前。時刻は演出（亀裂・砕け）と同じ', () => {
+  const view = readFileSync(fileURLToPath(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8').replace(/\r\n/g, '\n');
+  const start = view.indexOf('function evolveSequence');
+  const fn = view.slice(start, view.indexOf('// ---- 撃破の演出', start));
+  // 地鳴り（3300ms）→ ひび4つ（P+150・420・690・900ms。音は交互に2種類、倍率 0.7・0.85・1・1.1）→ 砕ける（P+1150ms。音は2つ）
+  assert.match(fn, /playBossSfx\(app\.state\.settings, 'rumble'\); \}, 3300\)/);
+  assert.match(fn, /\[150, 420, 690, 900\]\.forEach\(\(t, k\) => later\(\(\) => \{/);
+  assert.match(fn, /playBossSfx\(app\.state\.settings, k % 2 \? 'crack2' : 'crack1', \[0\.7, 0\.85, 1, 1\.1\]\[k\]\)/);
+  assert.match(fn, /playBossSfx\(app\.state\.settings, 'shatter1'\);[^\n]*\n\s*playBossSfx\(app\.state\.settings, 'shatter2'\);\n\s*\}, P \+ 1150\)/);
+  assert.ok(fn.indexOf("'rumble'") < fn.indexOf("'crack1'") && fn.indexOf("'crack1'") < fn.lastIndexOf("'shatter1'"), '地鳴り → ひび → 砕ける の順');
+  // 2→3 の進化は、今のプログラムの音のまま
+  assert.match(fn, /\} else \{\n\s*playSynth\(app\.state\.settings, 'evolve'\);/);
 });

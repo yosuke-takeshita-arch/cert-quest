@@ -103,6 +103,11 @@ export const SFX_FILES = {
   bosshit: 'boss-hit_snare.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で正解して、ボスに当たったとき（OpenGameArt「8-bit/Lo-Fi Snare Drum Sound」Spring Spring、CC0）
   bosswin: 'boss-win_victory.mp3', // 2026-10-09 先生が聞き比べて選んだ。ボスを倒したときのファンファーレ（OpenGameArt「Victory」celestialghost8、CC0。後ろの無音を 4.0 秒で切った）
   bosshurt: 'boss-hurt_explosion02.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で間違えて、ボスからダメージをもらったとき（OpenGameArt「Soundpack 03」crazyduckgames の explosion02、CC0。元の ogg のまま）
+  truecrack1: 'true-crack_ice-small-1.ogg', // 2026-10-23 先生『音や音楽は全部推奨でいい』。真ボスの第1→2進化で、殻にひびが入るたびの小さな音（OpenGameArt「Ice breaking/shattering」IgnasD の LedasLuzta2、CC0。ffmpeg で音量を上げて 0.9 で頭打ち）
+  truecrack2: 'true-crack_ice-small-2.ogg', // 同じ素材の LedasLuzta（ひびの2つ目の音）
+  trueshatter1: 'true-shatter_ice-big-1.ogg', // 殻が砕ける瞬間の大きな音（同じ素材の LedasLuzta5）
+  trueshatter2: 'true-shatter_ice-big-2.ogg', // 砕ける音に重ねる長めの音（同じ素材の LedasLuzta33）
+  truerumble: 'true-rumble_earthquake-shake.ogg', // 第1形態を倒したあとの地鳴り（OpenGameArt「Earthquake and Open sesame」mieki256 の shake、CC0。3.6秒に切って後ろをフェードアウト）
   bosscrit: 'boss-crit_cut.ogg', // 2026-10-10 先生が聞き比べて選んだ。ボス戦で会心の一撃が出たとき（OpenGameArt「NES Sounds」Baŝto の cut、CC0。元の ogg のまま。ふつうの当たり bosshit より約6dB 小さいので BOSS_SFX.crit.boost で持ち上げる）
 };
 
@@ -118,6 +123,12 @@ export const BOSS_SFX = {
   crit: { key: 'bosscrit', synth: 'crit', boost: 1.9 },
   win: { key: 'bosswin', synth: 'fanfare' },
   hurt: { key: 'bosshurt', sfx: 'ng' },
+  // 真ボス（2026-10-23）。ファイルが取れないとき、砕ける音（shatter1）は昔のプログラムの進化の音に戻り、地鳴りは低い警告音に戻る。ひびの音は鳴らさない
+  crack1: { key: 'truecrack1', synth: null },
+  crack2: { key: 'truecrack2', synth: null },
+  shatter1: { key: 'trueshatter1', synth: 'evolve' },
+  shatter2: { key: 'trueshatter2', synth: null },
+  rumble: { key: 'truerumble', synth: 'skill' },
 };
 
 // BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。
@@ -153,6 +164,19 @@ export const BOSS_BGM = { id: 'boss', file: 'boss_8-bit-danger-strong-boss.mp3',
 // trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-19。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
 // trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.575）。
 export const RUSH_BGM = { id: 'rush', file: 'rush_tower-defense-theme.mp3', name: 'Tower Defense Theme', trim: 0.22, rms: 0.1834, peak: 1.0042 };
+
+// 真ボスの曲（2026-10-23 先生『音や音楽は全部推奨でいい』。OpenGameArt「Final Stand」Centurion_of_war の phase 1.3・2.2・4.1finalmax、「Starfield Romance」Yoiyami、CC0）。
+// BGM の設定（オン／オフ・音量）に従う。BGM_TRACKS（設定の曲の一覧・おまかせ）には入れない。形態 1〜3 は同じファイルをくり返し、形態が替わったら曲も替える。4 はエンディング（くり返さない。約105秒で終わりを6秒フェードアウト）。
+// ファイルが取れない・鳴らせないときは、プログラムで鳴らす曲（lib/trueboss-music.js）に戻る（エンディングは短いファンファーレ）。
+// trim・rms・peak は BGM_TRACKS と同じ測り方で、128kbps の mp3 を全チャンネルで測った（2026-10-23。ffmpeg でデコードして、二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.86 / 0.87 / 0.77 / 0.67）。
+export const TRUE_BOSS_BGM = {
+  1: { file: 'true-boss_1-final-stand-1-3.mp3', name: 'Final Stand (phase 1.3)', trim: 0.423, rms: 0.0955, peak: 0.7854 },
+  2: { file: 'true-boss_2-final-stand-2-2.mp3', name: 'Final Stand (phase 2.2)', trim: 0.375, rms: 0.1077, peak: 0.8931 },
+  3: { file: 'true-boss_3-final-stand-4-1max.mp3', name: 'Final Stand (phase 4.1 final max)', trim: 0.373, rms: 0.1081, peak: 0.7965 },
+  4: { file: 'true-boss_ending-starfield-romance.mp3', name: 'Starfield Romance', trim: 0.376, rms: 0.1073, peak: 0.6843 },
+};
+export const TRUE_BOSS_SYNTH_TRIM = 0.04; // 戻り先のプログラムの曲の補正（BOSS_BGM.synthTrim と同じ見積もり。耳で決めた値ではない）
 
 /** お祝いの種類 → 効果音のキー。 */
 export function celebrateSfx(kind) {

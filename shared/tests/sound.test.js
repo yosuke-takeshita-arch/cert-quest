@@ -524,9 +524,10 @@ test('ボス戦の曲の補正: 実測の大きさ×倍率が、ほかの BGM �
 test('ボス戦の曲の鳴らし方: ファイルをくり返し、取れなければプログラムの曲に戻る。止めるときは小さくしてから止める', () => {
   const au = readFileSync(join(shared, 'js', 'audio.js'), 'utf8');
   const file = functionBody(au, 'startBossFile');
-  assert.match(file, /BGM_BASE|bossFileUrl\(\)/);
-  assert.match(functionBody(au, 'bossFileUrl'), /BGM_BASE \+ BOSS_BGM\.file/);
-  assert.match(file, /M\.el\.loop = true/);
+  assert.match(file, /bossFileUrl\(/);
+  assert.match(file, /BOSS_BGM/); // 章のボスの曲（真ボスの曲は TRUE_BOSS_BGM。真ボスのテストが見る）
+  assert.match(functionBody(au, 'bossFileUrl'), /BGM_BASE \+ file/);
+  assert.match(file, /M\.el\.loop = M\.trueForm !== 4/); // 章のボスの曲はくり返す（真ボスのエンディングだけ1回）
   assert.match(file, /M\.elSource\.connect\(M\.gain\)/); // 音量は M.gain（BGM の音量と曲の補正）を通る
   assert.match(file, /M\.mode = 'file'/);
   assert.match(file, /catch \(e\)[\s\S]*return false/); // 取れない・鳴らせない → false
@@ -551,7 +552,7 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
   assert.equal(SFX_FILES.bosshit, 'boss-hit_snare.ogg');
   assert.equal(SFX_FILES.bosswin, 'boss-win_victory.mp3');
-  assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['crit', 'hit', 'hurt', 'win']);
+  assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['crack1', 'crack2', 'crit', 'hit', 'hurt', 'rumble', 'shatter1', 'shatter2', 'win']); // crack・shatter・rumble は真ボス（trueboss-music.test.js が見る）
   // 会心の一撃: ファイル（snare の代わり）。元の音が小さいので倍率をかける。読めなければプログラムの crit に戻る
   assert.equal(SFX_FILES.bosscrit, 'boss-crit_cut.ogg');
   assert.equal(BOSS_SFX.crit.key, 'bosscrit');
@@ -578,7 +579,7 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   assert.match(body, /playSfx\(settings, e\.key,/);
   assert.match(body, /playSynth\(settings, e\.synth\)/);
   assert.match(body, /playSfx\(settings, e\.sfx\)/);
-  assert.match(body, /e\.boost\)/); // 倍率を playSfx に渡す
+  assert.match(body, /\(e\.boost \|\| 1\) \* boostMul\)/); // 倍率（e.boost と、呼ぶ側の boostMul）を playSfx に渡す
   assert.match(functionBody(au, 'playSfx'), /g\.gain\.value = gain \* boost/);
   assert.match(functionBody(au, 'playSfx'), /onMissing \? onMissing\(\)/);
   assert.match(functionBody(au, 'playSfx'), /!settings\.sound/);

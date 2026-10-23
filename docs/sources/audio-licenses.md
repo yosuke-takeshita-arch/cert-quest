@@ -70,6 +70,41 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 
 - **G**（2026-10-19 に配布ページを curl で取得して確かめた）: 投稿情報の欄に『Author: DST』『License(s): CC0』（リンクは <https://creativecommons.org/publicdomain/zero/1.0/>、ページ内のライセンスのリンクはこの1種類だけ）があり、`CC-BY` や表示（Attribution）を求める記載は無い（ページの本文にあるのは『Made exclusively for OpenGameArt.org』『Get more free game music from DST at http://www.nosoapradio.us !』と、利用者のコメントだけ）。ファイルはページの mp3 のリンク（`https://opengameart.org/sites/default/files/DST-TowerDefenseTheme_1.mp3`）から取り直し、手元の原本（7,979,070 バイト）と cmp で一致することを確かめた。先生が8曲を聞き比べて選んだ（2026-10-19）。秒数チャレンジ（`challengeName`）と「どっち？早押し」の問題中だけ、ふつうの問題中の曲（`bgm`・`bgmTrack`）の代わりに流す（問題中の BGM の設定に従う）。ファイルが取れない・鳴らせないときは、ふつうの問題中の曲に戻る。長いので 3MB を少し超える（BGM の一覧の曲は 3MB 以下の決まりだが、この曲は一覧に入れない）。
 
+## 真ボスの曲と効果音（2026-10-23。先生が『音や音楽は全部推奨でいい！』で選んだ）
+
+配布元は OpenGameArt.org。配布ページは 2026-10-23 に curl で取得し直して確かめた。ファイルも取り直して、手元の原本と cmp で一致を確かめた（Final Stand の3つ・IceShatters_0.zip・shake.flac・starfield_romance1.wav）。曲は `shared/js/lib/sound.js` の `TRUE_BOSS_BGM`、効果音は `SFX_FILES` の `true*` と `BOSS_SFX` の `crack1`・`crack2`・`shatter1`・`shatter2`・`rumble`。
+
+### 曲（`shared/audio/bgm/` に置く。`BGM_TRACKS`（設定の曲の一覧・おまかせ）には入れない）
+
+| ファイル | 使う場面 | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス |
+|---|---|---|---|---|---|---|
+| `true-boss_1-final-stand-1-3.mp3` | 真ボスの第1形態 | `final_stand_phase_1.3_0.ogg`（4,852,646 バイト・約85.3秒・450kbps） | 約85.3秒・1,365,889 バイト（ffmpeg で 128kbps の mp3 に変換。長さは変えていない） | Centurion_of_war | <https://opengameart.org/content/final-stand-0> | CC0 |
+| `true-boss_2-final-stand-2-2.mp3` | 真ボスの第2形態 | `final_stand_phase_2.2_0.ogg`（4,248,047 バイト・約74.7秒） | 約74.7秒・1,195,780 バイト（同じ変換） | Centurion_of_war | 同じ | CC0 |
+| `true-boss_3-final-stand-4-1max.mp3` | 真ボスの第3形態 | `final_stand_phase_4.1finalmax_0.ogg`（3,642,364 バイト・64.0秒） | 64.0秒・1,024,834 バイト（同じ変換） | Centurion_of_war | 同じ | CC0 |
+| `true-boss_ending-starfield-romance.mp3` | 真ボスを倒したあとのエンディング | `starfield_romance1.wav`（42,040,360 バイト・約219.0秒・48kHz ステレオ） | 105.0秒・1,680,768 バイト（先頭から105秒で切り、99秒から6秒かけてフェードアウト。128kbps の mp3 に変換） | Yoiyami | <https://opengameart.org/content/starfield-romance-%E2%80%93-cc0-ambient-emotional-space-theme-yoiyami-blue-series-%E2%80%93-no3> | CC0 |
+
+- **確かめた逐語（Final Stand）**: 投稿情報の欄に『Author: Centurion_of_war』『Art Type: Music』『License(s): CC0』。`CC-BY` や表示（Attribution）を求める記載は無い。ページには `final_stand_phase_4.1finalmax_0.ogg`・`final_stand_phase_1.3_0.ogg`・`final_stand_phase_2.2_0.ogg` ほかのファイルが並ぶ。タグは『chiptune Techno adventure retro style retrowave intense epic boss battle upbeat』。
+- **確かめた逐語（Starfield Romance）**: 『Author: Yoiyami』『Art Type: Music』『License(s): CC0』。本文に『Free for use in any project — commercial or hobby — without attribution.』、Copyright/Attribution Notice 欄に『License: CC0 1.0 Universal (Public Domain)』『No credit is required, but if you want to attribute:』。表示は求められていない。
+- 3つの Final Stand は、初めと終わりに無音が無く、ループ用に作られた曲と見て `<audio loop>` でくり返す（mp3 にするとつなぎ目に数十ミリ秒の間が出ることがある。耳では確かめていない）。エンディングはくり返さない（約105秒で終わる）。
+- 音量の補正（`trim`）は、128kbps の mp3 を ffmpeg でデコードして全チャンネルの二乗平均の平方根・最大の絶対値を測って決めた（`sound.js` の `TRUE_BOSS_BGM` に rms・peak も書いた）。
+- ファイルが取れない・鳴らせないときは、プログラムで鳴らす曲（`shared/js/lib/trueboss-music.js`）に戻る。
+
+### 効果音（`shared/audio/sfx/`。インストール時に取る）
+
+| ファイル | 使う場面 | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス |
+|---|---|---|---|---|---|---|
+| `true-crack_ice-small-1.ogg` | 真ボス第1→2形態の進化で、殻にひびが入る小さな音（1つ目・3つ目） | `IceShatters_0.zip`（75,074 バイト）の中の `IceShatters/LedasLuzta2.ogg`（10,448 バイト） | 約0.42秒・9,044 バイト | IgnasD | <https://opengameart.org/content/ice-breakingshattering> | CC0 |
+| `true-crack_ice-small-2.ogg` | 同じ（2つ目・4つ目） | 同じ zip の `LedasLuzta.ogg` | 約0.59秒・10,520 バイト | IgnasD | 同じ | CC0 |
+| `true-shatter_ice-big-1.ogg` | 殻が砕ける瞬間の大きな音 | 同じ zip の `LedasLuzta5.ogg` | 約0.84秒・14,461 バイト | IgnasD | 同じ | CC0 |
+| `true-shatter_ice-big-2.ogg` | 砕ける音に重ねる、長めの音 | 同じ zip の `LedasLuzta33.ogg` | 約1.32秒・17,520 バイト | IgnasD | 同じ | CC0 |
+| `true-rumble_earthquake-shake.ogg` | 第1形態を倒したあとの地鳴り | `shake.flac`（485,127 バイト・約5.26秒） | 3.6秒・62,507 バイト（先頭から3.6秒で切り、2.4秒から1.2秒かけてフェードアウト。ogg（Vorbis）に変換） | mieki256 | <https://opengameart.org/content/earthquake-and-open-sesame> | CC0 |
+
+- 氷の4つは、元の ogg を ffmpeg で音量を上げて（ひび 1.5 倍・1.7 倍、砕ける音 1.3 倍・1.8 倍）、頭打ち（0.9 または 0.8）をかけ、ogg（Vorbis）に出し直した。ほかの効果音と並べて小さすぎないようにするため。
+- **確かめた逐語（Ice breaking/shattering）**: 『Author: IgnasD』『Art Type: Sound Effect』『License(s): CC0』。`CC-BY` や表示を求める記載は無い。タグは『ice breaking shattering shatter shatters break』。zip の中身は `LedasLuzta.ogg`・`LedasLuzta2.ogg`・`LedasLuzta33.ogg`・`LedasLuzta4.ogg`・`LedasLuzta5.ogg` の5つ（使ったのは4つ）。
+- **確かめた逐語（Earthquake and open sesame）**: 『Author: mieki256』『Art Type: Sound Effect』『License(s): CC0』。表示を求める記載は無い。タグは『earthquake Quake door open』。
+- 地鳴りは低い音が中心なので、スマホで小さく聞こえないかを周波数で測った: 重心 約168Hz、150Hz 未満が約66%、150〜2000Hz が約33%、2000Hz 以上が約1%。既存の『ドン』（`boss-hurt_explosion02.ogg`。重心約85Hz、150Hz 未満が約92%）より中域が多いので、そのままにした（音量を上げていない）。
+- 実際の聞こえ方は、耳では確かめていない。
+
 ## 確かめていないこと
 
 - 音そのものは聞いていない（ライセンスとファイルの大きさ・長さを確かめただけ）。曲・効果音の「合っているか」は、実機で先生が聞いて決める。差し替えるときは `shared/js/lib/sound.js` の表と `shared/sw-core.js` の `SFX` と、この表を直す。
