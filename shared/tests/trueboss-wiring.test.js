@@ -508,3 +508,30 @@ test('「次の問題へ」: 答えのあとに回復のページが続く間は
   const css = read('shared/css/app.css');
   assert.match(css, /\.btn\[aria-disabled="true"\] \{ opacity: 0\.45;/);
 });
+
+test('エンディングの折り返し: 空白の位置だけで折り返し・2行の長さをそろえる。『。』の後ろに文が続く行は表示で2行に分ける（データの文は変えない）', () => {
+  const css = read('shared/css/app.css');
+  const rule = css.match(/\n\.tb-ending-line \{[^}]*\}/)[0];
+  assert.match(rule, /word-break: keep-all;/, '空白の位置だけで折り返す');
+  assert.match(rule, /overflow-wrap: break-word;/, '単語が1行に入らないときだけ割る');
+  assert.doesNotMatch(rule, /overflow-wrap: anywhere/, 'どこでも割れる指定にしない（切れ端が出る）');
+  assert.match(rule, /text-wrap: balance;/);
+  assert.match(css, /\.boss-awake \{[^}]*word-break: keep-all;[^}]*text-wrap: balance;/);
+  assert.match(css, /\.boss-result p \{ text-wrap: balance; \}/);
+  const src = code('shared/js/views/trueboss.js');
+  assert.match(src, /t\.split\(\/\(\?<=。\)\(\?=\.\)\/u\)/, '『。』の後ろに文が続くときだけ分ける');
+  assert.match(src, /kids\.push\(h\('br'\)\); kids\.push\(document\.createTextNode\(x\)\)/, '改行は br。文字は元のまま（textContent は元の文と同じ）');
+  // 分け方の確かめ（実装と同じ式）: 末尾の『。』では分けず、途中の『。』で2つに分かれる。くっつけ直すと元の文
+  const split = (t) => t.split(/(?<=。)(?=.)/u);
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    for (const t of JSON.parse(read(app + '/data/trueboss.json')).lines.ending) {
+      const parts = split(t);
+      assert.equal(parts.join(''), t, app + ': ' + t);
+      assert.ok(parts.length <= 2, app + ': 3つには分けない ' + t);
+      assert.ok(parts.every((x) => x.length >= 3), app + ': 切れ端が出ない ' + t);
+    }
+  }
+  assert.deepEqual(split('たんさくと ちしき。データから まなぶ ちから。'), ['たんさくと ちしき。', 'データから まなぶ ちから。']);
+  assert.deepEqual(split('ひかりは かえった'), ['ひかりは かえった']);
+  assert.deepEqual(split('おわり。'), ['おわり。']);
+});

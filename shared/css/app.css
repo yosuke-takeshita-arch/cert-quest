@@ -800,6 +800,7 @@ button.basic-term:hover { background: var(--accent-soft); }
 .boss-row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
 .boss-row-go { margin-left: auto; flex: none; color: var(--accent); font-weight: 700; }
 .boss-result { text-align: center; }
+.boss-result p { text-wrap: balance; } /* 中央寄せの文が折り返すとき、短い切れ端を残さない（効かない環境でも崩れない） */
 .boss-result-art { display: flex; justify-content: center; margin-bottom: 8px; }
 .boss-result-art .boss-art { width: 88px; height: 88px; }
 .boss-result-art .boss-art .boss-sym { font-size: 2.75rem; }
@@ -944,11 +945,11 @@ body.boss-on { background: #000; }
 .tb-star { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #ffe082; animation: tb-twinkle var(--dur, 2s) ease-in-out var(--delay, 0s) infinite alternate; }
 .tb-ending-title, .tb-ending-line { position: relative; margin: 0; opacity: 0; transition: opacity 1.2s ease-out; }
 .tb-ending-title { font-size: 1.5rem; font-weight: 700; color: #ffe082; margin-bottom: 12px; }
-.tb-ending-line { font-size: 1.0625rem; line-height: 1.9; max-width: 30em; overflow-wrap: anywhere; }
+.tb-ending-line { font-size: 1.0625rem; line-height: 1.9; max-width: 30em; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; } /* 語りはひらがなを空白で区切ってある。折り返しは空白の位置だけ（1〜2文字の切れ端を出さない）。2行の長さをそろえる（効かない環境でも崩れない）。単語が1行に入らないときだけ break-word */
 .tb-ending-title.shown, .tb-ending-line.shown { opacity: 1; }
 .tb-ending-btn { position: absolute; left: 16px; right: 16px; bottom: 16px; }
 .tb-ending-go { width: 100%; }
-.boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; }
+.boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; }
 .tb-float { height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
 .tb-float.f2 { height: calc(100% - 16px); animation: tb-float 3.4s ease-in-out infinite; --amp: 8px; }
 .tb-float.f3 { height: calc(100% - 28px); animation: tb-float 4.4s ease-in-out infinite; --amp: 14px; }

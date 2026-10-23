@@ -1032,7 +1032,13 @@ export function renderTrueBoss(app) {
       s.style.setProperty('--dur', (1.4 + Math.random() * 1.6).toFixed(2) + 's');
       sky.appendChild(s);
     }
-    const lines = data.ending.map((t) => h('p', { class: 'tb-ending-line', text: t }));
+    // 『。』の後ろに文が続く行は、『。』の後ろで改行して2行に分ける（データの文は変えず、表示だけ。textContent は元の文と同じ）
+    const lines = data.ending.map((t) => {
+      const parts = t.split(/(?<=。)(?=.)/u);
+      const kids = [];
+      parts.forEach((x, i) => { if (i) kids.push(h('br')); kids.push(document.createTextNode(x)); });
+      return h('p', { class: 'tb-ending-line' }, ...kids);
+    });
     const title = h('p', { class: 'tb-ending-title', text: trueBossWords(app.config).ending });
     const go = h('button', { class: 'btn big tb-ending-go', type: 'button', 'data-tb-ending-go': '1', onClick: finishEnding }, 'とばす');
     const box = h('div', { class: 'tb-ending', 'data-tb-ending': '1', onClick: revealAll }, sky, title, ...lines, h('div', { class: 'tb-ending-btn' }, go));
