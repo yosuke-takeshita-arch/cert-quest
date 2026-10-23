@@ -10,10 +10,11 @@ import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
 import { isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { quoted, faceCrop } from '../lib/bossdata.js';
 import {
-  trueBossEnabled, trueBossUnlocked, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
+  trueBossEnabled, trueBossUnlocked, trueBossWords, trueBossLockedText, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_SECONDS, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
-import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE, TRUE_CRACKS, TRUE_EYE, TRUE_ORBS, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
+import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
+import { trueGeom } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -23,8 +24,6 @@ export const TRUE_BOSS_SYMBOL = '真';
 /** 真ボスの文。現れる条件（章のボスをすべて倒す）は画面に出さない（章のボスと同じ考え）。 */
 export const TRUE_BOSS_TEXT = {
   unknownName: '？？？',
-  locked: '塔の いちばん うえに、なにかが ひそんでいる……',
-  awake: '塔の いちばん うえで、おおきな なにかが めざめた……',
   none: 'まだ 戦えません。',
 };
 
@@ -32,6 +31,10 @@ export const TRUE_BOSS_TEXT = {
 export function ruleText(seen2) {
   return 'すべての分野から出ます。正解でボスにダメージ。' + (seen2 ? 'ボスは進化して、だんだん 手ごわくなります。' : '') + STREAK_HEAL + '問続けて正解すると、HP が 1 回復します。戦いの最中は解説が出ません。くわしい解説は、戦いのあとの結果で読めます。';
 }
+
+// 絵の上の位置（顔・ひび・目・光の玉）。アプリごと（lib/trueboss-geom.js）。入口・戦いの画面を作るときに、そのアプリのものへ切り替える。
+let GEOM = trueGeom('g-kentei');
+function useGeom(app) { GEOM = trueGeom(app && app.config && app.config.id); }
 
 /** 真ボスのデータ（名前・せりふ）。app.data.trueBoss が無ければ仮。 */
 function dataOf(app) {
@@ -89,7 +92,7 @@ function fillArt(wrap, form, unknown) {
     if (wrap.dataset.form !== String(form)) return; // 進化したあとに遅れて届いたら捨てる
     clear(wrap);
     if (!img) { wrap.appendChild(h('span', { class: 'boss-sym', text: TRUE_BOSS_SYMBOL })); return; }
-    const c = faceCrop(img.naturalWidth, img.naturalHeight, TRUE_FACE[form]);
+    const c = faceCrop(img.naturalWidth, img.naturalHeight, GEOM.face[form]);
     img.style.setProperty('--zoom', String(c.zoom));
     img.style.setProperty('--tx', String(c.tx));
     img.style.setProperty('--ty', String(c.ty));
@@ -126,18 +129,19 @@ export function openTrueBoss(app, back) {
 /** 真ボスの入口（地図・復習の画面）。真ボスを出さないアプリでは null。現れていなければ影だけ（条件は出さない）。 */
 export function trueBossPlace(app, back) {
   if (!trueBossEnabled(app.config)) return null;
+  useGeom(app);
   const data = dataOf(app);
   if (!trueBossUnlocked(app.state, app.data.tree.stages)) {
     return h('div', { class: 'card boss-place off', 'data-true-boss-place': 'locked' },
       h('div', { class: 'boss-place-head' }, trueBossArt(1, 'off unknown'),
-        h('div', { class: 'boss-place-text' }, h('strong', { text: TRUE_BOSS_TEXT.unknownName }), h('span', { class: 'small muted', text: TRUE_BOSS_TEXT.locked }))));
+        h('div', { class: 'boss-place-text' }, h('strong', { text: TRUE_BOSS_TEXT.unknownName }), h('span', { class: 'small muted', text: trueBossLockedText(app.config) }))));
   }
   preloadFormImages(); // 入口を出したときに、3枚の絵を先に読み込む
   const wins = trueBossWins(app.state);
   return h('div', { class: 'card boss-place on', 'data-true-boss-place': 'on' },
     h('div', { class: 'boss-place-head' }, trueBossArt(1, 'on'),
       h('div', { class: 'boss-place-text' }, h('strong', { text: data.name + ' が あらわれた！' }),
-        h('span', { class: 'small', text: '塔の いちばん うえの 真ボス。すべての分野から出ます' }),
+        h('span', { class: 'small', text: trueBossWords(app.config).place + 'の 真ボス。すべての分野から出ます' }),
         wins ? h('span', { class: 'small muted', text: 'たおした回数 ' + wins + ' 回' }) : null)),
     h('button', { class: 'btn primary big', type: 'button', 'data-true-boss-go': '1', onClick: () => openTrueBoss(app, back) }, '真ボスに挑む'));
 }
@@ -154,7 +158,7 @@ function buildCrackLayer(fig) {
   svg.setAttribute('class', 'tb-crack-layer');
   svg.setAttribute('aria-hidden', 'true');
   svg.setAttribute('data-tb-cracks', '1');
-  const lines = TRUE_CRACKS.map((d) => {
+  const lines = GEOM.cracks.map((d) => {
     const p = document.createElementNS(NS, 'path');
     p.setAttribute('d', d);
     p.setAttribute('pathLength', '1');
@@ -163,10 +167,10 @@ function buildCrackLayer(fig) {
     return p;
   });
   const eye = document.createElementNS(NS, 'ellipse'); // 一つ目が再び青白く光る
-  eye.setAttribute('cx', String(TRUE_EYE.x));
-  eye.setAttribute('cy', String(TRUE_EYE.y));
-  eye.setAttribute('rx', String(TRUE_EYE.rx));
-  eye.setAttribute('ry', String(TRUE_EYE.ry));
+  eye.setAttribute('cx', String(GEOM.eye.x));
+  eye.setAttribute('cy', String(GEOM.eye.y));
+  eye.setAttribute('rx', String(GEOM.eye.rx));
+  eye.setAttribute('ry', String(GEOM.eye.ry));
   eye.setAttribute('class', 'tb-eye-glow');
   svg.appendChild(eye);
   fig.appendChild(svg);
@@ -182,7 +186,7 @@ function buildOrbLayer(fig) {
   svg.setAttribute('class', 'tb-orb-layer');
   svg.setAttribute('aria-hidden', 'true');
   svg.setAttribute('data-tb-orbs', '1');
-  const orbs = TRUE_ORBS.map((o) => {
+  const orbs = GEOM.orbs.map((o) => {
     const c = document.createElementNS(NS, 'circle');
     c.setAttribute('cx', String(o.x));
     c.setAttribute('cy', String(o.y));
@@ -223,6 +227,7 @@ function buildSparkLayer(fig) {
 const rand = (a, b) => a + Math.random() * (b - a);
 
 export function renderTrueBoss(app) {
+  useGeom(app);
   const root = h('section', { class: 'view boss true-boss' });
   const back = app.trueBossBack || '#/map';
   app.trueBossBack = null;
@@ -231,7 +236,7 @@ export function renderTrueBoss(app) {
   if (!trueBossEnabled(app.config) || !trueBossUnlocked(app.state, app.data.tree.stages)) {
     root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go(back) }, '← 戻る'));
     root.appendChild(h('h1', { text: TRUE_BOSS_TEXT.unknownName }));
-    root.appendChild(h('div', { class: 'card empty', 'data-true-boss-none': '1' }, h('p', { text: TRUE_BOSS_TEXT.locked })));
+    root.appendChild(h('div', { class: 'card empty', 'data-true-boss-none': '1' }, h('p', { text: trueBossLockedText(app.config) })));
     return root;
   }
   const limit = secondsPerQuestion(app.config);
@@ -720,7 +725,7 @@ export function renderTrueBoss(app) {
   // 進化の効果音のフック（要件定義書 §3-9）。名前: heartbeat（鼓動）・rumble（地鳴り）・crack1/crack2（ひび）・shatter1/shatter2（割れる）・orb（光の玉が灯る。i 番目ほど高い）・charge（力をためる）・impact（大きな衝撃）。
   // 素材のファイルが無い間は、プログラムの音（無ければ無音）で鳴る（lib/sound.js の BOSS_SFX・lib/trueboss-music.js の TRUE_SFX）。
   function evoSfx(name, i = 0, boost = 1) {
-    if (name === 'orb') playBossSfx(app.state.settings, 'orb', 1, orbRate(i), 'orb' + Math.min(Math.max(i, 0), TRUE_ORBS.length - 1)); // ファイルは再生速度で高くする。無いときはプログラムの音
+    if (name === 'orb') playBossSfx(app.state.settings, 'orb', 1, orbRate(i, GEOM.orbs.length), 'orb' + orbStep(i, GEOM.orbs.length)); // ファイルは再生速度で高くする。無いときはプログラムの音
     else playBossSfx(app.state.settings, name, boost);
   }
 
@@ -845,7 +850,7 @@ export function renderTrueBoss(app) {
       root.classList.add('tb-dim');
       ui.float.classList.add('still');
       at(200, () => say(['……']));
-      orbTimes(T).forEach((t, k) => at(t, () => { orbLayer.orbs[k].classList.add('on'); evoSfx('orb', k); }));
+      orbTimes(T, GEOM.orbs.length).forEach((t, k) => at(t, () => { orbLayer.orbs[k].classList.add('on'); evoSfx('orb', k); }));
       at(T.charge, () => evoSfx('charge'));
       T.quakes.forEach((t, k) => at(t, () => { flash(ui.scene, k >= T.strongQuakeFrom ? 'quake2' : 'quake', 450); vibrate(app.state.settings, k >= T.strongQuakeFrom ? [90, 40, 90] : [50, 40, 50]); }));
       at(T.gold, () => {
@@ -1009,11 +1014,11 @@ export function renderTrueBoss(app) {
       sky.appendChild(s);
     }
     const lines = data.ending.map((t) => h('p', { class: 'tb-ending-line', text: t }));
-    const title = h('p', { class: 'tb-ending-title', text: '塔を きわめた！' });
+    const title = h('p', { class: 'tb-ending-title', text: trueBossWords(app.config).ending });
     const go = h('button', { class: 'btn big tb-ending-go', type: 'button', 'data-tb-ending-go': '1', onClick: finishEnding }, 'とばす');
     const box = h('div', { class: 'tb-ending', 'data-tb-ending': '1', onClick: revealAll }, sky, title, ...lines, h('div', { class: 'tb-ending-btn' }, go));
     root.appendChild(box);
-    root.appendChild(h('p', { class: 'boss-sr', role: 'status', text: '塔を きわめた！ ' + data.ending.join(' ') }));
+    root.appendChild(h('p', { class: 'boss-sr', role: 'status', text: trueBossWords(app.config).ending + ' ' + data.ending.join(' ') }));
     const all = [title, ...lines];
     let finished = false;
     function revealAll() {
@@ -1073,7 +1078,7 @@ export function renderTrueBoss(app) {
       h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
     root.appendChild(card);
     if (win) {
-      const m = mascotLine('shiba-banzai', 'やったね！ 塔のてっぺんまで たどりついたよ！', 'win');
+      const m = mascotLine('shiba-banzai', 'やったね！ ' + trueBossWords(app.config).reached, 'win');
       if (m) card.appendChild(m);
       beep(app.state.settings, 'up');
     } else {

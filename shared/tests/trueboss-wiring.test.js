@@ -20,11 +20,20 @@ function fnBody(src, name) {
   return src.slice(i, n ? n.index : src.length);
 }
 
-test('config: 真ボスを出すのは G検定だけ（trueBoss が true）。DX・AIパスポートには無い', () => {
-  assert.equal(JSON.parse(read('g-kentei/config.json')).trueBoss, true);
-  for (const app of ['dx-biz', 'ai-passport']) assert.equal(JSON.parse(read(app + '/config.json')).trueBoss, undefined, app);
-  assert.equal(existsSync(root + 'g-kentei/data/trueboss.json'), true);
-  for (const app of ['dx-biz', 'ai-passport']) assert.equal(existsSync(root + app + '/data/trueboss.json'), false, app + ' に真ボスのデータが入っている');
+test('config: 真ボスを出すのは G検定・DX・AIパスポートの3つ（trueBoss が true）。データ・バッジの名前を持つ。バッジの絵はG検定だけ（届いたら art を true に）', () => {
+  const art = { 'g-kentei': true, 'dx-biz': false, 'ai-passport': false };
+  for (const app of Object.keys(art)) {
+    const c = JSON.parse(read(app + '/config.json'));
+    assert.equal(c.trueBoss, true, app);
+    assert.equal(existsSync(root + app + '/data/trueboss.json'), true, app + ' に真ボスのデータが無い');
+    assert.equal(typeof c.trueBossBadge.name, 'string', app);
+    assert.ok(c.trueBossBadge.name.length > 0 && c.trueBossBadge.name.length <= 20, app + ' のバッジの名前');
+    assert.equal(c.trueBossBadge.art, art[app], app);
+    // art が true なら、アプリの絵が置いてある。false なら置いていない（絵が届いたら art を true にして、sw.js の appFiles にも足す）
+    assert.equal(existsSync(root + app + '/images/badges/true-boss.webp'), art[app], app + ' のバッジの絵');
+  }
+  assert.equal(existsSync(root + 'shared/images/badges/true-boss.webp'), false, '共通の場所には置かない（キャラクターはアプリごとに違う）');
+  assert.match(read('g-kentei/sw.js'), /'\.\/images\/badges\/true-boss\.webp'/, 'G検定の sw.js の appFiles に入っている');
 });
 
 test('config: sw.js の version と config.json の appVersion は、この作業では上げていない（公開は門番が決める）', () => {
@@ -69,7 +78,9 @@ test('出る条件は画面に出さない（章のボスと同じ考え）。�
   assert.match(view, /trueBossArt\(1, 'off unknown'\)/);
   // 章のボスを全部倒した勝ちのあとの一言（合図）は出すが、条件は書かない
   const boss = code('shared/js/views/boss.js');
-  assert.match(boss, /TRUE_BOSS_AWAKE = '塔の いちばん うえで、おおきな なにかが めざめた……'/);
+  assert.match(boss, /text: trueBossAwakeText\(app\.config\) \}/);
+  assert.doesNotMatch(boss, /塔/, 'アプリごとの言い回し（config.trueBossWords）を使う。塔を直に書かない');
+  assert.doesNotMatch(view, /塔/, '真ボスの画面に、G検定だけの言い回し（塔）を直に書かない');
   assert.match(boss, /if \(win && !awakeBefore && trueBossAwake\(\)\)/);
 });
 
@@ -190,7 +201,7 @@ test('第2→3の進化: 曲が止まって暗く → 宙で静止 → 光の玉
   const to3 = fn.slice(fn.indexOf("root.classList.add('tb-dim')"));
   assert.ok(to3.length > 600);
   assert.match(to3, /ui\.float\.classList\.add\('still'\)/, '宙で静止（浮かぶ動きを止める）');
-  assert.match(to3, /orbTimes\(T\)\.forEach\(\(t, k\) => at\(t, \(\) => \{ orbLayer\.orbs\[k\]\.classList\.add\('on'\); evoSfx\('orb', k\); \}\)\)/, '玉が1つずつ灯り、そのたびに音（k が大きいほど高い）');
+  assert.match(to3, /orbTimes\(T, GEOM\.orbs\.length\)\.forEach\(\(t, k\) => at\(t, \(\) => \{ orbLayer\.orbs\[k\]\.classList\.add\('on'\); evoSfx\('orb', k\); \}\)\)/, '玉が1つずつ灯り、そのたびに音（k が大きいほど高い）');
   assert.match(to3, /at\(T\.charge, \(\) => evoSfx\('charge'\)\)/);
   assert.match(to3, /T\.quakes\.forEach\(\(t, k\) => at\(t, \(\) => \{ flash\(ui\.scene, k >= T\.strongQuakeFrom \? 'quake2' : 'quake'/);
   assert.match(to3, /mk\('tb-gold-flash'\);/, '画面いっぱいの金色の光');
@@ -218,7 +229,7 @@ test('進化の効果音のフック: 名前つきで、鳴らす時刻の表（
   assert.ok(fn.includes("'heartbeat' : 'heartbeatfast'"), '鼓動');
   assert.ok(fn.includes("evoSfx(k % 2 ? 'crack2' : 'crack1', 0, [0.7, 0.85, 1, 1.1][k])"), 'ひび');
   assert.match(fn, /evoSfx\('orb', k\)/);
-  assert.match(src, /function evoSfx\(name, i = 0, boost = 1\) \{\n\s*if \(name === 'orb'\) playBossSfx\(app\.state\.settings, 'orb', 1, orbRate\(i\), 'orb' \+ Math\.min/);
+  assert.match(src, /function evoSfx\(name, i = 0, boost = 1\) \{\n\s*if \(name === 'orb'\) playBossSfx\(app\.state\.settings, 'orb', 1, orbRate\(i, GEOM\.orbs\.length\), 'orb' \+ orbStep/);
   const snd = read('shared/js/lib/sound.js');
   for (const [kind, key] of [['heartbeat', 'trueheartbeat'], ['heartbeatfast', 'trueheartbeatfast'], ['charge', 'truecharge'], ['impact', 'trueimpact']]) assert.ok(snd.includes(kind + ": { key: '" + key + "'"), kind);
   const au = read('shared/js/audio.js');
@@ -238,12 +249,12 @@ test('進化の演出は、四角い白い面を使わない: 割れる光・金
   assert.match(fn, /clearTimers\(\);\n\s*ui\.fx\.textContent = '';\n\s*ui\.flash\.classList\.remove\('on'\);\n\s*cleanupFx\(\);\n\s*swap\(true\);/, '飛ばすと、暗さ・静止・金色の光を消して、すぐ第2・第3形態にする');
 });
 
-test('光の玉は絵の箱に重ねる: 絵と同じ正方形の SVG に、TRUE_ORBS の位置（絵の中の割合）で置く', () => {
+test('光の玉は絵の箱に重ねる: 絵と同じ正方形の SVG に、GEOM.orbs（アプリごとの位置。絵の中の割合）で置く', () => {
   const src = code('shared/js/views/trueboss.js');
   const b = src.slice(src.indexOf('function buildOrbLayer'), src.indexOf('const rand ='));
   assert.match(b, /setAttribute\('viewBox', '0 0 100 100'\)/);
   assert.match(b, /setAttribute\('preserveAspectRatio', 'xMidYMid meet'\)/);
-  assert.match(b, /TRUE_ORBS\.map/);
+  assert.match(b, /GEOM\.orbs\.map/);
   assert.match(b, /fig\.appendChild\(svg\)/);
   const css = read('shared/css/app.css');
   assert.match(css, /\.tb-orb-layer \{ position: absolute; inset: 0; width: 100%; height: 100%;/);
@@ -257,7 +268,7 @@ test('ひびは絵の箱に重ねる: 絵（.boss-fig）の中に、絵と同じ
   assert.match(b, /setAttribute\('viewBox', '0 0 100 100'\)/);
   assert.match(b, /setAttribute\('preserveAspectRatio', 'xMidYMid meet'\)/, '絵（contain で中央）と同じ正方形に収める');
   assert.match(b, /fig\.appendChild\(svg\)/);
-  assert.match(b, /TRUE_CRACKS\.map/);
+  assert.match(b, /GEOM\.cracks\.map/);
   const css = read('shared/css/app.css');
   assert.match(css, /\.boss-fig \{ position: relative; \}/, '絵の箱が基準になる');
   assert.match(css, /\.tb-crack-layer \{ position: absolute; inset: 0; width: 100%; height: 100%;/, 'SVG は絵の箱いっぱい');

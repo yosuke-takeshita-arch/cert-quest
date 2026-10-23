@@ -9,7 +9,7 @@ import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
 import { bossInfo, bossQuestions, bossThreshold, recordBossWin, isFlawlessWin, bossWins, markBossMet, hasMetBoss, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
 import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
-import { trueBossEnabled, trueBossUnlocked } from '../lib/trueboss.js';
+import { trueBossEnabled, trueBossUnlocked, trueBossAwakeText } from '../lib/trueboss.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, laterButton, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -130,7 +130,6 @@ export function bossPlace(app, stage, back) {
 const rand = (a, b) => a + Math.random() * (b - a);
 
 /** 全章のボスを倒した勝ちのあとに出す一言（真ボスが現れた合図。条件は書かない）。 */
-const TRUE_BOSS_AWAKE = '塔の いちばん うえで、おおきな なにかが めざめた……';
 
 export function renderBoss(app, key) {
   const root = h('section', { class: 'view boss' });
@@ -656,7 +655,7 @@ export function renderBoss(app, key) {
     card.appendChild(h('p', { class: 'small muted', text: info.available
       ? 'ボスはまだこの章にいます。また挑めます。'
       : BOSS_TEXT.gone(name) }));
-    if (win && !awakeBefore && trueBossAwake()) card.appendChild(h('p', { class: 'boss-awake', 'data-true-boss-awake': '1', text: TRUE_BOSS_AWAKE }));
+    if (win && !awakeBefore && trueBossAwake()) card.appendChild(h('p', { class: 'boss-awake', 'data-true-boss-awake': '1', text: trueBossAwakeText(app.config) }));
     root.appendChild(card);
     if (win) {
       const m = mascotLine('shiba-banzai', 'やったね！ 間違えた問題をひとつずつ越えました。', 'win');

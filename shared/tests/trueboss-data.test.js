@@ -261,3 +261,111 @@ test('2→3 の光の時刻: 衝撃と決めの一撃の音は、光のピーク
   assert.ok(T.swap - T.gold >= 400 && T.swap - T.gold <= 700, '姿が替わるのは、光がまだほぼ最大のあいだ（光の始まりの 0.4〜0.7 秒後）');
   assert.ok(T.text > T.swap && T.music > T.text);
 });
+
+// ---- DX（ヘンカクジン）・AIパスポート（アマツクリ）の真ボス（2026-10-23。要件定義書 §3-9『作る順』）----
+import { trueGeom, TRUE_GEOM, ringOrbs } from '../js/lib/trueboss-geom.js';
+import { orbStep, TRUE_ORBS as G_ORBS } from '../js/lib/trueboss-data.js';
+
+const NEW_APPS = [
+  { app: 'dx-biz', head: '### 真ボス ヘンカクジン', name: 'ヘンカクジン', orbs: 13 },
+  { app: 'ai-passport', head: '### 真ボス アマツクリ', name: 'アマツクリ', orbs: 5 },
+];
+function canonicalOf(head) {
+  const md = readFileSync(fileURLToPath(new URL('../../docs/sources/boss-characters.md', import.meta.url)), 'utf8').replace(/\r\n/g, '\n').split('\n');
+  const s = md.findIndex((l) => l.startsWith(head));
+  const a = md.findIndex((l, i) => i > s && l.startsWith('```json'));
+  const b = md.findIndex((l, i) => i > a && l.startsWith('```'));
+  assert.ok(s >= 0 && a > s && b > a, head + ' の節が見つからない');
+  return { text: md.slice(a + 1, b).join('\n') + '\n', json: JSON.parse(md.slice(a + 1, b).join('\n')) };
+}
+
+for (const { app, head, name } of NEW_APPS) {
+  const path = fileURLToPath(new URL('../../' + app + '/data/trueboss.json', import.meta.url));
+  test(app + '/data/trueboss.json: 正本（' + head + '）の JSON と1文字も違わない', () => {
+    assert.ok(existsSync(path), app + '/data/trueboss.json が無い');
+    const c = canonicalOf(head);
+    assert.equal(readFileSync(path, 'utf8').replace(/\r\n/g, '\n'), c.text, '文字列として一致');
+    assert.deepEqual(JSON.parse(readFileSync(path, 'utf8')), c.json);
+    assert.equal(c.json.name, name);
+  });
+
+  test(app + '/data/trueboss.json: 読み込みで正本の文がそのまま使われる。第1形態の偽の撃破のせりふ（defeat）は正本のもの', () => {
+    const raw = canonicalOf(head).json;
+    const d = normalizeTrueBossData(raw);
+    assert.equal(d.name, raw.name);
+    d.forms.forEach((f, i) => {
+      assert.equal(f.title, raw.forms[i].formName);
+      assert.equal(f.color, raw.forms[i].color);
+      for (const k of Object.keys(raw.forms[i].lines)) assert.deepEqual(f.lines[k], raw.forms[i].lines[k], '第' + (i + 1) + '形態の ' + k);
+    });
+    assert.ok(raw.forms[0].lines.defeat && raw.forms[0].lines.defeat.length >= 1, '正本の第1形態に defeat がある');
+    assert.deepEqual(d.forms[0].lines.defeat, raw.forms[0].lines.defeat);
+    assert.notDeepEqual(d.forms[0].lines.defeat, DEFAULT_TRUE_BOSS.forms[0].lines.defeat, '既定の『キィ…ン…』ではない');
+    assert.deepEqual(d.ending, raw.lines.ending);
+    assert.deepEqual(d.playerHeal, raw.lines.playerHeal);
+    assert.equal(d.skills.timed.name, raw.skills.timer.name);
+    assert.equal(d.skills.curse.name, raw.skills.double.name);
+  });
+
+  test(app + '/data/trueboss.json: 長すぎるせりふ・ID・開発用の語が無い', () => {
+    const raw = JSON.parse(readFileSync(path, 'utf8'));
+    const texts = [];
+    raw.forms.forEach((f) => Object.values(f.lines).forEach((arr) => arr.forEach((t) => texts.push(t))));
+    Object.values(raw.lines).forEach((arr) => arr.forEach((t) => texts.push(t)));
+    assert.ok(texts.length > 60);
+    for (const t of texts) {
+      assert.ok(t.length <= 40, '長すぎるせりふ: ' + t);
+      assert.doesNotMatch(t, /(UC|SCR|TST|LAW)-|§|MVP|未実装|TODO/, '開発用の語: ' + t);
+    }
+  });
+}
+
+test('第1形態の偽の撃破のせりふ: 正本に無い（シンギュラ）ときは、既定の『キィ…ン…』のまま', () => {
+  const raw = canonicalOf('### 真ボス シンギュラ').json;
+  assert.equal(raw.forms[0].lines.defeat, undefined, 'シンギュラの正本の第1形態に defeat は無い');
+  assert.deepEqual(normalizeTrueBossData(raw).forms[0].lines.defeat, ['キィ…ン…']);
+});
+
+test('位置の表（trueboss-geom.js）: アプリごとに持つ。G検定は実測値のまま、DX は玉13個・AIパスポートは玉5個（仮の輪）', () => {
+  assert.deepEqual(Object.keys(TRUE_GEOM).sort(), ['ai-passport', 'dx-biz', 'g-kentei']);
+  assert.equal(trueGeom('g-kentei').orbs, G_ORBS);
+  assert.deepEqual([trueGeom('g-kentei').core.x, trueGeom('g-kentei').core.y], [49.7, 37.5]);
+  assert.equal(trueGeom('unknown'), trueGeom('g-kentei'), '表の無い id は G検定の値');
+  assert.equal(trueGeom(undefined), trueGeom('g-kentei'));
+  assert.equal(trueGeom('constructor'), trueGeom('g-kentei'), '継承されたキーは使わない');
+  for (const { app, orbs } of NEW_APPS) {
+    const g = trueGeom(app);
+    assert.equal(g.orbs.length, orbs, app + ' の玉の数');
+    for (const o of g.orbs) {
+      assert.ok(o.x > 30 && o.x < 70 && o.y > 0 && o.y < 30 && o.r > 0, app + ' の玉が頭のうしろの輪に無い');
+    }
+    for (const k of [1, 2, 3]) assert.ok(g.face[k].x > 0 && g.face[k].x < 1 && g.face[k].y > 0 && g.face[k].y < 1);
+    assert.equal(g.cracks.length, 4);
+    assert.ok(g.core && g.eye);
+  }
+  // 輪: 左下から時計まわり。n 個が同じ中心から等しい距離
+  const ring = ringOrbs(5, 50, 12, 8, 8, 2);
+  assert.equal(ring.length, 5);
+  assert.ok(ring[0].x < 50 && ring[0].y > 12, '最初の玉は左下');
+  for (const o of ring) assert.ok(Math.abs(Math.hypot(o.x - 50, o.y - 12) - 8) < 0.1);
+  assert.equal(new Set(ring.map((o) => o.x + ',' + o.y)).size, 5);
+});
+
+test('光の玉が13個でないアプリ: 灯る時刻は最初と最後が同じ、音は低い音から高い音まで等間隔。13個は今まで通り', () => {
+  const all = orbTimes();
+  assert.equal(all.length, 13);
+  assert.deepEqual(orbTimes(EVO_2_TO_3, 13), all);
+  const five = orbTimes(EVO_2_TO_3, 5);
+  assert.equal(five.length, 5);
+  assert.equal(five[0], all[0]);
+  assert.equal(five[4], all.at(-1));
+  assert.ok(five.every((t, i) => i === 0 || t > five[i - 1]), '時刻は増えていく');
+  assert.ok(five.at(-1) < EVO_2_TO_3.gold, '最後の玉は光より前');
+  assert.deepEqual([0, 1, 2, 3, 4].map((i) => orbStep(i, 5)), [0, 3, 6, 9, 12]);
+  assert.deepEqual([0, 6, 12].map((i) => orbStep(i, 13)), [0, 6, 12]);
+  assert.equal(orbRate(0, 5), orbRate(0));
+  assert.equal(orbRate(4, 5), orbRate(12));
+  assert.ok(orbRate(2, 5) > orbRate(1, 5));
+  assert.equal(orbStep(99, 5), 12);
+  assert.equal(orbStep(-1, 5), 0);
+});

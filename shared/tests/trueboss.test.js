@@ -817,3 +817,25 @@ test('第2形態を見たかの記録: 古い記録・壊れた値は「見て�
   assert.equal(s.trueBoss.seen2, undefined);
   assert.equal(mergeState({ trueBoss: { wins: 0, seen2: true } }).trueBoss.seen2, true);
 });
+
+// ---- アプリごとの言い回し（config.trueBossWords。DX・AIパスポートは塔ではない）----
+import { trueBossWords, trueBossLockedText, trueBossAwakeText, DEFAULT_TRUE_BOSS_WORDS } from '../js/lib/trueboss.js';
+import { readFileSync as readCfg } from 'node:fs';
+
+test('trueBossWords: config に無い・壊れているときは G検定の言い回し。あれば config のものを使う', () => {
+  for (const c of [null, undefined, {}, { trueBossWords: 5 }, { trueBossWords: { place: ' ', ending: 3 } }]) assert.deepEqual(trueBossWords(c), DEFAULT_TRUE_BOSS_WORDS);
+  assert.deepEqual(trueBossWords({ trueBossWords: { place: ' みやこ ', ending: 'お', reached: 'ふ' } }), { place: 'みやこ', ending: 'お', reached: 'ふ' });
+  assert.equal(trueBossLockedText({}), '塔の いちばん うえに、なにかが ひそんでいる……');
+  assert.equal(trueBossAwakeText({}), '塔の いちばん うえで、おおきな なにかが めざめた……');
+});
+
+test('3アプリの config.trueBossWords: 塔は G検定だけ。DX は『みやこ』、AIパスポートは『そら』。どれも文として読める', () => {
+  const cfg = (a) => JSON.parse(readCfg(new URL('../../' + a + '/config.json', import.meta.url), 'utf8'));
+  assert.deepEqual(trueBossWords(cfg('g-kentei')), DEFAULT_TRUE_BOSS_WORDS);
+  for (const [a, w] of [['dx-biz', 'みやこ'], ['ai-passport', 'そら']]) {
+    const t = trueBossWords(cfg(a));
+    for (const k of ['place', 'ending', 'reached']) assert.ok(t[k].includes(w), a + ' の ' + k);
+    for (const v of [t.place, t.ending, t.reached, trueBossLockedText(cfg(a)), trueBossAwakeText(cfg(a))]) assert.doesNotMatch(v, /塔|UC-|SCR-|§|MVP/, a + ': ' + v);
+    assert.ok(trueBossLockedText(cfg(a)).endsWith('ひそんでいる……') && trueBossAwakeText(cfg(a)).endsWith('めざめた……'));
+  }
+});

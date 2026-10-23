@@ -64,17 +64,28 @@ export const EVO_2_TO_3 = Object.freeze({
   text: 7300, // 決めぜりふ
   music: 8200, // 第3形態の曲
 });
+/** i 番目（0 から）の玉が、13音の何番目か。玉が13個より少ないアプリ（AIパスポートは5個）は、いちばん低い音からいちばん高い音までに等間隔で割り振る。 */
+export function orbStep(i, n = ORB_SEMITONES.length) {
+  const last = ORB_SEMITONES.length - 1;
+  const m = Number.isInteger(n) && n >= 2 && n < ORB_SEMITONES.length ? n : ORB_SEMITONES.length;
+  const j = Math.min(Math.max(Number.isInteger(i) ? i : 0, 0), m - 1);
+  return m === ORB_SEMITONES.length ? j : Math.round((j * last) / (m - 1));
+}
+
 /** 光の玉が灯る音の高さ（再生速度）。1つごとに高くなる（長音階を13音。いちばん低い音は 0.85 倍）。 */
 export const ORB_SEMITONES = Object.freeze([0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21]);
-export function orbRate(i) {
-  const k = Math.min(Math.max(Number.isInteger(i) ? i : 0, 0), ORB_SEMITONES.length - 1);
+export function orbRate(i, n = ORB_SEMITONES.length) {
+  const k = orbStep(i, n);
   return Math.round(0.85 * Math.pow(2, ORB_SEMITONES[k] / 12) * 1000) / 1000;
 }
 
-/** 玉が灯る時刻（EVO_2_TO_3.orbStart から、orbGaps を足していく）。 */
-export function orbTimes(evo = EVO_2_TO_3) {
-  const out = [evo.orbStart];
-  for (const g of evo.orbGaps) out.push(out[out.length - 1] + g);
+/** 玉が灯る時刻（EVO_2_TO_3.orbStart から、orbGaps を足していく）。n（玉の数）が表（orbGaps.length+1）と違うアプリは、最初と最後の時刻は同じまま、間を表から等間隔に選ぶ（玉が少なくても、力をためる音・光との間合いは変わらない）。 */
+export function orbTimes(evo = EVO_2_TO_3, n = evo.orbGaps.length + 1) {
+  const all = [evo.orbStart];
+  for (const g of evo.orbGaps) all.push(all[all.length - 1] + g);
+  if (!Number.isInteger(n) || n < 2 || n >= all.length) return all;
+  const out = [];
+  for (let k = 0; k < n; k++) out.push(all[Math.round((k * (all.length - 1)) / (n - 1))]);
   return out;
 }
 

@@ -10,6 +10,19 @@ export function trueBossEnabled(config) {
   return !!config && config.trueBoss === true;
 }
 
+// ---- アプリごとの言い回し（config.trueBossWords。無いときは G検定の言い回し） ----
+// place … 真ボスのいる場所（『◯◯に、なにかが ひそんでいる』『◯◯で、おおきな なにかが めざめた』『◯◯の 真ボス』の形で使う）／ ending … 真ボスを倒したあとの題／ reached … 結果の画面でマスコットが言う文
+export const DEFAULT_TRUE_BOSS_WORDS = Object.freeze({ place: '塔の いちばん うえ', ending: '塔を きわめた！', reached: '塔のてっぺんまで たどりついたよ！' });
+export function trueBossWords(config) {
+  const w = config && config.trueBossWords && typeof config.trueBossWords === 'object' ? config.trueBossWords : {};
+  const pick = (k) => (typeof w[k] === 'string' && w[k].trim() ? w[k].trim() : DEFAULT_TRUE_BOSS_WORDS[k]);
+  return { place: pick('place'), ending: pick('ending'), reached: pick('reached') };
+}
+/** 入口の影（まだ現れていないとき）の文。 */
+export function trueBossLockedText(config) { return trueBossWords(config).place + 'に、なにかが ひそんでいる……'; }
+/** 最後の章のボスを倒して、真ボスが現れたときの文。 */
+export function trueBossAwakeText(config) { return trueBossWords(config).place + 'で、おおきな なにかが めざめた……'; }
+
 // ---- 決まり（数字はここ1か所） ----
 export const TRUE_FORMS = 3; // 第1〜第3形態
 export const TRUE_HP_MIN = 5; // 形態ごとのボスの体力（戦いを始めるとき・進化したときに決める）

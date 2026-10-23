@@ -8,10 +8,14 @@ import { normalizeBoss, normalizeBossFlawless } from './boss.js';
 import { trueBossEnabled, trueBossWins } from './trueboss.js';
 import { normalizeCharTap100 } from './characters.js';
 
-// 絵のあるバッジ。共通の19個は shared/images/badges/<id>.webp（id と同じ名前）。
+// 絵のあるバッジ。共通の18個は shared/images/badges/<id>.webp（id と同じ名前）。
 // 絵を足すときは、ここの配列に id を足し、shared/sw-core.js の SHARED に '../shared/images/badges/<id>.webp' の行を足す。
-export const COMMON_BADGE_ART = Object.freeze(['first-answer', 'correct-10', 'correct-100', 'streak-3', 'streak-7', 'streak-30', 'level-5', 'level-10', 'challenge-8', 'exam-first', 'exam-70', 'exam-90', 'dochi-perfect', 'dochi-combo-10', 'boss-first', 'boss-all', 'boss-flawless', 'tap-shiba-100', 'tap-sensei-100', 'true-boss']);
+export const COMMON_BADGE_ART = Object.freeze(['first-answer', 'correct-10', 'correct-100', 'streak-3', 'streak-7', 'streak-30', 'level-5', 'level-10', 'challenge-8', 'exam-first', 'exam-70', 'exam-90', 'dochi-perfect', 'dochi-combo-10', 'boss-first', 'boss-all', 'boss-flawless', 'tap-shiba-100', 'tap-sensei-100']);
 // 章の制覇バッジを取る星の数（ステージの最大＝完全クリア）。
+// アプリごとに絵を持つバッジ（<アプリ>/images/badges/<名前>.webp）。真ボスのバッジはキャラクターがアプリごとに違うので、アプリの config（trueBossBadge.art）が true のときだけ絵を出す。
+export const APP_BADGE_ART = Object.freeze(['true-boss']);
+// 真ボスのバッジの名前（config.trueBossBadge.name が無いときの仮の名前）
+export const TRUE_BOSS_BADGE_NAME = '真ボスを こえし もの';
 export const CHAPTER_STARS = 3;
 const SAFE_NAME = /^[A-Za-z0-9_-]+$/;
 
@@ -38,12 +42,12 @@ export function badgeArtName(def) {
 }
 
 /**
- * 絵の URL。共通の12個 → sharedBase、章の制覇（major-◯◯）→ appBase。
+ * 絵の URL。共通の絵 → sharedBase、章の制覇（major-◯◯）とアプリごとの絵（APP_BADGE_ART）→ appBase。
  * sharedBase / appBase は末尾が / の URL（shared/images/badges/ と <アプリ>/images/badges/）。絵が無い・名前が不正なら null。
  */
 export function badgeImageUrl(art, { sharedBase, appBase } = {}) {
   if (typeof art !== 'string' || !SAFE_NAME.test(art)) return null;
-  if (art.startsWith('major-')) return appBase ? appBase + art + '.webp' : null;
+  if (art.startsWith('major-') || APP_BADGE_ART.includes(art)) return appBase ? appBase + art + '.webp' : null;
   return COMMON_BADGE_ART.includes(art) && sharedBase ? sharedBase + art + '.webp' : null;
 }
 
@@ -127,11 +131,14 @@ export function badgeDefs(tree, config) {
       progress: (s) => ({ cur: beaten(s), max: bossStages.length, unit: '章', action: { kind: 'boss' } }),
     });
   }
-  // 真ボス（要件定義書 §3-9）。真ボスを出すアプリ（config.trueBoss）だけ。ひみつの段。絵は無いので記号の表示
+  // 真ボス（要件定義書 §3-9）。真ボスを出すアプリ（config.trueBoss）だけ。ひみつの段。名前と絵はアプリごと（config.trueBossBadge。絵が無いアプリは記号の表示）
   if (trueBossEnabled(config)) {
+    const tb = config.trueBossBadge && typeof config.trueBossBadge === 'object' ? config.trueBossBadge : {};
+    const tbName = typeof tb.name === 'string' && tb.name.trim() ? tb.name.trim() : TRUE_BOSS_BADGE_NAME;
     defs.splice(defs.findIndex((d) => d.id === 'tap-shiba-100'), 0, {
       id: 'true-boss',
-      name: '特異点を こえし もの',
+      ...(tb.art === true ? { art: 'true-boss' } : {}),
+      name: tbName,
       desc: '真ボスを倒す',
       test: (s) => trueBossWins(s) >= 1,
       progress: (s) => ({ cur: Math.min(1, trueBossWins(s)), max: 1, unit: '回', action: { kind: 'boss' } }),

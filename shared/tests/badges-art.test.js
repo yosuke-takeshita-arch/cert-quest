@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { COMMON_BADGE_ART, safeBadgeKey, majorArtName, badgeArtName, badgeImageUrl, badgeDefs, awardBadges, badgeProgress } from '../js/lib/badges.js';
+import { COMMON_BADGE_ART, APP_BADGE_ART, TRUE_BOSS_BADGE_NAME, safeBadgeKey, majorArtName, badgeArtName, badgeImageUrl, badgeDefs, awardBadges, badgeProgress } from '../js/lib/badges.js';
 import { nextGoals } from '../js/lib/goals.js';
 import { defaultState } from '../js/lib/progress.js';
 import { APPS } from './apps.js';
@@ -74,7 +74,7 @@ test('絵の素材: 共通の12個が全部 shared/images/badges/ にあり、�
   assert.ok(COMMON_BADGE_ART.length >= 12);
   assert.equal(new Set(COMMON_BADGE_ART).size, COMMON_BADGE_ART.length);
   // 真ボスのバッジ（true-boss）は真ボスを出すアプリだけに定義があるので、trueBoss を付けて全部の定義を出す
-  const ids = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40, trueBoss: true }).filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:')).map((d) => d.id);
+  const ids = badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40, trueBoss: true }).filter((d) => !d.id.startsWith('major:') && !d.id.startsWith('chapter:') && !APP_BADGE_ART.includes(d.id)).map((d) => d.id);
   // 絵のあるものは、全部が定義の id にある。定義の id で絵が無いものは、PENDING_ART に挙げたものだけ
   assert.deepEqual(COMMON_BADGE_ART.filter((a) => !ids.includes(a)), []);
   assert.deepEqual(ids.filter((i) => !COMMON_BADGE_ART.includes(i)).sort(), PENDING_ART.filter((i) => !COMMON_BADGE_ART.includes(i)).sort());
@@ -85,6 +85,35 @@ test('絵の素材: 共通の12個が全部 shared/images/badges/ にあり、�
     assert.ok(statSync(p).size > 1000, id + '.webp が小さすぎる');
     assert.ok(sw.includes("'../shared/images/badges/" + id + ".webp'"), id + ' が sw-core.js の SHARED にない');
     assert.equal(readFileSync(p).subarray(8, 12).toString('latin1'), 'WEBP', id);
+  }
+});
+
+test('真ボスのバッジの絵: アプリごと（<アプリ>/images/badges/true-boss.webp）。config.trueBossBadge.art が true のアプリだけ絵の名前を持ち、URL は appBase。絵が無いアプリは null（記号の表示）', () => {
+  assert.ok(APP_BADGE_ART.includes('true-boss'));
+  assert.equal(COMMON_BADGE_ART.includes('true-boss'), false, '共通の絵ではない');
+  const tb = (badge) => badgeDefs(tree(), { challenge: {}, secondsPerQuestion: 40, trueBoss: true, ...(badge ? { trueBossBadge: badge } : {}) }).find((d) => d.id === 'true-boss');
+  assert.equal(badgeArtName(tb({ name: 'あ', art: true })), 'true-boss');
+  assert.equal(badgeArtName(tb({ name: 'あ', art: false })), null);
+  assert.equal(badgeArtName(tb(null)), null, '設定が無ければ絵なし');
+  assert.equal(tb({ name: 'みやこを かえし もの', art: false }).name, 'みやこを かえし もの');
+  assert.equal(tb(null).name, TRUE_BOSS_BADGE_NAME, '名前が無ければ仮の名前');
+  assert.equal(tb({ name: '  ', art: true }).name, TRUE_BOSS_BADGE_NAME);
+  assert.equal(badgeImageUrl('true-boss', bases), 'https://x/app/images/badges/true-boss.webp');
+  assert.equal(badgeImageUrl('true-boss', { sharedBase: 'https://x/shared/images/badges/' }), null, 'appBase が無ければ null');
+  // 3アプリの config と素材（アプリの絵は art が true のとき実在し、WEBP である）
+  const repo = join(shared, '..');
+  for (const app of APPS) {
+    const c = JSON.parse(readFileSync(join(repo, app, 'config.json'), 'utf8'));
+    const d = badgeDefs(tree(), c).find((x) => x.id === 'true-boss');
+    assert.ok(d, app + ' に真ボスのバッジが無い');
+    const p = join(repo, app, 'images', 'badges', 'true-boss.webp');
+    if (c.trueBossBadge.art) {
+      assert.equal(badgeArtName(d), 'true-boss', app);
+      assert.equal(readFileSync(p).subarray(8, 12).toString('latin1'), 'WEBP', app);
+    } else {
+      assert.equal(badgeArtName(d), null, app);
+      assert.equal(existsSync(p), false, app);
+    }
   }
 });
 
