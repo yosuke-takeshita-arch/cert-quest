@@ -37,7 +37,8 @@ export const TRUE_ORBS = Object.freeze([
 export const EVO_1_TO_2 = Object.freeze({
   glowBlink: [350, 620, 890, 1160],
   slump: 1350, defeatText: 1450,
-  heartbeats: [3200, 4000, 4700, 5300, 5800, 6200], // 低い鼓動の音（フック heartbeat）。間隔 800・700・600・500・400
+  heartbeats: [3200, 4000, 4700, 5300, 5800, 6200], // 低い鼓動の音（フック heartbeat。heartbeatFastFrom 回目からは速い鼓動の素材 heartbeatfast）。間隔 800・700・600・500・400
+  heartbeatFastFrom: 3,
   rumble: 4000, // 地鳴り（フック rumble）と「ゴゴゴゴ」
   quakes: [4200, 4900, 5400, 5800, 6150, 6450], // 画面の揺れ。4つ目から強い揺れ
   strongQuakeFrom: 3,
@@ -54,7 +55,7 @@ export const EVO_2_TO_3 = Object.freeze({
   dim: 0, still: 0,
   orbStart: 2000,
   orbGaps: [500, 450, 400, 360, 330, 300, 280, 260, 240, 220, 200, 190], // 玉の数（TRUE_ORBS.length）-1 個ぶん。だんだん速く
-  charge: 3200,
+  charge: 4600, // 力をためる音（約3.2秒。いちばん高まるのが約6.2秒＝金色の光の直前になるように、ここから鳴らす）
   quakes: [3800, 4300, 4700, 5050, 5350, 5600, 5800, 6000, 6200, 6400],
   strongQuakeFrom: 4,
   gold: 6700, // 金色の光が弾ける（フック impact）。画面全体が金に光る。四角い面ではなく、画面いっぱいの丸い放射の光
@@ -62,6 +63,13 @@ export const EVO_2_TO_3 = Object.freeze({
   text: 7300, // 決めぜりふ
   music: 8200, // 第3形態の曲
 });
+/** 光の玉が灯る音の高さ（再生速度）。1つごとに高くなる（長音階を13音。いちばん低い音は 0.85 倍）。 */
+export const ORB_SEMITONES = Object.freeze([0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21]);
+export function orbRate(i) {
+  const k = Math.min(Math.max(Number.isInteger(i) ? i : 0, 0), ORB_SEMITONES.length - 1);
+  return Math.round(0.85 * Math.pow(2, ORB_SEMITONES[k] / 12) * 1000) / 1000;
+}
+
 /** 玉が灯る時刻（EVO_2_TO_3.orbStart から、orbGaps を足していく）。 */
 export function orbTimes(evo = EVO_2_TO_3) {
   const out = [evo.orbStart];

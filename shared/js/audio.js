@@ -75,7 +75,7 @@ function synthBeep(c, name, gain) {
 }
 
 /** 効果音を1回鳴らす。settings.sound が false なら何もしない。name は SFX_FILES のキー。onMissing … ファイルが取れない・読めないときに、昔の「ピッ」の代わりに呼ぶ関数。boost … 再生の倍率（省略は 1。元の音が小さいものだけ）。 */
-export function playSfx(settings, name, onMissing, boost = 1) {
+export function playSfx(settings, name, onMissing, boost = 1, rate = 1) {
   if (!settings || !settings.sound || !SFX_FILES[name]) return;
   const c = audioCtx();
   if (!c) return;
@@ -88,6 +88,7 @@ export function playSfx(settings, name, onMissing, boost = 1) {
       const src = c.createBufferSource();
       const g = c.createGain();
       src.buffer = buf;
+      if (rate !== 1) src.playbackRate.value = rate; // 音の高さを変えて鳴らす（真ボスの光の玉）
       g.gain.value = gain * boost;
       src.connect(g);
       g.connect(c.destination);
@@ -657,11 +658,12 @@ export function playSynth(settings, name) {
 }
 
 /** ボス戦の効果音（BOSS_SFX の種類: hit＝ボスに当たった・win＝倒した・hurt＝ダメージをもらった）。効果音の設定に従う。ファイルが無い種類は何も鳴らさず、ファイルが読めなかったときはプログラムの音に戻る。 */
-export function playBossSfx(settings, kind, boostMul = 1) {
+export function playBossSfx(settings, kind, boostMul = 1, rate = 1, synthName) {
   const e = BOSS_SFX[kind];
   if (!e) return;
-  if (!SFX_FILES[e.key]) { if (e.synth) playSynth(settings, e.synth); return; } // 素材のファイルがまだ無い種類は、プログラムの音（無ければ無音）
-  playSfx(settings, e.key, e.synth ? () => playSynth(settings, e.synth) : e.sfx ? () => playSfx(settings, e.sfx) : undefined, (e.boost || 1) * boostMul);
+  const synth = synthName || e.synth;
+  if (!SFX_FILES[e.key]) { if (synth) playSynth(settings, synth); return; } // 素材のファイルがまだ無い種類は、プログラムの音（無ければ無音）
+  playSfx(settings, e.key, synth ? () => playSynth(settings, synth) : e.sfx ? () => playSfx(settings, e.sfx) : undefined, (e.boost || 1) * boostMul, rate);
 }
 
 /** 『それ以外』がオンで、タイトル曲かどうかにかかわらず、まだ画面をさわっていなくて鳴らせない状態か（「さわると流れます」の一言を出す判定）。 */

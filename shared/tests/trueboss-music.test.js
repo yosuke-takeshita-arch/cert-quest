@@ -185,3 +185,26 @@ test('真ボスの効果音のファイル: 実在し、200KB 未満の ogg。SF
   for (const w of ['IgnasD', 'mieki256', 'ice-breakingshattering', 'earthquake-and-open-sesame', 'LedasLuzta5.ogg', 'shake.flac']) assert.ok(doc.includes(w), w);
 });
 
+
+test('進化のタメの効果音のファイル（外部の素材）: 6つとも実在し、200KB 未満の ogg。SFX_FILES・sw-core.js の先取りの一覧・ライセンスの記録がそろっている。ひみつではなく作者を載せている', () => {
+  const doc = licenses();
+  const sw = readFileSync(sharedDir + 'sw-core.js', 'utf8');
+  const about = readFileSync(sharedDir + 'js/views/about.js', 'utf8');
+  const files = { trueheartbeat: 'true-heartbeat_slow.ogg', trueheartbeatfast: 'true-heartbeat_fast.ogg', trueorb: 'true-orb_bell-ding.ogg', truecharge: 'true-charge_rocket-launch.ogg', trueimpact: 'true-impact_chunky-explosion.ogg', truehit: 'true-impact_transformation-hit.ogg' };
+  for (const [k, f] of Object.entries(files)) {
+    assert.equal(SFX_FILES[k], f);
+    assert.ok(existsSync(sharedDir + 'audio/sfx/' + f), f);
+    assert.ok(statSync(sharedDir + 'audio/sfx/' + f).size < 200 * 1024, f);
+    assert.ok(doc.includes(f), f + ' が audio-licenses.md に無い');
+    assert.ok(sw.includes("'" + f + "'"), f + ' が sw-core.js の SFX に無い');
+  }
+  for (const w of ['bart', 'PWL', 'qzlocx', 'Joth', 'Dizzy Crow', 'heartbeat-sounds', 'bell-dingschimes', 'weird-rocket-launch-sound', 'chunky-explosion', 'epic-transformation-124', '37.6秒〜39.8秒']) { assert.ok(doc.includes(w), w); if (/^[A-Za-z ]+$/.test(w) && w.length < 12) assert.ok(about.includes(w), w + ' が about.js に無い'); }
+  // フック → 素材のキー
+  assert.deepEqual(['heartbeat', 'heartbeatfast', 'orb', 'charge', 'impact', 'finalhit'].map((k) => BOSS_SFX[k].key), ['trueheartbeat', 'trueheartbeatfast', 'trueorb', 'truecharge', 'trueimpact', 'truehit']);
+  // 鼓動は、ファイルが読めないときはプログラムの鼓動（前半・後半とも）。玉・決めの一撃は、無ければ無音（玉は呼ぶ側がプログラムの音を渡す）
+  assert.equal(BOSS_SFX.heartbeat.synth, 'heartbeat');
+  assert.equal(BOSS_SFX.heartbeatfast.synth, 'heartbeat');
+  assert.equal(BOSS_SFX.orb.synth, null);
+  assert.equal(BOSS_SFX.finalhit.synth, null);
+  assert.ok(BOSS_SFX.charge.boost > 1 && BOSS_SFX.charge.boost <= 2);
+});

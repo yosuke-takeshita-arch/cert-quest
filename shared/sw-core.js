@@ -139,6 +139,12 @@ const SFX = [
   'true-shatter_ice-big-1.ogg',
   'true-shatter_ice-big-2.ogg',
   'true-rumble_earthquake-shake.ogg',
+  'true-heartbeat_slow.ogg',
+  'true-heartbeat_fast.ogg',
+  'true-orb_bell-ding.ogg',
+  'true-charge_rocket-launch.ogg',
+  'true-impact_chunky-explosion.ogg',
+  'true-impact_transformation-hit.ogg',
 ].map((f) => '../shared/audio/sfx/' + f);
 
 // 上の2つのリストは '../shared/' から始まる形で書いてある。sw.js が深い場所にあるとき

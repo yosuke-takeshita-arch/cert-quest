@@ -236,3 +236,20 @@ test('光の玉の位置: 第2形態の頭のうしろの輪。頭の上を回�
   // 重ならない
   for (let i = 0; i < TRUE_ORBS.length; i++) for (let j = i + 1; j < TRUE_ORBS.length; j++) assert.ok(Math.hypot(TRUE_ORBS[i].x - TRUE_ORBS[j].x, TRUE_ORBS[i].y - TRUE_ORBS[j].y) > 2.5, i + '-' + j);
 });
+
+import { orbRate, ORB_SEMITONES } from '../js/lib/trueboss-data.js';
+
+test('光の玉が灯る音の高さ（再生速度）: 13個とも、1つごとに高くなる。いちばん低い音は 0.85 倍。範囲外・壊れた番号でも落ちない。力をためる音は、玉が灯り終わる前から鳴り、金色の光の直前に高まる', () => {
+  assert.equal(ORB_SEMITONES.length, TRUE_ORBS.length);
+  const rates = TRUE_ORBS.map((_, i) => orbRate(i));
+  assert.equal(rates[0], 0.85);
+  rates.forEach((r, i) => { if (i) assert.ok(r > rates[i - 1], 'orb' + i + ' が前より高くない'); });
+  assert.ok(rates.at(-1) > 2.5 && rates.at(-1) < 3.5, String(rates.at(-1)));
+  assert.equal(orbRate(-3), 0.85);
+  assert.equal(orbRate(99), rates.at(-1));
+  assert.equal(orbRate(NaN), 0.85);
+  // 力をためる音（約3.2秒。ふくらむのは約1.4〜1.8秒）が、金色の光（gold）の直前に高まる
+  const peak = EVO_2_TO_3.charge + 1600;
+  assert.ok(peak < EVO_2_TO_3.gold && EVO_2_TO_3.gold - peak < 1500, '力をためる音の山が金色の光の直前に来ない: ' + (EVO_2_TO_3.gold - peak));
+  assert.equal(EVO_1_TO_2.heartbeatFastFrom, 3, '鼓動の前半3回は遅い素材・後半3回は速い素材');
+});

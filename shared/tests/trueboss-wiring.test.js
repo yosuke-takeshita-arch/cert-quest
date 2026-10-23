@@ -164,7 +164,7 @@ test('第1→2の進化: 偽の撃破では崩れて消えない → 鼓動（�
   assert.match(fake, /figClass\('add', 'slump'\)/, '暗い灰色に沈む');
   assert.match(fake, /' を たおした！'/);
   assert.match(fake, /playBossSfx\(app\.state\.settings, 'win'\)/, '勝利の音はそのまま');
-  assert.match(fake, /T\.heartbeats\.forEach\(\(t\) => at\(t, \(\) => \{ evoSfx\('heartbeat'\)/, '鼓動');
+  assert.match(fake, /T\.heartbeats\.forEach\(\(t, k\) => at\(t, \(\) => \{ evoSfx\(k < T\.heartbeatFastFrom \? 'heartbeat' : 'heartbeatfast'\); flash\(ui\.fig, 'beat', 260\)/, '鼓動（前半は遅い・後半は速い。鼓動に合わせて絵が明るくなる）');
   assert.match(fake, /evoSfx\('rumble'\)/);
   assert.match(fake, /k >= T\.strongQuakeFrom \? 'quake2' : 'quake'/, '揺れがだんだん強く');
   assert.match(fake, /T\.eyeBlinks\.forEach/, '目がまたたく');
@@ -175,7 +175,7 @@ test('第1→2の進化: 偽の撃破では崩れて消えない → 鼓動（�
   assert.equal((fn.match(/crumble\(/g) || []).length, 1);
   assert.match(fn, /crumble\('#b08d3c'\); \/\/ 殻が崩れるのは、ここ/);
   // 順番
-  const order = ["figClass('add', 'slump')", "evoSfx('heartbeat')", "evoSfx('rumble')", "classList.add('blink')", "classList.add('on')", "at(T.shake", 'crackLayer.lines[k]', 'crumble(', "evoSfx('shatter1')", 'at(T.swap'];
+  const order = ["figClass('add', 'slump')", "'heartbeat' : 'heartbeatfast'", "evoSfx('rumble')", "classList.add('blink')", "classList.add('on')", "at(T.shake", 'crackLayer.lines[k]', 'crumble(', "evoSfx('shatter1')", 'at(T.swap'];
   let last = -1;
   for (const k of order) { const i = fn.indexOf(k, last + 1); assert.ok(i > last, k + ' が順番どおりに無い'); last = i; }
   // 動きを減らす設定では、色（暗い灰色）と文と音だけ
@@ -210,16 +210,17 @@ test('第2→3の進化: 曲が止まって暗く → 宙で静止 → 光の玉
 test('進化の効果音のフック: 名前つきで、鳴らす時刻の表（EVO_1_TO_2・EVO_2_TO_3）に合わせて呼ぶ。素材が無い間は、プログラムの音で鳴る', () => {
   const src = code('shared/js/views/trueboss.js');
   const fn = fnBody(src, 'evolveSequence');
-  for (const name of ['heartbeat', 'rumble', 'shatter1', 'shatter2', 'charge', 'impact']) assert.ok(fn.includes("evoSfx('" + name + "'"), name);
+  for (const name of ['rumble', 'shatter1', 'shatter2', 'charge', 'impact', 'finalhit']) assert.ok(fn.includes("evoSfx('" + name + "'"), name);
+  assert.ok(fn.includes("'heartbeat' : 'heartbeatfast'"), '鼓動');
   assert.ok(fn.includes("evoSfx(k % 2 ? 'crack2' : 'crack1', 0, [0.7, 0.85, 1, 1.1][k])"), 'ひび');
   assert.match(fn, /evoSfx\('orb', k\)/);
-  assert.match(src, /function evoSfx\(name, i = 0, boost = 1\) \{\n\s*if \(name === 'orb'\) playSynth\(app\.state\.settings, 'orb' \+ Math\.min/);
+  assert.match(src, /function evoSfx\(name, i = 0, boost = 1\) \{\n\s*if \(name === 'orb'\) playBossSfx\(app\.state\.settings, 'orb', 1, orbRate\(i\), 'orb' \+ Math\.min/);
   const snd = read('shared/js/lib/sound.js');
-  for (const name of ['heartbeat', 'charge', 'impact']) assert.match(snd, new RegExp(name + ": \\{ key: 'true" + name + "', synth: '" + name + "' \\}"));
+  for (const [kind, key] of [['heartbeat', 'trueheartbeat'], ['heartbeatfast', 'trueheartbeatfast'], ['charge', 'truecharge'], ['impact', 'trueimpact']]) assert.ok(snd.includes(kind + ": { key: '" + key + "'"), kind);
   const au = read('shared/js/audio.js');
-  assert.match(au, /if \(!SFX_FILES\[e\.key\]\) \{ if \(e\.synth\) playSynth\(settings, e\.synth\); return; \}/, 'ファイルが無い種類は、プログラムの音');
+  assert.ok(au.includes("if (!SFX_FILES[e.key]) { if (synth) playSynth(settings, synth); return; }"), 'ファイルが無い種類は、プログラムの音');
   // 素材の SFX_FILES のキーは、まだ無い（素材が入ったら足す）
-  assert.doesNotMatch(snd, /trueheartbeat:|truecharge:|trueimpact:|trueorb/);
+  for (const k of ['trueheartbeat', 'trueheartbeatfast', 'trueorb', 'truecharge', 'trueimpact', 'truehit']) assert.match(snd, new RegExp('  ' + k + ": 'true-")); // 素材のファイル（2026-10-23 先生が選んだ）が SFX_FILES にある
 });
 
 test('進化の演出は、四角い白い面を使わない: 割れる光・金色の光は丸い放射の光。タップで飛ばせる', () => {

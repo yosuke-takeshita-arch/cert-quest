@@ -108,6 +108,12 @@ export const SFX_FILES = {
   trueshatter1: 'true-shatter_ice-big-1.ogg', // 殻が砕ける瞬間の大きな音（同じ素材の LedasLuzta5）
   trueshatter2: 'true-shatter_ice-big-2.ogg', // 砕ける音に重ねる長めの音（同じ素材の LedasLuzta33）
   truerumble: 'true-rumble_earthquake-shake.ogg', // 第1形態を倒したあとの地鳴り（OpenGameArt「Earthquake and Open sesame」mieki256 の shake、CC0。3.6秒に切って後ろをフェードアウト）
+  trueheartbeat: 'true-heartbeat_slow.ogg', // 2026-10-23 先生『進化の効果音は全部推奨』。真ボス1→2の鼓動の前半（OpenGameArt「Heartbeat Sounds」bart の heartbeat_slow、CC0。1回ぶんを 0.62 秒に切り、低音だけで聞こえにくいので高い成分を足した）
+  trueheartbeatfast: 'true-heartbeat_fast.ogg', // 鼓動の後半（同じ素材の heartbeat_fast。0.45 秒に切った）
+  trueorb: 'true-orb_bell-ding.ogg', // 2→3 で光の玉が灯る音（OpenGameArt「Bell dings/chimes」PWL の bell_ding3、CC0。0.55 秒に切った。13回、再生速度で高くしていく）
+  truecharge: 'true-charge_rocket-launch.ogg', // 2→3 の力をためる音（OpenGameArt「Weird Rocket Launch Sound」qzlocx の beepbox-song_1、CC0。3.2 秒に切って後ろをフェードアウト）
+  trueimpact: 'true-impact_chunky-explosion.ogg', // 2→3 の大きな衝撃（OpenGameArt「Chunky Explosion」Joth、CC0。頭から1.8秒に切って後ろをフェードアウト）
+  truehit: 'true-impact_transformation-hit.ogg', // 衝撃と同時に鳴らす決めの一撃（OpenGameArt「Epic Transformation」Dizzy Crow の 37.6〜39.8 秒、CC0）
   bosscrit: 'boss-crit_cut.ogg', // 2026-10-10 先生が聞き比べて選んだ。ボス戦で会心の一撃が出たとき（OpenGameArt「NES Sounds」Baŝto の cut、CC0。元の ogg のまま。ふつうの当たり bosshit より約6dB 小さいので BOSS_SFX.crit.boost で持ち上げる）
 };
 
@@ -131,8 +137,11 @@ export const BOSS_SFX = {
   rumble: { key: 'truerumble', synth: 'skill' },
   // 進化のタメの効果音のフック（要件定義書 §3-9）。素材のファイルは今は無く、プログラムの音で鳴る。素材が入ったら SFX_FILES に key を足すだけで、ファイルが先に鳴る
   heartbeat: { key: 'trueheartbeat', synth: 'heartbeat' },
-  charge: { key: 'truecharge', synth: 'charge' },
+  heartbeatfast: { key: 'trueheartbeatfast', synth: 'heartbeat' },
+  orb: { key: 'trueorb', synth: null }, // 13回。再生速度で高くする（view が rate と、ファイルが無いときのプログラムの音の名前を渡す）
+  charge: { key: 'truecharge', synth: 'charge', boost: 1.4 }, // 元の rms 約 0.09 が、ほかの効果音より小さいので持ち上げる
   impact: { key: 'trueimpact', synth: 'impact' },
+  finalhit: { key: 'truehit', synth: null }, // 衝撃と同時に鳴らす決めの一撃
 };
 
 // BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。

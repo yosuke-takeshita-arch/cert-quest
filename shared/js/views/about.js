@@ -13,7 +13,7 @@ export const AUDIO_CREDITS = [
   { what: '秒数チャレンジ・どっち？早押しの曲', who: 'DST（OpenGameArt「Tower Defense Theme」）' },
   { what: 'ボス戦の効果音', who: 'celestialghost8・Spring Spring・crazyduckgames・Baŝto（いずれも OpenGameArt）' },
   { what: '真ボスの曲', who: 'Centurion_of_war（OpenGameArt「Final Stand」）・Yoiyami（OpenGameArt「Starfield Romance」）' },
-  { what: '真ボスの効果音', who: 'IgnasD・mieki256（いずれも OpenGameArt）' },
+  { what: '真ボスの効果音', who: 'IgnasD・mieki256・bart・PWL・qzlocx・Joth・Dizzy Crow（いずれも OpenGameArt）' },
 ];
 
 /** 権利について（2026-10-11 先生決定）。キャラクター・バッジ・ボスの絵は先生が ChatGPT で作った。 */

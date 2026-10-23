@@ -552,7 +552,7 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   const doc = readFileSync(join(root, 'docs', 'sources', 'audio-licenses.md'), 'utf8');
   assert.equal(SFX_FILES.bosshit, 'boss-hit_snare.ogg');
   assert.equal(SFX_FILES.bosswin, 'boss-win_victory.mp3');
-  assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['charge', 'crack1', 'crack2', 'crit', 'heartbeat', 'hit', 'hurt', 'impact', 'rumble', 'shatter1', 'shatter2', 'win']); // crack・shatter・rumble は真ボス（trueboss-music.test.js が見る）
+  assert.deepEqual(Object.keys(BOSS_SFX).sort(), ['charge', 'crack1', 'crack2', 'crit', 'finalhit', 'heartbeat', 'heartbeatfast', 'hit', 'hurt', 'impact', 'orb', 'rumble', 'shatter1', 'shatter2', 'win']); // crack・shatter・rumble は真ボス（trueboss-music.test.js が見る）
   // 会心の一撃: ファイル（snare の代わり）。元の音が小さいので倍率をかける。読めなければプログラムの crit に戻る
   assert.equal(SFX_FILES.bosscrit, 'boss-crit_cut.ogg');
   assert.equal(BOSS_SFX.crit.key, 'bosscrit');
@@ -577,9 +577,10 @@ test('ボス戦の効果音: 倒した・当たったはファイル（audio-lic
   const body = functionBody(au, 'playBossSfx');
   assert.match(body, /BOSS_SFX\[kind\]/);
   assert.match(body, /playSfx\(settings, e\.key,/);
-  assert.match(body, /playSynth\(settings, e\.synth\)/);
+  assert.match(body, /playSynth\(settings, synth\)/); // ファイルが読めないときの、プログラムの音（synth は e.synth か、呼ぶ側が渡す名前）
+  assert.match(body, /const synth = synthName \|\| e\.synth;/);
   assert.match(body, /playSfx\(settings, e\.sfx\)/);
-  assert.match(body, /\(e\.boost \|\| 1\) \* boostMul\)/); // 倍率（e.boost と、呼ぶ側の boostMul）を playSfx に渡す
+  assert.match(body, /\(e\.boost \|\| 1\) \* boostMul, rate\)/); // 倍率（e.boost と、呼ぶ側の boostMul）と再生速度（rate）を playSfx に渡す
   assert.match(functionBody(au, 'playSfx'), /g\.gain\.value = gain \* boost/);
   assert.match(functionBody(au, 'playSfx'), /onMissing \? onMissing\(\)/);
   assert.match(functionBody(au, 'playSfx'), /!settings\.sound/);

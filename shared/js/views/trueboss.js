@@ -13,7 +13,7 @@ import {
   trueBossEnabled, trueBossUnlocked, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_SECONDS, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
-import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE, TRUE_CRACKS, TRUE_EYE, TRUE_ORBS, EVO_1_TO_2, EVO_2_TO_3, orbTimes } from '../lib/trueboss-data.js';
+import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE, TRUE_CRACKS, TRUE_EYE, TRUE_ORBS, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -623,7 +623,7 @@ export function renderTrueBoss(app) {
   // 進化の効果音のフック（要件定義書 §3-9）。名前: heartbeat（鼓動）・rumble（地鳴り）・crack1/crack2（ひび）・shatter1/shatter2（割れる）・orb（光の玉が灯る。i 番目ほど高い）・charge（力をためる）・impact（大きな衝撃）。
   // 素材のファイルが無い間は、プログラムの音（無ければ無音）で鳴る（lib/sound.js の BOSS_SFX・lib/trueboss-music.js の TRUE_SFX）。
   function evoSfx(name, i = 0, boost = 1) {
-    if (name === 'orb') playSynth(app.state.settings, 'orb' + Math.min(Math.max(i, 0), TRUE_ORBS.length - 1));
+    if (name === 'orb') playBossSfx(app.state.settings, 'orb', 1, orbRate(i), 'orb' + Math.min(Math.max(i, 0), TRUE_ORBS.length - 1)); // ファイルは再生速度で高くする。無いときはプログラムの音
     else playBossSfx(app.state.settings, name, boost);
   }
 
@@ -711,7 +711,7 @@ export function renderTrueBoss(app) {
       });
       at(T.defeatText, () => say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))]));
       // 心臓の鼓動のような低い音が、だんだん速く。地鳴りと揺れがだんだん強く
-      T.heartbeats.forEach((t) => at(t, () => { evoSfx('heartbeat'); vibrate(app.state.settings, [30, 40, 30]); }));
+      T.heartbeats.forEach((t, k) => at(t, () => { evoSfx(k < T.heartbeatFastFrom ? 'heartbeat' : 'heartbeatfast'); flash(ui.fig, 'beat', 260); vibrate(app.state.settings, [30, 40, 30]); })); // 前半は遅い鼓動・後半は速い鼓動。鼓動に合わせて絵がわずかに明るくなる（低い音がスマホで聞こえにくくても分かるように）
       at(T.rumble, () => { say(['……ゴゴゴゴ……']); evoSfx('rumble'); });
       T.quakes.forEach((t, k) => at(t, () => { flash(ui.scene, k >= T.strongQuakeFrom ? 'quake2' : 'quake', 450); vibrate(app.state.settings, k >= T.strongQuakeFrom ? [90, 40, 90] : [60, 40, 60]); }));
       // 消えた一つ目が、何度かまたたいてから強く光る（灰色が戻りはじめる）
@@ -753,6 +753,7 @@ export function renderTrueBoss(app) {
         orbLayer.svg.classList.add('blaze');
         ui.fx.appendChild(h('span', { class: 'tb-burst strong' }));
         evoSfx('impact');
+        evoSfx('finalhit'); // 衝撃と同時に、決めの一撃
         vibrate(app.state.settings, [40, 30, 40, 30, 120]);
       });
       at(T.swap, () => swap());

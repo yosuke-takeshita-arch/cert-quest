@@ -105,6 +105,24 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 - 地鳴りは低い音が中心なので、スマホで小さく聞こえないかを周波数で測った: 重心 約168Hz、150Hz 未満が約66%、150〜2000Hz が約33%、2000Hz 以上が約1%。既存の『ドン』（`boss-hurt_explosion02.ogg`。重心約85Hz、150Hz 未満が約92%）より中域が多いので、そのままにした（音量を上げていない）。
 - 実際の聞こえ方は、耳では確かめていない。
 
+### 進化のタメの効果音（`shared/audio/sfx/`。インストール時に取る。先生が『進化の効果音は全部推奨』で選んだ。2026-10-23）
+
+配布ページは 2026-10-23 に curl で取得し直し、ファイルも取り直して、手元の原本と cmp で一致を確かめた（6つとも一致）。使う場面は `shared/js/lib/trueboss-data.js` の時刻の表（`EVO_1_TO_2`・`EVO_2_TO_3`）と `shared/js/views/trueboss.js` の効果音のフック。
+
+| ファイル | 使う場面 | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス |
+|---|---|---|---|---|---|---|
+| `true-heartbeat_slow.ogg` | 真ボス第1→2の進化の、鼓動の前半（3回） | `heartbeat_slow_0.wav`（635,216 バイト・1.80秒。1回の鼓動が2回ぶん入っていた） | 約0.60秒・6,637 バイト（頭から0.62秒＝1回ぶんに切り、後ろをフェードアウト。高い成分を足した。下に書く） | bart | <https://opengameart.org/content/heartbeat-sounds> | CC0 |
+| `true-heartbeat_fast.ogg` | 同じ、鼓動の後半（3回） | `heartbeat_fast_0.wav`（397,080 バイト・1.13秒） | 約0.37秒・5,875 バイト（頭から0.45秒に切り、同じ加工） | bart | 同じ | CC0 |
+| `true-orb_bell-ding.ogg` | 第2→3の進化で、光の玉が灯る音（13回。再生速度で1つごとに高くする） | `bell_ding3.wav`（327,748 バイト・1.86秒） | 約0.57秒・7,691 バイト（頭から0.55秒に切り、後ろをフェードアウト。元は音が割れていたので、少し下げて頭打ち） | PWL | <https://opengameart.org/content/bell-dingschimes> | CC0 |
+| `true-charge_rocket-launch.ogg` | 第2→3の進化の、力をためる音 | `beepbox-song_1.wav`（921,644 バイト・4.80秒） | 3.2秒・28,600 バイト（頭から3.2秒に切り、最後の0.5秒をフェードアウト） | qzlocx | <https://opengameart.org/content/weird-rocket-launch-sound> | CC0 |
+| `true-impact_chunky-explosion.ogg` | 第2→3の進化の、金色の光が弾ける大きな衝撃 | `Chunky Explosion.mp3`（116,422 バイト・5.62秒） | 1.8秒・17,620 バイト（頭から1.8秒に切り、0.9秒から0.9秒かけてフェードアウト。音量を 0.6 倍） | Joth | <https://opengameart.org/content/chunky-explosion> | CC0 |
+| `true-impact_transformation-hit.ogg` | 衝撃と同時に鳴らす、決めの一撃 | `Transformation.ogg`（1,889,751 バイト・約82.3秒）の 37.6秒〜39.8秒 | 2.2秒・33,607 バイト（切り出して、1.4秒から0.8秒かけてフェードアウト。音量を 0.5 倍） | Dizzy Crow | <https://opengameart.org/content/epic-transformation-124> | CC0 |
+
+- **確かめた逐語**: 5つのページとも、投稿情報の欄に『License(s): CC0』がある（ライセンスのリンクは creativecommons.org/publicdomain/zero/1.0/）。作者は『Author: bart』『Author: PWL』『Author: qzlocx』『Author: Joth』『Author: Dizzy Crow』。`CC-BY` や表示を求める記載は無い。PWL のページの Copyright/Attribution Notice 欄は『Releasing as public domain.』。ほかの4つのページには、この欄が無い。Epic Transformation は音楽（Art Type: Music。タグは『orchestra choir glockenspiel … epic amazing huge transformation resurrection spell』）で、その中の2.2秒だけを使う。
+- **鼓動の聞こえにくさへの対処**: 元の鼓動は 100Hz 未満にほぼ全部の音がある（周波数の重心 約68Hz。150Hz 未満が約99.8%）ので、スマホの小さなスピーカーでは聞こえにくい。元を3つに分けて、(1) 元の音を持ち上げて歪ませた低音、(2) 3倍の高さにして歪ませた音（約200Hz〜）、(3) 5倍の高さにして歪ませた音（約340Hz〜）を重ねた。加工後の重心は約210Hz、150Hz 未満は約25%、150〜2000Hz が約75%（rms 約0.17〜0.21、peak 約0.8）。あわせて、鼓動のたびに絵が少し明るくなる（画面の明滅。音が小さくても分かる）。
+- **音量のつり合い**: 加工後の rms は、鼓動 0.17〜0.21・玉のベル 0.11・力をためる 0.09（再生のとき 1.4 倍）・衝撃 0.10・決めの一撃 0.10。ほかの効果音は、ボスの当たり 0.16・会心 0.08・勝利 0.10（audio-licenses の測定）。衝撃と決めの一撃は同時に鳴るので、どちらも peak を 0.6 以下にして、重なっても割れないようにした。
+- 実際の聞こえ方は、耳では確かめていない。
+
 ## 確かめていないこと
 
 - 音そのものは聞いていない（ライセンスとファイルの大きさ・長さを確かめただけ）。曲・効果音の「合っているか」は、実機で先生が聞いて決める。差し替えるときは `shared/js/lib/sound.js` の表と `shared/sw-core.js` の `SFX` と、この表を直す。
