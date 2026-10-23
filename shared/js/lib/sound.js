@@ -136,6 +136,7 @@ export const BOSS_SFX = {
   shatter2: { key: 'trueshatter2', synth: null },
   rumble: { key: 'truerumble', synth: 'skill' },
   // 進化のタメの効果音のフック（要件定義書 §3-9）。素材のファイルは今は無く、プログラムの音で鳴る。素材が入ったら SFX_FILES に key を足すだけで、ファイルが先に鳴る
+  heal: { key: 'trueheal', synth: 'heal' }, // ボスの回復の音のフック。素材のファイル（trueheal）が入るまでは、プログラムの音
   heartbeat: { key: 'trueheartbeat', synth: 'heartbeat' },
   heartbeatfast: { key: 'trueheartbeatfast', synth: 'heartbeat' },
   orb: { key: 'trueorb', synth: null }, // 13回。再生速度で高くする（view が rate と、ファイルが無いときのプログラムの音の名前を渡す）

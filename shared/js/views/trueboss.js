@@ -165,6 +165,31 @@ function buildOrbLayer(fig) {
   return { svg, orbs };
 }
 
+/** きらきらした粒の層。絵と同じ正方形の SVG に、緑・白の小さな粒をまぶす（上へ昇りながら消える）。粒の位置は体の範囲（絵の中の割合）。 */
+function buildSparkLayer(fig) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 100 100');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  svg.setAttribute('class', 'tb-spark-layer');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('data-tb-spark', '1');
+  const colors = ['#9dffb0', '#5fe37a', '#ffffff', '#c8ffd4'];
+  for (let k = 0; k < 36; k++) {
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', (14 + Math.random() * 72).toFixed(1));
+    c.setAttribute('cy', (20 + Math.random() * 70).toFixed(1));
+    c.setAttribute('r', (1.3 + Math.random() * 1.4).toFixed(2));
+    c.setAttribute('fill', colors[k % colors.length]);
+    c.setAttribute('class', 'tb-spark');
+    c.style.setProperty('--delay', (Math.random() * 0.6).toFixed(2) + 's');
+    c.style.setProperty('--dur', (0.8 + Math.random() * 0.6).toFixed(2) + 's');
+    svg.appendChild(c);
+  }
+  fig.appendChild(svg);
+  return svg;
+}
+
 const rand = (a, b) => a + Math.random() * (b - a);
 
 export function renderTrueBoss(app) {
@@ -409,6 +434,7 @@ export function renderTrueBoss(app) {
     if (S.phase === 'intro') finishIntro();
     else if ((S.phase === 'defeat' || S.phase === 'evolve') && S.skipFx) S.skipFx();
     else if (typing) typing.finish();
+    else if (S.healWait) S.healWait(); // 回復のページを待っているとき、窓のタップで次のページへ
   }
 
   // ---- 登場の演出 ----
@@ -591,10 +617,6 @@ export function renderTrueBoss(app) {
           if (crit) { flash(ui.stage, 'crit', 450); flash(ui.mini, 'crit', 450); }
           lines.push(...(crit ? ['会心の一撃！', oldProfile.name + ' に ダメージ！'] : [oldProfile.name + ' に ダメージ！', quoted(pickTrueLine(oldProfile, 'hurt', app.rng))]));
           lines.push(BOSS_MOOD_TEXT[bossMood(b)]);
-          if (ev.bossHealed) {
-            playSynth(app.state.settings, 'heal');
-            lines.push(oldProfile.name + ' は 傷を癒やした！', quoted(pickTrueLine(oldProfile, 'heal', app.rng)));
-          }
         }
       } else {
         playBossSfx(app.state.settings, 'hurt');
@@ -611,12 +633,30 @@ export function renderTrueBoss(app) {
       if (ev.skillEnded && !ev.evolved && b.result !== 'win') lines.push(skillInfo(ev.skillEnded).name + ' の ちからが きえた。');
       if (b.result === 'win') defeatSequence(bar, next, ev);
       else if (ev.evolved) evolveSequence(ev, bar, next);
-      else {
+      else if (ev.bossHealed) { // 正解のときも、間違えたときも（回復は答えの正誤に関わらず起きる）
+        // ボスの回復は、ダメージの文が出終わってから、窓を新しいページにして出す（要件定義書 §3-9『ボスの回復の見せ方』）。
+        // ページの送り方: ダメージの文が出終わると ▼ が出て、窓をタップするか、約1.4秒たつと、前の文を消して次のページになる
+        const showHeal = () => {
+          if (!S.healWait || S.item !== sq || !ui || !ui.stage.isConnected) return;
+          S.healWait = null;
+          healEffect(); // 緑の光ときらきら + 回復の音（同時）
+          say([oldProfile.name + ' は 傷を癒やした！', quoted(pickTrueLine(oldProfile, 'heal', app.rng))]);
+        };
+        say(lines, { onDone: () => { if (S.item !== sq) return; S.healWait = showHeal; later(showHeal, 1400); } });
+      } else {
         say(lines);
         if (b.result === 'lose') stopBossTheme();
       }
     };
     atTop(perform);
+  }
+
+  // ---- ボスの回復の見せ方: 絵の形に沿った緑の光 + きらきらした粒（絵の箱に重ねる。四角い面は使わない）+ 回復の音（フック heal）。約1.4秒 ----
+  function healEffect() {
+    playBossSfx(app.state.settings, 'heal'); // 回復の音のフック（素材のファイル trueheal が無い間は、プログラムの音）
+    figClass('add', 'healing'); // 絵のふちに沿って緑に光る（動きを減らす設定では、緑の色の変化だけ）
+    const layer = reduced() ? null : buildSparkLayer(ui.fig);
+    later(() => { figClass('remove', 'healing'); if (layer) layer.remove(); }, 1500);
   }
 
   // ---- 進化の演出（白く光る → 点滅 → 次の形態の姿に替わって現れる → せりふ。タップでとばせる） ----

@@ -344,3 +344,30 @@ test('第2形態を見るまでは「形態」「進化」を画面に出さな�
   for (const t of data.lines.ending) assert.doesNotMatch(t, /形態/);
   assert.doesNotMatch(read('shared/js/lib/badges.js').match(/id: 'true-boss'[\s\S]*?progress/)[0], /形態|進化/);
 });
+
+test('ボスの回復の見せ方: ダメージの文が出終わってから、窓を新しいページにして「傷を癒やした！」と回復のせりふ。緑の光ときらきらと音を同時に。ダメージの文には混ぜない', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'answer');
+  // ダメージのページ（lines）に、回復の文を足していない
+  const perform = fn.slice(fn.indexOf('const perform = () => {'));
+  assert.doesNotMatch(perform.slice(0, perform.indexOf('else if (ev.bossHealed)')), /傷を癒やした/);
+  // 回復のページ: ダメージの文が出終わってから（onDone）、タップか約1.4秒で、前の文を消して（say は keep なしで窓を消す）次のページに
+  assert.match(perform, /say\(lines, \{ onDone: \(\) => \{ if \(S\.item !== sq\) return; S\.healWait = showHeal; later\(showHeal, 1400\); \} \}\)/);
+  assert.match(perform, /healEffect\(\);[^\n]*\n\s*say\(\[oldProfile\.name \+ ' は 傷を癒やした！', quoted\(pickTrueLine\(oldProfile, 'heal', app\.rng\)\)\]\)/);
+  assert.match(perform, /S\.healWait = null;/);
+  // 窓のタップで次のページへ（文を出している途中のタップは、文を一度に出すだけ）
+  assert.match(fnBody(src, 'onTap'), /else if \(typing\) typing\.finish\(\);\n\s*else if \(S\.healWait\) S\.healWait\(\);/);
+  // 緑の光（絵の形に沿う filter）+ きらきら（絵の箱に重ねた SVG）+ 音（フック heal）
+  const he = fnBody(src, 'healEffect');
+  assert.match(he, /playBossSfx\(app\.state\.settings, 'heal'\)/);
+  assert.match(he, /figClass\('add', 'healing'\)/);
+  assert.match(he, /reduced\(\) \? null : buildSparkLayer\(ui\.fig\)/, '動きを減らす設定では粒を出さない');
+  assert.match(he, /\}, 1500\)/);
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.boss-fig\.healing \.boss-img, \.boss-fig\.healing \.boss-fig-sym \{ filter: drop-shadow\(0 0 4px #9dffb0\) drop-shadow\(0 0 12px #2ecc71\)/, '絵のふちに沿った緑の光（四角い面ではない）');
+  assert.match(css, /\.tb-spark-layer \{ position: absolute; inset: 0; width: 100%; height: 100%;/);
+  const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
+  assert.match(red, /\.boss-fig\.healing \.boss-img, \.boss-fig\.healing \.boss-fig-sym, \.tb-spark \{ animation: none; \}/);
+  // 回復の音のフック（素材が入るまでは、プログラムの音）
+  assert.match(read('shared/js/lib/sound.js'), /heal: \{ key: 'trueheal', synth: 'heal' \}/);
+});
