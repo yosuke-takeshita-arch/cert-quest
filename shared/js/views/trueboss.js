@@ -286,6 +286,8 @@ export function renderTrueBoss(app) {
     ui.miniName.textContent = p.name;
     ui.stage.style.setProperty('--boss-color', p.color);
     ui.mini.style.setProperty('--boss-color', p.color);
+    ui.float.classList.toggle('f2', battle().form === 2); // 第2・第3形態だけ、ゆっくり上下に浮かぶ（第1形態は動かさない）
+    ui.float.classList.toggle('f3', battle().form === 3);
     fillFigure(ui.fig, battle().form);
     fillArt(ui.miniArt, battle().form, false);
     ui.fig.style.setProperty('--boss-color', p.color);
@@ -300,7 +302,9 @@ export function renderTrueBoss(app) {
     const fx = h('div', { class: 'boss-fx', 'aria-hidden': 'true' });
     const confetti = h('div', { class: 'boss-confetti', 'aria-hidden': 'true' });
     const flashEl = h('div', { class: 'boss-flash', 'aria-hidden': 'true' });
-    const stageEl = h('div', { class: 'boss-stage', 'data-boss-stage': '1', onClick: onTap }, fig, fx, confetti, flashEl);
+    // 浮かぶ動きは、絵（fig）の外側の入れ物（float）に付ける。ダメージの点滅・揺れ・進化・崩れは fig に付くので、重なっても位置がずれず止まらない
+    const floatEl = h('div', { class: 'tb-float', 'data-tb-float': '1' }, fig);
+    const stageEl = h('div', { class: 'boss-stage', 'data-boss-stage': '1', onClick: onTap }, floatEl, fx, confetti, flashEl);
     const text = h('div', { class: 'boss-win-text', 'aria-hidden': 'true' });
     const live = h('p', { class: 'boss-sr', role: 'status' });
     const hp = h('span', { class: 'boss-win-hp' });
@@ -331,7 +335,7 @@ export function renderTrueBoss(app) {
       s.style.setProperty('--sway', Math.round(Math.random() * 120 - 60) + 'px');
       confetti.appendChild(s);
     }
-    ui = { scene, stage: stageEl, fig, fx, confetti, flash: flashEl, text, live, hp, extra, win, qarea, after, btns: [], mini, miniArt, miniHp, miniText: miniTextEl, miniName, nameEl, formEl };
+    ui = { scene, stage: stageEl, float: floatEl, fig, fx, confetti, flash: flashEl, text, live, hp, extra, win, qarea, after, btns: [], mini, miniArt, miniHp, miniText: miniTextEl, miniName, nameEl, formEl };
     paintForm();
     paintHp(battle());
     if (miniWatch) miniWatch.disconnect();

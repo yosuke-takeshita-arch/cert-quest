@@ -933,6 +933,10 @@ body.boss-on { background: #000; }
 .tb-ending-btn { position: absolute; left: 16px; right: 16px; bottom: 16px; }
 .tb-ending-go { width: 100%; }
 .boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; }
+.tb-float { height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+.tb-float.f2 { height: calc(100% - 16px); animation: tb-float 3.4s ease-in-out infinite; --amp: 8px; }
+.tb-float.f3 { height: calc(100% - 28px); animation: tb-float 4.4s ease-in-out infinite; --amp: 14px; }
+@keyframes tb-float { 0%, 100% { transform: translateY(calc(var(--amp) * 0.5)); } 50% { transform: translateY(calc(var(--amp) * -0.5)); } }
 .boss-fig.shake { animation: tb-shake 0.18s linear infinite; }
 .boss-fig.swell { animation: tb-swell 1.7s ease-in forwards; }
 .boss-fig.emerge { animation: tb-emerge 1s ease-out; }
@@ -949,6 +953,7 @@ body.boss-on { background: #000; }
 @keyframes tb-twinkle { 0% { opacity: 0.15; transform: scale(0.6); } 100% { opacity: 1; transform: scale(1.4); } }
 @media (prefers-reduced-motion: reduce) {
   .tb-star { animation: none; opacity: 0.8; }
+  .tb-float.f2, .tb-float.f3 { animation: none; }
   .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack, .tb-burst { animation: none; }
   .tb-ending-title, .tb-ending-line { transition: none; }
 }

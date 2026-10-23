@@ -163,3 +163,22 @@ test('第1→2の進化は、先に偽の撃破（崩れて消える・「たお
   // 動きを減らす設定では、撃破の文のあとに進化の文だけ（揺れ・崩れなし）
   assert.match(fn, /if \(R\) \{\n      if \(from1\) \{/);
 });
+
+test('浮かぶ動き: 第2・第3形態だけ、絵の外側の入れ物（.tb-float）にゆっくり上下の動きが付く。第1形態は付かない。動きを減らす設定で止まる', () => {
+  const view = code('shared/js/views/trueboss.js');
+  assert.match(view, /ui\.float\.classList\.toggle\('f2', battle\(\)\.form === 2\)/);
+  assert.match(view, /ui\.float\.classList\.toggle\('f3', battle\(\)\.form === 3\)/);
+  assert.doesNotMatch(view, /classList\.toggle\('f1'/, '第1形態には付けない');
+  assert.match(view, /h\('div', \{ class: 'tb-float', 'data-tb-float': '1' \}, fig\)/, 'fig を入れ物で包む');
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.tb-float\.f2 \{[^}]*animation: tb-float 3\.4s ease-in-out infinite;/);
+  assert.match(css, /\.tb-float\.f3 \{[^}]*animation: tb-float 4\.4s ease-in-out infinite;/);
+  assert.doesNotMatch(css, /\.tb-float \{[^}]*animation/, '基本の .tb-float（第1形態）には動きを付けない');
+  assert.doesNotMatch(css, /\.tb-float\.f1/);
+  // 動きは入れ物だけ。絵（.boss-fig）の点滅・揺れ・進化・崩れの動きとは別の要素なので、重ならない
+  const keyframes = css.match(/@keyframes tb-float \{[^\n]*/)[0];
+  assert.match(keyframes, /translateY/);
+  const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
+  assert.match(red, /\.tb-float\.f2, \.tb-float\.f3 \{ animation: none; \}/);
+  assert.doesNotMatch(css, /\.boss-fig[^{]*\{[^}]*tb-float/, '絵そのものには付けない');
+});
