@@ -143,3 +143,23 @@ test('CSS: 新しい部品の動き（星のまたたき・文字の現れ）は
   const view = read('shared/js/views/trueboss.js');
   assert.doesNotMatch(view, /setAttribute\('style'|innerHTML|\bstyle:\s*['"{]/, 'インライン style / innerHTML');
 });
+
+test('第1形態のあいだは「第1形態」を出さない（札・問題の上の文字）。進化してから「第2形態」を出し、進化直後の問題の上の文字も直す', () => {
+  const src = code('shared/js/views/trueboss.js');
+  assert.match(src, /const roundLabel = \(\) => \(battle\(\)\.form > 1 \? '真ボス・第' \+ battle\(\)\.form \+ '形態' : '真ボス'\);/);
+  assert.match(src, /ui\.formEl\.textContent = battle\(\)\.form > 1 \? '第' \+ battle\(\)\.form \+ '形態' : '';/);
+  assert.match(src, /ui\.formEl\.classList\.toggle\('hidden', battle\(\)\.form === 1\)/);
+  assert.match(src, /ui\.qarea\.querySelector\('\.boss-round'\)/, '進化直後に、答え済みの問題の上の文字も新しい形態に直す');
+  assert.doesNotMatch(src, /'第1形態'|第' \+ 1 \+ '形態/, '第1形態の文字を直に書いていない');
+});
+
+test('第1→2の進化は、先に偽の撃破（崩れて消える・「たおした！」・せりふ）→ 地鳴り → 殻がもどってひびが入る → 割れる → 第2形態', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'evolveSequence');
+  const order = ['crumble(oldP.color)', "' を たおした！'", "'defeat'", '……ゴゴゴゴ……', "flash(ui.scene, 'quake'", "figClass('remove', 'gone'); flash(ui.fig, 'appear'", "figClass('add', 'shake')", "crumble('#b08d3c')", 'swap();'];
+  let at = -1;
+  for (const k of order) { const i = fn.indexOf(k, at + 1); assert.ok(i > at, k + ' が順番どおりに無い'); at = i; }
+  assert.match(fn, /const P = from1 \? 4900 : 0;/);
+  // 動きを減らす設定では、撃破の文のあとに進化の文だけ（揺れ・崩れなし）
+  assert.match(fn, /if \(R\) \{\n      if \(from1\) \{/);
+});

@@ -272,11 +272,17 @@ export function renderTrueBoss(app) {
     miniWatch.observe(ui.stage);
   }
 
+  const roundLabel = () => (battle().form > 1 ? '真ボス・第' + battle().form + '形態' : '真ボス');
+
   // いまの形態の名前・色・絵を、画面に反映する（始まりと、進化のとき）
   function paintForm() {
     const p = prof();
     ui.nameEl.textContent = p.name;
-    ui.formEl.textContent = '第' + battle().form + '形態';
+    // 最初に会うときは形態があることを伏せる（第1形態のあいだは札を出さない。進化してから『第2形態』を出す。要件定義書 §3-9）
+    ui.formEl.textContent = battle().form > 1 ? '第' + battle().form + '形態' : '';
+    ui.formEl.classList.toggle('hidden', battle().form === 1);
+    const rd = ui.qarea.querySelector('.boss-round');
+    if (rd) rd.textContent = roundLabel();
     ui.miniName.textContent = p.name;
     ui.stage.style.setProperty('--boss-color', p.color);
     ui.mini.style.setProperty('--boss-color', p.color);
@@ -440,7 +446,7 @@ export function renderTrueBoss(app) {
       say([prof().name + ' は ' + skillInfo(rolled.started).name + ' を つかった！', sl]);
     }
     ui.qarea.appendChild(h('div', { class: 'play-head boss-qhead' },
-      h('span', { class: 'small muted boss-round', text: '真ボス・第' + battle().form + '形態' })));
+      h('span', { class: 'small muted boss-round', text: roundLabel() })));
     if (skill) ui.qarea.appendChild(skillBanner(skill)); else ui.timer = null;
     if (!S.log.length) ui.qarea.appendChild(h('p', { class: 'small muted boss-rule', text: TRUE_BOSS_TEXT.rule }));
     const card = h('div', { class: 'card q-card' });
@@ -585,15 +591,45 @@ export function renderTrueBoss(app) {
       next.focus({ preventScroll: true });
     };
     S.skipFx = finish;
+    const from1 = ev.evolved.from === 1;
+    const P = from1 ? 4900 : 0; // 第1→2 は、先に偽の撃破と地鳴りがある
     if (R) {
+      if (from1) {
+        // 動きを減らす設定: 点滅・揺れなしで、撃破の文 → 少しして進化の文
+        say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))], { instant: true });
+        figClass('add', 'down');
+        later(() => { figClass('remove', 'down'); playSynth(app.state.settings, 'evolve'); finish(); }, 1200);
+        return;
+      }
       playSynth(app.state.settings, 'evolve');
       finish();
       return;
     }
-    playSynth(app.state.settings, 'evolve');
-    if (ev.evolved.from === 1) {
+    if (from1) {
+      // 偽の撃破（章のボスの撃破と同じ演出で、勝ったと思わせる）: 白く光る → 点滅 → 崩れて消える → 「たおした！」とせりふ
+      figClass('add', 'glow');
+      [350, 620, 890, 1160].forEach((t) => {
+        later(() => figClass('add', 'blinkoff'), t);
+        later(() => figClass('remove', 'blinkoff'), t + 120);
+      });
+      later(() => {
+        crumble(oldP.color);
+        figClass('remove', 'glow', 'blinkoff');
+        figClass('add', 'gone');
+        playBossSfx(app.state.settings, 'win');
+        vibrate(app.state.settings, [40, 30, 40, 30, 80]);
+      }, 1350);
+      later(() => say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))]), 1450);
+      // 地鳴り → 崩れたはずの殻がもどってくる
+      later(() => { ui.fx.textContent = ''; say(['……ゴゴゴゴ……']); }, 3300);
+      [3400, 3800, 4200].forEach((t) => later(() => { flash(ui.scene, 'quake', 450); vibrate(app.state.settings, [60, 40, 60]); }, t));
+      later(() => { figClass('remove', 'gone'); flash(ui.fig, 'appear', 700); }, 4500);
+    } else {
+      playSynth(app.state.settings, 'evolve');
+    }
+    if (from1) {
       // 第1形態→第2形態: ずんぐりした真鍮の殻が揺れてひびが入り、割れて破片が飛び散り、中からすらりとした姿が光とともに現れる
-      figClass('add', 'shake');
+      later(() => { playSynth(app.state.settings, 'evolve'); figClass('add', 'shake'); }, P);
       [150, 420, 690, 900].forEach((t, k) => later(() => {
         const c = h('span', { class: 'tb-crack' });
         c.style.setProperty('--x', [50, 38, 62, 50][k] + '%');
@@ -602,16 +638,16 @@ export function renderTrueBoss(app) {
         c.style.setProperty('--len', [38, 30, 30, 40][k] + '%');
         ui.fx.appendChild(c);
         vibrate(app.state.settings, 25);
-      }, t));
+      }, P + t));
       later(() => {
         ui.fx.textContent = '';
         figClass('remove', 'shake');
         ui.flash.classList.add('on'); // 割れた瞬間の白い光
         crumble('#b08d3c');
         figClass('add', 'gone');
-      }, 1150);
-      later(() => { ui.flash.classList.remove('on'); swap(); ui.fx.appendChild(h('span', { class: 'tb-burst' })); }, 1400);
-      later(() => { ui.fx.textContent = ''; }, 2400);
+      }, P + 1150);
+      later(() => { ui.flash.classList.remove('on'); swap(); ui.fx.appendChild(h('span', { class: 'tb-burst' })); }, P + 1400);
+      later(() => { ui.fx.textContent = ''; }, P + 2400);
     } else {
       // 第2形態→第3形態: 光がどんどん強まり、強い光の中で翼が広がるように、横にぐっと開いた姿が現れる
       figClass('add', 'glow', 'swell');
@@ -627,7 +663,7 @@ export function renderTrueBoss(app) {
     later(() => {
       if (done) return;
       say(lines(), { onDone: () => { if (S.phase === 'evolve') { done = true; S.skipFx = null; S.phase = 'evolved'; bar.classList.remove('hidden'); next.focus({ preventScroll: true }); } } });
-    }, ev.evolved.from === 1 ? 1700 : 2100);
+    }, from1 ? P + 1700 : 2100);
   }
 
   // ---- 撃破の演出（章のボスと同じ：白く光る → 点滅 → 細かい粒に崩れて消える → 紙吹雪 → XP。タップでとばせる）。このあとエンディング ----

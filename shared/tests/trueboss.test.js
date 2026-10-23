@@ -105,10 +105,10 @@ test('学習記録: defaultState に入っていて、読み込みで正しい�
 
 // ---------------------------------------------------------------- 出題の組み立て
 
-test('決まりの数字: 3形態・体力8〜12・難しさの範囲は 1-2／2-3／3-4・6:4', () => {
+test('決まりの数字: 3形態・体力5〜10・難しさの範囲は 1-2／2-3／3-4・6:4', () => {
   assert.equal(TRUE_FORMS, 3);
-  assert.equal(TRUE_HP_MIN, 8);
-  assert.equal(TRUE_HP_MAX, 12);
+  assert.equal(TRUE_HP_MIN, 5);
+  assert.equal(TRUE_HP_MAX, 10);
   assert.deepEqual(TRUE_DIFFICULTY[1], [1, 2]);
   assert.deepEqual(TRUE_DIFFICULTY[2], [2, 3]);
   assert.deepEqual(TRUE_DIFFICULTY[3], [3, 4]);
@@ -270,23 +270,23 @@ test('出題: 答えた記録が壊れていても落ちない（seen が数で�
 
 // ---------------------------------------------------------------- 体力
 
-test('形態ごとの体力: 8〜12 のどれか。乱数の両端と壊れた値でも範囲に収まる。全部の値が出る', () => {
-  assert.equal(rollFormHp(() => 0), 8);
-  assert.equal(rollFormHp(() => 0.999999), 12);
-  assert.equal(rollFormHp(() => 1), 12);
-  assert.equal(rollFormHp(() => 5), 12);
-  assert.equal(rollFormHp(() => -1), 8);
-  assert.equal(rollFormHp(() => NaN), 8);
+test('形態ごとの体力: 5〜10 のどれか。乱数の両端と壊れた値でも範囲に収まる。全部の値が出る', () => {
+  assert.equal(rollFormHp(() => 0), 5);
+  assert.equal(rollFormHp(() => 0.999999), 10);
+  assert.equal(rollFormHp(() => 1), 10);
+  assert.equal(rollFormHp(() => 5), 10);
+  assert.equal(rollFormHp(() => -1), 5);
+  assert.equal(rollFormHp(() => NaN), 5);
   const seen = new Set();
   const r = seeded(31);
-  for (let i = 0; i < 500; i++) { const hp = rollFormHp(r); assert.ok(Number.isInteger(hp) && hp >= 8 && hp <= 12); seen.add(hp); }
-  assert.deepEqual([...seen].sort((a, b) => a - b), [8, 9, 10, 11, 12]);
+  for (let i = 0; i < 500; i++) { const hp = rollFormHp(r); assert.ok(Number.isInteger(hp) && hp >= 5 && hp <= 10); seen.add(hp); }
+  assert.deepEqual([...seen].sort((a, b) => a - b), [5, 6, 7, 8, 9, 10]);
 });
 
-test('戦いの始まり: 第1形態・体力8〜12・自分の HP は 3（上限も3）・技なし。bossMood がそのまま使える', () => {
+test('戦いの始まり: 第1形態・体力5〜10・自分の HP は 3（上限も3）・技なし。bossMood がそのまま使える', () => {
   const b = newTrueBattle(() => 0.5);
   assert.equal(b.form, 1);
-  assert.ok(b.boss >= 8 && b.boss <= 12);
+  assert.ok(b.boss >= 5 && b.boss <= 10);
   assert.equal(b.boss, b.bossMax);
   assert.equal(b.player, PLAYER_HP);
   assert.equal(b.playerMax, 3);
@@ -324,12 +324,12 @@ test('元の状態は変えない', () => {
   assert.equal(JSON.stringify(b), snap);
 });
 
-test('進化: 体力が0になると次の形態になり、体力を決め直す（8〜12）。問題の数・技は数え直し。連続正解は引き継ぐ。第3形態を倒すと勝ち', () => {
+test('進化: 体力が0になると次の形態になり、体力を決め直す（5〜10）。問題の数・技は数え直し。連続正解は引き継ぐ。第3形態を倒すと勝ち', () => {
   let b = fresh(1, { asked: 4, streak: 1, skill: { kind: 'timed', turns: 2 } });
   let r = answerTrueBattle(b, { correct: true }, () => 0.5);
   assert.deepEqual(r.events.evolved, { from: 1, to: 2 });
   assert.equal(r.battle.form, 2);
-  assert.ok(r.battle.boss >= 8 && r.battle.boss <= 12);
+  assert.ok(r.battle.boss >= 5 && r.battle.boss <= 10);
   assert.equal(r.battle.boss, r.battle.bossMax);
   assert.equal(r.battle.asked, 0);
   assert.equal(r.battle.skill, null, '進化すると技は解ける');
@@ -350,7 +350,7 @@ test('進化: 体力が0になると次の形態になり、体力を決め直�
 test('会心の一撃で体力が足りないほど削れても、進化は1回だけ（次の形態の体力はそのまま満タン）', () => {
   const r = answerTrueBattle(fresh(1), { correct: true, damage: 2 }, () => 0);
   assert.equal(r.battle.form, 2);
-  assert.equal(r.battle.boss, 8);
+  assert.equal(r.battle.boss, 5);
 });
 
 test('負け: HP が0になると負け。負けたあとの答えは無視する。進化と負けが同時には起きない', () => {
@@ -375,7 +375,7 @@ test('負けたら第1形態からやり直す（体力・HP・技・連続も�
   assert.equal(n.streak, 0);
   assert.equal(n.asked, 0);
   assert.equal(n.skill, null);
-  assert.ok(n.boss >= 8 && n.boss <= 12);
+  assert.ok(n.boss >= 5 && n.boss <= 10);
   const going = fresh(9, { form: 2 });
   const same = restartAfterLose(going);
   assert.equal(same.form, 2);
@@ -438,33 +438,33 @@ test('HP の回復は進化をまたいで続く', () => {
 
 // ---------------------------------------------------------------- ボスの回復
 
-test('ボスは、形態の中で7問ごとに1回復する。体力が満タンなら回復しない', () => {
-  assert.equal(TRUE_HEAL_EVERY, 7);
+test('ボスは、形態の中で10問ごとに1回復する。体力が満タンなら回復しない', () => {
+  assert.equal(TRUE_HEAL_EVERY, 10);
   let b = fresh(30, { player: 3 });
   const heals = [];
-  for (let i = 1; i <= 14; i++) {
+  for (let i = 1; i <= 20; i++) {
     const r = answerTrueBattle(b, { correct: i % 4 !== 0 }, () => 0.5); // 4 と 8 問目は不正解
     b = r.battle;
     if (b.player === 0) b = { ...b, player: 3, result: null };
     heals.push(r.events.bossHealed);
   }
-  assert.deepEqual(heals.map((x, i) => (x ? i + 1 : 0)).filter(Boolean), [7, 14], '7問目と14問目だけ回復');
+  assert.deepEqual(heals.map((x, i) => (x ? i + 1 : 0)).filter(Boolean), [10, 20], '10問目と20問目だけ回復');
   // 満タン（全部不正解でボスが減っていない）では回復しない
-  let c = fresh(10, { player: 3, asked: 6 });
+  let c = fresh(10, { player: 3, asked: 9 });
   const r = answerTrueBattle(c, { correct: false });
-  assert.equal(r.battle.asked, 7);
+  assert.equal(r.battle.asked, 10);
   assert.equal(r.events.bossHealed, false);
   assert.equal(r.battle.boss, 10);
 });
 
 test('ボスの回復は、体力が減っているときだけで、最大を超えない。倒したその問題では回復しない', () => {
-  const r = answerTrueBattle(fresh(10, { boss: 6, asked: 6 }), { correct: true });
+  const r = answerTrueBattle(fresh(10, { boss: 6, asked: 9 }), { correct: true });
   assert.equal(r.events.bossHealed, true);
-  assert.equal(r.battle.boss, 6, '1減って 5、7問目の回復で 6');
-  const r2 = answerTrueBattle(fresh(10, { boss: 10, asked: 13 }), { correct: true });
+  assert.equal(r.battle.boss, 6, '1減って 5、10問目の回復で 6');
+  const r2 = answerTrueBattle(fresh(10, { boss: 10, asked: 19 }), { correct: true });
   assert.equal(r2.events.bossHealed, true, '10問目: 9 に減って、回復で 10 に戻る');
   assert.equal(r2.battle.boss, 10);
-  const r3 = answerTrueBattle(fresh(10, { boss: 10, asked: 13 }), { correct: false });
+  const r3 = answerTrueBattle(fresh(10, { boss: 10, asked: 19 }), { correct: false });
   assert.equal(r3.events.bossHealed, false, '満タンなら回復しない（最大を超えない）');
   assert.equal(r3.battle.boss, 10);
 });
@@ -548,15 +548,15 @@ test('技を使うか: 技がかかっている・形態の最初の問題・終
   assert.equal(rollSkill(null, rng).started, null);
 });
 
-test('技を使うか: 第3形態ほど使ってくる（1:5% 2:8% 3:10%）。種類は乱数で時間制限か呪い', () => {
-  assert.deepEqual(SKILL_CHANCE, { 1: 0.05, 2: 0.08, 3: 0.1 });
+test('技を使うか: 第3形態ほど使ってくる（1:3% 2:5% 3:7%）。種類は乱数で時間制限か呪い', () => {
+  assert.deepEqual(SKILL_CHANCE, { 1: 0.03, 2: 0.05, 3: 0.07 });
   const roll = (form, v1, v2 = 0) => rollSkill(fresh(10, { form, asked: 2 }), seq(v1, v2));
-  assert.equal(roll(1, 0.049).started !== null, true);
-  assert.equal(roll(1, 0.05).started, null, 'ちょうど 5% は使わない');
-  assert.equal(roll(2, 0.07).started !== null, true);
-  assert.equal(roll(1, 0.07).started, null);
-  assert.equal(roll(3, 0.099).started !== null, true);
-  assert.equal(roll(2, 0.09).started, null);
+  assert.equal(roll(1, 0.029).started !== null, true);
+  assert.equal(roll(1, 0.03).started, null, 'ちょうど 3% は使わない');
+  assert.equal(roll(2, 0.049).started !== null, true);
+  assert.equal(roll(1, 0.04).started, null);
+  assert.equal(roll(3, 0.069).started !== null, true);
+  assert.equal(roll(2, 0.06).started, null);
   assert.equal(roll(3, 0.99).started, null);
   assert.equal(roll(1, 0, 0.1).started, 'timed');
   assert.equal(roll(1, 0, 0.9).started, 'curse');
@@ -579,7 +579,7 @@ test('技を使う頻度: 第3形態は第1形態より多い（乱数を回し�
   const c2 = count(2);
   const c3 = count(3);
   assert.ok(c1 < c2 && c2 < c3, c1 + ' < ' + c2 + ' < ' + c3);
-  assert.ok(Math.abs(c3 / 4000 - 0.1) < 0.02);
+  assert.ok(Math.abs(c3 / 4000 - 0.07) < 0.02);
 });
 
 // ---------------------------------------------------------------- 1回の戦い（問題の順番つき）
@@ -588,8 +588,8 @@ function planOf(forms) { return { forms }; }
 const qform = (f, n) => Array.from({ length: n }, (_, i) => mkq('f' + f + '-' + i, f));
 
 test('戦いの進み方: 第1形態の問題から順に出て、進化すると第2形態の問題に移る。決着がつくと出す問題は無い', () => {
-  let run = newTrueRun(planOf([qform(1, 30), qform(2, 30), qform(3, 30)]), () => 0); // 体力は全部 8
-  assert.equal(run.battle.boss, 8);
+  let run = newTrueRun(planOf([qform(1, 30), qform(2, 30), qform(3, 30)]), () => 0); // 体力は全部 5
+  assert.equal(run.battle.boss, 5);
   assert.equal(currentTrueQuestion(run).id, 'f1-0');
   let asked = [];
   while (!run.battle.result) {
@@ -599,11 +599,11 @@ test('戦いの進み方: 第1形態の問題から順に出て、進化する�
   }
   assert.equal(run.battle.result, 'win');
   assert.equal(currentTrueQuestion(run), null);
-  // 体力8を全部正解で削ると、5問目のあとにボスが1回復するので、1形態あたり9問かかる
-  assert.equal(asked.filter((x) => x.startsWith('f1-')).length, 9);
-  assert.equal(asked.filter((x) => x.startsWith('f2-')).length, 9);
-  assert.equal(asked.filter((x) => x.startsWith('f3-')).length, 9);
-  assert.deepEqual(asked.slice(0, 10), ['f1-0', 'f1-1', 'f1-2', 'f1-3', 'f1-4', 'f1-5', 'f1-6', 'f1-7', 'f1-8', 'f2-0']);
+  // 体力5を全部正解で削ると、回復（10問に1回）の前に倒せるので、1形態あたり5問
+  assert.equal(asked.filter((x) => x.startsWith('f1-')).length, 5);
+  assert.equal(asked.filter((x) => x.startsWith('f2-')).length, 5);
+  assert.equal(asked.filter((x) => x.startsWith('f3-')).length, 5);
+  assert.deepEqual(asked.slice(0, 6), ['f1-0', 'f1-1', 'f1-2', 'f1-3', 'f1-4', 'f2-0']);
   assert.equal(new Set(asked).size, asked.length, '全部正解なら同じ問題を2度出さない');
   assert.equal(run.recycled, 0);
 });

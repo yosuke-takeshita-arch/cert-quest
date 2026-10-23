@@ -22,8 +22,8 @@ export function trueBossImageName(form) {
 export const DEFAULT_TRUE_BOSS = Object.freeze({
   name: '塔の主',
   forms: [
-    { name: '塔の主', title: '第1形態', color: '#7b1fa2', lines: { appear: ['ここまで たどりついたか。だが これからが ほんばんだ'], attack: ['まだ まだ これからだ！'], hurt: ['ほう…やるではないか'], defeat: ['ぐ…これで おわりと おもうな'], evolve: ['わたしを おこらせたな。すがたを かえよう'], heal: ['この くらいの きずは すぐに なおる'], skillTimer: [], skillDouble: [], gloat: ['もういちど、はじめから だ'] } },
-    { name: '塔の主・真', title: '第2形態', color: '#c62828', lines: { appear: ['ここからは ほんきで いくぞ'], attack: ['その ていどか！'], hurt: ['なかなか やるな…！'], defeat: ['まだだ…まだ おわらぬ'], evolve: ['みせてやろう。わたしの さいごの すがたを'], heal: ['なんどでも たちあがる'], skillTimer: [], skillDouble: [], gloat: ['もういちど、はじめから だ'] } },
+    { name: '塔の主', title: '第1形態', color: '#7b1fa2', lines: { appear: ['ここまで たどりついたか。だが これからが ほんばんだ'], attack: ['まだ まだ これからだ！'], hurt: ['ほう…やるではないか'], defeat: ['キィ…ン…'], evolve: ['わたしを おこらせたな。すがたを かえよう'], heal: ['この くらいの きずは すぐに なおる'], skillTimer: [], skillDouble: [], gloat: ['もういちど、はじめから だ'] } },
+    { name: '塔の主・真', title: '第2形態', color: '#c62828', lines: { appear: ['ここからは ほんきで いくぞ'], attack: ['その ていどか！'], hurt: ['なかなか やるな…！'], defeat: ['キィ…ン…'], evolve: ['みせてやろう。わたしの さいごの すがたを'], heal: ['なんどでも たちあがる'], skillTimer: [], skillDouble: [], gloat: ['もういちど、はじめから だ'] } },
     { name: '塔の主・極', title: '第3形態', color: '#ff6f00', lines: { appear: ['これが わたしの ぜんりょくだ'], attack: ['ここまでだ！'], hurt: ['ぐ…ぐぐ…！'], defeat: ['み、みごとだ…！'], evolve: [], heal: ['まだ…たおれぬ…！'], skillTimer: [], skillDouble: [], gloat: ['もういちど、はじめから だ'] } },
   ],
   skills: { timed: { name: 'ときの かせ', line: 'じかんが ない！ いそげ！' }, curse: { name: 'のろいの いたみ', line: 'まちがえれば おおきな きずを おうぞ' } },
