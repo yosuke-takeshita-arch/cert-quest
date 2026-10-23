@@ -906,23 +906,48 @@ export function renderTrueBoss(app) {
       const m = mascotLine('shiba-cheer', CHARACTER_TEXT.cheer, 'cheer');
       if (m) card.appendChild(m);
     }
-    // 答えた問題の一覧（戦いの最中は解説を出さなかったので、ここで読む。間違えた問題は先頭を開いておく）
-    const list = h('div', { class: 'card tb-review', 'data-tb-review': '1' }, h('h2', { text: '答えた問題（' + S.log.length + '）' }),
-      h('p', { class: 'small muted', text: '問題をタップすると、解説・図・用語カードが開きます。' }));
+    // 答えた問題の一覧（戦いの最中は解説を出さなかったので、ここで読む）。
+    // 『不正解だった問題』を上、『正解だった問題』を下の2つのまとまりにして、最初はどちらも閉じる。
+    // まとまりをタップすると問題の一覧（問題文の初めの部分）が開き、1問をタップするとその問題の解説・図・用語カードが開く（もう一度タップで閉じる）。0問のまとまりは出さない。
     const open = (id) => openCardSheet(app, id);
-    for (let f = 1; f <= TRUE_FORMS; f++) {
-      const rows = S.log.filter((x) => x.form === f);
-      if (!rows.length) continue;
-      list.appendChild(h('h3', { class: 'tb-review-form', text: '第' + f + '形態' }));
-      rows.forEach((x) => {
-        const d = h('details', { class: 'miss tb-row ' + (x.correct ? 'right' : 'wrong'), 'data-tb-row': x.correct ? 'ok' : 'ng' },
-          h('summary', {}, h('span', { class: 'tb-mark', 'aria-hidden': 'true', text: x.correct ? '○' : '×' }),
-            h('span', { class: 'boss-sr', text: x.correct ? '正解。' : x.late ? '時間切れ。' : '不正解。' }),
-            h('span', { class: 'tb-stem', text: x.q.stem })),
-          stemPlainBlock(x.q), explanation(app, x.sq, x.chosen, open, { sensei: false }));
-        list.appendChild(d);
+    const toggle = (btn, panel) => {
+      const was = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', was ? 'false' : 'true');
+      panel.hidden = was;
+      return !was;
+    };
+    const questionRow = (x, i, kind) => {
+      const panel = h('div', { class: 'tb-q-panel', id: 'tb-q-' + kind + '-' + i, hidden: true });
+      const verdict = x.correct ? '正解。' : x.late ? '時間切れ。' : '不正解。';
+      const btn = h('button', { class: 'tb-q-btn', type: 'button', 'aria-expanded': 'false', 'aria-controls': panel.id, 'data-tb-q': kind },
+        h('span', { class: 'tb-mark', 'aria-hidden': 'true', text: x.correct ? '○' : '×' }),
+        h('span', { class: 'boss-sr', text: verdict }),
+        h('span', { class: 'tb-stem', text: x.q.stem }),
+        h('span', { class: 'tb-chev', 'aria-hidden': 'true' }));
+      let built = false;
+      btn.addEventListener('click', () => {
+        if (toggle(btn, panel) && !built) { // 開いたときに初めて解説を作る（まとめて作らない）
+          built = true;
+          const sb = stemPlainBlock(x.q);
+          if (sb) panel.appendChild(sb);
+          panel.appendChild(explanation(app, x.sq, x.chosen, open, { sensei: false }));
+        }
       });
-    }
+      return h('div', { class: 'tb-q ' + (x.correct ? 'right' : 'wrong') }, btn, panel);
+    };
+    const group = (kind, title, rows) => {
+      if (!rows.length) return null;
+      const body = h('div', { class: 'tb-group-body', id: 'tb-group-' + kind, hidden: true }, rows.map((x, i) => questionRow(x, i, kind)));
+      const head = h('button', { class: 'tb-group-btn', type: 'button', 'aria-expanded': 'false', 'aria-controls': body.id, 'data-tb-group': kind },
+        h('span', { class: 'tb-group-title' }, title, h('span', { class: 'tb-count', text: '（' + rows.length + '問）' })),
+        h('span', { class: 'tb-chev', 'aria-hidden': 'true' }));
+      head.addEventListener('click', () => toggle(head, body));
+      return h('div', { class: 'tb-group ' + kind }, head, body);
+    };
+    const list = h('div', { class: 'card tb-review', 'data-tb-review': '1' }, h('h2', { text: '答えた問題（' + S.log.length + '）' }),
+      h('p', { class: 'small muted', text: 'まとまりをタップすると問題が並びます。問題をタップすると、解説・図・用語カードが開きます。' }),
+      group('wrong', '不正解だった問題', S.log.filter((x) => !x.correct)),
+      group('right', '正解だった問題', S.log.filter((x) => x.correct)));
     root.appendChild(list);
     const row = h('div', { class: 'btn-row' });
     row.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-tb-again': '1', onClick: again }, win ? 'もう一度挑む' : 'もう一度挑む（第1形態から）'));

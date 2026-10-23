@@ -923,6 +923,21 @@ body.boss-on { background: #000; }
 .tb-row.right .tb-mark { color: var(--ok); }
 .tb-row.wrong .tb-mark { color: var(--ng); }
 .tb-stem { min-width: 0; overflow-wrap: anywhere; }
+.tb-group { margin-top: 12px; }
+.tb-group-btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 48px; padding: 8px 12px; font: inherit; font-weight: 700; text-align: left; color: var(--text); background: var(--surface); border: 2px solid var(--border); border-radius: 8px; cursor: pointer; overflow-wrap: anywhere; }
+.tb-group.wrong .tb-group-btn { border-color: var(--ng); }
+.tb-group.right .tb-group-btn { border-color: var(--ok); }
+.tb-count { white-space: nowrap; }
+.tb-chev { flex: none; box-sizing: border-box; width: 10px; height: 10px; margin: 0 6px 4px; border-right: 3px solid currentColor; border-bottom: 3px solid currentColor; transform: rotate(45deg); }
+.tb-group-btn[aria-expanded="true"] .tb-chev, .tb-q-btn[aria-expanded="true"] .tb-chev { margin: 4px 6px 0; transform: rotate(-135deg); }
+.tb-group-body { margin-top: 4px; }
+.tb-q { border-top: 1px solid var(--border); }
+.tb-q-btn { display: flex; align-items: flex-start; gap: 8px; width: 100%; min-height: 48px; padding: 8px 4px; font: inherit; text-align: left; color: var(--text); background: none; border: 0; cursor: pointer; }
+.tb-q-btn .tb-stem { flex: 1; min-width: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.tb-q-btn[aria-expanded="true"] .tb-stem { display: block; -webkit-line-clamp: unset; }
+.tb-q.right .tb-mark { color: var(--ok); }
+.tb-q.wrong .tb-mark { color: var(--ng); }
+.tb-q-panel { padding: 0 4px 12px; }
 .tb-ending { position: relative; min-height: 78vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 16px 96px; text-align: center; overflow: hidden; background: #000; color: #fff; border: 2px solid #fff; border-radius: 8px; cursor: pointer; }
 .tb-sky { position: absolute; inset: 0; pointer-events: none; }
 .tb-star { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #ffe082; animation: tb-twinkle var(--dur, 2s) ease-in-out var(--delay, 0s) infinite alternate; }

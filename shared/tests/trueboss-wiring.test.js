@@ -85,7 +85,7 @@ test('戦いの最中は解説を出さない。解説（explanation）を呼ぶ
   // 結果には、答えた問題の一覧と、用語カード（openCardSheet）への道がある
   const result = fnBody(src, 'showResult');
   assert.match(result, /openCardSheet\(app, id\)/);
-  assert.match(result, /S\.log\.filter\(\(x\) => x\.form === f\)/);
+  assert.match(result, /group\('wrong', '不正解だった問題', S\.log\.filter\(\(x\) => !x\.correct\)\)/);
 });
 
 test('答えの記録: 問題の記録（recordAnswer）に入れるが、今日の復習の枠（review）は渡さない', () => {
@@ -214,4 +214,39 @@ test('浮かぶ動き: 第2・第3形態だけ、絵の外側の入れ物（.tb-
   const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
   assert.match(red, /\.tb-float\.f2, \.tb-float\.f3 \{ animation: none; \}/);
   assert.doesNotMatch(css, /\.boss-fig[^{]*\{[^}]*tb-float/, '絵そのものには付けない');
+});
+
+test('結果の一覧: 「不正解だった問題」を上・「正解だった問題」を下の2つの折りたたみ。最初は閉じる。0問のまとまりは出さない。1問ずつ開閉できる', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const r = fnBody(src, 'showResult');
+  // 順番: 不正解 → 正解（list の子として並べる）
+  const iw = r.indexOf("group('wrong', '不正解だった問題'");
+  const ir = r.indexOf("group('right', '正解だった問題'");
+  assert.ok(iw > 0 && ir > iw, '不正解が上、正解が下');
+  assert.match(r, /if \(!rows\.length\) return null;/, '0問のまとまりは出さない');
+  assert.match(r, /text: '（' \+ rows\.length \+ '問）'/, '「◯問」を出す');
+  // 最初は閉じる（まとまりも1問も）。開閉は button の aria-expanded と、中身の hidden
+  assert.match(r, /'aria-expanded': 'false', 'aria-controls': body\.id/);
+  assert.match(r, /'aria-expanded': 'false', 'aria-controls': panel\.id/);
+  assert.match(r, /hidden: true/);
+  assert.match(r, /panel\.hidden = was;/);
+  assert.match(r, /btn\.setAttribute\('aria-expanded', was \? 'false' : 'true'\)/);
+  // 1問をタップすると解説・図・用語カードが開く。開いたときに作る（もう一度タップで閉じる）
+  assert.match(r, /explanation\(app, x\.sq, x\.chosen, open, \{ sensei: false \}\)/);
+  assert.match(r, /if \(toggle\(btn, panel\) && !built\)/);
+  // まとまり・1問は button（押せる）。問題文の初めの部分を出す
+  assert.match(r, /h\('button', \{ class: 'tb-group-btn', type: 'button'/);
+  assert.match(r, /h\('button', \{ class: 'tb-q-btn', type: 'button'/);
+  assert.doesNotMatch(r, /h\('details'/, '古い details は使わない');
+});
+
+test('結果の一覧のCSS: 押せる高さ48px以上。問題文は2行までに切る（開くと全文）。まとまりの色は不正解=赤・正解=緑（色の変数）', () => {
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.tb-group-btn \{[^}]*min-height: 48px;/);
+  assert.match(css, /\.tb-q-btn \{[^}]*min-height: 48px;/);
+  assert.match(css, /\.tb-q-btn \.tb-stem \{[^}]*-webkit-line-clamp: 2;/);
+  assert.match(css, /\.tb-group\.wrong \.tb-group-btn \{ border-color: var\(--ng\); \}/);
+  assert.match(css, /\.tb-group\.right \.tb-group-btn \{ border-color: var\(--ok\); \}/);
+  assert.match(css, /\.tb-q-btn\[aria-expanded="true"\] \.tb-stem \{ display: block; -webkit-line-clamp: unset; \}/);
+  assert.doesNotMatch(css, /\.tb-group-body \{[^}]*display:|\.tb-q-panel \{[^}]*display:/, 'display を決めると hidden が効かなくなる');
 });
