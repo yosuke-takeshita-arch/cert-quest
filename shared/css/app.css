@@ -850,6 +850,7 @@ body.boss-on { background: #000; }
 .boss-win-text.typed .boss-line:last-child::after { content: ' ▼'; animation: boss-caret 1s steps(2, jump-none) infinite; }
 .boss-win-extra:empty { display: none; }
 .boss-xp { margin: 4px 0 0; font-weight: 700; font-size: 1.125rem; font-variant-numeric: tabular-nums; color: #ffe082; }
+.boss-xp-bonus { margin: 2px 0 0; font-weight: 700; font-size: 1rem; color: #ffe082; } /* 撃破のごほうび（XP の内訳） */
 .boss-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .boss-skip { width: 100%; margin-bottom: 12px; }
 .boss-qhead { margin-bottom: 4px; }

@@ -7,6 +7,7 @@
 import { h, clear, icon, vibrate, beep, toast, mascotLine, appImagesBase, confirmQuit } from '../ui.js';
 import { CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
+import { BOSS_XP } from '../lib/scoring.js';
 import { isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { quoted, faceCrop } from '../lib/bossdata.js';
 import {
@@ -606,13 +607,14 @@ export function renderTrueBoss(app) {
     const late = !!timedOut || isTimedOut(before.skill, seconds, sq.q, limit);
     const correct = !late && chosen !== null && chosen === sq.answer;
     S.streak = correct ? S.streak + 1 : 0;
-    const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit }); // 今日の復習の枠（review）には数えない
+    const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit, xpMul: BOSS_XP.trueMul }); // 今日の復習の枠（review）には数えない。真ボスは1問の XP が 2 倍
     S.xp += r.xp;
     const crit = isCritical(correct, seconds, app.rng);
     const res = answerTrueRun(S.run, { correct, damage: crit ? CRIT_DAMAGE : 1, timedOut: late }, app.rng);
     S.run = res.run;
     const ev = res.events;
     const b = battle();
+    if (b.result === 'win' && !S.winBonus) { S.winBonus = BOSS_XP.trueWin; S.xp += S.winBonus; app.addXp(S.winBonus); } // 撃破のごほうび（勝った1回だけ。負けたときは無い）
     S.log.push({ q: sq.q, sq, correct, chosen, form: before.form, late, skill: before.skill ? before.skill.kind : null });
     paintHp({ ...b, player: b.player - (ev.playerHealed ? 1 : 0) }, -1); // 自分の回復は、あとのページで増やす（それまではハートを増やさない）
     const { btns, after } = ui;
@@ -906,10 +908,12 @@ export function renderTrueBoss(app) {
     const R = reduced();
     const xpEl = h('p', { class: 'boss-xp', 'data-boss-xp': '1', text: 'XP +0' });
     ui.extra.appendChild(xpEl);
+    const bonusEl = h('p', { class: 'boss-xp-bonus hidden', 'data-boss-xp-bonus': '1', text: '撃破のごほうび +' + (S.winBonus || 0) });
+    ui.extra.appendChild(bonusEl);
     const lines = [p.name + ' を たおした！', quoted(pickTrueLine(p, 'defeat', app.rng))];
     let done = false;
     let said = false;
-    const showFinal = () => { xpEl.textContent = 'XP +' + S.xp; xpEl.classList.add('final'); };
+    const showFinal = () => { xpEl.textContent = 'XP +' + S.xp; xpEl.classList.add('final'); bonusEl.classList.remove('hidden'); };
     const finish = () => {
       if (done) return;
       done = true;
@@ -952,6 +956,7 @@ export function renderTrueBoss(app) {
     later(() => { said = true; say(lines); }, 1450);
     later(() => ui.confetti.classList.add('on'), 1500);
     later(() => countUp(xpEl, S.xp, 1300), 2800);
+    later(() => bonusEl.classList.remove('hidden'), 4100); // 数え上がったあと、内訳（ごほうび）を出す
     later(finish, 4500);
   }
 
@@ -1100,7 +1105,8 @@ export function renderTrueBoss(app) {
         ? h('p', { class: 'score' }, '真ボスを ', h('strong', { text: S.wins + ' 回' }), ' たおしました')
         : h('p', { text: (trueBossSeenForm2(app.state) ? '第' + battle().form + '形態で、' : '') + 'HP がなくなりました。解説を読んで、もう一度挑みましょう' + (trueBossSeenForm2(app.state) ? '（第1形態からです）' : '') + '。' }),
       h('p', { class: 'small muted', text: S.log.length + ' 回答えて、' + ok + ' 回正解しました' }),
-      h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
+      h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }),
+      win && S.winBonus ? h('p', { class: 'small muted', 'data-boss-xp-bonus-result': '1', text: '（撃破のごほうび +' + S.winBonus + ' をふくむ）' }) : null);
     root.appendChild(card);
     if (win) {
       const m = mascotLine('shiba-banzai', 'やったね！ ' + trueBossWords(app.config).reached, 'win');

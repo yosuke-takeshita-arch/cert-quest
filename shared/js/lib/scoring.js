@@ -2,6 +2,18 @@
 
 export const XP = { base: 10, firstTry: 5, streakStep: 2, streakMax: 5, time: 3, examBase: 5 };
 
+// ボス戦の経験値（要件定義書 §3-9『ボス戦の経験値』。先生決定 2026-10-24。倍率とごほうびの数はここ1か所）
+//   章のボス戦: 1問の XP を 1.5 倍（切り上げ）、勝ったら撃破のごほうび +30。真ボス: 1問の XP を 2 倍、勝ったら +150。負けたときは倍率だけでごほうびは無い。
+export const BOSS_XP = Object.freeze({ chapterMul: 1.5, chapterWin: 30, trueMul: 2, trueWin: 150 });
+
+/** XP に倍率をかけて切り上げる（1.5倍で 22.5 → 23）。小数の誤差（15 × 1.1 = 16.5000000000000002 など）で1つ増えないよう、先に丸める。 */
+export function scaleXp(total, mul) {
+  const n = Number(total);
+  const m = Number(mul);
+  if (!Number.isFinite(n) || !Number.isFinite(m) || n <= 0 || m <= 0) return 0;
+  return Math.ceil(Math.round(n * m * 1e6) / 1e6);
+}
+
 /**
  * 1問ぶんのXP。
  *  base      正解で10

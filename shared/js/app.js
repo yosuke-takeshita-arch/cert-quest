@@ -8,7 +8,7 @@ import { loadData } from './lib/data.js';
 import { loadBosses } from './lib/bossdata.js';
 import { loadBasics, buildMatcher } from './lib/basics.js';
 import { createStorage } from './lib/storage.js';
-import { defaultState, recordAnswer } from './lib/progress.js';
+import { defaultState, recordAnswer, addBonusXp } from './lib/progress.js';
 import { badgeDefs, awardBadges, badgeArtName, badgeImageUrl, badgeTier, SECRET_BADGE_TEXT } from './lib/badges.js';
 import { dateKey } from './lib/srs.js';
 import { forecast as calcForecast, recordForecast } from './lib/forecast.js';
@@ -281,6 +281,12 @@ export async function start() {
     },
     recordAnswer(q, opts) {
       const r = recordAnswer(app.state, q, { ...opts, now: new Date() });
+      app.commit();
+      return r;
+    },
+    /** ごほうびの XP（ボスの撃破）を足して保存する。レベルが上がればお祝いの待ち行列に入る。 */
+    addXp(amount) {
+      const r = addBonusXp(app.state, amount);
       app.commit();
       return r;
     },

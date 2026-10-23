@@ -8,6 +8,7 @@ import { shouldCheer, CHARACTER_TEXT } from '../lib/characters.js';
 import { shuffleChoices, secondsPerQuestion } from '../lib/quiz.js';
 import { bossInfo, bossQuestions, bossThreshold, recordBossWin, isFlawlessWin, bossWins, markBossMet, hasMetBoss, rollBossHp, isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { newRun, currentQuestion, answerRun } from '../lib/bossrun.js';
+import { BOSS_XP } from '../lib/scoring.js';
 import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
 import { trueBossEnabled, trueBossUnlocked, trueBossAwakeText } from '../lib/trueboss.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
@@ -432,13 +433,14 @@ export function renderBoss(app, key) {
     const correct = chosen !== null && chosen === sq.answer;
     const seconds = (Date.now() - S.t0) / 1000;
     S.streak = correct ? S.streak + 1 : 0;
-    const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit });
+    const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit, xpMul: BOSS_XP.chapterMul }); // 章のボス戦は1問の XP が 1.5 倍（切り上げ）
     S.xp += r.xp;
     S.log.push({ q: sq.q, sq, correct, chosen });
     const crit = isCritical(correct, seconds, app.rng); // 10秒以内の正解で、4回に1回
     const heartsBefore = S.run.battle.player;
     S.run = answerRun(S.run, correct, crit ? CRIT_DAMAGE : 1);
     const b = S.run.battle;
+    if (b.result === 'win' && !S.winBonus) { S.winBonus = BOSS_XP.chapterWin; S.xp += S.winBonus; app.addXp(S.winBonus); } // 撃破のごほうび（勝った1回だけ。負けたときは無い）
     const lost = b.player < heartsBefore;
     paintHp(b, -1); // 割れる動きは、いちばん上へ戻ってから（下の perform）
     const { btns, after } = ui;
@@ -514,12 +516,15 @@ export function renderBoss(app, key) {
     const R = reduced();
     const xpEl = h('p', { class: 'boss-xp', 'data-boss-xp': '1', text: 'XP +0' });
     ui.extra.appendChild(xpEl);
+    const bonusEl = h('p', { class: 'boss-xp-bonus hidden', 'data-boss-xp-bonus': '1', text: '撃破のごほうび +' + (S.winBonus || 0) });
+    ui.extra.appendChild(bonusEl);
     const lines = [name + ' を たおした！', quoted(pickLine(profile, 'defeat', app.rng))];
     let done = false;
     let said = false; // 「たおした！」の文を出したか
     const showFinal = () => {
       xpEl.textContent = 'XP +' + S.xp;
       xpEl.classList.add('final');
+      bonusEl.classList.remove('hidden');
     };
     const finish = () => {
       if (done) return;
@@ -563,6 +568,7 @@ export function renderBoss(app, key) {
     later(() => { said = true; say(lines); }, 1450);
     later(() => ui.confetti.classList.add('on'), 1500);
     later(() => countUp(xpEl, S.xp, 1300), 2800);
+    later(() => bonusEl.classList.remove('hidden'), 4100); // 数え上がったあと、内訳（ごほうび）を出す
     later(finish, 4500);
   }
 
@@ -650,7 +656,8 @@ export function renderBoss(app, key) {
         ? h('p', { class: 'score' }, 'この章のボスを ', h('strong', { text: S.wins + ' 回' }), ' たおしました')
         : h('p', { text: 'ハートがなくなりました。解説を読んで、もう一度挑みましょう。' }),
       h('p', { class: 'small muted', text: S.log.length + ' 回答えて、' + ok + ' 回正解しました' }),
-      h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }));
+      h('p', { class: 'xp-total', text: '獲得 ' + S.xp + ' XP' }),
+      win && S.winBonus ? h('p', { class: 'small muted', 'data-boss-xp-bonus-result': '1', text: '（撃破のごほうび +' + S.winBonus + ' をふくむ）' }) : null);
     const info = bossState(app, stage).info; // 勝ったあとは撃破の回数が増え、現れるのに要る数も変わる
     card.appendChild(h('p', { class: 'small muted', text: info.available
       ? 'ボスはまだこの章にいます。また挑めます。'

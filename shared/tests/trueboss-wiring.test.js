@@ -104,7 +104,7 @@ test('戦いの最中は解説を出さない。解説（explanation）を呼ぶ
 
 test('答えの記録: 問題の記録（recordAnswer）に入れるが、今日の復習の枠（review）は渡さない', () => {
   const src = code('shared/js/views/trueboss.js');
-  assert.match(fnBody(src, 'answer'), /app\.recordAnswer\(sq\.q, \{ correct, seconds, sessionStreak: S\.streak, limit \}\)/);
+  assert.match(fnBody(src, 'answer'), /app\.recordAnswer\(sq\.q, \{ correct, seconds, sessionStreak: S\.streak, limit, xpMul: BOSS_XP\.trueMul \}\)/);
   assert.doesNotMatch(src, /review: true/);
 });
 

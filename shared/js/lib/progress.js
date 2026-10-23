@@ -14,7 +14,7 @@ import { normalizeBoss, normalizeBossFlawless, normalizeBossMet } from './boss.j
 import { normalizeTrueBoss } from './trueboss.js';
 import { normalizeStudySeconds, normalizeStudyDays } from './studytime.js';
 import { normalizeCharTap100 } from './characters.js';
-import { answerXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
+import { answerXp, scaleXp, levelFromXp, updateStreak, starsFor, masteryLevel, STAR_THRESHOLDS } from './scoring.js';
 
 export function defaultState() {
   return {
@@ -95,11 +95,12 @@ export function mergeState(saved) {
  * 1問の回答を記録する。state を直接更新し、獲得XPなどを返す。
  * sessionStreak: 今回を含む連続正解数（呼び出し側が数える）
  */
-export function recordAnswer(state, q, { correct, seconds = null, sessionStreak = 0, now = new Date(), limit = 40, exam = false, review = false }) {
+export function recordAnswer(state, q, { correct, seconds = null, sessionStreak = 0, now = new Date(), limit = 40, exam = false, review = false, xpMul = 1 }) {
   const prev = state.qstats[q.id];
   const firstTry = !prev || !prev.seen;
   const levelBefore = levelFromXp(state.xp).level;
   const xp = answerXp({ correct, firstTry, streak: sessionStreak, seconds, limit, exam });
+  if (xpMul !== 1) xp.total = scaleXp(xp.total, xpMul); // ボス戦の倍率（切り上げ）。内訳（parts）は倍率の前のまま
   const today = dayNumber(now);
   state.qstats[q.id] = applyAnswer(prev, correct, today, undefined, examDayNumber(state.settings)); // 受験日より後になる復習は卒業
   if (review) state.reviewToday = bumpReviewToday(state.reviewToday, today); // 「復習」として解いた数（1日60問の枠から引く）
@@ -114,6 +115,15 @@ export function recordAnswer(state, q, { correct, seconds = null, sessionStreak 
   state.streak = updateStreak(state.streak, key);
   const levelAfter = levelFromXp(state.xp).level;
   return { xp: xp.total, parts: xp.parts, firstTry, levelBefore, levelAfter, leveledUp: levelAfter > levelBefore };
+}
+
+/** ごほうびの XP（ボス戦の撃破など）を足す。レベルが上がったかも返す。0以下・数でないものは足さない。 */
+export function addBonusXp(state, amount) {
+  const levelBefore = levelFromXp(state.xp).level;
+  const n = Number.isFinite(amount) && amount > 0 ? Math.floor(amount) : 0;
+  state.xp += n;
+  const levelAfter = levelFromXp(state.xp).level;
+  return { xp: n, levelBefore, levelAfter, leveledUp: levelAfter > levelBefore };
 }
 
 /** ステージ1回分の結果。ベスト星だけ更新。 */
