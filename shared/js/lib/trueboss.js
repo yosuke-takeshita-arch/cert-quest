@@ -14,7 +14,7 @@ export function trueBossEnabled(config) {
 export const TRUE_FORMS = 3; // 第1〜第3形態
 export const TRUE_HP_MIN = 8; // 形態ごとのボスの体力（戦いを始めるとき・進化したときに決める）
 export const TRUE_HP_MAX = 12;
-export const TRUE_HEAL_EVERY = 5; // 形態の中で、この問数ごとにボスが回復する（5問に1回）
+export const TRUE_HEAL_EVERY = 7; // 形態の中で、この問数ごとにボスが回復する（7問に1回。要件定義書 §3-9 の強さの目安に合わせて 5 から延ばした）
 export const TRUE_HEAL_AMOUNT = 1; // 1回で回復する体力（仮。要件定義書 §3-9 は「ときどき回復する（目安：5問に1回）」としか決めていない）
 export const TRUE_QUEUE_PER_FORM = 25; // 形態ごとに並べる問題の数（苦手 15 : それ以外 10 ＝ 6:4）。倒すのに要る数より十分多い
 export const TRUE_WEAK_RATIO = 0.6; // 苦手な問題の割合
@@ -24,7 +24,7 @@ export const STREAK_HEAL = 3; // 続けて正解したらこちらの HP が 1 �
 export const SKILL_TURNS = 3; // 技が続くターン（問題）の数
 export const SKILL_SECONDS = 15; // 「1問15秒以内」
 export const SKILL_CURSE_DAMAGE = 2; // 「間違えると HP が 2 減る」
-export const SKILL_CHANCE = Object.freeze({ 1: 0.15, 2: 0.25, 3: 0.35 }); // 問題が出る前に技を使ってくる確率（第3形態ほど多い。仮）
+export const SKILL_CHANCE = Object.freeze({ 1: 0.05, 2: 0.08, 3: 0.1 }); // 問題が出る前に技を使ってくる確率（第3形態ほど多い。強さの目安に合わせて調整。試算は報告）
 export const SKILL_KINDS = Object.freeze(['timed', 'curse']);
 
 // ---- 状態（学習記録の trueBoss） ----

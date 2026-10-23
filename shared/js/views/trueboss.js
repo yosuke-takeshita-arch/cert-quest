@@ -13,7 +13,7 @@ import {
   trueBossEnabled, trueBossUnlocked, trueBossWins, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_SECONDS, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
-import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName } from '../lib/trueboss-data.js';
+import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, TRUE_FACE } from '../lib/trueboss-data.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, CHOICE_LABELS } from './explain.js';
@@ -61,7 +61,7 @@ function fillArt(wrap, form, unknown) {
   wrap.appendChild(h('span', { class: 'boss-sym', text: unknown ? '？' : TRUE_BOSS_SYMBOL }));
   if (unknown) return;
   loadFormImage(form, wrap, (img) => {
-    const c = faceCrop(img.naturalWidth, img.naturalHeight, null);
+    const c = faceCrop(img.naturalWidth, img.naturalHeight, TRUE_FACE[form]);
     img.style.setProperty('--zoom', String(c.zoom));
     img.style.setProperty('--tx', String(c.tx));
     img.style.setProperty('--ty', String(c.ty));
@@ -436,7 +436,8 @@ export function renderTrueBoss(app) {
     const skill = battle().skill;
     if (rolled.started) {
       playSynth(app.state.settings, 'skill');
-      say([prof().name + ' は ' + skillInfo(rolled.started).name + ' を つかった！', skillInfo(rolled.started).line]);
+      const sl = quoted(pickTrueLine(prof(), rolled.started === 'timed' ? 'skillTimer' : 'skillDouble', app.rng)) || skillInfo(rolled.started).line;
+      say([prof().name + ' は ' + skillInfo(rolled.started).name + ' を つかった！', sl]);
     }
     ui.qarea.appendChild(h('div', { class: 'play-head boss-qhead' },
       h('span', { class: 'small muted boss-round', text: '真ボス・第' + battle().form + '形態' })));
@@ -537,8 +538,9 @@ export function renderTrueBoss(app) {
         lines.push(oldProfile.name + ' の こうげき！', quoted(pickTrueLine(oldProfile, 'attack', app.rng)));
         if (late) lines.push('じかんぎれ！');
         lines.push(b.result === 'lose' ? 'あなたは たおれてしまった…' : 'あなたは ' + ev.lost + ' ダメージを うけた！');
+        if (b.result === 'lose') lines.push(quoted(pickTrueLine(oldProfile, 'gloat', app.rng)));
       }
-      if (ev.playerHealed) lines.push('あなたの きずが すこし いえた。');
+      if (ev.playerHealed) lines.push('あなたの きずが すこし いえた。', quoted(pickTrueLine({ lines: { x: data.playerHeal } }, 'x', app.rng)));
       if (ev.skillEnded && !ev.evolved && b.result !== 'win') lines.push(skillInfo(ev.skillEnded).name + ' の ちからが きえた。');
       if (b.result === 'win') defeatSequence(bar, next, ev);
       else if (ev.evolved) evolveSequence(ev, bar, next);
