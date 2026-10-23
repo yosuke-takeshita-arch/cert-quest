@@ -11,7 +11,7 @@ import { isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.j
 import { quoted, faceCrop } from '../lib/bossdata.js';
 import {
   trueBossEnabled, trueBossUnlocked, trueBossWords, trueBossLockedText, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
-  rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_SECONDS, SKILL_CURSE_DAMAGE, TRUE_FORMS,
+  rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
 import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
 import { trueGeom } from '../lib/trueboss-geom.js';
@@ -514,15 +514,16 @@ export function renderTrueBoss(app) {
   }
 
   // ---- 技の表示（問題の上の帯と、時間制限の残り） ----
-  function skillBanner(skill) {
+  function skillBanner(skill, q) {
     const info = skillInfo(skill.kind);
-    const rule = skill.kind === 'timed' ? '1問 ' + SKILL_SECONDS + ' 秒以内（時間切れは不正解）' : 'まちがえると HP が ' + SKILL_CURSE_DAMAGE + ' へる';
+    const lim = timeLimitFor(skill, q, limit); // その問題の秒数（問題の長さで変わる）
+    const rule = skill.kind === 'timed' ? '1問 ' + lim + ' 秒以内（時間切れは不正解）' : 'まちがえると HP が ' + SKILL_CURSE_DAMAGE + ' へる';
     const box = h('div', { class: 'tb-skill', role: 'status', 'data-tb-skill': skill.kind },
       h('strong', { class: 'tb-skill-name', text: info.name }),
       h('span', { class: 'tb-skill-turns', 'data-tb-skill-turns': String(skill.turns), text: '残り ' + skill.turns + ' ターン' }),
       h('span', { class: 'small tb-skill-rule', text: rule }));
     if (skill.kind === 'timed') {
-      const left = h('span', { class: 'tb-timer-text', 'data-tb-timer': '1', text: '残り ' + SKILL_SECONDS + ' 秒' });
+      const left = h('span', { class: 'tb-timer-text', 'data-tb-timer': '1', text: '残り ' + lim + ' 秒' });
       const fill = h('span', { class: 'tb-timer-fill' });
       box.appendChild(h('div', { class: 'tb-timer', 'aria-hidden': 'true' }, fill));
       box.appendChild(left);
@@ -533,7 +534,7 @@ export function renderTrueBoss(app) {
 
   function startTimer() {
     stopTick();
-    const lim = timeLimitFor(battle().skill);
+    const lim = timeLimitFor(battle().skill, S.item.q, limit);
     if (lim === null || !ui.timer) return;
     const tm = ui.timer;
     const t0 = S.t0;
@@ -571,7 +572,7 @@ export function renderTrueBoss(app) {
     }
     ui.qarea.appendChild(h('div', { class: 'play-head boss-qhead' },
       h('span', { class: 'small muted boss-round', text: roundLabel() })));
-    if (skill) ui.qarea.appendChild(skillBanner(skill)); else ui.timer = null;
+    if (skill) ui.qarea.appendChild(skillBanner(skill, q)); else ui.timer = null;
     if (!S.log.length) ui.qarea.appendChild(h('p', { class: 'small muted boss-rule', text: ruleText(trueBossSeenForm2(app.state)) }));
     const card = h('div', { class: 'card q-card' });
     const tags = h('div', { class: 'q-tags' }, h('span', { class: 'chip', text: q.syllabus.slice(1, 3).join(' › ') || q.syllabus[0] }), statusChip(q.status));
@@ -602,7 +603,7 @@ export function renderTrueBoss(app) {
     const sq = S.item;
     const before = battle();
     const seconds = (Date.now() - S.t0) / 1000;
-    const late = !!timedOut || isTimedOut(before.skill, seconds);
+    const late = !!timedOut || isTimedOut(before.skill, seconds, sq.q, limit);
     const correct = !late && chosen !== null && chosen === sq.answer;
     S.streak = correct ? S.streak + 1 : 0;
     const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit }); // 今日の復習の枠（review）には数えない
@@ -636,12 +637,25 @@ export function renderTrueBoss(app) {
     vibrate(app.state.settings, correct ? (crit ? [30, 30, 60] : 30) : [60, 40, 60]);
     if (correct) beep(app.state.settings, 'ok');
     const finalState = b.result || ev.evolved;
-    const next = h('button', { class: 'btn primary big next', type: 'button', 'data-boss-next': '1', onClick: () => { if (typing) typing.finish(); if (b.result) endBattle(); else drawQuestion(); } },
+    const pagesAfter = !finalState && !!(ev.playerHealed || ev.bossHealed); // 答えのあとに回復のページが続くか（撃破・進化の演出のときは、これまでどおり別の形）
+    const next = h('button', { class: 'btn primary big next', type: 'button', 'data-boss-next': '1', onClick: () => {
+      if (next.getAttribute('aria-disabled') === 'true') { onTap(); return; } // 回復のページが残っている間は、押しても先へ進まない。窓のタップと同じに、次のページへ進める（演出を飛ばさない）
+      if (typing) typing.finish();
+      if (b.result) endBattle(); else drawQuestion();
+    } },
       b.result === 'win' ? 'つづき' : b.result ? '結果を見る' : '次の問題へ');
     const bar = h('div', { class: 'sticky-bar' }, next);
     after.appendChild(bar);
     if (b.result === 'win' || ev.evolved) bar.classList.add('hidden'); // 撃破・進化の演出が終わるまで、先へ進むボタンは出さない（タップでとばせる）
-    else next.focus({ preventScroll: true });
+    else if (!pagesAfter) next.focus({ preventScroll: true });
+    // 答えのあとに続くページ（自分の回復・ボスの回復）がある間は、ボタンを薄くして押せない形にする（aria-disabled。最後のページの演出が終わったら押せる）
+    if (pagesAfter) { next.classList.add('wait'); next.setAttribute('aria-disabled', 'true'); }
+    const releaseNext = () => {
+      if (!S || S.item !== sq || !next.isConnected) return;
+      next.classList.remove('wait');
+      next.removeAttribute('aria-disabled');
+      next.focus({ preventScroll: true });
+    };
 
     const oldProfile = trueBossForm(data, before.form);
     const perform = () => {
@@ -690,10 +704,13 @@ export function renderTrueBoss(app) {
         const turnPage = () => {
           if (!S.healWait || S.item !== sq || !ui || !ui.stage.isConnected || !pages.length) return;
           S.healWait = null;
+          pageAt = Date.now();
           pages.shift()();
         };
+        let pageAt = 0;
         function arm() {
-          if (S.item !== sq || !pages.length) return;
+          if (S.item !== sq) return;
+          if (!pages.length) { later(releaseNext, Math.max(0, HEAL_FX_MS - (Date.now() - pageAt))); return; } // 最後のページ: 文が出終わり、回復の演出（約1.5秒）も終わってから、ボタンを押せるようにする
           S.healWait = turnPage;
           later(turnPage, 1400);
         }
@@ -705,6 +722,8 @@ export function renderTrueBoss(app) {
     };
     atTop(perform);
   }
+
+  const HEAL_FX_MS = 1500; // 回復の演出（光・ハートの光）の長さ
 
   // ---- 自分の回復の見せ方: 戻るハート1つを緑に光らせて増やす（上の帯のハートも同じ）+ 自分の回復の音（フック playerheal）。それまでハートは増やさない ----
   function playerHealEffect(b) {

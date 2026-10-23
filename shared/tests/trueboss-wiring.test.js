@@ -132,7 +132,12 @@ test('時間制限の技: 残り時間を数え、0 になったら不正解と�
   const src = code('shared/js/views/trueboss.js');
   assert.match(fnBody(src, 'startTimer'), /answer\(null, true\)/);
   assert.match(fnBody(src, 'answer'), /stopTick\(\)/);
-  assert.match(fnBody(src, 'answer'), /isTimedOut\(before\.skill, seconds\)/);
+  assert.match(fnBody(src, 'answer'), /isTimedOut\(before\.skill, seconds, sq\.q, limit\)/, 'その問題の秒数（問題の長さ・アプリの最長）で判定する');
+  assert.match(fnBody(src, 'startTimer'), /timeLimitFor\(battle\(\)\.skill, S\.item\.q, limit\)/);
+  assert.match(fnBody(src, 'skillBanner'), /timeLimitFor\(skill, q, limit\)/);
+  assert.match(fnBody(src, 'skillBanner'), /'1問 ' \+ lim \+ ' 秒以内/, '「1問◯秒以内」の文も、その問題の秒数');
+  assert.match(fnBody(src, 'skillBanner'), /'残り ' \+ lim \+ ' 秒'/, '最初に出るカウントダウンも同じ');
+  assert.doesNotMatch(src, /SKILL_SECONDS/, '固定の15秒は使わない');
   assert.match(src, /const cleanup = \(\) => \{\n    clearTimers\(\);\n    stopTick\(\);/, '画面を離れたら数えるのを止める');
 });
 
@@ -487,4 +492,19 @@ test('2→3 の光を強くする: 画面いっぱい（fixed）の白金色の�
   const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
   assert.match(red, /\.tb-gold-flash\.calm \{ animation: tb-gold-calm 2\.2s ease-in-out forwards; \}/);
   assert.match(css, /@keyframes tb-gold-calm \{ 0% \{ opacity: 0; \} 40% \{ opacity: 1; \} 100% \{ opacity: 0; \} \}/);
+});
+
+test('「次の問題へ」: 答えのあとに回復のページが続く間は、薄くして押せない（aria-disabled）。押したら次のページへ進める。最後の演出が終わったら押せる', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'answer');
+  assert.match(fn, /const pagesAfter = !finalState && !!\(ev\.playerHealed \|\| ev\.bossHealed\)/, '撃破・進化のときは別の形（これまでどおり）');
+  assert.match(fn, /if \(pagesAfter\) \{ next\.classList\.add\('wait'\); next\.setAttribute\('aria-disabled', 'true'\); \}/);
+  assert.match(fn, /next\.getAttribute\('aria-disabled'\) === 'true'\) \{ onTap\(\); return; \}/, '押したら窓のタップと同じ（次のページへ）。先へは進まない');
+  assert.match(fn, /next\.classList\.remove\('wait'\);\s*next\.removeAttribute\('aria-disabled'\);/);
+  assert.match(fn, /if \(!pages\.length\) \{ later\(releaseNext, Math\.max\(0, HEAL_FX_MS - \(Date\.now\(\) - pageAt\)\)\); return; \}/, '最後のページの文と演出が終わってから押せる');
+  assert.match(fn, /pageAt = Date\.now\(\);\s*pages\.shift\(\)\(\);/);
+  assert.doesNotMatch(fn, /next\.disabled/, 'disabled にすると押しても何も起きない（次のページへ進めない）');
+  assert.match(fn, /else if \(!pagesAfter\) next\.focus/, 'ページが無い答えは、これまでどおりすぐ押せてフォーカスする');
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.btn\[aria-disabled="true"\] \{ opacity: 0\.45;/);
 });

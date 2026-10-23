@@ -36,7 +36,11 @@ export const TRUE_DIFFICULTY = Object.freeze({ 1: [1, 2], 2: [2, 3], 3: [3, 4] }
 export const DEFAULT_DIFFICULTY = 2; // difficulty が無い・壊れている問題は、いちばん多い 2 として扱う（仮）
 export const STREAK_HEAL = 3; // 続けて正解したらこちらの HP が 1 回復する数（先生決定: 3問。一度 2 にしたのは、門番の推した案を決定と取り違えたため）
 export const SKILL_TURNS = 3; // 技が続くターン（問題）の数
-export const SKILL_SECONDS = 15; // 「1問15秒以内」
+// 時間制限の技の長さ（先生決定 2026-10-24）: 1問の制限時間＝5秒＋（問題文と選択肢の文字数の合計÷10）秒を切り上げ。最短 SKILL_MIN_SECONDS、最長はそのアプリの1問あたりの秒数（config.secondsPerQuestion）
+export const SKILL_BASE_SECONDS = 5;
+export const SKILL_CHARS_PER_SECOND = 10; // 読む速さ（1秒に10字）
+export const SKILL_MIN_SECONDS = 10;
+export const SKILL_MAX_FALLBACK = 40; // 最長の秒数が分からないときの値（G検定の値）
 export const SKILL_CURSE_DAMAGE = 2; // 「間違えると HP が 2 減る」
 export const SKILL_CHANCE = Object.freeze({ 1: 0.05, 2: 0.08, 3: 0.3 }); // 問題が出る前に技を使ってくる確率（第3形態ほど多い。先生決定）
 // 技の種類: 第1・第2形態は時間制限だけ。『HP が2減る』は第3形態だけで、第3形態の技のうち、この割合（残りは時間制限）。
@@ -208,14 +212,26 @@ export function restartAfterLose(battle, rng = Math.random) {
   return battle && battle.result === 'lose' ? newTrueBattle(rng) : { ...battle };
 }
 
-/** 技の制限時間（秒）。時間制限の技がかかっていなければ null。 */
-export function timeLimitFor(skill) {
-  return skill && skill.kind === 'timed' ? SKILL_SECONDS : null;
+/**
+ * 時間制限の技の、その問題の制限時間（秒。整数）。5秒＋（問題文と選択肢の文字数の合計÷10）秒、切り上げ。最短 10 秒、最長 maxSeconds。
+ * q は問題（stem と choices）。壊れた問題（文字列でない・選択肢が配列でない）は、文字数に数えない。maxSeconds が数でない・10 未満なら、最長は 40（10 未満は 10）。
+ */
+export function timedSecondsFor(q, maxSeconds) {
+  const len = (v) => (typeof v === 'string' ? v.length : 0);
+  const chars = len(q && q.stem) + (q && Array.isArray(q.choices) ? q.choices.reduce((n, c) => n + len(c), 0) : 0);
+  const max = Math.max(SKILL_MIN_SECONDS, Number.isFinite(maxSeconds) && maxSeconds > 0 ? Math.floor(maxSeconds) : SKILL_MAX_FALLBACK);
+  const sec = Math.ceil((SKILL_BASE_SECONDS * SKILL_CHARS_PER_SECOND + chars) / SKILL_CHARS_PER_SECOND); // 整数で割って、小数の誤差を避ける
+  return Math.min(max, Math.max(SKILL_MIN_SECONDS, sec));
 }
 
-/** 時間切れか。制限時間より長くかかったとき（ちょうど SKILL_SECONDS 秒は間に合っている）。技がかかっていなければ常に false。 */
-export function isTimedOut(skill, seconds) {
-  const lim = timeLimitFor(skill);
+/** その問題の制限時間（秒）。時間制限の技がかかっていなければ null。 */
+export function timeLimitFor(skill, q, maxSeconds) {
+  return skill && skill.kind === 'timed' ? timedSecondsFor(q, maxSeconds) : null;
+}
+
+/** 時間切れか。制限時間より長くかかったとき（ちょうど制限時間は間に合っている）。技がかかっていなければ常に false。 */
+export function isTimedOut(skill, seconds, q, maxSeconds) {
+  const lim = timeLimitFor(skill, q, maxSeconds);
   return lim !== null && Number.isFinite(seconds) && seconds > lim;
 }
 

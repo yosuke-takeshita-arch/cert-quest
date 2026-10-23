@@ -8,7 +8,7 @@ import {
   trueBossEnabled, trueBossUnlocked, normalizeTrueBoss, trueBossWins, recordTrueBossWin,
   difficultyOf, buildTrueBossPlan, rollFormHp, newTrueBattle, restartAfterLose, answerTrueBattle, rollSkill,
   timeLimitFor, isTimedOut, newTrueRun, currentTrueQuestion, answerTrueRun, rollRunSkill,
-  TRUE_FORMS, TRUE_HP_MIN, TRUE_HP_MAX, TRUE_HEAL_GAP_MIN, TRUE_HEAL_GAP_MAX, CURSE_SHARE, rollHealGap, TRUE_QUEUE_PER_FORM, TRUE_DIFFICULTY, SKILL_TURNS, SKILL_SECONDS,
+  TRUE_FORMS, TRUE_HP_MIN, TRUE_HP_MAX, TRUE_HEAL_GAP_MIN, TRUE_HEAL_GAP_MAX, CURSE_SHARE, rollHealGap, TRUE_QUEUE_PER_FORM, TRUE_DIFFICULTY, SKILL_TURNS, timedSecondsFor,
   SKILL_CURSE_DAMAGE, SKILL_CHANCE, STREAK_HEAL,
 } from '../js/lib/trueboss.js';
 import { bossMood, PLAYER_HP } from '../js/lib/boss.js';
@@ -500,20 +500,57 @@ test('倒した問題・負けた問題では、ボスの回復は起きない',
 
 // ---------------------------------------------------------------- 技
 
-test('技の制限時間: 時間制限の技のときだけ15秒。ちょうど15秒は間に合い、15秒を超えたら時間切れ', () => {
+test('技の制限時間: 5秒＋（問題文と選択肢の文字数の合計÷10）秒を切り上げ。最短10秒・最長は config の1問の秒数。ちょうどは間に合い、超えたら時間切れ', () => {
   const timed = { kind: 'timed', turns: 3 };
-  assert.equal(SKILL_SECONDS, 15);
-  assert.equal(timeLimitFor(timed), 15);
-  assert.equal(timeLimitFor({ kind: 'curse', turns: 3 }), null);
-  assert.equal(timeLimitFor(null), null);
-  assert.equal(isTimedOut(timed, 15), false);
-  assert.equal(isTimedOut(timed, 14.999), false);
-  assert.equal(isTimedOut(timed, 15.001), true);
-  assert.equal(isTimedOut(timed, 0), false);
-  assert.equal(isTimedOut(timed, NaN), false);
-  assert.equal(isTimedOut(timed, Infinity), false);
-  assert.equal(isTimedOut(null, 100), false, '技が無ければ時間切れにならない');
-  assert.equal(isTimedOut({ kind: 'curse', turns: 3 }, 100), false);
+  const mk = (n, choices = 4) => { // 文字数の合計がちょうど n になる問題（選択肢 choices 個）
+    const per = choices ? Math.floor((n - 1) / (choices + 1)) : 0;
+    const cs = Array.from({ length: choices }, () => 'あ'.repeat(per));
+    return { stem: 'あ'.repeat(n - per * choices), choices: cs };
+  };
+  const total = (q) => q.stem.length + q.choices.reduce((a, c) => a + c.length, 0);
+  assert.equal(total(mk(180)), 180);
+  assert.equal(timedSecondsFor(mk(180), 40), 23, '約180字は23秒（要件定義書の例）');
+  assert.equal(timedSecondsFor(mk(270), 40), 32, '約270字は32秒（同）');
+  // 境界: 最短（100字までは 5+10=15 未満の分は 10 に切り上げ）。50字＝10秒ちょうど、49字も10秒、0字も10秒
+  assert.equal(timedSecondsFor(mk(50), 40), 10);
+  assert.equal(timedSecondsFor(mk(49), 40), 10);
+  assert.equal(timedSecondsFor(mk(10), 40), 10, '短い問題は最短10秒');
+  assert.equal(timedSecondsFor({ stem: '', choices: [] }, 40), 10);
+  // 切り上げ: 51字は 5+5.1=10.1 → 11秒。60字はちょうど 11 秒。61字は 11.1 → 12秒
+  assert.equal(timedSecondsFor(mk(51, 0), 40), 11);
+  assert.equal(timedSecondsFor(mk(60, 0), 40), 11);
+  assert.equal(timedSecondsFor(mk(61, 0), 40), 12);
+  // 最長: アプリごと（G検定40・DX48・AIパスポート60）。ちょうど最長・最長+1・とても長い
+  assert.equal(timedSecondsFor(mk(350, 0), 40), 40, '5+35＝40秒ちょうど');
+  assert.equal(timedSecondsFor(mk(351, 0), 40), 40, '切り上げて41秒になるが、最長40');
+  assert.equal(timedSecondsFor(mk(2000, 0), 40), 40);
+  assert.equal(timedSecondsFor(mk(2000, 0), 48), 48);
+  assert.equal(timedSecondsFor(mk(2000, 0), 60), 60);
+  assert.equal(timedSecondsFor(mk(400, 0), 48), 45);
+  // 最長の秒数が壊れているとき: 40。10未満でも最短の10
+  for (const bad of [undefined, null, NaN, 'x', -5, 0, Infinity]) assert.equal(timedSecondsFor(mk(2000, 0), bad), 40, String(bad));
+  assert.equal(timedSecondsFor(mk(2000, 0), 7), 10);
+  // 壊れた問題: 文字列でない・選択肢が配列でない・選択肢に文字列でないものが混ざる・null
+  assert.equal(timedSecondsFor(null, 40), 10);
+  assert.equal(timedSecondsFor(undefined, 40), 10);
+  assert.equal(timedSecondsFor({}, 40), 10);
+  assert.equal(timedSecondsFor({ stem: 5, choices: 'いろいろ' }, 40), 10);
+  assert.equal(timedSecondsFor({ stem: 'あ'.repeat(100) }, 40), 15, '選択肢が無いときは問題文だけ');
+  assert.equal(timedSecondsFor({ stem: 'あ'.repeat(100), choices: [null, 3, 'あ'.repeat(50)] }, 40), 20, '文字列でない選択肢は数えない');
+  // 技との組み合わせ
+  const q = mk(180);
+  assert.equal(timeLimitFor(timed, q, 40), 23);
+  assert.equal(timeLimitFor({ kind: 'curse', turns: 3 }, q, 40), null);
+  assert.equal(timeLimitFor(null, q, 40), null);
+  assert.equal(isTimedOut(timed, 23, q, 40), false, 'ちょうどは間に合う');
+  assert.equal(isTimedOut(timed, 22.999, q, 40), false);
+  assert.equal(isTimedOut(timed, 23.001, q, 40), true);
+  assert.equal(isTimedOut(timed, 0, q, 40), false);
+  assert.equal(isTimedOut(timed, NaN, q, 40), false);
+  assert.equal(isTimedOut(timed, Infinity, q, 40), false);
+  assert.equal(isTimedOut(timed, 11, mk(10), 40), true, '短い問題は10秒');
+  assert.equal(isTimedOut(null, 100, q, 40), false, '技が無ければ時間切れにならない');
+  assert.equal(isTimedOut({ kind: 'curse', turns: 3 }, 100, q, 40), false);
 });
 
 test('呪いの技: かかっている間は、不正解で HP が2減る。1しか残っていなければ0で負け。時間制限の技の不正解は1', () => {
