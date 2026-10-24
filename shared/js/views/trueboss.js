@@ -264,6 +264,7 @@ export function renderTrueBoss(app) {
   const skillInfo = (kind) => data.skills[kind];
 
   const cleanup = () => {
+    if (followOff) followOff();
     clearTimers();
     stopTick();
     typing = null;
@@ -366,6 +367,25 @@ export function renderTrueBoss(app) {
   }
   function figClass(op, ...names) {
     [ui.fig, ui.miniArt].forEach((el) => { if (el) el.classList[op](...names); });
+  }
+
+  // 画面いっぱい（position: fixed）の光・光の筋・輪は、絵の位置（画面の座標）を中心にする。進化の最中に画面をスクロールしても、絵と一緒に動くように、
+  // スクロール・画面の大きさが変わるたびに中心を絵に合わせ直す（絵が画面の外に出れば、輪も一緒に外へ行く）。
+  let followOff = null;
+  function followFig() {
+    const place = () => {
+      if (!ui || !ui.fig || !ui.fig.isConnected) return;
+      const r = ui.fig.getBoundingClientRect();
+      root.querySelectorAll('.tb-rays, .tb-ring, .tb-gold-flash').forEach((e) => {
+        e.style.setProperty('--cx', Math.round(r.left + r.width / 2) + 'px');
+        e.style.setProperty('--cy', Math.round(r.top + r.height * 0.45) + 'px');
+      });
+    };
+    if (followOff) followOff();
+    window.addEventListener('scroll', place, { passive: true });
+    window.addEventListener('resize', place);
+    followOff = () => { window.removeEventListener('scroll', place); window.removeEventListener('resize', place); followOff = null; };
+    return place;
   }
 
   function atTop(fn) {
@@ -766,6 +786,7 @@ export function renderTrueBoss(app) {
       ui.float.classList.remove('still');
       root.classList.remove('tb-rays-on');
       root.querySelectorAll('.tb-gold-flash, .tb-rays, .tb-ring').forEach((e) => e.remove());
+      if (followOff) followOff();
     };
     const swap = (immediate) => {
       if (swapped) return;
@@ -877,18 +898,18 @@ export function renderTrueBoss(app) {
       at(T.gold, () => {
         // 画面いっぱい（position: fixed。舞台の箱の中ではない）のまぶしい白金色の光。ほぼ見えなくなるほど光って、ゆっくり引く。縁は画面の端だけ
         // 体のうしろから、ゆっくり回る放射状の光の筋と、外へ広がる光の輪（衝撃波）を2本。玉も一斉に強く光る
-        const r = ui.fig.getBoundingClientRect();
+        const place = followFig(); // スクロールしても絵に付いてくる
+        if (window.scrollY > 1) window.scrollTo({ top: 0, behavior: 'smooth' }); // 進化の最中に下へ動かしていても、光が弾けるところ（絵が変わるところ）は見えるように、上へなめらかに戻す
         const mk = (cls, first) => {
           const e = h('div', { class: cls, 'aria-hidden': 'true' });
-          e.style.setProperty('--cx', Math.round(r.left + r.width / 2) + 'px');
-          e.style.setProperty('--cy', Math.round(r.top + r.height * 0.45) + 'px');
           if (first) root.insertBefore(e, root.firstChild); else root.appendChild(e); // 光の筋は、体（舞台）のうしろ
+          place();
         };
         root.classList.add('tb-rays-on');
         mk('tb-rays', true);
         mk('tb-gold-flash');
         mk('tb-ring');
-        at(T.gold + 250, () => mk('tb-ring r2'));
+        at(T.gold + 150, () => mk('tb-ring r2'));
         orbLayer.svg.classList.add('blaze');
         ui.fx.appendChild(h('span', { class: 'tb-burst strong' }));
         vibrate(app.state.settings, [40, 30, 40, 30, 120]);

@@ -138,7 +138,7 @@ test('時間制限の技: 残り時間を数え、0 になったら不正解と�
   assert.match(fnBody(src, 'skillBanner'), /'1問 ' \+ lim \+ ' 秒以内/, '「1問◯秒以内」の文も、その問題の秒数');
   assert.match(fnBody(src, 'skillBanner'), /'残り ' \+ lim \+ ' 秒'/, '最初に出るカウントダウンも同じ');
   assert.doesNotMatch(src, /SKILL_SECONDS/, '固定の15秒は使わない');
-  assert.match(src, /const cleanup = \(\) => \{\n    clearTimers\(\);\n    stopTick\(\);/, '画面を離れたら数えるのを止める');
+  assert.match(src, /const cleanup = \(\) => \{\n    if \(followOff\) followOff\(\);\n    clearTimers\(\);\n    stopTick\(\);/, '画面を離れたら数えるのを止める');
 });
 
 test('利用者の画面に、開発用の語（ID・段階の記号・未実装）を出さない。API の値をそのまま出さない', () => {
@@ -482,7 +482,7 @@ test('2→3 の光を強くする: 画面いっぱい（fixed）の白金色の�
   assert.match(css, /\.tb-rays \{[^\n]*repeating-conic-gradient[^\n]*mask-image: radial-gradient\(circle closest-side[^\n]*tb-rays-spin 12s linear infinite/);
   assert.match(css, /\.boss-rpg\.tb-rays-on \.boss-stage \{ background: transparent; \}/);
   // 光の輪: 丸い輪が広がって消える（2本目は少し遅れる）
-  assert.match(css, /\.tb-ring \{[^\n]*border-radius: 50%;[^\n]*animation: tb-ring 1\.4s ease-out forwards/);
+  assert.match(css, /\.tb-ring \{[^\n]*border-radius: 50%;[^\n]*animation: tb-ring 1\.0s ease-out forwards/);
   // 第3形態: 現れてから明るく光る
   assert.match(css, /@keyframes tb-spread3 \{ 0% \{ transform: scaleX\(0\.55\); filter: brightness\(3\.4\)/);
   const fn = fnBody(code('shared/js/views/trueboss.js'), 'evolveSequence');
@@ -534,4 +534,19 @@ test('エンディングの折り返し: 空白の位置だけで折り返し・
   assert.deepEqual(split('たんさくと ちしき。データから まなぶ ちから。'), ['たんさくと ちしき。', 'データから まなぶ ちから。']);
   assert.deepEqual(split('ひかりは かえった'), ['ひかりは かえった']);
   assert.deepEqual(split('おわり。'), ['おわり。']);
+});
+
+test('進化の最中にスクロールしても、画面いっぱいの光・光の筋・輪は絵に付いてくる（中心を絵に合わせ直す）。終わったら外す', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const f = fnBody(src, 'followFig');
+  assert.match(f, /window\.addEventListener\('scroll', place, \{ passive: true \}\)/);
+  assert.match(f, /window\.addEventListener\('resize', place\)/);
+  assert.match(f, /ui\.fig\.getBoundingClientRect\(\)/, '中心は絵の位置');
+  assert.match(f, /querySelectorAll\('\.tb-rays, \.tb-ring, \.tb-gold-flash'\)/);
+  assert.match(f, /removeEventListener\('scroll', place\)/);
+  const to3 = fnBody(src, 'evolveSequence');
+  assert.match(to3, /const place = followFig\(\);/);
+  assert.match(to3, /if \(window\.scrollY > 1\) window\.scrollTo\(\{ top: 0, behavior: 'smooth' \}\);/, '光が弾けるとき下にいたら、上へなめらかに戻す（動きを減らす設定は別の道で、画面を動かさない）');
+  assert.match(to3, /root\.querySelectorAll\('\.tb-gold-flash, \.tb-rays, \.tb-ring'\)\.forEach\(\(e\) => e\.remove\(\)\);\s*if \(followOff\) followOff\(\);/, '片づけで外す');
+  assert.match(to3, /at\(T\.gold \+ 150, \(\) => mk\('tb-ring r2'\)\)/, '2本目の輪は150ms後（詰めた）');
 });
