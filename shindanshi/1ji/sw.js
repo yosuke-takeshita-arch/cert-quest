@@ -4,7 +4,7 @@
 // ボス・章のバッジの絵は科目ごとに images/<科目id>/ へ置く。置いたら appFiles に足す（いまは絵が無いので載せていない）。
 self.CERT_QUEST = {
   appId: 'shindanshi-1ji',
-  version: '33',
+  version: '34',
   sharedBase: '../../shared/',
   dataDirs: ['01_economics', '02_finance-accounting', '03_management-theory', '04_operations', '05_business-law', '06_information-systems', '07_sme-policy'],
   appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png'],
