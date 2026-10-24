@@ -3,10 +3,11 @@
 // 正答率は、地図の色と同じ決め方: 「答えた問題のうち、最後に解いたとき正解だった問題の割合」（progress.js の nodeProgress と同じ数え方）。
 // 答えた数が少ないうちは正答率があてにならないので、判定に入れない（下の WEAK_MIN_ANSWERED）。
 
-/** 判定に要る、答えた問題の数（その項目の中の、別々の問題の数）。5問を目安にする。 */
+/**
+ * 判定に要る、答えた問題の数（その項目の中の、別々の問題の数）。5問を目安にする。
+ * 問題が5問に満たない項目は、その全部を答えたら判定する（1問・2問の項目も。2026-10-24 先生決定 A）。
+ */
 export const WEAK_MIN_ANSWERED = 5;
-/** 問題が3問に満たない項目は、全部答えても判定しない（2問では1問まちがえただけで50%になる）。 */
-export const WEAK_MIN_QUESTIONS = 3;
 /** 正答率がこれ未満なら「苦手」。80%以上は、地図の「定着」と同じ線で、苦手に入れない。 */
 export const WEAK_BELOW = 0.8;
 /** 苦手として並べる最大の件数。 */
@@ -50,7 +51,7 @@ export function ratePercent(lastOk, answered) {
   return Math.floor((lastOk * 100) / answered);
 }
 
-/** 1単位の成績。rate は答えた問題が無ければ null。required は判定に要る数（問題が5問に満たなければ、その全部）。 */
+/** 1単位の成績。rate は答えた問題が無ければ null。required は判定に要る数（問題が5問に満たなければ、その全部。1問・2問でも）。 */
 export function unitStats(unit, qstats) {
   let answered = 0, lastOk = 0;
   for (const q of unit.questions) {
@@ -62,10 +63,9 @@ export function unitStats(unit, qstats) {
   }
   const total = unit.questions.length;
   const required = Math.min(WEAK_MIN_ANSWERED, total);
-  const judgeable = total >= WEAK_MIN_QUESTIONS;
   return {
-    unit, total, answered, lastOk, required, judgeable,
-    qualified: judgeable && answered >= required,
+    unit, total, answered, lastOk, required,
+    qualified: total > 0 && answered >= required,
     rate: answered ? lastOk / answered : null,
     percent: ratePercent(lastOk, answered),
   };
@@ -86,15 +86,14 @@ export function analyze(tree, qstats) {
   const weakAll = qualified.filter((s) => s.rate < WEAK_BELOW).sort((a, b) => a.rate - b.rate || b.answered - a.answered || byOrder(a, b));
   const strongAll = qualified.filter((s) => s.rate >= WEAK_BELOW).sort((a, b) => b.rate - a.rate || b.answered - a.answered || byOrder(a, b));
   const untouchedAll = stats.filter((s) => s.total > 0 && s.answered === 0).sort(byOrder);
-  const judgeable = stats.filter((s) => s.judgeable);
   let state = 'none';
   let remaining = null;
-  if (judgeable.length) {
+  if (stats.length) {
     if (weakAll.length) state = 'weak';
     else if (qualified.length) state = 'clear';
     else {
       state = 'learning';
-      remaining = Math.min(...judgeable.map((s) => s.required - s.answered));
+      remaining = Math.min(...stats.map((s) => s.required - s.answered));
     }
   }
   return {
@@ -130,9 +129,9 @@ export function allStats(tree, qstats, order = DEFAULT_WEAK_ORDER) {
   return [...judged, ...rest];
 }
 
-/** 判定に足りない分野で「あと何問答えると正答率が出るか」。判定できる分野（qualified）・判定しない分野（3問未満）は null。 */
+/** 判定に足りない分野で「あと何問答えると正答率が出るか」（1以上）。判定できる分野（qualified）は null。 */
 export function questionsToJudge(stat) {
-  if (!stat || stat.qualified || !stat.judgeable) return null;
+  if (!stat || stat.qualified) return null;
   return stat.required - stat.answered;
 }
 

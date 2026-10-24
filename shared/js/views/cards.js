@@ -113,7 +113,7 @@ function rateLink(app, stat) {
   const left = questionsToJudge(stat);
   const label = stat.qualified
     ? '正答率 ' + stat.percent + '%'
-    : '正答率 ' + (left == null ? '—' : '—（あと' + left + '問で出ます）');
+    : '正答率 —（あと' + left + '問で出ます）';
   const parts = [h('span', { class: 'card-rate-text', text: label })];
   if (stat.qualified) {
     parts.push(h('span', { class: 'progress card-rate-bar' + (stat.rate >= WEAK_BELOW ? ' ok' : ''), 'aria-hidden': 'true' }, h('span', { class: 'progress-fill', style: { width: stat.percent + '%' } })));
@@ -121,7 +121,7 @@ function rateLink(app, stat) {
   parts.push(h('span', { class: 'card-rate-go small', 'aria-hidden': 'true', text: '分野の一覧 ›' }));
   return h('button', {
     class: 'card-rate' + (stat.qualified ? (stat.rate < WEAK_BELOW ? ' weak' : ' strong') : ''), type: 'button', 'data-card-rate': stat.unit.key,
-    'aria-label': stat.unit.name + ' の問題の' + (stat.qualified ? '正答率 ' + stat.percent + '%' : left == null ? '正答率は出ません' : '正答率はあと' + left + '問で出ます') + '。苦手の分析の「すべての分野」で見る',
+    'aria-label': stat.unit.name + ' の問題の' + (stat.qualified ? '正答率 ' + stat.percent + '%' : '正答率はあと' + left + '問で出ます') + '。苦手の分析の「すべての分野」で見る',
     onClick: () => app.go('#/weak/' + encodeURIComponent(stat.unit.key)),
   }, ...parts);
 }

@@ -7,7 +7,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildTree } from '../js/lib/data.js';
 import {
-  WEAK_MIN_ANSWERED, WEAK_MIN_QUESTIONS, WEAK_BELOW, WEAK_LIMIT, UNTOUCHED_LIMIT, STRONG_LIMIT, HOME_WEAK_BELOW,
+  WEAK_MIN_ANSWERED, WEAK_BELOW, WEAK_LIMIT, UNTOUCHED_LIMIT, STRONG_LIMIT, HOME_WEAK_BELOW,
   analysisUnits, ratePercent, unitStats, analyze, homeWeakCard, HOME_WEAK_COUNT,
   chapterStats, radarGeometry, tileLevel, TILE_MARK,
   oftenWrong, OFTEN_MIN_SEEN, OFTEN_MIN_WRONG_RATE, OFTEN_SOLVE_MAX,
@@ -34,9 +34,10 @@ function answers(qs, prefix, k, ok) {
   return out;
 }
 
-test('定数: 最低の数は5問、3問未満の項目は判定しない、苦手は80%未満（地図の定着と同じ線）', () => {
+test('定数: 最低の数は5問、苦手は80%未満（地図の定着と同じ線）。3問未満を判定しない定数はもう無い（2026-10-24 先生決定 A）', async () => {
   assert.equal(WEAK_MIN_ANSWERED, 5);
-  assert.equal(WEAK_MIN_QUESTIONS, 3);
+  const mod = await import('../js/lib/weakness.js');
+  assert.equal('WEAK_MIN_QUESTIONS' in mod, false);
   assert.equal(WEAK_BELOW, 0.8);
   assert.ok(WEAK_LIMIT >= 3 && WEAK_LIMIT <= 5);
   assert.ok(STRONG_LIMIT >= 1 && STRONG_LIMIT <= 2);
@@ -82,17 +83,53 @@ test('境目: 答えた数がちょうど5問は判定する／4問は判定し�
   assert.equal(a4.remaining, 1); // あと1問で判定できる
 });
 
-test('境目: 問題が5問に満たない項目は、その全部を答えたら判定する。3問未満の項目は全部答えても判定しない', () => {
+test('境目: 問題が5問に満たない項目は、その全部を答えたら判定する（1問・2問の項目も。2026-10-24 先生決定 A）', () => {
   const four = make([['A', 'S', 'x', 4]]);
   assert.equal(unitStats(analysisUnits(four.tree)[0], answers(four.qs, 'A/S/x', 4, 0)).qualified, true);
   assert.equal(unitStats(analysisUnits(four.tree)[0], answers(four.qs, 'A/S/x', 3, 0)).qualified, false);
   const three = make([['A', 'S', 'x', 3]]);
   assert.equal(unitStats(analysisUnits(three.tree)[0], answers(three.qs, 'A/S/x', 3, 0)).qualified, true);
+});
+
+test('2問の分野: 2問とも答えたら qualified になり percent が出る（0/50/100%）。1問だけなら出ない', () => {
   const two = make([['A', 'S', 'x', 2]]);
-  const s2 = unitStats(analysisUnits(two.tree)[0], answers(two.qs, 'A/S/x', 2, 0));
-  assert.equal(s2.judgeable, false);
-  assert.equal(s2.qualified, false);
-  assert.equal(analyze(two.tree, answers(two.qs, 'A/S/x', 2, 0)).state, 'none'); // 判定できる項目が1つも無い
+  const u = analysisUnits(two.tree)[0];
+  for (const [ok, pct] of [[0, 0], [1, 50], [2, 100]]) {
+    const s = unitStats(u, answers(two.qs, 'A/S/x', 2, ok));
+    assert.equal(s.required, 2);
+    assert.equal(s.qualified, true, ok + '問正解');
+    assert.equal(s.percent, pct);
+    assert.equal(questionsToJudge(s), null);
+  }
+  const one = unitStats(u, answers(two.qs, 'A/S/x', 1, 1));
+  assert.equal(one.qualified, false);
+  assert.equal(questionsToJudge(one), 1);
+  assert.equal(tileLevel(one), 'none');
+  // 苦手の判定にも同じ決め方で入る
+  const a0 = analyze(two.tree, answers(two.qs, 'A/S/x', 2, 1));
+  assert.equal(a0.state, 'weak');
+  assert.deepEqual(a0.weak.map((s) => [s.unit.name, s.percent]), [['x', 50]]);
+  assert.equal(analyze(two.tree, answers(two.qs, 'A/S/x', 2, 2)).state, 'clear');
+  const a1 = analyze(two.tree, answers(two.qs, 'A/S/x', 1, 0));
+  assert.equal(a1.state, 'learning');
+  assert.equal(a1.remaining, 1);
+  assert.equal(tileLevel(unitStats(u, answers(two.qs, 'A/S/x', 2, 1))), 'ng');
+});
+
+test('1問の分野: 1問答えたら qualified になり percent が出る。答えていなければ出ない', () => {
+  const one = make([['A', 'S', 'x', 1]]);
+  const u = analysisUnits(one.tree)[0];
+  const ok = unitStats(u, answers(one.qs, 'A/S/x', 1, 1));
+  assert.equal(ok.qualified, true);
+  assert.equal(ok.percent, 100);
+  assert.equal(tileLevel(ok), 'ok');
+  const ng = unitStats(u, answers(one.qs, 'A/S/x', 1, 0));
+  assert.equal(ng.qualified, true);
+  assert.equal(ng.percent, 0);
+  const none = unitStats(u, {});
+  assert.equal(none.qualified, false);
+  assert.equal(none.percent, null);
+  assert.equal(questionsToJudge(none), 1);
 });
 
 test('全部不正解は0%の苦手、全部正解は100%で苦手に入れない（得意に入る）', () => {
@@ -220,7 +257,10 @@ test('chapterStats: 章ごとに、章の中の全問題を1単位として同�
   assert.equal(ch[0].percent, 50); // 6/12
   assert.equal(ch[0].qualified, true);
   assert.equal(ch[1].qualified, false);
-  assert.equal(ch[2].judgeable, false); // 2問の章は全部答えても判定しない（分野と同じ決まり）
+  assert.equal(ch[2].qualified, false); // 2問の章は、まだ答えていないので出ない
+  const ch2 = chapterStats(tree, { ...st, ...answers(qs, 'B/S3/c', 2, 1) });
+  assert.equal(ch2[2].qualified, true); // 2問の章も全部答えたら出る（分野と同じ決まり）
+  assert.equal(ch2[2].percent, 50);
   // 章の1つが、その中の分野の数え方と食い違わない（分野の答えた数の合計＝章の答えた数）
   const parts = allStats(tree, st).filter((s) => s.unit.stage.key === ch[0].unit.key);
   assert.equal(parts.reduce((n, s) => n + s.answered, 0), ch[0].answered);
@@ -330,12 +370,13 @@ test('allStats: 小項目の無い章は章として出る。小項目に問題�
   assert.deepEqual(allStats(tree, {}).map((s) => s.unit.name), ['a', 'S2']);
 });
 
-test('questionsToJudge: 判定に足りない分野だけ「あと何問」。判定済み・3問未満の分野は null', () => {
+test('questionsToJudge: 判定に足りない分野だけ「あと何問」。判定済みの分野は null。2問の分野も数える', () => {
   const { tree, qs } = make([['A', 'S', 'x', 10], ['A', 'S', 'y', 2], ['A', 'S', 'z', 4]]);
   const st = { ...answers(qs, 'A/S/x', 3, 1), ...answers(qs, 'A/S/z', 4, 4) };
   const by = (n, rec) => allStats(tree, rec).find((s) => s.unit.name === n);
   assert.equal(questionsToJudge(by('x', st)), 2); // 5-3
-  assert.equal(questionsToJudge(by('y', st)), null); // 2問しか無い
+  assert.equal(questionsToJudge(by('y', st)), 2); // 2問の分野で、まだ0問
+  assert.equal(questionsToJudge(by('y', { ...st, ...answers(qs, 'A/S/y', 2, 0) })), null); // 2問とも答えて判定済み
   assert.equal(questionsToJudge(by('z', st)), null); // 4問全部答えて判定済み
   assert.equal(questionsToJudge(null), null);
   assert.equal(questionsToJudge(by('x', {})), 5);

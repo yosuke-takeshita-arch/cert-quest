@@ -44,7 +44,7 @@ function allRow(app, stat, focusKey) {
   const kind = stat.qualified ? (stat.rate < WEAK_BELOW ? 'weak' : 'strong') : 'learning';
   const rate = stat.qualified
     ? h('strong', { class: 'weak-rate', text: stat.percent + '%' })
-    : h('span', { class: 'small muted weak-rate-pending', text: left == null ? '—' : 'あと' + left + '問で出ます' });
+    : h('span', { class: 'small muted weak-rate-pending', text: 'あと' + left + '問で出ます' });
   const count = '答えた ' + stat.answered + ' / ' + stat.total + ' 問';
   const row = h('div', { class: 'weak-row all-row ' + kind + (focusKey === u.key ? ' focus' : ''), 'data-weak-row': 'all', 'data-all-key': u.key },
     h('div', { class: 'weak-head' },
@@ -148,14 +148,14 @@ function overview(app) {
   };
   chapters.forEach((c, i) => {
     const list = byChapter.get(c.unit.key) || [];
-    const left = c.qualified ? null : questionsToJudge(c);
+    const left = questionsToJudge(c);
     const head = h('button', { class: 'weak-tiles-head', type: 'button', 'data-tiles-chapter': c.unit.key,
       'aria-label': (i + 1) + ' ' + c.unit.name + '、' + (c.qualified ? '章の正答率' + c.percent + '%' : '正答率はまだ出ません') + '。この章の分野の一覧へ',
       onClick: () => { if (list.length) jump(list[0].unit.key); } },
       h('span', { class: 'weak-tiles-no', 'aria-hidden': 'true', text: String(i + 1) }),
       h('span', { class: 'weak-tiles-text' },
         h('span', { class: 'weak-tiles-name', text: c.unit.name }),
-        h('span', { class: 'small muted weak-tiles-rate', text: c.qualified ? '正答率 ' + c.percent + '%' : left == null ? '—' : 'あと' + left + '問で出ます' })));
+        h('span', { class: 'small muted weak-tiles-rate', text: c.qualified ? '正答率 ' + c.percent + '%' : 'あと' + left + '問で出ます' })));
     const grid = h('div', { class: 'tiles', role: 'group', 'aria-label': c.unit.name + 'の分野' });
     list.forEach((s) => {
       const lv = tileLevel(s);
