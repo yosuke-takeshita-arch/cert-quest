@@ -36,7 +36,7 @@ export function defaultState() {
     boss: {}, // 章のボスの撃破回数（章のキー → 回数）
     bossMet: {}, // 一度でも現れた章のボス（章のキー → true）。会うまでは名前も姿も隠す
     bossFlawless: 0, // ハートを1つも減らさずにボスを倒した回数（バッジ「ノーダメージ」用）
-    trueBoss: { wins: 0, seen2: false }, // 真ボスを倒した回数（要件定義書 §3-9。バッジ『真ボス』用）
+    trueBoss: { wins: 0, seen2: false, lifted: false }, // 真ボスを倒した回数（要件定義書 §3-9。バッジ『真ボス』用）
     charTap100: { shiba: false, sensei: false }, // サニー／あい先生を100回タップした事実（バッジ用）。回数そのものは保存しない
     goalAwarded: null,
     reviewToday: { day: null, n: 0 }, // 「復習」として解いた数（その日の dayNumber と数）。1日60問の枠から引く。日が変われば数え直し。要件定義書 §6-3

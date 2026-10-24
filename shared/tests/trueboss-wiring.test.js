@@ -561,3 +561,52 @@ test('進化の最中にスクロールしても、画面いっぱいの光・�
   assert.match(to3, /root\.querySelectorAll\('\.tb-gold-flash, \.tb-rays, \.tb-ring'\)\.forEach\(\(e\) => e\.remove\(\)\);\s*if \(followOff\) followOff\(\);/, '片づけで外す');
   assert.match(to3, /at\(T\.gold \+ 150, \(\) => mk\('tb-ring r2'\)\)/, '2本目の輪は150ms後（詰めた）');
 });
+
+test('呪われた地図: 地図の絵に重ねる層を、条件を満たすときだけ付ける。倒した最初の1回だけ晴れる演出。操作を邪魔しない・動きを減らす設定で止まる', async () => {
+  const home = code('shared/js/views/home.js');
+  assert.match(home, /const cursed = trueBossCursed\(config, state, data\.tree\.stages\);/);
+  assert.match(home, /const lifting = !cursed && trueBossCurseToLift\(config, state\);/);
+  assert.match(home, /board\.classList\.add\('cursed'\);\s*board\.appendChild\(layer\);/);
+  assert.match(home, /markCurseLifted\(state\);[^\n]*\n\s*app\.commit\(\);\s*liftCurse\(board, layer\);/, '出したと先に記録して保存してから演出');
+  // 層は絵・道のあと、ステージの印（nodes）より前に入れる（印は層の上で見やすいまま）
+  assert.ok(home.indexOf("board.appendChild(layer)") > home.indexOf('if (lay.path) board.appendChild(svg)'));
+  assert.ok(home.indexOf("board.appendChild(layer)") < home.indexOf("const major = roots[lb.group]"));
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.map-curse \{[^}]*pointer-events: none;/, '操作を邪魔しない');
+  assert.match(css, /\.map-board\.cursed \.map-bg \{ filter: brightness\(0\.4\) saturate\(0\.3\)/, '絵を暗く・彩度を落とす');
+  assert.match(css, /\.map-curse-vignette/);
+  assert.match(css, /\.map-curse-bolt \{[^}]*animation: map-bolt 11s linear infinite;/, 'ときどき稲光');
+  assert.match(css, /\.boss-place\.cursed \{[^}]*animation: map-place-pulse/, '入口の印を脈打たせる');
+  assert.match(css, /\.map-board\.lifting \.map-bg \{ filter: none; \}/);
+  const red = css.slice(css.indexOf('/* 呪われた地図（要件定義書 §3-9）: 霧・粒・稲光'));
+  assert.match(red, /\.map-curse-fog, \.map-curse-dot, \.map-curse-bolt, \.boss-place\.cursed \{ animation: none !important; \}/, '動きを減らす設定で止める');
+  assert.match(red, /\.map-curse-dot, \.map-curse-bolt \{ display: none; \}/);
+  // 粒は少なめ（個数と位置の規則が一致）
+  const { CURSE_PARTICLES, CURSE_LIFT_MS, liftCurse } = await import('../js/views/curse.js');
+  assert.equal(CURSE_PARTICLES, 10, '粒は少なめ');
+  assert.ok(CURSE_LIFT_MS >= 2000 && CURSE_LIFT_MS <= 3000, '晴れる演出は 2〜3秒');
+  // 晴れる演出の手順（時計を差し替えて確かめる）: 450ms 後に cursed を外して lifting、CURSE_LIFT_MS 後に層を外す
+  const mkEl = (connected = true) => { const c = new Set(); return { isConnected: connected, removed: false, classList: { add: (x) => c.add(x), remove: (x) => c.delete(x), has: (x) => c.has(x) }, remove() { this.removed = true; } }; };
+  const board = mkEl(); const layer = mkEl(); board.classList.add('cursed');
+  const q = []; liftCurse(board, layer, (fn, ms) => q.push([ms, fn]));
+  assert.deepEqual(q.map((x) => x[0]), [450, 450 + CURSE_LIFT_MS]);
+  assert.equal(board.classList.has('cursed'), true, '始まる前はまだ呪われている');
+  q[0][1]();
+  assert.equal(board.classList.has('cursed'), false); assert.equal(board.classList.has('lifting'), true); assert.equal(layer.classList.has('lifting'), true);
+  assert.equal(layer.removed, false);
+  q[1][1]();
+  assert.equal(layer.removed, true); assert.equal(board.classList.has('lifting'), false);
+  const gone = mkEl(false); const gl = mkEl(); gone.classList.add('cursed');
+  const q2 = []; liftCurse(gone, gl, (fn, ms) => q2.push([ms, fn])); q2[0][1]();
+  assert.equal(gone.classList.has('cursed'), true, '画面が替わっていたら何もしない');
+  const cs = read('shared/js/views/curse.js');
+  assert.match(cs, /export const CURSE_PARTICLES = 10;/);
+  assert.equal((css.match(/\.map-curse-dot:nth-of-type\(\d+\)/g) || []).length, 10, '粒10個ぶんの位置');
+  assert.match(cs, /export const CURSE_LIFT_MS = 2800;/, '晴れる演出は 2〜3秒');
+  assert.match(cs, /if \(!board\.isConnected\) return;\s*board\.classList\.remove\('cursed'\);\s*board\.classList\.add\('lifting'\);\s*layer\.classList\.add\('lifting'\);/);
+  assert.match(cs, /layer\.remove\(\);\s*board\.classList\.remove\('lifting'\);/, '終わったら層を外す');
+  const sw = read('shared/sw-core.js');
+  assert.ok(sw.includes("'../shared/js/views/curse.js'"), 'オフライン登録（SHARED）に入っている');
+  const tb = code('shared/js/views/trueboss.js');
+  assert.match(tb, /'card boss-place on' \+ \(wins \? '' : ' cursed'\)/, '倒していない間は入口を目立たせる');
+});

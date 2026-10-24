@@ -78,13 +78,13 @@ test('出る条件: 問題のある章が1つも無い・壊れた入力では�
 });
 
 test('倒した回数の記録: 古い記録・壊れた値は0。倒すと1ずつ増える', () => {
-  assert.deepEqual(normalizeTrueBoss(undefined), { wins: 0, seen2: false });
-  assert.deepEqual(normalizeTrueBoss(null), { wins: 0, seen2: false });
-  assert.deepEqual(normalizeTrueBoss([3]), { wins: 0, seen2: false });
-  assert.deepEqual(normalizeTrueBoss({ wins: -1 }), { wins: 0, seen2: false });
-  assert.deepEqual(normalizeTrueBoss({ wins: 1.5 }), { wins: 0, seen2: false });
-  assert.deepEqual(normalizeTrueBoss({ wins: '3' }), { wins: 0, seen2: false });
-  assert.deepEqual(normalizeTrueBoss({ wins: 4 }), { wins: 4, seen2: false });
+  assert.deepEqual(normalizeTrueBoss(undefined), { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(normalizeTrueBoss(null), { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(normalizeTrueBoss([3]), { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: -1 }), { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: 1.5 }), { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: '3' }), { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(normalizeTrueBoss({ wins: 4 }), { wins: 4, seen2: false, lifted: true }, '古い記録で、すでに倒している人は、晴れる演出を出した扱い');
   const s = {};
   assert.equal(trueBossWins(s), 0);
   assert.equal(recordTrueBossWin(s), 1);
@@ -96,11 +96,11 @@ test('倒した回数の記録: 古い記録・壊れた値は0。倒すと1ず�
 });
 
 test('学習記録: defaultState に入っていて、読み込みで正しい形になる', () => {
-  assert.deepEqual(defaultState().trueBoss, { wins: 0, seen2: false });
-  assert.deepEqual(mergeState({}).trueBoss, { wins: 0, seen2: false });
-  assert.deepEqual(mergeState({ trueBoss: { wins: 3 } }).trueBoss, { wins: 3, seen2: false });
-  assert.deepEqual(mergeState({ trueBoss: { wins: 'x' } }).trueBoss, { wins: 0, seen2: false });
-  assert.deepEqual(mergeState({ trueBoss: 7 }).trueBoss, { wins: 0, seen2: false });
+  assert.deepEqual(defaultState().trueBoss, { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(mergeState({}).trueBoss, { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(mergeState({ trueBoss: { wins: 3 } }).trueBoss, { wins: 3, seen2: false, lifted: true });
+  assert.deepEqual(mergeState({ trueBoss: { wins: 'x' } }).trueBoss, { wins: 0, seen2: false, lifted: false });
+  assert.deepEqual(mergeState({ trueBoss: 7 }).trueBoss, { wins: 0, seen2: false, lifted: false });
 });
 
 // ---------------------------------------------------------------- 出題の組み立て
@@ -837,7 +837,7 @@ test('ひみつのバッジの並び: ノーダメージの次（タップのバ
 
 test('第2形態を見たかの記録: 古い記録・壊れた値は「見ていない」。記録すると true。倒したことがあれば見たことになる。記録しても倒した回数は変わらない', async () => {
   const { trueBossSeenForm2, markTrueBossSeenForm2 } = await import('../js/lib/trueboss.js');
-  assert.deepEqual(normalizeTrueBoss({ wins: 2, seen2: true }), { wins: 2, seen2: true });
+  assert.deepEqual(normalizeTrueBoss({ wins: 2, seen2: true }), { wins: 2, seen2: true, lifted: true });
   for (const bad of [undefined, null, {}, { seen2: 'true' }, { seen2: 1 }, { seen2: false }, [true]]) assert.equal(normalizeTrueBoss(bad).seen2, false, JSON.stringify(bad));
   assert.equal(trueBossSeenForm2({}), false);
   assert.equal(trueBossSeenForm2({ trueBoss: { wins: 0 } }), false);
@@ -850,7 +850,7 @@ test('第2形態を見たかの記録: 古い記録・壊れた値は「見て�
   assert.equal(trueBossSeenForm2(st), true);
   assert.equal(trueBossWins(st), 0);
   recordTrueBossWin(st);
-  assert.deepEqual(st.trueBoss, { wins: 1, seen2: true }, '倒しても見た印は消えない');
+  assert.deepEqual(st.trueBoss, { wins: 1, seen2: true, lifted: false }, '倒しても見た印は消えない');
   assert.equal(s.trueBoss.seen2, undefined);
   assert.equal(mergeState({ trueBoss: { wins: 0, seen2: true } }).trueBoss.seen2, true);
 });
@@ -875,4 +875,50 @@ test('3アプリの config.trueBossWords: 塔は G検定だけ。DX は『みや
     for (const v of [t.place, t.ending, t.reached, trueBossLockedText(cfg(a)), trueBossAwakeText(cfg(a))]) assert.doesNotMatch(v, /塔|UC-|SCR-|§|MVP/, a + ': ' + v);
     assert.ok(trueBossLockedText(cfg(a)).endsWith('ひそんでいる……') && trueBossAwakeText(cfg(a)).endsWith('めざめた……'));
   }
+});
+
+// ---- 呪われた地図（要件定義書 §3-9『呪われた地図』）----
+import { trueBossCursed, trueBossCurseToLift, markCurseLifted } from '../js/lib/trueboss.js';
+
+test('呪われた地図: 真ボスが現れていて、一度も倒していない間だけ。倒したら元に戻る。真ボスを出さないアプリでは常に出ない', () => {
+  const stages = [{ key: 'a', questions: [1] }, { key: 'b', questions: [1] }];
+  const cfg = { trueBoss: true };
+  const all = (extra = {}) => ({ boss: { a: 1, b: 2 }, ...extra });
+  assert.equal(trueBossCursed(cfg, all(), stages), true, '全章のボスを倒した（真ボスが現れた）');
+  assert.equal(trueBossCursed(cfg, { boss: { a: 1 } }, stages), false, '現れる前は、ふつうの地図');
+  assert.equal(trueBossCursed(cfg, { boss: {} }, stages), false);
+  assert.equal(trueBossCursed(cfg, all({ trueBoss: { wins: 1 } }), stages), false, '一度でも倒したら元に戻る');
+  assert.equal(trueBossCursed({ trueBoss: false }, all(), stages), false, 'config の trueBoss が true のアプリだけ');
+  assert.equal(trueBossCursed({}, all(), stages), false);
+  assert.equal(trueBossCursed(null, all(), stages), false);
+  assert.equal(trueBossCursed(cfg, null, stages), false);
+  assert.equal(trueBossCursed(cfg, all(), []), false, '章が無ければ現れない');
+});
+
+test('呪いが晴れる演出: 倒したあとの最初の1回だけ。出したら記録して、2回目は出ない。古い記録（すでに倒している人）は出さない', () => {
+  const cfg = { trueBoss: true };
+  const s = { boss: {}, trueBoss: { wins: 0 } };
+  assert.equal(trueBossCurseToLift(cfg, s), false, '倒すまでは出さない');
+  recordTrueBossWin(s);
+  assert.equal(trueBossWins(s), 1);
+  assert.equal(trueBossCurseToLift(cfg, s), true, '初めて倒した直後の地図で出す');
+  markCurseLifted(s);
+  assert.equal(trueBossCurseToLift(cfg, s), false, '2回目は出ない');
+  assert.deepEqual(normalizeTrueBoss(s.trueBoss), { wins: 1, seen2: false, lifted: true });
+  recordTrueBossWin(s);
+  assert.equal(trueBossCurseToLift(cfg, s), false, '2勝目でも出ない');
+  assert.equal(trueBossCurseToLift(cfg, { trueBoss: { wins: 3 } }), false, '古い記録（項目なし）で倒している人に、急に晴れる演出は出ない');
+  assert.equal(trueBossCurseToLift({ trueBoss: false }, { trueBoss: { wins: 1, lifted: false } }), false, '真ボスを出さないアプリでは出ない');
+  assert.equal(trueBossCurseToLift(cfg, { trueBoss: { wins: 1, lifted: false } }), true);
+  assert.equal(trueBossCurseToLift(cfg, null), false);
+  // 倒す前に呪われた地図 → 倒した直後に晴れる → その後ふつう、の3つが重ならない
+  const t = { boss: { a: 1 }, trueBoss: { wins: 0 } };
+  const st = [{ key: 'a', questions: [1] }];
+  assert.equal(trueBossCursed(cfg, t, st), true);
+  assert.equal(trueBossCurseToLift(cfg, t), false);
+  recordTrueBossWin(t);
+  assert.equal(trueBossCursed(cfg, t, st), false);
+  assert.equal(trueBossCurseToLift(cfg, t), true);
+  markCurseLifted(t);
+  assert.equal(trueBossCursed(cfg, t, st) || trueBossCurseToLift(cfg, t), false);
 });

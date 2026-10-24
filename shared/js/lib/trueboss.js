@@ -54,7 +54,25 @@ export function normalizeTrueBoss(raw) {
   const ok = raw && typeof raw === 'object' && !Array.isArray(raw);
   const w = ok ? raw.wins : 0;
   // seen2 … 第2形態を一度でも見たか（見るまでは『形態』があることを画面に出さない。要件定義書 §3-9）。古い記録（項目なし）は『見ていない』
-  return { wins: Number.isInteger(w) && w > 0 ? w : 0, seen2: !!(ok && raw.seen2 === true) };
+  // lifted … 呪われた地図が晴れる演出を出したか（要件定義書 §3-9『呪われた地図』）。古い記録（項目なし）で、すでに倒している人は『出した』扱い（急に晴れる演出が出ない）
+  const wins = Number.isInteger(w) && w > 0 ? w : 0;
+  return { wins, seen2: !!(ok && raw.seen2 === true), lifted: !!(ok && raw.lifted === true) || (wins > 0 && !(ok && 'lifted' in raw)) };
+}
+
+// ---- 呪われた地図（要件定義書 §3-9）----
+/** 地図を呪われた見た目にするか。真ボスを出すアプリで、真ボスが現れていて（全章のボスを倒した）、一度も倒していない間。 */
+export function trueBossCursed(config, state, stages) {
+  return trueBossEnabled(config) && trueBossUnlocked(state, stages) && trueBossWins(state) === 0;
+}
+/** 呪いが晴れる演出を、これから出すか。真ボスを出すアプリで、倒したことがあり、まだ演出を出していない。 */
+export function trueBossCurseToLift(config, state) {
+  return trueBossEnabled(config) && trueBossWins(state) >= 1 && !normalizeTrueBoss(state && state.trueBoss).lifted;
+}
+/** 演出を出したと記録する。 */
+export function markCurseLifted(state) {
+  const t = normalizeTrueBoss(state.trueBoss);
+  t.lifted = true;
+  state.trueBoss = t;
 }
 
 /** 第2形態を見たことがあるか（倒したことがあれば、見たことになる）。 */

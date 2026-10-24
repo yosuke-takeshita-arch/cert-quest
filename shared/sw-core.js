@@ -110,6 +110,7 @@ const SHARED = [
   '../shared/js/lib/trueboss-geom.js',
   '../shared/js/lib/trueboss-music.js',
   '../shared/js/views/trueboss.js',
+  '../shared/js/views/curse.js',
   '../shared/js/views/intro.js',
   '../shared/js/lib/backup.js',
   '../shared/js/lib/report.js',

@@ -1023,6 +1023,10 @@ body.boss-on { background: #000; }
   .boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top, .boss-rpg.tb-dim .boss-fig .boss-img { transition: none; }
   .boss-fig.slump, .boss-fig.revive, .boss-fig.slump .boss-img, .boss-fig.revive .boss-img, .boss-fig.slump .boss-fig-sym, .boss-fig.revive .boss-fig-sym { transition: none; }
   .tb-ending-title, .tb-ending-line { transition: none; }
+  /* 呪われた地図（要件定義書 §3-9）: 霧・粒・稲光・入口の脈打ちを止める。色の変化（暗い絵・紫のもや・四隅）と、晴れるときの色の戻りだけ残す */
+  .map-curse-fog, .map-curse-dot, .map-curse-bolt, .boss-place.cursed { animation: none !important; }
+  .map-curse-dot, .map-curse-bolt { display: none; }
+  .boss-place.cursed { box-shadow: 0 0 14px rgba(176, 42, 90, 0.6); }
 }
 
 /* 科目を選ぶ画面（科目のあるアプリ。views/subjects.js）と、ホームの「科目をかえる」 */
@@ -1070,3 +1074,32 @@ body.boss-on { background: #000; }
 .sr-hint { margin-top: 8px; }
 .sr-hint p { margin: 0 0 8px; }
 .sr-detail { margin: 12px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--text); font-weight: 700; overflow-wrap: anywhere; }
+
+/* ===== 呪われた地図（要件定義書 §3-9『呪われた地図』）=====
+   真ボスが現れてから一度も倒していない間、冒険の地図（.map-board.cursed）を暗く・彩度を落とし、紫と暗い赤のもや・黒い霧・暗い粒・遠くの稲光・四隅の暗がりを重ねる。
+   新しい絵は使わない。重ねる層（.map-curse）は操作を邪魔しない（pointer-events: none）。ステージの印は層の上（DOM の順）にあるので、見やすさも変わらない。
+   動きは CSS のアニメだけ（粒は10個）。倒したあとの最初の1回は .lifting で、もやが引いて明るさが戻る（約2.8秒）。 */
+.map-board .map-bg { transition: filter 2.6s ease-in-out; }
+.map-board.cursed .map-bg { filter: brightness(0.4) saturate(0.3) contrast(1.1) hue-rotate(-12deg); }
+.map-board .map-node { transition: filter 2.6s ease-in-out; }
+.map-board.cursed .map-node { filter: saturate(0.65) brightness(0.82); } /* ステージの印は読める明るさのまま、少しだけ沈める */
+.map-board.lifting .map-bg { filter: none; }
+.map-curse { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; opacity: 1; transition: opacity 2.6s ease-in-out; }
+.map-curse.lifting { opacity: 0; }
+.map-curse-haze { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(70, 20, 110, 0.6), rgba(110, 10, 35, 0.45) 55%, rgba(35, 8, 55, 0.65)); mix-blend-mode: multiply; }
+.map-curse-fog { position: absolute; left: -50%; width: 200%; height: 38%; filter: blur(14px); opacity: 0.75; background: radial-gradient(ellipse 30% 50% at 20% 50%, rgba(10, 4, 20, 0.85), transparent 70%), radial-gradient(ellipse 25% 45% at 60% 55%, rgba(35, 8, 55, 0.8), transparent 70%), radial-gradient(ellipse 30% 50% at 90% 45%, rgba(10, 4, 20, 0.85), transparent 70%); }
+.map-curse-fog.f1 { top: 12%; animation: map-fog 46s linear infinite alternate; }
+.map-curse-fog.f2 { top: 58%; animation: map-fog 62s linear infinite alternate-reverse; opacity: 0.45; }
+.map-curse-dot { position: absolute; bottom: -6px; width: 4px; height: 4px; border-radius: 50%; background: rgba(150, 90, 200, 0.7); box-shadow: 0 0 6px rgba(120, 60, 170, 0.8); opacity: 0; animation: map-dot 16s linear infinite; }
+.map-curse-dot:nth-of-type(1) { left: 8%; animation-delay: 0s; } .map-curse-dot:nth-of-type(2) { left: 19%; animation-delay: -5s; animation-duration: 19s; }
+.map-curse-dot:nth-of-type(3) { left: 31%; animation-delay: -9s; } .map-curse-dot:nth-of-type(4) { left: 42%; animation-delay: -2s; animation-duration: 21s; }
+.map-curse-dot:nth-of-type(5) { left: 53%; animation-delay: -12s; } .map-curse-dot:nth-of-type(6) { left: 64%; animation-delay: -7s; animation-duration: 18s; }
+.map-curse-dot:nth-of-type(7) { left: 74%; animation-delay: -14s; } .map-curse-dot:nth-of-type(8) { left: 83%; animation-delay: -3s; animation-duration: 22s; }
+.map-curse-dot:nth-of-type(9) { left: 91%; animation-delay: -10s; } .map-curse-dot:nth-of-type(10) { left: 14%; animation-delay: -16s; animation-duration: 20s; }
+.map-curse-bolt { position: absolute; inset: 0; background: radial-gradient(ellipse 90% 55% at 70% 6%, rgba(235, 220, 255, 0.95), rgba(180, 130, 255, 0.5) 45%, transparent 80%); opacity: 0; animation: map-bolt 11s linear infinite; }
+.map-curse-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.6) 100%); }
+.boss-place.cursed { border-color: #b02a5a; animation: map-place-pulse 2.4s ease-in-out infinite; }
+@keyframes map-fog { from { transform: translateX(0); } to { transform: translateX(25%); } }
+@keyframes map-dot { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: 0.9; } 85% { opacity: 0.5; } 100% { transform: translateY(-110%); opacity: 0; } }
+@keyframes map-bolt { 0%, 92%, 100% { opacity: 0; } 93% { opacity: 0.9; } 94% { opacity: 0.1; } 95% { opacity: 0.7; } 97% { opacity: 0; } }
+@keyframes map-place-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(176, 42, 90, 0.0), 0 0 8px rgba(176, 42, 90, 0.4); } 50% { box-shadow: 0 0 0 4px rgba(176, 42, 90, 0.25), 0 0 22px rgba(176, 42, 90, 0.8); } }

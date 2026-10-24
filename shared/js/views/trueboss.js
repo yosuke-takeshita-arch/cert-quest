@@ -139,7 +139,7 @@ export function trueBossPlace(app, back) {
   }
   preloadFormImages(); // 入口を出したときに、3枚の絵を先に読み込む
   const wins = trueBossWins(app.state);
-  return h('div', { class: 'card boss-place on', 'data-true-boss-place': 'on' },
+  return h('div', { class: 'card boss-place on' + (wins ? '' : ' cursed'), 'data-true-boss-place': 'on', ...(wins ? {} : { 'data-true-boss-cursed': '1' }) }, // まだ倒していない間は、入口の印を脈打たせて目立たせる（呪われた地図）
     h('div', { class: 'boss-place-head' }, trueBossArt(1, 'on'),
       h('div', { class: 'boss-place-text' }, h('strong', { text: data.name + ' が あらわれた！' }),
         h('span', { class: 'small', text: trueBossWords(app.config).place + 'の 真ボス。すべての分野から出ます' }),

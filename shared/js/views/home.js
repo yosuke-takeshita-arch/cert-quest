@@ -19,6 +19,8 @@ import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
 import { trueBossPlace } from './trueboss.js';
+import { curseLayer, liftCurse } from './curse.js';
+import { trueBossCursed, trueBossCurseToLift, markCurseLifted } from '../lib/trueboss.js';
 import { cardBody } from './cards.js';
 import { installHint } from '../lib/install.js';
 
@@ -360,6 +362,19 @@ function mapAdventure(app) {
     svg.appendChild(p);
   }
   if (lay.path) board.appendChild(svg);
+  // 呪われた地図（要件定義書 §3-9）: 真ボスが現れてから一度も倒していない間は、絵を暗く・彩度を落とし、もや・霧・粒・稲光を重ねる。倒したあとの最初の1回だけ、呪いが晴れる演出
+  const cursed = trueBossCursed(config, state, data.tree.stages);
+  const lifting = !cursed && trueBossCurseToLift(config, state);
+  if (cursed || lifting) {
+    const layer = curseLayer();
+    board.classList.add('cursed');
+    board.appendChild(layer); // 絵・道の上、ステージの印（あとから足す）の下
+    if (lifting) {
+      markCurseLifted(state); // 出したと先に記録する（途中で離れても、繰り返さない）
+      app.commit();
+      liftCurse(board, layer);
+    }
+  }
 
   for (const lb of lay.labels) {
     const major = roots[lb.group];
