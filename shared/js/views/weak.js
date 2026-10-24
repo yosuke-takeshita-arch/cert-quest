@@ -120,8 +120,9 @@ function radar(chapters) {
 function overview(app) {
   const tree = app.data.tree, q = app.state.qstats;
   const chapters = chapterStats(tree, q);
-  const box = h('div', { class: 'card weak-overview', 'data-weak': 'overview' }, h('h2', { text: '章ごとの正答率' }));
+  const box = h('div', { class: 'card weak-overview', 'data-weak': 'overview' });
   if (chapters.length >= 3) {
+    box.appendChild(h('h2', { text: '章ごとの正答率' })); // 章が2つ以下ではレーダーにならないので、見出しごと出さない
     box.appendChild(h('div', { class: 'radar-wrap' }, radar(chapters)));
     box.appendChild(h('p', { class: 'small muted', text: '外側ほど正答率が高く、内側の輪は60%と80%です。点線の軸と白抜きの印は、まだ判定に足りない章です。番号は下の章の見出しと同じです。' }));
   }
@@ -132,7 +133,7 @@ function overview(app) {
     if (!byChapter.has(k)) byChapter.set(k, []);
     byChapter.get(k).push(u);
   }
-  box.appendChild(h('h2', { class: 'weak-tiles-title', text: '分野のタイル' }));
+  box.appendChild(h('h2', { class: 'weak-tiles-title' + (chapters.length >= 3 ? '' : ' first'), text: '分野のタイル' }));
   box.appendChild(h('p', { class: 'small muted weak-legend', text: '○ 80%以上　△ 60〜79%　× 60%未満　空白（点線）はまだ判定に足りない分野。押すと、その分野の一覧の行へ行きます。' }));
   const jump = (key) => {
     const rows = [...document.querySelectorAll('[data-all-key]')];

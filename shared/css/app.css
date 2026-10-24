@@ -730,6 +730,7 @@ button.basic-term:hover { background: var(--accent-soft); }
 .radar-lbl-bg.later { fill: var(--surface); stroke: var(--muted); stroke-dasharray: 3 2; }
 .radar-lbl { fill: var(--text); font-weight: 700; }
 .weak-tiles-title { margin-top: 20px; }
+.weak-tiles-title.first { margin-top: 0; }
 .weak-legend { margin: 4px 0 8px; }
 .tiles-row { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--border); }
 .weak-tiles-head { appearance: none; display: flex; align-items: center; gap: 8px; flex: 0 0 46%; min-width: 0; min-height: 48px; padding: 4px 4px; font: inherit; font-size: 0.875rem; font-weight: 700; text-align: left; color: var(--text); background: none; border: 0; cursor: pointer; }
