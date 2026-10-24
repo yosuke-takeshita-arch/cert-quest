@@ -21,8 +21,8 @@ function fnBody(src, name) {
   return src.slice(i, n ? n.index : src.length);
 }
 
-test('config: 3アプリとも真ボスのデータ・バッジの名前・言い回しを持つ。trueBoss が true なのは絵の届いたアプリ（G検定・DX）。AIパスポートは絵が届くまで false（届いたら門番が true にする）', () => {
-  const art = { 'g-kentei': true, 'dx-biz': true, 'ai-passport': false };
+test('config: 3アプリとも真ボスのデータ・バッジの名前・言い回しを持つ。trueBoss が true なのは絵の届いたアプリ（G検定・DX）。3アプリとも絵が届いたので true', () => {
+  const art = { 'g-kentei': true, 'dx-biz': true, 'ai-passport': true };
   const webp = (p) => readFileSync(root + p).subarray(8, 12).toString('latin1') === 'WEBP';
   for (const app of Object.keys(art)) {
     const c = JSON.parse(read(app + '/config.json'));

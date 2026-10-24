@@ -44,7 +44,23 @@ export const TRUE_GEOM = Object.freeze({
       { x: 60.5, y: 16.1, r: 1.5 }, { x: 58.5, y: 19.7, r: 1.5 }, { x: 55.3, y: 20.9, r: 1.3 },
     ].map((o) => Object.freeze(o))),
   }),
-  'ai-passport': Object.freeze({ ...G_KENTEI, orbs: ringOrbs(5, 49.8, 12.5, 8.5, 7.3, 2) }),
+  // AIパスポート（アマツクリ）。絵（true-1〜3.webp、512px）から測った値（2026-10-24）。
+  //   顔: 第1形態は丸い窓の中、第2・第3形態は丸い頭の中心。核: 第1形態の胸の丸い窓の中の星の中心。目: 三日月が2つ（楕円2つをグループにまとめて光らせる）
+  //   ひび: 星の核から石の繭の体の上へ（下へ2本・肩へ2本。顔の窓には入れない）。玉: 第2形態の頭の上の5個。輪ではなく半円の弧（左下から時計まわり）
+  'ai-passport': Object.freeze({
+    face: Object.freeze({ 1: Object.freeze({ x: 0.5, y: 0.27 }), 2: Object.freeze({ x: 0.5, y: 0.19 }), 3: Object.freeze({ x: 0.5, y: 0.19 }) }),
+    core: Object.freeze({ x: 50, y: 51.5 }),
+    eye: Object.freeze([Object.freeze({ x: 41.9, y: 28.4, rx: 3.6, ry: 4.2 }), Object.freeze({ x: 57.9, y: 28.4, rx: 3.6, ry: 4.2 })]),
+    cracks: Object.freeze([
+      'M50 51.5 L46 57 L48 62 L42 67 L44 72 L39 77',
+      'M50 51.5 L54 57 L52 63 L58 68 L56 73 L61 78',
+      'M50 51.5 L44 48 L40 51 L33 48 L27 53',
+      'M50 51.5 L56 48 L60 51 L67 48 L73 53',
+    ]),
+    orbs: Object.freeze([
+      { x: 37.4, y: 21.0, r: 2.6 }, { x: 39.1, y: 11.2, r: 2.6 }, { x: 50.0, y: 6.4, r: 2.6 }, { x: 60.7, y: 11.2, r: 2.6 }, { x: 62.6, y: 21.0, r: 2.6 },
+    ].map((o) => Object.freeze(o))),
+  }),
 });
 
 /** アプリの id から位置の表を選ぶ。表が無いアプリは G検定の値。 */

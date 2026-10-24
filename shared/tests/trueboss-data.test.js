@@ -387,3 +387,21 @@ test('DX（ヘンカクジン）の位置: 絵から測った値。玉は13個�
   const sw = readFileSync(fileURLToPath(new URL('../../dx-biz/config.json', import.meta.url)), 'utf8');
   assert.match(sw, /"trueBoss": true/);
 });
+
+test('AIパスポート（アマツクリ）の位置: 絵から測った値。玉は5個で、頭の上の半円の弧（輪ではない・左右対称・上が頂点）。目は三日月2つ。ひびは顔の窓に入らない', () => {
+  const g = trueGeom('ai-passport');
+  assert.equal(g.orbs.length, 5);
+  assert.ok(Math.abs(g.orbs[0].x + g.orbs[4].x - 100) < 1 && Math.abs(g.orbs[1].x + g.orbs[3].x - 100) < 1, '左右対称');
+  assert.equal(g.orbs[2].x, 50);
+  assert.ok(g.orbs[2].y < g.orbs[1].y && g.orbs[1].y < g.orbs[0].y, '弧: 中央がいちばん上、端が低い');
+  assert.ok(g.orbs.every((o) => o.r >= 2.2 && o.r <= 3));
+  assert.ok(Array.isArray(g.eye) && g.eye.length === 2 && g.eye[0].x < 50 && g.eye[1].x > 50);
+  assert.deepEqual([g.core.x, g.core.y], [50, 51.5]);
+  assert.equal(g.cracks.length, 4);
+  for (const d of g.cracks) {
+    assert.ok(d.startsWith('M50 51.5 L'), d);
+    for (const m of d.matchAll(/([0-9.]+) ([0-9.]+)/g)) assert.ok(Number(m[2]) >= 44, '顔の窓（y 15〜39）には入れない: ' + d);
+  }
+  assert.ok(g.face[1].y > 0.2 && g.face[1].y < 0.35, '第1形態の顔は丸い窓の中');
+  assert.match(readFileSync(fileURLToPath(new URL('../../ai-passport/config.json', import.meta.url)), 'utf8'), /"trueBoss": true/);
+});
