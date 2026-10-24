@@ -371,3 +371,19 @@ test('光の玉が13個でないアプリ: 灯る時刻は最初と最後が同�
   assert.equal(orbStep(99, 5), 12);
   assert.equal(orbStep(-1, 5), 0);
 });
+
+test('DX（ヘンカクジン）の位置: 絵から測った値。玉は13個で、頭のうしろの輪（左下から時計まわり・左右対称）。目は2つ。核・ひびの起点が同じ', () => {
+  const g = trueGeom('dx-biz');
+  assert.equal(g.orbs.length, 13);
+  const xs = g.orbs.map((o) => o.x);
+  for (let i = 0; i < 6; i++) assert.ok(Math.abs((xs[i] + xs[12 - i]) - 100) < 2.5, '左右対称: ' + i);
+  assert.ok(g.orbs[6].y < Math.min(...g.orbs.map((o) => o.y)) + 0.01, '7番目は輪のいちばん上');
+  assert.ok(g.orbs.every((o) => o.x > 36 && o.x < 64 && o.y > 2 && o.y < 23 && o.r >= 1.2 && o.r <= 1.6));
+  assert.ok(Array.isArray(g.eye) && g.eye.length === 2 && g.eye[0].x < 50 && g.eye[1].x > 50 && g.eye[0].y === g.eye[1].y);
+  assert.deepEqual([g.core.x, g.core.y], [49.8, 34.5]);
+  assert.equal(g.cracks.length, 4);
+  for (const d of g.cracks) assert.ok(d.startsWith('M49.8 34.5 L'), '核から始まる: ' + d);
+  for (const k of [1, 2, 3]) assert.ok(g.face[k].y > 0.1 && g.face[k].y < 0.25);
+  const sw = readFileSync(fileURLToPath(new URL('../../dx-biz/config.json', import.meta.url)), 'utf8');
+  assert.match(sw, /"trueBoss": true/);
+});

@@ -24,8 +24,26 @@ const G_KENTEI = Object.freeze({ face: TRUE_FACE, core: TRUE_CORE, eye: TRUE_EYE
 
 export const TRUE_GEOM = Object.freeze({
   'g-kentei': G_KENTEI,
-  // 仮（絵が届いたら測り直す）。顔・核・目・ひびは G検定と同じ位置、玉は頭のうしろの輪に並べただけ
-  'dx-biz': Object.freeze({ ...G_KENTEI, orbs: ringOrbs(13, 49.8, 13.3, 8.5, 7.3, 1.5) }),
+  // DX（ヘンカクジン）。絵（true-1〜3.webp、512px）から測った値（2026-10-24）。
+  //   顔: 形態ごとの頭の中心（第1形態は箱の頭の画面の中、第2形態は箱の頭、第3形態は暗い顔の中心）
+  //   核: 第1形態の胸の六角形の核（水色の六角形の中心）。目: 四角い目が2つ（楕円2つをまとめて光らせる）
+  //   ひび: 核から体の上へ（下へ2本・肩へ2本）。玉: 第2形態の頭のうしろの光の輪の玉13個（左下から時計まわり。いちばん下の2個は肩のうしろに半分隠れているので、見えている部分の位置）
+  'dx-biz': Object.freeze({
+    face: Object.freeze({ 1: Object.freeze({ x: 0.495, y: 0.145 }), 2: Object.freeze({ x: 0.5, y: 0.142 }), 3: Object.freeze({ x: 0.5, y: 0.185 }) }),
+    core: Object.freeze({ x: 49.8, y: 34.5 }),
+    eye: Object.freeze([Object.freeze({ x: 44.8, y: 15.9, rx: 2.1, ry: 2.3 }), Object.freeze({ x: 53.0, y: 15.9, rx: 2.1, ry: 2.3 })]),
+    cracks: Object.freeze([
+      'M49.8 34.5 L46 40 L48 45 L42 50 L44 55 L39 60',
+      'M49.8 34.5 L54 40 L52 46 L58 51 L56 56 L61 61',
+      'M49.8 34.5 L44 31 L40 33 L34 30 L28 34',
+      'M49.8 34.5 L55.5 31 L59 33 L65 30 L71 34',
+    ]),
+    orbs: Object.freeze([
+      { x: 44.6, y: 20.9, r: 1.3 }, { x: 41.5, y: 19.6, r: 1.5 }, { x: 39.3, y: 16.2, r: 1.5 }, { x: 38.9, y: 12.0, r: 1.5 }, { x: 40.4, y: 7.8, r: 1.5 },
+      { x: 44.4, y: 4.5, r: 1.5 }, { x: 49.9, y: 3.3, r: 1.5 }, { x: 55.3, y: 4.5, r: 1.5 }, { x: 59.4, y: 7.7, r: 1.5 }, { x: 61.0, y: 12.0, r: 1.5 },
+      { x: 60.5, y: 16.1, r: 1.5 }, { x: 58.5, y: 19.7, r: 1.5 }, { x: 55.3, y: 20.9, r: 1.3 },
+    ].map((o) => Object.freeze(o))),
+  }),
   'ai-passport': Object.freeze({ ...G_KENTEI, orbs: ringOrbs(5, 49.8, 12.5, 8.5, 7.3, 2) }),
 });
 

@@ -21,23 +21,29 @@ function fnBody(src, name) {
   return src.slice(i, n ? n.index : src.length);
 }
 
-test('config: 3アプリとも真ボスのデータ・バッジの名前・言い回しを持つ。trueBoss が true なのは絵の届いたアプリ（G検定）。DX・AIパスポートは絵が届くまで false でよい（届いたら門番が true にする）', () => {
-  const art = { 'g-kentei': true, 'dx-biz': false, 'ai-passport': false };
+test('config: 3アプリとも真ボスのデータ・バッジの名前・言い回しを持つ。trueBoss が true なのは絵の届いたアプリ（G検定・DX）。AIパスポートは絵が届くまで false（届いたら門番が true にする）', () => {
+  const art = { 'g-kentei': true, 'dx-biz': true, 'ai-passport': false };
+  const webp = (p) => readFileSync(root + p).subarray(8, 12).toString('latin1') === 'WEBP';
   for (const app of Object.keys(art)) {
     const c = JSON.parse(read(app + '/config.json'));
-    assert.equal(typeof c.trueBoss, 'boolean', app);
-    if (app === 'g-kentei') assert.equal(c.trueBoss, true, app);
-    if (c.trueBoss) assert.equal(c.trueBossBadge.art, art[app], app + ': 真ボスを出すアプリは、絵が届いているか確かめる');
+    assert.equal(c.trueBoss, art[app], app + ': trueBoss は、絵（3形態とバッジ）が届いたアプリだけ true');
     assert.equal(typeof c.trueBossWords.place, 'string', app);
     assert.equal(existsSync(root + app + '/data/trueboss.json'), true, app + ' に真ボスのデータが無い');
     assert.equal(typeof c.trueBossBadge.name, 'string', app);
     assert.ok(c.trueBossBadge.name.length > 0 && c.trueBossBadge.name.length <= 20, app + ' のバッジの名前');
     assert.equal(c.trueBossBadge.art, art[app], app);
-    // art が true なら、アプリの絵が置いてある。false なら置いていない（絵が届いたら art を true にして、sw.js の appFiles にも足す）
+    // art が true なら、アプリのバッジの絵と3形態の絵が置いてあり（WEBP）、sw.js の appFiles にも入っている。false なら置いていない
     assert.equal(existsSync(root + app + '/images/badges/true-boss.webp'), art[app], app + ' のバッジの絵');
+    const sw = read(app + '/sw.js');
+    for (const p of ['images/badges/true-boss.webp', 'images/bosses/true-1.webp', 'images/bosses/true-2.webp', 'images/bosses/true-3.webp']) {
+      if (art[app]) {
+        assert.equal(existsSync(root + app + '/' + p), true, app + '/' + p);
+        assert.ok(webp(app + '/' + p), app + '/' + p + ' が WEBP でない');
+        assert.ok(sw.includes("'./" + p + "'"), app + '/sw.js の appFiles に ' + p + ' が無い');
+      } else if (p.startsWith('images/bosses')) assert.equal(existsSync(root + app + '/' + p), false, app + '/' + p + ' はまだ届いていない');
+    }
   }
   assert.equal(existsSync(root + 'shared/images/badges/true-boss.webp'), false, '共通の場所には置かない（キャラクターはアプリごとに違う）');
-  assert.match(read('g-kentei/sw.js'), /'\.\/images\/badges\/true-boss\.webp'/, 'G検定の sw.js の appFiles に入っている');
 });
 
 test('config: sw.js の version と config.json の appVersion は、この作業では上げていない（公開は門番が決める）', () => {

@@ -167,12 +167,17 @@ function buildCrackLayer(fig) {
     svg.appendChild(p);
     return p;
   });
-  const eye = document.createElementNS(NS, 'ellipse'); // 一つ目が再び青白く光る
-  eye.setAttribute('cx', String(GEOM.eye.x));
-  eye.setAttribute('cy', String(GEOM.eye.y));
-  eye.setAttribute('rx', String(GEOM.eye.rx));
-  eye.setAttribute('ry', String(GEOM.eye.ry));
+  // 目が再び青白く光る。目が1つ（G検定）なら楕円1つ、2つ（DX。配列）なら楕円2つを、1つのグループ（g）にまとめて、まとめて光らせる
+  const eye = document.createElementNS(NS, 'g');
   eye.setAttribute('class', 'tb-eye-glow');
+  for (const e of Array.isArray(GEOM.eye) ? GEOM.eye : [GEOM.eye]) {
+    const el = document.createElementNS(NS, 'ellipse');
+    el.setAttribute('cx', String(e.x));
+    el.setAttribute('cy', String(e.y));
+    el.setAttribute('rx', String(e.rx));
+    el.setAttribute('ry', String(e.ry));
+    eye.appendChild(el);
+  }
   svg.appendChild(eye);
   fig.appendChild(svg);
   return { svg, lines, eye };
