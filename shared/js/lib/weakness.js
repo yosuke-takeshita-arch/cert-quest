@@ -160,6 +160,33 @@ export function statsByKey(tree, qstats) {
   return m;
 }
 
+// ---- よく間違える問題（要件定義書 §6-4）。しきい値はここの1か所 ----
+/** 解いた回数がこれ以上の問題だけ（1回だけでは、たまたまかどうか分からない）。 */
+export const OFTEN_MIN_SEEN = 2;
+/** 間違えた割合（1−正解÷解いた回数）がこれ以上なら「よく間違える」。 */
+export const OFTEN_MIN_WRONG_RATE = 0.5;
+/** 「よく間違える問題を解く」で出す最大の問題数（上から）。 */
+export const OFTEN_SOLVE_MAX = 20;
+
+/**
+ * よく間違える問題。questions はデータにある問題（データから外れた問題 ID の記録は数えない）。
+ * 各要素: { q, seen, wrong, rate }。並べ方は、間違えた割合の高い順 → 間違えた回数の多い順 → 最後に間違えた（lastOk が false）問題を先 → データの順。
+ * 記録に『最後に間違えた日』は残らない（正解すると期日が消える）ので、最後に解いたとき間違えたかどうか（lastOk）で『最後に間違えた』を決める。
+ * seen・correct が整数でない・correct が seen より多い・負の記録は、壊れているので数えない。
+ */
+export function oftenWrong(questions, qstats) {
+  const out = [];
+  (questions || []).forEach((q, order) => {
+    const r = q && qstats && qstats[q.id];
+    if (!r || !Number.isInteger(r.seen) || !Number.isInteger(r.correct)) return;
+    if (r.seen < OFTEN_MIN_SEEN || r.correct < 0 || r.correct > r.seen) return;
+    const wrong = r.seen - r.correct;
+    if (wrong / r.seen < OFTEN_MIN_WRONG_RATE) return;
+    out.push({ q, seen: r.seen, wrong, rate: wrong / r.seen, last: r.lastOk === false, order });
+  });
+  return out.sort((a, b) => b.wrong * a.seen - a.wrong * b.seen || b.wrong - a.wrong || Number(b.last) - Number(a.last) || a.order - b.order);
+}
+
 /** ホームの「苦手の分析」カードに出す、いちばん苦手な分野の数。 */
 export const HOME_WEAK_COUNT = 2;
 

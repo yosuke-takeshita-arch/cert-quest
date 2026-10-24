@@ -1,9 +1,12 @@
 // 苦手の分析の画面。計算は lib/weakness.js。ここは並べて見せるだけ。
 import { h, clear, mascotLine } from '../ui.js';
-import { analyze, chapterStats, radarGeometry, tileLevel, TILE_MARK, allStats, questionsToJudge, wrongQuestions, normalizeWeakOrder, WEAK_ORDERS, WEAK_MIN_ANSWERED, WEAK_BELOW } from '../lib/weakness.js';
+import { analyze, oftenWrong, OFTEN_SOLVE_MAX, OFTEN_MIN_SEEN, chapterStats, radarGeometry, tileLevel, TILE_MARK, allStats, questionsToJudge, wrongQuestions, normalizeWeakOrder, WEAK_ORDERS, WEAK_MIN_ANSWERED, WEAK_BELOW } from '../lib/weakness.js';
 import { weakMascot } from '../lib/characters.js';
+import { shuffleChoices } from '../lib/quiz.js';
+import { explanation, stemPlainBlock } from './explain.js';
+import { openCardSheet } from './cards.js';
 import { startSession } from './play.js';
-import { weakSpec, wrongSpec } from './home.js';
+import { weakSpec, wrongSpec, oftenSpec } from './home.js';
 
 function crumb(stat) {
   const p = stat.unit.path;
@@ -166,6 +169,48 @@ function overview(app) {
   return box;
 }
 
+/** よく間違える問題（要件定義書 §6-4）。一覧は、押すと解説・図・用語カードが開く（真ボスの結果の一覧と同じ見せ方）。 */
+function oftenCard(app) {
+  const list = oftenWrong(app.data.questions, app.state.qstats);
+  const card = h('div', { class: 'card weak-often', 'data-weak': 'often', id: 'weak-often' }, h('h2', { text: 'よく間違える問題' + (list.length ? '（' + list.length + '問）' : '') }));
+  if (!list.length) {
+    card.appendChild(h('p', { class: 'muted', 'data-often-none': '1', text: 'いまのところ、よく間違える問題はありません。' }));
+    card.appendChild(h('p', { class: 'small muted', text: '同じ問題を' + OFTEN_MIN_SEEN + '回以上解いて、半分以上まちがえた問題が、ここに出ます。' }));
+    return card;
+  }
+  const n = Math.min(list.length, OFTEN_SOLVE_MAX);
+  card.appendChild(h('p', { class: 'small muted', text: '同じ問題を' + OFTEN_MIN_SEEN + '回以上解いて、半分以上まちがえた問題です。まちがえた割合が高い順に並べています。' }));
+  card.appendChild(h('button', { class: 'btn primary small-btn', type: 'button', 'data-often-solve': String(n), onClick: () => startSession(app, oftenSpec(app, '#/weak')) }, 'よく間違える問題を解く（' + n + '問）'));
+  const open = (id) => openCardSheet(app, id);
+  const box = h('div', { class: 'weak-often-list' });
+  list.slice(0, OFTEN_SOLVE_MAX).forEach((x, i) => {
+    const panel = h('div', { class: 'tb-q-panel', id: 'often-q-' + i, hidden: true });
+    const p = x.q._path || [];
+    const field = p.length >= 3 ? p[2] : p[p.length - 1] || '';
+    const meta = x.seen + '回中' + x.wrong + '回まちがえ';
+    const btn = h('button', { class: 'tb-q-btn', type: 'button', 'aria-expanded': 'false', 'aria-controls': panel.id, 'data-often-q': x.q.id },
+      h('span', { class: 'tb-mark', 'aria-hidden': 'true', text: '×' }),
+      h('span', { class: 'weak-often-text' }, h('span', { class: 'tb-stem', text: x.q.stem }), h('span', { class: 'small muted', text: (field ? field + '・' : '') + meta })),
+      h('span', { class: 'tb-chev', 'aria-hidden': 'true' }));
+    let built = false;
+    btn.addEventListener('click', () => {
+      const was = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', was ? 'false' : 'true');
+      panel.hidden = was;
+      if (!was && !built) { // 開いたときに初めて解説を作る
+        built = true;
+        const sb = stemPlainBlock(x.q);
+        if (sb) panel.appendChild(sb);
+        panel.appendChild(explanation(app, shuffleChoices(x.q), null, open, { sensei: false }));
+      }
+    });
+    box.appendChild(h('div', { class: 'tb-q wrong' }, btn, panel));
+  });
+  card.appendChild(box);
+  if (list.length > OFTEN_SOLVE_MAX) card.appendChild(h('p', { class: 'small muted', text: 'ほか ' + (list.length - OFTEN_SOLVE_MAX) + ' 問（上の問題を解くと、順に出ます）' }));
+  return card;
+}
+
 export function renderWeak(app, focusKey) {
   const root = h('section', { class: 'view weak' });
   root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/more') }, '← もっと'));
@@ -176,6 +221,7 @@ export function renderWeak(app, focusKey) {
     return root;
   }
   root.appendChild(overview(app));
+  root.appendChild(oftenCard(app));
   const m = weakMascot(a.state, a.remaining);
   if (m) root.appendChild(h('div', { class: 'weak-mascot' }, mascotLine(m.art, m.text, 'weak-say')));
   root.appendChild(h('p', { class: 'small muted', text: '正答率は、答えた問題のうち最後に解いたとき正解だった割合です（地図の色と同じ）。答えた問題が ' + WEAK_MIN_ANSWERED + ' 問（問題がそれより少ない項目は、その全部）に届いた項目だけ、' + Math.round(WEAK_BELOW * 100) + '% 未満を苦手として低い順に並べます。' }));
@@ -206,7 +252,9 @@ export function renderWeak(app, focusKey) {
 
   root.appendChild(allCard(app, focusKey));
   // カードの見出しから来たときは、その分野の行が見える位置へ動かす（app.js が先頭へ戻したあとに）
-  if (focusKey) {
+  if (focusKey === 'often') {
+    requestAnimationFrame(() => requestAnimationFrame(() => { const t = root.querySelector('[data-weak="often"]'); if (t && t.isConnected) t.scrollIntoView({ block: 'start' }); }));
+  } else if (focusKey) {
     requestAnimationFrame(() => requestAnimationFrame(() => {
       const target = [...root.querySelectorAll('[data-all-key]')].find((el) => el.dataset.allKey === focusKey);
       if (target && target.isConnected) target.scrollIntoView({ block: 'center' });

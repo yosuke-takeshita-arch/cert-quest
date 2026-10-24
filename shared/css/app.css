@@ -712,6 +712,10 @@ button.basic-term:hover { background: var(--accent-soft); }
 .weak-home-item { appearance: none; display: flex; flex-direction: column; align-items: stretch; gap: 4px; width: 100%; min-height: 56px; margin: 4px 0; padding: 8px 12px; font: inherit; text-align: left; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-left: 6px solid var(--ng); border-radius: var(--radius); cursor: pointer; }
 .weak-home-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .weak-home-item .weak-rate { color: var(--ng); }
+.weak-home-often { appearance: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 56px; margin: 4px 0; padding: 8px 12px; font: inherit; text-align: left; color: var(--text); background: var(--warn-bg); border: 1px solid var(--warn); border-radius: var(--radius); cursor: pointer; }
+.weak-often .btn.small-btn { width: 100%; margin: 8px 0; }
+.weak-often-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.weak-often .tb-q-panel { padding: 0 4px 12px; }
 .weak-home-go { font-size: 0.9375rem; font-weight: 700; color: var(--accent); }
 .weak-home .btn.small-btn { width: 100%; margin-top: 8px; }
 .weak-entry { margin-bottom: 12px; }

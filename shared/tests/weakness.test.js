@@ -10,6 +10,7 @@ import {
   WEAK_MIN_ANSWERED, WEAK_MIN_QUESTIONS, WEAK_BELOW, WEAK_LIMIT, UNTOUCHED_LIMIT, STRONG_LIMIT, HOME_WEAK_BELOW,
   analysisUnits, ratePercent, unitStats, analyze, homeWeakCard, HOME_WEAK_COUNT,
   chapterStats, radarGeometry, tileLevel, TILE_MARK,
+  oftenWrong, OFTEN_MIN_SEEN, OFTEN_MIN_WRONG_RATE, OFTEN_SOLVE_MAX,
   allStats, questionsToJudge, wrongQuestions, statsByKey, normalizeWeakOrder, WEAK_ORDERS, DEFAULT_WEAK_ORDER,
 } from '../js/lib/weakness.js';
 import { weakMascot, isCharacterArt, characterName } from '../js/lib/characters.js';
@@ -403,4 +404,77 @@ test('結線: ホームのカードをいつも置く・復習の画面の入口
   const weak = readFileSync(join(shared, 'js', 'views', 'weak.js'), 'utf8');
   assert.ok(weak.includes('radarGeometry(') && weak.includes('chapterStats(') && weak.includes('tileLevel(') && weak.includes('TILE_MARK'));
   assert.ok(weak.indexOf('overview(app)') < weak.indexOf('weakMascot(a.state'), '画面のいちばん上に置く');
+});
+
+// ---- よく間違える問題（要件定義書 §6-4） ----
+
+const OQ = (n) => Array.from({ length: n }, (_, i) => ({ id: 'q' + i, stem: 's' + i }));
+const rec = (seen, correct, lastOk = false) => ({ seen, correct, lastOk, step: -1, due: null });
+
+test('よく間違える問題: しきい値は定数1か所（2回・50%・20問）', () => {
+  assert.equal(OFTEN_MIN_SEEN, 2);
+  assert.equal(OFTEN_MIN_WRONG_RATE, 0.5);
+  assert.equal(OFTEN_SOLVE_MAX, 20);
+});
+
+test('oftenWrong 境界: 1回だけは入れない／2回で1回まちがえ（ちょうど50%）は入る／3回で1回（33%）は入れない／49%は入れない', () => {
+  const qs = OQ(8);
+  const st = {
+    q0: rec(1, 0), // 1回だけ（0%正解でも、回数が足りない）
+    q1: rec(2, 1), // ちょうど50%
+    q2: rec(3, 2), // 33%
+    q3: rec(100, 51), // 49%
+    q4: rec(100, 50), // ちょうど50%
+    q5: rec(2, 0), // 100%
+    q6: rec(2, 2), // 全部正解
+    // q7 は未回答
+  };
+  assert.deepEqual(oftenWrong(qs, st).map((x) => x.q.id), ['q5', 'q4', 'q1']);
+  const x = oftenWrong(qs, st);
+  assert.deepEqual([x[0].seen, x[0].wrong, x[0].rate], [2, 2, 1]);
+  assert.deepEqual([x[2].seen, x[2].wrong, x[2].rate], [2, 1, 0.5]); // 50%同士は、まちがえた回数の多い q4 が先
+});
+
+test('oftenWrong 並び: 割合の高い順→間違えた回数の多い順→最後に間違えた（lastOk=false）が先→データの順', () => {
+  const qs = OQ(7);
+  const st = {
+    q0: rec(4, 2, true), // 50%・2回
+    q1: rec(2, 0, true), // 100%・2回
+    q2: rec(4, 0, true), // 100%・4回 → q1より先
+    q3: rec(4, 2, false), // 50%・2回・最後に間違えた → q0より先
+    q4: rec(2, 1, true), // 50%・1回 → 回数が少ないので後ろ
+    q5: rec(4, 2, true), // 50%・2回・最後は正解・q0と同じ → データの順でq0の後
+    q6: rec(3, 1, false), // 67%
+  };
+  assert.deepEqual(oftenWrong(qs, st).map((x) => x.q.id), ['q2', 'q1', 'q6', 'q3', 'q0', 'q5', 'q4']);
+});
+
+test('oftenWrong: 壊れた記録（整数でない・correct が seen より多い・負・null・文字）は数えない。データから外れた問題 ID の記録は出ない', () => {
+  const qs = OQ(7);
+  const st = {
+    q0: { seen: '3', correct: 0 },
+    q1: { seen: 4, correct: 5 }, // 正解のほうが多い
+    q2: { seen: 4, correct: -1 },
+    q3: null,
+    q4: { seen: 2.5, correct: 0 },
+    q5: { seen: NaN, correct: 0 },
+    q6: rec(2, 0),
+    gone: rec(9, 0), // データに無い問題（外した問題の記録）
+  };
+  assert.deepEqual(oftenWrong(qs, st).map((x) => x.q.id), ['q6']);
+  assert.deepEqual(oftenWrong(qs, undefined), []);
+  assert.deepEqual(oftenWrong(qs, {}), []);
+  assert.deepEqual(oftenWrong(null, st), []);
+  assert.deepEqual(oftenWrong([null, undefined], st), []);
+});
+
+test('結線: 画面（一覧・解く）・ホームのカード・出題・解説の見せ方（真ボスの結果の一覧と同じ tb-q の部品）', () => {
+  const weak = readFileSync(join(shared, 'js', 'views', 'weak.js'), 'utf8');
+  assert.ok(weak.includes('oftenWrong(') && weak.includes('oftenSpec(') && weak.includes('よく間違える問題を解く') && weak.includes('よく間違える問題はありません'));
+  assert.ok(weak.includes("'回中'") && weak.includes("'回まちがえ'"));
+  assert.ok(weak.includes('explanation(app') && weak.includes('stemPlainBlock(') && weak.includes('tb-q-btn'));
+  assert.ok(weak.indexOf('overview(app)') < weak.indexOf('oftenCard(app)'), 'レーダーとタイルの下');
+  const home = readFileSync(join(shared, 'js', 'views', 'home.js'), 'utf8');
+  assert.ok(home.includes('export function oftenSpec') && home.includes('data-home-often') && home.includes('#/weak/often'));
+  assert.ok(weak.includes("focusKey === 'often'"));
 });

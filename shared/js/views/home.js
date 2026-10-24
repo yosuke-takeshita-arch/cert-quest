@@ -14,7 +14,7 @@ import { forecastCard } from './forecast.js';
 import { nextGoals } from '../lib/goals.js';
 import { mapLayout, mapBands, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
-import { analyze, homeWeakCard, wrongQuestions } from '../lib/weakness.js';
+import { analyze, homeWeakCard, wrongQuestions, oftenWrong, OFTEN_SOLVE_MAX } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
@@ -90,8 +90,25 @@ export function weakHomeCard(app) {
   } else {
     card.appendChild(h('p', { class: 'muted', text: '問題を解くと、苦手な分野がここに出ます' }));
   }
+  const often = oftenWrong(app.data.questions, app.state.qstats).length;
+  if (often) {
+    card.appendChild(h('button', { class: 'weak-home-often', type: 'button', 'data-home-often': String(often), onClick: () => app.go('#/weak/often') },
+      h('span', { class: 'row-main' }, h('strong', { text: 'よく間違える問題 ' + often + '問' }), h('span', { class: 'small muted', text: '2回以上解いて、半分以上まちがえた問題' })),
+      h('span', { class: 'basics-entry-arrow', 'aria-hidden': 'true', text: '›' })));
+  }
   card.appendChild(h('button', { class: 'btn small-btn', type: 'button', 'data-home-weak-see': '1', onClick: () => app.go('#/weak') }, '分析を見る'));
   return card;
+}
+
+/** 「よく間違える問題を解く」。割合の高い順に上から OFTEN_SOLVE_MAX 問（要件定義書 §6-4）。章の星は付けない。 */
+export function oftenSpec(app, backHash) {
+  return {
+    mode: 'stage',
+    title: 'よく間違える問題',
+    small: true,
+    backHash: backHash || '#/weak',
+    pick: (a) => oftenWrong(a.data.questions, a.state.qstats).slice(0, OFTEN_SOLVE_MAX).map((x) => x.q),
+  };
 }
 
 /** 今日の復習。more=true は「もっと復習する」（今日の枠を使い切ったあと、残りの先頭から同じ苦手な順に出す）。 */
