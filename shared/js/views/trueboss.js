@@ -449,7 +449,8 @@ export function renderTrueBoss(app) {
     const flashEl = h('div', { class: 'boss-flash', 'aria-hidden': 'true' });
     // 浮かぶ動きは、絵（fig）の外側の入れ物（float）に付ける。ダメージの点滅・揺れ・進化・崩れは fig に付くので、重なっても位置がずれず止まらない
     const floatEl = h('div', { class: 'tb-float', 'data-tb-float': '1' }, fig);
-    const stageEl = h('div', { class: 'boss-stage', 'data-boss-stage': '1', onClick: onTap }, floatEl, fx, confetti, flashEl);
+    const shadowEl = h('div', { class: 'tb-shadow', 'aria-hidden': 'true' }); // 足元の光だまり。浮かぶあいだ（第2・第3）だけ出て、絵が上がると縮み、下がると広がる
+    const stageEl = h('div', { class: 'boss-stage', 'data-boss-stage': '1', onClick: onTap }, floatEl, shadowEl, fx, confetti, flashEl);
     const text = h('div', { class: 'boss-win-text', 'aria-hidden': 'true' });
     const live = h('p', { class: 'boss-sr', role: 'status' });
     const hp = h('span', { class: 'boss-win-hp' });
