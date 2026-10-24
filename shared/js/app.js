@@ -405,7 +405,7 @@ export async function start() {
     ['subjects', 'home', () => renderSubjects()], // 科目をかえる（科目のあるアプリだけ。科目の無いアプリはホームに戻る）
     ['more', 'more', () => renderMore(app)],
     ['badges', 'more', () => renderBadges(app)],
-    ['weak', 'more', () => renderWeak(app)],
+    ['weak', 'more', (k) => renderWeak(app, k)], // 引数は「すべての分野」で見せたい分野のキー（カードの見出しから来たとき）
     ['later', 'more', (k) => renderLater(app, k)],
     ['study', 'home', () => renderStudyReport(app)], // 学習時間の振り返り（ホームの総学習時間から開く）
     ['settings', 'more', () => renderSettings(app)],

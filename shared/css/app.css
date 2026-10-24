@@ -700,6 +700,24 @@ button.basic-term:hover { background: var(--accent-soft); }
 .weak-row.untouched { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
 .weak-row .btn.small-btn { width: 100%; }
 .weak-row.untouched .btn.small-btn { width: auto; min-width: 72px; flex: none; }
+/* すべての分野（要件定義書 §6-4） */
+.weak-actions { display: flex; flex-direction: column; gap: 8px; }
+.weak-actions .btn.small-btn { white-space: normal; overflow-wrap: anywhere; }
+.weak-row.all-row:first-of-type { border-top: 0; }
+.weak-all-list .weak-row:first-child { border-top: 0; padding-top: 4px; }
+.weak-rate-pending { text-align: right; flex: none; max-width: 45%; }
+.weak-row.all-row.learning .weak-rate-pending { color: var(--muted); }
+.weak-row.focus { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: var(--radius); }
+/* カードの見出しの下の正答率（押すと「すべての分野」のその行へ） */
+.card-rate { appearance: none; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; width: 100%; min-height: 48px; margin: 4px 0 4px; padding: 8px 12px; font: inherit; font-size: 0.9375rem; text-align: left; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; }
+.card-rate-text { font-weight: 700; font-variant-numeric: tabular-nums; }
+.card-rate.weak .card-rate-text { color: var(--ng); }
+.card-rate.strong .card-rate-text { color: var(--ok); }
+.card-rate-bar { flex: 1; min-width: 40px; height: 8px; }
+.card-rate-bar .progress-fill { display: block; }
+.card-rate.weak .progress-fill { background: var(--ng); }
+.card-rate-bar.ok .progress-fill { background: var(--ok); }
+.card-rate-go { margin-left: auto; color: var(--muted); flex: none; }
 .weak-line { padding: 4px 16px; border-left: 6px solid var(--ng); }
 .text-sample { margin: 8px 0 0; padding: 12px 16px; border-radius: var(--radius); background: var(--accent-soft); line-height: 1.8; overflow-wrap: anywhere; }
 .weak-line-btn { appearance: none; width: 100%; font: inherit; font-weight: 700; text-align: left; color: var(--text); background: none; border: 0; padding: 12px 0; min-height: 56px; cursor: pointer; overflow-wrap: anywhere; }

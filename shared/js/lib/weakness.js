@@ -105,6 +105,61 @@ export function analyze(tree, qstats) {
   };
 }
 
+// ---- すべての分野（要件定義書 §6-4）。analyze と同じ unitStats で数える（同じ数を別の数え方で出さない） ----
+
+/** 「すべての分野」の並べ方。tree＝章の順（木の順）、rate＝正答率の低い順。選んだほうは settings.weakOrder に保存する。 */
+export const WEAK_ORDERS = ['tree', 'rate'];
+export const DEFAULT_WEAK_ORDER = 'tree';
+
+export function normalizeWeakOrder(v) {
+  return typeof v === 'string' && WEAK_ORDERS.includes(v) ? v : DEFAULT_WEAK_ORDER;
+}
+
+/**
+ * 全部の分野（分析の単位ごと）の成績。各要素は unitStats の結果に order（木の順の番号）を足したもの。
+ *   tree … 木の順
+ *   rate … 判定に入った分野を正答率の低い順（同じなら答えた数の多い順→木の順）、そのあとに判定に足りない分野を木の順
+ * 問題の無い分野は analysisUnits が作らないので出ない。
+ */
+export function allStats(tree, qstats, order = DEFAULT_WEAK_ORDER) {
+  const stats = analysisUnits(tree).map((u, i) => ({ ...unitStats(u, qstats), order: i }));
+  if (normalizeWeakOrder(order) !== 'rate') return stats;
+  const byOrder = (a, b) => a.order - b.order;
+  const judged = stats.filter((s) => s.qualified).sort((a, b) => a.rate - b.rate || b.answered - a.answered || byOrder(a, b));
+  const rest = stats.filter((s) => !s.qualified).sort(byOrder);
+  return [...judged, ...rest];
+}
+
+/** 判定に足りない分野で「あと何問答えると正答率が出るか」。判定できる分野（qualified）・判定しない分野（3問未満）は null。 */
+export function questionsToJudge(stat) {
+  if (!stat || stat.qualified || !stat.judgeable) return null;
+  return stat.required - stat.answered;
+}
+
+/** その分野で、最後に答えたとき間違えた問題（木の順）。seen が無い・lastOk が真の問題は入らない。 */
+export function wrongQuestions(unit, qstats) {
+  const out = [];
+  for (const q of (unit && unit.questions) || []) {
+    const r = qstats && qstats[q.id];
+    if (r && r.seen && !r.lastOk) out.push(q);
+  }
+  return out;
+}
+
+/**
+ * カードの見出し用: 分野の木の節（key）→ 成績。見出しがちょうど1つの分析の単位に当たるものだけ入れる。
+ * 小項目はその小項目の単位。小項目に問題がある章で、章に直接ぶら下がる問題だけの単位（partial かつ node が章）は、
+ * 章の見出しの数と読まれて誤解されるので入れない。
+ */
+export function statsByKey(tree, qstats) {
+  const m = new Map();
+  for (const s of allStats(tree, qstats)) {
+    if (s.unit.partial && s.unit.node === s.unit.stage) continue;
+    m.set(s.unit.key, s);
+  }
+  return m;
+}
+
 /** ホームに一行出す苦手（いちばん苦手な所。正答率が HOME_WEAK_BELOW 以上なら出さない＝null）。 */
 export function homeWeak(analysis) {
   const w = analysis && analysis.weak && analysis.weak[0];

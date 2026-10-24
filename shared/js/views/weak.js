@@ -1,9 +1,9 @@
 // 苦手の分析の画面。計算は lib/weakness.js。ここは並べて見せるだけ。
-import { h, mascotLine } from '../ui.js';
-import { analyze, WEAK_MIN_ANSWERED, WEAK_BELOW } from '../lib/weakness.js';
+import { h, clear, mascotLine } from '../ui.js';
+import { analyze, allStats, questionsToJudge, wrongQuestions, normalizeWeakOrder, WEAK_ORDERS, WEAK_MIN_ANSWERED, WEAK_BELOW } from '../lib/weakness.js';
 import { weakMascot } from '../lib/characters.js';
 import { startSession } from './play.js';
-import { weakSpec } from './home.js';
+import { weakSpec, wrongSpec } from './home.js';
 
 function crumb(stat) {
   const p = stat.unit.path;
@@ -33,7 +33,58 @@ function row(app, stat, kind) {
     kind === 'weak' ? solve('ここを解く') : null);
 }
 
-export function renderWeak(app) {
+/** 「すべての分野」の1行（要件定義書 §6-4）。正答率の棒と％、答えた数/問題の数、まちがえた問題を解く、全部解く。 */
+function allRow(app, stat, focusKey) {
+  const u = stat.unit;
+  const wrong = wrongQuestions(u, app.state.qstats);
+  const left = questionsToJudge(stat);
+  const kind = stat.qualified ? (stat.rate < WEAK_BELOW ? 'weak' : 'strong') : 'learning';
+  const rate = stat.qualified
+    ? h('strong', { class: 'weak-rate', text: stat.percent + '%' })
+    : h('span', { class: 'small muted weak-rate-pending', text: left == null ? '—' : 'あと' + left + '問で出ます' });
+  const count = '答えた ' + stat.answered + ' / ' + stat.total + ' 問';
+  const row = h('div', { class: 'weak-row all-row ' + kind + (focusKey === u.key ? ' focus' : ''), 'data-weak-row': 'all', 'data-all-key': u.key },
+    h('div', { class: 'weak-head' },
+      h('span', { class: 'row-main' }, h('strong', { text: u.name }), h('span', { class: 'small muted', text: crumb(stat) })),
+      rate),
+    stat.qualified ? bar(stat, kind === 'strong') : null,
+    h('p', { class: 'small muted weak-note', text: count }),
+    h('div', { class: 'weak-actions' },
+      wrong.length
+        ? h('button', { class: 'btn small-btn', type: 'button', 'data-all-wrong': u.key, 'aria-label': u.name + ' のまちがえた問題 ' + wrong.length + ' 問を解く', onClick: () => startSession(app, wrongSpec(app, u, '#/weak')) }, 'まちがえた問題を解く（' + wrong.length + '問）')
+        : null,
+      h('button', { class: 'btn small-btn ghost', type: 'button', 'data-all-solve': u.key, 'aria-label': u.name + ' を全部解く', onClick: () => startSession(app, weakSpec(app, u, '#/weak')) }, '全部解く')));
+  return row;
+}
+
+function allCard(app, focusKey) {
+  const card = h('div', { class: 'card', 'data-weak': 'all', id: 'weak-all' }, h('h2', { text: 'すべての分野' }));
+  const btns = {};
+  const list = h('div', { class: 'weak-all-list' });
+  const draw = () => {
+    const order = normalizeWeakOrder(app.state.settings.weakOrder);
+    for (const k of WEAK_ORDERS) {
+      btns[k].setAttribute('aria-pressed', k === order ? 'true' : 'false');
+      btns[k].classList.toggle('on', k === order);
+    }
+    clear(list);
+    allStats(app.data.tree, app.state.qstats, order).forEach((s) => list.appendChild(allRow(app, s, focusKey)));
+  };
+  const choose = (k) => {
+    app.state.settings.weakOrder = k;
+    app.commit();
+    draw();
+  };
+  card.appendChild(h('div', { class: 'map-switch', role: 'group', 'aria-label': '分野の並べ方' },
+    btns.tree = h('button', { class: 'map-switch-btn', type: 'button', 'data-weak-order': 'tree', onClick: () => choose('tree') }, '章の順'),
+    btns.rate = h('button', { class: 'map-switch-btn', type: 'button', 'data-weak-order': 'rate', onClick: () => choose('rate') }, '正答率の低い順')));
+  card.appendChild(h('p', { class: 'small muted', text: '「正答率の低い順」では、正答率がまだ出ない分野は最後に章の順で並びます。' }));
+  card.appendChild(list);
+  draw();
+  return card;
+}
+
+export function renderWeak(app, focusKey) {
   const root = h('section', { class: 'view weak' });
   root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/more') }, '← もっと'));
   root.appendChild(h('h1', { text: '苦手の分析' }));
@@ -68,6 +119,15 @@ export function renderWeak(app) {
     const st = h('div', { class: 'card', 'data-weak': 'strong' }, h('h2', { text: '得意な所' }));
     a.strong.forEach((s) => st.appendChild(row(app, s, 'strong')));
     root.appendChild(st);
+  }
+
+  root.appendChild(allCard(app, focusKey));
+  // カードの見出しから来たときは、その分野の行が見える位置へ動かす（app.js が先頭へ戻したあとに）
+  if (focusKey) {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const target = [...root.querySelectorAll('[data-all-key]')].find((el) => el.dataset.allKey === focusKey);
+      if (target && target.isConnected) target.scrollIntoView({ block: 'center' });
+    }));
   }
   return root;
 }

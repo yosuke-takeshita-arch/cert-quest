@@ -14,7 +14,7 @@ import { forecastCard } from './forecast.js';
 import { nextGoals } from '../lib/goals.js';
 import { mapLayout, mapBands, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
-import { analyze, homeWeak, homeWeakText } from '../lib/weakness.js';
+import { analyze, homeWeak, homeWeakText, wrongQuestions } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
@@ -50,6 +50,19 @@ export function weakSpec(app, unit, backHash) {
     small: unit.partial, // 章の一部だけのときは、章の星を付けない
     backHash: backHash || '#/home',
     pick: (a) => pickQuestions(unit.questions, a.state.qstats, size, a.rng),
+  };
+}
+
+/** 「すべての分野」の「まちがえた問題を解く」。その分野で最後に間違えた問題だけで出題する（出す時点の記録で選ぶ）。章の一部だけなので星は付けない。 */
+export function wrongSpec(app, unit, backHash) {
+  const size = app.config.stage && app.config.stage.size ? app.config.stage.size : 10;
+  return {
+    mode: 'stage',
+    title: unit.name + '（まちがえた問題）',
+    stageKey: unit.stage.key,
+    small: true,
+    backHash: backHash || '#/weak',
+    pick: (a) => pickQuestions(wrongQuestions(unit, a.state.qstats), a.state.qstats, size, a.rng),
   };
 }
 

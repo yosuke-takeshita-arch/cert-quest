@@ -9,6 +9,7 @@ import { buildTree } from '../js/lib/data.js';
 import {
   WEAK_MIN_ANSWERED, WEAK_MIN_QUESTIONS, WEAK_BELOW, WEAK_LIMIT, UNTOUCHED_LIMIT, STRONG_LIMIT, HOME_WEAK_BELOW,
   analysisUnits, ratePercent, unitStats, analyze, homeWeak, homeWeakText,
+  allStats, questionsToJudge, wrongQuestions, statsByKey, normalizeWeakOrder, WEAK_ORDERS, DEFAULT_WEAK_ORDER,
 } from '../js/lib/weakness.js';
 import { weakMascot, isCharacterArt, characterName } from '../js/lib/characters.js';
 import { pickQuestions } from '../js/lib/quiz.js';
@@ -226,8 +227,108 @@ test('結線: オフライン登録・テスト登録・両アプリの版・も
     assert.ok(swVersion(app) >= minVersion(app, 31), app + ' の版が31以上（後から作ったアプリは1以上）');
   }
   const appjs = readFileSync(join(shared, 'js', 'app.js'), 'utf8');
-  assert.ok(/\['weak',\s*'more',\s*\(\)\s*=>\s*renderWeak\(app\)\]/.test(appjs));
+  assert.ok(/\['weak',\s*'more',\s*\(k\)\s*=>\s*renderWeak\(app,\s*k\)\]/.test(appjs));
   assert.ok(readFileSync(join(shared, 'js', 'views', 'more.js'), 'utf8').includes("go('#/weak')"));
   const home = readFileSync(join(shared, 'js', 'views', 'home.js'), 'utf8');
   assert.ok(home.includes('homeWeak(') && home.includes('weakSpec('));
+});
+
+// ---- すべての分野（要件定義書 §6-4） ----
+
+test('allStats: 章の順は木の順。数は analyze と同じ（同じ数を別に数えない）', () => {
+  const { tree, qs } = make([['A', 'S', 'a', 10], ['A', 'S', 'b', 10], ['A', 'S', 'c', 10]]);
+  const st = { ...answers(qs, 'A/S/a', 5, 1), ...answers(qs, 'A/S/b', 5, 5) };
+  const all = allStats(tree, st, 'tree');
+  assert.deepEqual(all.map((s) => s.unit.name), ['a', 'b', 'c']);
+  const an = analyze(tree, st);
+  assert.equal(an.weak[0].percent, all[0].percent);
+  assert.equal(an.strong[0].percent, all[1].percent);
+  assert.equal(allStats(tree, st).length, 3, '並べ方を省くと章の順');
+  assert.deepEqual(allStats(buildTree(null, [], []), {}), []);
+  assert.deepEqual(allStats(null, {}), []);
+});
+
+test('allStats: 正答率の低い順。判定に入った分野が先、足りない分野（未着手・途中）は章の順で最後。同じ率は答えた数の多い順', () => {
+  const { tree, qs } = make([['A', 'S', 'a', 10], ['A', 'S', 'b', 10], ['A', 'S', 'c', 10], ['A', 'S', 'd', 10], ['A', 'S', 'e', 10]]);
+  const st = {
+    ...answers(qs, 'A/S/a', 5, 5), // 100%
+    ...answers(qs, 'A/S/b', 3, 0), // 判定に足りない（3問）
+    ...answers(qs, 'A/S/d', 10, 5), // 50%・10問
+    ...answers(qs, 'A/S/e', 5, 2), // 40%
+  };
+  assert.deepEqual(allStats(tree, st, 'rate').map((s) => s.unit.name), ['e', 'd', 'a', 'b', 'c']);
+  const same = { ...answers(qs, 'A/S/a', 5, 2), ...answers(qs, 'A/S/d', 10, 4) }; // 40%と40%
+  assert.deepEqual(allStats(tree, same, 'rate').map((s) => s.unit.name).slice(0, 2), ['d', 'a'], '答えた数の多いほうが先');
+  assert.deepEqual(allStats(tree, st, 'bad').map((s) => s.unit.name), ['a', 'b', 'c', 'd', 'e'], 'ありえない並べ方は章の順');
+});
+
+test('allStats: 小項目の無い章は章として出る。小項目に問題が無ければ出ない', () => {
+  const { tree } = make([['A', 'S1', 'a', 6], ['A', 'S2', null, 4]]);
+  assert.deepEqual(allStats(tree, {}).map((s) => s.unit.name), ['a', 'S2']);
+});
+
+test('questionsToJudge: 判定に足りない分野だけ「あと何問」。判定済み・3問未満の分野は null', () => {
+  const { tree, qs } = make([['A', 'S', 'x', 10], ['A', 'S', 'y', 2], ['A', 'S', 'z', 4]]);
+  const st = { ...answers(qs, 'A/S/x', 3, 1), ...answers(qs, 'A/S/z', 4, 4) };
+  const by = (n, rec) => allStats(tree, rec).find((s) => s.unit.name === n);
+  assert.equal(questionsToJudge(by('x', st)), 2); // 5-3
+  assert.equal(questionsToJudge(by('y', st)), null); // 2問しか無い
+  assert.equal(questionsToJudge(by('z', st)), null); // 4問全部答えて判定済み
+  assert.equal(questionsToJudge(null), null);
+  assert.equal(questionsToJudge(by('x', {})), 5);
+});
+
+test('wrongQuestions: 最後に間違えた問題だけ（木の順）。正解・未回答・壊れた記録は入らない。0問なら空', () => {
+  const { tree, qs } = make([['A', 'S', 'x', 6]]);
+  const u = analysisUnits(tree)[0];
+  const st = {
+    [qs[0].id]: { seen: 3, correct: 1, lastOk: false },
+    [qs[1].id]: { seen: 1, correct: 1, lastOk: true },
+    // qs[2] は未回答
+    [qs[3].id]: { seen: 2, correct: 2, lastOk: false },
+    [qs[4].id]: null,
+    [qs[5].id]: { lastOk: false }, // seen が無い
+  };
+  assert.deepEqual(wrongQuestions(u, st).map((q) => q.id), [qs[0].id, qs[3].id]);
+  assert.deepEqual(wrongQuestions(u, {}), []);
+  assert.deepEqual(wrongQuestions(u, undefined), []);
+  assert.deepEqual(wrongQuestions(null, st), []);
+  assert.deepEqual(wrongQuestions(u, answers(qs, 'A/S/x', 6, 6)), []);
+  // ほかの分野の間違いは入らない
+  const two = make([['A', 'S', 'x', 3], ['A', 'S', 'y', 3]]);
+  assert.deepEqual(wrongQuestions(analysisUnits(two.tree)[0], answers(two.qs, 'A/S/y', 3, 0)), []);
+});
+
+test('statsByKey: 小項目・小項目の無い章は入る。小項目を持つ章に直接ぶら下がる問題だけの単位は章の見出しに当てない', () => {
+  const m = make([['A', 'S1', 'a', 6], ['A', 'S1', null, 3], ['A', 'S2', null, 4]]);
+  const map = statsByKey(m.tree, {});
+  assert.deepEqual([...map.keys()].sort(), ['A|S1|a', 'A|S2'].sort());
+  assert.equal(map.get('A|S1|a').total, 6);
+  assert.equal(map.has('A|S1'), false, 'S1 の見出しには数を出さない');
+  const st = answers(m.qs, 'A/S2', 4, 3);
+  assert.equal(statsByKey(m.tree, st).get('A|S2').percent, 75);
+  assert.equal(statsByKey(m.tree, st).get('A|S2').percent, allStats(m.tree, st).find((s) => s.unit.key === 'A|S2').percent, '苦手の分析と同じ数');
+});
+
+test('並べ方の設定: 既定は章の順。ありえない値は章の順', () => {
+  assert.deepEqual(WEAK_ORDERS, ['tree', 'rate']);
+  assert.equal(DEFAULT_WEAK_ORDER, 'tree');
+  assert.equal(normalizeWeakOrder('rate'), 'rate');
+  for (const v of [undefined, null, 3, 'x', {}]) assert.equal(normalizeWeakOrder(v), 'tree');
+});
+
+test('結線: 設定の保存・画面（すべての分野／まちがえた問題を解く）・カードの見出し・出題', async () => {
+  const { defaultState, mergeState } = await import('../js/lib/progress.js');
+  assert.equal(defaultState().settings.weakOrder, 'tree');
+  assert.equal(mergeState({ settings: { weakOrder: 'rate' } }).settings.weakOrder, 'rate');
+  assert.equal(mergeState({ settings: { weakOrder: 'bad' } }).settings.weakOrder, 'tree');
+  assert.equal(mergeState({ settings: { theme: 'dark' } }).settings.weakOrder, 'tree', '古い記録（項目なし）');
+  const weak = readFileSync(join(shared, 'js', 'views', 'weak.js'), 'utf8');
+  assert.ok(weak.includes('すべての分野') && weak.includes('まちがえた問題を解く') && weak.includes('全部解く'));
+  assert.ok(/state\.settings\.weakOrder\s*=/.test(weak), '選んだ並べ方を保存する');
+  assert.ok(weak.includes('wrongSpec(') && weak.includes('allStats('));
+  const cards = readFileSync(join(shared, 'js', 'views', 'cards.js'), 'utf8');
+  assert.ok(cards.includes('statsByKey(') && cards.includes("'#/weak/'"));
+  const home = readFileSync(join(shared, 'js', 'views', 'home.js'), 'utf8');
+  assert.ok(home.includes('export function wrongSpec') && home.includes('wrongQuestions('));
 });

@@ -5,6 +5,7 @@ import { figureBlock } from './figure.js';
 import { richEl } from './richtext.js';
 import { basicIdsOfTitle } from '../lib/basics.js';
 import { reportButton } from './report.js';
+import { statsByKey, questionsToJudge, WEAK_BELOW } from '../lib/weakness.js';
 import { CARD_VIEWS, normalizeCardView, cardSections } from '../lib/cardtree.js';
 
 const RELATION_LABEL = {
@@ -103,18 +104,45 @@ function cardRow(c, open) {
     statusChip(c.status));
 }
 
+/**
+ * 分野の見出しの下に出す、その分野の問題の正答率。押すと「苦手の分析」の「すべての分野」のその行へ行ける（そこで解ける）。
+ * 計算は lib/weakness.js（苦手の分析と同じ数）。問題の無い分野・カードだけの節（stat が無い）には出さない。
+ */
+function rateLink(app, stat) {
+  if (!stat) return null;
+  const left = questionsToJudge(stat);
+  const label = stat.qualified
+    ? '正答率 ' + stat.percent + '%'
+    : '正答率 ' + (left == null ? '—' : '—（あと' + left + '問で出ます）');
+  const parts = [h('span', { class: 'card-rate-text', text: label })];
+  if (stat.qualified) {
+    parts.push(h('span', { class: 'progress card-rate-bar' + (stat.rate >= WEAK_BELOW ? ' ok' : ''), 'aria-hidden': 'true' }, h('span', { class: 'progress-fill', style: { width: stat.percent + '%' } })));
+  }
+  parts.push(h('span', { class: 'card-rate-go small', 'aria-hidden': 'true', text: '分野の一覧 ›' }));
+  return h('button', {
+    class: 'card-rate' + (stat.qualified ? (stat.rate < WEAK_BELOW ? ' weak' : ' strong') : ''), type: 'button', 'data-card-rate': stat.unit.key,
+    'aria-label': stat.unit.name + ' の問題の' + (stat.qualified ? '正答率 ' + stat.percent + '%' : left == null ? '正答率は出ません' : '正答率はあと' + left + '問で出ます') + '。苦手の分析の「すべての分野」で見る',
+    onClick: () => app.go('#/weak/' + encodeURIComponent(stat.unit.key)),
+  }, ...parts);
+}
+
 function cardTreeView(app, open) {
   const box = h('div', { class: 'card-tree' });
+  const rates = statsByKey(app.data.tree, app.state.qstats);
   const section = (s, depth) => {
     const det = h('details', { class: depth === 0 ? 'major card-major' : 'card-sub', open: openKeys.has(s.key) ? true : null },
       h('summary', {}, h('span', { class: 'sum-name', text: s.name }), h('span', { class: 'small muted', text: s.count + '枚' })));
     det.addEventListener('toggle', () => (det.open ? openKeys.add(s.key) : openKeys.delete(s.key)));
     const inner = h('div', { class: 'card-tree-inner' });
+    const own = depth >= 1 ? rateLink(app, rates.get(s.key)) : null; // 中項目（小項目を持たない章）の正答率
+    if (own) inner.appendChild(own);
     for (const c of s.cards) inner.appendChild(cardRow(c, open));
     for (const ch of s.children) {
       // 小項目（3段目）は開け閉めせず、見出しの下にカードを並べる
       if (depth >= 1) {
         inner.appendChild(h('h3', { class: 'card-small-title', text: ch.name + '（' + ch.count + '）' }));
+        const sub = rateLink(app, rates.get(ch.key));
+        if (sub) inner.appendChild(sub);
         for (const c of ch.cards) inner.appendChild(cardRow(c, open));
       } else inner.appendChild(section(ch, depth + 1));
     }
