@@ -916,7 +916,7 @@ export function renderTrueBoss(app) {
       });
       at(T.impact, () => { evoSfx('impact'); evoSfx('finalhit'); }); // 衝撃と決めの一撃は、光のピークに合わせる
       at(T.swap, () => swap()); // 光がいちばん強いあいだに、姿を替える（引いていく中から第3形態が現れる）
-      at(T.swap + 2200, () => { ui.fx.textContent = ''; cleanupFx(); });
+      at(T.gold + 2900, () => { ui.fx.textContent = ''; cleanupFx(); }); // 光の筋（2.8秒）が終わってから片づける
       finishText(T.text);
     }
   }

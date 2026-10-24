@@ -1000,8 +1000,8 @@ body.boss-on { background: #000; }
 @keyframes tb-rays { 0% { opacity: 0; } 12% { opacity: 0.9; } 100% { opacity: 0; } }
 @keyframes tb-rays-spin { to { transform: rotate(40deg); } }
 @keyframes tb-ring { 0% { opacity: 0; transform: scale(0.2); } 12% { opacity: 1; } 100% { opacity: 0; transform: scale(5); } }
-@keyframes tb-gold { 0% { opacity: 0; } 13% { opacity: 1; } 21% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes tb-gold-calm { 0% { opacity: 0; } 40% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes tb-gold { 0% { opacity: 0; } 13% { opacity: 1; } 27% { opacity: 1; } 100% { opacity: 0; } } /* ピーク（不透明度1）は 1.9秒の13%〜27%＝約0.25〜0.51秒。この間に絵を入れ替える（EVO_2_TO_3.swap） */
+@keyframes tb-gold-calm { 0% { opacity: 0; } 35% { opacity: 1; } 50% { opacity: 1; } 100% { opacity: 0; } } /* 動きを減らす設定: 点滅ではなくゆっくり明るくなる。ピーク（0.77〜1.1秒）の間に絵を入れ替える */
 .tb-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle closest-side at 50% 50%, #fff 0%, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%); }
 .tb-glow.on { animation: tb-glow 0.5s ease-out forwards; }
 @keyframes tb-glow { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }

@@ -5,6 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { EVO_2_TO_3 } from '../js/lib/trueboss-data.js';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const read = (p) => readFileSync(root + p, 'utf8').replace(/\r\n/g, '\n');
@@ -476,7 +477,17 @@ test('2→3 の光を強くする: 画面いっぱい（fixed）の白金色の�
   const alphas = [...gold.matchAll(/rgba\(\d+, \d+, \d+, ([0-9.]+)\)/g)].map((m) => Number(m[1]));
   assert.ok(alphas.length >= 3 && Math.min(...alphas) >= 0.9, '外側の不透明度も 0.9 以上（ほぼ見えなくなる）: ' + alphas);
   const kf = css.match(/@keyframes tb-gold \{[^\n]*\}/)[0];
-  assert.match(kf, /13% \{ opacity: 1; \}[^}]*21% \{ opacity: 1; \}[^}]*100% \{ opacity: 0; \}/, '約0.25秒（1.9秒の13%）でピーク → 約0.4秒まで保つ → 引く');
+  assert.match(kf, /13% \{ opacity: 1; \}[^}]*27% \{ opacity: 1; \}[^}]*100% \{ opacity: 0; \}/, '約0.25秒（1.9秒の13%）でピーク → 約0.5秒（27%）まで保つ → 引く。この間に絵を替える');
+  // 絵の入れ替え（EVO_2_TO_3.swap）が、光のピークの間に入る（CSS の割合と時刻の表を突き合わせる）
+  const pk = kf.match(/13% \{ opacity: 1; \}[^}]*?(\d+)% \{ opacity: 1; \}/);
+  const dur = 1900;
+  assert.ok(EVO_2_TO_3.swap - EVO_2_TO_3.gold >= dur * 0.13 && EVO_2_TO_3.swap - EVO_2_TO_3.gold <= dur * Number(pk[1]) / 100, '入れ替えの時刻が、光のピーク（CSS）の内側');
+  // 動きを減らす設定の光（calm）: ピーク 35%〜50%（2.2秒）の間に、進化の終わり（finish → 絵の入れ替え）が来る
+  const calm = css.match(/@keyframes tb-gold-calm \{[^\n]*\}/)[0];
+  assert.match(calm, /35% \{ opacity: 1; \}[^}]*50% \{ opacity: 1; \}/);
+  const rsrc = code('shared/js/views/trueboss.js');
+  assert.match(rsrc, /tb-gold-flash calm[^\n]*, 1200\);\s*later\(finish, 2100\);/, '光（1200ms）から900ms後に入れ替え（finish）');
+  assert.ok(2100 - 1200 >= 2200 * 0.35 && 2100 - 1200 <= 2200 * 0.5, '900ms は calm のピーク 770〜1100ms の中');
   assert.match(gold, /animation: tb-gold 1\.9s ease-out forwards/);
   // 光の筋: 体のうしろ（DOM の先頭に入れる。舞台の背景は透明にする）。ゆっくり回る。先端は円形のマスクで消える（四角い縁なし）
   assert.match(css, /\.tb-rays \{[^\n]*repeating-conic-gradient[^\n]*mask-image: radial-gradient\(circle closest-side[^\n]*tb-rays-spin 12s linear infinite/);
@@ -491,7 +502,7 @@ test('2→3 の光を強くする: 画面いっぱい（fixed）の白金色の�
   // 動きを減らす設定: 点滅させず、ゆっくり明るくなって引く形だけ
   const red = css.slice(css.lastIndexOf('@media (prefers-reduced-motion: reduce)'));
   assert.match(red, /\.tb-gold-flash\.calm \{ animation: tb-gold-calm 2\.2s ease-in-out forwards; \}/);
-  assert.match(css, /@keyframes tb-gold-calm \{ 0% \{ opacity: 0; \} 40% \{ opacity: 1; \} 100% \{ opacity: 0; \} \}/);
+  assert.match(css, /@keyframes tb-gold-calm \{ 0% \{ opacity: 0; \} 35% \{ opacity: 1; \} 50% \{ opacity: 1; \} 100% \{ opacity: 0; \} \}/);
 });
 
 test('「次の問題へ」: 答えのあとに回復のページが続く間は、薄くして押せない（aria-disabled）。押したら次のページへ進める。最後の演出が終わったら押せる', () => {

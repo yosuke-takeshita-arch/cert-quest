@@ -258,7 +258,9 @@ test('2→3 の光の時刻: 衝撃と決めの一撃の音は、光のピーク
   const T = EVO_2_TO_3;
   assert.equal(T.impact - T.gold, 250);
   assert.ok(T.quakes.at(-1) < T.gold && T.gold < T.impact && T.impact < T.swap, '揺れ → 光 → 音（ピーク）→ 姿が替わる');
-  assert.ok(T.swap - T.gold >= 400 && T.swap - T.gold <= 700, '姿が替わるのは、光がまだほぼ最大のあいだ（光の始まりの 0.4〜0.7 秒後）');
+  // 光は 1.9 秒で、13%（約247ms）で最大、27%（約513ms）まで最大のまま保つ。姿はその間に替える（引き始めたときには、もう第3形態が見える）
+  assert.ok(T.swap - T.gold >= 1900 * 0.13 && T.swap - T.gold <= 1900 * 0.27, '姿が替わるのは、光がいちばん強いあいだ（光の始まりの約0.25〜0.51秒後）。実際: ' + (T.swap - T.gold));
+  assert.ok(T.swap >= T.impact, '衝撃の音（ピーク）より前に替えない');
   assert.ok(T.text > T.swap && T.music > T.text);
 });
 
