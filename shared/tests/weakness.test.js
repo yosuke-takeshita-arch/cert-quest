@@ -8,7 +8,8 @@ import { fileURLToPath } from 'node:url';
 import { buildTree } from '../js/lib/data.js';
 import {
   WEAK_MIN_ANSWERED, WEAK_MIN_QUESTIONS, WEAK_BELOW, WEAK_LIMIT, UNTOUCHED_LIMIT, STRONG_LIMIT, HOME_WEAK_BELOW,
-  analysisUnits, ratePercent, unitStats, analyze, homeWeak, homeWeakText,
+  analysisUnits, ratePercent, unitStats, analyze, homeWeakCard, HOME_WEAK_COUNT,
+  chapterStats, radarGeometry, tileLevel, TILE_MARK,
   allStats, questionsToJudge, wrongQuestions, statsByKey, normalizeWeakOrder, WEAK_ORDERS, DEFAULT_WEAK_ORDER,
 } from '../js/lib/weakness.js';
 import { weakMascot, isCharacterArt, characterName } from '../js/lib/characters.js';
@@ -176,15 +177,76 @@ test('同じ問題を何度答えても、答えた数は「別々の問題」�
   assert.equal(s.qualified, false);
 });
 
-test('ホームの一行: 一番苦手な所が60%未満のときだけ。60%ちょうど・苦手なし・分析なしは出さない', () => {
-  const { tree, qs } = make([['A', 'S', 'x', 10]]);
-  const low = analyze(tree, answers(qs, 'A/S/x', 10, 5)); // 50%
-  assert.equal(homeWeak(low).unit.name, 'x');
-  assert.equal(homeWeakText(homeWeak(low)), '苦手：x（正答率50%）を解く');
-  assert.equal(homeWeak(analyze(tree, answers(qs, 'A/S/x', 10, 6))), null); // 60%
-  assert.equal(homeWeak(analyze(tree, answers(qs, 'A/S/x', 10, 9))), null);
-  assert.equal(homeWeak(analyze(tree, {})), null);
-  assert.equal(homeWeak(null), null);
+test('ホームの苦手の分析カード: 苦手があれば低い順に2分野まで。苦手なしは clear、判定に入る分野がまだ無いときは none（いつも出す）', () => {
+  const { tree, qs } = make([['A', 'S', 'x', 10], ['A', 'S', 'y', 10], ['A', 'S', 'z', 10]]);
+  const st = { ...answers(qs, 'A/S/x', 10, 5), ...answers(qs, 'A/S/y', 10, 7), ...answers(qs, 'A/S/z', 10, 6) };
+  const c = homeWeakCard(analyze(tree, st));
+  assert.equal(c.kind, 'weak');
+  assert.deepEqual(c.items.map((s) => s.unit.name), ['x', 'z']); // 50%・60%（70%のyは3番目）
+  assert.equal(c.items.length, HOME_WEAK_COUNT);
+  assert.equal(homeWeakCard(analyze(tree, answers(qs, 'A/S/x', 10, 6))).items.length, 1); // 60%でも出す（以前の60%未満だけの決まりは外した）
+  assert.equal(homeWeakCard(analyze(tree, answers(qs, 'A/S/x', 10, 9))).kind, 'clear');
+  assert.equal(homeWeakCard(analyze(tree, {})).kind, 'none');
+  assert.equal(homeWeakCard(analyze(buildTree(null, [], []), {})).kind, 'none');
+  assert.equal(homeWeakCard(null).kind, 'none');
+  assert.deepEqual(homeWeakCard(null).items, []);
+});
+
+test('tileLevel: 60%未満は赤、60〜79%は黄、80%以上は緑、判定に足りない・未回答は灰。境目の前後', () => {
+  const { tree, qs } = make([['A', 'S', 'a', 10]]);
+  const lv = (ok, k = 10) => tileLevel(allStats(tree, answers(qs, 'A/S/a', k, ok))[0]);
+  assert.equal(lv(5), 'ng'); // 50%
+  assert.equal(lv(6), 'mid'); // 60%ちょうどは黄
+  assert.equal(lv(7), 'mid'); // 70%
+  assert.equal(lv(8), 'ok'); // 80%ちょうどは緑
+  assert.equal(lv(10), 'ok');
+  assert.equal(lv(0), 'ng');
+  assert.equal(lv(2, 4), 'none'); // 4問しか答えていない＝判定に足りない
+  assert.equal(tileLevel(allStats(tree, {})[0]), 'none');
+  assert.equal(tileLevel(null), 'none');
+  assert.deepEqual(Object.keys(TILE_MARK).sort(), ['mid', 'ng', 'none', 'ok']);
+  assert.equal(TILE_MARK.none, '');
+  assert.equal(new Set([TILE_MARK.ok, TILE_MARK.mid, TILE_MARK.ng]).size, 3, '色だけに頼らない（記号が3つ違う）');
+});
+
+test('chapterStats: 章ごとに、章の中の全問題を1単位として同じ決め方で数える。問題の無い章は入らない', () => {
+  const { tree, qs } = make([['A', 'S1', 'a', 6], ['A', 'S1', 'b', 6], ['A', 'S2', null, 4], ['B', 'S3', 'c', 2]]);
+  const st = { ...answers(qs, 'A/S1/a', 6, 6), ...answers(qs, 'A/S1/b', 6, 0) };
+  const ch = chapterStats(tree, st);
+  assert.deepEqual(ch.map((s) => s.unit.name), ['S1', 'S2', 'S3']);
+  assert.equal(ch[0].total, 12);
+  assert.equal(ch[0].answered, 12);
+  assert.equal(ch[0].percent, 50); // 6/12
+  assert.equal(ch[0].qualified, true);
+  assert.equal(ch[1].qualified, false);
+  assert.equal(ch[2].judgeable, false); // 2問の章は全部答えても判定しない（分野と同じ決まり）
+  // 章の1つが、その中の分野の数え方と食い違わない（分野の答えた数の合計＝章の答えた数）
+  const parts = allStats(tree, st).filter((s) => s.unit.stage.key === ch[0].unit.key);
+  assert.equal(parts.reduce((n, s) => n + s.answered, 0), ch[0].answered);
+  assert.deepEqual(chapterStats(null, {}), []);
+});
+
+test('radarGeometry: 軸は真上から時計回り。判定に足りない章は value=null で点を結ばない（0にしない）', () => {
+  const { tree, qs } = make([['A', 'S1', null, 10], ['A', 'S2', null, 10], ['A', 'S3', null, 10], ['A', 'S4', null, 10]]);
+  const st = { ...answers(qs, 'A/S1', 10, 10), ...answers(qs, 'A/S2', 10, 5), ...answers(qs, 'A/S3', 3, 3) };
+  const g = radarGeometry(chapterStats(tree, st), { cx: 100, cy: 100, r: 50 });
+  assert.equal(g.axes.length, 4);
+  assert.ok(Math.abs(g.axes[0].ox - 100) < 1e-9 && Math.abs(g.axes[0].oy - 50) < 1e-9, '1本目は真上');
+  assert.ok(Math.abs(g.axes[1].ox - 150) < 1e-9 && Math.abs(g.axes[1].oy - 100) < 1e-9, '2本目は右（時計回り）');
+  assert.equal(g.axes[0].value, 1);
+  assert.equal(g.axes[1].value, 0.5);
+  assert.ok(Math.abs(g.axes[1].vx - 125) < 1e-9, '50%は半径の半分');
+  assert.equal(g.axes[2].value, null);
+  assert.equal(g.axes[3].value, null);
+  assert.equal(g.axes[2].vx, null);
+  assert.equal(g.solid.length, 2);
+  assert.equal(g.closed, false);
+  const all3 = radarGeometry(chapterStats(tree, { ...st, ...answers(qs, 'A/S3', 10, 10) }), { cx: 0, cy: 0, r: 10 });
+  assert.equal(all3.solid.length, 3);
+  assert.equal(all3.closed, true);
+  assert.deepEqual(radarGeometry([], {}).axes, []);
+  assert.equal(radarGeometry(chapterStats(tree, {}), {}).solid.length, 0);
+  assert.ok(g.axes.every((a) => Number.isFinite(a.lx) && Number.isFinite(a.ly)));
 });
 
 test('「ここを解く」の出題: 未回答→前回まちがえた→前回正解の順（pickQuestions）で、その範囲の問題だけ', () => {
@@ -230,7 +292,7 @@ test('結線: オフライン登録・テスト登録・両アプリの版・も
   assert.ok(/\['weak',\s*'more',\s*\(k\)\s*=>\s*renderWeak\(app,\s*k\)\]/.test(appjs));
   assert.ok(readFileSync(join(shared, 'js', 'views', 'more.js'), 'utf8').includes("go('#/weak')"));
   const home = readFileSync(join(shared, 'js', 'views', 'home.js'), 'utf8');
-  assert.ok(home.includes('homeWeak(') && home.includes('weakSpec('));
+  assert.ok(home.includes('homeWeakCard(') && home.includes('weakSpec(') && !home.includes('weak-line'));
 });
 
 // ---- すべての分野（要件定義書 §6-4） ----
@@ -331,4 +393,14 @@ test('結線: 設定の保存・画面（すべての分野／まちがえた問
   assert.ok(cards.includes('statsByKey(') && cards.includes("'#/weak/'"));
   const home = readFileSync(join(shared, 'js', 'views', 'home.js'), 'utf8');
   assert.ok(home.includes('export function wrongSpec') && home.includes('wrongQuestions('));
+});
+
+test('結線: ホームのカードをいつも置く・復習の画面の入口・苦手の分析の画面のレーダーとタイル', () => {
+  const home = readFileSync(join(shared, 'js', 'views', 'home.js'), 'utf8');
+  assert.ok(home.includes('weakHomeCard(app)') && home.includes('data-review-weak-entry'));
+  const rv = home.slice(home.indexOf('export function renderReview'));
+  assert.ok(rv.indexOf('data-review-weak-entry') < rv.indexOf('復習を始める'), '復習の画面のいちばん上に入口');
+  const weak = readFileSync(join(shared, 'js', 'views', 'weak.js'), 'utf8');
+  assert.ok(weak.includes('radarGeometry(') && weak.includes('chapterStats(') && weak.includes('tileLevel(') && weak.includes('TILE_MARK'));
+  assert.ok(weak.indexOf('overview(app)') < weak.indexOf('weakMascot(a.state'), '画面のいちばん上に置く');
 });

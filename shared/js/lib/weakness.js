@@ -15,7 +15,7 @@ export const WEAK_LIMIT = 4;
 export const UNTOUCHED_LIMIT = 3;
 /** 得意として並べる最大の件数。 */
 export const STRONG_LIMIT = 2;
-/** ホームに一行出すのは、いちばん苦手な所の正答率がこれ未満のとき（星1の線。うるさくしない）。 */
+/** 色分けの「赤」の線（星1の線）。タイルの赤と黄の境目。 */
 export const HOME_WEAK_BELOW = 0.6;
 
 /**
@@ -160,13 +160,66 @@ export function statsByKey(tree, qstats) {
   return m;
 }
 
-/** ホームに一行出す苦手（いちばん苦手な所。正答率が HOME_WEAK_BELOW 以上なら出さない＝null）。 */
-export function homeWeak(analysis) {
-  const w = analysis && analysis.weak && analysis.weak[0];
-  return w && w.rate < HOME_WEAK_BELOW ? w : null;
+/** ホームの「苦手の分析」カードに出す、いちばん苦手な分野の数。 */
+export const HOME_WEAK_COUNT = 2;
+
+/**
+ * ホームの「苦手の分析」カード（いつも置く。要件定義書 §6-4）。
+ *   kind … 'weak'（苦手がある。items にいちばん苦手な HOME_WEAK_COUNT 分野）／'clear'（判定できる所はあるが苦手は無い）／'none'（判定に入る分野がまだ無い）
+ */
+export function homeWeakCard(analysis) {
+  if (!analysis || analysis.state === 'none' || analysis.state === 'learning') return { kind: 'none', items: [] };
+  if (analysis.state === 'weak') return { kind: 'weak', items: analysis.weak.slice(0, HOME_WEAK_COUNT) };
+  return { kind: 'clear', items: [] };
 }
 
-/** ホームの一行の文言。 */
-export function homeWeakText(stat) {
-  return '苦手：' + stat.unit.name + '（正答率' + stat.percent + '%）を解く';
+// ---- 見て分かる形（要件定義書 §6-4）: 章ごとの正答率・レーダーチャート・分野のタイル ----
+
+/** タイルの色の境目は、星1の線（HOME_WEAK_BELOW＝60%）と定着の線（WEAK_BELOW＝80%）。 */
+export function tileLevel(stat) {
+  if (!stat || !stat.qualified) return 'none';
+  if (stat.rate < HOME_WEAK_BELOW) return 'ng';
+  if (stat.rate < WEAK_BELOW) return 'mid';
+  return 'ok';
+}
+
+/** 色だけに頼らないタイルの記号（○＝定着／△＝もう少し／×＝苦手／空＝まだ）。 */
+export const TILE_MARK = { ok: '○', mid: '△', ng: '×', none: '' };
+
+/**
+ * 章ごとの成績（木の順）。分野と同じ決め方（unitStats）で、章の中の全問題を1つの単位として数える。
+ * 各要素は unitStats の結果に chapter（章のノード）・order を足したもの。問題の無い章は入らない。
+ */
+export function chapterStats(tree, qstats) {
+  const out = [];
+  ((tree && tree.stages) || []).forEach((st) => {
+    if (!st.questions.length) return;
+    const unit = { key: st.key, name: st.name, path: st.path, stage: st, node: st, partial: false, questions: st.questions };
+    out.push({ ...unitStats(unit, qstats), chapter: st, order: out.length });
+  });
+  return out;
+}
+
+/**
+ * 章を軸にしたレーダーチャートの形（純粋な計算。SVG は画面側）。
+ * 軸は真上から時計回り。値は正答率（0〜1）。判定に足りない章（qualified でない）は value=null で、点は結ばない（0にしない）。
+ * 返す形: { axes: [{ i, angle, ox, oy, lx, ly, value, vx, vy }], solid: [[x,y]…]（結ぶ点）, closed: 3つ以上なら多角形 }
+ */
+export function radarGeometry(stats, { cx = 0, cy = 0, r = 100, labelR = r + 14 } = {}) {
+  const n = stats.length;
+  const axes = stats.map((s, i) => {
+    const angle = -Math.PI / 2 + (2 * Math.PI * i) / n;
+    const c = Math.cos(angle), sn = Math.sin(angle);
+    const value = s.qualified ? s.rate : null;
+    return {
+      i, angle,
+      ox: cx + r * c, oy: cy + r * sn,
+      lx: cx + labelR * c, ly: cy + labelR * sn,
+      value,
+      vx: value == null ? null : cx + r * value * c,
+      vy: value == null ? null : cy + r * value * sn,
+    };
+  });
+  const solid = axes.filter((a) => a.value != null).map((a) => [a.vx, a.vy]);
+  return { axes, solid, closed: solid.length >= 3 };
 }

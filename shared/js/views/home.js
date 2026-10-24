@@ -14,7 +14,7 @@ import { forecastCard } from './forecast.js';
 import { nextGoals } from '../lib/goals.js';
 import { mapLayout, mapBands, normalizeMapView } from '../lib/maplayout.js';
 import { homeMascot } from '../lib/characters.js';
-import { analyze, homeWeak, homeWeakText, wrongQuestions } from '../lib/weakness.js';
+import { analyze, homeWeakCard, wrongQuestions } from '../lib/weakness.js';
 import { badgeDefs, badgeImageUrl } from '../lib/badges.js';
 import { startSession } from './play.js';
 import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
@@ -64,6 +64,34 @@ export function wrongSpec(app, unit, backHash) {
     backHash: backHash || '#/weak',
     pick: (a) => pickQuestions(wrongQuestions(unit, a.state.qstats), a.state.qstats, size, a.rng),
   };
+}
+
+/** ホームの「苦手の分析」カード。苦手の分野を押すと、その分野の「まちがえた問題を解く」（0問なら分析の行）へ。 */
+export function weakHomeCard(app) {
+  const card = h('div', { class: 'card weak-home', 'data-home-weak': '1' }, h('h2', { text: '苦手の分析' }));
+  const hw = homeWeakCard(analyze(app.data.tree, app.state.qstats));
+  if (hw.kind === 'weak') {
+    hw.items.forEach((s) => {
+      const wrong = wrongQuestions(s.unit, app.state.qstats).length;
+      const p = s.unit.path;
+      const crumb = p.length >= 3 ? p[1] : p[0];
+      card.appendChild(h('button', {
+        class: 'weak-home-item', type: 'button', 'data-home-weak-item': s.unit.key,
+        'aria-label': s.unit.name + '、正答率' + s.percent + '%。' + (wrong ? 'まちがえた問題' + wrong + '問を解く' : '分析で見る'),
+        onClick: () => (wrong ? startSession(app, wrongSpec(app, s.unit, '#/home')) : app.go('#/weak/' + encodeURIComponent(s.unit.key))),
+      },
+        h('span', { class: 'weak-home-top' },
+          h('span', { class: 'row-main' }, h('strong', { text: s.unit.name }), h('span', { class: 'small muted', text: (crumb === s.unit.name ? p[0] : crumb) })),
+          h('strong', { class: 'weak-rate', text: s.percent + '%' })),
+        h('span', { class: 'weak-home-go', text: (wrong ? 'まちがえた問題を解く（' + wrong + '問）' : '分析で見る') + ' ›' })));
+    });
+  } else if (hw.kind === 'clear') {
+    card.appendChild(h('p', { class: 'muted', text: '苦手と言える所は、いまのところありません。' }));
+  } else {
+    card.appendChild(h('p', { class: 'muted', text: '問題を解くと、苦手な分野がここに出ます' }));
+  }
+  card.appendChild(h('button', { class: 'btn small-btn', type: 'button', 'data-home-weak-see': '1', onClick: () => app.go('#/weak') }, '分析を見る'));
+  return card;
 }
 
 /** 今日の復習。more=true は「もっと復習する」（今日の枠を使い切ったあと、残りの先頭から同じ苦手な順に出す）。 */
@@ -239,13 +267,8 @@ export function renderHome(app) {
       root.appendChild(gbox);
     }
 
-    // 苦手がはっきりしている（正答率が低い）ときだけ、一行で入口を出す。ふだんは出さない
-    const hw = homeWeak(analyze(data.tree, state.qstats));
-    if (hw) {
-      root.appendChild(h('div', { class: 'card weak-line', 'data-home-weak': hw.unit.key },
-        h('button', { class: 'weak-line-btn', type: 'button', onClick: () => startSession(app, weakSpec(app, hw.unit, '#/home')) }, homeWeakText(hw)),
-        h('button', { class: 'link-btn', type: 'button', onClick: () => app.go('#/weak') }, '苦手の分析を見る')));
-    }
+    // 苦手の分析の入口（要件定義書 §6-4）。いつも置く。いちばん苦手な2分野と、分析の画面への入口
+    root.appendChild(weakHomeCard(app));
 
     const untouched = data.tree.stages.filter((s) => s.questions.length && nodeProgress(s, state.qstats).level === 'none');
     const unready = data.tree.stages.filter((s) => !s.questions.length).length;
@@ -493,6 +516,10 @@ export function renderReview(app) {
   const today = dayNumber(new Date());
   const plan = todayReviewPlan(app.state, app.data.questionById, new Date());
   const up = upcoming(app.state.qstats, today, app.data.questionById);
+  // 苦手の分析への入口（要件定義書 §6-4。下のメニューは増やさない）
+  root.appendChild(h('button', { class: 'basics-entry weak-entry', type: 'button', 'data-review-weak-entry': '1', onClick: () => app.go('#/weak') },
+    h('span', { class: 'row-main' }, h('strong', { text: '苦手の分析' }), h('span', { class: 'small', text: '分野ごとの正答率を見て、苦手な分野を解き直す' })),
+    h('span', { class: 'basics-entry-arrow', 'aria-hidden': 'true', text: '›' })));
   root.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は、翌日・3日後・7日後に出ます。3回続けて正解すると卒業、まちがえると最初に戻ります。受験日を決めていると、受験日より後になる復習は入れません。1日に出すのは最大' + REVIEW_DAILY_LIMIT + '問で、苦手な問題から' + REVIEW_SESSION_SIZE + '問ずつ出します。' }));
   if (plan.ids.length) {
     root.appendChild(h('div', { class: 'card' },

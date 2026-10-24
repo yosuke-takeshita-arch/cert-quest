@@ -1,6 +1,6 @@
 // 苦手の分析の画面。計算は lib/weakness.js。ここは並べて見せるだけ。
 import { h, clear, mascotLine } from '../ui.js';
-import { analyze, allStats, questionsToJudge, wrongQuestions, normalizeWeakOrder, WEAK_ORDERS, WEAK_MIN_ANSWERED, WEAK_BELOW } from '../lib/weakness.js';
+import { analyze, chapterStats, radarGeometry, tileLevel, TILE_MARK, allStats, questionsToJudge, wrongQuestions, normalizeWeakOrder, WEAK_ORDERS, WEAK_MIN_ANSWERED, WEAK_BELOW } from '../lib/weakness.js';
 import { weakMascot } from '../lib/characters.js';
 import { startSession } from './play.js';
 import { weakSpec, wrongSpec } from './home.js';
@@ -84,6 +84,87 @@ function allCard(app, focusKey) {
   return card;
 }
 
+// ---- 見て分かる形: レーダーチャートと分野のタイル（要件定義書 §6-4） ----
+const SVG_NS = 'http://www.w3.org/2000/svg';
+function svgEl(tag, attrs, ...kids) {
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, String(v));
+  for (const c of kids) if (c != null) el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  return el;
+}
+const pt = (n) => Math.round(n * 10) / 10;
+
+/** 章ごとの正答率のレーダーチャート。軸は章の番号（名前は下のタイルの章の見出しと同じ番号で読む）。判定に足りない章は点線の軸と白抜きの印。 */
+function radar(chapters) {
+  const SIZE = 300, C = 150, R = 96;
+  const g = radarGeometry(chapters, { cx: C, cy: C, r: R, labelR: R + 18 });
+  const svg = svgEl('svg', { class: 'radar', viewBox: '0 0 ' + SIZE + ' ' + SIZE, role: 'img', 'data-weak-radar': String(chapters.length),
+    'aria-label': '章ごとの正答率のレーダーチャート。' + chapters.map((s, i) => (i + 1) + ' ' + s.unit.name + ' ' + (s.qualified ? s.percent + '%' : 'まだ判定なし')).join('、') });
+  // 目盛りの輪（60%・80%＝タイルの色の境目、100%）
+  for (const lv of [0.6, 0.8, 1]) {
+    svg.appendChild(svgEl('polygon', { class: 'radar-ring' + (lv === 1 ? ' outer' : ''), points: g.axes.map((a) => pt(C + (a.ox - C) * lv) + ',' + pt(C + (a.oy - C) * lv)).join(' ') }));
+  }
+  for (const a of g.axes) svg.appendChild(svgEl('line', { class: 'radar-axis' + (a.value == null ? ' later' : ''), x1: C, y1: C, x2: pt(a.ox), y2: pt(a.oy) }));
+  if (g.closed) svg.appendChild(svgEl('polygon', { class: 'radar-area', points: g.solid.map((p) => pt(p[0]) + ',' + pt(p[1])).join(' ') }));
+  else if (g.solid.length === 2) svg.appendChild(svgEl('line', { class: 'radar-line', x1: pt(g.solid[0][0]), y1: pt(g.solid[0][1]), x2: pt(g.solid[1][0]), y2: pt(g.solid[1][1]) }));
+  for (const a of g.axes) {
+    if (a.value == null) svg.appendChild(svgEl('circle', { class: 'radar-dot later', cx: pt(C + (a.ox - C) * 0.5), cy: pt(C + (a.oy - C) * 0.5), r: 4 }));
+    else svg.appendChild(svgEl('circle', { class: 'radar-dot', cx: pt(a.vx), cy: pt(a.vy), r: 4 }));
+    svg.appendChild(svgEl('circle', { class: 'radar-lbl-bg' + (a.value == null ? ' later' : ''), cx: pt(a.lx), cy: pt(a.ly), r: 10 }));
+    svg.appendChild(svgEl('text', { class: 'radar-lbl', 'font-size': 12, x: pt(a.lx), y: pt(a.ly), 'text-anchor': 'middle', 'dominant-baseline': 'central' }, String(a.i + 1)));
+  }
+  return svg;
+}
+
+/** 分野のタイル。章ごとに1段。押すと「すべての分野」のその分野の行へ飛んで強調する。 */
+function overview(app) {
+  const tree = app.data.tree, q = app.state.qstats;
+  const chapters = chapterStats(tree, q);
+  const box = h('div', { class: 'card weak-overview', 'data-weak': 'overview' }, h('h2', { text: '章ごとの正答率' }));
+  if (chapters.length >= 3) {
+    box.appendChild(h('div', { class: 'radar-wrap' }, radar(chapters)));
+    box.appendChild(h('p', { class: 'small muted', text: '外側ほど正答率が高く、内側の輪は60%と80%です。点線の軸と白抜きの印は、まだ判定に足りない章です。番号は下の章の見出しと同じです。' }));
+  }
+  const units = allStats(tree, q, 'tree');
+  const byChapter = new Map();
+  for (const u of units) {
+    const k = u.unit.stage.key;
+    if (!byChapter.has(k)) byChapter.set(k, []);
+    byChapter.get(k).push(u);
+  }
+  box.appendChild(h('h2', { class: 'weak-tiles-title', text: '分野のタイル' }));
+  box.appendChild(h('p', { class: 'small muted weak-legend', text: '○ 80%以上　△ 60〜79%　× 60%未満　空白（点線）はまだ判定に足りない分野。押すと、その分野の一覧の行へ行きます。' }));
+  const jump = (key) => {
+    const rows = [...document.querySelectorAll('[data-all-key]')];
+    rows.forEach((r) => r.classList.remove('focus'));
+    const target = rows.find((r) => r.dataset.allKey === key);
+    if (!target) return;
+    target.classList.add('focus');
+    target.scrollIntoView({ block: 'center' });
+  };
+  chapters.forEach((c, i) => {
+    const list = byChapter.get(c.unit.key) || [];
+    const left = c.qualified ? null : questionsToJudge(c);
+    const head = h('button', { class: 'weak-tiles-head', type: 'button', 'data-tiles-chapter': c.unit.key,
+      'aria-label': (i + 1) + ' ' + c.unit.name + '、' + (c.qualified ? '章の正答率' + c.percent + '%' : '正答率はまだ出ません') + '。この章の分野の一覧へ',
+      onClick: () => { if (list.length) jump(list[0].unit.key); } },
+      h('span', { class: 'weak-tiles-no', 'aria-hidden': 'true', text: String(i + 1) }),
+      h('span', { class: 'weak-tiles-text' },
+        h('span', { class: 'weak-tiles-name', text: c.unit.name }),
+        h('span', { class: 'small muted weak-tiles-rate', text: c.qualified ? '正答率 ' + c.percent + '%' : left == null ? '—' : 'あと' + left + '問で出ます' })));
+    const grid = h('div', { class: 'tiles', role: 'group', 'aria-label': c.unit.name + 'の分野' });
+    list.forEach((s) => {
+      const lv = tileLevel(s);
+      grid.appendChild(h('button', { class: 'tile-cell lv-' + lv, type: 'button', 'data-tile': s.unit.key,
+        'aria-label': s.unit.name + '、' + (s.qualified ? '正答率' + s.percent + '%' : 'まだ判定に足りません') + '。一覧の行へ',
+        title: s.unit.name + (s.qualified ? ' ' + s.percent + '%' : ''),
+        onClick: () => jump(s.unit.key) }, TILE_MARK[lv]));
+    });
+    box.appendChild(h('div', { class: 'tiles-row' }, head, grid));
+  });
+  return box;
+}
+
 export function renderWeak(app, focusKey) {
   const root = h('section', { class: 'view weak' });
   root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/more') }, '← もっと'));
@@ -93,6 +174,7 @@ export function renderWeak(app, focusKey) {
     root.appendChild(h('div', { class: 'card empty' }, h('p', { text: '分析できる問題がまだありません。' })));
     return root;
   }
+  root.appendChild(overview(app));
   const m = weakMascot(a.state, a.remaining);
   if (m) root.appendChild(h('div', { class: 'weak-mascot' }, mascotLine(m.art, m.text, 'weak-say')));
   root.appendChild(h('p', { class: 'small muted', text: '正答率は、答えた問題のうち最後に解いたとき正解だった割合です（地図の色と同じ）。答えた問題が ' + WEAK_MIN_ANSWERED + ' 問（問題がそれより少ない項目は、その全部）に届いた項目だけ、' + Math.round(WEAK_BELOW * 100) + '% 未満を苦手として低い順に並べます。' }));
