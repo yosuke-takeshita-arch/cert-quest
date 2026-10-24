@@ -218,6 +218,8 @@ export function renderWeak(app, focusKey) {
   const a = analyze(app.data.tree, app.state.qstats);
   if (a.state === 'none') {
     root.appendChild(h('div', { class: 'card empty' }, h('p', { text: '分析できる問題がまだありません。' })));
+    root.appendChild(oftenCard(app)); // 分野の判定に足りなくても、問題ごとの記録から出せる（ホームの入口の行き先）
+    if (focusKey === 'often') requestAnimationFrame(() => requestAnimationFrame(() => { const t = root.querySelector('[data-weak="often"]'); if (t && t.isConnected) t.scrollIntoView({ block: 'start' }); }));
     return root;
   }
   root.appendChild(overview(app));
