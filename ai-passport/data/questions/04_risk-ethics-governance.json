@@ -8290,7 +8290,7 @@
       "（ア）高　（イ）透明性　（ウ）最小"
     ],
     "answer": 0,
-    "explanation": "欧州委員会の説明では、許容できないリスク（禁止）、高リスク（市場に出す前の厳しい義務）、透明性リスク（チャットボットであることの開示、生成物を識別できるようにすることなど）、最小リスク（規律なし）の4つ。",
+    "explanation": "EU AI Act は、EU（欧州連合）が2024年に定めたAIの規則で、正式には規則(EU)2024/1689（英語の名称の末尾に Artificial Intelligence Act＝人工知能法 とある）。AIをリスクの大きさで分け、区分ごとに決まりを変える。欧州委員会の説明では、許容できないリスク（禁止）、高リスク（市場に出す前の厳しい義務）、透明性リスク（チャットボットであることの開示、生成物を識別できるようにすることなど）、最小リスク（規律なし）の4つ。",
     "whyWrong": [
       null,
       "（ア）と（イ）が逆。禁止されるのは許容できないリスク、厳しい義務は高リスク。",
@@ -8298,7 +8298,7 @@
       "（ア）（イ）（ウ）すべてが違う。禁止されるのは許容できないリスク、厳しい義務は高リスク、開示の義務は透明性リスク。最小リスクは規律の対象外。"
     ],
     "memoryTip": "禁止＞厳しい義務＞開示＞なし。",
-    "concepts": ["C-AP-04-165"],
+    "concepts": ["C-AP-04-165", "C-AP-04-164"],
     "figures": ["fig-ap-eu-ai-act"],
     "sources": [
       { "title": "European Commission『AI Act』（Shaping Europe's digital future）", "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" }
@@ -8348,7 +8348,7 @@
       "採用のために履歴書を選別するソフトウェア"
     ],
     "answer": 3,
-    "explanation": "欧州委員会は、高リスクの用途の例として、雇用・労働者の管理の分野のAIツール（採用のための履歴書の選別ソフトウェアなど）を挙げる。高リスクのAIには、リスク評価、データの質、ログの記録、人間による監督などの義務がかかる。",
+    "explanation": "EU AI Act（Artificial Intelligence Act。EU が2024年6月13日に定めた規則(EU)2024/1689 の通称で、AIをリスクの大きさに応じて規制する）では、高リスクの用途に厳しい義務がかかる。欧州委員会は、高リスクの用途の例として、雇用・労働者の管理の分野のAIツール（採用のための履歴書の選別ソフトウェアなど）を挙げる。高リスクのAIには、リスク評価、データの質、ログの記録、人間による監督などの義務がかかる。",
     "whyWrong": [
       "AIを使ったビデオゲームは、欧州委員会が最小リスク（規律の対象外）の例に挙げる。",
       "スパムフィルターも、最小リスクの例に挙げられている。",
@@ -8356,7 +8356,7 @@
       null
     ],
     "memoryTip": "人の人生を左右する（採用・教育・与信）＝高リスク。",
-    "concepts": ["C-AP-04-165"],
+    "concepts": ["C-AP-04-165", "C-AP-04-164"],
     "figures": ["fig-ap-eu-ai-act"],
     "sources": [
       { "title": "European Commission『AI Act』（Shaping Europe's digital future）", "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" }
