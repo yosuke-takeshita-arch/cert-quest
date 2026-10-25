@@ -510,7 +510,7 @@ export async function start() {
     if (transitioner.covering) return;
     const viaTab = tabPressed;
     tabPressed = false;
-    transitioner.go(sceneKind(shown, routeOfHash()), () => render({ tab: viaTab }));
+    transitioner.go(sceneKind(shown, routeOfHash(), viaTab), () => render({ tab: viaTab }));
   });
   // 見張りの履歴から戻った（URL は同じなので hashchange は来ない）。見張りを足し直して画面に残り、ask の答え（アプリの小窓）を待つ。
   // やめるなら、足し直した見張りと元の履歴の2つ分戻る。見張りが無ければ（結果の画面など）すぐもう一つ戻る

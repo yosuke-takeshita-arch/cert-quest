@@ -1190,6 +1190,8 @@ body.boss-on { background: #000; }
 .scene-dots { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
 /* 斜めのドット（問題・どっち？・模擬試験）。ボス戦と同じ canvas に JS が描く（隠す 380ms ＋明ける 280ms は TIMES.wipe）。覆いの背景は無し */
 .scene-wipe { background: transparent; }
+/* 地図の章に入る・戻る（zoom・zoomback）。同じく canvas に JS が描く円形のドット（TIMES.zoom は 420ms＋280ms、TIMES.zoomback は 200ms＋220ms）。覆いの背景は無し */
+.scene-zoom, .scene-zoomback { background: transparent; }
 .scene-fade { background: #000; }
 .scene-fade.in { animation: scene-fade-in 150ms linear forwards; }
 .scene-fade.out { animation: scene-fade-out 300ms ease-out forwards; }

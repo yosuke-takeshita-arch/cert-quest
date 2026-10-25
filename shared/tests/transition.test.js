@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { sceneKind, createTransitioner, TIMES, spiralOrder, diagonalOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS, TAB_RISE_STEP_MS, TAB_RISE_STAGGER, TAB_RISE_TOTAL_MS } from '../js/lib/transition.js';
+import { circleOrder, setTransitionOrigin, takeTransitionOrigin, ORIGIN_TTL_MS, sceneKind, createTransitioner, TIMES, spiralOrder, diagonalOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS, TAB_RISE_STEP_MS, TAB_RISE_STAGGER, TAB_RISE_TOTAL_MS } from '../js/lib/transition.js';
 
 const read = (p) => readFileSync(fileURLToPath(new URL(p, import.meta.url)), 'utf8');
 const appSrc = read('../js/app.js');
@@ -26,7 +26,9 @@ test('sceneKind: ふつう→ボス戦・真ボス戦は渦、ふつう→問題
     for (const b of ROUTES) {
       const got = sceneKind(a, b);
       let want = null;
-      if (!a.full && b.full) want = b.name === 'boss' || b.name === 'trueboss' ? 'vortex' : 'wipe';
+      if (!a.full && !b.full && a.name === 'map' && b.name === 'stage') want = 'zoom';
+      else if (!a.full && !b.full && a.name === 'stage' && b.name === 'map') want = 'zoomback';
+      else if (!a.full && b.full) want = b.name === 'boss' || b.name === 'trueboss' ? 'vortex' : 'wipe';
       else if (a.full && !b.full) want = 'fade';
       assert.equal(got, want, a.name + ' → ' + b.name);
     }
@@ -316,7 +318,7 @@ test('clear: 隠している最中でも、タイマーごと片付ける（入�
 
 test('app.js の配線: 場面の判定を hashchange だけが使い、render の順序（cleanup → backGuard → 描画 → BGM → nav → scrollTo → focus → お祝い）は崩れていない', () => {
   assert.match(appSrc, /import \{ sceneKind, createTransitioner, wantsTabRise, tabRise \} from '\.\/lib\/transition\.js';/);
-  assert.match(appSrc, /addEventListener\('hashchange', \(\) => \{\s*if \(transitioner\.covering\) return;\s*const viaTab = tabPressed;\s*tabPressed = false;\s*transitioner\.go\(sceneKind\(shown, routeOfHash\(\)\), \(\) => render\(\{ tab: viaTab \}\)\);\s*\}\);/);
+  assert.match(appSrc, /addEventListener\('hashchange', \(\) => \{\s*if \(transitioner\.covering\) return;\s*const viaTab = tabPressed;\s*tabPressed = false;\s*transitioner\.go\(sceneKind\(shown, routeOfHash\(\), viaTab\), \(\) => render\(\{ tab: viaTab \}\)\);\s*\}\);/);
   assert.ok(!/addEventListener\('hashchange', render\)/.test(appSrc), 'hashchange が直接 render を呼んでいる');
   const start = appSrc.indexOf('  function render(opts) {');
   const end = appSrc.indexOf("window.addEventListener('hashchange'");
@@ -348,10 +350,191 @@ test('css: 覆いの時間が TIMES と同じ。操作は隠している間だ�
   assert.equal(dur('.scene-fade.out'), TIMES.fade.out);
   assert.match(css, /\.scene-veil \{[^}]*pointer-events: none/);
   assert.match(css, /\.scene-veil\.in \{ pointer-events: auto/);
-  for (const k of ['vortex', 'wipe', 'fade']) assert.ok(TIMES[k].in + TIMES[k].out <= 1000, k + ' は 1 秒以内');
+  for (const k of ['vortex', 'wipe', 'fade', 'zoom', 'zoomback']) assert.ok(TIMES[k].in + TIMES[k].out <= 1000, k + ' は 1 秒以内');
   // CSP（style-src 'self'）に触れない: JS は class だけを付ける
   const src = read('../js/lib/transition.js');
   assert.ok(!/\.style\b|setAttribute\('style'/.test(src));
+});
+
+// ---- 地図の章に入る・戻る（要件定義書 §6-5、2026-10-25 先生の言葉『地図内の各章を押したときの場面転換も欲しい』） ----
+test('sceneKind: 地図→章は zoom、章→地図は zoomback。ホーム→章・カード一覧→カードなど他のふつう→ふつうには付けない', () => {
+  const n = (name, full = false) => ({ name, full });
+  assert.equal(sceneKind(n('map'), n('stage')), 'zoom');
+  assert.equal(sceneKind(n('stage'), n('map')), 'zoomback');
+  assert.equal(sceneKind(n('stage'), n('map'), true), null, '章の画面で下の「地図」タブを押したときはタブの弾む動きのまま');
+  assert.equal(sceneKind(n('map'), n('stage'), true), null);
+  assert.equal(sceneKind(n('play', true), n('home'), true), 'fade', 'タブ経由でも場面から戻る暗転は変わらない');
+  assert.equal(sceneKind(n('home'), n('stage')), null, 'ホームから章は付けない');
+  assert.equal(sceneKind(n('map'), n('map')), null);
+  assert.equal(sceneKind(n('stage'), n('stage')), null);
+  assert.equal(sceneKind(n('map'), n('review')), null);
+  assert.equal(sceneKind(n('map'), n('play', true)), 'wipe', '章の画面を経ずに問題へ（ほかの場面は今まで通り）');
+  assert.equal(sceneKind(n('stage'), n('boss', true)), 'vortex');
+  assert.equal(sceneKind(n('play', true), n('stage')), 'fade', '場面から章に戻るのは暗転のまま');
+});
+
+test('circleOrder: 全マスを1回ずつ、指定の位置に近い順', () => {
+  const o = circleOrder(14, 27, 30, 405, 15);
+  assert.equal(o.length, 14 * 27);
+  assert.equal(new Set(o.map((p) => p[0] + ',' + p[1])).size, 14 * 27);
+  assert.deepEqual(o[0], [13, 0], '位置のあるマスが最初');
+  assert.deepEqual(o[o.length - 1], [0, 26], '対角の遠い角が最後');
+  const d = (p) => ((p[0] + 0.5) * 30 - 405) ** 2 + ((p[1] + 0.5) * 30 - 15) ** 2;
+  for (let i = 1; i < o.length; i++) assert.ok(d(o[i]) >= d(o[i - 1]), i + ' 近い順');
+});
+
+test('押した位置の受け渡し: zoom が使い切る。期限切れ・位置なし（キーボード）は null。zoomback は最後に入った位置', () => {
+  setTransitionOrigin(null, null);
+  assert.equal(takeTransitionOrigin('zoom'), null);
+  assert.equal(takeTransitionOrigin('zoomback'), null, '位置が無ければ戻りも中心から');
+  setTransitionOrigin(100, 200);
+  assert.deepEqual(takeTransitionOrigin('zoom'), { x: 100, y: 200 });
+  assert.deepEqual(takeTransitionOrigin('zoomback'), { x: 100, y: 200 });
+  assert.deepEqual(takeTransitionOrigin('zoomback'), { x: 100, y: 200 }, '戻りは何度でも同じ位置');
+  assert.equal(takeTransitionOrigin('wipe'), null);
+  assert.equal(takeTransitionOrigin('zoom'), null, '使い切り（置き直さない限り次の zoom には持ち越さない）');
+  // 期限切れ
+  const realNow = Date.now;
+  try {
+    let t = 1000000;
+    Date.now = () => t;
+    setTransitionOrigin(5, 6);
+    t += ORIGIN_TTL_MS + 1;
+    assert.equal(takeTransitionOrigin('zoom'), null, '古い位置は使わない');
+    setTransitionOrigin(7, 8);
+    t += ORIGIN_TTL_MS;
+    assert.deepEqual(takeTransitionOrigin('zoom'), { x: 7, y: 8 });
+  } finally { Date.now = realNow; }
+  // 数でない位置は置かない
+  setTransitionOrigin(NaN, 3);
+  assert.equal(takeTransitionOrigin('zoom'), null);
+});
+
+test('go: zoom は押した位置から円形に広がり（420ms）、入れ替え後は同じ位置から穴が開く（280ms）。覆いは消える', () => {
+  const f = fake();
+  const t = createTransitioner(f.doc, f.win);
+  setTransitionOrigin(405, 15); // 右上のマス (13,0)
+  let cov = -1;
+  t.go('zoom', () => { cov = f.appended[0].children[0].rects.length; });
+  const canvas = f.appended[0].children[0];
+  assert.match(f.appended[0].className, /scene-zoom in$/);
+  assert.equal(f.appended[0].attrs['aria-hidden'], 'true');
+  const total = 14 * 27;
+  f.frame();
+  f.advance(210);
+  f.frame();
+  assert.ok(canvas.rects.length > total * 0.4 && canvas.rects.length < total * 0.6, canvas.rects.length + ' / ' + total);
+  assert.ok(canvas.rects.some((r) => r[0] === 13 * 30 && r[1] === 0), '押した位置が埋まっている');
+  assert.ok(!canvas.rects.some((r) => r[0] === 0 && r[1] === 26 * 30), '遠い角はまだ');
+  assert.equal(canvas.fill, '#000');
+  assert.ok(canvas.rects.every((r) => r[2] === 30 && r[3] === 30), 'ボスと同じ 30px の四角');
+  assert.equal(t.covering, true);
+  f.advance(209);
+  assert.equal(cov, -1, '420ms まで入れ替えない');
+  f.advance(1);
+  assert.equal(cov, total, '入れ替えの時点で全部埋まっている');
+  assert.equal(t.covering, false);
+  assert.match(f.appended[0].className, /scene-zoom out$/);
+  f.frame();
+  f.advance(140);
+  f.frame();
+  assert.ok(canvas.rects.length > 0 && canvas.rects.length < total, '明ける間は半分ほど');
+  assert.ok(!canvas.rects.some((r) => r[0] === 13 * 30 && r[1] === 0), '押した位置から先に穴が開く');
+  assert.ok(canvas.rects.some((r) => r[0] === 0 && r[1] === 26 * 30), '遠い角は最後まで残る');
+  f.advance(140);
+  assert.equal(f.appended.length, 0);
+  f.frame();
+  assert.equal(f.pending(), 0);
+});
+
+test('go: zoom の位置が無いとき（キーボードで開いた等）は画面の中心から', () => {
+  const f = fake();
+  const t = createTransitioner(f.doc, f.win);
+  setTransitionOrigin(null, null);
+  t.go('zoom', () => {});
+  const canvas = f.appended[0].children[0];
+  f.frame();
+  f.advance(100);
+  f.frame();
+  assert.ok(canvas.rects.some((r) => r[0] === 6 * 30 && r[1] === 13 * 30), '中心のマス (6〜7, 13) が埋まっている');
+  assert.ok(!canvas.rects.some((r) => r[0] === 0 && r[1] === 0) && !canvas.rects.some((r) => r[0] === 13 * 30 && r[1] === 26 * 30), '角はまだ');
+  t.clear();
+});
+
+test('go: zoomback は外側から押した位置へ縮むように埋まり（200ms）、同じ位置へ縮んで明ける（220ms）', () => {
+  const f = fake();
+  const t = createTransitioner(f.doc, f.win);
+  setTransitionOrigin(405, 15);
+  takeTransitionOrigin('zoom'); // 入ったときに覚えた位置
+  let cov = -1;
+  t.go('zoomback', () => { cov = f.appended[0].children[0].rects.length; });
+  const canvas = f.appended[0].children[0];
+  assert.match(f.appended[0].className, /scene-zoomback in$/);
+  const total = 14 * 27;
+  f.frame();
+  f.advance(100);
+  f.frame();
+  assert.ok(canvas.rects.length > total * 0.4 && canvas.rects.length < total * 0.6, canvas.rects.length + ' / ' + total);
+  assert.ok(canvas.rects.some((r) => r[0] === 0 && r[1] === 26 * 30), '遠い角から先に埋まる');
+  assert.ok(!canvas.rects.some((r) => r[0] === 13 * 30 && r[1] === 0), '押した位置は最後');
+  f.advance(100);
+  assert.equal(cov, total);
+  assert.match(f.appended[0].className, /scene-zoomback out$/);
+  f.frame();
+  f.advance(110);
+  f.frame();
+  assert.ok(canvas.rects.length > 0 && canvas.rects.length < total);
+  assert.ok(canvas.rects.some((r) => r[0] === 13 * 30 && r[1] === 0), '押した位置へ縮む＝最後まで残る');
+  assert.ok(!canvas.rects.some((r) => r[0] === 0 && r[1] === 26 * 30), '遠い角から先に消える');
+  f.advance(110);
+  assert.equal(f.appended.length, 0);
+  assert.equal(f.pending(), 0);
+});
+
+test('go: zoom・zoomback も canvas が使えなければ暗転、動きを減らす設定では出さない、連打でも覆いは1枚以下', () => {
+  for (const kind of ['zoom', 'zoomback']) {
+    const f = fake({ canvasOk: false });
+    let swapped = 0;
+    createTransitioner(f.doc, f.win).go(kind, () => { swapped++; });
+    assert.match(f.appended[0].className, /scene-fade.* in$/, kind);
+    f.advance(TIMES.fade.in);
+    assert.equal(swapped, 1);
+    f.advance(TIMES.fade.out);
+    assert.equal(f.appended.length, 0);
+    const r = fake({ reduce: true });
+    let s2 = 0;
+    createTransitioner(r.doc, r.win).go(kind, () => { s2++; });
+    assert.equal(s2, 1);
+    assert.equal(r.appended.length, 0);
+  }
+  const f = fake();
+  const t = createTransitioner(f.doc, f.win);
+  const log = [];
+  t.go('zoom', () => log.push('a'));
+  f.advance(TIMES.zoom.in);
+  t.go('zoomback', () => log.push('b')); // 明けている最中に戻る
+  assert.equal(f.appended.length, 1);
+  assert.match(f.appended[0].className, /scene-zoomback/);
+  f.advance(TIMES.zoomback.in);
+  f.advance(TIMES.zoomback.out);
+  assert.deepEqual(log, ['a', 'b']);
+  assert.equal(f.appended.length, 0);
+  assert.equal(f.pending(), 0);
+  // 隠している間だけ操作を止める CSS は共通（.scene-veil.in）
+  assert.ok(TIMES.zoom.in + TIMES.zoom.out <= 1000 && TIMES.zoom.in + TIMES.zoom.out < TIMES.vortex.in + TIMES.vortex.out, 'ボスの渦より短い');
+  assert.ok(TIMES.zoomback.in + TIMES.zoomback.out <= TIMES.zoom.in + TIMES.zoom.out, '戻りは入るより短い');
+});
+
+test('配線: home.js は地図の丸・名前・一覧の行を押したとき位置を渡す（キーボードは位置なし）。app.js は位置に触れず、go が受け取る', () => {
+  const home = read('../js/views/home.js');
+  assert.match(home, /import \{ setTransitionOrigin \} from '\.\.\/lib\/transition\.js';/);
+  assert.match(home, /function rememberTapOrigin\(e\) \{\s*if \(e && e\.detail > 0 && Number\.isFinite\(e\.clientX\) && Number\.isFinite\(e\.clientY\)\) setTransitionOrigin\(e\.clientX, e\.clientY\);\s*else setTransitionOrigin\(null, null\);/);
+  assert.match(home, /const go = \(e\) => \{ rememberTapOrigin\(e\); app\.go\('#\/stage\/'/);
+  assert.match(home, /onClick: go,/, '地図の丸');
+  assert.match(home, /h\('div', \{ class: 'map-name', onClick: go \}/, '地図の名前');
+  assert.match(home, /onClick: \(e\) => \{ rememberTapOrigin\(e\); app\.go\('#\/stage\/'/, '一覧の行');
+  assert.ok(!/setTransitionOrigin|takeTransitionOrigin/.test(appSrc), 'app.js は位置を扱わない（go の中で受け取る）');
+  assert.match(read('../js/lib/transition.js'), /const origin = takeTransitionOrigin\(kind\);[^\n]*\n\s*clearVeil\(\);/);
 });
 
 // ---- 下のタブを押したときの浮かび上がり（要件定義書 §6-5、先生決定 B、2026-10-25） ----

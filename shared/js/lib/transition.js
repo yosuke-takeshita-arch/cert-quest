@@ -7,14 +7,24 @@ export const TIMES = {
   vortex: { in: 700, out: 300 }, // ボス戦・真ボス戦に入る。四角いドットが渦巻きの順に埋まる（合わせて 1 秒）
   wipe: { in: 380, out: 280 }, // 問題・どっち？・模擬試験に入る。四角いドットが左上から右下へ斜めの帯になって埋まる（合わせて 0.66 秒）
   fade: { in: 150, out: 300 }, // 場面からふつうの画面に戻る。暗転から明ける（合わせて 0.45 秒）
+  zoom: { in: 420, out: 280 }, // 地図の章を押して章の画面に入る。押した位置から四角いドットが円形に広がって埋まり、同じ位置から穴が開くように明ける（合わせて 0.7 秒）
+  zoomback: { in: 200, out: 220 }, // 章の画面から地図に戻る。ドットが外側から押した位置へ縮むように埋まり、同じ位置へ縮んで明ける（合わせて 0.42 秒）
 };
 
 const BOSS_NAMES = ['boss', 'trueboss'];
+const DOT_KINDS = ['vortex', 'wipe', 'zoom', 'zoomback'];
 
-// prev / next は { name, full }（full … ROUTES の4つ目が true ＝下のメニューを隠す画面）。戻り値は 'vortex' | 'wipe' | 'fade' | null
-export function sceneKind(prev, next) {
+// prev / next は { name, full }（full … ROUTES の4つ目が true ＝下のメニューを隠す画面）。戻り値は 'vortex' | 'wipe' | 'fade' | 'zoom' | 'zoomback' | null
+// viaTab … 下のタブを押した変更（章の画面で「地図」のタブを押した場合は、タブの弾む動きのままにして、地図 ⇄ 章の演出は付けない）
+export function sceneKind(prev, next, viaTab) {
   if (!prev || !next) return null;
-  if (!!prev.full === !!next.full) return null; // ふつう→ふつう、場面→場面には何も付けない（勉強のテンポを落とさない・場面の中の遷移は場面のまま）
+  if (!prev.full && !next.full) { // ふつう→ふつうは付けない（勉強のテンポを落とさない）。ただし地図と章の画面の行き来だけ、小さな演出を付ける
+    if (viaTab) return null;
+    if (prev.name === 'map' && next.name === 'stage') return 'zoom';
+    if (prev.name === 'stage' && next.name === 'map') return 'zoomback';
+    return null;
+  }
+  if (!!prev.full === !!next.full) return null; // 場面→場面には何も付けない（場面の中の遷移は場面のまま）
   if (prev.full) return 'fade';
   return BOSS_NAMES.includes(next.name) ? 'vortex' : 'wipe';
 }
@@ -45,6 +55,47 @@ export function diagonalOrder(cols, rows) {
   return out;
 }
 
+// cols × rows の格子を、(cx, cy)（画面上の px）に近いマスから遠いマスへ並べる（地図→章の円形）。距離が同じなら上、次に左から。全マスを1回ずつ
+export function circleOrder(cols, rows, size, cx, cy) {
+  const cells = [];
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const dx = (x + 0.5) * size - cx;
+      const dy = (y + 0.5) * size - cy;
+      cells.push([x, y, dx * dx + dy * dy]);
+    }
+  }
+  cells.sort((a, b) => a[2] - b[2] || a[1] - b[1] || a[0] - b[0]);
+  return cells.map((c) => [c[0], c[1]]);
+}
+
+// 地図の章を押した位置（画面上の px）の受け渡し。views/home.js が押した瞬間に置き、hashchange 後に go が受け取る。
+// 置いてから ORIGIN_TTL_MS を過ぎたものは使わない（押しても画面が変わらなかったときの古い位置を、次の転換に持ち越さない）。
+// 位置が取れない押し方（キーボードで開いた等）は null を置き、画面の中心から出す
+export const ORIGIN_TTL_MS = 1500;
+let pendingOrigin = null; // 次の 地図→章 に使う位置 { x, y, at }
+let lastOrigin = null; // 最後に入った章の位置。章→地図 の戻りで、そこへ縮ませる
+
+export function setTransitionOrigin(x, y) {
+  if (Number.isFinite(x) && Number.isFinite(y)) {
+    pendingOrigin = { x, y, at: Date.now() };
+  } else {
+    pendingOrigin = null;
+  }
+}
+
+// kind に使う位置 { x, y } を返す（無ければ null）。zoom は受け取ったら使い切り（最後の位置としても覚える）、zoomback は覚えている位置
+export function takeTransitionOrigin(kind) {
+  if (kind === 'zoom') {
+    const o = pendingOrigin && Date.now() - pendingOrigin.at <= ORIGIN_TTL_MS ? pendingOrigin : null;
+    pendingOrigin = null;
+    lastOrigin = o ? { x: o.x, y: o.y } : null;
+    return lastOrigin;
+  }
+  if (kind === 'zoomback') return lastOrigin;
+  return null;
+}
+
 // 斜めの帯の先頭（いちばん進んでいる帯）だけ少し明るくする色
 const DOT_COLOR = '#000';
 const DOT_HEAD_COLOR = '#2b3568';
@@ -56,7 +107,7 @@ export function dotsFilled(phase, t, n, t_in, t_out) {
 }
 
 // veil の中に canvas を作ってドットを描く。作れなければ null（呼び出し側は覆いを暗転に切り替える）。style 属性は使わない（CSP）
-function createDots(doc, win, veil, kind) {
+function createDots(doc, win, veil, kind, origin) {
   try {
     if (!veil.appendChild || !doc.createElement) return null;
     const canvas = doc.createElement('canvas');
@@ -73,7 +124,14 @@ function createDots(doc, win, veil, kind) {
     canvas.className = 'scene-dots';
     veil.appendChild(canvas);
     const diagonal = kind === 'wipe';
-    const order = diagonal ? diagonalOrder(cols, rows) : spiralOrder(cols, rows);
+    const zoom = kind === 'zoom' || kind === 'zoomback';
+    let order;
+    if (diagonal) order = diagonalOrder(cols, rows);
+    else if (zoom) {
+      const ox = Math.max(0, Math.min(W, origin && Number.isFinite(origin.x) ? origin.x : W / 2));
+      const oy = Math.max(0, Math.min(H, origin && Number.isFinite(origin.y) ? origin.y : H / 2));
+      order = circleOrder(cols, rows, size, ox, oy);
+    } else order = spiralOrder(cols, rows);
     const n = order.length;
     const T = TIMES[kind];
     const band = cols; // 先頭の帯（明るい色）の数
@@ -85,7 +143,14 @@ function createDots(doc, win, veil, kind) {
     function draw(count) {
       if (count === drawn) return;
       ctx.clearRect(0, 0, W, H);
-      if (!diagonal) {
+      if (zoom) {
+        // 円形: order は押した位置に近い順。zoom は近いところから広がり、近いところから穴が開く。zoomback は遠いところから縮み、遠いところから消える（位置へ縮む）
+        const nearFirst = (kind === 'zoom') === (phase === 'in');
+        const from = nearFirst ? 0 : n - count;
+        const to = nearFirst ? count : n;
+        ctx.fillStyle = DOT_COLOR;
+        for (let i = from; i < to; i++) ctx.fillRect(order[i][0] * size, order[i][1] * size, size, size);
+      } else if (!diagonal) {
         ctx.fillStyle = DOT_COLOR;
         for (let i = 0; i < count; i++) ctx.fillRect(order[i][0] * size, order[i][1] * size, size, size);
       } else {
@@ -181,6 +246,7 @@ export function createTransitioner(doc, win) {
   }
 
   function go(kind, swap) {
+    const origin = takeTransitionOrigin(kind); // 地図→章の押した位置。演出を出さない場合でも使い切る（古い位置を持ち越さない）
     clearVeil(); // 明けている最中に次の変更が来たら、残さず片付けてから
     if (kind && TIMES[kind] && (reduced() || !doc || !doc.body)) { swap(); return; }
     if (!kind || !TIMES[kind]) { swap(); return; }
@@ -188,8 +254,8 @@ export function createTransitioner(doc, win) {
     veil.className = 'scene-veil scene-' + kind + ' in';
     veil.setAttribute('aria-hidden', 'true');
     doc.body.appendChild(veil);
-    if (kind === 'vortex' || kind === 'wipe') {
-      dots = createDots(doc, win, veil, kind);
+    if (DOT_KINDS.includes(kind)) {
+      dots = createDots(doc, win, veil, kind, origin);
       if (!dots) { kind = 'fade'; veil.className = 'scene-veil scene-fade in'; } // canvas が使えない端末は、ふつうの暗転に
     }
     const t = TIMES[kind];

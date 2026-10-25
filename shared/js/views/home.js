@@ -23,6 +23,13 @@ import { curseLayer, liftCurse } from './curse.js';
 import { trueBossCursed, trueBossCurseToLift, markCurseLifted } from '../lib/trueboss.js';
 import { cardBody } from './cards.js';
 import { installHint } from '../lib/install.js';
+import { setTransitionOrigin } from '../lib/transition.js';
+
+// 地図の章を押した位置を、章の画面に入る演出（lib/transition.js の 'zoom'）に渡す。タップ・クリックだけ（detail が 0 のキーボード操作は位置が無いので画面の中心から）
+function rememberTapOrigin(e) {
+  if (e && e.detail > 0 && Number.isFinite(e.clientX) && Number.isFinite(e.clientY)) setTransitionOrigin(e.clientX, e.clientY);
+  else setTransitionOrigin(null, null);
+}
 
 export function masteryChip(level) {
   return h('span', { class: 'chip m-' + level, text: MASTERY_LABEL[level] });
@@ -445,7 +452,7 @@ function mapAdventure(app) {
     const rec = state.stages[st.key];
     const star = rec ? rec.stars : 0;
     const isHere = !!here && here.key === st.key;
-    const go = () => app.go('#/stage/' + encodeURIComponent(st.key));
+    const go = (e) => { rememberTapOrigin(e); app.go('#/stage/' + encodeURIComponent(st.key)); };
     const dot = h('button', {
       class: 'map-dot m-border-' + p.level, type: 'button', onClick: go,
       'aria-label': (n.index + 1) + '. ' + st.name + '、星' + star + '、' + MASTERY_LABEL[p.level] + '、' + stageSub(st, p) + (isHere ? '、次に解く章' : ''),
@@ -473,7 +480,7 @@ function mapAdventure(app) {
 function stageRow(app, st) {
   const p = nodeProgress(st, app.state.qstats);
   const rec = app.state.stages[st.key];
-  return h('button', { class: 'stage-row m-border-' + p.level, type: 'button', onClick: () => app.go('#/stage/' + encodeURIComponent(st.key)) },
+  return h('button', { class: 'stage-row m-border-' + p.level, type: 'button', onClick: (e) => { rememberTapOrigin(e); app.go('#/stage/' + encodeURIComponent(st.key)); } },
     h('span', { class: 'row-main' }, h('strong', { text: st.name }), h('span', { class: 'small muted', text: stageSub(st, p) })),
     stars(rec ? rec.stars : 0), bossChip(app, st), masteryChip(p.level));
 }
