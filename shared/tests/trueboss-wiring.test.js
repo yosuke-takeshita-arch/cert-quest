@@ -81,11 +81,14 @@ test('入口: 地図と復習の画面に、真ボスの入口（trueBossPlace�
   assert.match(view, /export function trueBossPlace\(app, back\) \{\n  if \(!trueBossEnabled\(app\.config\)\) return null;/);
 });
 
-test('出る条件は画面に出さない（章のボスと同じ考え）。現れていない間は『？？？』と影だけ', () => {
+test('真ボスがいることは伏せる。現れていない間は、地図・復習に入口（影も文も）を出さない。直接開いても『ひそんでいる』は出ない（先生 2026-10-25）', () => {
   const view = code('shared/js/views/trueboss.js');
   assert.doesNotMatch(view, /全章|すべての章|全部の章|ボスをすべて|倒すと現れ|倒すと出/, '条件を書いている');
-  assert.match(view, /unknownName: '？？？'/);
-  assert.match(view, /trueBossArt\(1, 'off unknown'\)/);
+  assert.doesNotMatch(view, /unknownName|trueBossLockedText|ひそんで|'off unknown'|data-true-boss-place': 'locked'/, '影・伏せるべき文が残っている');
+  const place = view.slice(view.indexOf('export function trueBossPlace'), view.indexOf('function buildCrackLayer'));
+  assert.match(place, /if \(!trueBossUnlocked\(app\.state, app\.data\.tree\.stages\)\) return null;\n/);
+  assert.ok(place.indexOf('return null;', place.indexOf('trueBossUnlocked')) < place.indexOf('h('), '未解放のとき、要素を作る前に null を返す');
+  assert.equal((place.match(/boss-place off/g) || []).length, 0);
   // 章のボスを全部倒した勝ちのあとの一言（合図）は出すが、条件は書かない
   const boss = code('shared/js/views/boss.js');
   assert.match(boss, /text: trueBossAwakeText\(app\.config\) \}/);

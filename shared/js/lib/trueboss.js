@@ -27,8 +27,6 @@ export function trueBossEndingPath(config) {
   if (!/^\.\/[A-Za-z0-9_\-/]+\.webp$/.test(p) || p.includes('..') || p.includes('//')) return null;
   return p;
 }
-/** 入口の影（まだ現れていないとき）の文。 */
-export function trueBossLockedText(config) { return trueBossWords(config).place + 'に、なにかが ひそんでいる……'; }
 /** 最後の章のボスを倒して、真ボスが現れたときの文。 */
 export function trueBossAwakeText(config) { return trueBossWords(config).place + 'で、おおきな なにかが めざめた……'; }
 

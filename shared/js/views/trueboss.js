@@ -11,7 +11,7 @@ import { BOSS_XP } from '../lib/scoring.js';
 import { isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { quoted, faceCrop } from '../lib/bossdata.js';
 import {
-  trueBossEnabled, trueBossUnlocked, trueBossWords, trueBossEndingPath, trueBossLockedText, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
+  trueBossEnabled, trueBossUnlocked, trueBossWords, trueBossEndingPath, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
 import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
@@ -25,7 +25,7 @@ export const TRUE_BOSS_SYMBOL = '真';
 
 /** 真ボスの文。現れる条件（章のボスをすべて倒す）は画面に出さない（章のボスと同じ考え）。 */
 export const TRUE_BOSS_TEXT = {
-  unknownName: '？？？',
+  nothing: 'ここには なにも ありません。', // 現れる前に直接開いたとき（真ボスがいることは伏せる）
   none: 'まだ 戦えません。',
 };
 
@@ -128,16 +128,12 @@ export function openTrueBoss(app, back) {
   app.go('#/trueboss');
 }
 
-/** 真ボスの入口（地図・復習の画面）。真ボスを出さないアプリでは null。現れていなければ影だけ（条件は出さない）。 */
+/** 真ボスの入口（地図・復習の画面）。真ボスを出さないアプリでは null。現れていなければ null（影も文も出さない。いきなり現れるのを楽しみにするため。先生 2026-10-25）。 */
 export function trueBossPlace(app, back) {
   if (!trueBossEnabled(app.config)) return null;
+  if (!trueBossUnlocked(app.state, app.data.tree.stages)) return null;
   useGeom(app);
   const data = dataOf(app);
-  if (!trueBossUnlocked(app.state, app.data.tree.stages)) {
-    return h('div', { class: 'card boss-place off', 'data-true-boss-place': 'locked' },
-      h('div', { class: 'boss-place-head' }, trueBossArt(1, 'off unknown'),
-        h('div', { class: 'boss-place-text' }, h('strong', { text: TRUE_BOSS_TEXT.unknownName }), h('span', { class: 'small muted', text: trueBossLockedText(app.config) }))));
-  }
   preloadFormImages(); // 入口を出したときに、3枚の絵を先に読み込む
   const wins = trueBossWins(app.state);
   return h('div', { class: 'card boss-place on' + (wins ? '' : ' cursed'), 'data-true-boss-place': 'on', ...(wins ? {} : { 'data-true-boss-cursed': '1' }) }, // まだ倒していない間は、入口の印を脈打たせて目立たせる（呪われた地図）
@@ -242,8 +238,7 @@ export function renderTrueBoss(app) {
   if (trueBossEnabled(app.config) && trueBossUnlocked(app.state, app.data.tree.stages)) preloadFormImages(); // 3形態の絵を先に読み込む（戦いの途中で絵を替えるとき、待たずに済むように）
   if (!trueBossEnabled(app.config) || !trueBossUnlocked(app.state, app.data.tree.stages)) {
     root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go(back) }, '← 戻る'));
-    root.appendChild(h('h1', { text: TRUE_BOSS_TEXT.unknownName }));
-    root.appendChild(h('div', { class: 'card empty', 'data-true-boss-none': '1' }, h('p', { text: trueBossLockedText(app.config) })));
+    root.appendChild(h('div', { class: 'card empty', 'data-true-boss-none': '1' }, h('p', { text: TRUE_BOSS_TEXT.nothing })));
     return root;
   }
   const limit = secondsPerQuestion(app.config);
