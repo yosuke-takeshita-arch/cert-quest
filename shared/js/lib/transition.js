@@ -5,7 +5,7 @@
 
 export const TIMES = {
   vortex: { in: 700, out: 300 }, // ボス戦・真ボス戦に入る。四角いドットが渦巻きの順に埋まる（合わせて 1 秒）
-  wipe: { in: 200, out: 200 }, // 問題・どっち？・模擬試験に入る。暗いパネルが横切る（合わせて 0.4 秒）
+  wipe: { in: 380, out: 280 }, // 問題・どっち？・模擬試験に入る。四角いドットが左上から右下へ斜めの帯になって埋まる（合わせて 0.66 秒）
   fade: { in: 150, out: 300 }, // 場面からふつうの画面に戻る。暗転から明ける（合わせて 0.45 秒）
 };
 
@@ -36,6 +36,19 @@ export function spiralOrder(cols, rows) {
   return out;
 }
 
+// cols × rows の格子を、左上の角から右下の角へ、斜めの帯（x+y が同じ列）ごとに並べる（問題・どっち？・模擬試験）。帯の中は左から。全マスを1回ずつ
+export function diagonalOrder(cols, rows) {
+  const out = [];
+  for (let d = 0; d <= cols + rows - 2; d++) {
+    for (let x = Math.max(0, d - (rows - 1)); x <= Math.min(cols - 1, d); x++) out.push([x, d - x]);
+  }
+  return out;
+}
+
+// 斜めの帯の先頭（いちばん進んでいる帯）だけ少し明るくする色
+const DOT_COLOR = '#000';
+const DOT_HEAD_COLOR = '#2b3568';
+
 // 埋まっているドットの数。phase 'in' … 0→n（t=0..inMs）、'out' … n→0（t=0..outMs。中心から先に消える＝渦が解ける）
 export function dotsFilled(phase, t, n, t_in, t_out) {
   if (phase === 'in') return Math.max(0, Math.min(n, Math.ceil((t / t_in) * n)));
@@ -43,7 +56,7 @@ export function dotsFilled(phase, t, n, t_in, t_out) {
 }
 
 // veil の中に canvas を作ってドットを描く。作れなければ null（呼び出し側は覆いを暗転に切り替える）。style 属性は使わない（CSP）
-function createDots(doc, win, veil) {
+function createDots(doc, win, veil, kind) {
   try {
     if (!veil.appendChild || !doc.createElement) return null;
     const canvas = doc.createElement('canvas');
@@ -59,8 +72,11 @@ function createDots(doc, win, veil) {
     canvas.height = H;
     canvas.className = 'scene-dots';
     veil.appendChild(canvas);
-    const order = spiralOrder(cols, rows);
+    const diagonal = kind === 'wipe';
+    const order = diagonal ? diagonalOrder(cols, rows) : spiralOrder(cols, rows);
     const n = order.length;
+    const T = TIMES[kind];
+    const band = cols; // 先頭の帯（明るい色）の数
     const now = () => (win.performance && win.performance.now ? win.performance.now() : Date.now());
     let phase = 'in';
     let t0 = now();
@@ -69,13 +85,25 @@ function createDots(doc, win, veil) {
     function draw(count) {
       if (count === drawn) return;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#000';
-      for (let i = 0; i < count; i++) ctx.fillRect(order[i][0] * size, order[i][1] * size, size, size);
+      if (!diagonal) {
+        ctx.fillStyle = DOT_COLOR;
+        for (let i = 0; i < count; i++) ctx.fillRect(order[i][0] * size, order[i][1] * size, size, size);
+      } else {
+        // 斜め: 隠す間は先頭から count 個（先頭の帯は右下側の端）、明ける間は同じ向きに左上から消える＝残りは末尾の count 個（先頭の帯は左上側の端）
+        const from = phase === 'in' ? 0 : n - count;
+        const to = phase === 'in' ? count : n;
+        const head = phase === 'in' ? (i) => i >= to - band : (i) => i < from + band;
+        ctx.fillStyle = DOT_COLOR;
+        for (let i = from; i < to; i++) if (!head(i)) ctx.fillRect(order[i][0] * size, order[i][1] * size, size, size);
+        ctx.fillStyle = DOT_HEAD_COLOR;
+        for (let i = from; i < to; i++) if (head(i) && count < n) ctx.fillRect(order[i][0] * size, order[i][1] * size, size, size);
+        if (count >= n) { ctx.fillStyle = DOT_COLOR; for (let i = from; i < to; i++) if (head(i)) ctx.fillRect(order[i][0] * size, order[i][1] * size, size, size); }
+      }
       drawn = count;
     }
     function frame() {
       if (stopped) return;
-      draw(dotsFilled(phase, now() - t0, n, TIMES.vortex.in, TIMES.vortex.out));
+      draw(dotsFilled(phase, now() - t0, n, T.in, T.out));
       raf(frame);
     }
     raf(frame);
@@ -160,8 +188,8 @@ export function createTransitioner(doc, win) {
     veil.className = 'scene-veil scene-' + kind + ' in';
     veil.setAttribute('aria-hidden', 'true');
     doc.body.appendChild(veil);
-    if (kind === 'vortex') {
-      dots = createDots(doc, win, veil);
+    if (kind === 'vortex' || kind === 'wipe') {
+      dots = createDots(doc, win, veil, kind);
       if (!dots) { kind = 'fade'; veil.className = 'scene-veil scene-fade in'; } // canvas が使えない端末は、ふつうの暗転に
     }
     const t = TIMES[kind];

@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { sceneKind, createTransitioner, TIMES, spiralOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS, TAB_RISE_STEP_MS, TAB_RISE_STAGGER, TAB_RISE_TOTAL_MS } from '../js/lib/transition.js';
+import { sceneKind, createTransitioner, TIMES, spiralOrder, diagonalOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS, TAB_RISE_STEP_MS, TAB_RISE_STAGGER, TAB_RISE_TOTAL_MS } from '../js/lib/transition.js';
 
 const read = (p) => readFileSync(fileURLToPath(new URL(p, import.meta.url)), 'utf8');
 const appSrc = read('../js/app.js');
@@ -87,6 +87,65 @@ test('spiralOrder: 全マスを1回ずつ、外周から時計回りに内側へ
   const o = spiralOrder(3, 3).map((p) => p.join(''));
   assert.deepEqual(o, ['00', '10', '20', '21', '22', '12', '02', '01', '11']); // 右→下→左→上→中心
   assert.equal(spiralOrder(14, 30)[0].join(), '0,0'); // 角から始まる（外側）
+});
+
+test('diagonalOrder: 全マスを1回ずつ、左上の角から右下の角へ、斜めの帯（x+y）の順', () => {
+  for (const [c, r] of [[1, 1], [1, 5], [5, 1], [2, 2], [3, 3], [14, 29], [14, 30], [4, 7]]) {
+    const o = diagonalOrder(c, r);
+    assert.equal(o.length, c * r, c + 'x' + r + ' の数');
+    assert.equal(new Set(o.map((p) => p[0] + ',' + p[1])).size, c * r, c + 'x' + r + ' の重なり');
+    assert.ok(o.every(([x, y]) => x >= 0 && x < c && y >= 0 && y < r));
+    for (let i = 1; i < o.length; i++) assert.ok(o[i][0] + o[i][1] >= o[i - 1][0] + o[i - 1][1], c + 'x' + r + ' ' + i + ' 帯が戻らない');
+    assert.deepEqual(o[0], [0, 0]);
+    assert.deepEqual(o[o.length - 1], [c - 1, r - 1]);
+  }
+  assert.deepEqual(diagonalOrder(3, 3).map((p) => p.join('')), ['00', '01', '10', '02', '11', '20', '12', '21', '22']);
+});
+
+test('go: 斜めのドットは 380ms 隠してから入れ替え、280ms で明けて消える。帯の先頭だけ明るい色、隠しきったら全部黒', () => {
+  const f = fake();
+  const t = createTransitioner(f.doc, f.win);
+  let cov = -1;
+  let fillAtSwap = '';
+  t.go('wipe', () => { const c = f.appended[0].children[0]; cov = c.rects.length; fillAtSwap = c.fill; });
+  const canvas = f.appended[0].children[0];
+  assert.equal(canvas.tag, 'canvas');
+  assert.match(f.appended[0].className, /scene-wipe.* in$/);
+  f.frame();
+  f.advance(190);
+  f.frame();
+  const total = 14 * Math.ceil(800 / Math.ceil(412 / 14));
+  assert.ok(canvas.rects.length > total * 0.4 && canvas.rects.length < total * 0.6, canvas.rects.length + ' / ' + total);
+  assert.equal(canvas.fill, '#2b3568', '途中は先頭の帯を明るい色で描く');
+  // 埋まっているのは左上側（右下の角はまだ）
+  assert.ok(!canvas.rects.some((r) => r[0] === 13 * 30 && r[1] === 26 * 30));
+  assert.ok(canvas.rects.some((r) => r[0] === 0 && r[1] === 0));
+  f.advance(190);
+  assert.equal(cov, total, '入れ替えの時点で全部埋まっている');
+  assert.equal(fillAtSwap, '#000');
+  assert.match(f.appended[0].className, /scene-wipe.* out$/);
+  f.frame();
+  f.advance(140);
+  f.frame();
+  assert.ok(canvas.rects.length > 0 && canvas.rects.length < total, '明ける間は半分ほど');
+  assert.ok(!canvas.rects.some((r) => r[0] === 0 && r[1] === 0), '明けるときも左上から先に消える');
+  assert.ok(canvas.rects.some((r) => r[0] === 13 * 30 && r[1] === 26 * 30));
+  f.advance(140);
+  assert.equal(f.appended.length, 0);
+  f.frame();
+  assert.equal(f.pending(), 0);
+});
+
+test('go: canvas が使えない端末では、斜めのドットのかわりにふつうの暗転を出す', () => {
+  const f = fake({ canvasOk: false });
+  const t = createTransitioner(f.doc, f.win);
+  let swapped = 0;
+  t.go('wipe', () => { swapped++; });
+  assert.match(f.appended[0].className, /scene-fade.* in$/);
+  f.advance(TIMES.fade.in);
+  assert.equal(swapped, 1);
+  f.advance(TIMES.fade.out);
+  assert.equal(f.appended.length, 0);
 });
 
 test('dotsFilled: 隠す間は0→全部、明ける間は全部→0。範囲の外に出ない', () => {
@@ -283,8 +342,8 @@ test('css: 覆いの時間が TIMES と同じ。操作は隠している間だ�
     return Number(m[1]);
   };
   assert.equal(TIMES.vortex.in, 700);
-  assert.equal(dur('.scene-wipe.in'), TIMES.wipe.in);
-  assert.equal(dur('.scene-wipe.out'), TIMES.wipe.out);
+  assert.deepEqual(TIMES.wipe, { in: 380, out: 280 }); // 斜めのドットは JS が canvas に描く。CSS の animation は持たない
+  assert.ok(!/\.scene-wipe\.(in|out) \{[^}]*animation/.test(css));
   assert.equal(dur('.scene-fade.in'), TIMES.fade.in);
   assert.equal(dur('.scene-fade.out'), TIMES.fade.out);
   assert.match(css, /\.scene-veil \{[^}]*pointer-events: none/);

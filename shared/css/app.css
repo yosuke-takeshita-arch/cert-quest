@@ -1188,14 +1188,11 @@ body.boss-on { background: #000; }
 .scene-veil.in { pointer-events: auto; } /* 隠している間だけ、下の画面への誤タップを止める */
 /* ドットの渦（ボス戦）。四角いドットは JS が canvas に描く（1.0 秒＝隠す 700ms ＋明ける 300ms は TIMES.vortex）。CSS は canvas を画面いっぱいに置くだけ */
 .scene-dots { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
-.scene-wipe { background: #05060f; border-left: 6px solid var(--accent); will-change: transform; }
-.scene-wipe.in { animation: scene-wipe-in 200ms ease-in forwards; }
-.scene-wipe.out { animation: scene-wipe-out 200ms ease-out forwards; }
+/* 斜めのドット（問題・どっち？・模擬試験）。ボス戦と同じ canvas に JS が描く（隠す 380ms ＋明ける 280ms は TIMES.wipe）。覆いの背景は無し */
+.scene-wipe { background: transparent; }
 .scene-fade { background: #000; }
 .scene-fade.in { animation: scene-fade-in 150ms linear forwards; }
 .scene-fade.out { animation: scene-fade-out 300ms ease-out forwards; }
-@keyframes scene-wipe-in { from { transform: translateX(-101%); } to { transform: translateX(0); } }
-@keyframes scene-wipe-out { from { transform: translateX(0); } to { transform: translateX(101%); } }
 @keyframes scene-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes scene-fade-out { from { opacity: 1; } to { opacity: 0; } }
 /* 下のタブを押したときの、画面の中身の弾み（要件定義書 §6-5、先生の言葉を受けて作り直し 2026-10-25）。覆いは使わず、待たせない・操作を止めない。
