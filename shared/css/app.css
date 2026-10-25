@@ -1198,7 +1198,18 @@ body.boss-on { background: #000; }
 @keyframes scene-wipe-out { from { transform: translateX(0); } to { transform: translateX(101%); } }
 @keyframes scene-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes scene-fade-out { from { opacity: 1; } to { opacity: 0; } }
-/* 下のタブを押したときの、画面の中身の浮かび上がり（要件定義書 §6-5、先生決定 B）。覆いは使わず、待たせない・操作を止めない。
-   時間は lib/transition.js の TAB_RISE_MS と同じ。動きを減らす設定では上の prefers-reduced-motion の規則でも止まる */
-.main.tab-rise > * { animation: tab-rise 150ms ease-out both; }
-@keyframes tab-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+/* 下のタブを押したときの、画面の中身の弾み（要件定義書 §6-5、先生の言葉を受けて作り直し 2026-10-25）。覆いは使わず、待たせない・操作を止めない。
+   画面（main の中の .view）の直下のかたまりが、上から 40ms ずつ遅れて、20px 下からばね（開け閉めと同じ行き過ぎて戻る手触り）で出る。
+   遅れの class（.rise-1〜.rise-9）は lib/transition.js の tabRise が付けて、終わったら外す。時間・間隔は同ファイルの TAB_RISE_* と同じ。
+   動きを減らす設定では JS が付けず、上の prefers-reduced-motion の規則でも止まる */
+.main.tab-rise .rise-1, .main.tab-rise .rise-2, .main.tab-rise .rise-3, .main.tab-rise .rise-4, .main.tab-rise .rise-5, .main.tab-rise .rise-6, .main.tab-rise .rise-7, .main.tab-rise .rise-8, .main.tab-rise .rise-9 { animation: tab-rise 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.main.tab-rise .rise-1 { animation-delay: 0ms; }
+.main.tab-rise .rise-2 { animation-delay: 40ms; }
+.main.tab-rise .rise-3 { animation-delay: 80ms; }
+.main.tab-rise .rise-4 { animation-delay: 120ms; }
+.main.tab-rise .rise-5 { animation-delay: 160ms; }
+.main.tab-rise .rise-6 { animation-delay: 200ms; }
+.main.tab-rise .rise-7 { animation-delay: 240ms; }
+.main.tab-rise .rise-8 { animation-delay: 280ms; }
+.main.tab-rise .rise-9 { animation-delay: 280ms; }
+@keyframes tab-rise { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }

@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { sceneKind, createTransitioner, TIMES, spiralOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS } from '../js/lib/transition.js';
+import { sceneKind, createTransitioner, TIMES, spiralOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS, TAB_RISE_STEP_MS, TAB_RISE_STAGGER, TAB_RISE_TOTAL_MS } from '../js/lib/transition.js';
 
 const read = (p) => readFileSync(fileURLToPath(new URL(p, import.meta.url)), 'utf8');
 const appSrc = read('../js/app.js');
@@ -308,9 +308,11 @@ test('wantsTabRise: タブを押したときの、ふつう→ふつうだけ。
   for (const a of ROUTES) for (const b of ROUTES) assert.equal(wantsTabRise(true, a, b), !a.full && !b.full, a.name + ' → ' + b.name);
 });
 
-function fakeMain({ reduce = false } = {}) {
+function fakeMain({ reduce = false, kids = 0 } = {}) {
   const classes = new Set();
-  const el = { offsetWidth: 1, classList: { add: (c) => classes.add(c), remove: (c) => classes.delete(c), contains: (c) => classes.has(c) } };
+  const children = [];
+  for (let i = 0; i < kids; i++) { const cs = new Set(); children.push({ cs, classList: { add: (c) => cs.add(c), remove: (c) => cs.delete(c) } }); }
+  const el = { offsetWidth: 1, children, classList: { add: (c) => classes.add(c), remove: (c) => classes.delete(c), contains: (c) => classes.has(c) } };
   const timers = new Map();
   let seq = 0;
   const win = {
@@ -318,26 +320,58 @@ function fakeMain({ reduce = false } = {}) {
     setTimeout(fn, ms) { const id = ++seq; timers.set(id, { ms, fn }); return id; },
     clearTimeout(id) { timers.delete(id); },
   };
-  return { el, win, classes, timers };
+  return { el, win, classes, timers, children };
 }
 
-test('tabRise: class を付け、150ms 強で外す（残らない）。連打でも1本のタイマーだけ', () => {
-  const f = fakeMain();
+test('tabRise: class を付け、出きった後に外す（残らない）。連打でも1本のタイマーだけ', () => {
+  const f = fakeMain({ kids: 3 });
   assert.equal(tabRise(f.el, f.win), true);
   assert.ok(f.classes.has('tab-rise'));
   assert.equal(f.timers.size, 1);
   assert.equal(tabRise(f.el, f.win), true);
   assert.equal(f.timers.size, 1, '古いタイマーは消してから');
   const [t] = [...f.timers.values()];
-  assert.ok(t.ms >= TAB_RISE_MS && t.ms <= TAB_RISE_MS + 100);
+  assert.ok(t.ms >= TAB_RISE_TOTAL_MS && t.ms <= TAB_RISE_TOTAL_MS + 100);
   t.fn();
   assert.ok(!f.classes.has('tab-rise'));
+  assert.ok(f.children.every((k) => k.cs.size === 0), '子の class も残らない');
+});
+
+test('tabRise: 主なかたまりに上から rise-1〜rise-8、9つ目以降は rise-9。連打で class が積み上がらない', () => {
+  const f = fakeMain({ kids: 12 });
+  tabRise(f.el, f.win);
+  assert.deepEqual(f.children.map((k) => [...k.cs].join()), ['rise-1', 'rise-2', 'rise-3', 'rise-4', 'rise-5', 'rise-6', 'rise-7', 'rise-8', 'rise-9', 'rise-9', 'rise-9', 'rise-9']);
+  tabRise(f.el, f.win);
+  assert.ok(f.children.every((k) => k.cs.size === 1), '付け直しで1つだけ');
+  const g = fakeMain({ kids: 0 });
+  assert.equal(tabRise(g.el, g.win), true, '中身が空でも壊れない');
+});
+
+test('tabRise: main の中が画面1枚（.view）だけなら、その直下のかたまりを順に出す（画面1枚ごと一度に出さない）', () => {
+  const f = fakeMain({ kids: 0 });
+  const mk = () => { const cs = new Set(); return { cs, children: [], classList: { add: (c) => cs.add(c), remove: (c) => cs.delete(c) } }; };
+  const view = mk();
+  for (let i = 0; i < 3; i++) view.children.push(mk());
+  f.el.children.push(view);
+  tabRise(f.el, f.win);
+  assert.equal(view.cs.size, 0, '画面の入れ物自体には付けない');
+  assert.deepEqual(view.children.map((k) => [...k.cs].join()), ['rise-1', 'rise-2', 'rise-3']);
+  [...f.timers.values()][0].fn();
+  assert.ok(view.children.every((k) => k.cs.size === 0));
+});
+
+test('tabRise: 動き全体が 0.6 秒以内に出きる。ずらしは 40〜60ms・8つまで', () => {
+  assert.equal(TAB_RISE_STAGGER, 8);
+  assert.ok(TAB_RISE_STEP_MS >= 40 && TAB_RISE_STEP_MS <= 60);
+  assert.ok(TAB_RISE_MS >= 300 && TAB_RISE_MS <= 350);
+  assert.ok(TAB_RISE_TOTAL_MS <= 600, '出きるまで ' + TAB_RISE_TOTAL_MS);
 });
 
 test('tabRise: 動きを減らす設定・matchMedia なし・main なしでは何も付けない', () => {
-  const f = fakeMain({ reduce: true });
+  const f = fakeMain({ reduce: true, kids: 2 });
   assert.equal(tabRise(f.el, f.win), false);
   assert.equal(f.classes.size, 0);
+  assert.ok(f.children.every((k) => k.cs.size === 0));
   const g = fakeMain();
   g.win.matchMedia = undefined;
   assert.equal(tabRise(g.el, g.win), false);
@@ -353,13 +387,19 @@ test('app.js の配線: タブの click が目印を立て、hashchange が拾�
   assert.equal(appSrc.split('render({ tab').length - 1, 1, 'タブの目印を渡すのは hashchange だけ');
 });
 
-test('css: .tab-rise は main の中身に 150ms・下 8〜12px から透明→不透明。覆いは使わない。時間は TAB_RISE_MS と同じ', () => {
-  const m = css.match(/\.main\.tab-rise > \* \{[^}]*animation: tab-rise (\d+)ms ease-out/);
-  assert.ok(m);
+test('css: .tab-rise は画面の直下のかたまりに、ばね（行き過ぎ）・20px 下から・透明→不透明。遅れは class。覆いは使わない。時間・間隔は TAB_RISE_* と同じ', () => {
+  const m = css.match(/\.main\.tab-rise \.rise-9 \{ animation: tab-rise (\d+)ms cubic-bezier\(0\.34, 1\.56, 0\.64, 1\)/);
+  assert.ok(m, 'animation（開け閉めと同じばね）');
   assert.equal(Number(m[1]), TAB_RISE_MS);
-  const k = css.match(/@keyframes tab-rise \{ from \{ opacity: 0; transform: translateY\((\d+)px\); \} to \{ opacity: 1; transform: translateY\(0\); \} \}/);
+  const k = css.match(/@keyframes tab-rise \{ from \{ opacity: 0; transform: translateY\((\d+)px\) scale\(([\d.]+)\); \} to \{ opacity: 1; transform: translateY\(0\) scale\(1\); \} \}/);
   assert.ok(k, 'keyframes');
-  assert.ok(Number(k[1]) >= 8 && Number(k[1]) <= 12);
+  assert.ok(Number(k[1]) >= 15 && Number(k[1]) <= 25);
+  assert.ok(Number(k[2]) >= 0.9 && Number(k[2]) < 1);
+  for (let i = 1; i <= TAB_RISE_STAGGER + 1; i++) {
+    const r = css.match(new RegExp('\\.main\\.tab-rise \\.rise-' + i + ' \\{ animation-delay: (\\d+)ms; \\}'));
+    assert.ok(r, 'rise-' + i);
+    assert.equal(Number(r[1]), TAB_RISE_STEP_MS * (Math.min(i, TAB_RISE_STAGGER) - 1), 'rise-' + i + ' の遅れ');
+  }
   assert.ok(!/\.main\.tab-rise[^{]*\{[^}]*pointer-events/.test(css), '操作を止めない');
 });
 

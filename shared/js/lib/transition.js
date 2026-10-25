@@ -88,12 +88,26 @@ function createDots(doc, win, veil) {
 }
 
 // 下のタブを押したときの、画面の中身の浮かび上がり（要件定義書 §6-5、先生決定 B）。覆いは使わない。
-// 描いた直後に main へ class を付け、CSS の animation（.main.tab-rise > *。150ms）で少し下から浮かび上がらせ、終わったら外す。
-export const TAB_RISE_MS = 150;
+// 描いた直後に main へ class を付け、中の主なかたまり（画面1枚の直下の要素。main の直下が複数ならそれ）を上から順に .rise-1〜.rise-8 で 40ms ずつ遅らせ、
+// 1つずつ下からばね（行き過ぎて戻る）で弾ませる。9つ目以降は .rise-9 でまとめて 8つ目と同時。終わったら class を外す。
+// 動きの中身（距離・ばね）は css/app.css の .main.tab-rise。遅れは class で与える（CSP でインラインの style は使えない）。
+export const TAB_RISE_MS = 300; // 1つ分の動きの長さ（CSS の animation と同じ）
+export const TAB_RISE_STEP_MS = 40; // かたまり同士のずらし
+export const TAB_RISE_STAGGER = 8; // ずらすのは最初のこの数まで
+export const TAB_RISE_TOTAL_MS = TAB_RISE_STEP_MS * (TAB_RISE_STAGGER - 1) + TAB_RISE_MS; // 全体が出きるまで（580ms）
 
 // タブを押した直後の画面の変更か（pressed … 押したか）、ふつうの画面どうしか（場面との行き来には付けない）
 export function wantsTabRise(pressed, prev, next) {
   return !!pressed && !!next && !next.full && !(prev && prev.full);
+}
+
+// 付けた class を全部外す（連打・描き直しでも残さない）
+function clearRise(el) {
+  if (el._tabRiseTimer && el._tabRiseWin) el._tabRiseWin.clearTimeout(el._tabRiseTimer);
+  el._tabRiseTimer = null;
+  (el._riseKids || []).forEach(([k, c]) => k.classList.remove(c));
+  el._riseKids = [];
+  el.classList.remove('tab-rise');
 }
 
 // el … main。動きを減らす設定・matchMedia が使えないときは何もしない（戻り値 false）。連打でも class は付け直し（動きが最初からやり直し）
@@ -101,11 +115,19 @@ export function tabRise(el, win) {
   try {
     if (!el || !el.classList) return false;
     if (!win.matchMedia || win.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
-    el.classList.remove('tab-rise');
+    el._tabRiseWin = win;
+    clearRise(el);
     void el.offsetWidth; // 付け直しで animation を最初からにする
+    let kids = el.children ? Array.prototype.slice.call(el.children) : [];
+    if (kids.length === 1 && kids[0].children) kids = Array.prototype.slice.call(kids[0].children); // main の中は画面1枚（.view）。そのかたまりを順に出す
+    kids.forEach((k, i) => {
+      if (!k.classList) return;
+      const c = 'rise-' + Math.min(i + 1, TAB_RISE_STAGGER + 1);
+      k.classList.add(c);
+      el._riseKids.push([k, c]);
+    });
     el.classList.add('tab-rise');
-    if (el._tabRiseTimer) win.clearTimeout(el._tabRiseTimer);
-    el._tabRiseTimer = win.setTimeout(() => { el._tabRiseTimer = null; el.classList.remove('tab-rise'); }, TAB_RISE_MS + 50);
+    el._tabRiseTimer = win.setTimeout(() => { el._tabRiseTimer = null; clearRise(el); }, TAB_RISE_TOTAL_MS + 50);
     return true;
   } catch (e) { return false; }
 }
