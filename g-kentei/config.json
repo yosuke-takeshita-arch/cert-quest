@@ -20,6 +20,7 @@
   "exam": { "questions": 145, "minutes": 100 },
   "secondsPerQuestion": 40,
   "trueBoss": true,
+  "trueBossEnding": "./images/ending.webp",
   "trueBossBadge": { "name": "特異点を こえし もの", "art": true },
   "trueBossWords": { "place": "塔の いちばん うえ", "ending": "塔を きわめた！", "reached": "塔のてっぺんまで たどりついたよ！" },
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
