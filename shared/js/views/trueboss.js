@@ -11,7 +11,7 @@ import { BOSS_XP } from '../lib/scoring.js';
 import { isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { quoted, faceCrop } from '../lib/bossdata.js';
 import {
-  trueBossEnabled, trueBossUnlocked, trueBossWords, trueBossEndingPath, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
+  trueBossEnabled, trueBossUnlocked, trueBossEntranceReady, trueBossWords, trueBossEndingPath, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
 import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
@@ -132,6 +132,7 @@ export function openTrueBoss(app, back) {
 export function trueBossPlace(app, back) {
   if (!trueBossEnabled(app.config)) return null;
   if (!trueBossUnlocked(app.state, app.data.tree.stages)) return null;
+  if (!trueBossEntranceReady(app.state)) return null; // 現れる演出（地図）を見るまでは、復習の画面にも出さない
   useGeom(app);
   const data = dataOf(app);
   preloadFormImages(); // 入口を出したときに、3枚の絵を先に読み込む

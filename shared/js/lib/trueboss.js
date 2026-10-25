@@ -62,8 +62,33 @@ export function normalizeTrueBoss(raw) {
   const w = ok ? raw.wins : 0;
   // seen2 … 第2形態を一度でも見たか（見るまでは『形態』があることを画面に出さない。要件定義書 §3-9）。古い記録（項目なし）は『見ていない』
   // lifted … 呪われた地図が晴れる演出を出したか（要件定義書 §3-9『呪われた地図』）。古い記録（項目なし）で、すでに倒している人は『出した』扱い（急に晴れる演出が出ない）
+  // awakened … 真ボスが初めて現れる演出（地図）を出したか（要件定義書 §3-9『出現の演出』）。古い記録（項目なし）・壊れた値は『出していない』（false）
   const wins = Number.isInteger(w) && w > 0 ? w : 0;
-  return { wins, seen2: !!(ok && raw.seen2 === true), lifted: !!(ok && raw.lifted === true) || (wins > 0 && !(ok && 'lifted' in raw)) };
+  return { wins, seen2: !!(ok && raw.seen2 === true), lifted: !!(ok && raw.lifted === true) || (wins > 0 && !(ok && 'lifted' in raw)), awakened: !!(ok && raw.awakened === true) };
+}
+
+// ---- 真ボスが初めて現れる演出（要件定義書 §3-9『出現の演出』）----
+/** 演出を、これから出すか。真ボスを出すアプリで、全章のボスを倒して真ボスが現れていて、まだ一度も倒していなくて、演出をまだ出していない。 */
+export function trueBossAwakenToShow(config, state, stages) {
+  return trueBossEnabled(config) && trueBossUnlocked(state, stages) && trueBossWins(state) === 0 && !normalizeTrueBoss(state && state.trueBoss).awakened;
+}
+/** 演出は出さず、見たことにだけする人か。すでに真ボスを倒したことがあり（今の利用者）、まだ記録が無い。 */
+export function trueBossAwakenRecordOnly(config, state) {
+  return trueBossEnabled(config) && trueBossWins(state) >= 1 && !normalizeTrueBoss(state && state.trueBoss).awakened;
+}
+/** 演出を出した（見たことにした）と記録する。出す前に呼ぶ（途中で離れても繰り返さない）。 */
+export function markAwakened(state) {
+  const t = normalizeTrueBoss(state.trueBoss);
+  t.awakened = true;
+  state.trueBoss = t;
+}
+/**
+ * 真ボスの入口を、地図・復習の画面に出してよいか。演出を見たあと、または倒したことがある人。
+ * 現れる条件（trueBossUnlocked）とは別に見る（演出の前は、条件を満たしていても入口を出さない。いきなり現れる楽しみのため）。
+ */
+export function trueBossEntranceReady(state) {
+  const t = normalizeTrueBoss(state && state.trueBoss);
+  return t.awakened || t.wins > 0;
 }
 
 // ---- 呪われた地図（要件定義書 §3-9）----

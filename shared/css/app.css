@@ -1104,6 +1104,9 @@ body.boss-on { background: #000; }
   .map-curse-fog, .map-curse-dot, .map-curse-bolt, .boss-place.cursed { animation: none !important; }
   .map-curse-dot, .map-curse-bolt { display: none; }
   .boss-place.cursed { box-shadow: 0 0 14px rgba(176, 42, 90, 0.6); }
+  /* 真ボスが現れる演出: 揺れ・もやの広がり・稲光・影の動き・入口の光る動き・フェードを止める（文と入口は一度に出る。JS も 1 文字ずつ・影・もやを作らない） */
+  .awaken-quake, .awaken-bolt.on, .awaken-shadow.on, .boss-place.awaken-in { animation: none !important; }
+  .awaken-haze, .awaken-overlay, .awaken-text { transition: none; }
 }
 
 /* 科目を選ぶ画面（科目のあるアプリ。views/subjects.js）と、ホームの「科目をかえる」 */
@@ -1180,6 +1183,39 @@ body.boss-on { background: #000; }
 @keyframes map-dot { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: 0.9; } 85% { opacity: 0.5; } 100% { transform: translateY(-110%); opacity: 0; } }
 @keyframes map-bolt { 0%, 92%, 100% { opacity: 0; } 93% { opacity: 0.9; } 94% { opacity: 0.1; } 95% { opacity: 0.7; } 97% { opacity: 0; } }
 @keyframes map-place-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(176, 42, 90, 0.0), 0 0 8px rgba(176, 42, 90, 0.4); } 50% { box-shadow: 0 0 0 4px rgba(176, 42, 90, 0.25), 0 0 22px rgba(176, 42, 90, 0.8); } }
+
+/* ===== 真ボスが初めて現れる演出（要件定義書 §3-9『出現の演出』。js/views/awaken.js が class を付ける）=====
+   地鳴りで画面が揺れる（.awaken-quake）→ 画面の真ん中から暗いもやが広がる（.awaken-haze）→ 地図が呪われる（.map-curse の rising を外す）→ 稲光（.awaken-bolt）
+   → 真ボスの影（.awaken-shadow。一つ目だけ光る）→ 1文字ずつの文（.awaken-text）→ 入口が光って現れる（.boss-place.awaken-in）。タップで飛ばせる。
+   重ねる層は画面いっぱいの fixed（body 直下）。揺らすのは地図の画面（.awaken-quake）。時間は awaken.js の AWAKEN_PLAN と合わせる。 */
+.map-curse.rising { opacity: 0; }
+.boss-place.awaken-wait { visibility: hidden; }
+.boss-place.awaken-in { animation: awaken-place 1.4s ease-out; }
+.awaken-quake { animation: awaken-quake 2.3s linear; }
+.awaken-overlay { position: fixed; inset: 0; z-index: 96; overflow: hidden; cursor: pointer; opacity: 1; transition: opacity 0.5s ease; }
+.awaken-overlay.out { opacity: 0; }
+.awaken-haze { position: absolute; left: 50%; top: 50%; width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; border-radius: 50%; background: radial-gradient(circle, rgba(52, 12, 78, 0.9) 0%, rgba(78, 10, 40, 0.7) 28%, rgba(20, 4, 36, 0.5) 52%, transparent 70%); transform: scale(0); opacity: 0; transition: transform 2.4s ease-out, opacity 0.8s ease-out; }
+.awaken-haze.on { transform: scale(1); opacity: 1; }
+.awaken-bolt { position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse 130% 85% at 60% 0%, rgba(246, 240, 255, 0.95), rgba(196, 156, 255, 0.7) 38%, rgba(120, 70, 200, 0.3) 70%, transparent 100%); }
+.awaken-bolt-line { position: absolute; inset: 0; width: 100%; height: 100%; }
+.awaken-bolt-path { fill: none; stroke: #fff; stroke-width: 3px; stroke-linejoin: miter; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 6px #c9a8ff) drop-shadow(0 0 14px #8f5cff); }
+.awaken-bolt.on { animation: awaken-bolt 0.8s linear; }
+.awaken-shadow { position: absolute; left: 50%; top: 40%; width: min(78vw, 380px); aspect-ratio: 1; transform: translate(-50%, -50%); opacity: 0; }
+.awaken-shadow.on { animation: awaken-shadow 2.4s ease-in-out forwards; }
+.awaken-shadow-img { display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) drop-shadow(0 0 14px rgba(120, 60, 190, 0.9)); }
+.awaken-eye-layer { position: absolute; inset: 0; width: 100%; height: 100%; }
+.awaken-eye { fill: #cfeeff; filter: drop-shadow(0 0 3px #5ec8ff); }
+.awaken-text { position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%); width: min(90vw, 520px); box-sizing: border-box; margin: 0; padding: 16px 18px; border: 2px solid #b02a5a; border-radius: 10px; background: rgba(12, 6, 22, 0.88); color: #fff; font-size: 1.1rem; line-height: 1.8; text-align: center; opacity: 0; transition: opacity 0.3s ease; min-height: 3.6em; }
+.awaken-text.on { opacity: 1; }
+.awaken-skip { position: absolute; top: 12px; right: 12px; z-index: 1; }
+.awaken-overlay.calm { background: rgba(10, 4, 20, 0.55); }
+@keyframes awaken-quake {
+  0% { transform: translate(0, 0); } 10% { transform: translate(-1px, 1px); } 20% { transform: translate(1px, -1px); } 30% { transform: translate(-2px, 1px); } 40% { transform: translate(2px, -2px); }
+  50% { transform: translate(-3px, 2px); } 60% { transform: translate(3px, -2px); } 70% { transform: translate(-5px, 3px); } 80% { transform: translate(5px, -3px); } 90% { transform: translate(-6px, 2px); } 100% { transform: translate(0, 0); }
+}
+@keyframes awaken-bolt { 0% { opacity: 0; } 8% { opacity: 1; } 22% { opacity: 0.1; } 34% { opacity: 0.85; } 100% { opacity: 0; } }
+@keyframes awaken-shadow { 0% { opacity: 0; transform: translate(-50%, -46%) scale(0.94); } 40% { opacity: 0.8; } 100% { opacity: 0; transform: translate(-50%, -54%) scale(1.06); } }
+@keyframes awaken-place { 0% { opacity: 0; transform: scale(0.94); box-shadow: 0 0 0 0 rgba(176, 42, 90, 0); } 50% { opacity: 1; transform: scale(1.02); box-shadow: 0 0 0 8px rgba(176, 42, 90, 0.35), 0 0 36px rgba(255, 120, 170, 0.95); } 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 4px rgba(176, 42, 90, 0.25), 0 0 22px rgba(176, 42, 90, 0.8); } }
 
 /* ---- 場面が変わるときの演出（要件定義書 §6-5）。js/lib/transition.js が覆い（.scene-veil）を足し、
    覆いが画面を隠しきったところで画面を入れ替え（.in の終わり）、覆いを明けて（.out）消す。

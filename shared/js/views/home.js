@@ -20,7 +20,9 @@ import { startSession } from './play.js';
 import { bossPlace, bossState, availableBosses, bossName, bossArt, openBoss, BOSS_TEXT } from './boss.js';
 import { trueBossPlace } from './trueboss.js';
 import { curseLayer, liftCurse } from './curse.js';
-import { trueBossCursed, trueBossCurseToLift, markCurseLifted } from '../lib/trueboss.js';
+import { trueBossCursed, trueBossCurseToLift, markCurseLifted, trueBossAwakenToShow, trueBossAwakenRecordOnly, markAwakened } from '../lib/trueboss.js';
+import { trueBossImageUrl } from './trueboss.js';
+import { runAwakening, prefersReducedMotion } from './awaken.js';
 import { cardBody } from './cards.js';
 import { installHint } from '../lib/install.js';
 import { rememberTapOrigin } from '../lib/transition.js';
@@ -331,8 +333,14 @@ export function renderMap(app) {
     btns.list = h('button', { class: 'map-switch-btn', type: 'button', onClick: () => choose('list') }, '一覧で見る'));
   root.appendChild(sw);
   root.appendChild(h('p', { class: 'small muted', text: '色は「最後に解いたとき正解だった問題の割合」。ステージを選ぶと出題されます。' }));
+  // 真ボスが初めて現れる演出（要件定義書 §3-9『出現の演出』）: 出すのは1回だけ。出したと先に記録してから演出する（途中で離れても繰り返さない）。
+  // すでに真ボスを倒したことがある人には出さず、見たことにだけする。演出を見るまで、入口は地図にも復習の画面にも出さない（trueBossPlace が null を返す）
+  const awaken = trueBossAwakenToShow(app.config, state, data.tree.stages);
+  if (awaken || trueBossAwakenRecordOnly(app.config, state)) { markAwakened(state); app.commit(); }
   const tbPlace = trueBossPlace(app, '#/map'); // 真ボスの入口（真ボスを出すアプリだけ。要件定義書 §3-9）
   if (tbPlace) root.appendChild(tbPlace);
+  const awakenCtl = awaken && tbPlace ? { board: null, layer: null, place: tbPlace, root, used: false } : null;
+  if (awakenCtl) tbPlace.classList.add('awaken-wait'); // 演出の最後まで隠す（場所は空けたまま。画面がずれない）
   const body = h('div', { class: 'map-body' });
   root.appendChild(body);
   function draw(toggled) {
@@ -346,7 +354,7 @@ export function renderMap(app) {
       body.appendChild(mapList(app));
       if (toggled) window.scrollTo(0, 0);
     } else {
-      const adv = mapAdventure(app);
+      const adv = mapAdventure(app, awakenCtl);
       body.appendChild(adv.board);
       // 画面に付いたあと（app.js が先頭へ戻したあと）に、いまいる章が見える位置へ動かす
       requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -357,6 +365,7 @@ export function renderMap(app) {
     }
   }
   draw(false);
+  if (awakenCtl) runAwakening(awakenCtl, { app, imageUrl: trueBossImageUrl(1), reduced: prefersReducedMotion() });
   return root;
 }
 
@@ -378,7 +387,7 @@ function stageSub(st, p) {
   return p.total ? p.answered + '/' + p.total + '問' + cards : '問題は準備中' + cards;
 }
 
-function mapAdventure(app) {
+function mapAdventure(app, awakenCtl) {
   const { data, state, config } = app;
   const roots = data.tree.roots;
   const lay = mapLayout(roots.map((r) => ({ count: r.children.length })));
@@ -421,7 +430,10 @@ function mapAdventure(app) {
   const lifting = !cursed && trueBossCurseToLift(config, state);
   if (cursed || lifting) {
     const layer = curseLayer();
-    board.classList.add('cursed');
+    // 現れる演出の最初の1回（動きを減らす設定でないとき）: 平和な地図のまま始め、演出が cursed を付けて呪われた地図に変える（層は rising で透明から浮かぶ）
+    const awakening = cursed && !!awakenCtl && !awakenCtl.used && !prefersReducedMotion();
+    if (awakening) { awakenCtl.used = true; awakenCtl.board = board; awakenCtl.layer = layer; layer.classList.add('rising'); }
+    if (!awakening) board.classList.add('cursed');
     board.appendChild(layer); // 絵・道の上、ステージの印（あとから足す）の下
     if (lifting) {
       markCurseLifted(state); // 出したと先に記録する（途中で離れても、繰り返さない）
