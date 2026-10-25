@@ -20,7 +20,7 @@ export function sceneKind(prev, next, viaTab) {
   if (!prev || !next) return null;
   if (!prev.full && !next.full) { // ふつう→ふつうは付けない（勉強のテンポを落とさない）。ただし地図と章の画面の行き来だけ、小さな演出を付ける
     if (viaTab) return null;
-    if (prev.name === 'map' && next.name === 'stage') return 'zoom';
+    if ((prev.name === 'map' || prev.name === 'home') && next.name === 'stage') return 'zoom'; // ホーム（次のステージ・合格予想・未着手の範囲）から章に入るのも同じ（先生決定 A、2026-10-25）
     if (prev.name === 'stage' && next.name === 'map') return 'zoomback';
     return null;
   }
@@ -76,24 +76,35 @@ export const ORIGIN_TTL_MS = 1500;
 let pendingOrigin = null; // 次の 地図→章 に使う位置 { x, y, at }
 let lastOrigin = null; // 最後に入った章の位置。章→地図 の戻りで、そこへ縮ませる
 
-export function setTransitionOrigin(x, y) {
+// fromMap … 地図の章を押した位置か（true のときだけ、章から地図へ戻るとき、その位置へ縮む。ホームなど地図以外から入ったときは false で、戻りは画面の中心へ縮む）
+export function setTransitionOrigin(x, y, fromMap) {
   if (Number.isFinite(x) && Number.isFinite(y)) {
-    pendingOrigin = { x, y, at: Date.now() };
+    pendingOrigin = { x, y, at: Date.now(), fromMap: fromMap === true };
   } else {
     pendingOrigin = null;
   }
 }
 
-// kind に使う位置 { x, y } を返す（無ければ null）。zoom は受け取ったら使い切り（最後の位置としても覚える）、zoomback は覚えている位置
+// kind に使う位置 { x, y } を返す（無ければ null）。zoom は受け取ったら使い切り（地図で押した位置だけ、戻りのために覚える）、zoomback は覚えている位置。
+// zoom でも zoomback でもない転換（章を経ない移動）では、覚えている位置を忘れる（古い位置へ縮ませない）
 export function takeTransitionOrigin(kind) {
   if (kind === 'zoom') {
     const o = pendingOrigin && Date.now() - pendingOrigin.at <= ORIGIN_TTL_MS ? pendingOrigin : null;
     pendingOrigin = null;
-    lastOrigin = o ? { x: o.x, y: o.y } : null;
-    return lastOrigin;
+    const use = o ? { x: o.x, y: o.y } : null;
+    lastOrigin = o && o.fromMap ? use : null;
+    return use;
   }
   if (kind === 'zoomback') return lastOrigin;
+  if (!kind) lastOrigin = null;
   return null;
+}
+
+// 押した位置を、章の画面に入る演出（'zoom'）に渡す。タップ・クリックだけ（detail が 0 のキーボード操作は位置が無いので画面の中心から）。
+// fromMap … 地図の中で押したか。章から「← 地図へ」で戻るとき、true ならその位置へ縮み、false（ホーム・合格予想から入った）なら画面の中心へ縮む
+export function rememberTapOrigin(e, fromMap) {
+  if (e && e.detail > 0 && Number.isFinite(e.clientX) && Number.isFinite(e.clientY)) setTransitionOrigin(e.clientX, e.clientY, fromMap === true);
+  else setTransitionOrigin(null, null);
 }
 
 // 斜めの帯の先頭（いちばん進んでいる帯）だけ少し明るくする色

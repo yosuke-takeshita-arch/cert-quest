@@ -2,6 +2,7 @@
 // 合格の線は出さない（G検定は非公開、DX は100点満点に置き換えられない）。例外は config.passGuide を持つ資格（生成AIパスポート）だけで、
 // 『目安の幅』を薄い帯で重ねる（公式の線ではない）。言い方は『目安』で、合格を約束しない。
 import { h } from '../ui.js';
+import { rememberTapOrigin } from '../lib/transition.js';
 import { forecast, forecastSeries, normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -84,7 +85,7 @@ export function forecastCard(app) {
     f.top.forEach((c) => {
       const stage = data.tree.byKey.get(c.key);
       const name = stage ? stage.name : c.key.split('|').pop();
-      list.appendChild(h('button', { class: 'fc-gain', type: 'button', 'data-forecast-chapter': c.key, onClick: () => app.go('#/stage/' + encodeURIComponent(c.key)) },
+      list.appendChild(h('button', { class: 'fc-gain', type: 'button', 'data-forecast-chapter': c.key, onClick: (e) => { rememberTapOrigin(e); app.go('#/stage/' + encodeURIComponent(c.key)); } },
         h('span', { class: 'fc-gain-name' }, h('strong', { text: name }), h('span', { class: 'small muted', text: 'まだ正解していない問題 ' + c.remaining + ' 問' })),
         h('span', { class: 'fc-gain-pt', text: '最大 +' + (Math.round(c.gain * 10) / 10).toFixed(1) + '点' })));
     });

@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { circleOrder, setTransitionOrigin, takeTransitionOrigin, ORIGIN_TTL_MS, sceneKind, createTransitioner, TIMES, spiralOrder, diagonalOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS, TAB_RISE_STEP_MS, TAB_RISE_STAGGER, TAB_RISE_TOTAL_MS } from '../js/lib/transition.js';
+import { circleOrder, rememberTapOrigin, setTransitionOrigin, takeTransitionOrigin, ORIGIN_TTL_MS, sceneKind, createTransitioner, TIMES, spiralOrder, diagonalOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS, TAB_RISE_STEP_MS, TAB_RISE_STAGGER, TAB_RISE_TOTAL_MS } from '../js/lib/transition.js';
 
 const read = (p) => readFileSync(fileURLToPath(new URL(p, import.meta.url)), 'utf8');
 const appSrc = read('../js/app.js');
@@ -26,7 +26,7 @@ test('sceneKind: ふつう→ボス戦・真ボス戦は渦、ふつう→問題
     for (const b of ROUTES) {
       const got = sceneKind(a, b);
       let want = null;
-      if (!a.full && !b.full && a.name === 'map' && b.name === 'stage') want = 'zoom';
+      if (!a.full && !b.full && (a.name === 'map' || a.name === 'home') && b.name === 'stage') want = 'zoom';
       else if (!a.full && !b.full && a.name === 'stage' && b.name === 'map') want = 'zoomback';
       else if (!a.full && b.full) want = b.name === 'boss' || b.name === 'trueboss' ? 'vortex' : 'wipe';
       else if (a.full && !b.full) want = 'fade';
@@ -357,14 +357,18 @@ test('css: 覆いの時間が TIMES と同じ。操作は隠している間だ�
 });
 
 // ---- 地図の章に入る・戻る（要件定義書 §6-5、2026-10-25 先生の言葉『地図内の各章を押したときの場面転換も欲しい』） ----
-test('sceneKind: 地図→章は zoom、章→地図は zoomback。ホーム→章・カード一覧→カードなど他のふつう→ふつうには付けない', () => {
+test('sceneKind: 地図→章は zoom、章→地図は zoomback。カード一覧→カードなど他のふつう→ふつうには付けない', () => {
   const n = (name, full = false) => ({ name, full });
   assert.equal(sceneKind(n('map'), n('stage')), 'zoom');
   assert.equal(sceneKind(n('stage'), n('map')), 'zoomback');
   assert.equal(sceneKind(n('stage'), n('map'), true), null, '章の画面で下の「地図」タブを押したときはタブの弾む動きのまま');
   assert.equal(sceneKind(n('map'), n('stage'), true), null);
   assert.equal(sceneKind(n('play', true), n('home'), true), 'fade', 'タブ経由でも場面から戻る暗転は変わらない');
-  assert.equal(sceneKind(n('home'), n('stage')), null, 'ホームから章は付けない');
+  assert.equal(sceneKind(n('home'), n('stage')), 'zoom', 'ホーム（次のステージ・合格予想・未着手の範囲）から章も円形に広がる（先生決定 A、2026-10-25）');
+  assert.equal(sceneKind(n('home'), n('stage'), true), null);
+  assert.equal(sceneKind(n('cards'), n('stage')), null, 'カード一覧など、ホームと地図以外から章へは付けない');
+  assert.equal(sceneKind(n('review'), n('stage')), null);
+  assert.equal(sceneKind(n('home'), n('map')), null);
   assert.equal(sceneKind(n('map'), n('map')), null);
   assert.equal(sceneKind(n('stage'), n('stage')), null);
   assert.equal(sceneKind(n('map'), n('review')), null);
@@ -387,7 +391,7 @@ test('押した位置の受け渡し: zoom が使い切る。期限切れ・位�
   setTransitionOrigin(null, null);
   assert.equal(takeTransitionOrigin('zoom'), null);
   assert.equal(takeTransitionOrigin('zoomback'), null, '位置が無ければ戻りも中心から');
-  setTransitionOrigin(100, 200);
+  setTransitionOrigin(100, 200, true);
   assert.deepEqual(takeTransitionOrigin('zoom'), { x: 100, y: 200 });
   assert.deepEqual(takeTransitionOrigin('zoomback'), { x: 100, y: 200 });
   assert.deepEqual(takeTransitionOrigin('zoomback'), { x: 100, y: 200 }, '戻りは何度でも同じ位置');
@@ -413,7 +417,7 @@ test('押した位置の受け渡し: zoom が使い切る。期限切れ・位�
 test('go: zoom は押した位置から円形に広がり（420ms）、入れ替え後は同じ位置から穴が開く（280ms）。覆いは消える', () => {
   const f = fake();
   const t = createTransitioner(f.doc, f.win);
-  setTransitionOrigin(405, 15); // 右上のマス (13,0)
+  setTransitionOrigin(405, 15, true); // 右上のマス (13,0)
   let cov = -1;
   t.go('zoom', () => { cov = f.appended[0].children[0].rects.length; });
   const canvas = f.appended[0].children[0];
@@ -464,7 +468,7 @@ test('go: zoom の位置が無いとき（キーボードで開いた等）は�
 test('go: zoomback は外側から押した位置へ縮むように埋まり（200ms）、同じ位置へ縮んで明ける（220ms）', () => {
   const f = fake();
   const t = createTransitioner(f.doc, f.win);
-  setTransitionOrigin(405, 15);
+  setTransitionOrigin(405, 15, true);
   takeTransitionOrigin('zoom'); // 入ったときに覚えた位置
   let cov = -1;
   t.go('zoomback', () => { cov = f.appended[0].children[0].rects.length; });
@@ -527,14 +531,58 @@ test('go: zoom・zoomback も canvas が使えなければ暗転、動きを減�
 
 test('配線: home.js は地図の丸・名前・一覧の行を押したとき位置を渡す（キーボードは位置なし）。app.js は位置に触れず、go が受け取る', () => {
   const home = read('../js/views/home.js');
-  assert.match(home, /import \{ setTransitionOrigin \} from '\.\.\/lib\/transition\.js';/);
-  assert.match(home, /function rememberTapOrigin\(e\) \{\s*if \(e && e\.detail > 0 && Number\.isFinite\(e\.clientX\) && Number\.isFinite\(e\.clientY\)\) setTransitionOrigin\(e\.clientX, e\.clientY\);\s*else setTransitionOrigin\(null, null\);/);
-  assert.match(home, /const go = \(e\) => \{ rememberTapOrigin\(e\); app\.go\('#\/stage\/'/);
+  assert.match(home, /import \{ rememberTapOrigin \} from '\.\.\/lib\/transition\.js';/);
+  assert.match(read('../js/lib/transition.js'), /export function rememberTapOrigin\(e, fromMap\) \{\s*if \(e && e\.detail > 0 && Number\.isFinite\(e\.clientX\) && Number\.isFinite\(e\.clientY\)\) setTransitionOrigin\(e\.clientX, e\.clientY, fromMap === true\);\s*else setTransitionOrigin\(null, null\);/);
+  assert.match(home, /const go = \(e\) => \{ rememberTapOrigin\(e, true\); app\.go\('#\/stage\/'/);
   assert.match(home, /onClick: go,/, '地図の丸');
   assert.match(home, /h\('div', \{ class: 'map-name', onClick: go \}/, '地図の名前');
-  assert.match(home, /onClick: \(e\) => \{ rememberTapOrigin\(e\); app\.go\('#\/stage\/'/, '一覧の行');
+  assert.match(home, /class: 'stage-row m-border-[^\n]*onClick: \(e\) => \{ rememberTapOrigin\(e, true\); app\.go\('#\/stage\/'/, '一覧の行');
   assert.ok(!/setTransitionOrigin|takeTransitionOrigin/.test(appSrc), 'app.js は位置を扱わない（go の中で受け取る）');
   assert.match(read('../js/lib/transition.js'), /const origin = takeTransitionOrigin\(kind\);[^\n]*\n\s*clearVeil\(\);/);
+});
+
+// ---- ホーム・合格予想から章に入る（要件定義書 §6-5、先生決定 A、2026-10-25） ----
+test('配線: ホームの「次のステージ／つづきから」・合格予想の「ここを伸ばすと上がります」・「未着手の範囲」の章も、押した位置を渡す（地図の位置とは区別する）', () => {
+  const home = read('../js/views/home.js');
+  const fc = read('../js/views/forecast.js');
+  assert.match(home, /big cta', type: 'button', onClick: \(e\) => \{ rememberTapOrigin\(e\); app\.go\('#\/stage\/' \+ encodeURIComponent\(next\.key\)\); \}/, '次のステージ／つづきから');
+  assert.match(home, /class: 'link-btn', type: 'button', onClick: \(e\) => \{ rememberTapOrigin\(e\); app\.go\('#\/stage\/' \+ encodeURIComponent\(s\.key\)\); \}/, '未着手の範囲');
+  assert.match(fc, /import \{ rememberTapOrigin \} from '\.\.\/lib\/transition\.js';/);
+  assert.match(fc, /'data-forecast-chapter': c\.key, onClick: \(e\) => \{ rememberTapOrigin\(e\); app\.go\('#\/stage\/'/, '合格予想');
+  // 地図の押した位置（fromMap = true）は、この3か所では渡さない
+  for (const [name, src] of [['home', home], ['forecast', fc]]) {
+    const calls = src.match(/rememberTapOrigin\([^)]*\)/g) || [];
+    const withTrue = calls.filter((c) => /true/.test(c)).length;
+    assert.equal(withTrue, name === 'home' ? 2 : 0, name + ' で true を渡すのは地図の丸（go）と一覧の行だけ');
+  }
+});
+
+test('押した位置: ホーム・合格予想から入ったときは、戻り（zoomback）で位置を使わず中心へ。地図から入ったときだけ、その位置へ', () => {
+  const tap = { detail: 1, clientX: 100, clientY: 200 };
+  // 地図から入る → 位置は zoom でも戻りでも使う
+  rememberTapOrigin(tap, true);
+  assert.deepEqual(takeTransitionOrigin('zoom'), { x: 100, y: 200 });
+  assert.deepEqual(takeTransitionOrigin('zoomback'), { x: 100, y: 200 });
+  // ホームなどから入る → 入る演出には押した位置を使うが、戻りは中心（null）
+  rememberTapOrigin(tap);
+  assert.deepEqual(takeTransitionOrigin('zoom'), { x: 100, y: 200 }, '入るときは押した位置から');
+  assert.equal(takeTransitionOrigin('zoomback'), null, '戻りは前に地図で押した位置ではなく中心');
+  // 地図で押したあと、ホームから入り直しても前の地図の位置は残らない
+  rememberTapOrigin({ detail: 1, clientX: 5, clientY: 6 }, true);
+  takeTransitionOrigin('zoom');
+  rememberTapOrigin(tap, false);
+  takeTransitionOrigin('zoom');
+  assert.equal(takeTransitionOrigin('zoomback'), null);
+  // 演出の付かない移動（章を経ない）を挟むと、覚えていた位置は捨てる
+  rememberTapOrigin(tap, true);
+  takeTransitionOrigin('zoom');
+  takeTransitionOrigin(null);
+  assert.equal(takeTransitionOrigin('zoomback'), null);
+  // キーボード（detail 0）は位置なし
+  rememberTapOrigin({ detail: 0, clientX: 1, clientY: 1 }, true);
+  assert.equal(takeTransitionOrigin('zoom'), null);
+  assert.equal(takeTransitionOrigin('zoomback'), null);
+  setTransitionOrigin(null, null);
 });
 
 // ---- 下のタブを押したときの浮かび上がり（要件定義書 §6-5、先生決定 B、2026-10-25） ----
