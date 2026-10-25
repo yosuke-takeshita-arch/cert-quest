@@ -1165,3 +1165,25 @@ body.boss-on { background: #000; }
 @keyframes map-dot { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: 0.9; } 85% { opacity: 0.5; } 100% { transform: translateY(-110%); opacity: 0; } }
 @keyframes map-bolt { 0%, 92%, 100% { opacity: 0; } 93% { opacity: 0.9; } 94% { opacity: 0.1; } 95% { opacity: 0.7; } 97% { opacity: 0; } }
 @keyframes map-place-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(176, 42, 90, 0.0), 0 0 8px rgba(176, 42, 90, 0.4); } 50% { box-shadow: 0 0 0 4px rgba(176, 42, 90, 0.25), 0 0 22px rgba(176, 42, 90, 0.8); } }
+
+/* ---- 場面が変わるときの演出（要件定義書 §6-5）。js/lib/transition.js が覆い（.scene-veil）を足し、
+   覆いが画面を隠しきったところで画面を入れ替え（.in の終わり）、覆いを明けて（.out）消す。
+   時間は lib/transition.js の TIMES と同じ値（tests/transition.test.js が突き合わせる）。動きを減らす設定では JS が覆いを出さない。 ---- */
+.scene-veil { position: fixed; inset: 0; z-index: 95; overflow: hidden; pointer-events: none; }
+.scene-veil.in { pointer-events: auto; } /* 隠している間だけ、下の画面への誤タップを止める */
+.scene-vortex::before { content: ''; position: absolute; left: 50%; top: 50%; width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; border-radius: 50%; will-change: transform;
+  background: radial-gradient(circle closest-side, #000 0%, #000 22%, rgba(0, 0, 0, 0) 78%), repeating-conic-gradient(#2a1458 0deg 14deg, #000 14deg 28deg);
+  transform: rotate(600deg) scale(1); }
+.scene-vortex.in::before { animation: scene-vortex-in 450ms cubic-bezier(0.5, 0, 0.9, 0.6) forwards; }
+.scene-vortex.out { animation: scene-fade-out 350ms ease-out forwards; }
+.scene-wipe { background: #05060f; border-left: 6px solid var(--accent); will-change: transform; }
+.scene-wipe.in { animation: scene-wipe-in 200ms ease-in forwards; }
+.scene-wipe.out { animation: scene-wipe-out 200ms ease-out forwards; }
+.scene-fade { background: #000; }
+.scene-fade.in { animation: scene-fade-in 150ms linear forwards; }
+.scene-fade.out { animation: scene-fade-out 300ms ease-out forwards; }
+@keyframes scene-vortex-in { from { transform: rotate(0deg) scale(0.02); } to { transform: rotate(600deg) scale(1); } }
+@keyframes scene-wipe-in { from { transform: translateX(-101%); } to { transform: translateX(0); } }
+@keyframes scene-wipe-out { from { transform: translateX(0); } to { transform: translateX(101%); } }
+@keyframes scene-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scene-fade-out { from { opacity: 1; } to { opacity: 0; } }

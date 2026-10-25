@@ -19,6 +19,7 @@ import { suggestStage } from './lib/progress.js';
 import { renderHome, renderMap, renderStage, renderReview, startGoal } from './views/home.js';
 import { renderCardList, renderCard } from './views/cards.js';
 import { renderBasicList, renderBasic } from './views/basics.js';
+import { sceneKind, createTransitioner } from './lib/transition.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
@@ -447,6 +448,13 @@ export async function start() {
   if (darkMq && darkMq.addEventListener) darkMq.addEventListener('change', app.applyScheme);
 
   let cleanup = null;
+  let shown = null; // いま描いている画面 { name, full }。場面の演出（lib/transition.js）が、どこからどこへ変わるかを見る
+  const transitioner = createTransitioner(document, window);
+  function routeOfHash() {
+    const name = location.hash.replace(/^#\/?/, '').split('/')[0] || 'home';
+    const route = ROUTES.find((r) => r[0] === name) || ROUTES[0];
+    return { name, full: route[3] === true };
+  }
   function render() {
     if (cleanup) {
       try { cleanup(); } catch (e) { /* 後始末の失敗で画面遷移を止めない */ }
@@ -469,6 +477,7 @@ export async function start() {
       main.appendChild(h('div', { class: 'view' }, h('div', { class: 'card empty' }, h('p', { text: 'この画面を表示できませんでした。' }), h('button', { class: 'btn', type: 'button', onClick: () => app.go('#/home') }, 'ホームへ'))));
     }
     const full = route[3] === true;
+    shown = { name, full };
     setBgmScene(full);
     nav.classList.toggle('hidden', full);
     document.body.classList.toggle('no-nav', full);
@@ -481,7 +490,11 @@ export async function start() {
     // 問題の途中でない画面に来たら、たまっていたお祝いを出す
     if (!full) app.flushCelebrations();
   }
-  window.addEventListener('hashchange', render);
+  // 場面（下のメニューを隠す画面）とふつうの画面の行き来だけ、覆いの演出つきで入れ替える（要件定義書 §6-5）。覆いが出ている間に来た変更は、入れ替えのときの location.hash が拾う
+  window.addEventListener('hashchange', () => {
+    if (transitioner.covering) return;
+    transitioner.go(sceneKind(shown, routeOfHash()), render);
+  });
   // 見張りの履歴から戻った（URL は同じなので hashchange は来ない）。見張りを足し直して画面に残り、ask の答え（アプリの小窓）を待つ。
   // やめるなら、足し直した見張りと元の履歴の2つ分戻る。見張りが無ければ（結果の画面など）すぐもう一つ戻る
   let skipPop = 0; // こちらから戻したときの popstate を数えて無視する
