@@ -1010,8 +1010,8 @@ body.boss-on { background: #000; }
 .tb-ending-title.shown, .tb-ending-line.shown { opacity: 1; }
 /* エンディング専用の絵（要件定義書 §3-9）。最後の行のあと、文が消え、星空が明けるように絵がゆっくり現れて少し寄る。タイトルは絵の下に出す（暗い帯の上） */ /* 絵はボタンの上までの高さに収め、手前の2人がタイトル・ボタンに隠れないようにする（下の112pxは黒い帯） */
 .tb-ending-art { position: absolute; top: 0; left: 0; right: 0; bottom: 112px; opacity: 0; transition: opacity 4s ease-in; pointer-events: none; overflow: hidden; background: #000; }
-.tb-ending-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; transform: scale(1); transform-origin: 50% 35%; transition: transform 16s linear; }
-.tb-ending-art::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 12%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000); }
+.tb-ending-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; transform: scale(1); transform-origin: 50% 100%; transition: transform 16s linear; }
+.tb-ending-art::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 6%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000); }
 .tb-ending-art-title { position: absolute; left: 16px; right: 16px; bottom: 96px; margin: 0; font-size: 1.5rem; font-weight: 700; line-height: 1.5; color: #ffe082; text-shadow: 0 2px 8px #000; opacity: 0; transition: opacity 2s ease-out 2.5s; pointer-events: none; }
 .tb-ending.art-on .tb-ending-art { opacity: 1; }
 .tb-ending.art-on .tb-ending-art img { transform: scale(1.08); }
