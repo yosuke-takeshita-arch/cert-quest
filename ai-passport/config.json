@@ -14,6 +14,7 @@
   "passGuide": { "min": 70, "max": 80 },
   "secondsPerQuestion": 60,
   "trueBoss": true,
+  "trueBossEnding": "./images/ending.webp",
   "trueBossBadge": { "name": "そらを えがきし もの", "art": true },
   "trueBossWords": { "place": "そらの いちばん たかい ところ", "ending": "そらを えがいた！", "reached": "そらの いちばん たかい ところまで たどりついたよ！" },
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
