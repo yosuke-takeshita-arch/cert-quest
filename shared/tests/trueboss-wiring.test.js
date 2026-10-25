@@ -631,3 +631,33 @@ test('呪われた地図: 地図の絵に重ねる層を、条件を満たすと
   const tb = code('shared/js/views/trueboss.js');
   assert.match(tb, /'card boss-place on' \+ \(wins \? '' : ' cursed'\)/, '倒していない間は入口を目立たせる');
 });
+
+test('エンディングの専用の絵: 絵が読めてから初めて部品を作る（読めなければ何も出さない）。最後の行の後に現れ、とばしたら出た状態。動きを減らす設定では静止でうすく敷く', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'endingScreen');
+  assert.match(fn, /trueBossEndingPath\(app\.config\)/, '置き場は config.trueBossEnding（検証つき）から');
+  // 部品（.tb-ending-art）を作るのは、decode が成功したとき（ready）の中だけ。失敗側は何もしない
+  assert.equal((fn.match(/'tb-ending-art'/g) || []).length, 1);
+  assert.match(fn, /im\.decode\(\)\.then\(ready, \(\) => \{\}\)/, '読めなかったら何もしない');
+  assert.match(fn, /const ready = \(\) => \{\n\s+if \(finished \|\| artBox\) return;\n\s+artBox = h\('div'/);
+  assert.match(fn, /box\.classList\.add\(R \? 'art-dim' : 'art-on'\)/);
+  assert.match(fn, /function revealAll\(\) \{[\s\S]*?showArt\(\);[\s\S]*?\}/, 'とばしたとき（revealAll）に絵を出す');
+  assert.match(fn, /later\(showArt, 600 \+ all\.length \* 2300 \+ 2500\)/, '最後の行の2.5秒後');
+  assert.match(fn, /if \(R\) \{ revealAll\(\); return; \}/);
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.tb-ending\.art-on \.tb-ending-title\.shown, \.tb-ending\.art-on \.tb-ending-line\.shown \{ opacity: 0; \}/, '絵が出たら文は消える（重ねて読めなくしない）');
+  assert.match(css, /\.tb-ending\.art-dim \.tb-ending-art \{ opacity: 0\.3; transition: none; \}/);
+  assert.match(css, /\.tb-ending-art, \.tb-ending-art img, \.tb-ending-art-title \{ transition: none; \}/, '動きを減らす設定で動きを止める');
+});
+
+test('config: エンディングの絵（trueBossEnding）を書いたアプリは、その絵が実在し WEBP で、sw.js の appFiles にも入っている。書いていないアプリは絵を置いていない', () => {
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    const c = JSON.parse(read(app + '/config.json'));
+    const exists = existsSync(root + app + '/images/ending.webp');
+    if (c.trueBossEnding === undefined) { assert.equal(exists, false, app + ': config に書いていないのに絵がある'); continue; }
+    assert.equal(c.trueBossEnding, './images/ending.webp', app);
+    assert.equal(exists, true, app + ' のエンディングの絵');
+    assert.equal(readFileSync(root + app + '/images/ending.webp').subarray(8, 12).toString('latin1'), 'WEBP', app);
+    assert.ok(read(app + '/sw.js').includes("'./images/ending.webp'"), app + '/sw.js の appFiles に無い');
+  }
+});

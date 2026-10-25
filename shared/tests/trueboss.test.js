@@ -922,3 +922,15 @@ test('呪いが晴れる演出: 倒したあとの最初の1回だけ。出し�
   markCurseLifted(t);
   assert.equal(trueBossCursed(cfg, t, st) || trueBossCurseToLift(cfg, t), false);
 });
+
+// ---- エンディング専用の絵の置き場（config.trueBossEnding。要件定義書 §3-9 先生決定 B 2026-10-25）----
+import { trueBossEndingPath } from '../js/lib/trueboss.js';
+
+test('trueBossEndingPath: 『./…webp』の相対パスだけ受ける。無い・壊れている・外を指すものは null（星空だけの今までどおり）', () => {
+  for (const c of [null, undefined, {}, { trueBossEnding: 5 }, { trueBossEnding: '' }, { trueBossEnding: ' ' }, { trueBossEnding: 'images/ending.webp' },
+    { trueBossEnding: './images/ending.png' }, { trueBossEnding: './../x.webp' }, { trueBossEnding: 'https://example.com/a.webp' }, { trueBossEnding: '//example.com/a.webp' }, { trueBossEnding: './images//a.webp' }]) {
+    assert.equal(trueBossEndingPath(c), null, JSON.stringify(c));
+  }
+  assert.equal(trueBossEndingPath({ trueBossEnding: './images/ending.webp' }), './images/ending.webp');
+  assert.equal(trueBossEndingPath({ trueBossEnding: ' ./images/ending.webp ' }), './images/ending.webp');
+});

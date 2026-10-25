@@ -1008,6 +1008,16 @@ body.boss-on { background: #000; }
 .tb-ending-title { font-size: 1.5rem; font-weight: 700; color: #ffe082; margin-bottom: 12px; }
 .tb-ending-line { font-size: 1.0625rem; line-height: 1.9; max-width: 30em; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; } /* 語りはひらがなを空白で区切ってある。折り返しは空白の位置だけ（1〜2文字の切れ端を出さない）。2行の長さをそろえる（効かない環境でも崩れない）。単語が1行に入らないときだけ break-word */
 .tb-ending-title.shown, .tb-ending-line.shown { opacity: 1; }
+/* エンディング専用の絵（要件定義書 §3-9）。最後の行のあと、文が消え、星空が明けるように絵がゆっくり現れて少し寄る。タイトルは絵の下に出す（暗い帯の上） */
+.tb-ending-art { position: absolute; inset: 0; opacity: 0; transition: opacity 4s ease-in; pointer-events: none; overflow: hidden; background: #000; }
+.tb-ending-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; transform: scale(1); transform-origin: 50% 35%; transition: transform 16s linear; }
+.tb-ending-art::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85)); }
+.tb-ending-art-title { position: absolute; left: 16px; right: 16px; bottom: 96px; margin: 0; font-size: 1.5rem; font-weight: 700; line-height: 1.5; color: #ffe082; text-shadow: 0 2px 8px #000; opacity: 0; transition: opacity 2s ease-out 2.5s; pointer-events: none; }
+.tb-ending.art-on .tb-ending-art { opacity: 1; }
+.tb-ending.art-on .tb-ending-art img { transform: scale(1.08); }
+.tb-ending.art-on .tb-ending-art-title { opacity: 1; }
+.tb-ending.art-on .tb-ending-title.shown, .tb-ending.art-on .tb-ending-line.shown { opacity: 0; }
+.tb-ending.art-dim .tb-ending-art { opacity: 0.3; transition: none; }
 .tb-ending-btn { position: absolute; left: 16px; right: 16px; bottom: 16px; }
 .tb-ending-go { width: 100%; }
 .boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; }
@@ -1089,6 +1099,7 @@ body.boss-on { background: #000; }
   .boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top, .boss-rpg.tb-dim .boss-fig .boss-img { transition: none; }
   .boss-fig.slump, .boss-fig.revive, .boss-fig.slump .boss-img, .boss-fig.revive .boss-img, .boss-fig.slump .boss-fig-sym, .boss-fig.revive .boss-fig-sym { transition: none; }
   .tb-ending-title, .tb-ending-line { transition: none; }
+  .tb-ending-art, .tb-ending-art img, .tb-ending-art-title { transition: none; }
   /* 呪われた地図（要件定義書 §3-9）: 霧・粒・稲光・入口の脈打ちを止める。色の変化（暗い絵・紫のもや・四隅）と、晴れるときの色の戻りだけ残す */
   .map-curse-fog, .map-curse-dot, .map-curse-bolt, .boss-place.cursed { animation: none !important; }
   .map-curse-dot, .map-curse-bolt { display: none; }

@@ -18,6 +18,15 @@ export function trueBossWords(config) {
   const pick = (k) => (typeof w[k] === 'string' && w[k].trim() ? w[k].trim() : DEFAULT_TRUE_BOSS_WORDS[k]);
   return { place: pick('place'), ending: pick('ending'), reached: pick('reached') };
 }
+/**
+ * エンディング専用の絵の置き場（config.trueBossEnding。例 "./images/ending.webp"）。要件定義書 §3-9。
+ * 『./』で始まり『.webp』で終わる、アプリの中の相対パスだけ受ける（『..』や外のURLは無視）。無い・壊れているときは null（今までどおり星空だけ）。
+ */
+export function trueBossEndingPath(config) {
+  const p = config && typeof config.trueBossEnding === 'string' ? config.trueBossEnding.trim() : '';
+  if (!/^\.\/[A-Za-z0-9_\-/]+\.webp$/.test(p) || p.includes('..') || p.includes('//')) return null;
+  return p;
+}
 /** 入口の影（まだ現れていないとき）の文。 */
 export function trueBossLockedText(config) { return trueBossWords(config).place + 'に、なにかが ひそんでいる……'; }
 /** 最後の章のボスを倒して、真ボスが現れたときの文。 */

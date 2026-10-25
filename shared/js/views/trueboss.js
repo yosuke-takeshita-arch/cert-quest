@@ -11,7 +11,7 @@ import { BOSS_XP } from '../lib/scoring.js';
 import { isCritical, bossMood, BOSS_MOOD_TEXT, CRIT_DAMAGE } from '../lib/boss.js';
 import { quoted, faceCrop } from '../lib/bossdata.js';
 import {
-  trueBossEnabled, trueBossUnlocked, trueBossWords, trueBossLockedText, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
+  trueBossEnabled, trueBossUnlocked, trueBossWords, trueBossEndingPath, trueBossLockedText, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
 import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
@@ -1079,10 +1079,35 @@ export function renderTrueBoss(app) {
     root.appendChild(h('p', { class: 'boss-sr', role: 'status', text: trueBossWords(app.config).ending + ' ' + data.ending.join(' ') }));
     const all = [title, ...lines];
     let finished = false;
+    // エンディング専用の絵（config.trueBossEnding。無い・読めないときは何も出さず、今までどおり星空だけ）
+    let artBox = null;
+    let artWanted = false;
+    function showArt() {
+      artWanted = true;
+      if (!artBox) return; // まだ読めていない。読めたら出す
+      box.classList.add(R ? 'art-dim' : 'art-on'); // 動きを減らす設定では、文の後ろにうすく静止で敷く（文が読めなくならない）
+    }
+    const endingPath = trueBossEndingPath(app.config);
+    if (endingPath) {
+      const im = new Image();
+      im.alt = '';
+      im.decoding = 'async';
+      im.src = new URL(endingPath, location.href).href;
+      const ready = () => {
+        if (finished || artBox) return;
+        artBox = h('div', { class: 'tb-ending-art', 'data-tb-ending-art': '1', 'aria-hidden': 'true' }, im);
+        box.insertBefore(artBox, sky.nextSibling);
+        box.insertBefore(h('p', { class: 'tb-ending-art-title', 'aria-hidden': 'true', text: trueBossWords(app.config).ending }), box.querySelector('.tb-ending-btn'));
+        if (artWanted) later(showArt, 30);
+      };
+      if (typeof im.decode === 'function') im.decode().then(ready, () => {}); // 読めなかったら何も出さない
+      else { im.onload = ready; }
+    }
     function revealAll() {
       clearTimers();
       all.forEach((el) => el.classList.add('shown'));
       go.textContent = '結果を見る';
+      showArt(); // とばしたときも、絵が出た状態にする
     }
     function finishEnding(e) {
       if (e) e.stopPropagation();
@@ -1097,6 +1122,7 @@ export function renderTrueBoss(app) {
     if (R) { revealAll(); return; }
     all.forEach((el, i) => later(() => el.classList.add('shown'), 600 + i * 2300));
     later(() => { go.textContent = '結果を見る'; }, 600 + all.length * 2300);
+    later(showArt, 600 + all.length * 2300 + 2500); // 最後の行が出て2.5秒後、文が消え、絵がゆっくり現れる
   }
 
   // ---- 勝ち・負けのあと ----
