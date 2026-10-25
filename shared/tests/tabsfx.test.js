@@ -14,14 +14,14 @@ const app = read(join(shared, 'js', 'app.js'));
 const audio = read(join(shared, 'js', 'audio.js'));
 
 test('タブの音: SFX_FILES に載り、ファイルが実在して小さく、sw-core.js の SFX と audio-licenses.md にも載っている', () => {
-  assert.equal(SFX_FILES.tab, 'select_002.ogg');
+  assert.equal(SFX_FILES.tab, 'tab_beep.ogg');
   const p = join(shared, 'audio', 'sfx', SFX_FILES.tab);
   assert.ok(existsSync(p));
   assert.ok(statSync(p).size < 10 * 1024);
-  assert.ok(read(join(shared, 'sw-core.js')).includes("'select_002.ogg'"));
+  assert.ok(read(join(shared, 'sw-core.js')).includes("'tab_beep.ogg'"));
   const doc = read(join(root, 'docs', 'sources', 'audio-licenses.md'));
-  const row = doc.split('\n').find((l) => l.includes('`select_002.ogg`'));
-  assert.ok(row && /\| CC0 \|/.test(row));
+  const row = doc.split('\n').find((l) => l.includes('`tab_beep.ogg`'));
+  assert.ok(row && /CC0/.test(row));
   assert.ok(!Object.entries(SFX_FILES).some(([k, v]) => k !== 'tab' && v === SFX_FILES.tab));
 });
 

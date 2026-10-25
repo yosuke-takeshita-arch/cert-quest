@@ -476,7 +476,7 @@ test('このアプリについて: audio-licenses.md の表にある作者を全
     const cells = line.split('|').map((s) => s.trim());
     if (cells.includes('作者')) { col = cells.indexOf('作者'); continue; }
     if (col < 0 || /^-+$/.test(cells[1])) continue;
-    if (cells[col]) authors.add(cells[col]);
+    if (cells[col] && !cells[col].startsWith('自作')) authors.add(cells[col]); // 自作の音（素材なし）は載せる作者がいない
   }
   assert.ok(authors.size >= 15, '作者を読めていない: ' + authors.size);
   for (const a of authors) assert.ok(about.includes(a), a + ' が about.js に無い');
