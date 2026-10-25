@@ -165,7 +165,10 @@ details.card-sub { border-top: 1px solid var(--border); }
 details.card-sub > summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 12px 0; min-height: 52px; cursor: pointer; font-weight: 700; }
 details.card-sub > summary::-webkit-details-marker { display: none; }
 .card-major > summary::before, details.card-sub > summary::before { content: '▸'; color: var(--muted); transition: transform 0.15s; }
-.card-major[open] > summary::before, details.card-sub[open] > summary::before { transform: rotate(90deg); }
+.card-major[open]:not(.is-closing) > summary::before, details.card-sub[open]:not(.is-closing) > summary::before { transform: rotate(90deg); }
+/* グループの開け閉めの動き（要件定義書 §6-6、js/lib/expand.js）。動いている間だけ、高さが変わる details のはみ出しを隠す。
+   高さの指定は JS が animate で一時的に当てるだけで、終わると何も残らない。動きを減らす設定では JS が何もしない */
+details.is-expanding { overflow: hidden; }
 details.card-sub > .card-tree-inner { margin: 0 0 8px 6px; padding-left: 12px; border-left: 3px solid var(--accent-soft); }
 .card-small-title { font-size: 0.95rem; color: var(--muted); margin: 12px 0 0; }
 .card-tree .row-btn { padding: 10px 4px; }

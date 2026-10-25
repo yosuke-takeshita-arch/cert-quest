@@ -20,6 +20,7 @@ import { renderHome, renderMap, renderStage, renderReview, startGoal } from './v
 import { renderCardList, renderCard } from './views/cards.js';
 import { renderBasicList, renderBasic } from './views/basics.js';
 import { sceneKind, createTransitioner } from './lib/transition.js';
+import { installExpand } from './lib/expand.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
@@ -450,6 +451,7 @@ export async function start() {
   let cleanup = null;
   let shown = null; // いま描いている画面 { name, full }。場面の演出（lib/transition.js）が、どこからどこへ変わるかを見る
   const transitioner = createTransitioner(document, window);
+  installExpand(document, window); // グループ（details）の開け閉めにばねの動き（要件定義書 §6-6）。全部の details にまとめて効く
   function routeOfHash() {
     const name = location.hash.replace(/^#\/?/, '').split('/')[0] || 'home';
     const route = ROUTES.find((r) => r[0] === name) || ROUTES[0];
