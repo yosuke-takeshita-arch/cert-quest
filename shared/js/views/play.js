@@ -5,6 +5,7 @@ import { shuffleChoices, challengeName, secondsPerQuestion } from '../lib/quiz.j
 import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { setBgmRush } from '../audio.js';
+import { XP } from '../lib/scoring.js';
 import { explanation, laterButton, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
 
 /**
@@ -70,6 +71,39 @@ export function renderPlay(app) {
     cleanup();
     app.session = null;
     app.go(spec.backHash || '#/home');
+  }
+
+  // ---- はじめの画面（秒数チャレンジだけ。2026-10-25 先生『40秒チャレンジだけ説明ページがなくいきなりスタートするのはよくない。』）----
+  // 並びはどっち？早押しのはじめの画面と同じ（戻る・見出し・説明とルール・きろく・はじめる）。問題の数・秒数・点は実装と config から作る
+  function drawIntro() {
+    S.intro = true;
+    clear(root);
+    const n = S.items.length;
+    const c = app.state.challenge || { runs: 0, best: 0 };
+    root.appendChild(h('button', { class: 'btn ghost back', type: 'button', 'data-challenge-back': '1', onClick: () => { app.session = null; app.go(spec.backHash || '#/home'); } }, '← ホーム'));
+    root.appendChild(h('h1', { text: challengeName(app.config) }));
+    root.appendChild(h('div', { class: 'card', 'data-challenge-intro': '1' },
+      h('p', { text: '本番のペースで、時間を計って問題を解く練習です。1問ごとに制限時間があります。' }),
+      h('ul', { class: 'plain' },
+        h('li', { text: n + '問。1問の制限時間は ' + limit + ' 秒です（時間切れは不正解）' }),
+        h('li', { text: '1問ごとに、答えと解説が出ます' }),
+        h('li', { text: '制限時間の中で正解すると、経験値（XP）が +' + XP.time + ' 多くもらえます' }),
+        h('li', { text: '問題を解いている間は、遊び用の曲が流れます（BGM がオンのとき）' }),
+        h('li', { text: '途中でやめても、ここまでの答えの記録は残ります' }))));
+    root.appendChild(h('div', { class: 'card', 'data-challenge-record': '1' },
+      h('h2', { text: 'きろく' }),
+      c.runs
+        ? h('p', {}, '最高の正解数 ', h('strong', { text: c.best + ' 問' }), h('span', { class: 'small muted', text: '（' + c.runs + '回あそびました）' }))
+        : h('p', { class: 'muted', text: 'まだあそんでいません。' })));
+    root.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-challenge-start': '1', onClick: begin }, 'はじめる'));
+    window.scrollTo(0, 0);
+  }
+
+  // 問題を始める。遊びの曲は、はじめる を押してから（はじめの画面では流さない）
+  function begin() {
+    S.intro = false;
+    if (timed) setBgmRush(true); // 秒数チャレンジの問題中は、遊び専用の曲（BGM がオンのときだけ）
+    draw();
   }
 
   function draw() {
@@ -201,7 +235,7 @@ export function renderPlay(app) {
       });
       root.appendChild(l);
     }
-    const retry = h('button', { class: 'btn primary big', type: 'button', onClick: () => { app.session = null; startSession(app, spec); } }, 'もう一度');
+    const retry = h('button', { class: 'btn primary big', type: 'button', onClick: () => { app.session = null; startSession(app, { ...spec, skipIntro: true }); } }, 'もう一度');
     const back = h('button', { class: 'btn big', type: 'button', onClick: () => { app.session = null; app.go(spec.backHash || '#/home'); } }, '戻る');
     root.appendChild(h('div', { class: 'btn-row' }, retry, back));
     window.scrollTo(0, 0);
@@ -211,13 +245,13 @@ export function renderPlay(app) {
 
   keyHandler = (e) => {
     if (document.querySelector('.sheet-back')) return;
-    if (!S.answered && /^[1-8]$/.test(e.key)) {
+    if (!S.intro && !S.answered && /^[1-8]$/.test(e.key)) {
       const i = Number(e.key) - 1;
       if (S.items[S.idx] && i < S.items[S.idx].choices.length) answer(i);
     }
   };
   document.addEventListener('keydown', keyHandler);
-  if (timed) setBgmRush(true); // 秒数チャレンジの問題中は、遊び専用の曲（BGM がオンのときだけ）
-  draw();
+  if (timed && !spec.skipIntro) drawIntro(); // 結果の「もう一度」からは、はじめの画面を出さずにすぐ始める
+  else begin();
   return { el: root, cleanup };
 }
