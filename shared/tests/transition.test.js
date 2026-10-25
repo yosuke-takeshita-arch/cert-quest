@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { sceneKind, createTransitioner, TIMES } from '../js/lib/transition.js';
+import { sceneKind, createTransitioner, TIMES, spiralOrder, dotsFilled } from '../js/lib/transition.js';
 
 const read = (p) => readFileSync(fileURLToPath(new URL(p, import.meta.url)), 'utf8');
 const appSrc = read('../js/app.js');
@@ -35,16 +35,26 @@ test('sceneKind: ふつう→ボス戦・真ボス戦は渦、ふつう→問題
 });
 
 // 偽の document / window（setTimeout を手で進める）
-function fake({ reduce = false } = {}) {
+function fake({ reduce = false, canvasOk = true } = {}) {
   const appended = [];
   const doc = {
     body: { appendChild(el) { el.parentNode = this; appended.push(el); }, removeChild(el) { el.parentNode = null; const i = appended.indexOf(el); if (i >= 0) appended.splice(i, 1); } },
-    createElement() { return { className: '', attrs: {}, setAttribute(k, v) { this.attrs[k] = v; }, parentNode: null }; },
+    createElement(tag) {
+      const el = { tag, className: '', attrs: {}, children: [], setAttribute(k, v) { this.attrs[k] = v; }, appendChild(c) { this.children.push(c); }, parentNode: null };
+      if (tag === 'canvas') el.getContext = () => (canvasOk ? { rects: el.rects, clearRect() { el.rects.length = 0; }, fillRect(...a) { el.rects.push(a); }, set fillStyle(v) { el.fill = v; } } : null);
+      if (tag === 'canvas') el.rects = [];
+      return el;
+    },
   };
   let now = 0;
   let seq = 0;
   const timers = new Map();
+  const rafs = [];
   const win = {
+    innerWidth: 412,
+    innerHeight: 800,
+    performance: { now: () => now },
+    requestAnimationFrame(fn) { rafs.push(fn); return rafs.length; },
     matchMedia: (q) => ({ matches: reduce && q.includes('prefers-reduced-motion') }),
     setTimeout(fn, ms) { const id = ++seq; timers.set(id, { at: now + ms, fn }); return id; },
     clearTimeout(id) { timers.delete(id); },
@@ -60,10 +70,93 @@ function fake({ reduce = false } = {}) {
     }
     now = end;
   };
-  return { doc, win, appended, advance, pending: () => timers.size };
+  // 描画のコマを1回ぶん進める（rAF の予約を実行する）
+  const frame = () => { const a = rafs.splice(0); a.forEach((fn) => fn()); };
+  return { doc, win, appended, advance, frame, pending: () => timers.size };
 }
 
-test('go: 渦は 450ms 隠してから入れ替え、350ms で明けて消える。入れ替えの時点で覆いが付いている', () => {
+test('spiralOrder: 全マスを1回ずつ、外周から時計回りに内側へ巡る', () => {
+  for (const [c, r] of [[1, 1], [1, 5], [5, 1], [2, 2], [3, 3], [14, 29], [14, 30], [4, 7]]) {
+    const o = spiralOrder(c, r);
+    assert.equal(o.length, c * r, c + 'x' + r + ' の数');
+    assert.equal(new Set(o.map((p) => p[0] + ',' + p[1])).size, c * r, c + 'x' + r + ' の重なり');
+    assert.ok(o.every(([x, y]) => x >= 0 && x < c && y >= 0 && y < r));
+    // となり合う順（途中で飛ばない）
+    for (let i = 1; i < o.length; i++) assert.equal(Math.abs(o[i][0] - o[i - 1][0]) + Math.abs(o[i][1] - o[i - 1][1]), 1, c + 'x' + r + ' ' + i);
+  }
+  const o = spiralOrder(3, 3).map((p) => p.join(''));
+  assert.deepEqual(o, ['00', '10', '20', '21', '22', '12', '02', '01', '11']); // 右→下→左→上→中心
+  assert.equal(spiralOrder(14, 30)[0].join(), '0,0'); // 角から始まる（外側）
+});
+
+test('dotsFilled: 隠す間は0→全部、明ける間は全部→0。範囲の外に出ない', () => {
+  assert.equal(dotsFilled('in', 0, 100, 700, 300), 0);
+  assert.equal(dotsFilled('in', 350, 100, 700, 300), 50);
+  assert.equal(dotsFilled('in', 700, 100, 700, 300), 100);
+  assert.equal(dotsFilled('in', 9999, 100, 700, 300), 100);
+  assert.equal(dotsFilled('out', 0, 100, 700, 300), 100);
+  assert.equal(dotsFilled('out', 150, 100, 700, 300), 50);
+  assert.equal(dotsFilled('out', 300, 100, 700, 300), 0);
+  assert.equal(dotsFilled('out', -5, 100, 700, 300), 100);
+});
+
+test('go: 渦は canvas にドットを描く。幅412pxで14列の四角、隠しきってから入れ替え、明けたら canvas ごと消える', () => {
+  const f = fake();
+  const t = createTransitioner(f.doc, f.win);
+  let cov = -1;
+  t.go('vortex', () => { cov = f.appended[0].children[0].rects.length; });
+  const canvas = f.appended[0].children[0];
+  assert.equal(canvas.tag, 'canvas');
+  assert.equal(canvas.width, 412);
+  assert.equal(canvas.height, 800);
+  assert.ok(!('style' in canvas), 'style を書かない（CSP）');
+  f.frame();
+  assert.equal(canvas.rects.length, 0, '始まりはまだ何も埋まっていない');
+  f.advance(350);
+  f.frame();
+  const half = canvas.rects.length;
+  const total = 14 * Math.ceil(800 / Math.ceil(412 / 14));
+  assert.ok(half > total * 0.4 && half < total * 0.6, half + ' / ' + total);
+  assert.ok(canvas.rects.every((r) => r[2] === 30 && r[3] === 30), '30px の四角（412/14 を切り上げ）');
+  assert.equal(canvas.fill, '#000');
+  f.advance(350);
+  assert.equal(cov, total, '入れ替えの時点で全部のドットが埋まっている');
+  f.frame();
+  f.advance(150);
+  f.frame();
+  assert.ok(canvas.rects.length > 0 && canvas.rects.length < total, '明ける間は半分ほど');
+  f.advance(150);
+  assert.equal(f.appended.length, 0);
+  f.frame();
+  assert.equal(f.pending(), 0);
+});
+
+test('go: canvas が使えない端末では、渦のかわりにふつうの暗転を出す（覆いは必ず消える）', () => {
+  const f = fake({ canvasOk: false });
+  const t = createTransitioner(f.doc, f.win);
+  let swapped = 0;
+  t.go('vortex', () => { swapped++; });
+  assert.match(f.appended[0].className, /scene-fade.* in$/);
+  f.advance(TIMES.fade.in);
+  assert.equal(swapped, 1);
+  f.advance(TIMES.fade.out);
+  assert.equal(f.appended.length, 0);
+});
+
+test('go: 渦の隠している最中に clear しても、描画のコマは止まる', () => {
+  const f = fake();
+  const t = createTransitioner(f.doc, f.win);
+  t.go('vortex', () => {});
+  f.frame();
+  t.clear();
+  const c = f.doc.createElement('canvas');
+  f.frame(); // 止まった描画は次のコマを予約しない
+  f.frame();
+  assert.equal(f.appended.length, 0);
+  assert.ok(c);
+});
+
+test('go: 渦は 700ms 隠してから入れ替え、300ms で明けて消える。入れ替えの時点で覆いが付いている', () => {
   const f = fake();
   const t = createTransitioner(f.doc, f.win);
   let swapped = 0;
@@ -189,8 +282,7 @@ test('css: 覆いの時間が TIMES と同じ。操作は隠している間だ�
     assert.ok(m, sel);
     return Number(m[1]);
   };
-  assert.equal(dur('.scene-vortex.in::before'), TIMES.vortex.in);
-  assert.equal(dur('.scene-vortex.out'), TIMES.vortex.out);
+  assert.equal(TIMES.vortex.in, 700);
   assert.equal(dur('.scene-wipe.in'), TIMES.wipe.in);
   assert.equal(dur('.scene-wipe.out'), TIMES.wipe.out);
   assert.equal(dur('.scene-fade.in'), TIMES.fade.in);
