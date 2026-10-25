@@ -1187,3 +1187,7 @@ body.boss-on { background: #000; }
 @keyframes scene-wipe-out { from { transform: translateX(0); } to { transform: translateX(101%); } }
 @keyframes scene-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes scene-fade-out { from { opacity: 1; } to { opacity: 0; } }
+/* 下のタブを押したときの、画面の中身の浮かび上がり（要件定義書 §6-5、先生決定 B）。覆いは使わず、待たせない・操作を止めない。
+   時間は lib/transition.js の TAB_RISE_MS と同じ。動きを減らす設定では上の prefers-reduced-motion の規則でも止まる */
+.main.tab-rise > * { animation: tab-rise 150ms ease-out both; }
+@keyframes tab-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

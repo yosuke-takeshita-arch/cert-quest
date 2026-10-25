@@ -87,6 +87,29 @@ function createDots(doc, win, veil) {
   } catch (e) { return null; }
 }
 
+// 下のタブを押したときの、画面の中身の浮かび上がり（要件定義書 §6-5、先生決定 B）。覆いは使わない。
+// 描いた直後に main へ class を付け、CSS の animation（.main.tab-rise > *。150ms）で少し下から浮かび上がらせ、終わったら外す。
+export const TAB_RISE_MS = 150;
+
+// タブを押した直後の画面の変更か（pressed … 押したか）、ふつうの画面どうしか（場面との行き来には付けない）
+export function wantsTabRise(pressed, prev, next) {
+  return !!pressed && !!next && !next.full && !(prev && prev.full);
+}
+
+// el … main。動きを減らす設定・matchMedia が使えないときは何もしない（戻り値 false）。連打でも class は付け直し（動きが最初からやり直し）
+export function tabRise(el, win) {
+  try {
+    if (!el || !el.classList) return false;
+    if (!win.matchMedia || win.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+    el.classList.remove('tab-rise');
+    void el.offsetWidth; // 付け直しで animation を最初からにする
+    el.classList.add('tab-rise');
+    if (el._tabRiseTimer) win.clearTimeout(el._tabRiseTimer);
+    el._tabRiseTimer = win.setTimeout(() => { el._tabRiseTimer = null; el.classList.remove('tab-rise'); }, TAB_RISE_MS + 50);
+    return true;
+  } catch (e) { return false; }
+}
+
 // 覆いの制御。doc … document、win … window（matchMedia と setTimeout を使う）。
 // go(kind, swap) … 演出つきで swap（画面の入れ替え）を呼ぶ。演出を出さないとき（kind なし・動きを減らす設定・覆いを作れない）は即 swap。
 // covering … 覆いが画面を隠している最中（この間に来た画面の変更は、最後の swap が location.hash を読み直すので、足さなくてよい）

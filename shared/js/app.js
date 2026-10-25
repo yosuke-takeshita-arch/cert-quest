@@ -19,7 +19,7 @@ import { suggestStage } from './lib/progress.js';
 import { renderHome, renderMap, renderStage, renderReview, startGoal } from './views/home.js';
 import { renderCardList, renderCard } from './views/cards.js';
 import { renderBasicList, renderBasic } from './views/basics.js';
-import { sceneKind, createTransitioner } from './lib/transition.js';
+import { sceneKind, createTransitioner, wantsTabRise, tabRise } from './lib/transition.js';
 import { installExpand } from './lib/expand.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
@@ -385,8 +385,14 @@ export async function start() {
   const shell = h('div', { class: 'shell' });
   const main = h('main', { id: 'main', class: 'main', tabindex: '-1' });
   const nav = h('nav', { class: 'bottom-nav', 'aria-label': 'メインメニュー' });
+  let tabPressed = false;
   const navBtns = NAV.map((n) => {
     const a = h('a', { class: 'nav-item', href: n.hash, 'data-nav': n.id }, icon(n.icon), h('span', { text: n.label }));
+    // 下のタブを押した目印（要件定義書 §6-5 先生決定 B）。次の hashchange が拾う。同じタブを押し直して画面が変わらないとき（hashchange が来ない）は、少し待って消す
+    a.addEventListener('click', () => {
+      tabPressed = true;
+      window.setTimeout(() => { tabPressed = false; }, 400);
+    });
     nav.appendChild(a);
     return a;
   });
@@ -457,7 +463,8 @@ export async function start() {
     const route = ROUTES.find((r) => r[0] === name) || ROUTES[0];
     return { name, full: route[3] === true };
   }
-  function render() {
+  function render(opts) {
+    const prevShown = shown;
     if (cleanup) {
       try { cleanup(); } catch (e) { /* 後始末の失敗で画面遷移を止めない */ }
       cleanup = null;
@@ -489,13 +496,16 @@ export async function start() {
     });
     window.scrollTo(0, 0);
     main.focus({ preventScroll: true });
+    if (opts && wantsTabRise(opts.tab, prevShown, shown)) tabRise(main, window); // 下のタブを押したときだけ、中身が少し下から浮かび上がる
     // 問題の途中でない画面に来たら、たまっていたお祝いを出す
     if (!full) app.flushCelebrations();
   }
   // 場面（下のメニューを隠す画面）とふつうの画面の行き来だけ、覆いの演出つきで入れ替える（要件定義書 §6-5）。覆いが出ている間に来た変更は、入れ替えのときの location.hash が拾う
   window.addEventListener('hashchange', () => {
     if (transitioner.covering) return;
-    transitioner.go(sceneKind(shown, routeOfHash()), render);
+    const viaTab = tabPressed;
+    tabPressed = false;
+    transitioner.go(sceneKind(shown, routeOfHash()), () => render({ tab: viaTab }));
   });
   // 見張りの履歴から戻った（URL は同じなので hashchange は来ない）。見張りを足し直して画面に残り、ask の答え（アプリの小窓）を待つ。
   // やめるなら、足し直した見張りと元の履歴の2つ分戻る。見張りが無ければ（結果の画面など）すぐもう一つ戻る

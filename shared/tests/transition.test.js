@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { sceneKind, createTransitioner, TIMES, spiralOrder, dotsFilled } from '../js/lib/transition.js';
+import { sceneKind, createTransitioner, TIMES, spiralOrder, dotsFilled, wantsTabRise, tabRise, TAB_RISE_MS } from '../js/lib/transition.js';
 
 const read = (p) => readFileSync(fileURLToPath(new URL(p, import.meta.url)), 'utf8');
 const appSrc = read('../js/app.js');
@@ -256,10 +256,10 @@ test('clear: 隠している最中でも、タイマーごと片付ける（入�
 });
 
 test('app.js の配線: 場面の判定を hashchange だけが使い、render の順序（cleanup → backGuard → 描画 → BGM → nav → scrollTo → focus → お祝い）は崩れていない', () => {
-  assert.match(appSrc, /import \{ sceneKind, createTransitioner \} from '\.\/lib\/transition\.js';/);
-  assert.match(appSrc, /addEventListener\('hashchange', \(\) => \{\s*if \(transitioner\.covering\) return;\s*transitioner\.go\(sceneKind\(shown, routeOfHash\(\)\), render\);\s*\}\);/);
+  assert.match(appSrc, /import \{ sceneKind, createTransitioner, wantsTabRise, tabRise \} from '\.\/lib\/transition\.js';/);
+  assert.match(appSrc, /addEventListener\('hashchange', \(\) => \{\s*if \(transitioner\.covering\) return;\s*const viaTab = tabPressed;\s*tabPressed = false;\s*transitioner\.go\(sceneKind\(shown, routeOfHash\(\)\), \(\) => render\(\{ tab: viaTab \}\)\);\s*\}\);/);
   assert.ok(!/addEventListener\('hashchange', render\)/.test(appSrc), 'hashchange が直接 render を呼んでいる');
-  const start = appSrc.indexOf('  function render() {');
+  const start = appSrc.indexOf('  function render(opts) {');
   const end = appSrc.indexOf("window.addEventListener('hashchange'");
   const body = appSrc.slice(start, end);
   const order = ['cleanup();', 'backGuard = null;', 'route[2](arg)', 'shown = { name, full };', 'setBgmScene(full);', "nav.classList.toggle('hidden', full);", 'window.scrollTo(0, 0);', 'main.focus({ preventScroll: true });', 'app.flushCelebrations();'];
@@ -293,6 +293,74 @@ test('css: 覆いの時間が TIMES と同じ。操作は隠している間だ�
   // CSP（style-src 'self'）に触れない: JS は class だけを付ける
   const src = read('../js/lib/transition.js');
   assert.ok(!/\.style\b|setAttribute\('style'/.test(src));
+});
+
+// ---- 下のタブを押したときの浮かび上がり（要件定義書 §6-5、先生決定 B、2026-10-25） ----
+test('wantsTabRise: タブを押したときの、ふつう→ふつうだけ。場面との行き来・タブ以外の移動には付けない', () => {
+  const n = (full) => ({ name: 'x', full });
+  assert.equal(wantsTabRise(true, n(false), n(false)), true);
+  assert.equal(wantsTabRise(true, null, n(false)), true);
+  assert.equal(wantsTabRise(false, n(false), n(false)), false, 'タブを押していない（カード一覧→カード、戻る）');
+  assert.equal(wantsTabRise(true, n(true), n(false)), false, '場面から戻る暗転と重ねない');
+  assert.equal(wantsTabRise(true, n(false), n(true)), false);
+  assert.equal(wantsTabRise(undefined, n(false), n(false)), false);
+  // ROUTES 全組み合わせ: 付くのは両方ふつうの画面のときだけ
+  for (const a of ROUTES) for (const b of ROUTES) assert.equal(wantsTabRise(true, a, b), !a.full && !b.full, a.name + ' → ' + b.name);
+});
+
+function fakeMain({ reduce = false } = {}) {
+  const classes = new Set();
+  const el = { offsetWidth: 1, classList: { add: (c) => classes.add(c), remove: (c) => classes.delete(c), contains: (c) => classes.has(c) } };
+  const timers = new Map();
+  let seq = 0;
+  const win = {
+    matchMedia: (q) => ({ matches: reduce && q.includes('prefers-reduced-motion') }),
+    setTimeout(fn, ms) { const id = ++seq; timers.set(id, { ms, fn }); return id; },
+    clearTimeout(id) { timers.delete(id); },
+  };
+  return { el, win, classes, timers };
+}
+
+test('tabRise: class を付け、150ms 強で外す（残らない）。連打でも1本のタイマーだけ', () => {
+  const f = fakeMain();
+  assert.equal(tabRise(f.el, f.win), true);
+  assert.ok(f.classes.has('tab-rise'));
+  assert.equal(f.timers.size, 1);
+  assert.equal(tabRise(f.el, f.win), true);
+  assert.equal(f.timers.size, 1, '古いタイマーは消してから');
+  const [t] = [...f.timers.values()];
+  assert.ok(t.ms >= TAB_RISE_MS && t.ms <= TAB_RISE_MS + 100);
+  t.fn();
+  assert.ok(!f.classes.has('tab-rise'));
+});
+
+test('tabRise: 動きを減らす設定・matchMedia なし・main なしでは何も付けない', () => {
+  const f = fakeMain({ reduce: true });
+  assert.equal(tabRise(f.el, f.win), false);
+  assert.equal(f.classes.size, 0);
+  const g = fakeMain();
+  g.win.matchMedia = undefined;
+  assert.equal(tabRise(g.el, g.win), false);
+  assert.equal(g.classes.size, 0);
+  assert.equal(tabRise(null, g.win), false);
+});
+
+test('app.js の配線: タブの click が目印を立て、hashchange が拾って render に渡す。render は描いた後に tabRise。他の render 呼び出しは目印なし', () => {
+  assert.match(appSrc, /a\.addEventListener\('click', \(\) => \{\s*tabPressed = true;\s*window\.setTimeout\(\(\) => \{ tabPressed = false; \}, 400\);\s*\}\);/);
+  assert.match(appSrc, /function render\(opts\) \{\s*const prevShown = shown;/);
+  assert.match(appSrc, /if \(opts && wantsTabRise\(opts\.tab, prevShown, shown\)\) tabRise\(main, window\);/);
+  assert.ok(appSrc.indexOf('tabRise(main, window)') > appSrc.indexOf('main.focus({ preventScroll: true });'), '描いた後');
+  assert.equal(appSrc.split('render({ tab').length - 1, 1, 'タブの目印を渡すのは hashchange だけ');
+});
+
+test('css: .tab-rise は main の中身に 150ms・下 8〜12px から透明→不透明。覆いは使わない。時間は TAB_RISE_MS と同じ', () => {
+  const m = css.match(/\.main\.tab-rise > \* \{[^}]*animation: tab-rise (\d+)ms ease-out/);
+  assert.ok(m);
+  assert.equal(Number(m[1]), TAB_RISE_MS);
+  const k = css.match(/@keyframes tab-rise \{ from \{ opacity: 0; transform: translateY\((\d+)px\); \} to \{ opacity: 1; transform: translateY\(0\); \} \}/);
+  assert.ok(k, 'keyframes');
+  assert.ok(Number(k[1]) >= 8 && Number(k[1]) <= 12);
+  assert.ok(!/\.main\.tab-rise[^{]*\{[^}]*pointer-events/.test(css), '操作を止めない');
 });
 
 test('sw-core.js: transition.js が SHARED に載っている', () => {
