@@ -133,6 +133,7 @@ const SFX = [
   'goal_cure.wav',
   'start_16bit-success.ogg',
   'drop_001.ogg',
+  'select_002.ogg',
   'boss-hit_snare.ogg',
   'boss-win_victory.mp3',
   'boss-hurt_explosion02.ogg',

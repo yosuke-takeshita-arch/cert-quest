@@ -116,6 +116,7 @@ export const SFX_FILES = {
   trueplayerheal: 'true-playerheal_magical-1.ogg', // 2026-10-23 先生決定。自分の HP が回復するときの音（OpenGameArt「Magic Spell SFX」JaggedStone の magical_1_0、CC0。1.4秒に切ってフェードアウト。元が小さいので 2 倍にして頭打ち）。ボスの回復（trueheal）と聞き分けられる別の音
   trueimpact: 'true-impact_chunky-explosion.ogg', // 2→3 の大きな衝撃（OpenGameArt「Chunky Explosion」Joth、CC0。頭から1.8秒に切って後ろをフェードアウト）
   truehit: 'true-impact_transformation-hit.ogg', // 衝撃と同時に鳴らす決めの一撃（OpenGameArt「Epic Transformation」Dizzy Crow の 37.6〜39.8 秒、CC0）
+  tab: 'select_002.ogg', // 2026-10-25 先生決定 B。下のタブ（ホーム・地図・復習・カード・もっと）を押したときの短い『ピッ』（約0.04秒。Kenney Interface Sounds の select_002、CC0。元のファイル名のまま。鳴らすときの倍率は TAB_SFX_BOOST）
   bosscrit: 'boss-crit_cut.ogg', // 2026-10-10 先生が聞き比べて選んだ。ボス戦で会心の一撃が出たとき（OpenGameArt「NES Sounds」Baŝto の cut、CC0。元の ogg のまま。ふつうの当たり bosshit より約6dB 小さいので BOSS_SFX.crit.boost で持ち上げる）
 };
 
@@ -194,6 +195,16 @@ export const TRUE_BOSS_BGM = {
   4: { file: 'true-boss_ending-starfield-romance.mp3', name: 'Starfield Romance', trim: 0.376, rms: 0.1073, peak: 0.6843 },
 };
 export const TRUE_BOSS_SYNTH_TRIM = 0.04; // 戻り先のプログラムの曲の補正（BOSS_BGM.synthTrim と同じ見積もり。耳で決めた値ではない）
+
+// 下のタブの『ピッ』は控えめに鳴らす（元の rms 約 -15.9dBFS を 0.6 倍＝約 -20.3dBFS。正解の音などより小さい）。
+export const TAB_SFX_BOOST = 0.6;
+/**
+ * 下のタブを押したとき『ピッ』を鳴らすか。今いるタブを押し直しただけ（そのタブが選ばれていて、アドレスも同じ）では鳴らさない。
+ * 地図のタブにいても、ステージの画面（アドレスが違う）から押したときは画面が替わるので鳴らす。
+ */
+export function shouldPlayTabSfx(isCurrent, locationHash, tabHash) {
+  return !(isCurrent === true && locationHash === tabHash);
+}
 
 /** お祝いの種類 → 効果音のキー。 */
 export function celebrateSfx(kind) {

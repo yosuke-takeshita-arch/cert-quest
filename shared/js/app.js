@@ -24,6 +24,7 @@ import { installExpand } from './lib/expand.js';
 import { renderPlay } from './views/play.js';
 import { renderExam } from './views/exam.js';
 import { renderMore, renderBadges, renderSettings } from './views/more.js';
+import { shouldPlayTabSfx, TAB_SFX_BOOST } from './lib/sound.js';
 import { initAudio, setBgmScene, setBgmTitle, syncBgm, unlockAudio, playSfx } from './audio.js';
 import { createTitleScreen } from './views/title.js';
 import { createLoadTracker } from './lib/loadprogress.js';
@@ -392,6 +393,10 @@ export async function start() {
     a.addEventListener('click', () => {
       tabPressed = true;
       window.setTimeout(() => { tabPressed = false; }, 400);
+    });
+    // 下のタブの『ピッ』（2026-10-25 先生決定 B）。効果音の設定に従う。ファイルが読めないときは鳴らさない。今いるタブの押し直しでは鳴らさない
+    a.addEventListener('click', () => {
+      if (shouldPlayTabSfx(a.getAttribute('aria-current') === 'page', window.location.hash, n.hash)) playSfx(app.state.settings, 'tab', () => {}, TAB_SFX_BOOST);
     });
     nav.appendChild(a);
     return a;
