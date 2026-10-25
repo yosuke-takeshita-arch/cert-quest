@@ -242,3 +242,112 @@ test('app.js と expand.js は構文として読み込める', async () => {
     assert.equal(r.status, 0, p + ' ' + r.stderr);
   }
 });
+
+// ---- ボタンで開け閉めする折りたたみ（toggleExpand。真ボスの結果・苦手の分析のよく間違える問題）----
+import { toggleExpand } from '../js/lib/expand.js';
+
+function fakePanel({ canAnimate = true } = {}) {
+  const cls = new Set();
+  const attrs = {};
+  const btn = { getAttribute: (k) => (k in attrs ? attrs[k] : null), setAttribute: (k, v) => { attrs[k] = String(v); }, attrs };
+  const panel = {
+    hidden: true, cls, animations: [], current: null, built: 0,
+    classList: { add: (c) => cls.add(c), remove: (c) => cls.delete(c) },
+    getBoundingClientRect() { if (panel.current && panel.current.height !== null) return { height: panel.current.height }; return { height: panel.hidden ? 0 : 200 }; },
+    animate: canAnimate ? function (frames, opts) {
+      const anim = { frames, opts, height: null, onfinish: null, cancelled: false, cancel() { this.cancelled = true; if (panel.current === this) panel.current = null; } };
+      panel.current = anim; panel.animations.push(anim); return anim;
+    } : undefined,
+  };
+  const win = { matchMedia: () => ({ matches: false }), getComputedStyle: () => ({ paddingTop: '0px', paddingBottom: '12px' }) };
+  return { btn, panel, win };
+}
+
+test('toggleExpand 開く: aria-expanded が true、中身は高さを測る前に作る、0 から行き過ぎて戻る。終わると hidden なし・class なし・動きの指定なし', () => {
+  const { btn, panel, win } = fakePanel();
+  const r = toggleExpand(btn, panel, () => { panel.built++; assert.equal(panel.hidden, false, '作るときは表示済み'); }, win);
+  assert.equal(r, true);
+  assert.equal(btn.getAttribute('aria-expanded'), 'true');
+  assert.equal(panel.built, 1);
+  const a = panel.animations[0];
+  assert.equal(px(a.frames[0].height), 0);
+  assert.equal(a.frames[0].paddingBottom, '0px', '高さ 0 では余白も 0');
+  assert.ok(px(a.frames[1].height) > 200);
+  assert.equal(px(a.frames[2].height), 200);
+  assert.equal(a.frames[2].paddingBottom, '12px');
+  assert.equal(a.opts.duration, EXPAND_MS.open);
+  assert.ok(panel.cls.has('is-expanding'));
+  a.onfinish();
+  assert.equal(panel.hidden, false);
+  assert.equal(panel.cls.size, 0);
+  assert.equal(a.cancelled, true);
+});
+
+test('toggleExpand 閉じる: 縮み終わるまで見せ、終わって hidden。戻り値 false、aria-expanded は押した瞬間に false', () => {
+  const { btn, panel, win } = fakePanel();
+  panel.hidden = false; btn.setAttribute('aria-expanded', 'true');
+  const r = toggleExpand(btn, panel, null, win);
+  assert.equal(r, false);
+  assert.equal(btn.getAttribute('aria-expanded'), 'false');
+  assert.equal(panel.hidden, false);
+  const a = panel.animations[0];
+  assert.equal(px(a.frames[0].height), 200);
+  assert.equal(px(a.frames[a.frames.length - 1].height), 0);
+  assert.equal(a.opts.duration, EXPAND_MS.close);
+  a.onfinish();
+  assert.equal(panel.hidden, true);
+  assert.equal(panel.cls.size, 0);
+});
+
+test('toggleExpand 連打: 途中の高さから逆向き。前の動きの終わりは無効。最後の向きで確定', () => {
+  const { btn, panel, win } = fakePanel();
+  toggleExpand(btn, panel, null, win);
+  const first = panel.animations[0];
+  first.height = 90;
+  assert.equal(toggleExpand(btn, panel, null, win), false);
+  assert.equal(first.cancelled, true);
+  assert.equal(first.onfinish, null);
+  const second = panel.animations[1];
+  assert.equal(px(second.frames[0].height), 90);
+  assert.equal(btn.getAttribute('aria-expanded'), 'false');
+  second.height = 40;
+  assert.equal(toggleExpand(btn, panel, null, win), true);
+  const third = panel.animations[2];
+  assert.equal(px(third.frames[0].height), 40);
+  third.onfinish();
+  assert.equal(panel.hidden, false);
+  assert.equal(btn.getAttribute('aria-expanded'), 'true');
+});
+
+test('toggleExpand 動きを減らす設定・animate なし: 動かさず即座に切り換え（中身は開くときに作る）', () => {
+  for (const mode of ['reduce', 'noanim']) {
+    const { btn, panel, win } = fakePanel({ canAnimate: mode !== 'noanim' });
+    if (mode === 'reduce') win.matchMedia = (q) => ({ matches: q.includes('prefers-reduced-motion') });
+    assert.equal(toggleExpand(btn, panel, () => { panel.built++; }, win), true);
+    assert.equal(panel.hidden, false, mode);
+    assert.equal(panel.built, 1);
+    assert.equal(panel.animations.length, 0);
+    assert.equal(toggleExpand(btn, panel, () => { panel.built++; }, win), false);
+    assert.equal(panel.hidden, true, mode);
+    assert.equal(panel.built, 1, '閉じるときは作らない');
+  }
+});
+
+test('配線: 真ボスの結果（まとまり・1問）と苦手の分析のよく間違える問題が toggleExpand を使い、個別の hidden 切り換えを持たない。aria-expanded で開け閉めする所は全部ここ', async () => {
+  const { readdirSync } = await import('node:fs');
+  const dir = fileURLToPath(new URL('../js/views/', import.meta.url));
+  const users = [];
+  for (const f of readdirSync(dir)) {
+    const s = readFileSync(dir + f, 'utf8');
+    if (/'aria-expanded'/.test(s)) {
+      users.push(f);
+      assert.match(s, /toggleExpand\(/, f + ' は toggleExpand を使う');
+      assert.ok(!/\.hidden = was|setAttribute\('aria-expanded'/.test(s), f + ' に個別の開け閉めが残っている');
+    }
+  }
+  assert.deepEqual(users.sort(), ['trueboss.js', 'weak.js']);
+  const css = read('../css/app.css');
+  assert.match(css, /\.tb-q-panel\.is-expanding, \.tb-group-body\.is-expanding \{ overflow: hidden; \}/);
+  const src = read('../js/lib/expand.js');
+  assert.ok(!/\.style\b|setAttribute\('style'|cssText/.test(src.replace(/\/\/.*$/gm, '')));
+});

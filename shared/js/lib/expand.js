@@ -35,14 +35,70 @@ export function closeFrames(from, to) {
   ];
 }
 
+function prefersReduced(win) {
+  try { return !win || !win.matchMedia || win.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return true; }
+}
+
+// ボタンで開け閉めする折りたたみ（button の aria-expanded ＋ 中身 panel の hidden）。details と同じ動きを panel の高さに付ける。
+// 開け閉めの結果は今までどおり: aria-expanded が開閉を表し、閉じ切ったあとの panel は hidden。戻り値は「いま開く向きか」。
+// onOpen … 開くとき、高さを測る前に呼ぶ（中身をここで作る。測ったあとに足すと、動きの終わりで中身が切れる／跳ねる）。
+// 動きを減らす設定・animate が無い環境では、動かさずに即座に切り換える。panel の上下の余白（padding）も 0 から動かす（高さ 0 でも余白が見えないように）。
+const panelRunning = new WeakMap(); // panel → { anim, wantOpen }
+export function toggleExpand(btn, panel, onOpen, win) {
+  const w = win || (typeof window !== 'undefined' ? window : null);
+  const cur = panelRunning.get(panel);
+  const wantOpen = !(cur ? cur.wantOpen : btn.getAttribute('aria-expanded') === 'true');
+  btn.setAttribute('aria-expanded', wantOpen ? 'true' : 'false');
+  const settle = () => {
+    panel.hidden = !wantOpen;
+    panel.classList.remove('is-expanding');
+  };
+  if (typeof panel.animate !== 'function' || prefersReduced(w)) {
+    if (cur) { cur.anim.onfinish = null; cur.anim.cancel(); panelRunning.delete(panel); }
+    settle();
+    if (wantOpen && onOpen) onOpen();
+    return wantOpen;
+  }
+  const from = panel.hidden ? 0 : panel.getBoundingClientRect().height; // 動いている最中なら、いま見えている高さから
+  if (cur) { cur.anim.onfinish = null; cur.anim.cancel(); panelRunning.delete(panel); }
+  let pad = { top: 0, bottom: 0 };
+  panel.hidden = false;
+  if (wantOpen && onOpen) onOpen();
+  try {
+    const cs = w && w.getComputedStyle ? w.getComputedStyle(panel) : null;
+    if (cs) pad = { top: parseFloat(cs.paddingTop) || 0, bottom: parseFloat(cs.paddingBottom) || 0 };
+  } catch (e) { /* 余白を読めなければ 0 のまま */ }
+  const to = wantOpen ? panel.getBoundingClientRect().height : 0;
+  if (!(Math.abs(to - from) >= 1)) { settle(); return wantOpen; }
+  panel.classList.add('is-expanding');
+  const frames = wantOpen ? openFrames(from, to) : closeFrames(from, to);
+  const padAt = (open) => ({ paddingTop: (open ? pad.top : 0) + 'px', paddingBottom: (open ? pad.bottom : 0) + 'px' });
+  // 閉じた高さ 0 のときだけ余白も 0 にそろえる（途中の高さから始まるときは余白はそのまま）
+  frames.forEach((f, i) => {
+    const atZero = wantOpen ? (i === 0 && from === 0) : (i === frames.length - 1);
+    Object.assign(f, padAt(!atZero));
+  });
+  let anim;
+  try {
+    anim = panel.animate(frames, { duration: wantOpen ? EXPAND_MS.open : EXPAND_MS.close, fill: 'forwards' });
+  } catch (e) { settle(); return wantOpen; }
+  panelRunning.set(panel, { anim, wantOpen });
+  anim.onfinish = () => {
+    const r = panelRunning.get(panel);
+    if (!r || r.anim !== anim) return;
+    panelRunning.delete(panel);
+    settle();
+    anim.cancel(); // 動きの指定を外す（高さが残らない）
+  };
+  return wantOpen;
+}
+
 // doc … document、win … window。見張りを足して、外すための関数を返す（animate が無い環境では何もせず null）
 export function installExpand(doc, win) {
   if (!doc || !doc.addEventListener) return null;
   const running = new WeakMap(); // details → { anim, wantOpen }
 
-  function reduced() {
-    try { return !win || !win.matchMedia || win.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return true; }
-  }
+  function reduced() { return prefersReduced(win); }
 
   function settle(det, wantOpen) {
     det.open = wantOpen;

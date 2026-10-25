@@ -337,11 +337,13 @@ test('結果の一覧: 「不正解だった問題」を上・「正解だった
   assert.match(r, /'aria-expanded': 'false', 'aria-controls': body\.id/);
   assert.match(r, /'aria-expanded': 'false', 'aria-controls': panel\.id/);
   assert.match(r, /hidden: true/);
-  assert.match(r, /panel\.hidden = was;/);
-  assert.match(r, /btn\.setAttribute\('aria-expanded', was \? 'false' : 'true'\)/);
-  // 1問をタップすると解説・図・用語カードが開く。開いたときに作る（もう一度タップで閉じる）
+  // aria-expanded と hidden の切り換えは共通の部品 toggleExpand（lib/expand.js。ばねの動きつき。要件定義書 §6-6）に任せる
+  assert.match(r, /toggleExpand\(btn, panel, onOpen\)/);
+  assert.match(src, /import \{ toggleExpand \} from '\.\.\/lib\/expand\.js';/);
+  // 1問をタップすると解説・図・用語カードが開く。開いたときに（高さを測る前に）作る（もう一度タップで閉じる）
   assert.match(r, /explanation\(app, x\.sq, x\.chosen, open, \{ sensei: false \}\)/);
-  assert.match(r, /if \(toggle\(btn, panel\) && !built\)/);
+  assert.match(r, /toggle\(btn, panel, build\)/);
+  assert.match(r, /if \(built\) return;/);
   // まとまり・1問は button（押せる）。問題文の初めの部分を出す
   assert.match(r, /h\('button', \{ class: 'tb-group-btn', type: 'button'/);
   assert.match(r, /h\('button', \{ class: 'tb-q-btn', type: 'button'/);

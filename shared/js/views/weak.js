@@ -5,6 +5,7 @@ import { weakMascot } from '../lib/characters.js';
 import { shuffleChoices } from '../lib/quiz.js';
 import { explanation, stemPlainBlock } from './explain.js';
 import { openCardSheet } from './cards.js';
+import { toggleExpand } from '../lib/expand.js';
 import { startSession } from './play.js';
 import { weakSpec, wrongSpec, oftenSpec } from './home.js';
 
@@ -193,17 +194,14 @@ function oftenCard(app) {
       h('span', { class: 'weak-often-text' }, h('span', { class: 'tb-stem', text: x.q.stem }), h('span', { class: 'small muted', text: (field ? field + '・' : '') + meta })),
       h('span', { class: 'tb-chev', 'aria-hidden': 'true' }));
     let built = false;
-    btn.addEventListener('click', () => {
-      const was = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', was ? 'false' : 'true');
-      panel.hidden = was;
-      if (!was && !built) { // 開いたときに初めて解説を作る
-        built = true;
-        const sb = stemPlainBlock(x.q);
-        if (sb) panel.appendChild(sb);
-        panel.appendChild(explanation(app, shuffleChoices(x.q), null, open, { sensei: false }));
-      }
-    });
+    const build = () => { // 開いたときに初めて解説を作る（高さを測る前に作る）
+      if (built) return;
+      built = true;
+      const sb = stemPlainBlock(x.q);
+      if (sb) panel.appendChild(sb);
+      panel.appendChild(explanation(app, shuffleChoices(x.q), null, open, { sensei: false }));
+    };
+    btn.addEventListener('click', () => { toggleExpand(btn, panel, build); }); // 開け閉めはばねの動きつき（要件定義書 §6-6）
     box.appendChild(h('div', { class: 'tb-q wrong' }, btn, panel));
   });
   card.appendChild(box);

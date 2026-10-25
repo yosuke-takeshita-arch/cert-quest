@@ -19,6 +19,7 @@ import { trueGeom } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, CHOICE_LABELS } from './explain.js';
+import { toggleExpand } from '../lib/expand.js';
 
 export const TRUE_BOSS_SYMBOL = '真';
 
@@ -1147,12 +1148,8 @@ export function renderTrueBoss(app) {
     // 『不正解だった問題』を上、『正解だった問題』を下の2つのまとまりにして、最初はどちらも閉じる。
     // まとまりをタップすると問題の一覧（問題文の初めの部分）が開き、1問をタップするとその問題の解説・図・用語カードが開く（もう一度タップで閉じる）。0問のまとまりは出さない。
     const open = (id) => openCardSheet(app, id);
-    const toggle = (btn, panel) => {
-      const was = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', was ? 'false' : 'true');
-      panel.hidden = was;
-      return !was;
-    };
+    // 開け閉め（aria-expanded と panel の hidden）は共通の部品に任せる。開くときの高さの伸び（ばね）つき。要件定義書 §6-6
+    const toggle = (btn, panel, onOpen) => toggleExpand(btn, panel, onOpen);
     const questionRow = (x, i, kind) => {
       const panel = h('div', { class: 'tb-q-panel', id: 'tb-q-' + kind + '-' + i, hidden: true });
       const verdict = x.correct ? '正解。' : x.late ? '時間切れ。' : '不正解。';
@@ -1162,14 +1159,14 @@ export function renderTrueBoss(app) {
         h('span', { class: 'tb-stem', text: x.q.stem }),
         h('span', { class: 'tb-chev', 'aria-hidden': 'true' }));
       let built = false;
-      btn.addEventListener('click', () => {
-        if (toggle(btn, panel) && !built) { // 開いたときに初めて解説を作る（まとめて作らない）
-          built = true;
-          const sb = stemPlainBlock(x.q);
-          if (sb) panel.appendChild(sb);
-          panel.appendChild(explanation(app, x.sq, x.chosen, open, { sensei: false }));
-        }
-      });
+      const build = () => { // 開いたときに初めて解説を作る（まとめて作らない）。高さを測る前に作る
+        if (built) return;
+        built = true;
+        const sb = stemPlainBlock(x.q);
+        if (sb) panel.appendChild(sb);
+        panel.appendChild(explanation(app, x.sq, x.chosen, open, { sensei: false }));
+      };
+      btn.addEventListener('click', () => { toggle(btn, panel, build); });
       return h('div', { class: 'tb-q ' + (x.correct ? 'right' : 'wrong') }, btn, panel);
     };
     const group = (kind, title, rows) => {

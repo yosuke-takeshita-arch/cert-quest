@@ -169,6 +169,7 @@ details.card-sub > summary::-webkit-details-marker { display: none; }
 /* グループの開け閉めの動き（要件定義書 §6-6、js/lib/expand.js）。動いている間だけ、高さが変わる details のはみ出しを隠す。
    高さの指定は JS が animate で一時的に当てるだけで、終わると何も残らない。動きを減らす設定では JS が何もしない */
 details.is-expanding { overflow: hidden; }
+.tb-q-panel.is-expanding, .tb-group-body.is-expanding { overflow: hidden; } /* ボタンで開け閉めする折りたたみ（真ボスの結果・よく間違える問題）。toggleExpand が付け外す */
 details.card-sub > .card-tree-inner { margin: 0 0 8px 6px; padding-left: 12px; border-left: 3px solid var(--accent-soft); }
 .card-small-title { font-size: 0.95rem; color: var(--muted); margin: 12px 0 0; }
 .card-tree .row-btn { padding: 10px 4px; }
