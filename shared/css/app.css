@@ -1008,10 +1008,9 @@ body.boss-on { background: #000; }
 .tb-ending-go { width: 100%; }
 .boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; }
 .tb-float { position: relative; z-index: 1; height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
-.tb-float.f2 { height: calc(100% - 34px); animation: tb-float 3.2s ease-in-out infinite, tb-sway 4.9s ease-in-out infinite; --amp: 20px; --sway: 4px; --tilt: 1.5deg; }
-.tb-float.f3 { height: calc(100% - 50px); animation: tb-float 4.6s ease-in-out infinite, tb-sway 6.9s ease-in-out infinite; --amp: 32px; --sway: 7px; --tilt: 2deg; }
+.tb-float.f2 { height: calc(100% - 34px); animation: tb-float 3.2s ease-in-out infinite; --amp: 20px; }
+.tb-float.f3 { height: calc(100% - 50px); animation: tb-float 4.6s ease-in-out infinite; --amp: 32px; }
 @keyframes tb-float { 0%, 100% { transform: translateY(calc(var(--amp) * 0.5)); } 50% { transform: translateY(calc(var(--amp) * -0.5)); } }
-@keyframes tb-sway { 0%, 100% { translate: calc(var(--sway) * -1) 0; rotate: calc(var(--tilt) * -1); } 50% { translate: var(--sway) 0; rotate: var(--tilt); } }
 .tb-shadow { display: none; position: absolute; z-index: 0; left: 50%; bottom: 4px; width: 46%; height: 12px; margin-left: -23%; border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse closest-side, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)); }
 .tb-float.f2 + .tb-shadow, .tb-float.f3 + .tb-shadow { display: block; animation: tb-shadow 3.2s ease-in-out infinite; }
 .tb-float.f3 + .tb-shadow { animation-duration: 4.6s; }

@@ -299,16 +299,16 @@ test('浮かぶ動き: 第2・第3形態だけ、絵の外側の入れ物（.tb-
   assert.doesNotMatch(view, /classList\.toggle\('f1'/, '第1形態には付けない');
   assert.match(view, /h\('div', \{ class: 'tb-float', 'data-tb-float': '1' \}, fig\)/, 'fig を入れ物で包む');
   const css = read('shared/css/app.css');
-  assert.match(css, /\.tb-float\.f2 \{[^}]*animation: tb-float 3\.2s ease-in-out infinite, tb-sway 4\.9s ease-in-out infinite;[^}]*--amp: 20px;/);
-  assert.match(css, /\.tb-float\.f3 \{[^}]*animation: tb-float 4\.6s ease-in-out infinite, tb-sway 6\.9s ease-in-out infinite;[^}]*--amp: 32px;/);
+  assert.match(css, /\.tb-float\.f2 \{[^}]*animation: tb-float 3\.2s ease-in-out infinite;[^}]*--amp: 20px;/);
+  assert.match(css, /\.tb-float\.f3 \{[^}]*animation: tb-float 4\.6s ease-in-out infinite;[^}]*--amp: 32px;/);
   // 第3形態は第2形態よりゆったり大きく（周期が長く、上下・横・傾きが大きい）
   const num = (re) => parseFloat(css.match(re)[1]);
   assert.ok(num(/\.tb-float\.f3 \{[^}]*--amp: ([\d.]+)px/) > num(/\.tb-float\.f2 \{[^}]*--amp: ([\d.]+)px/));
-  assert.ok(num(/\.tb-float\.f3 \{[^}]*--sway: ([\d.]+)px/) > num(/\.tb-float\.f2 \{[^}]*--sway: ([\d.]+)px/));
-  assert.ok(num(/\.tb-float\.f3 \{[^}]*--tilt: ([\d.]+)deg/) > num(/\.tb-float\.f2 \{[^}]*--tilt: ([\d.]+)deg/));
   assert.ok(num(/\.tb-float\.f3 \{[^}]*animation: tb-float ([\d.]+)s/) > num(/\.tb-float\.f2 \{[^}]*animation: tb-float ([\d.]+)s/));
-  // 傾きと横の揺れは別の周期（上下と重ねて、単調な往復に見せない）。足元の影は上下と同じ周期で縮み広がる。止める場面・動きを減らす設定にも従う
-  assert.match(css, /@keyframes tb-sway \{[^\n]*rotate:[^\n]*translate:|@keyframes tb-sway \{[^\n]*translate:[^\n]*rotate:/);
+  // 横揺れ・傾きは付けない（飛ぶのが不安定に見えるため）。足元の影は上下と同じ周期で縮み広がる。止める場面・動きを減らす設定にも従う
+  assert.doesNotMatch(css, /tb-sway/);
+  assert.doesNotMatch(css, /\.tb-float\.f[23] \{[^}]*(rotate|--tilt)/);
+  assert.doesNotMatch(css, /@keyframes tb-float \{[^\n]*rotate/);
   assert.match(css, /\.tb-float\.f2 \+ \.tb-shadow, \.tb-float\.f3 \+ \.tb-shadow \{ display: block; animation: tb-shadow 3\.2s ease-in-out infinite; \}/);
   assert.match(css, /\.tb-float\.f3 \+ \.tb-shadow \{ animation-duration: 4\.6s; \}/);
   assert.match(css, /\.tb-float\.still \+ \.tb-shadow \{ animation-play-state: paused; \}/);
