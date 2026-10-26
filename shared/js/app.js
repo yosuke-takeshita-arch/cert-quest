@@ -461,7 +461,10 @@ export async function start() {
 
   let cleanup = null;
   let shown = null; // いま描いている画面 { name, full }。場面の演出（lib/transition.js）が、どこからどこへ変わるかを見る
-  const transitioner = createTransitioner(document, window);
+  const transitioner = createTransitioner(document, window, {
+    // ボス戦・真ボス戦に入る渦が始まるときだけ効果音（効果音の設定に従う。ファイルが読めなければ何も鳴らさない）
+    onStart: (kind) => { if (kind === 'vortex') playSfx(app.state.settings, 'vortex', () => {}); },
+  });
   installExpand(document, window); // グループ（details）の開け閉めにばねの動き（要件定義書 §6-6）。全部の details にまとめて効く
   function routeOfHash() {
     const name = location.hash.replace(/^#\/?/, '').split('/')[0] || 'home';

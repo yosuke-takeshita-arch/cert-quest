@@ -239,7 +239,9 @@ export function tabRise(el, win) {
 // 覆いの制御。doc … document、win … window（matchMedia と setTimeout を使う）。
 // go(kind, swap) … 演出つきで swap（画面の入れ替え）を呼ぶ。演出を出さないとき（kind なし・動きを減らす設定・覆いを作れない）は即 swap。
 // covering … 覆いが画面を隠している最中（この間に来た画面の変更は、最後の swap が location.hash を読み直すので、足さなくてよい）
-export function createTransitioner(doc, win) {
+// opts.onStart(kind) … 覆いを出して演出が始まる瞬間に呼ぶ（効果音用）。演出を出さないとき（動きを減らす設定など）は呼ばない
+export function createTransitioner(doc, win, opts) {
+  const onStart = opts && typeof opts.onStart === 'function' ? opts.onStart : null;
   let veil = null;
   let timer = null;
   let covering = false;
@@ -271,6 +273,7 @@ export function createTransitioner(doc, win) {
     }
     const t = TIMES[kind];
     covering = true;
+    if (onStart) { try { onStart(kind); } catch (e) { /* 音が出せなくても場面は替える */ } }
     const mine = veil;
     timer = win.setTimeout(() => {
       covering = false;

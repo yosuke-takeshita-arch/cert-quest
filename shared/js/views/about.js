@@ -11,7 +11,7 @@ export const AUDIO_CREDITS = [
   { what: 'タイトル画面の曲', who: 'TAD（OpenGameArt「Once Upon a Time (loop)」）' },
   { what: 'ボス戦の曲', who: 'HydroGene（OpenGameArt「8-bit Danger!! Strong Boss」）' },
   { what: '秒数チャレンジ・どっち？早押しの曲', who: 'DST（OpenGameArt「Tower Defense Theme」）' },
-  { what: 'ボス戦の効果音', who: 'celestialghost8・Spring Spring・crazyduckgames・Baŝto（いずれも OpenGameArt）' },
+  { what: 'ボス戦の効果音', who: 'celestialghost8・Spring Spring・crazyduckgames・Baŝto・Aureolus_Omicron（いずれも OpenGameArt）' },
   { what: '真ボスの曲', who: 'Centurion_of_war（OpenGameArt「Final Stand」）・Yoiyami（OpenGameArt「Starfield Romance」）' },
   { what: '真ボスの効果音', who: 'IgnasD・mieki256・bart・PWL・qzlocx・Joth・Dizzy Crow・JaggedStone（いずれも OpenGameArt）' },
 ];

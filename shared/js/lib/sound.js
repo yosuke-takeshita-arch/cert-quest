@@ -117,6 +117,7 @@ export const SFX_FILES = {
   trueimpact: 'true-impact_chunky-explosion.ogg', // 2→3 の大きな衝撃（OpenGameArt「Chunky Explosion」Joth、CC0。頭から1.8秒に切って後ろをフェードアウト）
   truehit: 'true-impact_transformation-hit.ogg', // 衝撃と同時に鳴らす決めの一撃（OpenGameArt「Epic Transformation」Dizzy Crow の 37.6〜39.8 秒、CC0）
   tab: 'tab_beep.ogg', // 2026-10-25 先生決定 B、同日『もっと、高い音の「ピッ」がいいな』で替えた。下のタブ（ホーム・地図・復習・カード・もっと）を押したときの高い『ピッ』（約0.07秒・2400Hz。ffmpeg で合成した自作の音、素材なし。前の Kenney の select_002 は 590Hz で低かった。鳴らすときの倍率は TAB_SFX_BOOST）
+  vortex: 'vortex_retro-fall.ogg', // 2026-10-26 先生が聞き比べて選んだ（『ボス戦の音は1で行こう』）。ボス戦・真ボス戦に入る場面転換『ドットの渦』が始まるときの、高い音から低い音へ下がる8bitの音（約1.2秒。OpenGameArt「15 Strange Retro SFX」Aureolus_Omicron の strange_retrosfx04_fall1、CC0。モノラルの ogg に変換。補正なし）
   bosscrit: 'boss-crit_cut.ogg', // 2026-10-10 先生が聞き比べて選んだ。ボス戦で会心の一撃が出たとき（OpenGameArt「NES Sounds」Baŝto の cut、CC0。元の ogg のまま。ふつうの当たり bosshit より約6dB 小さいので BOSS_SFX.crit.boost で持ち上げる）
 };
 

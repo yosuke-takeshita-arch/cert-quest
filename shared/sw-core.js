@@ -139,6 +139,7 @@ const SFX = [
   'boss-win_victory.mp3',
   'boss-hurt_explosion02.ogg',
   'boss-crit_cut.ogg',
+  'vortex_retro-fall.ogg',
   'true-crack_ice-small-1.ogg',
   'true-crack_ice-small-2.ogg',
   'true-shatter_ice-big-1.ogg',
