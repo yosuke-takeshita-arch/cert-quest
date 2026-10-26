@@ -1049,8 +1049,8 @@
     ],
     "format": "fill",
     "difficulty": 1,
-    "stem": "機械学習のライブラリ scikit-learn は、NumPy・SciPy・matplotlib の上に作られた、（　）向けの機械学習ライブラリである。空欄に最もよく当てはまる選択肢を1つ選べ。",
-    "stemPlain": "scikit-learn は、プログラム言語 Python で使える機械学習（データから学ぶAI）の部品集（ライブラリ）。NumPy・SciPy・matplotlib という別の部品集の上に作られている。どの言語向けのものか（空欄）を選ぶ問題。",
+    "stem": "scikit-learn は、分類・回帰・クラスタリングなどの手法をまとめた、（　）向けのオープンソースの機械学習ライブラリである。空欄に最もよく当てはまる選択肢を1つ選べ。",
+    "stemPlain": "scikit-learn は、プログラム言語 Python で使える機械学習（データから学ぶAI）の部品集（ライブラリ）。分類・回帰・クラスタリングなどの手法が入っていて、だれでも無料で使える（オープンソース）。どの言語向けのものか（空欄）を選ぶ問題。",
     "choices": [
       "Python",
       "JavaScript",
@@ -1065,7 +1065,7 @@
       "R は、統計の計算とグラフ作成のための言語と環境（R の公式サイトの説明）。R にも機械学習のためのパッケージ（部品集）はあるが、scikit-learn は Python から使うライブラリで、NumPy・SciPy も Python のライブラリなので、空欄には当たらない。",
       "SQL は、データベースから条件に合う行を取り出したり集計したりする言語。たとえば『売上が100万円以上の店を選ぶ』。学習の前にデータを取り出すのに使うことはあるが、scikit-learn が向けて作られた言語ではない。"
     ],
-    "memoryTip": "NumPy・SciPy・scikit-learn の「Py」は Python の Py。",
+    "memoryTip": "scikit-learn は NumPy・SciPy の上に作られている。NumPy・SciPy の「Py」は Python の Py。",
     "concepts": [
       "C-07-009"
     ],
