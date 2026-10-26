@@ -133,7 +133,7 @@ test('負けたら第1形態から: 『もう一度挑む』は begin()（新し
 test('エンディングはとばせる（ボタンと、画面のタップ）。動きを減らす設定では全部を一度に出す', () => {
   const src = code('shared/js/views/trueboss.js');
   const fn = fnBody(src, 'endingScreen');
-  assert.match(fn, /'data-tb-ending-go': '1', onClick: finishEnding/);
+  assert.match(fn, /'data-tb-ending-go': '1', onClick: onGo/);
   assert.match(fn, /onClick: revealAll/);
   assert.match(fn, /if \(R\) \{ revealAll\(\); return; \}/);
 });
@@ -647,6 +647,12 @@ test('エンディングの専用の絵: 絵が読めてから初めて部品を
   assert.match(fn, /function revealAll\(\) \{[\s\S]*?showArt\(\);[\s\S]*?\}/, 'とばしたとき（revealAll）に絵を出す');
   assert.match(fn, /later\(showArt, 600 \+ all\.length \* 2300 \+ 2500\)/, '最後の行の2.5秒後');
   assert.match(fn, /if \(R\) \{ revealAll\(\); return; \}/);
+  // ボタンの2段階: 「とばす」の1回目は絵まで出すだけ。結果へ行けるのは「結果を見る」になってから
+  assert.match(fn, /function onGo\(e\) \{[\s\S]*?if \(!readyToLeave\) \{ revealAll\(\); return; \}\s*finishEnding\(\);/, '1回目は revealAll、2回目で結果へ');
+  assert.match(fn, /function revealAll\(\) \{[\s\S]*?readyToLeave = true;/, 'revealAll のあとは1回で結果へ行ける（絵が読めていなくても詰まらない）');
+  // 自然に進むとき、ボタンが変わるのは絵を出す時と同じ（絵のあるアプリ）。絵が無いアプリは最後の行のあと
+  assert.match(fn, /if \(endingPath\) \{\s*later\(showArt, 600 \+ all\.length \* 2300 \+ 2500\);[^\n]*\n\s*later\(leave, 600 \+ all\.length \* 2300 \+ 2500\);[^\n]*\n\s*\} else \{\s*later\(leave, 600 \+ all\.length \* 2300\);/);
+  assert.doesNotMatch(fn, /onClick: finishEnding/, 'ボタンから直接 finishEnding を呼ばない');
   const css = read('shared/css/app.css');
   assert.match(css, /\.tb-ending\.art-on \.tb-ending-title\.shown, \.tb-ending\.art-on \.tb-ending-line\.shown \{ opacity: 0; \}/, '絵が出たら文は消える（重ねて読めなくしない）');
   assert.match(css, /\.tb-ending\.art-dim \.tb-ending-art \{ opacity: 0\.3; transition: none; \}/);

@@ -1069,12 +1069,13 @@ export function renderTrueBoss(app) {
       return h('p', { class: 'tb-ending-line' }, ...kids);
     });
     const title = h('p', { class: 'tb-ending-title', text: trueBossWords(app.config).ending });
-    const go = h('button', { class: 'btn big tb-ending-go', type: 'button', 'data-tb-ending-go': '1', onClick: finishEnding }, 'とばす');
+    const go = h('button', { class: 'btn big tb-ending-go', type: 'button', 'data-tb-ending-go': '1', onClick: onGo }, 'とばす');
     const box = h('div', { class: 'tb-ending', 'data-tb-ending': '1', onClick: revealAll }, sky, title, ...lines, h('div', { class: 'tb-ending-btn' }, go));
     root.appendChild(box);
     root.appendChild(h('p', { class: 'boss-sr', role: 'status', text: trueBossWords(app.config).ending + ' ' + data.ending.join(' ') }));
     const all = [title, ...lines];
     let finished = false;
+    let readyToLeave = false; // ボタンが「結果を見る」になったか
     // エンディング専用の絵（config.trueBossEnding。無い・読めないときは何も出さず、今までどおり星空だけ）
     let artBox = null;
     let artWanted = false;
@@ -1103,7 +1104,14 @@ export function renderTrueBoss(app) {
       clearTimers();
       all.forEach((el) => el.classList.add('shown'));
       go.textContent = '結果を見る';
+      readyToLeave = true;
       showArt(); // とばしたときも、絵が出た状態にする
+    }
+    // ボタンは2段階: 1回目（とばす）は文と絵を全部出すだけ。結果へ行くのは「結果を見る」になってから。絵が読めていなくても1回目で「結果を見る」に変わるので、進めなくなることはない
+    function onGo(e) {
+      if (e) e.stopPropagation();
+      if (!readyToLeave) { revealAll(); return; }
+      finishEnding();
     }
     function finishEnding(e) {
       if (e) e.stopPropagation();
@@ -1117,8 +1125,13 @@ export function renderTrueBoss(app) {
     window.scrollTo(0, 0);
     if (R) { revealAll(); return; }
     all.forEach((el, i) => later(() => el.classList.add('shown'), 600 + i * 2300));
-    later(() => { go.textContent = '結果を見る'; }, 600 + all.length * 2300);
-    later(showArt, 600 + all.length * 2300 + 2500); // 最後の行が出て2.5秒後、文が消え、絵がゆっくり現れる
+    const leave = () => { go.textContent = '結果を見る'; readyToLeave = true; };
+    if (endingPath) {
+      later(showArt, 600 + all.length * 2300 + 2500); // 最後の行が出て2.5秒後、文が消え、絵がゆっくり現れる
+      later(leave, 600 + all.length * 2300 + 2500); // ボタンが変わるのは絵を出す時（絵が読めていなくても、ここで変わる）
+    } else {
+      later(leave, 600 + all.length * 2300); // 絵が無いアプリは、最後の行のあと
+    }
   }
 
   // ---- 勝ち・負けのあと ----
