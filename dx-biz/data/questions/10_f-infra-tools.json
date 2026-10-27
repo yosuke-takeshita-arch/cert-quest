@@ -93,23 +93,24 @@
     "difficulty": 3,
     "stem": "旅行会社X社のWeb担当者は、生成AIを使った検索で旅行先を調べる人が増えたことを受け、AIがまとめる回答の中で自社の記事が引用されるように、記事の書き方を見直すことにした。この取り組みを表す言葉として最も適切なものを選びなさい。",
     "choices": [
-      "RPA（Robotic Process Automation）",
-      "リスティング広告（検索連動型広告）",
-      "GEO（Generative Engine Optimization）",
-      "バイブコーディング（Vibe Coding）"
+      "RPA",
+      "リスティング広告",
+      "GEO",
+      "SEO"
     ],
     "answer": 2,
-    "explanation": "GEOは、生成AIを使った検索（生成エンジン）の回答の中で、自社のコンテンツが取り上げられ、引用されやすくなるように工夫すること。原論文（Aggarwal ほか, 2023）は、生成エンジンの回答でのコンテンツの見え方（可視性）を高める枠組みとして提案した。",
+    "explanation": "GEO は Generative Engine Optimization の略で、意味は『生成エンジン最適化』。生成AIを使った検索（生成エンジン）の回答の中で、自社のコンテンツが取り上げられ、引用されやすくなるように工夫すること。原論文（Aggarwal ほか, 2023）は、生成エンジンの回答でのコンテンツの見え方（可視性）を高める枠組みとして提案した。",
     "whyWrong": [
-      "RPAは定型的なパソコン操作の自動化。",
-      "リスティング広告は、検索キーワードに連動して検索結果に表示される有料の広告。記事の書き方の見直しではない。",
+      "RPA（Robotic Process Automation）は、定型的なパソコン操作を自動化する仕組み。記事の書き方を見直す取り組みではない。",
+      "リスティング広告（検索連動型広告）は、検索キーワードに連動して検索結果に表示される有料の広告。記事の書き方の見直しではない。",
       null,
-      "バイブコーディングはAIにコードを書かせてソフトウェアを作るやり方。"
+      "SEO（Search Engine Optimization、検索エンジン最適化）は、検索エンジンにコンテンツを理解させ、従来の検索結果（リンクの一覧）からサイトを見つけてもらいやすくする取り組み。AIがまとめる回答の中で引用されることを目標にした取り組みは、SEO と区別して GEO と呼ぶ。"
     ],
     "memoryTip": "SEO＝リンク一覧で上位に、GEO＝AIの回答で引用される。",
     "concepts": ["DC-02-022", "DC-02-023"],
     "sources": [
-      { "title": "Aggarwal ほか「GEO: Generative Engine Optimization」（arXiv:2311.09735, 2023）", "url": "https://arxiv.org/abs/2311.09735" }
+      { "title": "Aggarwal ほか「GEO: Generative Engine Optimization」（arXiv:2311.09735, 2023）", "url": "https://arxiv.org/abs/2311.09735" },
+      { "title": "Google 検索セントラル「検索エンジン最適化（SEO）スターター ガイド」", "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja" }
     ],
     "status": "verified"
   },
