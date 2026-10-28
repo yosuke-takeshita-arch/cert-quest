@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1040" role="img" aria-labelledby="fig-g-doc2vec-t fig-g-doc2vec-d">
+<title id="fig-g-doc2vec-t">Doc2Vec：長さの違う文書を、決まった長さのベクトルに</title>
+<desc id="fig-g-doc2vec-d">Doc2Vec は、Le と Mikolov（2014）の Paragraph Vector の、ライブラリ gensim での名前。ベクトルは数を1列に並べたもの。①何に困っていたか：分類などの手法の多くは、入力が決まった個数の数の並びでないと使えないが、文書は長さがばらばら。BoW（語の出現回数）なら長さはそろうが、語順と語の意味の近さが消える。論文の例では powerful と strong と Paris がどれも同じだけ離れて扱われる。②例：2語・5語・230語の3つの文書が、どれも3個の数の並びになる。D1 は 0.8、0.1、0.3、D2 は 0.7、0.2、0.3、D3 は −0.5、0.9、0.1。似た話の D1 と D2 は数の並びも近い。数は説明のための例で、論文の実験では400個。③どう学ぶか（PV-DM）：文書ごとに1本のベクトルを用意し、単語のベクトルと並べて次の語を当てさせる。論文の図の例では the cat sat の次の語 on を当てる。くり返すと文書ベクトルにその文書の話題がたまる。新しい文書は、単語のベクトルを固定して文書ベクトルだけを学習して求める。PV-DBOW は文書ベクトルだけから文書の中の語を当てる別の学び方で、スキップグラムに似た形。④1本のベクトルが表すもの：word2vec は1つの単語で、文書のベクトルは作らない。Doc2Vec は1つの文書（文・段落も）で、語の意味の近さと近くの語順が少し残る。BoW は1つの文書の語の出現回数で、語順と意味の近さは消える。word2vec の CBOW は周りの語から中心の語を、スキップグラムは中心の語から周りの語を当てる。</desc>
+<text x="12" y="20" class="tb">Doc2Vec：文書を決まった長さの数の並びに</text>
+<text x="12" y="42" class="tm">Doc2Vec＝Paragraph Vector（Le と Mikolov</text>
+<text x="12" y="60" class="tm">2014）。gensim というライブラリでの名前</text>
+<text x="12" y="78" class="tm">ベクトル：数を1列に並べたもの</text>
+<line x1="12" y1="92" x2="308" y2="92" class="l sb w1"/>
+<text x="12" y="114" class="tb">① 何に困っていたか</text>
+<text x="12" y="136">分類などの手法の多くは、入力が決まった</text>
+<text x="12" y="154">個数の数の並び（決まった長さのベクトル）</text>
+<text x="12" y="172">でないと使えない。文書は長さがばらばら</text>
+<text x="12" y="194">BoW（語の出現回数）なら長さはそろうが、</text>
+<text x="12" y="212">　語順と、語の意味の近さが消える</text>
+<text x="12" y="230" class="tm">　例：powerful と strong と Paris が、どれも</text>
+<text x="12" y="248" class="tm">　同じだけ離れて扱われる（論文の例）</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<text x="12" y="284" class="tb">② 例：長さの違う3つの文書 → 3個の数に</text>
+<rect x="12" y="296" width="56" height="28" class="fs sm" stroke-width="1"/>
+<text x="40" y="315" text-anchor="middle">D1 2語</text>
+<rect x="12" y="334" width="96" height="28" class="fs sm" stroke-width="1"/>
+<text x="60" y="353" text-anchor="middle">D2 5語</text>
+<rect x="12" y="372" width="160" height="28" class="fs sm" stroke-width="1"/>
+<text x="92" y="391" text-anchor="middle">D3 230語</text>
+<line x1="74" y1="310" x2="190" y2="310" class="l sm w1"/>
+<polygon points="196,310 190,306.5 190,313.5" class="fm"/>
+<line x1="114" y1="348" x2="190" y2="348" class="l sm w1"/>
+<polygon points="196,348 190,344.5 190,351.5" class="fm"/>
+<line x1="178" y1="386" x2="190" y2="386" class="l sm w1"/>
+<polygon points="196,386 190,382.5 190,389.5" class="fm"/>
+<rect x="200" y="296" width="36" height="28" class="fas sa" stroke-width="1"/>
+<rect x="236" y="296" width="36" height="28" class="fas sa" stroke-width="1"/>
+<rect x="272" y="296" width="36" height="28" class="fas sa" stroke-width="1"/>
+<text x="218" y="315" class="tb" text-anchor="middle">0.8</text>
+<text x="254" y="315" class="tb" text-anchor="middle">0.1</text>
+<text x="290" y="315" class="tb" text-anchor="middle">0.3</text>
+<rect x="200" y="334" width="36" height="28" class="fas sa" stroke-width="1"/>
+<rect x="236" y="334" width="36" height="28" class="fas sa" stroke-width="1"/>
+<rect x="272" y="334" width="36" height="28" class="fas sa" stroke-width="1"/>
+<text x="218" y="353" class="tb" text-anchor="middle">0.7</text>
+<text x="254" y="353" class="tb" text-anchor="middle">0.2</text>
+<text x="290" y="353" class="tb" text-anchor="middle">0.3</text>
+<rect x="200" y="372" width="36" height="28" class="fas sa" stroke-width="1"/>
+<rect x="236" y="372" width="36" height="28" class="fas sa" stroke-width="1"/>
+<rect x="272" y="372" width="36" height="28" class="fas sa" stroke-width="1"/>
+<text x="218" y="391" class="tb" text-anchor="middle">−0.5</text>
+<text x="254" y="391" class="tb" text-anchor="middle">0.9</text>
+<text x="290" y="391" class="tb" text-anchor="middle">0.1</text>
+<text x="12" y="420" class="tm">左の箱の横幅＝文書の長さ（語の数）</text>
+<text x="12" y="438" class="tm">右＝Doc2Vec が出す、文書ごとの3個の数</text>
+<text x="12" y="456" class="tm">（数は説明のための例。論文の実験では400個）</text>
+<text x="12" y="478" class="tb ta">似た話の D1・D2 は、数の並びも近い</text>
+<line x1="12" y1="492" x2="308" y2="492" class="l sb w1"/>
+<text x="12" y="514" class="tb">③ どう学ぶか（論文の PV-DM）</text>
+<text x="12" y="536">文書ごとに1本のベクトルを用意し、単語の</text>
+<text x="12" y="554">ベクトルと並べて、次の語を当てさせる</text>
+<rect x="12" y="566" width="88" height="30" class="fas sa" stroke-width="1.5"/>
+<text x="56" y="586" class="tb" text-anchor="middle">文書ベクトル</text>
+<rect x="104" y="566" width="40" height="30" class="fs sm" stroke-width="1"/>
+<text x="124" y="586" text-anchor="middle">the</text>
+<rect x="148" y="566" width="40" height="30" class="fs sm" stroke-width="1"/>
+<text x="168" y="586" text-anchor="middle">cat</text>
+<rect x="192" y="566" width="40" height="30" class="fs sm" stroke-width="1"/>
+<text x="212" y="586" text-anchor="middle">sat</text>
+<line x1="236" y1="581" x2="254" y2="581" class="l w1"/>
+<polygon points="260,581 254,577.5 254,584.5" class="ft"/>
+<rect x="262" y="566" width="46" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="285" y="586" class="tb tok" text-anchor="middle">on</text>
+<text x="12" y="616" class="tm">論文の図の例：the cat sat の次の語 on を当てる</text>
+<text x="12" y="638">くり返すと、文書ベクトルにその文書の</text>
+<text x="12" y="656">話題がたまる（話題を覚えるメモの役）</text>
+<text x="12" y="678" class="tm">新しい文書：単語のベクトルは固定し、</text>
+<text x="12" y="696" class="tm">　文書ベクトルだけを学習して求める</text>
+<text x="12" y="714" class="tm">PV-DBOW：文書ベクトルだけから文書の中の</text>
+<text x="12" y="732" class="tm">　語を当てる（スキップグラムに似た形）</text>
+<line x1="12" y1="746" x2="308" y2="746" class="l sb w1"/>
+<text x="12" y="768" class="tb">④ 1本のベクトルが表すもの</text>
+<rect x="12" y="778" width="96" height="26" class="fbg sb" stroke-width="1"/>
+<text x="60" y="796" class="tb tm" text-anchor="middle">手法</text>
+<rect x="108" y="778" width="200" height="26" class="fbg sb" stroke-width="1"/>
+<text x="208" y="796" class="tb tm" text-anchor="middle">1本のベクトル</text>
+<rect x="12" y="804" width="96" height="46" class="fs sb" stroke-width="1"/>
+<text x="60" y="832" class="tb" text-anchor="middle">word2vec</text>
+<rect x="108" y="804" width="200" height="46" class="fs sb" stroke-width="1"/>
+<text x="116" y="823">1つの単語</text>
+<text x="116" y="841" class="tm">文書のベクトルは作らない</text>
+<rect x="12" y="850" width="96" height="46" class="fas sa" stroke-width="1"/>
+<text x="60" y="878" class="tb ta" text-anchor="middle">Doc2Vec</text>
+<rect x="108" y="850" width="200" height="46" class="fas sa" stroke-width="1"/>
+<text x="116" y="869">1つの文書（文・段落も）</text>
+<text x="116" y="887" class="tm">意味の近さ・近くの語順が少し残る</text>
+<rect x="12" y="896" width="96" height="46" class="fs sb" stroke-width="1"/>
+<text x="60" y="924" class="tb" text-anchor="middle">BoW</text>
+<rect x="108" y="896" width="200" height="46" class="fs sb" stroke-width="1"/>
+<text x="116" y="915">1つの文書の、語の出現回数</text>
+<text x="116" y="933" class="tm">語順・意味の近さは消える</text>
+<text x="12" y="964" class="tm">word2vec の2つの学び方：</text>
+<text x="12" y="982" class="tm">　CBOW＝周りの語 → 中心の語を当てる</text>
+<text x="12" y="1000" class="tm">　スキップグラム＝中心の語 → 周りの語を当てる</text>
+<rect x="12" y="1012" width="296" height="22" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="1028" class="tb tok" text-anchor="middle">長さが違っても、文書ごとに同じ個数の数</text>
+</svg>

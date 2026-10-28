@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 960" role="img" aria-labelledby="fig-g-guided-gradcam-t fig-g-guided-gradcam-d">
+<title id="fig-g-guided-gradcam-t">Guided Grad-CAM：粗いがクラスを区別する地図と、細かいがクラスを区別しない地図を、画素ごとに掛ける</title>
+<desc id="fig-g-guided-gradcam-d">Grad-CAM は勾配を使って、クラスごとに画像のどこを見たかの地図を作るが、地図は粗い。Guided Backpropagation は画素ごとの勾配を見るので細かいが、クラスを区別しない。Guided Grad-CAM は2つを画素ごとに掛け合わせる（要素ごとの積）。①困りごと：猫と犬が写った画像で、猫と判断した根拠を見たい。Grad-CAM は猫の側が光るが、VGG の最後の畳み込み層なら14×14マスと粗く、縞などの細部は見えない。Guided Backpropagation は縞や耳まで見えるが、猫で見ても犬で見てもほぼ同じ絵になる。②例：4×4マスで、左2列が猫、右2列が犬の写る所。Grad-CAM（猫）は左2列だけが明るい粗い地図。Guided Backpropagation は猫にも犬にも細かい明るいマスがある。画素ごとに掛けると、1×1＝1、1×0＝0 なので、猫の側の細かいマスだけが残る。Grad-CAM の地図は画像の大きさに引き伸ばしてから掛ける。③Guided Backpropagation は、勾配を逆向きに流すとき、ReLU のところで負の勾配を止め、正の勾配だけを通す。④見分け：Grad-CAM は粗いがクラスを区別できる。Guided Backpropagation は細かいがクラスを区別できない。Guided Grad-CAM は細かく、クラスも区別できる。CAM は GAP を持つ作りに限られる Grad-CAM の元の手法。LIME はモデルの中を見ずに、入力を変えて予測の変化を調べる。4×4マスの数は説明のための例。</desc>
+<text x="12" y="20" class="tb">Guided Grad-CAM：粗い地図 × 細かい地図</text>
+<text x="12" y="42" class="tm">Grad-CAM＝勾配で、クラスごとに画像の</text>
+<text x="12" y="60" class="tm">　どこを見たかの地図を作る（粗い）</text>
+<text x="12" y="78" class="tm">Guided Backpropagation＝画素ごとの勾配を</text>
+<text x="12" y="96" class="tm">　見る（細かいが、クラスを区別しない）</text>
+<text x="12" y="114" class="tm">勾配：その画素を少し変えると、予測の点数</text>
+<text x="12" y="132" class="tm">　がどれだけ変わるか（坂の傾き）</text>
+<line x1="12" y1="146" x2="308" y2="146" class="l sb w1"/>
+<text x="12" y="168" class="tb">① 何に困っていたか</text>
+<text x="12" y="190">例：猫と犬が写った画像で、『猫』と判断</text>
+<text x="12" y="208">した根拠を見たい</text>
+<text x="12" y="230">Grad-CAM：猫の側は光るが、地図が粗い</text>
+<text x="12" y="248" class="tm">　（VGG の最後の畳み込み層なら 14×14 マス）</text>
+<text x="12" y="266" class="tm">　→ 縞模様などの細かい所が見えない</text>
+<text x="12" y="288">Guided Backprop：縞や耳まで細かく見える</text>
+<text x="12" y="306" class="tm">　が、『猫』で見ても『犬』で見ても、</text>
+<text x="12" y="324" class="tm">　ほぼ同じ絵になる</text>
+<line x1="12" y1="338" x2="308" y2="338" class="l sb w1"/>
+<text x="12" y="360" class="tb">② 例：画素ごとに掛ける（4×4マスの例）</text>
+<text x="12" y="380" class="tm">左2列＝猫が写る所、右2列＝犬が写る所</text>
+<text x="52" y="408" class="tb" text-anchor="middle">Grad-CAM</text>
+<text x="160" y="408" class="tb" text-anchor="middle">Guided BP</text>
+<text x="268" y="408" class="tb ta" text-anchor="middle">掛けた結果</text>
+<rect x="12" y="420" width="40" height="80" class="fa"/>
+<rect x="52" y="420" width="40" height="80" class="fs"/>
+<rect x="12" y="420" width="80" height="80" class="sm" stroke-width="1"/>
+<line x1="52" y1="420" x2="52" y2="500" class="l sm w1"/>
+<rect x="120" y="420" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="140" y="420" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="160" y="420" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="180" y="420" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="120" y="440" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="140" y="440" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="160" y="440" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="180" y="440" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="120" y="460" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="140" y="460" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="160" y="460" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="180" y="460" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="120" y="480" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="140" y="480" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="160" y="480" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="180" y="480" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="228" y="420" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="248" y="420" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="268" y="420" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="288" y="420" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="228" y="440" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="248" y="440" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="268" y="440" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="288" y="440" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="228" y="460" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="248" y="460" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="268" y="460" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="288" y="460" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="228" y="480" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="248" y="480" width="20" height="20" class="fa sm" stroke-width="1"/>
+<rect x="268" y="480" width="20" height="20" class="fs sm" stroke-width="1"/>
+<rect x="288" y="480" width="20" height="20" class="fs sm" stroke-width="1"/>
+<text x="106" y="466" class="tb" text-anchor="middle">×</text>
+<text x="214" y="466" class="tb" text-anchor="middle">＝</text>
+<text x="52" y="528" class="tm" text-anchor="middle">粗い</text>
+<text x="52" y="546" class="tm" text-anchor="middle">猫の側だけ</text>
+<text x="160" y="528" class="tm" text-anchor="middle">細かい</text>
+<text x="160" y="546" class="tm" text-anchor="middle">猫も犬も</text>
+<text x="268" y="528" class="tb ta" text-anchor="middle">細かい</text>
+<text x="268" y="546" class="tb ta" text-anchor="middle">猫の側だけ</text>
+<rect x="12" y="562" width="14" height="14" class="fa sm" stroke-width="1"/>
+<text x="32" y="574">＝明るい（1）</text>
+<rect x="140" y="562" width="14" height="14" class="fs sm" stroke-width="1"/>
+<text x="160" y="574">＝暗い（0）</text>
+<text x="12" y="598">同じマスどうしを掛ける：1×1＝1、1×0＝0</text>
+<text x="12" y="616">→ 犬の側は Grad-CAM が 0 なので消え、</text>
+<text x="12" y="634">　猫の側の細かいマスだけが残る</text>
+<text x="12" y="656" class="tm">Grad-CAM の粗い地図は、画像の大きさに</text>
+<text x="12" y="674" class="tm">引き伸ばしてから掛ける（マスの数は例）</text>
+<line x1="12" y1="688" x2="308" y2="688" class="l sb w1"/>
+<text x="12" y="710" class="tb">③ Guided Backpropagation とは</text>
+<text x="12" y="732">勾配を出力から画像へ逆向きに流すとき、</text>
+<text x="12" y="750">ReLU の所で負の勾配を止め、正だけ通す</text>
+<text x="12" y="768" class="tm">→ 判断を強めた画素だけが細かく浮かぶ</text>
+<line x1="12" y1="782" x2="308" y2="782" class="l sb w1"/>
+<text x="12" y="804" class="tb">④ 見分け方</text>
+<rect x="12" y="814" width="132" height="24" class="fbg sb" stroke-width="1"/>
+<text x="78" y="831" class="tb tm" text-anchor="middle">手法</text>
+<rect x="144" y="814" width="70" height="24" class="fbg sb" stroke-width="1"/>
+<text x="179" y="831" class="tb tm" text-anchor="middle">細かさ</text>
+<rect x="214" y="814" width="94" height="24" class="fbg sb" stroke-width="1"/>
+<text x="261" y="831" class="tb tm" text-anchor="middle">クラスの区別</text>
+<rect x="12" y="838" width="132" height="24" class="fs sb" stroke-width="1"/>
+<text x="78" y="855" text-anchor="middle">Grad-CAM</text>
+<rect x="144" y="838" width="70" height="24" class="fs sb" stroke-width="1"/>
+<text x="179" y="855" text-anchor="middle">粗い</text>
+<rect x="214" y="838" width="94" height="24" class="fs sb" stroke-width="1"/>
+<text x="261" y="855" text-anchor="middle">できる</text>
+<rect x="12" y="862" width="132" height="24" class="fs sb" stroke-width="1"/>
+<text x="78" y="879" text-anchor="middle">Guided Backprop</text>
+<rect x="144" y="862" width="70" height="24" class="fs sb" stroke-width="1"/>
+<text x="179" y="879" text-anchor="middle">細かい</text>
+<rect x="214" y="862" width="94" height="24" class="fs sb" stroke-width="1"/>
+<text x="261" y="879" text-anchor="middle">できない</text>
+<rect x="12" y="886" width="132" height="24" class="fas sa" stroke-width="1"/>
+<text x="78" y="903" class="tb ta" text-anchor="middle">Guided Grad-CAM</text>
+<rect x="144" y="886" width="70" height="24" class="fas sa" stroke-width="1"/>
+<text x="179" y="903" class="tb ta" text-anchor="middle">細かい</text>
+<rect x="214" y="886" width="94" height="24" class="fas sa" stroke-width="1"/>
+<text x="261" y="903" class="tb ta" text-anchor="middle">できる</text>
+<text x="12" y="930" class="tm">CAM：GAP を持つ作りに限る（Grad-CAM の元）</text>
+<text x="12" y="948" class="tm">LIME：中を見ずに、入力を変えて調べる</text>
+</svg>
