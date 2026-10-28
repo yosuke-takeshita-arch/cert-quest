@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 646" role="img" aria-labelledby="fig-ap-generalization-t fig-ap-generalization-d">
+<title id="fig-ap-generalization-t">汎化：学習で見ていない新しいデータでも正しく予測できる力。学習用データだけ当たるモデルとの比べ</title>
+<desc id="fig-ap-generalization-d">汎化は、学習に使っていない新しいデータでも正しく予測できる力（Goodfellowらの教科書 Deep Learning 5.2節、Googleの機械学習の用語集）。①たとえ：練習問題を丸暗記した人は、練習では満点でも、初めて見る本番の問題は解けない。解き方をつかんだ人は本番でも解ける。②例（数は説明のための例。横向きの棒グラフで、棒の長さは正解率）：モデルAは学習用データで正解率100％、新しいデータで60％。学習用データの細かな癖まで覚え、新しいデータで外れる＝汎化できていない（過学習）。モデルBは学習用データで92％、新しいデータで90％。新しいデータでも当たる＝汎化している。機械学習が目指すのは、学習用データの成績ではなく、新しいデータの成績。③取り違えやすいもの：学習用データの正解率を100％に近づけることは汎化ではない。複数の手法を組み合わせるのはアンサンブル学習。項目の数を減らすのは次元削減。</desc>
+<text x="12" y="20" class="tb">汎化：初めて見るデータでも当たる力</text>
+<text x="12" y="40" class="tm">学習で見ていない新しいデータでも、</text>
+<text x="12" y="58" class="tm">正しく予測できること</text>
+<line x1="12" y1="72" x2="308" y2="72" class="l sb w1"/>
+<text x="12" y="94" class="tb">① たとえ：試験の勉強</text>
+<text x="12" y="116">練習問題を丸暗記 → 練習は満点、</text>
+<text x="12" y="134">　初めて見る本番の問題は解けない</text>
+<text x="12" y="156">解き方をつかむ → 本番の問題も解ける</text>
+<text x="12" y="174" class="tm">（練習問題＝学習用データ、本番＝新しいデータ）</text>
+<line x1="12" y1="188" x2="308" y2="188" class="l sb w1"/>
+<text x="12" y="210" class="tb">② 例：2つのモデルの正解率</text>
+<text x="12" y="228" class="tm">（横向きの棒グラフ。棒の長さ＝正解率。数は例）</text>
+<text x="12" y="254" class="tb">モデルA</text>
+<text x="12" y="276" class="tm">学習用</text>
+<rect x="64" y="264" width="200" height="16" class="fm"/>
+<text x="270" y="277">100%</text>
+<text x="12" y="298" class="tm">新しい</text>
+<rect x="64" y="286" width="120" height="16" class="fng sng" stroke-width="1.5"/>
+<text x="190" y="299" class="tb tng">60%</text>
+<text x="12" y="324" class="tb tng">→ 汎化できていない（過学習）</text>
+<text x="12" y="342" class="tm">学習用データの細かな癖まで覚えた</text>
+<text x="12" y="372" class="tb">モデルB</text>
+<text x="12" y="394" class="tm">学習用</text>
+<rect x="64" y="382" width="184" height="16" class="fm"/>
+<text x="254" y="395">92%</text>
+<text x="12" y="416" class="tm">新しい</text>
+<rect x="64" y="404" width="180" height="16" class="fok sok" stroke-width="1.5"/>
+<text x="250" y="417" class="tb tok">90%</text>
+<text x="12" y="442" class="tb tok">→ 汎化している</text>
+<text x="12" y="460" class="tm">新しいデータでもほぼ同じように当たる</text>
+<rect x="12" y="474" width="296" height="48" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="494" class="tb ta" text-anchor="middle">目指すのは、学習用ではなく</text>
+<text x="160" y="513" class="tb ta" text-anchor="middle">新しいデータの成績（汎化）</text>
+<line x1="12" y1="536" x2="308" y2="536" class="l sb w1"/>
+<text x="12" y="558" class="tb">③ 取り違えやすいもの</text>
+<text x="12" y="580">学習用で100%に近づける ≠ 汎化</text>
+<text x="12" y="602">手法を組み合わせる＝アンサンブル学習</text>
+<text x="12" y="624">項目の数を減らす＝次元削減</text>
+</svg>

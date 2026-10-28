@@ -167,7 +167,7 @@
     "confusions": [
       { "id": "C-AP-03-028", "point": "ガードレールは入力・出力・道具の使い方を機械的に見張る仕組み。Human-in-the-Loop は人が確認・承認する仕組み。" }
     ],
-    "figures": ["fig-ap-autonomy-levels"],
+    "figures": ["fig-ap-human-loop", "fig-ap-autonomy-levels"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
       { "title": "OpenAI『Introducing ChatGPT agent』（2025年7月17日）", "url": "https://openai.com/index/introducing-chatgpt-agent/" },
@@ -335,7 +335,7 @@
     "confusions": [
       { "id": "C-AP-03-018", "point": "意味的検索は意味の近さだけで探す。ハイブリッド検索は、それにキーワードの一致を足して結果を合わせる。" }
     ],
-    "figures": ["fig-ap-advanced-rag"],
+    "figures": ["fig-ap-semantic-search", "fig-ap-advanced-rag"],
     "sources": [
       { "title": "Microsoft Learn『RAG and Generative AI - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" },
       { "title": "Microsoft Learn『Vector Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/vector-search-overview" },
@@ -587,7 +587,7 @@
     "confusions": [
       { "id": "C-AP-03-008", "point": "ガードレールは機械が自動で見張って止める。Human-in-the-Loop は人が確かめて承認する。" }
     ],
-    "figures": ["fig-ap-defense-in-depth"],
+    "figures": ["fig-ap-guardrails", "fig-ap-defense-in-depth"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -1102,7 +1102,7 @@
       { "id": "C-AP-03-008", "relation": "関連" }
     ],
     "confusions": [],
-    "figures": ["fig-ap-coding-agent"],
+    "figures": ["fig-ap-pull-request", "fig-ap-coding-agent"],
     "sources": [
       { "title": "GitHub Docs『Pull requests』", "url": "https://docs.github.com/en/pull-requests/reference/pull-requests" },
       { "title": "GitHub Blog『GitHub Copilot: Meet the new coding agent』（2025年5月19日）", "url": "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/" },
@@ -1351,7 +1351,7 @@
     "confusions": [
       { "id": "C-AP-03-060", "point": "最小権限の原則は対策の考え方。権限の過剰付与はその反対のリスク。" }
     ],
-    "figures": ["fig-ap-excessive-agency"],
+    "figures": ["fig-ap-least-privilege-principle", "fig-ap-excessive-agency"],
     "sources": [
       { "title": "NIST CSRC Glossary『least privilege』", "url": "https://csrc.nist.gov/glossary/term/least_privilege" },
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" },

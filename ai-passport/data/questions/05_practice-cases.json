@@ -1788,7 +1788,7 @@
     ],
     "memoryTip": "規約＝サービスとの約束、権利＝他人との関係。",
     "concepts": ["C-AP-05-039", "C-AP-05-037"],
-    "figures": ["fig-ap-similarity-reliance"],
+    "figures": ["fig-ap-license-vs-rights"],
     "sources": [
       { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" },
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -2369,7 +2369,7 @@
     ],
     "memoryTip": "詰め込むほど、思い出しにくくなる。",
     "concepts": ["C-AP-05-050", "C-AP-02-042", "C-AP-03-037"],
-    "figures": ["fig-ap-context-management"],
+    "figures": ["fig-ap-context-rot"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
     ],

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 704" role="img" aria-labelledby="fig-ap-invention-t fig-ap-invention-d">
+<title id="fig-ap-invention-t">特許法の発明：4つの条件と、当たらないものの例。著作物・意匠との違い</title>
+<desc id="fig-ap-invention-d">特許法2条1項の発明は、4つの条件に分けて読める。①自然法則を利用：物理や化学などの自然の決まりを使う。当たらない例はゲームのルールそのもの（人が決めた取り決め）、数学の公式、経済の法則。②技術的思想：知識としてほかの人に伝えられる、客観的な手段の考え。当たらない例は、個人の熟練によるフォークボールの投げ方（技能）。③創作：新しく作り出したもの。当たらない例は、天然の鉱石を見つけただけ（単なる発見）。④高度のもの：実用新案法の考案（自然法則を利用した技術的思想の創作）と分ける語。当たらない例は特許庁の特許・実用新案審査基準 第III部第1章 2.1から。名前の似た守る対象との違い：著作物（著作権法2条1項1号）は思想や感情を創作的に表現したもので、小説・絵・音楽など。意匠（意匠法2条1項）は物品の形・模様・色などで、見た目で美しさを感じさせるもの。発明は技術のアイデアを守る。</desc>
+<text x="12" y="20" class="tb">特許法の「発明」：4つの条件</text>
+<text x="12" y="40" class="tm">特許法2条1項を4つに分けて読む</text>
+<rect x="12" y="52" width="296" height="40" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="77" class="tb ta" text-anchor="middle">①＋②＋③＋④ がそろうと「発明」</text>
+<text x="12" y="118" class="tb">① 自然法則を利用</text>
+<text x="12" y="136">物理・化学などの自然の決まりを使う</text>
+<text x="12" y="154" class="tng">× ゲームのルールそのもの（人の取り決め）</text>
+<text x="12" y="172" class="tng">× 数学の公式・経済の法則</text>
+<line x1="12" y1="186" x2="308" y2="186" class="l sb w1"/>
+<text x="12" y="208" class="tb">② 技術的思想</text>
+<text x="12" y="226">知識としてほかの人に伝えられる、</text>
+<text x="12" y="244">客観的な手段の考え</text>
+<text x="12" y="262" class="tng">× フォークボールの投げ方（個人の技能）</text>
+<line x1="12" y1="276" x2="308" y2="276" class="l sb w1"/>
+<text x="12" y="298" class="tb">③ 創作</text>
+<text x="12" y="316">新しく作り出したもの</text>
+<text x="12" y="334" class="tng">× 天然の鉱石を見つけただけ（発見）</text>
+<line x1="12" y1="348" x2="308" y2="348" class="l sb w1"/>
+<text x="12" y="370" class="tb">④ 高度のもの</text>
+<text x="12" y="388">実用新案の「考案」と分ける語</text>
+<text x="12" y="406" class="tm">（考案＝①②③だけ。④が無い）</text>
+<text x="12" y="430" class="tm">× の例は特許庁の審査基準 第III部第1章から</text>
+<line x1="12" y1="444" x2="308" y2="444" class="l sb w1"/>
+<text x="12" y="466" class="tb">守る対象の違い（取り違えやすい）</text>
+<rect x="12" y="476" width="296" height="64" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="496" class="tb ta">発明（特許法）→ 特許権</text>
+<text x="22" y="516">自然法則を使う技術のアイデア</text>
+<text x="22" y="532" class="tm">例：電池を長持ちさせる回路の仕組み</text>
+<rect x="12" y="546" width="296" height="62" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="566" class="tb">著作物（著作権法）→ 著作権</text>
+<text x="22" y="586">思想や感情を創作的に表現したもの</text>
+<text x="22" y="602" class="tm">例：小説・絵・音楽</text>
+<rect x="12" y="616" width="296" height="62" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="636" class="tb">意匠（意匠法）→ 意匠権</text>
+<text x="22" y="656">物の形・模様・色など。見た目で美しさ</text>
+<text x="22" y="672" class="tm">を感じさせるもの　例：製品の形</text>
+<text x="12" y="696" class="tm">発明の例の回路は、説明のための例</text>
+</svg>

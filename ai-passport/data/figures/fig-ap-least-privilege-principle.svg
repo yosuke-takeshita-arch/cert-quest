@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-ap-least-privilege-principle-t fig-ap-least-privilege-principle-d">
+<title id="fig-ap-least-privilege-principle-t">最小権限の原則：仕事に要るぶんだけの権限を渡す。多層防御・ホワイトリスト・サンドボックスとの違い</title>
+<desc id="fig-ap-least-privilege-principle-d">最小権限の原則は、利用者やプログラム（利用者に代わって動く処理。AIエージェントも含む）のアクセスの権限を、割り当てた仕事をこなすのに要る最小限にとどめるセキュリティの考え方（NISTの用語集。出典はCNSSI 4009-2022）。①何に困るか：権限を多く渡すほど、だまされたり間違えたりしたときの被害が大きくなる。②例（説明のための例）：メールを要約するだけのAIエージェント。仕事に要るのは「読む」だけ。読む・送る・消すを全部渡すと、メールに隠された指示にだまされたとき、メールを外へ送ったり消したりできてしまう。読むだけを渡せば、だまされても送る・消すはできない。③名前の似た守りとの違い：多層防御は性質の違う守りを何重にも重ねる考え方で、最小権限はその中の1つの層になりうる。ホワイトリストは使ってよいものを一覧で決める方法。サンドボックスは外と隔てた環境で動かす場所。最小権限は、渡す権限の大きさを要るぶんだけにする原則。</desc>
+<text x="12" y="20" class="tb">最小権限の原則：要るぶんだけ渡す</text>
+<text x="12" y="42" class="tm">仕事をこなすのに要る最小限の権限だけを、</text>
+<text x="12" y="60" class="tm">人やプログラム（AI エージェントも）に渡す</text>
+<line x1="12" y1="74" x2="308" y2="74" class="l sb w1"/>
+<text x="12" y="96" class="tb">① 何に困るか</text>
+<text x="12" y="118">権限を多く渡すほど、だまされたり</text>
+<text x="12" y="136">間違えたりしたときの被害が大きくなる</text>
+<line x1="12" y1="150" x2="308" y2="150" class="l sb w1"/>
+<text x="12" y="172" class="tb">② 例：メールを要約するだけの AI</text>
+<text x="12" y="190" class="tm">（仕事に要るのは「読む」だけ）</text>
+<rect x="12" y="202" width="144" height="160" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="84" y="222" class="tb tng" text-anchor="middle">× 多めに渡す</text>
+<text x="22" y="246">権限：読む・送る・</text>
+<text x="22" y="264">　　　消す</text>
+<text x="22" y="290" class="tm">メールに隠れた指示</text>
+<text x="22" y="308" class="tm">にだまされると</text>
+<text x="22" y="332" class="tb tng">→ 外へ送る・消す</text>
+<text x="22" y="350" class="tb tng">　ことができてしまう</text>
+<rect x="164" y="202" width="144" height="160" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="236" y="222" class="tb tok" text-anchor="middle">○ 最小限だけ</text>
+<text x="174" y="246">権限：読むだけ</text>
+<text x="174" y="290" class="tm">メールに隠れた指示</text>
+<text x="174" y="308" class="tm">にだまされても</text>
+<text x="174" y="332" class="tb tok">→ 送る・消すの権限</text>
+<text x="174" y="350" class="tb tok">　が無いので起きない</text>
+<line x1="12" y1="378" x2="308" y2="378" class="l sb w1"/>
+<text x="12" y="400" class="tb">③ 名前の似た守りとの違い</text>
+<rect x="12" y="410" width="296" height="48" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="430" class="tb ta">最小権限の原則</text>
+<text x="22" y="449">渡す権限の大きさを、要るぶんだけにする</text>
+<text x="12" y="482" class="tb">多層防御</text>
+<text x="12" y="500">性質の違う守りを何重にも重ねる考え方</text>
+<text x="12" y="518" class="tm">（最小権限は、その中の1つの層になりうる）</text>
+<text x="12" y="544" class="tb">ホワイトリスト</text>
+<text x="12" y="562">使ってよいものを一覧で決める方法</text>
+<text x="12" y="588" class="tb">サンドボックス</text>
+<text x="12" y="606">外と隔てた環境で動かす、閉じ込める場所</text>
+<text x="12" y="630" class="tm">定義：NIST の用語集（CNSSI 4009-2022）</text>
+</svg>

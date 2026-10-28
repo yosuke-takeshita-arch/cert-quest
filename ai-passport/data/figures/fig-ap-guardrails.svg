@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 690" role="img" aria-labelledby="fig-ap-guardrails-t fig-ap-guardrails-d">
+<title id="fig-ap-guardrails-t">ガードレール：AIの入力・出力・道具の使い方を機械で見張り、範囲を外れたものを止める柵（OpenAIの手引きの例）</title>
+<desc id="fig-ap-guardrails-d">guardrailは道路の防護柵。ガードレールは、AIエージェントの入口（入力）・出口（出力）・道具を使う前に置き、範囲を外れたものを機械で見つけて止める仕組み。OpenAIの手引き（A practical guide to building agents）の例：入力では、話題の外れを見分けるもの、脱獄やプロンプトインジェクションを見分けるもの、有害な表現を見るもの、禁止語や入力の長さの上限などの決まった規則。出力では、個人情報が書き出されていないかを見るもの、ブランドに合わない答えを見るもの。道具では、読むだけか書き込むか・取り消せるか・要る権限・お金への影響から道具ごとに低・中・高を付け、高い操作の前で止めたり人に回したりする。手引きは、1つでは足りず何種類も重ねるとしている。名前の似たもの：Human-in-the-Loopは人が確かめて承認する仕組みで、機械の柵と組み合わせて使う。サンドボックスは外と隔てた実行環境で、被害を閉じ込める場所。リランキングはRAGの検索の候補を並べ直す処理で、安全の見張りではない。</desc>
+<text x="12" y="20" class="tb">ガードレール：機械で見張る柵</text>
+<text x="12" y="42" class="tm">guardrail＝道路の防護柵。範囲を外れた</text>
+<text x="12" y="60" class="tm">入力・出力・操作を、機械が見つけて止める</text>
+<line x1="12" y1="74" x2="308" y2="74" class="l sb w1"/>
+<text x="12" y="96" class="tb">柵を置く3か所（OpenAI の手引きの例）</text>
+<rect x="12" y="108" width="296" height="36" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="160" y="131" class="tb" text-anchor="middle">利用者の入力・読み込んだ文</text>
+<line x1="160" y1="146" x2="160" y2="154" class="l sm w1"/>
+<polygon points="160,160 156,153 164,153" class="fm"/>
+<rect x="12" y="162" width="296" height="102" class="fas sa" stroke-width="2" rx="4"/>
+<text x="22" y="182" class="tb ta">柵① 入口（入力を見る）</text>
+<text x="22" y="202">・話題の外れの質問を見分ける</text>
+<text x="22" y="220">・脱獄やプロンプトインジェクション</text>
+<text x="22" y="238">・有害な表現</text>
+<text x="22" y="256">・禁止語・入力の長さの上限（決まった規則）</text>
+<line x1="160" y1="266" x2="160" y2="274" class="l sm w1"/>
+<polygon points="160,280 156,273 164,273" class="fm"/>
+<rect x="60" y="282" width="200" height="36" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="160" y="305" class="tb" text-anchor="middle">AI エージェント（LLM）</text>
+<line x1="110" y1="320" x2="80" y2="336" class="l sm w1"/>
+<polygon points="75,339 79,331 84,337" class="fm"/>
+<line x1="210" y1="320" x2="240" y2="336" class="l sm w1"/>
+<polygon points="245,339 236,337 241,331" class="fm"/>
+<rect x="12" y="342" width="144" height="102" class="fas sa" stroke-width="2" rx="4"/>
+<text x="22" y="362" class="tb ta">柵② 出口</text>
+<text x="22" y="380" class="tm">（答えを見る）</text>
+<text x="22" y="402">・個人情報が</text>
+<text x="22" y="420">　書き出されていないか</text>
+<text x="22" y="438">・ブランドに合うか</text>
+<rect x="164" y="342" width="144" height="102" class="fas sa" stroke-width="2" rx="4"/>
+<text x="174" y="362" class="tb ta">柵③ 道具の前</text>
+<text x="174" y="380" class="tm">（操作を見る）</text>
+<text x="174" y="402">道具ごとに危なさを</text>
+<text x="174" y="420">低・中・高。高い操作</text>
+<text x="174" y="438">の前で止める・人へ</text>
+<text x="12" y="468" class="tb">1つでは足りない。何種類も重ねる</text>
+<text x="12" y="486" class="tm">（手引きの言葉の要点）</text>
+<line x1="12" y1="500" x2="308" y2="500" class="l sb w1"/>
+<text x="12" y="522" class="tb">名前の似たものとの違い</text>
+<text x="12" y="546" class="tb">Human-in-the-Loop</text>
+<text x="12" y="564">人が確かめて承認する。機械の柵ではない</text>
+<text x="12" y="582" class="tm">（ガードレールと組み合わせて使う）</text>
+<text x="12" y="608" class="tb">サンドボックス</text>
+<text x="12" y="626">外と隔てた実行環境。被害を閉じ込める場所</text>
+<text x="12" y="652" class="tb">リランキング</text>
+<text x="12" y="670">RAG の検索の候補を並べ直す。安全とは別</text>
+</svg>

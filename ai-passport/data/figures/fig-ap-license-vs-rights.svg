@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-ap-license-vs-rights-t fig-ap-license-vs-rights-d">
+<title id="fig-ap-license-vs-rights-t">生成AIの画像を使う前の2つの確認：ライセンス条件（サービスとの約束）と権利関係（他人の作品との関係）</title>
+<desc id="fig-ap-license-vs-rights-d">生成AIの画像を広告などに使う前に、2つを分けて確かめる。ライセンス条件の確認：相手は使ったAIサービスの提供者。利用規約で、出力の扱いや禁止事項、商用利用を見る。たとえばOpenAIの利用規約（2026年1月1日発効の版）は、利用者とOpenAIの間では出力は利用者のものとする。規約は利用者と提供者の約束で、他人の作品の権利者が許したことにはならない。権利関係の確認：相手は既存の作品の権利者。できた画像が他人の作品と似ているか（類似性）、それをもとにしたと言えるか（依拠性）を見る。文化庁の考え方（令和6年3月15日）は、両方が認められれば著作権の侵害になりうるとする。例（説明のための例）：規約は商用利用を認めていても、有名な漫画の主人公にそっくりの画像は、権利関係の確認で止まる。別のもの：事実関係の確認は、書かれた事実が本当かを確かめること。似ている・もとにした、は著作権の問題で、個人情報の決まりの問題ではない。</desc>
+<text x="12" y="20" class="tb">使う前の2つの確認（生成AIの画像）</text>
+<text x="12" y="40" class="tm">相手が違う。片方だけでは足りない</text>
+<rect x="12" y="52" width="296" height="176" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="74" class="tb ta">ライセンス条件の確認</text>
+<text x="22" y="94" class="tm">相手：使った AI サービスの提供者</text>
+<text x="22" y="118">見るもの：利用規約</text>
+<text x="22" y="136">（出力の扱い・禁止事項・商用利用）</text>
+<text x="22" y="160" class="tm">例：OpenAI の規約は、利用者と OpenAI</text>
+<text x="22" y="178" class="tm">の間では、出力は利用者のものとする</text>
+<text x="22" y="202" class="tb">規約は、利用者と提供者の約束。</text>
+<text x="22" y="220" class="tb">他人の作品の権利者が許したのではない</text>
+<rect x="12" y="238" width="296" height="176" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="22" y="260" class="tb tok">権利関係の確認</text>
+<text x="22" y="280" class="tm">相手：既存の作品の権利者（他人）</text>
+<text x="22" y="304">見るもの：できた画像が</text>
+<text x="22" y="322">・他人の作品に似ているか（類似性）</text>
+<text x="22" y="340">・それをもとにしたと言えるか（依拠性）</text>
+<text x="22" y="364" class="tb">両方そろうと、著作権の侵害になりうる</text>
+<text x="22" y="388" class="tm">（文化庁『AIと著作権に関する考え方</text>
+<text x="22" y="406" class="tm">について』令和6年3月15日）</text>
+<line x1="12" y1="428" x2="308" y2="428" class="l sb w1"/>
+<text x="12" y="450" class="tb">例：広告の画像（説明のための例）</text>
+<text x="12" y="472">ライセンス条件：規約は商用利用を認める</text>
+<text x="12" y="490" class="tb tok">→ 通る</text>
+<text x="12" y="512">権利関係：有名な漫画の主人公にそっくり</text>
+<text x="12" y="530" class="tb tng">→ 止まる（著作権の侵害になりうる）</text>
+<line x1="12" y1="546" x2="308" y2="546" class="l sb w1"/>
+<text x="12" y="568" class="tb">取り違えやすいもの</text>
+<text x="12" y="590">事実関係の確認＝書かれた事実が本当か</text>
+<text x="12" y="612">似ている・もとにした、は著作権の問題</text>
+<text x="12" y="630" class="tm">（個人情報の決まりの問題ではない）</text>
+</svg>

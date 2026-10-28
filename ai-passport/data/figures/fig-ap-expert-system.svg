@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 680" role="img" aria-labelledby="fig-ap-expert-system-t fig-ap-expert-system-d">
+<title id="fig-ap-expert-system-t">エキスパートシステム：人が書いた規則で専門家のように判断する。代表例のMYCINと、機械学習との違い</title>
+<desc id="fig-ap-expert-system-d">エキスパートシステムは、専門分野の知識を取り込んで推論し、その分野の専門家のようにふるまうプログラム（平成28年版情報通信白書）。代表例のMYCINは、1970年代初めにスタンフォード大学で開発され、血液の感染症を診断して抗生物質を勧める。規則は約500（松尾豊氏の資料）。①仕組み：専門家（医師）の知識を、人が規則に書いて知識ベースに入れ、システムがその規則で推論して答える。②MYCINの診断の対話の例（松尾豊氏の資料）：培地はどこか→血液、細菌のグラム染色の結果は→ネガティブ、細菌の形は→棒状、痛みはひどいか→ひどい、から緑膿菌と判定する。③機械学習との違い：エキスパートシステムは規則を人が書く（第2次ブーム）。機械学習は規則をデータからコンピュータ自身が見つける（白書は、大量のデータでAI自身が知識を得る機械学習の実用化を第3次ブームの話としている）。④壁：必要な情報を全部、人が記述する必要があり、書き切れない。</desc>
+<text x="12" y="20" class="tb">エキスパートシステム</text>
+<text x="12" y="40">人が書いた規則で、専門家のように判断する</text>
+<text x="12" y="58" class="tm">代表例：MYCIN（1970年代初め・スタンフォード大学）</text>
+<line x1="12" y1="72" x2="308" y2="72" class="l sb w1"/>
+<text x="12" y="94" class="tb">① 仕組み（規則は人が書く）</text>
+<rect x="12" y="106" width="88" height="48" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="56" y="126" class="tb" text-anchor="middle">専門家</text>
+<text x="56" y="144" class="tm" text-anchor="middle">（医師）</text>
+<line x1="102" y1="130" x2="110" y2="130" class="l sm w1"/>
+<polygon points="116,130 109,126 109,134" class="fm"/>
+<rect x="118" y="106" width="96" height="48" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="166" y="126" class="tb ta" text-anchor="middle">人が規則に</text>
+<text x="166" y="144" class="tb ta" text-anchor="middle">書く</text>
+<line x1="216" y1="130" x2="224" y2="130" class="l sm w1"/>
+<polygon points="230,130 223,126 223,134" class="fm"/>
+<rect x="232" y="106" width="76" height="48" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="270" y="126" class="tb" text-anchor="middle">規則で</text>
+<text x="270" y="144" class="tb" text-anchor="middle">推論</text>
+<text x="12" y="176" class="tm">MYCIN の規則は約500。血液の感染症を診断し、</text>
+<text x="12" y="194" class="tm">使う抗生物質を勧める</text>
+<line x1="12" y1="208" x2="308" y2="208" class="l sb w1"/>
+<text x="12" y="230" class="tb">② MYCIN の診断の対話（資料の例）</text>
+<rect x="12" y="240" width="296" height="104" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="22" y="260">Q 培地はどこ？</text>
+<text x="196" y="260">A 血液</text>
+<text x="22" y="280">Q グラム染色の結果は？</text>
+<text x="196" y="280">A ネガティブ</text>
+<text x="22" y="300">Q 細菌の形は？</text>
+<text x="196" y="300">A 棒状</text>
+<text x="22" y="320">Q 痛みはひどい？</text>
+<text x="196" y="320">A ひどい</text>
+<text x="22" y="338" class="tb ta">→ 緑膿菌と判定（規則をたどった答え）</text>
+<line x1="12" y1="358" x2="308" y2="358" class="l sb w1"/>
+<text x="12" y="380" class="tb">③ 機械学習との違い：規則をだれが作るか</text>
+<rect x="12" y="390" width="144" height="98" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="410" class="tb ta">エキスパート</text>
+<text x="22" y="428" class="tb ta">システム</text>
+<text x="22" y="452">規則を人が書く</text>
+<text x="22" y="476" class="tm">第2次ブーム</text>
+<rect x="164" y="390" width="144" height="98" class="fs sm" stroke-width="1.5" rx="4"/>
+<text x="174" y="410" class="tb">機械学習</text>
+<text x="174" y="436">規則をデータから</text>
+<text x="174" y="454">コンピュータが見つける</text>
+<text x="174" y="476" class="tm">第3次ブームで実用化</text>
+<text x="12" y="512" class="tm">MYCIN の約500の規則は、データから学んだ</text>
+<text x="12" y="530" class="tm">ものではない（人が書いた規則）</text>
+<line x1="12" y1="544" x2="308" y2="544" class="l sb w1"/>
+<text x="12" y="566" class="tb">④ 壁：知識を書き切れない</text>
+<text x="12" y="588">必要な情報を全部、人が書く必要があり、</text>
+<text x="12" y="606">使える知識は特定の分野に限られた</text>
+<text x="12" y="632" class="tm">出典：①②は松尾豊氏の資料（2015年）、</text>
+<text x="12" y="650" class="tm">③④は平成28年版 情報通信白書</text>
+</svg>

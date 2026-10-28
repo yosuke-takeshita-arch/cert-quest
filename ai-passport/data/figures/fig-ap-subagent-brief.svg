@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 636" role="img" aria-labelledby="fig-ap-subagent-brief-t fig-ap-subagent-brief-d">
+<title id="fig-ap-subagent-brief-t">指揮役がサブエージェントに仕事を任せるときに伝える4つ：目的・出力の形・使う道具と情報源・仕事の境目（Anthropicの調べ物の仕組み）</title>
+<desc id="fig-ap-subagent-brief-d">Anthropicの記事（How we built our multi-agent research system、2025年6月13日）から。①何に困ったか：指揮役が『半導体の不足を調べて』のような短い指示だけを出すと、作業役が仕事を取り違えたり、ほかの作業役と同じ検索をしたりした。記事の例では、1つの作業役が2021年の自動車の半導体の危機を調べ、ほかの2つは2025年の供給網を重ねて調べ、分担が働かなかった。②指揮役が作戦を立て、作業役（サブエージェント）に配る矢印で、4つを伝える：目的、出力の形、使う道具と情報源、仕事の境目（どこからどこまでか）。③伝えないと：作業が重なる、抜けが出る、必要な情報を見つけられない。図の中の作業役Aへの指示の中身は説明のための例。</desc>
+<text x="12" y="20" class="tb">任せるときに伝える4つ</text>
+<text x="12" y="40" class="tm">Anthropic の調べ物の仕組み（2025年の記事）</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">① 何に困ったか：短い指示だけ</text>
+<text x="12" y="98">指示「半導体の不足を調べて」だけだと</text>
+<rect x="12" y="110" width="94" height="58" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="59" y="130" class="tb" text-anchor="middle">作業役1</text>
+<text x="59" y="149" class="tm" text-anchor="middle">2021年の</text>
+<text x="59" y="164" class="tm" text-anchor="middle">自動車の危機</text>
+<rect x="113" y="110" width="94" height="58" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="160" y="130" class="tb" text-anchor="middle">作業役2</text>
+<text x="160" y="149" class="tng" text-anchor="middle">2025年の</text>
+<text x="160" y="164" class="tng" text-anchor="middle">供給網</text>
+<rect x="214" y="110" width="94" height="58" class="fng sng" stroke-width="1.5" rx="4"/>
+<text x="261" y="130" class="tb" text-anchor="middle">作業役3</text>
+<text x="261" y="149" class="tng" text-anchor="middle">2025年の</text>
+<text x="261" y="164" class="tng" text-anchor="middle">供給網</text>
+<text x="12" y="190" class="tb tng">→ 2と3が同じ調べを重ねた（分担できない）</text>
+<line x1="12" y1="206" x2="308" y2="206" class="l sb w1"/>
+<text x="12" y="228" class="tb">② 指揮役が配る矢印で、4つを伝える</text>
+<rect x="60" y="240" width="200" height="40" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="160" y="258" class="tb" text-anchor="middle">指揮役のエージェント</text>
+<text x="160" y="274" class="tm" text-anchor="middle">作戦を立てて、仕事を配る</text>
+<line x1="160" y1="282" x2="160" y2="296" class="l sa w2"/>
+<polygon points="160,303 155,294 165,294" class="fa"/>
+<rect x="12" y="306" width="296" height="150" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="326" class="tb ta">作業役Aへの指示（中身は説明の例）</text>
+<text x="22" y="350" class="tb">1 目的</text>
+<text x="124" y="350">2021年の不足の原因を知る</text>
+<text x="22" y="374" class="tb">2 出力の形</text>
+<text x="124" y="374">要点5つの箇条書きで返す</text>
+<text x="22" y="398" class="tb">3 道具・情報源</text>
+<text x="124" y="398">ウェブ検索、業界の報告</text>
+<text x="22" y="422" class="tb">4 仕事の境目</text>
+<text x="124" y="422">2021年まで。2025年は</text>
+<text x="124" y="442">作業役Bの担当</text>
+<line x1="160" y1="458" x2="160" y2="472" class="l sa w2"/>
+<polygon points="160,479 155,470 165,470" class="fa"/>
+<rect x="12" y="482" width="140" height="40" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="82" y="500" class="tb" text-anchor="middle">作業役A</text>
+<text x="82" y="516" class="tm" text-anchor="middle">2021年の原因</text>
+<rect x="168" y="482" width="140" height="40" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="238" y="500" class="tb" text-anchor="middle">作業役B</text>
+<text x="238" y="516" class="tm" text-anchor="middle">2025年の供給網</text>
+<text x="12" y="544" class="tb tok">→ 重ならず、抜けずに分けられる</text>
+<line x1="12" y1="560" x2="308" y2="560" class="l sb w1"/>
+<text x="12" y="582" class="tb">③ 4つを伝えないと（記事の言葉の要点）</text>
+<text x="12" y="604">作業が重なる・抜けが出る・</text>
+<text x="12" y="622">必要な情報を見つけられない</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-ap-instructgpt-eval-t fig-ap-instructgpt-eval-d">
+<title id="fig-ap-instructgpt-eval-t">InstructGPTの人の評価：13億パラメータのInstructGPTの答えが、1,750億パラメータのGPT-3の答えより好まれた</title>
+<desc id="fig-ap-instructgpt-eval-d">Ouyangら（2022）のInstructGPTの論文から。①どう比べたか：論文の主な評価は人の評価。担当者が同じ質問への答えを読み比べ、どちらが好ましいかを判定し、好まれた割合を数えた。公開の評価用データでの自動の評価も別に行った。②大きさ（棒グラフ。棒の長さはパラメータの数。パラメータ＝モデルの中で学習で決める数）：GPT-3は1,750億、InstructGPTは13億で、100倍以上小さい。③結果：13億のInstructGPTの答えのほうが、1,750億のGPT-3の答えより好まれた。同じ1,750億どうしで比べると、InstructGPTの答えが約85％（±3％）の割合で好まれた。④なぜか：2つは同じ作りで、違いは人のデータ（手本の答えと、答えの順位）で仕上げたかどうかだけ。大きさより、人の評価にもとづく仕上げが効いた。</desc>
+<text x="12" y="20" class="tb">InstructGPT の人の評価（2022年の論文）</text>
+<text x="12" y="40" class="tm">小さいモデルの答えのほうが好まれた</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">① どう比べたか：人の評価</text>
+<text x="12" y="98">担当者が同じ質問への答えを読み比べ、</text>
+<text x="12" y="116">どちらが好ましいかを判定して数える</text>
+<text x="12" y="134" class="tm">（公開の評価用データの自動の評価は別に実施）</text>
+<line x1="12" y1="148" x2="308" y2="148" class="l sb w1"/>
+<text x="12" y="170" class="tb">② 大きさを比べる（棒グラフ）</text>
+<text x="12" y="188" class="tm">棒の長さ＝パラメータの数（数に比例）</text>
+<text x="12" y="206" class="tm">（パラメータ＝学習で決める、モデルの中の数）</text>
+<text x="12" y="232" class="tb">GPT-3：1,750億</text>
+<rect x="12" y="240" width="288" height="22" class="fm"/>
+<text x="12" y="290" class="tb ta">InstructGPT：13億</text>
+<rect x="12" y="298" width="2.2" height="22" class="fa"/>
+<text x="24" y="314" class="ta">← これだけ（100倍以上小さい）</text>
+<line x1="12" y1="336" x2="308" y2="336" class="l sb w1"/>
+<text x="12" y="358" class="tb">③ 結果</text>
+<rect x="12" y="368" width="296" height="62" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="392" class="tb ta" text-anchor="middle">13億の InstructGPT の答えが、</text>
+<text x="160" y="414" class="tb ta" text-anchor="middle">1,750億の GPT-3 の答えより好まれた</text>
+<text x="12" y="454">同じ 1,750億どうしなら、InstructGPT の</text>
+<text x="12" y="472">答えが約85％（±3％）の割合で好まれた</text>
+<line x1="12" y1="488" x2="308" y2="488" class="l sb w1"/>
+<text x="12" y="510" class="tb">④ なぜか</text>
+<text x="12" y="532">2つは同じ作り。違いは、人のデータ（手本</text>
+<text x="12" y="550">の答えと、答えの順位）で仕上げたかだけ</text>
+<text x="12" y="576" class="tb tok">→ 大きさより、人の評価にもとづく</text>
+<text x="12" y="596" class="tb tok">　仕上げ（RLHF など）が効いた</text>
+</svg>

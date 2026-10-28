@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-ap-pull-request-t fig-ap-pull-request-d">
+<title id="fig-ap-pull-request-t">プルリクエスト：ブランチで直した変更を、取り込む前に話し合い・レビューしてもらう提案。リポジトリ・ブランチ・コミットとの違い</title>
+<desc id="fig-ap-pull-request-d">pull requestは『（変更を）引き入れてほしいという依頼』。GitHubの説明では、プルリクエストはコードの変更をプロジェクトに取り込む提案で、取り込む前に変更を話し合い、レビューできる。図は、リポジトリ（コードとファイル、各ファイルの変更の履歴をしまう場所）の中で、元の流れ（main）から枝分かれしたブランチの上で変更を進め、コミット（変更を1つの区切りとして記録すること）を2回してから、プルリクエストで『mainに取り込んでほしい』と提案し、ほかの人がレビューして承認してから取り込む（マージする）流れ。コーディングエージェントも作業の結果をプルリクエストで出し、人が確かめてから取り込む。4つの語の違い：リポジトリはしまう場所、ブランチは変更を進める枝、コミットは変更を記録する1回、プルリクエストは取り込みの提案とレビューの場。</desc>
+<text x="12" y="20" class="tb">プルリクエスト：取り込む前の提案</text>
+<text x="12" y="40" class="tm">pull request＝変更を引き入れてほしいという依頼</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<rect x="12" y="66" width="296" height="230" class="sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="86" class="tb">リポジトリ</text>
+<text x="96" y="86" class="tm">（コードと変更の履歴をしまう場所）</text>
+<text x="22" y="116" class="tm">元の流れ（main）</text>
+<line x1="30" y1="132" x2="296" y2="132" class="l sm w2"/>
+<circle cx="40" cy="132" r="6" class="fs sm" stroke-width="2"/>
+<circle cx="80" cy="132" r="6" class="fs sm" stroke-width="2"/>
+<circle cx="272" cy="132" r="7" class="fa sa" stroke-width="2"/>
+<text x="272" y="116" class="tb ta" text-anchor="middle">取り込み後</text>
+<path d="M80 132 Q 92 186 120 186" class="l sok w2"/>
+<line x1="120" y1="186" x2="200" y2="186" class="l sok w2"/>
+<circle cx="140" cy="186" r="6" class="fok sok" stroke-width="2"/>
+<circle cx="196" cy="186" r="6" class="fok sok" stroke-width="2"/>
+<text x="140" y="210" class="tok" text-anchor="middle">コミット1</text>
+<text x="196" y="210" class="tok" text-anchor="middle">コミット2</text>
+<text x="22" y="236" class="tb tok">ブランチ＝枝分かれして変更を進める線</text>
+<text x="22" y="254" class="tm">コミット＝変更を1つの区切りとして記録</text>
+<path d="M204 182 Q 250 170 266 140" class="l sa w2 dsh"/>
+<polygon points="269,134 261,142 271,143" class="fa"/>
+<text x="196" y="160" class="tb ta">提案</text>
+<text x="22" y="282" class="tm">点線＝プルリクエストで「main に取り込んで」</text>
+<line x1="12" y1="310" x2="308" y2="310" class="l sb w1"/>
+<text x="12" y="332" class="tb">プルリクエストの中で起きること</text>
+<rect x="12" y="342" width="86" height="56" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="55" y="364" class="tb ta" text-anchor="middle">提案する</text>
+<text x="55" y="384" class="tm" text-anchor="middle">変更の差分</text>
+<line x1="100" y1="370" x2="106" y2="370" class="l sm w1"/>
+<polygon points="112,370 105,366 105,374" class="fm"/>
+<rect x="114" y="342" width="92" height="56" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="364" class="tb ta" text-anchor="middle">話し合い</text>
+<text x="160" y="384" class="tb ta" text-anchor="middle">レビュー</text>
+<line x1="208" y1="370" x2="214" y2="370" class="l sm w1"/>
+<polygon points="220,370 213,366 213,374" class="fm"/>
+<rect x="222" y="342" width="86" height="56" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="265" y="364" class="tb tok" text-anchor="middle">承認して</text>
+<text x="265" y="384" class="tb tok" text-anchor="middle">取り込む</text>
+<text x="12" y="422" class="tm">AI のコーディングエージェントも、結果を</text>
+<text x="12" y="440" class="tm">プルリクエストで出し、人が確かめて取り込む</text>
+<line x1="12" y1="454" x2="308" y2="454" class="l sb w1"/>
+<text x="12" y="476" class="tb">4つの語の違い</text>
+<text x="12" y="500" class="tb">リポジトリ</text>
+<text x="112" y="500">しまう場所</text>
+<text x="12" y="524" class="tb">ブランチ</text>
+<text x="112" y="524">変更を進める枝</text>
+<text x="12" y="548" class="tb">コミット</text>
+<text x="112" y="548">変更を記録する1回</text>
+<text x="12" y="572" class="tb ta">プルリクエスト</text>
+<text x="112" y="572" class="ta">取り込みの提案とレビューの場</text>
+<text x="12" y="598" class="tm">出典：GitHub Docs（Pull requests ほか）</text>
+</svg>
