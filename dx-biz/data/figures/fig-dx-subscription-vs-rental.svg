@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-subscription-vs-rental-t fig-dx-subscription-vs-rental-d">
+<title id="fig-dx-subscription-vs-rental-t">家具のサブスクリプションとレンタル：長く使ったときの支払総額の違い</title>
+<desc id="fig-dx-subscription-vs-rental-d">2019年版ものづくり白書が紹介する家具のサブスクリプションの事例をもとにした図。上は折れ線グラフで、横軸は使った月数（0から30か月）、縦軸は払った合計の金額。点線は家具の定価10万円。赤い線はレンタルで、月5,000円を払い続けるので、20か月で定価に届き、30か月で15万円になって定価を超える。緑の線はサブスクリプションで、月4,000円で、25か月で10万円に届き、その後は支払総額が定価を超えない。金額と月数は図の例で、超えない仕組みの細かい形は白書に書かれていない。下は比べた結果。レンタルと同じ点は、月々の負担が小さいこと。レンタルと違う点は、長く使っても支払総額が定価を超えないこと。リースと違う点は、リースは事前の審査などが厳しいが、サブスクリプションは誰でも簡単に使えること。事例の会社は、サブスクリプションをレンタルとリースの良いところ取りと表現している。</desc>
+<text x="12" y="20" class="tb">家具のサブスクとレンタル：払う合計</text>
+<text x="12" y="40" class="tm">2019年版 ものづくり白書の事例をもとに</text>
+<text x="12" y="58" class="tm">（折れ線グラフ。横：使った月数、縦：払った合計）</text>
+<line x1="50" y1="80" x2="50" y2="250" class="l sm w1"/>
+<line x1="50" y1="250" x2="304" y2="250" class="l sm w1"/>
+<text x="46" y="95" class="tm" text-anchor="end">15万円</text>
+<text x="46" y="148" class="tm" text-anchor="end">10万円</text>
+<text x="44" y="254" class="tm" text-anchor="end">0</text>
+<text x="50" y="268" class="tm" text-anchor="middle">0</text>
+<text x="217" y="268" class="tm" text-anchor="middle">20</text>
+<text x="300" y="268" class="tm" text-anchor="end">30か月</text>
+<line x1="50" y1="143" x2="304" y2="143" class="l sm w1 dsh"/>
+<text x="56" y="137" class="tm">定価 10万円</text>
+<line x1="50" y1="250" x2="300" y2="90" class="l sng w2"/>
+<polyline points="50,250 258,143 300,143" class="l sok w3"/>
+<circle cx="217" cy="143" r="4" class="fng l sng"/>
+<text x="300" y="84" class="tng tb" text-anchor="end">レンタル：月5,000円</text>
+<text x="300" y="200" class="tok tb" text-anchor="end">サブスク：月4,000円</text>
+<text x="12" y="294">30か月使うと（金額は図の例）</text>
+<text x="12" y="314" class="tng">レンタル：5,000円×30＝15万円</text>
+<text x="12" y="332" class="tng">　→ 20か月で定価を上回る</text>
+<text x="12" y="354" class="tok">サブスク：4,000円×25＝10万円で届き、</text>
+<text x="12" y="372" class="tok">　その後も定価を超えない</text>
+<text x="12" y="392" class="tm">（超えない仕組みの細かい形は白書にない）</text>
+<line x1="12" y1="406" x2="308" y2="406" class="l sb w1"/>
+<text x="12" y="428" class="tb">サブスクを比べると</text>
+<text x="12" y="450">レンタルと同じ：月々の負担が小さい</text>
+<text x="12" y="472">レンタルと違う：長く使っても支払総額</text>
+<text x="12" y="490">　が定価を超えない</text>
+<text x="12" y="512">リースと違う：リースは審査などが厳しい。</text>
+<text x="12" y="530">　サブスクは誰でも簡単に使える</text>
+<text x="12" y="552" class="ta tb">事例の会社の言葉：「良いところ取り」</text>
+</svg>

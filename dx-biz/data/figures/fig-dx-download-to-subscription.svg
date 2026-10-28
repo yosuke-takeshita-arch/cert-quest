@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-dx-download-to-subscription-t fig-dx-download-to-subscription-d">
+<title id="fig-dx-download-to-subscription-t">有料配信の課金の移り変わり：ダウンロード課金型から定額制（サブスクリプション）へ</title>
+<desc id="fig-dx-download-to-subscription-d">平成28年版情報通信白書が紹介する、有料のコンテンツ配信サービスの新たな潮流を、上から下へ描いた図。上の箱は従来のダウンロード課金型で、1曲・1本ごとに払って手に入れる。例として1曲250円で4曲なら1,000円、聞く曲を増やすほど払う額が増える。白書は音楽ではAppleのiTunesを代表例に挙げる。下の箱は新たな潮流の定額制（サブスクリプション）で、月額料金を払って見放題・聞き放題で使う。例として月1,000円なら何曲でも同じ額で、4曲なら同じ額、5曲目からは定額のほうが割安。白書は音楽の代表例にSpotifyなどを挙げる。背景として白書は、インターネットのサービスの課金・決済の仕組みと、ストリーミングに向く固定・移動のブロードバンド環境が整ってきたことを挙げる。金額は図の例。</desc>
+<text x="12" y="20" class="tb">ダウンロード課金型 → 定額制（サブスク）</text>
+<text x="12" y="40" class="tm">平成28年版 情報通信白書が紹介する流れ</text>
+<rect x="12" y="54" width="296" height="150" class="fs l sm"/>
+<text x="24" y="76" class="tb">従来：ダウンロード課金型</text>
+<text x="24" y="98">1曲・1本ごとに払って手に入れる</text>
+<text x="24" y="124">1曲 250円 × 4曲 ＝ 1,000円</text>
+<text x="24" y="144">1曲 250円 × 5曲 ＝ 1,250円</text>
+<text x="24" y="168" class="tng">→ 聞く曲が増えるほど、払う額も増える</text>
+<text x="24" y="192" class="tm">音楽の代表例：iTunes（白書）</text>
+<line x1="160" y1="204" x2="160" y2="236" class="l sa w2"/>
+<polyline points="156,230 160,236 164,230" class="l sa w2"/>
+<text x="172" y="226" class="ta tb">新たな潮流</text>
+<rect x="12" y="238" width="296" height="150" class="fas l sa"/>
+<text x="24" y="260" class="tb">定額制（サブスクリプション）</text>
+<text x="24" y="282">月額料金で、見放題・聞き放題</text>
+<text x="24" y="308">月 1,000円 → 4曲でも 1,000円</text>
+<text x="24" y="328">月 1,000円 → 5曲でも 1,000円</text>
+<text x="24" y="352" class="tok">→ 5曲目からは、定額のほうが割安</text>
+<text x="24" y="376" class="tm">音楽の代表例：Spotify など（白書）</text>
+<text x="12" y="410" class="tm">金額は図の例</text>
+<line x1="12" y1="424" x2="308" y2="424" class="l sb w1"/>
+<text x="12" y="446" class="tb">広がった背景（白書）</text>
+<text x="12" y="468">・課金・決済の仕組みが整った</text>
+<text x="12" y="490">・ストリーミングに向くブロードバンド</text>
+<text x="12" y="508">　（固定・移動）の環境が整った</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 654" role="img" aria-labelledby="fig-dx-device-app-loop-t fig-dx-device-app-loop-d">
+<title id="fig-dx-device-app-loop-t">新しい機器とアプリの「どちらが先か」と、Apple Vision Pro の発表の手当て</title>
+<desc id="fig-dx-device-app-loop-d">新しい種類の機器は、使えるアプリが少ないと買う人が増えにくく、買う人が少ないとアプリを作る開発者も増えにくい。図の上は、機器を買う人とアプリを作る開発者が、互いに相手を待って動かない状態を、2本の矢印で描く。図の中は、Appleが2023年6月に発表した Apple Vision Pro の2つの手当て。1つ目は、iPhoneやiPadでおなじみの数十万ものアプリが動作し、Vision Pro の新しい入力操作の仕組みと自動的に連係すること。買った日から使えるアプリがある。2つ目は、デベロッパのアプリが見つかる新しいApp Storeを用意し、デベロッパが新しいアプリ体験をデザインしたり、既存のアプリを空間コンピューティングに合わせて作り直したりできること。作り手の入口も同時に開く。1つ目は下の矢印（アプリが少ない）に、2つ目は上の矢印（作る人が増えない）に効く。この見方は発表の記述から導いたもの。図の下は選びがちな誤り：作り手を数社に限る、利用者が増えてからストアを開く、開発者向けの仕組みを用意しない、はどれも発表と違う。</desc>
+<text x="12" y="20" class="tb">新しい機器とアプリ「どちらが先か」</text>
+<text x="12" y="40" class="tm">Apple Vision Pro の発表（2023年6月）の例</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">何に困るか</text>
+<rect x="12" y="104" width="120" height="44" class="fs l sm"/>
+<text x="72" y="131" text-anchor="middle">機器を買う人</text>
+<rect x="188" y="104" width="120" height="44" class="fs l sm"/>
+<text x="248" y="122" text-anchor="middle">アプリを</text>
+<text x="248" y="140" text-anchor="middle">作る開発者</text>
+<line x1="132" y1="114" x2="188" y2="114" class="l sng w2"/>
+<polyline points="182,110 188,114 182,118" class="l sng w2"/>
+<line x1="188" y1="138" x2="132" y2="138" class="l sng w2"/>
+<polyline points="138,134 132,138 138,142" class="l sng w2"/>
+<text x="160" y="96" class="tng" text-anchor="middle">買う人が少ない → 作る人も増えない</text>
+<text x="160" y="168" class="tng" text-anchor="middle">アプリが少ない → 買う人も増えない</text>
+<text x="160" y="190" class="tm" text-anchor="middle">互いに相手を待って、動かない</text>
+<line x1="12" y1="206" x2="308" y2="206" class="l sb w1"/>
+<text x="12" y="228" class="tb">発表の2つの手当て（同時に用意）</text>
+<rect x="12" y="240" width="296" height="104" class="fok l sok"/>
+<text x="24" y="262" class="tb">① 今あるアプリを最初から動かす</text>
+<text x="24" y="284">iPhone・iPad の数十万のアプリが</text>
+<text x="24" y="302">動き、新しい操作と自動で連係する</text>
+<text x="24" y="328" class="tok tb">→ 買った日から使えるアプリがある</text>
+<rect x="12" y="354" width="296" height="122" class="fok l sok"/>
+<text x="24" y="376" class="tb">② 作り手の入口も開く</text>
+<text x="24" y="398">新しい App Store を用意。開発者は</text>
+<text x="24" y="416">新しいアプリを作ったり、今のアプリ</text>
+<text x="24" y="434">を作り直したりできる</text>
+<text x="24" y="460" class="tok tb">→ 開発者が入ってくる道がある</text>
+<text x="12" y="498">①は下の矢印（アプリが少ない）に、</text>
+<text x="12" y="516">②は上の矢印（作る人が増えない）に効く</text>
+<text x="12" y="534" class="tm">（この見方は、発表の記述から導いたもの）</text>
+<line x1="12" y1="548" x2="308" y2="548" class="l sb w1"/>
+<text x="12" y="570" class="tb">発表と違う手（選びがちな誤り）</text>
+<text x="12" y="592" class="tng">✕ 作り手を、Appleが選んだ数社に限る</text>
+<text x="12" y="614" class="tng">✕ 利用者が増えてからストアを開く</text>
+<text x="12" y="636" class="tng">✕ 開発者向けの仕組みを用意しない</text>
+</svg>

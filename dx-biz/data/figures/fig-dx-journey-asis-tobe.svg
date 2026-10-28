@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-journey-asis-tobe-t fig-dx-journey-asis-tobe-d">
+<title id="fig-dx-journey-asis-tobe-t">As Is ジャーニーマップと To Be ジャーニーマップ</title>
+<desc id="fig-dx-journey-asis-tobe-d">e-Govのサービスデザインの説明をもとにした図。ジャーニーマップは、ある個人のサービス利用の一連の流れ（利用前・利用中・利用後）の中で、各タッチポイント（サービスとの接点）でどう行動し、何を感じ、何を考えるかを書いたもの。上の表はAs Isジャーニーマップで、ユーザーの観察を通じて現状のありのままを書く。オンライン申請の例（図の例で、e-Govの分析結果ではない）：利用前は案内を探して迷う、利用中は項目を入力していらいらする、利用後は結果を待って不安。下の表はTo Beジャーニーマップで、As Isで分かった課題がどう解消されるかというアイデアも書く。例：案内を1つにまとめて安心、入力を減らしてすっきり、状況を通知して安心。2つの名前はAs Is（現状のまま）とTo Be（あるべき姿）で、Before／Afterではない。</desc>
+<text x="12" y="20" class="tb">As Is と To Be の2つのジャーニーマップ</text>
+<text x="12" y="40" class="tm">ジャーニーマップ＝利用前・中・後の各接点</text>
+<text x="12" y="58" class="tm">で、どう行動し何を感じるかを書いた表</text>
+<text x="12" y="84" class="tb">As Is：現状のありのまま</text>
+<text x="12" y="102" class="tm">ユーザーを観察して書く（オンライン申請の例）</text>
+<rect x="12" y="112" width="296" height="26" class="fs l sm"/>
+<text x="104" y="130" class="tb" text-anchor="middle">利用前</text>
+<text x="186" y="130" class="tb" text-anchor="middle">利用中</text>
+<text x="267" y="130" class="tb" text-anchor="middle">利用後</text>
+<rect x="12" y="138" width="296" height="28" class="fs l sm"/>
+<text x="20" y="157" class="tm">行動</text>
+<text x="104" y="157" text-anchor="middle">案内を探す</text>
+<text x="186" y="157" text-anchor="middle">項目を入力</text>
+<text x="267" y="157" text-anchor="middle">結果を待つ</text>
+<rect x="12" y="166" width="296" height="28" class="fng l sng"/>
+<text x="20" y="185" class="tm">気持ち</text>
+<text x="104" y="185" class="tng" text-anchor="middle">迷う</text>
+<text x="186" y="185" class="tng" text-anchor="middle">いらいら</text>
+<text x="267" y="185" class="tng" text-anchor="middle">不安</text>
+<line x1="64" y1="112" x2="64" y2="194" class="l sm w1"/>
+<line x1="145" y1="112" x2="145" y2="194" class="l sm w1"/>
+<line x1="227" y1="112" x2="227" y2="194" class="l sm w1"/>
+<text x="12" y="214" class="tng">色の行：気持ちが下がる所＝課題</text>
+<line x1="160" y1="224" x2="160" y2="256" class="l sa w2"/>
+<polyline points="156,250 160,256 164,250" class="l sa w2"/>
+<text x="172" y="246" class="ta tb">課題をどう解消するか</text>
+<text x="12" y="282" class="tb">To Be：課題の解消のアイデアも書く</text>
+<text x="12" y="300" class="tm">As Is で分かった課題から考える（例）</text>
+<rect x="12" y="310" width="296" height="26" class="fs l sm"/>
+<text x="104" y="328" class="tb" text-anchor="middle">利用前</text>
+<text x="186" y="328" class="tb" text-anchor="middle">利用中</text>
+<text x="267" y="328" class="tb" text-anchor="middle">利用後</text>
+<rect x="12" y="336" width="296" height="28" class="fas l sa"/>
+<text x="20" y="355" class="tm">案</text>
+<text x="104" y="355" text-anchor="middle">案内を1つに</text>
+<text x="186" y="355" text-anchor="middle">入力を減らす</text>
+<text x="267" y="355" text-anchor="middle">状況を通知</text>
+<rect x="12" y="364" width="296" height="28" class="fok l sok"/>
+<text x="20" y="383" class="tm">気持ち</text>
+<text x="104" y="383" class="tok" text-anchor="middle">安心</text>
+<text x="186" y="383" class="tok" text-anchor="middle">すっきり</text>
+<text x="267" y="383" class="tok" text-anchor="middle">安心</text>
+<line x1="64" y1="310" x2="64" y2="392" class="l sm w1"/>
+<line x1="145" y1="310" x2="145" y2="392" class="l sm w1"/>
+<line x1="227" y1="310" x2="227" y2="392" class="l sm w1"/>
+<text x="12" y="414" class="tm">表の段階・行動・気持ちは図の例（e-Gov の</text>
+<text x="12" y="432" class="tm">分析結果ではない）</text>
+<line x1="12" y1="448" x2="308" y2="448" class="l sb w1"/>
+<text x="12" y="470" class="tb">名前の意味</text>
+<text x="12" y="492">As Is＝現状のまま（いまの姿）</text>
+<text x="12" y="512">To Be＝あるべき姿（これからの姿）</text>
+<text x="12" y="538" class="tng">✕ Before／After は、この2つの名前ではない</text>
+</svg>
