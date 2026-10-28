@@ -2221,6 +2221,9 @@
         "point": "Leaky ReLU は負の側の傾きを 0.01 などの固定値にする。PReLU はその傾きを学習し、RReLU は学習中に乱数で選ぶ。"
       }
     ],
+    "figures": [
+      "fig-g-prelu"
+    ],
     "sources": [
       {
         "title": "He et al. (2015) Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (arXiv:1502.01852)",

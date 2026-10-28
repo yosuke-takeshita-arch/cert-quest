@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1066" role="img" aria-labelledby="fig-g-prelu-t fig-g-prelu-d">
+<title id="fig-g-prelu-t">PReLU：負の側の傾き a を、重みと同じように学習で変えていく</title>
+<desc id="fig-g-prelu-d">PReLU（Parametric ReLU）は、入力xが正ならx、0以下ならa×xを出す活性化関数。aは負の側の傾きで、重みと同じく学習で変わる数。Parametricはパラメータ（学習で決める数）を持つという意味。①何に困っていたか：ReLUは負の側の傾きが0で、負の入力ばかりのユニットは重みが動かなくなる。Leaky ReLUは傾きを0.01と人が決めて固定するが、0.01がよい値とは限らない。PReLUは傾きaもデータから学ぶ。②折れ線グラフ（横軸は入力x、縦軸は出力）：正の側はどれも傾き1で同じ。負の側は、学習前のa＝0.25（He ら2015の初期値）の破線から、学習後はa＝0.68（1層目の例）の青い線や、a＝0.1（深い層の例）の緑の線に変わる。入力−4のときの出力は、それぞれ−1、−2.72、−0.4。③入力−4で比べる：ReLUは傾き0で固定、出力0。Leaky ReLUは傾き0.01で固定、出力−0.04。PReLUは学習前0.25で出力−1、学習後0.68なら−2.72、0.1なら−0.4。④aはどうやって変わるか：重みと同じく誤差逆伝播で、誤差が小さくなる向きへ少しずつ直す。学習のはじめa＝0.25から、くり返し直して、学習後a＝0.68などになる。aはチャネル（特徴の種類）ごとに1つ、層で共通にすれば層に1つで、増える数はわずか。違いは1つ：負の側の傾きが、Leaky ReLUは固定、PReLUは学習で動く。0.25（初期値）と0.68（1層目。論文の値は0.681）はHe ら2015の論文の値、0.1は説明のための例。</desc>
+<text x="12" y="20" class="tb">PReLU：負の側の傾き a を学習で決める</text>
+<text x="12" y="42" class="tm">x が正なら x、0 以下なら a × x</text>
+<text x="12" y="60" class="tm">a は重みと同じく、学習で変わる数</text>
+<text x="12" y="78" class="tm">（Parametric＝学習で決める数を持つ）</text>
+<line x1="12" y1="92" x2="308" y2="92" class="l sb w1"/>
+<text x="12" y="114" class="tb">① 何に困っていたか</text>
+<text x="12" y="136">ReLU：負の側は傾き 0。負の入力ばかり</text>
+<text x="12" y="154">　だと、重みが動かなくなる</text>
+<text x="12" y="176">Leaky ReLU：傾きを 0.01 と人が決めて固定</text>
+<text x="12" y="194">　（0.01 がよい値とは限らない）</text>
+<text x="12" y="218" class="tb ta">→ PReLU：傾き a もデータから学ぶ</text>
+<line x1="12" y1="232" x2="308" y2="232" class="l sb w1"/>
+<text x="12" y="254" class="tb">② 学習で、負の側の傾き a が変わる</text>
+<text x="12" y="272" class="tm">（折れ線グラフ。横：入力 x、縦：出力）</text>
+<rect x="96" y="282" width="208" height="170" class="sb fs" stroke-width="1"/>
+<line x1="96" y1="350" x2="304" y2="350" class="l sm w1"/>
+<line x1="232" y1="282" x2="232" y2="452" class="l sm w1"/>
+<polyline points="232,350 296,286" class="l w2" fill="none"/>
+<line x1="104" y1="382" x2="232" y2="350" class="l sm w2 dsh"/>
+<line x1="104" y1="437.04" x2="232" y2="350" class="l sa w2"/>
+<line x1="104" y1="362.8" x2="232" y2="350" class="l sok w2"/>
+<circle cx="104" cy="362.8" r="4" class="fok sok" stroke-width="2"/>
+<circle cx="104" cy="382" r="4" class="fs sm" stroke-width="2"/>
+<circle cx="104" cy="437.04" r="4" class="fa sa" stroke-width="2"/>
+<text x="90" y="367" class="tb tok" text-anchor="end">−0.4</text>
+<text x="90" y="387" class="tb tm" text-anchor="end">−1</text>
+<text x="90" y="442" class="tb ta" text-anchor="end">−2.72</text>
+<text x="90" y="300" class="tm" text-anchor="end">出力</text>
+<text x="226" y="304" class="tb" text-anchor="end">正の側はどれも傾き 1</text>
+<text x="226" y="345" class="tm" text-anchor="end">0</text>
+<text x="104" y="468" class="tm" text-anchor="middle">−4</text>
+<text x="232" y="468" class="tm" text-anchor="middle">0</text>
+<text x="296" y="468" class="tm" text-anchor="middle">2</text>
+<text x="12" y="492" class="tm">破線：学習前 a＝0.25（論文の初期値）</text>
+<text x="12" y="512" class="tb ta">青：学習後 a＝0.68（1層目の例）</text>
+<text x="12" y="532" class="tb tok">緑：学習後 a＝0.1（深い層の例）</text>
+<text x="12" y="552" class="tm">左の数は、入力 −4 のときの出力</text>
+<line x1="12" y1="566" x2="308" y2="566" class="l sb w1"/>
+<text x="12" y="588" class="tb">③ 入力 −4 で比べる（傾き × −4）</text>
+<rect x="12" y="598" width="112" height="26" class="fbg sb" stroke-width="1"/>
+<text x="68" y="616" class="tb tm" text-anchor="middle">関数</text>
+<rect x="124" y="598" width="100" height="26" class="fbg sb" stroke-width="1"/>
+<text x="174" y="616" class="tb tm" text-anchor="middle">負の側の傾き</text>
+<rect x="224" y="598" width="84" height="26" class="fbg sb" stroke-width="1"/>
+<text x="266" y="616" class="tb tm" text-anchor="middle">出力</text>
+<rect x="12" y="624" width="112" height="26" class="fs sb" stroke-width="1"/>
+<text x="68" y="642" class="tb" text-anchor="middle">ReLU</text>
+<rect x="124" y="624" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="174" y="642" class="tb" text-anchor="middle">0（固定）</text>
+<rect x="224" y="624" width="84" height="26" class="fs sb" stroke-width="1"/>
+<text x="266" y="642" class="tb" text-anchor="middle">0</text>
+<rect x="12" y="650" width="112" height="26" class="fs sb" stroke-width="1"/>
+<text x="68" y="668" class="tb" text-anchor="middle">Leaky ReLU</text>
+<rect x="124" y="650" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="174" y="668" class="tb" text-anchor="middle">0.01（固定）</text>
+<rect x="224" y="650" width="84" height="26" class="fs sb" stroke-width="1"/>
+<text x="266" y="668" class="tb" text-anchor="middle">−0.04</text>
+<rect x="12" y="676" width="112" height="26" class="fas sa" stroke-width="1"/>
+<text x="68" y="694" class="tb" text-anchor="middle">PReLU 学習前</text>
+<rect x="124" y="676" width="100" height="26" class="fas sa" stroke-width="1"/>
+<text x="174" y="694" class="tb tm" text-anchor="middle">0.25</text>
+<rect x="224" y="676" width="84" height="26" class="fas sa" stroke-width="1"/>
+<text x="266" y="694" class="tb tm" text-anchor="middle">−1</text>
+<rect x="12" y="702" width="112" height="26" class="fas sa" stroke-width="1"/>
+<text x="68" y="720" class="tb" text-anchor="middle">PReLU 学習後</text>
+<rect x="124" y="702" width="100" height="26" class="fas sa" stroke-width="1"/>
+<text x="174" y="720" class="tb ta" text-anchor="middle">0.68</text>
+<rect x="224" y="702" width="84" height="26" class="fas sa" stroke-width="1"/>
+<text x="266" y="720" class="tb ta" text-anchor="middle">−2.72</text>
+<rect x="12" y="728" width="112" height="26" class="fas sa" stroke-width="1"/>
+<text x="68" y="746" class="tb" text-anchor="middle">PReLU 学習後</text>
+<rect x="124" y="728" width="100" height="26" class="fas sa" stroke-width="1"/>
+<text x="174" y="746" class="tb tok" text-anchor="middle">0.1</text>
+<rect x="224" y="728" width="84" height="26" class="fas sa" stroke-width="1"/>
+<text x="266" y="746" class="tb tok" text-anchor="middle">−0.4</text>
+<text x="12" y="776" class="tm">例：0.25 × (−4) ＝ −1、0.68 × (−4) ＝ −2.72</text>
+<line x1="12" y1="790" x2="308" y2="790" class="l sb w1"/>
+<text x="12" y="812" class="tb">④ a はどうやって変わるか</text>
+<text x="12" y="834">重みと同じく誤差逆伝播で、誤差が小さく</text>
+<text x="12" y="852">なる向きへ a も少しずつ直す</text>
+<rect x="12" y="864" width="84" height="48" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="54" y="884" class="tm" text-anchor="middle">学習のはじめ</text>
+<text x="54" y="903" class="tb" text-anchor="middle">a＝0.25</text>
+<line x1="98" y1="888" x2="110.4" y2="888" class="l sm w1"/>
+<polygon points="116,888 110.4,884.5 110.4,891.5" class="fm"/>
+<rect x="118" y="864" width="84" height="48" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="160" y="884" class="tm" text-anchor="middle">くり返し</text>
+<text x="160" y="903" class="tb" text-anchor="middle">少し直す</text>
+<line x1="204" y1="888" x2="216.4" y2="888" class="l sm w1"/>
+<polygon points="222,888 216.4,884.5 216.4,891.5" class="fm"/>
+<rect x="224" y="864" width="84" height="48" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="266" y="884" class="tm" text-anchor="middle">学習後</text>
+<text x="266" y="903" class="tb ta" text-anchor="middle">a＝0.68 など</text>
+<text x="12" y="934" class="tm">a はチャネル（特徴の種類）ごとに1つ。</text>
+<text x="12" y="952" class="tm">層で共通にすれば層に1つ。増える数はわずか</text>
+<rect x="12" y="966" width="296" height="50" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="986" class="tb tok" text-anchor="middle">違いは1つ：負の側の傾きが</text>
+<text x="160" y="1006" class="tb tok" text-anchor="middle">Leaky ReLU は固定、PReLU は学習で動く</text>
+<text x="12" y="1036" class="tm">0.25（初期値）と 0.68（1層目。論文は 0.681）</text>
+<text x="12" y="1054" class="tm">は He ら 2015 の値。0.1 は説明のための例</text>
+</svg>
