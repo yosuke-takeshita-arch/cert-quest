@@ -1,0 +1,26 @@
+{
+  "id": "sc",
+  "appVersion": "0.9.0",
+  "series": "CertQuest",
+  "name": "ガードの砦",
+  "shortName": "ガードの砦",
+  "subtitle": "情報処理安全確保支援士試験 科目A-2対策",
+  "examDate": "2027-10-31",
+  "exam": { "questions": 25, "minutes": 35 },
+  "secondsPerQuestion": 84,
+  "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
+  "challenge": { "questions": 10 },
+  "reportUrl": "mailto:support@aisunia.com",
+  "about": { "examName": "情報処理安全確保支援士試験", "organizer": "独立行政法人情報処理推進機構（IPA）", "organizerUrl": "https://www.ipa.go.jp/" },
+  "officialUrl": "https://www.ipa.go.jp/shiken/kubun/sc.html",
+  "officialLinks": [
+    { "title": "情報処理安全確保支援士試験 公式ページ（試験情報）", "url": "https://www.ipa.go.jp/shiken/kubun/sc.html" },
+    { "title": "新試験の検討状況（2027年度の試験時間・出題数）", "url": "https://www.ipa.go.jp/shiken/syllabus/henkou/2025/20260331.html" },
+    { "title": "シラバス（案）Ver.0.1（科目A-2の出題範囲の細目）", "url": "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf" },
+    { "title": "過去問題の利用について（よくある質問）", "url": "https://www.ipa.go.jp/shiken/faq.html" }
+  ],
+  "theme": {
+    "light": { "accent": "#00695c", "onAccent": "#ffffff", "accentSoft": "#e0f2f1" },
+    "dark": { "accent": "#80cbc4", "onAccent": "#00251f", "accentSoft": "#1a3330" }
+  }
+}

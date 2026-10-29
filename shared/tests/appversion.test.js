@@ -11,12 +11,12 @@ import {
   swVersionFromCacheName, swVersionFromCacheNames, readSwVersion,
 } from '../js/lib/appversion.js';
 
-// 地図1つのアプリ＋科目のあるアプリ（診断士）。人に見せる版は4つ全部に要る
+// 地図1つのアプリ＋科目のあるアプリ（診断士）。人に見せる版は5つ全部に要る
 const ALL = [...APPS, 'shindanshi/1ji'];
 const readJson = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
 
-test('4つのアプリの config.json に、数.数.数 の appVersion がある（始まりは 0.9.0）', () => {
-  assert.equal(ALL.length, 4, 'アプリの数: ' + ALL.join(', '));
+test('5つのアプリの config.json に、数.数.数 の appVersion がある（始まりは 0.9.0）', () => {
+  assert.equal(ALL.length, 5, 'アプリの数: ' + ALL.join(', '));
   for (const app of ALL) {
     const c = readJson(app + '/config.json');
     assert.ok(isAppVersion(c.appVersion), app + ' の appVersion が 数.数.数 でない: ' + c.appVersion);

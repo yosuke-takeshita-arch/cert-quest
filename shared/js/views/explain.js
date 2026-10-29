@@ -7,6 +7,7 @@ import { figureBlock } from './figure.js';
 import { richEl } from './richtext.js';
 import { reportButton } from './report.js';
 import { explainSensei, TIP_SENSEI } from '../lib/characters.js';
+import { pastExamCitation } from '../lib/pastexam.js';
 
 export const CHOICE_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
@@ -55,6 +56,16 @@ export function conceptsOf(app, q) {
 export function stemPlainBlock(q) {
   if (!q.stemPlain) return null;
   return h('section', { class: 'ex-block stem-plain' }, h('h3', { text: '問題文の意味' }), h('p', { text: q.stemPlain }));
+}
+
+/**
+ * 過去問題の出典の1行（問題の画面と解説に出す）。pastExam が無い問題は null。
+ * 例: 出典：令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問1　（改変した問題は末尾に（一部改変））。決まりは要件定義書 §12
+ */
+export function pastExamLine(q) {
+  const t = pastExamCitation(q && q.pastExam);
+  if (!t) return null;
+  return h('p', { class: 'past-exam small muted', 'data-past-exam': '1', text: t });
 }
 
 /** 間違えた直後に、解説より先に見せる: その問題の用語カードと、混同しやすい相手。 */
@@ -115,6 +126,8 @@ export function explanation(app, sq, chosen, open, opts = {}) {
     for (const x of unresolved) row.appendChild(refChip(app, x, null));
     box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '4'), '関連する用語カード'), row));
   }
+  const past = pastExamLine(q);
+  if (past) box.appendChild(past);
   const src = sourcesList(q.sources);
   if (src) box.appendChild(src);
   if (opts.later !== false) box.appendChild(laterButton(app, q));

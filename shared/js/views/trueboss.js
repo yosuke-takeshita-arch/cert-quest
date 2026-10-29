@@ -18,7 +18,7 @@ import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, o
 import { trueGeom } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stemPlainBlock, CHOICE_LABELS } from './explain.js';
+import { explanation, stemPlainBlock, pastExamLine, CHOICE_LABELS } from './explain.js';
 import { toggleExpand } from '../lib/expand.js';
 
 export const TRUE_BOSS_SYMBOL = '真';
@@ -605,6 +605,8 @@ export function renderTrueBoss(app) {
     if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
     card.appendChild(tags);
     card.appendChild(h('p', { class: 'stem', text: q.stem }));
+    const pastLine = pastExamLine(q);
+    if (pastLine) card.appendChild(pastLine);
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
     ui.btns = sq.choices.map((c, i) => {
       const bt = h('button', { class: 'choice', type: 'button', 'data-boss-choice': String(i), onClick: () => answer(i) },

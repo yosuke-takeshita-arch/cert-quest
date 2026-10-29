@@ -18,6 +18,8 @@
 //   - id の形式と重複、問題の concepts が実在するカードを指すこと
 //     （形は資格ごと。G検定 G-NN-NNN／C-NN-NNN、生成AIパスポート AP-NN-NNN／C-AP-NN-NNN。下の ID_FORMS）
 //   - stemPlain（任意）が、空でない文字列・200文字以内・問題文と別の文であること（要件定義書 §7-3）
+//   - pastExam（任意。過去問題の出典。要件定義書 §7・§12）が、year・period・exam・part（空でない文字）・no（1〜25の整数）・modified（true／false）の6つだけで、同じ出典が2回無いこと。
+//     PAST 行に過去問題とオリジナルの数を出し、オリジナルが過去問題以下なら WARN（決まりは『オリジナルのほうが多い』）
 //   - sources が {title, url} で url が http(s) であること
 //   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
 //     viewBox の幅が 360 以下で、role="img"・<title>・<desc> を持つこと（要件定義書 §7-2）
@@ -391,9 +393,38 @@ function checkCueWords(f, id, o) {
 // 生成AIパスポートを G- にしないのは、誤りの報告（shared/js/lib/report.js）の件名に id がそのまま出て、G検定の問題と見分けにくくなるため。
 const ID_FORMS = {
   'ai-passport': { q: /^AP-\d{2}-\d{3}$/, qLabel: 'AP-NN-NNN', c: /^C-AP-\d{2}-\d{3}$/, cLabel: 'C-AP-NN-NNN', b: /^B-AP-\d{3}$/, bLabel: 'B-AP-NNN' },
+  // 情報処理安全確保支援士のアプリ（2026-10-29。アプリの id は sc）。過去問題も同じ形の id（出典は pastExam に持つ）
+  'sc': { q: /^SC-\d{2}-\d{3}$/, qLabel: 'SC-NN-NNN', c: /^C-SC-\d{2}-\d{3}$/, cLabel: 'C-SC-NN-NNN', b: /^B-SC-\d{3}$/, bLabel: 'B-SC-NNN' },
 };
 const ID_DEFAULT = { q: /^G-\d{2}-\d{3}$/, qLabel: 'G-NN-NNN', c: /^C-\d{2}-\d{3}$/, cLabel: 'C-NN-NNN', b: /^B-\d{3}$/, bLabel: 'B-NNN' };
 const idFormOf = (f) => ID_FORMS[path.basename(path.dirname(dataRootOf(f)))] || ID_DEFAULT;
+
+// 過去問題の出典（任意の欄 pastExam。要件定義書 §7・§12）。出す欄は5つ＋改変の有無がそろっていること。問番号は 1〜25。
+// 同じ過去問題（年度・期・試験区分・時間区分・問番号が同じ）を2回載せない。期の名前（春期・秋期・10月）は年度で違うので、書いた文字をそのまま見る。
+const PAST_EXAM_KEYS = ['year', 'period', 'exam', 'part', 'no', 'modified'];
+const PAST_EXAM_NO_MAX = 25; // shared/js/lib/pastexam.js の PAST_EXAM_NO_MAX と同じ値（片方を直したら、もう片方も直す）
+const pastSeen = new Map(); // 出典の文字 -> id
+const pastStats = new Map(); // 問題ファイルのあるアプリのフォルダ -> { past, original }
+function checkPastExam(f, id, o) {
+  const dir = path.dirname(dataRootOf(f)) + '|' + path.basename(path.dirname(dataRootOf(f)));
+  if (!pastStats.has(dir)) pastStats.set(dir, { app: path.basename(path.dirname(dataRootOf(f))), past: 0, original: 0 });
+  const st = pastStats.get(dir);
+  if (!('pastExam' in o)) { st.original++; return; }
+  st.past++;
+  const p = o.pastExam;
+  if (!p || typeof p !== 'object' || Array.isArray(p)) { err(f, id, 'pastExam がオブジェクトでない'); return; }
+  for (const k of ['year', 'period', 'exam', 'part']) {
+    if (!isStr(p[k])) err(f, id, `pastExam.${k} が無い・空（出典の行に出す文字。欄が1つ欠けると出典にならない）`);
+    else if (p[k] !== p[k].trim() || /[\r\n]/.test(p[k])) err(f, id, `pastExam.${k} の前後に空白、または改行がある`);
+  }
+  if (!Number.isInteger(p.no) || p.no < 1 || p.no > PAST_EXAM_NO_MAX) err(f, id, `pastExam.no が 1〜${PAST_EXAM_NO_MAX} の整数でない: ${p.no}`);
+  if (typeof p.modified !== 'boolean') err(f, id, 'pastExam.modified が true／false でない（改変していなければ false と書く。省かない）');
+  for (const k of Object.keys(p)) if (!PAST_EXAM_KEYS.includes(k)) err(f, id, `pastExam に知らない欄がある: ${k}`);
+  if (isStr(p.year) && isStr(p.period) && isStr(p.exam) && isStr(p.part) && Number.isInteger(p.no)) {
+    const key = [p.year, p.period, p.exam, p.part, p.no].join('|');
+    if (pastSeen.has(key)) err(f, id, `同じ過去問題の出典（${key}）が ${pastSeen.get(key)} にもある`); else pastSeen.set(key, id);
+  }
+}
 
 const seen = new Map();
 for (const { file: f, kind, data, syl } of loaded) {
@@ -405,6 +436,7 @@ for (const { file: f, kind, data, syl } of loaded) {
     if (kind === 'questions') {
       if (!idForm.q.test(id)) err(f, id, `id が ${idForm.qLabel} 形式でない`);
       checkSyllabus(f, id, o.syllabus, syl);
+      checkPastExam(f, id, o);
       if (!QFMT.has(o.format)) err(f, id, `format が不正: ${o.format}`);
       if (!Number.isInteger(o.difficulty) || o.difficulty < 1 || o.difficulty > 5) err(f, id, 'difficulty が 1〜5 の整数でない');
       if (!isStr(o.stem)) err(f, id, 'stem が無い');
@@ -486,6 +518,12 @@ for (const { file: f, kind, data } of loaded) {
     console.log(`LENGTH 全体: 正解がいちばん長い ${longest}/${n}（${pct(longest, n)}）`);
     if (longest / n > LONGEST_SHARE_WARN) warns.push(`WARN 全体 -: 正解がいちばん長い問題が ${pct(longest, n)}（${longest}/${n}）で ${LONGEST_SHARE_WARN * 100}% を超える。長さで正解が当たりやすい`);
   }
+}
+// 過去問題とオリジナルの数（過去問題の出典 pastExam を持つ問題。オリジナルのほうが多いことが決まり。要件定義書 §12）
+for (const { app, past, original } of pastStats.values()) {
+  if (!past) continue;
+  console.log(`PAST ${app}: 過去問題 ${past} / オリジナル ${original}`);
+  if (original <= past) warns.push(`WARN ${app} -: 過去問題（${past}問）がオリジナル（${original}問）以上（オリジナルを過去問題より多くする決まり。渡したファイルが一部だけなら、全部を渡して数え直す）`);
 }
 // 選択肢の語の偏り（全体）
 if (cueStats.n) console.log(`CUE 全体: 語の偏りがある ${cueStats.flagged}/${cueStats.n}`);

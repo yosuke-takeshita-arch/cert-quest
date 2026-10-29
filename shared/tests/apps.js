@@ -16,9 +16,13 @@ export const APPS = readdirSync(root, { withFileTypes: true })
   .sort();
 
 // 一覧が空になったり、知っているアプリが抜けたりしたら、各テストが黙って何も見なくなる。ここで止める
-for (const a of ['g-kentei', 'dx-biz', 'ai-passport']) {
+for (const a of ['g-kentei', 'dx-biz', 'ai-passport', 'sc']) {
   if (!APPS.includes(a)) throw new Error('tests/apps.js: ' + a + ' がアプリの一覧に無い（' + APPS.join(', ') + '）');
 }
+
+// まだ問題・用語カードが1つも入っていないアプリ（枠だけ。2026-10-29 に情報処理安全確保支援士の sc を足した）。
+// 「本物のデータが1件以上ある」ことを求めるテストは、これを除く。問題・カードを入れたら、ここから外す。
+export const APPS_WITHOUT_CONTENT = ['sc'];
 
 // 機能を配ったときに「版を N 以上に上げた」ことを確かめるテストは、その時点で公開していたアプリにだけ効かせる。
 // 後から作ったアプリ（ai-passport は版 1 から）は、最初の版で全部の機能が入っているので、下限を持たない。

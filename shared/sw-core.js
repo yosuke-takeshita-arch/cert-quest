@@ -83,6 +83,7 @@ const SHARED = [
   '../shared/js/lib/textsize.js',
   '../shared/js/lib/maplayout.js',
   '../shared/js/lib/cardtree.js',
+  '../shared/js/lib/pastexam.js',
   '../shared/js/lib/appname.js',
   '../shared/js/lib/appversion.js',
   '../shared/js/lib/outline.js',

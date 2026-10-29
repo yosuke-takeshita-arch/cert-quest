@@ -11,7 +11,7 @@ import { buildTree, loadData } from '../js/lib/data.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
 import { createStorage } from '../js/lib/storage.js';
 import { parseBackup, serializeBackup } from '../js/lib/backup.js';
-import { APPS, root } from './apps.js';
+import { APPS, APPS_WITHOUT_CONTENT, root } from './apps.js';
 
 const read = (p) => readFileSync(join(root, p), 'utf8');
 const fileFetch = async (u) => {
@@ -80,7 +80,7 @@ test('並べ方: シラバスの順。カードの無い節は出さない。中
 for (const app of APPS) {
   test(`${app}: 本物のデータで、どのカードも分野で見る画面にちょうど1回出て、数が合う`, async () => {
     const d = await loadData({ dataBase: pathToFileURL(join(root, app, 'data')).href + '/', fetchFn: fileFetch });
-    assert.ok(d.concepts.length > 0, app + ' のカードが読めていない');
+    if (!APPS_WITHOUT_CONTENT.includes(app)) assert.ok(d.concepts.length > 0, app + ' のカードが読めていない');
     const secs = cardSections(d.tree, d.concepts);
     const shown = allCards(secs);
     assert.equal(shown.length, d.concepts.length, '出たカードの数 = 全部のカードの数');

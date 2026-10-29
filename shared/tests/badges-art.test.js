@@ -108,7 +108,7 @@ test('真ボスのバッジの絵: アプリごと（<アプリ>/images/badges/t
     const d = badgeDefs(tree(), { ...c, trueBoss: true }).find((x) => x.id === 'true-boss');
     assert.ok(d, app + ' に真ボスのバッジが無い');
     const p = join(repo, app, 'images', 'badges', 'true-boss.webp');
-    if (c.trueBossBadge.art) {
+    if (c.trueBossBadge && c.trueBossBadge.art) { // 真ボスを持たないアプリ（情報処理安全確保支援士の sc。2026-10-29）は設定が無い
       assert.equal(badgeArtName(d), 'true-boss', app);
       assert.equal(readFileSync(p).subarray(8, 12).toString('latin1'), 'WEBP', app);
     } else {
@@ -212,12 +212,12 @@ test('次の目標: 章の制覇バッジは絵つきで出て、同じ「星3�
   assert.equal(goals.some((x) => x.id === 'stars:T|C1'), false);
 });
 
-test('章の制覇: 実データ（G検定10・DX13＝12分類＋補足・生成AIパスポート32）の章が全部バッジになり、id・絵の名前が重ならない。G検定は絵が全部ある', async () => {
+test('章の制覇: 実データ（G検定10・DX13＝12分類＋補足・生成AIパスポート32・情報処理安全確保支援士10）の章が全部バッジになり、id・絵の名前が重ならない。G検定は絵が全部ある', async () => {
   const { buildTree } = await import('../js/lib/data.js');
   const repo = join(shared, '..');
   // 章＝シラバスの2段目。生成AIパスポートは中項目の32（ボスの単位を章5つにするかは先生の判断待ち。要件定義書 §11-1）。
   // 新しいアプリを足したら、ここに章の数を足す（足さないと下の assert で落ちる）
-  const expected = { 'g-kentei': 10, 'dx-biz': 13, 'ai-passport': 32 };
+  const expected = { 'g-kentei': 10, 'dx-biz': 13, 'ai-passport': 32, 'sc': 10 }; // sc は IPA の中分類10（科目A-2。要件定義書 §12）
   assert.deepEqual(Object.keys(expected).sort(), [...APPS].sort(), '章の数を書いていないアプリがある');
   for (const app of APPS) {
     const syl = JSON.parse(readFileSync(join(repo, app, 'data', 'syllabus.json'), 'utf8'));

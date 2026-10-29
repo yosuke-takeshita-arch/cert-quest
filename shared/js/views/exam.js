@@ -6,7 +6,7 @@ import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/fore
 import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stumbleBlock, stemPlainBlock, CHOICE_LABELS } from './explain.js';
+import { explanation, stumbleBlock, stemPlainBlock, pastExamLine, CHOICE_LABELS } from './explain.js';
 
 const mmss = (ms) => {
   const s = Math.max(0, Math.ceil(ms / 1000));
@@ -110,7 +110,8 @@ export function renderExam(app) {
       }, 500);
       const card = h('div', { class: 'card q-card' },
         h('div', { class: 'q-tags' }, statusChip(q.status), q.negative ? h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }) : null),
-        h('p', { class: 'stem', text: q.stem }));
+        h('p', { class: 'stem', text: q.stem }),
+        pastExamLine(q));
       const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
       sq.choices.forEach((c, i) => {
         const sel = S.answers[S.cur] === i;

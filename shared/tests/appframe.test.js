@@ -1,4 +1,4 @@
-// 地図1つのアプリ（g-kentei・dx-biz・ai-passport。tests/apps.js が探す）の枠が、互いに食い違っていないかの検証。
+// 地図1つのアプリ（g-kentei・dx-biz・ai-passport・sc。tests/apps.js が探す）の枠が、互いに食い違っていないかの検証。
 // 2026-10-13、ai-passport/ を足したときに作った。新しいアプリを足すたびに、名前・色・先取りの一覧の書き漏れをここで止める。
 // 見ていないもの: 絵の中身（タイトル・地図・ボス・バッジ）、アイコンの PNG が SVG と同じ絵か、データの中身（tools/check-data*.js が見る）
 import { test } from 'node:test';
@@ -19,8 +19,8 @@ function swConfig(app) {
   return { src, cfg: m.CERT_QUEST };
 }
 
-test('一覧: 地図1つのアプリとして g-kentei・dx-biz・ai-passport が見つかる（科目のある shindanshi は入らない）', () => {
-  for (const a of ['g-kentei', 'dx-biz', 'ai-passport']) assert.ok(APPS.includes(a), a);
+test('一覧: 地図1つのアプリとして g-kentei・dx-biz・ai-passport・sc が見つかる（科目のある shindanshi は入らない）', () => {
+  for (const a of ['g-kentei', 'dx-biz', 'ai-passport', 'sc']) assert.ok(APPS.includes(a), a);
   assert.ok(!APPS.some((a) => a.startsWith('shindanshi')));
 });
 
@@ -37,7 +37,8 @@ for (const app of [...APPS, 'shindanshi/1ji']) {
     assert.equal(config.series, 'CertQuest');
     assert.ok(config.name, '名前が無い');
     assert.match(config.subtitle, /対策$/);
-    for (const word of ['G検定', '生成AI', 'パスポート', 'DX', 'ビジネス', '診断士', '検定', 'クエスト']) {
+    // 『支援士』『情報処理安全確保』は、情報処理の促進に関する法律 第24条（登録を受けていない者が名称を使うことの禁止）に触れないよう、名前に入れない（要件定義書 §12）
+    for (const word of ['G検定', '生成AI', 'パスポート', 'DX', 'ビジネス', '診断士', '検定', 'クエスト', '支援士', '情報処理安全確保']) {
       for (const [where, v] of [['config.name', config.name], ['config.shortName', config.shortName], ['manifest の short_name（アイコンの下の名前）', man.short_name]]) {
         assert.ok(!v.includes(word), where + ' の「' + v + '」に「' + word + '」が入っている');
       }
@@ -161,4 +162,75 @@ test('check-coverage.js: 全角の括弧「A（B）」は、A か B のどちら
   const r = coverage('AIとルールベースと機械学習と深層学習');
   assert.equal(r.code, 0, r.out);
   assert.match(r.out, /合計 4\/4/);
+});
+
+// ---- sc（情報処理安全確保支援士のアプリ。2026-10-29 先生決定。要件定義書 §12）----
+test('sc: 名前は仮（ガードの砦）で、「支援士」を名前にもアイコンの下の名前にも使わない。試験名は副題にだけ、小さく添える', () => {
+  const c = readJson('sc/config.json');
+  const man = readJson('sc/manifest.webmanifest');
+  assert.equal(c.name, 'ガードの砦');
+  assert.match(c.subtitle, /^情報処理安全確保支援士試験 科目A-2対策$/);
+  for (const v of [c.name, c.shortName, man.short_name]) assert.ok(!/支援士|情報処理安全確保/.test(v), v);
+  assert.equal(man.id, '/cert-quest/sc/');
+  const icon = readFileSync(join(root, 'sc', 'icons', 'icon.svg'), 'utf8');
+  assert.ok(!/支援士/.test(icon), 'アイコンの絵に「支援士」の字を入れない');
+});
+
+test('sc: 本番の形は仮置き（科目A-2 は 25問・35分。IPA 検討状況 2026-03-31）。受験日は 2027年度の夏頃〜秋頃の仮', () => {
+  const c = readJson('sc/config.json');
+  assert.deepEqual({ questions: c.exam.questions, minutes: c.exam.minutes }, { questions: 25, minutes: 35 });
+  assert.equal(c.secondsPerQuestion, Math.round((35 * 60) / 25));
+  assert.ok(c.examDate >= '2027-07-01' && c.examDate <= '2027-12-31', c.examDate);
+  assert.equal(c.about.organizerUrl, 'https://www.ipa.go.jp/');
+  assert.ok(c.officialLinks.some((l) => l.url === 'https://www.ipa.go.jp/shiken/kubun/sc.html'));
+  assert.ok(c.officialLinks.some((l) => l.url === 'https://www.ipa.go.jp/shiken/syllabus/henkou/2025/20260331.html'));
+  assert.ok(!('trueBoss' in c) && !('passGuide' in c), '真ボス・合格の目安は決まるまで置かない（要件定義書 §12-1）');
+  assert.ok(existsSync(join(root, 'sc', 'data', '_sample', 'index.json')), 'サンプル（?sample=1）が無い');
+  assert.equal(swConfig('sc').cfg.version, '1', 'sw.js の版は 1 から数える');
+});
+
+test('sc: シラバスは新試験シラバス（案）Ver.0.1 の科目A-2。中分類10・小分類44・項目112・用語例861。IPA の中分類の番号を ipaNo に持つ', () => {
+  const syl = readJson('sc/data/syllabus.json');
+  const chapters = syl.flatMap((r) => r.children);
+  assert.equal(syl.length, 5);
+  assert.equal(chapters.length, 10);
+  assert.deepEqual(chapters.map((c) => c.ipaNo), [23, 24, 25, 26, 16, 17, 4, 12, 20, 21]);
+  assert.deepEqual(chapters.map((c) => c.id), chapters.map((c) => 'M' + c.ipaNo));
+  assert.deepEqual(chapters.map((c) => c.scope), ['専門知識', '専門知識', '専門知識', '専門知識', '専門知識', 'その他', 'その他', 'その他', 'その他', 'その他']);
+  const subs = chapters.flatMap((c) => c.children);
+  const items = subs.flatMap((s) => s.children);
+  assert.equal(subs.length, 44);
+  assert.equal(items.length, 112);
+  assert.equal(items.reduce((n, i) => n + i.keywords.length, 0), 861);
+  for (const i of items) assert.ok(i.keywords.length > 0 && i.children.length === 0, i.id + ' に用語例が無い・下がある');
+  // check-coverage.js は小分類（3段目）のキーワードを読む。項目の用語例を全部まとめて持つ
+  for (const s of subs) assert.deepEqual(s.keywords, [...new Set(s.children.flatMap((i) => i.keywords))], s.id);
+  // 版と出典の URL（要件定義書 §12）
+  for (const r of syl) {
+    assert.equal(r.source.version, 'Ver.0.1（案）');
+    assert.equal(r.source.url, 'https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf');
+  }
+  // 表の崩れを写していない: 括弧の対応・全角空白・制御文字
+  for (const i of items) for (const k of i.keywords) {
+    assert.equal(k.split('（').length, k.split('）').length, i.id + ' の「' + k + '」の括弧が合わない');
+    assert.ok(!/[\u0000-\u001f\u3000]/.test(k), i.id + ' の「' + k + '」に制御文字・全角空白');
+  }
+});
+
+test('check-coverage.js: sc のシラバス（小分類に用語例を持つ形）を読んで、章（中分類）の用語例を数える', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'cq-sc-cov-'));
+  try {
+    const d = join(dir, 'data');
+    mkdirSync(join(d, 'questions'), { recursive: true });
+    writeFileSync(join(d, 'syllabus.json'), readFileSync(join(root, 'sc', 'data', 'syllabus.json')));
+    const sub = readJson('sc/data/syllabus.json')[0].children[0].children[1]; // M23-2 攻撃手法
+    const q = [{ id: 'SC-01-001', syllabus: ['セキュリティ', '情報セキュリティの脅威', sub.title], stem: 'SQL インジェクション', choices: [], explanation: '' }];
+    writeFileSync(join(d, 'questions', '01.json'), JSON.stringify(q));
+    const r = spawnSync(process.execPath, [join(root, 'tools', 'check-coverage.js'), join(d, 'questions', '01.json')], { encoding: 'utf8' });
+    const out = (r.stdout || '') + (r.stderr || '');
+    assert.equal(r.status, 1, out);
+    const chap = readJson('sc/data/syllabus.json')[0].children[0].children;
+    assert.ok(out.includes('M23-2 ' + sub.title + ': 1/' + sub.keywords.length + ' '), '攻撃手法の用語例を数えていない: ' + out.slice(0, 200));
+    assert.ok(out.includes('合計 1/' + chap.reduce((n, s) => n + s.keywords.length, 0) + '（未 '), '章の合計が合わない');
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
