@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 380" role="img" aria-labelledby="fig-sc-mgmt-partnership-t fig-sc-mgmt-partnership-d">
+<title id="fig-sc-mgmt-partnership-t">情報セキュリティ早期警戒パートナーシップの流れ</title>
+<desc id="fig-sc-mgmt-partnership-d">脆弱性を見つけた発見者は、IPA に届け出る。IPA が受け付けた後、流れは2つに分かれる。ソフトウェア製品の脆弱性なら、JPCERT/CC が製品開発者に連絡し、公表日を調整する。開発者は修正版を作り、対策情報と一緒に公表する。ウェブサイトの脆弱性なら、IPA がウェブサイトの運営者に直接連絡し、運営者がサイトを直す。どちらも、対策ができる前に攻撃に使われないよう、情報を広げずに調整する。</desc>
+<text x="12" y="20" class="tb">脆弱性の情報の流れ</text>
+<rect x="80" y="32" width="160" height="40" class="fs sb dsh" stroke-width="1.5" rx="6"/>
+<text x="160" y="57" class="tb" text-anchor="middle">発見者</text>
+<line x1="160" y1="72" x2="160" y2="86.4" class="l sm w1"/>
+<polygon points="160,92 156.5,86.4 163.5,86.4" class="fm"/>
+<text x="168" y="86" class="tm">届け出る</text>
+<rect x="80" y="94" width="160" height="40" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="119" class="tb" text-anchor="middle">IPA（受付）</text>
+<line x1="120" y1="134" x2="84" y2="156" class="l sm w1"/>
+<line x1="200" y1="134" x2="236" y2="156" class="l sm w1"/>
+<text x="84" y="172" class="tb" text-anchor="middle">製品の場合</text>
+<text x="236" y="172" class="tb" text-anchor="middle">ウェブサイトの場合</text>
+<rect x="12" y="182" width="144" height="58" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="84" y="204" class="tb" text-anchor="middle">JPCERT/CC</text>
+<text x="84" y="224" text-anchor="middle">連絡・公表日の調整</text>
+<line x1="84" y1="240" x2="84" y2="254.4" class="l sm w1"/>
+<polygon points="84,260 80.5,254.4 87.5,254.4" class="fm"/>
+<rect x="12" y="262" width="144" height="58" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="284" class="tb" text-anchor="middle">製品開発者</text>
+<text x="84" y="304" text-anchor="middle">修正版を作り公表</text>
+<rect x="164" y="182" width="144" height="58" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="236" y="204" class="tb" text-anchor="middle">IPA</text>
+<text x="236" y="224" text-anchor="middle">運営者に直接連絡</text>
+<line x1="236" y1="240" x2="236" y2="254.4" class="l sm w1"/>
+<polygon points="236,260 232.5,254.4 239.5,254.4" class="fm"/>
+<rect x="164" y="262" width="144" height="58" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="284" class="tb" text-anchor="middle">サイト運営者</text>
+<text x="236" y="304" text-anchor="middle">サイトを直す</text>
+<text x="12" y="348" class="ta">直るまで情報を広げずに調整する</text>
+<text x="12" y="368" class="tm">（先に公開すると、攻撃に使われる）</text>
+</svg>

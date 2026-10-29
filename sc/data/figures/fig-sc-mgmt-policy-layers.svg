@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 330" role="img" aria-labelledby="fig-sc-mgmt-policy-layers-t fig-sc-mgmt-policy-layers-d">
+<title id="fig-sc-mgmt-policy-layers-t">情報セキュリティポリシーと規程の階層</title>
+<desc id="fig-sc-mgmt-policy-layers-d">上から基本方針、対策基準、実施手順の3段の階層。基本方針は組織の考え方で、例は顧客の情報を適切に守る。対策基準は全てのシステムに共通の基準で、例は顧客の情報を社外に送るときは暗号化する。実施手順は個別の具体的な手順で、例はこのツールで期限付きの共有リンクを作る手順。上の2段、基本方針と対策基準をまとめて情報セキュリティポリシーと呼び、実施手順はその下に置く。</desc>
+<text x="12" y="20" class="tb">ポリシーと規程の階層（上ほど大まか）</text>
+<rect x="60" y="34" width="200" height="66" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="54" class="tb" text-anchor="middle">基本方針</text>
+<text x="160" y="72" class="tm" text-anchor="middle">組織の考え方</text>
+<text x="160" y="90" class="ta" text-anchor="middle">例：顧客の情報を守る</text>
+<rect x="30" y="108" width="260" height="66" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="128" class="tb" text-anchor="middle">対策基準</text>
+<text x="160" y="146" class="tm" text-anchor="middle">全システムに共通の基準</text>
+<text x="160" y="164" class="ta" text-anchor="middle">例：社外に送るときは暗号化</text>
+<rect x="12" y="182" width="296" height="66" class="fs sb dsh" stroke-width="1.5" rx="6"/>
+<text x="160" y="202" class="tb" text-anchor="middle">実施手順</text>
+<text x="160" y="220" class="tm" text-anchor="middle">個別の具体的な手順</text>
+<text x="160" y="238" text-anchor="middle">例：このツールで期限付きリンクを作る</text>
+<text x="12" y="280" class="tb">情報セキュリティポリシー</text>
+<text x="12" y="300">＝基本方針＋対策基準（色の付いた2段）</text>
+<text x="12" y="320" class="tm">実施手順（点線）はその下に置く</text>
+</svg>

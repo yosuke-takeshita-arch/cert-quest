@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 340" role="img" aria-labelledby="fig-sc-mgmt-risk-matrix-t fig-sc-mgmt-risk-matrix-d">
+<title id="fig-sc-mgmt-risk-matrix-t">リスクマトリックス：重要度×被害発生可能性</title>
+<desc id="fig-sc-mgmt-risk-matrix-d">縦軸は情報資産の重要度（起きたときの影響）で下から1・2・3、横軸は被害発生可能性（起こりやすさ）で左から1・2・3。マスの数は2つを掛けた値で、IPA の中小企業向けガイドラインの区分に合わせ、6〜9を大、4を中、1〜3を小とした。重要度3で可能性3のマスは9で大、重要度2で可能性2のマスは4で中、重要度1で可能性3のマスは3で小。表の外に、リスク受容基準の例として、小は受け入れ、中と大は対応する、と書いた。</desc>
+<text x="12" y="20" class="tb">リスクマトリックス（掛け算の例）</text>
+<text x="12" y="40" class="tm">マスの数＝重要度×被害発生可能性</text>
+<text x="40" y="66" class="tm" text-anchor="middle">重要度</text>
+<text x="40" y="104" class="tb" text-anchor="middle">3</text>
+<text x="40" y="160" class="tb" text-anchor="middle">2</text>
+<text x="40" y="216" class="tb" text-anchor="middle">1</text>
+<rect x="68" y="76" width="76" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="106" y="98" class="tb tok" text-anchor="middle">3 小</text>
+<rect x="144" y="76" width="76" height="52" class="fng sng" stroke-width="1.5"/>
+<text x="182" y="98" class="tb tng" text-anchor="middle">6 大</text>
+<rect x="220" y="76" width="76" height="52" class="fng sng" stroke-width="1.5"/>
+<text x="258" y="98" class="tb tng" text-anchor="middle">9 大</text>
+<rect x="68" y="132" width="76" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="106" y="154" class="tb tok" text-anchor="middle">2 小</text>
+<rect x="144" y="132" width="76" height="52" class="fwn swn" stroke-width="1.5"/>
+<text x="182" y="154" class="tb twn" text-anchor="middle">4 中</text>
+<rect x="220" y="132" width="76" height="52" class="fng sng" stroke-width="1.5"/>
+<text x="258" y="154" class="tb tng" text-anchor="middle">6 大</text>
+<rect x="68" y="188" width="76" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="106" y="210" class="tb tok" text-anchor="middle">1 小</text>
+<rect x="144" y="188" width="76" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="182" y="210" class="tb tok" text-anchor="middle">2 小</text>
+<rect x="220" y="188" width="76" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="258" y="210" class="tb tok" text-anchor="middle">3 小</text>
+<text x="106" y="260" class="tb" text-anchor="middle">1</text>
+<text x="182" y="260" class="tb" text-anchor="middle">2</text>
+<text x="258" y="260" class="tb" text-anchor="middle">3</text>
+<text x="182" y="280" class="tm" text-anchor="middle">被害発生可能性（起こりやすさ）→</text>
+<text x="12" y="308">受容基準の例：『小』は受け入れる</text>
+<text x="12" y="328">『中』『大』は対応を決める</text>
+</svg>

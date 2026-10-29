@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-sc-mgmt-control-themes-t fig-sc-mgmt-control-themes-d">
+<title id="fig-sc-mgmt-control-themes-t">情報セキュリティ管理策の4つの分類</title>
+<desc id="fig-sc-mgmt-control-themes-d">管理策を、何によって守るかで4つの箱に分けた図。数はシラバスの用語例に並ぶ管理策の数で、合わせて93。組織的管理策は37で、きまりと体制で守る。例は方針群、職務の分離、脅威インテリジェンス。人的管理策は8で、採用から退職までの人の扱いで守る。例は選考、教育・訓練、懲戒手続。物理的管理策は14で、建物や装置を物として守る。例は物理的入退、クリアデスク、装置の処分。技術的管理策は34で、IT の仕組みで守る。例はログ取得、バックアップ、ネットワークの分離。</desc>
+<text x="12" y="20" class="tb">管理策の4つの箱（何で守るか）</text>
+<text x="12" y="40" class="tm">数はシラバスの用語例の数（合計93）</text>
+<rect x="12" y="50" width="296" height="76" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="70" class="tb">組織的 37：きまりと体制で</text>
+<text x="22" y="90">方針群・職務の分離</text>
+<text x="22" y="110">脅威インテリジェンス</text>
+<rect x="12" y="134" width="296" height="76" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="154" class="tb">人的 8：採用から退職まで</text>
+<text x="22" y="174">選考・教育と訓練</text>
+<text x="22" y="194">懲戒手続・事象の報告</text>
+<rect x="12" y="218" width="296" height="76" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="238" class="tb">物理的 14：建物と装置を</text>
+<text x="22" y="258">物理的入退・クリアデスク</text>
+<text x="22" y="278">装置の処分又は再利用</text>
+<rect x="12" y="302" width="296" height="76" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="322" class="tb">技術的 34：IT の仕組みで</text>
+<text x="22" y="342">ログ取得・バックアップ</text>
+<text x="22" y="362">ネットワークの分離</text>
+</svg>
