@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 236" role="img" aria-labelledby="fig-sc-meas-mail-key-table-t fig-sc-meas-mail-key-table-d">
+<title id="fig-sc-meas-mail-key-table-t">選択肢の表：公開鍵を用意する単位</title>
+<desc id="fig-sc-meas-mail-key-table-d">選択肢は3列の表。列は左から、PGP、S/MIME、SMTP over TLS。アはメールアドレスごと、メールアドレスごと、メールサーバごと。イはメールアドレスごと、メールサーバごと、メールアドレスごと。ウはメールサーバごと、メールアドレスごと、メールアドレスごと。エはメールサーバごと、メールサーバごと、メールサーバごと。</desc>
+<text x="12" y="20" class="tb">選択肢の表（列の並び）</text>
+<rect x="12" y="32" width="296" height="196" class="fs sb" stroke-width="1.5"/>
+<line x1="12" y1="80" x2="308" y2="80" class="l sb w1"/>
+<line x1="12" y1="117" x2="308" y2="117" class="l sb w1"/>
+<line x1="12" y1="154" x2="308" y2="154" class="l sb w1"/>
+<line x1="12" y1="191" x2="308" y2="191" class="l sb w1"/>
+<line x1="40" y1="32" x2="40" y2="228" class="l sb w1"/>
+<line x1="129" y1="32" x2="129" y2="228" class="l sb w1"/>
+<line x1="218" y1="32" x2="218" y2="228" class="l sb w1"/>
+<text x="84" y="61" class="tb" text-anchor="middle">PGP</text>
+<text x="173" y="61" class="tb" text-anchor="middle">S/MIME</text>
+<text x="263" y="52" class="tb" text-anchor="middle">SMTP</text>
+<text x="263" y="70" class="tb" text-anchor="middle">over TLS</text>
+<text x="26" y="104" class="tb" text-anchor="middle">ア</text>
+<text x="84" y="96" class="tm" text-anchor="middle">メール</text><text x="84" y="111" text-anchor="middle">アドレスごと</text>
+<text x="173" y="96" class="tm" text-anchor="middle">メール</text><text x="173" y="111" text-anchor="middle">アドレスごと</text>
+<text x="263" y="96" class="tm" text-anchor="middle">メール</text><text x="263" y="111" text-anchor="middle">サーバごと</text>
+<text x="26" y="141" class="tb" text-anchor="middle">イ</text>
+<text x="84" y="133" class="tm" text-anchor="middle">メール</text><text x="84" y="148" text-anchor="middle">アドレスごと</text>
+<text x="173" y="133" class="tm" text-anchor="middle">メール</text><text x="173" y="148" text-anchor="middle">サーバごと</text>
+<text x="263" y="133" class="tm" text-anchor="middle">メール</text><text x="263" y="148" text-anchor="middle">アドレスごと</text>
+<text x="26" y="178" class="tb" text-anchor="middle">ウ</text>
+<text x="84" y="170" class="tm" text-anchor="middle">メール</text><text x="84" y="185" text-anchor="middle">サーバごと</text>
+<text x="173" y="170" class="tm" text-anchor="middle">メール</text><text x="173" y="185" text-anchor="middle">アドレスごと</text>
+<text x="263" y="170" class="tm" text-anchor="middle">メール</text><text x="263" y="185" text-anchor="middle">アドレスごと</text>
+<text x="26" y="215" class="tb" text-anchor="middle">エ</text>
+<text x="84" y="207" class="tm" text-anchor="middle">メール</text><text x="84" y="222" text-anchor="middle">サーバごと</text>
+<text x="173" y="207" class="tm" text-anchor="middle">メール</text><text x="173" y="222" text-anchor="middle">サーバごと</text>
+<text x="263" y="207" class="tm" text-anchor="middle">メール</text><text x="263" y="222" text-anchor="middle">サーバごと</text>
+</svg>
