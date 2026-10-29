@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-sc-db-3schema-t fig-sc-db-3schema-d">
+<title id="fig-sc-db-3schema-t">データベースの3層スキーマアーキテクチャ</title>
+<desc id="fig-sc-db-3schema-d">3層スキーマは、データベースの見え方を3段に分ける考え方。いちばん上の段が外部スキーマで、利用者やアプリから見える形。例として、総務の画面は社員の氏名と内線だけを見るビュー、経理の画面は氏名と給与を見るビュー。まんなかの段が概念スキーマで、全体の論理的な形。例は社員の表（社員番号、氏名、内線、給与）。いちばん下の段が内部スキーマで、ディスクへのしまい方。例はファイルの置き場所と索引。内部スキーマを変えても（ディスクの入れ替え、索引の追加）、上の2段は変えずに済む。これをデータの独立性という。</desc>
+<text x="12" y="20" class="tb">3層スキーマ＝見え方を3段に分ける</text>
+<text x="12" y="40" class="tm">1つの段を変えても、ほかの段を直さずに済む</text>
+<rect x="8" y="52" width="304" height="92" class="fas sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="74" class="tb">外部スキーマ（利用者から見える形）</text>
+<rect x="18" y="84" width="136" height="50" class="fs sb" stroke-width="1" rx="4"/>
+<text x="26" y="104">総務の画面</text>
+<text x="26" y="124" class="tm">氏名・内線だけ</text>
+<rect x="166" y="84" width="136" height="50" class="fs sb" stroke-width="1" rx="4"/>
+<text x="174" y="104">経理の画面</text>
+<text x="174" y="124" class="tm">氏名・給与</text>
+<line x1="160" y1="146" x2="160" y2="166" class="l"/>
+<polygon points="154,160 166,160 160,168" class="ft"/>
+<rect x="8" y="170" width="304" height="76" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="192" class="tb">概念スキーマ（全体の論理的な形）</text>
+<text x="18" y="214">社員（社員番号，氏名，内線，給与）</text>
+<text x="18" y="236" class="tm">すべての表・列・つながりを1つに</text>
+<line x1="160" y1="248" x2="160" y2="268" class="l"/>
+<polygon points="154,262 166,262 160,270" class="ft"/>
+<rect x="8" y="272" width="304" height="76" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="294" class="tb">内部スキーマ（ディスクへのしまい方）</text>
+<text x="18" y="316">ファイルの置き場所・索引</text>
+<text x="18" y="338" class="tm">別名 記憶スキーマ</text>
+<text x="12" y="370" class="tok">ディスクを替える・索引を足す（内部）</text>
+<text x="12" y="390" class="tok">→ 上の2段と画面は直さない＝データの独立性</text>
+</svg>

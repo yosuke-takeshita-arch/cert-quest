@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 262" role="img" aria-labelledby="fig-sc-db-r07h-q21-t fig-sc-db-r07h-q21-d">
+<title id="fig-sc-db-r07h-q21-t">表 従業員</title>
+<desc id="fig-sc-db-r07h-q21-d">表名は従業員。列は従業員コード（実線の下線＝主キー）、上司、従業員名の3つ。行は7つ。S001・上司 NULL・A。S002・上司 S001・B。S003・上司 S001・C。S004・上司 S003・D。S005・上司 NULL・E。S006・上司 S005・F。S007・上司 S006・G。</desc>
+<text x="16" y="20" class="tb">従業員</text>
+<rect x="16" y="28" width="288" height="214" class="fs l w1"/>
+<line x1="128" y1="28" x2="128" y2="242" class="l w1"/>
+<line x1="216" y1="28" x2="216" y2="242" class="l w1"/>
+<text x="72" y="47" text-anchor="middle">従業員コード</text>
+<line x1="33" y1="52" x2="111" y2="52" class="l w1"/>
+<text x="172" y="47" text-anchor="middle">上司</text>
+<text x="260" y="47" text-anchor="middle">従業員名</text>
+<line x1="16" y1="58" x2="304" y2="58" class="l w1"/>
+<line x1="16" y1="61" x2="304" y2="61" class="l w1"/>
+<line x1="16" y1="87" x2="304" y2="87" class="l w1"/>
+<line x1="16" y1="113" x2="304" y2="113" class="l w1"/>
+<line x1="16" y1="139" x2="304" y2="139" class="l w1"/>
+<line x1="16" y1="165" x2="304" y2="165" class="l w1"/>
+<line x1="16" y1="191" x2="304" y2="191" class="l w1"/>
+<line x1="16" y1="217" x2="304" y2="217" class="l w1"/>
+<text x="72" y="79" text-anchor="middle">S001</text><text x="172" y="79" text-anchor="middle">NULL</text><text x="260" y="79" text-anchor="middle">A</text>
+<text x="72" y="105" text-anchor="middle">S002</text><text x="172" y="105" text-anchor="middle">S001</text><text x="260" y="105" text-anchor="middle">B</text>
+<text x="72" y="131" text-anchor="middle">S003</text><text x="172" y="131" text-anchor="middle">S001</text><text x="260" y="131" text-anchor="middle">C</text>
+<text x="72" y="157" text-anchor="middle">S004</text><text x="172" y="157" text-anchor="middle">S003</text><text x="260" y="157" text-anchor="middle">D</text>
+<text x="72" y="183" text-anchor="middle">S005</text><text x="172" y="183" text-anchor="middle">NULL</text><text x="260" y="183" text-anchor="middle">E</text>
+<text x="72" y="209" text-anchor="middle">S006</text><text x="172" y="209" text-anchor="middle">S005</text><text x="260" y="209" text-anchor="middle">F</text>
+<text x="72" y="235" text-anchor="middle">S007</text><text x="172" y="235" text-anchor="middle">S006</text><text x="260" y="235" text-anchor="middle">G</text>
+<text x="16" y="258" class="tm">実線の下線＝主キー</text>
+</svg>

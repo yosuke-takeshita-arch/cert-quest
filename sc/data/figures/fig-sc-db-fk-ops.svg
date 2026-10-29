@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 404" role="img" aria-labelledby="fig-sc-db-fk-ops-t fig-sc-db-fk-ops-d">
+<title id="fig-sc-db-fk-ops-t">参照制約が拒否しうる操作</title>
+<desc id="fig-sc-db-fk-ops-d">参照制約は、指す側の外部キーの値が、指される側の主キーに必ずあることを求める。例として、在庫の表（指す側）の製品番号が、製品の表（指される側）の製品番号を指す。製品の表には P1 と P2 がある。在庫の表には製品番号 P1、P1、P2 の3行がある。在庫の表へ製品番号 P9 の行を足すと、製品の表に P9 が無いので拒否される。在庫の表の行を消すのはよい。製品の表へ P3 を足すのもよい。製品の表から P1 を消そうとすると、在庫の行が P1 を指しているので、削除時の動きを指定していなければ拒否される。</desc>
+<text x="12" y="20" class="tb">参照制約＝指す先に無い値を作らせない</text>
+<rect x="8" y="32" width="128" height="104" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="16" y="52" class="tb">製品（指される側）</text>
+<text x="16" y="74">製品番号（主キー）</text>
+<text x="16" y="98">P1</text>
+<text x="16" y="122">P2</text>
+<rect x="184" y="32" width="128" height="128" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="192" y="52" class="tb">在庫（指す側）</text>
+<text x="192" y="74">製品番号（外部キー）</text>
+<text x="192" y="98">P1</text>
+<text x="192" y="122">P1</text>
+<text x="192" y="146">P2</text>
+<line x1="186" y1="94" x2="50" y2="94" class="l sm w1"/>
+<line x1="186" y1="118" x2="50" y2="98" class="l sm w1"/>
+<line x1="186" y1="142" x2="50" y2="118" class="l sm w1"/>
+<text x="140" y="176" class="tm">線＝在庫の行が製品の行を指す</text>
+<rect x="8" y="188" width="304" height="100" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="16" y="208" class="tng tb">× 拒否されうる</text>
+<text x="16" y="230">在庫へ P9 の行を足す</text>
+<text x="32" y="250" class="tm">→ 製品に P9 が無い</text>
+<text x="16" y="270">製品から P1 を消す</text>
+<text x="160" y="270" class="tm">→ 在庫が P1 を指す</text>
+<rect x="8" y="298" width="304" height="76" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="16" y="318" class="tok tb">○ 参照制約では止まらない</text>
+<text x="16" y="340">在庫の行を消す・在庫の表を消す</text>
+<text x="16" y="362">製品へ P3 の行を足す</text>
+<text x="12" y="396" class="tm">製品から消す動きは CASCADE などで変えられる</text>
+</svg>

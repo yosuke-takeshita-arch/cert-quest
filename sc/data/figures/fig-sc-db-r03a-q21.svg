@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 132" role="img" aria-labelledby="fig-sc-db-r03a-q21-t fig-sc-db-r03a-q21-d">
+<title id="fig-sc-db-r03a-q21-t">関係スキーマ 在庫と製品（下線つき）</title>
+<desc id="fig-sc-db-r03a-q21-d">在庫（在庫管理番号，製品番号，在庫量）。在庫管理番号に実線の下線（主キー）、製品番号に破線の下線（外部キー）。製品（製品番号，製品名，型，単価）。製品番号に実線の下線（主キー）。</desc>
+<rect x="8" y="8" width="304" height="80" class="fs sb" stroke-width="1"/>
+<text x="16" y="38">在庫（</text>
+<text x="55" y="38">在庫管理番号</text>
+<line x1="55" y1="44" x2="133" y2="44" class="l w1"/>
+<text x="133" y="38">，</text>
+<text x="146" y="38">製品番号</text>
+<line x1="146" y1="44" x2="198" y2="44" class="l w1 dsh"/>
+<text x="198" y="38">，在庫量）</text>
+<text x="16" y="72">製品（</text>
+<text x="55" y="72">製品番号</text>
+<line x1="55" y1="78" x2="107" y2="78" class="l w1"/>
+<text x="107" y="72">，製品名，型，単価）</text>
+<line x1="16" y1="106" x2="56" y2="106" class="l w1"/>
+<text x="62" y="110">実線の下線＝主キー</text>
+<line x1="176" y1="106" x2="216" y2="106" class="l w1 dsh"/>
+<text x="222" y="110">破線の下線</text>
+<text x="222" y="126">＝外部キー</text>
+</svg>
