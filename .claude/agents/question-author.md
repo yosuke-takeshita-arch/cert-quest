@@ -98,3 +98,10 @@ tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, WebSearch
 - データ検査：`tools/check-data.js`
 - 調査メモ：`docs/sources/web-survey_*.md`、網羅の記録：`docs/sources/coverage_*.md`
 - 公式資料の PDF は `docs/sources/` に置くが、公開リポジトリには載せない（.gitignore 済み）
+
+## 情報処理安全確保支援士（sc/、アプリ名「ガードの砦」。2026-10-29 先生決定。要件定義書 §12）
+- 過去問題は IPA の許可の範囲で逐語のまま載せる（https://www.ipa.go.jp/shiken/faq.html 。出典を必ず書く、改変したら明記）。材料は `private/sc/pastq/pastq.json`（233問、書き起こしと別担当の突き合わせ済み、章の振り分け済み）。問題文・選択肢・正解は1字も変えない。変えたら `modified: true`
+- 過去問題に書くのは、こちらの言葉の `explanation`・`whyWrong`・`memoryTip`・`stemPlain`・`concepts`・`sources`。IPA は午前の解説を出していない。解説の根拠は IPA のシラバス・官公庁・RFC・規格の公開資料などを自分で開いて確かめる。ほかの解説サイトの文は写さない
+- 過去問題の図表は `private/sc/transcribed/img/` の切り出しを見て SVG に描き直す（印刷の図を写さず、同じ情報を描く）。選択肢が図だけの問題は、描き直すまで載せずに報告する
+- オリジナルの問題は、過去問題より多く作る（先生「少なくとも過去問よりは多くないといけない。アプリの価値がない」）。過去問題で問われていない用語例を優先して埋める。過去問題の言い回しを写したオリジナルは作らない
+- アプリ名・称号・バッジに「支援士」を使わない（情報処理の促進に関する法律 第24条）
