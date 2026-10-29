@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 446" role="img" aria-labelledby="fig-sc-net-http-get-post-t fig-sc-net-http-get-post-d">
+<title id="fig-sc-net-http-get-post-t">フォームの値は、GETならリクエスト行、POSTならメッセージボディに入る</title>
+<desc id="fig-sc-net-http-get-post-d">HTTP/1.1のリクエストメッセージは、上から、リクエスト行、ヘッダー、空行、メッセージボディの順に並ぶ。例として検索フォームに abc と入れて送る。GETメソッドでは、値は q=abc としてURLの疑問符の後ろに付き、リクエスト行（GET /s?q=abc HTTP/1.1）に入る。ボディは空。POSTメソッドでは、リクエスト行は POST /s HTTP/1.1 で値を含まず、値 q=abc はメッセージボディに入る。URLはログや履歴に残りやすいので、パスワードなど人に見せたくない値はGETで送らない。</desc>
+<text x="12" y="20" class="tb">検索フォームに「abc」と入れて送る</text>
+<text x="12" y="48" class="tb ta">GET のとき</text>
+<rect x="12" y="58" width="296" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="20" y="79">GET /s?q=abc HTTP/1.1</text>
+<rect x="12" y="90" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="111" class="tm">Host: example.jp</text>
+<rect x="12" y="122" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="143" class="tm">（ボディは空）</text>
+<text x="230" y="79" class="tok tb">←値</text>
+<text x="12" y="176" class="tb ta">POST のとき</text>
+<rect x="12" y="186" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="207">POST /s HTTP/1.1</text>
+<rect x="12" y="218" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="239" class="tm">Host: example.jp ほか</text>
+<rect x="12" y="250" width="296" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="20" y="271">q=abc</text>
+<text x="230" y="271" class="tok tb">←値</text>
+<text x="12" y="310" class="tm">箱の上から：リクエスト行／ヘッダー／</text>
+<text x="12" y="328" class="tm">（空行のあと）メッセージボディ</text>
+<rect x="12" y="346" width="296" height="88" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="370" class="twn tb">セキュリティの目で見ると</text>
+<text x="24" y="392">GETの値はURLに入るので、ログや</text>
+<text x="24" y="410">履歴に残りやすい → パスワード</text>
+<text x="24" y="428">などはGETで送らない</text>
+</svg>

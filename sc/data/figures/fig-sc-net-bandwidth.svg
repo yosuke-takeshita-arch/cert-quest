@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-sc-net-bandwidth-t fig-sc-net-bandwidth-d">
+<title id="fig-sc-net-bandwidth-t">回線を何台で分け合えるか：使える速さ ÷ 1台に要る速さ</title>
+<desc id="fig-sc-net-bandwidth-d">考え方は、回線で実際に使える速さを、1台が必要とする速さで割ること。例は1Gビット毎秒のLANで、伝送効率が50％。実際に使えるのは10の9乗×0.5で、5億ビット毎秒。1台は1分に6Mバイトを受け取る。6Mバイトは6×10の6乗×8で4800万ビット。1分は60秒なので、1台に要る速さは4800万÷60で80万ビット毎秒。5億÷80万は625なので、625台までなら滞らない。単位をビットと秒にそろえてから割るのがこつ。</desc>
+<text x="12" y="20" class="tb">何台まで？＝使える速さ÷1台に要る速さ</text>
+<rect x="12" y="34" width="296" height="96" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="58" class="tb">① 回線で実際に使える速さ</text>
+<text x="24" y="82">1Gビット/秒 × 伝送効率50％</text>
+<text x="24" y="104">＝10⁹ × 0.5</text>
+<text x="24" y="124" class="tb ta">＝5億ビット/秒</text>
+<rect x="12" y="142" width="296" height="138" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="166" class="tb">② 1台に要る速さ（1分に6Mバイト）</text>
+<text x="24" y="190">6Mバイト＝6×10⁶×8ビット</text>
+<text x="24" y="210">　　　　＝4,800万ビット</text>
+<text x="24" y="234">1分＝60秒なので</text>
+<text x="24" y="254">4,800万 ÷ 60</text>
+<text x="24" y="274" class="tb">＝80万ビット/秒</text>
+<rect x="12" y="292" width="296" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="316" class="tb">③ ①÷②</text>
+<text x="24" y="342" class="tb tok">5億 ÷ 80万 ＝ 625台</text>
+<text x="12" y="382" class="tm">こつ：単位を「ビット」「秒」にそろえてから割る</text>
+</svg>

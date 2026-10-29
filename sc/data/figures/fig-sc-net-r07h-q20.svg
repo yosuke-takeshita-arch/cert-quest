@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 228" role="img" aria-labelledby="fig-sc-net-r07h-q20-t fig-sc-net-r07h-q20-d">
+<title id="fig-sc-net-r07h-q20-t">選択肢の表（GETメソッドの場合／POSTメソッドの場合）</title>
+<desc id="fig-sc-net-r07h-q20-d">選択肢は2列の表になっている。左の列の見出しは「GETメソッドが使用される場合」、右の列の見出しは「POSTメソッドが使用される場合」。行は4つで、リクエスト行・ヘッダー、リクエスト行・メッセージボディ、ヘッダー・ヘッダー、ヘッダー・メッセージボディ。選択肢の文は、左の列／右の列の順に斜線で区切って書いてある。</desc>
+<text x="12" y="18" class="tm">選択肢は「左の列／右の列」の順に書いてある</text>
+<rect x="12" y="28" width="296" height="190" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="28" width="296" height="50" class="fas sb" stroke-width="1.5"/>
+<line x1="160" y1="28" x2="160" y2="218" class="l sb w1"/>
+<text x="86" y="50" class="tb" text-anchor="middle">GETメソッドが</text>
+<text x="86" y="68" class="tb" text-anchor="middle">使用される場合</text>
+<text x="234" y="50" class="tb" text-anchor="middle">POSTメソッドが</text>
+<text x="234" y="68" class="tb" text-anchor="middle">使用される場合</text>
+<line x1="12" y1="113" x2="308" y2="113" class="l sb w1"/>
+<line x1="12" y1="148" x2="308" y2="148" class="l sb w1"/>
+<line x1="12" y1="183" x2="308" y2="183" class="l sb w1"/>
+<text x="24" y="101">リクエスト行</text>
+<text x="172" y="101">ヘッダー</text>
+<text x="24" y="136">リクエスト行</text>
+<text x="172" y="136">メッセージボディ</text>
+<text x="24" y="171">ヘッダー</text>
+<text x="172" y="171">ヘッダー</text>
+<text x="24" y="206">ヘッダー</text>
+<text x="172" y="206">メッセージボディ</text>
+</svg>

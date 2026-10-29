@@ -1,1 +1,4413 @@
-[]
+[
+  {
+    "id": "SC-05-001",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "二つのルーティングプロトコルRIP-2とOSPFとを比較したとき，OSPFだけに当てはまる特徴はどれか。",
+    "choices": [
+      "可変長サブネットマスクに対応している。",
+      "リンク状態のデータベースを使用している。",
+      "ルーティング情報の更新にマルチキャストを使用している。",
+      "ルーティング情報の更新を30秒ごとに行う。"
+    ],
+    "answer": 1,
+    "stemPlain": "経路を自動で決める2つのやり方 RIP-2 と OSPF を比べて、OSPF にだけある特徴を選ぶ問題。",
+    "explanation": "OSPF はリンクステート型のルーティングプロトコルで、各ルータが網全体のつながりとコストを記録した「リンク状態のデータベース」を共有し、そこから最短の道を自分で計算する（RFC 2328 の第2章の題がまさに The link-state database）。RIP-2 はディスタンスベクタ型で、隣のルータから聞いた『その網まであと何ホップか』を足して道を決めるだけで、網全体の地図は持たない。だから、リンク状態のデータベースを使うのは OSPF だけ。",
+    "whyWrong": [
+      "可変長のサブネットマスク（網ごとにマスクの長さを変える使い方）には、両方が対応する。RIP-2 は経路情報にサブネットマスクの欄を足した改良版で（RFC 2453）、OSPF も可変長のサブネットに対応する。OSPF だけの特徴ではない。",
+      null,
+      "マルチキャスト（グループあての1回の送信）で経路情報を送るのも両方。RIP-2 は 224.0.0.9 あて（RFC 2453）、OSPF は 224.0.0.5 などあて（RFC 2328）に送る。",
+      "30 秒ごとに経路情報を送るのは RIP の特徴（RFC 2453）。OSPF は、つながりが変わったときに知らせ、ふだんは短い挨拶（Hello）で隣の生存を確かめるだけで、経路表を 30 秒ごとに丸ごと送りはしない。"
+    ],
+    "memoryTip": "OSPF＝地図（リンク状態のデータベース）を全員で共有。RIP＝隣の噂（距離）を30秒ごとに聞く。",
+    "concepts": [
+      "C-SC-05-035",
+      "C-SC-05-034",
+      "C-SC-05-033"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 2328 OSPF Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2328.txt"
+      },
+      {
+        "title": "RFC 2453 RIP Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2453.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-002",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "HTTPのステータスコードに関する説明のうち，適切なものはどれか。",
+    "choices": [
+      "100番台は，リクエストを受けたサーバ側でエラーが発生したことを意味する。",
+      "200番台は，リクエスト内容に不備があるので，エラーが発生したことを意味する。",
+      "300番台は，完了するためにリダイレクトなど更なる動作が必要なことを意味する。",
+      "400番台は，リクエストがサーバに正常に受信され，処理が完了したことを意味する。"
+    ],
+    "answer": 2,
+    "stemPlain": "Web サーバが返す3桁の結果の番号（ステータスコード）について、百の位ごとの意味として正しい説明を選ぶ問題。",
+    "explanation": "HTTP のステータスコードは最初の桁で種類が決まる（RFC 9110）。1xx は受け取って処理を続けている途中の知らせ、2xx は成功、3xx はリクエストを完了するのにさらに動作が必要（別の URL へ案内するリダイレクトなど）、4xx はクライアント側の誤り、5xx はサーバ側の誤り。300 番台を「リダイレクトなど更なる動作が必要」と説明した文がこれに合う。",
+    "whyWrong": [
+      "100 番台は『受け取った、処理を続けている』という途中の情報（Informational）。サーバ側でエラーが起きたことを示すのは 500 番台。",
+      "200 番台は成功（Successful）で、リクエストを受け取り、理解し、受け付けたことを示す（例 200 OK）。リクエストに不備があるエラーは 400 番台。",
+      null,
+      "400 番台はクライアント側の誤り（Client Error）で、リクエストの書き方が誤っているか応じられないことを示す（例 404 Not Found）。正常に受信して処理が完了したのは 200 番台。"
+    ],
+    "memoryTip": "2 成功、3 案内（リダイレクト）、4 あなた（クライアント）のせい、5 サーバのせい。",
+    "concepts": [
+      "C-SC-05-046",
+      "C-SC-05-045"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 9110 HTTP Semantics",
+        "url": "https://www.rfc-editor.org/rfc/rfc9110.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-003",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "イーサネットにおいて，ルータで接続された二つのセグメント間でのコリジョンの伝搬と，宛先MACアドレスの全てのビットが1であるブロードキャストフレームの中継について，適切な組合せはどれか。",
+    "choices": [
+      "伝搬しない／中継しない",
+      "伝搬しない／中継する",
+      "伝搬する／中継しない",
+      "伝搬する／中継する"
+    ],
+    "answer": 0,
+    "stemPlain": "イーサネットの2つの網をルータでつないだとき、①信号のぶつかり（コリジョン）が反対側まで伝わるか ②全員あてのフレームを反対側へ送るか、の組を選ぶ問題（選択肢は表の左の列／右の列）。",
+    "explanation": "ルータは、フレームを受け取ってから IP アドレスを見て、別のネットワークへパケットを送り直す装置。①衝突は、同じ線の上で2台の信号がぶつかって壊れる現象で、ルータはフレームを受け取り直して送るので、片側の衝突は反対側へ伝わらない。②宛先 MAC アドレスの全ビットが 1 のブロードキャストフレームは、その網の中の全員あてで、ルータは別の網へ中継しない。RFC 1122 も、全員あての IP アドレスのデータグラムは、接続している網の外へは転送されないとしている。だから「伝搬しない／中継しない」。ルータの両側は、別のコリジョンドメイン、別のブロードキャストドメインになる。",
+    "whyWrong": [
+      null,
+      "『衝突は伝わらないが、全員あては中継する』は L2 スイッチ（ブリッジ）の動き。L2 スイッチはポートごとに衝突を区切るが、ブロードキャストフレームは全ポートへ送る。ルータは全員あてのフレームを中継しない。",
+      "『衝突は伝わるが、全員あては中継しない』という装置は無い。衝突が伝わるのは信号をそのまま写すハブ（リピータ）で、ハブは全員あてのフレームも写す。ルータはフレームを受け取り直すので、衝突も伝わらない。",
+      "『衝突も全員あても伝わる』はハブ（リピータ）の動き。ハブは電気信号をそのまま全ポートに写すので、網全体が1つのコリジョンドメインになる。ルータはどちらも止める。"
+    ],
+    "memoryTip": "ハブ＝全部通す。スイッチ＝衝突だけ止める。ルータ＝衝突も全員あても止める。",
+    "concepts": [
+      "C-SC-05-021",
+      "C-SC-05-013",
+      "C-SC-05-014"
+    ],
+    "stemFigures": [
+      "fig-sc-net-r07h-q18"
+    ],
+    "figures": [
+      "fig-sc-net-domains"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      },
+      {
+        "year": "令和3年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 令和3年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000apad-att/2021r03a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      },
+      {
+        "title": "Juniper Networks「Understanding Bridging and VLANs」（MAC アドレスの学習・転送・エージング）",
+        "url": "https://juniper.net/documentation/en_US/junos13.2/topics/concept/bridging-qfx-series-understanding.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-004",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "スパニングツリープロトコルの機能を説明したものはどれか。",
+    "choices": [
+      "MACアドレスを見て，フレームを廃棄するか中継するかを決める。",
+      "一定時間通信が行われていないMACアドレスを，MACアドレステーブルから消去する。",
+      "経路が複数存在する場合，アプリケーションやアドレスごとに経路を振り分けて，負荷を分散する。",
+      "複数のブリッジ間で情報を交換し合い，ループ発生の検出や障害発生時の迂回ルート決定を行う。"
+    ],
+    "answer": 3,
+    "stemPlain": "スイッチを輪につないでもフレームが回り続けないようにする仕組み（スパニングツリープロトコル）の働きを選ぶ問題。",
+    "explanation": "スパニングツリープロトコル（STP）は、スイッチ（ブリッジ）どうしが BPDU という連絡用のフレームを交換し合い、根になるルートブリッジを決めて、輪になった線の一部のポートを止めて木の形にする。こうして輪（ループ）の発生を防ぎ、使っている線が切れたら、止めていたポートを使って迂回の道を作る（Juniper の説明でも、ループを避けて木の形を作り、ルートポートが落ちたら代わりのポートが引き継ぐ）。複数のブリッジ間で情報を交換し、ループの検出と障害時の迂回ルートの決定を行う、という説明がこれに当たる。",
+    "whyWrong": [
+      "宛先 MAC アドレスを見て、フレームを捨てるか中継するかを決めるのは、ブリッジや L2 スイッチの基本の転送の働き（フィルタリングとフォワーディング）。スイッチが1台でも行う動作で、スイッチどうしで情報を交換して輪を切る STP の働きではない。",
+      "一定時間通信の無い MAC アドレスを MAC アドレステーブルから消すのは、エージングという L2 スイッチの表の管理の働き。古い記録を消して表を最新に保つためのもので、ループを防ぐ働きではない。",
+      "アプリケーションや宛先ごとに経路を振り分けて負荷を分けるのは、負荷分散（ロードバランシング）の働き。STP は、輪になった道のうち余分な道を止めて1本にする仕組みで、複数の道に通信を分けることはしない。",
+      null
+    ],
+    "memoryTip": "STP＝スイッチの輪を1か所止めて木にする。切れたら止めた所を開いて迂回。",
+    "concepts": [
+      "C-SC-05-018",
+      "C-SC-05-013"
+    ],
+    "figures": [
+      "fig-sc-net-stp"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "Juniper Networks「Spanning-Tree Protocols Overview」（ポートの役割・BPDU）",
+        "url": "https://www.juniper.net/documentation/us/en/software/junos/stp-l2/topics/topic-map/spanning-tree-overview.html"
+      },
+      {
+        "title": "Juniper Networks「Understanding Bridging and VLANs」（MAC アドレスの学習・転送・エージング）",
+        "url": "https://juniper.net/documentation/en_US/junos13.2/topics/concept/bridging-qfx-series-understanding.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-005",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Webページ内のHTMLフォームに入力されたデータがWebサーバに送られる際には，HTTPプロトコルのGETメソッド又はPOSTメソッドを用いたリクエストメッセージが使用される。このとき，入力されたデータはリクエストメッセージのどの部分に含まれるか。ここで，HTTPのバージョンはHTTP/1.1とし，リクエストメッセージは，リクエスト行，ヘッダー，メッセージボディの順で構成されているものとする。",
+    "choices": [
+      "リクエスト行／ヘッダー",
+      "リクエスト行／メッセージボディ",
+      "ヘッダー／ヘッダー",
+      "ヘッダー／メッセージボディ"
+    ],
+    "answer": 1,
+    "stemPlain": "Web のフォームに入れた値は、GET で送るときと POST で送るときで、HTTP/1.1 のリクエストのどこ（リクエスト行・ヘッダー・メッセージボディ）に入るかを選ぶ問題（選択肢は表の左の列／右の列）。",
+    "explanation": "HTML の決まりでは、フォームを GET で送るときは、入力した値を『名前=値』の形で URL の ? の後ろに付けて送る（action の URL を書き換える）。URL はリクエスト行（GET /s?q=abc HTTP/1.1 のような最初の行）に入るので、値はリクエスト行に入る。POST で送るときは、値をメッセージボディ（空行の後ろの本文）に入れて送る（submit as entity body）。だから「リクエスト行／メッセージボディ」。",
+    "whyWrong": [
+      "『POST ならヘッダーに入る』が誤り。ヘッダーは Host や Content-Type などの付け足しの情報を入れる所で、フォームの値は入れない。POST の値はメッセージボディに入る。",
+      null,
+      "『GET でも POST でもヘッダーに入る』が誤り。GET の値は URL の一部としてリクエスト行に入り、POST の値はメッセージボディに入る。フォームの値の置き場所はヘッダーではない。",
+      "『GET ならヘッダーに入る』が誤り。GET の値は URL の ? の後ろに付くので、リクエスト行に入る。POST の値がメッセージボディに入る点は正しい。"
+    ],
+    "memoryTip": "GET＝URL（リクエスト行）に載せる。POST＝本文（ボディ）に入れる。だからパスワードは POST で。",
+    "concepts": [
+      "C-SC-05-045"
+    ],
+    "stemFigures": [
+      "fig-sc-net-r07h-q20"
+    ],
+    "figures": [
+      "fig-sc-net-http-get-post"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "HTML Standard（WHATWG）4.10.21 Form submission",
+        "url": "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html"
+      },
+      {
+        "title": "RFC 9112 HTTP/1.1",
+        "url": "https://www.rfc-editor.org/rfc/rfc9112.txt"
+      },
+      {
+        "title": "RFC 9110 HTTP Semantics",
+        "url": "https://www.rfc-editor.org/rfc/rfc9110.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-006",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "IPv4におけるICMPのメッセージに関する説明として，適切なものはどれか。",
+    "choices": [
+      "送信元が設定したソースルーティングが失敗した場合は，Echo Replyを返す。",
+      "転送されてきたデータグラムを受信したルータが，そのネットワークの最適なルータを送信元に通知して経路の変更を要請するには，Redirectを返す。",
+      "フラグメントの再組立て中にタイムアウトが発生した場合は，データグラムを破棄してParameter Problemを返す。",
+      "ルータでメッセージを転送する際に，送信元が設定したTTLが0になった場合は，Destination Unreachableを返す。"
+    ],
+    "answer": 1,
+    "stemPlain": "IPv4 で使う、通信の問題を知らせるメッセージ（ICMP）の種類と、それを返す場面の組合せとして正しい説明を選ぶ問題。",
+    "explanation": "ICMP の Redirect は、ルータが受け取ったパケットを転送するとき、送信元と同じ網に、宛先へのもっと近道になる別のルータがあると分かった場合に、送信元のホストへ『この宛先にはそちらのルータへ送って』と知らせるメッセージ（RFC 792）。そのネットワークの最適なルータを送信元に通知して、経路の変更を求める、という説明がこれに当たる。",
+    "whyWrong": [
+      "送信元が指定した経路（ソースルーティング）に失敗したときは、Destination Unreachable（宛先に届けられない）のコード 5「source route failed」を返す（RFC 792）。Echo Reply は、ping の問い合わせ（Echo）への返事。",
+      null,
+      "分割したパケット（フラグメント）の組み立て中に時間切れになったときは、Time Exceeded（時間切れ）のコード 1「fragment reassembly time exceeded」を返す。Parameter Problem は、ヘッダーの値がおかしくて処理できないときに返す。",
+      "TTL（生存時間）が 0 になったときは、Time Exceeded のコード 0「time to live exceeded in transit」を返す。Destination Unreachable は、宛先の網や機器・ポートに届けられないときに返す。"
+    ],
+    "memoryTip": "時間切れ（TTL・組み立て）は Time Exceeded。届かない（経路指定の失敗も）は Destination Unreachable。近道を教えるのが Redirect。",
+    "concepts": [
+      "C-SC-05-029"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 792 Internet Control Message Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc792.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-007",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ネットワーク機器間の光ファイバを使った通信を分岐させてネットワーク上のトラフィックを取り出し，セキュリティ装置で監視したい。ネットワークから信号を光学的に分岐させて取り出す装置はどれか。",
+    "choices": [
+      "ネットワークタップ",
+      "波長分割多重装置",
+      "ルータ",
+      "レイヤー2スイッチ"
+    ],
+    "answer": 0,
+    "stemPlain": "光ファイバの通信の写しを取り出して監視の装置に渡したい。光を分けて信号を取り出す装置の名前を選ぶ問題。",
+    "explanation": "ネットワークタップは、光ファイバなどの線に直接つないで、流れている通信の写しを監視の装置（センサー）に渡す機器。光ファイバ用のタップは、光の一部を分けて取り出すので、通信を止めずに写しを取れる。NIST SP 800-94 も、侵入検知のセンサーを網につなぐ方法として、物理的な媒体（光ファイバなど）に直接つないで全通信の写しを渡すネットワークタップを挙げている。",
+    "whyWrong": [
+      null,
+      "波長分割多重装置（WDM）は、1本の光ファイバに波長（色）の違う光を重ねて通し、運べる量を増やす装置。光を扱うが、監視のために通信の写しを分けて取り出す装置ではない。",
+      "ルータは、IP アドレスを見てパケットを別の網へ中継する装置。届いたパケットを宛先へ送るのが役目で、光の信号を分岐して写しを取り出す装置ではない。",
+      "レイヤー2 スイッチは、MAC アドレスを見てフレームを宛先のポートへ送る装置。設定でミラーポート（通信の写しを出すポート）を作れるものはあるが、それは電気的にフレームを写す機能で、光を光学的に分岐する装置ではない。"
+    ],
+    "memoryTip": "タップ（tap）＝水道の蛇口のように、線の途中から通信を『くみ出す』機器。",
+    "concepts": [
+      "C-SC-05-019",
+      "C-SC-05-076",
+      "C-SC-05-010"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "NIST SP 800-94 Guide to Intrusion Detection and Prevention Systems（ネットワークタップ・スパニングポート）",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+      },
+      {
+        "title": "ITU-T G.694.1 Spectral grids for WDM applications: DWDM frequency grid",
+        "url": "https://www.itu.int/rec/T-REC-G.694.1"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-008",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "TCPヘッダーに含まれる情報はどれか。",
+    "choices": [
+      "宛先ポート番号",
+      "送信元IPアドレス",
+      "パケット生存時間（TTL）",
+      "プロトコル番号"
+    ],
+    "answer": 0,
+    "stemPlain": "通信を確実に届ける TCP の、先頭の見出しの部分（ヘッダー）に入っている情報を選ぶ問題。",
+    "explanation": "TCP のヘッダーには、送信元ポート番号・宛先ポート番号・順序番号・確認応答番号・ウィンドウなどが入る（RFC 9293）。ポート番号は、1台の機械の中のどのアプリあての通信かを見分ける番号で、TCP（と UDP）のヘッダーで運ぶ。だから宛先ポート番号が正解。",
+    "whyWrong": [
+      null,
+      "送信元 IP アドレスは IP ヘッダーに入る（RFC 791）。どの機械から来たかを示す番号で、網から網へ運ぶ IP の役目。TCP のヘッダーには入らない。",
+      "パケット生存時間（TTL）は IP ヘッダーに入る。ルータを通るたびに1ずつ減り、0 になったら捨てて、迷子のパケットが回り続けないようにする値。",
+      "プロトコル番号は IP ヘッダーに入る。中身が TCP（6）か UDP（17）かなどを示す番号で、IP が受け取ったデータをどちらに渡すかを決めるのに使う。"
+    ],
+    "memoryTip": "IP のヘッダー＝住所（IP アドレス）・寿命（TTL）・中身の種類（プロトコル番号）。TCP のヘッダー＝部屋番号（ポート）と順番（順序番号）。",
+    "concepts": [
+      "C-SC-05-039",
+      "C-SC-05-025",
+      "C-SC-05-044"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 9293 Transmission Control Protocol (TCP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc9293.txt"
+      },
+      {
+        "title": "RFC 791 Internet Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc791.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-009",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Webサーバから送信されるHTTPヘッダーのうち，Webサーバからの応答の内容を，Webブラウザやプロキシサーバなどのキャッシュに保持させないようにするものはどれか。",
+    "choices": [
+      "Cache-Control: no-cache",
+      "Cache-Control: no-store",
+      "Cache-Control: private",
+      "Cache-Control: public"
+    ],
+    "answer": 1,
+    "stemPlain": "Web サーバが返す応答を、ブラウザやプロキシ（中継サーバ）の一時保存（キャッシュ）に残させないためのヘッダーの値を選ぶ問題。",
+    "explanation": "Cache-Control: no-store は、リクエストも応答も、どのキャッシュにも保存してはいけないという指示（RFC 9111）。利用者のブラウザのキャッシュにも、共有のプロキシのキャッシュにも効くので、「キャッシュに保持させない」に当たる。個人情報が載った画面を、共用のパソコンやプロキシに残さないために使う。",
+    "whyWrong": [
+      "no-cache は、名前に反して『保存してはいけない』ではない。保存してよいが、使う前に必ずサーバに確かめて OK をもらえ、という指示（RFC 9111）。保持そのものは止めない。",
+      null,
+      "private は、共有のキャッシュ（プロキシ）には保存させないが、利用者本人のブラウザには保存してよい、という指示。ブラウザには残るので、保持させないことにはならない。",
+      "public は、ふつうなら保存しない応答でも、保存してよいと明示する指示。保存を許す向きの値で、保持させないこととは逆の働き。"
+    ],
+    "memoryTip": "no-store＝保存しない（store しない）。no-cache＝保存はするが毎回確認。名前の引っかけに注意。",
+    "concepts": [
+      "C-SC-05-047",
+      "C-SC-05-045"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 9111 HTTP Caching",
+        "url": "https://www.rfc-editor.org/rfc/rfc9111.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-010",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "クラスCのネットワークを，50ノードずつ収納できる四つのサブネットに分割した場合のサブネットマスクはどれか。",
+    "choices": [
+      "255.255.255.0",
+      "255.255.255.64",
+      "255.255.255.128",
+      "255.255.255.192"
+    ],
+    "answer": 3,
+    "stemPlain": "末尾の8ビットを自由に使えるネットワーク（クラス C）を、50台ずつ入る4つの小さな網に分けるとき、どこまでが網の番号かを示す値（サブネットマスク）を選ぶ問題。",
+    "explanation": "1つの小さな網に50台を入れるには、50以上の2のべき乗の大きさ、つまり64個のアドレスが要る（先頭と最後は網とブロードキャストの番号に使うので、台に付けられるのは62個）。末尾の256個を64個ずつに分けると4つになり、ちょうど4つのサブネットが作れる。部屋の番号に末尾の8ビットのうち上の2ビットを使うので、マスクの末尾は2進数で11000000、10進数で192。よってサブネットマスクは 255.255.255.192。",
+    "whyWrong": [
+      "255.255.255.0 は、末尾の8ビットを全部機器の番号に使う（分けない）マスク。1つの網に254台入るが、4つに分けることにはならない。",
+      "255.255.255.64 の末尾は2進数で01000000で、1 の並びが左から続いていない。サブネットマスクは1が左から連続する形にするので、マスクとして使わない値。",
+      "255.255.255.128 の末尾は10000000で、上の1ビットだけで分けるので網は2つ（128個ずつ、台は126台まで）。50台は入るが、4つのサブネットにはならない。",
+      null
+    ],
+    "memoryTip": "台数→2のべき乗（50台→64）→256÷64＝網の数→マスクの末尾＝256−64＝192。",
+    "concepts": [
+      "C-SC-05-026",
+      "C-SC-05-027"
+    ],
+    "figures": [
+      "fig-sc-net-subnet"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 4632 Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan",
+        "url": "https://www.rfc-editor.org/rfc/rfc4632.txt"
+      },
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-011",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "複数ノードから成るグループにマルチキャストでデータを送るときに，宛先として使用できるIPアドレスはどれか。",
+    "choices": [
+      "10.0.1.1",
+      "127.0.1.1",
+      "192.168.1.1",
+      "239.0.1.1"
+    ],
+    "answer": 3,
+    "stemPlain": "グループに入った複数の機器へ1回の送信でデータを届ける送り方（マルチキャスト）で、宛先に使えるアドレスを選ぶ問題。",
+    "explanation": "IPv4 のマルチキャストのアドレスは 224.0.0.0〜239.255.255.255（224.0.0.0/4。昔の分け方のクラス D）（RFC 5771）。239.0.1.1 はこの範囲に入る。239 で始まる範囲は、組織の中だけで使うマルチキャスト（Administratively Scoped Block）として決められている。",
+    "whyWrong": [
+      "10.0.1.1 は 10.0.0.0/8 の範囲で、社内などで自由に使うプライベートアドレス（RFC 1918）。1台の機器に付ける番号で、グループあての宛先には使えない。",
+      "127.0.1.1 は 127 で始まるループバックアドレス（RFC 1122）。同じコンピュータの中のプログラムどうしの通信に使い、機械の外には出ない。",
+      "192.168.1.1 は 192.168.0.0/16 の範囲のプライベートアドレス（RFC 1918）。家庭用ルータによく付く1台用の番号で、グループあての宛先には使えない。",
+      null
+    ],
+    "memoryTip": "マルチキャスト＝224〜239（クラス D）。10・172.16〜31・192.168＝プライベート。127＝自分。",
+    "concepts": [
+      "C-SC-05-027",
+      "C-SC-05-032"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 5771 IANA Guidelines for IPv4 Multicast Address Assignments",
+        "url": "https://www.rfc-editor.org/rfc/rfc5771.txt"
+      },
+      {
+        "title": "RFC 1918 Address Allocation for Private Internets",
+        "url": "https://www.rfc-editor.org/rfc/rfc1918.txt"
+      },
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-012",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "DHCPのクライアントが，サーバから配布されたIPv4アドレスを，クライアント自身のホストアドレスとして設定する際に，そのアドレスが他のホストに使用されていないことを，クライアント自身でも確認することが推奨されている。この確認に使用するプロトコルとして，適切なものはどれか。",
+    "choices": [
+      "ARP",
+      "DNS",
+      "ICMP",
+      "RARP"
+    ],
+    "answer": 0,
+    "stemPlain": "DHCP でもらった IP アドレスを使う前に、同じアドレスを持つ別の機器がいないかを、機器自身でも確かめる。そのときに使うプロトコルを選ぶ問題。",
+    "explanation": "RFC 2131（DHCP）は、配る前にサーバが（例えば ICMP の echo で）確かめ、受け取ったクライアントも、例えば ARP で、そのアドレスを確かめるべき（SHOULD probe）としている。ARP で『このアドレスを持っている人は MAC アドレスを教えて』と問い合わせ、答えが返ってくれば、すでに誰かが使っていると分かる。この確かめ方は RFC 5227（IPv4 Address Conflict Detection）でも決められている。だから ARP。",
+    "whyWrong": [
+      null,
+      "DNS は名前と IP アドレスを結びつける仕組み。名前からアドレスを調べることはできるが、同じ網の中でそのアドレスを今だれかが使っているかを確かめる手段ではない。",
+      "ICMP の echo（ping）で確かめるのは、RFC 2131 では配る前のサーバ側の例。クライアントが自分の網の中で確かめる手段としては ARP が挙げられており、ping に答えない設定の機器もあるので、確実な確かめにはならない。",
+      "RARP は、自分の MAC アドレスから、自分の IP アドレスを教えてもらう古いプロトコル（RFC 903）。ほかの機器がそのアドレスを使っているかを確かめる手段ではない。"
+    ],
+    "memoryTip": "DHCP でもらったら ARP で『この番号の人いる？』と確かめてから使う。",
+    "concepts": [
+      "C-SC-05-049",
+      "C-SC-05-022"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 2131 Dynamic Host Configuration Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc2131.txt"
+      },
+      {
+        "title": "RFC 5227 IPv4 Address Conflict Detection",
+        "url": "https://www.rfc-editor.org/rfc/rfc5227.txt"
+      },
+      {
+        "title": "RFC 903 A Reverse Address Resolution Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc903.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-013",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "1台のサーバと複数台のクライアントが，1Gビット／秒のLANで接続されている。業務のピーク時には，クライアント1台につき1分当たり6Mバイトのデータをサーバからダウンロードする。このとき，同時使用してもピーク時に業務を滞りなく遂行できるクライアント数は何台までか。ここで，LANの伝送効率は50％，サーバ及びクライアント内の処理時間は無視できるものとし，1Gビット／秒＝10⁹ビット／秒，1Mバイト＝10⁶バイトとする。",
+    "choices": [
+      "10",
+      "625",
+      "1,250",
+      "5,000"
+    ],
+    "answer": 1,
+    "stemPlain": "1G ビット毎秒の LAN で、実際に使えるのは半分。1台が1分に 6M バイトを受け取るとき、同時に何台まで滞らずに使えるかを計算する問題。",
+    "explanation": "考え方は『実際に使える速さ ÷ 1台に要る速さ』。①使える速さ：10⁹ ビット毎秒 × 0.5 ＝ 5×10⁸ ビット毎秒 ②1台に要る速さ：6M バイト ＝ 6×10⁶ × 8 ＝ 4.8×10⁷ ビットを 60 秒で受け取るので、4.8×10⁷ ÷ 60 ＝ 8×10⁵ ビット毎秒 ③5×10⁸ ÷ 8×10⁵ ＝ 625。よって 625 台まで。単位を『ビット』と『秒』にそろえてから割るのがこつ。",
+    "whyWrong": [
+      "10 台は、1分を60秒に直さずに『1秒に6M バイト』として計算した値（5×10⁸ ÷ 4.8×10⁷ ≒ 10.4）。1分当たりの量なので、60 で割って1秒当たりにする必要がある。",
+      null,
+      "1,250 台は、伝送効率の 50％を掛け忘れ、回線の速さ 10⁹ ビット毎秒をそのまま使った値（10⁹ ÷ 8×10⁵ ＝ 1,250）。実際に使えるのは半分の 5×10⁸ ビット毎秒。",
+      "5,000 台は、バイトをビットに直す（8 倍する）のを忘れた値（5×10⁸ ÷ 10⁵ ＝ 5,000）。回線の速さはビット、データ量はバイトなので、1バイト＝8ビットでそろえる。"
+    ],
+    "memoryTip": "台数＝使える速さ÷1台の速さ。×効率・×8（バイト→ビット）・÷60（分→秒）の3つを忘れない。",
+    "concepts": [
+      "C-SC-05-020"
+    ],
+    "figures": [
+      "fig-sc-net-bandwidth"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "情報処理安全確保支援士試験 シラバス（案）Ver.0.1（IPA）",
+        "url": "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-014",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "スパニングツリープロトコルが適用されている複数のブリッジから成るネットワークにおいて，任意の一つのリンクの両端のブリッジのうち，ルートブリッジまでの経路コストが小さいブリッジの側にあるポートを何と呼ぶか。",
+    "choices": [
+      "アクセスポート（Access Port）",
+      "代表ポート（Designated Port）",
+      "トランクポート（Trunk Port）",
+      "ルートポート（Root Port）"
+    ],
+    "answer": 1,
+    "stemPlain": "スパニングツリーで、2台のスイッチを結ぶ1本の線の両端のうち、根（ルートブリッジ）までの道のりのコストが小さいスイッチ側にあるポートの名前を選ぶ問題。",
+    "explanation": "スパニングツリーでは、リンク（線）ごとに、ルートブリッジまでの経路コストが小さいほうのスイッチの側のポートを「代表ポート（Designated Port）」にする。代表ポートは、ルートから離れる向き（末端の側）へフレームを送る役（Juniper の説明でも、代表ポートはルートブリッジから離れて末端へ向かう通信を送るポートで、担当するリンクごとに1つ）。もう一方の端は、そのスイッチのルートポートになるか、どちらでもなければ止められる（ブロック）。",
+    "whyWrong": [
+      "アクセスポートは、VLAN の用語で、1つの VLAN だけに属し、タグを付けないフレームをやり取りするポート（パソコンなどをつなぐ口）。スパニングツリーの役割の名前ではない。",
+      null,
+      "トランクポートは、VLAN の用語で、複数の VLAN のフレームを VLAN タグ付きで運ぶ、スイッチどうしをつなぐポート。スパニングツリーの役割の名前ではない。",
+      "ルートポートは、ルート以外の各スイッチで、自分のポートのうちルートブリッジまでの経路コストが最小のもの1つ。リンクの両端を比べて決めるのではなく、スイッチごとに1つ決まる。リンクの両端のうちルートに近い側は代表ポート。"
+    ],
+    "memoryTip": "ルートポート＝スイッチごとに1つ（自分がルートへ向かう口）。代表ポート＝リンクごとに1つ（ルートに近い側の口）。",
+    "concepts": [
+      "C-SC-05-018",
+      "C-SC-05-024"
+    ],
+    "figures": [
+      "fig-sc-net-stp"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "Juniper Networks「Spanning-Tree Protocols Overview」（ポートの役割・BPDU）",
+        "url": "https://www.juniper.net/documentation/us/en/software/junos/stp-l2/topics/topic-map/spanning-tree-overview.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-015",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "サブネット192.168.10.0/24において使用できる2種類のブロードキャストアドレス192.168.10.255と255.255.255.255とに関する記述のうち，適切なものはどれか。",
+    "choices": [
+      "192.168.10.255と255.255.255.255とは，ともにサブネット内のブロードキャストに使用される。",
+      "192.168.10.255はサブネットの外からのブロードキャストだけに使用され，サブネット内のブロードキャストには使用できない。",
+      "255.255.255.255は互換性のために残されており，ブロードキャストには192.168.10.255を使用することが推奨されている。",
+      "255.255.255.255はサブネットの外へのブロードキャストだけに使用され，サブネット内のブロードキャストには使用できない。"
+    ],
+    "answer": 0,
+    "stemPlain": "192.168.10.0/24 の網で使える2つの全員あてのアドレス 192.168.10.255 と 255.255.255.255 の使い方として、正しい説明を選ぶ問題。",
+    "explanation": "RFC 1122 では、255.255.255.255 は限定ブロードキャストで、接続している網の全員が受け取り、網の外へは転送されない。192.168.10.255（網の番号＋ホスト部が全部1）は、その網あての directed broadcast で、網の中でも全員に届く。どちらもサブネット内のブロードキャストに使える。RFC 1122 は、ホストが接続している網へブロードキャストするときは、限定ブロードキャスト（255.255.255.255）を使うべきとまで書いている。",
+    "whyWrong": [
+      null,
+      "192.168.10.255 は、その網あての全員あてアドレスで、網の中から送っても全員に届く。網の外から送る場合にも宛先になりうるが、外からだけに使うという決まりは無い。",
+      "255.255.255.255 は互換のために残された古い値ではない。RFC 1122 は、接続している網へブロードキャストするには 255.255.255.255（限定ブロードキャスト）を使うべきとしており、推奨の向きが逆。",
+      "255.255.255.255 は限定ブロードキャストで、接続している網の全員が受け取り、網の外へは転送されない（RFC 1122）。外へのブロードキャストだけに使うのではなく、逆に網の中だけに届く。"
+    ],
+    "memoryTip": "255.255.255.255＝この網の全員（外へ出ない）。網番号＋全部1（192.168.10.255）＝その網の全員。どちらも網の中で使える。",
+    "concepts": [
+      "C-SC-05-027",
+      "C-SC-05-021"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-016",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "IPv6の特徴として，適切なものはどれか。",
+    "choices": [
+      "IPv6アドレスからMACアドレスを調べる際にARPを使う。",
+      "アドレス空間はIPv4の2¹²⁸倍である。",
+      "経路の途中でフラグメンテーションを行うことが可能である。",
+      "ヘッダーは固定長であり，拡張ヘッダー長は8オクテットの整数倍である。"
+    ],
+    "answer": 3,
+    "stemPlain": "新しい版の IP（IPv6）の特徴として正しいものを選ぶ問題。",
+    "explanation": "IPv6 の基本ヘッダーは形が決まった固定長（40 オクテット）で、追加の情報は拡張ヘッダーに分けて入れる。拡張ヘッダーの長さの欄は『8 オクテット単位』で表すので、拡張ヘッダーの長さは 8 オクテットの整数倍になる（RFC 8200 の Hdr Ext Len は 8-octet units）。だから「ヘッダーは固定長であり、拡張ヘッダー長は8オクテットの整数倍である」が正しい。",
+    "whyWrong": [
+      "IPv6 では ARP を使わない。MAC アドレスを調べるのは NDP（近隣探索）の近隣要請・近隣広告で、ICMPv6 のメッセージとして動く（RFC 4861）。",
+      "IPv6 のアドレスは 128 ビットなので、アドレスの数は 2¹²⁸ 個。IPv4 は 32 ビットで 2³² 個なので、IPv4 の 2⁹⁶ 倍（2¹²⁸ ÷ 2³²）。2¹²⁸ 倍ではない。",
+      "IPv6 では、経路の途中のルータはパケットを分割しない。分割は送信元だけが行う（RFC 8200）。大きすぎるパケットを受けたルータは、ICMPv6 の Packet Too Big を送信元に返す。",
+      null
+    ],
+    "memoryTip": "IPv6＝基本ヘッダー固定＋拡張は8オクテット単位／分割は送信元だけ／ARP の代わりに NDP／2⁹⁶倍。",
+    "concepts": [
+      "C-SC-05-028",
+      "C-SC-05-031",
+      "C-SC-05-030"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000008smf-att/2022r04a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 8200 Internet Protocol, Version 6 (IPv6) Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc8200.txt"
+      },
+      {
+        "title": "RFC 4861 Neighbor Discovery for IP version 6 (IPv6)",
+        "url": "https://www.rfc-editor.org/rfc/rfc4861.txt"
+      },
+      {
+        "title": "RFC 4443 Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc4443.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-017",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "クラスDのIPアドレスを使用するのはどの場合か。",
+    "choices": [
+      "端末数が250台程度までの比較的小規模なネットワークのホストアドレスを割り振る。",
+      "端末数が65,000台程度の中規模なネットワークのホストアドレスを割り振る。",
+      "プライベートアドレスを割り振る。",
+      "マルチキャストアドレスを割り振る。"
+    ],
+    "answer": 3,
+    "stemPlain": "IPv4 のアドレスを先頭の数で分けた昔の区分のうち、クラス D のアドレスを何に使うかを選ぶ問題。",
+    "explanation": "クラス D は、先頭が 1110 で始まる 224.0.0.0〜239.255.255.255 の範囲で、マルチキャスト（グループあて）のアドレスに使う（RFC 1112 はクラス D をホストグループのアドレスとし、RFC 5771 は 224.0.0.0/4 をマルチキャストに割り当てている）。1台の機器に付けるホストアドレスではない。",
+    "whyWrong": [
+      "250 台程度までの小さな網のホストアドレスに使うのはクラス C（192〜223 で始まり、末尾 8 ビットで約 254 台）。クラス D は機器に付ける番号ではない。",
+      "65,000 台程度の中くらいの網のホストアドレスに使うのはクラス B（128〜191 で始まり、末尾 16 ビットで約 6 万 5 千台）。",
+      "プライベートアドレスは、RFC 1918 が A・B・C の範囲の中に決めた 10/8・172.16/12・192.168/16。クラス D はプライベートアドレス用の区分ではない。",
+      null
+    ],
+    "memoryTip": "A 大きい網・B 中くらい・C 小さい網・D マルチキャスト。",
+    "concepts": [
+      "C-SC-05-027",
+      "C-SC-05-032"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000008smf-att/2022r04a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 1112 Host Extensions for IP Multicasting",
+        "url": "https://www.rfc-editor.org/rfc/rfc1112.txt"
+      },
+      {
+        "title": "RFC 5771 IANA Guidelines for IPv4 Multicast Address Assignments",
+        "url": "https://www.rfc-editor.org/rfc/rfc5771.txt"
+      },
+      {
+        "title": "RFC 1918 Address Allocation for Private Internets",
+        "url": "https://www.rfc-editor.org/rfc/rfc1918.txt"
+      },
+      {
+        "title": "RFC 791 Internet Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc791.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-018",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "IPネットワークにおいて，クライアントの設定を変えることなくデフォルトゲートウェイの障害を回避するために用いられるプロトコルはどれか。",
+    "choices": [
+      "RARP",
+      "RSTP",
+      "RTSP",
+      "VRRP"
+    ],
+    "answer": 3,
+    "stemPlain": "パソコンの設定を変えずに、外へ出る出口のルータ（デフォルトゲートウェイ）が壊れても通信を続けられるようにするプロトコルを選ぶ問題。",
+    "explanation": "VRRP（Virtual Router Redundancy Protocol）は、複数のルータで1つの仮想的なルータ（共通の IP アドレス）を作り、ふだん受け持っているルータが止まったら、待機していたルータが同じアドレスを引き継ぐ（RFC 5798）。パソコンのデフォルトゲートウェイは仮想ルータのアドレスのままでよいので、クライアントの設定を変えずに出口の故障を避けられる。",
+    "whyWrong": [
+      "RARP は、自分の MAC アドレスから、自分の IP アドレスを教えてもらう古いプロトコル（RFC 903）。出口のルータを二重にする働きは無い。",
+      "RSTP（Rapid Spanning Tree Protocol）は、スイッチの輪を止めて木の形にするスパニングツリーの、切り替えを速くした版。L2 スイッチの線の冗長化で、IP の出口（デフォルトゲートウェイ）の冗長化ではない。",
+      "RTSP（Real-Time Streaming Protocol）は、音声や映像の配信を再生・一時停止などで操作するプロトコル（RFC 7826）。ルータの故障への備えとは関係しない。",
+      null
+    ],
+    "memoryTip": "VRRP＝Virtual Router（仮想ルータ）で出口を二重に。名前の似た RARP・RSTP・RTSP に注意。",
+    "concepts": [
+      "C-SC-05-016",
+      "C-SC-05-018"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000008smf-att/2022r04a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 5798 Virtual Router Redundancy Protocol (VRRP) Version 3 for IPv4 and IPv6",
+        "url": "https://www.rfc-editor.org/rfc/rfc5798.txt"
+      },
+      {
+        "title": "RFC 903 A Reverse Address Resolution Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc903.txt"
+      },
+      {
+        "title": "RFC 7826 Real-Time Streaming Protocol Version 2.0",
+        "url": "https://www.rfc-editor.org/rfc/rfc7826.txt"
+      },
+      {
+        "title": "Juniper Networks「Spanning-Tree Protocols Overview」（ポートの役割・BPDU）",
+        "url": "https://www.juniper.net/documentation/us/en/software/junos/stp-l2/topics/topic-map/spanning-tree-overview.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-019",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "IEEE 802.11a/b/g/nで採用されているアクセス制御方式はどれか。",
+    "choices": [
+      "CSMA/CA",
+      "CSMA/CD",
+      "LAPB",
+      "トークンパッシング方式"
+    ],
+    "answer": 0,
+    "stemPlain": "無線 LAN の規格 IEEE 802.11a/b/g/n が、電波を何台もの端末で分け合うために使う送り方（アクセス制御方式）を選ぶ問題。",
+    "explanation": "IEEE 802.11 の無線 LAN は、CSMA/CA（衝突回避つきの搬送波感知多重アクセス）を使う。送る前に電波が空いているか聞き、空いていても少し待ってから送り、受け手は届いたら確認応答を返す。無線は送りながら衝突を見つけられないので、ぶつからないように避ける方式を取る。IEEE 802.11 の文書も、分散協調機能（DCF）は CSMA/CA を基本とし、RTS/CTS の交換で拡張したものとしている。",
+    "whyWrong": [
+      null,
+      "CSMA/CD は、有線のイーサネット（IEEE 802.3）の方式で、送りながら衝突を見つけたら止めて送り直す（RFC 3927 の参考文献にある IEEE 802.3 の題名が『CSMA/CD アクセス方式』）。無線は送りながら衝突を見つけられないので使わない。",
+      "LAPB は、X.25 という古いパケット交換網で使ったデータリンク層の手順（HDLC の一種）。1対1の回線で順番どおりに確実に送るための決まりで、無線 LAN のアクセス方式ではない。",
+      "トークンパッシング方式は、『送ってよい』印（トークン）を機器の間で順に回し、受け取った機器だけが送る方式（トークンリングなど）。無線 LAN は使わない。"
+    ],
+    "memoryTip": "無線は CA（Avoidance＝避ける）。有線イーサネットは CD（Detection＝見つける）。",
+    "concepts": [
+      "C-SC-05-017",
+      "C-SC-05-052",
+      "C-SC-05-051"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IEEE 802.11 文書「Analyzing the RTS/CTS Mechanism」（1995年7月。CSMA/CA・RTS/CTS・隠れ端末）",
+        "url": "https://ieee802.org/11/Documents/DocumentArchives/1995_docs/51826.DOC"
+      },
+      {
+        "title": "RFC 3927 Dynamic Configuration of IPv4 Link-Local Addresses",
+        "url": "https://www.rfc-editor.org/rfc/rfc3927.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-020",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "インターネットに接続されたPCの時刻合わせに使用されるプロトコルはどれか。",
+    "choices": [
+      "NNTP",
+      "RTCP",
+      "SNTP",
+      "TFTP"
+    ],
+    "answer": 2,
+    "stemPlain": "インターネットにつないだパソコンの時計を、正しい時刻に合わせるのに使うプロトコルを選ぶ問題。",
+    "explanation": "SNTP（Simple Network Time Protocol）は、時刻のサーバに問い合わせて、コンピュータの時計を合わせるプロトコル。NTP（Network Time Protocol）の手順を簡単にした版で、パソコンの時刻合わせなどに使う（RFC 4330）。",
+    "whyWrong": [
+      "NNTP（Network News Transfer Protocol）は、ネットニュースの記事を配ったり読んだりするためのプロトコル（RFC 3977）。時刻合わせには使わない。",
+      "RTCP（RTP Control Protocol）は、音声や映像を運ぶ RTP の通信で、受信の品質などを知らせ合うための制御のプロトコル（RFC 3550）。時計を合わせるプロトコルではない。",
+      null,
+      "TFTP（Trivial File Transfer Protocol）は、認証の無い簡単なファイル転送のプロトコル（RFC 1350）。機器の起動時に設定ファイルを取ってくる用途などに使い、時刻合わせではない。"
+    ],
+    "memoryTip": "時刻（Time）が名前に入るのは NTP・SNTP。NNTP のニュース（News）と混ぜない。",
+    "concepts": [
+      "C-SC-05-055"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 4330 Simple Network Time Protocol (SNTP) Version 4 for IPv4, IPv6 and OSI",
+        "url": "https://www.rfc-editor.org/rfc/rfc4330.txt"
+      },
+      {
+        "title": "RFC 3977 Network News Transfer Protocol (NNTP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc3977.txt"
+      },
+      {
+        "title": "RFC 3550 RTP: A Transport Protocol for Real-Time Applications",
+        "url": "https://www.rfc-editor.org/rfc/rfc3550.txt"
+      },
+      {
+        "title": "RFC 1350 The TFTP Protocol (Revision 2)",
+        "url": "https://www.rfc-editor.org/rfc/rfc1350.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-021",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "複数台のレイヤ2スイッチで構成されるネットワークが複数の経路をもつ場合に，イーサネットフレームのループが発生することがある。そのループの発生を防ぐためのTCP/IPネットワークインタフェース層のプロトコルはどれか。",
+    "choices": [
+      "IGMP",
+      "RIP",
+      "SIP",
+      "スパニングツリープロトコル"
+    ],
+    "answer": 3,
+    "stemPlain": "複数のスイッチをつないで道が輪になると、フレームが回り続けることがある。その輪を防ぐプロトコルを選ぶ問題。",
+    "explanation": "スパニングツリープロトコルは、スイッチどうしが BPDU を交換し、輪になった線のうち一部のポートを止めて、網を輪の無い木の形にする。こうしてイーサネットフレームのループを防ぐ（Juniper の説明でも、木の形を作ってループを避け、根と各末端の間に有効な道を1つだけ残す）。TCP/IP の階層でいうと、IP より下のネットワークインタフェース層で動く。",
+    "whyWrong": [
+      "IGMP は、機器がマルチキャストのグループに入ることを近くのルータに知らせるプロトコル（RFC 3376）。スイッチの輪を見つけて止める働きは無い。",
+      "RIP は、ルータどうしが経路の情報を交換して、IP パケットの道を決めるルーティングプロトコル（RFC 2453）。インターネット層の働きで、スイッチのフレームの輪を止めるものではない。",
+      "SIP は、IP 電話などで通話の開始・終了を取り決めるプロトコル（RFC 3261）。アプリケーション層の働きで、ループの防止とは関係しない。",
+      null
+    ],
+    "memoryTip": "スイッチの輪（L2 のループ）を止める＝スパニングツリー。",
+    "concepts": [
+      "C-SC-05-018",
+      "C-SC-05-032"
+    ],
+    "figures": [
+      "fig-sc-net-stp"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "Juniper Networks「Spanning-Tree Protocols Overview」（ポートの役割・BPDU）",
+        "url": "https://www.juniper.net/documentation/us/en/software/junos/stp-l2/topics/topic-map/spanning-tree-overview.html"
+      },
+      {
+        "title": "RFC 3376 Internet Group Management Protocol, Version 3",
+        "url": "https://www.rfc-editor.org/rfc/rfc3376.txt"
+      },
+      {
+        "title": "RFC 2453 RIP Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2453.txt"
+      },
+      {
+        "title": "RFC 3261 SIP: Session Initiation Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc3261.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-022",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "レイヤ3ネットワーク内に論理的なレイヤ2ネットワークをカプセル化によって構築するプロトコルはどれか。",
+    "choices": [
+      "IEEE 802.1ad（QinQ）",
+      "IPsec",
+      "PPPoE",
+      "VXLAN"
+    ],
+    "answer": 3,
+    "stemPlain": "IP でつながった網（L3）の上に、イーサネットの網（L2）を、フレームを包んで運ぶことで作るプロトコルを選ぶ問題。",
+    "explanation": "VXLAN（Virtual eXtensible Local Area Network）は、イーサネットのフレームを丸ごと UDP/IP のパケットに入れて（カプセル化して）運び、L3 の網の上に仮想的な L2 の網を重ねるオーバーレイの技術（RFC 7348 の題名が『L3 の網の上に仮想化した L2 の網を重ねる枠組み』）。網の識別子は 24 ビットあり、VLAN の 4094 個の上限を超えて分けられる。",
+    "whyWrong": [
+      "IEEE 802.1ad（QinQ）は、事業者の網（Provider Bridges）で、利用者の VLAN タグの外側にもう1つタグを重ねて運ぶ規格。L2 の網の中でタグを重ねるもので、L3 の網の上に L2 を作るものではない。",
+      "IPsec は、IP パケットを暗号化・認証して守る仕組み（RFC 4301）。暗号化した通り道（トンネル）は作れるが、目的は守ることで、L2 の網を作るプロトコルではない。",
+      "PPPoE は、PPP（電話回線の時代の接続の手順。認証などをする）をイーサネットの上で運ぶ方式（RFC 2516）。光回線のインターネット接続で使うもので、L3 の上に L2 を作るものではない。",
+      null
+    ],
+    "memoryTip": "VXLAN＝L2 を UDP/IP に包んで L3 の上へ。eXtensible＝VLAN の上限を広げる。",
+    "concepts": [
+      "C-SC-05-007",
+      "C-SC-05-024"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000apad-att/2021r03a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 7348 Virtual eXtensible Local Area Network (VXLAN): A Framework for Overlaying Virtualized Layer 2 Networks over Layer 3 Networks",
+        "url": "https://www.rfc-editor.org/rfc/rfc7348.txt"
+      },
+      {
+        "title": "IEEE 802.1ad Provider Bridges（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1ad.html"
+      },
+      {
+        "title": "RFC 4301 Security Architecture for the Internet Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc4301.txt"
+      },
+      {
+        "title": "RFC 2516 A Method for Transmitting PPP Over Ethernet (PPPoE)",
+        "url": "https://www.rfc-editor.org/rfc/rfc2516.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-023",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "クラスBのIPアドレスで，サブネットマスクが16進数のFFFFFF80である場合，利用可能なホスト数は最大幾つか。",
+    "choices": [
+      "126",
+      "127",
+      "254",
+      "255"
+    ],
+    "answer": 0,
+    "stemPlain": "サブネットマスクが 16 進数で FFFFFF80 のとき、1つの網に付けられる機器の番号（ホストアドレス）は最大で何個かを選ぶ問題。",
+    "explanation": "FFFFFF80 を2進数にすると、末尾の 80 は 10000000。1 が 25 個並ぶので、機器の番号に使えるのは残りの 7 ビットで、2⁷＝128 通り。そのうち全部 0（網そのものの番号）と全部 1（ブロードキャスト）は機器に付けないので、128−2＝126 個。クラス B かどうかは、マスクが決まっていれば答えに影響しない。",
+    "whyWrong": [
+      null,
+      "127 は、128 から 1 つだけ引いた値。網の番号（全部 0）とブロードキャスト（全部 1）の 2 つを引くので、126。",
+      "254 は、末尾の 8 ビットを全部機器に使う（マスクの末尾が 00、つまり 255.255.255.0）ときの数（256−2）。FFFFFF80 では機器に使えるのは 7 ビット。",
+      "255 は、末尾 8 ビットの 256 から 1 つだけ引いた値。マスクの読み違い（7 ビットでなく 8 ビット）と、引く数の誤り（2 でなく 1）が重なっている。"
+    ],
+    "memoryTip": "台数＝2^（0 のビット数）−2。80＝10000000 → 0 が 7 個 → 128−2＝126。",
+    "concepts": [
+      "C-SC-05-026"
+    ],
+    "figures": [
+      "fig-sc-net-subnet"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000apad-att/2021r03a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 4632 Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan",
+        "url": "https://www.rfc-editor.org/rfc/rfc4632.txt"
+      },
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-024",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ETSI（欧州電気通信標準化機構）が提唱するNFV（Network Functions Virtualisation）に関する記述のうち，適切なものはどれか。",
+    "choices": [
+      "ONF（Open Networking Foundation）が提唱するSDN（Software-Defined Networking）を用いて，仮想化を実現する。",
+      "OpenFlowコントローラやOpenFlowスイッチなどのOpenFlowプロトコルの専用機器だけを使ってネットワークを構築する。",
+      "ルータ，ファイアウォールなどのネットワーク機能を，汎用サーバを使った仮想マシン上のソフトウェアで実現する。",
+      "ロードバランサ，スイッチ，ルータなどの専用機器を使って，VLAN，VPNなどの仮想ネットワークを実現する。"
+    ],
+    "answer": 2,
+    "stemPlain": "欧州の標準化団体 ETSI が提唱した NFV（ネットワーク機能の仮想化）の説明として正しいものを選ぶ問題。",
+    "explanation": "ETSI の NFV の白書（2012年）は、NFV を、標準的な IT の仮想化の技術を使って、さまざまな網の機器の機能を、業界標準の大量生産の汎用サーバ・スイッチ・ストレージの上に集約するもので、網の機能を汎用のサーバ上で動くソフトウェアとして実装すること、と説明している。ルータやファイアウォールなどの機能を、汎用サーバの仮想マシン上のソフトウェアで実現する、という説明がこれに当たる。",
+    "whyWrong": [
+      "ETSI の白書は、NFV は SDN（ソフトウェアで網の転送を制御する考え方）と補い合うが、互いに依存しない、SDN が無くても網の機能を仮想化して配置できる、としている。SDN を用いて仮想化を実現するものではない。",
+      "OpenFlow は、SDN でコントローラがスイッチの転送を制御するためのプロトコル。OpenFlow 専用の機器だけで網を作るのは SDN の一つの作り方で、汎用サーバで網の機能を動かす NFV の説明ではない。",
+      null,
+      "専用の機器（ロードバランサ・スイッチ・ルータ）で VLAN や VPN の仮想ネットワークを作るのは、従来からの網の作り方。NFV は、逆に専用の機器を汎用サーバ上のソフトウェアに置き換える考え方。"
+    ],
+    "memoryTip": "NFV＝網の機能（Network Functions）をソフト化して汎用サーバで。SDN＝転送の制御をソフトで。別物だが補い合う。",
+    "concepts": [
+      "C-SC-05-009"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 18,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問18）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "ETSI Network Functions Virtualisation – Introductory White Paper（2012年10月）",
+        "url": "https://portal.etsi.org/NFV/NFV_White_Paper.pdf"
+      },
+      {
+        "title": "ETSI「Network Functions Virtualisation (NFV)」",
+        "url": "https://www.etsi.org/technologies/nfv"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-025",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "スイッチングハブ同士を接続する際に，複数のポートを束ねて一つの論理ポートとして扱う技術はどれか。",
+    "choices": [
+      "MIME",
+      "MIMO",
+      "マルチパート",
+      "リンクアグリゲーション"
+    ],
+    "answer": 3,
+    "stemPlain": "スイッチどうしをつなぐとき、複数のポート（線）を束ねて1本の線のように扱う技術の名前を選ぶ問題。",
+    "explanation": "リンクアグリゲーションは、同じ速さの複数の線を束ねてリンクアグリゲーショングループにし、上の層からは1本の線に見せる技術（IEEE 802.1AX）。速さを足し合わせられ、1本が切れても残りの線で通信を続けられる。",
+    "whyWrong": [
+      "MIME は、メールで文字以外のデータ（画像やファイルなど）や日本語を送るための形式の決まり（RFC 2045）。ポートを束ねる技術ではない。",
+      "MIMO（Multiple Input Multiple Output）は、無線で送り手と受け手の両方に複数のアンテナを使い、同時に複数の電波で送って速さを上げる技術。有線のポートを束ねる技術ではない。",
+      "マルチパートは、MIME で1通のメールの本文を複数の部分（本文と添付ファイルなど）に分けて入れる形式（RFC 2046）。ネットワークのポートとは関係しない。",
+      null
+    ],
+    "memoryTip": "アグリゲーション（aggregation）＝寄せ集め。線を寄せ集めて1本に。",
+    "concepts": [
+      "C-SC-05-012"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 19,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問19）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IEEE 802.1AX-2014 Link Aggregation（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1AX-2014.html"
+      },
+      {
+        "title": "RFC 2045 Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies",
+        "url": "https://www.rfc-editor.org/rfc/rfc2045.txt"
+      },
+      {
+        "title": "RFC 2046 Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types",
+        "url": "https://www.rfc-editor.org/rfc/rfc2046.txt"
+      },
+      {
+        "title": "Wi-Fi Alliance「Wi-Fi CERTIFIED 6」（OFDMA・MU-MIMO）",
+        "url": "https://www.wi-fi.org/discover-wi-fi/wi-fi-certified-6"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-026",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "IPv4ネットワークにおけるIPアドレス127.0.0.1に関する記述として，適切なものはどれか。",
+    "choices": [
+      "DHCPが使用できないときに自動生成されるIPアドレスとして使用される。",
+      "全ホストに対するブロードキャストアドレスとして使用される。",
+      "単一のコンピュータ上で動作するプログラム同士が通信する際に使用される。",
+      "デフォルトゲートウェイのアドレスとして使用される。"
+    ],
+    "answer": 2,
+    "stemPlain": "IPv4 のアドレス 127.0.0.1 の使い方として正しいものを選ぶ問題。",
+    "explanation": "127 で始まるアドレスは、ループバックアドレス（自分自身を指す番号）。同じコンピュータの中で動くプログラムどうしが、ネットワークの仕組みを使って通信するときに使い、機械の外には出ない（RFC 1122 は、127 で始まるアドレスを内部のホストループバックとし、ホストの外に出てはならないとしている）。",
+    "whyWrong": [
+      "DHCP が使えないときに機器が自分で付けるのは、169.254.0.0/16 のリンクローカルアドレス（RFC 3927）。127.0.0.1 ではない。",
+      "網の全員あてのブロードキャストには、255.255.255.255（限定ブロードキャスト）などを使う（RFC 1122）。127.0.0.1 は自分自身だけを指す。",
+      null,
+      "デフォルトゲートウェイには、同じ網にいる出口のルータのアドレス（例 192.168.1.1）を設定する。127.0.0.1 は自分自身なので、外への出口にはならない。"
+    ],
+    "memoryTip": "127.0.0.1＝自分（localhost）。169.254＝DHCP が無いとき。255.255.255.255＝全員。",
+    "concepts": [
+      "C-SC-05-027"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 20,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問20）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      },
+      {
+        "title": "RFC 3927 Dynamic Configuration of IPv4 Link-Local Addresses",
+        "url": "https://www.rfc-editor.org/rfc/rfc3927.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-027",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "農地の各所に置いた多数のセンサーが測った水位や水温を、無線で1か所に集めて活用するネットワークの呼び名として、最も適切なものはどれか。",
+    "choices": [
+      "センサーネットワーク",
+      "オーバーレイネットワーク",
+      "ストレージエリアネットワーク",
+      "コンテンツデリバリネットワーク"
+    ],
+    "answer": 0,
+    "stemPlain": "たくさんのセンサーが測った値を、無線で1か所に集める網の呼び名を選ぶ問題。",
+    "explanation": "多数のセンサーを無線などでつなぎ、測った値を集めて使う網をセンサーネットワークという。総務省の白書は、センサーが人やモノの状況や周りの環境を捉え、センサーどうしの自律的な情報の流通で状況にすぐ対応できるようにする技術として説明している。センサーは電池で長く動かしたいので、通信には LPWA など少ない電力の方式がよく使われる。",
+    "whyWrong": [
+      null,
+      "オーバーレイネットワークは、いまある網の上に、パケットを包んで運ぶことで別の論理的な網を重ねる作り方（VXLAN など）。測った値を集める網の呼び名ではない。",
+      "ストレージエリアネットワーク（SAN）は、サーバと記憶装置（ストレージ）の間を専用の網でつなぎ、データの読み書きを速くする網。センサーの値を集める網ではない。",
+      "コンテンツデリバリネットワーク（CDN）は、Web の画像や動画を各地のサーバに写しておき、利用者の近くから配る網。データを配る向きで、センサーから集める網ではない。"
+    ],
+    "memoryTip": "センサーの値を『集める』網＝センサーネットワーク。CDN は『配る』網。",
+    "concepts": [
+      "C-SC-05-001",
+      "C-SC-05-073"
+    ],
+    "sources": [
+      {
+        "title": "総務省 平成19年版 情報通信白書「ユビキタスセンサーネットワークの研究開発」",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h19/html/j3532000.html"
+      },
+      {
+        "title": "総務省 LPWA の概要・特徴・主な諸元（資料）",
+        "url": "https://www.soumu.go.jp/main_content/000531436.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-028",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "有線 LAN を無線 LAN と比べたときの特徴として、最も適切なものはどれか。",
+    "choices": [
+      "複数のアクセスポイントで1つの網を作り、端末を条件のよいアクセスポイントへ自動で導ける。",
+      "送る前に電波が空いているかを聞き、少し待ってから送る方式で、1つの電波を複数の端末で分け合う。",
+      "電波の混雑や外からの傍受を受けにくいが、機器の置き場所を変えるには配線の手間がかかる。",
+      "網の名前（SSID）を見て接続先を選び、WPA2 や WPA3 の方式で通信を暗号化して守る。"
+    ],
+    "answer": 2,
+    "stemPlain": "ケーブルでつなぐ LAN（有線 LAN）を、電波でつなぐ LAN（無線 LAN）と比べた特徴を選ぶ問題。",
+    "explanation": "有線 LAN は機器をケーブルでつなぐので、電波の混み具合や、建物の外からの電波の傍受の影響を受けにくく、速さも安定しやすい。その代わり、機器を動かすたびに配線をし直す手間がかかる。無線 LAN は逆に、配線は要らないが、電波が届く範囲なら誰でも電波を受けられるので、暗号化と、つなぐ網の確認が欠かせない。",
+    "whyWrong": [
+      "複数のアクセスポイントが無線でつながって1つの網を作り、端末を条件のよいアクセスポイントへ導くのは、メッシュ Wi-Fi（無線 LAN の仕組み）。有線 LAN の特徴ではない。",
+      "送る前に電波を聞いて少し待つのは、無線 LAN（IEEE 802.11）のアクセス方式 CSMA/CA。有線 LAN は、スイッチの各ポートに1台ずつつなぎ、全二重で送るのが普通。",
+      null,
+      "SSID で接続先を選び、WPA2 や WPA3 で暗号化するのは、無線 LAN の使い方。有線 LAN はケーブルで差し込んだ先につながる。"
+    ],
+    "memoryTip": "有線＝安定・傍受されにくいが動かしにくい。無線＝自由に動かせるが電波が外に漏れる。",
+    "concepts": [
+      "C-SC-05-002",
+      "C-SC-05-003"
+    ],
+    "sources": [
+      {
+        "title": "総務省 自宅Wi-Fi利用者向け 簡易マニュアル（令和7年2月版）",
+        "url": "https://www.soumu.go.jp/main_content/000989912.pdf"
+      },
+      {
+        "title": "IEEE 802.11 文書「Analyzing the RTS/CTS Mechanism」（1995年7月。CSMA/CA・RTS/CTS・隠れ端末）",
+        "url": "https://ieee802.org/11/Documents/DocumentArchives/1995_docs/51826.DOC"
+      },
+      {
+        "title": "情報処理安全確保支援士試験 シラバス（案）Ver.0.1（IPA）",
+        "url": "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-029",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "総務省の Wi-Fi 利用者向けの資料に沿った、無線 LAN の SSID（ネットワーク名）の扱いとして、適切でないものはどれか。",
+    "choices": [
+      "自宅の SSID には、氏名やマンションの部屋番号など、身元が分かる名前を付けない。",
+      "SSID を外から見えない設定にしておけば、暗号化の方式が WEP のままでも盗聴の心配はない。",
+      "公衆 Wi-Fi では、接続する SSID が、提供者が案内しているものと同じかを確かめる。",
+      "Wi-Fi ルーターが古い暗号化方式の SSID を持っていれば、要らないものは止める。"
+    ],
+    "answer": 1,
+    "stemPlain": "無線 LAN の網の名前（SSID）の扱い方のうち、総務省の資料に照らして誤っているものを選ぶ問題。",
+    "explanation": "SSID は網の名前にすぎず、守りの中心は暗号化と認証。総務省の自宅 Wi-Fi 向けの資料は、セキュリティ方式に WPA2 か WPA3 を選ぶよう勧めており、WEP は古く弱い方式。SSID を見えにくくしても、暗号化が弱ければ通信を読まれるおそれは残るので、『WEP のままでも盗聴の心配はない』は適切でない。",
+    "whyWrong": [
+      "適切。総務省の資料は、電波の届く範囲にいれば SSID は誰でも見られるので、身元の特定につながる名前を付けないよう注意している。",
+      null,
+      "適切。総務省の資料は、よく知っている SSID でも偽の公衆 Wi-Fi が置かれていることがあるとして、提供者が案内する SSID と同じかを確かめるよう勧めている。",
+      "適切。総務省の資料は、ルーターが古いゲーム機向けなどの古い暗号化方式の SSID を持っている場合があり、不要なら止めるよう勧めている。"
+    ],
+    "memoryTip": "SSID は名札。守るのは鍵（WPA2・WPA3 の暗号化）。",
+    "concepts": [
+      "C-SC-05-003",
+      "C-SC-05-052"
+    ],
+    "sources": [
+      {
+        "title": "総務省 自宅Wi-Fi利用者向け 簡易マニュアル（令和7年2月版）",
+        "url": "https://www.soumu.go.jp/main_content/000989912.pdf"
+      },
+      {
+        "title": "総務省 公衆Wi-Fi利用者向け 簡易マニュアル（令和7年2月版）",
+        "url": "https://www.soumu.go.jp/main_content/000989921.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-030",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "無線 LAN で、アクセスポイント（AP）をはさんで反対側にいる端末 A と C は、互いの電波が聞こえないため、どちらも空いていると判断して同時に送信し、AP で電波が衝突した。この現象を（ア）といい、送信の前に短い制御フレームを交わして、受信側の周りの端末にも使用中を知らせる（イ）が対策になる。（ア）（イ）に入る語の組合せはどれか。",
+    "choices": [
+      "（ア）隠れ端末問題　（イ）CSMA/CD",
+      "（ア）さらし端末問題　（イ）RTS/CTS",
+      "（ア）さらし端末問題　（イ）CSMA/CD",
+      "（ア）隠れ端末問題　（イ）RTS/CTS"
+    ],
+    "answer": 3,
+    "stemPlain": "互いに電波が聞こえない2台の無線端末が同時に送ってぶつかる現象の名前と、その対策の組を選ぶ問題。",
+    "explanation": "互いの電波が聞こえない端末どうしが、どちらも空いていると思って同時に送り、受け手の AP でぶつかる現象は隠れ端末問題。対策の RTS/CTS は、送り手が RTS（送ってよいかの合図）、受け手が CTS（どうぞの合図）を出し、受け手の周りの端末にも使用中を知らせる。IEEE 802.11 の文書も、RTS/CTS を入れた主な目的は隠れ端末問題の解決だとしている。",
+    "whyWrong": [
+      "（イ）が誤り。CSMA/CD は有線のイーサネットの昔の方式で、送りながら衝突を見つけたら止めて送り直す。無線は送りながら衝突を見つけられず、短い制御フレームを交わす対策は RTS/CTS。",
+      "（ア）が誤り。さらし端末問題は、近くの送信を聞いて遠慮し、本当は送っても邪魔にならないのに待ってしまう問題。互いに聞こえない端末どうしが同時に送ってぶつかるのは隠れ端末問題。",
+      "（ア）（イ）とも誤り。さらし端末問題は『送れるのに待つ』むだの問題で、衝突の問題ではない。CSMA/CD は有線の方式で、無線の対策ではない。",
+      null
+    ],
+    "memoryTip": "隠れ端末＝見えない相手とぶつかる。さらし端末＝見える相手に遠慮しすぎる。対策は RTS/CTS。",
+    "concepts": [
+      "C-SC-05-004",
+      "C-SC-05-017"
+    ],
+    "figures": [
+      "fig-sc-net-hidden-exposed"
+    ],
+    "sources": [
+      {
+        "title": "IEEE 802.11 文書「Analyzing the RTS/CTS Mechanism」（1995年7月。CSMA/CA・RTS/CTS・隠れ端末）",
+        "url": "https://ieee802.org/11/Documents/DocumentArchives/1995_docs/51826.DOC"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-031",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "無線 LAN で、端末 B が端末 A へ送信しているのを聞いた端末 C は、送信を控えた。しかし C が送りたい相手の D は A から遠く、C が送っても A の受信は妨げられなかった。このように、送っても問題の無い送信を控えてしまう現象はどれか。",
+    "choices": [
+      "隠れ端末問題",
+      "ブロードキャストストーム",
+      "フラッディング",
+      "さらし端末問題"
+    ],
+    "answer": 3,
+    "stemPlain": "近くの送信が聞こえたので遠慮したが、実は送っても邪魔にならなかった、という無線のむだの名前を選ぶ問題。",
+    "explanation": "さらし端末問題は、近くの送信の電波が聞こえる（さらされている）ために、本当は送っても受け手を邪魔しない場面でも送信を控え、使える時間をむだにする問題。IEEE 802.11 の文書も、CTS は聞こえず RTS とデータだけが聞こえる端末は受け手から遠いと分かるので、別の相手との通信を始められる可能性に触れている。",
+    "whyWrong": [
+      "隠れ端末問題は、互いの電波が聞こえない端末どうしが同時に送り、受け手のところでぶつかる問題。問題文は、聞こえたために遠慮しすぎる場面なので逆の型。",
+      "ブロードキャストストームは、スイッチをループ状につないだときに、全員あてのフレームが回り続けて増え、網が使えなくなる現象。無線の送信の遠慮とは関係しない。",
+      "フラッディングは、L2 スイッチが宛先の分からないフレームを、受け取ったポート以外の全ポートへ送る動作。無線の送信を控える現象の名前ではない。",
+      null
+    ],
+    "memoryTip": "さらし（exposed）＝周りの電波にさらされて、送れるのに黙る。",
+    "concepts": [
+      "C-SC-05-004"
+    ],
+    "figures": [
+      "fig-sc-net-hidden-exposed"
+    ],
+    "sources": [
+      {
+        "title": "IEEE 802.11 文書「Analyzing the RTS/CTS Mechanism」（1995年7月。CSMA/CA・RTS/CTS・隠れ端末）",
+        "url": "https://ieee802.org/11/Documents/DocumentArchives/1995_docs/51826.DOC"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-032",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "インターネット接続用のグローバル IP アドレスが1つしかない社内で、複数のパソコンが同時に外部の Web サイトを利用できるよう、ルータが送信元の IP アドレスに加えてポート番号も書き換える技術はどれか。",
+    "choices": [
+      "Basic NAT（アドレスだけを書き換える NAT）",
+      "NAPT",
+      "DNS64",
+      "VRRP"
+    ],
+    "answer": 1,
+    "stemPlain": "外で使えるアドレスが1つしかないとき、何台ものパソコンを同時に外へつなぐために、番号を書き換える技術を選ぶ問題。",
+    "explanation": "NAPT（Network Address Port Translation）は、内側の機器ごとの『アドレスとポート番号』の組を、外側の1つのアドレスと別々のポート番号の組に書き換え、その対応を表に記録する（RFC 3022）。返事は宛先ポートで見分けて正しい内側の機器へ戻すので、1つのグローバルアドレスを何台でも分け合える。",
+    "whyWrong": [
+      "Basic NAT はアドレスだけを1対1で書き換えるので、外側のアドレスが1つなら、同時に外へ出られる内側の機器は1台。ポート番号は書き換えない（RFC 3022）。",
+      null,
+      "DNS64 は、IPv6 だけの機器が IPv4 のサーバの名前を引いたとき、変換装置あての IPv6 アドレスを作って答える仕組みで、NAT64 と組み合わせる。IPv4 のアドレスを分け合う技術ではない。",
+      "VRRP は、複数のルータを1台の仮想ルータに見せ、故障したら待機側が引き継ぐプロトコル。アドレスの書き換えはしない。"
+    ],
+    "memoryTip": "NAPT の P は Port。ポートで見分けて1つのアドレスを共有。",
+    "concepts": [
+      "C-SC-05-006",
+      "C-SC-05-005"
+    ],
+    "figures": [
+      "fig-sc-net-napt"
+    ],
+    "sources": [
+      {
+        "title": "RFC 3022 Traditional IP Network Address Translator (Traditional NAT)",
+        "url": "https://www.rfc-editor.org/rfc/rfc3022.txt"
+      },
+      {
+        "title": "RFC 6146 Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers",
+        "url": "https://www.rfc-editor.org/rfc/rfc6146.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-033",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "NAPT を行うルータに、外側（インターネット側）から、変換表に記録の無いポート番号あてのパケットが届いた。そのポートを内側の特定の機器へ割り当てる静的な設定も無いとき、ルータの扱いとして、最も適切なものはどれか。",
+    "choices": [
+      "内側の全機器あてにブロードキャストし、応答した機器へ以後も転送する。",
+      "同じポート番号を使っている内側の機器を ARP で探し、その機器へ転送する。",
+      "内側のどの機器あてかを決められないので、内側へは転送しない。",
+      "最後に外部と通信した内側の機器を表に加え、その機器へ転送する。"
+    ],
+    "answer": 2,
+    "stemPlain": "番号を書き換えて社内をインターネットにつなぐルータに、外から、心当たりのない番号あてのパケットが来たとき、どう扱うかを選ぶ問題。",
+    "explanation": "NAPT は、内側から外へ通信が始まったときに変換表に行を作り、返事はその行で内側の機器を見分けて戻す。RFC 3022 は、外から始まる通信は、ポートが内側の機器に静的に割り当てられていない限り、NAT ルータ自身あてとして扱うとしている。つまり表にも静的な設定にも無いポートあてのパケットは、内側へは届かない。外から内側のサーバに届けたいときは、ポートを特定の機器へ回す静的な設定が要る。",
+    "whyWrong": [
+      "NAPT のルータは、外から来たパケットを、変換表の行（外側のポートと内側の機器の対応）を手がかりに戻す。行が無いパケットを内側の全員に配ることはせず、そうすれば外から内側を自由に探れてしまう。",
+      "ARP は、同じ LAN の中で IP アドレスから MAC アドレスを調べるプロトコル。ポート番号から機器を探す働きは無く、NAPT が外からのパケットの行き先を決める手段にもならない。",
+      null,
+      "変換表の行は、内側から外へ通信が始まったときに作られる。外から届いたパケットのために、推測で内側の機器を選んで行を作ることはしない。"
+    ],
+    "memoryTip": "NAPT の表は内側から外へ出たときに作られる。表に無い外からの通信は中へ入れない。",
+    "concepts": [
+      "C-SC-05-006",
+      "C-SC-05-005",
+      "C-SC-05-044"
+    ],
+    "figures": [
+      "fig-sc-net-napt"
+    ],
+    "sources": [
+      {
+        "title": "RFC 3022 Traditional IP Network Address Translator (Traditional NAT)",
+        "url": "https://www.rfc-editor.org/rfc/rfc3022.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-034",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "ドメイン名 www.example.co.jp で、トップレベルドメイン（TLD）に当たる部分は（ア）であり、IANA の分類では（イ）に当たる。（ア）（イ）に入る語の組合せはどれか。",
+    "choices": [
+      "（ア）jp　（イ）国や地域を表す ccTLD",
+      "（ア）jp　（イ）分野別の gTLD",
+      "（ア）co.jp　（イ）国や地域を表す ccTLD",
+      "（ア）co.jp　（イ）分野別の gTLD"
+    ],
+    "answer": 0,
+    "stemPlain": "www.example.co.jp の、いちばん上の段の名前（TLD）がどこで、その種類が国別か分野別かの組を選ぶ問題。",
+    "explanation": "DNS の名前は右から段に分かれ、いちばん右の段（ルートのすぐ下）が TLD（Top Level Domain）。www.example.co.jp なら jp が TLD で、co → example → www と下へたどる。IANA の Root Zone Database では、TLD を country-code（国・地域）と generic（分野別）などの種類に分けており、.jp は country-code に当たる。",
+    "whyWrong": [
+      null,
+      "（イ）が誤り。gTLD（generic TLD）は .com・.org のように分野で分けた TLD。.jp は日本を表す国別の ccTLD（country code TLD）。",
+      "（ア）が誤り。TLD はドメイン名のいちばん右の1段（ルートのすぐ下）だけを指す。co.jp は jp の下の段まで含むので、TLD ではない。",
+      "（ア）（イ）とも誤り。TLD はいちばん右の1段の jp で、co.jp ではない。また .jp は国別の ccTLD で、分野別の gTLD ではない。"
+    ],
+    "memoryTip": "TLD＝いちばん右の1段。2文字の国名（jp・us）は ccTLD、com・org は gTLD。",
+    "concepts": [
+      "C-SC-05-008",
+      "C-SC-05-048"
+    ],
+    "sources": [
+      {
+        "title": "IANA Root Zone Database（TLD の一覧と種類）",
+        "url": "https://www.iana.org/domains/root/db"
+      },
+      {
+        "title": "RFC 1034 Domain Names - Concepts and Facilities",
+        "url": "https://www.rfc-editor.org/rfc/rfc1034.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-035",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク方式"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "データセンターで、VLAN の代わりに VXLAN を使って利用者ごとの L2 ネットワークを作る理由として、RFC 7348 の記述に最も近いものはどれか。",
+    "choices": [
+      "VLAN の識別番号は 12 ビットで 4094 個までしか作れず、大規模な環境では足りないから。",
+      "VLAN のタグには暗号化の仕組みが無く、同じスイッチの中の通信を盗聴から守れないから。",
+      "VLAN を使うと IPv4 のアドレスが足りなくなり、NAT による変換が欠かせなくなるから。",
+      "VLAN の網ではスパニングツリーが使えず、スイッチの間のループを止められないから。"
+    ],
+    "answer": 0,
+    "stemPlain": "データセンターで、網の区切りに VLAN ではなく VXLAN を使う理由として、規格の文書が挙げるものを選ぶ問題。",
+    "explanation": "RFC 7348 は、VLAN の 12 ビットの識別番号では 4094 個までしか網を分けられず、多数の利用者を収容するデータセンターでは足りないことを、VXLAN が必要な理由に挙げている。VXLAN は網の識別子が 24 ビットあり、約1600万個まで分けられる。また、イーサネットのフレームを UDP/IP に包んで運ぶので、間が L3 の網でも L2 の網を重ねて作れる。",
+    "whyWrong": [
+      null,
+      "VXLAN も暗号化の仕組みではない（フレームを UDP/IP に包んで運ぶだけ）。暗号化しないことは VLAN と VXLAN で変わらず、VXLAN を選ぶ理由にならない。",
+      "VLAN は L2 の網を区切る技術で、IP アドレスの数を減らしも増やしもしない。アドレス不足と NAT は、VXLAN を作った理由として RFC 7348 が挙げるものではない。",
+      "VLAN の網でもスパニングツリーは使える。RFC 7348 はむしろ、スパニングツリーが使わない線を止めてしまうことを、L2 の網を大きくするときの限界として挙げている。"
+    ],
+    "memoryTip": "VLAN の番号は 12 ビット＝4094 個まで。VXLAN は 24 ビット＝約1600万個。",
+    "concepts": [
+      "C-SC-05-007",
+      "C-SC-05-024"
+    ],
+    "sources": [
+      {
+        "title": "RFC 7348 Virtual eXtensible Local Area Network (VXLAN): A Framework for Overlaying Virtualized Layer 2 Networks over Layer 3 Networks",
+        "url": "https://www.rfc-editor.org/rfc/rfc7348.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-036",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "1本の光ファイバに、波長の異なる複数の光信号を重ねて同時に送り、伝送できる量を増やす技術はどれか。",
+    "choices": [
+      "直交周波数分割多元接続（OFDMA）",
+      "リンクアグリゲーション",
+      "波長分割多重（WDM）",
+      "時分割多重（TDM）"
+    ],
+    "answer": 2,
+    "stemPlain": "1本の光ファイバに、色の違う光を何本も重ねて、運べる量を増やす技術の名前を選ぶ問題。",
+    "explanation": "波長分割多重（WDM：Wavelength Division Multiplexing）は、色（波長）の違う光は混ぜても分けられることを使い、1本の光ファイバに何本もの通信路を重ねる技術。ITU-T の勧告 G.694.1 は、高密度の WDM で使う周波数の並べ方を決めている。ファイバを敷き直さずに運べる量を増やせる。",
+    "whyWrong": [
+      "OFDMA は、無線のチャネルを細かい周波数の束に分け、複数の端末に同時に割り当てる方式（Wi-Fi 6 など）。光ファイバの中で波長を分ける技術ではない。",
+      "リンクアグリゲーションは、複数の線（ポート）を束ねて1本の論理的な線として扱う技術。1本の線の中に複数の信号を重ねるのではなく、線そのものを増やして束ねる。",
+      null,
+      "時分割多重（TDM）は、1本の通信路を短い時間に区切り、順番に別々の信号を載せる方式。同時に別の波長で送るのではなく、時間で分けて交代で送る。"
+    ],
+    "memoryTip": "Wavelength（波長）で分ける＝WDM。周波数で端末に分ける＝OFDMA。",
+    "concepts": [
+      "C-SC-05-010",
+      "C-SC-05-011",
+      "C-SC-05-012"
+    ],
+    "sources": [
+      {
+        "title": "ITU-T G.694.1 Spectral grids for WDM applications: DWDM frequency grid",
+        "url": "https://www.itu.int/rec/T-REC-G.694.1"
+      },
+      {
+        "title": "Wi-Fi Alliance「Wi-Fi CERTIFIED 6」（OFDMA・MU-MIMO）",
+        "url": "https://www.wi-fi.org/discover-wi-fi/wi-fi-certified-6"
+      },
+      {
+        "title": "IEEE 802.1AX-2014 Link Aggregation（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1AX-2014.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-037",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Wi-Fi 6 で導入され、1つのチャネルを細かい周波数の束に分けて複数の端末に同時に割り当てることで、混雑した環境での効率を高める方式はどれか。",
+    "choices": [
+      "MU-MIMO",
+      "OFDMA",
+      "CSMA/CA",
+      "WDM"
+    ],
+    "answer": 1,
+    "stemPlain": "Wi-Fi 6 で、電波の通り道を細かく分けて、何台もの端末に同時に割り当てる方式の名前を選ぶ問題。",
+    "explanation": "OFDMA（Orthogonal Frequency Division Multiple Access）は、チャネルを細かな周波数の束に分け、束ごとに別の端末を割り当てて同時に送る。Wi-Fi Alliance は Wi-Fi 6 の主な機能として、OFDMA がチャネルを効率よく分け合い、網の効率を高め遅延を下げると説明している。小さなデータを送る端末が多い場所で効く。",
+    "whyWrong": [
+      "MU-MIMO（Multi-User MIMO）も Wi-Fi 6 の機能だが、複数のアンテナを使い、空間で分けて複数の端末へ同時に送る技術。周波数を細かく分けて割り当てる方式ではない。",
+      null,
+      "CSMA/CA は、送る前に電波を聞き、少し待ってから送る無線 LAN のアクセス方式。1回の送信で電波を使うのは1台で、周波数を分けて同時に割り当てる方式ではない。",
+      "WDM は、光ファイバの中で波長（光の色）の違う信号を重ねる方式。無線のチャネルを分ける方式ではない。"
+    ],
+    "memoryTip": "OFDMA＝周波数（Frequency）で分けて多数（Multiple Access）。MU-MIMO＝アンテナ（空間）で分ける。",
+    "concepts": [
+      "C-SC-05-011",
+      "C-SC-05-052"
+    ],
+    "sources": [
+      {
+        "title": "Wi-Fi Alliance「Wi-Fi CERTIFIED 6」（OFDMA・MU-MIMO）",
+        "url": "https://www.wi-fi.org/discover-wi-fi/wi-fi-certified-6"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-038",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "スイッチどうしを結ぶ複数のポートに設定するリンクアグリゲーションの説明として、適切でないものはどれか。",
+    "choices": [
+      "同じ速さの複数の線を束ね、上の層からは1本の線として扱う。",
+      "束ねた本数に応じて、全体で流せる通信の量を増やせる。",
+      "1つの通信は通常どれか1本に載り、その速さは本数倍にならない。",
+      "束ねた線の1本に障害が起きると、グループ全体の通信が止まる。"
+    ],
+    "answer": 3,
+    "stemPlain": "複数の線を束ねて1本のように使う技術（リンクアグリゲーション）の説明のうち、誤っているものを選ぶ問題。",
+    "explanation": "リンクアグリゲーションは、複数の線を束ねて1本の論理的な線にする技術で、IEEE 802.1AX のページも、複数の線を使う耐障害性のある接続を目的に挙げている。束ねた線の1本が切れても、残りの線で通信を続けられるのが利点なので、『1本の障害でグループ全体の通信が止まる』は適切でない。",
+    "whyWrong": [
+      "適切。IEEE 802.1AX のページは、同じ速さの全二重の線を束ねてグループにし、上の層がそのグループを1本の線として扱えるようにする、としている。",
+      "適切。束ねた線に通信を分けて流すので、全体として流せる量は本数に応じて増える。",
+      "適切。同じ送信元と宛先の組の通信は順番が崩れないよう通常1本の線に載せるので、1つの通信の速さが本数倍になるわけではない。",
+      null
+    ],
+    "memoryTip": "束ねる利点は2つ：速さを足せる・1本切れても止まらない。",
+    "concepts": [
+      "C-SC-05-012"
+    ],
+    "sources": [
+      {
+        "title": "IEEE 802.1AX-2014 Link Aggregation（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1AX-2014.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-039",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "L2 スイッチが受け取ったフレームの宛先 MAC アドレスが、MAC アドレステーブルに登録されていなかった。このときの L2 スイッチの動作として、最も適切なものはどれか。",
+    "choices": [
+      "フレームを捨て、送信元へ ICMP で宛先に届かないことを知らせる。",
+      "ARP 要求を出して宛先を調べ、応答が来たポートだけへ送る。",
+      "デフォルトゲートウェイがつながるポートだけへ、そのフレームを送る。",
+      "フレームを受け取ったポートを除く全ポートへ、そのフレームを送る。"
+    ],
+    "answer": 3,
+    "stemPlain": "スイッチが、まだどのポートにいるか分からない相手あてのフレームを受け取ったとき、どうするかを選ぶ問題。",
+    "explanation": "L2 スイッチは、届いたフレームの送信元 MAC アドレスとポートの組を表に覚え、宛先が表にあればそのポートだけへ送る。宛先が表に無いときは、受け取ったポート以外の全ポートへ送る（フラッディング）。宛先の機器が返事を送れば、その送信元を見て表に登録されるので、以後はそのポートだけへ送るようになる（Juniper の説明）。",
+    "whyWrong": [
+      "ICMP の Destination Unreachable は、IP の層でルータや宛先が返すメッセージ。L2 スイッチはフレームを MAC アドレスで中継する装置で、宛先が分からないフレームを捨てて知らせることはしない。",
+      "ARP は、パソコンなどが IP アドレスから MAC アドレスを調べるプロトコル。L2 スイッチはフレームの中継のために自分で ARP 要求を出すことはせず、届いたフレームの送信元を見て表を作る。",
+      "デフォルトゲートウェイは、別の網へ出るときの出口のルータ。宛先が同じ網の中にいるかもしれないので、L2 スイッチはゲートウェイの方向だけへ送ることはしない。",
+      null
+    ],
+    "memoryTip": "知らない宛先は『全員に聞こえるように送る』（フラッディング）。返事で覚える。",
+    "concepts": [
+      "C-SC-05-013"
+    ],
+    "sources": [
+      {
+        "title": "Juniper Networks「Understanding Bridging and VLANs」（MAC アドレスの学習・転送・エージング）",
+        "url": "https://juniper.net/documentation/en_US/junos13.2/topics/concept/bridging-qfx-series-understanding.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-040",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "1台のスイッチで営業部を VLAN10、経理部を VLAN20 に分けた。営業部と経理部の機器どうしが通信できるようにする方法として、最も適切なものはどれか。",
+    "choices": [
+      "L2 スイッチの MAC アドレステーブルに、相手の VLAN の機器の MAC アドレスを書き加える。",
+      "L3 スイッチで VLAN ごとに IP アドレスを持つ口を作り、VLAN の間を中継させる。",
+      "リンクアグリゲーションで、VLAN10 のポートと VLAN20 のポートを1本に束ねる。",
+      "スパニングツリーの設定で、VLAN10 と VLAN20 の間で止めているポートを開く。"
+    ],
+    "answer": 1,
+    "stemPlain": "同じスイッチの中で分けた2つの VLAN の機器どうしを通信させる方法を選ぶ問題。",
+    "explanation": "VLAN が違えば別のネットワーク（別のブロードキャストドメイン）なので、間の通信は IP で中継（ルーティング）する必要がある。L3 スイッチは、VLAN ごとに IP アドレスを持つ論理的な口（Juniper では IRB インタフェース）を作り、同じ VLAN の中はそのまま中継し、VLAN をまたぐ通信は IP で中継する。各 VLAN の機器は、その口のアドレスをデフォルトゲートウェイにする。",
+    "whyWrong": [
+      "MAC アドレステーブルは、同じ VLAN の中でフレームをどのポートへ送るかを決める表。VLAN が違えば別の網なので、表に書き加えても VLAN をまたいでは届かない。",
+      null,
+      "リンクアグリゲーションは、同じ機器どうしの複数の線を束ねて速さと耐障害性を上げる技術。別々の VLAN をつなぐ働きは無い。",
+      "スパニングツリーは、スイッチの輪を止めてループを防ぐ技術。VLAN の分け方を変える働きは無く、VLAN の間は止めたポートでつながっているわけではない。"
+    ],
+    "memoryTip": "VLAN の中は L2、VLAN の間は L3（ルーティング）。",
+    "concepts": [
+      "C-SC-05-014",
+      "C-SC-05-013",
+      "C-SC-05-024"
+    ],
+    "sources": [
+      {
+        "title": "Juniper Networks「Integrated Routing and Bridging」（VLAN 間のルーティング）",
+        "url": "https://www.juniper.net/documentation/us/en/software/junos/multicast-l2/topics/topic-map/irb-and-bridging.html"
+      },
+      {
+        "title": "Juniper Networks「Understanding Bridging and VLANs」（MAC アドレスの学習・転送・エージング）",
+        "url": "https://juniper.net/documentation/en_US/junos13.2/topics/concept/bridging-qfx-series-understanding.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-041",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ロードバランサーの説明として、最も適切なものはどれか。",
+    "choices": [
+      "同じ名前に複数の IP アドレスを登録し、DNS が答える順番を入れ替えて利用者を散らす。",
+      "出口のルータを複数台で1つの仮想ルータに見せ、故障したら待機側が引き継ぐ。",
+      "利用者からの通信を受けて複数のサーバに振り分け、止まったサーバには振り分けない。",
+      "複数の線を束ねて1本の論理的な線にし、流せる通信の量を増やす。"
+    ],
+    "answer": 2,
+    "stemPlain": "複数のサーバに仕事を分ける装置（ロードバランサー）の説明を選ぶ問題。",
+    "explanation": "ロードバランサーは、利用者と複数のサーバの間に立ち、通信の代理として受け取って各サーバに配る（F5 の説明）。振り分け方には、順番に配るラウンドロビンや、接続数がいちばん少ないサーバに配る最小接続数などがある。サーバが止まれば、残りのオンラインのサーバへ通信を回す。",
+    "whyWrong": [
+      "同じ名前に複数のアドレスを登録し、答える順番を入れ替えるのは DNS ラウンドロビン。通信そのものは受けず、止まったサーバのアドレスも答え続ける点がロードバランサーと違う。",
+      "出口のルータを仮想ルータにして故障時に引き継ぐのは VRRP。サーバへの振り分けではなく、デフォルトゲートウェイの冗長化。",
+      null,
+      "複数の線を束ねるのはリンクアグリゲーション。機器どうしの線の話で、複数のサーバに仕事を分ける装置ではない。"
+    ],
+    "memoryTip": "ロードバランサー＝受けて配る＋止まったら外す。DNS ラウンドロビン＝答えの順番を回すだけ。",
+    "concepts": [
+      "C-SC-05-015",
+      "C-SC-05-074",
+      "C-SC-05-016",
+      "C-SC-05-012"
+    ],
+    "sources": [
+      {
+        "title": "F5「What Is a Load Balancer?」",
+        "url": "https://www.f5.com/glossary/load-balancer"
+      },
+      {
+        "title": "RFC 1794 DNS Support for Load Balancing",
+        "url": "https://www.rfc-editor.org/rfc/rfc1794.txt"
+      },
+      {
+        "title": "RFC 5798 Virtual Router Redundancy Protocol (VRRP) Version 3 for IPv4 and IPv6",
+        "url": "https://www.rfc-editor.org/rfc/rfc5798.txt"
+      },
+      {
+        "title": "IEEE 802.1AX-2014 Link Aggregation（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1AX-2014.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-042",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "侵入検知のセンサーに通信を渡す方法として、スイッチのスパニングポート（ミラーポート）を使うときの弱点として、NIST SP 800-94 が挙げるものはどれか。",
+    "choices": [
+      "スイッチの負荷が高いと写しが欠けたり、設定の誤りで一部の通信しか見えなかったりする。",
+      "光ファイバに直接取り付けるので、取り付けの間は網を止める必要がある。",
+      "スイッチとは別に購入する機器なので、網のあちこちに置くには費用がかかる。",
+      "通信の経路に挟まって中継するので、センサーが止まると通信も止まる。"
+    ],
+    "answer": 0,
+    "stemPlain": "スイッチの『通信の写しを出すポート』を使って監視するときの弱点を、米国の指針（NIST SP 800-94）の内容から選ぶ問題。",
+    "explanation": "NIST SP 800-94 は、スパニングポートについて、手軽で安い一方、スイッチの設定を誤ると全部の通信が見えないことがあり、スイッチが混んでいると写しが欠けたり一時的に止まったりすること、多くのスイッチはスパニングポートを1つしか持たないことを弱点として挙げている。ネットワークタップは、媒体に直接つないで全通信の写しを渡せるが、取り付けで網を止めることがあり、別に買う必要がある。",
+    "whyWrong": [
+      null,
+      "線に直接取り付けて、取り付けの間に網を止めることが多いのは、ネットワークタップの弱点として NIST SP 800-94 が挙げるもの。スパニングポートはスイッチの設定で作る。",
+      "別に買い足す必要があるのは、ネットワークタップ。スパニングポートは多くのスイッチにもともと備わっている、と NIST SP 800-94 は書いている。",
+      "通信の経路に挟まって中継する置き方は、インライン型のセンサー（IPS など）の弱点。スパニングポートは写しを受け取るだけなので、センサーが止まっても通信は流れる。"
+    ],
+    "memoryTip": "ミラーポート＝手軽だが欠けることがある。タップ＝全部取れるが取り付けが大変。",
+    "concepts": [
+      "C-SC-05-019",
+      "C-SC-05-076"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-94 Guide to Intrusion Detection and Prevention Systems（ネットワークタップ・スパニングポート）",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-043",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "データ通信と制御"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "1つの LAN を、全員あてのフレーム（ブロードキャスト）が届く範囲で2つに分けたい。そのために使えるものとして、最も適切なものはどれか。",
+    "choices": [
+      "VLAN で網を分けるか、2つの網の間にルータを置く。",
+      "2つの網の間にリピータハブを置き、信号をそのまま写す。",
+      "VLAN を設定しない L2 スイッチを、2つの網の間に置く。",
+      "2つの網をつなぐ線をリンクアグリゲーションで束ねる。"
+    ],
+    "answer": 0,
+    "stemPlain": "全員あての通信が届く範囲を2つに分けるために使える装置や機能を選ぶ問題。",
+    "explanation": "ブロードキャストが届く範囲（ブロードキャストドメイン）を分けるには、ブロードキャストを中継しない境目を作る。ルータは全員あてのフレームを別の網へ中継しないので、両側は別のブロードキャストドメインになる（RFC 1122 も、限定ブロードキャストは接続している網の外へ転送されないとしている）。VLAN は1台のスイッチの中を論理的に別の網に分けるので、同じ効果がある。",
+    "whyWrong": [
+      null,
+      "リピータハブは、電気信号をそのまま全ポートに写すので、衝突もブロードキャストも反対側へ伝わる。網を分ける働きは無い。",
+      "VLAN を設定しない L2 スイッチは、衝突の範囲（コリジョンドメイン）はポートごとに区切るが、ブロードキャストフレームは全ポートへ送る。ブロードキャストの届く範囲は分けられない。",
+      "リンクアグリゲーションは線を束ねて速さと耐障害性を上げる技術で、束ねた線の両側は同じ網のまま。ブロードキャストは束ねた線を通って届く。"
+    ],
+    "memoryTip": "ブロードキャストを止める＝ルータか VLAN。ハブ・スイッチ・束ねた線では止まらない。",
+    "concepts": [
+      "C-SC-05-021",
+      "C-SC-05-024",
+      "C-SC-05-013"
+    ],
+    "figures": [
+      "fig-sc-net-domains"
+    ],
+    "sources": [
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      },
+      {
+        "title": "Juniper Networks「Understanding Bridging and VLANs」（MAC アドレスの学習・転送・エージング）",
+        "url": "https://juniper.net/documentation/en_US/junos13.2/topics/concept/bridging-qfx-series-understanding.html"
+      },
+      {
+        "title": "IEEE 802.1AX-2014 Link Aggregation（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1AX-2014.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-044",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "同じ LAN にいる攻撃者が、ARP の応答を偽って送り、ほかの機器の通信を自分の機器へ向けさせる攻撃（ARP スプーフィング）が成り立つ理由として、最も適切なものはどれか。",
+    "choices": [
+      "ARP の通信は暗号化されているが、暗号の鍵が LAN の全機器で同じものだから。",
+      "ARP の要求はルータを越えて届くので、インターネットの外部からでも応答できるから。",
+      "ARP には応答が本物かを確かめる仕組みが無く、届いた応答をそのまま表に覚えるから。",
+      "ARP は TCP の接続の上で動くので、接続を乗っ取れば応答を差し替えられるから。"
+    ],
+    "answer": 2,
+    "stemPlain": "同じ LAN の中で、偽の『この番号は私です』という返事を送って通信を横取りする攻撃が成り立つ理由を選ぶ問題。",
+    "explanation": "ARP（RFC 826）は、『この IP アドレスの人は MAC アドレスを教えて』という要求に、持ち主が自分で応答する仕組みで、応答した機器が本当の持ち主かを確かめる手順が無い。そのため攻撃者が『その IP アドレスは私の MAC アドレス』と偽の応答を送ると、受け取った機器がそれを表（ARP キャッシュ）に覚え、通信を攻撃者へ送ってしまう（これは RFC 826 の手順から導いた帰結）。対策は、スイッチで ARP を見張る機能や、重要な機器の対応を固定する設定。",
+    "whyWrong": [
+      "ARP はもともと暗号化の仕組みを持たない。鍵が同じかどうか以前に、守る仕組みが無いことが弱点。",
+      "ARP の要求は LAN の中の全員あてで、ルータは中継しない。攻撃者は同じ LAN（同じブロードキャストドメイン）の中にいる必要がある。",
+      null,
+      "ARP は TCP や IP の上ではなく、イーサネットのフレームで直接運ばれるプロトコル（RFC 826）。TCP の接続の乗っ取りとは関係しない。"
+    ],
+    "memoryTip": "ARP は名乗った者勝ち。本人確認が無いので偽の名乗りが通る。",
+    "concepts": [
+      "C-SC-05-022"
+    ],
+    "sources": [
+      {
+        "title": "RFC 826 An Ethernet Address Resolution Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc826.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-045",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "光回線のインターネット接続で使われる IPoE 方式の説明として、最も適切なものはどれか。",
+    "choices": [
+      "PPP の手順をイーサネットで運び、ID とパスワードで認証してからつなぐ方式。",
+      "PPP による ID とパスワードの手順を使わず、主に IPv6 で網に直接つなぐ方式。",
+      "IPv4 と IPv6 の両方のアドレスを1台の機器に持たせ、相手に合わせて使い分ける方式。",
+      "拠点のルータどうしが IPsec で暗号化した通り道を作り、インターネットを通る方式。"
+    ],
+    "answer": 1,
+    "stemPlain": "光回線をインターネットにつなぐやり方のうち、IPoE 方式の説明を選ぶ問題。",
+    "explanation": "IPoE（IP over Ethernet）方式は、PPPoE のように PPP の手順で ID とパスワードを使って接続を作らず、IP でそのまま網につなぐ。IPoE 協議会の資料（総務省掲載）では、IPoE 方式は IPv6 の接続性を提供し、IPv4 は 4 over 6（IPv4 を IPv6 の中に入れて運ぶ）の付加サービスで用意するとしている。",
+    "whyWrong": [
+      "PPP の手順をイーサネットで運び、ID とパスワードで認証してからつなぐのは PPPoE 方式（RFC 2516）。総務省の資料では、PPPoE は事業者側の網終端装置の混雑が課題とされる。",
+      null,
+      "IPv4 と IPv6 の両方のアドレスを持って使い分けるのは、IPv4/IPv6 デュアルスタック。機器側の共存技術で、回線の接続方式の名前ではない。",
+      "拠点どうしが IPsec で暗号化した通り道を作るのはインターネット VPN。拠点をつなぐ方式で、光回線をインターネットにつなぐ方式ではない。"
+    ],
+    "memoryTip": "PPPoE＝PPP（ID とパスワード）でつなぐ。IPoE＝IP でそのまま（主に IPv6）。",
+    "concepts": [
+      "C-SC-05-023",
+      "C-SC-05-038",
+      "C-SC-05-066"
+    ],
+    "sources": [
+      {
+        "title": "一般社団法人IPoE協議会 インターネットトラヒック研究会 説明資料（2021年1月15日。総務省掲載）",
+        "url": "https://www.soumu.go.jp/main_content/000728318.pdf"
+      },
+      {
+        "title": "総務省 PPPoE と IPoE の接続について（資料）",
+        "url": "https://www.soumu.go.jp/main_content/000514523.pdf"
+      },
+      {
+        "title": "RFC 2516 A Method for Transmitting PPP Over Ethernet (PPPoE)",
+        "url": "https://www.rfc-editor.org/rfc/rfc2516.txt"
+      },
+      {
+        "title": "RFC 4213 Basic Transition Mechanisms for IPv6 Hosts and Routers",
+        "url": "https://www.rfc-editor.org/rfc/rfc4213.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-046",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "スイッチどうしを1本の線（トランク）でつなぎ、その線で複数の VLAN のフレームを運ぶとき、どの VLAN のフレームかを見分けるために使う規格はどれか。",
+    "choices": [
+      "IEEE 802.1X",
+      "IEEE 802.1AX",
+      "IEEE 802.11",
+      "IEEE 802.1Q"
+    ],
+    "answer": 3,
+    "stemPlain": "スイッチどうしの1本の線で、いくつもの VLAN の通信を混ぜずに運ぶための規格の番号を選ぶ問題。",
+    "explanation": "IEEE 802.1Q は、VLAN（Virtual LAN）と VLAN ブリッジを決めた規格（IEEE 802.1 のページ）。トランクの線では、フレームに VLAN の番号（VLAN ID）を書いたタグを入れて送り、受け取ったスイッチはタグで VLAN を見分ける。VLAN ID は 12 ビットで、使えるのは 4094 個まで（RFC 7348 が上限として挙げている）。",
+    "whyWrong": [
+      "IEEE 802.1X は、スイッチのポートや無線 LAN につなぐ機器・利用者を認証してから通信を許す仕組み。VLAN の番号をフレームに入れる規格ではない。",
+      "IEEE 802.1AX は、複数の線を束ねて1本の論理的な線にするリンクアグリゲーションの規格。VLAN を見分ける規格ではない。",
+      "IEEE 802.11 は、無線 LAN の規格。電波で LAN をつなぐ決まりで、トランクで VLAN を見分ける規格ではない。",
+      null
+    ],
+    "memoryTip": "802.1Q＝VLAN タグ。802.1X＝認証。802.1AX＝束ねる。802.11＝無線。番号が似ているので注意。",
+    "concepts": [
+      "C-SC-05-024"
+    ],
+    "sources": [
+      {
+        "title": "IEEE 802.1Q（IEEE 802.1 のページ。Virtual LANs and VLAN Bridges）",
+        "url": "https://www.ieee802.org/1/pages/802.1Q.html"
+      },
+      {
+        "title": "IEEE 802.1AX-2014 Link Aggregation（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1AX-2014.html"
+      },
+      {
+        "title": "RFC 7348 Virtual eXtensible Local Area Network (VXLAN): A Framework for Overlaying Virtualized Layer 2 Networks over Layer 3 Networks",
+        "url": "https://www.rfc-editor.org/rfc/rfc7348.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-047",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "IPv6 のネットワークで、ファイアウォールが ICMPv6 をすべて遮断する設定にした。このときに起こりうることとして、最も適切なものはどれか。",
+    "choices": [
+      "TCP の確認応答が ICMPv6 で運ばれなくなり、TCP の通信が再送を繰り返す。",
+      "DNS の問い合わせが ICMPv6 で運ばれなくなり、名前解決ができなくなる。",
+      "IPsec の鍵交換が ICMPv6 で行われなくなり、VPN の接続が張れなくなる。",
+      "大きすぎるパケットを知らせる Packet Too Big が届かず、大きなパケットの通信が失敗する。"
+    ],
+    "answer": 3,
+    "stemPlain": "IPv6 の網で、通信の問題を知らせるメッセージ（ICMPv6）を全部止めたときに起こりうる問題を選ぶ問題。",
+    "explanation": "IPv6 では途中のルータがパケットを分割しないので、次の線に通せないほど大きなパケットを受けたルータは、ICMPv6 の Packet Too Big を送信元に返し、送信元が小さくして送り直す（RFC 4443・RFC 8200）。ICMPv6 を全部止めると、この知らせが届かず、大きなパケットだけが黙って消える。さらに NDP（近隣探索）も ICMPv6 のメッセージで動くので、隣の機器やルータとのやり取りもできなくなる。必要な種類は通す設定にする。",
+    "whyWrong": [
+      "TCP の確認応答は TCP のヘッダーの欄で運ぶもので、ICMPv6 は使わない。ICMPv6 を止めても TCP の確認応答そのものは届く。",
+      "DNS の問い合わせはふつう UDP（または TCP）の 53 番で運ぶ。ICMPv6 では運ばない。",
+      "IPsec の鍵交換（IKE）は UDP の上で行う。ICMPv6 で行うものではない。",
+      null
+    ],
+    "memoryTip": "IPv6 では ICMPv6 は『おまけ』ではなく通信の土台（Packet Too Big・NDP）。全部止めない。",
+    "concepts": [
+      "C-SC-05-030",
+      "C-SC-05-028",
+      "C-SC-05-031"
+    ],
+    "sources": [
+      {
+        "title": "RFC 4443 Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc4443.txt"
+      },
+      {
+        "title": "RFC 8200 Internet Protocol, Version 6 (IPv6) Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc8200.txt"
+      },
+      {
+        "title": "RFC 4861 Neighbor Discovery for IP version 6 (IPv6)",
+        "url": "https://www.rfc-editor.org/rfc/rfc4861.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-048",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "IPv6 で、ルータが自分の存在と網のプレフィックスを知らせ、受け取った機器が自分のアドレスを自動で作るのに使う NDP のメッセージはどれか。",
+    "choices": [
+      "近隣要請（NS）",
+      "ルータ広告（RA）",
+      "ARP 応答",
+      "IGMP のメンバーシップ報告"
+    ],
+    "answer": 1,
+    "stemPlain": "IPv6 で、ルータが『私はここ。この網の番号はこれ』と知らせるメッセージの名前を選ぶ問題。",
+    "explanation": "NDP（RFC 4861）のルータ広告（Router Advertisement）は、ルータが自分の存在と、網のプレフィックス（網の番号）などの情報を、定期的に、またはルータ要請に答えて知らせるメッセージ。機器はプレフィックスと自分の識別子を組み合わせて、自分のアドレスを自動で作れる。偽のルータ広告を流されると、通信を攻撃者の機器に向けられるので、スイッチで見張る対策がある。",
+    "whyWrong": [
+      "近隣要請（NS）は、隣の機器の MAC アドレスを調べたり、アドレスの重複を確かめたりするために送る問い合わせ。ルータが網の情報を知らせるメッセージではない。",
+      null,
+      "ARP は IPv4 で IP アドレスから MAC アドレスを調べるプロトコルで、IPv6 では使わない。網のプレフィックスを知らせる働きも無い。",
+      "IGMP のメンバーシップ報告は、IPv4 で機器がマルチキャストのグループへの参加をルータに知らせるメッセージ。ルータが網の情報を配るものではない。"
+    ],
+    "memoryTip": "RS＝ルータいますか、RA＝ルータです・網の番号はこれ、NS＝MAC は？、NA＝MAC はこれ。",
+    "concepts": [
+      "C-SC-05-031",
+      "C-SC-05-030"
+    ],
+    "sources": [
+      {
+        "title": "RFC 4861 Neighbor Discovery for IP version 6 (IPv6)",
+        "url": "https://www.rfc-editor.org/rfc/rfc4861.txt"
+      },
+      {
+        "title": "RFC 3376 Internet Group Management Protocol, Version 3",
+        "url": "https://www.rfc-editor.org/rfc/rfc3376.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-049",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "IPv4 のマルチキャストで、配信を受けたい機器が、マルチキャストのグループへの参加を近くのルータに知らせるために使うプロトコルはどれか。",
+    "choices": [
+      "ICMP",
+      "SNMP",
+      "IGMP",
+      "OSPF"
+    ],
+    "answer": 2,
+    "stemPlain": "グループあての配信を受けたい機器が、『このグループに入りたい』とルータに伝えるプロトコルを選ぶ問題。",
+    "explanation": "IGMP（Internet Group Management Protocol、RFC 3376）は、IPv4 の機器が、自分がどのマルチキャストのグループに入っているかを、近くのマルチキャストルータに報告するためのプロトコル。ルータはこれを見て、グループの参加者がいる網へだけマルチキャストを写して届ける。",
+    "whyWrong": [
+      "ICMP は、IP の通信で起きた問題（宛先に届かない・時間切れなど）や状態（ping）を知らせるプロトコル。グループへの参加を知らせるプロトコルではない。",
+      "SNMP は、ネットワーク機器の状態を問い合わせて監視するプロトコル。マルチキャストのグループの管理には使わない。",
+      null,
+      "OSPF は、ルータどうしが網のつながりの情報を共有して最短の道を計算するルーティングプロトコル。機器のグループへの参加を知らせるものではない。"
+    ],
+    "memoryTip": "IGMP の G は Group。グループの参加を管理する。",
+    "concepts": [
+      "C-SC-05-032",
+      "C-SC-05-027"
+    ],
+    "sources": [
+      {
+        "title": "RFC 3376 Internet Group Management Protocol, Version 3",
+        "url": "https://www.rfc-editor.org/rfc/rfc3376.txt"
+      },
+      {
+        "title": "RFC 792 Internet Control Message Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc792.txt"
+      },
+      {
+        "title": "RFC 1157 A Simple Network Management Protocol (SNMP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc1157.txt"
+      },
+      {
+        "title": "RFC 2328 OSPF Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2328.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-050",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "ルーティングプロトコルの経路の選び方のうち、網全体のつながりとコストの情報をルータ間で共有し、各ルータが最短の経路を計算する型を（ア）、経由する AS（自律システム）の並びを伝え合い、それを見て経路を選ぶ型を（イ）という。（ア）（イ）に入る語の組合せはどれか。",
+    "choices": [
+      "（ア）リンクステート型　（イ）パスベクタ型",
+      "（ア）リンクステート型　（イ）リンクステート型",
+      "（ア）ディスタンスベクタ型　（イ）パスベクタ型",
+      "（ア）ディスタンスベクタ型　（イ）リンクステート型"
+    ],
+    "answer": 0,
+    "stemPlain": "経路の決め方の型のうち、①網全体の地図を共有して計算する型 ②通る組織の並びを見て選ぶ型、の名前の組を選ぶ問題。",
+    "explanation": "リンクステート型（OSPF など）は、各ルータが自分のつながりとコストを広め、全員が同じリンク状態のデータベースを持ち、そこから最短経路の木を計算する（RFC 2328）。パスベクタ型（BGP）は、経路ごとに経由する AS の並び（AS_PATH）を伝え合い、その並びと方針で経路を選ぶ（RFC 4271）。ディスタンスベクタ型（RIP）は、隣から聞いた距離（ホップ数）を足して選ぶ（RFC 2453）。",
+    "whyWrong": [
+      null,
+      "（イ）が誤り。リンクステート型は網全体のつながりの地図を共有する型（OSPF）。経由する AS の並び（AS_PATH）を見て選ぶのは、BGP のパスベクタ型。",
+      "（ア）が誤り。ディスタンスベクタ型は、隣から聞いた『その網まであと何ホップか』を足して道を選ぶ型（RIP）で、網全体の地図は持たない。地図を共有して最短経路を計算するのはリンクステート型。",
+      "（ア）（イ）とも誤り。網全体の地図を共有するのはリンクステート型で、ディスタンスベクタ型ではない。AS の並びを見て選ぶのはパスベクタ型で、リンクステート型ではない。"
+    ],
+    "memoryTip": "地図＝リンクステート（OSPF）、距離の噂＝ディスタンスベクタ（RIP）、通る AS の並び＝パスベクタ（BGP）。",
+    "concepts": [
+      "C-SC-05-033",
+      "C-SC-05-035",
+      "C-SC-05-036",
+      "C-SC-05-034"
+    ],
+    "sources": [
+      {
+        "title": "RFC 2328 OSPF Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2328.txt"
+      },
+      {
+        "title": "RFC 4271 A Border Gateway Protocol 4 (BGP-4)",
+        "url": "https://www.rfc-editor.org/rfc/rfc4271.txt"
+      },
+      {
+        "title": "RFC 2453 RIP Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2453.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-051",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "BGP の説明として、最も適切なものはどれか。",
+    "choices": [
+      "組織（AS）の間で、経由する AS の並びを伝え合い、方針に沿って経路を選ぶ。",
+      "組織の中で、網全体のつながりの地図を共有し、最短の経路を計算する。",
+      "隣のルータと 30 秒ごとに経路表を送り合い、ホップ数の少ない経路を選ぶ。",
+      "ルータを二重にし、使っているルータが止まったら待機側が同じアドレスを引き継ぐ。"
+    ],
+    "answer": 0,
+    "stemPlain": "インターネットの事業者どうしが経路を伝え合うプロトコル BGP の説明を選ぶ問題。",
+    "explanation": "BGP（Border Gateway Protocol、RFC 4271）は、インターネットで組織（AS：1つの管理者が運用する網のまとまり）の間の経路を交換するプロトコル。経路ごとに経由する AS の並び（AS_PATH）を伝え、各組織は自分の方針に合う経路を選ぶ。AS_PATH に自分の AS 番号があればその経路を受け取らないので、ループも防げる。TCP のポート 179 でつながる。",
+    "whyWrong": [
+      null,
+      "組織の中で網全体の地図を共有し、最短の経路を計算するのは OSPF（リンクステート型）。BGP は組織と組織の間で使う。",
+      "30 秒ごとに経路表を送り合い、ホップ数で選ぶのは RIP（ディスタンスベクタ型）。",
+      "ルータを二重にして待機側がアドレスを引き継ぐのは VRRP。経路を選ぶプロトコルではない。"
+    ],
+    "memoryTip": "BGP＝Border（境目）。組織と組織の境目で、通る AS の並びを伝える。",
+    "concepts": [
+      "C-SC-05-036",
+      "C-SC-05-033"
+    ],
+    "sources": [
+      {
+        "title": "RFC 4271 A Border Gateway Protocol 4 (BGP-4)",
+        "url": "https://www.rfc-editor.org/rfc/rfc4271.txt"
+      },
+      {
+        "title": "RFC 2328 OSPF Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2328.txt"
+      },
+      {
+        "title": "RFC 2453 RIP Version 2",
+        "url": "https://www.rfc-editor.org/rfc/rfc2453.txt"
+      },
+      {
+        "title": "RFC 5798 Virtual Router Redundancy Protocol (VRRP) Version 3 for IPv4 and IPv6",
+        "url": "https://www.rfc-editor.org/rfc/rfc5798.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-052",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "BGP で、誤って、または悪意で広告された経路を受け取らないための基本的な対策として、RFC 7454（BGP Operations and Security）が中心に据えているものはどれか。",
+    "choices": [
+      "経路情報の交換を UDP に切り替え、先に届いた経路を採用する。",
+      "経路の広告を暗号化し、交換する経路の中身を第三者から隠す。",
+      "相手と受け渡す経路を、プレフィックスや AS の並びなどでフィルタして絞る。",
+      "受け取った経路のうち、AS_PATH が最も長い経路を優先して使う。"
+    ],
+    "answer": 2,
+    "stemPlain": "組織どうしで経路を交換する BGP で、誤った経路や偽の経路を受け取らないための基本の対策を選ぶ問題。",
+    "explanation": "RFC 7454 は、BGP のセキュリティの主な部分は、ピアと受け渡すプレフィックス（経路）を管理することにあるとし、受け取る向きと送る向きのフィルタ（プレフィックス・AS の並び・ほかの属性でのフィルタ）を中心に説明している。他人の網の番号の経路を偽って広告されると、通信が攻撃者の網へ引き寄せられるので、相手が広告してよい範囲だけを受け取るよう絞る。",
+    "whyWrong": [
+      "BGP は TCP の上で動き（ポート 179）、RFC 7454 はむしろ TTL や TCP の認証オプション（TCP-AO）でセッションそのものを守ることを勧めている。UDP に替えることは対策として挙がっていない。",
+      "経路の情報は、受け取った側がどの宛先へどこを通るかを決めるための公開の情報で、隠すことが目的ではない。RFC 7454 が対策の中心に置くのは、受け取る・送る経路をフィルタで絞ること。",
+      null,
+      "AS_PATH の長さは、ふつう短いほうを好む判断の材料の1つで、長い経路を優先しても偽の経路を防ぐことにはならない。"
+    ],
+    "memoryTip": "BGP の守りの基本＝プレフィックスフィルタ（受け取ってよい経路だけ受け取る）。",
+    "concepts": [
+      "C-SC-05-036"
+    ],
+    "sources": [
+      {
+        "title": "RFC 7454 BGP Operations and Security",
+        "url": "https://www.rfc-editor.org/rfc/rfc7454.txt"
+      },
+      {
+        "title": "RFC 4271 A Border Gateway Protocol 4 (BGP-4)",
+        "url": "https://www.rfc-editor.org/rfc/rfc4271.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-053",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "世界各地のサーバに同じ IP アドレスを持たせ、利用者が送ったパケットが、経路上で近いいずれか1台のサーバに届くようにする送り方はどれか。",
+    "choices": [
+      "マルチキャスト",
+      "エニーキャスト",
+      "ブロードキャスト",
+      "DNS ラウンドロビン"
+    ],
+    "answer": 1,
+    "stemPlain": "同じ番号のサーバを世界中に置き、近いところに届けるやり方の名前を選ぶ問題。",
+    "explanation": "エニーキャストは、同じアドレスを持つ複数の機器のうち、どれか1台（ふつうルーティングで近いもの）にパケットが届く送り方。RFC 4786 は DNS などでの使い方を説明しており、IPv6 ではアドレスの種類の1つとして決まっている（RFC 4291）。1か所が止まっても別の場所に届くので止まりにくく、攻撃の通信も各地に分散される。",
+    "whyWrong": [
+      "マルチキャストは、グループに入った全員に、1回の送信で同じデータを届ける送り方。候補のうち1台だけに届くのではない。",
+      null,
+      "ブロードキャストは、同じ網の中の全員に届ける送り方。世界各地のサーバの1台を選ぶ働きは無い。",
+      "DNS ラウンドロビンは、同じ名前に複数の異なる IP アドレスを登録し、答える順番を入れ替えて散らす方法。同じ IP アドレスを複数の場所に持たせるのではない。"
+    ],
+    "memoryTip": "エニー（any）＝だれか1人に。マルチ＝グループ全員に。ブロード＝網の全員に。",
+    "concepts": [
+      "C-SC-05-037",
+      "C-SC-05-032",
+      "C-SC-05-074"
+    ],
+    "sources": [
+      {
+        "title": "RFC 4786 Operation of Anycast Services",
+        "url": "https://www.rfc-editor.org/rfc/rfc4786.txt"
+      },
+      {
+        "title": "RFC 4291 IP Version 6 Addressing Architecture",
+        "url": "https://www.rfc-editor.org/rfc/rfc4291.txt"
+      },
+      {
+        "title": "RFC 1794 DNS Support for Load Balancing",
+        "url": "https://www.rfc-editor.org/rfc/rfc1794.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-054",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "IPv6 のアドレスしか持たない機器が、IPv4 のアドレスしか持たないサーバと通信できるように、途中の変換装置がパケットの形式とアドレスを書き換える方式はどれか。",
+    "choices": [
+      "IPv4/IPv6 デュアルスタック",
+      "IPv4 over IPv6 のトンネル",
+      "NAPT",
+      "IPv4/IPv6 トランスレーション（NAT64 など）"
+    ],
+    "answer": 3,
+    "stemPlain": "IPv6 しか使えない機器を IPv4 しか使えないサーバとつなぐため、途中で形を書き換える方式の名前を選ぶ問題。",
+    "explanation": "IPv4/IPv6 トランスレーションは、パケットの形式とアドレスを IPv6 と IPv4 の間で書き換える方式。代表の NAT64（RFC 6146）は、IPv6 だけの機器が IPv4 のサーバと通信できるようにし、DNS64 と組み合わせると、ふつう機器の側を変えずに済む。共存技術は、両方を『持つ』デュアルスタック、包んで運ぶトンネル、書き換えるトランスレーションの3つの型で覚える。",
+    "whyWrong": [
+      "デュアルスタックは、1台の機器が IPv4 と IPv6 の両方のアドレスと処理を持ち、相手に合わせて使い分ける方式（RFC 4213）。IPv6 しか持たない機器には使えない。",
+      "IPv4 over IPv6 のトンネルは、IPv4 のパケットを IPv6 のパケットの中に入れて運ぶ方式。中身の IPv4 はそのままで、形式を書き換えるわけではない。送る機器が IPv4 のパケットを作れる必要がある。",
+      "NAPT は、IPv4 のアドレスとポート番号を書き換え、1つのアドレスを分け合う技術。IPv6 と IPv4 の間で形式を変える技術ではない。",
+      null
+    ],
+    "memoryTip": "持つ＝デュアルスタック、包む＝トンネル、書き換える＝トランスレーション（NAT64）。",
+    "concepts": [
+      "C-SC-05-038",
+      "C-SC-05-028",
+      "C-SC-05-006"
+    ],
+    "sources": [
+      {
+        "title": "RFC 6146 Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers",
+        "url": "https://www.rfc-editor.org/rfc/rfc6146.txt"
+      },
+      {
+        "title": "RFC 4213 Basic Transition Mechanisms for IPv6 Hosts and Routers",
+        "url": "https://www.rfc-editor.org/rfc/rfc4213.txt"
+      },
+      {
+        "title": "RFC 3022 Traditional IP Network Address Translator (Traditional NAT)",
+        "url": "https://www.rfc-editor.org/rfc/rfc3022.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-055",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "TCP でコネクションを確立するときにやり取りされるパケットの順序として、適切なものはどれか。",
+    "choices": [
+      "SYN → ACK → FIN",
+      "ACK → SYN → SYN/ACK",
+      "SYN → FIN → ACK",
+      "SYN → SYN/ACK → ACK"
+    ],
+    "answer": 3,
+    "stemPlain": "TCP で通信の相手と接続を作るときの、3回のやり取りの順番を選ぶ問題。",
+    "explanation": "TCP の接続は、3ウェイハンドシェイクで作る（RFC 9293）。①始める側が SYN（順序番号の始まりを知らせる）を送る ②受ける側が自分の SYN と、相手の SYN への確認（ACK）をまとめた SYN/ACK を返す ③始める側がそれへの ACK を返す。これで両方向の順序番号の始まりが確かめられる。",
+    "whyWrong": [
+      "FIN は、接続を終えるときに『もう送るデータは無い』と知らせる印。接続を作る手順には使わない。SYN に対しては、相手も SYN を出して確認する（SYN/ACK）必要がある。",
+      "最初に ACK（確認応答）を送っても、確認する相手の SYN がまだ無い。接続は、始める側の SYN から始まる。",
+      "FIN は接続の終わりに使う印で、接続を作る途中には出てこない。",
+      null
+    ],
+    "memoryTip": "『始めていい？（SYN）』『いいよ、こっちも始める（SYN/ACK）』『了解（ACK）』。",
+    "concepts": [
+      "C-SC-05-039",
+      "C-SC-05-040"
+    ],
+    "sources": [
+      {
+        "title": "RFC 9293 Transmission Control Protocol (TCP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc9293.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-056",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "TCP で、送信側が順序番号 1〜1000 の 1,000 バイトのデータを送り、受信側に正しく届いた。受信側が返す確認応答番号として、適切なものはどれか。",
+    "choices": [
+      "1000",
+      "1001",
+      "1",
+      "2000"
+    ],
+    "answer": 1,
+    "stemPlain": "1〜1000 番のデータが届いたとき、受け取った側が『次はこの番号から欲しい』と返す番号を選ぶ問題。",
+    "explanation": "TCP の確認応答番号は、『次に受け取りたいバイトの順序番号』を表す（RFC 9293）。1〜1000 番が届いたなら、次に欲しいのは 1001 番なので、確認応答番号は 1001。送信側はこれを見て、1000 番までは届いたと判断し、確認応答が来ないまま時間切れになった範囲は送り直す。",
+    "whyWrong": [
+      "1000 は『受け取った最後のバイトの番号』。TCP の確認応答番号は、受け取った最後の番号ではなく、次に受け取りたいバイトの番号を返す。",
+      null,
+      "1 は送ったデータの最初の番号。確認応答番号を 1 にすると、まだ何も受け取っていない（1 番から欲しい）という意味になり、送信側は送り直してしまう。",
+      "2000 は、まだ送られていない範囲の番号。確認応答番号は、届いたデータの続きの番号（1001）で、先の範囲までまとめて確認することはしない。"
+    ],
+    "memoryTip": "確認応答番号＝『次はこれください』の番号（受け取った最後の番号＋1）。",
+    "concepts": [
+      "C-SC-05-040",
+      "C-SC-05-039"
+    ],
+    "sources": [
+      {
+        "title": "RFC 9293 Transmission Control Protocol (TCP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc9293.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-057",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "TCP の通信中に、受信側がウィンドウサイズを 0 と通知してきた。このときの送信側の動作として、最も適切なものはどれか。",
+    "choices": [
+      "コネクションを切断し、3ウェイハンドシェイクからやり直してデータを送る。",
+      "UDP に切り替え、確認応答を待たずに残りのデータを送り続ける。",
+      "新しいデータの送信を控え、ウィンドウが開いたかを時々小さく確かめる。",
+      "ウィンドウの通知を無視し、確認応答を待たずに残りのデータを送り続ける。"
+    ],
+    "answer": 2,
+    "stemPlain": "受け取る側から『いまは受け取れない（ウィンドウ 0）』と知らされたとき、送る側がどうするかを選ぶ問題。",
+    "explanation": "ウィンドウサイズは、受信側が『あと何バイト受け取れるか』を知らせる値で、0 なら今は受け取れない。送信側は新しいデータを送るのを控えて待つ。ただし、ウィンドウが開いたことを知らせる通知が失われると互いに待ち続けてしまうので、RFC 9293 は、送信側が 1 バイト程度のデータを定期的に送ってウィンドウを確かめる（ゼロウィンドウプローブ）ことを求めている。",
+    "whyWrong": [
+      "ウィンドウが 0 なのは、受信側の受け取り用の置き場（バッファ）がいっぱいという一時的な状態の知らせ。接続を切ってやり直しても置き場は空かず、むだが増えるだけ。",
+      "TCP の接続の途中で UDP に切り替える仕組みは無い。UDP は確認も再送もしないので、受け手の置き場があふれてデータが失われる。",
+      null,
+      "ウィンドウは受信側が受け取れる量の知らせで、無視して送ると受信側があふれる。ウィンドウ制御は、まさに送りすぎを防ぐための仕組み。"
+    ],
+    "memoryTip": "ウィンドウ 0 ＝『ちょっと待って』。待ちながら、ときどき小さく『もういい？』と確かめる。",
+    "concepts": [
+      "C-SC-05-041",
+      "C-SC-05-039"
+    ],
+    "sources": [
+      {
+        "title": "RFC 9293 Transmission Control Protocol (TCP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc9293.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-058",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "UDP の特徴として、最も適切なものはどれか。",
+    "choices": [
+      "コネクションを確立せず、届いたかの確認も再送もしないので、手順が少なく軽い。",
+      "ルータを経由してパケットを宛先まで運び、生存時間（TTL）が 0 になったら捨てる。",
+      "入口でパケットに短いラベルを付け、網の中でラベルを見て速く転送する。",
+      "暗号化の手順を接続の確立に組み込み、1つの接続の中に複数の流れを持つ。"
+    ],
+    "answer": 0,
+    "stemPlain": "インターネットの運び方の1つ UDP の特徴を選ぶ問題。",
+    "explanation": "UDP（RFC 768）は、IP にポート番号と簡単な誤りの検査を足しただけの運び方で、接続の手順も、確認応答も、再送も、順番の並べ直しもしない。手順が少ない分、短い問い合わせ（DNS）や、遅れて届くより捨てたほうがよい音声・映像に向く。届かなければアプリが自分で送り直す。",
+    "whyWrong": [
+      null,
+      "ルータを経由して宛先まで運び、TTL が 0 になったら捨てるのは IP の働き（RFC 791）。UDP は IP の上に乗り、ポート番号でアプリを見分ける役で、経路の中継はしない。",
+      "入口でラベルを付けて網の中を速く転送するのは MPLS（RFC 3031）。運び方のプロトコルではなく、事業者の網の中の転送の技術。",
+      "暗号化を接続の手順に組み込み、1つの接続に複数のストリームを持つのは QUIC（RFC 9000）。QUIC は UDP の上で動くが、UDP そのものの特徴ではない。"
+    ],
+    "memoryTip": "UDP＝手紙を出しっぱなし。TCP＝書留（届いたか確かめ、届かなければ出し直す）。",
+    "concepts": [
+      "C-SC-05-042",
+      "C-SC-05-039",
+      "C-SC-05-043"
+    ],
+    "sources": [
+      {
+        "title": "RFC 768 User Datagram Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc768.txt"
+      },
+      {
+        "title": "RFC 791 Internet Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc791.txt"
+      },
+      {
+        "title": "RFC 3031 Multiprotocol Label Switching Architecture",
+        "url": "https://www.rfc-editor.org/rfc/rfc3031.txt"
+      },
+      {
+        "title": "RFC 9000 QUIC: A UDP-Based Multiplexed and Secure Transport",
+        "url": "https://www.rfc-editor.org/rfc/rfc9000.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-059",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "QUIC の説明として、最も適切なものはどれか。",
+    "choices": [
+      "UDP の上で動き、TLS 1.3 の暗号化を手順に組み込んだ通信プロトコル。",
+      "TCP の上に重ねて使い、Web などの通信を暗号化する TLS の最新の版。",
+      "IP より下の層で動き、ラベルを見てパケットを速く転送する技術。",
+      "名前と IP アドレスの対応を、暗号化した通信で問い合わせるためのプロトコル。"
+    ],
+    "answer": 0,
+    "stemPlain": "新しい運び方のプロトコル QUIC の説明を選ぶ問題。",
+    "explanation": "QUIC（RFC 9000）は、UDP の上で動く、暗号化つきの運び方のプロトコル。TLS 1.3 の暗号化を接続の手順に組み込み（RFC 9001）、往復の回数を減らす。1つの接続の中に複数のストリームを持てるので、1つが待たされても他は進む。確認と再送は QUIC 自身が行う。HTTP/3 の土台。",
+    "whyWrong": [
+      null,
+      "TCP の上に重ねて通信を暗号化するのは TLS（いまの版は TLS 1.3、RFC 8446）。QUIC は TLS 1.3 の仕組みを使うが、TLS の版ではなく、UDP の上で動く運び方のプロトコル（RFC 9001）。",
+      "ラベルを見て網の中でパケットを速く転送するのは MPLS（RFC 3031）。QUIC は端末どうしの運び方のプロトコル。",
+      "名前の問い合わせを暗号化する仕組みには DNS over HTTPS などがある。QUIC は名前解決のプロトコルではなく、HTTP/3 などを運ぶ運び方のプロトコル。"
+    ],
+    "memoryTip": "QUIC＝UDP の上＋TLS 1.3 を内蔵＋複数ストリーム。HTTP/3 の土台。",
+    "concepts": [
+      "C-SC-05-043",
+      "C-SC-05-042"
+    ],
+    "sources": [
+      {
+        "title": "RFC 9000 QUIC: A UDP-Based Multiplexed and Secure Transport",
+        "url": "https://www.rfc-editor.org/rfc/rfc9000.txt"
+      },
+      {
+        "title": "RFC 9001 Using TLS to Secure QUIC",
+        "url": "https://www.rfc-editor.org/rfc/rfc9001.txt"
+      },
+      {
+        "title": "RFC 8446 The Transport Layer Security (TLS) Protocol Version 1.3",
+        "url": "https://www.rfc-editor.org/rfc/rfc8446.txt"
+      },
+      {
+        "title": "RFC 3031 Multiprotocol Label Switching Architecture",
+        "url": "https://www.rfc-editor.org/rfc/rfc3031.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-060",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "メールに関するウェルノウンポートのうち、メールサーバどうしがメールを配送するときに使う SMTP のポート番号は（ア）、暗号化しない IMAP4 でメールを読むときのポート番号は（イ）である。（ア）（イ）に入る番号の組合せはどれか。",
+    "choices": [
+      "（ア）25　（イ）110",
+      "（ア）587　（イ）143",
+      "（ア）25　（イ）143",
+      "（ア）587　（イ）110"
+    ],
+    "answer": 2,
+    "stemPlain": "メールのサーバどうしの配送に使う番号と、メールを読む IMAP4 の番号の組を選ぶ問題。",
+    "explanation": "SMTP のサーバどうしの配送は 25 番（RFC 5321 は、受け取るサーバが IANA の決めた 25 番で待ち受けるとしている）。利用者のメールソフトからの送信は、認証を求める 587 番のサブミッションポートを使う（RFC 6409）。メールを読むプロトコルは、POP3 が 110 番（RFC 1939）、IMAP4 が 143 番、TLS で暗号化した IMAP4 が 993 番（RFC 9051）。",
+    "whyWrong": [
+      "（イ）が誤り。110 番は POP3（RFC 1939）。IMAP4 は 143 番（暗号化した接続なら 993 番）（RFC 9051）。",
+      "（ア）が誤り。587 番は、利用者のメールソフトが送信サーバへメールを出すときのサブミッションポート（RFC 6409）。サーバどうしの配送は 25 番。",
+      null,
+      "（ア）（イ）とも誤り。587 番は利用者からの送信用（サブミッションポート）で、サーバどうしの配送は 25 番。110 番は POP3 で、IMAP4 は 143 番。"
+    ],
+    "memoryTip": "25 配送、587 利用者の送信、110 POP3、143 IMAP4。",
+    "concepts": [
+      "C-SC-05-044",
+      "C-SC-05-056",
+      "C-SC-05-058",
+      "C-SC-05-057"
+    ],
+    "sources": [
+      {
+        "title": "RFC 5321 Simple Mail Transfer Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc5321.txt"
+      },
+      {
+        "title": "RFC 6409 Message Submission for Mail",
+        "url": "https://www.rfc-editor.org/rfc/rfc6409.txt"
+      },
+      {
+        "title": "RFC 1939 Post Office Protocol - Version 3",
+        "url": "https://www.rfc-editor.org/rfc/rfc1939.txt"
+      },
+      {
+        "title": "RFC 9051 Internet Message Access Protocol (IMAP) - Version 4rev2",
+        "url": "https://www.rfc-editor.org/rfc/rfc9051.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-061",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Web サーバのアクセスログに、同じ送信元から、短い時間にステータスコード 404 の応答が大量に記録されていた。考えられる状況として、最も適切なものはどれか。",
+    "choices": [
+      "サーバの内部で処理の誤りが続き、正しいリクエストに応じられなくなっている。",
+      "存在しないページの場所を次々に試し、隠れたファイルや管理画面を探している。",
+      "リクエストが正しく処理され、ページの内容が次々に返されている。",
+      "移転したページへの案内が続き、利用者が別の URL へ送られている。"
+    ],
+    "answer": 1,
+    "stemPlain": "Web サーバの記録に『見つからない（404）』の返事が短時間に大量に並んでいたとき、何が起きていると考えられるかを選ぶ問題。",
+    "explanation": "404（Not Found）は、頼まれた場所にリソースが見つからないことを示す 400 番台（クライアント側の誤り）のコード（RFC 9110）。同じ送信元から短時間に大量の 404 が並ぶのは、ありそうなファイル名や管理画面の場所を辞書のように次々に試し、存在するものを探す偵察の典型的な跡。送信元の遮断や、見つかって困るファイルを置かないことで対応する。",
+    "whyWrong": [
+      "サーバ側の処理の誤りは 500 番台（Server Error）で記録される。404 は 400 番台のクライアント側の誤りで、頼まれたものが見つからないことを示す。",
+      null,
+      "正しく処理されて内容を返したときは 200 番台（Successful、例 200 OK）。404 は見つからなかったことを示す。",
+      "別の URL への案内（リダイレクト）は 300 番台（Redirection、例 301・302）。404 は案内ではなく、見つからなかったことを示す。"
+    ],
+    "memoryTip": "404 の山＝場所の総当たり（探索）の跡。500 番台の山＝サーバの不調。",
+    "concepts": [
+      "C-SC-05-046",
+      "C-SC-05-075"
+    ],
+    "sources": [
+      {
+        "title": "RFC 9110 HTTP Semantics",
+        "url": "https://www.rfc-editor.org/rfc/rfc9110.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-062",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "cookie の属性のうち、HTTPS などの安全な通信のときだけ cookie を送らせるものを（ア）、JavaScript などのスクリプトから cookie を読めないようにするものを（イ）という。（ア）（イ）に入る語の組合せはどれか。",
+    "choices": [
+      "（ア）Secure　（イ）Path",
+      "（ア）Domain　（イ）HttpOnly",
+      "（ア）Domain　（イ）Path",
+      "（ア）Secure　（イ）HttpOnly"
+    ],
+    "answer": 3,
+    "stemPlain": "cookie の付け足しの設定（属性）のうち、①暗号化した通信のときだけ送る ②スクリプトから読めなくする、の名前の組を選ぶ問題。",
+    "explanation": "RFC 6265 では、Secure 属性は cookie を『安全な』通信路（ふつう HTTPS）のときだけ送るように範囲を絞り、HttpOnly 属性は、スクリプトに cookie を見せる API など HTTP 以外の手段に cookie を渡さないようにする。セッション ID の cookie には両方を付け、盗聴とクロスサイトスクリプティングによる盗み出しに備える。",
+    "whyWrong": [
+      "（イ）が誤り。Path は、cookie を送る URL の範囲（パス）を絞る属性。スクリプトから読めなくするのは HttpOnly。",
+      "（ア）が誤り。Domain は、cookie を送る相手のホストの範囲を決める属性。安全な通信のときだけ送らせるのは Secure。",
+      "（ア）（イ）とも誤り。Domain と Path は、どのホスト・どの URL に cookie を送るかの範囲を決める属性で、通信の安全さやスクリプトからの読み取りとは関係しない。",
+      null
+    ],
+    "memoryTip": "Secure＝安全な通信だけ。HttpOnly＝HTTP だけ（スクリプトには見せない）。",
+    "concepts": [
+      "C-SC-05-059"
+    ],
+    "sources": [
+      {
+        "title": "RFC 6265 HTTP State Management Mechanism",
+        "url": "https://www.rfc-editor.org/rfc/rfc6265.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-063",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "DNS の名前解決の問い合わせで、通常使われるトランスポート層のプロトコルとポート番号の組合せはどれか。",
+    "choices": [
+      "TCP の 25 番",
+      "UDP の 123 番",
+      "TCP の 179 番",
+      "UDP の 53 番"
+    ],
+    "answer": 3,
+    "stemPlain": "名前からアドレスを調べる DNS の問い合わせが、ふつう使う運び方と番号の組を選ぶ問題。",
+    "explanation": "DNS は、TCP と UDP の両方の 53 番を使う（RFC 1035）。ふつうの問い合わせは小さな1往復で済むので UDP の 53 番を使い、答えが大きいときやゾーンの転送には TCP を使う。UDP の問い合わせは送信元を偽りやすいので、誰の問い合わせにも答えるキャッシュサーバは、送信元を偽った問い合わせで第三者に大量の答えを送りつける攻撃に悪用されやすい。",
+    "whyWrong": [
+      "TCP の 25 番は、メールサーバどうしがメールを配送する SMTP の番号（RFC 5321）。",
+      "UDP の 123 番は、時刻を合わせる NTP の番号（RFC 5905）。",
+      "TCP の 179 番は、組織どうしで経路を交換する BGP の番号（RFC 4271）。",
+      null
+    ],
+    "memoryTip": "DNS＝53（UDP が基本、大きいときは TCP）。",
+    "concepts": [
+      "C-SC-05-048",
+      "C-SC-05-044",
+      "C-SC-05-042"
+    ],
+    "sources": [
+      {
+        "title": "RFC 1035 Domain Names - Implementation and Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc1035.txt"
+      },
+      {
+        "title": "RFC 5321 Simple Mail Transfer Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc5321.txt"
+      },
+      {
+        "title": "RFC 5905 Network Time Protocol Version 4: Protocol and Algorithms Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc5905.txt"
+      },
+      {
+        "title": "RFC 4271 A Border Gateway Protocol 4 (BGP-4)",
+        "url": "https://www.rfc-editor.org/rfc/rfc4271.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-064",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "社内 LAN に、攻撃者が不正な DHCP サーバを接続した。このときに起こりうる被害として、最も適切なものはどれか。",
+    "choices": [
+      "正規の DHCP サーバのアドレスの貸出期間が延び、配れるアドレスが足りなくなる。",
+      "偽のゲートウェイや DNS サーバの設定を配られ、通信を攻撃者の機器へ誘導される。",
+      "各機器の MAC アドレスが書き換わり、スイッチの MAC アドレステーブルが消える。",
+      "各機器の時計が書き換わり、ログの時刻がずれて順番を追えなくなる。"
+    ],
+    "answer": 1,
+    "stemPlain": "社内の網に、設定を配る偽のサーバ（DHCP サーバ）を置かれたときに起こりうる被害を選ぶ問題。",
+    "explanation": "DHCP（RFC 2131）は、IP アドレスと一緒に、デフォルトゲートウェイや DNS サーバなどの設定も配る。RFC 2131 自身が、DHCP は UDP と IP の上に作られていて今の形ではかなり安全でなく、不正な DHCP サーバを簡単に立てられ、誤った情報を配れると書いている。偽のゲートウェイや DNS を配られると、利用者の通信が攻撃者の機器を通ったり、偽のサイトへ導かれたりする。スイッチで正規のサーバ以外の応答を止める対策（DHCP スヌーピング）がある。",
+    "whyWrong": [
+      "不正な DHCP サーバは、正規のサーバの貸出期間を変えることはできない。正規のサーバの設定は、正規のサーバの中で決まる。",
+      null,
+      "MAC アドレスは機器の差し込み口に付いた番号で、DHCP が配るのは IP アドレスなどの設定。DHCP で MAC アドレスを書き換えることはできない。",
+      "時計を合わせるのは NTP や SNTP の役目で、DHCP の主な役目ではない。不正な DHCP サーバの典型的な狙いは、ゲートウェイや DNS の設定を偽って通信を横取りすること。"
+    ],
+    "memoryTip": "偽 DHCP＝偽の出口（ゲートウェイ）と偽の電話帳（DNS）を配られる。",
+    "concepts": [
+      "C-SC-05-049",
+      "C-SC-05-048"
+    ],
+    "sources": [
+      {
+        "title": "RFC 2131 Dynamic Host Configuration Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc2131.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-065",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "通信事業者の IP-VPN の網の中で、入口のルータがパケットに短い固定長の識別子を付け、網の中ではその識別子を見て転送する技術はどれか。",
+    "choices": [
+      "VXLAN",
+      "IEEE 802.1Q",
+      "MPLS",
+      "IPsec"
+    ],
+    "answer": 2,
+    "stemPlain": "事業者の閉じた網（IP-VPN）の中で、パケットに短い札を付けて運ぶ技術の名前を選ぶ問題。",
+    "explanation": "MPLS（Multiprotocol Label Switching、RFC 3031）は、網の入口でパケットにラベルを付け、中のルータはラベルだけを見て転送する。総務省の資料も、IP-VPN では入口で受け取ったパケットに網内ルータが短い固定長の「ラベル」を付け、そのラベルで経路を見分けて出口まで運び、出口で外すと説明している。",
+    "whyWrong": [
+      "VXLAN は、イーサネットのフレームを UDP/IP に包み、L3 の網の上に L2 の網を重ねる技術（RFC 7348）。網の中で短いラベルを見て転送する技術ではない。",
+      "IEEE 802.1Q は、フレームに VLAN タグを入れて VLAN を見分ける規格。総務省の資料では広域イーサ網で使うのが VLAN タグで、IP-VPN で使うのはラベル。",
+      null,
+      "IPsec は、IP パケットを暗号化・認証して守る仕組み（RFC 4301）。インターネット VPN で使うもので、事業者の閉域網の中の転送の技術ではない。"
+    ],
+    "memoryTip": "IP-VPN＝ラベル（MPLS）。広域 Ethernet＝VLAN タグ。インターネット VPN＝IPsec。",
+    "concepts": [
+      "C-SC-05-050",
+      "C-SC-05-065"
+    ],
+    "sources": [
+      {
+        "title": "RFC 3031 Multiprotocol Label Switching Architecture",
+        "url": "https://www.rfc-editor.org/rfc/rfc3031.txt"
+      },
+      {
+        "title": "総務省 クラウド時代の自治体ネットワーク最適化方法（案）（平成21年12月。IP-VPN・広域イーサ・インターネットVPN の比較）",
+        "url": "https://www.soumu.go.jp/main_content/000047787.pdf"
+      },
+      {
+        "title": "RFC 7348 Virtual eXtensible Local Area Network (VXLAN): A Framework for Overlaying Virtualized Layer 2 Networks over Layer 3 Networks",
+        "url": "https://www.rfc-editor.org/rfc/rfc7348.txt"
+      },
+      {
+        "title": "RFC 4301 Security Architecture for the Internet Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc4301.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-066",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "宛先 MAC アドレスが FF:FF:FF:FF:FF:FF のイーサネットフレームの説明として、最も適切なものはどれか。",
+    "choices": [
+      "同じブロードキャストドメインにいる全機器あてのフレーム。",
+      "マルチキャストのグループに入った機器あてのフレーム。",
+      "送った機器自身に戻すループバックのためのフレーム。",
+      "宛先が決まっていないため、スイッチで捨てられるフレーム。"
+    ],
+    "answer": 0,
+    "stemPlain": "宛先の番号が全部 F（全ビットが 1）のフレームが、だれあてかを選ぶ問題。",
+    "explanation": "MAC アドレスの 48 ビットが全部 1（FF:FF:FF:FF:FF:FF）は、ブロードキャストアドレスで、同じブロードキャストドメインの全員あて。ARP の要求や DHCP の最初の問い合わせなどで使う。スイッチは全ポートへ送り、ルータは別の網へ中継しない。",
+    "whyWrong": [
+      null,
+      "マルチキャストのグループあてのフレームは、先頭が 01-00-5E などのマルチキャスト用の MAC アドレスを使う（IPv4 では RFC 1112）。全ビットが 1 のアドレスは全員あて。",
+      "自分自身に戻すループバックは、IP の 127 で始まるアドレスで、機械の外には出ない。MAC アドレスの FF:FF:FF:FF:FF:FF は網の全員あて。",
+      "スイッチは FF:FF:FF:FF:FF:FF あてのフレームを捨てず、受け取ったポート以外の全ポートへ送る。ルータの手前までの全員に届く。"
+    ],
+    "memoryTip": "全部 1（FF…FF）＝全員あて。01-00-5E で始まる＝マルチキャスト。",
+    "concepts": [
+      "C-SC-05-051",
+      "C-SC-05-021",
+      "C-SC-05-013"
+    ],
+    "figures": [
+      "fig-sc-net-domains"
+    ],
+    "sources": [
+      {
+        "title": "RFC 7042 IANA Considerations and IETF Protocol and Documentation Usage for IEEE 802 Parameters",
+        "url": "https://www.rfc-editor.org/rfc/rfc7042.txt"
+      },
+      {
+        "title": "RFC 1112 Host Extensions for IP Multicasting",
+        "url": "https://www.rfc-editor.org/rfc/rfc1112.txt"
+      },
+      {
+        "title": "RFC 1122 Requirements for Internet Hosts -- Communication Layers",
+        "url": "https://www.rfc-editor.org/rfc/rfc1122.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-067",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "10GBASE-T の説明として、最も適切なものはどれか。",
+    "choices": [
+      "ツイストペアケーブルの4対の線を全部使い、全二重の通信で毎秒10ギガビットを送る。",
+      "1本の光ファイバに波長の違う光を10本重ね、合わせて毎秒10ギガビットを送る。",
+      "ツイストペアケーブルの2対の線を使い、半二重の CSMA/CD で毎秒10ギガビットを送る。",
+      "同軸ケーブル1本を複数の機器で共有し、全体で毎秒10ギガビットを分け合う。"
+    ],
+    "answer": 0,
+    "stemPlain": "銅線の LAN ケーブルで毎秒 10 ギガビットを送る規格（10GBASE-T）の説明を選ぶ問題。",
+    "explanation": "IEEE 802.3 の 10GBASE-T の目標の文書は、全二重だけを扱い、4 対のツイストペアの銅線のケーブルで毎秒 10 ギガビットを送ること（より性能の高い Class F のケーブルで少なくとも 100 m）を定めている。チュートリアルでは、4 つの線の組それぞれで 1 秒に 8 億 3300 万回、1 回に 3 ビットを送り、4×833M×3 で 10G ビット毎秒になると説明している。",
+    "whyWrong": [
+      null,
+      "光ファイバに波長の違う光を重ねるのは波長分割多重（WDM）の技術。10GBASE-T の T はツイストペア（銅線）を表し、光ファイバの規格ではない。",
+      "10GBASE-T は 4 対の線を全部使い、全二重だけを扱う（IEEE 802.3 の 10GBASE-T の目標）。半二重の CSMA/CD はサポートしない。",
+      "同軸ケーブルを複数の機器で共有するのは、昔の 10BASE5・10BASE2 のようなバス型の網。10GBASE-T は1対1でスイッチとつなぐツイストペアの規格。"
+    ],
+    "memoryTip": "10GBASE-T＝10 ギガ、BASE（ベースバンド）、T（ツイストペア）。4対全部・全二重。",
+    "concepts": [
+      "C-SC-05-053",
+      "C-SC-05-051",
+      "C-SC-05-010"
+    ],
+    "sources": [
+      {
+        "title": "IEEE 802.3 10GBASE-T Study Group Objectives（2003年9月）",
+        "url": "https://www.ieee802.org/3/an/objectives.pdf"
+      },
+      {
+        "title": "IEEE 802.3 10GBASE-T Tutorial（2003年11月。1000BASE-T との比較）",
+        "url": "https://www.ieee802.org/3/10GBT/public/nov03/10GBASE-T_tutorial.pdf"
+      },
+      {
+        "title": "ITU-T G.694.1 Spectral grids for WDM applications: DWDM frequency grid",
+        "url": "https://www.itu.int/rec/T-REC-G.694.1"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-068",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "メッシュ Wi-Fi の説明として、最も適切なものはどれか。",
+    "choices": [
+      "1台のアクセスポイントが複数の SSID を出し、来客用と社員用のように用途ごとに網を分ける。",
+      "端末どうしがアクセスポイントを通さずに直接つながり、ファイルを受け渡す。",
+      "複数のアクセスポイントが無線でつながって1つの網になり、端末を条件のよい親機へ導く。",
+      "アクセスポイントがチャネルを細かい周波数に分け、複数の端末に同時に割り当てる。"
+    ],
+    "answer": 2,
+    "stemPlain": "複数の無線の親機を使って広い範囲を1つの網にする仕組み（メッシュ Wi-Fi）の説明を選ぶ問題。",
+    "explanation": "メッシュ Wi-Fi は、複数のアクセスポイントが協力して1つの網を作り、家や事務所の隅々まで電波を届ける。Wi-Fi Alliance の EasyMesh の説明では、複数のアクセスポイントが連携して統一された網を作り、端末を最適なアクセスポイントへ導き、状況に応じて網の形を変える。",
+    "whyWrong": [
+      "1台のアクセスポイントで複数の SSID を出して用途ごとに網を分けるのは、マルチ SSID の使い方。網の範囲を広げる仕組みではない。",
+      "端末どうしが直接つながるのは、アドホック接続や Wi-Fi Direct のような使い方。複数のアクセスポイントで1つの網を作るメッシュとは別。",
+      null,
+      "チャネルを細かく分けて複数の端末に同時に割り当てるのは OFDMA（Wi-Fi 6 の機能）。1台のアクセスポイントの中の送り方の話。"
+    ],
+    "memoryTip": "メッシュ（網の目）＝親機どうしが網の目のようにつながる。",
+    "concepts": [
+      "C-SC-05-054",
+      "C-SC-05-052",
+      "C-SC-05-011"
+    ],
+    "sources": [
+      {
+        "title": "Wi-Fi Alliance「Wi-Fi EasyMesh」",
+        "url": "https://wi-fi.org/discover-wi-fi/wi-fi-easymesh"
+      },
+      {
+        "title": "Wi-Fi Alliance「Wi-Fi CERTIFIED 6」（OFDMA・MU-MIMO）",
+        "url": "https://www.wi-fi.org/discover-wi-fi/wi-fi-certified-6"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-069",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "通信プロトコル"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "サーバ・ファイアウォール・ルータのログを突き合わせて、攻撃の順番を正しく追えるようにするために、平常時から行っておくべきこととして、最も適切なものはどれか。",
+    "choices": [
+      "各機器の SNMP のコミュニティ名を、同じ値にそろえておく。",
+      "各機器の時計を、NTP で同じ時刻サーバに合わせておく。",
+      "各機器のログの重大度を、Debug 以上を記録する設定にしておく。",
+      "各機器のログを、それぞれの機器の中だけに保存しておく。"
+    ],
+    "answer": 1,
+    "stemPlain": "何台もの機器の記録（ログ）を時刻順に並べて調べられるように、ふだんから何をしておくべきかを選ぶ問題。",
+    "explanation": "ログを並べて攻撃の順番を追うには、各機器の時刻がそろっていることが前提になる。NTP（RFC 5905）は、時刻のサーバに問い合わせて、行き帰りにかかった時間を差し引いて時計を合わせる。全機器を同じ時刻サーバに合わせておけば、別々の機器のログでも時刻で並べられる。",
+    "whyWrong": [
+      "SNMP のコミュニティ名は、機器を監視するときの合言葉。そろえても各機器の時計は合わず、ログの順番は追えない。むしろ同じ合言葉にすると、1つ漏れれば全機器を読まれる。",
+      null,
+      "Debug まで記録するとログの量は増えるが、機器ごとの時計がずれていれば、ログを並べても前後関係は分からない。",
+      "機器ごとに保存すると、侵入者に消されやすく、突き合わせにも手間がかかる。syslog などでログを集めるのがふつうで、どちらにしても時刻をそろえる必要がある。"
+    ],
+    "memoryTip": "ログの突き合わせの前提＝時計合わせ（NTP）。",
+    "concepts": [
+      "C-SC-05-055",
+      "C-SC-05-075",
+      "C-SC-05-077"
+    ],
+    "sources": [
+      {
+        "title": "RFC 5905 Network Time Protocol Version 4: Protocol and Algorithms Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc5905.txt"
+      },
+      {
+        "title": "RFC 5424 The Syslog Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc5424.txt"
+      },
+      {
+        "title": "RFC 1157 A Simple Network Management Protocol (SNMP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc1157.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-070",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "利用者のメールソフトから送信用のメールサーバへメールを出すときに使い、送信者の認証を求める運用に用いられるポート番号はどれか。",
+    "choices": [
+      "25",
+      "110",
+      "143",
+      "587"
+    ],
+    "answer": 3,
+    "stemPlain": "メールソフトから送信サーバへメールを出すときに使い、本人確認をさせる番号を選ぶ問題。",
+    "explanation": "RFC 6409（Message Submission for Mail）は、利用者のメールソフトからのメールの提出（サブミッション）にはふつう 587 番を使い、提出を受ける側は送信者の認証を求めることを決めている。サーバどうしの配送（25 番）と利用者からの提出（587 番）を分けることで、外部の第三者による不正な中継を防ぎやすくなる。",
+    "whyWrong": [
+      "25 番は、メールサーバどうしがメールを配送するときの SMTP の番号（RFC 5321）。利用者の送信もかつて 25 番を使っていたが、迷惑メールの中継に悪用されたため、利用者からの送信は 587 番に分けた。",
+      "110 番は POP3 の番号で、受信箱からメールを取り出すときに使う（RFC 1939）。送信には使わない。",
+      "143 番は IMAP4 の番号で、サーバのメールを読み・整理するときに使う（RFC 9051）。送信には使わない。",
+      null
+    ],
+    "memoryTip": "587＝サブミッション（利用者の提出）。25＝サーバ間の配送。",
+    "concepts": [
+      "C-SC-05-056",
+      "C-SC-05-044"
+    ],
+    "sources": [
+      {
+        "title": "RFC 6409 Message Submission for Mail",
+        "url": "https://www.rfc-editor.org/rfc/rfc6409.txt"
+      },
+      {
+        "title": "RFC 5321 Simple Mail Transfer Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc5321.txt"
+      },
+      {
+        "title": "RFC 1939 Post Office Protocol - Version 3",
+        "url": "https://www.rfc-editor.org/rfc/rfc1939.txt"
+      },
+      {
+        "title": "RFC 9051 Internet Message Access Protocol (IMAP) - Version 4rev2",
+        "url": "https://www.rfc-editor.org/rfc/rfc9051.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-071",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "パソコンとスマートフォンの両方から同じ受信箱のメールを読み、どちらで既読にしたかやフォルダの分け方も共有したい。受信に使うプロトコルとして、最も適切なものはどれか。",
+    "choices": [
+      "POP3",
+      "SMTP",
+      "SNMP",
+      "IMAP4"
+    ],
+    "answer": 3,
+    "stemPlain": "何台もの端末で、同じ受信箱を同じ整理のまま読みたいときに使う受信のプロトコルを選ぶ問題。",
+    "explanation": "IMAP4（RFC 9051）は、メールとフォルダをサーバに置いたまま、端末からそれを操作する。既読の印やフォルダの分け方もサーバに記録されるので、どの端末から見ても同じ状態になる。その分、サーバのアカウントが乗っ取られると過去のメールがまとめて読まれるので、多要素認証と暗号化した接続を使う。",
+    "whyWrong": [
+      "POP3 は、メールを端末にダウンロードし、ふつうはサーバから消す使い方（RFC 1939）。端末ごとにばらばらに管理するので、既読やフォルダの状態を共有するのに向かない。",
+      "SMTP は、メールを送る・サーバどうしで受け渡すためのプロトコル。受信箱のメールを読むには使わない。",
+      "SNMP は、ネットワーク機器の状態を問い合わせて監視するプロトコル。メールとは関係しない。",
+      null
+    ],
+    "memoryTip": "IMAP4＝サーバに置いたまま（どの端末でも同じ）。POP3＝端末に持ってくる。",
+    "concepts": [
+      "C-SC-05-058",
+      "C-SC-05-057",
+      "C-SC-05-056"
+    ],
+    "sources": [
+      {
+        "title": "RFC 9051 Internet Message Access Protocol (IMAP) - Version 4rev2",
+        "url": "https://www.rfc-editor.org/rfc/rfc9051.txt"
+      },
+      {
+        "title": "RFC 1939 Post Office Protocol - Version 3",
+        "url": "https://www.rfc-editor.org/rfc/rfc1939.txt"
+      },
+      {
+        "title": "RFC 5321 Simple Mail Transfer Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc5321.txt"
+      },
+      {
+        "title": "RFC 1157 A Simple Network Management Protocol (SNMP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc1157.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-072",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "REST の設計の考え方の説明として、最も適切なものはどれか。",
+    "choices": [
+      "クライアントが欲しい項目を問い合わせ言語で書き、1つの入口に送って、頼んだ形で受け取る。",
+      "サーバはリクエストの間で利用者ごとの状態を持たず、必要な情報は毎回のリクエストに含める。",
+      "リソースごとに URL を分けず、操作の名前を本文に書いて、1つの URL へまとめて送る。",
+      "サーバがクライアントの画面の状態を保ち、変化があればサーバから画面を書き換える。"
+    ],
+    "answer": 1,
+    "stemPlain": "Web の API の設計の型 REST の考え方を選ぶ問題。",
+    "explanation": "REST は Roy Fielding が 2000 年の論文で示した設計の型。その制約の1つとして、クライアントとサーバのやり取りはステートレス（各リクエストが、理解に必要な情報をすべて含み、サーバに保存された文脈に頼らない）でなければならない、としている。ほかに、統一されたインタフェース、キャッシュできることなどを制約に挙げる。",
+    "whyWrong": [
+      "欲しい項目を問い合わせ言語で書き、頼んだ形のまま受け取るのは GraphQL の考え方。REST はリソースごとの URL を HTTP のメソッドで操作する。",
+      null,
+      "操作の名前を本文に書いて1つの URL に送るのは、手続きを呼び出す形（RPC 型）の API。REST は、操作したいデータ（リソース）を URL で指し、操作は HTTP のメソッド（GET・PUT・DELETE など）で表す。",
+      "サーバが画面の状態を保ち書き換えるのは、REST の制約とは別の作り方。REST の制約の1つは、リクエストの間でサーバが利用者の状態を持たないこと（ステートレス）。"
+    ],
+    "memoryTip": "REST＝URL でモノ（リソース）を指し、HTTP のメソッドで操作。サーバは覚えない（ステートレス）。",
+    "concepts": [
+      "C-SC-05-060",
+      "C-SC-05-061",
+      "C-SC-05-045"
+    ],
+    "sources": [
+      {
+        "title": "Roy T. Fielding「Architectural Styles and the Design of Network-based Software Architectures」第5章 REST（2000年）",
+        "url": "https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"
+      },
+      {
+        "title": "GraphQL Specification（October 2021）",
+        "url": "https://spec.graphql.org/October2021/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-073",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "not",
+    "difficulty": 3,
+    "stem": "GraphQL の API を公開するときのセキュリティの考え方として、適切でないものはどれか。",
+    "choices": [
+      "問い合わせの入れ子の深さや量に上限を設け、重い問い合わせで負荷を上げられないようにする。",
+      "本番の環境では、スキーマを問い合わせで調べる機能（イントロスペクション）を止めるか制限する。",
+      "認可は問い合わせの入口で1回確かめれば十分なので、個々の項目では確かめない。",
+      "利用者の入力を問い合わせの文字列に直接つなげず、変数として渡す。"
+    ],
+    "answer": 2,
+    "stemPlain": "欲しいデータを問い合わせの言葉で書く API（GraphQL）を公開するときの守り方のうち、誤っているものを選ぶ問題。",
+    "explanation": "GraphQL は1回の問い合わせで、さまざまな種類のデータの多くの項目を取り出せる。入口で『この利用者は API を使ってよい』と確かめただけでは、問い合わせの中の個々のデータ（他人の注文など）を見てよいかは決まらない。OWASP の手引きも、データを返す前に、そのデータを見る権限があるかを確かめるよう求めている。『入口で1回確かめれば十分』は適切でない。",
+    "whyWrong": [
+      "適切。OWASP の GraphQL の手引きは、入れ子の深さや量の制限で、重い問い合わせによるサービス妨害を防ぐよう勧めている。",
+      "適切。OWASP の手引きは、公開する本番の環境ではイントロスペクションを止めるか、必要に応じて制限するよう勧めている。API の全体像を攻撃者に教えないため。",
+      null,
+      "適切。入力を問い合わせの文字列に直接つなげると、問い合わせの形を書き換えられるおそれがある。GraphQL の仕様は、問い合わせに値を渡す手段として変数を用意している。"
+    ],
+    "memoryTip": "GraphQL の守り：深さ・量の上限、イントロスペクション制限、項目ごとの認可。",
+    "concepts": [
+      "C-SC-05-061",
+      "C-SC-05-060"
+    ],
+    "sources": [
+      {
+        "title": "OWASP Cheat Sheet Series「GraphQL Cheat Sheet」",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html"
+      },
+      {
+        "title": "GraphQL Specification（October 2021）",
+        "url": "https://spec.graphql.org/October2021/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-074",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "総務省の情報通信白書が説明する「衛星コンステレーション」の特徴として、最も適切なものはどれか。",
+    "choices": [
+      "中・低軌道を回る多数の小型衛星を連携させるので、静止衛星より通信の遅延時間が短い。",
+      "赤道の上空に止まって見える1基の静止衛星で、地球の全域を常に覆って通信する。",
+      "海底に敷いた光ファイバで、国と国を大容量かつ低い遅延で結ぶ。",
+      "地上の基地局どうしを網の目のように無線で結び、衛星を使わずに山間部を覆う。"
+    ],
+    "answer": 0,
+    "stemPlain": "多数の人工衛星を連携させて通信する仕組み（衛星コンステレーション）の特徴を選ぶ問題。",
+    "explanation": "総務省の白書は、衛星コンステレーションを、中・低軌道に打ち上げた多数の小型の非静止衛星を連携させて一体的に運用するもので、静止衛星に比べて低い軌道を回るため通信の遅延時間が短く、陸上・海上・航空機上で高速大容量の通信を提供できるものと説明している。例として、高度約 500 km の軌道を使う Ku 帯の衛星コンステレーションのための制度整備が挙げられている。",
+    "whyWrong": [
+      null,
+      "1基の静止衛星は、地球から遠い高さにあるので遅延が大きく、1基で地球の全域を覆うこともできない。白書が衛星コンステレーションの特徴とするのは、多数の非静止衛星の連携と遅延の短さ。",
+      "海底に敷いた光ファイバで国と国を結ぶのは国際海底ケーブル。衛星を使う通信ではない。",
+      "地上の基地局どうしを網の目で結ぶのは、地上の無線の網（メッシュの網など）の作り方。衛星コンステレーションは人工衛星を連携させる。"
+    ],
+    "memoryTip": "低い軌道＝近い＝遅れが短い。ただし動くので多数を連携（コンステレーション＝星座）。",
+    "concepts": [
+      "C-SC-05-062",
+      "C-SC-05-063"
+    ],
+    "sources": [
+      {
+        "title": "総務省 令和3年版 情報通信白書「移動衛星通信システム」",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r03/html/nd253260.html"
+      },
+      {
+        "title": "総務省 令和4年版 情報通信白書「衛星コンステレーション」",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r04/html/nd243430.html"
+      },
+      {
+        "title": "総務省 国際海底ケーブルの防護等の在り方に関する検討会 とりまとめ骨子（案）",
+        "url": "https://www.soumu.go.jp/main_content/001074384.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-075",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "総務省の検討会の資料で、日本の国際通信の約99％を担う基幹インフラとされているものはどれか。",
+    "choices": [
+      "国際海底ケーブル",
+      "静止衛星による通信",
+      "低軌道衛星のコンステレーション",
+      "短波による無線通信"
+    ],
+    "answer": 0,
+    "stemPlain": "日本と外国の間の通信のほとんどを運んでいるものを選ぶ問題。",
+    "explanation": "総務省の「国際海底ケーブルの防護等の在り方に関する検討会」のとりまとめ骨子（案）は、国際海底ケーブルを世界と接続する通信の大動脈とし、日本の国際通信の約99％を担う基幹インフラと位置づけている。地政学的なリスクの高まりから、安全保障の面でも重要なインフラとしての性格が強まっているとしている。",
+    "whyWrong": [
+      null,
+      "静止衛星による通信は、ケーブルの届かない場所や予備の手段として使われるが、国際通信の大部分を担うものではない。遠いので遅延も大きい。",
+      "低軌道衛星のコンステレーションは、遅延の短い衛星通信として広がっているが、国際通信の約99％を担うものとして資料が挙げるのは国際海底ケーブル。",
+      "短波の無線は、遠くまで届くが運べる量がとても小さく、いまの国際通信の大部分を担うものではない。"
+    ],
+    "memoryTip": "国際通信の約99％＝海底ケーブル。衛星はごく一部と予備。",
+    "concepts": [
+      "C-SC-05-063",
+      "C-SC-05-062"
+    ],
+    "sources": [
+      {
+        "title": "総務省 国際海底ケーブルの防護等の在り方に関する検討会 とりまとめ骨子（案）",
+        "url": "https://www.soumu.go.jp/main_content/001074384.pdf"
+      },
+      {
+        "title": "総務省 令和4年版 情報通信白書「衛星コンステレーション」",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r04/html/nd243430.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-076",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "拠点間を結ぶサービスのうち、通信事業者の閉域網で、網の入口でパケットにラベルを付けて IP パケットを運び、経路を事業者のルータが管理するものを（ア）、通信事業者の閉域網で、イーサネットのフレームのまま運び、経路を利用者側のルータで決めるものを（イ）という。（ア）（イ）に入る語の組合せはどれか。",
+    "choices": [
+      "（ア）IP-VPN　（イ）専用線サービス",
+      "（ア）インターネット VPN　（イ）広域 Ethernet",
+      "（ア）IP-VPN　（イ）広域 Ethernet",
+      "（ア）インターネット VPN　（イ）専用線サービス"
+    ],
+    "answer": 2,
+    "stemPlain": "拠点をつなぐサービスのうち、①事業者の閉じた網で IP のまま運び、経路は事業者が決める ②事業者の閉じた網でフレームのまま運び、経路は利用者が決める、の名前の組を選ぶ問題。",
+    "explanation": "総務省の資料では、IP-VPN は入口で受け取ったパケットに網内ルータがラベルを付け、そのラベルで経路を見分けて運び、経路の設定と管理は事業者側のルータが行う。広域イーサ（広域 Ethernet）は、入口で受け取ったイーサネットフレームに網内スイッチが VLAN タグを付けて運び、経路の設定と管理は利用者側のルータが行う。どちらもインターネットとは完全に分けた事業者の閉域網。",
+    "whyWrong": [
+      "（イ）が誤り。専用線サービスは、拠点の間に回線をほかの利用者と共用せずに用意するサービスで、事業者の網の入口で利用者ごとにタグを付けて運ぶ仕組みではない。フレームのまま運び、経路を利用者が決めるのは広域 Ethernet。",
+      "（ア）が誤り。インターネット VPN は、事業者の閉域網ではなく、だれでも通るインターネットを使い、IPsec などで暗号化して守る。入口でラベルを付ける閉域網のサービスは IP-VPN。",
+      null,
+      "（ア）（イ）とも誤り。インターネット VPN は共用のインターネットを暗号化して使うサービスで、閉域網ではない。専用線サービスは回線を共用しない形で、フレームを VLAN タグで分けて運ぶ広域 Ethernet とは別。"
+    ],
+    "memoryTip": "IP-VPN＝ラベル・経路は事業者。広域 Ethernet＝VLAN タグ・経路は利用者。",
+    "concepts": [
+      "C-SC-05-065",
+      "C-SC-05-064",
+      "C-SC-05-066"
+    ],
+    "figures": [
+      "fig-sc-net-wan-types"
+    ],
+    "sources": [
+      {
+        "title": "総務省 クラウド時代の自治体ネットワーク最適化方法（案）（平成21年12月。IP-VPN・広域イーサ・インターネットVPN の比較）",
+        "url": "https://www.soumu.go.jp/main_content/000047787.pdf"
+      },
+      {
+        "title": "総務省 電気通信事業分野の競争評価「法人向けネットワークサービス領域」（WAN サービス：IP-VPN・広域イーサネット・インターネットVPN）",
+        "url": "https://www.soumu.go.jp/main_content/000030837.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-077",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "拠点間の接続にインターネット VPN を使う場合の特徴として、最も適切なものはどれか。",
+    "choices": [
+      "事業者の閉域網の入口でラベルを付けて運ぶので、帯域を確保できる。",
+      "共用のインターネットを暗号化して使うので安く始められるが、速さは保証されない。",
+      "事業者の閉域網でフレームに VLAN タグを付け、イーサネットのまま運ぶ。",
+      "拠点の間に回線を引き、ほかの利用者と共用せずに使う。"
+    ],
+    "answer": 1,
+    "stemPlain": "インターネットを暗号化して使い、拠点どうしをつなぐ方式（インターネット VPN）の特徴を選ぶ問題。",
+    "explanation": "総務省の資料の比較では、インターネット VPN の技術は IPsec など、帯域はベストエフォート（混み具合しだいで、速さの保証が無い）とされている。だれでも通るインターネットの回線を使うので費用を抑えやすいが、速さは保証されない。VPN の装置はインターネットから見える場所に置くので、ぜい弱性の修正を怠ると侵入の入口になる点にも注意する。",
+    "whyWrong": [
+      "閉域網の入口でラベルを付けて運び、帯域を確保できるのは IP-VPN の特徴。インターネット VPN は事業者の閉域網を通らない。",
+      null,
+      "フレームに VLAN タグを付けて閉域網で運ぶのは広域 Ethernet。インターネット VPN は IP パケットを暗号化してインターネットを通す。",
+      "回線をほかの利用者と共用しないのは専用線サービス。インターネット VPN は、むしろ共用のインターネットの上に暗号化した通り道を作る。"
+    ],
+    "memoryTip": "インターネット VPN＝安い・暗号化・ベストエフォート。",
+    "concepts": [
+      "C-SC-05-066",
+      "C-SC-05-065",
+      "C-SC-05-064"
+    ],
+    "figures": [
+      "fig-sc-net-wan-types"
+    ],
+    "sources": [
+      {
+        "title": "総務省 クラウド時代の自治体ネットワーク最適化方法（案）（平成21年12月。IP-VPN・広域イーサ・インターネットVPN の比較）",
+        "url": "https://www.soumu.go.jp/main_content/000047787.pdf"
+      },
+      {
+        "title": "総務省 電気通信事業分野の競争評価「法人向けネットワークサービス領域」（WAN サービス：IP-VPN・広域イーサネット・インターネットVPN）",
+        "url": "https://www.soumu.go.jp/main_content/000030837.pdf"
+      },
+      {
+        "title": "RFC 4301 Security Architecture for the Internet Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc4301.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-078",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "自社のネットワークを、複数のインターネット接続事業者（ISP）の回線でインターネットにつなぎ、1社の障害でも通信を続けられるようにする構成はどれか。",
+    "choices": [
+      "リンクアグリゲーション",
+      "VRRP",
+      "マルチキャスト",
+      "マルチホーミング"
+    ],
+    "answer": 3,
+    "stemPlain": "インターネットへの出口を複数の会社の回線にして、1社が止まっても通信できるようにする構成の名前を選ぶ問題。",
+    "explanation": "マルチホーミングは、インターネットへの出口を複数の事業者・回線に持つ構成。RFC 4116 は、マルチホーミングを多くの利用者にとってサービスに欠かせない要素としている。自社のアドレスの経路を複数の事業者から広告するには、BGP を使うことが多い。",
+    "whyWrong": [
+      "リンクアグリゲーションは、機器どうしの複数の線を束ねて1本の論理的な線にする技術。接続する事業者を複数にする構成ではない。",
+      "VRRP は、社内側の出口のルータを二重にし、故障時に待機側が引き継ぐプロトコル。インターネットへの接続先の事業者を増やすものではない。",
+      "マルチキャストは、グループに入った機器へ1回の送信で同じデータを届ける送り方。接続の冗長化とは関係しない。",
+      null
+    ],
+    "memoryTip": "マルチホーミング＝家（home）＝つなぐ先の事業者を複数に。",
+    "concepts": [
+      "C-SC-05-067",
+      "C-SC-05-012",
+      "C-SC-05-016",
+      "C-SC-05-036"
+    ],
+    "sources": [
+      {
+        "title": "RFC 4116 IPv4 Multihoming Practices and Limitations",
+        "url": "https://www.rfc-editor.org/rfc/rfc4116.txt"
+      },
+      {
+        "title": "IEEE 802.1AX-2014 Link Aggregation（IEEE 802.1 のページ）",
+        "url": "https://www.ieee802.org/1/pages/802.1AX-2014.html"
+      },
+      {
+        "title": "RFC 5798 Virtual Router Redundancy Protocol (VRRP) Version 3 for IPv4 and IPv6",
+        "url": "https://www.rfc-editor.org/rfc/rfc5798.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-079",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "自ら無線の基地局や網を持たず、ほかの携帯電話会社の網を借りて、自社の携帯電話の通信サービスとして提供する事業者はどれか。",
+    "choices": [
+      "MNO",
+      "ISP",
+      "CDN 事業者",
+      "MVNO"
+    ],
+    "answer": 3,
+    "stemPlain": "自分では基地局を持たず、大手の携帯電話会社の網を借りてサービスを出す会社の呼び名を選ぶ問題。",
+    "explanation": "MVNO（Mobile Virtual Network Operator、仮想移動体通信事業者）は、MNO の網を借りて自社の通信サービスとして提供する事業者。総務省は、移動通信事業者（MNO）の無線の網を活用して多様なサービスを提供する MVNO の参入を促すため、MVNO に関するガイドラインを作っている。",
+    "whyWrong": [
+      "MNO（Mobile Network Operator）は、自分で無線の基地局と網を持つ移動体通信事業者。網を借りる側ではなく、貸す側。",
+      "ISP（Internet Service Provider）は、インターネットへの接続を提供する事業者。携帯電話の網を借りてサービスを出す事業者の呼び名ではない。",
+      "CDN 事業者は、Web の画像や動画を各地のサーバに写して利用者の近くから配るサービスの事業者。携帯電話の通信サービスとは別。",
+      null
+    ],
+    "memoryTip": "MVNO の V は Virtual（仮想）＝網を借りる。MNO＝網を持つ。",
+    "concepts": [
+      "C-SC-05-068"
+    ],
+    "sources": [
+      {
+        "title": "総務省 MVNOに係る電気通信事業法及び電波法の適用関係に関するガイドラインの改定（MNO の説明）",
+        "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban03_02001010.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-080",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "総務省の資料で、LTE はどの世代の移動通信システムとして説明されているか。",
+    "choices": [
+      "第2世代",
+      "3.9 世代",
+      "第4世代（IMT-Advanced）",
+      "第5世代"
+    ],
+    "answer": 1,
+    "stemPlain": "携帯電話の通信規格 LTE が、何世代と呼ばれているかを選ぶ問題。",
+    "explanation": "総務省の資料は、LTE を「3.9世代移動通信システム（LTE）」と呼び、それよりも高速な LTE-Advanced を、第4世代移動通信システム（IMT-Advanced）の技術として導入するための規定の整備を説明している。LTE は、第3世代を長く発展させる規格として作られた。",
+    "whyWrong": [
+      "第2世代は、デジタル方式の携帯電話が始まった世代で、LTE より前。LTE は第3世代を発展させた規格。",
+      null,
+      "総務省の資料で第4世代（IMT-Advanced）の技術とされているのは、LTE より高速な LTE-Advanced。LTE そのものは 3.9 世代。",
+      "第5世代（5G）は LTE の後の世代。5G の初期の NSA 方式は、LTE の基地局と網を土台にしている。"
+    ],
+    "memoryTip": "LTE＝3.9 世代。LTE-Advanced＝4 世代。",
+    "concepts": [
+      "C-SC-05-069",
+      "C-SC-05-072"
+    ],
+    "sources": [
+      {
+        "title": "総務省 無線設備規則の一部を改正する省令案等に係る意見募集の結果（3.9世代移動通信システム（LTE）と LTE-Advanced）",
+        "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban14_02000170.html"
+      },
+      {
+        "title": "3GPP「5G System Overview」（SA と NSA のアーキテクチャ）",
+        "url": "https://www.3gpp.org/technologies/5g-system-overview"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-081",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "5G で、1つの物理的なネットワークを、超高速・超低遅延など要件の異なる用途ごとの仮想的なネットワークに切り分けて提供する技術はどれか。",
+    "choices": [
+      "VLAN（仮想 LAN）",
+      "NFV（ネットワーク機能の仮想化）",
+      "ネットワークスライシング",
+      "OFDMA（直交周波数分割多元接続）"
+    ],
+    "answer": 2,
+    "stemPlain": "5G の1つの網を、用途ごとに性能の違う仮想の網に切り分ける技術の名前を選ぶ問題。",
+    "explanation": "総務省の白書は、5G には超高速・多数同時接続・超低遅延という3つの異なる使い方があり、ネットワーク層を仮想的に薄切りにして別の層とするネットワーク・スライシングをコアネットワークや無線の網に入れることで、要求の違うサービスごとに通信を分けられるとしている。あるスライスで超高速、別のスライスで超低遅延を実現できる。",
+    "whyWrong": [
+      "VLAN は、LAN のスイッチの中を論理的に別の網に分ける技術。携帯電話の網全体を性能ごとに切り分ける技術ではない。",
+      "NFV は、網の機能を汎用のサーバの上のソフトウェアで動かす考え方。スライスを作る土台に使われることはあるが、網を用途ごとに切り分ける技術の名前ではない。",
+      null,
+      "OFDMA は、無線のチャネルを細かい周波数に分けて複数の端末に同時に割り当てる送り方。網全体を用途ごとの仮想的な網に分ける技術ではない。"
+    ],
+    "memoryTip": "スライス＝薄切り。網を用途ごとに薄切りにする。",
+    "concepts": [
+      "C-SC-05-070",
+      "C-SC-05-072",
+      "C-SC-05-009"
+    ],
+    "sources": [
+      {
+        "title": "総務省 令和2年版 情報通信白書「5Gの実現のために導入されている技術」（ネットワーク・スライシング、NSA構成）",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd111330.html"
+      },
+      {
+        "title": "ETSI Network Functions Virtualisation – Introductory White Paper（2012年10月）",
+        "url": "https://portal.etsi.org/NFV/NFV_White_Paper.pdf"
+      },
+      {
+        "title": "Wi-Fi Alliance「Wi-Fi CERTIFIED 6」（OFDMA・MU-MIMO）",
+        "url": "https://www.wi-fi.org/discover-wi-fi/wi-fi-certified-6"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-082",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "IMEI の説明として、最も適切なものはどれか。",
+    "choices": [
+      "端末1台ごとに付く 15 桁の番号で、機種を表す8桁、製造番号の6桁、確認用の1桁からなる。",
+      "SIM に記録され、通信事業者と契約した加入者を見分けるための番号。",
+      "通話やショートメッセージで相手を呼び出すために使う、利用者の電話番号。",
+      "携帯電話の基地局ごとに付き、端末がどのエリアにいるかを示す番号。"
+    ],
+    "answer": 0,
+    "stemPlain": "携帯電話の端末に付いた番号 IMEI の説明を選ぶ問題。",
+    "explanation": "3GPP TS 23.003 は、IMEI（International Mobile station Equipment Identity）を、機種を表す TAC（8桁）、その中の通し番号 SNR（6桁）、打ち間違いを見つける CD（1桁）からなる番号と決めている。確認用の1桁は、盗まれた端末を利用者が窓口で届け出るときなどの手入力の誤りを防ぐため。端末の設定画面や箱のシールで確認できる。",
+    "whyWrong": [
+      null,
+      "SIM に記録され、加入者を見分ける番号は IMSI（International Mobile Subscriber Identity）。IMEI は SIM ではなく端末そのものの番号で、SIM を差し替えても変わらない。",
+      "利用者の電話番号（MSISDN と呼ぶ番号）は、契約に結びついた番号で、端末を替えても引き継げる。端末1台ごとの番号である IMEI とは別。",
+      "基地局やエリアを示す番号は、網の側の番号。IMEI は端末を見分ける番号で、場所を示すものではない。"
+    ],
+    "memoryTip": "IMEI の E は Equipment（機器）。IMSI の S は Subscriber（加入者）。",
+    "concepts": [
+      "C-SC-05-071",
+      "C-SC-05-068"
+    ],
+    "sources": [
+      {
+        "title": "3GPP TS 23.003（ETSI TS 123 003 V17.9.0）Numbering, addressing and identification（IMEI の構成）",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123000_123099/123003/17.09.00_60/ts_123003v170900p.pdf"
+      },
+      {
+        "title": "ソフトバンク よくあるご質問「携帯電話の製造番号（IMEI番号）を確認する方法」",
+        "url": "https://www.softbank.jp/support/faq/view/10892"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-083",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "5G のネットワークの構成のうち、5G の基地局を 5G 専用のコアネットワークにつなぎ、4G の設備に頼らずに動かす構成を（ア）、5G の基地局を既存の LTE の基地局やコアネットワークと組み合わせ、網を入れ替えずに 5G の電波を使えるようにする構成を（イ）という。（ア）（イ）に入る語の組合せはどれか。",
+    "choices": [
+      "（ア）SA 方式　（イ）NSA 方式",
+      "（ア）SA 方式　（イ）ネットワークスライシング",
+      "（ア）NFV　（イ）NSA 方式",
+      "（ア）NFV　（イ）ネットワークスライシング"
+    ],
+    "answer": 0,
+    "stemPlain": "5G の網の作り方の2つ、①5G だけで動く構成 ②4G の設備と組み合わせる構成、の名前の組を選ぶ問題。",
+    "explanation": "3GPP の説明では、SA（Stand-Alone）方式は 5G の無線（NR）を 5G のコアネットワーク（5GC）につなぐ構成で、4G の網のどの部分も必要としない『完全な 5G』。NSA（Non-Stand Alone）方式は、5G の無線を、既存の LTE の基地局とコアネットワーク（EPC）と組み合わせて使う構成で、網を入れ替えずに 5G の無線を使える。総務省の白書も、5G の導入当初は NSA 構成で始まったと説明している。",
+    "whyWrong": [
+      null,
+      "（イ）が誤り。ネットワークスライシングは、1つの物理的な網を用途ごとの仮想的な網に切り分ける技術で、LTE の設備と組み合わせる構成の名前ではない。LTE と組み合わせるのは NSA（Non-Stand Alone）方式。",
+      "（ア）が誤り。NFV は、網の機能を汎用サーバの上のソフトウェアで動かす考え方で、5G のコアにつなぐ構成の名前ではない。5G 専用のコアにつなぐのは SA（Stand Alone）方式。",
+      "（ア）（イ）とも誤り。NFV は網の機能のソフトウェア化、ネットワークスライシングは網を用途ごとに切り分ける技術で、どちらも 5G の基地局をどのコアにつなぐかの構成の名前ではない。"
+    ],
+    "memoryTip": "SA＝Stand Alone（5G だけで立つ）。NSA＝4G に支えられて立つ。",
+    "concepts": [
+      "C-SC-05-072",
+      "C-SC-05-070",
+      "C-SC-05-009"
+    ],
+    "sources": [
+      {
+        "title": "3GPP「5G System Overview」（SA と NSA のアーキテクチャ）",
+        "url": "https://www.3gpp.org/technologies/5g-system-overview"
+      },
+      {
+        "title": "総務省 令和2年版 情報通信白書「5Gの実現のために導入されている技術」（ネットワーク・スライシング、NSA構成）",
+        "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r02/html/nd111330.html"
+      },
+      {
+        "title": "ETSI Network Functions Virtualisation – Introductory White Paper（2012年10月）",
+        "url": "https://portal.etsi.org/NFV/NFV_White_Paper.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-084",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "LPWA の方式のうち、免許の要らない周波数帯を使うものはどれか。",
+    "choices": [
+      "NB-IoT",
+      "LTE-M（Cat-M1）",
+      "LoRaWAN",
+      "LTE"
+    ],
+    "answer": 2,
+    "stemPlain": "少ない電力で遠くまで届く IoT 向けの無線（LPWA）のうち、免許の要らない電波を使う方式を選ぶ問題。",
+    "explanation": "LoRa Alliance は、LoRaWAN を、電池で動く機器を広い範囲でインターネットにつなぐための LPWA の仕様とし、免許の要らない周波数帯で動くと説明している。総務省の資料でも、LoRa は 920 MHz 帯など免許不要の周波数帯を使い、LTE-M（eMTC）と NB-IoT は既存の携帯電話の帯域（要免許）を使うと整理している。",
+    "whyWrong": [
+      "NB-IoT は、既存の携帯電話の帯域（免許が要る）を使うセルラー系の LPWA（総務省の資料）。携帯電話の事業者の網の上で動く。",
+      "LTE-M（eMTC、Cat-M1）も、既存の携帯電話の帯域（免許が要る）を使うセルラー系の LPWA。",
+      null,
+      "LTE は、免許を受けた携帯電話の帯域を使う、スマートフォンなどのための通信規格。少ない電力を目指す LPWA の方式でもない。"
+    ],
+    "memoryTip": "免許不要＝LoRaWAN（920 MHz 帯など）。免許あり（携帯電話の帯域）＝LTE-M・NB-IoT。",
+    "concepts": [
+      "C-SC-05-073",
+      "C-SC-05-069"
+    ],
+    "sources": [
+      {
+        "title": "LoRa Alliance「What is LoRaWAN」",
+        "url": "https://lora-alliance.org/about-lorawan/"
+      },
+      {
+        "title": "総務省 LPWA の概要・特徴・主な諸元（資料）",
+        "url": "https://www.soumu.go.jp/main_content/000531436.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-085",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "not",
+    "difficulty": 1,
+    "stem": "LPWA（Low Power Wide Area）の特徴として、適切でないものはどれか。",
+    "choices": [
+      "ボタン電池1つで、数年単位の動作を目指す。",
+      "Wi-Fi より高速なので、監視カメラの高画質の映像を送り続ける用途に向く。",
+      "方式によっては、数 km〜十数 km の距離まで届く。",
+      "端末1台あたりの通信料金を低く抑えることを目指す。"
+    ],
+    "answer": 1,
+    "stemPlain": "少ない電力で遠くまで届く IoT 向けの無線（LPWA）の特徴のうち、誤っているものを選ぶ問題。",
+    "explanation": "LPWA は、①低消費電力 ②広いサービスエリア ③低コストを目指す無線で、その代わり通信速度は遅い。総務省の資料の諸元では、LoRa や SIGFOX は数百 bps 程度、LTE-M でも 1 Mbps 程度。センサーの値のような少ないデータを、ときどき送る用途向けで、高画質の映像を送り続ける用途には向かない。",
+    "whyWrong": [
+      "適切。総務省の資料は、LPWA の特徴の1つに低消費電力を挙げ、ボタン電池1つで数年単位の動作としている。",
+      null,
+      "適切。総務省の資料の諸元では、LoRa は数 km〜十数 km、LTE-M・NB-IoT は十数 km の通信距離とされている。",
+      "適切。総務省の資料は低コストを特徴に挙げ、例として端末1台あたりの通信料金が年 100 円からの方式を示している。"
+    ],
+    "memoryTip": "LPWA＝省電力・遠く・安い。代わりに遅い（少しのデータ向け）。",
+    "concepts": [
+      "C-SC-05-073",
+      "C-SC-05-001"
+    ],
+    "sources": [
+      {
+        "title": "総務省 LPWA の概要・特徴・主な諸元（資料）",
+        "url": "https://www.soumu.go.jp/main_content/000531436.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-086",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク応用"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "電力・ガス・水道のメーターなどで使われ、機器どうしが電波を中継し合う無線のメッシュネットワークを作る通信規格はどれか。",
+    "choices": [
+      "LoRaWAN",
+      "NB-IoT",
+      "Bluetooth",
+      "Wi-SUN"
+    ],
+    "answer": 3,
+    "stemPlain": "メーターなどの機器どうしが電波を中継し合って網を作る無線の規格の名前を選ぶ問題。",
+    "explanation": "Wi-SUN Alliance は、Wi-SUN FAN を無線のメッシュネットワークの規格とし、電気・水道・ガスなどの公益事業（スマートユーティリティ）、スマートシティ、街灯などで使われるとしている。機器どうしが中継し合うので、1台の電波が弱くても、隣の機器を経由して遠くへ届けられる。",
+    "whyWrong": [
+      "LoRaWAN は、端末がゲートウェイ（中継の基地）へ直接届く遠距離の無線を使う LPWA の仕様。機器どうしが中継し合うメッシュの網を作るものとしては説明されていない。",
+      "NB-IoT は、携帯電話の事業者の基地局に直接つなぐセルラー系の LPWA。機器どうしの中継の網ではない。",
+      "Bluetooth は、主に数 m〜数十 m の近い距離で機器どうしをつなぐ無線（総務省の資料では 10〜100 m 程度）。メーターの広い範囲の網に使う規格としては挙がっていない。",
+      null
+    ],
+    "memoryTip": "Wi-SUN＝メーターのメッシュ。LoRaWAN＝遠くのゲートウェイへ直接。",
+    "concepts": [
+      "C-SC-05-073"
+    ],
+    "sources": [
+      {
+        "title": "Wi-SUN Alliance（Wi-SUN FAN：無線メッシュネットワーク）",
+        "url": "https://wi-sun.org/"
+      },
+      {
+        "title": "LoRa Alliance「What is LoRaWAN」",
+        "url": "https://lora-alliance.org/about-lorawan/"
+      },
+      {
+        "title": "総務省 LPWA の概要・特徴・主な諸元（資料）",
+        "url": "https://www.soumu.go.jp/main_content/000531436.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-087",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク管理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Web サーバの負荷を分散するために DNS ラウンドロビンを使う場合の弱点として、最も適切なものはどれか。",
+    "choices": [
+      "同じ名前に登録できる IP アドレスが1つだけで、2台目以降へ散らせない。",
+      "利用者ごとの接続数を数えて振り分けるので、DNS サーバの負荷が大きい。",
+      "DNS の答えはキャッシュされないので、問い合わせが毎回同じサーバに集中する。",
+      "サーバが止まっていても、そのサーバのアドレスを答え続けてしまう。"
+    ],
+    "answer": 3,
+    "stemPlain": "DNS の答えの順番を入れ替えてサーバの負荷を分ける方法（DNS ラウンドロビン）の弱点を選ぶ問題。",
+    "explanation": "DNS ラウンドロビンは、同じ名前に複数のアドレスを登録し、答える順番を入れ替えて利用者を散らす（RFC 1794 は、DNS で負荷を分ける方法を説明している）。DNS はサーバの状態を見ずに答えるので、止まったサーバのアドレスを答え続け、その答えを受け取った利用者はつながらない。答えはキャッシュされるので、外してもすぐには効かない。止まったサーバを外せるのはロードバランサー。",
+    "whyWrong": [
+      "DNS では、同じ名前に複数のアドレスを登録でき、DNS ラウンドロビンはまさにそれを使う（RFC 1794）。登録できるのが1つだけ、ということはない。",
+      "接続数を数えて、いちばん空いているサーバに振り分けるのは、ロードバランサーの最小接続数の方式。DNS ラウンドロビンは答えの順番を入れ替えるだけで、接続数は数えない。",
+      "DNS の答えはキャッシュされる。キャッシュされるので、答えを変えてもすぐには切り替わらない、というのがむしろ弱点。",
+      null
+    ],
+    "memoryTip": "DNS ラウンドロビン＝止まったサーバも案内してしまう。",
+    "concepts": [
+      "C-SC-05-074",
+      "C-SC-05-015",
+      "C-SC-05-048"
+    ],
+    "sources": [
+      {
+        "title": "RFC 1794 DNS Support for Load Balancing",
+        "url": "https://www.rfc-editor.org/rfc/rfc1794.txt"
+      },
+      {
+        "title": "F5「What Is a Load Balancer?」",
+        "url": "https://www.f5.com/glossary/load-balancer"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-088",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク管理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "syslog のメッセージに付ける重大度（severity）のうち、値が 0 で最も重いものはどれか。",
+    "choices": [
+      "Critical（危険な状態）",
+      "Emergency（システムが使えない状態）",
+      "Error（エラーの状態）",
+      "Debug（デバッグ用の情報）"
+    ],
+    "answer": 1,
+    "stemPlain": "機器の記録（syslog）に付ける『重さ』の段階のうち、いちばん重い 0 の名前を選ぶ問題。",
+    "explanation": "RFC 5424 は、syslog の重大度を 0〜7 の8段階とし、0 を Emergency（システムが使えない）、1 を Alert、2 を Critical、3 を Error、4 を Warning、5 を Notice、6 を Informational、7 を Debug としている。値が小さいほど重い。集めたログを、重大度で絞って見張るのに使う。",
+    "whyWrong": [
+      "Critical は値が 2 の重大度。重いが、最も重い 0 ではない。",
+      null,
+      "Error は値が 3 の重大度。",
+      "Debug は値が 7 で、最も軽い重大度。開発や調査のための細かな情報。"
+    ],
+    "memoryTip": "0 緊急 → 7 デバッグ。数が小さいほど重い。",
+    "concepts": [
+      "C-SC-05-075"
+    ],
+    "sources": [
+      {
+        "title": "RFC 5424 The Syslog Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc5424.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-089",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク管理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "パケットアナライザーの用途として、最も適切なものはどれか。",
+    "choices": [
+      "光ファイバの通信を光学的に分岐し、通信の写しを監視の装置へ取り出す。",
+      "機器の状態を UDP の 161 番で問い合わせ、回線の使用量などを定期的に集める。",
+      "流れるパケットを取り込み、中身をプロトコルごとに表示して、障害や不審な通信を調べる。",
+      "各機器のログを決まった形式でネットワーク経由で受け取り、1か所に集めて保存する。"
+    ],
+    "answer": 2,
+    "stemPlain": "通信の中身を取り込んで見る道具（パケットアナライザー）の使い道を選ぶ問題。",
+    "explanation": "パケットアナライザー（Wireshark の説明書でいう network packet analyzer）は、ネットワークの通信を取り込み、各パケットのヘッダーや中身を層ごとに分けて表示する。DNS の答えが返らない、TCP の再送が多い、知らない宛先へ大量に送っているなどを、目で確かめられる。スイッチの網では、ミラーポートやネットワークタップで写しを取って使う。",
+    "whyWrong": [
+      "光ファイバの通信を光学的に分岐して写しを取り出すのは、ネットワークタップ。パケットアナライザーは、取り出した通信を記録・表示する側の道具。",
+      "機器の状態を UDP の 161 番で問い合わせて集めるのは SNMP のマネージャ。パケットそのものの中身を見る道具ではない。",
+      null,
+      "ログを決まった形式で受け取り1か所に集めるのは、syslog のサーバ（ログの集約）。パケットの中身を見る道具ではない。"
+    ],
+    "memoryTip": "タップ＝くみ出す。アナライザー＝中身を見る。SNMP＝状態を聞く。syslog＝ログを集める。",
+    "concepts": [
+      "C-SC-05-076",
+      "C-SC-05-019",
+      "C-SC-05-077",
+      "C-SC-05-075"
+    ],
+    "sources": [
+      {
+        "title": "Wireshark User’s Guide「Introduction」",
+        "url": "https://www.wireshark.org/docs/wsug_html_chunked/ChapterIntroduction.html"
+      },
+      {
+        "title": "NIST SP 800-94 Guide to Intrusion Detection and Prevention Systems（ネットワークタップ・スパニングポート）",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf"
+      },
+      {
+        "title": "RFC 1157 A Simple Network Management Protocol (SNMP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc1157.txt"
+      },
+      {
+        "title": "RFC 5424 The Syslog Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc5424.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-090",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク管理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ネットワーク機器の監視に SNMPv1 や SNMPv2c を使うときの注意点として、最も適切なものはどれか。",
+    "choices": [
+      "認証は平文のコミュニティ名（合言葉）だけなので、推測されやすい値は避け、可能なら SNMPv3 を使う。",
+      "TCP で常に接続を保つので、監視する機器の数だけマネージャの接続が増え、負荷が高くなる。",
+      "トラップは受け取ったマネージャが必ず応答を返す手順なので、異常の通知が途中で失われる心配は無い。",
+      "管理情報（MIB）の項目を機器が自分で決めるので、機器ごとに問い合わせの方法を覚え直す必要がある。"
+    ],
+    "answer": 0,
+    "stemPlain": "ネットワーク機器の状態を問い合わせる古い版の SNMP を使うときに気をつけることを選ぶ問題。",
+    "explanation": "SNMPv1 では、管理する側とされる側の関係を、コミュニティという名前（コミュニティ名）で表し、RFC 1157 も、メッセージをすべて本物とみなすだけの簡単な認証しか持たない実装がありうるとしている。コミュニティ名は合言葉にすぎず、暗号化もされないので、推測しやすい値のままだと機器の情報を読まれる。認証と暗号化を持つ SNMPv3 の枠組み（RFC 3411）を使うのが望ましい。",
+    "whyWrong": [
+      null,
+      "SNMP の問い合わせは UDP（161 番）で送る（RFC 1157）。常時接続を保つ TCP は使わない。",
+      "SNMPv1 のトラップは、エージェントが UDP の 162 番へ送るだけで、受け取った側は中身をアプリに渡すだけで応答を返さない（RFC 1157）。UDP なので途中で失われることがあり、届いたかは分からない。",
+      "MIB の項目は、MIB-II（RFC 1213）のように標準で決まった番号（OID）の木で表すので、機器ごとに問い合わせの方法を覚え直す必要は無い。"
+    ],
+    "memoryTip": "SNMPv1・v2c＝合言葉（コミュニティ名）だけ・平文。v3＝認証と暗号化。",
+    "concepts": [
+      "C-SC-05-077"
+    ],
+    "sources": [
+      {
+        "title": "RFC 1157 A Simple Network Management Protocol (SNMP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc1157.txt"
+      },
+      {
+        "title": "RFC 3411 An Architecture for Describing Simple Network Management Protocol (SNMP) Management Frameworks",
+        "url": "https://www.rfc-editor.org/rfc/rfc3411.txt"
+      },
+      {
+        "title": "RFC 1213 Management Information Base for Network Management of TCP/IP-based internets: MIB-II",
+        "url": "https://www.rfc-editor.org/rfc/rfc1213.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-05-091",
+    "syllabus": [
+      "デジタル技術",
+      "ネットワーク",
+      "ネットワーク管理"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "SNMP で、エージェント（監視される機器）がマネージャからの問い合わせを受け付けるポート番号は UDP の（ア）であり、エージェントが異常を自分からマネージャへ知らせるトラップを受けるポート番号は UDP の（イ）である。（ア）（イ）に入る番号の組合せはどれか。",
+    "choices": [
+      "（ア）161　（イ）162",
+      "（ア）161　（イ）514",
+      "（ア）123　（イ）162",
+      "（ア）123　（イ）514"
+    ],
+    "answer": 0,
+    "stemPlain": "機器の状態を問い合わせる SNMP で、①問い合わせを受ける番号 ②異常を知らせる通知（トラップ）を受ける番号、の組を選ぶ問題。",
+    "explanation": "RFC 1157 は、SNMP のエージェントは UDP の 161 番でメッセージを受け、トラップを報告するメッセージは UDP の 162 番で受けるべきだとしている。マネージャが定期的に問い合わせる（ポーリング）のが 161 番、機器が異常を自分から知らせるトラップが 162 番。",
+    "whyWrong": [
+      null,
+      "（イ）が誤り。UDP の 514 番は、syslog のメッセージを受ける番号（RFC 5426）。SNMP のトラップは 162 番で受ける。",
+      "（ア）が誤り。UDP の 123 番は、時刻を合わせる NTP の番号（RFC 5905）。SNMP の問い合わせは 161 番で受ける。",
+      "（ア）（イ）とも誤り。123 番は NTP、514 番は syslog の番号。SNMP は問い合わせが 161 番、トラップが 162 番。"
+    ],
+    "memoryTip": "SNMP は 161（聞く）と 162（知らせる）。syslog は 514、NTP は 123。",
+    "concepts": [
+      "C-SC-05-077",
+      "C-SC-05-044",
+      "C-SC-05-075"
+    ],
+    "sources": [
+      {
+        "title": "RFC 1157 A Simple Network Management Protocol (SNMP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc1157.txt"
+      },
+      {
+        "title": "RFC 5426 Transmission of Syslog Messages over UDP",
+        "url": "https://www.rfc-editor.org/rfc/rfc5426.txt"
+      },
+      {
+        "title": "RFC 5905 Network Time Protocol Version 4: Protocol and Algorithms Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc5905.txt"
+      }
+    ],
+    "status": "verified"
+  }
+]
