@@ -7,9 +7,11 @@ import { figureBlock } from './figure.js';
 import { richEl } from './richtext.js';
 import { reportButton } from './report.js';
 import { explainSensei, TIP_SENSEI } from '../lib/characters.js';
-import { pastExamCitation } from '../lib/pastexam.js';
+import { pastExamCitation, choiceLabelsOf, CHOICE_LABELS_ORIGINAL } from '../lib/pastexam.js';
 
-export const CHOICE_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+// 選択肢の記号。オリジナルは A〜、過去問題は本試験どおり ア〜（問題ごとの記号は choiceLabelsOf(q)）
+export const CHOICE_LABELS = CHOICE_LABELS_ORIGINAL;
+export { choiceLabelsOf };
 
 function laterLabel(on) {
   return on ? 'あとで見る ✓' : 'あとで見る';
@@ -60,7 +62,7 @@ export function stemPlainBlock(q) {
 
 /**
  * 過去問題の出典の1行（問題の画面と解説に出す）。pastExam が無い問題は null。
- * 例: 出典：令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問1　（改変した問題は末尾に（一部改変））。決まりは要件定義書 §12
+ * 例: 出典：令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問1（複数の出典は「／」でつなぐ。改変した出典は末尾に（一部改変））。決まりは要件定義書 §12
  */
 export function pastExamLine(q) {
   const t = pastExamCitation(q && q.pastExam);
@@ -97,8 +99,9 @@ export function explanation(app, sq, chosen, open, opts = {}) {
   const q = sq.q;
   const sensei = opts.sensei !== false;
   const box = h('div', { class: 'explain' });
+  const labels = choiceLabelsOf(q);
   box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由', sensei ? tappable(characterImg(explainSensei(chosen !== null && chosen === sq.answer), 'sensei-mini')) : null),
-    h('p', { class: 'ex-answer' }, h('strong', { text: '正解: ' + CHOICE_LABELS[sq.answer] + '. ' + sq.choices[sq.answer] })),
+    h('p', { class: 'ex-answer' }, h('strong', { text: '正解: ' + labels[sq.answer] + '. ' + sq.choices[sq.answer] })),
     richEl(app, 'p', {}, q.explanation || '（解説は準備中です）', new Set())));
   const fig = figureBlock(app, q.figures, { heading: '図で確かめる', tag: 'section', className: 'ex-block' });
   if (fig) box.appendChild(fig);
@@ -108,7 +111,7 @@ export function explanation(app, sq, chosen, open, opts = {}) {
   const whySeen = new Set(); // 誤答の説明は1つの区画。同じ基礎のことばに印を付けるのは最初の1回だけ
   for (const w of wrongs) {
     ul.appendChild(h('li', { class: w.i === chosen ? 'chosen' : '' },
-      h('span', { class: 'lbl', text: CHOICE_LABELS[w.i] + '. ' + w.c }),
+      h('span', { class: 'lbl', text: labels[w.i] + '. ' + w.c }),
       richEl(app, 'span', { class: 'why' }, w.why || '（理由は準備中です）', whySeen),
       w.i === chosen ? h('span', { class: 'chip you' }, 'あなたの回答') : null));
   }

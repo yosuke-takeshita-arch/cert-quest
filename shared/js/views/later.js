@@ -2,7 +2,7 @@
 import { h } from '../ui.js';
 import { laterItems } from '../lib/later.js';
 import { startSession } from './play.js';
-import { explanation, laterButton, stemPlainBlock, pastExamLine, CHOICE_LABELS } from './explain.js';
+import { explanation, laterButton, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 import { openCardSheet, statusChip } from './cards.js';
 
 export const LATER_SOLVE_MAX = 20;
@@ -102,7 +102,7 @@ function renderLaterOne(app, id) {
   q.choices.forEach((c, i) => {
     const right = i === q.answer;
     ul.appendChild(h('li', { class: 'read-choice' + (right ? ' ok' : '') },
-      h('span', { class: 'mark', 'aria-hidden': 'true', text: right ? '✓' : CHOICE_LABELS[i] }),
+      h('span', { class: 'mark', 'aria-hidden': 'true', text: right ? '✓' : choiceLabelsOf(q)[i] }),
       h('span', { class: 'ctext', text: c }),
       right ? h('span', { class: 'chip', text: '正解' }) : null));
   });

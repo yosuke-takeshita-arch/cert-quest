@@ -6,7 +6,7 @@ import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/fore
 import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stumbleBlock, stemPlainBlock, pastExamLine, CHOICE_LABELS } from './explain.js';
+import { explanation, stumbleBlock, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 
 const mmss = (ms) => {
   const s = Math.max(0, Math.ceil(ms / 1000));
@@ -116,7 +116,7 @@ export function renderExam(app) {
       sq.choices.forEach((c, i) => {
         const sel = S.answers[S.cur] === i;
         choices.appendChild(h('button', { class: 'choice' + (sel ? ' picked' : ''), type: 'button', 'aria-pressed': sel ? 'true' : 'false', onClick: () => { S.answers[S.cur] = i; draw(); } },
-          h('span', { class: 'mark', 'aria-hidden': 'true', text: sel ? '●' : CHOICE_LABELS[i] }), h('span', { class: 'ctext', text: c })));
+          h('span', { class: 'mark', 'aria-hidden': 'true', text: sel ? '●' : choiceLabelsOf(q)[i] }), h('span', { class: 'ctext', text: c })));
       });
       card.appendChild(choices);
       root.appendChild(card);

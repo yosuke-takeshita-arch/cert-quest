@@ -9,7 +9,8 @@ import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { normalizePastExam, pastExamCitation, PAST_EXAM_NO_MAX } from '../js/lib/pastexam.js';
+import { normalizePastExam, normalizePastExams, pastExamCitation, isPastQuestion, choiceLabelsOf, PAST_EXAM_NO_MAX } from '../js/lib/pastexam.js';
+import { shuffleChoices } from '../js/lib/quiz.js';
 import { normalizeQuestion, normalizeConcept, buildConceptIndex } from '../js/lib/data.js';
 
 const shared = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -28,10 +29,13 @@ class FakeEl {
 }
 globalThis.document = { createElement: (t) => new FakeEl(t), createTextNode: (s) => ({ text: s }) };
 globalThis.location = { href: 'http://localhost/sc/' };
-const { explanation, pastExamLine } = await import('../js/views/explain.js');
+const { explanation, pastExamLine, CHOICE_LABELS } = await import('../js/views/explain.js');
 
 const PE = { year: '令和7年度', period: '秋期', exam: '情報処理安全確保支援士試験', part: '午前Ⅱ', no: 1, modified: false };
 const CITE = '出典：令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問1';
+const PE2 = { ...PE, year: '令和5年度', period: '春期', no: 2 };
+const PE3 = { ...PE, no: 2 };
+const CITE_MULTI = '出典：令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問2／令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問2';
 
 test('出典の1行: 年度・期・試験区分・時間区分・問番号を並べる。改変した問題は末尾に（一部改変）', () => {
   assert.equal(pastExamCitation(PE), CITE);
@@ -64,7 +68,8 @@ test('整形: 欄がそろっていなければ null（出典の行を出さな�
 const baseQ = { id: 'SC-01-001', syllabus: ['a'], stem: '問題文です。', answer: 0, choices: ['甲です', '乙です'], explanation: '甲が正しい。' };
 
 test('normalizeQuestion: pastExam を整えて持つ。無い・崩れていれば null（問題そのものは捨てない）', () => {
-  assert.deepEqual(normalizeQuestion({ ...baseQ, pastExam: PE }).pastExam, PE);
+  assert.deepEqual(normalizeQuestion({ ...baseQ, pastExam: PE }).pastExam, [PE], 'オブジェクト1つも、長さ1の配列にそろえる');
+  assert.deepEqual(normalizeQuestion({ ...baseQ, pastExam: [PE, PE2] }).pastExam, [PE, PE2]);
   assert.equal(normalizeQuestion(baseQ).pastExam, null);
   const broken = normalizeQuestion({ ...baseQ, pastExam: { ...PE, no: 26 } });
   assert.ok(broken, '出典が崩れていても問題は残る');
@@ -157,7 +162,10 @@ test('check-data.js: 出典が崩れていれば NG（問番号 0・26・小数�
     ['modified が無い', (({ modified, ...r }) => r)(PE), /pastExam\.modified が true／false でない/],
     ['modified が文字', { ...PE, modified: 'false' }, /pastExam\.modified が true／false でない/],
     ['知らない欄', { ...PE, note: 'x' }, /pastExam に知らない欄がある: note/],
-    ['配列', [PE], /pastExam がオブジェクトでない/],
+    ['出典がオブジェクトでない', [PE, 'x'], /pastExam の出典がオブジェクトでない/],
+    ['配列の中の1つが崩れている', [PE, { ...PE3, no: 26 }], /pastExam\.no が 1〜25/],
+    ['空の配列', [], /pastExam が空の配列/],
+    ['文字列', 'x', /pastExam の出典がオブジェクトでない/],
   ];
   for (const [name, pe, re] of bads) {
     const r = runCheck((qs) => withPast(qs, pe));
@@ -174,7 +182,128 @@ test('check-data.js: 同じ過去問題の出典を2回載せたら NG。modifie
   assert.equal(mod.code, 0, mod.out);
 });
 
+
+test('check-data.js: 複数の出典（配列）を持つ問題は通る。PAST の数は出典でなく問題で数える', () => {
+  const r = runCheck((qs) => [...withPast(qs, [PE2, PE3]), { ...qs[0], id: 'SC-01-003', stem: '【サンプル】別の問題文です。' }, { ...qs[0], id: 'SC-01-004', stem: '【サンプル】さらに別の問題文です。' }]);
+  assert.equal(r.code, 0, r.out);
+  assert.match(r.out, /PAST sc: 過去問題 1 \/ オリジナル 3/, '出典は2つでも過去問題は1問');
+  assert.doesNotMatch(r.out, /WARN sc -/);
+});
+
+test('check-data.js: 別の問題に同じ出典があれば NG（配列の中でも・オブジェクト1つでも）。同じ問題の中の重複も NG', () => {
+  const a = runCheck((qs) => { const o = withPast(qs, [PE2, PE3]); o[0].pastExam = [{ ...PE3 }]; return o; });
+  assert.equal(a.code, 1, a.out);
+  assert.match(a.out, /同じ過去問題の出典（令和7年度\|秋期\|情報処理安全確保支援士試験\|午前Ⅱ\|2）が SC-01-001 にもある/);
+  const b = runCheck((qs) => { const o = withPast(qs, [PE2, PE3]); o[0].pastExam = { ...PE2 }; return o; });
+  assert.equal(b.code, 1, b.out);
+  assert.match(b.out, /同じ過去問題の出典/);
+  const c = runCheck((qs) => withPast(qs, [PE2, { ...PE2, modified: true }]));
+  assert.equal(c.code, 1, c.out);
+  assert.match(c.out, /同じ問題の中に2回ある/);
+});
+
+test('check-data.js: 過去問題の数を出典で数えない。出典が3つでも1問（オリジナル 1 なら WARN は「過去問題（1問）」）', () => {
+  const r = runCheck((qs) => withPast(qs, [PE2, PE3, { ...PE, year: '令和3年度', no: 9 }]));
+  assert.equal(r.code, 0, r.out);
+  assert.match(r.out, /WARN sc -: 過去問題（1問）がオリジナル（1問）以上/);
+});
+
 test('登録: 出典の部品はオフラインでも出る（sw-core.js の SHARED）。テストが package.json の一覧に入っている', () => {
   assert.ok(src('sw-core.js').includes("'../shared/js/lib/pastexam.js'"));
   assert.ok(src('package.json').includes('tests/pastexam.test.js'));
+});
+
+// ---- 複数の出典（同じ過去問題が複数の試験に出ていた場合。2026-10-29 先生決定） ----
+test('出典の1行(複数): 全部を省略せず「／」でつなぐ。年度・期・試験区分・時間区分・問番号が毎回入る。改変は出典ごと', () => {
+  assert.equal(pastExamCitation([PE2, PE3]), CITE_MULTI);
+  assert.equal(pastExamCitation([PE2, { ...PE3, modified: true }]), CITE_MULTI + '（一部改変）');
+  assert.equal(pastExamCitation([{ ...PE2, modified: true }, PE3]), CITE_MULTI.replace('問2／', '問2（一部改変）／'));
+  assert.equal(pastExamCitation([PE]), CITE, '長さ1の配列はオブジェクト1つと同じ');
+  assert.equal(pastExamCitation([PE2, PE3, { ...PE, year: '令和3年度', no: 9 }]).split('／').length, 3, '3回出た問題は3つ');
+  assert.equal(pastExamCitation([]), '');
+  assert.equal(pastExamCitation([PE2, { ...PE3, no: 26 }]), '', '1つでも崩れていれば出典の行を出さない');
+});
+
+test('整形(複数): 配列・オブジェクトのどちらも配列にそろえる。空・崩れは null', () => {
+  assert.deepEqual(normalizePastExams(PE), [PE]);
+  assert.deepEqual(normalizePastExams([PE2, PE3]), [PE2, PE3]);
+  for (const bad of [undefined, null, 'x', 5, [], {}, [null], [PE, {}]]) assert.equal(normalizePastExams(bad), null, JSON.stringify(bad));
+});
+
+test('画面の部品(複数): pastExamLine と解説は、全部の出典を1行（p）に出す', () => {
+  const q = normalizeQuestion({ ...baseQ, pastExam: [PE2, PE3] });
+  assert.equal(pastExamLine(q).textContent, CITE_MULTI);
+  const lines = explanation(app, sqOf(q), 1, () => {}, { sensei: false }).find((e) => e.attrs['data-past-exam'] === '1');
+  assert.equal(lines.length, 1);
+  assert.equal(lines[0].textContent, CITE_MULTI);
+});
+
+// ---- 過去問題は本試験のとおり: 並べ替えず ア・イ・ウ・エ。オリジナルは今までどおり（2026-10-29 先生決定） ----
+const fourQ = { id: 'SC-01-001', syllabus: ['a'], stem: '問題文です。', answer: 2, choices: ['甲', '乙', '丙', '丁'], explanation: '丙が正しい。', whyWrong: ['甲は違う', '乙は違う', null, '丁は違う'] };
+const pastQ = normalizeQuestion({ ...fourQ, pastExam: [PE2, PE3] });
+const origQ = normalizeQuestion(fourQ);
+const seeded = (seed) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+
+test('過去問題は選択肢を並べ替えない: どの乱数でも印刷順のまま、answer と whyWrong もそのまま', () => {
+  assert.equal(isPastQuestion(pastQ), true);
+  assert.equal(isPastQuestion(origQ), false);
+  assert.equal(isPastQuestion({ ...fourQ, pastExam: PE }), true, '正規化前（オブジェクト1つ）でも見分ける');
+  for (let seed = 1; seed <= 60; seed++) {
+    const s = shuffleChoices(pastQ, seeded(seed));
+    assert.deepEqual(s.perm, [0, 1, 2, 3], 'seed ' + seed);
+    assert.deepEqual(s.choices, ['甲', '乙', '丙', '丁']);
+    assert.equal(s.answer, 2);
+    assert.deepEqual(s.whyWrong, ['甲は違う', '乙は違う', null, '丁は違う']);
+  }
+  assert.deepEqual(shuffleChoices(pastQ).choices, ['甲', '乙', '丙', '丁'], '乱数を渡さなくても同じ');
+});
+
+test('オリジナルは今までどおり: 並べ替える。answer と whyWrong は選択肢と一緒に動く', () => {
+  const perms = new Set();
+  for (let seed = 1; seed <= 60; seed++) {
+    const s = shuffleChoices(origQ, seeded(seed));
+    perms.add(s.perm.join(','));
+    assert.equal(s.choices[s.answer], '丙', 'seed ' + seed);
+    assert.deepEqual([...s.perm].sort(), [0, 1, 2, 3]);
+    s.choices.forEach((c, i) => { if (c !== '丙') assert.equal(s.whyWrong[i], fourQ.whyWrong[fourQ.choices.indexOf(c)]); });
+  }
+  assert.ok(perms.size > 1, '並べ替えが起きている');
+  // 出典が崩れている（正規化で null）問題は過去問題として扱わない
+  assert.equal(isPastQuestion({ ...fourQ, pastExam: { ...PE, no: 26 } }), false);
+});
+
+test('記号: 過去問題は ア・イ・ウ・エ、オリジナルは A〜。8つまで足りる', () => {
+  assert.deepEqual(choiceLabelsOf(pastQ).slice(0, 4), ['ア', 'イ', 'ウ', 'エ']);
+  assert.deepEqual(choiceLabelsOf(origQ).slice(0, 4), ['A', 'B', 'C', 'D']);
+  assert.deepEqual(choiceLabelsOf(origQ), CHOICE_LABELS);
+  assert.equal(choiceLabelsOf(pastQ).length, 8);
+});
+
+test('解説(explanation): 過去問題は「正解: ウ. 丙」「ア. 甲」「エ. 丁」、オリジナルは A〜D のまま', () => {
+  const texts = (q) => {
+    const el = explanation(app, shuffleChoices(q, seeded(3)), 0, () => {}, { sensei: false });
+    return el.find((e) => typeof e.textContent === 'string' && e.textContent !== '').map((e) => e.textContent);
+  };
+  const p = texts(pastQ);
+  assert.ok(p.includes('正解: ウ. 丙'), p.join(' | '));
+  assert.ok(p.includes('ア. 甲') && p.includes('イ. 乙') && p.includes('エ. 丁'), p.join(' | '));
+  assert.ok(!p.some((t) => /^[A-D]\. /.test(t)), '過去問題に A〜D の記号が出ない');
+  const o = texts(origQ);
+  assert.ok(o.some((t) => /^正解: [A-D]\. 丙$/.test(t)), o.join(' | '));
+  assert.ok(!o.some((t) => /^[ア-エ]\. /.test(t)), 'オリジナルに ア〜エ が出ない');
+});
+
+test('結線: 出題・ボス戦・模擬試験・あとで見る・真ボスが、選択肢の記号を問題ごとに choiceLabelsOf(q) で出す。固定の CHOICE_LABELS を使わない', () => {
+  for (const f of ['js/views/play.js', 'js/views/boss.js', 'js/views/exam.js', 'js/views/later.js', 'js/views/trueboss.js']) {
+    const s = src(f);
+    assert.ok(s.includes('choiceLabelsOf(q)[i]'), f + ' が問題ごとの記号を使っていない');
+    assert.ok(!s.includes('CHOICE_LABELS['), f + ' に固定の記号が残っている');
+  }
+  // 解説（正解・誤答の一覧・あなたの回答）は問題ごとの記号
+  const ex = src('js/views/explain.js');
+  assert.ok(ex.includes('const labels = choiceLabelsOf(q);') && !ex.includes('CHOICE_LABELS['), 'explain.js');
+  // 並べ替えは shuffleChoices 1か所。過去問題を除くのもそこ
+  assert.ok(src('js/lib/quiz.js').includes('isPastQuestion(q) ? order'), 'shuffleChoices が過去問題を除いていない');
+  // 復習（weak.js）も shuffleChoices を通るので並べ替わらない。通らない呼び出しが無いこと
+  for (const f of ['js/views/play.js', 'js/views/boss.js', 'js/views/exam.js', 'js/views/trueboss.js', 'js/views/weak.js']) assert.ok(src(f).includes('shuffleChoices('), f);
 });

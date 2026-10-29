@@ -13,7 +13,7 @@ import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
 import { trueBossEnabled, trueBossUnlocked, trueBossAwakeText } from '../lib/trueboss.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, laterButton, stumbleBlock, stemPlainBlock, pastExamLine, CHOICE_LABELS } from './explain.js';
+import { explanation, laterButton, stumbleBlock, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 
 // ボスの見た目。絵が無い（読み込めない）あいだは記号で出す。
 // 絵を足すとき: <アプリ>/images/bosses/boss-<番号>.webp を置く（番号＝bosses.json の no。無い章は地図の章の並び＝1から）。置くだけで記号と入れ替わる。
@@ -418,7 +418,7 @@ export function renderBoss(app, key) {
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
     ui.btns = sq.choices.map((c, i) => {
       const bt = h('button', { class: 'choice', type: 'button', 'data-boss-choice': String(i), onClick: () => answer(i) },
-        h('span', { class: 'mark', 'aria-hidden': 'true', text: CHOICE_LABELS[i] }), h('span', { class: 'ctext', text: c }));
+        h('span', { class: 'mark', 'aria-hidden': 'true', text: choiceLabelsOf(q)[i] }), h('span', { class: 'ctext', text: c }));
       choices.appendChild(bt);
       return bt;
     });

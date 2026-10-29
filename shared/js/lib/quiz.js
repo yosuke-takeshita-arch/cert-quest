@@ -1,4 +1,5 @@
 // 出題まわりの純粋な関数。rng（0以上1未満の乱数を返す関数）を差し替えられるのでテストできる。
+import { isPastQuestion } from './pastexam.js';
 
 export function shuffle(arr, rng = Math.random) {
   const a = arr.slice();
@@ -21,13 +22,14 @@ export function challengeName(config) {
 }
 
 /**
- * 選択肢をシャッフルする（format が scenario のときは元の順のまま）。answer と whyWrong は選択肢と一緒に動かし、対応を崩さない。
+ * 選択肢をシャッフルする（format が scenario のときと、過去問題〔出典 pastExam を持つ問題〕は元の順のまま）。answer と whyWrong は選択肢と一緒に動かし、対応を崩さない。
  * perm[新しい位置] = 元の位置。
  */
 export function shuffleChoices(q, rng = Math.random) {
   const order = q.choices.map((_, i) => i);
   // 場面判断（scenario）は「A社では…」のように選択肢が記号と結びついているので、並べ替えない。
-  const perm = q.format === 'scenario' ? order : shuffle(order, rng);
+  // 過去問題は本試験に出たとおりの順（ア・イ・ウ・エ）で見せる決まり（要件定義書 §12）。並べ替えない。
+  const perm = q.format === 'scenario' || isPastQuestion(q) ? order : shuffle(order, rng);
   return {
     q,
     perm,

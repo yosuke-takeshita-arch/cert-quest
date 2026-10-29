@@ -6,7 +6,7 @@ import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { setBgmRush } from '../audio.js';
 import { XP } from '../lib/scoring.js';
-import { explanation, laterButton, stumbleBlock, stemPlainBlock, pastExamLine, CHOICE_LABELS } from './explain.js';
+import { explanation, laterButton, stumbleBlock, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 
 /**
  * spec: { mode:'stage'|'review'|'challenge', title, pick(app)->質問の配列, stageKey?, backHash }
@@ -132,7 +132,7 @@ export function renderPlay(app) {
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
     const btns = sq.choices.map((c, i) => {
       const b = h('button', { class: 'choice', type: 'button', onClick: () => answer(i) },
-        h('span', { class: 'mark', 'aria-hidden': 'true', text: CHOICE_LABELS[i] }), h('span', { class: 'ctext', text: c }));
+        h('span', { class: 'mark', 'aria-hidden': 'true', text: choiceLabelsOf(q)[i] }), h('span', { class: 'ctext', text: c }));
       choices.appendChild(b);
       return b;
     });

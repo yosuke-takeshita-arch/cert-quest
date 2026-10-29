@@ -18,7 +18,8 @@
 //   - id の形式と重複、問題の concepts が実在するカードを指すこと
 //     （形は資格ごと。G検定 G-NN-NNN／C-NN-NNN、生成AIパスポート AP-NN-NNN／C-AP-NN-NNN。下の ID_FORMS）
 //   - stemPlain（任意）が、空でない文字列・200文字以内・問題文と別の文であること（要件定義書 §7-3）
-//   - pastExam（任意。過去問題の出典。要件定義書 §7・§12）が、year・period・exam・part（空でない文字）・no（1〜25の整数）・modified（true／false）の6つだけで、同じ出典が2回無いこと。
+//   - pastExam（任意。過去問題の出典。要件定義書 §7・§12）が、year・period・exam・part（空でない文字）・no（1〜25の整数）・modified（true／false）の6つだけで、同じ出典がアプリの中で2回無いこと。
+//     同じ過去問題が複数の試験に出ていれば1問にまとめ、pastExam を配列にして出典を並べる（1つならオブジェクト1つでもよい）。数えるのは出典ではなく問題。
 //     PAST 行に過去問題とオリジナルの数を出し、オリジナルが過去問題以下なら WARN（決まりは『オリジナルのほうが多い』）
 //   - sources が {title, url} で url が http(s) であること
 //   - figures（任意）の各 ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG は、script・外部参照などの禁止事項が無く、
@@ -411,8 +412,23 @@ function checkPastExam(f, id, o) {
   const st = pastStats.get(dir);
   if (!('pastExam' in o)) { st.original++; return; }
   st.past++;
-  const p = o.pastExam;
-  if (!p || typeof p !== 'object' || Array.isArray(p)) { err(f, id, 'pastExam がオブジェクトでない'); return; }
+  // 1つの過去問題が複数の試験に出ていれば、出典は配列で書く（1つなら、オブジェクト1つでもよい）。1問は1回だけ数える
+  const list = Array.isArray(o.pastExam) ? o.pastExam : [o.pastExam];
+  if (Array.isArray(o.pastExam) && !list.length) { err(f, id, 'pastExam が空の配列（出典を1つ以上書く）'); return; }
+  const inThis = new Set();
+  for (const p of list) {
+    checkOnePastExam(f, id, p);
+    if (p && isStr(p.year) && isStr(p.period) && isStr(p.exam) && isStr(p.part) && Number.isInteger(p.no)) {
+      const key = [p.year, p.period, p.exam, p.part, p.no].join('|');
+      if (inThis.has(key)) err(f, id, `同じ過去問題の出典（${key}）が同じ問題の中に2回ある`);
+      else if (pastSeen.has(key)) err(f, id, `同じ過去問題の出典（${key}）が ${pastSeen.get(key)} にもある（同じ過去問題は1問にまとめ、pastExam を配列にして出典を並べる）`);
+      else pastSeen.set(key, id);
+      inThis.add(key);
+    }
+  }
+}
+function checkOnePastExam(f, id, p) {
+  if (!p || typeof p !== 'object' || Array.isArray(p)) { err(f, id, 'pastExam の出典がオブジェクトでない'); return; }
   for (const k of ['year', 'period', 'exam', 'part']) {
     if (!isStr(p[k])) err(f, id, `pastExam.${k} が無い・空（出典の行に出す文字。欄が1つ欠けると出典にならない）`);
     else if (p[k] !== p[k].trim() || /[\r\n]/.test(p[k])) err(f, id, `pastExam.${k} の前後に空白、または改行がある`);
@@ -420,10 +436,6 @@ function checkPastExam(f, id, o) {
   if (!Number.isInteger(p.no) || p.no < 1 || p.no > PAST_EXAM_NO_MAX) err(f, id, `pastExam.no が 1〜${PAST_EXAM_NO_MAX} の整数でない: ${p.no}`);
   if (typeof p.modified !== 'boolean') err(f, id, 'pastExam.modified が true／false でない（改変していなければ false と書く。省かない）');
   for (const k of Object.keys(p)) if (!PAST_EXAM_KEYS.includes(k)) err(f, id, `pastExam に知らない欄がある: ${k}`);
-  if (isStr(p.year) && isStr(p.period) && isStr(p.exam) && isStr(p.part) && Number.isInteger(p.no)) {
-    const key = [p.year, p.period, p.exam, p.part, p.no].join('|');
-    if (pastSeen.has(key)) err(f, id, `同じ過去問題の出典（${key}）が ${pastSeen.get(key)} にもある`); else pastSeen.set(key, id);
-  }
 }
 
 const seen = new Map();

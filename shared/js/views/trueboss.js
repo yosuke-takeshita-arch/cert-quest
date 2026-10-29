@@ -18,7 +18,7 @@ import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, o
 import { trueGeom } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stemPlainBlock, pastExamLine, CHOICE_LABELS } from './explain.js';
+import { explanation, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 import { toggleExpand } from '../lib/expand.js';
 
 export const TRUE_BOSS_SYMBOL = '真';
@@ -610,7 +610,7 @@ export function renderTrueBoss(app) {
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
     ui.btns = sq.choices.map((c, i) => {
       const bt = h('button', { class: 'choice', type: 'button', 'data-boss-choice': String(i), onClick: () => answer(i) },
-        h('span', { class: 'mark', 'aria-hidden': 'true', text: CHOICE_LABELS[i] }), h('span', { class: 'ctext', text: c }));
+        h('span', { class: 'mark', 'aria-hidden': 'true', text: choiceLabelsOf(q)[i] }), h('span', { class: 'ctext', text: c }));
       choices.appendChild(bt);
       return bt;
     });

@@ -1,7 +1,7 @@
 // データの読み込みと整形。資格固有のことは書かない。
 import { normalizeFigureIds } from './figures.js';
 import { BASICS_FILE } from './basics.js';
-import { normalizePastExam } from './pastexam.js';
+import { normalizePastExams } from './pastexam.js';
 // 存在しないファイル(404)は飛ばす。形が崩れた問題・カードは捨てて problems に記録する。
 
 const norm = (s) => String(s == null ? '' : s).normalize('NFKC').trim().toLowerCase();
@@ -42,7 +42,7 @@ export function normalizeQuestion(q) {
     memoryTip: typeof q.memoryTip === 'string' ? q.memoryTip : '',
     concepts: Array.isArray(q.concepts) ? q.concepts : [],
     figures: normalizeFigureIds(q.figures),
-    pastExam: normalizePastExam(q.pastExam), // 過去問題の出典（任意。無い・崩れていれば null。要件定義書 §7・§12）
+    pastExam: normalizePastExams(q.pastExam), // 過去問題の出典（任意。配列、または1つのオブジェクトで書く。整えて配列で持つ。無い・崩れていれば null。要件定義書 §7・§12）
     sources: Array.isArray(q.sources) ? q.sources.filter((s) => s && typeof s.url === 'string') : [],
     status: q.status === 'verified' ? 'verified' : 'unverified',
   };
