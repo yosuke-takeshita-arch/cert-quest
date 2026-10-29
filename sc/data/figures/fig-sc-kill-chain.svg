@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 548" role="img" aria-labelledby="fig-sc-kill-chain-t fig-sc-kill-chain-d">
+<title id="fig-sc-kill-chain-t">サイバーキルチェーン：7つの段階</title>
+<desc id="fig-sc-kill-chain-d">Lockheed Martin のサイバーキルチェーンは、標的型の攻撃での攻撃者の行動を7つの段階に分ける。1 偵察：SNSや求人票などから標的を調べる。2 武器化：マルウェアと攻撃コードを組み合わせる。3 配送：メールの添付やUSBなどで届ける。4 攻撃：脆弱性を突いて動かす。5 インストール：居座るためのプログラムを入れる。6 遠隔操作：外の指令サーバから操る。7 目的の実行：情報の持ち出しや破壊など。1と2は相手に届ける前の準備の段階。7つがすべて成功しないと攻撃は成り立たないので、防御側は鎖のどこかを断てばよい。</desc>
+<text x="12" y="20" class="tb">サイバーキルチェーン：7つの段階</text>
+<text x="12" y="42">攻撃は鎖のように順に進む。</text>
+<text x="12" y="60">どこか1つを断てば、攻撃は成り立たない。</text>
+<rect x="12" y="76" width="296" height="46" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="95" class="tb">① 偵察（Reconnaissance）</text>
+<text x="22" y="114" class="tm">SNS・求人票などから標的を調べる</text>
+<line x1="160" y1="122" x2="160" y2="128" class="l sm w1"/>
+<polygon points="160,134 156.5,128 163.5,128" class="fm"/>
+<rect x="12" y="134" width="296" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="153" class="tb">② 武器化（Weaponization）</text>
+<text x="22" y="172" class="tm">マルウェアと攻撃コードを組み合わせる</text>
+<line x1="12" y1="190" x2="308" y2="190" class="l sa w1 dsh"/>
+<text x="12" y="210" class="tm">↑ ①②は、相手に届ける前の準備</text>
+<rect x="12" y="220" width="296" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="239" class="tb">③ 配送（Delivery）</text>
+<text x="22" y="258" class="tm">メールの添付・USB などで届ける</text>
+<line x1="160" y1="266" x2="160" y2="272" class="l sm w1"/>
+<polygon points="160,278 156.5,272 163.5,272" class="fm"/>
+<rect x="12" y="278" width="296" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="297" class="tb">④ 攻撃（Exploitation）</text>
+<text x="22" y="316" class="tm">脆弱性を突いて動かす</text>
+<line x1="160" y1="324" x2="160" y2="330" class="l sm w1"/>
+<polygon points="160,336 156.5,330 163.5,330" class="fm"/>
+<rect x="12" y="336" width="296" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="355" class="tb">⑤ インストール（Installation）</text>
+<text x="22" y="374" class="tm">居座るためのプログラムを入れる</text>
+<line x1="160" y1="382" x2="160" y2="388" class="l sm w1"/>
+<polygon points="160,394 156.5,388 163.5,388" class="fm"/>
+<rect x="12" y="394" width="296" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="413" class="tb">⑥ 遠隔操作（Command &amp; Control）</text>
+<text x="22" y="432" class="tm">外の指令サーバから操る</text>
+<line x1="160" y1="440" x2="160" y2="446" class="l sm w1"/>
+<polygon points="160,452 156.5,446 163.5,446" class="fm"/>
+<rect x="12" y="452" width="296" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="471" class="tb">⑦ 目的の実行（Actions on Objectives）</text>
+<text x="22" y="490" class="tm">情報の持ち出し・破壊など</text>
+<text x="12" y="522" class="tb ta">偵察＝相手のシステムに入らず、</text>
+<text x="12" y="540" class="tb ta">外から見える情報を集める段階</text>
+</svg>

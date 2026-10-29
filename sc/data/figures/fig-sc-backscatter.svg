@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 460" role="img" aria-labelledby="fig-sc-backscatter-t fig-sc-backscatter-d">
+<title id="fig-sc-backscatter-t">SYN フラッドと、使われていないアドレスに届く SYN/ACK</title>
+<desc id="fig-sc-backscatter-d">TCPの接続はSYN、SYN/ACK、ACKの順に進み、SYN/ACKはSYNを受け取った側が返す。攻撃者は送信元を使われていないアドレスXに偽ったSYNを、サーバAの80番ポートへ大量に送る。サーバAは偽の送信元XへSYN/ACKを返すが、Xは使われていないのでACKは返らず、Aは接続を待ち続けて資源が埋まる。そのため、使われていないアドレスでAからのSYN/ACKを大量に観測したら、Aが攻撃を受けている側、つまりAを攻撃先とするサービス妨害攻撃と推定できる。</desc>
+<text x="12" y="20" class="tb">届くはずのない SYN/ACK の正体</text>
+<text x="12" y="42">接続は SYN → SYN/ACK → ACK の順。</text>
+<text x="12" y="60">SYN/ACK は、SYN を受けた側が返す。</text>
+<rect x="60" y="76" width="200" height="38" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="100" class="tb" text-anchor="middle">攻撃者</text>
+<line x1="160" y1="114" x2="160" y2="160.4" class="l sng w2"/>
+<polygon points="160,168 155,159 165,159" class="fm"/>
+<text x="172" y="134" class="tb tng">SYN を大量に送る</text>
+<text x="172" y="152" class="tm">送信元＝X（偽り）</text>
+<rect x="60" y="170" width="200" height="38" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="194" class="tb" text-anchor="middle">サーバ A（80/tcp）</text>
+<line x1="160" y1="208" x2="160" y2="254.4" class="l sa w2"/>
+<polygon points="160,262 155,253 165,253" class="fa"/>
+<text x="172" y="228" class="tb ta">SYN/ACK を返す</text>
+<text x="172" y="246" class="tm">宛先＝X</text>
+<rect x="60" y="264" width="200" height="54" class="fs sb dsh" stroke-width="1.5" rx="6"/>
+<text x="160" y="286" class="tb" text-anchor="middle">X：使われていないアドレス</text>
+<text x="160" y="306" class="tm" text-anchor="middle">ここで SYN/ACK を観測する</text>
+<text x="12" y="342">X は ACK を返さない</text>
+<text x="12" y="360">→ A は接続を待ち続け、資源が埋まる</text>
+<rect x="12" y="378" width="296" height="62" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="402" class="tb">SYN/ACK の送信元 A</text>
+<text x="24" y="426" class="tb">＝ 攻撃を受けている側（攻撃先）</text>
+</svg>

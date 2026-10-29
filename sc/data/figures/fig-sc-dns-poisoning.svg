@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 526" role="img" aria-labelledby="fig-sc-dns-poisoning-t fig-sc-dns-poisoning-d">
+<title id="fig-sc-dns-poisoning-t">DNS キャッシュポイズニング：本物より先に偽の答えを届ける</title>
+<desc id="fig-sc-dns-poisoning-d">DNSキャッシュサーバは、問合せと同じ内容で、IDと送信元ポート番号などの条件が合う最初の答えを受け入れて覚える。1 キャッシュサーバが権威DNSサーバに問い合わせる。2 攻撃者は、権威DNSサーバのふりをした偽の答えを、IDとポート番号を変えながら大量に送る。3 本物の答えが着く前に、条件の合う偽の答えが着けば、偽の情報が覚えられ、利用者は偽のサーバへ導かれる。対策は、攻撃者が当てなければならない値を増やすこと。送信元ポートを53に固定していると当てる値はIDだけだが、ポートをランダムにすればIDとポートの両方を当てる必要があり、偽の答えが受け入れられる確率が大きく下がる。</desc>
+<text x="12" y="20" class="tb">先に偽の答えを届ける攻撃</text>
+<text x="12" y="42">キャッシュサーバは、条件（ID・ポート</text>
+<text x="12" y="60">番号など）の合う最初の答えを覚える。</text>
+<rect x="12" y="80" width="130" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="77" y="101" class="tb" text-anchor="middle">キャッシュ</text>
+<text x="77" y="119" class="tm" text-anchor="middle">サーバ</text>
+<rect x="188" y="80" width="120" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="248" y="101" class="tb" text-anchor="middle">権威 DNS</text>
+<text x="248" y="119" class="tm" text-anchor="middle">サーバ</text>
+<line x1="142" y1="96" x2="180" y2="96" class="l sm w1"/>
+<polygon points="188,96 180,92 180,100" class="fm"/>
+<text x="165" y="90" class="tm" text-anchor="middle">①</text>
+<rect x="188" y="190" width="120" height="40" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="248" y="215" class="tb" text-anchor="middle">攻撃者</text>
+<line x1="188" y1="202" x2="145.8" y2="123.1" class="l sng w1 dsh"/>
+<polygon points="142,116 142.2,124.9 149.3,121.2" class="fm"/>
+<line x1="188" y1="210" x2="145.6" y2="127.1" class="l sng w1 dsh"/>
+<polygon points="142,120 142.1,128.9 149.2,125.3" class="fm"/>
+<line x1="188" y1="218" x2="145.5" y2="131.2" class="l sng w1 dsh"/>
+<polygon points="142,124 141.9,132.9 149.1,129.4" class="fm"/>
+<line x1="188" y1="120" x2="150" y2="120" class="l sa w1"/>
+<polygon points="142,120 150,124 150,116" class="fa"/>
+<text x="165" y="138" class="tm ta" text-anchor="middle">③</text>
+<text x="132" y="186" class="tb tng" text-anchor="end">②</text>
+<text x="12" y="252">① 権威 DNS サーバに問い合わせる</text>
+<text x="12" y="272" class="tng">② 攻撃者が偽の答えを大量に送る</text>
+<text x="12" y="290" class="tm">　（ID とポート番号を変えながら）</text>
+<text x="12" y="310" class="ta">③ 本物の答えは遅れて着く</text>
+<rect x="12" y="324" width="296" height="48" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="22" y="344" class="tb">②が先に合えば、偽の情報を覚える</text>
+<text x="22" y="364">→ 利用者は偽のサーバへ導かれる</text>
+<line x1="12" y1="388" x2="308" y2="388" class="l sb w1"/>
+<text x="12" y="408" class="tb">対策：当てる値を増やす</text>
+<rect x="12" y="418" width="296" height="44" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="436" class="tb">ポートを 53 に固定</text>
+<text x="22" y="454">当てるのは ID だけ → 当たりやすい</text>
+<rect x="12" y="470" width="296" height="44" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="488" class="tb">ポートをランダムに</text>
+<text x="22" y="506">ID とポートの両方 → 大幅に当たりにくい</text>
+</svg>

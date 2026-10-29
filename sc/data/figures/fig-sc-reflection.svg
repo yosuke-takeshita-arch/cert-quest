@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 562" role="img" aria-labelledby="fig-sc-reflection-t fig-sc-reflection-d">
+<title id="fig-sc-reflection-t">リフレクション攻撃と Smurf 攻撃：返事を被害者に集める</title>
+<desc id="fig-sc-reflection-d">どちらも送信元を被害者Vのアドレスに偽って要求を送り、返事をVに集める攻撃。1つ目のリフレクション攻撃では、攻撃者が送信元をVに偽った小さな問合せを複数のDNSサーバやNTPサーバ（リフレクタ）に送り、各サーバの大きな応答がVに届く。例えば60バイトの問合せに3,000バイトの応答が返れば50倍に増える（アンプ攻撃）。2つ目のSmurf攻撃では、攻撃者が送信元をVに偽ったICMPのエコー要求（ping）を、あるネットワークのブロードキャストアドレス（全員あて）に送り、そのネットワークの機器それぞれが返すエコー応答がVに届く。機器が4台なら1つの要求で4つの応答になる。</desc>
+<text x="12" y="20" class="tb">返事を被害者に集める攻撃</text>
+<text x="12" y="42">送信元を被害者 V に偽って送ると、</text>
+<text x="12" y="60">返事は送った攻撃者ではなく V に届く。</text>
+<line x1="12" y1="74" x2="308" y2="74" class="l sb w1"/>
+<text x="12" y="94" class="tb ta">① リフレクション攻撃（DNS・NTP など）</text>
+<rect x="12" y="140" width="70" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="47" y="165" class="tb" text-anchor="middle">攻撃者</text>
+<rect x="120" y="106" width="96" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="168" y="126" class="tb" text-anchor="middle">DNS サーバ</text>
+<line x1="82" y1="160" x2="114.4" y2="126.7" class="l sm w1 dsh"/>
+<polygon points="120,121 111.6,123.9 117.3,129.5" class="fm"/>
+<rect x="120" y="146" width="96" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="168" y="166" class="tb" text-anchor="middle">NTP サーバ</text>
+<line x1="82" y1="160" x2="112" y2="160.8" class="l sm w1 dsh"/>
+<polygon points="120,161 112.1,156.8 111.9,164.8" class="fm"/>
+<rect x="120" y="186" width="96" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="168" y="206" class="tb" text-anchor="middle">DNS サーバ</text>
+<line x1="82" y1="160" x2="114.6" y2="195.1" class="l sm w1 dsh"/>
+<polygon points="120,201 117.5,192.4 111.6,197.9" class="fm"/>
+<rect x="248" y="136" width="60" height="48" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="278" y="157" class="tb" text-anchor="middle">被害者</text>
+<text x="278" y="174" class="tm" text-anchor="middle">V</text>
+<line x1="216" y1="121" x2="242.9" y2="153.8" class="l sng w2"/>
+<polygon points="248,160 246,151.3 239.8,156.4" class="fm"/>
+<line x1="216" y1="161" x2="240" y2="160.2" class="l sng w2"/>
+<polygon points="248,160 239.9,156.3 240.1,164.2" class="fm"/>
+<line x1="216" y1="201" x2="243.1" y2="166.3" class="l sng w2"/>
+<polygon points="248,160 239.9,163.8 246.2,168.8" class="fm"/>
+<text x="12" y="238">送る：小さな問合せ（送信元＝V と偽る）</text>
+<text x="12" y="256">返る：大きな応答が V へ</text>
+<text x="12" y="280" class="tm">例：60バイトの問合せ → 3,000バイトの応答</text>
+<text x="12" y="298" class="tb">＝ 50倍に増えて届く（アンプ攻撃）</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="334" class="tb ta">② Smurf 攻撃（ICMP の ping）</text>
+<rect x="12" y="384" width="70" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="47" y="409" class="tb" text-anchor="middle">攻撃者</text>
+<rect x="112" y="346" width="112" height="116" class="fbg sb dsh" stroke-width="1.5" rx="6"/>
+<text x="168" y="362" class="tm" text-anchor="middle">あるネットワーク</text>
+<rect x="122" y="372" width="42" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="143" y="393" class="tm" text-anchor="middle">機器1</text>
+<rect x="172" y="372" width="42" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="193" y="393" class="tm" text-anchor="middle">機器2</text>
+<rect x="122" y="416" width="42" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="143" y="437" class="tm" text-anchor="middle">機器3</text>
+<rect x="172" y="416" width="42" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="193" y="437" class="tm" text-anchor="middle">機器4</text>
+<line x1="82" y1="404" x2="104" y2="404" class="l sm w1 dsh"/>
+<polygon points="112,404 104,400 104,408" class="fm"/>
+<rect x="248" y="380" width="60" height="48" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="278" y="401" class="tb" text-anchor="middle">被害者</text>
+<text x="278" y="418" class="tm" text-anchor="middle">V</text>
+<line x1="224" y1="374" x2="241.6" y2="387.2" class="l sng w1"/>
+<polygon points="248,392 244,384 239.2,390.4" class="fm"/>
+<line x1="224" y1="394" x2="240.2" y2="398.1" class="l sng w1"/>
+<polygon points="248,400 241.2,394.2 239.3,401.9" class="fm"/>
+<line x1="224" y1="414" x2="240.2" y2="409.9" class="l sng w1"/>
+<polygon points="248,408 239.3,406.1 241.2,413.8" class="fm"/>
+<line x1="224" y1="434" x2="241.6" y2="420.8" class="l sng w1"/>
+<polygon points="248,416 239.2,417.6 244,424" class="fm"/>
+<text x="12" y="490">送る：ping を「全員あて」の</text>
+<text x="12" y="508">　　　ブロードキャストアドレスへ</text>
+<text x="12" y="532" class="tb">返る：機器の数だけの応答が V へ</text>
+<text x="12" y="550" class="tm">（4台なら、1回の ping で応答が4つ）</text>
+</svg>
