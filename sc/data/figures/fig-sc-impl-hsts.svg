@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-sc-impl-hsts-t fig-sc-impl-hsts-d">
+<title id="fig-sc-impl-hsts-t">HSTS で接続が HTTPS に固定されるまで</title>
+<desc id="fig-sc-impl-hsts-d">上から順に3つの場面。1回目は、利用者が http で開き、サーバが https へ転送する。この最初の HTTP の瞬間は守られない。2回目は https の応答に Strict-Transport-Security: max-age=31536000 が付き、ブラウザがこのドメインを1年間覚える。3回目以降は、利用者が http と打っても、ブラウザが通信を始める前に https に置き換えてつなぐ。最初の1回の弱点は、ブラウザに組み込まれた preload の一覧への登録で埋める。</desc>
+<text x="12" y="20" class="tb">HSTS：ブラウザに https を覚えさせる</text>
+<rect x="8" y="32" width="304" height="96" class="fng sng" stroke-width="1.5" rx="8"/>
+<text x="18" y="54" class="tb">① 初めての1回</text>
+<text x="18" y="76">example.jp を http で開く</text>
+<text x="18" y="98">→ サーバが https へ転送</text>
+<text x="18" y="118" class="tng">この HTTP の瞬間は守られない</text>
+<line x1="160" y1="128" x2="160" y2="140" class="l sm w1"/>
+<polygon points="160,146 156.5,140 163.5,140" class="fm"/>
+<rect x="8" y="148" width="304" height="106" class="fas sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="170" class="tb">② https の応答にヘッダー</text>
+<text x="18" y="192">Strict-Transport-Security:</text>
+<text x="36" y="212">max-age=31536000（1年）</text>
+<text x="18" y="236">→ ブラウザがドメインを覚える</text>
+<line x1="160" y1="254" x2="160" y2="266" class="l sm w1"/>
+<polygon points="160,272 156.5,266 163.5,266" class="fm"/>
+<rect x="8" y="274" width="304" height="94" class="fok sok" stroke-width="1.5" rx="8"/>
+<text x="18" y="296" class="tb">③ 2回目以降（1年のあいだ）</text>
+<text x="18" y="318">http と打っても、通信の前に</text>
+<text x="18" y="340" class="tok">ブラウザが https に置き換える</text>
+<text x="12" y="390" class="tm">①の弱点は preload の一覧で埋める</text>
+</svg>

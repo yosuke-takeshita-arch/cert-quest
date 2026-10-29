@@ -469,10 +469,10 @@ for (const { file: f, kind, data, syl } of loaded) {
       checkAnswerLength(f, id, o);
       checkCueWords(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿|（[ア-ンあ-ん]）/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
-      if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
+      if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り|効果がない/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
       // 適切でないものを選ばせるのに札が出ない問題を止める（要件定義書 §7 の negative）
       if ('negative' in o && o.negative !== true) err(f, id, 'negative は true だけ書く（違うなら欄ごと省く）');
-      if (/(不適切な|適切でない|誤っている|誤りを含む|正しくない)もの/.test(o.stem) && o.format !== 'not' && o.negative !== true) err(f, id, '問題文が適切でないものを選ばせるのに、format が not でも negative でもない（札が出ない）');
+      if (/(不適切な|適切でない|誤っている|誤りを含む|正しくない|効果がない)もの/.test(o.stem) && o.format !== 'not' && o.negative !== true) err(f, id, '問題文が適切でないものを選ばせるのに、format が not でも negative でもない（札が出ない）');
       // combo: 問題文に空欄（ア）があり、どの選択肢も（ア）から始まる語の組（要件定義書 §7 の format）。並べ替えても崩れないよう、選択肢どうしを番号で指さない
       if (o.format === 'combo') {
         if (!/（ア）/.test(o.stem) || !/（イ）/.test(o.stem)) err(f, id, 'combo なのに問題文に空欄（ア）（イ）が無い');

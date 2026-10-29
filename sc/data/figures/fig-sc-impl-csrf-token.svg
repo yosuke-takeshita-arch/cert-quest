@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-sc-impl-csrf-token-t fig-sc-impl-csrf-token-d">
+<title id="fig-sc-impl-csrf-token-t">CSRF トークンで偽のリクエストをはじく</title>
+<desc id="fig-sc-impl-csrf-token-d">上の区画は正規の流れ。サーバが確認画面に予測できない秘密の値（トークン、例 8f3a）を埋め、利用者が送信すると同じ値が付いて戻るので、サーバは一致を確かめて処理する。下の区画は罠のページからの偽のリクエスト。ブラウザは cookie を自動で付けるので本人の操作に見えるが、罠のページはトークンを知らないので値が無いか違い、サーバは照合で拒否する。特殊文字のエスケープでは防げない。</desc>
+<text x="12" y="20" class="tb">CSRF トークンのしくみ</text>
+<rect x="8" y="32" width="304" height="150" class="fok sok" stroke-width="1.5" rx="8"/>
+<text x="18" y="54" class="tb">○ 正規の画面から送る</text>
+<text x="18" y="78">① サーバが確認画面に</text>
+<text x="36" y="98">token=8f3a を埋める</text>
+<text x="18" y="122">② 送信に token=8f3a が付く</text>
+<text x="18" y="146">③ サーバ：埋めた値と一致</text>
+<text x="18" y="168" class="tok">→ 処理する</text>
+<rect x="8" y="196" width="304" height="164" class="fng sng" stroke-width="1.5" rx="8"/>
+<text x="18" y="218" class="tb">× 罠のページから送らされる</text>
+<text x="18" y="242">① ブラウザは cookie を自動で付ける</text>
+<text x="36" y="262" class="tm">（本人の操作に見える）</text>
+<text x="18" y="286">② 罠のページは token を知らない</text>
+<text x="18" y="310">③ サーバ：値が無い・違う</text>
+<text x="18" y="334" class="tng">→ 拒否する</text>
+<text x="12" y="382" class="tm">トークンは乱数で作り、POST で送る</text>
+</svg>

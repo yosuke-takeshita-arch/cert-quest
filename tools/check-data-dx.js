@@ -507,7 +507,7 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
       checkCueWords(f, id, o);
       if (o.format !== 'combo') checkSegMajority(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
-      if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
+      if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り|効果がない/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
       // 適切でないものを選ばせるのに札が出ない問題を止める（要件定義書 §7 の negative）
       if ('negative' in o && o.negative !== true) err(f, id, 'negative は true だけ書く（違うなら欄ごと省く）');
       if (/(不適切な|適切でない|誤っている|誤りを含む|正しくない)もの/.test(o.stem) && o.format !== 'not' && o.negative !== true) err(f, id, '問題文が適切でないものを選ばせるのに、format が not でも negative でもない（札が出ない）');

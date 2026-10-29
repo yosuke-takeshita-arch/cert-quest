@@ -1,1 +1,4289 @@
-[]
+[
+  {
+    "id": "SC-04-001",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "デジタル庁，総務省及び経済産業省が策定した“電子政府における調達のために参照すべき暗号のリスト（CRYPTREC暗号リスト）”に関する記述のうち，適切なものはどれか。",
+    "choices": [
+      "CRYPTREC暗号リストには運用監視暗号リストがあり，それは運用監視システムにおける利用実績が十分であると判断され，電子政府において利用を推奨する暗号技術のリストである。",
+      "CRYPTREC暗号リストには証明書失効リストがあり，それは政府共用認証局が公開している，危殆化した暗号技術のリストである。",
+      "CRYPTREC暗号リストには推奨候補暗号リストがあり，それは安全性及び実装性能が確認され，今後，電子政府推奨暗号リストに掲載される可能性がある暗号技術のリストである。",
+      "CRYPTREC暗号リストには電子政府推奨暗号リストがあり，それは互換性維持目的に限った継続利用を推奨する暗号技術のリストである。"
+    ],
+    "answer": 2,
+    "stemPlain": "政府がシステムを調達するときに参照する暗号の一覧（CRYPTREC 暗号リスト）は3つのリストに分かれている。その説明として正しいものを選ぶ問題。",
+    "explanation": "CRYPTREC 暗号リストは3つのリストからなる。電子政府推奨暗号リスト＝安全性と実装性能が確認され、利用実績が十分か今後の普及が見込まれ、利用を推奨するもの。推奨候補暗号リスト＝安全性と実装性能が確認され、今後、電子政府推奨暗号リストに掲載される可能性のあるもの。運用監視暗号リスト＝解読されるリスクが高まるなど推奨すべき状態ではなくなったもののうち、互換性維持のために継続利用を容認するもの。正解の文は、推奨候補暗号リストの説明として CRYPTREC の記述と合っている。なお最新版（最終更新 令和8年3月30日）では、電子政府推奨暗号リストが『現行暗号リスト』と『耐量子計算機暗号（PQC）リスト』の2表になっている。",
+    "whyWrong": [
+      "運用監視暗号リストは『推奨する』リストではない。推奨すべき状態ではなくなった暗号のうち、互換性維持のために使い続けを容認するものの一覧で、互換性維持以外の目的での利用は推奨しない。『運用監視システムでの利用実績』という意味でもない。",
+      "証明書失効リスト（CRL）は、認証局が、有効期限の前に失効させた電子証明書を並べて公開する一覧。暗号技術のリストではなく、CRYPTREC 暗号リストを構成するリストでもない。",
+      null,
+      "互換性維持の目的に限って継続利用を認めるのは、運用監視暗号リストの説明。電子政府推奨暗号リストは、安全性と実装性能が確認され、利用を推奨する暗号のリスト。"
+    ],
+    "memoryTip": "推奨（使え）・推奨候補（将来の推奨かも）・運用監視（互換のためだけ）。",
+    "concepts": [
+      "C-SC-04-074",
+      "C-SC-02-030"
+    ],
+    "figures": [
+      "fig-sc-impl-cryptrec"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 1,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問1）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "CRYPTREC 電子政府における調達のために参照すべき暗号のリスト（CRYPTREC暗号リスト）（最終更新：令和8年3月30日）",
+        "url": "https://www.cryptrec.go.jp/list/cryptrec-ls-0001-2022r2.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-002",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "クロスサイトリクエストフォージェリ攻撃の対策として，効果がないものはどれか。",
+    "choices": [
+      "Webサイトでの決済などの重要な操作の都度，利用者のパスワードを入力させる。",
+      "Webサイトへのログイン後，HTTPレスポンスボディに含めた秘密の値と，Webブラウザから送付される値とを，Webサーバ側で照合する。",
+      "Webブラウザからのリクエスト中のRefererによって正しいリンク元からの遷移であることを確認する。",
+      "WebブラウザからのリクエストをWebサーバで受け付けた際に，リクエストに含まれる“<”，“>”などの特殊文字を，“&lt;”，“&gt;”などの文字列に置き換える。"
+    ],
+    "answer": 3,
+    "stemPlain": "罠のページから、ログイン中の利用者のブラウザに勝手に操作のリクエストを送らせる攻撃（CSRF）に対して、効かない対策を1つ選ぶ問題。",
+    "explanation": "CSRF（クロスサイトリクエストフォージェリ）は、罠のページから、ログイン中の利用者のブラウザに正規サイトへのリクエストを勝手に送らせる攻撃。リクエスト自体には危険な文字が入っていないので、特殊文字を置き換える処理（エスケープ）では防げない。『<』を『&lt;』に置き換えるのはクロスサイトスクリプティング（XSS）の対策で、CSRF の対策としては効果がない。IPA の『安全なウェブサイトの作り方』は、CSRF の根本的解決として、①hidden パラメータに秘密情報を入れて照合する ②処理の直前にパスワードを再入力させる ③Referer が正しいリンク元か確認する、の3つを挙げており、残りの3つの選択肢はこれに当たる。",
+    "whyWrong": [
+      "重要な操作のたびにパスワードを入力させると、罠のページは利用者のパスワードを知らないので、勝手に送らせたリクエストは認証で失敗する。IPA が CSRF の根本的解決に挙げる対策で、効果がある。",
+      "ログイン後にレスポンスに含めた秘密の値を、リクエストと一緒に送らせてサーバで照合する方法は、CSRF トークンの考え方。罠のページはこの値を知らないので、偽のリクエストは照合で失敗する。効果がある。",
+      "Referer（どのページから来たか）で正規の画面から来たかを確かめると、罠のページから送らされたリクエストを見分けられる。Referer を送らない環境があるなどの弱点はあるが、IPA が挙げる対策の1つで、効果がある。",
+      null
+    ],
+    "memoryTip": "エスケープは XSS の薬。CSRF の薬は、秘密の値・再認証・Referer。",
+    "concepts": [
+      "C-SC-04-011",
+      "C-SC-04-009",
+      "C-SC-01-046"
+    ],
+    "figures": [
+      "fig-sc-impl-csrf-token"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 16,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問16）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      },
+      {
+        "title": "OWASP Cheat Sheet Series: Cross-Site Request Forgery Prevention",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-003",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "マルウェア感染の調査対象のPCに対して，電源を切る前に全ての証拠保全を行いたい。ARPキャッシュを取得した後に保全すべき情報のうち，最も優先して保全すべきものはどれか。",
+    "choices": [
+      "調査対象のPCで動的に追加されたルーティングテーブル",
+      "調査対象のPCに増設されたHDDにある個人情報を格納したテキストファイル",
+      "調査対象のPCのVPN接続情報を記録しているVPNサーバ内のログ",
+      "調査対象のPCのシステムログファイル"
+    ],
+    "answer": 0,
+    "stemPlain": "感染した PC の電源を切る前に証拠を集める。ARP キャッシュ（IP アドレスと機器のアドレスの対応表）を取った次に、いちばん先に集めるべきものを選ぶ問題。",
+    "explanation": "証拠は、消えやすい（揮発性が高い）ものから順に集める。RFC 3227 の例では、レジスタ・キャッシュの次に、ルーティングテーブル・ARP キャッシュ・プロセステーブル・カーネルの統計・メモリが並び、その後が一時ファイル、ディスク、遠隔のログの順。ARP キャッシュと同じ段にあるのは、メモリ上にしかないルーティングテーブル。動的に追加された経路は、電源を切ったり時間がたったりすると消えるので、ディスクのファイルや遠隔のログより先に保全する。",
+    "whyWrong": [
+      null,
+      "増設した HDD のテキストファイルは、電源を切っても消えないディスク上のデータ。個人情報を含む大事なファイルでも、揮発性の観点では後回しでよい。収集の順は大事さではなく消えやすさで決める。",
+      "VPN サーバのログは、調査対象の PC とは別のサーバに残る遠隔のログ。PC の電源を切っても消えないので、RFC 3227 の順でもディスクの後に来る。",
+      "システムログファイルは、PC のディスクに書き込まれたファイル。電源を切っても残るので、メモリ上にしかないルーティングテーブルより後に保全してよい。"
+    ],
+    "memoryTip": "消える速さの順：メモリの上の表 → ディスク → 遠くのログ。",
+    "concepts": [
+      "C-SC-04-048",
+      "C-SC-04-047"
+    ],
+    "figures": [
+      "fig-sc-impl-volatility"
+    ],
+    "pastExam": [
+      {
+        "year": "令和7年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 15,
+        "modified": false
+      },
+      {
+        "year": "令和5年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 13,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和7年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問15）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問13）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 3227 Guidelines for Evidence Collection and Archiving",
+        "url": "https://www.rfc-editor.org/rfc/rfc3227.txt"
+      },
+      {
+        "title": "NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-86.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-004",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "クリックジャッキング攻撃に有効な対策はどれか。",
+    "choices": [
+      "cookieに，HttpOnly属性を設定する。",
+      "cookieに，Secure属性を設定する。",
+      "HTTPレスポンスヘッダーに，Strict-Transport-Securityを設定する。",
+      "HTTPレスポンスヘッダーに，X-Frame-Optionsを設定する。"
+    ],
+    "answer": 3,
+    "stemPlain": "透明にした正規サイトのページを罠のページに重ね、利用者に意図しないボタンを押させる攻撃（クリックジャッキング）に効く対策を選ぶ問題。",
+    "explanation": "クリックジャッキングは、正規サイトのページを他のサイトの枠（iframe）に透明にして重ねることで成り立つ。X-Frame-Options ヘッダーで DENY（埋め込み禁止）や SAMEORIGIN（同じオリジンからだけ許可）を指定すると、ブラウザは他のサイトの枠の中にそのページを表示しない。IPA の『安全なウェブサイトの作り方』も、クリックジャッキングの根本的解決として X-Frame-Options の出力を挙げている。今は CSP の frame-ancestors で指定する方法も勧められている（MDN）。",
+    "whyWrong": [
+      "HttpOnly 属性は、cookie を JavaScript から読めなくする印で、XSS による cookie の盗み出しを防ぐ。クリックジャッキングでは利用者が本物のサイトで本物の cookie のまま操作させられるので、防げない。",
+      "Secure 属性は、cookie を HTTPS の通信のときだけ送らせる印で、盗聴による漏えいを防ぐ。ページを枠に埋め込まれることは止めない。",
+      "Strict-Transport-Security（HSTS）は、そのサイトへの接続を HTTPS に限らせる指示。HTTPS のページでも枠に埋め込むことはできるので、クリックジャッキングは防げない。",
+      null
+    ],
+    "memoryTip": "重ねられる攻撃には「枠に入れるな」の指示（X-Frame-Options／frame-ancestors）。",
+    "concepts": [
+      "C-SC-04-020",
+      "C-SC-01-050"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 14,
+        "modified": false
+      },
+      {
+        "year": "令和4年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 11,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問14）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 令和4年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問11）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000008smf-att/2022r04a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      },
+      {
+        "title": "RFC 7034 HTTP Header Field X-Frame-Options",
+        "url": "https://www.rfc-editor.org/rfc/rfc7034.txt"
+      },
+      {
+        "title": "MDN X-Frame-Options header",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-005",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "クロスサイトリクエストフォージェリ攻撃の対策として，効果がないものはどれか。",
+    "choices": [
+      "Webサイトでの決済などの重要な操作の都度，利用者のパスワードを入力させる。",
+      "Webサイトへのログイン後，毎回異なる値をHTTPレスポンスボディに含め，Webブラウザからのリクエストごとに送付されるその値を，Webサーバ側で照合する。",
+      "Webブラウザからのリクエスト中のRefererによって正しいリンク元からの遷移であることを確認する。",
+      "WebブラウザからのリクエストをWebサーバで受け付けた際に，リクエストに含まれる“<”，“>”などの特殊文字を，“&lt;”，“&gt;”などの文字列に置き換える。"
+    ],
+    "answer": 3,
+    "stemPlain": "CSRF（罠のページから勝手に操作のリクエストを送らせる攻撃）への対策のうち、効かないものを1つ選ぶ問題。",
+    "explanation": "CSRF（クロスサイトリクエストフォージェリ）は、罠のページから、ログイン中の利用者のブラウザに正規サイトへのリクエストを勝手に送らせる攻撃。リクエスト自体には危険な文字が入っていないので、特殊文字を置き換える処理（エスケープ）では防げない。『<』を『&lt;』に置き換えるのはクロスサイトスクリプティング（XSS）の対策で、CSRF の対策としては効果がない。IPA の『安全なウェブサイトの作り方』は、CSRF の根本的解決として、①hidden パラメータに秘密情報を入れて照合する ②処理の直前にパスワードを再入力させる ③Referer が正しいリンク元か確認する、の3つを挙げており、残りの3つの選択肢はこれに当たる。",
+    "whyWrong": [
+      "処理の直前にパスワードを再入力させれば、罠のページから送らされたリクエストはパスワードを含まないので認証で失敗する。効果がある。",
+      "ログイン後に毎回違う値をページに埋め、リクエストごとに送られてくる値をサーバで照合するのは、CSRF トークンの方法。攻撃者は値を予測できないので、偽のリクエストははじかれる。効果がある。",
+      "Referer で正しいリンク元からの遷移かを確かめれば、罠のページからのリクエストを見分けられる。IPA が挙げる CSRF 対策の1つで、効果がある。",
+      null
+    ],
+    "memoryTip": "CSRF の偽リクエストには危険な文字が無い。だから置き換えても効かない。",
+    "concepts": [
+      "C-SC-04-011",
+      "C-SC-04-009",
+      "C-SC-01-046"
+    ],
+    "figures": [
+      "fig-sc-impl-csrf-token"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 1,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問1）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      },
+      {
+        "title": "OWASP Cheat Sheet Series: Cross-Site Request Forgery Prevention",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-006",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "JVNなどの脆弱性対策ポータルサイトで採用されているCWEはどれか。",
+    "choices": [
+      "IT製品の脆弱性を評価する手法",
+      "製品を識別するためのプラットフォーム名の一覧",
+      "セキュリティに関連する設定項目を識別するための識別子",
+      "ソフトウェア及びハードウェアの脆弱性の種類の一覧"
+    ],
+    "answer": 3,
+    "stemPlain": "JVN などで使われている CWE が何かを選ぶ問題。",
+    "explanation": "CWE（Common Weakness Enumeration、共通脆弱性タイプ一覧）は、脆弱性を原因の種類で分類した一覧で、IPA は、ソフトウェアにおけるセキュリティ上の弱点（脆弱性）の種類を識別するための共通の基準と説明している。現在の CWE はハードウェアの弱点も扱う。例えば CWE-89 は SQL インジェクション、CWE-119 はバッファエラー。JVN では脆弱性ごとに CWE の番号を示している。",
+    "whyWrong": [
+      "IT 製品の脆弱性を評価する手法は CVSS（共通脆弱性評価システム）。深刻度を 0.0〜10.0 の値で評価するもので、脆弱性の種類の一覧ではない。",
+      "製品を識別するためのプラットフォーム名の一覧は CPE（共通プラットフォーム一覧）。ハードウェア・OS・アプリを共通の名前で呼ぶための仕様。",
+      "セキュリティに関連する設定項目を識別するための識別子は CCE（共通セキュリティ設定一覧）。パスワードの長さなどの設定項目に番号を付ける。",
+      null
+    ],
+    "memoryTip": "CWE の W は Weakness（弱点の種類）。CVE は個々の脆弱性、CPE は製品、CCE は設定。",
+    "concepts": [
+      "C-SC-04-063",
+      "C-SC-04-064"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 9,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問9）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 共通脆弱性タイプ一覧CWE概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cwe.html"
+      },
+      {
+        "title": "IPA セキュリティ設定共通化手順SCAP概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/scap.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-007",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "FIPS PUB 140-3はどれか。",
+    "choices": [
+      "暗号モジュールのセキュリティ要求事項",
+      "情報セキュリティマネジメントシステムの要求事項",
+      "デジタル証明書や証明書失効リストの技術仕様",
+      "無線LANセキュリティの技術仕様"
+    ],
+    "answer": 0,
+    "stemPlain": "FIPS PUB 140-3 が何の規格かを選ぶ問題。",
+    "explanation": "FIPS 140-3 は、米国の NIST が定めた『Security Requirements for Cryptographic Modules』（暗号モジュールのセキュリティ要求事項）。連邦機関が使う暗号モジュール（暗号の処理をするハードウェア・ソフトウェア）について、4段階のセキュリティレベルと、物理的セキュリティ・鍵などの重要なパラメータの管理・自己テストなどの要求を定める。NIST の CMVP は、2020年9月22日から FIPS 140-3 での認証を始めている。日本の同種の制度は JCMVP。",
+    "whyWrong": [
+      null,
+      "情報セキュリティマネジメントシステム（ISMS）の要求事項は ISO/IEC 27001（JIS Q 27001）。組織の管理の仕組みの規格で、暗号モジュールの要求ではない。",
+      "デジタル証明書や証明書失効リスト（CRL）の技術仕様は、公開鍵基盤（PKI）の仕様（インターネットでは RFC 5280 の X.509 の証明書とCRL のプロファイル）の範囲。FIPS 140-3 ではない。",
+      "無線 LAN の暗号化や認証の技術仕様は無線 LAN の規格の側で定めるもので、暗号モジュールそのものの要求事項を定める FIPS 140-3 とは別。"
+    ],
+    "memoryTip": "FIPS 140＝暗号モジュール。日本版の試験・認証は JCMVP。",
+    "concepts": [
+      "C-SC-04-073"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 10,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問10）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "NIST FIPS 140-3 Security Requirements for Cryptographic Modules",
+        "url": "https://csrc.nist.gov/pubs/fips/140-3/final"
+      },
+      {
+        "title": "NIST CSRC Cryptographic Module Validation Program (CMVP)",
+        "url": "https://csrc.nist.gov/projects/cryptographic-module-validation-program"
+      },
+      {
+        "title": "RFC 5280 Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile",
+        "url": "https://www.rfc-editor.org/rfc/rfc5280.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-008",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "HTTP Strict Transport Security（HSTS）の動作はどれか。",
+    "choices": [
+      "HTTP over TLS（HTTPS）によって接続しているとき，接続先のサーバ証明書がEV SSL証明書である場合とない場合で，Webブラウザのアドレス表示部分の表示を変える。",
+      "Webサーバからコンテンツをダウンロードするとき，どの文字列が秘密情報かを判定できないように圧縮する。",
+      "WebサーバとWebブラウザとの間のTLSのハンドシェイクにおいて，一度確立したセッションとは別の新たなセッションを確立するとき，既に確立したセッションを使って改めてハンドシェイクを行う。",
+      "Webブラウザは，Webサイトにアクセスすると，以降の指定された期間，当該サイトには全てHTTPSによって接続する。"
+    ],
+    "answer": 3,
+    "stemPlain": "HSTS というしくみで、ブラウザがどう動くかを選ぶ問題。",
+    "explanation": "HSTS（HTTP Strict Transport Security）は、サイトが HTTPS の応答で Strict-Transport-Security ヘッダーを返すと、ブラウザがそのドメインを覚え、max-age で指定された期間、そのサイトへの接続をすべて HTTPS で行うしくみ。利用者が http:// で開こうとしても、ブラウザは通信を始める前に https:// に置き換える。最初の HTTP の通信を攻撃者に横取りされるのを防ぐのが狙い。正解の文はこの動作そのもの。",
+    "whyWrong": [
+      "接続先のサーバ証明書が EV SSL 証明書かどうかでアドレス表示を変えるのは、ブラウザの証明書の表示の機能。HSTS は表示ではなく、接続を HTTPS に限らせる指示。",
+      "どの文字列が秘密情報かを判定できないように圧縮するのは、圧縮の扱いの話（圧縮の結果の長さから秘密を推測させない、という対策の考え方）。HTTPS への接続の強制とは関係がない。",
+      "確立したセッションを使って改めてハンドシェイクを行うのは、TLS の再ネゴシエーション（接続の途中で暗号の条件を結び直す手順）の説明。HSTS ではない。",
+      null
+    ],
+    "memoryTip": "HSTS＝「しばらくは HTTPS でしか来ないで」とブラウザに覚えさせる。",
+    "concepts": [
+      "C-SC-04-017"
+    ],
+    "figures": [
+      "fig-sc-impl-hsts"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 13,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問13）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 6797 HTTP Strict Transport Security (HSTS)",
+        "url": "https://www.rfc-editor.org/rfc/rfc6797.txt"
+      },
+      {
+        "title": "MDN Strict-Transport-Security header",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-009",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ソフトウェアの脆弱性管理のためのツールとしても利用されるSBOM（Software Bill of Materials）はどれか。",
+    "choices": [
+      "ソフトウェアの脆弱性に対する，ベンダーに依存しないオープンで汎用的な深刻度の評価方法",
+      "ソフトウェアのセキュリティアップデートを行うときに推奨される管理プロセス，組織体制などをまとめたガイドライン",
+      "ソフトウェアを構成するコンポーネント，互いの依存関係などのリスト",
+      "米国の非営利団体MITREによって策定された，ソフトウェアにおけるセキュリティ上の弱点の種類を識別するための基準"
+    ],
+    "answer": 2,
+    "stemPlain": "ソフトウェアの脆弱性の管理にも使われる SBOM が何かを選ぶ問題。",
+    "explanation": "SBOM（Software Bill of Materials、ソフトウェアの部品表）は、ソフトウェアを作っている部品（ライブラリなど）と、その依存関係の一覧。CISA は、ソフトウェアの部品を作る材料の入れ子の一覧と説明している。新しい脆弱性が公表されたとき、SBOM を見れば、その部品を使っている製品をすぐ特定できるので、脆弱性管理に使える。",
+    "whyWrong": [
+      "ベンダーに依存しないオープンで汎用的な深刻度の評価方法は CVSS（共通脆弱性評価システム）。部品の一覧ではない。",
+      "セキュリティアップデートの管理プロセスや組織体制をまとめたガイドラインは、運用の手引きの話。SBOM は手順書ではなく、部品と依存関係のデータの一覧。",
+      null,
+      "MITRE が策定した、ソフトウェアのセキュリティ上の弱点の種類を識別する基準は CWE（共通脆弱性タイプ一覧）。"
+    ],
+    "memoryTip": "BOM＝部品表。SBOM はソフトウェアの「原材料表示」。",
+    "concepts": [
+      "C-SC-04-059"
+    ],
+    "pastExam": [
+      {
+        "year": "令和6年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 17,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和6年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問17）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "CISA Software Bill of Materials (SBOM)",
+        "url": "https://www.cisa.gov/sbom"
+      },
+      {
+        "title": "NIST CSRC Glossary: software bill of materials",
+        "url": "https://csrc.nist.gov/glossary/term/software_bill_of_materials"
+      },
+      {
+        "title": "IPA 共通脆弱性評価システムCVSS v3概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cvssv3.html"
+      },
+      {
+        "title": "IPA 共通脆弱性タイプ一覧CWE概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cwe.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-010",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "脆弱性管理，測定，評価を自動化するためにNISTが策定した基準はどれか。",
+    "choices": [
+      "FIPS（Federal Information Processing Standards）",
+      "SCAP（Security Content Automation Protocol）",
+      "SIEM（Security Information and Event Management）",
+      "SOAR（Security Orchestration, Automation and Response）"
+    ],
+    "answer": 1,
+    "stemPlain": "脆弱性の管理・測定・評価を自動化するために NIST が定めた基準の名前を選ぶ問題。",
+    "explanation": "SCAP（Security Content Automation Protocol、セキュリティ設定共通化手順）は、脆弱性の管理・測定・評価を自動化するために NIST が定めた基準の集まり。脆弱性を識別する CVE、設定項目を識別する CCE、製品を識別する CPE、深刻度を評価する CVSS、チェックリストを書く XCCDF、点検の手順を書く OVAL からなる（IPA の説明）。",
+    "whyWrong": [
+      "FIPS（連邦情報処理規格）は、NIST が出す米国政府の情報処理の規格の総称（例：暗号モジュールの FIPS 140）。脆弱性管理の自動化のための基準の名前ではない。",
+      null,
+      "SIEM（Security Information and Event Management）は、機器やサーバのログを集めて相関分析し、攻撃の兆候を見つける仕組みや製品の種類。NIST の基準の名前ではない。",
+      "SOAR（Security Orchestration, Automation and Response）は、セキュリティの対応の手順をつなげて自動化する仕組みや製品の種類。脆弱性の識別や評価の共通の基準ではない。"
+    ],
+    "memoryTip": "SCAP＝CVE・CCE・CPE・CVSS・XCCDF・OVAL の束。",
+    "concepts": [
+      "C-SC-04-064"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 12,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問12）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA セキュリティ設定共通化手順SCAP概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/scap.html"
+      },
+      {
+        "title": "NIST CSRC Security Content Automation Protocol (SCAP)",
+        "url": "https://csrc.nist.gov/projects/security-content-automation-protocol"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-011",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "デジタル庁，総務省及び経済産業省が策定した“電子政府における調達のために参照すべき暗号のリスト（CRYPTREC暗号リスト）”に関する記述のうち，適切なものはどれか。",
+    "choices": [
+      "CRYPTREC暗号リストにある運用監視暗号リストとは，運用監視システムにおける利用実績が十分であると判断され，電子政府において利用を推奨する暗号技術のリストである。",
+      "CRYPTREC暗号リストにある証明書失効リストとは，政府共用認証局が公開している，危殆化した暗号技術のリストである。",
+      "CRYPTREC暗号リストにある推奨候補暗号リストとは，安全性及び実装性能が確認され，今後，電子政府推奨暗号リストに掲載される可能性がある暗号技術のリストである。",
+      "CRYPTREC暗号リストにある電子政府推奨暗号リストとは，互換性維持目的に限った継続利用を推奨する暗号技術のリストである。"
+    ],
+    "answer": 2,
+    "stemPlain": "CRYPTREC 暗号リストを構成する3つのリストの説明のうち、正しいものを選ぶ問題。",
+    "explanation": "CRYPTREC 暗号リストは3つのリストからなる。電子政府推奨暗号リスト＝安全性と実装性能が確認され、利用実績が十分か今後の普及が見込まれ、利用を推奨するもの。推奨候補暗号リスト＝安全性と実装性能が確認され、今後、電子政府推奨暗号リストに掲載される可能性のあるもの。運用監視暗号リスト＝解読されるリスクが高まるなど推奨すべき状態ではなくなったもののうち、互換性維持のために継続利用を容認するもの。正解の文は、推奨候補暗号リストの説明として CRYPTREC の記述と合っている。なお最新版（最終更新 令和8年3月30日）では、電子政府推奨暗号リストが『現行暗号リスト』と『耐量子計算機暗号（PQC）リスト』の2表になっている。",
+    "whyWrong": [
+      "運用監視暗号リストは『推奨する』リストではない。推奨すべき状態ではなくなった暗号のうち、互換性維持のために使い続けを容認するものの一覧で、互換性維持以外の目的での利用は推奨しない。『運用監視システムでの利用実績』という意味でもない。",
+      "証明書失効リスト（CRL）は、認証局が、有効期限の前に失効させた電子証明書を並べて公開する一覧。暗号技術のリストではなく、CRYPTREC 暗号リストを構成するリストでもない。",
+      null,
+      "互換性維持の目的に限って継続利用を認めるのは、運用監視暗号リストの説明。電子政府推奨暗号リストは、安全性と実装性能が確認され、利用を推奨する暗号のリスト。"
+    ],
+    "memoryTip": "推奨候補＝確認済みで、これから推奨に上がるかもしれない暗号。",
+    "concepts": [
+      "C-SC-04-074",
+      "C-SC-02-030"
+    ],
+    "figures": [
+      "fig-sc-impl-cryptrec"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 1,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問1）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "CRYPTREC 電子政府における調達のために参照すべき暗号のリスト（CRYPTREC暗号リスト）（最終更新：令和8年3月30日）",
+        "url": "https://www.cryptrec.go.jp/list/cryptrec-ls-0001-2022r2.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-012",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "SQLインジェクション対策について，Webアプリケーションプログラムの実装における対策と，Webアプリケーションプログラムの実装以外の対策の組みとして，適切なものはどれか。",
+    "choices": [
+      "Webアプリケーションプログラム中でシェルを起動しない。／chroot環境でWebサーバを稼働させる。",
+      "セッションIDを乱数で生成する。／TLSによって通信内容を秘匿する。",
+      "パス名やファイル名をパラメータとして受け取らないようにする。／重要なファイルを公開領域に置かない。",
+      "プレースホルダを利用する。／Webアプリケーションプログラムが利用するデータベースのアカウントがもつデータベースアクセス権限を必要最小限にする。"
+    ],
+    "answer": 3,
+    "stemPlain": "SQL インジェクションへの対策を、プログラムの書き方での対策（／の前）と、それ以外の対策（／の後）の組で選ぶ問題。",
+    "explanation": "SQL インジェクションの根本的な対策は、SQL 文をプレースホルダで組み立て、入力が SQL の命令として解釈されないようにすること（プログラムの実装での対策）。実装以外の対策として、アプリが使うデータベースのアカウントの権限を必要最小限にしておけば、万一攻撃が成り立っても被害を狭められる。IPA の『安全なウェブサイトの作り方』も、前者を根本的解決、後者（データベースアカウントに適切な権限を与える）を保険的対策として挙げている。",
+    "whyWrong": [
+      "シェルを起動しない、chroot（プログラムから見えるディレクトリの範囲を限る仕組み）で動かす、は OS コマンド・インジェクションの被害を防ぐ・狭める対策。SQL 文の組み立てには関係しない。",
+      "セッション ID を乱数で作るのはセッションハイジャックの対策、TLS は通信の盗聴の対策。どちらも SQL 文が書き換えられることは防がない。",
+      "パス名やファイル名を受け取らない、重要なファイルを公開領域に置かない、はディレクトリ・トラバーサル（パス名を細工して見せないファイルを読む攻撃）の対策。",
+      null
+    ],
+    "memoryTip": "SQL インジェクション：書き方はプレースホルダ、外側は DB の権限を最小に。",
+    "concepts": [
+      "C-SC-04-010",
+      "C-SC-01-042"
+    ],
+    "figures": [
+      "fig-sc-impl-placeholder"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 17,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問17）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-013",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "IoT機器のペネトレーションテスト（Penetration Test）の説明として，適切なものはどれか。",
+    "choices": [
+      "開発の最終段階に，IoT機器と通信対象となるサーバ及びネットワーク全体の動作が仕様書どおりであることをテストする。",
+      "回路図，ソースコードなどのシステムの内部構造を参照して，仕様確認のためのテストを行う。",
+      "恒温恒湿器を用いて，要求仕様で定められた温湿度条件で動作するかどうか，耐久性はどうかをテストする。",
+      "ネットワーク，バス，デバッグインタフェースなどの脆弱性を利用して，IoT機器への攻撃と侵入を試みるテストを行う。"
+    ],
+    "answer": 3,
+    "stemPlain": "IoT 機器のペネトレーションテスト（侵入テスト）の説明として正しいものを選ぶ問題。",
+    "explanation": "ペネトレーションテストは、攻撃者と同じ手口で実際に攻撃を仕掛け、セキュリティ機能を回避して侵入できるかを確かめる検査（NIST SP 800-115）。IoT 機器では、ネットワークに加えて、基板上のバス（部品どうしをつなぐ配線）やデバッグ用のインタフェースなど、機器ならではの入口の脆弱性も使って侵入を試みる。正解の文は、まさに脆弱性を利用して攻撃と侵入を試みるテストを述べている。",
+    "whyWrong": [
+      "IoT 機器・サーバ・ネットワーク全体の動作が仕様書どおりかを確かめるのは、システムテスト（総合テスト）。仕様どおりかの確認で、攻撃して侵入できるかを試すものではない。",
+      "回路図やソースコードなど内部構造を見て仕様を確かめるのは、内部の作りに基づくテスト（ホワイトボックステスト）の説明。侵入を試みるテストではない。",
+      "恒温恒湿器で温度・湿度の条件の動作や耐久性を確かめるのは、環境試験。セキュリティの検査ではない。",
+      null
+    ],
+    "memoryTip": "ペネトレーション＝突き破る。実際に攻撃して入れるかを試す。",
+    "concepts": [
+      "C-SC-04-068",
+      "C-SC-04-038"
+    ],
+    "pastExam": [
+      {
+        "year": "令和5年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 22,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和5年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問22）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "NIST SP 800-115 Technical Guide to Information Security Testing and Assessment",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
+      },
+      {
+        "title": "NIST CSRC Glossary: penetration testing",
+        "url": "https://csrc.nist.gov/glossary/term/penetration_testing"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-014",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "IT製品及びシステムが，必要なセキュリティレベルを満たしているかどうかについて，調達者が判断する際に役立つ評価結果を提供し，独立したセキュリティ評価結果間の比較を可能にするための規格はどれか。",
+    "choices": [
+      "ISO/IEC 15408",
+      "ISO/IEC 27002",
+      "ISO/IEC 27017",
+      "ISO/IEC 30147"
+    ],
+    "answer": 0,
+    "stemPlain": "IT 製品が必要なセキュリティの水準を満たすかを調達者が判断できるよう評価結果を出し、別々の評価の結果を比べられるようにする規格を選ぶ問題。",
+    "explanation": "ISO/IEC 15408（コモンクライテリア、CC）は、IT 製品やシステムのセキュリティ機能が適切に設計され正しく実装されているかを評価するための国際規格。共通の基準で評価するので、調達者は製品どうしを比べられる。日本では JISEC が、この規格に基づいて第三者が評価し IPA が認証する制度を運営している。",
+    "whyWrong": [
+      null,
+      "ISO/IEC 27002 は、情報セキュリティ管理策（組織的・人的・物理的・技術的な対策）の手引き。組織の管理策の参照の規格で、製品の評価基準ではない。",
+      "ISO/IEC 27017 は、クラウドサービスのための情報セキュリティ管理策の実践の規範。クラウドの事業者と利用者の管理策の規格で、製品の評価結果を比べる規格ではない。",
+      "ISO/IEC 30147 は、IoT のシステムやサービスのライフサイクルの工程に、信頼性（trustworthiness）を作り込む活動を組み込むための規格。製品のセキュリティ評価の基準ではない。"
+    ],
+    "memoryTip": "製品を評価して比べる＝15408（CC）。270xx は組織の管理策の仲間。",
+    "concepts": [
+      "C-SC-04-070",
+      "C-SC-04-072"
+    ],
+    "figures": [
+      "fig-sc-impl-cc-pp-st"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 9,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問9）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000008smf-att/2022r04a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA CC(ISO/IEC 15408)概説",
+        "url": "https://www.ipa.go.jp/security/jisec/about/about.html"
+      },
+      {
+        "title": "IPA 評価認証制度（JISEC）について",
+        "url": "https://www.ipa.go.jp/security/jisec/about/jisec.html"
+      },
+      {
+        "title": "IEC Webstore ISO/IEC 30147:2021",
+        "url": "https://webstore.iec.ch/publication/62644"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-015",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "HTTP Strict Transport Security（HSTS）の動作はどれか。",
+    "choices": [
+      "HTTP over TLS（HTTPS）によって接続しているとき，EV SSL証明書であることを利用者が容易に識別できるように，Webブラウザのアドレス表示部分を緑色に表示する。",
+      "Webサーバからコンテンツをダウンロードするとき，どの文字列が秘密情報かを判定できないように圧縮する。",
+      "WebサーバとWebブラウザとの間のTLSのハンドシェイクにおいて，一度確立したセッションとは別の新たなセッションを確立するとき，既に確立したセッションを使って改めてハンドシェイクを行う。",
+      "Webサイトにアクセスすると，Webブラウザは，以降の指定された期間，当該サイトには全てHTTPSによって接続する。"
+    ],
+    "answer": 3,
+    "stemPlain": "HSTS というしくみで、ブラウザがどう動くかを選ぶ問題。",
+    "explanation": "HSTS（HTTP Strict Transport Security）は、サイトが HTTPS の応答で Strict-Transport-Security ヘッダーを返すと、ブラウザがそのドメインを覚え、max-age で指定された期間、そのサイトへの接続をすべて HTTPS で行うしくみ。利用者が http:// で開こうとしても、ブラウザは通信を始める前に https:// に置き換える。最初の HTTP の通信を攻撃者に横取りされるのを防ぐのが狙い。正解の文はこの動作そのもの。",
+    "whyWrong": [
+      "EV SSL 証明書のときにアドレス表示を緑色にするのは、ブラウザの証明書の表示の機能。HSTS は接続を HTTPS に限らせる指示で、表示の色とは関係がない。",
+      "秘密情報を判定できないように圧縮するのは、圧縮の扱いの話。HTTPS への接続の強制とは関係がない。",
+      "確立したセッションを使って改めてハンドシェイクを行うのは、TLS の再ネゴシエーションの説明。HSTS ではない。",
+      null
+    ],
+    "memoryTip": "HSTS は表示でも圧縮でもなく「接続を https に固定」。",
+    "concepts": [
+      "C-SC-04-017"
+    ],
+    "figures": [
+      "fig-sc-impl-hsts"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 14,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問14）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 6797 HTTP Strict Transport Security (HSTS)",
+        "url": "https://www.rfc-editor.org/rfc/rfc6797.txt"
+      },
+      {
+        "title": "MDN Strict-Transport-Security header",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-016",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "FIPS PUB 140-3はどれか。",
+    "choices": [
+      "暗号モジュールのセキュリティ要求事項",
+      "情報セキュリティマネジメントシステムの要求事項",
+      "ディジタル証明書や証明書失効リストの技術仕様",
+      "無線LANセキュリティの技術仕様"
+    ],
+    "answer": 0,
+    "stemPlain": "FIPS PUB 140-3 が何を定めた規格かを選ぶ問題。",
+    "explanation": "FIPS 140-3 は、米国 NIST の『Security Requirements for Cryptographic Modules』（暗号モジュールのセキュリティ要求事項）。暗号モジュールに4段階のセキュリティレベルを定め、モジュールの仕様・インタフェース・役割と認証・物理的セキュリティ・鍵などの重要なパラメータの管理・自己テストなどを扱う。FIPS 140-2 の後継で、要求の中身は ISO/IEC 19790:2012 を参照している。",
+    "whyWrong": [
+      null,
+      "ISMS の要求事項は ISO/IEC 27001（JIS Q 27001）で、組織のマネジメントシステムの規格。暗号モジュールの要求ではない。",
+      "ディジタル証明書と証明書失効リストの技術仕様は、X.509 の証明書と CRL のプロファイル（インターネットでは RFC 5280）の範囲。FIPS 140-3 は、証明書の形式ではなく暗号モジュールの要求を定める。",
+      "無線 LAN のセキュリティの技術仕様は、無線 LAN の規格の側で定めるもの。FIPS 140-3 は無線 LAN に限らず、暗号の処理をするモジュール全般の要求事項。"
+    ],
+    "memoryTip": "140 と聞いたら暗号モジュール。レベルは1〜4。",
+    "concepts": [
+      "C-SC-04-073"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 7,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問7）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000apad-att/2021r03a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "NIST FIPS 140-3 Security Requirements for Cryptographic Modules",
+        "url": "https://csrc.nist.gov/pubs/fips/140-3/final"
+      },
+      {
+        "title": "RFC 5280 Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile",
+        "url": "https://www.rfc-editor.org/rfc/rfc5280.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-017",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "cookieにSecure属性を設定しなかったときと比較した，設定したときの動作として，適切なものはどれか。",
+    "choices": [
+      "cookieに設定された有効期間を過ぎると，cookieが無効化される。",
+      "JavaScriptによるcookieの読出しが禁止される。",
+      "URL内のスキームがhttpsのときだけ，Webブラウザからcookieが送出される。",
+      "WebブラウザがアクセスするURL内のパスとcookieに設定されたパスのプレフィックスが一致するときだけ，Webブラウザからcookieが送出される。"
+    ],
+    "answer": 2,
+    "stemPlain": "cookie に Secure 属性を付けると、付けないときと比べてブラウザの動きがどう変わるかを選ぶ問題。",
+    "explanation": "Secure 属性を付けた cookie は、ブラウザが安全な通信（https のスキーム）のときだけ送る（RFC 6265 では secure-only-flag が立ち、安全な通信路のリクエストにだけ付けられる）。暗号化されない HTTP の通信で cookie が盗聴されるのを防ぐ。",
+    "whyWrong": [
+      "有効期間を過ぎた cookie が無効になるのは、Expires や Max-Age 属性で期限を決めたときの動き。Secure 属性の働きではない。",
+      "JavaScript から cookie を読み出せなくするのは HttpOnly 属性。XSS による cookie の盗み出しを防ぐための属性で、Secure 属性とは別。",
+      null,
+      "URL のパスが cookie に設定したパスと前方一致するときだけ送るのは、Path 属性の働き。"
+    ],
+    "memoryTip": "Secure＝https のときだけ送る。HttpOnly＝スクリプトに読ませない。Path＝道を絞る。",
+    "concepts": [
+      "C-SC-04-016"
+    ],
+    "figures": [
+      "fig-sc-impl-cookie-attrs"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 10,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問10）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000apad-att/2021r03a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 6265 HTTP State Management Mechanism",
+        "url": "https://www.rfc-editor.org/rfc/rfc6265.txt"
+      },
+      {
+        "title": "MDN Set-Cookie header",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-018",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "外部から侵入されたサーバ及びそのサーバに接続されていた記憶媒体を調査対象としてディジタルフォレンジックスを行うことになった。このとき，稼働状態にある調査対象のサーバ，記憶媒体などから表に示すa～dを証拠として保全する。保全の順序のうち，揮発性の観点から最も適切なものはどれか。",
+    "choices": [
+      "a→c→d→b",
+      "b→c→a→d",
+      "c→a→d→b",
+      "d→c→a→b"
+    ],
+    "answer": 3,
+    "stemPlain": "侵入されたサーバから4つの証拠 a〜d を保全する。消えやすさ（揮発性）の観点で、どの順に保全すればよいかを選ぶ問題。表は問題文の下の図を見る。",
+    "explanation": "証拠は消えやすいものから保全する（RFC 3227）。d のルーティングテーブルの状態はメモリ上にあり、電源を切ったり時間がたったりすると消えるので最初。次が c の、調査対象サーバのハードディスク上の表計算ファイル（電源を切っても残るが、サーバが動いているあいだは書き換わりうる）。その次が a の、遠隔にあるログサーバに記録されたアクセスログ（調査対象の外に残る遠隔のログ）。最後が b の、会計ソフトのインストール用 CD（保管用の媒体で、書き換わらない）。よって d→c→a→b。",
+    "whyWrong": [
+      "最初に遠隔のログサーバのアクセスログ（a）を取ると、そのあいだにメモリ上のルーティングテーブル（d）が変わったり消えたりしうる。遠隔のログは調査対象の外に残るので後でよい。",
+      "インストール用 CD（b）は書き換わらない保管用の媒体で、いちばん後でよい。最初に取ると、消えやすいルーティングテーブル（d）が後回しになる。",
+      "ハードディスク上のファイル（c）より、メモリ上にしかないルーティングテーブル（d）のほうが消えやすい。d を c の後に回すと、d が失われるおそれがある。",
+      null
+    ],
+    "memoryTip": "メモリ（ルーティング）→ 自分のディスク → 遠くのログ → CD。",
+    "concepts": [
+      "C-SC-04-048",
+      "C-SC-04-047"
+    ],
+    "stemFigures": [
+      "fig-sc-impl-r03a-q12"
+    ],
+    "figures": [
+      "fig-sc-impl-volatility"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "秋期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 12,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問12）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000apad-att/2021r03a_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 3227 Guidelines for Evidence Collection and Archiving",
+        "url": "https://www.rfc-editor.org/rfc/rfc3227.txt"
+      },
+      {
+        "title": "NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-86.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-019",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "JVNなどの脆弱性対策情報ポータルサイトで採用されているCVE（Common Vulnerabilities and Exposures）識別子の説明はどれか。",
+    "choices": [
+      "コンピュータで必要なセキュリティ設定項目を識別するための識別子",
+      "脆弱性が悪用されて改ざんされたWebサイトのスクリーンショットを識別するための識別子",
+      "製品に含まれる脆弱性を識別するための識別子",
+      "セキュリティ製品の種別を識別するための識別子"
+    ],
+    "answer": 2,
+    "stemPlain": "JVN などで使われている CVE 識別子が何かを選ぶ問題。",
+    "explanation": "CVE（Common Vulnerabilities and Exposures、共通脆弱性識別子）は、個別の製品の中の脆弱性に付ける識別子で、MITRE が採番している（IPA の説明）。CVE 識別番号を見れば、別々の組織が出した対策情報が同じ脆弱性についてのものかを判断できる。",
+    "whyWrong": [
+      "コンピュータのセキュリティ設定の項目を識別する識別子は CCE（共通セキュリティ設定一覧）。CVE ではない。",
+      "改ざんされた Web サイトの画面の画像を識別する識別子は、SCAP にも JVN にも無い。CVE は製品の脆弱性に付く番号。",
+      null,
+      "セキュリティ製品の種別を識別する識別子は SCAP には無い。製品を識別する名前の付け方は CPE（共通プラットフォーム一覧）で、CVE ではない。"
+    ],
+    "memoryTip": "CVE＝脆弱性1件ごとの背番号（CVE-年-番号）。",
+    "concepts": [
+      "C-SC-04-062",
+      "C-SC-04-064"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 8,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問8）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 共通脆弱性識別子CVE概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cve.html"
+      },
+      {
+        "title": "IPA セキュリティ設定共通化手順SCAP概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/scap.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-020",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "安全なWebアプリケーションの作り方について，攻撃と対策の適切な組合せはどれか。",
+    "choices": [
+      "SQLインジェクション／SQL文の組立てに静的プレースホルダを使用する。",
+      "クロスサイトスクリプティング／任意の外部サイトのスタイルシートを取り込めるようにする。",
+      "クロスサイトリクエストフォージェリ／リクエストにGETメソッドを使用する。",
+      "セッションハイジャック／利用者ごとに固定のセッションIDを使用する。"
+    ],
+    "answer": 0,
+    "stemPlain": "Web アプリへの攻撃（／の前）と、その対策（／の後）の組で、正しいものを選ぶ問題。",
+    "explanation": "IPA の『安全なウェブサイトの作り方』は、SQL インジェクションの根本的解決として、SQL 文の組み立てはすべてプレースホルダで実装することを挙げ、原理的に SQL インジェクションの可能性がなくなる点で静的プレースホルダが優るとしている。静的プレースホルダは、SQL 文をプレースホルダのままデータベースエンジン側でコンパイルしておき、後から値を割り当てる方式。",
+    "whyWrong": [
+      null,
+      "任意の外部サイトのスタイルシートを取り込めるようにすると、スタイルシートにスクリプトを仕込まれるおそれがある。IPA は XSS 対策として、逆に『スタイルシートを任意のサイトから取り込めるようにしない』を挙げている。",
+      "GET メソッドを使うのは CSRF の対策にならない。IPA は、処理を実行するページは POST で受け、hidden パラメータの秘密情報で照合するとし、GET では Referer で秘密情報が外部に漏れるとしている。",
+      "利用者ごとに固定のセッション ID を使うと、一度知られた ID でいつまでもなりすまされる。セッションハイジャックの対策は、推測困難なセッション ID にすること、ログイン成功後に新しくセッションを始めることなど。"
+    ],
+    "memoryTip": "SQL インジェクション＝静的プレースホルダ。ほかの3組は対策が逆向き。",
+    "concepts": [
+      "C-SC-04-010",
+      "C-SC-04-011",
+      "C-SC-04-009"
+    ],
+    "figures": [
+      "fig-sc-impl-placeholder"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 12,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問12）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-021",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "HSTS（HTTP Strict Transport Security）の説明はどれか。",
+    "choices": [
+      "HSTSを利用するWebサイトにWebブラウザがHTTPでアクセスした場合，Webブラウザから当該サイトへのその後のアクセスを強制的にHTTP over TLS（HTTPS）にする。",
+      "HSTSを利用するWebサイトにWebブラウザがHTTPでアクセスした場合，Webページの文書やスクリプトについて，あるオリジンから読み込まれたリソースから他のオリジンのリソースにアクセスできないように制限する。",
+      "HTTPSで通信が保護されている場合にだけ，cookieの属性によらず強制的にcookieを送信する。",
+      "信頼性が高いサーバ証明書を有するWebサイトとのHTTPS通信では，Webブラウザに鍵マークを表示する。"
+    ],
+    "answer": 0,
+    "stemPlain": "HSTS の説明として正しいものを選ぶ問題。",
+    "explanation": "HSTS（HTTP Strict Transport Security）は、サイトが HTTPS の応答で Strict-Transport-Security ヘッダーを返すと、ブラウザがそのドメインを覚え、max-age で指定された期間、そのサイトへの接続をすべて HTTPS で行うしくみ。利用者が http:// で開こうとしても、ブラウザは通信を始める前に https:// に置き換える。最初の HTTP の通信を攻撃者に横取りされるのを防ぐのが狙い。正解の文は、HTTP でアクセスした場合でも、その後のアクセスを HTTPS に強制する、という点を述べている（HSTS のヘッダーそのものは HTTPS の応答で受け取ったときに有効になる。HTTP の応答では HTTPS へ転送してから指示を受け取らせる）。",
+    "whyWrong": [
+      null,
+      "あるオリジンから読み込んだリソースが、他のオリジンのリソースにアクセスできないようにするのは、Same Origin Policy（同一オリジンポリシー）の説明。HSTS ではない。",
+      "cookie は属性に従って送られる。HTTPS のときだけ送らせるのは Secure 属性の働きで、HSTS が cookie の属性を無視して送らせることはない。",
+      "鍵マークの表示は、HTTPS で接続していることを示すブラウザの表示。HSTS は表示ではなく、接続を HTTPS に限らせる指示。"
+    ],
+    "memoryTip": "オリジンをまたいで読めない＝Same Origin Policy。接続を https に固定＝HSTS。",
+    "concepts": [
+      "C-SC-04-017",
+      "C-SC-04-014"
+    ],
+    "figures": [
+      "fig-sc-impl-hsts"
+    ],
+    "pastExam": [
+      {
+        "year": "令和3年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 15,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和3年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問15）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "RFC 6797 HTTP Strict Transport Security (HSTS)",
+        "url": "https://www.rfc-editor.org/rfc/rfc6797.txt"
+      },
+      {
+        "title": "MDN Strict-Transport-Security header",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security"
+      },
+      {
+        "title": "MDN Same-origin policy",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-022",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "NIST SP 800-207 のゼロトラストアーキテクチャにおいて、利用者と資源の間の通信を、判断の結果に従って実際に許可・監視・切断する役割を担う論理コンポーネントはどれか。",
+    "choices": [
+      "ポリシーエンジン（PE）",
+      "ポリシー管理者（PA）",
+      "ポリシー実施ポイント（PEP）",
+      "暗黙の信頼ゾーン（implicit trust zone）"
+    ],
+    "answer": 2,
+    "stemPlain": "ゼロトラストの仕組みで、決まった判断どおりに通信を通したり止めたりする「門番」の部品の名前を選ぶ問題。",
+    "explanation": "NIST SP 800-207 では、ポリシー実施ポイント（PEP）が、利用者（サブジェクト）と企業の資源との間の接続を有効にし、監視し、最終的に終了させる役割を担う。PEP は、ポリシー管理者（PA）とやり取りして要求を転送し、ポリシーの更新を受け取る。判断そのものは PEP ではなく、ポリシー決定ポイント（PDP）が行う。",
+    "whyWrong": [
+      "ポリシーエンジン（PE）は、企業のポリシーと外部の情報（脅威情報など）を入力に、ある利用者に資源へのアクセスを許すかを最終的に決める部品。決めるのが役目で、通信を直接通したり切ったりはしない。",
+      "ポリシー管理者（PA）は、PE の決定に従って、PEP に指示を出して通信路を開け閉めし、セッションごとの認証トークンなどを作る部品。PEP に命令する側で、通信を実際に通す門ではない。PE と PA を合わせて PDP と呼ぶ。",
+      null,
+      "暗黙の信頼ゾーンは、最後の PDP／PEP を通った後で、その中の全員が同じ信頼の水準とみなされる領域のこと。部品ではなく、ゼロトラストでは小さくすべきとされる範囲。"
+    ],
+    "memoryTip": "PDP（PE＋PA）が決めて、PEP が門で実行する。",
+    "concepts": [
+      "C-SC-04-001"
+    ],
+    "figures": [
+      "fig-sc-impl-zta"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-207 Zero Trust Architecture",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf"
+      },
+      {
+        "title": "NIST CSRC Glossary: policy enforcement point",
+        "url": "https://csrc.nist.gov/glossary/term/policy_enforcement_point"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-023",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "NIST SP 800-207 が示すゼロトラストの考え方に関する記述のうち、適切でないものはどれか。",
+    "choices": [
+      "社内ネットワークの中にある端末からの要求であれば、PDP による判断を省いて資源へのアクセスを許可する。",
+      "アクセスの判断では、利用者の認証に加えて、端末の状態などの情報も考慮する。",
+      "アクセスの許可は、作業に必要な最小限の権限で与える。",
+      "資源へのアクセスはセッション単位で許可し、1つの資源で認証・認可されても別の資源へのアクセスは自動では許可しない。"
+    ],
+    "answer": 0,
+    "stemPlain": "ゼロトラスト（場所を問わず毎回確かめる考え方）の説明として、合っていないものを選ぶ問題。",
+    "explanation": "NIST SP 800-207 は、企業の私的なネットワーク全体を暗黙の信頼ゾーンとはみなさず、攻撃者がネットワーク内にいるかのように振る舞い、すべての接続を認証することを原則にしている。社内にいるという理由だけで判断を省くのは、境界防御の考え方で、ゼロトラストとは逆。",
+    "whyWrong": [
+      null,
+      "ゼロトラストの判断（信頼のアルゴリズム）は、利用者の認証だけでなく、端末の状態や脅威情報などの外部の情報も使う。適切。",
+      "最小権限でアクセスを与えることも、SP 800-207 の原則に含まれる。適切。",
+      "SP 800-207 の原則どおり。アクセスはセッション単位で、ある資源への認証・認可は別の資源へのアクセスを自動では与えない。"
+    ],
+    "memoryTip": "ゼロトラスト：社内でも「顔パス」無し。",
+    "concepts": [
+      "C-SC-04-001"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-207 Zero Trust Architecture",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-024",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "シラバスで「AI を使ったセキュリティ技術（AI for Security）」に当たる取組みはどれか。",
+    "choices": [
+      "学習データに細工が混入していないかを、データの出所や加工履歴から確認する。",
+      "LLM に入力されるプロンプトをガードレールで検証し、不正な指示を検知したら処理を拒否する。",
+      "RAG が参照するデータストアへのアクセス権を、利用者の役割に応じて設定する。",
+      "大量のアラートを機械学習で分類し、攻撃の可能性が高いものから分析者に提示する。"
+    ],
+    "answer": 3,
+    "stemPlain": "AI を「守りの道具として使う」取組みはどれかを選ぶ問題。ほかの選択肢は AI そのものを守る話。",
+    "explanation": "AI for Security は、AI を守りの道具として使うこと。アラートを機械学習で分類して優先順位を付けるのは、AI で守る側の作業を助ける使い方。CISA の AI のロードマップも、サイバーセキュリティの能力を高めるための AI の有益な使い方を、AI システムを守ることと分けて掲げていた。",
+    "whyWrong": [
+      "学習データの出所や加工履歴を確かめるのは、データポイズニング（学習データへの細工）から AI を守る対策。Security for AI の側。",
+      "ガードレールで入力プロンプトを検証するのは、LLM（AI）がプロンプトインジェクションで操られないよう守る対策。AI を守る Security for AI の側。",
+      "RAG のデータストアへのアクセス権を役割に応じて設定するのは、AI が見てはいけない文書を答えに出さないための対策。Security for AI の側。",
+      null
+    ],
+    "memoryTip": "for Security＝AI で守る。for AI＝AI を守る。",
+    "concepts": [
+      "C-SC-04-002",
+      "C-SC-04-004"
+    ],
+    "sources": [
+      {
+        "title": "CISA Roadmap for AI（2023-2024。現在は過去の資料として保管）",
+        "url": "https://www.cisa.gov/resources-tools/resources/roadmap-ai"
+      },
+      {
+        "title": "総務省 AI のセキュリティ確保のための技術的対策に係るガイドライン（令和8年3月）",
+        "url": "https://www.soumu.go.jp/main_content/001064122.pdf"
+      },
+      {
+        "title": "IPA 情報処理安全確保支援士試験 シラバス（案）Ver.0.1",
+        "url": "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-025",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "社内文書を検索して回答する生成 AI のチャットボットに、受信メールの要約と返信の送信の機能を追加する。受信メールに紛れ込んだ不正な指示によって、AI が勝手に社外へメールを送ることを防ぐ対策として、最も効果的なものはどれか。",
+    "choices": [
+      "システムプロンプトに、メールの本文に書かれた指示には従わないよう明記する。",
+      "AI に与える権限を受信メールの読取りと下書きの作成に限り、送信は利用者の承認を経て行う。",
+      "受信メールの本文を、AI に渡す前に TLS で暗号化された経路で取得する。",
+      "AI の回答の生成に使う基盤モデルを、パラメータ数の多いモデルに置き換える。"
+    ],
+    "answer": 1,
+    "stemPlain": "メールを読む AI に、メールに書かれた悪い指示で勝手に送信させないには、どうするのが一番効くかを選ぶ問題。",
+    "explanation": "間接プロンプトインジェクションは、AI が読む外部のデータ（メールや Web ページ）に不正な指示を仕込む攻撃で、完全に防ぐことは難しい。だから、従わされても被害が出ないように、AI に与える権限を必要最小限にし、危険な操作には人の承認を挟む（エージェントの権限分離）。総務省のガイドラインはオーケストレータの権限を必要最小限にすることを、OWASP は最小権限と、危険な操作に人の承認を求めることを挙げている。",
+    "whyWrong": [
+      "システムプロンプトに注意を書く（システムプロンプトの強化）は対策の1つだが、LLM が必ず従う保証は無い。送信の権限を持たせたままでは、すり抜けられたときに社外へ送られる。",
+      null,
+      "TLS は通信の途中での盗聴や改ざんを防ぐ。メールの中身に仕込まれた指示はそのまま届くので、プロンプトインジェクションは防げない。",
+      "パラメータ数の多いモデルにしても、命令と資料を同じ文字として受け取る性質は変わらない。不正な指示に従う危険は残る。"
+    ],
+    "memoryTip": "AI は騙される前提。騙されても「送れない」ように権限を絞る。",
+    "concepts": [
+      "C-SC-04-003"
+    ],
+    "sources": [
+      {
+        "title": "総務省 AI のセキュリティ確保のための技術的対策に係るガイドライン（令和8年3月）",
+        "url": "https://www.soumu.go.jp/main_content/001064122.pdf"
+      },
+      {
+        "title": "OWASP Gen AI Security Project LLM01:2025 Prompt Injection",
+        "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+      },
+      {
+        "title": "OWASP Gen AI Security Project LLM06:2025 Excessive Agency",
+        "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-026",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "総務省の「AI のセキュリティ確保のための技術的対策に係るガイドライン」は、AI 提供者の対策として、LLM に（ア）を明確に区分させること、及び（イ）を LLM が参照できるよう別個に管理し、システムプロンプトに直接記述しないことを挙げている。（ア）と（イ）に入れる字句の組合せとして、適切なものはどれか。",
+    "choices": [
+      "（ア）学習データと評価データ　（イ）API キーなどの機密情報",
+      "（ア）入力プロンプトと外部参照データ　（イ）API キーなどの機密情報",
+      "（ア）学習データと評価データ　（イ）利用者の操作ログ",
+      "（ア）入力プロンプトと外部参照データ　（イ）利用者の操作ログ"
+    ],
+    "answer": 1,
+    "stemPlain": "生成 AI を守る国のガイドラインで、AI に「何と何を区別させるか」と「何をシステムプロンプトに書かず別に管理するか」の組を選ぶ問題。",
+    "explanation": "総務省のガイドライン（2026年3月）は、外部参照データの検証の一部として、LLM に入力プロンプトと外部参照データを明確に区分させ、外部参照データに高い注意を払わせることを挙げる（外部参照データの分離）。また、システムプロンプトには出力を意図しない機密情報（例：API キー）を直接記述することを避け、LLM が必要に応じて参照できるよう別個に管理することも重要としている。",
+    "whyWrong": [
+      "（ア）が誤り。学習データと評価データを分けるのは、モデルの性能を正しく測るための機械学習の手順。不正な指示を紛れ込ませないために区分させるのは、入力プロンプトと外部参照データ。",
+      null,
+      "（ア）（イ）とも誤り。学習データと評価データの区分は性能評価の手順、操作ログは監査のための記録で、いずれもこのガイドラインの該当箇所の対策ではない。",
+      "（イ）が誤り。利用者の操作ログは、監査ログとしてトレーサビリティの確保のために保存するもので、システムプロンプトから外して管理する機密情報の例ではない。"
+    ],
+    "memoryTip": "指示と資料を分ける。秘密はプロンプトに書かない。",
+    "concepts": [
+      "C-SC-04-004",
+      "C-SC-04-005"
+    ],
+    "sources": [
+      {
+        "title": "総務省 AI のセキュリティ確保のための技術的対策に係るガイドライン（令和8年3月）",
+        "url": "https://www.soumu.go.jp/main_content/001064122.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-027",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "社内向けチャットボットが RAG で社内文書を検索して回答する。一般社員の質問に対して、人事部だけが閲覧できる評価資料の内容が回答に含まれてしまった。この事象の再発防止策として、最も適切なものはどれか。",
+    "choices": [
+      "質問の受付時間を業務時間内に限定する。",
+      "システムプロンプトの文字数を減らし、LLM の応答速度を上げる。",
+      "RAG 用のデータストアを、全社員が参照できる共有フォルダに移す。",
+      "RAG 用のデータストアへの参照権限を、質問した利用者の権限に応じて設定する。"
+    ],
+    "answer": 3,
+    "stemPlain": "社内文書を検索して答える AI が、見せてはいけない人事資料の中身を一般社員に答えてしまった。防ぐ方法を選ぶ問題。",
+    "explanation": "RAG は、質問に関係する文書を検索して LLM に渡し、回答に使う。検索の対象に、その利用者が見てはいけない文書が入っていれば、どう頼まれても答えに出うる。総務省のガイドラインは、RAG 用のデータ及びデータストアへの参照権限をユーザや役割に応じて適切に設定することを挙げ、OWASP も、権限を考慮したベクトルストアと、データの論理的な分離を挙げている。",
+    "whyWrong": [
+      "受付時間を絞っても、業務時間内に同じ質問をされれば同じように漏れる。権限の問題が残ったまま。",
+      "システムプロンプトを短くしても、検索の対象に人事資料が入っている限り、回答に混ざる危険は変わらない。応答速度は情報漏えいの防止と関係がない。",
+      "全社員が参照できる場所に移すと、人事資料を誰でも見られる状態が広がり、かえって漏えいしやすくなる。",
+      null
+    ],
+    "memoryTip": "RAG は「その人が見てよい文書」だけを検索させる。",
+    "concepts": [
+      "C-SC-04-004"
+    ],
+    "sources": [
+      {
+        "title": "総務省 AI のセキュリティ確保のための技術的対策に係るガイドライン（令和8年3月）",
+        "url": "https://www.soumu.go.jp/main_content/001064122.pdf"
+      },
+      {
+        "title": "OWASP Gen AI Security Project LLM08:2025 Vector and Embedding Weaknesses",
+        "url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-028",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "総務省が2026年3月に公表した「AI のセキュリティ確保のための技術的対策に係るガイドライン」が、攻撃の具体的な可能性が比較的高いとして、主に対策を示している脅威の組合せはどれか。",
+    "choices": [
+      "プロンプトインジェクション攻撃と DoS 攻撃",
+      "データポイズニング攻撃とモデル抽出攻撃",
+      "ディープフェイクとフィッシング",
+      "サイドチャネル攻撃とランサムウェアによる二重恐喝"
+    ],
+    "answer": 0,
+    "stemPlain": "生成 AI を守るための総務省のガイドラインが、とくに重点的に対策を書いている2つの攻撃を選ぶ問題。",
+    "explanation": "このガイドラインは、攻撃の具体的な可能性が比較的高いと考えられるプロンプトインジェクション攻撃と DoS 攻撃（サービス拒否攻撃）への対策を主に示している。そのほかの脅威として、データポイズニング攻撃・細工をしたモデルの導入による攻撃・モデル抽出攻撃を紹介し、主な対策の概観も示している。",
+    "whyWrong": [
+      null,
+      "データポイズニング攻撃とモデル抽出攻撃は、ガイドラインでは『その他の脅威』として紹介されている。主に対策を示している2つではない。",
+      "ディープフェイクやフィッシングは、攻撃者が AI を悪用して人をだます脅威。AI システムそのものを守る、このガイドラインの主な対象ではない。",
+      "サイドチャネル攻撃はハードウェアの物理的な情報を使う攻撃、ランサムウェアはデータを暗号化して身代金を求めるマルウェアで、このガイドラインが主に扱う AI への攻撃ではない。"
+    ],
+    "memoryTip": "総務省の AI ガイドラインの2本柱：プロンプトインジェクションと DoS。",
+    "concepts": [
+      "C-SC-04-005"
+    ],
+    "sources": [
+      {
+        "title": "総務省 AI のセキュリティ確保のための技術的対策に係るガイドライン（令和8年3月）",
+        "url": "https://www.soumu.go.jp/main_content/001064122.pdf"
+      },
+      {
+        "title": "総務省 「AIのセキュリティ確保のための技術的対策に係るガイドライン」(案)に対する意見募集の結果及びガイドラインの公表",
+        "url": "https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00282.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-029",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "IPA の「安全なウェブサイトの作り方」は、脆弱性への対策を「根本的解決」と「保険的対策」に分類している。保険的対策の説明として、適切なものはどれか。",
+    "choices": [
+      "脆弱性の届出を受けて、製品開発者と調整したうえで対策情報を公表する取組み",
+      "脆弱性が悪用された場合の損害を補填するために、サイバー保険に加入する取組み",
+      "脆弱性の原因そのものはなくさないが、攻撃による影響を軽減する対策",
+      "脆弱性を作り込まない実装によって、その脆弱性を狙った攻撃を無効化する対策"
+    ],
+    "answer": 2,
+    "stemPlain": "Web の作り方の手引きでいう「保険的対策」とは何かを選ぶ問題。",
+    "explanation": "IPA の『安全なウェブサイトの作り方』では、根本的解決は脆弱性を作り込まない実装で、その脆弱性を狙った攻撃を無効化できる手法。保険的対策は攻撃による影響を軽減する対策で、脆弱性の原因そのものを無くすものではない。例えば SQL インジェクションでは、プレースホルダが根本的解決、データベースのアカウントの権限を絞るのが保険的対策。",
+    "whyWrong": [
+      "届出を受けて開発者と調整し対策情報を公表するのは、情報セキュリティ早期警戒パートナーシップの取組み。実装の対策の分類ではない。",
+      "サイバー保険への加入はリスクの移転（損害を保険でまかなう）の考え方。手引きの『保険的対策』は保険契約のことではなく、影響を軽減する実装上の対策を指す。",
+      null,
+      "脆弱性を作り込まない実装で攻撃を無効化するのは、根本的解決の説明。保険的対策ではない。"
+    ],
+    "memoryTip": "根本＝作り込まない。保険＝やられても被害を小さく。",
+    "concepts": [
+      "C-SC-04-006"
+    ],
+    "sources": [
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-030",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Web アプリケーションの脆弱性検査のうち、DAST（動的アプリケーションセキュリティテスト）の特徴として、適切なものはどれか。",
+    "choices": [
+      "IaC で書かれたインフラの定義を解析し、公開設定や過大な権限などの設定の誤りを検出する。",
+      "ソースコードを解析し、入力値が検査されないまま SQL 文の組立てに到達する経路を、プログラムを動かさずに検出する。",
+      "利用しているライブラリの名称と版を、既知の脆弱性のデータベースと照合して、該当する脆弱性を一覧にする。",
+      "稼働中のアプリケーションに細工したリクエストを送り、応答から脆弱性を推測するので、ソースコードがなくても実施できる。"
+    ],
+    "answer": 3,
+    "stemPlain": "「動かして外から試す」タイプの脆弱性検査（DAST）の特徴を選ぶ問題。",
+    "explanation": "DAST（Dynamic Application Security Testing）は、動いているアプリに、SQL の記号やスクリプトのタグを入れたリクエストを送り、エラーの出方や応答の違いから脆弱性を推測する。外から試すので、ソースコードが手元に無くても実施できる。反面、検査で通らなかった画面や機能の脆弱性は見つからない。NIST の SSDF も、実行できるコードのテスト（PW.8）として動的な脆弱性テストを挙げている。",
+    "whyWrong": [
+      "IaC の定義の設定の誤りを見つけるのは、IaC のセキュリティスキャンの特徴。アプリに攻撃に近い入力を送る検査ではない。",
+      "プログラムを動かさずにソースコードを解析して危ない経路を見つけるのは、SAST（静的アプリケーションセキュリティテスト）の特徴。",
+      "ライブラリの名称と版を既知の脆弱性と照らすのは、ソフトウェア構成分析（SCA）の特徴。自分で書いたコードの動作は見ない。",
+      null
+    ],
+    "memoryTip": "DAST＝動かして外から叩く。SAST＝止めたまま中を読む。",
+    "concepts": [
+      "C-SC-04-007"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-218 Secure Software Development Framework (SSDF) Version 1.1",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf"
+      },
+      {
+        "title": "IPA 情報処理安全確保支援士試験 シラバス（案）Ver.0.1",
+        "url": "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-031",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ネットワーク機器に、規格から外れた長さや値を持つ細工したデータを自動で大量に送り込み、機器の停止や再起動などの異常な動作が起きないかを確認するテスト手法はどれか。",
+    "choices": [
+      "ペネトレーションテスト",
+      "回帰テスト",
+      "ファジング",
+      "ソースコードレビュー"
+    ],
+    "answer": 2,
+    "stemPlain": "壊れたデータや極端なデータを大量に送って、機器がおかしくならないかを調べるテストの名前を選ぶ問題。",
+    "explanation": "ファジングは、検査の対象に問題が起きそうな様々な細工をしたデータを送り、異常な動作が起きないかを検査するテスト（IPA）。組込み機器やソフトウェア製品のバグや未知の脆弱性を見つけるのに使う。異常が起きたら、送ったデータを絞り込んで再送し、どのデータで再現するかを確かめる。",
+    "whyWrong": [
+      "ペネトレーションテストは、攻撃者と同じ手口を組み合わせて実際に侵入できるかを試す検査。細工したデータを大量に自動で送って異常を探すのは、ファジング。",
+      "回帰テストは、プログラムを修正した後に、以前は正しく動いていた機能が壊れていないかを確かめ直すテスト。想定外の入力で異常を探すものではない。",
+      null,
+      "ソースコードレビューは、人がソースコードを読んで誤りを探す作業。機器にデータを送って動作を見るテストではない。"
+    ],
+    "memoryTip": "fuzz＝けば立った（でたらめな）データを浴びせる。",
+    "concepts": [
+      "C-SC-04-008"
+    ],
+    "sources": [
+      {
+        "title": "IPA ファジング：FAQ",
+        "url": "https://www.ipa.go.jp/security/vuln/fuzzing/faq.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-032",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "利用者が入力した文字列を HTML の本文としてそのまま出力している Web ページがある。クロスサイトスクリプティングの根本的な対策として、この出力箇所で行うべき処理はどれか。",
+    "choices": [
+      "セッション ID を格納する cookie に Secure 属性を付与する。",
+      "「<」「>」「&」「\"」などを「&lt;」「&gt;」「&amp;」「&quot;」に置き換えてから出力する。",
+      "入力文字列から計算したハッシュ値をページに埋め込み、ブラウザに照合させる。",
+      "入力文字列を、SQL 文の組立て時にプレースホルダにバインドする。"
+    ],
+    "answer": 1,
+    "stemPlain": "入力された文字をそのまま画面に出しているページで、入力に混ぜられたスクリプトを動かさないために、出力のときにする処理を選ぶ問題。",
+    "explanation": "IPA は XSS の根本的解決として、ウェブページに出力する全ての要素にエスケープ処理を施すことを挙げている。HTML の本文なら「<」を「&lt;」などに置き換えると、入力に紛れた <script> はただの文字として表示され、実行されない。出力する場所（本文・属性・JavaScript の中など）の文脈に合った置き換えをする。",
+    "whyWrong": [
+      "Secure 属性は cookie を HTTPS の通信のときだけ送らせる印。盗聴は防ぐが、ページに注入されたスクリプトの実行は止めない。",
+      null,
+      "ハッシュ値で中身を照合するのは、外部から読み込むファイルの改ざんを確かめる SRI の考え方。利用者の入力を安全に表示する処理ではない。",
+      "プレースホルダへのバインドは、入力が SQL の命令として解釈されないようにする SQL インジェクションの対策。HTML に出力するときのスクリプトの実行は防げない。"
+    ],
+    "memoryTip": "XSS は出口で置き換える。< は &lt;。",
+    "concepts": [
+      "C-SC-04-009"
+    ],
+    "sources": [
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      },
+      {
+        "title": "OWASP Cheat Sheet Series: Cross Site Scripting Prevention",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-033",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "SQL インジェクション対策で用いるプレースホルダについて、IPA が「原理的に SQL インジェクション脆弱性の可能性がなくなる」点で優れているとしている方式はどれか。",
+    "choices": [
+      "SQL 文をプレースホルダのままデータベースエンジン側でコンパイルし、後から値を割り当てる方式",
+      "入力値を Base64 で符号化してから、SQL 文に文字列連結する方式",
+      "アプリケーション側のデータベース接続ライブラリが、値をエスケープしてプレースホルダにはめ込む方式",
+      "入力値に含まれる SQL の予約語を、アプリケーション側で削除してから文字列連結する方式"
+    ],
+    "answer": 0,
+    "stemPlain": "SQL インジェクションを防ぐ「穴に値を入れる書き方」のうち、仕組みの上で一番安全とされる方式を選ぶ問題。",
+    "explanation": "プレースホルダに値を割り当てる（バインドする）方式は2つ。静的プレースホルダは、SQL 文をプレースホルダのままデータベースエンジン側でコンパイルしておき、後から値を割り当てる。動的プレースホルダは、アプリ側の接続ライブラリ内で値をエスケープしてはめ込む。IPA は、どちらも SQL インジェクションを解消できるが、原理的に可能性がなくなる点で静的プレースホルダが優るとしている。",
+    "whyWrong": [
+      null,
+      "Base64 にしてから連結すると、データベース側で元に戻して使う処理を書けば同じ問題が起きるうえ、検索などの通常の処理もできなくなる。SQL 文の形を固める対策ではない。",
+      "これは動的プレースホルダの説明。正しく実装されていれば SQL インジェクションを解消できるが、ライブラリのエスケープ処理に頼るので、原理的に可能性がなくなる静的プレースホルダには及ばない。",
+      "予約語を削除する方法は、消し方の抜け（大文字小文字・別の書き方）をすり抜けられるうえ、正当な入力も壊す。文字列連結のままなので、SQL の形を固める対策にならない。"
+    ],
+    "memoryTip": "静的＝DB 側で先に形を固める（いちばん安全）。動的＝ライブラリがエスケープ。",
+    "concepts": [
+      "C-SC-04-010"
+    ],
+    "figures": [
+      "fig-sc-impl-placeholder"
+    ],
+    "sources": [
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-034",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CSRF 対策として、確認画面の hidden パラメータに秘密情報（トークン）を埋め込み、実行時に照合する。このトークンについての記述のうち、適切なものはどれか。",
+    "choices": [
+      "リクエストの URL に含めて GET メソッドで送信させる。",
+      "すべての利用者に共通の固定値を用い、サーバ側の照合を高速にする。",
+      "第三者が予測できないよう、暗号論的擬似乱数生成器を用いて生成する。",
+      "利用者の ID を逆順にした文字列を用い、利用者ごとに異なる値にする。"
+    ],
+    "answer": 2,
+    "stemPlain": "CSRF を防ぐために画面に埋める秘密の値（トークン）を、どう作り、どう送るのが正しいかを選ぶ問題。",
+    "explanation": "IPA は、hidden パラメータに入れる秘密情報は、暗号論的擬似乱数生成器を用いて第三者に予測困難なように生成する必要があるとしている。また、処理を実行するページへのリクエストは POST で行う。GET だと、外部サイトへ送られる Referer に秘密情報が含まれて漏れるため。罠のページの作り手が値を予測できなければ、偽のリクエストは照合で失敗する。",
+    "whyWrong": [
+      "URL に入れて GET で送ると、リンク先のサイトへ送られる Referer にトークンが含まれて漏れる。IPA は POST で送るとしている。",
+      "全員に共通の固定値は、攻撃者が自分のアカウントで一度見れば分かってしまう。予測できない値でないと、トークンの意味が無い。",
+      null,
+      "利用者の ID を逆順にしただけの値は、ID を知っていれば誰でも作れる。利用者ごとに違っても予測できるので、罠のページでも正しい値を作れてしまう。"
+    ],
+    "memoryTip": "トークンは「推測できない乱数」を「POST で」。",
+    "concepts": [
+      "C-SC-04-011"
+    ],
+    "figures": [
+      "fig-sc-impl-csrf-token"
+    ],
+    "sources": [
+      {
+        "title": "IPA 安全なウェブサイトの作り方 改訂第7版（2021年3月）",
+        "url": "https://www.ipa.go.jp/security/vuln/websecurity/ug65p900000196e2-att/000017316.pdf"
+      },
+      {
+        "title": "OWASP Cheat Sheet Series: Cross-Site Request Forgery Prevention",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-035",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "OS の機能である ASLR（アドレス空間配置のランダム化）の説明として、適切なものはどれか。",
+    "choices": [
+      "プログラムやデータを配置するメモリのアドレスを実行のたびに変え、攻撃者が狙うアドレスを予測しにくくする。",
+      "バッファへの書込みの前に入力データの長さを検査し、確保した領域を超える書込みを拒否する。",
+      "プログラムが使い終えたメモリ領域を、0 で上書きしてから解放する。",
+      "実行用として確保していないメモリ領域にあるコードの実行を禁止し、注入されたコードを動かせなくする。"
+    ],
+    "answer": 0,
+    "stemPlain": "バッファオーバーフローの悪用を難しくする OS の仕組みの1つ、ASLR が何をするかを選ぶ問題。",
+    "explanation": "ASLR（Address Space Layout Randomization）は、メモリの配置をランダムにし、攻撃者がシステムのメモリ配置の知識を使って、既にメモリにある実行可能なコードを実行させる危険を減らす（Microsoft の説明）。バッファオーバーフローで戻り先を書き換えても、狙う番地が毎回変われば当てにくい。あふれること自体は止めないので、長さの検査などの書き方の対策と組み合わせる。",
+    "whyWrong": [
+      null,
+      "書き込む前に入力の長さを検査するのは、プログラムの書き方での対策（境界の検査）。OS がアドレスをばらす ASLR とは別。",
+      "使い終えたメモリを 0 で消してから解放するのは、メモリに残った秘密の情報を後から読まれないための処理。アドレスの予測を難しくするものではない。",
+      "実行用として確保していないメモリのコードを実行させないのは、DEP（データ実行防止）の説明。ASLR と組み合わせて使われるが、別の仕組み。"
+    ],
+    "memoryTip": "ASLR＝住所をシャッフル。DEP＝データの場所では実行させない。",
+    "concepts": [
+      "C-SC-04-012"
+    ],
+    "sources": [
+      {
+        "title": "Microsoft Learn: Exploit protection reference",
+        "url": "https://learn.microsoft.com/en-us/defender-endpoint/exploit-protection-reference"
+      },
+      {
+        "title": "NIST CSRC Glossary: buffer overflow",
+        "url": "https://csrc.nist.gov/glossary/term/buffer_overflow"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-036",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "パスワードの保存時に用いるソルトの効果として、適切なものはどれか。",
+    "choices": [
+      "利用者が短いパスワードを登録できないようにするので、推測されやすいパスワードが減る。",
+      "ハッシュの計算を何回も繰り返すので、総当たりで1つの候補を試すのに要する時間が長くなる。",
+      "ハッシュ値を秘密鍵で暗号化して保存するので、鍵を知らない者にはハッシュ値が読めなくなる。",
+      "同じパスワードでも利用者ごとにハッシュ値が異なるので、事前に計算したハッシュ値の表による検索が効かなくなる。"
+    ],
+    "answer": 3,
+    "stemPlain": "パスワードを保存するときに足すランダムな値（ソルト）が、何に効くのかを選ぶ問題。",
+    "explanation": "ソルトは、利用者ごとに違うランダムな値で、パスワードに足してからハッシュにする。同じパスワードでもハッシュ値が違うので、前もって計算した表（レインボーテーブルなど）が使えず、攻撃者は利用者ごとに計算し直さなければならない。2人が同じパスワードかどうかも分からなくなる（OWASP）。NIST SP 800-63B は、ソルトを32ビット以上とすることを求めている。",
+    "whyWrong": [
+      "短いパスワードを登録させないのは、パスワードの長さの規則（ポリシー）の話。保存の方法であるソルトとは別。",
+      "ハッシュの計算を何回も繰り返して1回の試行を重くするのは、ストレッチングの効果。ソルトは計算の回数を増やすものではない。",
+      "ハッシュ値を鍵で暗号化して保存する方法はソルトではない（ソルトはハッシュ値と一緒に保存してよい秘密でない値）。",
+      null
+    ],
+    "memoryTip": "ソルト＝表引きを潰す。ストレッチング＝1回を重くする。",
+    "concepts": [
+      "C-SC-04-013"
+    ],
+    "figures": [
+      "fig-sc-impl-salt-stretch"
+    ],
+    "sources": [
+      {
+        "title": "OWASP Cheat Sheet Series: Password Storage",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+      },
+      {
+        "title": "NIST SP 800-63B-4 Authentication and Authenticator Management",
+        "url": "https://pages.nist.gov/800-63-4/sp800-63b.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-037",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "パスワードのハッシュ値の計算を1万回繰り返して保存するよう変更した。1回の計算が 0.000001 秒かかるとき、攻撃者が1秒間に試せるパスワードの候補の数は、変更前と比べてどうなるか。",
+    "choices": [
+      "約100万個から約1万個程度に減る",
+      "約100万個から約100個に減る",
+      "約1万個から約100個程度に減る",
+      "約100万個のまま変わらない"
+    ],
+    "answer": 1,
+    "stemPlain": "ハッシュの計算を1万回くり返すようにしたら、攻撃者が1秒で試せるパスワードの数が何個から何個になるかを計算する問題。",
+    "explanation": "ストレッチングの効果を数で確かめる。変更前：1回の計算が 0.000001 秒なので、1秒で試せるのは 1 ÷ 0.000001 ＝ 1,000,000 個（約100万個）。変更後：1つの候補を確かめるのに1万回計算するので、0.000001 × 10,000 ＝ 0.01 秒かかる。1秒で試せるのは 1 ÷ 0.01 ＝ 100 個。つまり1万分の1に減る。正規の利用者がログインするときは1回だけ 0.01 秒かかるだけなので、ほとんど気にならない。",
+    "whyWrong": [
+      "変更前の約100万個は合っているが、変更後を1万個とするのは、計算の回数（1万回）を候補の数と取り違えている。1つの候補に 0.01 秒かかるので、1秒では100個。",
+      null,
+      "変更前を約1万個とするのが誤り。1回 0.000001 秒なら、1秒で100万回計算できる。",
+      "ストレッチングをすると1つの候補を確かめる計算が1万倍に増えるので、同じ時間で試せる数は減る。変わらないことはない。"
+    ],
+    "memoryTip": "繰り返し回数を N 倍にすると、攻撃の速さは 1／N。",
+    "concepts": [
+      "C-SC-04-013"
+    ],
+    "figures": [
+      "fig-sc-impl-salt-stretch"
+    ],
+    "sources": [
+      {
+        "title": "OWASP Cheat Sheet Series: Password Storage",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+      },
+      {
+        "title": "NIST SP 800-132 Recommendation for Password-Based Key Derivation",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-132.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-038",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "https://www.example.jp/index.html と同一オリジンとみなされる URL はどれか。",
+    "choices": [
+      "https://www.example.jp:8443/index.html",
+      "https://www.example.jp/shop/cart.html",
+      "https://shop.example.jp/index.html",
+      "http://www.example.jp/index.html"
+    ],
+    "answer": 1,
+    "stemPlain": "Web ページの「オリジン」（スキーム・ホスト・ポートの組）が同じになる URL を選ぶ問題。",
+    "explanation": "オリジンは、スキーム（プロトコル）・ホスト・ポート番号の3つで決まり、3つとも同じときだけ同一オリジンになる（MDN、RFC 6454）。https://www.example.jp/shop/cart.html は、スキーム https、ホスト www.example.jp、ポート 443（https の既定）がすべて同じで、違うのはパスだけ。パスはオリジンに含まれない。",
+    "whyWrong": [
+      "ポート番号が 8443 で、https の既定の 443 と違う。別オリジン。",
+      null,
+      "ホストが shop.example.jp で、www.example.jp と違う。同じドメインの下でもホストが違えば別オリジン。",
+      "スキームが http で、https と違う（既定のポートも 80 と 443 で違う）。別オリジン。"
+    ],
+    "memoryTip": "オリジン＝スキーム・ホスト・ポート。パスは関係ない。",
+    "concepts": [
+      "C-SC-04-014"
+    ],
+    "sources": [
+      {
+        "title": "MDN Same-origin policy",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"
+      },
+      {
+        "title": "RFC 6454 The Web Origin Concept",
+        "url": "https://www.rfc-editor.org/rfc/rfc6454.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-039",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "https://app.example.com のページの JavaScript から、https://api.example.com の API を呼び出して応答を読み取りたい。ブラウザに応答の読取りを許可させるために、api.example.com 側で行う設定として、適切なものはどれか。",
+    "choices": [
+      "API の応答に用いる cookie に SameSite=Strict 属性を付与する。",
+      "HTTP レスポンスヘッダーに X-Frame-Options: SAMEORIGIN を付与する。",
+      "HTTP レスポンスヘッダーに Strict-Transport-Security: max-age=31536000 を付与する。",
+      "HTTP レスポンスヘッダーに Access-Control-Allow-Origin: https://app.example.com を付与する。"
+    ],
+    "answer": 3,
+    "stemPlain": "別のオリジンのページから API の応答を読ませたいとき、API のサーバ側で返すヘッダーを選ぶ問題。",
+    "explanation": "Same Origin Policy により、オリジンの違う API の応答は、そのままではスクリプトから読めない。CORS（オリジン間リソース共有）では、サーバが Access-Control-Allow-Origin ヘッダーで読取りを許可するオリジンを示し、ブラウザはそのオリジンのスクリプトにだけ応答を渡す。cookie などの認証情報付きで読ませるときは、* ではなく相手のオリジンを明示する必要がある（MDN）。",
+    "whyWrong": [
+      "SameSite=Strict は、別のサイトから始まったリクエストに cookie を付けさせない属性。読取りを許可するのではなく、むしろ制限する方向の設定。",
+      "X-Frame-Options: SAMEORIGIN は、ページを同じオリジンの枠（iframe）にだけ表示させるクリックジャッキング対策。別オリジンのスクリプトに応答を読ませる許可ではない。",
+      "Strict-Transport-Security は HSTS のヘッダーで、以後の接続を HTTPS に限らせる指示。オリジンをまたいだ読取りの許可とは関係がない。",
+      null
+    ],
+    "memoryTip": "別オリジンに「読んでいいよ」と言うのは Access-Control-Allow-Origin。",
+    "concepts": [
+      "C-SC-04-015",
+      "C-SC-04-014"
+    ],
+    "sources": [
+      {
+        "title": "MDN Cross-Origin Resource Sharing (CORS)",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+      },
+      {
+        "title": "MDN Same-origin policy",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-040",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "cookie の SameSite 属性に None を指定する場合に、併せて指定しなければならない属性はどれか。",
+    "choices": [
+      "Secure",
+      "HttpOnly",
+      "Path",
+      "Domain"
+    ],
+    "answer": 0,
+    "stemPlain": "cookie を別サイトからのリクエストにも付けて送る設定（SameSite=None）にするとき、一緒に必ず付ける属性を選ぶ問題。",
+    "explanation": "SameSite=None は、別のサイトから始まったリクエストにも同じサイトのリクエストにも cookie を付けて送る指定。MDN は、この値を使うときは Secure 属性も設定しなければならないとしている。別サイトからでも送る cookie を、少なくとも暗号化された HTTPS の通信のときだけに限らせるため。",
+    "whyWrong": [
+      null,
+      "HttpOnly は JavaScript から cookie を読めなくする属性で、XSS 対策として付けることが勧められるが、SameSite=None のときに必須とされる属性ではない。",
+      "Path は、cookie を送る URL のパスの範囲を決める属性。SameSite=None に必須ではない。",
+      "Domain は、cookie を送る先のホストの範囲（サブドメインを含めるか）を決める属性。SameSite=None に必須ではない。"
+    ],
+    "memoryTip": "よそにも送るなら（None）、せめて HTTPS で（Secure）。",
+    "concepts": [
+      "C-SC-04-016"
+    ],
+    "figures": [
+      "fig-sc-impl-cookie-attrs"
+    ],
+    "sources": [
+      {
+        "title": "MDN Set-Cookie header",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-041",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "HSTS について、ブラウザが過去に一度も接続したことのないサイトへの初回のアクセスで生じうる問題を補う方法として、適切なものはどれか。",
+    "choices": [
+      "Strict-Transport-Security ヘッダーの max-age を 0 に設定する。",
+      "サーバ証明書を EV SSL 証明書に切り替える。",
+      "HSTS を適用すべきドメインを、あらかじめブラウザに組み込んだ一覧（preload の一覧）に登録しておく。",
+      "HTTP の応答に Strict-Transport-Security ヘッダーを付与して、初回の HTTP 接続の時点で HSTS を有効にする。"
+    ],
+    "answer": 2,
+    "stemPlain": "HSTS（HTTPS に固定するしくみ）は、初めて訪れたときはまだ効いていない。その弱点を埋める方法を選ぶ問題。",
+    "explanation": "HSTS は、ブラウザが HTTPS の応答でヘッダーを受け取って初めてそのドメインを覚える。だから、一度も接続したことが無いブラウザの最初のアクセスは HTTP で始まりうる。これを埋めるのが、ブラウザにあらかじめ組み込まれた HSTS の一覧（preload の一覧）への登録で、ヘッダーに preload を付けて申請する。登録されたドメインには、最初から HTTPS で接続する。",
+    "whyWrong": [
+      "max-age=0 は、HSTS を無効にする指定。初回の問題を補うどころか、HSTS そのものをやめることになる。",
+      "EV SSL 証明書は、サイトを運営する組織の実在をより厳しく確かめて発行する証明書。HTTPS への接続を強制する仕組みではなく、初回の HTTP 接続の問題は残る。",
+      null,
+      "HTTP の応答で送った Strict-Transport-Security ヘッダーは、ブラウザに無視される（通信の途中で書き換えられうるため）。初回の HTTP の時点で HSTS を有効にすることはできない。"
+    ],
+    "memoryTip": "HSTS の弱点は「初めての1回」。埋めるのは preload。",
+    "concepts": [
+      "C-SC-04-017"
+    ],
+    "figures": [
+      "fig-sc-impl-hsts"
+    ],
+    "sources": [
+      {
+        "title": "MDN Strict-Transport-Security header",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security"
+      },
+      {
+        "title": "RFC 6797 HTTP Strict Transport Security (HSTS)",
+        "url": "https://www.rfc-editor.org/rfc/rfc6797.txt"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-042",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Content-Security-Policy ヘッダーで script-src に nonce を指定する方式の説明として、適切なものはどれか。",
+    "choices": [
+      "スクリプトから cookie を読み出せないようにして、セッション ID の漏えいを防ぐ。",
+      "外部から読み込むスクリプトのハッシュ値を script 要素の属性に記述し、取得したファイルのハッシュ値と一致する場合だけ実行させる。",
+      "スクリプトを含むページを、他のサイトの iframe の中に表示させないようにする。",
+      "サーバが応答ごとにランダムな値を生成してヘッダーに含め、同じ値を属性に持つ script 要素だけをブラウザに実行させる。"
+    ],
+    "answer": 3,
+    "stemPlain": "CSP（読み込み・実行してよいものをブラウザに指示するしくみ）で、nonce という値を使ってスクリプトを制限する方法の説明を選ぶ問題。",
+    "explanation": "MDN は、script と style の読み込みの制限には nonce を使う方法を勧めている。サーバは応答ごとにランダムな値を作り、script-src 'nonce-値' としてヘッダーに入れ、実行を許すスクリプトのタグにだけ同じ値を nonce 属性で付ける。攻撃者は値を予測できないので、XSS で注入したスクリプトには正しい nonce が無く、実行されない。",
+    "whyWrong": [
+      "スクリプトから cookie を読ませないのは、cookie の HttpOnly 属性の働き。CSP の nonce ではない。",
+      "外部ファイルのハッシュ値をタグの属性に書き、取得したファイルと照らすのは、SRI（Subresource Integrity）の integrity 属性の説明。nonce の方式ではない。",
+      "他のサイトの iframe に表示させないのは、X-Frame-Options や CSP の frame-ancestors の働き（クリックジャッキング対策）。script-src の nonce ではない。",
+      null
+    ],
+    "memoryTip": "nonce＝毎回変わる合言葉。合言葉の付いたスクリプトだけ動く。",
+    "concepts": [
+      "C-SC-04-018"
+    ],
+    "sources": [
+      {
+        "title": "MDN Content Security Policy (CSP)",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-043",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CDN から読み込む JavaScript のライブラリが、CDN 側で改ざんされた場合に、ブラウザがそのファイルを実行しないようにする仕組みはどれか。",
+    "choices": [
+      "CORS（オリジン間リソース共有）",
+      "HSTS（HTTP Strict Transport Security）",
+      "SRI（Subresource Integrity）",
+      "SameSite 属性"
+    ],
+    "answer": 2,
+    "stemPlain": "外部のサーバから読み込むスクリプトが書き換えられていたら、ブラウザに使わせない仕組みの名前を選ぶ問題。",
+    "explanation": "SRI では、script 要素などの integrity 属性に、期待するファイルのハッシュ値（sha256・sha384・sha512）を書く。ブラウザは取得したファイルのハッシュ値を計算し、一致しなければ使わない。CDN でファイルが1行でも書き換えられればハッシュ値が変わるので、改ざんされたファイルは実行されない（MDN）。",
+    "whyWrong": [
+      "CORS は、サーバが別オリジンのスクリプトに応答の読取りを許可する仕組み。読み込んだファイルの中身が改ざんされていないかは確かめない。",
+      "HSTS は接続を HTTPS に限らせる仕組み。HTTPS で配られても、配信元でファイルが書き換えられていれば、そのまま届く。",
+      null,
+      "SameSite 属性は、別のサイトから始まったリクエストに cookie を付けるかを決める cookie の属性。読み込んだファイルの中身は確かめない。"
+    ],
+    "memoryTip": "Integrity＝完全性。ハッシュで「中身が同じか」を確かめる。",
+    "concepts": [
+      "C-SC-04-019"
+    ],
+    "sources": [
+      {
+        "title": "MDN Subresource Integrity",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-044",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "開発者がデータベースのパスワードをソースコードに直接記述し、そのままリポジトリにコミットしていた。この状態を改善するシークレット管理の方法として、最も適切なものはどれか。",
+    "choices": [
+      "該当のコミットを含むリポジトリを非公開に設定し、パスワードはそのまま使い続ける。",
+      "パスワードをシークレットストアで管理してアプリケーションの起動時に取得させ、コミット前に秘密情報の混入を検出する仕組みを導入する。",
+      "パスワードの記述を最新の版のソースコードから削除し、過去のコミットはそのまま残す。",
+      "パスワードを Base64 で符号化してからソースコードに記述し、読んだだけでは分からないようにする。"
+    ],
+    "answer": 1,
+    "stemPlain": "パスワードをプログラムに直接書いてしまっていた。秘密の正しい管理のしかたを選ぶ問題。",
+    "explanation": "OWASP の Secrets Management は、秘密を集中して標準的に管理すること、定期的に取り替えること、コミットや PR の前に秘密の混入を見つける仕組み（pre-commit フックなど）を入れることを挙げている。秘密は専用の保管庫（シークレットストア）に置き、アプリは起動時に取りに行く。なお、一度コミットした秘密は漏れたものとして扱い、失効・交換したうえでコードや履歴から取り除く。",
+    "whyWrong": [
+      "リポジトリを非公開にしても、アクセスできる人全員が秘密を知る状態は変わらない。漏れた可能性のあるパスワードを交換もせずに使い続けるのも危ない。",
+      null,
+      "git では過去のコミットから記述を読み出せるので、最新の版から消しても漏えいは止まらない。OWASP は、漏れた秘密は失効・交換し、履歴からも取り除くとしている。",
+      "Base64 は誰でも元に戻せる符号化で、暗号化ではない。ソースコードに書いたままなので、ハードコードの問題は解消しない。"
+    ],
+    "memoryTip": "秘密はコードに書かず保管庫へ。漏れたら交換。",
+    "concepts": [
+      "C-SC-04-021",
+      "C-SC-01-020"
+    ],
+    "sources": [
+      {
+        "title": "OWASP Cheat Sheet Series: Secrets Management",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-045",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "依存ライブラリの更新管理を自動化する取組みとして、適切なものはどれか。",
+    "choices": [
+      "依存先に脆弱性が公表されたら、修正版へ更新する変更を自動で作り、テストを通して取り込む。",
+      "依存先の一覧を作らず、障害が起きたときに必要に応じて調べる。",
+      "一度動作確認した依存先の版は、後から脆弱性が公表されても変更せずに、そのまま固定し続ける。",
+      "ライブラリの取得元を、パッケージの検索結果で上位に表示されたものに毎回切り替える。"
+    ],
+    "answer": 0,
+    "stemPlain": "使っている外部の部品（ライブラリ）を安全な版に保つための、正しい取組みを選ぶ問題。",
+    "explanation": "NIST の SSDF は、部品の既知の脆弱性の自動検出をツールチェーンに組み込むことを例に挙げている。GitHub の Dependabot セキュリティ更新は、依存先に脆弱性が見つかると、修正された版に上げる変更（プルリクエスト）を自動で作る。取り込む前にテストを通せば、更新で動かなくなる事故も防げる。",
+    "whyWrong": [
+      null,
+      "依存先の一覧（SBOM など）が無いと、脆弱性が公表されたときに影響の有無をすぐ判断できない。障害の後で調べるのでは遅い。",
+      "版を固定するのは、勝手に変わらないようにする意味ではよいが、脆弱性が公表されても上げないと、脆弱な部品を使い続けることになる。",
+      "検索の上位に出たパッケージに切り替えると、名前の似た偽のパッケージ（タイポスクワッティング）を取り込む危険がある。取得元は確かめて固定する。"
+    ],
+    "memoryTip": "依存先は「見える化」して「自動で上げてテスト」。",
+    "concepts": [
+      "C-SC-04-022"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-218 Secure Software Development Framework (SSDF) Version 1.1",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf"
+      },
+      {
+        "title": "GitHub Docs: About Dependabot security updates",
+        "url": "https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-046",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Git で署名付きコミットを用いる目的として、適切なものはどれか。",
+    "choices": [
+      "コミットに含まれるソースコードを暗号化し、権限のない者がリポジトリから読めないようにする。",
+      "コミットに含まれるソースコードに脆弱性がないことを、署名した者が保証する。",
+      "コミットした者が名乗ったとおりの鍵の持ち主であり、内容が改ざんされていないことを検証できるようにする。",
+      "ビルドした実行ファイルの配布時に、利用者がダウンロードしたファイルのハッシュ値を照合できるようにする。"
+    ],
+    "answer": 2,
+    "stemPlain": "ソースコードの変更の記録（コミット）に電子署名を付ける目的を選ぶ問題。",
+    "explanation": "git のコミットの作者名は自由に名乗れるので、名前だけでは本人の変更か分からない。git commit -S で秘密鍵の署名を付けると、git log --show-signature などで公開鍵を使って検証でき、その鍵の持ち主が記録したこと、内容が変えられていないことを確かめられる（Pro Git）。NIST の SSDF も、コードのリポジトリでコミットの署名を使うことを例に挙げている。",
+    "whyWrong": [
+      "署名は内容を暗号化しない。署名付きのコミットでも、リポジトリを読める人はソースコードをそのまま読める。",
+      "署名が示すのは、誰が記録したかと改ざんの有無。コードの中身が安全かどうかは保証しない。",
+      null,
+      "ビルドした配布物のハッシュ値を利用者に照合させるのは、成果物（配布物）の検証の話。ソースコードを記録する段階の署名付きコミットとは別。"
+    ],
+    "memoryTip": "署名＝「誰が」と「変わっていない」を示す。中身の安全は示さない。",
+    "concepts": [
+      "C-SC-04-023"
+    ],
+    "sources": [
+      {
+        "title": "Pro Git 7.4 Git Tools - Signing Your Work",
+        "url": "https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work"
+      },
+      {
+        "title": "NIST SP 800-218 Secure Software Development Framework (SSDF) Version 1.1",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-047",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "SLSA の Build トラックにおいて、来歴（provenance）が存在することだけを要件とするレベルはどれか。",
+    "choices": [
+      "Build L1",
+      "Build L2",
+      "Build L3",
+      "Build L0"
+    ],
+    "answer": 0,
+    "stemPlain": "ソフトウェアの作られ方の安全さを段階で示す SLSA で、「どう作ったかの記録がある」だけの段階を選ぶ問題。",
+    "explanation": "SLSA v1.2 の Build トラックの段階は、L0＝保証なし、L1＝来歴（provenance）がある、L2＝ホストされたビルド基盤で作り、署名された来歴を出す、L3＝ビルドが強化されていて、ビルドの最中の改ざんにも耐える。来歴があれば、どのソースからどう作ったかを照らせるが、L1 では来歴そのものの偽造までは防げない。",
+    "whyWrong": [
+      null,
+      "Build L2 は、来歴があることに加え、ホストされたビルド基盤でビルドし、その基盤が署名した来歴を出すことを求める。来歴があるだけでは足りない。",
+      "Build L3 は、さらにビルドを強化し、ビルドの最中の改ざん（同じ基盤のほかのビルドからの干渉など）にも耐えることを求める最上位の段階。",
+      "Build L0 は、何の保証も無い段階。来歴が無くてもよい。"
+    ],
+    "memoryTip": "L1＝記録あり、L2＝基盤が署名、L3＝ビルドを要塞化。",
+    "concepts": [
+      "C-SC-04-025"
+    ],
+    "sources": [
+      {
+        "title": "SLSA v1.2 Build Track Basics",
+        "url": "https://slsa.dev/spec/v1.2/build-track-basics"
+      },
+      {
+        "title": "SLSA v1.2 About SLSA",
+        "url": "https://slsa.dev/spec/v1.2/about"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-048",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ソフトウェアの配布者が、利用者に配布物の正当性を確認させるための取組みとして、NIST SP 800-218（SSDF）が例に挙げているものはどれか。",
+    "choices": [
+      "配布物を ZIP 形式で圧縮し、ダウンロード時間を短縮する。",
+      "配布物のファイル名に版の番号と日付を含め、利用者が新旧を区別できるようにする。",
+      "配布サーバへのアクセスに CAPTCHA を設け、プログラムによる自動化されたダウンロードを防ぐ。",
+      "確立した認証局の証明書でコード署名を行い、利用者側で使用前に署名を検証できるようにする。"
+    ],
+    "answer": 3,
+    "stemPlain": "配ったソフトウェアが本物で書き換えられていないことを、受け取った側が確かめられるようにする方法を選ぶ問題。",
+    "explanation": "SSDF の PS.2（ソフトウェアのリリースの完全性を検証する仕組みを提供する）は、ソフトウェアを手に入れる側が、正当で改ざんされていないことを確かめられるようにする実践で、例として、配布ファイルの暗号学的ハッシュ値を安全な Web サイトに載せること、確立した認証局でコード署名を行い、利用者の OS やツールが使用前に署名の有効性を確かめられるようにすることを挙げている。",
+    "whyWrong": [
+      "ZIP で圧縮しても、中身を差し替えたファイルを圧縮し直せば同じように配れる。正当性の確認にはならない。",
+      "ファイル名に版や日付を入れても、名前は誰でも付けられる。差し替えられたファイルが同じ名前で配られれば見分けられない。",
+      "CAPTCHA は人による操作かを確かめる仕組みで、配布物そのものの正当性や改ざんの有無は示さない。",
+      null
+    ],
+    "memoryTip": "配る側は署名かハッシュを公開、受け取る側は使う前に検証。",
+    "concepts": [
+      "C-SC-04-024"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-218 Secure Software Development Framework (SSDF) Version 1.1",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf"
+      },
+      {
+        "title": "SLSA v1.2 Verifying artifacts",
+        "url": "https://slsa.dev/spec/v1.2/verifying-artifacts"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-049",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "not",
+    "difficulty": 1,
+    "stem": "サーバの要塞化（ハードニング）として行う作業の例として、適切でないものはどれか。",
+    "choices": [
+      "使用していないサービスを停止し、対応する待受けポートを閉じる。",
+      "サーバを2台にして、負荷分散装置で処理を振り分ける。",
+      "初期設定の管理者アカウントのパスワードを推測されにくいものに変更する。",
+      "公開されている修正プログラムを適用する。"
+    ],
+    "answer": 1,
+    "stemPlain": "サーバを攻撃に強く固める作業（ハードニング）に当てはまらないものを選ぶ問題。",
+    "explanation": "NIST の用語集は、ハードニングを、脆弱性に修正プログラムを当て、必須でないサービスを止めることで攻撃の手段を取り除く工程としている。初期パスワードの変更も、攻撃の入口を減らす作業に含まれる。サーバを2台にして負荷分散するのは、故障や負荷に備えて可用性を上げる冗長化で、1台ごとの攻撃の入口を減らす要塞化ではない。",
+    "whyWrong": [
+      "使わないサービスを止めてポートを閉じるのは、NIST の定義どおりの要塞化。",
+      null,
+      "初期設定のパスワードは公開されていて推測されやすいので、変えることは攻撃の入口を減らす要塞化の作業。",
+      "修正プログラムを当てて既知の脆弱性を塞ぐのは、NIST の定義に含まれる要塞化の作業。"
+    ],
+    "memoryTip": "要塞化＝入口を減らして固める。台数を増やすのは冗長化。",
+    "concepts": [
+      "C-SC-04-026"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: hardening",
+        "url": "https://csrc.nist.gov/glossary/term/hardening"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-050",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "クラウドの仮想サーバ（IaaS）を利用してシステムを構築する。AWS の責任共有モデルに照らして、利用者の責任に含まれるものはどれか。",
+    "choices": [
+      "仮想化基盤のハイパーバイザーの脆弱性への対応",
+      "ゲスト OS の修正プログラムの適用",
+      "物理サーバのハードウェアの保守と部品の交換",
+      "データセンターの入退室管理と監視カメラの設置"
+    ],
+    "answer": 1,
+    "stemPlain": "クラウドの仮想サーバを借りたとき、借りた側（利用者）が自分で守らなければならないものを選ぶ問題。",
+    "explanation": "AWS の責任共有モデルでは、AWS が『クラウドのセキュリティ』（データセンター・ハードウェア・基盤のソフトウェア）を、利用者が『クラウドにおけるセキュリティ』（自分で置いた OS・アプリ・データ・アクセス権・ネットワークの設定など）を受け持つ。IaaS では、利用者が仮想サーバに入れたゲスト OS の修正プログラムの適用は利用者の責任になる。",
+    "whyWrong": [
+      "ハイパーバイザー（仮想サーバを動かす基盤のソフトウェア）は、利用者が触れない基盤の部分で、事業者の責任。",
+      null,
+      "物理サーバのハードウェアの保守は、クラウドの基盤そのもので、事業者の責任。",
+      "データセンターの物理的な入退室管理は、クラウドそのものの守りで、事業者の責任。"
+    ],
+    "memoryTip": "事業者は「クラウドの」安全、利用者は「クラウドの中の」安全。",
+    "concepts": [
+      "C-SC-04-027",
+      "C-SC-02-008"
+    ],
+    "sources": [
+      {
+        "title": "AWS Shared Responsibility Model",
+        "url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-051",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "クラウド上で動くバッチ処理のプログラムが、ストレージにアクセスするための認証情報の扱いとして、最も適切なものはどれか。",
+    "choices": [
+      "すべてのストレージへの読み書きを許可したアクセスキーを1つ発行し、開発者全員で共有する。",
+      "管理者ユーザーの長期のアクセスキーを、プログラムの設定ファイルに記述する。",
+      "ルートユーザーのパスワードを、プログラムの環境変数に設定する。",
+      "プログラムを動かすサーバに IAM ロールを割り当て、一時的な認証情報を使わせる。"
+    ],
+    "answer": 3,
+    "stemPlain": "クラウドで動くプログラムに、ストレージを使わせるための鍵をどう渡すのがよいかを選ぶ問題。",
+    "explanation": "AWS の IAM のベストプラクティスは、ワークロード（プログラム）には IAM ロールで一時的な認証情報を使わせること、最小権限の許可を与えること、ルートユーザーの認証情報を守ることを挙げている。一時的な認証情報は期限が来れば使えなくなるので、漏れても被害の期間が限られ、長く使う鍵をファイルに書く必要もない。",
+    "whyWrong": [
+      "全ストレージへの読み書きを許す鍵を全員で共有すると、最小権限に反するうえ、誰が使ったかもたどれない。",
+      "管理者の長期のアクセスキーをファイルに書くと、ファイルが漏れたときに強い権限が長期間悪用される。ハードコードと過大な権限の両方の問題がある。",
+      "ルートユーザーはアカウントのすべてを操作できる。プログラムに使わせると、漏れたときの被害が最大になる。",
+      null
+    ],
+    "memoryTip": "プログラムには「ロール」と「一時的な鍵」。長期の鍵は配らない。",
+    "concepts": [
+      "C-SC-04-028"
+    ],
+    "sources": [
+      {
+        "title": "AWS IAM User Guide: Security best practices in IAM",
+        "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-052",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "クラウドのストレージの公開設定の誤りによる情報漏えいを防ぐ対策として、最も適切なものはどれか。",
+    "choices": [
+      "アカウント全体で公開アクセスを一括して禁止する設定を有効にする。",
+      "バケットの名前を、推測されにくい長いランダムな文字列にしておく。",
+      "ストレージに保存するファイルの拡張子を、一般的でないものに変更する。",
+      "ストレージへの通信を TLS で暗号化する。"
+    ],
+    "answer": 0,
+    "stemPlain": "クラウドのファイル置き場を、うっかり誰でも見られる設定にしてしまう事故を防ぐ方法を選ぶ問題。",
+    "explanation": "Amazon S3 のブロックパブリックアクセスは、アクセスポイント・バケット・アカウント・組織の単位で設定でき、ポリシーやオブジェクトの権限が公開を許していても、それを上書きして公開を止める。個々のバケットの設定の誤りを、上の単位のガードで防げる。責任共有モデルでは、設定は利用者の責任。",
+    "whyWrong": [
+      null,
+      "名前を長くしても、公開設定のままなら、名前が知られたり総当たりで見つかったりすれば誰でも読める。設定の誤りそのものは残る。",
+      "拡張子を変えても、公開されたファイルは誰でもダウンロードできる。見つかりにくくするだけで、公開を止めない。",
+      "TLS は通信路の盗聴を防ぐ。公開設定のストレージには、TLS で正しく接続した誰でもアクセスできるので、公開の誤りは防げない。"
+    ],
+    "memoryTip": "公開の誤りは「上からまとめて止める」ガードで防ぐ。",
+    "concepts": [
+      "C-SC-04-029"
+    ],
+    "sources": [
+      {
+        "title": "Amazon S3 User Guide: Blocking public access to your Amazon S3 storage",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html"
+      },
+      {
+        "title": "AWS Shared Responsibility Model",
+        "url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-053",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "Web アプリケーションに SSRF の脆弱性があると、攻撃者がサーバに 169.254.169.254 のアドレスへリクエストを送らせ、クラウドの認証情報を盗み出すおそれがある。AWS の IMDSv2 がこの被害を軽減できる理由として、適切なものはどれか。",
+    "choices": [
+      "メタデータの応答を、利用者のパスワードで暗号化して返すから",
+      "メタデータサービスを、仮想サーバの停止中にだけ利用できるようにするから",
+      "メタデータの取得前に、PUT リクエストでセッショントークンを取得してヘッダーに付ける必要があるから",
+      "メタデータを、インターネットから直接アクセスできるグローバル IP アドレスで提供し、所在を明確にするから"
+    ],
+    "answer": 2,
+    "stemPlain": "サーバをだまして内部のアドレスに問い合わせさせ、鍵を盗む攻撃（SSRF）に、AWS の IMDSv2 がなぜ効くのかを選ぶ問題。",
+    "explanation": "IMDSv2 はセッション方式で、まず PUT でセッショントークン（有効期間は1秒〜6時間）を取得し、以後の GET にトークンをヘッダーで付ける（AWS）。URL を指定して取りに行かせるだけの単純な SSRF では、PUT でトークンを取り、ヘッダーを付ける手順を踏ませにくいので、認証情報を引き出しにくくなる。AWS は、開いたファイアウォール・リバースプロキシ・SSRF への多層防御として IMDSv2 を紹介している。トークンの無い問い合わせ（IMDSv1）を止める設定にしておく。",
+    "whyWrong": [
+      "メタデータの応答を利用者のパスワードで暗号化して返す仕組みは無い。IMDSv2 の要点は、セッショントークンを先に取らせること。",
+      "メタデータサービスは動いている仮想サーバが使うもので、停止中だけ使えるのでは役に立たない。IMDSv2 の仕組みでもない。",
+      null,
+      "メタデータサービスは、仮想サーバの中から 169.254.169.254 などのリンクローカルのアドレスで呼ぶもので、インターネットに公開するものではない。公開すれば被害が広がる。"
+    ],
+    "memoryTip": "IMDSv2＝先に PUT で合言葉（トークン）、それから GET。",
+    "concepts": [
+      "C-SC-04-030"
+    ],
+    "sources": [
+      {
+        "title": "Amazon EC2 User Guide: Use the Instance Metadata Service to access instance metadata",
+        "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-054",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "NIST SP 800-190 が示すコンテナイメージの脆弱性管理の考え方として、適切なものはどれか。",
+    "choices": [
+      "入手元を問わず、ダウンロード数の多い公開イメージをベースイメージに採用する。",
+      "稼働中のコンテナに直接ログインして修正プログラムを適用し、イメージは作り直さない。",
+      "ベースイメージの層だけを検査し、その上に追加したアプリケーションの部品は検査しない。",
+      "各段階に品質ゲートを設け、基準を満たさないイメージを次の段階に進めない。"
+    ],
+    "answer": 3,
+    "stemPlain": "コンテナの元になるイメージの脆弱性を、どう管理するのがよいかを選ぶ問題。",
+    "explanation": "NIST SP 800-190 は、イメージのライフサイクル全体（ビルドの開始からレジストリ、実行まで）と統合した道具を使うこと、ベースの層だけでなくアプリの部品まで全層の脆弱性を見ること、各段階に品質のゲートを置いて方針を満たすイメージだけを進ませることを挙げている。直すときは、修正したイメージを作り直して入れ替える。",
+    "whyWrong": [
+      "SP 800-190 は、信頼できる取得元のベース層だけを使うことを挙げている。ダウンロード数が多いことは、信頼できることの保証にならない。",
+      "コンテナは中身を固定したイメージから動かすもので、動いているコンテナを直接直す運用は、イメージと実際の中身を食い違わせる。直すときはイメージを作り直して入れ替える。",
+      "SP 800-190 は、ベースの層だけでなく、アプリのフレームワークや独自のソフトウェアを含む全層の脆弱性を見ることを求めている。",
+      null
+    ],
+    "memoryTip": "イメージは「直す」より「作り直す」。関所（ゲート）で止める。",
+    "concepts": [
+      "C-SC-04-031"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-190 Application Container Security Guide",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-190.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-055",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "Kubernetes で、（ア）はある名前空間の中で許可する操作の組を定義し、（イ）はその定義を利用者やサービスアカウントに結び付ける。（ア）と（イ）に入れる字句の組合せとして、適切なものはどれか。",
+    "choices": [
+      "（ア）Role　（イ）NetworkPolicy",
+      "（ア）Namespace　（イ）RoleBinding",
+      "（ア）Role　（イ）RoleBinding",
+      "（ア）Namespace　（イ）NetworkPolicy"
+    ],
+    "answer": 2,
+    "stemPlain": "コンテナ管理の基盤 Kubernetes で、「何をしてよいかの組」を作る部品と、それを人に結び付ける部品の名前の組を選ぶ問題。",
+    "explanation": "Kubernetes の RBAC（役割に基づくアクセス制御）では、Role で1つの名前空間の中の許可（例：Pod を読むだけ）を定義し、RoleBinding でそれを利用者やグループ、サービスアカウントに与える。クラスタ全体に効かせるときは ClusterRole と ClusterRoleBinding を使う。",
+    "whyWrong": [
+      "（イ）が誤り。NetworkPolicy は、どの Pod どうしが通信してよいかを決める通信の制限で、許可の組を利用者に結び付けるものではない。",
+      "（ア）が誤り。Namespace は、クラスタの中のリソースを区切る入れ物で、許可する操作の組を定義するものではない。",
+      null,
+      "（ア）（イ）とも誤り。Namespace はリソースを区切る入れ物、NetworkPolicy は Pod 間の通信の制限で、どちらも RBAC の定義と割当ての部品ではない。"
+    ],
+    "memoryTip": "Role で「できること」を決め、Binding で「誰に」を結ぶ。",
+    "concepts": [
+      "C-SC-04-032"
+    ],
+    "sources": [
+      {
+        "title": "Kubernetes Documentation: Using RBAC Authorization",
+        "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+      },
+      {
+        "title": "Kubernetes Documentation: Network Policies",
+        "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-056",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Kubernetes のネットワークポリシーで、どのポリシーにも選択されていない Pod の通信はどのように扱われるか。",
+    "choices": [
+      "同じ名前空間の Pod との通信だけが許可される。",
+      "隔離されておらず、外向きの通信はすべて許可される。",
+      "クラスタ外への通信だけが拒否される。",
+      "すべての内向き・外向きの通信が拒否される。"
+    ],
+    "answer": 1,
+    "stemPlain": "Kubernetes で通信のきまり（ネットワークポリシー）を何も当てていない Pod は、通信をどう扱われるかを選ぶ問題。",
+    "explanation": "Kubernetes の文書によれば、既定では Pod は外向きの通信について隔離されておらず、外へ出る接続はすべて許される（内向きも、選ばれていなければ同様に許される）。そのため、まず『既定ではすべて拒否』のポリシーを置き、必要な通信だけを許すのがよい。何も設定しないと、1つの Pod が乗っ取られたときにクラスタ内へ広がりやすい。",
+    "whyWrong": [
+      "同じ名前空間とだけ通信できるのは、そう定めたポリシーを置いたときの状態。既定では名前空間をまたいでも通信できる。",
+      null,
+      "クラスタの外への通信も、既定では許されている。外向きを止めるには、そのためのポリシーを置く必要がある。",
+      "すべての通信を拒否するのは、『既定ですべて拒否』のポリシーを自分で置いたときの状態。何も選ばれていない Pod の既定の扱いではない。"
+    ],
+    "memoryTip": "ネットワークポリシーは「書かなければ全開」。まず全部閉じてから開ける。",
+    "concepts": [
+      "C-SC-04-032"
+    ],
+    "sources": [
+      {
+        "title": "Kubernetes Documentation: Network Policies",
+        "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-057",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "IaC（Infrastructure as Code）のセキュリティスキャンを CI/CD パイプラインに組み込む利点として、最も適切なものはどれか。",
+    "choices": [
+      "設定の誤りを、本番環境に反映される前のコードの段階で検出し、マージを止められる。",
+      "本番環境で発生した障害の原因を、ログを時系列に並べて特定できる。",
+      "稼働中のアプリケーションに攻撃に近いリクエストを送り、応答から脆弱性を推測できる。",
+      "メモリ上で動作するファイルレスマルウェアを検出できる。"
+    ],
+    "answer": 0,
+    "stemPlain": "インフラの設定をコードで書く IaC について、そのコードを自動で検査する仕組みをパイプラインに入れると何がよいかを選ぶ問題。",
+    "explanation": "IaC のスキャンは、インフラの定義を書いたコードを道具で検査し、公開設定や過大な権限などの設定の誤りを見つける。CISA が紹介する Checkov は、IaC などを走査してセキュリティの誤りを見つけ、開発者の道具と CI/CD パイプラインの両方で設定ミスを示す。コードの段階で止めれば、誤った設定が本番に量産される前に直せる。",
+    "whyWrong": [
+      null,
+      "ログを時系列に並べて原因を探すのは、タイムライン分析など障害や事故の調査の作業。デプロイ前のコードの検査ではない。",
+      "稼働中のアプリに攻撃に近いリクエストを送るのは、DAST（動的アプリケーションセキュリティテスト）の働き。IaC のコードの検査ではない。",
+      "メモリの中だけで動くマルウェアの検出は、端末の振る舞いの監視（EDR など）やメモリフォレンジックの役目。IaC のスキャンでは見つからない。"
+    ],
+    "memoryTip": "IaC スキャン＝「設定ミスをコードのうちに止める」。",
+    "concepts": [
+      "C-SC-04-033"
+    ],
+    "sources": [
+      {
+        "title": "CISA Checkov（IaC などのスキャンツールの紹介）",
+        "url": "https://www.cisa.gov/resources-tools/services/checkov"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-058",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "TPM（Trusted Platform Module）の機能として、適切なものはどれか。",
+    "choices": [
+      "ファームウェアが起動するプログラムの署名を検証し、署名が正しくないプログラムの起動をその場で中止する。",
+      "ドライブ自身がデータを常に暗号化し、利用者の認証が済むまでドライブをロックする。",
+      "起動時に読み込まれたプログラムを測定して記録し、鍵を TPM の外に取り出せない形で生成・保護する。",
+      "NFC で通信する決済アプリケーションを、スマートフォンの中で安全に実行する。"
+    ],
+    "answer": 2,
+    "stemPlain": "パソコンに載っている TPM というチップが何をするかを選ぶ問題。",
+    "explanation": "NIST の用語集は、TPM を、一部のマザーボードに組み込まれた耐タンパ性の集積回路で、鍵の生成を含む暗号の処理を行い、パスワードや暗号鍵のような少量の機密情報を守れるもの、としている。Microsoft の説明では、TPM は起動の過程を測定して記録し、基盤の完全性を示すのに使われ、TPM の鍵は TPM の外では使えないよう設定できる。",
+    "whyWrong": [
+      "起動のプログラムの署名を検証して、正しくなければ起動しないのは、UEFI のセキュアブートの働き。TPM の測定は起動したものを記録するもので、起動を止める役ではない。",
+      "ドライブ自身が常に暗号化し、認証までロックするのは、自己暗号化ドライブ（SED）の働き。",
+      null,
+      "決済アプリなどを載せて、チップの中で秘密を扱うのは、セキュアエレメントの代表的な使い方。"
+    ],
+    "memoryTip": "TPM＝測って記録、鍵は外に出さない。",
+    "concepts": [
+      "C-SC-04-035",
+      "C-SC-04-037"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: Trusted Platform Module",
+        "url": "https://csrc.nist.gov/glossary/term/trusted_platform_module"
+      },
+      {
+        "title": "Microsoft Learn: Trusted Platform Module Technology Overview",
+        "url": "https://learn.microsoft.com/en-us/windows/security/hardware-security/tpm/trusted-platform-module-overview"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-059",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "自己暗号化ドライブ（SED）を使用したノート PC について、SED によって防げる脅威として、最も適切なものはどれか。",
+    "choices": [
+      "電源が切れた状態の PC が盗まれ、ドライブを取り外して別の機器で読まれる。",
+      "利用者がフィッシングサイトにパスワードを入力してしまう。",
+      "ログイン中の画面を、背後から覗き見される。",
+      "ログイン中の PC がマルウェアに感染し、ファイルを外部のサーバへ送信される。"
+    ],
+    "answer": 0,
+    "stemPlain": "ドライブ自身がデータを暗号化する SED で、どんな被害が防げるかを選ぶ問題。",
+    "explanation": "SED は、ドライブの中の暗号のハードウェアでデータを常に暗号化し、鍵はドライブの外に出さず、ロックを解く前の利用者の認証をドライブが行う（Microsoft の説明）。電源が切れてロックされた状態なら、ドライブを取り外して別の機器につないでも、中身は暗号文のまま読めない。",
+    "whyWrong": [
+      null,
+      "フィッシングは利用者をだましてパスワードを入力させる攻撃で、ドライブの暗号化とは関係がない。",
+      "覗き見（ショルダーハッキング）は画面の表示を見る行為で、ドライブの暗号化では防げない。",
+      "ログインした後は、ドライブのロックが解け、データは平文で読み出せる。動いている PC のマルウェアによる持ち出しは SED では防げない。"
+    ],
+    "memoryTip": "SED が守るのは「止まって盗まれた」とき。動いている間は守らない。",
+    "concepts": [
+      "C-SC-04-036"
+    ],
+    "sources": [
+      {
+        "title": "Microsoft Learn: Encrypted hard drives",
+        "url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/encrypted-hard-drive"
+      },
+      {
+        "title": "Trusted Computing Group: Storage Security Subsystem Class: Opal",
+        "url": "https://trustedcomputinggroup.org/resource/storage-work-group-storage-security-subsystem-class-opal/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-060",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "UEFI のセキュアブートの説明として、適切なものはどれか。",
+    "choices": [
+      "停電で PC が停止した場合に、電源の回復後に自動で起動し直す。",
+      "起動時に読み込まれたプログラムのハッシュ値を記録しておき、後から第三者に起動の状態を証明できるようにする。",
+      "OS の起動後に、マルウェア対策ソフトがディスク全体を走査して不正なプログラムを削除する。",
+      "起動時に、ファームウェアがブートローダーなどの署名を検証し、信頼できる署名のないものを起動しない。"
+    ],
+    "answer": 3,
+    "stemPlain": "電源を入れたときに働くセキュアブートが何をするかを選ぶ問題。",
+    "explanation": "Microsoft の説明では、セキュアブートは、機器が製造元の信頼するソフトウェアだけで起動するようにする業界の標準で、PC が起動するとき、ファームウェアが UEFI のドライバや OS を含む各起動のソフトウェアの署名を確かめ、正しければ起動して OS に制御を渡す。OS より前に動くマルウェア（ブートキットなど）を起動させないのが狙い。",
+    "whyWrong": [
+      "停電後に自動で起動し直すのは、電源の設定（電源回復時の動作）の話で、セキュリティの検証とは関係がない。",
+      "起動したプログラムを測って記録し、後で状態を示すのは、TPM を使った測定（メジャードブート）の考え方。セキュアブートは記録ではなく、起動の前に止める。",
+      "マルウェア対策ソフトの走査は OS が起動した後の対策で、起動の途中のプログラムの署名を確かめるセキュアブートとは別。",
+      null
+    ],
+    "memoryTip": "セキュアブート＝署名が合わなければ起動しない。",
+    "concepts": [
+      "C-SC-04-037"
+    ],
+    "sources": [
+      {
+        "title": "Microsoft Learn: Secure Boot",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/oem-secure-boot"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-061",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "スマートフォンに搭載されるセキュアエレメントの説明として、適切なものはどれか。",
+    "choices": [
+      "スマートフォンの画面ロックを解除するための、指紋の画像を保存する外部記憶媒体",
+      "暗号鍵などの秘密とアプリケーションを、耐タンパ性のあるチップの中で保持・処理する部品",
+      "通信事業者の基地局と端末の間の通信を暗号化するための、ネットワーク側の装置",
+      "アプリケーションの不具合を自動で修正するために、OS に組み込まれた更新の仕組み"
+    ],
+    "answer": 1,
+    "stemPlain": "スマートフォンに入っている「セキュアエレメント」という部品が何かを選ぶ問題。",
+    "explanation": "GlobalPlatform は、セキュアエレメントを、信頼できる発行者が定めた規則とセキュリティ要件に従って、アプリと秘密の暗号データ（暗号鍵など）を安全に保持できる、耐タンパ性のある基盤（ふつうは1チップのセキュアなマイコン）としている。決済や車の鍵などで、秘密をチップの外に出さずに処理する。",
+    "whyWrong": [
+      "指紋の画像を保存する外部記憶媒体ではない。セキュアエレメントは、秘密を外へ出さずに中で処理する耐タンパのチップで、取り外して使う記憶媒体とは目的が違う。",
+      null,
+      "基地局と端末の間の通信の暗号化の装置は、通信事業者のネットワークの設備。端末の中で秘密を保持するセキュアエレメントではない。",
+      "OS の更新の仕組みは、ソフトウェアを新しい版に入れ替える仕組み。秘密の鍵を守るチップとは別。"
+    ],
+    "memoryTip": "セキュアエレメント＝秘密を持ったまま中で計算する金庫チップ。",
+    "concepts": [
+      "C-SC-04-034"
+    ],
+    "sources": [
+      {
+        "title": "GlobalPlatform Introduction to Secure Element",
+        "url": "https://globalplatform.org/wp-content/uploads/2018/05/Introduction-to-Secure-Element-15May2018.pdf"
+      },
+      {
+        "title": "NIST CSRC Glossary: tamper resistant",
+        "url": "https://csrc.nist.gov/glossary/term/tamper_resistant"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-062",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "NIST SP 800-82 Rev.3 が示す、制御システム（OT）と一般の情報システム（IT）の違いとして、適切なものはどれか。",
+    "choices": [
+      "OT では可用性より機密性を優先するため、異常を検知したら生産を続けるより直ちにシステム全体を停止する。",
+      "OT の機器は10〜15年以上使われることが多く、予定外の停止が許されないので停止は前もって計画する。",
+      "OT のネットワークは社内の情報システムと常に同じセグメントに置き、管理を一本化する。",
+      "OT の機器は3〜5年で更新されるのが普通なので、修正プログラムは発行と同時に試験せずすぐ適用できる。"
+    ],
+    "answer": 1,
+    "stemPlain": "工場などの制御システム（OT）が、会社のふつうの IT システムとどう違うかを選ぶ問題。",
+    "explanation": "NIST SP 800-82 Rev.3 は、IT の部品の寿命が3〜5年ほどなのに対し、OT では10〜15年、それ以上のことも多いとしている。また多くの工程は連続で動き、予定外の停止は許されず、停止は何日も何週間も前から計画する必要がある。修正プログラムは現場の条件で試してから適用する。",
+    "whyWrong": [
+      "OT では、止まると生産や安全に影響するので、可用性と安全が重く見られる。異常のたびに直ちに止めることが、かえって事故につながることがある。",
+      null,
+      "SP 800-82 は、IT と OT のネットワークを分けて境界を設け、間に DMZ を置くことを勧めている。同じセグメントに置くのは逆。",
+      "3〜5年は IT の部品の寿命の目安。OT は10〜15年以上使われることが多く、修正プログラムも試験してから慎重に当てる。"
+    ],
+    "memoryTip": "OT は「長く使う・止められない」。",
+    "concepts": [
+      "C-SC-04-039"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-82 Rev.3 Guide to Operational Technology (OT) Security",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-063",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Purdue モデルに基づいて工場のネットワークを分割する。NIST SP 800-82 Rev.3 の考え方に照らして、ファイアウォールの設定として最も適切なものはどれか。",
+    "choices": [
+      "企業ネットワークと制御ネットワークの間の DMZ を廃止し、両者を直接接続する。",
+      "すべてのレベルの機器が互いに直接通信できるようにし、異常が起きたときの調査を容易にする。",
+      "外向きの通信は監視の対象外とし、内向きの通信だけをファイアウォールの設定で制限して負荷を下げる。",
+      "隣り合うレベルの間の許可した通信だけを通し、企業側のレベルから現場の機器へ直接通信させない。"
+    ],
+    "answer": 3,
+    "stemPlain": "工場のネットワークを階層に分けたとき、ファイアウォールをどう設定するのがよいかを選ぶ問題。",
+    "explanation": "NIST SP 800-82 Rev.3 は、ファイアウォールのルールは隣り合うレベル・階層・ゾーンの間の接続だけを許すよう設け、Purdue モデルなら、レベル4の機器がレベル2・1・0の機器と直接通信できないようにすべきとしている。さらに、外向きの通信のルールも内向きと同じくらい厳しくすること、企業側と運用管理側の通信は DMZ の中のサービスを必ず経由させることを挙げている。",
+    "whyWrong": [
+      "DMZ は、企業側と制御側が直接通信しないための緩衝のネットワーク。廃止して直結するのは逆。",
+      "すべてのレベルを直接つなぐと、企業側で感染した端末から現場の制御機器まで攻撃が届く。階層に分ける意味がなくなる。",
+      "SP 800-82 は、下のレベルからの外向きの通信も管理しないと大きなリスクになるとして、外向きのルールも内向きと同じく厳しくするよう勧めている。",
+      null
+    ],
+    "memoryTip": "階層は「隣同士だけ」、IT と OT の間は DMZ。",
+    "concepts": [
+      "C-SC-04-043",
+      "C-SC-04-039"
+    ],
+    "figures": [
+      "fig-sc-impl-purdue"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-82 Rev.3 Guide to Operational Technology (OT) Security",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-064",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "発電所の制御ネットワークから本社の分析システムへ運転データを送る。本社のネットワークが侵害されても、制御ネットワークに通信が届かない構造にするための機器として、最も適切なものはどれか。",
+    "choices": [
+      "一方向ゲートウェイ",
+      "L3 スイッチ",
+      "リバースプロキシ",
+      "IPsec を用いた VPN 装置"
+    ],
+    "answer": 0,
+    "stemPlain": "制御側から本社へデータは送るが、本社側からは何も入れないようにする装置を選ぶ問題。",
+    "explanation": "NIST の用語集は、データダイオードを、データを一方向にだけ流す装置で、一方向ゲートウェイとも呼ぶとしている。NIST SP 800-82 Rev.3 は、許可した通信を一方向にだけ通す一方向ゲートウェイを、ファイアウォールの代わりになるものとして挙げ、上位の階層で侵害が起きても下位の機器を守れるとしている。",
+    "whyWrong": [
+      null,
+      "L3 スイッチは、ネットワーク層（IP アドレス）でパケットを中継する機器で、双方向の通信を通す。逆向きを構造的に止める機器ではない。",
+      "リバースプロキシは、外からの要求を受けて内側のサーバに取り次ぐ中継のサーバ。外から内への要求を通すための仕組みで、逆向きを止めるものではない。",
+      "VPN 装置は、拠点の間を暗号化した通信路でつなぐ機器。つないだ先どうしは双方向に通信できるので、本社が侵害されると制御側へ届きうる。"
+    ],
+    "memoryTip": "ダイオード＝電流（データ）は一方通行。",
+    "concepts": [
+      "C-SC-04-044"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: data diode",
+        "url": "https://csrc.nist.gov/glossary/term/data_diode"
+      },
+      {
+        "title": "NIST SP 800-82 Rev.3 Guide to Operational Technology (OT) Security",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-065",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "制御システムの部品（ソフトウェアアプリケーション、組込み機器、ホスト機器、ネットワーク機器）を、IEC 62443-4-2 の技術的セキュリティ要求に基づいて認証する制度はどれか。",
+    "choices": [
+      "ISMS 認証",
+      "JC-STAR（セキュリティ要件適合評価及びラベリング制度）",
+      "ISASecure CSA 認証",
+      "CSMS 認証"
+    ],
+    "answer": 2,
+    "stemPlain": "工場の制御システムを組み立てる部品が、国際規格 IEC 62443-4-2 を満たすかを認証する制度の名前を選ぶ問題。",
+    "explanation": "ISASecure の CSA（Component Security Assurance）は、ISA/IEC 62443-4-2（IACS の部品の技術的なセキュリティ要求）が定める部品の種類、すなわちソフトウェアアプリケーション・組込み機器・ホスト機器・ネットワーク機器のセキュリティを認証する制度。部品の特性に加え、メーカーの開発の進め方も対象にする。",
+    "whyWrong": [
+      "ISMS 認証は、組織の情報セキュリティマネジメントシステムを JIS Q 27001 で認証する制度で、制御機器の部品の認証ではない。",
+      "JC-STAR は、日本で IoT 製品を独自の適合基準で確認し、★の段階で適合ラベルを付ける制度。IEC 62443-4-2 に基づく制御機器の認証ではない。",
+      null,
+      "CSMS 認証は、制御システムを運用する組織のマネジメントシステムを、IEC 62443-2-1 を基準に認証する制度。個々の部品の認証ではない。"
+    ],
+    "memoryTip": "CSA の C は Component（部品）。基準は 62443-4-2。",
+    "concepts": [
+      "C-SC-04-041",
+      "C-SC-04-040"
+    ],
+    "sources": [
+      {
+        "title": "ISASecure IEC 62443 CSA Certification",
+        "url": "https://isasecure.org/certification/iec-62443-csa-certification"
+      },
+      {
+        "title": "ISA/IEC 62443 Series of Standards",
+        "url": "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-066",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "combo",
+    "difficulty": 2,
+    "stem": "IEC 62443 シリーズのうち、制御システムの運用者（アセットオーナー）のセキュリティプログラムの要求を定める部は（ア）であり、日本の CSMS 認証はこれを基準とする。一方、制御システムの部品の技術的セキュリティ要求を定める部は（イ）である。（ア）と（イ）に入れる字句の組合せとして、適切なものはどれか。",
+    "choices": [
+      "（ア）IEC 62443-4-1　（イ）IEC 62443-3-3",
+      "（ア）IEC 62443-2-1　（イ）IEC 62443-3-3",
+      "（ア）IEC 62443-4-1　（イ）IEC 62443-4-2",
+      "（ア）IEC 62443-2-1　（イ）IEC 62443-4-2"
+    ],
+    "answer": 3,
+    "stemPlain": "制御システムの国際規格 IEC 62443 の中で、運用する組織向けの部と、部品向けの部の番号の組を選ぶ問題。",
+    "explanation": "ISA の一覧によれば、62443-2-1 は IACS のアセットオーナーのセキュリティプログラムの要求、62443-3-3 はシステムのセキュリティ要求とセキュリティレベル、62443-4-1 は製品の安全な開発ライフサイクルの要求、62443-4-2 は IACS の部品の技術的なセキュリティ要求。JIPDEC の CSMS 認証は 62443-2-1 を基準にしている。",
+    "whyWrong": [
+      "（ア）（イ）とも誤り。62443-4-1 はメーカーの開発工程の要求、62443-3-3 はシステム全体の要求。",
+      "（イ）が誤り。62443-3-3 は、部品ではなくシステム全体のセキュリティ要求とセキュリティレベルを定める部。",
+      "（ア）が誤り。62443-4-1 は、製品を作るメーカーの安全な開発ライフサイクルの要求で、運用者の要求ではない。",
+      null
+    ],
+    "memoryTip": "2＝運用の組織、3＝システム、4＝製品（4-1 作り方、4-2 部品の機能）。",
+    "concepts": [
+      "C-SC-04-040",
+      "C-SC-04-041"
+    ],
+    "sources": [
+      {
+        "title": "ISA/IEC 62443 Series of Standards",
+        "url": "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+      },
+      {
+        "title": "JIPDEC CSMS ユーザーズガイド－CSMS 認証基準（IEC 62443-2-1）対応－Ver.1.2",
+        "url": "https://www.jipdec.or.jp/archives/publications/JIP-CSMS111-12.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-067",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "JC-STAR（セキュリティ要件適合評価及びラベリング制度）において、★3（レベル3）・★4（レベル4）の適合ラベルが★1・★2と異なる点として、適切なものはどれか。",
+    "choices": [
+      "IoT 製品のベンダーが、自己評価の結果に基づいて自ら宣言する。",
+      "IoT 製品に共通する最低限の脅威だけを対象とする。",
+      "要件を満たすことを、独立した第三者が評価して示す。",
+      "適合ラベルの付与によって、完全なセキュリティを保証する。"
+    ],
+    "answer": 2,
+    "stemPlain": "IoT 製品のラベル制度 JC-STAR で、上の段階（★3・★4）が下の段階（★1・★2）とどう違うかを選ぶ問題。",
+    "explanation": "IPA によれば、★3・★4 は、政府機関・重要インフラ・地方公共団体・大企業などの重要なシステムでの利用を想定し、★1・★2 に追加して要件を定め、それを満たすことを独立した第三者が評価して示すもの。★1・★2 は、ベンダーが自己評価の結果のチェックリストに基づいて宣言する自己適合宣言の方式。",
+    "whyWrong": [
+      "ベンダーが自己評価で宣言するのは、★1・★2 の方式。★3・★4 は第三者が評価する。",
+      "IoT 製品共通の最低限の脅威への適合基準は ★1。★3・★4 は重要なシステム向けに要件を追加した段階。",
+      null,
+      "IPA は、適合ラベルは最低限の水準を満たしたことを確認するもので、完全・完璧なセキュリティを保証するものではないと注意している。どの段階でも同じ。"
+    ],
+    "memoryTip": "★1・★2＝自分で宣言、★3・★4＝第三者が評価。",
+    "concepts": [
+      "C-SC-04-042"
+    ],
+    "sources": [
+      {
+        "title": "IPA セキュリティ要件適合評価及びラベリング制度（JC-STAR）",
+        "url": "https://www.ipa.go.jp/security/jc-star/index.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-068",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "NIST SP 800-193 が示す、ファームウェアの認証された更新の仕組み（Authenticated Update Mechanism）の中心となる考え方はどれか。",
+    "choices": [
+      "更新のたびに機器を工場出荷時の設定に戻し、利用者の設定をすべて消去する。",
+      "更新イメージの電子署名を検証し、正当で許可されたイメージに限って機器に適用する。",
+      "更新イメージを利用者が自由に改変して再配布できるよう、ソースコードを同梱する。",
+      "更新イメージを圧縮して配布し、更新にかかる時間を短くする。"
+    ],
+    "answer": 1,
+    "stemPlain": "機器の基本ソフト（ファームウェア）を安全に更新するための、中心の考え方を選ぶ問題。",
+    "explanation": "NIST SP 800-193 は、正当で許可されたファームウェアの更新イメージだけを機器に適用できるようにすることを中心の考えとし、認証された更新の仕組みでは、電子署名で更新イメージの真正性を確かめるとしている。署名の検証の計算と鍵の保管を受け持つ部分を、更新の信頼の起点（RTU）と呼ぶ。版の番号を確かめて古い版への巻き戻しを制限する実装もある。",
+    "whyWrong": [
+      "設定の消去は、更新の正当性とは関係がない。正規でないイメージが書き込まれる危険は残る。",
+      null,
+      "利用者が自由に改変できるようにすると、改ざんされたイメージでも適用されうる。署名の検証で正当なものだけを適用する考え方とは逆。",
+      "圧縮は配布の効率の話で、更新イメージが正規のものか、改ざんされていないかは確かめない。"
+    ],
+    "memoryTip": "ファームの更新は「署名を確かめてから書く」。",
+    "concepts": [
+      "C-SC-04-045"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-193 Platform Firmware Resiliency Guidelines",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-193.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-069",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "経済産業省の「IT 製品の調達におけるセキュリティ要件リスト」の説明として、適切なものはどれか。",
+    "choices": [
+      "デジタル複合機などの製品分野ごとに、考慮すべき脅威と対抗するセキュリティ要件をまとめたもの",
+      "クラウドサービスを政府が調達する際に、あらかじめ評価して登録したサービスの一覧",
+      "IoT 製品がセキュリティ要件に適合していることを確認し、二次元バーコード付きの適合ラベルを付与する制度",
+      "電子政府での利用を推奨する暗号アルゴリズムを、推奨・推奨候補・運用監視に分けて示した一覧"
+    ],
+    "answer": 0,
+    "stemPlain": "国が出している「IT 製品を買うときのセキュリティ要件の一覧」が何かを選ぶ問題。",
+    "explanation": "IPA によれば、このリストは、デジタル複合機・ファイアウォールなどの製品分野ごとに考慮すべき脅威と、それに対抗するためのセキュリティ要件をまとめたもので、政府機関だけでなく一般企業が調達するときにも使える。『政府機関等のサイバーセキュリティ対策のための統一基準』で、機器などの調達のときに参照することが遵守事項とされている。2026年2月に第2.1版が出た。",
+    "whyWrong": [
+      null,
+      "政府がクラウドサービスを調達するために評価・登録したサービスの一覧は ISMAP のクラウドサービスリスト。",
+      "IoT 製品に適合ラベルを付ける制度は JC-STAR。要件リストは、買う側が仕様に書く要件の一覧で、ラベルの制度ではない。",
+      "推奨・推奨候補・運用監視に分けた暗号の一覧は CRYPTREC 暗号リスト。製品分野ごとの要件の一覧ではない。"
+    ],
+    "memoryTip": "調達の要件リスト＝製品分野ごとの「脅威と要件」の見本帳。",
+    "concepts": [
+      "C-SC-04-046"
+    ],
+    "sources": [
+      {
+        "title": "IPA IT製品の調達におけるセキュリティ要件リスト",
+        "url": "https://www.ipa.go.jp/security/it-product/index.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-070",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュア開発・実装"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "NISTIR 8259A が、IoT 機器が備えるべき基本的なサイバーセキュリティの機能として挙げているものはどれか。",
+    "choices": [
+      "IoT 機器の利用者が、初期設定のパスワードを変更できないこと",
+      "IoT 機器が、利用者の同意なく位置情報を外部に送信できること",
+      "IoT 機器のソフトウェアを、安全で設定可能な仕組みで更新できること",
+      "IoT 機器が、どのネットワークにも接続できないよう通信機能を持たないこと"
+    ],
+    "answer": 2,
+    "stemPlain": "ネットにつながる機器（IoT 機器）が最低限持つべき機能として、米国の NIST の文書が挙げているものを選ぶ問題。",
+    "explanation": "NISTIR 8259A は、IoT 機器の中心の基本機能として、機器の識別・機器の設定（許された者だけが変更できる）・データの保護・インタフェースへの論理的なアクセス・ソフトウェアの更新・サイバーセキュリティの状態の把握を挙げている。ソフトウェアを更新できなければ、見つかった脆弱性を直せない。",
+    "whyWrong": [
+      "初期パスワードを変えられない機器は、公開されている初期値で乗っ取られる。NIST は、許された者が設定を変えられることを機能に挙げている。",
+      "利用者の同意なく情報を外へ送ることは、データの保護の考え方と逆。セキュリティの機能ではない。",
+      null,
+      "通信機能を持たない機器は IoT 機器ではない。IoT 機器はつながる前提で、つながったまま守るための機能を備える。"
+    ],
+    "memoryTip": "IoT の基本機能：識別・設定・データ保護・アクセス・更新・状態把握。",
+    "concepts": [
+      "C-SC-04-038"
+    ],
+    "sources": [
+      {
+        "title": "NISTIR 8259A IoT Device Cybersecurity Capability Core Baseline",
+        "url": "https://nvlpubs.nist.gov/nistpubs/ir/2020/NIST.IR.8259A.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-071",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "デジタルフォレンジックで、ディスクイメージを取得する手順として、適切なものはどれか。",
+    "choices": [
+      "書込み防止装置を介して原本を接続し、前後のハッシュ値を比べ、分析は複製に対して行う。",
+      "原本をフォーマットしてから複製を取得し、調査に不要な情報を取り除く。",
+      "原本のファイルを開いて内容を確認した後、変更した日時を元に戻してから複製する。",
+      "原本を調査用 PC に直接接続して OS でマウントし、調査に必要と思われるファイルだけを複製する。"
+    ],
+    "answer": 0,
+    "stemPlain": "証拠のディスクを複製するときの正しい手順を選ぶ問題。",
+    "explanation": "NIST SP 800-86 は、原本の完全性を守るために書込み防止装置（ライトブロッカー）を使い、イメージを取る前に原本のハッシュ値（メッセージダイジェスト）を計算して記録し、取った後に複製のハッシュ値と比べて一致を確かめること、以後の分析はすべて複製で行い、原本は安全に保管することを示している。",
+    "whyWrong": [
+      null,
+      "フォーマットは原本のデータを消す操作で、証拠を壊す。複製の前に原本を変えてはならない。",
+      "原本のファイルを開くと、アクセスの日時などが変わる。後から日時を戻しても、変えたこと自体を説明できず、証拠の信頼性が損なわれる。",
+      "原本を OS でマウントすると、OS が書き込んで日時などを変えるおそれがある。また必要なファイルだけを写す論理的な複製では、削除されたファイルの残りや空き領域を取りこぼす。"
+    ],
+    "memoryTip": "原本には書かせない・ハッシュで同じと示す・調べるのは複製。",
+    "concepts": [
+      "C-SC-04-049"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-86.pdf"
+      },
+      {
+        "title": "NIST CSRC Glossary: write blocker",
+        "url": "https://csrc.nist.gov/glossary/term/write_blocker"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-072",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "インシデントの調査で、証拠のディスクを調査担当から外部の解析業者に引き渡す。Chain of Custody（証拠保全の連鎖）の観点で記録すべき事項として、最も適切なものはどれか。",
+    "choices": [
+      "調査対象のシステムの利用者の一覧",
+      "攻撃者が侵入した日時と侵入の経路",
+      "証拠から復元したファイルの一覧",
+      "証拠を扱った者、受け渡しの日時、受け渡しの目的"
+    ],
+    "answer": 3,
+    "stemPlain": "証拠をほかの人に渡すとき、後で「すり替えていない」と示すために記録すべきことを選ぶ問題。",
+    "explanation": "NIST の用語集は、Chain of Custody を、証拠を集め、守り、分析する流れの中で、証拠を扱った人、集めた・移した日時、移した目的をそれぞれ記録し、証拠の動きを追う手順としている。受け渡しのたびに途切れなく記録すれば、途中ですり替えや改変が無かったことを示せる。",
+    "whyWrong": [
+      "利用者の一覧は、調査対象のシステムの情報で、証拠の受け渡しの経緯を示さない。",
+      "侵入の日時と経路は、証拠を調べて明らかにする調査の結果（タイムライン分析などで組み立てるもの）。調査する側が証拠をどう扱ったかの記録ではない。",
+      "復元したファイルの一覧は、検査・分析の段階で得られる成果。証拠が誰の手を経てどう渡ったかを示す記録ではない。",
+      null
+    ],
+    "memoryTip": "Chain of Custody＝誰が・いつ・何のために、を受け渡しごとに。",
+    "concepts": [
+      "C-SC-04-050"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: chain of custody",
+        "url": "https://csrc.nist.gov/glossary/term/chain_of_custody"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-073",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Web サーバのアクセスログ、ファイアウォールのログ、ファイルの更新日時など、複数の情報源の時刻付きの記録を並べて、侵入から情報の持出しまでの経緯を明らかにする分析はどれか。",
+    "choices": [
+      "Chain of Custody",
+      "タイムライン分析",
+      "ファジング",
+      "リスクアセスメント"
+    ],
+    "answer": 1,
+    "stemPlain": "いろいろな記録を時刻の順に並べて、何がどの順で起きたかを組み立てる分析の名前を選ぶ問題。",
+    "explanation": "タイムライン分析は、ばらばらの場所にある時刻付きの情報を1本の時間の流れに並べ、出来事の順序を組み立てる。NIST SP 800-86 は、正確なタイムラインを作るにはファイルの日時を保存する必要があること、イベントのデータからフォレンジックのタイムラインを作る道具があること、OS の時刻やタイムゾーンの情報がシステムどうしの出来事を突き合わせるのに役立つことを挙げている。",
+    "whyWrong": [
+      "Chain of Custody は、調査する側が証拠をいつ誰に渡したかの記録で、攻撃の出来事を並べる分析ではない。",
+      null,
+      "ファジングは、細工したデータを大量に送って異常な動作を探すテストで、事後の調査の分析ではない。",
+      "リスクアセスメントは、リスクを特定・分析・評価して対応の優先順位を決める手順で、起きた事故の経緯を組み立てる分析ではない。"
+    ],
+    "memoryTip": "時刻の順に並べると、攻撃の物語が見える。",
+    "concepts": [
+      "C-SC-04-051"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-86.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-074",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ディスク上にファイルを残さずメモリ上だけで動作するマルウェアの痕跡を調べるために、電源を切る前に行うべきこととして、最も適切なものはどれか。",
+    "choices": [
+      "PC を再起動して、マルウェア対策ソフトの完全スキャンを実行する。",
+      "メモリの内容をファイルに取得し、動いていたプロセスや通信先を後で分析できるようにする。",
+      "OS を再インストールして、マルウェアを確実に除去する。",
+      "ディスクを取り外して書込み防止装置につなぎ、空き領域まで含めたディスクイメージを取得する。"
+    ],
+    "answer": 1,
+    "stemPlain": "メモリの中だけで動くマルウェアを調べるために、電源を切る前にするべきことを選ぶ問題。",
+    "explanation": "メモリの中だけで動くマルウェアは、電源を切ると痕跡が消える。NIST SP 800-86 は、RAM の中身をデータファイルに写す道具があること、写すときに RAM が多少変わるのは避けられないので変化をできるだけ小さくすること、動いているプロセスの一覧を揮発性データとして集めることを挙げている。メモリの中身を取っておけば、注入されたコードや通信の記録を後で調べられる（メモリフォレンジック）。",
+    "whyWrong": [
+      "再起動するとメモリの中身が消え、調べたかった痕跡が失われる。スキャンでもディスクに無いマルウェアは見つけにくい。",
+      null,
+      "再インストールは復旧の作業で、証拠をすべて消してしまう。原因の調査の前に行うべきではない。",
+      "ディスクイメージは大切な証拠だが、ディスクを外すには電源を切る必要があり、メモリの中だけにある痕跡は失われる。メモリを先に取る。"
+    ],
+    "memoryTip": "メモリだけのマルウェアは、電源を切る前にメモリを取る。",
+    "concepts": [
+      "C-SC-04-052",
+      "C-SC-04-048"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-86.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-075",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "マルウェアの検体を、本番の環境から切り離した制限付きの実行環境で動かし、作成したファイルや通信先などの振る舞いを観察する。このときに用いる環境はどれか。",
+    "choices": [
+      "シークレットストア",
+      "ハニーポット",
+      "DMZ",
+      "サンドボックス"
+    ],
+    "answer": 3,
+    "stemPlain": "怪しいプログラムを安全に動かして、何をするか観察するための閉じた環境の名前を選ぶ問題。",
+    "explanation": "NIST の用語集は、サンドボックスを、悪意のありうるソフトウェアが、許可されたもの以外のシステムの資源にアクセスできないようにする、制限され管理された実行環境としている。マルウェア解析では、検体をサンドボックスで動かし、作ったファイル・書き換えたレジストリ・通信先を観察する（動的解析）。",
+    "whyWrong": [
+      "シークレットストアは、パスワードや API キーを安全に保管する仕組みで、プログラムを動かす環境ではない。",
+      "ハニーポットは、攻撃者を引き寄せるおとりのシステム。外から来る攻撃を観察するもので、手元の検体を動かす環境ではない。",
+      "DMZ は、外部と内部のネットワークの間に置く緩衝のネットワークで、公開サーバなどを置く場所。検体を隔離して動かす環境ではない。",
+      null
+    ],
+    "memoryTip": "サンドボックス＝砂場。中で何をしても外は汚れない。",
+    "concepts": [
+      "C-SC-04-053"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: sandbox",
+        "url": "https://csrc.nist.gov/glossary/term/sandbox"
+      },
+      {
+        "title": "NIST SP 800-83 Rev.1 Guide to Malware Incident Prevention and Handling for Desktops and Laptops",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-076",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "社内のネットワークに、業務では誰も使わないファイルサーバを置き、そこへのアクセスを侵入の兆候として検知する。このようなおとりのシステムを何と呼ぶか。",
+    "choices": [
+      "ハニーポット",
+      "サンドボックス",
+      "プロキシサーバ",
+      "ジャンプサーバ"
+    ],
+    "answer": 0,
+    "stemPlain": "攻撃者を引き寄せるために置く「おとり」のシステムの名前を選ぶ問題。",
+    "explanation": "NIST の用語集は、ハニーポットを、蜜が熊を引き寄せるように、侵入者を引き寄せるよう設計したシステムや資源としている。業務で使わないので、近づく通信はすべて怪しく、侵入の早期の検知や手口の観察に使える。複数のハニーポットを組み合わせて本物のネットワークに見せかけたものをハニーネットと呼ぶ。",
+    "whyWrong": [
+      null,
+      "サンドボックスは、手元の怪しいプログラムを閉じ込めて動かす環境。攻撃者を呼び込むおとりではない。",
+      "プロキシサーバは、利用者に代わって外部へ通信を中継するサーバ。おとりではない。",
+      "ジャンプサーバ（踏み台サーバ）は、管理者が重要なサーバへ入るときに必ず経由させる中継のサーバ。管理の通信を絞るためのもので、おとりではない。"
+    ],
+    "memoryTip": "ハニーポット＝蜜の壺。寄ってきたら侵入者。",
+    "concepts": [
+      "C-SC-04-054"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: honeypot",
+        "url": "https://csrc.nist.gov/glossary/term/honeypot"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-077",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "マルウェアが、実行ファイルを圧縮や暗号化で包み直し、実行時にメモリ上で元に戻して動作することで、シグネチャによる検知を回避する技術はどれか。",
+    "choices": [
+      "ルートキット",
+      "ラテラルムーブメント",
+      "パッキング",
+      "アンチデバッグ"
+    ],
+    "answer": 2,
+    "stemPlain": "実行ファイルを圧縮・暗号化で包んで見た目を変え、動くときに中身を戻す技術の名前を選ぶ問題。",
+    "explanation": "MITRE ATT&CK はソフトウェアのパッキング（T1027.002）を、実行ファイルを圧縮または暗号化する方法とし、パッキングでファイルのシグネチャを変えてシグネチャに基づく検知を避けようとすること、多くの場合は実行コードをメモリの中で展開することを説明している。解析する側は、包みを外す作業（アンパック）をしてから中身を読む。",
+    "whyWrong": [
+      "ルートキットは、侵入後にファイルやプロセスなどを OS から隠す道具の一式。実行ファイルを圧縮・暗号化する技術ではない。",
+      "ラテラルムーブメントは、侵入した後に社内の別の端末やサーバへ横に広がる攻撃の段階。検知回避のためのファイルの加工ではない。",
+      null,
+      "アンチデバッグは、デバッガで調べられていると気づいたら振る舞いを変えて解析を妨げる技術。ファイルを包んで見た目を変える技術ではない。"
+    ],
+    "memoryTip": "パック＝包む。解析ではまずアンパック。",
+    "concepts": [
+      "C-SC-04-057",
+      "C-SC-04-058"
+    ],
+    "sources": [
+      {
+        "title": "MITRE ATT&CK T1027.002 Software Packing",
+        "url": "https://attack.mitre.org/techniques/T1027/002/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-078",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "not",
+    "difficulty": 2,
+    "stem": "解析やセキュリティ検知を回避するためにマルウェアが用いる技術の例として、適切でないものはどれか。",
+    "choices": [
+      "コードを暗号化や符号化で読みにくくし、解析や検知を困難にする。",
+      "IsDebuggerPresent() などの API でデバッガの存在を確認し、見つけた場合は悪意のある動作を止める。",
+      "EDR やマルウェア対策ソフトのプロセスを終了させたり、設定を書き換えたりする。",
+      "自身の通信を TLS で暗号化したうえで、正規のサーバ証明書を検証する。"
+    ],
+    "answer": 3,
+    "stemPlain": "マルウェアが「見つからない・調べられない」ようにする技術の例として、当てはまらないものを選ぶ問題。",
+    "explanation": "通信を TLS で暗号化し、相手のサーバ証明書を検証するのは、正規のソフトウェアが通信の盗聴やなりすましを防ぐための安全な通信のやり方。それ自体は解析や検知を回避する技術の例として挙げられるものではない。残りの3つは、MITRE ATT&CK のデバッガ回避（T1622）、ツールの停止・改変（T1685。旧 T1562.001）、ファイルや情報の難読化（T1027）に当たる。",
+    "whyWrong": [
+      "コードを暗号化・符号化で読みにくくするのは、ATT&CK の難読化（T1027）に当たり、回避の技術の例として適切。",
+      "デバッガの存在を API で確かめて振る舞いを変えるのは、ATT&CK のデバッガ回避（T1622）の説明どおりで、回避の技術の例として適切。",
+      "EDR やマルウェア対策ソフトを止めたり設定を変えたりするのは、ATT&CK のツールの停止・改変（T1685）に当たり、回避の技術の例として適切。",
+      null
+    ],
+    "memoryTip": "回避の技術＝隠す（難読化）・気づく（アンチデバッグ）・止める（対策ソフト停止）。",
+    "concepts": [
+      "C-SC-04-058"
+    ],
+    "sources": [
+      {
+        "title": "MITRE ATT&CK T1622 Debugger Evasion",
+        "url": "https://attack.mitre.org/techniques/T1622/"
+      },
+      {
+        "title": "MITRE ATT&CK T1685 Disable or Modify Tools（旧 T1562.001）",
+        "url": "https://attack.mitre.org/techniques/T1685/"
+      },
+      {
+        "title": "MITRE ATT&CK T1027 Obfuscated Files or Information",
+        "url": "https://attack.mitre.org/techniques/T1027/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-079",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "マルウェアの検体について、機械語の命令列をアセンブリ言語に変換して処理内容を読み解く作業はどれか。",
+    "choices": [
+      "アンパック",
+      "パケットキャプチャ",
+      "逆アセンブル",
+      "ファジング"
+    ],
+    "answer": 2,
+    "stemPlain": "コンピュータが実行する機械語を、人が読めるアセンブリ言語に戻して読む作業の名前を選ぶ問題。",
+    "explanation": "逆アセンブルは、機械語の並びを、命令の名前で書かれたアセンブリ言語に戻す作業で、ソースコードの無いマルウェアの処理を読み解く静的解析の中心の手段。CISA のマルウェア解析も、標準的なリバースエンジニアリングとデバッグの道具を使って静的解析と振る舞いの解析を行うとしている。パックされた検体は、先にアンパックしてから逆アセンブルする。",
+    "whyWrong": [
+      "アンパックは、圧縮や暗号化で包まれた実行ファイルから元のコードを取り出す作業。機械語をアセンブリ言語に変える作業ではない。",
+      "パケットキャプチャは、ネットワークを流れる通信を記録すること。検体の命令列を読む作業ではない。",
+      null,
+      "ファジングは、細工したデータを大量に送って異常な動作を探すテスト。マルウェアの命令列を読む作業ではない。"
+    ],
+    "memoryTip": "アセンブル（組み立て）の逆＝機械語をアセンブリ言語に戻す。",
+    "concepts": [
+      "C-SC-04-056"
+    ],
+    "sources": [
+      {
+        "title": "CISA Malware Analysis",
+        "url": "https://www.cisa.gov/resources-tools/services/malware-analysis"
+      }
+    ],
+    "status": "unverified"
+  },
+  {
+    "id": "SC-04-080",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "サンドボックスでマルウェアの検体を動作させながら、検体が決まった間隔で外部の同じアドレスと通信していることを確認した。この確認に最も役立つ手段はどれか。",
+    "choices": [
+      "SBOM の作成",
+      "パケットキャプチャ",
+      "CVSS による評価",
+      "ディスクイメージの取得"
+    ],
+    "answer": 1,
+    "stemPlain": "マルウェアがどこと通信しているかを確かめるのに使う手段を選ぶ問題。",
+    "explanation": "パケットキャプチャは、ネットワークを流れる通信をそのまま記録すること（NIST の用語集はパケットスニファーを、ネットワークの通信を観察して記録するソフトウェアとしている）。NIST SP 800-83 は、特定のマルウェアの特徴に合う通信を探すようパケットスニファーを設定すると、感染した端末の特定に効き、ボットネットの指令の通信の監視が例になるとしている。",
+    "whyWrong": [
+      "SBOM はソフトウェアの部品と依存関係の一覧で、検体の通信を調べる手段ではない。",
+      null,
+      "CVSS は脆弱性の深刻度を評価する方法で、マルウェアの通信を観察する手段ではない。",
+      "ディスクイメージは、ディスクの中身を丸ごと複製したもの。通信の相手や間隔は記録されない。"
+    ],
+    "memoryTip": "通信の証拠はパケットキャプチャ。",
+    "concepts": [
+      "C-SC-04-055",
+      "C-SC-04-053"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: packet sniffer",
+        "url": "https://csrc.nist.gov/glossary/term/packet_sniffer"
+      },
+      {
+        "title": "NIST SP 800-83 Rev.1 Guide to Malware Incident Prevention and Handling for Desktops and Laptops",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-83r1.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-081",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "フォレンジック"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "NIST SP 800-86 が示すフォレンジックの基本的な流れとして、適切な順序はどれか。",
+    "choices": [
+      "収集 → 検査 → 分析 → 報告",
+      "検査 → 分析 → 収集 → 報告",
+      "分析 → 収集 → 報告 → 検査",
+      "報告 → 収集 → 検査 → 分析"
+    ],
+    "answer": 0,
+    "stemPlain": "デジタルフォレンジックの作業を、NIST の手引きでは4つの段階に分けている。その順番を選ぶ問題。",
+    "explanation": "NIST SP 800-86 は、フォレンジックの基本の段階を、収集（Collection）・検査（Examination）・分析（Analysis）・報告（Reporting）としている。収集でデータを特定・ラベル付け・記録・収集して完全性を保ち、検査で道具を使って関係する情報を取り出し、分析で調査の問いに答える情報を導き、報告で結果と行った作業、改善の提案などをまとめる。",
+    "whyWrong": [
+      null,
+      "検査は、集めたデータから必要な情報を取り出す段階で、収集より後。",
+      "データを集める前に分析はできない。最初は収集。",
+      "報告は、調べた結果をまとめる最後の段階。最初には来ない。"
+    ],
+    "memoryTip": "集める → 取り出す → 意味を考える → まとめる。",
+    "concepts": [
+      "C-SC-04-047"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-86.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-082",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "あるオープンソースのライブラリに深刻な脆弱性が公表された。自社の多数の製品のうち、影響を受けるものを速やかに特定するために、日頃から整備しておくべきものとして、最も適切なものはどれか。",
+    "choices": [
+      "各製品の CVSS 環境値",
+      "各製品の過去の脆弱性診断の報告書",
+      "各製品の SBOM",
+      "各製品のペネトレーションテストの結果"
+    ],
+    "answer": 2,
+    "stemPlain": "使っている部品に脆弱性が見つかったとき、どの製品が影響を受けるかをすぐ調べるために、普段から用意しておくものを選ぶ問題。",
+    "explanation": "SBOM（ソフトウェアの部品表）は、ソフトウェアを作る部品と依存関係の一覧。各製品の SBOM があれば、公表されたライブラリと版を検索するだけで、それを含む製品を特定できる。CISA は SBOM を、ソフトウェアの部品の入れ子の一覧で、ソフトウェアのサプライチェーンのリスク管理の重要な要素としている。",
+    "whyWrong": [
+      "CVSS の環境値は、ある脆弱性について自社の環境での深刻度を評価した値。どの製品がそのライブラリを使っているかの一覧ではないので、影響を受ける製品の特定には使えない。",
+      "過去の脆弱性診断の報告書には、診断した時点で見つかった脆弱性が書かれているが、製品が使っている部品と版の一覧ではない。新しく公表されたライブラリの脆弱性の影響は、報告書からは判断できない。",
+      null,
+      "ペネトレーションテストの結果は、その時点で侵入できた経路の記録で、製品の部品の構成の一覧ではない。新しい脆弱性の影響範囲の特定には使えない。"
+    ],
+    "memoryTip": "部品の脆弱性が出たら、まず SBOM を検索。",
+    "concepts": [
+      "C-SC-04-059"
+    ],
+    "sources": [
+      {
+        "title": "CISA Software Bill of Materials (SBOM)",
+        "url": "https://www.cisa.gov/sbom"
+      },
+      {
+        "title": "NIST CSRC Glossary: software bill of materials",
+        "url": "https://csrc.nist.gov/glossary/term/software_bill_of_materials"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-083",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "JVN で公表される脆弱性情報のうち、識別番号が「JVN#」で始まるものの説明として、適切なものはどれか。",
+    "choices": [
+      "情報セキュリティ早期警戒パートナーシップに基づいて調整・公表した脆弱性情報",
+      "MITRE が採番した、世界共通の脆弱性の識別子",
+      "NIST が運営する米国の脆弱性データベース NVD に登録された脆弱性情報",
+      "米国の CERT/CC が主導して調整・公表した脆弱性情報"
+    ],
+    "answer": 0,
+    "stemPlain": "日本の脆弱性情報サイト JVN で、番号が「JVN#」で始まる情報がどういうものかを選ぶ問題。",
+    "explanation": "JVN の『脆弱性レポートの読み方』によれば、JVN# は『情報セキュリティ早期警戒パートナーシップ』に基づいて調整・公表した脆弱性情報、JVNVU# は CERT/CC（米）が主導して調整・公表した脆弱性情報。JVN は IPA と JPCERT/CC が共同で運営している。",
+    "whyWrong": [
+      null,
+      "MITRE が採番する世界共通の識別子は CVE（CVE-年-番号）で、JVN# ではない。JVN は CVE も併せて載せる。",
+      "NIST が運営する米国の脆弱性データベースは NVD で、その登録番号が JVN# で始まるわけではない。",
+      "CERT/CC が主導して調整・公表したものは、JVNVU# で始まる。"
+    ],
+    "memoryTip": "JVN#＝国内の届出から（早期警戒パートナーシップ）、JVNVU#＝米 CERT/CC 経由。",
+    "concepts": [
+      "C-SC-04-060"
+    ],
+    "sources": [
+      {
+        "title": "JVN 脆弱性レポートの読み方",
+        "url": "https://jvn.jp/nav/jvnhelp.html"
+      },
+      {
+        "title": "IPA 共通脆弱性識別子CVE概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cve.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-084",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CVSS v3.1 の評価基準のうち、脆弱性そのものの特性を評価し、時間の経過や利用環境によって変化しないものはどれか。",
+    "choices": [
+      "補足評価基準",
+      "現状評価基準",
+      "環境評価基準",
+      "基本評価基準"
+    ],
+    "answer": 3,
+    "stemPlain": "脆弱性の深刻さを点数にする CVSS v3.1 で、脆弱性そのものの性質だけで決まる部分の名前を選ぶ問題。",
+    "explanation": "CVSS v3.1 は3つの評価基準のグループからなる。基本評価基準（Base）は脆弱性そのものの特性を評価し、時間や環境で変わらない。現状評価基準（Temporal）は攻撃コードの出回りや対策の状況など時間で変わる要素、環境評価基準（Environmental）は利用者の環境を含めた最終的な深刻度を評価する（IPA、FIRST）。",
+    "whyWrong": [
+      "補足評価基準（Supplemental）は CVSS v4.0 で加わったグループで、v3.1 には無い。点数を変えずに追加の性質を伝えるもの。",
+      "現状評価基準は、攻撃コードの出回り具合や対策の有無など、時間の経過で変わる要素を評価する。",
+      "環境評価基準は、製品を使う組織の環境（重要度や守りの状況）を含めて最終的な深刻度を評価する。利用環境で変わる。",
+      null
+    ],
+    "memoryTip": "v3.1：基本・現状・環境。v4.0：基本・脅威・環境・補足。",
+    "concepts": [
+      "C-SC-04-061"
+    ],
+    "sources": [
+      {
+        "title": "IPA 共通脆弱性評価システムCVSS v3概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cvssv3.html"
+      },
+      {
+        "title": "FIRST CVSS v3.1 Specification Document",
+        "url": "https://www.first.org/cvss/v3.1/specification-document"
+      },
+      {
+        "title": "FIRST CVSS v4.0 Specification Document",
+        "url": "https://www.first.org/cvss/v4.0/specification-document"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-085",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "CVE と CWE の関係の説明として、適切なものはどれか。",
+    "choices": [
+      "CVE は個別の製品の個々の脆弱性に付ける識別子であり、CWE はその脆弱性の悪用されやすさを確率で示す値である。",
+      "CVE は個別の製品の個々の脆弱性に付ける識別子であり、CWE は脆弱性の種類を分類した一覧である。",
+      "CVE は脆弱性の深刻度を数値で評価する方法であり、CWE は製品名を識別する名称の一覧である。",
+      "CVE はセキュリティ設定の項目に付ける識別子であり、CWE は点検の手順を記述する言語である。"
+    ],
+    "answer": 1,
+    "stemPlain": "脆弱性の番号 CVE と、脆弱性の種類の一覧 CWE の違いを選ぶ問題。",
+    "explanation": "IPA の説明では、CVE は個別の製品の中の脆弱性を対象に MITRE が採番する識別子、CWE はソフトウェアのセキュリティ上の弱点（脆弱性）の種類を識別する共通の基準。例えば、ある製品の SQL インジェクションの脆弱性1件に CVE-2024-○○ が付き、その種類は CWE-89（SQL インジェクション）に分類される。",
+    "whyWrong": [
+      "CVE の説明は合っているが、CWE の説明が誤り。悪用される確率を示すのは EPSS で、CWE は脆弱性の種類（原因の型）を分類した一覧。",
+      null,
+      "深刻度を数値で評価するのは CVSS、製品名を識別する名称の一覧は CPE。",
+      "セキュリティ設定の項目の識別子は CCE、点検の手順を記述する言語は OVAL。"
+    ],
+    "memoryTip": "CVE＝個々の事件、CWE＝罪の種類。",
+    "concepts": [
+      "C-SC-04-062",
+      "C-SC-04-063"
+    ],
+    "sources": [
+      {
+        "title": "IPA 共通脆弱性識別子CVE概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cve.html"
+      },
+      {
+        "title": "IPA 共通脆弱性タイプ一覧CWE概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/cwe.html"
+      },
+      {
+        "title": "IPA セキュリティ設定共通化手順SCAP概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/scap.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-086",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "SCAP を構成する仕様のうち、セキュリティのチェックリストやベンチマークを記述するための仕様言語はどれか。",
+    "choices": [
+      "CPE",
+      "XCCDF",
+      "CCE",
+      "OVAL"
+    ],
+    "answer": 1,
+    "stemPlain": "脆弱性管理を自動化する基準の集まり SCAP のうち、チェックリストを書くための言語を選ぶ問題。",
+    "explanation": "IPA の説明では、XCCDF（eXtensible Configuration Checklist Description Format：セキュリティ設定チェックリスト記述形式）は、セキュリティチェックリストやベンチマークなどを記述するための仕様言語。組織としてチェックすべき項目（パスワードの長さなど）を用意し、CCE の番号などで指し示す。",
+    "whyWrong": [
+      "CPE（共通プラットフォーム一覧）は、ハードウェア・OS・アプリなどの製品を識別する名前の体系。",
+      null,
+      "CCE（共通セキュリティ設定一覧）は、セキュリティの設定項目に付ける識別番号。チェックリストの記述形式ではない。",
+      "OVAL（セキュリティ検査言語）は、脆弱性やセキュリティ設定の状態を実際に点検する手順を書く言語。チェックリスト自体を書くのは XCCDF。"
+    ],
+    "memoryTip": "XCCDF＝チェックリスト、OVAL＝点検の手順、CCE＝設定の番号、CPE＝製品の名前。",
+    "concepts": [
+      "C-SC-04-064"
+    ],
+    "sources": [
+      {
+        "title": "IPA セキュリティ設定共通化手順SCAP概説",
+        "url": "https://www.ipa.go.jp/security/vuln/scap/scap.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-087",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "米国 CISA の KEV カタログに脆弱性が掲載されるための条件に含まれるものはどれか。",
+    "choices": [
+      "攻撃コードが公開されていることだけが確認されていること",
+      "CVSS の基本値が 9.0 以上であること",
+      "EPSS の確率が 0.5 以上であること",
+      "実際に悪用されているという信頼できる証拠があること"
+    ],
+    "answer": 3,
+    "stemPlain": "「実際に悪用された脆弱性の一覧」KEV に載る条件を選ぶ問題。",
+    "explanation": "CISA は KEV カタログに載せる基準として3つを挙げている。CVE の番号が割り当てられていること、実際に悪用されている信頼できる証拠があること、修正版の適用などの明確な対処方法があること。CISA は、悪用されうるかどうか（exploitability）は掲載の基準ではなく、悪用されたか、悪用が進行中かが主な基準だとしている。",
+    "whyWrong": [
+      "攻撃コードが公開されていても、実際に悪用された証拠が無ければ載らない。CISA は、悪用されうるかどうかは掲載の基準ではないとしている。",
+      "CVSS の値の高さは KEV の掲載の基準ではない。深刻度が中程度でも、実際に悪用されていれば載る。",
+      "EPSS の確率は予測の値で、KEV の掲載の基準ではない。KEV は悪用の実績で決まる。",
+      null
+    ],
+    "memoryTip": "KEV＝CVE がある・本当に悪用された・直し方がある、の3条件。",
+    "concepts": [
+      "C-SC-04-065"
+    ],
+    "sources": [
+      {
+        "title": "CISA Reducing the Significant Risk of Known Exploited Vulnerabilities",
+        "url": "https://www.cisa.gov/known-exploited-vulnerabilities"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-088",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "EPSS（Exploit Prediction Scoring System）が提供する値の説明として、適切なものはどれか。",
+    "choices": [
+      "公表された CVE が、今後30日以内に実際に悪用される確率を 0〜1 で予測した値",
+      "脆弱性の特性と影響から算出した、0.0〜10.0 の深刻度の値",
+      "悪用が確認され、修正の期限が定められた脆弱性かどうかを示す値",
+      "組織の利害関係者ごとに、決定木で Track・Attend・Act などの対応を決めた結果"
+    ],
+    "answer": 0,
+    "stemPlain": "EPSS という仕組みが、脆弱性について何を数字で示すかを選ぶ問題。",
+    "explanation": "FIRST の説明では、EPSS は、公表された CVE が今後30日のうちに実際に悪用される確率を見積もる、データに基づく機械学習のモデルで、毎日、すべての CVE について 0〜1 の確率（と順位の百分位）を公開している。",
+    "whyWrong": [
+      null,
+      "0.0〜10.0 の深刻度の値は CVSS。脆弱性の性質と影響の大きさを評価するもので、悪用される確率ではない。",
+      "悪用が確認されたかどうかの一覧は CISA の KEV。修正の期限は米国の連邦機関に対して決められている。",
+      "Track・Attend・Act などの対応を決めるのは SSVC の決定木。"
+    ],
+    "memoryTip": "EPSS＝30日以内に悪用される確率の天気予報。",
+    "concepts": [
+      "C-SC-04-066"
+    ],
+    "sources": [
+      {
+        "title": "FIRST Exploit Prediction Scoring System (EPSS)",
+        "url": "https://www.first.org/epss/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-089",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CISA の SSVC の決定木が、脆弱性ごとに出す決定（対応の区分）に含まれるものはどれか。",
+    "choices": [
+      "Patch",
+      "Mitigate",
+      "Attend",
+      "Critical"
+    ],
+    "answer": 2,
+    "stemPlain": "脆弱性に何をするかを質問をたどって決める SSVC で、最後に出てくる「決定」の名前を選ぶ問題。",
+    "explanation": "CISA の SSVC の決定木は、悪用の状況・技術的な影響・自動化のしやすさ・業務での使われ方（Mission prevalence）・公共の福祉への影響の5つの値で、Track・Track*・Attend・Act の4つの決定を出す。悪用の状況の判断には KEV が使われる。",
+    "whyWrong": [
+      "Patch（修正プログラムを当てる）は対処の手段を表す一般の語で、CISA の SSVC の決定の名前ではない。CISA の決定は Track・Track*・Attend・Act の4つで、どれも『誰の注意が要り、どの速さで直すか』を表す。",
+      "Mitigate（緩和策を取る）も対処の手段を表す一般の語で、CISA の SSVC の決定の名前ではない。SSVC の決定は手段ではなく、組織の中で誰がどれだけ急いで扱うかを表す。",
+      null,
+      "Critical は、CVSS v3.1 の深刻度の区分（9.0〜10.0）の名前。CVSS の数値から決まる段階で、SSVC の決定ではない。"
+    ],
+    "memoryTip": "SSVC の決定：Track → Track* → Attend → Act の順に急ぐ。",
+    "concepts": [
+      "C-SC-04-067"
+    ],
+    "sources": [
+      {
+        "title": "CISA Stakeholder-Specific Vulnerability Categorization (SSVC)",
+        "url": "https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-090",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "脆弱性診断とペネトレーションテストの違いの説明として、最も適切なものはどれか。",
+    "choices": [
+      "脆弱性診断は、システムが仕様書どおりに機能するかを、テストケースに従って一つずつ確認する工程である。",
+      "ペネトレーションテストは、ツールで既知の脆弱性を網羅的に洗い出すことだけを目的とし、侵入は試みない。",
+      "脆弱性診断は、本番のシステムに実際の攻撃を仕掛け、業務を停止させてでも侵入の可否を確かめる。",
+      "ペネトレーションテストは、攻撃者の手口で脆弱性を組み合わせ、目的の情報や権限に届くかまで試す。"
+    ],
+    "answer": 3,
+    "stemPlain": "「脆弱性診断」と「ペネトレーションテスト（侵入テスト）」はどう違うかを選ぶ問題。",
+    "explanation": "NIST SP 800-115 は、ペネトレーションテストを、評価者が実際の攻撃をまねて、セキュリティ機能を回避する方法を見つける検査で、多くの場合、本物のシステムに攻撃者と同じ道具と技術で攻撃を仕掛け、複数の脆弱性の組み合わせを探すものとしている。脆弱性診断（脆弱性評価）は、システムを系統的に調べて不備を幅広く洗い出す。診断は『広く』、ペネトレーションテストは『深く、目的まで』。",
+    "whyWrong": [
+      "仕様書どおりに動くかの確認は、システムテストなど機能のテストで、脆弱性診断ではない。",
+      "既知の脆弱性を網羅的に洗い出すのは、脆弱性診断の性格。ペネトレーションテストは実際に侵入を試みる。",
+      "業務を止めてでも攻撃するのは、どちらの検査の進め方でもない。検査は事前に範囲・時間帯・禁止事項を合意して行い、組織の方針によって使う道具や時間を制限することもある。",
+      null
+    ],
+    "memoryTip": "診断＝広く探す。ペネトレーション＝深く突き破る。",
+    "concepts": [
+      "C-SC-04-068"
+    ],
+    "sources": [
+      {
+        "title": "NIST SP 800-115 Technical Guide to Information Security Testing and Assessment",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
+      },
+      {
+        "title": "NIST CSRC Glossary: vulnerability assessment",
+        "url": "https://csrc.nist.gov/glossary/term/vulnerability_assessment"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-091",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "自社の Web サービスについて、外部のセキュリティ研究者から脆弱性の報告を受け付け、確認できた脆弱性の深刻度に応じて報奨金を支払う制度はどれか。",
+    "choices": [
+      "ペネトレーションテスト",
+      "SOC（Security Operation Center）",
+      "脆弱性報奨金制度（バグバウンティプログラム）",
+      "情報セキュリティ監査"
+    ],
+    "answer": 2,
+    "stemPlain": "外の人が脆弱性を見つけて報告したら、お金を払う制度の名前を選ぶ問題。",
+    "explanation": "NIST の用語集（SP 800-216 の定義）は、バグバウンティを、セキュリティ上の悪用や脆弱性につながりうるソフトウェアの誤り・欠陥を報告した個人に報酬を支払う方法としている。対象の範囲・禁止事項・報告の窓口・公表のルールを先に公開して運用する。",
+    "whyWrong": [
+      "ペネトレーションテストは、依頼した専門家が、決めた範囲と期間で侵入を試す検査。報告の成果に応じて不特定の人に報酬を払う制度ではない。",
+      "SOC は、組織のログや警告を監視して攻撃を検知・分析する担当の部署やサービス。外部からの報告への報奨の制度ではない。",
+      null,
+      "情報セキュリティ監査は、監査人が管理の仕組みや対策の状況を基準に照らして評価する活動。報奨金の制度ではない。"
+    ],
+    "memoryTip": "bounty＝賞金。見つけた人に賞金。",
+    "concepts": [
+      "C-SC-04-069"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Glossary: bug bounty",
+        "url": "https://csrc.nist.gov/glossary/term/bug_bounty"
+      },
+      {
+        "title": "NIST SP 800-216 Recommendations for Federal Vulnerability Disclosure Guidelines",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-216.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-092",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ISO/IEC 15408 に基づく評価で、特定の製品分野について調達者が必要とする典型的なセキュリティ要件を、特定の製品に依存しない形で記述したものはどれか。",
+    "choices": [
+      "評価対象（TOE：Target of Evaluation）",
+      "プロテクションプロファイル（PP）",
+      "評価保証レベル（EAL）",
+      "セキュリティターゲット（ST）"
+    ],
+    "answer": 1,
+    "stemPlain": "製品のセキュリティ評価の国際規格で、「この分野の製品にはこういう要件が要る」と製品によらずに書いた要求仕様の名前を選ぶ問題。",
+    "explanation": "IPA の FAQ によれば、PP（Protection Profile）は、特定の分野の製品について必要とされる典型的なセキュリティ要件・環境などを記述した要求仕様書で、ST をより抽象的（実装非依存）にしたもの。一般に、調達者がセキュリティ要件として PP を示し、応札者は PP に沿った製品の ST を作成し、それに基づく評価を受ける。",
+    "whyWrong": [
+      "TOE（Target of Evaluation）は、評価の対象となるソフトウェアやハードウェアなどの製品そのもの（手引書を含むことがある）。要件の記述ではない。",
+      null,
+      "EAL は、セキュリティ機能が確実に動作することの保証の度合いを EAL1〜EAL7 で表す段階。要件の文書ではない。",
+      "ST（Security Target）は、ある特定の IT 製品のセキュリティ機能について、目的・対抗手段・想定する運用環境を書いた、セキュリティの基本設計方針書のようなもの。特定の製品に依存する。"
+    ],
+    "memoryTip": "PP＝買う側の「こういう製品がほしい」、ST＝売る側の「この製品はこう守る」。",
+    "concepts": [
+      "C-SC-04-070"
+    ],
+    "figures": [
+      "fig-sc-impl-cc-pp-st"
+    ],
+    "sources": [
+      {
+        "title": "IPA ITセキュリティ評価・認証(ISO/IEC 15408)に関するFAQ",
+        "url": "https://www.ipa.go.jp/security/jisec/about/faq.html"
+      },
+      {
+        "title": "NIST CSRC Glossary: protection profile",
+        "url": "https://csrc.nist.gov/glossary/term/protection_profile"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-093",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CC（ISO/IEC 15408）に基づく評価の結果が、評価機関によって異ならないよう、評価で何をどのように調べ判断するかを定めた国際規格はどれか。",
+    "choices": [
+      "ISO/IEC 18045",
+      "ISO/IEC 29147",
+      "ISO/IEC 19790",
+      "ISO/IEC 27001"
+    ],
+    "answer": 0,
+    "stemPlain": "製品の評価をどの機関がやっても同じになるよう、評価のやり方を定めた規格の番号を選ぶ問題。",
+    "explanation": "IPA の説明によれば、CC に基づく評価が異なる制度や評価機関でなされても結果が均質である必要があるため、評価に使用する手法を明確にした CEM（Common Evaluation Methodology：共通評価方法）が CC とともに開発され、ISO/IEC 18045 として発行されている。",
+    "whyWrong": [
+      null,
+      "ISO/IEC 29147 は、製品の脆弱性を開示する手順（脆弱性の開示）の規格。CC の評価方法ではない。",
+      "ISO/IEC 19790 は、暗号モジュールのセキュリティ要求事項の国際規格で、FIPS 140-3 が参照している。CC の評価方法ではない。",
+      "ISO/IEC 27001 は、組織の情報セキュリティマネジメントシステム（ISMS）の要求事項の規格で、製品の評価方法ではない。"
+    ],
+    "memoryTip": "15408＝何を満たすか（基準）、18045＝どう評価するか（方法）。",
+    "concepts": [
+      "C-SC-04-071",
+      "C-SC-04-070"
+    ],
+    "sources": [
+      {
+        "title": "IPA CC(ISO/IEC 15408)概説",
+        "url": "https://www.ipa.go.jp/security/jisec/about/about.html"
+      },
+      {
+        "title": "ISO/IEC 18045:2022（ISO の規格のページ）",
+        "url": "https://www.iso.org/standard/72889.html"
+      },
+      {
+        "title": "NIST FIPS 140-3 Security Requirements for Cryptographic Modules",
+        "url": "https://csrc.nist.gov/pubs/fips/140-3/final"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-094",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CC における評価保証レベル（EAL）の説明として、適切なものはどれか。",
+    "choices": [
+      "製品が備えるセキュリティ機能の数を数え、機能が多い製品ほど高いレベルとしたもの",
+      "暗号モジュールの物理的セキュリティなどの要件を、レベル1〜レベル4の段階に分けたもの",
+      "セキュリティ機能が確実に動作することの保証の度合いを、EAL1〜EAL7 の段階で表したもの",
+      "IoT 製品の適合基準を、ベンダーの自己宣言と第三者評価に分けて★1〜★4 の段階にしたもの"
+    ],
+    "answer": 2,
+    "stemPlain": "製品のセキュリティ評価の段階 EAL が、何の段階なのかを選ぶ問題。",
+    "explanation": "IPA の説明では、EAL（Evaluation Assurance Level）は、製品のセキュリティ評価で、セキュリティ機能が確実に動作することの保証の度合いを表すもので、機能設計・開発環境・ガイダンス文書・脆弱性評定などのセキュリティ保証要件を、評価でどの範囲でどの程度の厳密さで求めるかにより、EAL1 から EAL7 までの段階がある。数字が大きいほど評価が厳密で、費用と期間もかかる。",
+    "whyWrong": [
+      "EAL は機能の多さではなく、確かめ方の厳密さの段階。機能が少なくても高い EAL で評価できる。",
+      "暗号モジュールの要件をレベル1〜4に分けるのは FIPS 140（FIPS 140-3）のセキュリティレベル。",
+      null,
+      "★1〜★4 は、IoT 製品の適合ラベルの制度 JC-STAR の段階。"
+    ],
+    "memoryTip": "EAL は 1〜7。数字＝どれだけ厳しく確かめたか。",
+    "concepts": [
+      "C-SC-04-071",
+      "C-SC-04-073"
+    ],
+    "sources": [
+      {
+        "title": "IPA ITセキュリティ評価・認証(ISO/IEC 15408)に関するFAQ",
+        "url": "https://www.ipa.go.jp/security/jisec/about/faq.html"
+      },
+      {
+        "title": "NIST FIPS 140-3 Security Requirements for Cryptographic Modules",
+        "url": "https://csrc.nist.gov/pubs/fips/140-3/final"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-095",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "日本の JISEC（IT セキュリティ評価及び認証制度）の説明として、適切なものはどれか。",
+    "choices": [
+      "評価機関が IT 製品を ISO/IEC 15408 に基づいて評価し、その結果を認証機関が認証する。",
+      "組織の情報セキュリティマネジメントシステムを、JIS Q 27001 に基づいて審査し認証する。",
+      "暗号モジュールが承認されたセキュリティ機能を正しく実装しているかを、試験機関が試験する。",
+      "IT 製品のベンダーが自己評価した結果を IPA に届け出て、二次元バーコード付きの適合ラベルを受け取る。"
+    ],
+    "answer": 0,
+    "stemPlain": "日本の JISEC という制度が何をするかを選ぶ問題。",
+    "explanation": "IPA によれば、JISEC は、IT 関連製品のセキュリティ機能の適切性・確実性を、国際標準の ISO/IEC 15408 に基づいて第三者（評価機関）が評価し、その評価結果を認証機関が認証する日本の制度で、IPA が認証機関として運営している。日本は2003年に CCRA に加盟しており、認証は加盟国でも通用する。",
+    "whyWrong": [
+      null,
+      "組織の ISMS を JIS Q 27001 で審査・認証するのは ISMS 適合性評価制度。製品ではなく組織が対象。",
+      "暗号モジュールの実装の試験と認証は JCMVP（暗号モジュール試験及び認証制度）。",
+      "ベンダーの自己評価に基づいて IPA が適合ラベルを付けるのは、JC-STAR の★1・★2 の方式。JISEC は第三者が評価する。"
+    ],
+    "memoryTip": "JISEC＝製品×15408×第三者評価＋IPA の認証。",
+    "concepts": [
+      "C-SC-04-072"
+    ],
+    "sources": [
+      {
+        "title": "IPA 評価認証制度（JISEC）について",
+        "url": "https://www.ipa.go.jp/security/jisec/about/jisec.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-096",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "米国の CMVP における FIPS 140-2 と FIPS 140-3 の扱いの説明として、適切なものはどれか。",
+    "choices": [
+      "FIPS 140-2 で認証されたモジュールは、FIPS 140-3 の開始と同時にすべて使用禁止となった。",
+      "FIPS 140-2 による新規の認証は現在も受け付けられており、FIPS 140-3 は任意の追加規格である。",
+      "FIPS 140-3 は、暗号モジュールではなく暗号アルゴリズムの安全性だけを評価する規格である。",
+      "FIPS 140-3 による認証は2020年9月22日から行われ、FIPS 140-2 で認証されたモジュールは2026年9月21日まで新規のシステムにも使えるが、その後は既存のシステムでの利用に限られる。"
+    ],
+    "answer": 3,
+    "stemPlain": "暗号モジュールの米国の基準 FIPS 140 が、140-2 から 140-3 にどう切り替わったかを選ぶ問題。",
+    "explanation": "NIST の CMVP のページによれば、CMVP は2020年9月22日から FIPS 140-3 で暗号モジュールを認証しており、FIPS 140-2 の新規の認証の申請は2022年3月31日まで受け付けた。FIPS 140-2 で認証されたモジュールは2026年9月21日まで受け入れられ、その後は Historical の一覧に移され、既存のシステムでのみ使い続けられる。",
+    "whyWrong": [
+      "FIPS 140-2 の認証モジュールは、開始と同時に禁止されたのではなく、2026年9月21日まで新規のシステムにも使え、その後も既存のシステムでは使える。",
+      "FIPS 140-2 の新規の認証の申請は、2022年4月1日以降、受け付けられていない（一部の例外を除く）。FIPS 140-3 が現行の要求。",
+      "FIPS 140-3 は『Security Requirements for Cryptographic Modules』で、暗号モジュールの要求事項。アルゴリズムだけの評価ではない。",
+      null
+    ],
+    "memoryTip": "140-3 は2020年9月から。140-2 は2026年9月21日で新規には使えなくなる。",
+    "concepts": [
+      "C-SC-04-073"
+    ],
+    "sources": [
+      {
+        "title": "NIST CSRC Cryptographic Module Validation Program (CMVP)",
+        "url": "https://csrc.nist.gov/projects/cryptographic-module-validation-program"
+      },
+      {
+        "title": "NIST FIPS 140-3 Security Requirements for Cryptographic Modules",
+        "url": "https://csrc.nist.gov/pubs/fips/140-3/final"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "SC-04-097",
+    "syllabus": [
+      "セキュリティ",
+      "セキュリティ実装技術・評価",
+      "セキュリティ評価"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "CRYPTREC 暗号リストの運用監視暗号リストに掲載されている暗号技術はどれか。",
+    "choices": [
+      "SHA-256",
+      "SHA-1",
+      "AES",
+      "CLEFIA"
+    ],
+    "answer": 1,
+    "stemPlain": "政府の暗号のリストで、互換性のためだけに使い続けを認めている「運用監視暗号リスト」に入っているものを選ぶ問題。",
+    "explanation": "CRYPTREC 暗号リスト（最終更新 令和8年3月30日）の運用監視暗号リストは、解読されるリスクが高まるなど推奨すべき状態ではなくなった暗号のうち、互換性維持のために継続利用を容認するもの。ハッシュ関数では RIPEMD-160 と SHA-1 が載っている。ほかに 3-key Triple DES、RSAES-PKCS1-v1_5 などがある。",
+    "whyWrong": [
+      "SHA-256 は、電子政府推奨暗号リストに載っているハッシュ関数。利用を推奨する側。",
+      null,
+      "AES は、電子政府推奨暗号リストに載っている128ビットブロック暗号。利用を推奨する側。",
+      "CLEFIA は、推奨候補暗号リストに載っている128ビットブロック暗号。今後、推奨に載る可能性がある側。"
+    ],
+    "memoryTip": "運用監視＝互換のためだけ（SHA-1・3-key Triple DES など）。",
+    "concepts": [
+      "C-SC-04-074"
+    ],
+    "figures": [
+      "fig-sc-impl-cryptrec"
+    ],
+    "sources": [
+      {
+        "title": "CRYPTREC 電子政府における調達のために参照すべき暗号のリスト（CRYPTREC暗号リスト）（最終更新：令和8年3月30日）",
+        "url": "https://www.cryptrec.go.jp/list/cryptrec-ls-0001-2022r2.pdf"
+      }
+    ],
+    "status": "verified"
+  }
+]
