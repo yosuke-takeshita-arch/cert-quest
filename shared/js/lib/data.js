@@ -42,6 +42,7 @@ export function normalizeQuestion(q) {
     memoryTip: typeof q.memoryTip === 'string' ? q.memoryTip : '',
     concepts: Array.isArray(q.concepts) ? q.concepts : [],
     figures: normalizeFigureIds(q.figures),
+    stemFigures: normalizeFigureIds(q.stemFigures), // 答える前に問題文の下へ出す図・表の ID（任意。無ければ []。figures は答えた後の解説の図で、別の欄。要件定義書 §7）
     pastExam: normalizePastExams(q.pastExam), // 過去問題の出典（任意。配列、または1つのオブジェクトで書く。整えて配列で持つ。無い・崩れていれば null。要件定義書 §7・§12）
     sources: Array.isArray(q.sources) ? q.sources.filter((s) => s && typeof s.url === 'string') : [],
     status: q.status === 'verified' ? 'verified' : 'unverified',

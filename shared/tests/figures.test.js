@@ -82,7 +82,7 @@ function refs(app) {
   for (const k of ['concepts', 'questions']) {
     const dir = join(root, app, 'data', k);
     if (!existsSync(dir)) continue;
-    for (const fn of readdirSync(dir).filter((x) => x.endsWith('.json'))) for (const o of JSON.parse(readFileSync(join(dir, fn), 'utf8'))) if (o.figures !== undefined) out.push({ id: o.id, figures: o.figures });
+    for (const fn of readdirSync(dir).filter((x) => x.endsWith('.json'))) for (const o of JSON.parse(readFileSync(join(dir, fn), 'utf8'))) if (o.figures !== undefined || o.stemFigures !== undefined) out.push({ id: o.id, figures: o.figures === undefined ? [] : o.figures, stemFigures: o.stemFigures });
   }
   return out;
 }
@@ -94,7 +94,8 @@ test('配っている図: figures が指す SVG が実在し、決まり（禁�
     const files = existsSync(dir) ? readdirSync(dir).filter((x) => x.endsWith('.svg')) : [];
     for (const r of refs(app)) {
       assert.ok(Array.isArray(r.figures), `${app} ${r.id}: figures が配列でない`);
-      for (const f of r.figures) { assert.ok(FIGURE_ID_RE.test(f), `${app} ${r.id}: ${f}`); assert.ok(files.includes(f + '.svg'), `${app} ${r.id}: ${f}.svg が無い`); nRef++; }
+      assert.ok(r.stemFigures === undefined || Array.isArray(r.stemFigures), `${app} ${r.id}: stemFigures が配列でない`);
+      for (const f of [...r.figures, ...(r.stemFigures || [])]) { assert.ok(FIGURE_ID_RE.test(f), `${app} ${r.id}: ${f}`); assert.ok(files.includes(f + '.svg'), `${app} ${r.id}: ${f}.svg が無い`); nRef++; }
     }
     for (const fn of files) {
       const t = readFileSync(join(dir, fn), 'utf8');
@@ -161,6 +162,11 @@ for (const tool of TOOLS) {
     ['title が無い', (c) => { c.svg = GOOD.replace(/<title[\s\S]*?<\/title>/, ''); }, /<title> が無い/],
     ['desc が無い', (c) => { c.svg = GOOD.replace(/<desc[\s\S]*?<\/desc>/, ''); }, /<desc> が無い/],
     ['role="img" が無い', (c) => { c.svg = GOOD.replace(' role="img"', ''); }, /role="img"/],
+    ['stemFigures に実在しない ID', (c) => { c.question.stemFigures = ['fig-t-zzz']; }, /stemFigures の fig-t-zzz に対応する SVG が無い/],
+    ['stemFigures の ID の形式が不正', (c) => { c.question.stemFigures = ['../x']; }, /stemFigures\[0\] が図の ID の形式/],
+    ['stemFigures が配列でない', (c) => { c.question.stemFigures = 'fig-t-a'; }, /stemFigures が配列でない/],
+    ['stemFigures に同じ ID が2回', (c) => { c.question.stemFigures = ['fig-t-a', 'fig-t-a']; }, /stemFigures に fig-t-a が重複/],
+    ['stemFigures だけが使っている図は「使われていない」にならない（OK のまま）', (c) => { c.concept.figures = []; c.question.figures = []; c.question.stemFigures = ['fig-t-a']; }, /結果: OK(?![\s\S]*使われていない)/, true],
     ['使われていない図は警告（NG にはしない）', (c) => { c.concept.figures = []; c.question.figures = []; }, /使われていない/, true],
   ];
   for (const [name, mut, re, okExit] of cases) {

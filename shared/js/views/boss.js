@@ -13,7 +13,7 @@ import { bossProfile, pickLine, quoted, faceCrop } from '../lib/bossdata.js';
 import { trueBossEnabled, trueBossUnlocked, trueBossAwakeText } from '../lib/trueboss.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, laterButton, stumbleBlock, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
+import { explanation, laterButton, stumbleBlock, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 
 // ボスの見た目。絵が無い（読み込めない）あいだは記号で出す。
 // 絵を足すとき: <アプリ>/images/bosses/boss-<番号>.webp を置く（番号＝bosses.json の no。無い章は地図の章の並び＝1から）。置くだけで記号と入れ替わる。
@@ -413,6 +413,8 @@ export function renderBoss(app, key) {
     if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
     card.appendChild(tags);
     card.appendChild(h('p', { class: 'stem', text: q.stem }));
+    const stemFig = stemFigureBlock(app, q);
+    if (stemFig) card.appendChild(stemFig);
     const pastLine = pastExamLine(q);
     if (pastLine) card.appendChild(pastLine);
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
@@ -679,7 +681,7 @@ export function renderBoss(app, key) {
     if (wrong.length) {
       const l = h('div', { class: 'card' }, h('h2', { text: 'まちがえた問題（' + wrong.length + '）' }));
       wrong.forEach((x) => {
-        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: x.q.stem }), stemPlainBlock(x.q), explanation(app, x.sq, x.chosen, (id) => openCardSheet(app, id), { sensei: false })));
+        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: x.q.stem }), stemFigureBlock(app, x.q), stemPlainBlock(x.q), explanation(app, x.sq, x.chosen, (id) => openCardSheet(app, id), { sensei: false })));
       });
       root.appendChild(l);
     }

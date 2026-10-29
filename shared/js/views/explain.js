@@ -54,6 +54,11 @@ export function conceptsOf(app, q) {
   return out;
 }
 
+/** 答える前に問題文の下へ出す図・表（stemFigures。要件定義書 §7）。無い問題は null。問題を出す画面は問題文の直後・選択肢の前に、見直しの一覧は問題文の意味の前に置く。 */
+export function stemFigureBlock(app, q) {
+  return figureBlock(app, q && q.stemFigures, { heading: '問題の図・表', className: 'stem-figures' });
+}
+
 /** 問題文の意味（要件定義書 §7-3）。stemPlain が無い問題は null。解説と『まず用語を確認しよう』より前に、呼ぶ側が置く（問題の意味が分かってから用語を見る順）。 */
 export function stemPlainBlock(q) {
   if (!q.stemPlain) return null;

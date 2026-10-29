@@ -6,7 +6,7 @@ import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/fore
 import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stumbleBlock, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
+import { explanation, stumbleBlock, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 
 const mmss = (ms) => {
   const s = Math.max(0, Math.ceil(ms / 1000));
@@ -111,6 +111,7 @@ export function renderExam(app) {
       const card = h('div', { class: 'card q-card' },
         h('div', { class: 'q-tags' }, statusChip(q.status), q.negative ? h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }) : null),
         h('p', { class: 'stem', text: q.stem }),
+        stemFigureBlock(app, q),
         pastExamLine(q));
       const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
       sq.choices.forEach((c, i) => {
@@ -175,7 +176,7 @@ export function renderExam(app) {
       const open = (id) => openCardSheet(app, id);
       const rv = h('div', { class: 'card' }, h('h2', { text: wrong.length ? 'まちがえた問題（' + wrong.length + '）' : '全問正解！' }));
       wrong.forEach((r) => {
-        const body = h('div', {}, r.chosen === null ? h('p', { class: 'small muted', text: '（未回答）' }) : null, stemPlainBlock(r.q), stumbleBlock(app, r.q, open), explanation(app, r.sq, r.chosen, open, { sensei: false }));
+        const body = h('div', {}, r.chosen === null ? h('p', { class: 'small muted', text: '（未回答）' }) : null, stemFigureBlock(app, r.q), stemPlainBlock(r.q), stumbleBlock(app, r.q, open), explanation(app, r.sq, r.chosen, open, { sensei: false }));
         rv.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), body));
       });
       if (wrong.length) rv.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は「復習」に入りました。' }));

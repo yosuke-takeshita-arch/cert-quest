@@ -292,16 +292,16 @@ function xmlProblems(text) {
 }
 const figDirOf = (f) => path.join(dataRootOf(f), 'figures');
 const figUsed = new Map(); // figures ディレクトリ -> 使われた ID の集合
-function checkFigureRefs(f, id, figs) {
+function checkFigureRefs(f, id, figs, key = 'figures') { // key は欄の名前（figures ＝ 答えた後の解説の図、stemFigures ＝ 答える前に問題文の下へ出す図。どちらも同じ検査）
   if (figs === undefined) return;
-  if (!Array.isArray(figs)) { err(f, id, 'figures が配列でない'); return; }
+  if (!Array.isArray(figs)) { err(f, id, `${key} が配列でない`); return; }
   const dir = figDirOf(f);
   if (!figUsed.has(dir)) figUsed.set(dir, new Set());
   figs.forEach((x, i) => {
-    if (typeof x !== 'string' || !FIGURE_ID_RE.test(x)) { err(f, id, `figures[${i}] が図の ID の形式（fig-英小文字・数字・ハイフン）でない`); return; }
-    if (figs.indexOf(x) !== i) err(f, id, `figures に ${x} が重複している`);
+    if (typeof x !== 'string' || !FIGURE_ID_RE.test(x)) { err(f, id, `${key}[${i}] が図の ID の形式（fig-英小文字・数字・ハイフン）でない`); return; }
+    if (figs.indexOf(x) !== i) err(f, id, `${key} に ${x} が重複している`);
     figUsed.get(dir).add(x);
-    if (!fs.existsSync(path.join(dir, x + '.svg'))) err(f, id, `figures の ${x} に対応する SVG が無い（${path.join(path.basename(path.dirname(dir)), 'figures', x + '.svg')}）`);
+    if (!fs.existsSync(path.join(dir, x + '.svg'))) err(f, id, `${key} の ${x} に対応する SVG が無い（${path.join(path.basename(path.dirname(dir)), 'figures', x + '.svg')}）`);
   });
 }
 function checkFigureFiles() {
@@ -321,7 +321,7 @@ function checkFigureFiles() {
       if (!/<title[\s>]/i.test(text)) err(fn, id, '<title> が無い');
       if (!/<desc[\s>]/i.test(text)) err(fn, id, '<desc> が無い');
       if (!/\saria-labelledby\s*=\s*"[^"]+"/.test(root)) err(fn, id, '<svg> に aria-labelledby が無い');
-      if (!(figUsed.get(dir) || new Set()).has(id)) warn(fn, id, 'どのカード・問題の figures からも使われていない');
+      if (!(figUsed.get(dir) || new Set()).has(id)) warn(fn, id, 'どのカード・問題の figures・stemFigures からも使われていない');
     }
   }
 }
@@ -546,6 +546,7 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
     if (kind === 'questions' && !QTYPES.has(o.qtype)) err(f, id, `qtype が無い・不正: ${o.qtype}（${[...QTYPES].join(' / ')} のどれか）`);
     checkSources(f, id, o.sources);
     checkFigureRefs(f, id, o.figures);
+    checkFigureRefs(f, id, o.stemFigures, 'stemFigures');
     if (!STATUS.has(o.status)) err(f, id, `status が不正: ${o.status}`);
   });
 }

@@ -6,7 +6,7 @@ import { recordStageResult, recordChallenge } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { setBgmRush } from '../audio.js';
 import { XP } from '../lib/scoring.js';
-import { explanation, laterButton, stumbleBlock, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
+import { explanation, laterButton, stumbleBlock, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 
 /**
  * spec: { mode:'stage'|'review'|'challenge', title, pick(app)->質問の配列, stageKey?, backHash }
@@ -127,6 +127,8 @@ export function renderPlay(app) {
       card.appendChild(left);
     }
     card.appendChild(h('p', { class: 'stem', text: q.stem }));
+    const stemFig = stemFigureBlock(app, q);
+    if (stemFig) card.appendChild(stemFig);
     const pastLine = pastExamLine(q);
     if (pastLine) card.appendChild(pastLine);
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
@@ -234,7 +236,7 @@ export function renderPlay(app) {
     if (wrong.length) {
       const l = h('div', { class: 'card' }, h('h2', { text: 'まちがえた問題（' + wrong.length + '）' }));
       wrong.forEach((r) => {
-        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), stemPlainBlock(r.q), explanation(app, r.sq, r.chosen, (id) => openCardSheet(app, id), { sensei: false })));
+        l.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), stemFigureBlock(app, r.q), stemPlainBlock(r.q), explanation(app, r.sq, r.chosen, (id) => openCardSheet(app, id), { sensei: false })));
       });
       root.appendChild(l);
     }

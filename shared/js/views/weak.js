@@ -3,7 +3,7 @@ import { h, clear, mascotLine } from '../ui.js';
 import { analyze, oftenWrong, OFTEN_SOLVE_MAX, OFTEN_MIN_SEEN, chapterStats, radarGeometry, tileLevel, TILE_MARK, allStats, questionsToJudge, wrongQuestions, normalizeWeakOrder, WEAK_ORDERS, WEAK_MIN_ANSWERED, WEAK_BELOW } from '../lib/weakness.js';
 import { weakMascot } from '../lib/characters.js';
 import { shuffleChoices } from '../lib/quiz.js';
-import { explanation, stemPlainBlock } from './explain.js';
+import { explanation, stemPlainBlock, stemFigureBlock } from './explain.js';
 import { openCardSheet } from './cards.js';
 import { toggleExpand } from '../lib/expand.js';
 import { startSession } from './play.js';
@@ -197,6 +197,8 @@ function oftenCard(app) {
     const build = () => { // 開いたときに初めて解説を作る（高さを測る前に作る）
       if (built) return;
       built = true;
+      const sf = stemFigureBlock(app, x.q);
+      if (sf) panel.appendChild(sf);
       const sb = stemPlainBlock(x.q);
       if (sb) panel.appendChild(sb);
       panel.appendChild(explanation(app, shuffleChoices(x.q), null, open, { sensei: false }));

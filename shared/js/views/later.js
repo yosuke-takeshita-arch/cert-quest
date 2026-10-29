@@ -2,7 +2,7 @@
 import { h } from '../ui.js';
 import { laterItems } from '../lib/later.js';
 import { startSession } from './play.js';
-import { explanation, laterButton, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
+import { explanation, laterButton, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 import { openCardSheet, statusChip } from './cards.js';
 
 export const LATER_SOLVE_MAX = 20;
@@ -96,6 +96,8 @@ function renderLaterOne(app, id) {
   if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
   card.appendChild(tags);
   card.appendChild(h('p', { class: 'stem', text: q.stem }));
+  const stemFig = stemFigureBlock(app, q);
+  if (stemFig) card.appendChild(stemFig);
   const pastLine = pastExamLine(q);
   if (pastLine) card.appendChild(pastLine);
   const ul = h('ul', { class: 'read-choices' });

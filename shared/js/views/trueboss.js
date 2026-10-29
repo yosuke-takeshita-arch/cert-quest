@@ -18,7 +18,7 @@ import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, o
 import { trueGeom } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
-import { explanation, stemPlainBlock, pastExamLine, choiceLabelsOf } from './explain.js';
+import { explanation, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 import { toggleExpand } from '../lib/expand.js';
 
 export const TRUE_BOSS_SYMBOL = '真';
@@ -605,6 +605,8 @@ export function renderTrueBoss(app) {
     if (q.format === 'combo') tags.appendChild(h('span', { class: 'chip', text: '組み合わせ' }));
     card.appendChild(tags);
     card.appendChild(h('p', { class: 'stem', text: q.stem }));
+    const stemFig = stemFigureBlock(app, q);
+    if (stemFig) card.appendChild(stemFig);
     const pastLine = pastExamLine(q);
     if (pastLine) card.appendChild(pastLine);
     const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
@@ -1199,6 +1201,8 @@ export function renderTrueBoss(app) {
       const build = () => { // 開いたときに初めて解説を作る（まとめて作らない）。高さを測る前に作る
         if (built) return;
         built = true;
+        const sf = stemFigureBlock(app, x.q);
+        if (sf) panel.appendChild(sf);
         const sb = stemPlainBlock(x.q);
         if (sb) panel.appendChild(sb);
         panel.appendChild(explanation(app, x.sq, x.chosen, open, { sensei: false }));
