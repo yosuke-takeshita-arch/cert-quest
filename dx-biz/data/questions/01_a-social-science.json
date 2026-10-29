@@ -270,7 +270,7 @@
     ],
     "memoryTip": "巨大プラットフォームの3点セット＝「人が人を呼ぶ（ネットワーク）・量で安くなる（規模）・抜けられない（ロックイン）」。",
     "concepts": ["DC-05-006", "DC-05-002"],
-    "figures": ["fig-dx-platform-3factors"],
+    "figures": ["fig-dx-platform-3factors", "fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」プラットフォーム事業者の成長とその背景", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd113110.html" }
     ],
@@ -1214,7 +1214,7 @@
     ],
     "memoryTip": "基盤型の循環＝「入りやすい→アプリが増える→人が集まる→もっと作り手が来る」。起点は「自前で全部そろえなくてよい」こと。",
     "concepts": ["DC-06-006", "DC-05-006"],
-    "figures": ["fig-dx-platform-app-loop"],
+    "figures": ["fig-dx-platform-app-loop", "fig-dx-platform-types"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」オンラインプラットフォームの意義", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc113110.html" }
     ],

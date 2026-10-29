@@ -133,7 +133,7 @@
     ],
     "memoryTip": "As Is＝いま（現状）、To Be＝これから（あるべき姿）。まず今を描いてから、あるべき姿を描く。",
     "concepts": ["DC-04-004", "DC-04-003"],
-    "figures": ["fig-dx-journey-asis-tobe"],
+    "figures": ["fig-dx-journey-asis-tobe", "fig-dx-customer-journey"],
     "sources": [
       { "title": "e-Govポータル「サービスデザイン」", "url": "https://www.e-gov.go.jp/about-site/e-gov/servicedesign.html" }
     ],
@@ -269,7 +269,7 @@
     ],
     "memoryTip": "パーソナライズ＝「あなた向け」。Amazon Personalize は、操作の記録などのデータから機械学習でおすすめを作る。",
     "concepts": ["DC-06-021", "DC-04-016", "DC-04-025"],
-    "figures": ["fig-dx-personalization"],
+    "figures": ["fig-dx-personalization", "fig-dx-segment-one2one"],
     "sources": [
       { "title": "AWS ドキュメント「Amazon Personalize とは」", "url": "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html" }
     ],
@@ -328,7 +328,7 @@
     ],
     "memoryTip": "1曲・1本ずつ払う（ダウンロード課金）→月いくらで聞き放題・見放題（サブスク）。",
     "concepts": ["DC-08-001"],
-    "figures": ["fig-dx-download-to-subscription"],
+    "figures": ["fig-dx-download-to-subscription", "fig-dx-revenue-models"],
     "sources": [
       { "title": "総務省「平成28年版 情報通信白書」コンテンツ配信サービス市場", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc122220.html" }
     ],
@@ -357,7 +357,7 @@
     ],
     "memoryTip": "サブスク＝「所有」ではなく「利用」に月額で払う。レンタルとリースの良いところ取り。",
     "concepts": ["DC-08-001", "DC-08-004", "DC-06-019"],
-    "figures": ["fig-dx-subscription-vs-rental"],
+    "figures": ["fig-dx-subscription-vs-rental", "fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省「2019年版ものづくり白書」第1部第2章第3節", "url": "https://www.meti.go.jp/report/whitepaper/mono/2019/honbun_pdf/pdf/honbun_01_02_03.pdf" }
     ],
@@ -496,7 +496,7 @@
     ],
     "memoryTip": "シェアの5類型＝モノ・空間・スキル・移動・お金。どれも「個人の持っているもの」を回す。",
     "concepts": ["DC-06-009", "DC-06-025", "DC-06-012"],
-    "figures": ["fig-dx-sharing-5types"],
+    "figures": ["fig-dx-sharing-5types", "fig-dx-sharing"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」シェアリング・エコノミー（C to Cサービス）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112220.html" }
     ],

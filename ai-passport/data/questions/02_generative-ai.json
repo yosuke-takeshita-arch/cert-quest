@@ -1145,7 +1145,7 @@
     ],
     "memoryTip": "人の評価で整えた小さなモデル（13億）＞ 整えていない大きなモデル（1,750億）。",
     "concepts": ["C-AP-02-024", "C-AP-02-022"],
-    "figures": ["fig-ap-instructgpt-eval"],
+    "figures": ["fig-ap-instructgpt-eval", "fig-ap-rlhf"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
     ],
@@ -2757,7 +2757,7 @@
     ],
     "memoryTip": "GPT-5＝速い係と考える係を、ルーターが振り分ける。",
     "concepts": ["C-AP-02-054", "C-AP-02-056", "C-AP-02-057"],
-    "figures": ["fig-ap-gpt5-router"],
+    "figures": ["fig-ap-gpt5-router", "fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI『Introducing GPT-5』（2025年8月7日）", "url": "https://openai.com/index/introducing-gpt-5/" }
     ],

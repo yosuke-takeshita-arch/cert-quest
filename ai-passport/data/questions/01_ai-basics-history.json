@@ -1099,7 +1099,7 @@
     ],
     "memoryTip": "学習で変わる＝重み。変わらない＝活性化関数の形・層の数。",
     "concepts": ["C-AP-01-024", "C-AP-01-025"],
-    "figures": ["fig-ap-weight"],
+    "figures": ["fig-ap-weight", "fig-ap-mlp-layers"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（weight・training）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1464,7 +1464,7 @@
     ],
     "memoryTip": "汎化＝初見でも当たる力。",
     "concepts": ["C-AP-01-031", "C-AP-01-030"],
-    "figures": ["fig-ap-generalization"],
+    "figures": ["fig-ap-generalization", "fig-ap-overfitting"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
       { "title": "Google for Developers: Machine Learning Glossary（generalization）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -2940,7 +2940,7 @@
     ],
     "memoryTip": "MYCIN＝エキスパートシステムの代表（約500ルール）。",
     "concepts": ["C-AP-01-063"],
-    "figures": ["fig-ap-expert-system"],
+    "figures": ["fig-ap-expert-system", "fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }, { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
   },

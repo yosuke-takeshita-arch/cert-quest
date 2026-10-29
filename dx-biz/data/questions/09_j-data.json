@@ -604,7 +604,7 @@
     ],
     "memoryTip": "データマイニング＝大量のデータから「一緒に起きる・分類できる・似ている」といったパターンを掘り出す分析。クレンジングは、その前に誤りや重複を直す準備作業。",
     "concepts": ["DC-03-012", "DC-03-019", "DC-03-020"],
-    "figures": ["fig-dx-data-mining"],
+    "figures": ["fig-dx-data-mining", "fig-dx-analysis-methods"],
     "sources": [
       { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" },
       { "title": "Microsoft Learn「Power BI Desktop のモデルからレポートを分離する」", "url": "https://learn.microsoft.com/ja-jp/power-bi/guidance/report-separate-from-model" }
@@ -726,7 +726,7 @@
     ],
     "memoryTip": "E（取り出す）→ T（整える）→ L（積み込む）。",
     "concepts": ["DC-03-013"],
-    "figures": ["fig-dx-etl"],
+    "figures": ["fig-dx-etl", "fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],

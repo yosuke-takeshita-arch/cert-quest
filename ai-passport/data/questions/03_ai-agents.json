@@ -284,7 +284,7 @@
     ],
     "memoryTip": "ループの中に人がいる＝大事な一手の前で人が止められる。",
     "concepts": ["C-AP-03-008"],
-    "figures": ["fig-ap-human-loop"],
+    "figures": ["fig-ap-human-loop", "fig-ap-autonomy-levels"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" },
@@ -752,7 +752,7 @@
     ],
     "memoryTip": "言い方が違っても意味で拾う＝意味的検索。",
     "concepts": ["C-AP-03-016"],
-    "figures": ["fig-ap-semantic-search"],
+    "figures": ["fig-ap-semantic-search", "fig-ap-advanced-rag"],
     "sources": [
       { "title": "Microsoft Learn『RAG and Generative AI - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" },
       { "title": "Microsoft Learn『Vector Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/vector-search-overview" }
@@ -1277,7 +1277,7 @@
     ],
     "memoryTip": "ガードレール＝機械の柵。人の確認は Human-in-the-Loop。",
     "concepts": ["C-AP-03-028", "C-AP-03-008"],
-    "figures": ["fig-ap-guardrails"],
+    "figures": ["fig-ap-guardrails", "fig-ap-defense-in-depth"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
     ],
@@ -2265,7 +2265,7 @@
     ],
     "memoryTip": "任せるときは『何を・どんな形で・何を使って・どこまで』。",
     "concepts": ["C-AP-03-048", "C-AP-03-058"],
-    "figures": ["fig-ap-subagent-brief"],
+    "figures": ["fig-ap-subagent-brief", "fig-ap-multi-agent"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" }
     ],
@@ -2476,7 +2476,7 @@
     ],
     "memoryTip": "ブランチで作って、プルリクエストで見てもらって、取り込む。",
     "concepts": ["C-AP-03-052"],
-    "figures": ["fig-ap-pull-request"],
+    "figures": ["fig-ap-pull-request", "fig-ap-coding-agent"],
     "sources": [
       { "title": "GitHub Docs『Pull requests』", "url": "https://docs.github.com/en/pull-requests/reference/pull-requests" }
     ],
@@ -3114,7 +3114,7 @@
     ],
     "memoryTip": "エージェントがだまされると、文ではなく行動が乗っ取られる。",
     "concepts": ["C-AP-03-062", "C-AP-03-063"],
-    "figures": ["fig-ap-agent-injection"],
+    "figures": ["fig-ap-agent-injection", "fig-ap-prompt-injection"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM01:2025 Prompt Injection』", "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/" },
       { "title": "OpenAI『Introducing ChatGPT agent』（2025年7月17日）", "url": "https://openai.com/index/introducing-chatgpt-agent/" }
@@ -3231,7 +3231,7 @@
     ],
     "memoryTip": "要るぶんだけ渡す＝最小権限。",
     "concepts": ["C-AP-03-064"],
-    "figures": ["fig-ap-least-privilege-principle"],
+    "figures": ["fig-ap-least-privilege-principle", "fig-ap-excessive-agency"],
     "sources": [
       { "title": "NIST CSRC Glossary『least privilege』", "url": "https://csrc.nist.gov/glossary/term/least_privilege" }
     ],
