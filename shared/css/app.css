@@ -307,6 +307,8 @@ details.major > summary::-webkit-details-marker { display: none; }
   transition: transform 0.1s, border-color 0.15s;
 }
 .choice:active:not(:disabled) { transform: scale(0.99); }
+/* 選択肢の文の改行をそのまま出す（1列の表の選択肢など。本試験の形。改行の無い選択肢は変わらない）。解説で選択肢を再掲する所も同じ */
+.choice .ctext, .ex-answer, .why-wrong .lbl { white-space: pre-line; }
 .choice .mark { flex: none; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--accent-soft); font-weight: 700; }
 .choice:disabled { cursor: default; color: var(--text); }
 .choice.picked { border-color: var(--accent); background: var(--accent-soft); }
