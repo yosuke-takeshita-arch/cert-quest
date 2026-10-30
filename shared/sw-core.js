@@ -92,6 +92,8 @@ const SHARED = [
   '../shared/js/views/weak.js',
   '../shared/js/views/later.js',
   '../shared/js/lib/later.js',
+  '../shared/js/views/flip.js',
+  '../shared/js/lib/flip.js',
   '../shared/js/lib/studytime.js',
   '../shared/js/lib/studyreport.js',
   '../shared/js/views/studyreport.js',

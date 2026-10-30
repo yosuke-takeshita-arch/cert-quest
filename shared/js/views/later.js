@@ -1,6 +1,7 @@
 // 「あとで見る」: 印を付けた問題の一覧と、解かずに読む画面（要件定義書 §3-4）。数え方・並べ方は lib/later.js。
 import { h } from '../ui.js';
-import { laterItems, laterCardItems } from '../lib/later.js';
+import { laterItems, laterCardItems, laterCardQuestions } from '../lib/later.js';
+import { resolveRef } from '../lib/data.js';
 import { startSession } from './play.js';
 import { explanation, laterButton, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 import { openCardSheet, statusChip } from './cards.js';
@@ -21,6 +22,22 @@ function chapterOf(q) {
 function dayLabel(at) {
   const d = new Date(at);
   return (d.getMonth() + 1) + '月' + d.getDate() + '日に印';
+}
+
+/** 印を付けたカードにつながる問題（要件定義書 §3-4-b）。並びは一覧の並べ方に従う。 */
+export function laterCardQs(app) {
+  const d = app.data;
+  return laterCardQuestions(app.state, d.concepts, d.questions, (x) => resolveRef(x, d.conceptIndex).concept, sortOrder);
+}
+
+function laterCardSpec(app) {
+  return {
+    mode: 'later',
+    title: 'あとで見るのカード',
+    small: true,
+    backHash: '#/later',
+    pick: (a) => laterCardQs(a).slice(0, LATER_SOLVE_MAX),
+  };
 }
 
 function laterSpec(app) {
@@ -91,6 +108,11 @@ function renderCardList(app, root) {
     return root;
   }
   root.appendChild(h('p', { class: 'small muted', text: '印を付けたカードは ' + items.length + ' 枚です。カードを押すと開きます。' }));
+  const nq = laterCardQs(app).length;
+  if (nq) root.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-later-card-solve': String(nq), onClick: () => startSession(app, laterCardSpec(app)) },
+    '印を付けたカードの問題を解く（' + Math.min(nq, LATER_SOLVE_MAX) + '問）'));
+  else root.appendChild(h('p', { class: 'small muted', 'data-later-card-noq': '1', text: '印を付けたカードにつながる問題は、まだありません。' }));
+  root.appendChild(h('button', { class: 'btn big', type: 'button', 'data-later-card-flip': '1', onClick: () => app.go('#/flip/later') }, '印を付けたカードをめくって覚える'));
   const sw = h('div', { class: 'map-switch', role: 'group', 'aria-label': '並べ方' });
   for (const [key, label] of [['recent', '印を付けた順'], ['chapter', '章の順']]) {
     sw.appendChild(h('button', { class: 'map-switch-btn' + (sortOrder === key ? ' on' : ''), type: 'button', 'data-later-sort': key, 'aria-pressed': String(sortOrder === key), onClick: () => {

@@ -82,3 +82,20 @@ export function laterCardItems(state, concepts, order = 'recent') {
 export function laterCardCount(state, concepts) {
   return laterCardItems(state, concepts).length;
 }
+
+/**
+ * 印を付けたカードにつながる問題（要件定義書 §3-4-b）。カードの並び（order）→ 同じカードの中では問題データの順。重ねない。
+ * conceptOf(ref) は q.concepts の1要素をカードに解決する関数（resolveRef を包んで渡す）。
+ */
+export function laterCardQuestions(state, concepts, questions, conceptOf, order = 'recent') {
+  const out = [];
+  const seen = new Set();
+  for (const { c } of laterCardItems(state, concepts, order)) {
+    for (const q of questions) {
+      if (seen.has(q.id) || !(q.concepts || []).some((x) => conceptOf(x) === c)) continue;
+      seen.add(q.id);
+      out.push(q);
+    }
+  }
+  return out;
+}

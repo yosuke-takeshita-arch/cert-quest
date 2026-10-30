@@ -173,6 +173,12 @@ export function renderCardList(app) {
     root.appendChild(h('div', { class: 'empty' }, h('p', { text: '用語カードは準備中です。' }), h('p', { class: 'small muted', text: 'できあがり次第、ここに並びます。' })));
     return root;
   }
+  // カードめくり（要件定義書 §3-4-c）の入口
+  root.appendChild(h('button', { class: 'basics-entry', type: 'button', 'data-flip-entry': '', onClick: () => app.go('#/flip') },
+    h('span', { class: 'row-main' },
+      h('strong', { text: 'カードめくりで覚える' }),
+      h('span', { class: 'small', text: '用語の名前だけを見て意味を答え、めくって確かめる' })),
+    h('span', { class: 'basics-entry-arrow', 'aria-hidden': 'true', text: '›' })));
   const btns = {};
   const choose = (mode) => {
     state.settings.cardView = mode;

@@ -35,6 +35,7 @@ import { renderCharacters } from './views/characters.js';
 import { markTapBadge } from './lib/characters.js';
 import { renderWeak } from './views/weak.js';
 import { renderLater } from './views/later.js';
+import { renderFlip } from './views/flip.js';
 import { renderStudyReport } from './views/studyreport.js';
 import { renderDochi } from './views/dochi.js';
 import { renderBoss } from './views/boss.js';
@@ -412,6 +413,7 @@ export async function start() {
     ['stage', 'map', (k) => renderStage(app, k)],
     ['cards', 'cards', () => renderCardList(app)],
     ['card', 'cards', (k) => renderCard(app, k)],
+    ['flip', 'cards', (k) => renderFlip(app, k)], // カードめくり（要件定義書 §3-4-c）。引数は始める範囲（'later' など）
     ['basics', 'cards', () => renderBasicList(app)], // 基礎のことば（試験範囲の外の土台の言葉）の一覧
     ['basic', 'cards', (k) => renderBasic(app, k)],
     ['review', 'review', () => renderReview(app)],
