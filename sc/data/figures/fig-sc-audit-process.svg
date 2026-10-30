@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 404" role="img" aria-labelledby="fig-sc-audit-process-t fig-sc-audit-process-d">
+<title id="fig-sc-audit-process-t">システム監査の流れ（計画から フォローアップまで）</title>
+<desc id="fig-sc-audit-process-d">上から順に6つの段階。1、監査計画：リスクの大きさで、どこにどれだけ時間をかけるかを決める。2、予備調査：文書の閲覧や聞き取りで、監査対象の実態をつかむ。3、本調査：記録を抜き出して突き合わせるなどして、十分かつ適切な監査証拠を集める。やったことと結果は監査調書に記録する。4、結論の形成：監査調書をもとに結論を導き、残存リスクの大きさで指摘事項を選ぶ。5、監査報告：監査報告書で、結論と指摘事項と改善提案を依頼者に報告する。6、フォローアップ：改善するのは監査対象先で、監査人は改善の様子を後から確かめる。</desc>
+<text x="12" y="20" class="tb">システム監査の流れ（例：販売システム）</text>
+<rect x="12" y="30" width="296" height="48" class="fs l w1" rx="6"/>
+<text x="24" y="50" class="tb">①監査計画</text>
+<text x="24" y="70" class="tm">リスクの大きい値引きの承認に時間を割く</text>
+<rect x="12" y="86" width="296" height="48" class="fs l w1" rx="6"/>
+<text x="24" y="106" class="tb">②予備調査（実態をつかむ）</text>
+<text x="24" y="126" class="tm">マニュアル・組織図を読み、課長に聞く</text>
+<rect x="12" y="142" width="296" height="64" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="162" class="tb">③本調査（証拠を集める）</text>
+<text x="24" y="182" class="tm">値引き50件と承認記録を突き合わせる</text>
+<text x="24" y="200" class="ta">やったこと・結果→監査調書に記録</text>
+<rect x="12" y="214" width="296" height="48" class="fs l w1" rx="6"/>
+<text x="24" y="234" class="tb">④結論の形成</text>
+<text x="24" y="254" class="tm">調書から結論。残存リスクで指摘を選ぶ</text>
+<rect x="12" y="270" width="296" height="48" class="fs l w1" rx="6"/>
+<text x="24" y="290" class="tb">⑤監査報告（監査報告書）</text>
+<text x="24" y="310" class="tm">結論・指摘事項・改善提案を報告</text>
+<rect x="12" y="326" width="296" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="346" class="tb">⑥フォローアップ</text>
+<text x="24" y="366" class="tm">改善するのは監査対象先</text>
+<text x="24" y="384" class="tok">監査人は後から確かめるだけ</text>
+</svg>
