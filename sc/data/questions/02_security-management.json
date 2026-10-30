@@ -4979,5 +4979,66 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "SC-02-107",
+    "syllabus": [
+      "セキュリティ",
+      "情報セキュリティマネジメント",
+      "情報セキュリティの考え方"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "JIS X 9401:2016（情報技術－クラウドコンピューティング－概要及び用語）の定義によるクラウドサービス区分の一つであり，クラウドサービスカスタマが表中の項番1と2の責務を負い，クラウドサービスプロバイダが項番3～5の責務を負うものはどれか。",
+    "choices": [
+      "HaaS",
+      "IaaS",
+      "PaaS",
+      "SaaS"
+    ],
+    "answer": 2,
+    "stemPlain": "表の5つの責務のうち、アプリケーションソフトウェアに関わる2つ（項番1・2）を利用者（クラウドサービスカスタマ）が受け持ち、DBMS（データベースを管理するソフト）・OS・ハードウェアの3つ（項番3〜5）を事業者（クラウドサービスプロバイダ）が受け持つクラウドの区分を選ぶ問題。表は問題文の下の図を見る。",
+    "explanation": "表を下から読むと、ハードウェア（項番5）、OS（項番4）、DBMS（項番3）までが事業者で、その上で動くアプリケーションソフトウェア（項番1・2）が利用者。アプリを動かす土台（ハードウェア・OS・DBMS などの実行環境）を事業者が用意し、利用者はその上に自分のアプリを載せて管理する形なので PaaS（Platform as a Service）に当たる。国際規格 ISO/IEC 17788（ITU-T Y.3500。クラウドの概要と用語の規格）は、PaaS で利用者ができることを、事業者が用意したプログラミング言語や実行環境を使って、利用者が作った・手に入れたアプリを配置し、管理し、動かすこと、としている。NIST SP 800-145 も、PaaS の利用者はネットワーク・サーバ・OS・ストレージを管理せず、配置したアプリを管理する、と定義している。だから、アプリのデータへのアクセス制御と暗号化の設定（項番1）や、アプリを安全に書き脆弱性を診断すること（項番2）は利用者に残り、DBMS と OS の修正プログラム適用（項番3・4）やハードウェアの物理的な守り（項番5）は事業者が持つ。",
+    "whyWrong": [
+      "HaaS（Hardware as a Service）は、ISO/IEC 17788 が代表として挙げるクラウドサービス区分（CaaS・CompaaS・DSaaS・IaaS・NaaS・PaaS・SaaS の7つ）に入っていない呼び名。JIS X 9401 の定義による区分を問うこの問題の答えにならない。名前のとおりハードウェアを提供するものと読んでも、OS と DBMS（項番3・4）は事業者の持ち分にならない。",
+      "IaaS（Infrastructure as a Service）は、事業者が処理能力・ストレージ・ネットワークといった基盤を貸す区分。ISO/IEC 17788 は、IaaS の利用者は物理・仮想の資源は管理しないが、OS・ストレージ・配置したアプリは管理する、としている。OS とその上の DBMS（項番3・4）も利用者が受け持つので、利用者が項番1〜4、事業者が項番5だけになる。",
+      null,
+      "SaaS（Software as a Service）は、事業者が用意したアプリを利用者が使う区分。NIST SP 800-145 は、SaaS の利用者は OS やアプリの機能そのものも管理せず、利用者ごとの限られた設定だけを持つ、としている。アプリを作る側の仕事であるセキュアプログラミングとソースコードの脆弱性診断（項番2）は事業者が受け持つので、利用者が項番2まで持つという表の分け方に合わない。"
+    ],
+    "memoryTip": "事業者が持つ段が下から増える。IaaS はハードウェアまで、PaaS は OS・DBMS まで、SaaS はアプリまで。",
+    "concepts": [
+      "C-SC-02-008"
+    ],
+    "figures": [
+      "fig-sc-mgmt-cloud-responsibility"
+    ],
+    "stemFigures": [
+      "fig-sc-mgmt-r04h-q12"
+    ],
+    "pastExam": [
+      {
+        "year": "令和4年度",
+        "period": "春期",
+        "exam": "情報処理安全確保支援士試験",
+        "part": "午前Ⅱ",
+        "no": 12,
+        "modified": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "IPA 令和4年度 春期 情報処理安全確保支援士試験 午前Ⅱ 問題冊子（問12）",
+        "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_sc_am2_qs.pdf"
+      },
+      {
+        "title": "ITU-T Y.3500（ISO/IEC 17788:2014）Cloud computing - Overview and vocabulary 3.2.24・3.2.30・3.2.31・6.4",
+        "url": "https://www.itu.int/rec/T-REC-Y.3500-201408-I"
+      },
+      {
+        "title": "NIST SP 800-145 The NIST Definition of Cloud Computing（Service Models）",
+        "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf"
+      }
+    ],
+    "status": "verified"
   }
 ]

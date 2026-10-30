@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 338" role="img" aria-labelledby="fig-sc-mgmt-r04h-q12-t fig-sc-mgmt-r04h-q12-d">
+<title id="fig-sc-mgmt-r04h-q12-t">表 項番と責務</title>
+<desc id="fig-sc-mgmt-r04h-q12-d">列は項番と責務の2つ。行は5つ。項番1：アプリケーションソフトウェアに対して，データ利用時のアクセス制御と暗号化の設定を行う。項番2：アプリケーションソフトウェアに対して，セキュアプログラミングとソースコードの脆弱性診断を行う。項番3：DBMSに対して，修正プログラム適用と権限設定を行う。項番4：OSに対して，修正プログラム適用と権限設定を行う。項番5：ハードウェアに対して，アクセス制御と物理セキュリティ確保を行う。</desc>
+<rect x="8" y="10" width="304" height="320" class="fs l w1"/>
+<line x1="48" y1="10" x2="48" y2="330" class="l w1"/>
+<text x="28" y="31" text-anchor="middle">項番</text>
+<text x="180" y="31" text-anchor="middle">責務</text>
+<line x1="8" y1="40" x2="312" y2="40" class="l w1"/>
+<text x="28" y="78" text-anchor="middle">1</text>
+<text x="56" y="61">アプリケーションソフトウェアに対して，</text>
+<text x="56" y="78">データ利用時のアクセス制御と暗号化の</text>
+<text x="56" y="95">設定を行う。</text>
+<line x1="8" y1="106" x2="312" y2="106" class="l w1"/>
+<text x="28" y="144" text-anchor="middle">2</text>
+<text x="56" y="127">アプリケーションソフトウェアに対して，</text>
+<text x="56" y="144">セキュアプログラミングとソースコード</text>
+<text x="56" y="161">の脆弱性診断を行う。</text>
+<line x1="8" y1="172" x2="312" y2="172" class="l w1"/>
+<text x="28" y="201" text-anchor="middle">3</text>
+<text x="56" y="193">DBMSに対して，修正プログラム適用と</text>
+<text x="56" y="210">権限設定を行う。</text>
+<line x1="8" y1="222" x2="312" y2="222" class="l w1"/>
+<text x="28" y="251" text-anchor="middle">4</text>
+<text x="56" y="243">OSに対して，修正プログラム適用と</text>
+<text x="56" y="260">権限設定を行う。</text>
+<line x1="8" y1="272" x2="312" y2="272" class="l w1"/>
+<text x="28" y="301" text-anchor="middle">5</text>
+<text x="56" y="293">ハードウェアに対して，アクセス制御と</text>
+<text x="56" y="310">物理セキュリティ確保を行う。</text>
+</svg>
