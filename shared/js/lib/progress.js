@@ -30,6 +30,7 @@ export function defaultState() {
     exams: [],
     examSeen: {}, // 模試で最後に出た時刻（問題ID → ミリ秒）。次の模試で、まだ出ていない問題・古く出た問題を優先するのに使う
     later: {}, // 「あとで見る」の印（問題ID → 印を付けた時刻のミリ秒）
+    laterCards: {}, // 用語カードの「あとで見る」の印（カードID → 印を付けた時刻のミリ秒）
     challenge: { runs: 0, best: 0 },
     dochi: { runs: 0, best: 0, bestCombo: 0 }, // 「どっち？」早押しの記録（回数・最高の正解数・最高コンボ）
     settings: { sound: false, sfxVolume: DEFAULT_SFX_VOLUME, bgm: false, bgmVolume: DEFAULT_BGM_VOLUME, bgmTrack: 'auto', bgmHome: false, bgmHomeTrack: 'title', vibrate: true, dailyGoal: DEFAULT_DAILY_GOAL, theme: 'light', textSize: DEFAULT_TEXT_SIZE, mapView: DEFAULT_MAP_VIEW, cardView: DEFAULT_CARD_VIEW, weakOrder: DEFAULT_WEAK_ORDER, examDate: null, examAsked: false, introSeen: false },
@@ -64,6 +65,7 @@ export function mergeState(saved) {
   }
   o.examSeen = seen;
   o.later = normalizeLater(saved.later); // 「あとで見る」。古い記録（項目なし）は空、数でない値は捨てる
+  o.laterCards = normalizeLater(saved.laterCards); // カードの「あとで見る」。古い記録（項目なし）は空、数でない値は捨てる
   o.dochi = normalizeDochi(saved.dochi); // 「どっち？」早押し。古い記録（項目なし）は0、数でない値は0
   o.forecast = normalizeForecast(saved.forecast); // 合格予想の推移。古い記録（項目なし）は空、日付でないキー・範囲外の値は捨てる
   o.boss = normalizeBoss(saved.boss); // 章のボスの撃破回数。古い記録（項目なし）は空

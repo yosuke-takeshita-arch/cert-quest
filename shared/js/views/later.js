@@ -1,6 +1,6 @@
 // 「あとで見る」: 印を付けた問題の一覧と、解かずに読む画面（要件定義書 §3-4）。数え方・並べ方は lib/later.js。
 import { h } from '../ui.js';
-import { laterItems } from '../lib/later.js';
+import { laterItems, laterCardItems } from '../lib/later.js';
 import { startSession } from './play.js';
 import { explanation, laterButton, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 import { openCardSheet, statusChip } from './cards.js';
@@ -33,6 +33,7 @@ function laterSpec(app) {
   };
 }
 
+let kind = 'q'; // 一覧の「問題／カード」の切り替え（画面を出入りしても覚えておく）
 let sortOrder = 'recent'; // 画面を出入りしても、選んだ並べ方を覚えておく（起動の間だけ）
 
 export function renderLater(app, id) {
@@ -43,6 +44,15 @@ function renderLaterList(app) {
   const root = h('section', { class: 'view later' });
   root.appendChild(h('button', { class: 'btn ghost back', type: 'button', onClick: () => app.go('#/more') }, '← もっと'));
   root.appendChild(h('h1', { text: 'あとで見る' }));
+  const kindSw = h('div', { class: 'map-switch', role: 'group', 'aria-label': '問題かカードか' });
+  for (const [key, label] of [['q', '問題'], ['card', 'カード']]) {
+    kindSw.appendChild(h('button', { class: 'map-switch-btn' + (kind === key ? ' on' : ''), type: 'button', 'data-later-kind': key, 'aria-pressed': String(kind === key), onClick: () => {
+      kind = key;
+      app.go('#/later');
+    } }, label));
+  }
+  root.appendChild(kindSw);
+  if (kind === 'card') return renderCardList(app, root);
   const items = laterItems(app.state, app.data.questions, sortOrder);
   if (!items.length) {
     root.appendChild(h('div', { class: 'card empty', 'data-later-empty': '1' },
@@ -66,6 +76,35 @@ function renderLaterList(app) {
     list.appendChild(h('button', { class: 'later-item', type: 'button', 'data-later-item': q.id, onClick: () => app.go('#/later/' + encodeURIComponent(q.id)) },
       h('span', { class: 'small muted', text: chapterOf(q) + '・' + dayLabel(at) }),
       h('span', { class: 'later-stem', text: stemPreview(q.stem) })));
+  }
+  root.appendChild(list);
+  return root;
+}
+
+/** カードの一覧（「カード」を選んだとき）。 */
+function renderCardList(app, root) {
+  const items = laterCardItems(app.state, app.data.concepts, sortOrder);
+  if (!items.length) {
+    root.appendChild(h('div', { class: 'card empty', 'data-later-card-empty': '1' },
+      h('p', { text: '「あとで見る」のカードはまだありません。' }),
+      h('p', { class: 'small muted', text: '用語カードの題名の下にある「あとで見る」ボタンを押すと、ここに集まります。' })));
+    return root;
+  }
+  root.appendChild(h('p', { class: 'small muted', text: '印を付けたカードは ' + items.length + ' 枚です。カードを押すと開きます。' }));
+  const sw = h('div', { class: 'map-switch', role: 'group', 'aria-label': '並べ方' });
+  for (const [key, label] of [['recent', '印を付けた順'], ['chapter', '章の順']]) {
+    sw.appendChild(h('button', { class: 'map-switch-btn' + (sortOrder === key ? ' on' : ''), type: 'button', 'data-later-sort': key, 'aria-pressed': String(sortOrder === key), onClick: () => {
+      sortOrder = key;
+      app.go('#/later');
+    } }, label));
+  }
+  root.appendChild(sw);
+  const list = h('div', { class: 'card later-list' });
+  for (const { c, at } of items) {
+    list.appendChild(h('button', { class: 'later-item', type: 'button', 'data-later-card-item': c.id, onClick: () => app.go('#/card/' + encodeURIComponent(c.id)) },
+      h('span', { class: 'small muted', text: (c.syllabus.slice(1, 3).join(' › ') || c.syllabus[0] || '') + '・' + dayLabel(at) }),
+      h('strong', { class: 'later-stem', text: c.title }),
+      c.oneLine ? h('span', { class: 'small', text: stemPreview(c.oneLine) }) : null));
   }
   root.appendChild(list);
   return root;

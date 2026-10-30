@@ -1,7 +1,7 @@
 // 「あとで見る」の保存・互換・一覧の並びの検証。ブラウザ無しで node から叩く。
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeLater, isLater, toggleLater, laterItems, laterCount } from '../js/lib/later.js';
+import { normalizeLater, isLater, toggleLater, laterItems, laterCount, isLaterCard, toggleLaterCard, laterCardItems, laterCardCount } from '../js/lib/later.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
 import { parseBackup, serializeBackup } from '../js/lib/backup.js';
 
@@ -91,4 +91,51 @@ test('バックアップ: later の無い古いファイルは空で読める', 
   const r = parseBackup(text, 'dx-biz');
   assert.equal(r.ok, true);
   assert.deepEqual(r.state.later, {});
+});
+
+// ---- カードの「あとで見る」（要件定義書 §3-4-b） ----
+const C = ['c1', 'c2', 'c3', 'c4'].map((id) => ({ id, title: id }));
+
+test('カード: 初期は空。古い記録は空で補い、壊れた値は捨てる', () => {
+  assert.deepEqual(defaultState().laterCards, {});
+  assert.deepEqual(mergeState({ xp: 5 }).laterCards, {});
+  for (const bad of [null, 'x', 5, [1], true]) assert.deepEqual(mergeState({ laterCards: bad }).laterCards, {}, String(bad));
+  assert.deepEqual(mergeState({ laterCards: { a: 10, b: 'x', c: -1, d: 20 } }).laterCards, { a: 10, d: 20 });
+});
+
+test('カード: 印のオン／オフ。問題の印とは別に持つ', () => {
+  const s = defaultState();
+  assert.equal(isLaterCard(s, 'c1'), false);
+  assert.equal(toggleLaterCard(s, 'c1', new Date(1000)), true);
+  assert.equal(s.laterCards.c1, 1000);
+  assert.equal(isLaterCard(s, 'c1'), true);
+  assert.equal(isLater(s, 'c1'), false);
+  assert.equal(toggleLaterCard(s, 'c1', new Date(2000)), false);
+  assert.deepEqual(s.laterCards, {});
+  const bare = {};
+  assert.equal(toggleLaterCard(bare, 'c2', new Date(5)), true);
+  assert.deepEqual(bare.laterCards, { c2: 5 });
+});
+
+test('カード: 一覧は新しい順／章の順。消えたカードは出さず件数にも数えない', () => {
+  const s = defaultState();
+  s.laterCards = { c3: 300, c1: 100, c2: 300, GONE: 999 };
+  assert.deepEqual(laterCardItems(s, C, 'recent').map((x) => x.c.id), ['c2', 'c3', 'c1']);
+  assert.deepEqual(laterCardItems(s, C, 'chapter').map((x) => x.c.id), ['c1', 'c2', 'c3']);
+  assert.equal(laterCardCount(s, C), 3);
+  assert.equal(s.laterCards.GONE, 999);
+  assert.deepEqual(laterCardItems(null, C), []);
+  assert.equal(laterCardCount(defaultState(), C), 0);
+});
+
+test('カード: バックアップに含まれ、読み込みで戻る。古いファイルは空', () => {
+  const s = defaultState();
+  toggleLaterCard(s, 'c1', new Date(1234));
+  const r = parseBackup(serializeBackup('g-kentei', s), 'g-kentei');
+  assert.equal(r.ok, true);
+  assert.deepEqual(r.state.laterCards, { c1: 1234 });
+  const old = defaultState();
+  delete old.laterCards;
+  const text = JSON.stringify({ kind: 'cert-quest-backup', app: 'dx-biz', version: 1, state: old });
+  assert.deepEqual(parseBackup(text, 'dx-biz').state.laterCards, {});
 });

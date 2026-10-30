@@ -45,3 +45,40 @@ export function laterItems(state, questions, order = 'recent') {
 export function laterCount(state, questions) {
   return laterItems(state, questions).length;
 }
+
+// ---- 用語カード（要件定義書 §3-4-b）。state.laterCards = { カードID: 印を付けた時刻（ミリ秒） } ----
+
+export function isLaterCard(state, id) {
+  return !!state.laterCards && Object.prototype.hasOwnProperty.call(state.laterCards, id);
+}
+
+/** カードの印のオン／オフを切り替える。戻り値は切り替えた後の状態（true＝印あり）。 */
+export function toggleLaterCard(state, id, now = new Date()) {
+  if (!state.laterCards || typeof state.laterCards !== 'object') state.laterCards = {};
+  if (isLaterCard(state, id)) {
+    delete state.laterCards[id];
+    return false;
+  }
+  state.laterCards[id] = now.getTime();
+  return true;
+}
+
+/**
+ * 印を付けたカードの一覧。データに無い（消えた）カードは出さない。
+ * order: 'recent'＝印を付けた新しい順／'chapter'＝カードデータの並び順
+ * 戻り値: [{ c, at }]
+ */
+export function laterCardItems(state, concepts, order = 'recent') {
+  const later = normalizeLater(state && state.laterCards);
+  const items = [];
+  concepts.forEach((c, i) => {
+    if (Object.prototype.hasOwnProperty.call(later, c.id)) items.push({ c, at: later[c.id], i });
+  });
+  if (order === 'chapter') items.sort((a, b) => a.i - b.i);
+  else items.sort((a, b) => b.at - a.at || a.i - b.i);
+  return items.map(({ c, at }) => ({ c, at }));
+}
+
+export function laterCardCount(state, concepts) {
+  return laterCardItems(state, concepts).length;
+}

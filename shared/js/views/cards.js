@@ -6,6 +6,7 @@ import { richEl } from './richtext.js';
 import { basicIdsOfTitle } from '../lib/basics.js';
 import { reportButton } from './report.js';
 import { statsByKey, questionsToJudge, WEAK_BELOW } from '../lib/weakness.js';
+import { laterCardButton } from './explain.js';
 import { CARD_VIEWS, normalizeCardView, cardSections } from '../lib/cardtree.js';
 
 const RELATION_LABEL = {
@@ -42,6 +43,7 @@ export function cardBody(app, c, open) {
   const wrap = h('article', { class: 'card concept' });
   wrap.appendChild(h('p', { class: 'crumb small muted', text: c.syllabus.join(' › ') }));
   wrap.appendChild(h('h2', {}, c.title, ' ', statusChip(c.status)));
+  wrap.appendChild(h('div', { class: 'later-row' }, laterCardButton(app, c)));
   const own = () => basicIdsOfTitle(d.basicsMatcher, c.title); // このカード自身の題名と同じ基礎のことば（最初から『印を付けた』ことにして、自分の語には付けない）
   const seen = own(); // 基礎のことばの印。一言と『背景とポイント』は続けて読むので1区画（同じ語に印を付けるのは最初の1回だけ）
   if (c.oneLine) wrap.appendChild(richEl(app, 'p', { class: 'one-line' }, c.oneLine, seen));

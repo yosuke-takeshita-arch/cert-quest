@@ -1,7 +1,7 @@
 // 解説4点セットと、間違えたときの「つまずきポイント」。問題画面と模試の見直しで共通に使う。
 import { h, icon, characterImg, tappable } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
-import { isLater, toggleLater } from '../lib/later.js';
+import { isLater, toggleLater, isLaterCard, toggleLaterCard } from '../lib/later.js';
 import { refChip, sourcesList } from './cards.js';
 import { figureBlock } from './figure.js';
 import { richEl } from './richtext.js';
@@ -41,6 +41,23 @@ export function laterButton(app, q, opts = {}) {
     });
   } });
   laterContent(b, on, opts.compact);
+  return b;
+}
+
+/** 用語カードの「あとで見る」ボタン（見た目・押したら同じカードのボタンを全部そろえる動きは問題用と同じ）。 */
+export function laterCardButton(app, c) {
+  const on = isLaterCard(app.state, c.id);
+  const b = h('button', { class: 'btn later-btn' + (on ? ' on' : ''), type: 'button', 'data-later-card': c.id, 'aria-pressed': String(on), onClick: () => {
+    const now = toggleLaterCard(app.state, c.id, new Date());
+    app.commit();
+    document.querySelectorAll('.later-btn').forEach((x) => {
+      if (x.getAttribute('data-later-card') !== c.id) return;
+      x.classList.toggle('on', now);
+      x.setAttribute('aria-pressed', String(now));
+      laterContent(x, now, false);
+    });
+  } });
+  laterContent(b, on, false);
   return b;
 }
 
