@@ -35,7 +35,7 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
    `node ~/.claude/projects/C--Users-Panasonic-Documents-Projects-cert-quest/memory/conversation_log_build.cjs <memory>/conversation_log.md ~/.claude/projects/C--Users-Panasonic-Documents-Projects/86acdb26-1293-400c-b456-9d6b6bf1258e.jsonl ~/.claude/projects/C--Users-Panasonic-Documents-Projects-cert-quest/*.jsonl`
    ログはリポジトリに入れない
 9. **先生に伝える**: 版の番号、確かめたこと、実機で見てほしいこと（音・動き・iPhone など、まだ誰も確かめていないこと）
-   - **アプリを初めて公開したときは、入れ方を必ず書く**: Android Chrome のメニュー「ホーム画面に追加」からは入らない（全アプリが同じオリジンのため。開くと「アプリを開けませんでした」）。ホーム画面の「アプリとしてインストール」ボタンから入れる。メニューから入れて失敗したアイコンは長押しで消してから。2026-10-14（生成AIパスポート）と 2026-10-30（ガードの砦）の2回、書かずに渡して先生に失敗させた
+   - **アプリを初めて公開したときは、入れ方を必ず書く**: Android Chrome のメニュー「ホーム画面に追加」からは入らない（全アプリが同じオリジンのため。開くと「アプリを開けませんでした」）。ホーム画面の「アプリとしてインストール」ボタンから入れる（メニューで断られてもアイコンはできない。2026-10-30、門番が「できたアイコンを消して」と確かめずに書き、先生に叱られた）。2026-10-14（生成AIパスポート）と 2026-10-30（ガードの砦）の2回、書かずに渡して先生に失敗させた
 
 ## してはいけないこと
 - private/（市販の資料・学会の資料）と会話ログを公開しない（`.gitignore` 済みか `git check-ignore` で確かめる）
