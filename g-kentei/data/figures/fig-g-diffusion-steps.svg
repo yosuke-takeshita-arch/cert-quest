@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 660" role="img" aria-labelledby="fig-g-diffusion-steps-t fig-g-diffusion-steps-d">
 <title id="fig-g-diffusion-steps-t">画像1枚を作るまでの回数：GAN は1回、DDPM は T＝1000 回</title>
-<desc id="fig-g-diffusion-steps-d">画像1枚を作るまでに、ネットワークを何回通すかを比べる。①GAN は、ノイズ z を生成器に1回通すと画像ができる。②DDPM は Denoising Diffusion Probabilistic Models の4語の頭文字（Ho ら、2020）。語ごとに訳すと、Denoising＝ノイズ除去、Diffusion＝拡散、Probabilistic＝確率の、Models＝モデルで、日本語にすると『ノイズ除去の拡散確率モデル』。DDPM は、ノイズから出発して、ノイズを取り除く同じネットワークを1回目、2回目、3回目と順に通し、999回目、1000回目を通してやっと画像になる。論文は段階の数を T＝1000 にした。前の段の結果を待って次を計算するので、一度にはできない。③通す回数を棒で比べると、GAN は1回、DDPM は1000回で、棒の長さは回数に比例させた。誤りの文『生成を1回のネットワークの計算で終えられるので、GAN より生成が速い』は、GAN の側の性質を言っている。DDPM は1000回くり返すので生成が遅い。T＝1000 は論文の設定で、1000回は設定から導いた数。</desc>
+<desc id="fig-g-diffusion-steps-d">画像1枚を作るまでに、ネットワークを何回通すかを比べる。①GAN は、ノイズ z を生成器に1回通すと画像ができる。②DDPM は Denoising Diffusion Probabilistic Models の4語の頭文字（Ho ら、2020）。語ごとに訳すと、Denoising＝ノイズ除去、Diffusion＝拡散、Probabilistic＝確率の、Models＝モデルで、日本語にすると『ノイズ除去の拡散確率モデル』。DDPM は、ノイズから出発して、ノイズを取り除く同じネットワークを1回目、2回目、3回目と順に通し、999回目、1000回目を通してやっと画像になる。論文は段階の数を T＝1000 にした。前の段の結果を待って次を計算するので、一度にはできない。③通す回数を棒で比べると、GAN は1回、DDPM は1000回で、棒の長さは回数に比例させた。よくある思い違い『生成を1回のネットワークの計算で終えられるので、GAN より生成が速い』は、GAN の側の性質を言っている。DDPM は1000回くり返すので生成が遅い。T＝1000 は論文の設定で、1000回は設定から導いた数。</desc>
 <text x="12" y="22" class="tl">画像1枚を作るまでの回数</text>
 <text x="12" y="42" class="tm">ネットワークを何回通すかを比べる</text>
 <text x="12" y="68" class="tb">①GAN：生成器を1回通す</text>
@@ -68,7 +68,7 @@
 <text x="298" y="526" class="tb twn" text-anchor="end">1000回</text>
 <text x="12" y="550" class="tm">（棒の長さは回数に比例させた）</text>
 <line x1="12" y1="564" x2="308" y2="564" class="l sb w1"/>
-<text x="12" y="588" class="tb tng">誤りの文：『1回の計算で終わり速い』</text>
+<text x="12" y="588" class="tb tng">思い違い：『1回の計算で終わり速い』</text>
 <text x="12" y="608">1回で終わるのは GAN のほう</text>
 <text x="12" y="628">DDPM は1000回くり返すので、生成が遅い</text>
 <text x="12" y="650" class="tm">（T＝1000 は論文の設定。回数はそこから導いた数）</text>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-g-elmo-context-t fig-g-elmo-context-d">
 <title id="fig-g-elmo-context-t">ELMo は文脈で単語のベクトルが変わる（word2vec との違い）</title>
-<desc id="fig-g-elmo-context-d">同じ英単語 play を2つの文で比べる。文Aは野球で見事な play（好プレー）、文Bはブロードウェイの play（劇）。ELMo の論文の表4の文を短くした例。①word2vec は1つの単語に1つの固定ベクトルを持ち、表から play の行を引くだけで文は見ないので、文Aの play と文Bの play は同じベクトルになり、好プレーと劇を区別できない。②ELMo は、文を前から読む LSTM と後ろから読む LSTM の中身（内部状態）から、その場でベクトルを作るので、文Aの play と文Bの play は別のベクトルになり、多義語を区別できる。誤りの文『ELMo は文脈によらず各単語に1つの固定ベクトルを割り当てる』は、word2vec の性質を言っている。棒の高さは説明のための例。</desc>
+<desc id="fig-g-elmo-context-d">同じ英単語 play を2つの文で比べる。文Aは野球で見事な play（好プレー）、文Bはブロードウェイの play（劇）。ELMo の論文の表4の文を短くした例。①word2vec は1つの単語に1つの固定ベクトルを持ち、表から play の行を引くだけで文は見ないので、文Aの play と文Bの play は同じベクトルになり、好プレーと劇を区別できない。②ELMo は、文を前から読む LSTM と後ろから読む LSTM の中身（内部状態）から、その場でベクトルを作るので、文Aの play と文Bの play は別のベクトルになり、多義語を区別できる。よくある思い違い『ELMo は文脈によらず各単語に1つの固定ベクトルを割り当てる』は、word2vec の性質を言っている。棒の高さは説明のための例。</desc>
 <text x="12" y="22" class="tl">ELMo は文脈でベクトルが変わる</text>
 <text x="12" y="42" class="tm">同じ英単語 play を、2つの文で比べる</text>
 <rect x="12" y="55" width="12" height="12" class="fas sa" stroke-width="1"/>
@@ -48,7 +48,7 @@
 <text x="235" y="444" class="tm" text-anchor="middle">文B の play</text>
 <text x="12" y="470" class="tb tok">→ 別の棒の形。多義語を区別できる</text>
 <line x1="12" y1="488" x2="308" y2="488" class="l sb w1"/>
-<text x="12" y="512" class="tb tng">誤りの文：『ELMo は文脈によらず固定』</text>
+<text x="12" y="512" class="tb tng">思い違い：『ELMo は文脈によらず固定』</text>
 <text x="12" y="532">固定なのは word2vec。ELMo はそれを解いた側</text>
 <text x="12" y="558" class="tm">（棒の高さは説明のための例）</text>
 </svg>
