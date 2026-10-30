@@ -3,7 +3,7 @@
 self.CERT_QUEST = {
   appId: 'sc',
   version: '4',
-  // 地図・ボス・章のバッジの絵はまだ無い。置いたら appFiles に足す（config.json の mapImages も）
-  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './images/logo.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png'],
+  // 地図・章のバッジの絵はまだ無い。ボスの絵は届いた順に置く。置いたら appFiles に足す（地図は config.json の mapImages も）
+  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './images/logo.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './images/bosses/boss-1.webp'],
 };
 importScripts('../shared/sw-core.js');
