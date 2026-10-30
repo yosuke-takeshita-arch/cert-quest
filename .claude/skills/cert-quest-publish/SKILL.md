@@ -15,11 +15,11 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
    - `node tools/check-data.js g-kentei/data/concepts/*.json g-kentei/data/questions/*.json`
    - `node tools/check-data-dx.js dx-biz/data/concepts/*.json dx-biz/data/questions/*.json`
    - `node tools/check-data.js ai-passport/data/concepts/*.json ai-passport/data/questions/*.json`（2026-10-18 時点で問題786問・カードあり。毎回回す。組み合わせ問題の COMBO-MODE もここで見る）
-   - `node tools/check-data.js sc/data/concepts/*.json sc/data/questions/*.json`（情報処理安全確保支援士。2026-10-29 時点で問題・カードは空。過去問題の出典 `pastExam` と、過去問題がオリジナルより多くないこと〔PAST 行〕もここで見る）
+   - `node tools/check-data.js sc/data/concepts/*.json sc/data/questions/*.json`（情報処理安全確保支援士。2026-10-30 時点で10章・問題820問・カード668枚。過去問題の出典 `pastExam` と、過去問題がオリジナルより多くないこと〔PAST 行〕もここで見る）
    - `node tools/check-answers-unchanged.cjs`（説明文を書き直したとき。引数を省くと g-kentei・dx-biz・ai-passport・sc を全部見る）
 3. **service worker の版を上げる**: `g-kentei/sw.js` と `dx-biz/sw.js` の5行目 `version: 'NN'` を、両方とも同じ番号で1つ上げる（shared/ を変えたら両方。片方だけにしない）
    - `ai-passport/sw.js` の5行目 `version: 'N'` は、G検定・DX と別の番号（2026-10-13 に 1 から始めた）。shared/ か ai-passport/ を変えたら1つ上げる。G検定・DX の番号にそろえない
-   - `sc/sw.js` の5行目 `version: 'N'` も独自の番号（2026-10-29 に 1 から始めた。まだ公開していない）。shared/ か sc/ を変えたら1つ上げる。公開するときは先生の許可を取る
+   - `sc/sw.js` の5行目 `version: 'N'` も独自の番号（2026-10-29 に 1 から始めた。2026-10-30 に版 1 のまま初めて公開。トップの index.html にはリンクを置いていない＝先生だけが使う）。shared/ か sc/ を変えたら1つ上げる
    - `shindanshi/1ji/sw.js` の7行目 `version: 'N'` も独自の番号（2026-10-13 に版 1 のまま初めて公開）。shared/ か shindanshi/1ji/ を変えたら1つ上げる
    - **上げたあと、もう一度 `npm --prefix shared test` を回す**（2026-10-14、版を上げる前にだけ回して公開し、版を '1' に固定したテストが落ちたまま出た）
    - shared/ を変えたら4つとも上げる（どのアプリを入れた人にも古い shared/ が出続けるため）
