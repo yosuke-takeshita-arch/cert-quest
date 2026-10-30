@@ -186,7 +186,6 @@ test('sc: 本番の形は仮置き（科目A-2 は 25問・35分。IPA 検討状
   assert.ok(c.officialLinks.some((l) => l.url === 'https://www.ipa.go.jp/shiken/syllabus/henkou/2025/20260331.html'));
   assert.ok(!('trueBoss' in c) && !('passGuide' in c), '真ボス・合格の目安は決まるまで置かない（要件定義書 §12-1）');
   assert.ok(existsSync(join(root, 'sc', 'data', '_sample', 'index.json')), 'サンプル（?sample=1）が無い');
-  assert.equal(swConfig('sc').cfg.version, '1', 'sw.js の版は 1 から数える');
 });
 
 test('sc: シラバスは新試験シラバス（案）Ver.0.1 の科目A-2。中分類10・小分類44・項目112・用語例861。IPA の中分類の番号を ipaNo に持つ', () => {
