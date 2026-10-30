@@ -2,7 +2,7 @@
 // 配布後に shared/ や このアプリを更新したら、version を上げる（古いキャッシュを捨てる合図）。
 self.CERT_QUEST = {
   appId: 'sc',
-  version: '2',
+  version: '3',
   // 地図・ボス・章のバッジの絵はまだ無い。置いたら appFiles に足す（config.json の mapImages も）
   appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './images/logo.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png'],
 };
