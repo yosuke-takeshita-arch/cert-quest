@@ -1,7 +1,7 @@
 // カードめくり（要件定義書 §3-4-c）と、印を付けたカードの問題（§3-4-b）の検証。ブラウザ無しで node から叩く。
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeFlip, markFlip, flipDeck, flipCounts, flipMajors, FLIP_MAX } from '../js/lib/flip.js';
+import { normalizeFlip, markFlip, flipDeck, flipCounts, sectionCards, flipWeakSections, FLIP_MAX } from '../js/lib/flip.js';
 import { laterCardQuestions, toggleLaterCard } from '../js/lib/later.js';
 import { defaultState, mergeState } from '../js/lib/progress.js';
 import { parseBackup, serializeBackup } from '../js/lib/backup.js';
@@ -56,9 +56,36 @@ test('データから消えたカードの記録は数えず、記録には残�
   assert.ok(s.flip.gone);
 });
 
-test('大項目ごとに分ける（最初に出た順）', () => {
-  assert.deepEqual(flipMajors(C).map((m) => [m.name, m.cards.length]), [['第1章', 3], ['第2章', 2]]);
-  assert.deepEqual(flipMajors([{ id: 'z', syllabus: [] }]).map((m) => m.name), ['その他']);
+const SEC = [
+  { key: 'A', name: '技術', count: 4, cards: [], children: [
+    { key: 'A1', name: '機械学習', count: 3, cards: [C[0]], children: [
+      { key: 'A1a', name: '教師あり', count: 2, cards: [C[1], C[2]], children: [] }] },
+    { key: 'A2', name: '深層学習', count: 1, cards: [C[3]], children: [] }] },
+  { key: 'B', name: '法律', count: 1, cards: [], children: [
+    { key: 'B1', name: '個人情報', count: 1, cards: [C[4]], children: [] }] },
+];
+
+test('節の下の全部のカード（木の順）', () => {
+  assert.deepEqual(sectionCards(SEC[0]).map((c) => c.id), ['c1', 'c2', 'c3', 'c4']);
+  assert.deepEqual(sectionCards(SEC[0].children[0].children[0]).map((c) => c.id), ['c2', 'c3']);
+  assert.deepEqual(sectionCards({ key: 'z' }), []);
+});
+
+test('苦手な分野: しきい値を下回り判定できる中項目・小項目だけ、正答率の低い順。大項目は入れない', () => {
+  const st = (rate, qualified = true) => ({ rate, qualified, percent: Math.round(rate * 100) });
+  const rates = new Map([['A', st(0.1)], ['A1', st(0.6)], ['A1a', st(0.79)], ['A2', st(0.8)], ['B1', st(0.3)], ['B', st(0.2, false)]]);
+  // 0.8 ちょうどは苦手でない（境界）。0.79 は苦手。大項目 A は入れない
+  assert.deepEqual(flipWeakSections(SEC, rates, 0.8).map((x) => x.sec.key), ['B1', 'A1', 'A1a']);
+  assert.deepEqual(flipWeakSections(SEC, rates, 0.8, 2).map((x) => x.sec.key), ['B1', 'A1']);
+  rates.set('B1', st(0.3, false)); // 答えた数が足りない分野は入れない
+  assert.deepEqual(flipWeakSections(SEC, rates, 0.8).map((x) => x.sec.key), ['A1', 'A1a']);
+  assert.deepEqual(flipWeakSections(SEC, new Map(), 0.8), []);
+});
+
+test('苦手な分野: 同じ正答率なら木の順', () => {
+  const st = { rate: 0.5, qualified: true, percent: 50 };
+  const rates = new Map([['B1', st], ['A2', st], ['A1', st]]);
+  assert.deepEqual(flipWeakSections(SEC, rates, 0.8).map((x) => x.sec.key), ['A1', 'A2', 'B1']);
 });
 
 test('書き出し・読み込みで flip が残る', () => {

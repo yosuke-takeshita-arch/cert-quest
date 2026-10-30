@@ -51,13 +51,26 @@ export function flipCounts(state, cards) {
   return { ok, ng, fresh: cards.length - ok - ng };
 }
 
-/** 大項目（シラバスの1段目）ごとに分ける。並びはカードデータの順で最初に出た順。 */
-export function flipMajors(cards) {
-  const m = new Map();
-  for (const c of cards) {
-    const k = (c.syllabus && c.syllabus[0]) || 'その他';
-    if (!m.has(k)) m.set(k, []);
-    m.get(k).push(c);
-  }
-  return [...m].map(([name, list]) => ({ name, cards: list }));
+/** 節（cardtree.js の cardSections の1要素）の下の全部のカード。並びは木の順。 */
+export function sectionCards(sec) {
+  const out = [...(sec.cards || [])];
+  for (const ch of sec.children || []) out.push(...sectionCards(ch));
+  return out;
+}
+
+/**
+ * 苦手な分野（要件定義書 §3-4-c）。中項目・小項目（深さ1以上）のうち、正答率が判定できて weakBelow を下回るもの。
+ * rates は weakness.js の statsByKey の結果（節の key → { qualified, rate, percent }）。正答率の低い順（同じなら木の順）に最大 max 個。
+ * 戻り値: [{ sec, stat }]
+ */
+export function flipWeakSections(sections, rates, weakBelow, max = 5) {
+  const out = [];
+  const walk = (s, depth) => {
+    const st = depth >= 1 ? rates.get(s.key) : null;
+    if (st && st.qualified && st.rate < weakBelow && s.count > 0) out.push({ sec: s, stat: st, i: out.length });
+    for (const ch of s.children || []) walk(ch, depth + 1);
+  };
+  for (const s of sections) walk(s, 0);
+  out.sort((a, b) => a.stat.rate - b.stat.rate || a.i - b.i);
+  return out.slice(0, max).map(({ sec, stat }) => ({ sec, stat }));
 }
