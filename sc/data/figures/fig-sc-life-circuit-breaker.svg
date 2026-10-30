@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 380" role="img" aria-labelledby="fig-sc-life-circuit-breaker-t fig-sc-life-circuit-breaker-d">
+<title id="fig-sc-life-circuit-breaker-t">サーキットブレーカーの3つの状態</title>
+<desc id="fig-sc-life-circuit-breaker-d">注文サービスが決済サービスを呼ぶ間に置くサーキットブレーカーの3つの状態と移り方の図。Closed（閉）はふつうに決済を呼び、失敗の数を数える。1分間に失敗が5回を超えると Open（開）へ移る。Open は決済を呼ばずに、すぐエラー（ただいま決済できません）を返す。30秒たつと Half-Open（半開）へ移る。Half-Open は試しに1件だけ決済を呼び、成功すれば Closed へ戻り、失敗すれば Open へ戻る。</desc>
+<text x="12" y="20" class="tb">注文サービス → ブレーカー → 決済サービス</text>
+<text x="12" y="40" class="tm">ブレーカーが今の状態で「呼ぶか」を決める</text>
+<rect x="20" y="54" width="280" height="62" class="fok sok" stroke-width="1.5" rx="8"/>
+<text x="32" y="76" class="tb">Closed（閉）：ふつうに呼ぶ</text>
+<text x="32" y="98">決済を呼び、失敗の数を数える</text>
+<line x1="160" y1="116" x2="160" y2="150" class="l w1"/>
+<polygon points="155,150 160,160 165,150" class="ft"/>
+<text x="170" y="140" class="tm">1分に失敗5回超</text>
+<rect x="20" y="162" width="280" height="62" class="fng sng" stroke-width="1.5" rx="8"/>
+<text x="32" y="184" class="tb">Open（開）：呼ばない</text>
+<text x="32" y="206">すぐ「ただいま決済できません」</text>
+<line x1="160" y1="224" x2="160" y2="258" class="l w1"/>
+<polygon points="155,258 160,268 165,258" class="ft"/>
+<text x="170" y="248" class="tm">30秒たった</text>
+<rect x="20" y="270" width="280" height="62" class="fwn swn" stroke-width="1.5" rx="8"/>
+<text x="32" y="292" class="tb">Half-Open（半開）：1件だけ試す</text>
+<text x="32" y="314">成功→Closed へ　失敗→Open へ</text>
+<text x="12" y="360" class="tm">待つ要求がたまらず、障害が注文側へ広がらない</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 346" role="img" aria-labelledby="fig-sc-life-maintenance-t fig-sc-life-maintenance-d">
+<title id="fig-sc-life-maintenance-t">保守のタイプ（直す理由で4つに分ける）</title>
+<desc id="fig-sc-life-maintenance-d">保守を直す理由で4つに分けた図。上の段は「誤りを直す」で、見つかった不具合を直す是正保守（例：集計が止まると連絡があり直す）と、故障になる前に潜んだ欠陥を直す予防保守（例：2038年を超えると誤る日付の扱いを点検で見つけて直す）。下の段は「よりよく変える」で、外の環境の変化に合わせる適応保守（例：消費税率の変更に合わせる）と、性能や保守性をよくする完全化保守（例：応答を速くする）。下の段の2つをまとめて改良保守と呼ぶことがある。</desc>
+<text x="12" y="20" class="tb">保守は「直す理由」で4つに分ける</text>
+<rect x="8" y="32" width="304" height="140" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="54" class="tb">誤りを直す</text>
+<rect x="18" y="64" width="136" height="98" class="fas sb" stroke-width="1" rx="4"/>
+<text x="26" y="84" class="tb">是正保守</text>
+<text x="26" y="104">見つかった不具合</text>
+<text x="26" y="122">を直す</text>
+<text x="26" y="146" class="tm">例：集計が止まる</text>
+<rect x="166" y="64" width="136" height="98" class="fas sb" stroke-width="1" rx="4"/>
+<text x="174" y="84" class="tb">予防保守</text>
+<text x="174" y="104">故障になる前に</text>
+<text x="174" y="122">潜んだ欠陥を直す</text>
+<text x="174" y="146" class="tm">例：2038年の日付</text>
+<rect x="8" y="184" width="304" height="140" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="206" class="tb">よりよく変える（まとめて改良保守）</text>
+<rect x="18" y="216" width="136" height="98" class="fas sb" stroke-width="1" rx="4"/>
+<text x="26" y="236" class="tb">適応保守</text>
+<text x="26" y="256">外の環境の変化</text>
+<text x="26" y="274">に合わせる</text>
+<text x="26" y="298" class="tm">例：消費税率の変更</text>
+<rect x="166" y="216" width="136" height="98" class="fas sb" stroke-width="1" rx="4"/>
+<text x="174" y="236" class="tb">完全化保守</text>
+<text x="174" y="256">性能や保守性を</text>
+<text x="174" y="274">よくする</text>
+<text x="174" y="298" class="tm">例：応答を速くする</text>
+<text x="12" y="340" class="tm">分け方は保守の国際規格に基づく一般の整理</text>
+</svg>

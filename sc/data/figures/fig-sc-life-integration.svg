@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-sc-life-integration-t fig-sc-life-integration-d">
+<title id="fig-sc-life-integration-t">トップダウンテストとボトムアップテスト（スタブとドライバ）</title>
+<desc id="fig-sc-life-integration-d">3層のソフトウェア（上からアプリケーション層、ミドルウェア層、デバイスドライバ層。上の層が下の層を呼ぶ）を組み合わせて確かめる順番を2つ並べた図。上の区画はトップダウンテスト。上の2層ができていて、まだ無いデバイスドライバ層の代わりに、決まった値を返すだけのスタブ（呼ばれる側の仮のプログラム）を点線の箱で置く。下の区画はボトムアップテスト。下の2層ができていて、まだ無いアプリケーション層の代わりに、下の層を呼び出すだけのドライバ（呼ぶ側の仮のプログラム）を点線の箱で置く。どちらの区画でも、実線の箱ができている部品、点線の箱が仮の部品。</desc>
+<text x="12" y="20" class="tb">上の層が下の層を呼ぶ3層のソフトウェア</text>
+<text x="12" y="40" class="tm">実線の箱＝できた部品　点線の箱＝仮の部品</text>
+<rect x="8" y="52" width="304" height="170" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="74" class="tb">トップダウンテスト：上から組む</text>
+<rect x="40" y="86" width="136" height="30" class="fas sb" stroke-width="1" rx="4"/>
+<text x="108" y="106" text-anchor="middle">アプリケーション層</text>
+<line x1="108" y1="116" x2="108" y2="130" class="l w1"/>
+<rect x="40" y="130" width="136" height="30" class="fas sb" stroke-width="1" rx="4"/>
+<text x="108" y="150" text-anchor="middle">ミドルウェア層</text>
+<line x1="108" y1="160" x2="108" y2="174" class="l w1"/>
+<rect x="40" y="174" width="136" height="30" class="fwn l w1 dsh" rx="4"/>
+<text x="108" y="194" text-anchor="middle" class="tb">スタブ</text>
+<text x="186" y="182" class="tm">デバイスドライバ層</text>
+<text x="186" y="198" class="tm">の代わり</text>
+<text x="186" y="214" class="tm">（呼ばれる側）</text>
+<rect x="8" y="236" width="304" height="170" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="258" class="tb">ボトムアップテスト：下から組む</text>
+<rect x="40" y="270" width="136" height="30" class="fwn l w1 dsh" rx="4"/>
+<text x="108" y="290" text-anchor="middle" class="tb">ドライバ</text>
+<text x="186" y="278" class="tm">アプリケーション層</text>
+<text x="186" y="294" class="tm">の代わり</text>
+<text x="186" y="310" class="tm">（呼ぶ側）</text>
+<line x1="108" y1="300" x2="108" y2="314" class="l w1"/>
+<rect x="40" y="314" width="136" height="30" class="fas sb" stroke-width="1" rx="4"/>
+<text x="108" y="334" text-anchor="middle">ミドルウェア層</text>
+<line x1="108" y1="344" x2="108" y2="358" class="l w1"/>
+<rect x="40" y="358" width="136" height="30" class="fas sb" stroke-width="1" rx="4"/>
+<text x="108" y="378" text-anchor="middle">デバイスドライバ層</text>
+</svg>
