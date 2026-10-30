@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 352" role="img" aria-labelledby="fig-sc-svc-availability-t fig-sc-svc-availability-d">
+<title id="fig-sc-svc-availability-t">サービス可用性の数え方（分母はサービス提供時間）</title>
+<desc id="fig-sc-svc-availability-d">例は4月1日から6月30日の91日、毎日24時間で2,184時間。そのうち顧客と合意したバージョンアップの84時間は、サービスを提供しない時間なので分母から外す。残りの2,100時間がサービス提供時間で、これが分母。その中で故障により止まった10時間だけを、使えなかった時間として引く。可用性は2,090割る2,100で99.52パーセント。合意した停止を止まった時間としても引くと95.52パーセント、分母を2,184時間のままにすると95.70パーセントになり、どちらも誤り。</desc>
+<text x="12" y="20" class="tb">可用性＝使えた時間÷サービス提供時間</text>
+<text x="12" y="40" class="tm">例：91日×24時間＝2,184時間</text>
+<rect x="12" y="52" width="296" height="34" class="fs l w1"/>
+<rect x="12" y="52" width="30" height="34" class="fwn l w1"/>
+<rect x="290" y="52" width="10" height="34" class="fng sng w2"/>
+<text x="27" y="74" text-anchor="middle" class="tm">84h</text>
+<text x="166" y="74" text-anchor="middle">サービス提供時間</text>
+<text x="12" y="106" class="tm">左の84h＝合意した計画停止</text>
+<text x="12" y="124" class="tm">（提供しない時間）→分母から外す</text>
+<text x="12" y="144" class="tng">赤の10h＝故障で止まった時間</text>
+<text x="12" y="162" class="tng">（提供時間の中）→使えなかった時間</text>
+<rect x="12" y="176" width="296" height="74" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="198">分母　2,184－84＝2,100時間</text>
+<text x="24" y="218">使えた　2,100－10＝2,090時間</text>
+<text x="24" y="240" class="tb ta">2,090÷2,100≒99.52％</text>
+<text x="12" y="274" class="tb">よくある誤り</text>
+<text x="12" y="294" class="tng">84hも止まった時間として引く</text>
+<text x="24" y="312" class="tm">→（2,100－94）÷2,100≒95.52％</text>
+<text x="12" y="332" class="tng">分母を2,184時間のままにする</text>
+<text x="24" y="350" class="tm">→2,090÷2,184≒95.70％</text>
+</svg>
