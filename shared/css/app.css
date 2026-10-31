@@ -830,6 +830,18 @@ button.basic-term:hover { background: var(--accent-soft); }
 .dochi-rec-slot.has-rec { min-height: 3.2rem; }
 @keyframes dochi-announce-in { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes dochi-stamp-in { from { transform: scale(2.4) rotate(-30deg); opacity: 0; } to { transform: scale(1) rotate(-10deg); opacity: 1; } }
+/* 模擬試験の結果発表（要件定義書の模擬試験「結果発表の演出」）。数え上げの間に幅が変わってがたつかないよう、数字は等幅 */
+.exam-result-card { text-align: center; }
+.exam-result-card .dochi-kind { margin: 0; }
+.exam-score { font-variant-numeric: tabular-nums; }
+.exam-score .exam-count { font-size: 3.5rem; line-height: 1.1; }
+.exam-score-pop { animation: exam-score-pop 0.6s cubic-bezier(0.2, 1.6, 0.4, 1) both; }
+.exam-after { min-height: 96px; text-align: left; }
+@keyframes exam-score-pop { 0% { transform: scale(1); } 35% { transform: scale(1.35); color: var(--warn); } 100% { transform: scale(1); } }
+.exam-hist-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.exam-hist-row .row-line { margin: 0; }
+.exam-past-miss, .exam-hist-more { min-height: 48px; }
+.exam-hist-more { width: 100%; margin-top: 8px; }
 
 /* 合格予想メーター（要件定義書 §3-6）。色は既存の変数だけ（暗い配色でもそのまま読める） */
 .card.forecast h2 { margin-top: 0; }

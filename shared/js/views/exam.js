@@ -3,7 +3,8 @@
 import { h, clear, burst, toast, mascotLine, confirmDialog, confirmQuit } from '../ui.js';
 import { examMascot, CHARACTER_TEXT } from '../lib/characters.js';
 import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
-import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion, examFlagStep } from '../lib/quiz.js';
+import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion, examFlagStep, examMissRecord, examMissItem } from '../lib/quiz.js';
+import { playSfx, playDrumRoll } from '../audio.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
@@ -13,12 +14,24 @@ const mmss = (ms) => {
   return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
 };
 
+// 結果発表の演出の長さ（要件定義書の模擬試験「結果発表の演出」）
+const EXAM_REVEAL_DELAY_MS = 600; // 「結果発表！」が出てから、ドラムロールと数え上げを始めるまで
+const EXAM_REVEAL_COUNT_MS = 2500; // ドラムロールと数え上げの長さ
+const EXAM_REVEAL_FLUSH_MS = 1500; // ジャジャーンから、お祝いの画面（バッジなど）を出すまで
+const HISTORY_SHOWN = 5; // 「これまでの結果」で最初に出す回数（それより前は「もっと見る」）
+
 export function renderExam(app) {
   const root = h('section', { class: 'view exam' });
   let timer = null;
+  let revealTimers = []; // 結果発表の演出のタイマー（画面を離れる・もう一度のとき止める）
+  let stopDrum = null; // 鳴っているドラムロールを止める関数
   const cleanup = () => {
     if (timer) clearInterval(timer);
     timer = null;
+    revealTimers.forEach(clearTimeout);
+    revealTimers = [];
+    if (stopDrum) stopDrum();
+    stopDrum = null;
   };
   const cfg = app.config.exam || { questions: 100, minutes: 60 };
   // 設計図（config.exam.blueprint）がある資格は、補足でない領域ごと・型ごとに本番の配分で選ぶ。無い資格は全体から、模試でまだ出ていない問題・出たのが古い問題を先に選ぶ（2026-10-18）。
@@ -36,6 +49,33 @@ export function renderExam(app) {
 
   // 始める前の画面の「戻る」。この画面は下のメニューを隠すので、これが無いとブラウザの戻るしか出口が無かった（2026-10-15 先生の指摘）
   const backBtn = () => h('button', { class: 'btn big exam-back', type: 'button', onClick: () => app.go('#/home') }, '戻る');
+
+  // まちがえた問題の一覧（結果の画面と、これまでの結果から開く画面で同じ形）。items は { q, sq, chosen }
+  function missCard(items) {
+    const open = (id) => openCardSheet(app, id);
+    const rv = h('div', { class: 'card' }, h('h2', { text: items.length ? 'まちがえた問題（' + items.length + '）' : '全問正解！' }));
+    items.forEach((r) => {
+      const body = h('div', {}, r.chosen === null ? h('p', { class: 'small muted', text: '（未回答）' }) : null, stemFigureBlock(app, r.q), stemPlainBlock(r.q), stumbleBlock(app, r.q, open), explanation(app, r.sq, r.chosen, open, { sensei: false }));
+      rv.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), body));
+    });
+    return rv;
+  }
+
+  // これまでの結果の1回ぶんの、まちがえた問題（要件定義書の模擬試験「まちがえた問題をあとから見る」）
+  function pastMiss(e) {
+    cleanup();
+    clear(root);
+    const byId = new Map(app.data.questions.map((q) => [q.id, q]));
+    const items = e.miss.map((m) => examMissItem(byId.get(m.id), m)).filter(Boolean).map((it) => ({ q: it.sq.q, sq: it.sq, chosen: it.chosen }));
+    root.appendChild(h('h1', { text: '模擬試験の見直し' }));
+    root.appendChild(h('p', { class: 'muted' }, e.date + '　', h('strong', { text: Math.round((e.correct / e.total) * 100) + '%' }), '（' + e.correct + '/' + e.total + (e.reduced ? '・縮小版' : '') + '）'));
+    const skipped = e.miss.length - items.length;
+    const card = items.length ? missCard(items) : h('div', { class: 'card' }, h('h2', { text: 'まちがえた問題（0）' }));
+    if (skipped > 0) card.appendChild(h('p', { class: 'small muted', text: '問題の入れ替えで、いまは無い問題が ' + skipped + '問あります（表示していません）。' }));
+    root.appendChild(card);
+    root.appendChild(h('button', { class: 'btn big exam-back', type: 'button', 'data-exam-past-back': '1', onClick: intro }, '模擬試験の入口に戻る'));
+    window.scrollTo(0, 0);
+  }
 
   function intro() {
     cleanup();
@@ -56,10 +96,23 @@ export function renderExam(app) {
     card.appendChild(h('button', { class: 'btn primary big', type: 'button', onClick: start }, '試験を始める'));
     root.appendChild(card);
     root.appendChild(backBtn());
-    const hist = app.state.exams.slice(-5).reverse();
+    const hist = app.state.exams.slice().reverse();
     if (hist.length) {
-      const l = h('div', { class: 'card' }, h('h2', { text: 'これまでの結果' }));
-      hist.forEach((e) => l.appendChild(h('p', { class: 'row-line' }, e.date + '　', h('strong', { text: Math.round((e.correct / e.total) * 100) + '%' }), '（' + e.correct + '/' + e.total + (e.reduced ? '・縮小版' : '') + '）')));
+      const l = h('div', { class: 'card exam-history' }, h('h2', { text: 'これまでの結果' }));
+      const row = (e) => {
+        const n = Array.isArray(e.miss) ? e.miss.length : 0;
+        return h('div', { class: 'exam-hist-row' },
+          h('p', { class: 'row-line' }, e.date + '　', h('strong', { text: Math.round((e.correct / e.total) * 100) + '%' }), '（' + e.correct + '/' + e.total + (e.reduced ? '・縮小版' : '') + '）'),
+          n ? h('button', { class: 'btn exam-past-miss', type: 'button', 'data-exam-past-miss': '1', onClick: () => pastMiss(e) }, 'まちがえた問題を見る（' + n + '問）') : null);
+      };
+      hist.slice(0, HISTORY_SHOWN).forEach((e) => l.appendChild(row(e)));
+      if (hist.length > HISTORY_SHOWN) {
+        const more = h('button', { class: 'btn exam-hist-more', type: 'button', 'data-exam-hist-more': '1', onClick: () => {
+          more.remove();
+          hist.slice(HISTORY_SHOWN).forEach((e) => l.appendChild(row(e)));
+        } }, 'もっと見る（あと' + (hist.length - HISTORY_SHOWN) + '回）');
+        l.appendChild(more);
+      }
       root.appendChild(l);
     }
   }
@@ -90,7 +143,7 @@ export function renderExam(app) {
       const ok = results.filter((r) => r.correct).length;
       const majors = byMajor(results);
       recordExamSeen(app.state, S.items.map((sq) => sq.q.id));
-      recordExam(app.state, { total: results.length, correct: ok, reduced: plan.reduced, minutes: Math.round((Date.now() - S.t0) / 60000), byMajor: majors.map((m) => ({ major: m.major, total: m.total, correct: m.correct })) });
+      recordExam(app.state, { total: results.length, correct: ok, reduced: plan.reduced, minutes: Math.round((Date.now() - S.t0) / 60000), byMajor: majors.map((m) => ({ major: m.major, total: m.total, correct: m.correct })), miss: examMissRecord(results) });
       app.commit();
       result(results, ok, majors, auto);
     }
@@ -173,14 +226,58 @@ export function renderExam(app) {
       const rate = Math.round((ok / Math.max(1, results.length)) * 100);
       const em = examMascot(rate);
       const guide = normalizePassGuide(app.config.passGuide);
-      const card = h('div', { class: 'card result' },
-        h('h1', { text: '模擬試験 結果' }),
+      // 結果発表の演出（要件定義書の模擬試験「結果発表の演出」）。数え上げの間は、見えている数字を読み上げから外し、最終の点数を別に持つ
+      const pctEl = h('strong', { class: 'big-num exam-count', text: '0%' });
+      const okEl = h('span', { text: '0' });
+      const scoreEl = h('p', { class: 'score exam-score' },
+        h('span', { class: 'dochi-sr', text: rate + '%、' + ok + ' / ' + results.length + ' 正解' }),
+        h('span', { 'aria-hidden': 'true' }, pctEl, '　', okEl, ' / ' + results.length + ' 正解'));
+      const afterSlot = h('div', { class: 'exam-after' });
+      const card = h('div', { class: 'card result exam-result-card', 'data-exam-result': '1' },
+        h('p', { class: 'small muted dochi-kind', text: '模擬試験' }),
+        h('h1', { class: 'dochi-announce', text: '結果発表！' }),
         auto ? h('p', { class: 'note', text: '時間切れで自動採点しました。' }) : null,
-        h('p', { class: 'score' }, h('strong', { class: 'big-num', text: rate + '%' }), '　' + ok + ' / ' + results.length + ' 正解'),
+        scoreEl,
         plan.reduced ? h('p', { class: 'small muted', text: '縮小版（' + plan.count + '問）の結果です。' }) : null,
-        guide ? h('p', { class: 'small exam-guide', 'data-pass-guide': '1', text: passGuideStatus(guide, rate) + '（' + passGuideLabel(guide) + '）' }) : null,
-        mascotLine(em.art, em.text, 'exam-mascot'));
+        afterSlot);
       root.appendChild(card);
+      const later = (fn, ms) => revealTimers.push(setTimeout(fn, ms));
+      // 止まったあと: ジャジャーン・点数の弾み・紙吹雪（70%以上）・一言と合格の目安・お祝いの画面
+      const settle = (animate) => {
+        if (stopDrum) stopDrum();
+        stopDrum = null;
+        pctEl.textContent = rate + '%';
+        okEl.textContent = String(ok);
+        playSfx(app.state.settings, 'bosswin');
+        if (animate) scoreEl.classList.add('exam-score-pop');
+        if (guide) afterSlot.appendChild(h('p', { class: 'small exam-guide', 'data-pass-guide': '1', text: passGuideStatus(guide, rate) + '（' + passGuideLabel(guide) + '）' }));
+        const m = mascotLine(em.art, em.text, 'exam-mascot');
+        if (m) afterSlot.appendChild(m);
+        if (rate >= 70 && animate) {
+          burst(scoreEl);
+          later(() => burst(scoreEl), 300);
+        }
+        if (!animate) return app.flushCelebrations();
+        later(() => app.flushCelebrations(), EXAM_REVEAL_FLUSH_MS);
+      };
+      const reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      const startReveal = () => {
+        if (reduced) return settle(false);
+        if (ok <= 0) return later(() => settle(true), EXAM_REVEAL_DELAY_MS);
+        later(() => {
+          stopDrum = playDrumRoll(app.state.settings, EXAM_REVEAL_COUNT_MS);
+          const t0 = Date.now();
+          const tick = () => {
+            const p = Math.min(1, (Date.now() - t0) / EXAM_REVEAL_COUNT_MS);
+            const shown = Math.round(ok * (1 - Math.pow(1 - p, 2))); // だんだん遅くなって止まる
+            okEl.textContent = String(shown);
+            pctEl.textContent = Math.round((shown / Math.max(1, results.length)) * 100) + '%';
+            if (p < 1) later(tick, 40);
+            else settle(true);
+          };
+          tick();
+        }, EXAM_REVEAL_DELAY_MS);
+      };
       const mc = h('div', { class: 'card' }, h('h2', { text: blueprint ? '領域別の正答率' : '大項目別の正答率' }));
       majors.sort((a, b) => a.rate - b.rate).forEach((m) => {
         const pct = Math.round(m.rate * 100);
@@ -204,18 +301,12 @@ export function renderExam(app) {
         root.appendChild(tc);
       }
       const wrong = results.filter((r) => !r.correct);
-      const open = (id) => openCardSheet(app, id);
-      const rv = h('div', { class: 'card' }, h('h2', { text: wrong.length ? 'まちがえた問題（' + wrong.length + '）' : '全問正解！' }));
-      wrong.forEach((r) => {
-        const body = h('div', {}, r.chosen === null ? h('p', { class: 'small muted', text: '（未回答）' }) : null, stemFigureBlock(app, r.q), stemPlainBlock(r.q), stumbleBlock(app, r.q, open), explanation(app, r.sq, r.chosen, open, { sensei: false }));
-        rv.appendChild(h('details', { class: 'miss' }, h('summary', { text: r.q.stem }), body));
-      });
-      if (wrong.length) rv.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は「復習」に入りました。' }));
+      const rv = missCard(wrong);
+      if (wrong.length) rv.appendChild(h('p', { class: 'small muted', text: 'まちがえた問題は「復習」に入りました。模擬試験の入口の「これまでの結果」からも、あとで見直せます。' }));
       root.appendChild(rv);
       root.appendChild(h('div', { class: 'btn-row' }, h('button', { class: 'btn primary big', type: 'button', onClick: intro }, 'もう一度'), h('button', { class: 'btn big', type: 'button', onClick: () => app.go('#/home') }, 'ホームへ')));
-      if (rate >= 70) burst(card);
-      app.flushCelebrations();
       window.scrollTo(0, 0);
+      startReveal();
     }
     draw();
   }

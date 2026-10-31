@@ -3,7 +3,7 @@
 // - BGM: 大きいので、最初に流すときに取ってきてキャッシュに入る（sw-core.js が /audio/ をキャッシュ優先で返す）
 //   音量は iOS でも効くよう WebAudio の GainNode でかける
 // - スマホは画面を一度さわるまで音を出せない。BGM は、さわったあとから流す
-import { SFX_FILES, BOSS_SFX, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, TRUE_BOSS_BGM, TRUE_BOSS_SYNTH_TRIM, RUSH_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan } from './lib/sound.js';
+import { SFX_FILES, BOSS_SFX, BGM_TRACKS, BGM_AUTO, TITLE_BGM, BOSS_BGM, TRUE_BOSS_BGM, TRUE_BOSS_SYNTH_TRIM, RUSH_BGM, sfxGain, bgmGain, nextBgmPosition, bgmTrackIndex, bgmPlan, drumRollHits } from './lib/sound.js';
 import { bossTheme, SYNTH_SFX } from './lib/bossmusic.js';
 import { trueBossTheme, TRUE_SFX } from './lib/trueboss-music.js';
 
@@ -95,6 +95,43 @@ export function playSfx(settings, name, onMissing, boost = 1, rate = 1) {
       src.start();
     } catch (e) { /* 音が出せなくても学習は続ける */ }
   });
+}
+
+/**
+ * ドラムロールを ms のあいだ鳴らす（模擬試験の結果発表）。ボス戦の当たりの snare（bosshit）を drumRollHits の時刻で続けて打つ。
+ * 返り値の関数を呼ぶと、まだ鳴っていない打ちを止める。settings.sound が false なら何もしない。
+ */
+export function playDrumRoll(settings, ms) {
+  const srcs = [];
+  let stopped = false;
+  const stop = () => {
+    stopped = true;
+    srcs.forEach((s) => { try { s.stop(); } catch (e) { /* もう止まっている */ } });
+    srcs.length = 0;
+  };
+  if (!settings || !settings.sound || !SFX_FILES.bosshit) return stop;
+  const c = audioCtx();
+  if (!c) return stop;
+  const gain = sfxGain(settings.sfxVolume);
+  if (gain <= 0) return stop;
+  resumeCtx();
+  sfxBuffer('bosshit', c).then((buf) => {
+    if (stopped || !buf) return;
+    try {
+      const t0 = c.currentTime + 0.02;
+      drumRollHits(ms).forEach((hit) => {
+        const src = c.createBufferSource();
+        const g = c.createGain();
+        src.buffer = buf;
+        g.gain.value = gain * hit.gain;
+        src.connect(g);
+        g.connect(c.destination);
+        src.start(t0 + hit.t / 1000);
+        srcs.push(src);
+      });
+    } catch (e) { /* 音が出せなくても結果は出す */ }
+  });
+  return stop;
 }
 
 // ---- BGM ----

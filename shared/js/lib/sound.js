@@ -223,3 +223,19 @@ export function nextBgmPosition(track, plays, tracks = BGM_TRACKS, selected = BG
   if (plays < tracks[cur].repeat) return { track: cur, plays };
   return { track: (cur + 1) % tracks.length, plays: 0 };
 }
+
+/**
+ * 模擬試験の結果発表のドラムロール（要件定義書の模擬試験「結果発表の演出」）。snare を打つ時刻（ミリ秒）と強さ（0〜1）の並び。
+ * ms の間、打つ間隔を startGap から endGap へだんだん詰め、強さを from から to へ上げる（だんだん大きく速く）。
+ */
+export const DRUMROLL = { startGap: 120, endGap: 45, from: 0.45, to: 0.9 };
+export function drumRollHits(ms, opt = DRUMROLL) {
+  const hits = [];
+  if (!(ms > 0)) return hits;
+  for (let t = 0; t < ms;) {
+    const p = t / ms;
+    hits.push({ t: Math.round(t), gain: opt.from + (opt.to - opt.from) * p });
+    t += opt.startGap + (opt.endGap - opt.startGap) * p;
+  }
+  return hits;
+}

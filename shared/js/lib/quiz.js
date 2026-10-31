@@ -215,3 +215,37 @@ export function examFlagStep(flags, cur, dir) {
   for (let i = cur + step; i >= 0 && i < flags.length; i += step) if (flags[i]) return i;
   return -1;
 }
+
+/**
+ * 模擬試験でまちがえた問題の記録（要件定義書の模擬試験「まちがえた問題をあとから見る」）。
+ * results は採点の結果（{ sq, chosen, correct }。chosen はその回の並びでの番号か null）。
+ * 返すのは { id, perm, chosen } の配列。chosen は元の選択肢の番号（未回答は null）。
+ */
+export function examMissRecord(results) {
+  return results.filter((r) => !r.correct).map((r) => ({
+    id: r.sq.q.id,
+    perm: r.sq.perm.slice(),
+    chosen: r.chosen === null || r.chosen === undefined ? null : r.sq.perm[r.chosen],
+  }));
+}
+
+/**
+ * 記録から、結果の画面と同じ形の { sq, chosen } に戻す。q が無ければ null。
+ * perm が今の選択肢の数に合う並べ替えでなければ、元の並びで見せる。chosen はその並びでの番号（未回答・不明は null）。
+ */
+export function examMissItem(q, rec) {
+  if (!q || !rec) return null;
+  const n = q.choices.length;
+  const p = Array.isArray(rec.perm) ? rec.perm : [];
+  const valid = p.length === n && new Set(p).size === n && p.every((x) => Number.isInteger(x) && x >= 0 && x < n);
+  const perm = valid ? p.slice() : q.choices.map((_, i) => i);
+  const sq = {
+    q,
+    perm,
+    choices: perm.map((o) => q.choices[o]),
+    answer: perm.indexOf(q.answer),
+    whyWrong: perm.map((o) => (q.whyWrong && q.whyWrong[o] !== undefined ? q.whyWrong[o] : null)),
+  };
+  const ci = Number.isInteger(rec.chosen) ? perm.indexOf(rec.chosen) : -1;
+  return { sq, chosen: ci >= 0 ? ci : null };
+}
