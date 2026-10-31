@@ -4,6 +4,6 @@ self.CERT_QUEST = {
   appId: 'sc',
   version: '5',
   // 地図・章のバッジの絵はまだ無い。ボスの絵は届いた順に置く。置いたら appFiles に足す（地図は config.json の mapImages も）
-  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './images/logo.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './images/bosses/boss-1.webp', './images/bosses/boss-2.webp', './images/bosses/boss-3.webp', './images/bosses/boss-4.webp'],
+  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './images/logo.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './images/bosses/boss-1.webp', './images/bosses/boss-2.webp', './images/bosses/boss-3.webp', './images/bosses/boss-4.webp', './images/bosses/boss-5.webp'],
 };
 importScripts('../shared/sw-core.js');
