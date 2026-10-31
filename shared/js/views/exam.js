@@ -3,7 +3,7 @@
 import { h, clear, burst, toast, mascotLine, confirmDialog, confirmQuit } from '../ui.js';
 import { examMascot, CHARACTER_TEXT } from '../lib/characters.js';
 import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
-import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion } from '../lib/quiz.js';
+import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion, examFlagStep } from '../lib/quiz.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stumbleBlock, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
@@ -66,16 +66,18 @@ export function renderExam(app) {
 
   function start() {
     const items = pickAll().items.slice(0, plan.count).map((q) => shuffleChoices(q, app.rng));
-    const S = { items, answers: items.map(() => null), cur: 0, deadline: Date.now() + plan.minutes * 60000, t0: Date.now(), grid: false, done: false };
+    const S = { items, answers: items.map(() => null), cur: 0, deadline: Date.now() + plan.minutes * 60000, t0: Date.now(), grid: false, done: false, flags: items.map(() => false), flagMode: false }; // flags … 見直しの印（その回だけ。保存しない）。flagMode … 印の問題だけを回っている
     running = S;
 
     const GRADE_MASCOT = { art: 'sensei-think', text: CHARACTER_TEXT.confirmGrade }; // 採点の小窓はあい先生（要件定義書 §6「確かめの小窓」）
     async function finish(auto) {
       if (S.done) return;
       const un = S.answers.filter((a) => a === null).length;
+      const fl = S.flags.filter(Boolean).length;
+      const flagNote = fl ? '見直しの印が ' + fl + '問 残っています。' : '';
       if (!auto && !(await confirmDialog(un
-        ? { title: '採点しますか？', message: 'まだ答えていない問題が ' + un + '問あります。答えていない問題は不正解になります。', ok: '採点する', cancel: '問題に戻る', mascot: GRADE_MASCOT }
-        : { title: '採点しますか？', message: '採点すると、答えは変えられません。', ok: '採点する', cancel: '問題に戻る', mascot: GRADE_MASCOT }))) return;
+        ? { title: '採点しますか？', message: 'まだ答えていない問題が ' + un + '問あります。' + flagNote + '答えていない問題は不正解になります。', ok: '採点する', cancel: '問題に戻る', mascot: GRADE_MASCOT }
+        : { title: '採点しますか？', message: flagNote + '採点すると、答えは変えられません。', ok: '採点する', cancel: '問題に戻る', mascot: GRADE_MASCOT }))) return;
       if (S.done) return; // 小窓を出している間に時間切れで採点された
       S.done = true;
       cleanup();
@@ -108,6 +110,17 @@ export function renderExam(app) {
         if (c) c.textContent = mmss(left);
         if (left <= 0) finish(true);
       }, 500);
+      if (S.flagMode && !S.flags.some(Boolean)) S.flagMode = false; // 回っている最中に印を全部外した
+      const flagged = S.flags.map((f, i) => (f ? i : -1)).filter((i) => i >= 0);
+      if (S.flagMode) {
+        const pos = flagged.indexOf(S.cur);
+        root.appendChild(h('div', { class: 'note exam-flag-mode', 'data-exam-flag-mode': '1' },
+          h('span', { text: '見直しの印の問題を回っています（' + flagged.length + '問' + (pos >= 0 ? '中' + (pos + 1) + '問目' : '') + '）' }),
+          h('button', { class: 'btn ghost', type: 'button', 'data-exam-flag-exit': '1', onClick: () => { S.flagMode = false; draw(); } }, '全部の問題に戻る')));
+      }
+      const on = S.flags[S.cur];
+      root.appendChild(h('div', { class: 'exam-flag-row' },
+        h('button', { class: 'btn exam-flag' + (on ? ' on' : ''), type: 'button', 'aria-pressed': on ? 'true' : 'false', 'data-exam-flag': '1', onClick: () => { S.flags[S.cur] = !S.flags[S.cur]; draw(); } }, on ? '見直す ✓' : '見直す')));
       const card = h('div', { class: 'card q-card' },
         h('div', { class: 'q-tags' }, statusChip(q.status), q.negative ? h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }) : null),
         h('p', { class: 'stem', text: q.stem }),
@@ -123,16 +136,34 @@ export function renderExam(app) {
       root.appendChild(card);
       if (S.grid) {
         const g = h('div', { class: 'qgrid', role: 'group', 'aria-label': '問題一覧' });
-        S.items.forEach((_, i) => g.appendChild(h('button', { class: 'qnum' + (S.answers[i] !== null ? ' done' : '') + (i === S.cur ? ' cur' : ''), type: 'button', 'aria-label': (i + 1) + '問目' + (S.answers[i] !== null ? '（回答済み）' : '（未回答）'), onClick: () => { S.cur = i; S.grid = false; draw(); } }, String(i + 1))));
-        root.appendChild(h('div', { class: 'card' }, g));
+        S.items.forEach((_, i) => g.appendChild(h('button', { class: 'qnum' + (S.answers[i] !== null ? ' done' : '') + (S.flags[i] ? ' flag' : '') + (i === S.cur ? ' cur' : ''), type: 'button', 'aria-label': (i + 1) + '問目' + (S.answers[i] !== null ? '（回答済み）' : '（未回答）') + (S.flags[i] ? '（見直しの印）' : ''), onClick: () => { S.cur = i; S.grid = false; draw(); } }, String(i + 1))));
+        // 印の問題を回るボタンは番号の上に置く（本番は100問を超え、番号の下だと探しにくい）
+        root.appendChild(h('div', { class: 'card' },
+          flagged.length ? h('button', { class: 'btn primary', type: 'button', 'data-exam-flag-start': '1', onClick: () => { S.flagMode = true; S.grid = false; S.cur = flagged[0]; draw(); } }, '印の問題だけ順に見る（' + flagged.length + '問）') : null,
+          h('p', { class: 'small muted qgrid-legend', text: '色の付いた番号＝答えた問題、右上の三角＝見直しの印' }),
+          g));
       }
       const last = S.cur === S.items.length - 1;
-      root.appendChild(h('div', { class: 'sticky-bar two' },
-        h('button', { class: 'btn', type: 'button', disabled: S.cur === 0, onClick: () => { S.cur--; draw(); } }, '前へ'),
-        h('button', { class: 'btn', type: 'button', onClick: () => { S.grid = !S.grid; draw(); } }, S.grid ? '一覧を閉じる' : '問題一覧'),
-        last
+      const go = (i) => { S.cur = i; draw(); };
+      let prevBtn;
+      let nextBtn;
+      if (S.flagMode) {
+        const p = examFlagStep(S.flags, S.cur, -1);
+        const n = examFlagStep(S.flags, S.cur, 1);
+        prevBtn = h('button', { class: 'btn', type: 'button', disabled: p < 0, 'data-exam-flag-prev': '1', onClick: () => go(p) }, '前の印');
+        nextBtn = n >= 0
+          ? h('button', { class: 'btn primary', type: 'button', 'data-exam-flag-next': '1', onClick: () => go(n) }, '次の印')
+          : h('button', { class: 'btn primary', type: 'button', 'data-exam-flag-exit': '1', onClick: () => { S.flagMode = false; draw(); } }, '全部の問題に戻る');
+      } else {
+        prevBtn = h('button', { class: 'btn', type: 'button', disabled: S.cur === 0, onClick: () => go(S.cur - 1) }, '前へ');
+        nextBtn = last
           ? h('button', { class: 'btn primary', type: 'button', onClick: () => finish(false) }, '採点する')
-          : h('button', { class: 'btn primary', type: 'button', onClick: () => { S.cur++; draw(); } }, '次へ')));
+          : h('button', { class: 'btn primary', type: 'button', onClick: () => go(S.cur + 1) }, '次へ');
+      }
+      root.appendChild(h('div', { class: 'sticky-bar two' },
+        prevBtn,
+        h('button', { class: 'btn', type: 'button', onClick: () => { S.grid = !S.grid; draw(); } }, S.grid ? '一覧を閉じる' : '問題一覧'),
+        nextBtn));
       if (!last) root.appendChild(h('p', { class: 'center' }, h('button', { class: 'btn ghost', type: 'button', onClick: () => finish(false) }, '途中で採点する')));
       window.scrollTo(0, 0);
     }

@@ -347,6 +347,14 @@ body:not(.no-nav) .sticky-bar { bottom: var(--nav-h); }
 .qnum { appearance: none; font: inherit; font-weight: 700; min-height: 48px; border-radius: 8px; border: 2px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
 .qnum.done { background: var(--accent-soft); border-color: var(--accent); }
 .qnum.cur { outline: 3px solid var(--accent); outline-offset: 1px; }
+/* 模擬試験の見直しの印。一覧では番号の右上の三角（色だけに頼らないよう、読み上げは aria-label で伝える） */
+.qnum { position: relative; }
+.qnum.flag::after { content: ''; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0 16px 16px 0; border-color: transparent var(--warn) transparent transparent; border-top-right-radius: 6px; }
+.qgrid-legend { margin: 8px 0; }
+.exam-flag-row { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.exam-flag { min-height: 48px; }
+.exam-flag.on { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); font-weight: 700; }
+.exam-flag-mode { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
 .result .score { font-size: 1.25rem; }
 .star-result .icon { width: 40px; height: 40px; }
 details.miss { border-top: 1px solid var(--border); padding: 8px 0; }

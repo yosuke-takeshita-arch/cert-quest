@@ -205,3 +205,13 @@ export function byQtype(results) {
   const key = (t) => (order.indexOf(t) < 0 ? 99 : order.indexOf(t));
   return [...m.values()].map((e) => ({ ...e, rate: e.total ? e.correct / e.total : 0 })).sort((a, b) => key(a.qtype) - key(b.qtype));
 }
+
+/**
+ * 模擬試験の見直しの印（要件定義書の模擬試験「見直しの印」）。flags は問題ごとの真偽の配列。
+ * cur から dir（+1 で後ろ、-1 で前）へ向かって、cur を含めずに最初に印のある番号。無ければ -1。最初の印は examFlagStep(flags, -1, 1)。
+ */
+export function examFlagStep(flags, cur, dir) {
+  const step = dir < 0 ? -1 : 1;
+  for (let i = cur + step; i >= 0 && i < flags.length; i += step) if (flags[i]) return i;
+  return -1;
+}
