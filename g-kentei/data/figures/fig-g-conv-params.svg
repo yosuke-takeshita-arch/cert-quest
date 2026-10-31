@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 730" role="img" aria-labelledby="fig-g-conv-params-t fig-g-conv-params-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 980" role="img" aria-labelledby="fig-g-conv-params-t fig-g-conv-params-d">
 <title id="fig-g-conv-params-t">畳み込み層のパラメータ数と、全結合層との比較</title>
-<desc id="fig-g-conv-params-d">入力8チャネル、3×3のフィルタ、出力16チャネルの畳み込み層の例。フィルタ1個の重みは3×3×8で72個、バイアスが1個で73個。それが出力チャネル数の16個あるので、全部で73×16の1,168個。画像の大きさが変わっても1,168個のまま。同じ入力と出力を全結合でつなぐと、8×8の画像で525,312個（入力が8×8×8で512個、出力が8×8×16で1,024個なので、(512＋1)×1,024）、16×16の画像で8,392,704個になり、画像の大きさに応じて増える。畳み込みはフィルタを画像全体で使い回す（重みの共有）ので、画像の大きさに依存しない。言葉：重みはフィルタの各マスに入った、学習で決まる数で、3×3なら9個。chはチャネルで、特徴マップの枚数（カラー画像なら赤・緑・青の3枚）。バイアスはフィルタ1個ごとに最後に足す、学習で決まる数で1つ。</desc>
+<desc id="fig-g-conv-params-d">入力8チャネル、3×3のフィルタ、出力16チャネルの畳み込み層の例。フィルタ1個の重みは3×3×8で72個、バイアスが1個で73個。それが出力チャネル数の16個あるので、全部で73×16の1,168個。画像の大きさが変わっても1,168個のまま。同じ仕事（入力8チャネルから出力16チャネル、出力の縦横も入力と同じ）を全結合層でやると、8×8の画像で525,312個、16×16の画像で8,392,704個になり、画像の大きさに応じて増える。全結合は出力の1マスずつが入力の全部のマスと1本ずつつながり、線1本に重みが1つある。8×8なら入力が8×8×8で512マス、出力が8×8×16で1,024マスなので、線512×1,024本にバイアス1,024個を足して(512＋1)×1,024。16×16なら入力2,048マス・出力4,096マスで(2,048＋1)×4,096。畳み込みは出力の1マスが入力の近くの3×3だけを見て、しかも同じ16個のフィルタを画像のどこでも使い回す（重みの共有）ので、画像の大きさに依存しない。言葉：重みはフィルタの各マスに入った、学習で決まる数で、3×3なら9個。chはチャネルで、特徴マップの枚数（カラー画像なら赤・緑・青の3枚）。バイアスはフィルタ1個ごとに最後に足す、学習で決まる数で1つ。</desc>
 <rect x="12" y="6" width="296" height="142" class="fs sb" stroke-width="1" rx="6"/>
 <text x="22" y="29" class="tb">言葉：重み・ch・バイアス</text>
 <text x="22" y="47">重み：フィルタの各マスに入った、</text>
@@ -66,23 +66,35 @@
 <text x="12" y="402" class="tb">畳み込み層のパラメータ数</text>
 <text x="308" y="402" class="tb ta" text-anchor="end">＝1,168 個</text>
 <rect x="12" y="434" width="296" height="1" class="fs sb" stroke-width="1"/>
-<text x="12" y="460" class="tb">② 全結合層でつなぐと</text>
-<text x="12" y="480" class="tm">（出力も 縦×横×16 の形にする）</text>
-<text x="12" y="504" class="tm">画像の大きさ</text>
-<text x="170" y="504" class="tb ta" text-anchor="middle">畳み込み</text>
-<text x="308" y="504" class="tb twn" text-anchor="end">全結合</text>
-<line x1="12" y1="512" x2="308" y2="512" class="l sb w1"/>
-<text x="12" y="536" class="tb">8×8</text>
-<text x="170" y="536" class="tb ta" text-anchor="middle">1,168個</text>
-<text x="308" y="536" class="tb twn" text-anchor="end">525,312個</text>
-<text x="12" y="564" class="tb">16×16</text>
-<text x="170" y="564" class="tb ta" text-anchor="middle">1,168個</text>
-<text x="308" y="564" class="tb twn" text-anchor="end">8,392,704個</text>
-<text x="12" y="592" class="tm">全結合＝(入力の数＋1)×出力の数</text>
-<text x="12" y="610" class="tm">8×8なら 入力 8×8×8＝512個、</text>
-<text x="12" y="628" class="tm">出力 8×8×16＝1,024個 → 513×1,024</text>
-<text x="12" y="646" class="tm">画像が大きくなるほど増える</text>
-<rect x="12" y="666" width="296" height="56" class="fas sa" stroke-width="1.5"/>
-<text x="160" y="689.5" class="tb" text-anchor="middle">畳み込みは同じフィルタを画像全体で使い回す</text>
-<text x="160" y="707.5" class="tb" text-anchor="middle">（重みの共有）→ 画像の大きさに依存しない</text>
+<text x="12" y="460" class="tb">② 同じ仕事を全結合層でやると</text>
+<text x="12" y="480" class="tm">入力8チャネル→出力16チャネル、出力の</text>
+<text x="12" y="498" class="tm">縦横も入力と同じ、という同じ仕事を</text>
+<text x="12" y="516" class="tm">全結合層でやると、パラメータは何個か</text>
+<text x="12" y="544" class="tm">画像の大きさ</text>
+<text x="170" y="544" class="tb ta" text-anchor="middle">畳み込み</text>
+<text x="308" y="544" class="tb twn" text-anchor="end">全結合</text>
+<line x1="12" y1="552" x2="308" y2="552" class="l sb w1"/>
+<text x="12" y="576" class="tb">8×8</text>
+<text x="170" y="576" class="tb ta" text-anchor="middle">1,168個</text>
+<text x="308" y="576" class="tb twn" text-anchor="end">525,312個</text>
+<text x="12" y="604" class="tb">16×16</text>
+<text x="170" y="604" class="tb ta" text-anchor="middle">1,168個</text>
+<text x="308" y="604" class="tb twn" text-anchor="end">8,392,704個</text>
+<text x="12" y="640" class="tb twn">全結合はなぜこんなに多いのか</text>
+<text x="12" y="660" class="tm">出力の1マスずつが、入力の全部のマスと</text>
+<text x="12" y="678" class="tm">1本ずつ線でつながり、線1本に重みが1つ</text>
+<text x="12" y="696" class="tm">8×8なら 入力 8×8×8＝512マス、</text>
+<text x="12" y="714" class="tm">出力 8×8×16＝1,024マス</text>
+<text x="12" y="732" class="tm">線 512×1,024本＋バイアス 1,024個</text>
+<text x="12" y="750" class="tm">＝(512＋1)×1,024＝525,312個</text>
+<text x="12" y="768" class="tm">16×16なら 入力2,048・出力4,096マスで</text>
+<text x="12" y="786" class="tm">(2,048＋1)×4,096＝8,392,704個</text>
+<text x="12" y="822" class="tb ta">畳み込みはなぜ変わらないのか</text>
+<text x="12" y="842" class="tm">出力の1マスが見るのは、入力の近くの</text>
+<text x="12" y="860" class="tm">3×3だけ。しかも①の16個のフィルタを</text>
+<text x="12" y="878" class="tm">画像のどこでも同じものを使い回すので、</text>
+<text x="12" y="896" class="tm">画像が大きくなっても1,168個のまま</text>
+<rect x="12" y="916" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="939.5" class="tb" text-anchor="middle">畳み込みは同じフィルタを画像全体で使い回す</text>
+<text x="160" y="957.5" class="tb" text-anchor="middle">（重みの共有）→ 画像の大きさに依存しない</text>
 </svg>
