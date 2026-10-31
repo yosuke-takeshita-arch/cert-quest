@@ -65,3 +65,13 @@ test('drumRollHits: ms の中で、間隔がだんだん詰まり、強さがだ
   assert.deepEqual(drumRollHits(0), []);
   assert.deepEqual(drumRollHits(NaN), []);
 });
+
+test('byMiddle: 大項目ごとに中分類をまとめ、正答率の低い順（同じ率は問題数の多い順）。中分類なしは「その他」', async () => {
+  const { byMiddle, NO_MIDDLE } = await import('../js/lib/quiz.js');
+  const R = (major, middle, correct) => ({ major, middle, correct });
+  const m = byMiddle([R('A', 'a1', true), R('A', 'a1', true), R('A', 'a2', false), R('A', 'a2', true), R('A', 'a3', false), R('A', 'a3', true), R('A', 'a3', true), R('A', 'a3', false), R('B', 'b1', true), R('B', undefined, false), R('B', '', true)]);
+  assert.deepEqual([...m.keys()], ['A', 'B']);
+  assert.deepEqual(m.get('A').map((x) => [x.middle, x.correct, x.total]), [['a3', 2, 4], ['a2', 1, 2], ['a1', 2, 2]]);
+  assert.deepEqual(m.get('B').map((x) => [x.middle, x.correct, x.total, x.rate]), [[NO_MIDDLE, 1, 2, 0.5], ['b1', 1, 1, 1]]);
+  assert.equal(byMiddle([]).size, 0);
+});

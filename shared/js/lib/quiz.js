@@ -75,6 +75,29 @@ export function byMajor(results) {
   return [...m.values()].map((e) => ({ ...e, rate: e.total ? e.correct / e.total : 0 }));
 }
 
+/**
+ * 模擬試験の中分類別の正答率（要件定義書の模擬試験「中分類別の正答率」）。results は { major, middle, correct }。
+ * 大項目（major）→ その中の中分類の一覧（正答率の低い順。同じ率は問題数の多い順）の Map。中分類が無い問題は「その他」にまとめる。
+ */
+export const NO_MIDDLE = 'その他';
+export function byMiddle(results) {
+  const out = new Map();
+  for (const r of results) {
+    const mid = typeof r.middle === 'string' && r.middle ? r.middle : NO_MIDDLE;
+    if (!out.has(r.major)) out.set(r.major, new Map());
+    const m = out.get(r.major);
+    const e = m.get(mid) || { middle: mid, total: 0, correct: 0 };
+    e.total += 1;
+    if (r.correct) e.correct += 1;
+    m.set(mid, e);
+  }
+  const res = new Map();
+  for (const [major, m] of out) {
+    res.set(major, [...m.values()].map((e) => ({ ...e, rate: e.correct / e.total })).sort((a, b) => a.rate - b.rate || b.total - a.total));
+  }
+  return res;
+}
+
 /** 出題の型（qtype）の表示名。 */
 export const QTYPE_LABEL = {
   term: '用語理解', relation: '関係理解', causal: '因果連鎖', loop: '循環構造',

@@ -3,7 +3,7 @@
 import { h, clear, burst, toast, mascotLine, confirmDialog, confirmQuit } from '../ui.js';
 import { examMascot, CHARACTER_TEXT } from '../lib/characters.js';
 import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
-import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion, examFlagStep, examMissRecord, examMissItem } from '../lib/quiz.js';
+import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion, examFlagStep, examMissRecord, examMissItem, byMiddle } from '../lib/quiz.js';
 import { playSfx, playDrumRoll } from '../audio.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
@@ -138,7 +138,7 @@ export function renderExam(app) {
         const chosen = S.answers[i];
         const correct = chosen !== null && chosen === sq.answer;
         recordAnswer(app.state, sq.q, { correct, seconds: null, sessionStreak: 0, exam: true, now: new Date(), limit: secondsPerQuestion(app.config) });
-        return { sq, q: sq.q, chosen, correct, major: sq.q.syllabus[0], qtype: sq.q.qtype };
+        return { sq, q: sq.q, chosen, correct, major: sq.q.syllabus[0], middle: sq.q.syllabus[1], qtype: sq.q.qtype };
       });
       const ok = results.filter((r) => r.correct).length;
       const majors = byMajor(results);
@@ -279,13 +279,20 @@ export function renderExam(app) {
         }, EXAM_REVEAL_DELAY_MS);
       };
       const mc = h('div', { class: 'card' }, h('h2', { text: blueprint ? '領域別の正答率' : '大項目別の正答率' }));
+      const bar = (name, pct, c, t) => h('div', { class: 'bar-row' },
+        h('div', { class: 'bar-label' }, h('span', { text: name }), h('strong', { text: pct + '%（' + c + '/' + t + '）' })),
+        h('div', { class: 'bar', role: 'img', 'aria-label': name + ' 正答率' + pct + '%' }, h('div', { class: 'bar-fill ' + (pct >= 80 ? 'strong' : pct >= 40 ? 'mid' : 'weak'), style: { width: pct + '%' } })));
+      // 大項目を押すと、その中の中分類別の正答率が開く（要件定義書の模擬試験「中分類別の正答率」）
+      const middles = byMiddle(results);
       majors.sort((a, b) => a.rate - b.rate).forEach((m) => {
-        const pct = Math.round(m.rate * 100);
-        mc.appendChild(h('div', { class: 'bar-row' },
-          h('div', { class: 'bar-label' }, h('span', { text: m.major }), h('strong', { text: pct + '%（' + m.correct + '/' + m.total + '）' })),
-          h('div', { class: 'bar', role: 'img', 'aria-label': m.major + ' 正答率' + pct + '%' }, h('div', { class: 'bar-fill ' + (pct >= 80 ? 'strong' : pct >= 40 ? 'mid' : 'weak'), style: { width: pct + '%' } }))));
+        const mids = middles.get(m.major) || [];
+        const box = h('div', { class: 'exam-middles' });
+        mids.forEach((x) => box.appendChild(bar(x.middle, Math.round(x.rate * 100), x.correct, x.total)));
+        mc.appendChild(h('details', { class: 'exam-major', 'data-exam-major': m.major },
+          h('summary', {}, bar(m.major, Math.round(m.rate * 100), m.correct, m.total), h('span', { class: 'small exam-major-hint', text: '中分類別を見る（' + mids.length + '）' })),
+          box));
       });
-      mc.appendChild(h('p', { class: 'small muted', text: blueprint ? '一番低い領域から見直すのがおすすめです。' : '一番低い大項目から見直すのがおすすめです。' }));
+      mc.appendChild(h('p', { class: 'small muted', text: (blueprint ? '一番低い領域から見直すのがおすすめです。' : '一番低い大項目から見直すのがおすすめです。') + '押すと、中分類別の正答率が開きます。' }));
       root.appendChild(mc);
       const types = blueprint ? byQtype(results).filter((t) => t.qtype) : [];
       if (types.length) {

@@ -1278,3 +1278,12 @@ body.boss-on { background: #000; }
 .main.tab-rise .rise-8 { animation-delay: 280ms; }
 .main.tab-rise .rise-9 { animation-delay: 280ms; }
 @keyframes tab-rise { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+/* 模擬試験の結果の中分類別（要件定義書の模擬試験「中分類別の正答率」）。大項目の行を押すと開く */
+details.exam-major { border-top: 1px solid var(--border); }
+details.exam-major > summary { list-style: none; cursor: pointer; padding: 8px 0; min-height: 48px; }
+details.exam-major > summary::-webkit-details-marker { display: none; }
+details.exam-major > summary .bar-row { margin-bottom: 4px; }
+.exam-major-hint { color: var(--accent); }
+.exam-major-hint::before { content: '▸ '; display: inline-block; }
+details.exam-major[open] .exam-major-hint::before { content: '▾ '; }
+.exam-middles { margin: 4px 0 12px 6px; padding-left: 12px; border-left: 3px solid var(--accent-soft); font-size: 0.92em; }
