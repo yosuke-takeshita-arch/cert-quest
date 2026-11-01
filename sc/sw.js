@@ -3,7 +3,7 @@
 self.CERT_QUEST = {
   appId: 'sc',
   version: '6',
-  // 地図・章のバッジの絵はまだ無い。ボスの絵は届いた順に置く。置いたら appFiles に足す（地図は config.json の mapImages も）
-  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './images/logo.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './images/bosses/boss-1.webp', './images/bosses/boss-2.webp', './images/bosses/boss-3.webp', './images/bosses/boss-4.webp', './images/bosses/boss-5.webp', './images/bosses/boss-6.webp', './images/bosses/boss-7.webp', './images/bosses/boss-8.webp', './images/bosses/boss-9.webp', './images/bosses/boss-10.webp'],
+  // 章のバッジの絵はまだ無い。地図は章ごとの10枚（config.json の mapImages と同じ並び）
+  appFiles: ['./', './index.html', './main.js', './config.json', './manifest.webmanifest', './images/title.webp', './images/logo.webp', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './images/bosses/boss-1.webp', './images/bosses/boss-2.webp', './images/bosses/boss-3.webp', './images/bosses/boss-4.webp', './images/bosses/boss-5.webp', './images/bosses/boss-6.webp', './images/bosses/boss-7.webp', './images/bosses/boss-8.webp', './images/bosses/boss-9.webp', './images/bosses/boss-10.webp', './images/map-1.webp', './images/map-2.webp', './images/map-3.webp', './images/map-4.webp', './images/map-5.webp', './images/map-6.webp', './images/map-7.webp', './images/map-8.webp', './images/map-9.webp', './images/map-10.webp'],
 };
 importScripts('../shared/sw-core.js');
