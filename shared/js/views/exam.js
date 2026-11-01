@@ -148,7 +148,9 @@ export function renderExam(app) {
       result(results, ok, majors, auto);
     }
 
-    function draw() {
+    // stay=true（選択肢・見直しの印を押したとき）は、作り直しても読んでいた位置を保つ。別の問題へ移るときだけ一番上へ
+    function draw(stay) {
+      const y = window.scrollY;
       clear(root);
       const sq = S.items[S.cur];
       const q = sq.q;
@@ -173,7 +175,7 @@ export function renderExam(app) {
       }
       const on = S.flags[S.cur];
       root.appendChild(h('div', { class: 'exam-flag-row' },
-        h('button', { class: 'btn exam-flag' + (on ? ' on' : ''), type: 'button', 'aria-pressed': on ? 'true' : 'false', 'data-exam-flag': '1', onClick: () => { S.flags[S.cur] = !S.flags[S.cur]; draw(); } }, on ? '見直す ✓' : '見直す')));
+        h('button', { class: 'btn exam-flag' + (on ? ' on' : ''), type: 'button', 'aria-pressed': on ? 'true' : 'false', 'data-exam-flag': '1', onClick: () => { S.flags[S.cur] = !S.flags[S.cur]; draw(true); } }, on ? '見直す ✓' : '見直す')));
       const card = h('div', { class: 'card q-card' },
         h('div', { class: 'q-tags' }, statusChip(q.status), q.negative ? h('span', { class: 'chip warn', text: '適切でないものを選ぶ' }) : null),
         h('p', { class: 'stem', text: q.stem }),
@@ -182,7 +184,7 @@ export function renderExam(app) {
       const choices = h('div', { class: 'choices', role: 'group', 'aria-label': '選択肢' });
       sq.choices.forEach((c, i) => {
         const sel = S.answers[S.cur] === i;
-        choices.appendChild(h('button', { class: 'choice' + (sel ? ' picked' : ''), type: 'button', 'aria-pressed': sel ? 'true' : 'false', onClick: () => { S.answers[S.cur] = i; draw(); } },
+        choices.appendChild(h('button', { class: 'choice' + (sel ? ' picked' : ''), type: 'button', 'aria-pressed': sel ? 'true' : 'false', onClick: () => { S.answers[S.cur] = i; draw(true); } },
           h('span', { class: 'mark', 'aria-hidden': 'true', text: sel ? '●' : choiceLabelsOf(q)[i] }), h('span', { class: 'ctext', text: c })));
       });
       card.appendChild(choices);
@@ -218,7 +220,7 @@ export function renderExam(app) {
         h('button', { class: 'btn', type: 'button', onClick: () => { S.grid = !S.grid; draw(); } }, S.grid ? '一覧を閉じる' : '問題一覧'),
         nextBtn));
       if (!last) root.appendChild(h('p', { class: 'center' }, h('button', { class: 'btn ghost', type: 'button', onClick: () => finish(false) }, '途中で採点する')));
-      window.scrollTo(0, 0);
+      window.scrollTo(0, stay ? y : 0);
     }
 
     function result(results, ok, majors, auto) {
