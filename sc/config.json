@@ -13,6 +13,8 @@
   "secondsPerQuestion": 84,
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
   "challenge": { "questions": 10 },
+  "trueBossBadge": { "name": "かげを みやぶりし もの", "art": false },
+  "trueBossWords": { "place": "とりでの いちばん うえ", "ending": "とりでを まもりぬいた！", "reached": "とりでの いちばん うえまで たどりついたよ！" },
   "reportUrl": "mailto:support@aisunia.com",
   "about": { "examName": "情報処理安全確保支援士試験", "organizer": "独立行政法人情報処理推進機構（IPA）", "organizerUrl": "https://www.ipa.go.jp/" },
   "officialUrl": "https://www.ipa.go.jp/shiken/kubun/sc.html",
