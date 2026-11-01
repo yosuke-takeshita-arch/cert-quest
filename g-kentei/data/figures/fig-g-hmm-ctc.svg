@@ -1,84 +1,152 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 624" role="img" aria-labelledby="fig-g-hmm-ctc-t fig-g-hmm-ctc-d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1390" role="img" aria-labelledby="fig-g-hmm-ctc-t fig-g-hmm-ctc-d">
 <title id="fig-g-hmm-ctc-t">HMM による音声認識と CTC</title>
-<desc id="fig-g-hmm-ctc-d">上は隠れマルコフモデル（HMM）。観測できない状態（音素など）が左から右へ確率的に移り変わり、各状態から音声の特徴量が確率的に出てくる。DNN-HMM は、各状態に特徴量がどれだけ当てはまるかを、GMM の代わりに DNN で求める。下は CTC。各時刻の出力に空白（＿）を許し、同じ文字の連続をまとめてから、空白を消す。例の c c ＿ a a ＿ t は、c ＿ a ＿ t になり、cat になる。入力の各時刻とラベルの対応を事前に区切っておく必要がない。</desc>
-<text x="12" y="20" class="tb">① HMM：隠れた状態が移り変わる</text>
-<circle cx="60" cy="84" r="20" class="fas sa"/>
-<text x="60" y="88.5" class="tb" text-anchor="middle">状態1</text>
-<path d="M 50 66 C 36 38 84 38 70 66" class="l sa w1"/>
-<polyline points="70,56 70,66 62,62" class="l sa w1"/>
-<line x1="60" y1="104" x2="60" y2="150" class="l swn w2"/>
-<polyline points="56.15,143 60,150 63.85,143" class="l swn w2"/>
-<rect x="24" y="152" width="72" height="28" class="fs sb" stroke-width="1.5"/>
-<text x="60" y="170.5" text-anchor="middle">特徴量1</text>
-<line x1="82" y1="84" x2="138" y2="84" class="l sa w2"/>
-<polyline points="131,87.85 138,84 131,80.15" class="l sa w2"/>
-<circle cx="160" cy="84" r="20" class="fas sa"/>
-<text x="160" y="88.5" class="tb" text-anchor="middle">状態2</text>
-<path d="M 150 66 C 136 38 184 38 170 66" class="l sa w1"/>
-<polyline points="170,56 170,66 162,62" class="l sa w1"/>
-<line x1="160" y1="104" x2="160" y2="150" class="l swn w2"/>
-<polyline points="156.15,143 160,150 163.85,143" class="l swn w2"/>
-<rect x="124" y="152" width="72" height="28" class="fs sb" stroke-width="1.5"/>
-<text x="160" y="170.5" text-anchor="middle">特徴量2</text>
-<line x1="182" y1="84" x2="238" y2="84" class="l sa w2"/>
-<polyline points="231,87.85 238,84 231,80.15" class="l sa w2"/>
-<circle cx="260" cy="84" r="20" class="fas sa"/>
-<text x="260" y="88.5" class="tb" text-anchor="middle">状態3</text>
-<path d="M 250 66 C 236 38 284 38 270 66" class="l sa w1"/>
-<polyline points="270,56 270,66 262,62" class="l sa w1"/>
-<line x1="260" y1="104" x2="260" y2="150" class="l swn w2"/>
-<polyline points="256.15,143 260,150 263.85,143" class="l swn w2"/>
-<rect x="224" y="152" width="72" height="28" class="fs sb" stroke-width="1.5"/>
-<text x="260" y="170.5" text-anchor="middle">特徴量3</text>
-<text x="110" y="72" class="tm" text-anchor="middle">遷移</text>
-<text x="210" y="72" class="tm" text-anchor="middle">遷移</text>
-<text x="12" y="206">状態は見えない（音素など）。</text>
-<text x="12" y="226">見えるのは、音声の特徴量だけ</text>
-<text x="172" y="136" class="tb twn">← 出力確率</text>
-<text x="12" y="256" class="tm">DNN-HMM：各状態に特徴量がどれだけ</text>
-<text x="12" y="274" class="tm">当てはまるかを、GMM の代わりに DNN で求める</text>
-<line x1="12" y1="310" x2="308" y2="310" class="l sb w1"/>
-<text x="12" y="334" class="tb">② CTC：空白を使って、区切りなしで学ぶ</text>
-<text x="12" y="360" class="tm">各時刻の出力（＿は空白）</text>
-<rect x="12" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="30" y="384.5" class="tb" text-anchor="middle">c</text>
-<rect x="52" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="70" y="384.5" class="tb" text-anchor="middle">c</text>
-<rect x="92" y="366" width="36" height="28" class="fs sb" stroke-width="1.5"/>
-<text x="110" y="384.5" class="tb" text-anchor="middle">＿</text>
-<rect x="132" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="150" y="384.5" class="tb" text-anchor="middle">a</text>
-<rect x="172" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="190" y="384.5" class="tb" text-anchor="middle">a</text>
-<rect x="212" y="366" width="36" height="28" class="fs sb" stroke-width="1.5"/>
-<text x="230" y="384.5" class="tb" text-anchor="middle">＿</text>
-<rect x="252" y="366" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="270" y="384.5" class="tb" text-anchor="middle">t</text>
-<line x1="160" y1="396" x2="160" y2="424" class="l sa w2"/>
-<polyline points="156.15,417 160,424 163.85,417" class="l sa w2"/>
-<text x="172" y="410" class="tb">同じ文字の</text>
-<text x="172" y="428" class="tb">連続をまとめる</text>
-<text x="12" y="442" class="tm"></text>
-<rect x="12" y="448" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="30" y="466.5" class="tb" text-anchor="middle">c</text>
-<rect x="52" y="448" width="36" height="28" class="fs sb" stroke-width="1.5"/>
-<text x="70" y="466.5" class="tb" text-anchor="middle">＿</text>
-<rect x="92" y="448" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="110" y="466.5" class="tb" text-anchor="middle">a</text>
-<rect x="132" y="448" width="36" height="28" class="fs sb" stroke-width="1.5"/>
-<text x="150" y="466.5" class="tb" text-anchor="middle">＿</text>
-<rect x="172" y="448" width="36" height="28" class="fas sa" stroke-width="1.5"/>
-<text x="190" y="466.5" class="tb" text-anchor="middle">t</text>
-<line x1="160" y1="478" x2="160" y2="506" class="l sa w2"/>
-<polyline points="156.15,499 160,506 163.85,499" class="l sa w2"/>
-<text x="172" y="498" class="tb">空白を消す</text>
-<text x="12" y="524" class="tm"></text>
-<rect x="12" y="530" width="36" height="28" class="fok sok" stroke-width="1.5"/>
-<text x="30" y="548.5" class="tb" text-anchor="middle">c</text>
-<rect x="52" y="530" width="36" height="28" class="fok sok" stroke-width="1.5"/>
-<text x="70" y="548.5" class="tb" text-anchor="middle">a</text>
-<rect x="92" y="530" width="36" height="28" class="fok sok" stroke-width="1.5"/>
-<text x="110" y="548.5" class="tb" text-anchor="middle">t</text>
-<text x="12" y="590" class="tb">入力の各時刻とラベルの対応を</text>
-<text x="12" y="612" class="tb">事前に区切っておかなくてよい</text>
+<desc id="fig-g-hmm-ctc-d">上は隠れマルコフモデル（HMM）。当てたいのは、何と言ったか。困りごと：マイクで取れるのは、コマ（フレーム。例：10ミリ秒ずつの区切り）ごとの特徴量（音の性質を表す数）の並びだけで、どのコマがどの音素かは書いていない。同じ『あ』でも人や話し方で長さが違う。考え方：裏に音素の並びがあるとみなす。例：『あさ』と言ったなら、音素が a → s → a の順に並んでいる。各音素は何コマかとどまり（自分に戻る矢印＝次のコマも同じ音素が続く）、次の音素へ進む（遷移）。とどまる・進むの起こりやすさが遷移確率。各音素からコマへの線が出力確率で、その音素のとき、そのコマの特徴量が出やすい度合い。例ではコマ1〜2が a、コマ3〜5が s、コマ6が a。認識：見えるのは特徴量の並びだけなので、どのコマがどの音素かを、遷移確率と出力確率でいちばんありそうなものに決め、『あさ』と当てる。実際は1つの音素を始め・中・終わりなどいくつかの状態に分けることが多い。DNN-HMM：このコマの特徴量はどの状態っぽいか、の見積もり（出力確率の部分）を、昔は GMM（混合ガウスモデル。釣り鐘形の正規分布をいくつか重ねた確率の式）で求めていた。DNN-HMM はここを DNN（層を深く重ねたニューラルネットワーク）に替えた。とどまる・進む（遷移）は HMM のまま。下は CTC。困りごと：DNN-HMM の DNN を学ぶには、コマごとに『ここは a』と区切った正解が要る。CTC は、コマごとに文字か空白（＿＝何も出さない）を出させ、あとで決まった規則でまとめる。同じ文字の連続をまとめてから、空白を消す。例の c c ＿ a a ＿ t は、c ＿ a ＿ t になり、cat になる。学習では cat にまとまる出し方すべての確率を足して、それが大きくなるようにするので、どのコマがどの文字かを前もって区切っておかなくてよい。</desc>
+<text x="12" y="20" class="tb">① HMM：裏に隠れた音の並びを当てる</text>
+<text x="12" y="46" class="tb">困りごと<tspan class="tm">（当てたいのは、何と言ったか）</tspan></text>
+<text x="12" y="66" class="tm">マイクで取れるのは、コマ（フレーム。例：</text>
+<text x="12" y="84" class="tm">10ミリ秒ずつの区切り）ごとの特徴量（音の</text>
+<text x="12" y="102" class="tm">性質を表す数）の並びだけ</text>
+<rect x="12" y="112" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="130.5" text-anchor="middle">コマ1</text>
+<rect x="62" y="112" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="84" y="130.5" text-anchor="middle">コマ2</text>
+<rect x="112" y="112" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="134" y="130.5" text-anchor="middle">コマ3</text>
+<rect x="162" y="112" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="184" y="130.5" text-anchor="middle">コマ4</text>
+<rect x="212" y="112" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="234" y="130.5" text-anchor="middle">コマ5</text>
+<rect x="262" y="112" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="284" y="130.5" text-anchor="middle">コマ6</text>
+<text x="12" y="160" class="tb twn">どのコマがどの音素かは、書いていない</text>
+<text x="12" y="178" class="tm">同じ『あ』でも、人や話し方で長さが違う</text>
+<line x1="12" y1="192" x2="308" y2="192" class="l sb w1"/>
+<text x="12" y="214" class="tb">考え方：裏に音素の並びがあるとみなす</text>
+<text x="12" y="234" class="tm">例：『あさ』と言った＝音素（音の最小単位）</text>
+<text x="12" y="252" class="tm">が a → s → a の順に並んでいる</text>
+<text x="60" y="274" class="tm" text-anchor="middle">とどまる</text>
+<text x="160" y="274" class="tm" text-anchor="middle">とどまる</text>
+<text x="260" y="274" class="tm" text-anchor="middle">とどまる</text>
+<path d="M 50 302 C 36 274 84 274 70 302" class="l sa w1"/>
+<polyline points="70,292 70,302 62,298" class="l sa w1"/>
+<path d="M 150 302 C 136 274 184 274 170 302" class="l sa w1"/>
+<polyline points="170,292 170,302 162,298" class="l sa w1"/>
+<path d="M 250 302 C 236 274 284 274 270 302" class="l sa w1"/>
+<polyline points="270,292 270,302 262,298" class="l sa w1"/>
+<circle cx="60" cy="320" r="20" class="fas sa"/>
+<text x="60" y="325" class="tb" text-anchor="middle">a</text>
+<circle cx="160" cy="320" r="20" class="fas sa"/>
+<text x="160" y="325" class="tb" text-anchor="middle">s</text>
+<circle cx="260" cy="320" r="20" class="fas sa"/>
+<text x="260" y="325" class="tb" text-anchor="middle">a</text>
+<line x1="82" y1="320" x2="138" y2="320" class="l sa w2"/>
+<polyline points="131,323.85 138,320 131,316.15" class="l sa w2"/>
+<line x1="182" y1="320" x2="238" y2="320" class="l sa w2"/>
+<polyline points="231,323.85 238,320 231,316.15" class="l sa w2"/>
+<text x="110" y="312" class="tm" text-anchor="middle">進む</text>
+<text x="210" y="312" class="tm" text-anchor="middle">進む</text>
+<line x1="56" y1="340" x2="36" y2="376" class="l swn w2"/>
+<line x1="64" y1="340" x2="82" y2="376" class="l swn w2"/>
+<line x1="154" y1="340" x2="136" y2="376" class="l swn w2"/>
+<line x1="160" y1="340" x2="182" y2="376" class="l swn w2"/>
+<line x1="168" y1="338" x2="230" y2="376" class="l swn w2"/>
+<line x1="264" y1="340" x2="282" y2="376" class="l swn w2"/>
+<rect x="12" y="378" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="396.5" text-anchor="middle">コマ1</text>
+<rect x="62" y="378" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="84" y="396.5" text-anchor="middle">コマ2</text>
+<rect x="112" y="378" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="134" y="396.5" text-anchor="middle">コマ3</text>
+<rect x="162" y="378" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="184" y="396.5" text-anchor="middle">コマ4</text>
+<rect x="212" y="378" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="234" y="396.5" text-anchor="middle">コマ5</text>
+<rect x="262" y="378" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="284" y="396.5" text-anchor="middle">コマ6</text>
+<text x="12" y="434" class="tb"><tspan class="ta">丸の上の輪（とどまる）</tspan>＝次のコマも</text>
+<text x="12" y="452" class="tm">同じ音素が続く。何回とどまるかで、長い</text>
+<text x="12" y="470" class="tm">『あー』も短い『あ』も表せる</text>
+<text x="12" y="494" class="tb"><tspan class="ta">横の矢印（進む）</tspan>＝次の音素へ移る（遷移）</text>
+<text x="12" y="512" class="tm">とどまる・進むの起こりやすさ＝遷移確率</text>
+<text x="12" y="536" class="tb"><tspan class="twn">下へのびる線</tspan>＝出力確率</text>
+<text x="12" y="554" class="tm">その音素のとき、そのコマの特徴量が出やすい</text>
+<text x="12" y="572" class="tm">度合い（a なら、a らしい特徴量が出やすい）</text>
+<line x1="12" y1="586" x2="308" y2="586" class="l sb w1"/>
+<text x="12" y="608" class="tb">認識：いちばんありそうな並びを当てる</text>
+<text x="12" y="628" class="tm">見えるのは特徴量の並びだけ。そこから、</text>
+<text x="12" y="646" class="tm">どのコマがどの音素かを、遷移確率と出力確率</text>
+<text x="12" y="664" class="tm">でいちばんありそうなものに決める</text>
+<rect x="12" y="674" width="44" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="34" y="692.5" class="tb" text-anchor="middle">a</text>
+<rect x="62" y="674" width="44" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="84" y="692.5" class="tb" text-anchor="middle">a</text>
+<rect x="112" y="674" width="44" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="134" y="692.5" class="tb" text-anchor="middle">s</text>
+<rect x="162" y="674" width="44" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="184" y="692.5" class="tb" text-anchor="middle">s</text>
+<rect x="212" y="674" width="44" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="234" y="692.5" class="tb" text-anchor="middle">s</text>
+<rect x="262" y="674" width="44" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="284" y="692.5" class="tb" text-anchor="middle">a</text>
+<text x="12" y="724" class="tb tok">→ コマ1〜2が a、3〜5が s、6が a</text>
+<text x="12" y="744" class="tb tok">　 ＝『あさ』と言った、と当てる</text>
+<text x="12" y="768" class="tm">※実際は1つの音素を、始め・中・終わりなど</text>
+<text x="12" y="786" class="tm">　いくつかの状態に分けることが多い</text>
+<line x1="12" y1="800" x2="308" y2="800" class="l sb w1"/>
+<text x="12" y="822" class="tb">DNN-HMM：出力確率の部分だけ替えた</text>
+<text x="12" y="842" class="tm">『このコマの特徴量は、どの状態っぽいか』の</text>
+<text x="12" y="860" class="tm">見積もり（下へのびる線）を、昔は GMM で</text>
+<text x="12" y="878" class="tm">求めていた。GMM（混合ガウスモデル）＝</text>
+<text x="12" y="896" class="tm">釣り鐘形の正規分布をいくつか重ねた確率の式</text>
+<text x="12" y="920" class="tb ta">DNN-HMM は、ここを DNN（層を深く</text>
+<text x="12" y="938" class="tb ta">重ねたニューラルネットワーク）に替えた</text>
+<text x="12" y="958" class="tm">とどまる・進む（遷移）は HMM のまま</text>
+<line x1="12" y1="976" x2="308" y2="976" class="l sm w2"/>
+<text x="12" y="1002" class="tb">② CTC：空白を使って、区切りなしで学ぶ</text>
+<text x="12" y="1024" class="tb">困りごと</text>
+<text x="12" y="1044" class="tm">DNN-HMM の DNN を学ぶには、コマごとに</text>
+<text x="12" y="1062" class="tm">『ここは a』と区切った正解が要る</text>
+<text x="12" y="1086" class="tm">そこで、コマごとに『文字』か『空白（＿）』</text>
+<text x="12" y="1104" class="tm">を出させ、あとで決まった規則でまとめる</text>
+<text x="12" y="1128" class="tm">コマごとの出力（＿＝空白＝何も出さない）</text>
+<rect x="12" y="1134" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="30" y="1152.5" class="tb" text-anchor="middle">c</text>
+<rect x="52" y="1134" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="70" y="1152.5" class="tb" text-anchor="middle">c</text>
+<rect x="92" y="1134" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="110" y="1152.5" class="tb" text-anchor="middle">＿</text>
+<rect x="132" y="1134" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="150" y="1152.5" class="tb" text-anchor="middle">a</text>
+<rect x="172" y="1134" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="190" y="1152.5" class="tb" text-anchor="middle">a</text>
+<rect x="212" y="1134" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="230" y="1152.5" class="tb" text-anchor="middle">＿</text>
+<rect x="252" y="1134" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="270" y="1152.5" class="tb" text-anchor="middle">t</text>
+<line x1="160" y1="1164" x2="160" y2="1192" class="l sa w2"/>
+<polyline points="156.15,1185 160,1192 163.85,1185" class="l sa w2"/>
+<text x="172" y="1178" class="tb">同じ文字の</text>
+<text x="172" y="1196" class="tb">連続をまとめる</text>
+<rect x="12" y="1216" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="30" y="1234.5" class="tb" text-anchor="middle">c</text>
+<rect x="52" y="1216" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="70" y="1234.5" class="tb" text-anchor="middle">＿</text>
+<rect x="92" y="1216" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="110" y="1234.5" class="tb" text-anchor="middle">a</text>
+<rect x="132" y="1216" width="36" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="150" y="1234.5" class="tb" text-anchor="middle">＿</text>
+<rect x="172" y="1216" width="36" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="190" y="1234.5" class="tb" text-anchor="middle">t</text>
+<line x1="160" y1="1246" x2="160" y2="1274" class="l sa w2"/>
+<polyline points="156.15,1267 160,1274 163.85,1267" class="l sa w2"/>
+<text x="172" y="1266" class="tb">空白を消す</text>
+<rect x="12" y="1298" width="36" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="30" y="1316.5" class="tb" text-anchor="middle">c</text>
+<rect x="52" y="1298" width="36" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="70" y="1316.5" class="tb" text-anchor="middle">a</text>
+<rect x="92" y="1298" width="36" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="110" y="1316.5" class="tb" text-anchor="middle">t</text>
+<text x="12" y="1346" class="tm">学習では、cat にまとまる出し方すべての確率</text>
+<text x="12" y="1364" class="tm">を足して、それが大きくなるようにする</text>
+<text x="12" y="1384" class="tb">→ どのコマがどの文字かを、区切らなくてよい</text>
 </svg>
