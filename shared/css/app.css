@@ -1053,7 +1053,8 @@ body.boss-on { background: #000; }
 .boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; }
 .tb-float { position: relative; z-index: 1; height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
 .tb-float.f2 { height: calc(100% - 34px); animation: tb-float 3.2s ease-in-out infinite; --amp: 20px; }
-.boss-stage.tb-big { height: clamp(234px, 44vh, 390px); transition: height 0.8s ease-out; } /* 第3形態は舞台を1.3倍に（浮かぶ分の余白を引いても、第1形態より大きく見える） */
+.boss-stage.tb-big2 { height: clamp(207px, 39vh, 345px); transition: height 0.8s ease-out; } /* 第2形態は舞台を1.15倍に、第3形態は1.3倍に（浮かぶ分の余白を引いても、前の姿より大きく見える） */
+.boss-stage.tb-big { height: clamp(234px, 44vh, 390px); transition: height 0.8s ease-out; }
 .tb-float.f3 { height: calc(100% - 50px); animation: tb-float 4.6s ease-in-out infinite; --amp: 32px; }
 @keyframes tb-float { 0%, 100% { transform: translateY(calc(var(--amp) * 0.5)); } 50% { transform: translateY(calc(var(--amp) * -0.5)); } }
 .tb-shadow { display: none; position: absolute; z-index: 0; left: 50%; bottom: 4px; width: 46%; height: 12px; margin-left: -23%; border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse closest-side, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)); }
