@@ -31,8 +31,9 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
 7. **公開先を確かめる**（https://yosuke-takeshita-arch.github.io/cert-quest/ ）
    - 各アプリの `sw.js` の版が上げた番号か（`curl -s "<URL>/g-kentei/sw.js?x=$RANDOM" | grep "version: '"`。dx-biz・ai-passport も同じ）
    - 今回足した・変えたファイルが 200 で取れるか、中身に今回の変更の目印が入っているか
-8. **note 用の会話ログを作り直す**（公開のたびに。元の会話の記録は古いものから消えることがあるので、作り直すことが保存になる）:
-   `node ~/.claude/projects/C--Users-Panasonic-Documents-Projects-cert-quest/memory/conversation_log_build.cjs <memory>/conversation_log.md ~/.claude/projects/C--Users-Panasonic-Documents-Projects/86acdb26-1293-400c-b456-9d6b6bf1258e.jsonl ~/.claude/projects/C--Users-Panasonic-Documents-Projects-cert-quest/*.jsonl`
+8. **note 用の会話ログに書き足す**（公開のたびに。元の会話の記録 jsonl は古いものから消えるので、ログ自体を正本にして続きだけを足す。2026-11-03 先生決定 B）:
+   `node ~/.claude/projects/C--Users-Panasonic-Documents-Projects-cert-quest/memory/conversation_log_build.cjs <memory>/conversation_log.md --base <memory>/conversation_log.md ~/.claude/projects/C--Users-Panasonic-Documents-Projects-cert-quest/*.jsonl`
+   ログの最後の返答が jsonl に見つからないときは、何も書かずに止まる。そのときは先生に伝える。`--base` を外して作り直さない（消えた jsonl の分が落ちる）
    ログはリポジトリに入れない
 9. **先生に伝える**: 版の番号、確かめたこと、実機で見てほしいこと（音・動き・iPhone など、まだ誰も確かめていないこと）
    - **アプリを初めて公開したときは、入れ方を必ず書く**: Android Chrome のメニュー「ホーム画面に追加」からは入らない（全アプリが同じオリジンのため。開くと「アプリを開けませんでした」）。ホーム画面の「アプリとしてインストール」ボタンから入れる（メニューで断られてもアイコンはできない。2026-10-30、門番が「できたアイコンを消して」と確かめずに書き、先生に叱られた）。2026-10-14（生成AIパスポート）と 2026-10-30（ガードの砦）の2回、書かずに渡して先生に失敗させた
