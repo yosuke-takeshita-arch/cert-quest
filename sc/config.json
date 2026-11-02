@@ -13,6 +13,7 @@
   "secondsPerQuestion": 84,
   "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
   "challenge": { "questions": 10 },
+  "trueBossEnding": "./images/ending.webp",
   "trueBossBadge": { "name": "かげを みやぶりし もの", "art": false },
   "trueBossWords": { "place": "とりでの いちばん うえ", "ending": "とりでを まもりぬいた！", "reached": "とりでの いちばん うえまで たどりついたよ！" },
   "reportUrl": "mailto:support@aisunia.com",
