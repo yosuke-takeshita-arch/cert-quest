@@ -430,6 +430,7 @@ export function renderTrueBoss(app) {
     ui.mini.style.setProperty('--boss-color', p.color);
     ui.float.classList.toggle('f2', battle().form === 2); // 第2・第3形態だけ、ゆっくり上下に浮かぶ（第1形態は動かさない）
     ui.float.classList.toggle('f3', battle().form === 3);
+    ui.stage.classList.toggle('tb-big', battle().form === 3); // 最後の姿は舞台を高くして、前の姿より大きく見せる（2026-11-02 先生決定 A「迫力に欠ける」）
     ui.fig.style.setProperty('--boss-color', p.color);
     // 絵は、新しい絵の decode が済んでから替わる（それまでは、前の中身のまま。記号は出さない）。戻り値は、替わったら解決する
     return Promise.all([fillFigure(ui.fig, battle().form), fillArt(ui.miniArt, battle().form, false)]);
