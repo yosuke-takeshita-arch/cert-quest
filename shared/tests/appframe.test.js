@@ -184,7 +184,8 @@ test('sc: 本番の形は仮置き（科目A-2 は 25問・35分。IPA 検討状
   assert.equal(c.about.organizerUrl, 'https://www.ipa.go.jp/');
   assert.ok(c.officialLinks.some((l) => l.url === 'https://www.ipa.go.jp/shiken/kubun/sc.html'));
   assert.ok(c.officialLinks.some((l) => l.url === 'https://www.ipa.go.jp/shiken/syllabus/henkou/2025/20260331.html'));
-  assert.ok(!('trueBoss' in c) && !('passGuide' in c), '真ボス・合格の目安は決まるまで置かない（要件定義書 §12-1）');
+  // 真ボスは 2026-11-01 先生決定 A で作った（要件定義書 §3-9『作る順』）。合格の目安はまだ決まっていない
+  assert.ok(!('passGuide' in c), '合格の目安は決まるまで置かない（要件定義書 §12-1）');
   assert.ok(existsSync(join(root, 'sc', 'data', '_sample', 'index.json')), 'サンプル（?sample=1）が無い');
 });
 

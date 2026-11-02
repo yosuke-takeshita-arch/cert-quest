@@ -333,7 +333,7 @@ test('第1形態の偽の撃破のせりふ: 正本に無い（シンギュラ�
 });
 
 test('位置の表（trueboss-geom.js）: アプリごとに持つ。G検定は実測値のまま、DX は玉13個・AIパスポートは玉5個（仮の輪）', () => {
-  assert.deepEqual(Object.keys(TRUE_GEOM).sort(), ['ai-passport', 'dx-biz', 'g-kentei']);
+  assert.deepEqual(Object.keys(TRUE_GEOM).sort(), ['ai-passport', 'dx-biz', 'g-kentei', 'sc']);
   assert.equal(trueGeom('g-kentei').orbs, G_ORBS);
   assert.deepEqual([trueGeom('g-kentei').core.x, trueGeom('g-kentei').core.y], [49.7, 37.5]);
   assert.equal(trueGeom('unknown'), trueGeom('g-kentei'), '表の無い id は G検定の値');
@@ -408,4 +408,19 @@ test('AIパスポート（アマツクリ）の位置: 絵から測った値。�
   }
   assert.ok(g.face[1].y > 0.2 && g.face[1].y < 0.35, '第1形態の顔は丸い窓の中');
   assert.match(readFileSync(fileURLToPath(new URL('../../ai-passport/config.json', import.meta.url)), 'utf8'), /"trueBoss": true/);
+});
+
+test('ガードの砦（ヒソミカゲ）の位置: 絵から測った値。玉は7個で、頭のうしろの半円の弧（左右対称・上が頂点）。目は2つ。ひびは兜の中に入らない', () => {
+  const g = trueGeom('sc');
+  assert.equal(g.orbs.length, 7);
+  for (let i = 0; i < 3; i++) assert.ok(Math.abs(g.orbs[i].x + g.orbs[6 - i].x - 100) < 1 && g.orbs[i].y === g.orbs[6 - i].y, '左右対称');
+  assert.equal(g.orbs[3].x, 49.8);
+  assert.ok(g.orbs[3].y < g.orbs[2].y && g.orbs[2].y < g.orbs[1].y && g.orbs[1].y < g.orbs[0].y, '弧: 中央がいちばん上、端が低い');
+  assert.ok(Array.isArray(g.eye) && g.eye.length === 2 && g.eye[0].x < 50 && g.eye[1].x > 50);
+  assert.deepEqual([g.core.x, g.core.y], [50.1, 32.2]);
+  assert.equal(g.cracks.length, 4);
+  for (const d of g.cracks) {
+    assert.ok(d.startsWith('M50.1 32.2 L'), d);
+    for (const m of d.matchAll(/([0-9.]+) ([0-9.]+)/g)) assert.ok(Number(m[2]) >= 29, '兜（y 6〜26）には入れない: ' + d);
+  }
 });

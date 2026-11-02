@@ -5,7 +5,7 @@
 //   core   … 第1形態の胸の核（ひびの起点）
 //   eye    … 第1形態の目（ひびが入ったあと強く光る）。cx・cy・rx・ry
 //   cracks … ひびの形（SVG の path。核から広がる4本）
-//   orbs   … 第2形態の頭のうしろの光の玉。第2→3の進化で1つずつ金色に灯る。数は絵の玉の数（G検定 13・DX 13・AIパスポート 5）
+//   orbs   … 第2形態の頭のうしろの光の玉。第2→3の進化で1つずつ金色に灯る。数は絵の玉の数（G検定 13・DX 13・AIパスポート 5・ガードの砦 7）
 import { TRUE_FACE, TRUE_CORE, TRUE_EYE, TRUE_CRACKS, TRUE_ORBS } from './trueboss-data.js';
 
 const round1 = (v) => Math.round(v * 10) / 10;
@@ -59,6 +59,24 @@ export const TRUE_GEOM = Object.freeze({
     ]),
     orbs: Object.freeze([
       { x: 37.4, y: 21.0, r: 2.6 }, { x: 39.1, y: 11.2, r: 2.6 }, { x: 50.0, y: 6.4, r: 2.6 }, { x: 60.7, y: 11.2, r: 2.6 }, { x: 62.6, y: 21.0, r: 2.6 },
+    ].map((o) => Object.freeze(o))),
+  }),
+  // ガードの砦（ヒソミカゲ）。絵（true-1〜3.webp、512px）から測った値（2026-11-02）。
+  //   顔: 第1形態は兜の中心、第2形態は影の頭巾の中心、第3形態は冠の下の顔の中心。核: 第1形態の胸当ての鍵穴の形の核。目: 兜の面頬のすきまの青緑の目が2つ（楕円2つをまとめて光らせる）
+  //   ひび: 核から鎧の体の上へ（下へ2本・肩へ2本。兜の中には入れない）。玉: 第2形態の頭のうしろの7個。半円の弧（左下から時計まわり）
+  'sc': Object.freeze({
+    face: Object.freeze({ 1: Object.freeze({ x: 0.5, y: 0.17 }), 2: Object.freeze({ x: 0.5, y: 0.17 }), 3: Object.freeze({ x: 0.5, y: 0.2 }) }),
+    core: Object.freeze({ x: 50.1, y: 32.2 }),
+    eye: Object.freeze([Object.freeze({ x: 47.3, y: 19.0, rx: 1.3, ry: 1.0 }), Object.freeze({ x: 52.5, y: 19.0, rx: 1.3, ry: 1.0 })]),
+    cracks: Object.freeze([
+      'M50.1 32.2 L46 38 L48 43 L43 48 L45 53 L40 58',
+      'M50.1 32.2 L54 38 L52 44 L57 49 L55 54 L60 59',
+      'M50.1 32.2 L45 30 L41 32 L35 29 L30 33',
+      'M50.1 32.2 L55 30 L59 32 L65 29 L70 33',
+    ]),
+    orbs: Object.freeze([
+      { x: 35.5, y: 17.5, r: 1.7 }, { x: 37.0, y: 11.8, r: 1.7 }, { x: 42.0, y: 7.2, r: 1.7 }, { x: 49.8, y: 5.4, r: 1.7 },
+      { x: 57.6, y: 7.2, r: 1.7 }, { x: 62.5, y: 11.8, r: 1.7 }, { x: 64.1, y: 17.5, r: 1.7 },
     ].map((o) => Object.freeze(o))),
   }),
 });
