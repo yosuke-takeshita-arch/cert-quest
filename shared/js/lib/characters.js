@@ -28,8 +28,12 @@ export function characterName(art) {
 export const CHARACTER_TEXT = {
   homeHello: '今日もいっしょにがんばろう！',
   homeFirst: 'はじめまして！ サニーだよ。まずは1問、解いてみよう！',
-  homeExamToday: '今日は本番！ 落ち着いていけば大丈夫。応援してるよ！',
-  homeExamTomorrow: 'いよいよ明日が本番！ 今日は軽く見直して、早めに休もう',
+  // 受験日の7・3・2・1日前と当日は、あい先生がその日にやることを伝える（2026-11-04 先生決定 B「あい先生が言うことによって、温かみが増す」）
+  homeExamToday: '今日は本番。迷ったら「見直す」の印を付けて先へ進み、最後に戻りましょう。落ち着いていけば大丈夫ですよ',
+  homeExamTomorrow: 'いよいよ明日が本番。新しいことはせず、まちがえた問題の見直しだけにして、早めに休みましょう',
+  homeExam2: 'あと2日。模擬試験をもう1回通しましょう。持ち物や受験の案内も、今日のうちに確かめておくと安心です',
+  homeExam3: 'あと3日。選んだ中分類を見直しましょう。まちがえた問題は、解説まで読み直してくださいね',
+  homeExam7: '本番まであと7日。模擬試験を本番と同じ形で通して、正答率の低い中分類を3つ選んでおきましょう',
   homeGoalDone: '今日の目標、達成！ えらい！',
   homeLate: 'こんな時間まで…！ 寝るのも大事だよ',
   homeExamNear: (n) => '本番まであと' + n + '日！ ラストスパート！',
@@ -82,7 +86,7 @@ export const CHARACTER_PROFILE = {
       { label: '好きなもの', text: '甘いもの。あんみつ、ティラミス' },
       { label: '苦手なもの', text: '昆虫、秘密の多い人' },
     ],
-    where: ['問題の解説（正解の理由・覚え方）', '模擬試験の結果', '「どっち？」の結果発表', '模擬試験の「採点しますか？」の小窓', '苦手の分析', '使い方の案内'],
+    where: ['ホームの上（受験日の7・3・2・1日前と当日）', '問題の解説（正解の理由・覚え方）','模擬試験の結果', '「どっち？」の結果発表', '模擬試験の「採点しますか？」の小窓', '苦手の分析', '使い方の案内'],
   },
 };
 /** 紹介の画面の切り替えの順（上のキーと同じ）。 */
@@ -127,7 +131,7 @@ export function daysSinceLastStudy(state, todayKey) {
   return Number.isFinite(d) ? Math.max(0, d) : null;
 }
 
-/** ホームの柴犬。状況と時間帯で一言が変わる。上から順に、最初に当てはまった1つだけ（要件定義書 §6 キャラクター）。
+/** ホームのキャラクター（ふだんは柴犬、受験日の7・3・2・1日前と当日はあい先生）。状況と時間帯で一言が変わる。上から順に、最初に当てはまった1つだけ（要件定義書 §6 キャラクター）。
  *  now は Date（端末の時刻）。同じ日・同じ時間帯なら、開き直しても同じ一言（乱数は使わない）。 */
 export function homeMascot(state, now = new Date()) {
   const T = CHARACTER_TEXT;
@@ -140,11 +144,14 @@ export function homeMascot(state, now = new Date()) {
   const away = daysSinceLastStudy(s, key);
   if (away !== null && away >= AWAY_DAYS) return { art: 'shiba-sleepy', text: T.homeBack };
   const days = examStatus(s.settings, now).days;
-  if (days === 0) return { art: 'shiba-cheer', text: T.homeExamToday };
-  if (days === 1) return { art: 'shiba-cheer', text: T.homeExamTomorrow };
+  if (days === 0) return { art: 'sensei-ok', text: T.homeExamToday };
+  if (days === 1) return { art: 'sensei-comfort', text: T.homeExamTomorrow };
   if (dailyProgress(s, key).done) return { art: 'shiba-banzai', text: T.homeGoalDone };
   if (hour < 5) return { art: 'shiba-sleepy', text: T.homeLate };
-  if (days !== null && days >= 2 && days <= EXAM_NEAR_DAYS) return { art: 'shiba-cheer', text: T.homeExamNear(days) };
+  if (days === 2) return { art: 'sensei-point', text: T.homeExam2 };
+  if (days === 3) return { art: 'sensei-point', text: T.homeExam3 };
+  if (days === 7) return { art: 'sensei-point', text: T.homeExam7 };
+  if (days !== null && days >= 4 && days < EXAM_NEAR_DAYS) return { art: 'shiba-cheer', text: T.homeExamNear(days) };
   const streak = currentStreak(s.streak, key);
   if (streak >= STREAK_PRAISE_DAYS) return { art: 'shiba-clap', text: T.homeStreak(streak) };
   if (hour >= 5 && hour <= 10) return { art: 'shiba-hello', text: T.homeMorning };
