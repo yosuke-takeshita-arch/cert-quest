@@ -8455,5 +8455,989 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-06-195",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "画像認識のパノプティックセグメンテーションの説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "画像の画素を塗り分けるタスクの1つ、パノプティックセグメンテーションが何を出力するのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "画像の画素ごとにクラスを付けるが、同じクラスの物が何個あっても1つの領域として塗り、1つ1つの個体は区別しない。",
+      "人や車のように数えられる物を1つずつ見つけて、その物に当たる画素の領域を求めるが、空や道路のような背景は扱わない。",
+      "画像の画素ごとにクラスを付けたうえで、人や車のように数えられる物は、1つずつ別の個体として番号を分けて塗る。",
+      "画像の中の物を1つずつ見つけて、それぞれを囲む長方形の位置と、その物のクラスを出す。"
+    ],
+    "answer": 2,
+    "explanation": "Kirillov ら（2018）は、セマンティックセグメンテーション（画素ごとにクラスを付ける）とインスタンスセグメンテーション（物を1つずつ見つけて切り分ける）を1つにまとめたタスクとして、パノプティックセグメンテーションを提案した。原論文は、草・空・道路のような形の決まらない領域を stuff、人・動物・道具のように数えられる物を things と呼び、両方を1枚の結果で扱う。例：人が3人いる道路の写真なら、道路と空の画素には『道路』『空』のクラスを、人の画素には『人・1番』『人・2番』『人・3番』のようにクラスと個体の番号を付ける。",
+    "whyWrong": [
+      "セマンティックセグメンテーションの説明。画素ごとにクラスを付けるが、人が3人いても3人分をまとめて『人』の1つの領域として塗る。個体を区別しないので、何人いるかは分からない。パノプティックは、ここに個体の区別を足したもの。",
+      "インスタンスセグメンテーションの説明。Mask R-CNN のように、数えられる物を1つずつ見つけてその画素の領域（マスク）を求める。空や道路のような数えられない領域には答えを出さないので、画像の画素の全体は埋まらない。",
+      null,
+      "物体検出の説明。YOLO や Faster R-CNN のように、物ごとに囲む長方形（バウンディングボックス）とクラスを出す。画素1つ1つにクラスを付けるわけではないので、物の輪郭や背景の領域は分からない。"
+    ],
+    "memoryTip": "パノプティック＝セマンティック（背景も含めて塗る）＋インスタンス（数えられる物は1つずつ）。",
+    "concepts": [
+      "C-06-019",
+      "C-06-001",
+      "C-06-024",
+      "C-06-014"
+    ],
+    "figures": [
+      "fig-g-vision-tasks"
+    ],
+    "sources": [
+      {
+        "title": "Kirillov et al. (2018) Panoptic Segmentation (arXiv:1801.00868)",
+        "url": "https://arxiv.org/abs/1801.00868"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-196",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "Bag-of-Words で文書をベクトルにしたときに起きることとして、最も適切なものを1つ選べ。",
+    "stemPlain": "文章を数の並びに直す方法の1つ、Bag-of-Words を使うと、どんなことが起きるのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "単語ごとの出てきた回数で文書を表すので、『犬が猫を追う』と『猫が犬を追う』は同じベクトルになる。",
+      "出てきた回数に、その単語を含む文書が少ないほど大きくなる重みを掛けるので、どの文書にもある語の値は小さくなる。",
+      "隣り合う2語の並びも1つの項目として数えるので、『犬 が』と『猫 が』のような並びが別の項目になり、語順の一部が残る。",
+      "前後に来る単語を当てる学習で単語ごとのベクトルを作るので、『月曜』と『火曜』のように同じ文脈で使う単語が近くなる。"
+    ],
+    "answer": 0,
+    "explanation": "Bag-of-Words（単語の袋）は、文書を、語彙の単語ごとにその文書に出てきた回数を並べたベクトルで表す。scikit-learn の説明でも、文書を単語の出現で表し、文書の中での単語の位置は完全に無視する、とある。例：『犬 が 猫 を 追う』と『猫 が 犬 を 追う』は、どちらも『犬1・が1・猫1・を1・追う1』で、ベクトルがまったく同じになる。だれがだれを追ったかという意味の違いは、BoW では区別できない。",
+    "whyWrong": [
+      null,
+      "TF-IDF の説明。出現回数（TF）に、その語を含む文書の数が少ないほど大きくなる値（IDF）を掛ける。例：100件の文書のどれにも出る『が』は重みが小さく、2件にしか出ない『追う』は大きい。BoW の回数に重みを掛け直す別の方法で、BoW そのもので起きることではない。",
+      "n-gram（ここでは2語の並びのバイグラム）の説明。scikit-learn の説明でも、1語に加えて2語の組を数えると、語順の一部の情報を残せる、とある。例：『犬 が 猫 を 追う』は『犬 が』『が 猫』『猫 を』『を 追う』、『猫 が 犬 を 追う』は『猫 が』『が 犬』『犬 を』『を 追う』となり、2つの文が区別できる。1語ずつ数える BoW では、この区別ができない。",
+      "word2vec（Mikolov ら, 2013）の説明。周りの単語を当てる学習で、単語1つ1つに数百次元ほどの密なベクトルを作る。単語どうしの近さを表す方法で、文書を回数で表す BoW の性質ではない。BoW では『月曜』と『火曜』は別々の次元になり、近さは表れない。"
+    ],
+    "memoryTip": "BoW＝単語を袋に入れて数える。袋の中で順番は混ざる。",
+    "concepts": [
+      "C-06-027",
+      "C-06-108",
+      "C-06-029"
+    ],
+    "figures": [
+      "fig-g-text-vectors"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Feature extraction（Text feature extraction）",
+        "url": "https://scikit-learn.org/stable/modules/feature_extraction.html"
+      },
+      {
+        "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-197",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "文書の中の単語の重み付けに使われる TF-IDF の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "文章の中の単語にどれだけ重みを付けるかを決める方法、TF-IDF の計算の考え方を正しく言った文を選ぶ問題。",
+    "choices": [
+      "語彙の単語ごとに、その文書に出てきた回数をそのまま並べて文書のベクトルにし、単語の並び順は使わない。",
+      "語彙の数と同じ次元のベクトルを用意し、ある単語に当たる次元を1、残りを0にして、単語1つを表す。",
+      "1つの文書はいくつかの話題が混ざってでき、話題ごとに出やすい単語が違う、と考えて、各文書の話題の割合を推定する。",
+      "文書の中での単語の出現の多さに、その単語を含む文書が少ないほど大きくなる値を掛けて、単語の重みを決める。"
+    ],
+    "answer": 3,
+    "explanation": "TF-IDF は、term frequency（単語の出現頻度）× inverse document frequency（逆文書頻度）。ことばの式で『重み＝その文書での出現回数 × その単語の珍しさ』。珍しさ（IDF）は、その単語を含む文書が少ないほど大きくなるように作る（scikit-learn の説明でも tf-idf(t,d)＝tf(t,d)×idf(t)）。例（数は説明用。底を10とした log の簡単な形で、scikit-learn の初期設定の式とは少し違う）：文書が100件あるとき、100件のどれにも出る『が』は IDF＝log(100÷100)＝log 1＝0 で、何回出ても重みは0。2件にしか出ない『追う』は IDF＝log(100÷2)＝log 50≒1.7 で、ある文書に3回出れば 3×1.7＝5.1。どの文書にもある語を小さく、その文書を特徴づける語を大きく扱える。",
+    "whyWrong": [
+      "Bag-of-Words の説明。回数をそのまま使うので、どの文書にもある『が』『を』も、その文書らしさを表す語も、同じ1回として数える。TF-IDF は、この回数に珍しさの重みを掛け直したもの。",
+      "ワンホットベクトル（局所表現）の説明。語彙が1万語なら1万次元のベクトルで、その単語の位置が1になる。単語1つを表す形で、文書の中での単語の重みを決める計算ではない。",
+      "潜在的ディリクレ配分法（LDA、Blei ら, 2003）の説明。トピックモデル（文書に隠れた話題を推定するモデル）の代表で、各文書を話題の混ざり合いとして表す。例：ある記事を『スポーツ70％・経済30％』のように表す。単語の重みを出現回数と珍しさの積で決める TF-IDF とは、ねらいも計算も違う。",
+      null
+    ],
+    "memoryTip": "TF-IDF＝この文書でよく出る（TF）×ほかではあまり出ない（IDF）。どこにでも出る語は重みが0に近づく。",
+    "concepts": [
+      "C-06-027",
+      "C-03-032",
+      "C-03-031"
+    ],
+    "figures": [
+      "fig-g-text-vectors"
+    ],
+    "sources": [
+      {
+        "title": "scikit-learn User Guide: Feature extraction（Text feature extraction）",
+        "url": "https://scikit-learn.org/stable/modules/feature_extraction.html"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 5: Embeddings",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/5.pdf"
+      },
+      {
+        "title": "Blei, Ng & Jordan (2003) Latent Dirichlet Allocation. JMLR 3",
+        "url": "https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-198",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ロボットの学習で使われるドメインランダマイゼーションの説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "仮想の世界（シミュレーション）で学ばせたロボットを現実で動かすための工夫の1つ、ドメインランダマイゼーションが何をするのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "人が設計した制御器の出力に、強化学習で学んだ方策の出力を足し合わせ、その和を実際にロボットへ送る制御の信号として使う。",
+      "シミュレータの模様や照明・カメラの位置などを大きくばらつかせて学習し、実物の写真なしで現実でも働くモデルを得る。",
+      "環境と新たにやり取りせず、あらかじめ集めておいた状態・行動・報酬の記録から方策を学ぶ。",
+      "別の大きなデータで学習済みのモデルの重みを出発点にし、目的のデータで追加の学習をして重みを調整する。"
+    ],
+    "answer": 1,
+    "explanation": "Tobin ら（2017）は、シミュレータで描いた画像で物体の位置を当てる検出器を学習し、現実のロボットで使った。描くときに、カメラの位置・照明・物の位置・現実らしくない模様をランダムに変えて、数十万枚の粗い画像を作った。変化の幅が十分に大きければ、現実の画像も『たくさんの変化の1つ』に見えるので、追加の学習なしに現実で働く。原論文では、物の位置を誤差1.5cm ほどで当てた。",
+    "whyWrong": [
+      "残差強化学習（Johannink ら, 2018）の説明。従来の制御器の出力と、強化学習の方策の出力を重ね合わせて最終の制御にする。シミュレータの見た目をばらつかせる工夫ではない。",
+      null,
+      "オフライン強化学習の説明（Levine ら, 2020）。例：医療や自動運転のように、試しに行動させることが危険・高価な分野で、過去に集めた記録から方策を学ぶ。シミュレータで学んだものを現実へ移す工夫とは、扱う問題が違う。",
+      "ファインチューニングの説明。例：ImageNet で学んだ画像分類のモデルの重みから始めて、工場の部品の写真で少し学習し直す。ドメインランダマイゼーションは、目的の現実の画像を学習に使わずに、シミュレータの側の多様さで現実に備える点が違う。"
+    ],
+    "memoryTip": "ドメインランダマイゼーション＝仮想の世界をわざとばらばらにし、現実を『その中の1つ』にしてしまう。",
+    "concepts": [
+      "C-06-058",
+      "C-06-060",
+      "C-06-059",
+      "C-06-070"
+    ],
+    "figures": [
+      "fig-g-domain-randomization"
+    ],
+    "sources": [
+      {
+        "title": "Tobin et al. (2017) Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World (arXiv:1703.06907)",
+        "url": "https://arxiv.org/abs/1703.06907"
+      },
+      {
+        "title": "Johannink et al. (2018) Residual Reinforcement Learning for Robot Control (arXiv:1812.03201)",
+        "url": "https://arxiv.org/abs/1812.03201"
+      },
+      {
+        "title": "Levine et al. (2020) Offline Reinforcement Learning: Tutorial, Review, and Perspectives (arXiv:2005.01643)",
+        "url": "https://arxiv.org/abs/2005.01643"
+      },
+      {
+        "title": "Keras 公式ガイド「Transfer learning & fine-tuning」",
+        "url": "https://keras.io/guides/transfer_learning/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-199",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ロボット制御で使われる残差強化学習の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "ロボットを動かす学習の工夫の1つ、残差強化学習がどんな仕組みかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "仮想の環境の見た目や物の条件を学習のたびに変え、現実の環境もばらつきの1つとして扱えるようにして、そのまま実機へ移す。",
+      "人が操作したときの状態と行動の記録をお手本にし、同じ状態で人と同じ行動を選ぶように方策を学ぶ。",
+      "人が作った制御の出力を土台にし、強化学習の方策はそこへ上乗せする補正の量を学んで、2つを足した値でロボットを動かす。",
+      "本来の目標の報酬に、目標へ近づく途中の行動をほめる補助の報酬を設計者が足し、学習を速める。"
+    ],
+    "answer": 2,
+    "explanation": "Johannink ら（2018）は、ロボットの制御の課題を、従来のフィードバック制御で効率よく解ける部分と、残り（残差）に分け、残りを強化学習で解いた。最終の制御は2つの制御の信号の重ね合わせ（和）。例（数は説明用）：ブロックを押し込む動きで、人が作った制御が『右へ10』を出し、方策が摩擦の分の補正として『右へ2・下へ1』を出せば、ロボットは『右へ12・下へ1』で動く。原論文は、接触があり物が不安定なブロックの組み立てを、現実のロボットで行った。",
+    "whyWrong": [
+      "ドメインランダマイゼーション（Tobin ら, 2017）の説明。シミュレータの条件をばらつかせて現実との差を埋める工夫で、人が作った制御の出力に補正を足す仕組みではない。",
+      "模倣学習（とくに行動クローニング）の説明。人の操作の記録の『この状態ならこの行動』を、教師あり学習でまねる（Levine ら, 2020 の説明。Ross ら, 2011 もこの問題を扱った）。お手本の行動そのものを学ぶので、既存の制御の出力に上乗せする補正を学ぶ残差強化学習とは違う。",
+      null,
+      "報酬成形の説明。Ng ら（1999）は、学習を導くために報酬を足す方法として扱い、ゴールまでの距離などをもとにした補助の報酬で学習の時間を大きく減らせることを示した。足すのは『報酬』で、残差強化学習が足すのは『行動（制御の信号）』。"
+    ],
+    "memoryTip": "残差強化学習＝人の制御＋AI の補正。報酬成形は報酬に足し、残差強化学習は行動に足す。",
+    "concepts": [
+      "C-06-060",
+      "C-06-058",
+      "C-06-097",
+      "C-06-061"
+    ],
+    "sources": [
+      {
+        "title": "Johannink et al. (2018) Residual Reinforcement Learning for Robot Control (arXiv:1812.03201)",
+        "url": "https://arxiv.org/abs/1812.03201"
+      },
+      {
+        "title": "Tobin et al. (2017) Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World (arXiv:1703.06907)",
+        "url": "https://arxiv.org/abs/1703.06907"
+      },
+      {
+        "title": "Levine et al. (2020) Offline Reinforcement Learning: Tutorial, Review, and Perspectives (arXiv:2005.01643)",
+        "url": "https://arxiv.org/abs/2005.01643"
+      },
+      {
+        "title": "Ross, Gordon & Bagnell (2011) A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning (arXiv:1011.0686)",
+        "url": "https://arxiv.org/abs/1011.0686"
+      },
+      {
+        "title": "Ng, Harada & Russell (1999) Policy invariance under reward transformations: Theory and application to reward shaping. ICML",
+        "url": "https://people.eecs.berkeley.edu/~russell/papers/icml99-shaping.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-200",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "強化学習の内発的報酬の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "試行錯誤で学ぶAI（強化学習）で、外からごほうびがなかなかもらえないときに使われる『内発的報酬』が何かを正しく言った文を選ぶ問題。",
+    "choices": [
+      "環境の報酬とは別に、エージェント自身が、予測の外れや見慣れない状態に出会った度合いから報酬を作り、探索を進める。",
+      "設計者が課題の知識をもとに、ゴールまでの距離が縮むたびに小さな報酬が出るよう、報酬の式を書き足して学習を導く。",
+      "上手な人の行動の記録を見て、その人がどんな報酬を最大にしようとして動いているのか、報酬の関数を推定する。",
+      "小さな確率εで行動をでたらめに選び、それ以外は今の見積もりで価値が最も高い行動を選んで、探索と活用を両立させる。"
+    ],
+    "answer": 0,
+    "explanation": "Sutton と Barto の教科書は、内発的報酬の例として、学習の進み具合や、予想外のもの・新しいものに出会ったことを挙げている。Pathak ら（2017）は、自分の行動の結果をどれだけ予測し損ねたかを好奇心として報酬にし、Bellemare ら（2016）は、その状態に出会った回数（の見積もり）が少ないほど探索のボーナスを与えた。例：迷路でゴールまで外からの報酬が0のままでも、まだ行ったことのない部屋に入るたびに内発的報酬が出るので、エージェントは探索を続けられる。報酬を作るのは設計者ではなく、エージェントの中の仕組み。",
+    "whyWrong": [
+      null,
+      "報酬成形の説明（Ng ら, 1999）。補助の報酬を作るのは設計者で、課題の知識（ゴールまでの距離など）を使う。内発的報酬は、課題の知識を使わず、エージェント自身の予測の外れや経験の少なさから報酬を作る点が違う。",
+      "逆強化学習の説明。Arora と Doshi（2018）の総説は、方策や観察された行動から、そのエージェントの報酬関数を推し量る問題としている。例：上手な運転手の記録から、車間を空けることをどれだけ重んじているかを推定する。報酬を推定する側の話で、探索のために報酬を足す内発的報酬とは向きが違う。",
+      "ε-greedy 方策の説明（Sutton と Barto の教科書2章）。例：ε＝0.1 なら、10回に1回ほど行動をでたらめに選ぶ。探索を進める点は同じだが、報酬は変えずに行動の選び方で探索する。内発的報酬は、報酬そのものを足して探索を促す。"
+    ],
+    "memoryTip": "内発的報酬＝自分の中から出るごほうび（驚き・目新しさ）。報酬成形は設計者が足す、ε-greedy は行動をでたらめに選ぶ。",
+    "concepts": [
+      "C-06-100",
+      "C-06-061",
+      "C-03-043"
+    ],
+    "sources": [
+      {
+        "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）",
+        "url": "http://incompleteideas.net/book/RLbook2020.pdf"
+      },
+      {
+        "title": "Pathak et al. (2017) Curiosity-driven Exploration by Self-supervised Prediction (arXiv:1705.05363)",
+        "url": "https://arxiv.org/abs/1705.05363"
+      },
+      {
+        "title": "Bellemare et al. (2016) Unifying Count-Based Exploration and Intrinsic Motivation (arXiv:1606.01868)",
+        "url": "https://arxiv.org/abs/1606.01868"
+      },
+      {
+        "title": "Ng, Harada & Russell (1999) Policy invariance under reward transformations: Theory and application to reward shaping. ICML",
+        "url": "https://people.eecs.berkeley.edu/~russell/papers/icml99-shaping.pdf"
+      },
+      {
+        "title": "Arora & Doshi (2018) A Survey of Inverse Reinforcement Learning: Challenges, Methods and Progress (arXiv:1806.06877)",
+        "url": "https://arxiv.org/abs/1806.06877"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-201",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "深層強化学習"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "大規模言語モデルの調整に使われる RLHF の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "大規模言語モデルを、人の好みに合う答えを出すように調整する方法の1つ、RLHF の手順を正しく言った文を選ぶ問題。",
+    "choices": [
+      "多数の自然言語処理のデータセットを『指示と答え』の形に書き直し、それで言語モデルを教師あり学習して、初めて見る種類の指示にも答えやすくする。",
+      "人が2つの出力を比べた好みのデータを使い、報酬モデルを別に作らずに、好まれた出力の確率を好まれなかった出力より直接高めるよう学習する。",
+      "上手な人が示したお手本の行動から、その行動を最もよく説明する報酬の関数を推し量り、その報酬のもとで方策を学ぶ。",
+      "同じ指示への複数の出力を人が比べた結果から、好まれる出力に高い点を付ける報酬モデルを学び、その点が上がるよう言語モデルを強化学習で調整する。"
+    ],
+    "answer": 3,
+    "explanation": "InstructGPT（OpenAI が2022年に発表した、人の指示に沿って答えるよう調整した言語モデル）の論文（Ouyang ら, 2022）は、3段階で調整した。①人が書いたお手本の答えで教師ありの調整（SFT）②同じ指示へのモデルの複数の出力を人が比べた結果から、人がどれを好むかを予測する報酬モデル（RM）を学習 ③その RM を報酬にし、PPO（強化学習の手法の1つ）で言語モデルを調整。RLHF は、②③の『人の好みから報酬を作り、強化学習で調整する』部分を指す。例：答えAとBで人がAを選べば、RM はAに高い点を付けるよう学び、言語モデルは RM の点が高くなる答え方を学ぶ。",
+    "whyWrong": [
+      "インストラクションチューニングの説明（Wei ら, 2021 の FLAN）。60を超える自然言語処理のデータセットを自然言語の指示の形に書き直して追加学習し、学習に使わなかった種類のタスクで、ゼロショット（例を見せずに解かせること）の性能が上がった。人の比較から報酬モデルを作る工程も、強化学習も使わない。",
+      "DPO（Direct Preference Optimization、Rafailov ら, 2023）の説明。RLHF と同じ人の好みのデータを使うが、原論文の言葉では、報酬モデルを明示的に作らず、強化学習も使わずに、言語モデルを直接調整する。人の比較を使う点は同じなので取り違えやすいが、報酬モデルと強化学習の工程があるかが違う。",
+      "逆強化学習の説明（Arora と Doshi, 2018 の総説）。上手な人の行動から報酬関数を推定する。人の『行動』から報酬を推し量るのに対し、RLHF は人が出力を『比べた結果』から報酬モデルを作り、それで言語モデルを強化学習で調整する。",
+      null
+    ],
+    "memoryTip": "RLHF＝人が比べる → 報酬モデルを学ぶ → 強化学習（PPO）で調整。報酬モデルを作らないのが DPO。",
+    "concepts": [
+      "C-06-057",
+      "C-06-118",
+      "C-06-055"
+    ],
+    "figures": [
+      "fig-g-rlhf"
+    ],
+    "sources": [
+      {
+        "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)",
+        "url": "https://arxiv.org/abs/2203.02155"
+      },
+      {
+        "title": "Wei et al. (2021) Finetuned Language Models Are Zero-Shot Learners (FLAN) (arXiv:2109.01652)",
+        "url": "https://arxiv.org/abs/2109.01652"
+      },
+      {
+        "title": "Rafailov et al. (2023) Direct Preference Optimization: Your Language Model is Secretly a Reward Model (arXiv:2305.18290)",
+        "url": "https://arxiv.org/abs/2305.18290"
+      },
+      {
+        "title": "Arora & Doshi (2018) A Survey of Inverse Reinforcement Learning: Challenges, Methods and Progress (arXiv:1806.06877)",
+        "url": "https://arxiv.org/abs/1806.06877"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-202",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "機械学習のモデルの判断を説明する LIME のやり方として、最も適切なものを1つ選べ。",
+    "stemPlain": "AI がなぜその答えを出したのかを説明する方法の1つ、LIME がどうやって説明を作るのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "協力ゲーム理論のシャープレイ値を使い、各特徴量の寄与を足すと、その予測と基準の値の差にちょうど等しくなるように配分する。",
+      "説明したい1件の入力から一部の単語や画素を抜いた変形を多数作って元のモデルに判定させ、近くで真似る単純なモデルで説明する。",
+      "CNN で、対象のクラスの勾配から最後の畳み込み層の特徴マップごとの重みを求め、画像のどこが判断に効いたかを色の濃さで示す。",
+      "1つの特徴量の列の値を行どうしでシャッフルし、モデルの性能がどれだけ下がるかで、その特徴量がモデル全体でどれだけ大事かを測る。"
+    ],
+    "answer": 1,
+    "explanation": "LIME（Local Interpretable Model-agnostic Explanations、Ribeiro ら, 2016）は、どんな分類器・回帰のモデルの予測も、その予測の近く（局所）で解釈しやすいモデルを学ぶことで説明する、と原論文は述べる。例：あるメールを『迷惑メール』と判定した理由を知りたいとき、文面から単語をランダムに抜いた文を何百通も作って元のモデルに判定させ、元の文に近い（抜いた単語が少ない）ものほど重くして、単語の有無を入力にした線形モデルを当てはめる。『無料』の係数が大きければ、『無料』が判定に効いた、と読む。説明は1件ごとで、モデル全体の説明ではない。",
+    "whyWrong": [
+      "SHAP（Lundberg と Lee, 2017）の説明。各特徴量の寄与を協力ゲーム理論のシャープレイ値で配分し、寄与を全部足すと予測と基準の値の差になる。1件ごとの説明である点は LIME と同じだが、近くで作った変形のデータに単純なモデルを当てはめて係数を読む LIME の手順とは違う。",
+      null,
+      "Grad-CAM（Selvaraju ら, 2016）の説明。対象のクラスの勾配が最後の畳み込み層に流れ込む量から重みを作り、画像の大事な場所を粗い地図（ヒートマップ）で示す。CNN の中の勾配を使う方法で、入力を変えたデータで別の単純なモデルを作る LIME とは手順が違う。",
+      "Permutation Importance の説明（scikit-learn の説明による）。例：『年収』の列をデータの行どうしでシャッフルして正解率が 0.90 から 0.70 に落ちれば、年収はモデルにとって大事。データ全体でのモデルの頼り方を測るので、1件の予測の説明ではない。"
+    ],
+    "memoryTip": "LIME＝1件の周りで入力をいじって、近所だけ単純なモデルでまねる。",
+    "concepts": [
+      "C-06-086",
+      "C-06-087",
+      "C-06-085",
+      "C-06-088"
+    ],
+    "figures": [
+      "fig-g-lime"
+    ],
+    "sources": [
+      {
+        "title": "Ribeiro, Singh & Guestrin (2016) \"Why Should I Trust You?\": Explaining the Predictions of Any Classifier (LIME) (arXiv:1602.04938)",
+        "url": "https://arxiv.org/abs/1602.04938"
+      },
+      {
+        "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
+        "url": "https://arxiv.org/abs/1705.07874"
+      },
+      {
+        "title": "Selvaraju et al. (2016) Grad-CAM (arXiv:1610.02391)",
+        "url": "https://arxiv.org/abs/1610.02391"
+      },
+      {
+        "title": "scikit-learn User Guide: Permutation feature importance",
+        "url": "https://scikit-learn.org/stable/modules/permutation_importance.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-203",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "モデルの解釈性"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "モデルの予測の説明に使われる SHAP が、各特徴量の寄与を決めるやり方として、最も適切なものを1つ選べ。",
+    "stemPlain": "AI の1つの予測について、どの項目がどれだけ効いたかを数で示す方法、SHAP が、その数をどう決めるのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "特徴量を1つずつ加えていく順番をいろいろ変え、ある特徴量を加えたときに予測がどれだけ動くかを平均して、その特徴量の取り分とする。",
+      "説明したい入力の近くで作ったデータに、解きやすい線形モデルを当てはめ、そのモデルの係数を各特徴量の効き目として読む。",
+      "データ全体で1つの特徴量の列を並べ替えて関係を壊し、誤差がどれだけ増えるかを見て、モデルがその特徴量にどれだけ頼っているかを測る。",
+      "決定木の分岐でその特徴量を使ったときに不純度がどれだけ減ったかを、木の全体で平均して、その特徴量の重要度とする。"
+    ],
+    "answer": 0,
+    "explanation": "SHAP（Lundberg と Lee, 2017）は、協力ゲーム理論のシャープレイ値で寄与を配分する。シャープレイ値は、特徴量を加えていく順番のそれぞれについて、その特徴量を加えたときの予測の増え方を求め、それを平均した値と同じになる（原論文は部分集合の重み付きの和の式で書いており、順番の平均という言い方は、その式から導いた言い換え）。例（数は説明用）：家の値段の予測で、特徴量が『広さ』と『駅からの距離』の2つ、基準の値（何も分からないときの平均の予測）が3000万円とする。広さを先に加えると 3000→3600万円（＋600）、そのあと距離で 3600→3500（−100）。距離を先に加えると 3000→2800（−200）、そのあと広さで 2800→3500（＋700）。広さの寄与は (600＋700)÷2＝650、距離は (−100−200)÷2＝−150。足すと 650−150＝500 で、予測3500万円と基準3000万円の差にちょうど一致する。",
+    "whyWrong": [
+      null,
+      "LIME（Ribeiro ら, 2016）のやり方。説明したい入力の近くで作ったデータに線形モデルなどを当てはめ、その係数を読む。順番を入れ替えて予測の動きを平均する計算はしない。",
+      "Permutation Importance のやり方（scikit-learn の説明による）。データ全体で列をシャッフルしたときの性能の落ち方を見るので、モデル全体での重要さを表す。1件の予測を特徴量ごとに分ける SHAP とは、説明する範囲が違う。",
+      "決定木やランダムフォレストの、不純度にもとづく重要度（MDI：mean decrease in impurity）のやり方。分岐でジニ係数などの不純度がどれだけ下がったかで重要度を決める。木のモデルだけで使え、モデル全体での重要さを表す。scikit-learn の説明は、訓練データで計算するので過学習していると当てにならず、値の種類の多い特徴量を高く見やすいと注意している。1件の予測を順番の平均で分ける SHAP とは違う。"
+    ],
+    "memoryTip": "SHAP＝加える順番を全部試して、出番ごとの貢献を平均（シャープレイ値）。足すと予測と基準の差になる。",
+    "concepts": [
+      "C-06-087",
+      "C-06-086",
+      "C-06-088",
+      "C-03-016"
+    ],
+    "figures": [
+      "fig-g-shap"
+    ],
+    "sources": [
+      {
+        "title": "Lundberg & Lee (2017) A Unified Approach to Interpreting Model Predictions (SHAP) (arXiv:1705.07874)",
+        "url": "https://arxiv.org/abs/1705.07874"
+      },
+      {
+        "title": "Ribeiro, Singh & Guestrin (2016) \"Why Should I Trust You?\": Explaining the Predictions of Any Classifier (LIME) (arXiv:1602.04938)",
+        "url": "https://arxiv.org/abs/1602.04938"
+      },
+      {
+        "title": "scikit-learn User Guide: Permutation feature importance",
+        "url": "https://scikit-learn.org/stable/modules/permutation_importance.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-204",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "GAN の学習で問題になるモード崩壊の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "本物そっくりのデータを作る AI（GAN）を学習させるときに起きる困りごと『モード崩壊』が、どんな状態かを正しく言った文を選ぶ問題。",
+    "choices": [
+      "シグモイド関数の微分（最大0.25）を層の数だけ掛けるうちに勾配が小さくなり、入力側の層の重みがほとんど動かなくなる。",
+      "猫と犬の見分けを学んだモデルに鳥の見分けを追加で学ばせると、猫と犬を見分ける性能が大きく落ちてしまう。",
+      "手書き数字を作る生成器が『1』ばかりを作るように、データにある種類のうち一部に生成が偏り、出力の多様さが失われる。",
+      "訓練に使った写真では正解率がほぼ100％なのに、新しく撮った写真では大きく外れるように、訓練データに合わせすぎる。"
+    ],
+    "answer": 2,
+    "explanation": "Goodfellow（2016）の解説は、モード崩壊を、生成器が違う入力 z をいくつも同じ出力の点に写すようになる問題と述べ、完全な崩壊はまれだが部分的な崩壊はよく起きる、としている。モード（最頻値）は、データの分布の山のこと。手書き数字なら0〜9の10種類の山がある。生成器が識別器をだましやすい山1つにばかり出力を集めると、1枚ずつはそれらしく見えても、生成する種類が減る。",
+    "whyWrong": [
+      "勾配消失問題の説明。例：シグモイドの微分の最大値0.25を10層ぶん掛けると、0.25の10乗≒0.00000095 になり、入力側の層はほとんど学ばない（Glorot と Bengio, 2010 などが扱った）。ネットワークの学習全般で起きる勾配の大きさの問題で、生成されるデータの種類が減る現象ではない。",
+      "破滅的忘却の説明（Kirkpatrick ら, 2016）。タスクを順に学ぶと、前のタスクの性能が失われる。前に学んだことを忘れる問題で、GAN の生成器が一部の種類ばかり作る問題ではない。",
+      null,
+      "過学習の説明。訓練データには合うが、新しいデータでの性能が落ちる。予測の当たり外れの問題で、生成されるデータの多様さが失われるモード崩壊とは別。"
+    ],
+    "memoryTip": "モード崩壊＝生成器が得意な1種類に逃げる。何を入れても同じような絵が出る。",
+    "concepts": [
+      "C-06-063",
+      "C-04-024",
+      "C-06-075",
+      "C-03-049"
+    ],
+    "figures": [
+      "fig-g-mode-collapse"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow (2016) NIPS 2016 Tutorial: Generative Adversarial Networks (arXiv:1701.00160)",
+        "url": "https://arxiv.org/abs/1701.00160"
+      },
+      {
+        "title": "Glorot & Bengio (2010) Understanding the difficulty of training deep feedforward neural networks. AISTATS",
+        "url": "https://proceedings.mlr.press/v9/glorot10a.html"
+      },
+      {
+        "title": "Kirkpatrick et al. (2016) Overcoming catastrophic forgetting in neural networks (arXiv:1612.00796)",
+        "url": "https://arxiv.org/abs/1612.00796"
+      },
+      {
+        "title": "Google for Developers: ML Crash Course - Overfitting",
+        "url": "https://developers.google.com/machine-learning/crash-course/overfitting/overfitting"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-205",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "Mask R-CNN の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "画像認識のモデルの1つ、Mask R-CNN の特徴を正しく言った文を選ぶ問題。",
+    "choices": [
+      "物の候補の領域を出す RPN を、検出のネットワークと畳み込みの特徴を共有させて組み込み、候補を作る時間をほぼなくした。",
+      "縮小と拡大の経路をつないだ形で画像の画素ごとにクラスを付け、少ない医用画像からでも学習できるようにした。",
+      "画像全体を1回だけネットワークに通し、物を囲む枠の位置とクラスの確率を回帰の問題として同時に求め、速く検出する。",
+      "物ごとの枠とクラスに加えて画素単位のマスクも出し、座標を丸めない RoIAlign で候補領域の特徴の位置のずれを抑える。"
+    ],
+    "answer": 3,
+    "explanation": "Mask R-CNN（He ら, 2017）は、Faster R-CNN に、物ごとのマスク（その物に当たる画素を1、それ以外を0にした図）を出す枝を足し、インスタンスセグメンテーションを行う。もう1つの工夫が RoIAlign。それまでの RoIPool は、候補の領域の座標を粗く丸めて特徴を切り出していたので、元の画像と特徴の位置がずれた。例（数は説明用）：特徴マップの1マスが画像の16画素に当たるとき、画像の座標100は 100÷16＝6.25 マス目。丸めて6マス目にすると、0.25マス＝4画素ずれる。枠なら小さな誤差でも、画素ごとのマスクでは輪郭のずれになる。RoIAlign は丸めずに、6.25 の位置の値を周りのマスから補間して求める。",
+    "whyWrong": [
+      "Faster R-CNN（Ren ら, 2015）の説明。RPN（Region Proposal Network：物がありそうな候補の領域を出すネットワーク）を、検出のネットワークと特徴を共有させて、候補を作る計算をほぼ無料にした。出すのは物ごとの枠とクラスで、画素ごとのマスクは出さない。Mask R-CNN は、この Faster R-CNN を土台にしている。",
+      "U-Net（Ronneberger ら, 2015）の説明。縮小側と拡大側の経路をつないで画素ごとにクラスを付けるモデルで、医用画像で成果を挙げた。物を1つずつ見つけて枠とマスクを出す Mask R-CNN とは、出力の形が違う。",
+      "YOLO（Redmon ら, 2015）の説明。候補の領域を作る段を持たず、1つのネットワークが画像全体から枠とクラスの確率を一度に回帰で求める。速さが特徴で、物ごとのマスクは出さない。",
+      null
+    ],
+    "memoryTip": "Mask R-CNN＝Faster R-CNN＋マスクの枝＋RoIAlign（座標を丸めない）。",
+    "concepts": [
+      "C-06-024",
+      "C-06-015",
+      "C-06-022",
+      "C-06-016"
+    ],
+    "figures": [
+      "fig-g-mask-rcnn"
+    ],
+    "sources": [
+      {
+        "title": "He et al. (2017) Mask R-CNN (arXiv:1703.06870)",
+        "url": "https://arxiv.org/abs/1703.06870"
+      },
+      {
+        "title": "Ren et al. (2015) Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks (arXiv:1506.01497)",
+        "url": "https://arxiv.org/abs/1506.01497"
+      },
+      {
+        "title": "Ronneberger, Fischer & Brox (2015) U-Net: Convolutional Networks for Biomedical Image Segmentation (arXiv:1505.04597)",
+        "url": "https://arxiv.org/abs/1505.04597"
+      },
+      {
+        "title": "Redmon et al. (2015) You Only Look Once: Unified, Real-Time Object Detection (arXiv:1506.02640)",
+        "url": "https://arxiv.org/abs/1506.02640"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-206",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "セマンティックセグメンテーションのモデルの U-Net の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "画像の画素ごとに何が写っているかを塗り分けるモデルの1つ、U-Net の作りの特徴を正しく言った文を選ぶ問題。",
+    "choices": [
+      "分類用の CNN の全結合層を畳み込み層に置き換え、どんな大きさの画像を入れても、画素ごとの予測を出せるようにした。",
+      "拡大していく各段で、縮小側の同じ段の特徴マップを切りそろえてチャネル方向に連結し、縮小で失われた細かい位置の情報を取り戻す。",
+      "縮小で最大値プーリングをしたときに最大だった位置を覚えておき、拡大するときはその位置へ値を戻すので、拡大の仕方を学習しなくてよい。",
+      "間をあけて並べたフィルタ（Atrous 畳み込み）で解像度を下げずに見る範囲を広げ、物の境界を条件付き確率場（CRF）で整える。"
+    ],
+    "answer": 1,
+    "explanation": "U-Net（Ronneberger ら, 2015）は、縮小していく経路（文脈をつかむ）と、それと対になる拡大していく経路（位置を決める）を持ち、図に描くと U の字になる。原論文は、拡大の各段で、縮小側の対応する段の特徴マップを切り取って連結する、と述べている。例（数は説明用）：拡大側で 64×64 に戻した特徴マップに、縮小側の同じ段の 64×64 の特徴マップ（縮める前の細かい輪郭が残っている）をチャネル方向に重ねてから畳み込むので、粗い『何があるか』と細かい『どこに輪郭があるか』を合わせて使える（原論文では大きさを合わせるために切り取る）。少ない学習画像でも、強いデータ拡張と合わせて医用画像で成果を挙げた。",
+    "whyWrong": [
+      "FCN（Fully Convolutional Network、Long ら, 2014）の説明。全結合層を畳み込み層に置き換えて、任意の大きさの入力から画素ごとの出力を出せるようにした、セマンティックセグメンテーションのもとになったモデル。深い層の粗い情報と浅い層の細かい情報を組み合わせる工夫も持つが、拡大の各段で縮小側の同じ段を連結する、左右対称の U の字の作りではない。",
+      null,
+      "SegNet（Badrinarayanan ら, 2015）の説明。デコーダが、対応するエンコーダの最大値プーリングで覚えた位置（プーリングのインデックス）を使って拡大する。渡すのは位置の番号で、U-Net のように特徴マップそのものを連結するのとは違う。",
+      "DeepLab（Chen ら, 2016）の説明。Atrous（『穴あき』の意味）畳み込みで、フィルタの間を空けて広い範囲を見る。境界は全結合の CRF で細かく整える。縮小側と拡大側を対にしてつなぐ U-Net の作りとは違う。"
+    ],
+    "memoryTip": "U-Net＝U の字の左（縮小）から右（拡大）へ、同じ高さどうしを橋渡しして連結する。SegNet は位置の番号だけを渡す。",
+    "concepts": [
+      "C-06-022",
+      "C-06-020",
+      "C-06-021",
+      "C-06-023"
+    ],
+    "figures": [
+      "fig-g-u-net"
+    ],
+    "sources": [
+      {
+        "title": "Ronneberger, Fischer & Brox (2015) U-Net: Convolutional Networks for Biomedical Image Segmentation (arXiv:1505.04597)",
+        "url": "https://arxiv.org/abs/1505.04597"
+      },
+      {
+        "title": "Long, Shelhamer & Darrell (2014) Fully Convolutional Networks for Semantic Segmentation (arXiv:1411.4038)",
+        "url": "https://arxiv.org/abs/1411.4038"
+      },
+      {
+        "title": "Badrinarayanan, Kendall & Cipolla (2015) SegNet (arXiv:1511.00561)",
+        "url": "https://arxiv.org/abs/1511.00561"
+      },
+      {
+        "title": "Chen et al. (2016) DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (arXiv:1606.00915)",
+        "url": "https://arxiv.org/abs/1606.00915"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-207",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "画像認識"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "EfficientNet がどのように作られたかの説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "画像を見分けるモデルの1つ、EfficientNet の作り方の特徴を正しく言った文を選ぶ問題。",
+    "choices": [
+      "構造を自動で探す方法で小さな基本のモデルを作り、深さ・幅・解像度を決まった比で一緒に大きくして、一連のモデルにした。",
+      "ResNet のブロックの層の数を減らす代わりに各層のチャネルの数を増やし、浅くて幅の広いネットワークで精度と計算の効率を上げた。",
+      "畳み込みを、チャネルごとに縦横を見る段と、チャネルを混ぜる1×1の段に分けて計算量を減らし、携帯端末などで動かしやすくした。",
+      "層の入力を数層先の出力にそのまま足す近道を入れ、100層を超える深いネットワークでも学習できるようにした。"
+    ],
+    "answer": 0,
+    "explanation": "EfficientNet（Tan と Le, 2019）は、まずニューラルアーキテクチャ探索（NAS：ネットワークの構造を自動で探す方法）で基本のネットワーク（B0）を作り、それを複合スケーリングで大きくして B1〜B7 の一連のモデルにした。複合スケーリングは、深さ（層の数）・幅（チャネルの数）・解像度（入力の画素数）の3つを、1つの係数 φ で決まる比で一緒に大きくする方法。原論文の B0 では、深さ1.2・幅1.1・解像度1.15 をそれぞれ φ 乗した倍率にする。例：φ＝1 なら深さ1.2倍・幅1.1倍・解像度1.15倍、φ＝2 なら 1.2×1.2＝1.44倍・1.1×1.1＝1.21倍・1.15×1.15≒1.32倍。1つの方向だけを大きくするより、3つを釣り合いよく大きくしたほうが、少ない計算で高い精度になった。",
+    "whyWrong": [
+      null,
+      "Wide ResNet（Zagoruyko と Komodakis, 2016）の説明。深さを減らし幅を増やした ResNet で、原論文は16層の幅の広いネットワークが、それまでの非常に深い ResNet より精度と効率で上回ったと述べた。幅という1つの方向を大きくした例で、3つの方向を一緒に大きくする EfficientNet の作り方とは違う。",
+      "MobileNet（Howard ら, 2017）の説明。Depthwise Separable Convolution（チャネルごとの畳み込みと1×1畳み込みに分ける方法）で軽くしたモデル。部品を軽くする工夫で、基本のモデルを決まった比で大きくしていく作り方ではない。",
+      "ResNet（He ら, 2015）の説明。スキップ結合で、原論文では152層まで深くした。深さを増やす方向の工夫で、深さ・幅・解像度を釣り合いよく増やす EfficientNet の作り方の説明ではない。"
+    ],
+    "memoryTip": "EfficientNet＝NAS で小さな B0 → 深さ・幅・解像度を同じ φ でそろえて拡大（B1〜B7）。",
+    "concepts": [
+      "C-06-012",
+      "C-06-006",
+      "C-06-009",
+      "C-06-005",
+      "C-06-010"
+    ],
+    "figures": [
+      "fig-g-efficientnet"
+    ],
+    "sources": [
+      {
+        "title": "Tan & Le (2019) EfficientNet (arXiv:1905.11946)",
+        "url": "https://arxiv.org/abs/1905.11946"
+      },
+      {
+        "title": "Zagoruyko & Komodakis (2016) Wide Residual Networks (arXiv:1605.07146)",
+        "url": "https://arxiv.org/abs/1605.07146"
+      },
+      {
+        "title": "Howard et al. (2017) MobileNets (arXiv:1704.04861)",
+        "url": "https://arxiv.org/abs/1704.04861"
+      },
+      {
+        "title": "He et al. (2015) Deep Residual Learning for Image Recognition (arXiv:1512.03385)",
+        "url": "https://arxiv.org/abs/1512.03385"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-208",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "自然言語処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "自然言語処理の分布仮説の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "単語の意味をコンピュータで扱うときの考え方の1つ、分布仮説がどんな考え方かを正しく言った文を選ぶ問題。",
+    "choices": [
+      "単語を、多くの次元にそれぞれ実数が入ったベクトルで表し、1つの意味を複数の次元に分けて持たせる表し方。",
+      "語彙の単語ごとに1つの次元を割り当て、その次元を1、残りを0にしたベクトルで表すので、どの2語のあいだの近さも同じになる。",
+      "『冷たい〇〇を飲む』の〇〇に入る語どうしのように、同じような周りの語と一緒に出てくる単語は、意味も似ているとみなす考え方。",
+      "記号を形で操作する仕組みの中で、記号の意味を、それが指す実世界の物や感覚にどう結び付けるかという問題。"
+    ],
+    "answer": 2,
+    "explanation": "分布仮説は、似た文脈に現れる単語は似た意味を持つ傾向がある、という考え方（Jurafsky と Martin の教科書。1950年代に Joos・Harris・Firth らが述べた）。例：『冷たい〇〇を飲む』『〇〇をグラスに注ぐ』の〇〇には『水』『お茶』『ビール』が入りやすく、『机』は入りにくい。周りの語の出方が似ている『水』と『お茶』は、意味も近いとみなす。word2vec などの分散表現は、この考え方をもとに、周りの語から単語のベクトルを学ぶ。",
+    "whyWrong": [
+      "分散表現の説明。単語を数百次元ほどの実数のベクトルで表す『表し方』そのもの。分布仮説は、そのベクトルをどう作るかの根拠になる『考え方』で、名前は似ているが別もの。",
+      "局所表現（ワンホットベクトル）の説明。語彙が1万語なら1万次元で、その単語の位置が1。どの2語も重なる次元が無く、『水』と『お茶』も『水』と『机』も同じだけ離れているので、意味の近さを表せない。",
+      null,
+      "シンボルグラウンディング問題（Harnad, 1990）の説明。Harnad は、中国語の辞書だけを使って中国語を覚えようとするようなもの、とたとえた。記号の意味の結び付け先の問題で、周りの語から意味の近さを決める分布仮説とは扱うことが違う。"
+    ],
+    "memoryTip": "分布仮説＝『どんな語と一緒にいるかで、その語が分かる』。分散表現はその考えで作る数の並び。",
+    "concepts": [
+      "C-06-109",
+      "C-06-028",
+      "C-06-027"
+    ],
+    "figures": [
+      "fig-g-distributed-rep"
+    ],
+    "sources": [
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 5: Embeddings",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/5.pdf"
+      },
+      {
+        "title": "Mikolov et al. (2013) Efficient Estimation of Word Representations in Vector Space (arXiv:1301.3781)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      },
+      {
+        "title": "Harnad (1990) The Symbol Grounding Problem (arXiv:cs/9906002)",
+        "url": "https://arxiv.org/abs/cs/9906002"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-209",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "画像変換の CycleGAN の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "写真の見た目を別の見た目に変える AI の1つ、CycleGAN がどんなデータで何を学ぶのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "航空写真とその場所の地図のように、入力と正解が1枚ずつ対になったデータを使い、条件付きGANで入力から出力への変換を学ぶ。",
+      "生成器と識別器を畳み込みの層で組み、乱数のベクトルから、学習データに似た新しい画像を作り出す。",
+      "乱数のベクトルを中間の潜在空間に写してから各解像度の層にスタイルとして入れ、顔の向きや髪の細部などを分けて扱えるようにした。",
+      "馬の写真とシマウマの写真のように、対になっていない2つの画像の集まりから、一方の見た目をもう一方へ変える変換を学ぶ。"
+    ],
+    "answer": 3,
+    "explanation": "CycleGAN（Zhu ら, 2017）は、対になった学習データが無いときに、領域Xの画像を領域Yへ変える変換を学ぶ。例：馬の写真の束とシマウマの写真の束は、同じ馬を同じ場所で撮った対ではない。そこで、X→Y の生成器 G と Y→X の生成器 F を組にし、馬→シマウマ→馬と戻したときに元の写真に近くなるよう求める（サイクル一貫性の損失、F(G(x))≒x）。これで、シマウマらしいが元の馬の形や位置を保った画像を作れる。",
+    "whyWrong": [
+      "Pix2Pix（Isola ら, 2016）の説明。条件付きGAN で入力の画像から出力の画像への変換を学ぶが、学習には同じ場所の航空写真と地図のような、1枚ずつ対になったデータが要る。対が無くても学べる点が CycleGAN の特徴。",
+      "DCGAN（Radford ら, 2015）の説明。乱数のベクトルから画像を作る生成モデルで、画像を入力にして別の見た目へ変える変換は学ばない。",
+      "StyleGAN（Karras ら, 2018）の説明。入力の乱数を写像のネットワークで中間の潜在空間に移し、各解像度の層に画風（スタイル）として入れる。顔の向きや人物のような大まかな特徴と、そばかすや髪のような細かい変化が、教師なしで分かれる。これも乱数から画像を作るモデルで、2つの画像の集まりのあいだの変換ではない。",
+      null
+    ],
+    "memoryTip": "CycleGAN＝対の無い2つの束で、行って戻って元どおり（サイクル）を求める。対があるなら Pix2Pix。",
+    "concepts": [
+      "C-06-066",
+      "C-06-065",
+      "C-06-064",
+      "C-06-063"
+    ],
+    "figures": [
+      "fig-g-pix2pix-cyclegan"
+    ],
+    "sources": [
+      {
+        "title": "Zhu et al. (2017) Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks (CycleGAN) (arXiv:1703.10593)",
+        "url": "https://arxiv.org/abs/1703.10593"
+      },
+      {
+        "title": "Isola et al. (2016) Image-to-Image Translation with Conditional Adversarial Networks (Pix2Pix) (arXiv:1611.07004)",
+        "url": "https://arxiv.org/abs/1611.07004"
+      },
+      {
+        "title": "Radford, Metz & Chintala (2015) Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks (DCGAN) (arXiv:1511.06434)",
+        "url": "https://arxiv.org/abs/1511.06434"
+      },
+      {
+        "title": "Karras, Laine & Aila (2018) A Style-Based Generator Architecture for Generative Adversarial Networks (StyleGAN) (arXiv:1812.04948)",
+        "url": "https://arxiv.org/abs/1812.04948"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-210",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "データ生成"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "DCGAN が示した、GAN の生成器と識別器の組み方として、最も適切なものを1つ選べ。",
+    "stemPlain": "本物そっくりの画像を作る AI（GAN）を改良した DCGAN が、ネットワークをどう組むとよいと示したのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "2つの向きの生成器を組にし、変換した画像をもう一方の生成器で戻したときに元の画像と一致するよう、損失を加えた。",
+      "プーリングをストライド付きの畳み込みに替え、全結合の隠れ層を除き、バッチ正規化を入れるなど、畳み込みで組む指針をまとめた。",
+      "識別器に画像全体を1つの単位として判定させず、小さな区画ごとに本物か作り物かを判定させて、生成した画像の細かな模様の質を上げた。",
+      "生成器と識別器の両方にクラスのラベルなどの追加の情報を入力し、どの種類のデータを作るかを指定できるようにした。"
+    ],
+    "answer": 1,
+    "explanation": "DCGAN（Radford ら, 2015）は、畳み込みニューラルネットワークで GAN を安定して学習させるための構造の指針を示した。原論文の指針は、①プーリング層を、識別器ではストライド付きの畳み込みに、生成器では分数ストライドの畳み込み（拡大する畳み込み）に置き換える ②生成器と識別器の両方でバッチ正規化を使う ③深い構造では全結合の隠れ層を除く ④生成器は出力の層に Tanh、ほかの層に ReLU を使う ⑤識別器は全層で LeakyReLU を使う。例：64×64 の画像を作る生成器は、100個の乱数から始めて、拡大する畳み込みで 4×4→8×8→16×16→32×32→64×64 と大きくしていく。",
+    "whyWrong": [
+      "CycleGAN（Zhu ら, 2017）の工夫。2つの生成器を組にし、行って戻ったら元に戻るよう求めるサイクル一貫性の損失で、対の無いデータから画像変換を学ぶ。損失の工夫で、畳み込みでどう組むかの指針ではない。",
+      null,
+      "Pix2Pix（Isola ら, 2016）の工夫。識別器を PatchGAN（画像を小さな区画に分け、区画ごとに本物か偽物かを判定する識別器）にした。原論文は、大まかな正しさは L1 の損失に任せ、識別器には細かい模様（高い周波数の部分）を見させる、と述べている。DCGAN が示した指針ではない。",
+      "条件付きGAN（Mirza と Osindero, 2014）の工夫。生成器と識別器の両方に追加の情報 y（クラスのラベルなど）を入れ、たとえば『7』と指定して手書きの7を作れる。入力に条件を足す工夫で、層の組み方の指針ではない。"
+    ],
+    "memoryTip": "DCGAN＝プーリングをやめてストライドの畳み込み、全結合を外し、バッチ正規化を入れる。",
+    "concepts": [
+      "C-06-064",
+      "C-06-066",
+      "C-06-065",
+      "C-06-063"
+    ],
+    "figures": [
+      "fig-g-dcgan"
+    ],
+    "sources": [
+      {
+        "title": "Radford, Metz & Chintala (2015) Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks (DCGAN) (arXiv:1511.06434)",
+        "url": "https://arxiv.org/abs/1511.06434"
+      },
+      {
+        "title": "Zhu et al. (2017) Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks (CycleGAN) (arXiv:1703.10593)",
+        "url": "https://arxiv.org/abs/1703.10593"
+      },
+      {
+        "title": "Isola et al. (2016) Image-to-Image Translation with Conditional Adversarial Networks (Pix2Pix) (arXiv:1611.07004)",
+        "url": "https://arxiv.org/abs/1611.07004"
+      },
+      {
+        "title": "Mirza & Osindero (2014) Conditional Generative Adversarial Nets (arXiv:1411.1784)",
+        "url": "https://arxiv.org/abs/1411.1784"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-211",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "音声処理で使われるフォルマントの説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "声を分析するときに出てくる『フォルマント』が何かを正しく言った文を選ぶ問題。",
+    "choices": [
+      "声道の形で強められる周波数の帯で、スペクトルの山として現れ、低い方から F1・F2 と呼ばれて母音の手がかりになる。",
+      "声帯が振動する速さで決まる波の周波数で、高いほど声が高く聞こえ、問いかけの文末で上がることがある。",
+      "人が同じだけ高さが違うと感じる音どうしが、同じ差になるように決めた周波数の目盛りで、低い周波数ほど細かく区切られる。",
+      "ある言語で語を区別するのに使われる音の単位で、英語の息を伴う p と伴わない p のように、語を区別しない違いは同じ単位にまとめる。"
+    ],
+    "answer": 0,
+    "explanation": "Jurafsky と Martin の教科書は、フォルマントを、声道（のど・口・鼻の空間）で特に増幅される周波数の帯と説明し、母音によって声道の形が違うので、増幅される帯も違う、と述べる。スペクトログラム（周波数ごとの強さを時間に沿って並べた図）では濃い帯、スペクトルでは山として見え、低い方から第1フォルマント（F1）、第2フォルマント（F2）と呼ぶ。例：教科書の例では、母音 [ih]（イ）の F1 は約470Hz で、[ae] や [uh] の約800Hz より低い。F1 と F2 の位置の組み合わせで、どの母音かがおおよそ分かる。",
+    "whyWrong": [
+      null,
+      "基本周波数（F0）の説明。声帯が開いたり閉じたりする速さで決まる。教科書の例では、母音 [iy] の波形で約258Hz。高いほど高い声に聞こえ、『Three o'clock?』のような問いかけでは文末で上がる。声の『高さ』で、声道の形で決まる『音色』（どの母音か）を表すフォルマントとは別もの。",
+      "メル尺度の説明。人の耳の感じ方に合わせた周波数の目盛りで、教科書の式（メル＝1127×ln(1＋周波数÷700)）では 1000Hz がおよそ1000メルになる。聞こえ方の物差しで、声の中で強められた帯そのものではない。",
+      "音素の説明（MIT OCW の音韻論のまとめなど）。例：ヒンディー語では息を伴うかどうかで別の語になるので別の音素だが、英語では同じ音素の違いとして扱う。言語の中での『区別の単位』で、スペクトルの山という物理的な特徴のフォルマントとは別もの。"
+    ],
+    "memoryTip": "フォルマント＝口の形で強まる帯（F1・F2）＝母音の顔。F0＝声帯の速さ＝声の高さ。",
+    "concepts": [
+      "C-06-040",
+      "C-06-041",
+      "C-06-042"
+    ],
+    "figures": [
+      "fig-g-speech-features"
+    ],
+    "sources": [
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 15: Phonetics and Speech Feature Extraction",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/15.pdf"
+      },
+      {
+        "title": "MIT OpenCourseWare 24.900 Introduction to Linguistics (Fall 2012) Phonology Summary",
+        "url": "https://ocw.mit.edu/courses/24-900-introduction-to-linguistics-fall-2012/f305bb4cff88d8643ef77a3c2ab6b92a_MIT24_900F12_Phonologysum.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-212",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "音声の特徴量を作るときのメル尺度の役割として、最も適切なものを1つ選べ。",
+    "stemPlain": "声をコンピュータで扱う数の並びに直すとき、『メル尺度』という周波数の目盛りがどんな役目をするのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "切り出した短い区間の波形が、どの周波数の成分をどれだけ含むかに分ける計算を、少ない計算の回数で行う。",
+      "メルの帯ごとのエネルギーの対数からケプストラムを求め、その最初の12個ほどの値で、声の高さと切り離した声道の形を表す。",
+      "耳の感じ方に合わせて低い周波数ほど細かくフィルタを並べ、帯ごとにエネルギーを集めて、耳に近い粗さのスペクトルにする。",
+      "声道の共鳴で強められた周波数で、スペクトルの上で山として見え、その位置の組み合わせが母音の違いを表す。"
+    ],
+    "answer": 2,
+    "explanation": "人の耳は、高い周波数ほど違いを聞き分けにくい。音声認識では、この性質をまねると認識の性能が上がる（Jurafsky と Martin の教科書）。そこで、FFT で求めた周波数ごとのエネルギーを、メル尺度の上で並べた三角形のフィルタ（メルフィルタバンク）で集める。Hz で見ると、低い所は細かく、高い所は粗く集めることになる。ことばの式（教科書の式）：メルの値＝1127×ln(1＋周波数÷700)。例：1000Hz は 1＋1000÷700≒2.43、ln 2.43≒0.887、1127×0.887≒1000メル。4000Hz は 1＋4000÷700≒6.71、ln 6.71≒1.904、1127×1.904≒2146メル。Hz では4倍の差が、メルでは約2.1倍に縮む。集めた値の対数（log mel spectrum）が特徴量に使われ、そこからさらに MFCC も作られる。",
+    "whyWrong": [
+      "高速フーリエ変換（FFT）の説明。波形を周波数の成分に分ける計算を速く行う方法で、周波数の目盛りを耳に合わせて変えるものではない。メル尺度は、FFT の結果を集めるときに使う。",
+      "MFCC（メル周波数ケプストラム係数）の説明。メルの帯ごとのエネルギーの対数から、さらにケプストラム（声の高さの情報と声道の形の情報を分ける変換）を求め、最初の12個を使う。教科書では、これにエネルギーや変化量を足して39次元にする。メル尺度を使った後の段の話で、メル尺度そのものの役割ではない。",
+      null,
+      "フォルマントの説明。声道で強められた周波数の帯で、声の性質そのもの。メル尺度は、それを含むスペクトルを、耳の感じ方に合わせて集め直すときの目盛り。"
+    ],
+    "memoryTip": "メル尺度＝耳の物差し。FFT で分けた結果を、低い音は細かく、高い音はざっくり集める。",
+    "concepts": [
+      "C-06-041",
+      "C-06-040"
+    ],
+    "figures": [
+      "fig-g-mel-mfcc"
+    ],
+    "sources": [
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 15: Phonetics and Speech Feature Extraction",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/15.pdf"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-06-213",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの応用例",
+      "音声処理"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "音声認識で使われる CTC の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "声を文字に直す音声認識で使われる学習の方法、CTC がどんな工夫をしているのかを正しく言った文を選ぶ問題。",
+    "choices": [
+      "音素などの隠れた状態が確率で次の状態へ移り、各状態から確率で音の特徴が出てくる、と考えて音声を表すモデル。",
+      "出力の列を順に作るデコーダの学習で、次の時刻の入力に、モデルの予測の代わりに正解のラベルを与える。",
+      "デコーダが1文字出すたびに、エンコーダの全時刻の状態に重みを付けて足し合わせ、音声のどのあたりを聞くかをその都度決め直す。",
+      "ラベルに空白の記号を足し、続く同じ記号と空白を除くと正解になる並べ方の確率を合計して学ぶので、時刻ごとの区切りが要らない。"
+    ],
+    "answer": 3,
+    "explanation": "CTC（Connectionist Temporal Classification、Graves ら, 2006）は、音声のどの時刻がどのラベル（音素や文字）に当たるかを前もって区切ったデータが無くても、RNN に系列のラベル付けを学ばせる方法。出力に『空白（blank）』を足し、時刻ごとの出力の並べ方のうち、①同じ記号の続きを1つにまとめ ②空白を取り除くと正解の列になるものの確率を足し、その合計を大きくするよう学ぶ。例（数は説明用、- は空白）：5時刻の音声で正解が『ねこ』なら、『ね ね - こ こ』『- ね こ - -』『ね - - - こ』などは、どれもまとめると『ねこ』になるので、これらの確率を足す。どの時刻がどの文字かを人が決めなくてよい。",
+    "whyWrong": [
+      "隠れマルコフモデル（HMM）の説明。深層学習より前の音声認識の中心で、状態の移り変わりの確率と、各状態から音の特徴が出る確率で音声を表す（CTC の原論文も、系列のラベル付けの主な枠組みとして HMM を挙げている）。CTC は、HMM のような別のモデルを組み合わせずに、RNN で直接ラベルの列を学ぶための方法。",
+      "教師強制の説明（Goodfellow ら『Deep Learning』10.2.1）。デコーダが1つずつ出力を作る学習で、次の入力に正解を入れる工夫。CTC は入力の各時刻にラベルか空白を出す方式で、前の出力を次の入力に入れる作りではない。",
+      "Attention を使うエンコーダ・デコーダ型の音声認識の説明（Jurafsky と Martin の教科書16章。Whisper もこの型）。デコーダが1文字ずつ出し、そのたびに音声のどこに注目するかを重みで決める。空白の記号を足して並べ方の確率を合計する CTC とは、時刻との対応の取り方が違う。",
+      null
+    ],
+    "memoryTip": "CTC＝空白を足して、まとめると正解になる並べ方を全部足す。区切りの印が要らない。",
+    "concepts": [
+      "C-06-044",
+      "C-06-043",
+      "C-05-026",
+      "C-05-032"
+    ],
+    "figures": [
+      "fig-g-hmm-ctc"
+    ],
+    "sources": [
+      {
+        "title": "Graves et al. (2006) Connectionist Temporal Classification (ICML 2006)",
+        "url": "https://www.cs.toronto.edu/~graves/icml_2006.pdf"
+      },
+      {
+        "title": "Jurafsky & Martin, Speech and Language Processing (3rd ed. draft) Chapter 16: Automatic Speech Recognition",
+        "url": "https://web.stanford.edu/~jurafsky/slp3/16.pdf"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville (2016) Deep Learning, Chapter 10 Sequence Modeling: Recurrent and Recursive Nets",
+        "url": "https://www.deeplearningbook.org/contents/rnn.html"
+      }
+    ],
+    "status": "verified"
   }
 ]

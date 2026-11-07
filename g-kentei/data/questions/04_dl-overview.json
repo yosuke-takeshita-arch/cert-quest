@@ -4218,5 +4218,558 @@
       }
     ],
     "status": "verified"
+  },
+  {
+    "id": "G-04-096",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "正則化"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "L1正則化の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "過学習を防ぐ工夫（正則化）の1つ「L1正則化」が、何を罰則にして、どんな結果になるかを選ぶ問題。",
+    "choices": [
+      "重みの絶対値の和を誤差に罰則として加える方法で、予測にあまり役立たない特徴量の重みがちょうど0になりやすい",
+      "重みの2乗の和を誤差に罰則として加える方法で、大きな重みほど強く抑えられ、重み全体がなめらかに小さくなる",
+      "重みの絶対値の和と2乗の和の両方を罰則として加える方法で、互いに似た特徴量をまとめて残しつつ、不要な重みを0にできる",
+      "学習のたびに一部のニューロンをくじで選んで出力を0にする方法で、特定のニューロンに頼りすぎることを防ぐ"
+    ],
+    "answer": 0,
+    "explanation": "L1正則化は、重みの絶対値（符号を取った大きさ）の合計を誤差に足して、それも小さくするように学習させる方法。重みを0から少し動かすだけで、動かした分そのまま罰則が増えるので、予測を良くする効果が罰則に見合わない特徴量は、重みがちょうど0のまま残る。その結果、使う特徴量が自動で絞られる（スパースになる）。Google の機械学習用語集も、L1正則化は関係のない特徴量の重みをちょうど0にし、その特徴量は実質的にモデルから外れるとしている。例（説明のための例）：特徴量が100個あっても、L1正則化をかけて学習すると、0でない重みが10個ほどに減り、どの特徴量が効いているかが読みやすくなる。線形回帰にL1正則化を加えたものをラッソ回帰という。",
+    "whyWrong": [
+      null,
+      "これはL2正則化の説明。重みを2乗するので、0.1の重みは0.01の罰則にしかならず、小さい重みは0まで押し込まれにくい。大きな重みを強く抑えて全体を小さくする方法で、重みをちょうど0にして特徴量を絞る働き（L1正則化）とは違う。線形回帰に加えたものはリッジ回帰。",
+      "これは Elastic Net の説明。L1 と L2 の罰則を決めた割合で両方足す。L1 だけだと、似た特徴量のうち1つだけを残して他を0にしがちなのを、L2 の働きで和らげる。罰則が2種類なので、絶対値の和だけを使うL1正則化そのものではない。",
+      "これはドロップアウトの説明。たとえば学習の1回ごとに半分のニューロンを休ませる。誤差に罰則の項を足すのではなく、学習中のネットワークの形を毎回変える方法なので、重みの絶対値の和を罰則にする L1正則化とは仕組みが違う。"
+    ],
+    "memoryTip": "L1＝絶対値→要らない重みはちょうど0（ラッソ）。L2＝2乗→全体を小さく（リッジ）。両方→Elastic Net。",
+    "concepts": [
+      "C-04-019",
+      "C-04-020",
+      "C-04-053",
+      "C-04-021"
+    ],
+    "figures": [
+      "fig-g-l1-shrink"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "scikit-learn User Guide: Linear Models（Lasso・Ridge・Elastic-Net）",
+        "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+      },
+      {
+        "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR",
+        "url": "https://jmlr.org/papers/v15/srivastava14a.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-097",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "ニューラルネットワークの学習でいうエポックの説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "学習の進み具合を数えるときに使う「エポック」が何を数えるものかを選ぶ問題。",
+    "choices": [
+      "ミニバッチ1つ分のデータで勾配を求め、パラメータを1回更新することを1と数える、学習の進み具合の単位",
+      "パラメータを1回更新するときに、勾配の計算にまとめて使うデータの件数",
+      "訓練データ全体を、1回ずつ学習に使い終えることを1と数える、学習の周回の単位",
+      "訓練データを、決めた件数ずつに小分けにしてできた、データのひと組"
+    ],
+    "answer": 2,
+    "explanation": "エポックは、訓練データ全体をひと通り学習に使い終えることを1と数える単位。Google の機械学習用語集も、すべての例を1回ずつ処理する訓練データ全体のひと回りとし、1エポックは『データ数÷バッチサイズ』回のイテレーションに当たるとしている。4つの語を同じ例で比べる（説明のための例）：訓練データ1,000件を、100件ずつの組（ミニバッチ）に分けて学習する。このとき、ミニバッチは100件ずつの組で10組、バッチサイズは100、イテレーションは1組ごとの更新1回で、1,000件÷100件＝10回の更新で1エポックになる。20エポック学習すれば、更新は10×20＝200回。",
+    "whyWrong": [
+      "これはイテレーションの説明。上の例では、100件の組1つで更新するたびに1回で、1エポックの中に10回ある。エポックはそのイテレーションを、データを使い切るまで重ねたひと回りの数え方。",
+      "これはバッチサイズの説明。上の例では100。何件ずつまとめて更新するかという件数で、学習の周回を数える単位（エポック）ではない。",
+      null,
+      "これはミニバッチの説明。上の例では100件ずつの組そのもので、10組できる。データのまとまりの呼び名で、学習を何周したかを数える単位（エポック）ではない。"
+    ],
+    "memoryTip": "エポック＝全データ1周。イテレーション＝更新1回。1周の更新回数＝データ数÷バッチサイズ。",
+    "concepts": [
+      "C-04-033",
+      "C-04-031"
+    ],
+    "figures": [
+      "fig-g-batch-epoch"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-098",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "最適化手法の AdaGrad が、学習率をどのように扱うかの説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "重みを直す一歩の大きさ（学習率）を自動で調整する手法の1つ「AdaGrad」が、学習率をどう変えていくかを選ぶ問題。",
+    "choices": [
+      "パラメータごとに、最近の勾配ほど重く見る2乗の平均で学習率を割るので、学習が長く続いても一歩が0に近づき続けることを避けられる",
+      "パラメータごとに、これまでの勾配の2乗を足し続けた値で学習率を割るので、学習が進むにつれて一歩は小さくなり続ける",
+      "パラメータごとに、過去の更新量の大きさも使って一歩の大きさを決めるので、学習率そのものを人が設定しなくてよい",
+      "どのパラメータにも同じ学習率を使ったまま、今の勾配に直前までの更新の向きを勢いとして足し合わせて一歩を決める"
+    ],
+    "answer": 1,
+    "explanation": "AdaGrad（Adaptive Gradient）は、パラメータごとに、これまでの勾配の2乗を足し続け、その平方根で学習率を割る。よく動いた（勾配の大きかった）パラメータほど一歩が小さくなり、めったに動かないパラメータは大きめの一歩のまま残る。Google の機械学習用語集も、各パラメータの勾配の尺度を変えて、パラメータごとに独立した学習率を与える方法としている。弱点は、足し続ける合計が減らないので、学習が長くなると一歩が0に近づき、更新が止まってしまうこと。例（説明のための例）：あるパラメータの勾配が毎回2なら、2乗の合計は4、8、12…と増え、割る数は2、2.8、3.5…と大きくなっていく。この弱点を直したのが RMSprop と AdaDelta。",
+    "whyWrong": [
+      "これは RMSprop の説明。勾配の2乗を足し続ける代わりに、古いものほど軽く見る平均（指数移動平均）をとる。上の例のように割る数が増え続けることはないので、AdaGrad の『一歩が小さくなり続ける』弱点を直した手法に当たる。",
+      null,
+      "これは AdaDelta の説明。Zeiler が2012年に発表した、AdaGrad の学習率が下がり続ける問題を改善し、さらに学習率を人が手で決めなくてよいようにした手法。AdaGrad は学習率を人が決める必要があるので違う。",
+      "これはモーメンタムの説明。学習率はどのパラメータにも同じで、変えるのは進む向き（過去の更新を勢いとして足す）。学習率をパラメータごとに変えていく AdaGrad とは、工夫する所が違う。"
+    ],
+    "memoryTip": "AdaGrad＝勾配の2乗を貯め続けて割る→だんだん止まる。RMSprop＝古いものを忘れる平均→止まらない。",
+    "concepts": [
+      "C-04-035",
+      "C-04-036",
+      "C-04-037",
+      "C-04-034"
+    ],
+    "figures": [
+      "fig-g-adaptive-learning-rate"
+    ],
+    "sources": [
+      {
+        "title": "Duchi, Hazan & Singer (2011) Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. JMLR",
+        "url": "https://jmlr.org/papers/v12/duchi11a.html"
+      },
+      {
+        "title": "Google for Developers: Machine Learning Glossary",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Zeiler (2012) ADADELTA: An Adaptive Learning Rate Method (arXiv:1212.5701)",
+        "url": "https://arxiv.org/abs/1212.5701"
+      },
+      {
+        "title": "PyTorch Documentation: torch.optim.RMSprop",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.RMSprop.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-099",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "過学習を防ぐ方法の1つである早期終了の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "過学習を防ぐ方法のうち「早期終了」が、何をどう変える方法かを選ぶ問題。",
+    "choices": [
+      "学習のたびに一部のニューロンをくじで選んで休ませ、毎回少しずつ違う形のネットワークで学習させる方法",
+      "誤差に重みの2乗の和を加えたものを小さくするように学習し、大きな重みほど強く抑えて、重み全体を小さく保つ方法",
+      "訓練データに反転や回転など、意味を変えない変換を加えて、学習に使うデータの種類と量を増やす方法",
+      "学習中に検証データでの誤差を見張り、誤差が下がらなくなったところで、予定の回数より前でも学習を打ち切る方法"
+    ],
+    "answer": 3,
+    "explanation": "早期終了（early stopping）は、学習を続けるほど訓練データでの誤差は下がるのに、学習に使っていない検証データでの誤差はある時点から上がり始める（過学習が始まる）ことを利用する。検証データでの誤差を見張り、下がらなくなった所で止めて、その時点のモデルを使う。Google の機械学習用語集も、検証データでの損失が上がり始めたとき（汎化の性能が悪くなったとき）に意図して学習を止める正則化の方法としている。例（説明のための例）：100エポック学習する予定で、検証誤差が30エポック目で最小になり、その後10エポック続けても下がらなければ、40エポック目で止めて30エポック目の重みを使う。4つの方法は、変えるものが違う：早期終了は学習の長さ、ドロップアウトはネットワークの形、重み減衰は重みの大きさ、データ拡張はデータ。",
+    "whyWrong": [
+      "これはドロップアウトの説明。たとえば学習の1回ごとに半分のニューロンを休ませ、特定のニューロンに頼りすぎないようにする。学習の長さはそのままで、学習中のネットワークの形を変える方法なので、学習を途中で止める早期終了とは違う。",
+      "これは重み減衰（L2正則化）の説明。誤差に重みの2乗の和を足すので、大きな重みほど損をする。重みの大きさを抑える方法で、学習を何回で止めるかを決める方法（早期終了）ではない。",
+      "これはデータ拡張の説明。たとえば猫の写真を左右反転・少し回転させて、1枚から何枚もの訓練データを作る。データを増やす方法で、学習を止める時点を決める早期終了とは違う。",
+      null
+    ],
+    "memoryTip": "早期終了＝検証誤差が上がり始めたら止める（変えるのは学習の長さ）。",
+    "concepts": [
+      "C-04-040",
+      "C-04-021",
+      "C-04-020",
+      "C-05-043"
+    ],
+    "figures": [
+      "fig-g-overfitting"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 7 Regularization for Deep Learning（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/regularization.html"
+      },
+      {
+        "title": "Srivastava et al. (2014) Dropout: A Simple Way to Prevent Neural Networks from Overfitting. JMLR",
+        "url": "https://jmlr.org/papers/v15/srivastava14a.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-100",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "誤差関数の形でいう鞍点の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "勾配降下法で学習するときに問題になる点の1つ「鞍点」が、どんな点かを選ぶ問題。",
+    "choices": [
+      "勾配が0になる点のうち、周りのどの向きへ少し動いても誤差が増えるが、全体で見ればもっと誤差の小さい点がほかにある点",
+      "とりうるすべてのパラメータの中で誤差がいちばん小さくなる点で、学習で最終的にたどり着きたい目標になる点",
+      "1つの点ではなく、勾配がほぼ0の平らな所が広く続く場所で、そこに入ると誤差がなかなか下がらなくなる領域",
+      "勾配が0になる点のうち、そこから動くと誤差が増える向きと、誤差が減る向きの両方がある点"
+    ],
+    "answer": 3,
+    "explanation": "鞍点は、勾配（傾き）が0になる点のうち、ある向きから見ると谷底（極小）、別の向きから見ると山頂（極大）になっている点。馬の鞍の形に似ているのが名前の由来。勾配が0なので勾配降下法の一歩がとても小さくなり、そこで止まったように見えるが、実際には誤差が下がる向きが残っている。Goodfellow らの教科書も、高い次元の誤差関数では、極小値より鞍点のほうがずっと多く、鞍点の周りには誤差が大きい点と小さい点の両方があるとしている。例（説明のための例）：誤差が x²−y² の形なら、点(0,0)は x の向きには谷底、y の向きには山頂で、y の向きへ動けば誤差は下がる。",
+    "whyWrong": [
+      "これは局所最適解の説明。どの向きへ動いても誤差が増えるので、勾配降下法はそこから抜けられない。鞍点は誤差が減る向きが残っている点なので違う。",
+      "これは大域最適解の説明。範囲全体で誤差が最も小さい点で、学習の目標になる。勾配が0というだけで、誤差が減る向きが残っている鞍点とは違う。",
+      "これはプラトー（学習の停滞）の説明。勾配がほぼ0の平らな領域が広がっていて、そこに入ると何エポックも誤差がほとんど下がらない。1つの点ではなく広がりを持つ領域なので、鞍点とは違う（鞍点の周りが平らなプラトーになっていることもある）。",
+      null
+    ],
+    "memoryTip": "鞍点＝ある向きは谷、別の向きは山。局所最適解＝どの向きも上り坂。プラトー＝平らな広場。",
+    "concepts": [
+      "C-04-030",
+      "C-04-029",
+      "C-04-052"
+    ],
+    "figures": [
+      "fig-g-local-min-saddle"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 8 Optimization for Training Deep Models（著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/optimization.html"
+      },
+      {
+        "title": "Dauphin et al. (2014) Identifying and attacking the saddle point problem in high-dimensional non-convex optimization (arXiv:1406.2572)",
+        "url": "https://arxiv.org/abs/1406.2572"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-101",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差関数"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "距離学習で使われる Contrastive Loss の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "似たデータは近く、似ていないデータは遠くに置くように学習する「距離学習」で使う誤差関数のうち、「Contrastive Loss」がどんなものかを選ぶ問題。",
+    "choices": [
+      "基準・同じ種類・違う種類の3つのデータを1組にし、基準と同じ種類の距離が、基準と違う種類の距離より余白（マージン）以上小さくなるように学習させる誤差関数",
+      "データを2つずつ組にし、同じ種類の組は特徴の空間で距離を小さく、違う種類の組は決めた余白（マージン）以上に離すように学習させる誤差関数",
+      "正解のクラスに付けた予測の確率が高いほど小さくなるように、正解の分布と予測の分布のずれを測る、分類でよく使う誤差関数",
+      "2つの確率分布がどれだけ違うかを表す量で、同じ分布なら0になり、2つの分布を入れ替えると値が変わることがある"
+    ],
+    "answer": 1,
+    "explanation": "Contrastive Loss は、データを2つずつ組（ペア）にして学習する誤差関数。組が同じ種類なら、2つの特徴（データを数の並びに置き換えたもの）の距離が小さいほど誤差が小さい。違う種類なら、距離が決めた余白 m より近いときだけ誤差が出て、m 以上離れれば誤差は0。Hadsell らの2006年の論文も、似た組は引き寄せ、似ていない組は押し離すように学習し、似ていない組は距離が余白の内側にあるときだけ誤差に効くとしている。例（説明のための例）：m＝1 として、同じ人の顔写真2枚の距離が0.3ならもっと近づけ、別人の2枚の距離が0.4なら1以上に離すよう学ぶ。別人の距離がすでに1.5なら何もしない。",
+    "whyWrong": [
+      "これは Triplet Loss の説明。基準（アンカー）・同じ種類（ポジティブ）・違う種類（ネガティブ）の3つ組で、2つの距離の差を比べる。2つずつの組で学ぶ Contrastive Loss とは、1組に使うデータの数が違う。",
+      null,
+      "これは交差エントロピー誤差の説明。たとえば正解が『猫』のとき、猫の確率を0.9と出せば誤差は小さく、0.1なら大きい。クラスを当てる分類の誤差で、データどうしの距離を学ぶための誤差（Contrastive Loss）とは目的が違う。",
+      "これはカルバック・ライブラー情報量（KLダイバージェンス）の説明。2つの確率分布のずれを測る量で、たとえば予測の分布が正解の分布とぴったり同じなら0になる。データの組の距離を近づけたり離したりする誤差（Contrastive Loss）とは、比べるものが違う。"
+    ],
+    "memoryTip": "Contrastive＝2つ組（ペア）。Triplet＝3つ組。どちらも『似たものは近く、違うものは余白以上遠く』。",
+    "concepts": [
+      "C-04-015",
+      "C-04-016",
+      "C-04-012",
+      "C-04-014",
+      "C-04-051"
+    ],
+    "figures": [
+      "fig-g-metric-learning"
+    ],
+    "sources": [
+      {
+        "title": "Hadsell, Chopra & LeCun (2006) Dimensionality Reduction by Learning an Invariant Mapping. CVPR",
+        "url": "http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf"
+      },
+      {
+        "title": "Schroff, Kalenichenko & Philbin (2015) FaceNet: A Unified Embedding for Face Recognition and Clustering (arXiv:1503.03832)",
+        "url": "https://arxiv.org/abs/1503.03832"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.KLDivLoss",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-102",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "誤差逆伝播法"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "微分の連鎖律の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "ニューラルネットワークの学習の計算を支える「連鎖律」が何かを選ぶ問題。",
+    "choices": [
+      "出力の誤差を出力層から入力層へ向けて逆にたどり、途中の計算結果を使い回しながら、各重みの勾配を効率よく求める計算の手順",
+      "求めた勾配の逆向きへ、学習率の分だけパラメータを少しずつ動かすことをくり返して、誤差を小さくしていく方法",
+      "入力をごく小さな量だけずらしたときの出力の変化を、そのずらした量で割って、微分の値を近似的に求める方法",
+      "関数を入れ子にした合成関数の微分は、内側の関数と外側の関数それぞれの微分を掛け合わせて求められる、という法則"
+    ],
+    "answer": 3,
+    "explanation": "連鎖律は、合成関数（関数の中に関数が入ったもの）の微分の法則。y＝f(g(x)) なら、『x が少し変わると g がどれだけ変わるか』と『g が少し変わると y がどれだけ変わるか』を掛ければ、『x が少し変わると y がどれだけ変わるか』が出る。式で書くと dy/dx＝(dy/dg)×(dg/dx)。例（説明のための例）：g＝3x、y＝g² のとき、dg/dx＝3、dy/dg＝2g。x＝1 なら g＝3 で dy/dg＝6、掛けて dy/dx＝6×3＝18。ニューラルネットワークは層の関数を何重にも重ねた合成関数なので、出力の誤差から各重みまでの微分を、層ごとの微分の掛け算で求められる。これを効率よく行う手順が誤差逆伝播法。",
+    "whyWrong": [
+      "これは誤差逆伝播法の説明。連鎖律を使って、出力側から入力側へ層ごとの微分を掛け合わせながら勾配を求める計算の手順。連鎖律はその中で使う微分の法則で、手順そのものではない。",
+      "これは勾配降下法の説明。たとえば勾配が＋2、学習率が0.1なら、重みを0.2だけ減らす。求めた勾配を使って重みを直す方法で、勾配をどう計算するかの法則（連鎖律）ではない。",
+      "これは数値微分の説明。たとえば f(x)＝x² の x＝1 での微分を、(f(1.001)−f(1))÷0.001≒2.001 と近似する。式を使わずに値の差で微分を見積もる方法で、ネットワークの学習では誤差逆伝播法の計算が正しいかの確かめに使われる。合成関数の微分を掛け算に分ける法則（連鎖律）とは別。",
+      null
+    ],
+    "memoryTip": "連鎖律＝入れ子の微分は掛け算でつなぐ。それを出力側から順にやるのが誤差逆伝播法。",
+    "concepts": [
+      "C-04-023",
+      "C-04-022",
+      "C-04-027"
+    ],
+    "figures": [
+      "fig-g-backprop"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Tutorials: A Gentle Introduction to torch.autograd",
+        "url": "https://docs.pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 6 Deep Feedforward Networks（6.5 Back-Propagation、著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/mlp.html"
+      },
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 11 Practical Methodology（11.5 Debugging Strategies の有限差分、著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/guidelines.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-103",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "活性化関数"
+    ],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "活性化関数の tanh関数の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "ニューロンの出力の形を決める関数（活性化関数）のうち「tanh関数」が、入力に対してどんな値を出すかを選ぶ問題。",
+    "choices": [
+      "入力が大きな負の数なら−1に、大きな正の数なら1に近づき、入力が0のときの出力は0になるS字の関数",
+      "入力が大きな負の数なら0に、大きな正の数なら1に近づき、入力が0のときの出力は0.5になるS字の関数",
+      "入力が負の数なら0を出し、正の数ならその値をそのまま出す、0のところで折れ曲がった関数",
+      "入力が負の数なら0.01倍のような小さな傾きを掛けた値を出し、正の数ならその値をそのまま出す、折れ曲がった関数"
+    ],
+    "answer": 0,
+    "explanation": "tanh関数（双曲線正接関数、hyperbolic tangent）は、どんな入力も−1から1の間の値にするS字の関数で、入力0のとき出力0になり、原点を中心に対称な形をしている。4つを同じ入力で比べる（値は小数第2位まで）：入力−2なら、tanh は−0.96、シグモイドは0.12、ReLU は0、Leaky ReLU（傾き0.01）は−0.02。入力0なら tanh 0、シグモイド 0.5、ReLU 0、Leaky ReLU 0。入力2なら tanh 0.96、シグモイド 0.88、ReLU と Leaky ReLU は2。出力の平均が0に近くなるので、シグモイドより学習が進みやすいとされるが、入力の絶対値が大きいと傾きが0に近づく（勾配消失が起こりうる）点はシグモイドと同じ。",
+    "whyWrong": [
+      null,
+      "これはシグモイド関数の説明。出力は0から1の間で、入力0のとき0.5。形は同じS字だが、出力の範囲と中心が tanh とは違う（tanh は−1〜1で中心が0）。",
+      "これは ReLU関数の説明。式で書くと max(0, x)。S字ではなく0のところで折れ曲がった形で、正の側では傾きが1のまま小さくならないので、深い層でも勾配が消えにくい。tanh とは形が違う。",
+      "これは Leaky ReLU関数の説明。ReLU が負の入力で傾き0になり、そのニューロンが学習しなくなる問題を、負の側にも小さな傾きを残して和らげたもの。S字の tanh とは形が違う。"
+    ],
+    "memoryTip": "tanh＝−1〜1、真ん中0。シグモイド＝0〜1、真ん中0.5。ReLU＝負は0、正はそのまま。",
+    "concepts": [
+      "C-04-007",
+      "C-04-006",
+      "C-04-008",
+      "C-04-009"
+    ],
+    "figures": [
+      "fig-g-activation"
+    ],
+    "sources": [
+      {
+        "title": "PyTorch Documentation: torch.nn.Tanh",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Tanh.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.Sigmoid",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.ReLU",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.ReLU.html"
+      },
+      {
+        "title": "PyTorch Documentation: torch.nn.LeakyReLU",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-104",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 3,
+    "stem": "最適化手法のモーメンタムが学習を助ける仕組みの説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "重みを直す勾配降下法の工夫の1つ「モーメンタム」が、なぜ学習を速く安定させるのかを選ぶ問題。",
+    "choices": [
+      "まれにしか勾配が出ないパラメータは、これまでの勾配の2乗の合計が小さいままなので、大きめの一歩で更新され続ける",
+      "勾配の2乗の平均を、古いものほど軽く見て計算するので、学習が長引いても一歩の大きさが小さくなりすぎない",
+      "過去の更新を勢いとして持ち越すので、向きが毎回入れ替わる方向の動きは打ち消し合い、同じ向きが続く方向は速く進む",
+      "勾配の平均と勾配の2乗の平均の両方を見積もり、学習の初めに見積もりが0のほうへ偏る分を補正したうえで一歩を決める"
+    ],
+    "answer": 2,
+    "explanation": "モーメンタム（momentum＝勢い、運動量）は、今の勾配だけでなく、直前までの更新の向きも足し合わせて一歩を決める。坂を転がるボールが勢いを持つのと同じで、Google の機械学習用語集も、一歩が今の勾配だけでなく直前の勾配にもよる方法としている。例（説明のための例）：細長い谷を下るとき、谷を横切る向きの勾配は＋1、−1、＋1…と毎回入れ替わり、谷に沿う向きは毎回−1が続くとする。過去の更新を足し合わせると、横切る向きは＋1と−1が打ち消し合って揺れが小さくなり、沿う向きは−1が積み重なって進みが速くなる。学習率をパラメータごとに変える AdaGrad・RMSprop とは、工夫する所（進む向き）が違う。",
+    "whyWrong": [
+      "これは AdaGrad の長所の説明。たとえば文書の分類で、めったに出ない単語の重みは勾配の2乗の合計が小さいので、学習率を割る数も小さく、大きめの一歩で育つ。パラメータごとに一歩の大きさを変える仕組みで、過去の更新の向きを持ち越すモーメンタムとは違う。",
+      "これは RMSprop の説明。勾配の2乗を足し続けると一歩が小さくなり続ける AdaGrad の弱点を、古いものを忘れる平均で直した。一歩の大きさを調整する工夫で、進む向きに勢いを付けるモーメンタムとは違う。",
+      null,
+      "これは Adam の説明。勾配の平均（モーメンタムに当たる部分）と勾配の2乗の平均（RMSprop に当たる部分）を組み合わせ、学習の始めに平均が0のほうへ偏る分を補正する。モーメンタムを部品として含むが、2乗の平均で割ることや偏りの補正はモーメンタムだけの仕組みにはない。"
+    ],
+    "memoryTip": "モーメンタム＝向きの工夫（勢い）。AdaGrad・RMSprop＝一歩の大きさの工夫。Adam＝両方。",
+    "concepts": [
+      "C-04-034",
+      "C-04-035",
+      "C-04-036",
+      "C-04-038"
+    ],
+    "figures": [
+      "fig-g-momentum"
+    ],
+    "sources": [
+      {
+        "title": "Google for Developers: Machine Learning Glossary",
+        "url": "https://developers.google.com/machine-learning/glossary"
+      },
+      {
+        "title": "PyTorch Documentation: torch.optim.SGD（momentum）",
+        "url": "https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html"
+      },
+      {
+        "title": "Kingma & Ba (2014) Adam: A Method for Stochastic Optimization (arXiv:1412.6980)",
+        "url": "https://arxiv.org/abs/1412.6980"
+      },
+      {
+        "title": "Duchi, Hazan & Singer (2011) Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. JMLR",
+        "url": "https://jmlr.org/papers/v12/duchi11a.html"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-105",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "ニューラルネットワークとディープラーニング"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ディープラーニングの計算環境でいう CUDA の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "ディープラーニングの計算に使う道具の1つ「CUDA」が、ハードウェアなのかソフトウェアなのか、何をするものかを選ぶ問題。",
+    "choices": [
+      "NVIDIA が用意した、GPU をグラフィックス以外の一般の計算にも使えるようにするための並列計算の基盤",
+      "Google が独自に開発した、機械学習の大量の行列演算を速く行うための専用の半導体チップ",
+      "NVIDIA が用意した、畳み込みやプーリングなど、深層学習でよく使う計算を GPU 向けに速くした部品の集まり（ライブラリ）",
+      "少数の高性能なコアで、さまざまな種類の処理を順に柔軟にこなす汎用の計算装置"
+    ],
+    "answer": 0,
+    "explanation": "CUDA は Compute Unified Device Architecture の略で、NVIDIA が2006年に発表した、GPU の並列計算の力をグラフィックス以外の計算にも使えるようにする基盤（プログラムを書くための仕組みと道具）。NVIDIA の CUDA プログラミングガイドも、グラフィックスの API とは無関係に、あらゆる計算の処理で GPU の能力を使えるようにするために導入したとしている。CUDA 自体は装置ではなくソフトウェアの基盤で、その上に深層学習用の部品集 cuDNN（NVIDIA の解説では、深層ニューラルネットワーク向けの GPU で速くした基本処理のライブラリ）がある、という重なりになっている。例（説明のための例）：畳み込みの計算を GPU で行うとき、cuDNN の速い畳み込みの部品が使われ、その部品は CUDA の仕組みの上で GPU に計算させている。",
+    "whyWrong": [
+      null,
+      "これは TPU（Tensor Processing Unit）の説明。Google が作った機械学習専用の半導体チップ（ASIC）で、装置そのもの。NVIDIA の GPU 向けのソフトウェアの基盤である CUDA とは、作った会社も種類（ハードかソフトか）も違う。",
+      "これは cuDNN（CUDA Deep Neural Network library）の説明。CUDA の上で動く、畳み込み・プーリング・正規化などを速くした部品の集まり。深層学習の計算に絞った部品で、GPU を一般の計算に使えるようにする基盤（CUDA）そのものではない。",
+      "これは CPU の説明。NVIDIA の解説では、CPU は少数のコアと多くのキャッシュで少数の処理の流れを扱い、GPU は数百のコアで数千の処理の流れを同時に扱う。CPU は装置で、GPU を一般の計算に使うためのソフトウェアの基盤（CUDA）とは種類が違う。"
+    ],
+    "memoryTip": "CUDA＝GPU を計算に使うための土台（ソフト）。cuDNN＝その上の深層学習用部品。TPU＝Google のチップ（ハード）。",
+    "concepts": [
+      "C-04-004"
+    ],
+    "sources": [
+      {
+        "title": "NVIDIA CUDA Programming Guide 1.1 Introduction",
+        "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/introduction.html"
+      },
+      {
+        "title": "NVIDIA Developer: NVIDIA cuDNN",
+        "url": "https://developer.nvidia.com/cudnn"
+      },
+      {
+        "title": "Google Cloud: Introduction to Cloud TPU",
+        "url": "https://cloud.google.com/tpu/docs/intro-to-tpu"
+      },
+      {
+        "title": "NVIDIA Blog: What's the Difference Between a CPU and a GPU?",
+        "url": "https://blogs.nvidia.com/blog/whats-the-difference-between-a-cpu-and-a-gpu/"
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "G-04-106",
+    "syllabus": [
+      "技術分野",
+      "ディープラーニングの概要",
+      "最適化手法"
+    ],
+    "format": "single",
+    "difficulty": 2,
+    "stem": "ノーフリーランチの定理の説明として、最も適切なものを1つ選べ。",
+    "stemPlain": "機械学習の手法選びにかかわる「ノーフリーランチの定理」が何を言っているかを選ぶ問題。",
+    "choices": [
+      "同じくらいうまくデータを説明できる仮説が複数あるなら、より単純な仮説を選ぶべきだということ",
+      "モデルを大きくしていくと、テスト誤差がいったん下がってから上がり、さらに大きくすると再び下がるということ",
+      "扱う変数の数が増えるほど、空間を同じ密度で埋めるのに必要なデータの数が爆発的に増えて、学習が難しくなっていくということ",
+      "あらゆる問題で平均すると、どの学習アルゴリズムの性能も同じになり、どの問題にも一番効く万能の手法は無いということ"
+    ],
+    "answer": 3,
+    "explanation": "ノーフリーランチの定理（Wolpert, 1996）は、ありうるすべての問題（データの出方）について平均すると、どの学習アルゴリズムも未知のデータに対する性能は同じになる、という定理。名前を直訳すると『ただ（フリー）の昼食は無い』で、ある問題で得をする手法は、別の問題で損をしている、という意味になる。Goodfellow らの教科書も、すべての問題を平均すれば、どの機械学習アルゴリズムもほかより全般的に良いことはないと説明し、だから問題ごとに、その問題に合う前提を置いた手法を選ぶ必要があるとしている。例（説明のための例）：手法Aが問題1で正解率90％・問題2で60％、手法Bが問題1で60％・問題2で90％なら、平均はどちらも75％で、どちらが上とは言えない。",
+    "whyWrong": [
+      "これはオッカムの剃刀の説明。たとえば同じ精度なら、パラメータ10個のモデルを1,000個のモデルより選ぶ。モデル選びの指針で、万能の手法が無いことを示す定理（ノーフリーランチの定理）とは別。",
+      "これは二重降下現象（double descent）の説明。たとえばパラメータの数を増やすと、テスト誤差が下がる→上がる→再び下がる、と2回下がる。モデルの大きさと誤差の関係についての現象で、手法どうしの平均の性能についての定理ではない。",
+      "これは次元の呪いの説明。1つの変数を10段階に区切れば区画は10個、10変数なら100億個になり、データが足りなくなる。特徴量の数の問題で、どの手法も平均すれば同じという定理とは別。",
+      null
+    ],
+    "memoryTip": "ノーフリーランチ＝タダ飯は無い＝どの問題にも一番の万能手法は無い。単純さを選ぶのはオッカムの剃刀。",
+    "concepts": [
+      "C-04-042",
+      "C-03-058",
+      "C-04-041",
+      "C-02-030"
+    ],
+    "sources": [
+      {
+        "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（5.2.1 The No Free Lunch Theorem、著者公開版）",
+        "url": "https://www.deeplearningbook.org/contents/ml.html"
+      },
+      {
+        "title": "Nakkiran et al. (2019) Deep Double Descent: Where Bigger Models and More Data Hurt (arXiv:1912.02292)",
+        "url": "https://arxiv.org/abs/1912.02292"
+      },
+      {
+        "title": "scikit-learn User Guide: Nearest Neighbors（curse of dimensionality）",
+        "url": "https://scikit-learn.org/stable/modules/neighbors.html"
+      }
+    ],
+    "status": "verified"
   }
 ]
