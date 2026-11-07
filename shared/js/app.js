@@ -45,6 +45,7 @@ import { trueBossEnabled } from './lib/trueboss.js';
 import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
+import { createUpdateWatcher, UPDATE_NOTICE_TEXT, UPDATE_NOTICE_BUTTON, UPDATE_NOTICE_LATER } from './lib/updatenotice.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -560,6 +561,23 @@ export async function start() {
   });
 
   if ('serviceWorker' in navigator) {
+    // 開いた時点で service worker が動いていたか。動いていたのに入れ替わった＝画面のデータが古いかもしれない（3-2-c）
+    const watcher = createUpdateWatcher(Boolean(navigator.serviceWorker.controller));
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (watcher.onChange()) showUpdateNotice();
+    });
     navigator.serviceWorker.register('./sw.js').catch((e) => console.warn('service worker', e));
   }
+}
+
+/** 「新しい問題が届きました」の帯。勝手には再読み込みしない（解いている途中で画面が変わらないように）。押したときだけ読み込み直す。 */
+function showUpdateNotice() {
+  if (document.querySelector('.update-notice')) return;
+  const btn = h('button', { class: 'btn primary', type: 'button', text: UPDATE_NOTICE_BUTTON });
+  btn.addEventListener('click', () => location.reload());
+  const later = h('button', { class: 'btn', type: 'button', text: UPDATE_NOTICE_LATER });
+  const box = h('div', { class: 'update-notice', role: 'status', 'aria-live': 'polite' },
+    h('span', { class: 'update-notice-text', text: UPDATE_NOTICE_TEXT }), h('span', { class: 'update-notice-btns' }, later, btn));
+  later.addEventListener('click', () => box.remove()); // その回は出し直さない（判定器が 1 回しか true を返さない）
+  document.body.appendChild(box);
 }

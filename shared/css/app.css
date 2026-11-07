@@ -403,6 +403,10 @@ details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-w
 .toast { background: var(--text); color: var(--bg); border-radius: 999px; padding: 12px 20px; font-weight: 700; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); animation: pop 0.3s; }
 .toast.badge { background: var(--accent); color: var(--on-accent); }
 .toast.warn { background: var(--warn); color: var(--bg); }
+/* 新しい版に入れ替わったときの帯（3-2-c）。画面の上に出す（問題を解く画面でも選択肢や「次へ」に重ならない） */
+.update-notice { position: fixed; left: 12px; right: 12px; top: calc(env(safe-area-inset-top) + 12px); z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--surface); color: var(--text); border: 1.5px solid var(--accent); border-radius: var(--radius); padding: 12px 16px; box-shadow: var(--shadow); font-weight: 700; }
+.update-notice-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.update-notice .btn { min-height: 48px; padding: 8px 20px; }
 .burst { position: fixed; z-index: 40; pointer-events: none; width: 0; height: 0; }
 .confetti { position: absolute; width: 10px; height: 10px; border-radius: 2px; animation: fly 0.8s ease-out forwards; }
 .confetti.c0 { background: #e53935; } .confetti.c1 { background: #fbc02d; } .confetti.c2 { background: #43a047; }
