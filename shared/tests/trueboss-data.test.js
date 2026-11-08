@@ -561,3 +561,34 @@ test('割れ目の描き方（trueboss.js）: 網目は絵の形で切り抜く�
   assert.match(css, /\.tb-mesh\.on, \.tb-shard\.on \{ opacity: 1; \}/);
   assert.doesNotMatch(view, /setAttribute\('style'/);
 });
+
+// ---- 割れ目の入り方（2026-11-09 先生「にょきにょき枝が伸びるように入ってるけど、もっと、パキ！パキパキ！！ってはいらないと」）----
+import { snapDelay as snapOf, meshBands as bandsOf, MESH_BAND_DELAYS as bandDelays } from '../js/lib/trueboss-geom.js';
+
+test('割れ目の入り方: 主線はすぐ、枝は少しあとから順に。網目は割れ目に近い帯から3回に分けて。なめらかに伸ばさず段で跳ぶ', () => {
+  assert.equal(snapOf(0, false), 0);
+  const ds = [1, 2, 3, 4, 5].map((i) => snapOf(i, false));
+  assert.ok(ds[0] >= 0.08 && ds.every((v, i) => i === 0 || v > ds[i - 1]), '枝は順に');
+  assert.ok(snapOf(2, true) > snapOf(2, false), '奥の枝は少し遅れる');
+  const maxParts = Math.max(...['g-kentei', 'dx-biz', 'ai-passport'].flatMap((a) => crackGeom(a).cracks.map((d) => d.split(/\s+(?=~?M)/).length)));
+  assert.ok(snapOf(maxParts - 1, true) < 0.45, '次の割れ目（0.45 秒以上あと）より前に、枝が全部入り始める');
+  assert.deepEqual([...bandDelays], [...bandDelays].sort((a, b) => a - b));
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    const g = crackGeom(app);
+    const st = meshOf(g.mesh, g.cracks);
+    st.forEach((dd, k) => {
+      const bands = bandsOf(dd, g.cracks[k]);
+      assert.ok(bands.length >= 1 && bands.length <= 3, app);
+      const segs = (s) => s.split(/\s+(?=M)/).filter(Boolean).sort();
+      assert.deepEqual(segs(bands.join(' ')), segs(dd), app + ': 帯に分けても網目の線は増えも減りもしない');
+    });
+  }
+  assert.deepEqual(bandsOf('', 'M0 0 L1 1'), []);
+  const css = crackRead(crackUrl(new URL('../css/app.css', import.meta.url)), 'utf8');
+  assert.match(css, /\.tb-crack-reveal\.on \{ animation: tb-crack-snap [\d.]+s steps\(1, end\) forwards; \}/);
+  assert.match(css, /\.tb-crack-reveal-branch\.on \{ animation: tb-crack-snap2 [\d.]+s steps\(1, end\) forwards; \}/);
+  assert.doesNotMatch(css, /tb-crack-draw 0\.5s ease-out/, 'にょきにょき（なめらかに伸びる）に戻さない');
+  assert.match(css, /\.tb-crack-flash\.on \{ animation: none; opacity: 0; \}/, '動きを減らす設定では白い光を出さない');
+  const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
+  assert.ok(view.includes('snapDelay(i, far)') && view.includes('meshBands(dd, GEOM.cracks[k])'));
+});

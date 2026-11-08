@@ -240,6 +240,28 @@ export function crackMesh(m, cracks) {
   return stages.map((list) => list.join(' '));
 }
 
+/**
+ * 割れ目の入り方（2026-11-09 先生『パキ！パキパキ！！ってはいらないと』）: 1本の中の i 番目の線（0＝主線）が現れるまでの秒。
+ * 主線はすぐ（パキ！）、枝は少し間を置いてから 0.05 秒ずつ詰めて次々に（パキパキ！！）。奥の枝はほんの少し遅れる。
+ */
+export function snapDelay(i, far) {
+  if (!i) return 0;
+  return r2(0.1 + (i - 1) * 0.05 + (far ? 0.025 : 0));
+}
+/** 網目が現れる3回の秒（割れ目に近い帯・中くらい・遠い帯）。 */
+export const MESH_BAND_DELAYS = Object.freeze([0.05, 0.14, 0.26]);
+/** 1段ぶんの網目（M〜の線の集まり）を、その割れ目（crack の文字列）に近い順に3つの帯に分ける。空の帯は返さない。 */
+export function meshBands(dd, crack) {
+  const segs = String(dd || '').split(/\s+(?=M)/).filter(Boolean);
+  if (!segs.length) return [];
+  const pts = String(crack || '').split(/\s+(?=~?M)/).flatMap((p) => samplePath(p.replace(/^~/, '')));
+  const mid = (s) => { const n = [...s.matchAll(/(-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)/g)].map((m) => [Number(m[1]), Number(m[2])]); return [n.reduce((a, p) => a + p[0], 0) / n.length, n.reduce((a, p) => a + p[1], 0) / n.length]; };
+  const dist = (s) => { const [x, y] = mid(s); return pts.length ? Math.min(...pts.map((p) => Math.hypot(p[0] - x, p[1] - y))) : 0; };
+  const sorted = segs.map((s) => [dist(s), s]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
+  const n = sorted.length;
+  return [sorted.slice(0, Math.ceil(n / 3)), sorted.slice(Math.ceil(n / 3), Math.ceil((2 * n) / 3)), sorted.slice(Math.ceil((2 * n) / 3))].filter((b) => b.length).map((b) => b.join(' '));
+}
+
 /** 欠けて落ちる小さな破片。shards … [[x, y, 大きさ], ...]。戻り値は多角形の path の配列。 */
 export function shardShapes(shards) {
   return shards.map((sh, i) => {

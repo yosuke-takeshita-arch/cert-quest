@@ -1079,12 +1079,19 @@ body.boss-on { background: #000; }
 .tb-crack-far { stroke-width: 0.4; opacity: 0.6; }
 .tb-crack-far.on { animation-delay: 0.2s; }
 .tb-crack-reveal { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.tb-crack-reveal.on { animation: tb-crack-draw 0.5s ease-out forwards; }
+/* 2026-11-09 先生『パキ！パキパキ！！』: なめらかに伸ばさず、段で跳ぶ（steps）。主線は3段で一瞬、枝は2段。遅れは JS が1本ずつ付ける */
+.tb-crack-reveal.on { animation: tb-crack-snap 0.16s steps(1, end) forwards; }
+.tb-crack-reveal-branch.on { animation: tb-crack-snap2 0.07s steps(1, end) forwards; }
+.tb-crack-flash { opacity: 0; }
+.tb-crack-flash.on { animation: tb-crack-flash 0.2s ease-out forwards; }
 .tb-mesh { opacity: 0; }
-.tb-mesh.on { animation: tb-mesh-in 0.9s ease-out 0.15s forwards; }
+.tb-mesh.on { animation: tb-mesh-in 0.01s linear forwards; }
 .tb-shard { opacity: 0; }
-.tb-shard.on { animation: tb-shard-in 0.9s ease-in 0.25s forwards; }
-@keyframes tb-mesh-in { to { opacity: 1; } }
+.tb-shard.on { animation: tb-shard-in 0.35s ease-in 0.3s forwards; }
+@keyframes tb-crack-snap { 0% { stroke-dashoffset: 0.55; } 40% { stroke-dashoffset: 0.2; } 75% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
+@keyframes tb-crack-snap2 { 0% { stroke-dashoffset: 0.45; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
+@keyframes tb-crack-flash { 0% { opacity: 0.95; } 100% { opacity: 0; } }
+@keyframes tb-mesh-in { from { opacity: 1; } to { opacity: 1; } }
 @keyframes tb-shard-in { from { opacity: 0; transform: translateY(-2.5px); } to { opacity: 1; transform: none; } }
 .tb-eye-glow { fill: #bfeaff; opacity: 0; filter: drop-shadow(0 0 2px #5ec8ff); }
 .tb-eye-glow.on { animation: tb-eye-on 0.9s ease-out forwards; }
@@ -1167,6 +1174,7 @@ body.boss-on { background: #000; }
   .tb-crack-line.on { stroke-dashoffset: 0; } /* 動きを止めても、ひび自体は（描き終わった形で）見せる。止めるのは『伸びる動き』だけ */
   .tb-crack-reveal.on, .tb-mesh.on, .tb-shard.on { animation: none; } /* 割れ目・網目・破片も、動きを止めて、描き終わった形で見せる */
   .tb-crack-reveal.on { stroke-dashoffset: 0; }
+  .tb-crack-flash.on { animation: none; opacity: 0; } /* 割れた瞬間の白い光は出さない */
   .tb-mesh.on, .tb-shard.on { opacity: 1; }
   .tb-gold-flash.calm { animation: tb-gold-calm 2.2s ease-in-out forwards; } /* 点滅ではなく、ゆっくり明るくなって引く形だけ */
   .boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top, .boss-rpg.tb-dim .boss-fig .boss-img { transition: none; }

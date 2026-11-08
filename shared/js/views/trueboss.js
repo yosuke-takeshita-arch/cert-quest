@@ -15,7 +15,7 @@ import {
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
 import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_1_TO_2_SEEP, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
-import { trueGeom, evo1Type, crackShape, crackMesh, shardShapes } from '../lib/trueboss-geom.js';
+import { trueGeom, evo1Type, crackShape, crackMesh, shardShapes, snapDelay, meshBands, MESH_BAND_DELAYS } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
@@ -147,7 +147,7 @@ export function trueBossPlace(app, back) {
 
 /**
  * ひびの層（2026-11-08 先生『こんな感じのひび』）。絵（.boss-fig。絵と同じ大きさの箱）の上に、絵と同じ正方形（viewBox 0 0 100 100）の SVG を重ねる。
- * ・割れ目は線ではなく、先細りの『幅のある隙間』（暗い多角形）＋右下の縁の明るい細線＋中のごく弱い光。根もと（核）から先へ伸びるように現れる
+ * ・割れ目は線ではなく、先細りの『幅のある隙間』（暗い多角形）＋右下の縁の明るい細線＋中のごく弱い光。なめらかに伸ばさず、段で跳んで一瞬で現れる（下の『入り方』）
  * ・表面には細かい網目（不揃いな多角形のかけら）。絵そのものの形（不透明な部分）で切り抜くので体の外へ出ない。持ち物・飾り（GEOM.noMesh）には載せない。割れ目が入るたびに、そのまわりから広がる
  * ・最後の割れ目のとき、欠けた破片が足もとに落ちる
  * 割れ目の形は GEOM.cracks（絵の中の割合）。1本の文字列の中の1つ目の M〜が主線、2つ目以降が枝、~M が奥の枝。画面の大きさが変わっても絵と一緒に拡大縮小するのでずれない。
@@ -173,21 +173,28 @@ function buildCrackLayer(fig) {
   for (const q of GEOM.noMesh || []) {
     if (q.startsWith('e:')) { const [cx, cy, rx, ry] = q.slice(2).split(',').map(Number); el('ellipse', { cx, cy, rx, ry, fill: '#000' }, meshMask); } else el('polygon', { points: q, fill: '#000' }, meshMask);
   }
-  const reveals = []; // 割れ目の根もとから先へ伸びるように見せる（動かす印は on）
+  // 入り方（2026-11-09 先生『にょきにょき枝が伸びるように入ってるけど、もっと、パキ！パキパキ！！ってはいらないと』）:
+  //   主線は一瞬で3段に跳んで現れ（パキ！）、枝はそのあと1本ずつ間を詰めて弾けるように現れる（パキパキ！！）。現れた瞬間だけ割れ目が白く光る。なめらかに伸ばさない。
+  const reveals = []; // 割れ目の見える範囲（動かす印は on）
   const lines = GEOM.cracks.map((d, k) => {
     const parts = d.split(/\s+(?=~?M)/).map((q) => q.trim()).filter(Boolean); // ~M で始まる線は『奥の枝』（体の裏へ回る側・影の側。さらに細く薄い）
     const els = [];
     parts.forEach((q, i) => {
       const far = q.startsWith('~');
       const dd = far ? q.slice(1) : q;
+      const delay = snapDelay(i, far);
       const m = el('mask', { id: 'tb-rv-' + k + '-' + i, maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100 }, defs);
-      const rv = el('path', { d: dd, pathLength: 1, class: 'tb-crack-reveal', fill: 'none', stroke: '#fff', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, m);
+      const rv = el('path', { d: dd, pathLength: 1, class: 'tb-crack-reveal' + (i ? ' tb-crack-reveal-branch' : ''), fill: 'none', stroke: '#fff', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, m);
+      rv.style.animationDelay = delay + 's';
       els.push(rv);
       const shape = crackShape(dd, far ? 0.6 : i ? 1.3 : 2.5, k * 31 + i + 1);
       const g = el('g', { mask: 'url(#tb-rv-' + k + '-' + i + ')', class: 'tb-crack-gapg' + (far ? ' tb-crack-branch tb-crack-far' : i ? ' tb-crack-branch' : '') }, svg);
       el('path', { d: shape.gap, fill: tone.dark, class: 'tb-crack-gap' }, g);
       el('path', { d: shape.rim, fill: 'none', stroke: tone.rim, 'stroke-width': (tone.rimW || 0.3) * (far ? 0.45 : 1), 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: far ? 0.6 : 1, class: 'tb-crack-rim' }, g);
       el('path', { d: shape.center, fill: 'none', stroke: tone.glow, 'stroke-width': (tone.glowW || 0.2) * (far ? 0.5 : 1), opacity: far ? 0.2 : tone.glowO || 0.3, 'stroke-linejoin': 'round', class: 'tb-crack-glow' }, g);
+      const flash = el('path', { d: shape.gap, fill: '#fff', class: 'tb-crack-flash' }, g); // 割れた瞬間の白い光
+      flash.style.animationDelay = delay + 's';
+      els.push(flash);
     });
     reveals[k] = els;
     return null;
@@ -196,12 +203,14 @@ function buildCrackLayer(fig) {
   const meshLayer = el('g', { mask: 'url(#tb-mesh-mask)', class: 'tb-mesh-layer' });
   svg.insertBefore(meshLayer, defs.nextSibling);
   const stages = GEOM.mesh ? crackMesh(GEOM.mesh, GEOM.cracks) : [];
-  const meshGroups = stages.map((dd) => {
+  // 網目も、割れ目に近いところから遠いところへ、3回に分けて一瞬ずつ現れる（じわっと浮かばせない）
+  const meshGroups = stages.map((dd, k) => meshBands(dd, GEOM.cracks[k]).map((band, b) => {
     const g = el('g', { class: 'tb-mesh' }, meshLayer);
-    el('path', { d: dd, fill: 'none', stroke: tone.meshLight, 'stroke-width': 0.2, opacity: 0.5, transform: 'translate(0.2 0.2)', 'stroke-linejoin': 'round' }, g);
-    el('path', { d: dd, fill: 'none', stroke: tone.mesh, 'stroke-width': 0.3, opacity: 0.9, 'stroke-linejoin': 'round' }, g);
+    g.style.animationDelay = MESH_BAND_DELAYS[b] + 's';
+    el('path', { d: band, fill: 'none', stroke: tone.meshLight, 'stroke-width': 0.2, opacity: 0.5, transform: 'translate(0.2 0.2)', 'stroke-linejoin': 'round' }, g);
+    el('path', { d: band, fill: 'none', stroke: tone.mesh, 'stroke-width': 0.3, opacity: 0.9, 'stroke-linejoin': 'round' }, g);
     return g;
-  });
+  }));
   // 欠けて落ちる破片（最後の割れ目のとき）
   const shardEls = shardShapes(GEOM.shards || []).map((dd) => el('path', { d: dd, fill: tone.shard, stroke: tone.dark, 'stroke-width': 0.15, class: 'tb-shard' }, svg));
   const eye = appendEyeGlow(svg);
@@ -210,7 +219,7 @@ function buildCrackLayer(fig) {
   const lastK = GEOM.cracks.length - 1;
   const proxies = GEOM.cracks.map((d, k) => {
     const targets = [...reveals[k]];
-    if (meshGroups[k]) targets.push(meshGroups[k]);
+    if (meshGroups[k]) targets.push(...meshGroups[k]);
     if (k === lastK) targets.push(...shardEls);
     return { classList: { add: (c) => targets.forEach((t) => t.classList.add(c)), remove: (c) => targets.forEach((t) => t.classList.remove(c)) } };
   });
