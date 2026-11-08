@@ -490,6 +490,19 @@ test('ひび: 体の端まで届く（頭・両腕・両脚の先。DX と G検�
   }
 });
 
+test('ひび: 左右の鏡写しにしない（2026-11-09 先生「シンメトリーすぎないか？」）。どの2本も、片方を核の縦線で裏返して重ねると平均4以上ずれる。頭へ届くのは1本だけ', () => {
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    const g = crackGeom(app);
+    const cx = Number(g.cracks[0].match(/^M([\d.]+)/)[1]);
+    const all = g.cracks.map((d) => d.split(/\s+(?=~?M)/).flatMap((p) => sampleOf(p.replace(/^~/, ''))));
+    const off = (a, b) => a.reduce((s, [x, y]) => s + Math.min(...b.map((q) => Math.hypot(2 * cx - x - q[0], y - q[1]))), 0) / a.length;
+    for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) {
+      assert.ok(Math.max(off(all[i], all[j]), off(all[j], all[i])) >= 4, `${app}: ${i + 1}本目と${j + 1}本目が鏡写し`);
+    }
+    if (app !== 'ai-passport') assert.equal(all.filter((p) => p.some((q) => q[1] <= 12)).length, 1, app + ': 頭へ届くのは1本だけ');
+  }
+});
+
 test('ひび: 動きを減らす設定でも、ひびは（描き終わった形で）見える。奥の枝は細く薄い', () => {
   const css = crackRead(crackUrl(new URL('../css/app.css', import.meta.url)), 'utf8');
   const red = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)', css.indexOf('.tb-crack-branch {')));
