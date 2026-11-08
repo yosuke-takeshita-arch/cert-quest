@@ -136,6 +136,16 @@ CC0 の条文: <https://creativecommons.org/publicdomain/zero/1.0/>
 - 加工後の rms は約 0.16（ボスの当たり 0.16 と同じ）、peak は約 0.59。実際の聞こえ方は、耳では確かめていない。
 - 確かめた逐語は上と同じページ（『Author: JaggedStone』『License(s): CC0』『None needed』）。2026-10-23 に配布ページのファイル（magical_1_0.ogg）を取り直し、手元の原本と cmp で一致を確かめた。加工後の rms は約 0.14、peak は約 0.72。実際の聞こえ方は、耳では確かめていない。
 
+### 真ボス ヒソミカゲの第1→2（染み出す型）の効果音（`shared/audio/sfx/`。インストール時に取る。2026-11-08）
+
+| ファイル | 使う場面 | 元のファイル | 長さ・大きさ | 作者 | 配布ページ | ライセンス |
+|---|---|---|---|---|---|---|
+| `true-seep_steam-hiss-1.ogg` | 鎧のすきま4か所から煙が漏れるたびの音（4回鳴る）。2026-11-08 先生が聞き比べて選んだ | `steam_hisses.zip`（622,313 バイト）の中の `steam hisses - Marker #1.wav`（325,956 バイト・約1.85秒・44.1kHz ステレオ） | 約0.74秒・14,929 バイト（頭から0.74秒に切って後ろの無音を除き、0.64秒から0.1秒かけてフェードアウト。ogg（Vorbis）に変換） | bart | <https://opengameart.org/content/steam-release-sounds> | CC0 |
+| `true-clatter_metal-falling-01.ogg` | 鎧が崩れ落ちる音。2026-11-08 先生が聞き比べて選んだ | `100-CC0-wood-metal-SFX.zip`（1,990,361 バイト）の中の `metal_falling_01.ogg`（64,014 バイト・約1.79秒） | 約1.79秒・64,014 バイト（元の ogg のまま。加工なし） | rubberduck | <https://opengameart.org/content/100-cc0-metal-and-wood-sfx> | CC0 |
+
+- **確かめた逐語**: 2026-11-08 に2つの配布ページを curl で取り直し、投稿情報の欄に『License(s): CC0』があることを確かめた。bart のページの本文は『Attribution appreciated :)』（表示を求める文。CC0 なので義務ではない）。rubberduck のページに Attribution を求める記載は無い。zip は取り直して、手元の原本と cmp で一致を確かめた。聞き比べ用の mp3 と同じ元ファイル（metal_falling_01.ogg は cmp 一致）。
+- **音量**: どちらも補正なし。ffmpeg の volumedetect で、煙は mean -30.4dB・max -13.4dB、崩れ落ちは mean -21.9dB・max 0.0dB。ほかの真ボスの音（砕ける音 mean -18.9dB・max -0.9dB、ひび mean -24.3dB・max -1.4dB、衝撃 mean -20.4dB・max -4.5dB）と比べて、煙は小さく、崩れ落ちはほぼ同じ。実際の聞こえ方は、耳では確かめていない。
+
 ## 確かめていないこと
 
 - 音そのものは聞いていない（ライセンスとファイルの大きさ・長さを確かめただけ）。曲・効果音の「合っているか」は、実機で先生が聞いて決める。差し替えるときは `shared/js/lib/sound.js` の表と `shared/sw-core.js` の `SFX` と、この表を直す。

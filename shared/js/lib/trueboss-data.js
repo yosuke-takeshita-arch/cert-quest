@@ -52,6 +52,14 @@ export const EVO_1_TO_2 = Object.freeze({
   swap: 12450, // 第2形態の姿に替わる
   text: 12750, // 進化のせりふ
 });
+// 第1→2の『染み出す（seep）』型（要件定義書 §3-9『第1→2の進化の型』。ヒソミカゲ）。shake・cracks（＝煙が漏れる時刻）までは EVO_1_TO_2 と同じ。
+// 割れる代わりに、鎧が崩れ落ちる（collapse。CSS で約1秒）→ 煙が上に集まって消える（gather）→ 第2形態に入れ替わる（swap）。
+export const EVO_1_TO_2_SEEP = Object.freeze({
+  collapse: 12200, // EVO_1_TO_2.shatter と同じ。フック clatter
+  gather: 12300, // 煙が目のまわりに集まって影のかたまりになりはじめる（swap までの約0.8秒）
+  swap: 13100,
+  text: 13400,
+});
 // 第2→3: 曲が止まり画面が暗くなる → 宙で静止 → 光の玉が1つずつ金色に灯る（だんだん速く。フック orb）→ 力をためる音（フック charge）と揺れがだんだん強く → 金色の光が弾ける（フック impact）→ 第3形態と決めぜりふ → 第3形態の曲
 export const EVO_2_TO_3 = Object.freeze({
   dim: 0, still: 0,

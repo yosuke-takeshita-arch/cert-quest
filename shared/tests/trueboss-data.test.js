@@ -403,8 +403,8 @@ test('AIパスポート（アマツクリ）の位置: 絵から測った値。�
   assert.deepEqual([g.core.x, g.core.y], [50, 51.5]);
   assert.equal(g.cracks.length, 4);
   for (const d of g.cracks) {
-    assert.ok(d.startsWith('M50 51.5 L'), d);
-    for (const m of d.matchAll(/([0-9.]+) ([0-9.]+)/g)) assert.ok(Number(m[2]) >= 44, '顔の窓（y 15〜39）には入れない: ' + d);
+    assert.ok(d.startsWith('M50 51.5 '), d);
+    for (const m of d.matchAll(/([0-9.]+) ([0-9.]+)/g)) assert.ok(((Number(m[1]) - 50) / 17) ** 2 + ((Number(m[2]) - 28) / 14) ** 2 >= 1, '顔の窓（中心 50,28・横17・縦14の楕円）には入れない: ' + m[0]);
   }
   assert.ok(g.face[1].y > 0.2 && g.face[1].y < 0.35, '第1形態の顔は丸い窓の中');
   assert.match(readFileSync(fileURLToPath(new URL('../../ai-passport/config.json', import.meta.url)), 'utf8'), /"trueBoss": true/);
@@ -423,4 +423,128 @@ test('ガードの砦（ヒソミカゲ）の位置: 絵から測った値。玉
     assert.ok(d.startsWith('M50.1 32.2 L'), d);
     for (const m of d.matchAll(/([0-9.]+) ([0-9.]+)/g)) assert.ok(Number(m[2]) >= 29, '兜（y 6〜26）には入れない: ' + d);
   }
+});
+
+// ---- 第1→2の進化の型（2026-11-08 先生決定 A。要件定義書 §3-9『第1→2の進化の型』）----
+import { evo1Type as seepEvo1Type, TRUE_GEOM as seepGeomTable, trueGeom as seepTrueGeom } from '../js/lib/trueboss-geom.js';
+import { EVO_1_TO_2 as seepT1, EVO_1_TO_2_SEEP as seepT } from '../js/lib/trueboss-data.js';
+
+test('第1→2の型: ガードの砦（sc）だけ seep（染み出す）。G検定・DX・AIパスポートは crack（割れる）のまま。表の無いアプリ・壊れた値も crack', () => {
+  assert.equal(seepEvo1Type(seepTrueGeom('sc')), 'seep');
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) assert.equal(seepEvo1Type(seepTrueGeom(app)), 'crack', app);
+  assert.equal(seepEvo1Type(seepTrueGeom('unknown-app')), 'crack');
+  assert.equal(seepEvo1Type(undefined), 'crack');
+  assert.equal(seepEvo1Type({ evo1: 'seep' }), 'crack', '煙の場所が無ければ割れる');
+  assert.equal(seepEvo1Type({ evo1: 'seep', seeps: [] }), 'crack');
+  assert.equal(seepEvo1Type({ evo1: 'other', seeps: [{ x: 1, y: 1 }] }), 'crack');
+  assert.deepEqual(Object.keys(seepGeomTable).filter((k) => seepEvo1Type(seepGeomTable[k]) === 'seep'), ['sc'], 'seep は sc だけ');
+});
+
+test('sc の煙の場所: 4か所（ひびの時刻4つに1つずつ対応）。絵の中の割合で、兜のすきま・胸の鍵穴・右肩当ての下・左ひざの上から下へ。座標は 0〜100 の中、体の上にある', () => {
+  const g = seepTrueGeom('sc');
+  assert.equal(g.seeps.length, 4);
+  assert.equal(g.seeps.length, seepT1.cracks.length, '漏れる時刻は、ひびの時刻と同じ数');
+  for (const p of g.seeps) assert.ok(p.x > 35 && p.x < 65 && p.y > 15 && p.y < 85, JSON.stringify(p));
+  g.seeps.slice(1).forEach((p, i) => assert.ok(p.y > g.seeps[i].y, '上から下へ増える'));
+  assert.ok(g.seeps[0].y > g.eye[0].y, '1か所目は兜の目より下（面頬のすきま）');
+  assert.ok(g.seeps[0].dx > 0 && g.seeps[0].x + g.seeps[0].dx > g.eye[1].x + g.eye[1].rx, '面頬の煙は、光る目をふさがないよう右へ流れる');
+  assert.deepEqual([g.seeps[1].x, g.seeps[1].y], [g.core.x, g.core.y], '2か所目は胸の鍵穴（核）');
+  assert.equal(new Set(g.seeps.map((p) => p.x + ',' + p.y)).size, 4, '場所は重ならない');
+});
+
+test('seep の時刻: 煙が漏れるのは crack と同じ時刻。ための長さ（鼓動・地鳴り・shake・cracks）は変えない。崩れ落ち → 煙が集まる → 入れ替え → せりふの順', () => {
+  assert.deepEqual(seepT1.heartbeats, [6500, 7300, 8000, 8600, 9100, 9500]);
+  assert.equal(seepT1.fanfareEnd, 5350);
+  assert.equal(seepT.collapse, seepT1.shatter, '崩れ落ちは、割れる時刻から');
+  assert.ok(seepT.collapse < seepT.gather && seepT.gather < seepT.swap && seepT.swap < seepT.text);
+  assert.ok(seepT.swap - seepT.collapse >= 800, '崩れ落ち（CSS 約1秒）を見せる間がある');
+  assert.ok(seepT.swap - seepT.collapse <= 1200, 'のびすぎない');
+});
+
+// ---- ひびの描き方（2026-11-08 先生『立体感に合わせて／体の端まで』）----
+import { readFileSync as crackRead } from 'node:fs';
+import { fileURLToPath as crackUrl } from 'node:url';
+import { trueGeom as crackGeom } from '../js/lib/trueboss-geom.js';
+
+test('ひび: 3アプリとも4本。各本は主線＋枝（M で区切る。~M は奥の枝）で、命令は M・L・Q だけ・座標は絵の中（0〜100）', () => {
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    const g = crackGeom(app);
+    assert.equal(g.cracks.length, 4, app);
+    for (const d of g.cracks) {
+      const parts = d.split(/\s+(?=~?M)/);
+      assert.ok(parts.length >= 2, app + ': 主線だけで枝が無い: ' + d);
+      assert.ok(!parts[0].startsWith('~'), '1つ目は主線（奥の枝ではない）');
+      for (const p of parts) assert.match(p.replace(/^~/, ''), /^M[\d.]+ [\d.]+( (L[\d.]+ [\d.]+|Q[\d.]+ [\d.]+ [\d.]+ [\d.]+))*$/, app + ': ' + p);
+      for (const m of d.matchAll(/(\d+(?:\.\d+)?) (\d+(?:\.\d+)?)/g)) assert.ok(Number(m[1]) <= 100 && Number(m[2]) <= 100);
+    }
+  }
+});
+
+test('ひび: 体の端まで届く（頭・両腕・両脚の先。DX と G検定は頭まで、AIパスポートは顔の窓に入らないので脚と腕の先まで）', () => {
+  const ys = (app) => crackGeom(app).cracks.flatMap((d) => [...d.matchAll(/(\d+(?:\.\d+)?) (\d+(?:\.\d+)?)/g)].map((m) => [Number(m[1]), Number(m[2])]));
+  for (const app of ['g-kentei', 'dx-biz']) assert.ok(Math.min(...ys(app).map((p) => p[1])) <= 10, app + ' 頭まで');
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    const pts = ys(app);
+    assert.ok(Math.max(...pts.map((p) => p[1])) >= 88, app + ' 脚の先まで');
+    assert.ok(Math.min(...pts.map((p) => p[0])) <= 15 && (app !== 'ai-passport' || Math.max(...pts.map((p) => p[0])) >= 85), app + ' 腕の先まで（DX・G検定の右腕は本・盾の後ろに隠れるので、左腕の先まで）');
+  }
+});
+
+test('ひび: 動きを減らす設定でも、ひびは（描き終わった形で）見える。奥の枝は細く薄い', () => {
+  const css = crackRead(crackUrl(new URL('../css/app.css', import.meta.url)), 'utf8');
+  const red = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)', css.indexOf('.tb-crack-branch {')));
+  assert.match(red, /\.tb-crack-line\.on \{ stroke-dashoffset: 0; \}/);
+  assert.match(css, /\.tb-crack-branch \{ stroke-width: 0\.6; \}/);
+  assert.match(css, /\.tb-crack-far \{ stroke-width: 0\.4; opacity: 0\.6; \}/);
+  const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
+  assert.ok(view.includes('(?=~?M)/)') && view.includes('tb-crack-far'), '主線・枝・奥の枝を ~M と M で分ける');
+});
+
+// ---- 割れ目の見た目（2026-11-08 先生『こんな感じのひび』。参考＝割れ目は幅のある隙間で先細り／表面に細かい網目／欠けた破片）----
+import { crackShape as shapeOf, crackMesh as meshOf, shardShapes as shardsOf, samplePath as sampleOf } from '../js/lib/trueboss-geom.js';
+
+test('割れ目の形: 先細りの多角形（根もとが広く、先が細い）。同じ入力なら同じ形', () => {
+  const a = shapeOf('M10 10 L20 20 L30 40 Q40 60 50 70', 2.5, 1);
+  assert.equal(a.gap, shapeOf('M10 10 L20 20 L30 40 Q40 60 50 70', 2.5, 1).gap);
+  assert.ok(a.gap.startsWith('M') && a.gap.endsWith('Z') && a.rim.startsWith('M') && a.center.startsWith('M'));
+  const pts = sampleOf('M10 10 L20 20 L30 40 Q40 60 50 70');
+  assert.deepEqual(pts[0], [10, 10]);
+  assert.ok(pts.length > 6, 'Q は折れ線に直す');
+  const num = (d) => [...d.matchAll(/(-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)/g)].map((m) => [Number(m[1]), Number(m[2])]);
+  const poly = num(a.gap); const half = poly.length / 2;
+  const widthAt = (i) => Math.hypot(poly[i][0] - poly[poly.length - 1 - i][0], poly[i][1] - poly[poly.length - 1 - i][1]);
+  assert.ok(widthAt(1) > widthAt(half - 2) * 2, '先へ行くほど細い');
+});
+
+test('網目: 3アプリとも4つの段（割れ目の本数と同じ）に分かれ、各段に辺がある。座標は絵の中に収まる', () => {
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    const g = crackGeom(app);
+    assert.ok(g.mesh && g.tone && Array.isArray(g.noMesh) && Array.isArray(g.shards), app + ': 割れ目の見た目の表がある');
+    const st = meshOf(g.mesh, g.cracks);
+    assert.equal(st.length, g.cracks.length, app);
+    st.forEach((d, k) => assert.ok(d.split(' M').length >= 10, app + ' 段' + k + ' の辺が少ない'));
+    for (const m of st.join(' ').matchAll(/(-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)/g)) assert.ok(Number(m[1]) > -10 && Number(m[1]) < 110 && Number(m[2]) > -10 && Number(m[2]) < 110, app);
+    assert.deepEqual(st, meshOf(g.mesh, g.cracks), app + ': 毎回同じ形');
+    assert.equal(shardsOf(g.shards).length, g.shards.length);
+  }
+});
+
+test('網目を載せない場所: 持ち物・飾り（DX＝本・スタンプ・拳・紙の束・目／G検定＝本・盾・歯車・目と光の玉の輪／AIパスポート＝顔の窓・胸の星の窓）', () => {
+  assert.ok(crackGeom('dx-biz').noMesh.length >= 6);
+  assert.ok(crackGeom('g-kentei').noMesh.length >= 12);
+  assert.ok(crackGeom('ai-passport').noMesh.every((q) => q.startsWith('e:')));
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) for (const q of crackGeom(app).noMesh) assert.match(q, /^(e:[\d.]+,[\d.]+,[\d.]+,[\d.]+|([\d.]+,[\d.]+)( [\d.]+,[\d.]+){2,})$/, q);
+});
+
+test('割れ目の描き方（trueboss.js）: 網目は絵の形で切り抜く・割れ目は根もとから伸びる・最後の割れ目で破片・動きを減らす設定では描き終わった形で出す', () => {
+  const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
+  const css = crackRead(crackUrl(new URL('../css/app.css', import.meta.url)), 'utf8');
+  assert.match(view, /feColorMatrix/);
+  assert.match(view, /trueBossImageUrl\(1\)/, '網目の切り抜きは第1形態の絵そのもの');
+  assert.match(view, /GEOM\.noMesh/);
+  assert.match(view, /k === lastK\) targets\.push\(\.\.\.shardEls\)/, '破片は最後の割れ目のとき');
+  assert.match(view, /if \(!seep\) buildCrackLayer\(ui\.fig\)\.lines\.forEach/, '動きを減らす設定でも、ひびは出す');
+  assert.match(css, /\.tb-crack-reveal\.on, \.tb-mesh\.on, \.tb-shard\.on \{ animation: none; \}/);
+  assert.match(css, /\.tb-mesh\.on, \.tb-shard\.on \{ opacity: 1; \}/);
+  assert.doesNotMatch(view, /setAttribute\('style'/);
 });

@@ -670,3 +670,66 @@ test('config: エンディングの絵（trueBossEnding）を書いたアプリ�
     assert.ok(read(app + '/sw.js').includes("'./images/ending.webp'"), app + '/sw.js の appFiles に無い');
   }
 });
+
+// ---- 第1→2の『染み出す』型（seep。2026-11-08 先生決定 A。要件定義書 §3-9）----
+test('seep の結線: 型を表から選び（sc だけ）、煙の層・漏れる音・崩れ落ち・煙の集まり・入れ替え・せりふが、時刻の表どおりに呼ばれる', () => {
+  const src = code('shared/js/views/trueboss.js');
+  const fn = fnBody(src, 'evolveSequence');
+  assert.match(fn, /const seep = from1 && evo1Type\(GEOM\) === 'seep';/);
+  assert.match(fn, /seep \? buildSeepLayer\(ui\.fig\) : buildCrackLayer\(ui\.fig\)/);
+  assert.ok(fn.includes("if (seep) evoSfx('seep', 0, [0.7, 0.85, 1, 1.1][k]);"), '煙が漏れるたびの音');
+  assert.ok(fn.includes("else evoSfx(k % 2 ? 'crack2' : 'crack1', 0, [0.7, 0.85, 1, 1.1][k])"), '割れる型のひびの音は今のまま');
+  const s = fn.slice(fn.indexOf('if (seep) {\n'), fn.indexOf('at(T.shatter, () => {'));
+  assert.ok(s.length > 100, 'seep の枝が見つからない');
+  assert.match(s, /at\(TS\.collapse, \(\) => \{/);
+  assert.match(s, /figClass\('add', 'collapse'\)/);
+  assert.match(s, /evoSfx\('clatter'\)/);
+  assert.match(s, /at\(TS\.gather, \(\) => crackLayer\.gatherSmoke\(TS\.swap - TS\.gather\)\)/);
+  assert.match(s, /at\(TS\.swap, \(\) => swap\(\)\)/);
+  assert.match(s, /finishText\(TS\.text\)/);
+  assert.doesNotMatch(s, /crumble|tb-glow|tb-burst|shatter/, '割れる光・破片は出さない');
+  assert.match(fn, /seep \? 'seepin' : 'emerge'/);
+  assert.match(fn, /'swell', 'collapse'\)/, '入れ替えで collapse を外す');
+  // 動きを減らす設定: 煙の層は作らず、暗い灰色と音（clatter）だけで、すぐ替わる
+  const red = fn.slice(fn.indexOf('if (R) {'), fn.indexOf("figClass('add', 'glow');"));
+  assert.match(red, /if \(seep\) evoSfx\('clatter'\); else \{ evoSfx\('shatter1'\); evoSfx\('shatter2'\); \}/);
+  assert.match(fn, /from1 && !R \? \(seep/);
+  const b = src.slice(src.indexOf('function buildSeepLayer'), src.indexOf('/** 第2→3の進化の光の玉の層'));
+  assert.match(b, /setAttribute\('viewBox', '0 0 100 100'\)/);
+  assert.match(b, /GEOM\.seeps\.map/);
+  assert.match(b, /appendEyeGlow\(svg\)/, '兜のすきまの目の光は crack と同じ');
+  assert.match(b, /fig\.appendChild\(svg\)/);
+  assert.match(b, /feGaussianBlur/, '煙はぼかす（線・管に見せない）');
+  assert.match(b, /tb-puff/, '煙は小さな塊がいくつも上がる');
+  assert.doesNotMatch(b, /createElementNS\(NS, 'path'\)|tb-seep-blob/, '線・根元の丸は無い');
+  assert.match(b, /tb-seep-lump/, '目のまわりの影のかたまり');
+  assert.match(b, /g\.animate\(/, '煙は目のまわりへ集まる');
+});
+
+test('seep の CSS: 煙の色は青緑 #26a69a と黒緑 #10302b。崩れ落ちは絵（img）だけが動き、煙の層は一緒に沈まない。動きを減らす設定で止まる', () => {
+  const css = read('shared/css/app.css');
+  assert.match(css, /\.tb-seep-layer \{ position: absolute; inset: 0; width: 100%; height: 100%;/);
+  assert.match(css, /\.tb-puff\.teal \{ fill: #26a69a; \}/);
+  assert.match(css, /\.tb-puff\.dark \{ fill: #10302b; \}/);
+  assert.match(css, /\.boss-fig\.collapse \.boss-img, \.boss-fig\.collapse \.boss-fig-sym \{[^}]*animation: tb-collapse 1s/);
+  assert.doesNotMatch(css, /\.boss-fig\.collapse \{/, 'fig ごと動かすと煙も沈む');
+  assert.match(css, /\.tb-seep-layer\.gather \.tb-seep-lump \{ animation: tb-seep-lump/);
+  for (const k of ['tb-puff', 'tb-puff-drift', 'tb-seep-lump', 'tb-collapse', 'tb-seepin']) assert.match(css, new RegExp('@keyframes ' + k + ' '), k);
+  const red = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce) {', css.indexOf('.tb-seep-layer')));
+  for (const sel of ['.tb-seep.on .tb-puff', '.tb-seep-layer.gather .tb-seep-lump', '.boss-fig.collapse .boss-img', '.boss-fig.seepin']) assert.ok(red.slice(0, red.indexOf('\n  .boss-fig.shake')).includes(sel), sel + ' が動きを減らす設定で止まっていない');
+});
+
+test('seep の効果音: seep・clatter のフックが、先生が選んだ素材（trueseep・trueclatter）を指し、ファイルが SFX_FILES・sw-core・audio-licenses にある', () => {
+  const snd = read('shared/js/lib/sound.js');
+  assert.match(snd, /seep: { key: 'trueseep', synth: null }/);
+  assert.match(snd, /clatter: { key: 'trueclatter', synth: 'evolve' }/);
+  assert.match(snd, /trueseep: 'true-seep_steam-hiss-1.ogg'/);
+  assert.match(snd, /trueclatter: 'true-clatter_metal-falling-01.ogg'/);
+  assert.doesNotMatch(snd, /仮: 先生が CC0 の候補を聞いて選んだら/);
+  const lic = read('docs/sources/audio-licenses.md');
+  const sw = read('shared/sw-core.js');
+  for (const f of ['true-seep_steam-hiss-1.ogg', 'true-clatter_metal-falling-01.ogg']) {
+    assert.ok(lic.includes(f), f + ' が audio-licenses.md に無い');
+    assert.ok(sw.includes("'" + f + "'"), f + ' が sw-core.js に無い');
+  }
+});

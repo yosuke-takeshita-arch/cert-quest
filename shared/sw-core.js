@@ -148,6 +148,8 @@ const SFX = [
   'true-crack_ice-small-2.ogg',
   'true-shatter_ice-big-1.ogg',
   'true-shatter_ice-big-2.ogg',
+  'true-seep_steam-hiss-1.ogg',
+  'true-clatter_metal-falling-01.ogg',
   'true-rumble_earthquake-shake.ogg',
   'true-heartbeat_slow.ogg',
   'true-heartbeat_fast.ogg',

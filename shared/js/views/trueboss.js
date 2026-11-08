@@ -14,8 +14,8 @@ import {
   trueBossEnabled, trueBossUnlocked, trueBossEntranceReady, trueBossWords, trueBossEndingPath, trueBossWins, trueBossSeenForm2, markTrueBossSeenForm2, STREAK_HEAL, recordTrueBossWin, buildTrueBossPlan, newTrueRun, currentTrueQuestion,
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
-import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
-import { trueGeom } from '../lib/trueboss-geom.js';
+import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_1_TO_2_SEEP, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
+import { trueGeom, evo1Type, crackShape, crackMesh, shardShapes } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
@@ -146,26 +146,89 @@ export function trueBossPlace(app, back) {
 }
 
 /**
- * ひびの層。絵（.boss-fig。絵と同じ大きさの箱）の上に、絵と同じ正方形（viewBox 0 0 100 100）の SVG を重ねる。
- * ひびの形は TRUE_CRACKS（絵の中の割合）。画面の幅・文字の大きさが変わっても、絵と一緒に拡大縮小するのでずれない。
+ * ひびの層（2026-11-08 先生『こんな感じのひび』）。絵（.boss-fig。絵と同じ大きさの箱）の上に、絵と同じ正方形（viewBox 0 0 100 100）の SVG を重ねる。
+ * ・割れ目は線ではなく、先細りの『幅のある隙間』（暗い多角形）＋右下の縁の明るい細線＋中のごく弱い光。根もと（核）から先へ伸びるように現れる
+ * ・表面には細かい網目（不揃いな多角形のかけら）。絵そのものの形（不透明な部分）で切り抜くので体の外へ出ない。持ち物・飾り（GEOM.noMesh）には載せない。割れ目が入るたびに、そのまわりから広がる
+ * ・最後の割れ目のとき、欠けた破片が足もとに落ちる
+ * 割れ目の形は GEOM.cracks（絵の中の割合）。1本の文字列の中の1つ目の M〜が主線、2つ目以降が枝、~M が奥の枝。画面の大きさが変わっても絵と一緒に拡大縮小するのでずれない。
  */
 function buildCrackLayer(fig) {
   const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('viewBox', '0 0 100 100');
-  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-  svg.setAttribute('class', 'tb-crack-layer');
-  svg.setAttribute('aria-hidden', 'true');
-  svg.setAttribute('data-tb-cracks', '1');
-  const lines = GEOM.cracks.map((d) => {
-    const p = document.createElementNS(NS, 'path');
-    p.setAttribute('d', d);
-    p.setAttribute('pathLength', '1');
-    p.setAttribute('class', 'tb-crack-line');
-    svg.appendChild(p);
-    return p;
+  const el = (name, attrs, parent) => {
+    const e = document.createElementNS(NS, name);
+    for (const k of Object.keys(attrs || {})) e.setAttribute(k, String(attrs[k]));
+    if (parent) parent.appendChild(e);
+    return e;
+  };
+  const tone = GEOM.tone || { dark: '#0b0a12', rim: '#e8e8f0', glow: '#ffe08a', mesh: '#0b0a12', meshLight: '#e8e8f0', shard: '#555b6b' };
+  const svg = el('svg', { viewBox: '0 0 100 100', preserveAspectRatio: 'xMidYMid meet', class: 'tb-crack-layer', 'aria-hidden': 'true', 'data-tb-cracks': '1' });
+  const defs = el('defs', {}, svg);
+  // 網目を載せてよい場所＝絵の不透明な部分（絵の形で切り抜く）から、持ち物・飾りを引いたもの
+  const alpha = el('filter', { id: 'tb-alpha', filterUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100 }, defs);
+  el('feColorMatrix', { type: 'matrix', values: '0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0' }, alpha);
+  const meshMask = el('mask', { id: 'tb-mesh-mask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100 }, defs);
+  const body = el('g', { filter: 'url(#tb-alpha)' }, meshMask);
+  const img = el('image', { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid meet' }, body);
+  img.setAttribute('href', trueBossImageUrl(1));
+  for (const q of GEOM.noMesh || []) {
+    if (q.startsWith('e:')) { const [cx, cy, rx, ry] = q.slice(2).split(',').map(Number); el('ellipse', { cx, cy, rx, ry, fill: '#000' }, meshMask); } else el('polygon', { points: q, fill: '#000' }, meshMask);
+  }
+  const reveals = []; // 割れ目の根もとから先へ伸びるように見せる（動かす印は on）
+  const lines = GEOM.cracks.map((d, k) => {
+    const parts = d.split(/\s+(?=~?M)/).map((q) => q.trim()).filter(Boolean); // ~M で始まる線は『奥の枝』（体の裏へ回る側・影の側。さらに細く薄い）
+    const els = [];
+    parts.forEach((q, i) => {
+      const far = q.startsWith('~');
+      const dd = far ? q.slice(1) : q;
+      const m = el('mask', { id: 'tb-rv-' + k + '-' + i, maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100 }, defs);
+      const rv = el('path', { d: dd, pathLength: 1, class: 'tb-crack-reveal', fill: 'none', stroke: '#fff', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, m);
+      els.push(rv);
+      const shape = crackShape(dd, far ? 0.6 : i ? 1.3 : 2.5, k * 31 + i + 1);
+      const g = el('g', { mask: 'url(#tb-rv-' + k + '-' + i + ')', class: 'tb-crack-gapg' + (far ? ' tb-crack-branch tb-crack-far' : i ? ' tb-crack-branch' : '') }, svg);
+      el('path', { d: shape.gap, fill: tone.dark, class: 'tb-crack-gap' }, g);
+      el('path', { d: shape.rim, fill: 'none', stroke: tone.rim, 'stroke-width': (tone.rimW || 0.3) * (far ? 0.45 : 1), 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: far ? 0.6 : 1, class: 'tb-crack-rim' }, g);
+      el('path', { d: shape.center, fill: 'none', stroke: tone.glow, 'stroke-width': (tone.glowW || 0.2) * (far ? 0.5 : 1), opacity: far ? 0.2 : tone.glowO || 0.3, 'stroke-linejoin': 'round', class: 'tb-crack-glow' }, g);
+    });
+    reveals[k] = els;
+    return null;
   });
-  // 目が再び青白く光る。目が1つ（G検定）なら楕円1つ、2つ（DX。配列）なら楕円2つを、1つのグループ（g）にまとめて、まとめて光らせる
+  // 表面の網目: 4つの段（割れ目1〜4本目）。割れ目の下に敷くので、先に svg へ入れ直す
+  const meshLayer = el('g', { mask: 'url(#tb-mesh-mask)', class: 'tb-mesh-layer' });
+  svg.insertBefore(meshLayer, defs.nextSibling);
+  const stages = GEOM.mesh ? crackMesh(GEOM.mesh, GEOM.cracks) : [];
+  const meshGroups = stages.map((dd) => {
+    const g = el('g', { class: 'tb-mesh' }, meshLayer);
+    el('path', { d: dd, fill: 'none', stroke: tone.meshLight, 'stroke-width': 0.2, opacity: 0.5, transform: 'translate(0.2 0.2)', 'stroke-linejoin': 'round' }, g);
+    el('path', { d: dd, fill: 'none', stroke: tone.mesh, 'stroke-width': 0.3, opacity: 0.9, 'stroke-linejoin': 'round' }, g);
+    return g;
+  });
+  // 欠けて落ちる破片（最後の割れ目のとき）
+  const shardEls = shardShapes(GEOM.shards || []).map((dd) => el('path', { d: dd, fill: tone.shard, stroke: tone.dark, 'stroke-width': 0.15, class: 'tb-shard' }, svg));
+  const eye = appendEyeGlow(svg);
+  fig.appendChild(svg);
+  // lines[k] … k 本目の割れ目が入る。classList.add('on') で、割れ目・そのまわりの網目（k 段目）が現れる。最後の割れ目では破片も落ちる
+  const lastK = GEOM.cracks.length - 1;
+  const proxies = GEOM.cracks.map((d, k) => {
+    const targets = [...reveals[k]];
+    if (meshGroups[k]) targets.push(meshGroups[k]);
+    if (k === lastK) targets.push(...shardEls);
+    return { classList: { add: (c) => targets.forEach((t) => t.classList.add(c)), remove: (c) => targets.forEach((t) => t.classList.remove(c)) } };
+  });
+  void lines;
+  return { svg, lines: proxies, eye };
+}
+
+/** 画像の確認用: 指定したアプリのひびを、全部入った状態で fig に描く（進化の演出は動かさない）。 */
+export function paintAllCracks(fig, appId) {
+  useGeom({ config: { id: appId } });
+  const layer = buildCrackLayer(fig);
+  layer.lines.forEach((l) => l.classList.add('on'));
+  return layer;
+}
+
+/** 目が再び青白く光る。目が1つ（G検定）なら楕円1つ、2つ（DX。配列）なら楕円2つを、1つのグループ（g）にまとめて、まとめて光らせる。 */
+function appendEyeGlow(svg) {
+  const NS = 'http://www.w3.org/2000/svg';
   const eye = document.createElementNS(NS, 'g');
   eye.setAttribute('class', 'tb-eye-glow');
   for (const e of Array.isArray(GEOM.eye) ? GEOM.eye : [GEOM.eye]) {
@@ -177,8 +240,55 @@ function buildCrackLayer(fig) {
     eye.appendChild(el);
   }
   svg.appendChild(eye);
+  return eye;
+}
+
+/**
+ * 煙の層（第1→2の型 seep。ヒソミカゲ。要件定義書 §3-9）。絵と同じ正方形（viewBox 0 0 100 100）の SVG に、GEOM.seeps の各場所から、ぼかした青緑と黒緑のもやの塊が
+ * 次々に立ちのぼり、広がって薄れる煙を重ねる（線や根元の丸は無い）。あわせて、目のまわりに集まるときの『影のかたまり』（lump）を置く。
+ * 戻り値は buildCrackLayer と同じ形（lines＝場所ごとの煙。on を付けると漏れ出す）に、lump と gatherSmoke（煙を目のまわりへ集める）が付く。
+ */
+const PUFFS = 5; // 1か所から立ちのぼる煙の塊の数
+function buildSeepLayer(fig) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (name, attrs) => { const e = document.createElementNS(NS, name); for (const k of Object.keys(attrs || {})) e.setAttribute(k, String(attrs[k])); return e; };
+  const svg = el('svg', { viewBox: '0 0 100 100', preserveAspectRatio: 'xMidYMid meet', class: 'tb-seep-layer', 'aria-hidden': 'true', 'data-tb-seeps': '1' });
+  const defs = el('defs');
+  const blur = el('filter', { id: 'tb-seep-blur', x: '-50%', y: '-50%', width: '200%', height: '200%' });
+  blur.appendChild(el('feGaussianBlur', { stdDeviation: '0.8' }));
+  const grad = el('radialGradient', { id: 'tb-seep-lump-grad' });
+  grad.appendChild(el('stop', { offset: '0', 'stop-color': '#10302b', 'stop-opacity': '0.95' }));
+  grad.appendChild(el('stop', { offset: '0.6', 'stop-color': '#10302b', 'stop-opacity': '0.7' }));
+  grad.appendChild(el('stop', { offset: '1', 'stop-color': '#26a69a', 'stop-opacity': '0' }));
+  defs.appendChild(blur);
+  defs.appendChild(grad);
+  svg.appendChild(defs);
+  const eyes = Array.isArray(GEOM.eye) ? GEOM.eye : [GEOM.eye];
+  const ex = eyes.reduce((a, e) => a + e.x, 0) / eyes.length; // 目の中心（煙が集まる先）
+  const ey = eyes.reduce((a, e) => a + e.y, 0) / eyes.length;
+  const smoke = el('g', { filter: 'url(#tb-seep-blur)' });
+  const lines = GEOM.seeps.map((p) => {
+    const g = el('g', { class: 'tb-seep' });
+    for (let i = 0; i < PUFFS; i++) {
+      g.appendChild(el('circle', { cx: p.x + (i % 2 ? 0.7 : -0.7), cy: p.y, r: 1.3 + 0.3 * i, class: 'tb-puff ' + (i % 2 ? 'teal' : 'dark') + (p.dx > 0 ? ' drift' : '') }));
+    }
+    smoke.appendChild(g);
+    return g;
+  });
+  svg.appendChild(smoke);
+  const lump = el('ellipse', { cx: ex, cy: ey - 0.5, rx: 9, ry: 11, fill: 'url(#tb-seep-lump-grad)', class: 'tb-seep-lump' });
+  svg.appendChild(lump);
+  const eye = appendEyeGlow(svg);
   fig.appendChild(svg);
-  return { svg, lines, eye };
+  // 崩れ落ちのあいだ、煙を目のまわりへ集める（Web Animations。場所ごとの移動量は、煙の場所と目の位置から計算する）
+  const gatherSmoke = (ms) => {
+    svg.classList.add('gather');
+    lines.forEach((g, i) => {
+      const p = GEOM.seeps[i];
+      if (typeof g.animate === 'function') g.animate([{ transform: 'translate(0px, 0px) scale(1)', opacity: 1 }, { transform: 'translate(' + (ex - p.x) + 'px, ' + (ey - p.y) + 'px) scale(0.6)', opacity: 0.2 }], { duration: ms, easing: 'ease-in', fill: 'forwards' });
+    });
+  };
+  return { svg, lines, eye, lump, gatherSmoke };
 }
 
 /** 第2→3の進化の光の玉の層。絵（.boss-fig）と同じ正方形の SVG に、TRUE_ORBS の位置（絵の中の割合）で金色の玉を重ねる。1つずつ on を付けて灯す。 */
@@ -787,7 +897,9 @@ export function renderTrueBoss(app) {
     const R = reduced();
     const oldP = trueBossForm(data, ev.evolved.from);
     const from1 = ev.evolved.from === 1;
+    const seep = from1 && evo1Type(GEOM) === 'seep'; // 第1→2が『染み出す』型のアプリ（ヒソミカゲ）。それ以外は『割れる』
     const T = from1 ? EVO_1_TO_2 : EVO_2_TO_3; // 時刻の表（lib/trueboss-data.js）
+    const TS = EVO_1_TO_2_SEEP; // seep のときの、崩れ落ちたあとの時刻
     let done = false;
     let swapped = false;
     let musicStarted = false;
@@ -808,10 +920,10 @@ export function renderTrueBoss(app) {
       paintHp(battle(), -1);
       // 新しい絵の decode が済んでから、前の絵を消して（gone などを外して）新しい絵を出す。済む前に外すと、前の絵や記号の枠が一瞬出る
       paintForm().then(() => {
-        figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive', 'swell');
+        figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive', 'swell', 'collapse');
         // 形態が替わったら曲も替える。第3形態は、決めぜりふのあとに曲を始める（第2形態は、すぐ）
         if (immediate || from1) startMusic(); else later(startMusic, T.music - T.swap);
-        if (!R) flash(ui.fig, from1 ? 'emerge' : 'spread3', from1 ? 1000 : 1800); // 第3形態は、現れてから約1.8秒、明るく光ってから落ち着く
+        if (!R) flash(ui.fig, from1 ? (seep ? 'seepin' : 'emerge') : 'spread3', from1 ? 1000 : 1800); // 第3形態は、現れてから約1.8秒、明るく光ってから落ち着く
       });
     };
     const newP = () => prof();
@@ -832,7 +944,7 @@ export function renderTrueBoss(app) {
       next.focus({ preventScroll: true });
     };
     S.skipFx = finish;
-    const crackLayer = from1 && !R ? buildCrackLayer(ui.fig) : null; // ひびは絵（fig）の上に重ねる。絵と同じ正方形の座標で決める
+    const crackLayer = from1 && !R ? (seep ? buildSeepLayer(ui.fig) : buildCrackLayer(ui.fig)) : null; // seep のときは煙の層（lines＝煙） // ひびは絵（fig）の上に重ねる。絵と同じ正方形の座標で決める
     const orbLayer = !from1 ? buildOrbLayer(ui.fig) : null; // 光の玉も同じ（絵の箱に重ねる）
     const at = (t, fn) => later(fn, t);
     const finishText = (t) => at(t, () => {
@@ -844,7 +956,8 @@ export function renderTrueBoss(app) {
       if (from1) {
         say([oldP.name + ' を たおした！', quoted(pickTrueLine(oldP, 'defeat', app.rng))], { instant: true });
         figClass('add', 'slump'); // 色（暗い灰色）だけ。動きは無い
-        later(() => { figClass('remove', 'slump'); evoSfx('shatter1'); evoSfx('shatter2'); finish(); }, 1200);
+        if (!seep) buildCrackLayer(ui.fig).lines.forEach((l) => l.classList.add('on')); // ひび（割れ目・網目・破片）は、描き終わった形で見せる（伸びる動きはCSSが止める）
+        later(() => { figClass('remove', 'slump'); if (seep) evoSfx('clatter'); else { evoSfx('shatter1'); evoSfx('shatter2'); } finish(); }, 1200);
         return;
       }
       orbLayer.orbs.forEach((o) => o.classList.add('on')); // 玉は最初から全部金色（動かない）
@@ -881,11 +994,26 @@ export function renderTrueBoss(app) {
       at(T.eyeStrong, () => { figClass('remove', 'slump'); figClass('add', 'revive'); crackLayer.eye.classList.add('on'); });
       // 殻が揺れて、胸の核からひびが体に1本ずつゆっくり広がり、割れて破片が飛び散り、中からすらりとした姿が光とともに現れる
       at(T.shake, () => figClass('add', 'shake'));
-      T.cracks.forEach((t, k) => at(t, () => {
+      T.cracks.forEach((t, k) => at(t, () => { // seep のときは、ひび1〜4本目の時刻に、煙が1か所ずつ漏れ出す
         crackLayer.lines[k].classList.add('on');
         vibrate(app.state.settings, 25);
-        evoSfx(k % 2 ? 'crack2' : 'crack1', 0, [0.7, 0.85, 1, 1.1][k]); // ひびが入るたびの小さな音（だんだん大きく）
+        if (seep) evoSfx('seep', 0, [0.7, 0.85, 1, 1.1][k]); // 煙が漏れるたびの小さな音（だんだん大きく）
+        else evoSfx(k % 2 ? 'crack2' : 'crack1', 0, [0.7, 0.85, 1, 1.1][k]); // ひびが入るたびの小さな音（だんだん大きく）
       }));
+      if (seep) {
+        // 染み出す型: 割れる代わりに、中身が抜けてからっぽの鎧が崩れ落ち（collapse）、煙が上に集まって消え（gather）、第2形態の影が静かに現れる。光・破片は出さない
+        at(TS.collapse, () => {
+          ui.fx.textContent = '';
+          figClass('remove', 'shake', 'revive');
+          figClass('add', 'collapse');
+          evoSfx('clatter');
+          vibrate(app.state.settings, [60, 30, 40]);
+        });
+        at(TS.gather, () => crackLayer.gatherSmoke(TS.swap - TS.gather)); // 煙が目のまわりに集まって影のかたまりになり、そのまま第2形態に替わる
+        at(TS.swap, () => swap());
+        finishText(TS.text);
+        return;
+      }
       at(T.shatter, () => {
         ui.fx.textContent = '';
         figClass('remove', 'shake', 'revive');

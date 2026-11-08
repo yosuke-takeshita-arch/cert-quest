@@ -106,6 +106,8 @@ export const SFX_FILES = {
   truecrack1: 'true-crack_ice-small-1.ogg', // 2026-10-23 先生『音や音楽は全部推奨でいい』。真ボスの第1→2進化で、殻にひびが入るたびの小さな音（OpenGameArt「Ice breaking/shattering」IgnasD の LedasLuzta2、CC0。ffmpeg で音量を上げて 0.9 で頭打ち）
   truecrack2: 'true-crack_ice-small-2.ogg', // 同じ素材の LedasLuzta（ひびの2つ目の音）
   trueshatter1: 'true-shatter_ice-big-1.ogg', // 殻が砕ける瞬間の大きな音（同じ素材の LedasLuzta5）
+  trueseep: 'true-seep_steam-hiss-1.ogg', // 2026-11-08 先生が聞き比べて選んだ。ヒソミカゲの第1→2で、鎧のすきまから煙が漏れるたびの音（4回鳴る。OpenGameArt「Steam release sounds」bart の steam hisses - Marker #1、CC0。音のある約0.74秒だけに切り、終わりを0.1秒かけてフェードアウトして ogg に変換。補正なし。ほかの真ボスの音より約6〜12dB 小さい）
+  trueclatter: 'true-clatter_metal-falling-01.ogg', // 2026-11-08 先生が聞き比べて選んだ。鎧が崩れ落ちる音（OpenGameArt「100 CC0 metal and wood SFX」rubberduck の metal_falling_01、CC0。元の ogg のまま。補正なし）
   trueshatter2: 'true-shatter_ice-big-2.ogg', // 砕ける音に重ねる長めの音（同じ素材の LedasLuzta33）
   truerumble: 'true-rumble_earthquake-shake.ogg', // 第1形態を倒したあとの地鳴り（OpenGameArt「Earthquake and Open sesame」mieki256 の shake、CC0。3.6秒に切って後ろをフェードアウト）
   trueheartbeat: 'true-heartbeat_slow.ogg', // 2026-10-23 先生『進化の効果音は全部推奨』。真ボス1→2の鼓動の前半（OpenGameArt「Heartbeat Sounds」bart の heartbeat_slow、CC0。1回ぶんを 0.62 秒に切り、低音だけで聞こえにくいので高い成分を足した）
@@ -139,6 +141,9 @@ export const BOSS_SFX = {
   shatter1: { key: 'trueshatter1', synth: 'evolve' },
   shatter2: { key: 'trueshatter2', synth: null },
   rumble: { key: 'truerumble', synth: 'skill' },
+  // 第1→2の『染み出す』型（ヒソミカゲ。2026-11-08 先生決定 A）。音は先生が CC0 の候補を聞いて選んだ（2026-11-08）。
+  seep: { key: 'trueseep', synth: null }, // 煙が漏れるたびの小さな音（4回鳴る）。ファイルが取れないときは鳴らさない
+  clatter: { key: 'trueclatter', synth: 'evolve' }, // 鎧が崩れ落ちる音。ファイルが取れないときは昔のプログラムの進化の音
   // 進化のタメの効果音のフック（要件定義書 §3-9）。素材のファイルは今は無く、プログラムの音で鳴る。素材が入ったら SFX_FILES に key を足すだけで、ファイルが先に鳴る
   playerheal: { key: 'trueplayerheal', synth: 'playerheal' }, // 自分の HP の回復の音のフック
   heal: { key: 'trueheal', synth: 'heal' }, // ボスの回復の音のフック。素材のファイル（trueheal）が入るまでは、プログラムの音
