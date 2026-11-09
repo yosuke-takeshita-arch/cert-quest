@@ -262,6 +262,109 @@ export function meshBands(dd, crack) {
   return [sorted.slice(0, Math.ceil(n / 3)), sorted.slice(Math.ceil(n / 3), Math.ceil((2 * n) / 3)), sorted.slice(Math.ceil((2 * n) / 3))].filter((b) => b.length).map((b) => b.join(' '));
 }
 
+/**
+ * 砕けるときのかけら（2026-11-09 先生『砕けるとき、ひびの位置と同じように砕けられないか？』）。
+ * 4本の割れ目の主線を、そのまま切れ目にする。主線の先は核から外へまっすぐ絵の外まで延ばし、割れ目と割れ目のあいだ（扇）が広すぎるところだけ、
+ * 核からのぎざぎざの切れ目を足す。それぞれの扇を、核を囲むぎざぎざの輪（細かい網目の代わり）で内から外へ5つに切る。隣のかけらとは同じ切れ目を共有するので、すき間も重なりも無い。
+ * core … {x, y}。cracks … GEOM.cracks。seed … 乱数の種。戻り値: [{ pts: [[x, y], ...], cx, cy, band, dx, dy, rot, delay }]（座標は絵の中の割合 0〜100。dx・dy・rot は飛ぶ先）
+ */
+export const SHATTER_RINGS = Object.freeze([9, 20, 33, 48, 160]);
+export function shatterPieces(core, cracks, seed = 7) {
+  const rnd = mulberry(seed);
+  const C = [core.x, core.y];
+  const ang = (p) => Math.atan2(p[1] - C[1], p[0] - C[0]);
+  const dist = (p) => Math.hypot(p[0] - C[0], p[1] - C[1]);
+  const far = SHATTER_RINGS[SHATTER_RINGS.length - 1];
+  // 切れ目（核から外へ）: 割れ目の主線を絵の外まで延ばしたもの
+  const rays = (cracks || []).map((d) => {
+    const pts = samplePath(String(d).split(/\s+(?=~?M)/)[0]);
+    const end = pts[pts.length - 1]; const L = dist(end) || 1;
+    const out = pts.slice();
+    out.push([C[0] + ((end[0] - C[0]) / L) * far, C[1] + ((end[1] - C[1]) / L) * far]);
+    return { pts: out, a: ang(end), real: true };
+  }).filter((r) => r.pts.length >= 2);
+  if (!rays.length) return [];
+  rays.sort((p, q) => p.a - q.a);
+  // 切れ目の上の、核から距離 r の点（最初に r に届くところ）と、そこまでの道
+  const cut = (pts, r) => {
+    for (let i = 1; i < pts.length; i++) {
+      const d0 = dist(pts[i - 1]); const d1 = dist(pts[i]);
+      if (d1 >= r) { const t = d1 === d0 ? 0 : (r - d0) / (d1 - d0); return { i, p: [pts[i - 1][0] + (pts[i][0] - pts[i - 1][0]) * t, pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * t] }; }
+    }
+    return { i: pts.length, p: pts[pts.length - 1] };
+  };
+  // 扇が広すぎる（75度より広い）ところに、核からのぎざぎざの切れ目を足す。割れ目は曲がるので、まっすぐな線にせず、
+  // 距離ごとに両隣の割れ目の向きのあいだを按分する（どの距離でも両隣の割れ目のあいだに収まり、割れ目をまたがない）
+  const all = [];
+  const RR = [3, 6, 9, 13, 17, 20, 26, 33, 40, 48, far];
+  rays.forEach((r, i) => {
+    all.push(r);
+    const next = rays[(i + 1) % rays.length];
+    let span = next.a - r.a; if (span <= 0) span += Math.PI * 2;
+    const extra = Math.max(0, Math.ceil(span / (Math.PI * 75 / 180)) - 1);
+    for (let e = 1; e <= extra; e++) {
+      const t = e / (extra + 1);
+      const pts = [C.slice()];
+      for (const rr of RR) {
+        const a0 = ang(cut(r.pts, rr).p); let a1 = ang(cut(next.pts, rr).p); while (a1 <= a0) a1 += Math.PI * 2;
+        const a = a0 + (a1 - a0) * (t + (rr < far ? (rnd() - 0.5) * 0.04 : 0));
+        pts.push([C[0] + Math.cos(a) * rr, C[1] + Math.sin(a) * rr]);
+      }
+      all.push({ pts, a: r.a + span * t, real: false });
+    }
+  });
+  // 並びは、核のまわりを回る順（いちばん外での向き）。按分した切れ目は両隣のあいだに入る
+  const base = rays[0].a;
+  const ord = (x) => { let d = x.a - base; while (d < 0) d += Math.PI * 2; while (d >= Math.PI * 2) d -= Math.PI * 2; return d; };
+  all.sort((p, q) => ord(p) - ord(q));
+  const between = (pts, r0, r1) => { // 距離 r0 から r1 までの道（両端を含む）
+    const s = r0 <= 0 ? { i: 1, p: pts[0] } : cut(pts, r0); const e = cut(pts, r1);
+    return [s.p, ...pts.slice(s.i, e.i), e.p];
+  };
+  // 扇ごとの、輪の切れ目（ぎざぎざの弧）。隣のかけらと共有するので先に作る
+  const arcs = all.map((r, i) => {
+    const n = all[(i + 1) % all.length];
+    return SHATTER_RINGS.slice(0, -1).map((rr) => {
+      const p0 = cut(r.pts, rr).p; const p1 = cut(n.pts, rr).p;
+      // 弧は、その距離での割れ目の上の実際の点の向きから向きへ（割れ目は曲がるので、先端の向きを使うと割れ目をまたぐ）
+      const a0 = ang(p0); let a1 = ang(p1); while (a1 <= a0) a1 += Math.PI * 2;
+      const steps = Math.max(2, Math.ceil(((a1 - a0) * rr) / 4));
+      const mid = [];
+      for (let s = 1; s < steps; s++) {
+        const t = s / steps; const a = a0 + (a1 - a0) * t; const rad = rr * (1 + (rnd() - 0.5) * 0.22 * Math.sin(Math.PI * t)); // ぎざぎざは弧の真ん中ほど大きく、両端（割れ目との継ぎ目）では0
+        mid.push([C[0] + Math.cos(a) * rad, C[1] + Math.sin(a) * rad]);
+      }
+      return [p0, ...mid, p1];
+    });
+  });
+  const out = [];
+  all.forEach((r, i) => {
+    const n = all[(i + 1) % all.length];
+    let a0 = r.a; let a1 = n.a; if (a1 <= a0) a1 += Math.PI * 2;
+    SHATTER_RINGS.forEach((rr, b) => {
+      const r0 = b ? SHATTER_RINGS[b - 1] : 0;
+      const left = between(r.pts, r0, rr);
+      const right = between(n.pts, r0, rr).reverse();
+      let pts;
+      if (b === SHATTER_RINGS.length - 1) { // いちばん外: 絵の外の大きな弧で閉じる
+        const outer = [];
+        for (let s = 0; s <= 8; s++) { const a = a0 + ((a1 - a0) * s) / 8; outer.push([C[0] + Math.cos(a) * far * 1.05, C[1] + Math.sin(a) * far * 1.05]); }
+        pts = [...left, ...outer, ...right, ...arcs[i][b - 1].slice().reverse()];
+      } else {
+        const outerArc = arcs[i][b];
+        const innerArc = b ? arcs[i][b - 1].slice().reverse() : [];
+        pts = [...left, ...outerArc.slice(1, -1), ...right, ...innerArc.slice(1, -1)];
+      }
+      pts = pts.map((p) => [r2(p[0]), r2(p[1])]);
+      const am = (a0 + a1) / 2; const rm = b === SHATTER_RINGS.length - 1 ? 55 : (r0 + rr) / 2;
+      const cx = r2(C[0] + Math.cos(am) * rm); const cy = r2(C[1] + Math.sin(am) * rm);
+      const push = 14 + b * 6 + rnd() * 10; // 核から外へ飛ぶ。外のかけらほど遠くへ
+      out.push({ pts, cx, cy, band: b, dx: r2(Math.cos(am) * push), dy: r2(Math.sin(am) * push + 18 + rnd() * 22), rot: Math.round((rnd() - 0.5) * 2 * (60 + rnd() * 140)), delay: r2(b * 0.035 + rnd() * 0.05) });
+    });
+  });
+  return out;
+}
+
 /** 欠けて落ちる小さな破片。shards … [[x, y, 大きさ], ...]。戻り値は多角形の path の配列。 */
 export function shardShapes(shards) {
   return shards.map((sh, i) => {

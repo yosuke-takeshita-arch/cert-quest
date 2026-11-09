@@ -592,3 +592,36 @@ test('割れ目の入り方: 主線はすぐ、枝は少しあとから順に。
   const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
   assert.ok(view.includes('snapDelay(i, far)') && view.includes('meshBands(dd, GEOM.cracks[k])'));
 });
+
+// ---- 砕け方（2026-11-09 先生「砕けるとき、ひびの位置と同じように砕けられないか？」）----
+import { shatterPieces as piecesOf } from '../js/lib/trueboss-geom.js';
+
+test('砕け方: かけらは割れ目の主線で切れる。絵の中のどの点も、ちょうど1つのかけらに入る（すき間も重なりも無い）。割れ目をはさんだ両側は別のかけら。同じ入力なら同じ形', () => {
+  const inside = (x, y, pts) => { let c = false; for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) { const [xi, yi] = pts[i]; const [xj, yj] = pts[j]; if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
+  for (const app of ['g-kentei', 'dx-biz', 'ai-passport']) {
+    const g = crackGeom(app);
+    const ps = piecesOf(g.core, g.cracks, 7);
+    assert.ok(ps.length >= 20 && ps.length <= 60, app + ': かけらの数 ' + ps.length);
+    assert.deepEqual(ps, piecesOf(g.core, g.cracks, 7), app + ': 毎回同じ形');
+    for (let x = 0.33; x < 100; x += 0.9) for (let y = 0.21; y < 100; y += 0.9) {
+      const n = ps.filter((p) => inside(x, y, p.pts)).length;
+      assert.equal(n, 1, `${app}: (${x.toFixed(1)}, ${y.toFixed(1)}) が入るかけらの数`);
+    }
+    for (const d of g.cracks) { // 主線の途中で、線の左右に少しずらした2点は別のかけら
+      const pts = sampleOf(d.split(/\s+(?=~?M)/)[0]);
+      for (let i = 2; i < pts.length - 1; i += 3) {
+        const [x0, y0] = pts[i - 1]; const [x1, y1] = pts[i]; const L = Math.hypot(x1 - x0, y1 - y0); if (L < 0.5) continue;
+        const nx = -(y1 - y0) / L; const ny = (x1 - x0) / L; const mx = (x0 + x1) / 2; const my = (y0 + y1) / 2;
+        const a = ps.findIndex((p) => inside(mx + nx * 0.4, my + ny * 0.4, p.pts));
+        const b = ps.findIndex((p) => inside(mx - nx * 0.4, my - ny * 0.4, p.pts));
+        assert.ok(a >= 0 && b >= 0 && a !== b, `${app}: 割れ目 (${mx.toFixed(1)}, ${my.toFixed(1)}) の両側が同じかけら`);
+      }
+    }
+    for (const p of ps) assert.ok(p.delay >= 0 && p.delay < 0.4 && Number.isFinite(p.dx) && Number.isFinite(p.dy) && p.dy > -40 && Math.hypot(p.dx, p.dy) < 90, app + ': 飛び方（核から外へ弾ける。上のかけらは上へも飛ぶが、遠くへは行かない）');
+  }
+  assert.deepEqual(piecesOf({ x: 50, y: 50 }, []), []);
+  const css = crackRead(crackUrl(new URL('../css/app.css', import.meta.url)), 'utf8');
+  assert.match(css, /\.tb-frag \{ animation: none; \} \.tb-shatter \{ display: none; \}/, '動きを減らす設定では、かけらを飛ばさない');
+  const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
+  assert.ok(view.includes('if (url && buildShatter(ui.fx,'), '割れる瞬間は、ひびの位置で砕く');
+});

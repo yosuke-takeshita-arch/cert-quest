@@ -15,7 +15,7 @@ import {
   rollRunSkill, answerTrueRun, isTimedOut, timeLimitFor, SKILL_CURSE_DAMAGE, TRUE_FORMS,
 } from '../lib/trueboss.js';
 import { normalizeTrueBossData, trueBossForm, pickTrueLine, trueBossImageName, orbStep, EVO_1_TO_2, EVO_1_TO_2_SEEP, EVO_2_TO_3, orbTimes, orbRate } from '../lib/trueboss-data.js';
-import { trueGeom, evo1Type, crackShape, crackMesh, shardShapes, snapDelay, meshBands, MESH_BAND_DELAYS } from '../lib/trueboss-geom.js';
+import { trueGeom, evo1Type, crackShape, crackMesh, shardShapes, snapDelay, meshBands, MESH_BAND_DELAYS, shatterPieces } from '../lib/trueboss-geom.js';
 import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } from '../audio.js';
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
@@ -225,6 +225,71 @@ function buildCrackLayer(fig) {
   });
   void lines;
   return { svg, lines: proxies, eye };
+}
+
+/**
+ * ひびの位置で砕ける（2026-11-09 先生『砕けるとき、ひびの位置と同じように砕けられないか？』）。
+ * 絵（url）を、割れ目の主線を切れ目にしたかけら（shatterPieces）に切り、核から外へ弾け飛ばして落とす。入ったひび・網目（crackSvg）は上に重ねて、割れ目が開くあいだに消す。
+ * host … かけらを置く要素。box … host の中での絵の位置と大きさ（px）。ひびが無ければ何もせず false。
+ */
+function buildShatter(host, box, url, crackSvg) {
+  const pieces = GEOM.cracks && GEOM.core ? shatterPieces(GEOM.core, GEOM.cracks, 7) : [];
+  if (!pieces.length) return false;
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (name, attrs, parent) => {
+    const e = document.createElementNS(NS, name);
+    for (const k of Object.keys(attrs || {})) e.setAttribute(k, String(attrs[k]));
+    if (parent) parent.appendChild(e);
+    return e;
+  };
+  const svg = el('svg', { viewBox: '0 0 100 100', preserveAspectRatio: 'none', class: 'tb-shatter', 'aria-hidden': 'true' });
+  svg.style.left = box.x + 'px';
+  svg.style.top = box.y + 'px';
+  svg.style.width = box.w + 'px';
+  svg.style.height = box.h + 'px';
+  const defs = el('defs', {}, svg);
+  pieces.forEach((p, i) => {
+    const poly = p.pts.map((q) => q[0] + ',' + q[1]).join(' ');
+    el('polygon', { points: poly }, el('clipPath', { id: 'tb-sh-' + i, clipPathUnits: 'userSpaceOnUse' }, defs));
+    const g = el('g', { class: 'tb-frag' }, svg);
+    g.style.setProperty('--dx', p.dx + 'px');
+    g.style.setProperty('--dy', p.dy + 'px');
+    g.style.setProperty('--rot', p.rot + 'deg');
+    g.style.transformOrigin = p.cx + 'px ' + p.cy + 'px';
+    g.style.animationDelay = p.delay + 's';
+    const inner = el('g', { 'clip-path': 'url(#tb-sh-' + i + ')' }, g);
+    const im = el('image', { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid meet' }, inner);
+    im.setAttribute('href', url);
+  });
+  host.appendChild(svg);
+  // ひびの層（割れ目・網目）は、かけらに1枚ずつ写すと重すぎる（スマホ相当で1コマ0.8秒）ので、1枚だけかけらの上に重ね、割れ目が開くあいだ（約0.14秒）に消す。
+  // 元の層は絵と一緒に隠れるので host へ移す。移すと『ひびが入る動き』が最初からやり直しになるので、先にいまの見た目のまま止める
+  if (crackSvg) {
+    for (const e of crackSvg.querySelectorAll('*')) {
+      if (!e.getAnimations || !e.getAnimations().length) continue;
+      const cs = getComputedStyle(e);
+      e.style.opacity = cs.opacity;
+      e.style.strokeDashoffset = cs.strokeDashoffset;
+      e.style.transform = cs.transform === 'none' ? '' : cs.transform;
+      e.style.animation = 'none';
+    }
+    crackSvg.classList.add('tb-shatter-cracks');
+    crackSvg.style.left = box.x + 'px';
+    crackSvg.style.top = box.y + 'px';
+    crackSvg.style.width = box.w + 'px';
+    crackSvg.style.height = box.h + 'px';
+    host.appendChild(crackSvg);
+  }
+  return true;
+}
+
+/** 画像の確認用: 指定したアプリの、ひびが全部入った絵を、ひびの位置で砕く（box は fig の中の絵の位置。止めて撮るときは document.getAnimations で時刻を合わせる）。 */
+export function paintShatter(fig, appId, url) {
+  const layer = paintAllCracks(fig, appId);
+  for (const a of layer.svg.getAnimations({ subtree: true })) a.finish(); // ひびが入りきった形から砕く
+  const r = fig.getBoundingClientRect();
+  buildShatter(fig, { x: 0, y: 0, w: r.width, h: r.height }, url, layer.svg);
+  return layer;
 }
 
 /** 画像の確認用: 指定したアプリのひびを、全部入った状態で fig に描く（進化の演出は動かさない）。 */
@@ -1147,6 +1212,8 @@ export function renderTrueBoss(app) {
       x = fr.left - st.left; y = fr.top - st.top; w = fr.width; hh = fr.height;
     }
     if (!(w > 0) || !(hh > 0)) return;
+    // ひびの入った絵は、ひびの位置で砕く（2026-11-09 先生『砕けるとき、ひびの位置と同じように砕けられないか？』）。ひびの無い絵は今までのマス目
+    if (url && buildShatter(ui.fx, { x, y, w, h: hh }, url, fig.querySelector('svg[data-tb-cracks]'))) return;
     const cols = 10;
     const rows = Math.max(6, Math.min(16, Math.round((cols * hh) / w)));
     const bw = w / cols;

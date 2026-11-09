@@ -1088,6 +1088,12 @@ body.boss-on { background: #000; }
 .tb-mesh.on { animation: tb-mesh-in 0.01s linear forwards; }
 .tb-shard { opacity: 0; }
 .tb-shard.on { animation: tb-shard-in 0.35s ease-in 0.3s forwards; }
+/* 砕ける（2026-11-09 先生『ひびの位置と同じように砕けられないか？』）: 割れ目で切ったかけらが、一瞬すき間を開けてから核の外へ弾け、回りながら落ちる。px は絵の中の割合（viewBox）の単位 */
+.tb-shatter { position: absolute; overflow: visible; pointer-events: none; z-index: 2; }
+.tb-crack-layer.tb-shatter-cracks { inset: auto; z-index: 3; animation: tb-shatter-cracks 0.14s ease-in forwards; }
+@keyframes tb-shatter-cracks { to { opacity: 0; } }
+.tb-frag { transform-box: view-box; animation: tb-frag 1.05s cubic-bezier(0.35, 0.05, 0.7, 1) both; }
+@keyframes tb-frag { 0% { transform: none; opacity: 1; } 12% { transform: translate(calc(var(--dx) * 0.12), calc(var(--dy) * 0.02)); opacity: 1; } 55% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.6); opacity: 0; } }
 @keyframes tb-crack-snap { 0% { stroke-dashoffset: 0.55; } 40% { stroke-dashoffset: 0.2; } 75% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
 @keyframes tb-crack-snap2 { 0% { stroke-dashoffset: 0.45; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
 @keyframes tb-crack-flash { 0% { opacity: 0.95; } 100% { opacity: 0; } }
@@ -1175,6 +1181,7 @@ body.boss-on { background: #000; }
   .tb-crack-reveal.on, .tb-mesh.on, .tb-shard.on { animation: none; } /* 割れ目・網目・破片も、動きを止めて、描き終わった形で見せる */
   .tb-crack-reveal.on { stroke-dashoffset: 0; }
   .tb-crack-flash.on { animation: none; opacity: 0; } /* 割れた瞬間の白い光は出さない */
+  .tb-frag { animation: none; } .tb-shatter { display: none; } .tb-crack-layer.tb-shatter-cracks { display: none; } /* 砕けて飛ぶかけらは出さない（絵が消えて第2形態に替わるだけ） */
   .tb-mesh.on, .tb-shard.on { opacity: 1; }
   .tb-gold-flash.calm { animation: tb-gold-calm 2.2s ease-in-out forwards; } /* 点滅ではなく、ゆっくり明るくなって引く形だけ */
   .boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top, .boss-rpg.tb-dim .boss-fig .boss-img { transition: none; }
