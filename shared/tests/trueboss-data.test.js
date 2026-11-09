@@ -178,7 +178,7 @@ test('ひびの位置: 胸の核から出て、体の上（絵の不透明な範
 // ---- 進化の時刻の表（要件定義書 §3-9『進化のタメと第3形態の最強感』）----
 import { EVO_1_TO_2, EVO_2_TO_3, TRUE_ORBS, orbTimes } from '../js/lib/trueboss-data.js';
 
-test('進化の時刻（第1→2）: 順番どおり。ファンファーレのあと無音の間を置いてから鼓動。鼓動はだんだん速く、揺れは後ろのほど強く、ひびは1本ずつゆっくり。割れて替わるまで約 11〜13 秒', () => {
+test('進化の時刻（第1→2）: 順番どおり。ファンファーレのあと無音の間を置いてから鼓動。鼓動はだんだん速く、揺れは後ろのほど強く、ひびは1本ずつゆっくり。割れて替わるまで約 11〜13.5 秒', () => {
   const T = EVO_1_TO_2;
   const inc = (a) => a.every((v, i) => i === 0 || v > a[i - 1]);
   assert.ok(inc(T.glowBlink) && inc(T.heartbeats) && inc(T.quakes) && inc(T.eyeBlinks) && inc(T.cracks));
@@ -196,13 +196,16 @@ test('進化の時刻（第1→2）: 順番どおり。ファンファーレの�
   assert.equal(T.cracks.length, 4);
   T.cracks.slice(1).forEach((v, i) => assert.ok(v - T.cracks[i] >= 450, 'ひびの間隔が短い'));
   assert.ok(T.cracks[0] > T.shake && T.shatter - T.cracks.at(-1) >= 400, '最後のひびのあと、少し間を置いて割れる');
+  // 2026-11-09 先生決定 B: 砕けたかけらが地面に崩れ落ちる（いちばん長くて約0.77秒）のを見せてから、第2形態に替わる。のびすぎない
+  assert.ok(T.swap - T.shatter >= 800 && T.swap - T.shatter <= 1000, '割れてから姿が替わるまで 0.8〜1.0 秒');
+  assert.ok(T.text - T.swap >= 250, '姿が替わってから、せりふ');
   // ファンファーレ（約4.0秒）を最後まで鳴らし、1秒以上の無音の間を置いてから鼓動（2026-10-28 先生「ファンファーレが始まる直後から演出が始まりすぎ」）
   assert.equal(T.fanfareEnd, T.slump + 4000);
   assert.ok(T.heartbeats[0] - T.fanfareEnd >= 1000, 'ファンファーレのあとの無音の間が短い: ' + (T.heartbeats[0] - T.fanfareEnd));
   assert.ok(T.rumble > T.fanfareEnd && T.quakes[0] > T.fanfareEnd && T.eyeBlinks[0] > T.fanfareEnd, '地鳴り・揺れ・またたきがファンファーレに重なる');
-  // 揺れは4つ目から強い。姿が替わるまで 11〜13 秒
+  // 揺れは4つ目から強い。姿が替わるまで 11〜13.5 秒（2026-11-09 先生決定 B で、崩れ落ちを見せる 0.6 秒を足して約13秒）
   assert.equal(T.strongQuakeFrom, 3);
-  assert.ok(T.swap >= 11000 && T.swap <= 13000, '姿が替わる時刻 ' + T.swap);
+  assert.ok(T.swap >= 11000 && T.swap <= 13500, '姿が替わる時刻 ' + T.swap);
   assert.ok(T.text > T.swap && T.text - T.swap <= 500);
 });
 
