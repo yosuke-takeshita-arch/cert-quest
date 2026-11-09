@@ -87,6 +87,7 @@ const SHARED = [
   '../shared/js/lib/appname.js',
   '../shared/js/lib/appversion.js',
   '../shared/js/lib/updatenotice.js',
+  '../shared/js/lib/swupdate.js',
   '../shared/js/lib/outline.js',
   '../shared/js/lib/logotrace.js',
   '../shared/js/lib/weakness.js',

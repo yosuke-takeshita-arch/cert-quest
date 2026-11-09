@@ -46,6 +46,7 @@ import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
 import { createUpdateWatcher, UPDATE_NOTICE_TEXT, UPDATE_NOTICE_BUTTON, UPDATE_NOTICE_LATER } from './lib/updatenotice.js';
+import { waitForSwUpdate, dataFingerprint, SW_UPDATING_TEXT } from './lib/swupdate.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -145,6 +146,11 @@ export async function start() {
     loaded.data.basicsMatcher = buildMatcher(loaded.data.basics, loaded.data.concepts);
     return loaded;
   };
+  // 新しい版があれば、保存が終わって入れ替わるまでタイトル画面で待ってから、問題のデータを読む（3-2-c 見直し。2026-11-09 先生の案）。
+  // 待ったあとのデータは新しい版の保存から読むので、遊んでいる途中で古い問題だと分かる、ということが起きない
+  if ('serviceWorker' in navigator && !sample) {
+    await waitForSwUpdate(navigator.serviceWorker, { onUpdating: () => title.setNote(SW_UPDATING_TEXT) }).catch(() => null);
+  }
   const tracker = createLoadTracker((s) => title.setProgress(s));
   // 科目のあるアプリは、前回選んだ科目があればそのデータを読む。初めてなら、タイトルのあとで科目を選んでもらうので、ここでは読まない
   let curSub = store ? subjects.find((s) => s.id === store.selected()) || null : null;
@@ -562,8 +568,17 @@ export async function start() {
 
   if ('serviceWorker' in navigator) {
     // 開いた時点で service worker が動いていたか。動いていたのに入れ替わった＝画面のデータが古いかもしれない（3-2-c）
+    // タイトル画面で待った入れ替わりは、ここより前に済んでいる（ここで見るのは、遊んでいる間の入れ替わりだけ）
     const watcher = createUpdateWatcher(Boolean(navigator.serviceWorker.controller));
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
+    navigator.serviceWorker.addEventListener('controllerchange', async () => {
+      // 帯は、問題とカードが本当に変わったときだけ（3-2-c 見直し A）。新しい版の保存から読み直して、いま画面にあるデータと比べる
+      const shown = app.data;
+      let same = false;
+      try {
+        const fresh = await loadFor(app.subject || null, (u) => fetch(u));
+        same = dataFingerprint(fresh.data) === dataFingerprint(shown);
+      } catch (e) { /* 読み直せないときは、念のため帯を出す */ }
+      if (same) return;
       if (watcher.onChange()) showUpdateNotice();
     });
     navigator.serviceWorker.register('./sw.js').catch((e) => console.warn('service worker', e));

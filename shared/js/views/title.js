@@ -252,6 +252,10 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
       gauge.setAttribute('aria-valuenow', String(pct));
       status.textContent = s.total ? '読み込み中… ' + Math.min(s.done, s.total) + ' / ' + s.total : '読み込み中…';
     },
+    /** ゲージの下の文だけを替える（新しい版を受け取っている間。3-2-c） */
+    setNote(text) {
+      if (!failed) status.textContent = text;
+    },
     ready(onTap) {
       if (failed) return Promise.resolve();
       const rest = Math.max(350, MIN_SHOW_MS - (Date.now() - shownAt));
