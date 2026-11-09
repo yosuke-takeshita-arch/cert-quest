@@ -1090,6 +1090,11 @@ body.boss-on { background: #000; }
 .tb-shard.on { animation: tb-shard-in 0.35s ease-in 0.3s forwards; }
 /* 砕ける（2026-11-09 先生『ひびの位置と同じように砕けられないか？』）: 割れ目で切ったかけらが、一瞬すき間を開けてから核の外へ弾け、回りながら落ちる。px は絵の中の割合（viewBox）の単位 */
 .tb-shatter { position: absolute; overflow: visible; pointer-events: none; z-index: 2; }
+/* 殻の中の姿（2026-11-09 先生『殻を割って出てくるんだから』）: 次の姿を殻の形で切り抜き、かけらの下に暗く置く。替わるときは、その暗さから光って広がる（awaken） */
+.tb-shatter-inner { position: absolute; overflow: visible; pointer-events: none; z-index: 1; }
+.tb-inner-img { filter: brightness(0.45) saturate(0.7); }
+.boss-fig.awaken { animation: tb-awaken 1s ease-out; }
+@keyframes tb-awaken { 0% { transform: scale(0.94, 0.9); filter: brightness(0.45) saturate(0.7); } 30% { filter: brightness(2.2); } 100% { transform: none; filter: none; } }
 .tb-crack-layer.tb-shatter-cracks { inset: auto; z-index: 3; animation: tb-shatter-cracks 0.14s ease-in forwards; }
 @keyframes tb-shatter-cracks { to { opacity: 0; } }
 /* 2026-11-09 先生『四方に散らばるんじゃなくて、地面に落ちる（ものによっては弧を描いて落ちる）』: 横は等速に近く、縦は重さで速くなる（ease-in）。弧のかけらは少し上がってから落ちる。地面に着いたら少し置いて消える */
@@ -1187,7 +1192,7 @@ body.boss-on { background: #000; }
   .tb-crack-reveal.on, .tb-mesh.on, .tb-shard.on { animation: none; } /* 割れ目・網目・破片も、動きを止めて、描き終わった形で見せる */
   .tb-crack-reveal.on { stroke-dashoffset: 0; }
   .tb-crack-flash.on { animation: none; opacity: 0; } /* 割れた瞬間の白い光は出さない */
-  .tb-frag, .tb-frag-fall { animation: none; } .tb-shatter { display: none; } .tb-crack-layer.tb-shatter-cracks { display: none; } /* 砕けて飛ぶかけらは出さない（絵が消えて第2形態に替わるだけ） */
+  .tb-frag, .tb-frag-fall { animation: none; } .tb-shatter { display: none; } .tb-shatter-inner { display: none; } .boss-fig.awaken { animation: none; } .tb-crack-layer.tb-shatter-cracks { display: none; } /* 砕けて飛ぶかけらは出さない（絵が消えて第2形態に替わるだけ） */
   .tb-mesh.on, .tb-shard.on { opacity: 1; }
   .tb-gold-flash.calm { animation: tb-gold-calm 2.2s ease-in-out forwards; } /* 点滅ではなく、ゆっくり明るくなって引く形だけ */
   .boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top, .boss-rpg.tb-dim .boss-fig .boss-img { transition: none; }

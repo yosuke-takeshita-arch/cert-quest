@@ -232,7 +232,7 @@ function buildCrackLayer(fig) {
  * 絵（url）を、割れ目の主線を切れ目にしたかけら（shatterPieces）に切り、核から外へ弾け飛ばして落とす。入ったひび・網目（crackSvg）は上に重ねて、割れ目が開くあいだに消す。
  * host … かけらを置く要素。box … host の中での絵の位置と大きさ（px）。ひびが無ければ何もせず false。
  */
-function buildShatter(host, box, url, crackSvg) {
+function buildShatter(host, box, url, crackSvg, innerUrl) {
   const pieces = GEOM.cracks && GEOM.core ? shatterPieces(GEOM.core, GEOM.cracks, 7) : [];
   if (!pieces.length) return false;
   const NS = 'http://www.w3.org/2000/svg';
@@ -242,6 +242,19 @@ function buildShatter(host, box, url, crackSvg) {
     if (parent) parent.appendChild(e);
     return e;
   };
+  // 殻の中の姿（2026-11-09 先生『なかにそもそもいないとおかしいよね。殻を割って出てくるんだから』）: 次の姿の絵を、殻（いまの絵）の形で切り抜いて、
+  // かけらの下に暗く置く。かけらが落ちるにつれて、すき間から中の姿が見えてくる。姿が替わるとき（swap）に取り除く（class tb-shatter-inner）
+  if (innerUrl) {
+    const isvg = el('svg', { viewBox: '0 0 100 100', preserveAspectRatio: 'none', class: 'tb-shatter-inner', 'aria-hidden': 'true' });
+    for (const [k, v] of [['left', box.x], ['top', box.y], ['width', box.w], ['height', box.h]]) isvg.style[k] = v + 'px';
+    const idefs = el('defs', {}, isvg);
+    const f = el('filter', { id: 'tb-in-alpha', filterUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100 }, idefs);
+    el('feColorMatrix', { type: 'matrix', values: '0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0' }, f);
+    const m = el('mask', { id: 'tb-in-mask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100 }, idefs);
+    el('image', { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid meet', filter: 'url(#tb-in-alpha)' }, m).setAttribute('href', url);
+    el('image', { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid meet', mask: 'url(#tb-in-mask)', class: 'tb-inner-img' }, isvg).setAttribute('href', innerUrl);
+    host.appendChild(isvg);
+  }
   const svg = el('svg', { viewBox: '0 0 100 100', preserveAspectRatio: 'none', class: 'tb-shatter', 'aria-hidden': 'true' });
   svg.style.left = box.x + 'px';
   svg.style.top = box.y + 'px';
@@ -283,11 +296,11 @@ function buildShatter(host, box, url, crackSvg) {
 }
 
 /** 画像の確認用: 指定したアプリの、ひびが全部入った絵を、ひびの位置で砕く（box は fig の中の絵の位置。止めて撮るときは document.getAnimations で時刻を合わせる）。 */
-export function paintShatter(fig, appId, url) {
+export function paintShatter(fig, appId, url, innerUrl) {
   const layer = paintAllCracks(fig, appId);
   for (const a of layer.svg.getAnimations({ subtree: true })) a.finish(); // ひびが入りきった形から砕く
   const r = fig.getBoundingClientRect();
-  buildShatter(fig, { x: 0, y: 0, w: r.width, h: r.height }, url, layer.svg);
+  buildShatter(fig, { x: 0, y: 0, w: r.width, h: r.height }, url, layer.svg, innerUrl);
   return layer;
 }
 
@@ -994,9 +1007,11 @@ export function renderTrueBoss(app) {
       // 新しい絵の decode が済んでから、前の絵を消して（gone などを外して）新しい絵を出す。済む前に外すと、前の絵や記号の枠が一瞬出る
       paintForm().then(() => {
         figClass('remove', 'glow', 'blinkoff', 'gone', 'shake', 'slump', 'revive', 'swell', 'collapse');
+        ui.fx.querySelectorAll('.tb-shatter-inner').forEach((e) => e.remove()); // 殻の中に暗く見えていた姿は、本物の絵に替わる
         // 形態が替わったら曲も替える。第3形態は、決めぜりふのあとに曲を始める（第2形態は、すぐ）
         if (immediate || from1) startMusic(); else later(startMusic, T.music - T.swap);
-        if (!R) flash(ui.fig, from1 ? (seep ? 'seepin' : 'emerge') : 'spread3', from1 ? 1000 : 1800); // 第3形態は、現れてから約1.8秒、明るく光ってから落ち着く
+        // 第1→2で割れる型は、殻の中に暗く見えていた姿が、光って翼（体）を広げる（awaken）。何も無いところから現れる emerge にはしない（2026-11-09 先生『殻を割って出てくるんだから』）
+        if (!R) flash(ui.fig, from1 ? (seep ? 'seepin' : 'awaken') : 'spread3', from1 ? 1000 : 1800); // 第3形態は、現れてから約1.8秒、明るく光ってから落ち着く
       });
     };
     const newP = () => prof();
@@ -1090,7 +1105,7 @@ export function renderTrueBoss(app) {
       at(T.shatter, () => {
         ui.fx.textContent = '';
         figClass('remove', 'shake', 'revive');
-        crumble('#b08d3c'); // 殻が崩れるのは、ここ（割れる瞬間）だけ
+        crumble('#b08d3c', trueBossImageUrl(2)); // 殻が崩れるのは、ここ（割れる瞬間）だけ。殻の中には、はじめから第2形態がいる
         ui.fx.appendChild(h('span', { class: 'tb-glow on' })); // 割れた瞬間の光。ふちの無い丸い光（四角い白い面にしない）
         figClass('add', 'gone');
         evoSfx('shatter1'); // 砕ける瞬間の大きな音（2つ重ねる）
@@ -1193,7 +1208,8 @@ export function renderTrueBoss(app) {
     later(finish, 4500);
   }
 
-  function crumble(color) {
+  // innerUrl … 殻の中にいる次の姿の絵（第1→2で割れるとき。崩れるかけらのすき間から、殻の形の中だけ見える）
+  function crumble(color, innerUrl) {
     const fig = ui.fig;
     const img = fig.querySelector('img');
     const st = ui.stage.getBoundingClientRect();
@@ -1211,8 +1227,10 @@ export function renderTrueBoss(app) {
       x = fr.left - st.left; y = fr.top - st.top; w = fr.width; hh = fr.height;
     }
     if (!(w > 0) || !(hh > 0)) return;
-    // ひびの入った絵は、ひびの位置で砕く（2026-11-09 先生『砕けるとき、ひびの位置と同じように砕けられないか？』）。ひびの無い絵は今までのマス目
-    if (url && buildShatter(ui.fx, { x, y, w, h: hh }, url, fig.querySelector('svg[data-tb-cracks]'))) return;
+    // ひびの入った絵（ひびの層がある＝第1→2で割れるとき）は、ひびの位置で砕く（2026-11-09 先生『砕けるとき、ひびの位置と同じように砕けられないか？』）。
+    // ひびの無い絵（第3形態を倒したときなど）は今までのマス目
+    const crackSvg = fig.querySelector('svg[data-tb-cracks]');
+    if (url && crackSvg && buildShatter(ui.fx, { x, y, w, h: hh }, url, crackSvg, innerUrl)) return;
     const cols = 10;
     const rows = Math.max(6, Math.min(16, Math.round((cols * hh) / w)));
     const bw = w / cols;

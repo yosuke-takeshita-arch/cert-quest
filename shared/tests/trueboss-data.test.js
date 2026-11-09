@@ -638,5 +638,6 @@ test('砕け方: かけらは割れ目の主線で切れる。絵の中のどの
   assert.match(css, /@keyframes tb-frag-fall \{ from \{ transform: none; \} to \{ transform: translateY\(var\(--dy\)\) rotate\(var\(--rot\)\); \} \}/);
   assert.doesNotMatch(css, /scale\(0\.6\); opacity: 0; \} \}/, '四方へ弾けて縮みながら消える動きに戻さない');
   const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
-  assert.ok(view.includes('if (url && buildShatter(ui.fx,'), '割れる瞬間は、ひびの位置で砕く');
+  assert.ok(view.includes('if (url && crackSvg && buildShatter(ui.fx,'), '割れる瞬間は、ひびの位置で砕く。ひびの層が無い絵（第3形態を倒したときなど）はマス目のまま');
+  assert.ok(view.includes("ui.fx.querySelectorAll('.tb-shatter-inner').forEach((e) => e.remove());"), '姿が替わったら、殻の中に暗く見えていた姿を取り除く');
 });

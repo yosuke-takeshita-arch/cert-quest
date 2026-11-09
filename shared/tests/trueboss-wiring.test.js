@@ -202,7 +202,7 @@ test('第1→2の進化: 偽の撃破では崩れて消えない → 鼓動（�
   assert.doesNotMatch(fake, /flash\(ui\.fig, 'appear'/, '崩れた殻がもどってくる段は無い');
   // 崩れる処理は、evolveSequence の中で1回だけ（割れる瞬間）
   assert.equal((fn.match(/crumble\(/g) || []).length, 1);
-  assert.match(fn, /crumble\('#b08d3c'\); \/\/ 殻が崩れるのは、ここ/);
+  assert.match(fn, /crumble\('#b08d3c', trueBossImageUrl\(2\)\); \/\/ 殻が崩れるのは、ここ/, '割れるときは、殻の中に第2形態がいる（2026-11-09 先生「殻を割って出てくるんだから」）');
   // 順番
   const order = ["figClass('add', 'slump')", "'heartbeat' : 'heartbeatfast'", "evoSfx('rumble')", "classList.add('blink')", "classList.add('on')", "at(T.shake", 'crackLayer.lines[k]', 'crumble(', "evoSfx('shatter1')", 'at(T.swap'];
   let last = -1;
@@ -688,7 +688,7 @@ test('seep の結線: 型を表から選び（sc だけ）、煙の層・漏れ�
   assert.match(s, /at\(TS\.swap, \(\) => swap\(\)\)/);
   assert.match(s, /finishText\(TS\.text\)/);
   assert.doesNotMatch(s, /crumble|tb-glow|tb-burst|shatter/, '割れる光・破片は出さない');
-  assert.match(fn, /seep \? 'seepin' : 'emerge'/);
+  assert.match(fn, /seep \? 'seepin' : 'awaken'/, '割れる型は、殻の中にいた姿が目覚める（何も無いところから現れない）');
   assert.match(fn, /'swell', 'collapse'\)/, '入れ替えで collapse を外す');
   // 動きを減らす設定: 煙の層は作らず、暗い灰色と音（clatter）だけで、すぐ替わる
   const red = fn.slice(fn.indexOf('if (R) {'), fn.indexOf("figClass('add', 'glow');"));
