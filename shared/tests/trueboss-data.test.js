@@ -592,6 +592,14 @@ test('割れ目の入り方: 主線はすぐ、枝は少しあとから順に。
   assert.match(css, /\.tb-crack-reveal-branch\.on \{ animation: tb-crack-snap2 [\d.]+s steps\(1, end\) forwards; \}/);
   assert.doesNotMatch(css, /tb-crack-draw 0\.5s ease-out/, 'にょきにょき（なめらかに伸びる）に戻さない');
   assert.match(css, /\.tb-crack-flash\.on \{ animation: none; opacity: 0; \}/, '動きを減らす設定では白い光を出さない');
+  // 2026-11-09 先生『ヒビが入り始める前に、ちょっとだけ白い線が見える』: 長さ0の破線でも丸い端が点として描かれる。現れるまで隠し、現れたら見せる
+  assert.match(css, /\.tb-crack-reveal \{[^}]*visibility: hidden;[^}]*\}/, '入る前の割れ目の窓は隠す');
+  for (const k of ['tb-crack-snap', 'tb-crack-snap2']) {
+    const body = css.match(new RegExp('@keyframes ' + k + ' \\{(.*)\\}\\s*$', 'm'))[1];
+    const frames = body.match(/\d+% \{[^}]*\}/g);
+    assert.ok(frames.length >= 2 && frames.every((f) => f.includes('visibility: visible')), k + ': どの段でも見せる');
+  }
+  assert.match(css, /\.tb-crack-reveal\.on \{ stroke-dashoffset: 0; visibility: visible; \}/, '動きを減らす設定でも、入ったひびは見せる');
   const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
   assert.ok(view.includes('snapDelay(i, far)') && view.includes('meshBands(dd, GEOM.cracks[k])'));
 });

@@ -1078,7 +1078,7 @@ body.boss-on { background: #000; }
 .tb-crack-branch.on { animation-duration: 0.3s; animation-delay: 0.12s; }
 .tb-crack-far { stroke-width: 0.4; opacity: 0.6; }
 .tb-crack-far.on { animation-delay: 0.2s; }
-.tb-crack-reveal { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tb-crack-reveal { stroke-dasharray: 1; stroke-dashoffset: 1; visibility: hidden; } /* 2026-11-09 先生『ヒビが入り始める前に、ちょっとだけ白い線が見える』: 長さ0の破線でも丸い端は点として描かれ、線の両端の割れ目が先に見えていた。現れるまで隠す */
 /* 2026-11-09 先生『パキ！パキパキ！！』: なめらかに伸ばさず、段で跳ぶ（steps）。主線は3段で一瞬、枝は2段。遅れは JS が1本ずつ付ける */
 .tb-crack-reveal.on { animation: tb-crack-snap 0.16s steps(1, end) forwards; }
 .tb-crack-reveal-branch.on { animation: tb-crack-snap2 0.07s steps(1, end) forwards; }
@@ -1105,8 +1105,8 @@ body.boss-on { background: #000; }
 @keyframes tb-frag-fall { from { transform: none; } to { transform: translateY(var(--dy)) rotate(var(--rot)); } }
 @keyframes tb-frag-arc { 0% { transform: none; animation-timing-function: cubic-bezier(0.3, 0.6, 0.6, 1); } 28% { transform: translateY(var(--up)) rotate(calc(var(--rot) * 0.25)); animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6); } 100% { transform: translateY(var(--dy)) rotate(var(--rot)); } }
 @keyframes tb-frag-out { to { opacity: 0; } }
-@keyframes tb-crack-snap { 0% { stroke-dashoffset: 0.55; } 40% { stroke-dashoffset: 0.2; } 75% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
-@keyframes tb-crack-snap2 { 0% { stroke-dashoffset: 0.45; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
+@keyframes tb-crack-snap { 0% { stroke-dashoffset: 0.55; visibility: visible; } 40% { stroke-dashoffset: 0.2; visibility: visible; } 75% { stroke-dashoffset: 0; visibility: visible; } 100% { stroke-dashoffset: 0; visibility: visible; } }
+@keyframes tb-crack-snap2 { 0% { stroke-dashoffset: 0.45; visibility: visible; } 50% { stroke-dashoffset: 0; visibility: visible; } 100% { stroke-dashoffset: 0; visibility: visible; } }
 @keyframes tb-crack-flash { 0% { opacity: 0.95; } 100% { opacity: 0; } }
 @keyframes tb-mesh-in { from { opacity: 1; } to { opacity: 1; } }
 @keyframes tb-shard-in { from { opacity: 0; transform: translateY(-2.5px); } to { opacity: 1; transform: none; } }
@@ -1190,7 +1190,7 @@ body.boss-on { background: #000; }
   .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack-line.on, .tb-eye-glow.on, .tb-burst, .tb-glow.on, .tb-orb.on, .tb-gold-flash, .tb-rays, .tb-ring, .boss-fig.spread3 { animation: none; }
   .tb-crack-line.on { stroke-dashoffset: 0; } /* 動きを止めても、ひび自体は（描き終わった形で）見せる。止めるのは『伸びる動き』だけ */
   .tb-crack-reveal.on, .tb-mesh.on, .tb-shard.on { animation: none; } /* 割れ目・網目・破片も、動きを止めて、描き終わった形で見せる */
-  .tb-crack-reveal.on { stroke-dashoffset: 0; }
+  .tb-crack-reveal.on { stroke-dashoffset: 0; visibility: visible; }
   .tb-crack-flash.on { animation: none; opacity: 0; } /* 割れた瞬間の白い光は出さない */
   .tb-frag, .tb-frag-fall { animation: none; } .tb-shatter { display: none; } .tb-shatter-inner { display: none; } .boss-fig.awaken { animation: none; } .tb-crack-layer.tb-shatter-cracks { display: none; } /* 砕けて飛ぶかけらは出さない（絵が消えて第2形態に替わるだけ） */
   .tb-mesh.on, .tb-shard.on { opacity: 1; }
