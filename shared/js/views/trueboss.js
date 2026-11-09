@@ -251,13 +251,12 @@ function buildShatter(host, box, url, crackSvg) {
   pieces.forEach((p, i) => {
     const poly = p.pts.map((q) => q[0] + ',' + q[1]).join(' ');
     el('polygon', { points: poly }, el('clipPath', { id: 'tb-sh-' + i, clipPathUnits: 'userSpaceOnUse' }, defs));
+    // 外の g＝横の動き（だんだん遅く）と、地面に着いたあと消える。中の g＝縦の動き（弧なら少し上がってから、重さで速くなりながら地面へ）と回転
     const g = el('g', { class: 'tb-frag' }, svg);
-    g.style.setProperty('--dx', p.dx + 'px');
-    g.style.setProperty('--dy', p.dy + 'px');
-    g.style.setProperty('--rot', p.rot + 'deg');
-    g.style.transformOrigin = p.cx + 'px ' + p.cy + 'px';
-    g.style.animationDelay = p.delay + 's';
-    const inner = el('g', { 'clip-path': 'url(#tb-sh-' + i + ')' }, g);
+    for (const [k, v] of [['--dx', p.dx + 'px'], ['--up', p.up + 'px'], ['--dy', p.dy + 'px'], ['--rot', p.rot + 'deg'], ['--t', p.dur + 's'], ['--d', p.delay + 's']]) g.style.setProperty(k, v);
+    const fall = el('g', { class: 'tb-frag-fall' + (p.up < 0 ? ' arc' : '') }, g);
+    fall.style.transformOrigin = p.cx + 'px ' + p.cy + 'px';
+    const inner = el('g', { 'clip-path': 'url(#tb-sh-' + i + ')' }, fall);
     const im = el('image', { x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'xMidYMid meet' }, inner);
     im.setAttribute('href', url);
   });
@@ -1098,7 +1097,7 @@ export function renderTrueBoss(app) {
         evoSfx('shatter2');
       });
       at(T.swap, () => { swap(); ui.fx.appendChild(h('span', { class: 'tb-burst' })); });
-      at(T.swap + 1000, () => { ui.fx.textContent = ''; });
+      at(T.swap + 1300, () => { ui.fx.textContent = ''; }); // 落ちたかけらが消え終わってから片づける（落ちる最長0.75秒＋待ち0.2秒＋消える0.3秒＋遅れ）
       finishText(T.text);
     } else {
       // 第2→3: 曲が止まり、画面が暗くなる → 宙で静止 → 光の玉が1つずつ（だんだん速く）金色に灯る → 力をためる音と揺れがだんだん強く → 金色の光が弾ける → 第3形態と決めぜりふ → 第3形態の曲

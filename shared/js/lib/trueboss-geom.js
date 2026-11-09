@@ -266,9 +266,11 @@ export function meshBands(dd, crack) {
  * 砕けるときのかけら（2026-11-09 先生『砕けるとき、ひびの位置と同じように砕けられないか？』）。
  * 4本の割れ目の主線を、そのまま切れ目にする。主線の先は核から外へまっすぐ絵の外まで延ばし、割れ目と割れ目のあいだ（扇）が広すぎるところだけ、
  * 核からのぎざぎざの切れ目を足す。それぞれの扇を、核を囲むぎざぎざの輪（細かい網目の代わり）で内から外へ5つに切る。隣のかけらとは同じ切れ目を共有するので、すき間も重なりも無い。
- * core … {x, y}。cracks … GEOM.cracks。seed … 乱数の種。戻り値: [{ pts: [[x, y], ...], cx, cy, band, dx, dy, rot, delay }]（座標は絵の中の割合 0〜100。dx・dy・rot は飛ぶ先）
+ * core … {x, y}。cracks … GEOM.cracks。seed … 乱数の種。戻り値: [{ pts: [[x, y], ...], cx, cy, band, dx, up, dy, rot, dur, delay }]（座標は絵の中の割合 0〜100。dx・dy＝落ちた先までの横・縦、up＝弧の頂点の高さ（0 ならまっすぐ落ちる）、rot＝回る角度、dur＝落ちる秒）
  */
 export const SHATTER_RINGS = Object.freeze([9, 20, 33, 48, 160]);
+/** 砕けたかけらが落ちる地面の高さ（絵の中の割合。足もと） */
+export const SHATTER_GROUND = 97;
 export function shatterPieces(core, cracks, seed = 7) {
   const rnd = mulberry(seed);
   const C = [core.x, core.y];
@@ -358,8 +360,22 @@ export function shatterPieces(core, cracks, seed = 7) {
       pts = pts.map((p) => [r2(p[0]), r2(p[1])]);
       const am = (a0 + a1) / 2; const rm = b === SHATTER_RINGS.length - 1 ? 55 : (r0 + rr) / 2;
       const cx = r2(C[0] + Math.cos(am) * rm); const cy = r2(C[1] + Math.sin(am) * rm);
-      const push = 14 + b * 6 + rnd() * 10; // 核から外へ飛ぶ。外のかけらほど遠くへ
-      out.push({ pts, cx, cy, band: b, dx: r2(Math.cos(am) * push), dy: r2(Math.sin(am) * push + 18 + rnd() * 22), rot: Math.round((rnd() - 0.5) * 2 * (60 + rnd() * 140)), delay: r2(b * 0.035 + rnd() * 0.05) });
+      // 落ち方（2026-11-09 先生『四方に散らばるんじゃなくて、地面に落ちる（ものによっては弧を描いて落ちる）』）: 重さで足もとの地面（SHATTER_GROUND）まで落ちる。
+      // 3つに1つくらいは、外へ少し跳ねて弧を描いて落ちる。高いところのかけらほど長く落ちる（落ちる時間は高さの平方根に比例）
+      const vis = pts.map((q) => [Math.min(100, Math.max(0, q[0])), Math.min(100, Math.max(0, q[1]))]);
+      const vy = vis.reduce((s, q) => s + q[1], 0) / vis.length; // 絵の中に見えている部分のおよその高さ
+      const h = Math.max(0, SHATTER_GROUND - vy);
+      const arc = rnd() < 0.35;
+      const side = Math.cos(am) >= 0 ? 1 : -1;
+      out.push({
+        pts, cx, cy, band: b,
+        dx: r2(arc ? side * (5 + rnd() * 10) : (rnd() - 0.5) * 3 + side * 1.2),
+        up: r2(arc ? -(3 + rnd() * 6) : 0),
+        dy: r2(Math.max(0, h - rnd() * 3)), // 地面より下（足の先）のかけらは落ちない
+        rot: Math.round((rnd() - 0.5) * 2 * (arc ? 60 + rnd() * 100 : 8 + rnd() * 30)),
+        dur: r2(0.3 + 0.45 * Math.sqrt(h / 90)),
+        delay: r2(b * 0.02 + rnd() * 0.05),
+      });
     });
   });
   return out;

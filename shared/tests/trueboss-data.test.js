@@ -594,7 +594,7 @@ test('割れ目の入り方: 主線はすぐ、枝は少しあとから順に。
 });
 
 // ---- 砕け方（2026-11-09 先生「砕けるとき、ひびの位置と同じように砕けられないか？」）----
-import { shatterPieces as piecesOf } from '../js/lib/trueboss-geom.js';
+import { shatterPieces as piecesOf, SHATTER_GROUND as SHATTER_GROUND_T } from '../js/lib/trueboss-geom.js';
 
 test('砕け方: かけらは割れ目の主線で切れる。絵の中のどの点も、ちょうど1つのかけらに入る（すき間も重なりも無い）。割れ目をはさんだ両側は別のかけら。同じ入力なら同じ形', () => {
   const inside = (x, y, pts) => { let c = false; for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) { const [xi, yi] = pts[i]; const [xj, yj] = pts[j]; if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
@@ -617,11 +617,23 @@ test('砕け方: かけらは割れ目の主線で切れる。絵の中のどの
         assert.ok(a >= 0 && b >= 0 && a !== b, `${app}: 割れ目 (${mx.toFixed(1)}, ${my.toFixed(1)}) の両側が同じかけら`);
       }
     }
-    for (const p of ps) assert.ok(p.delay >= 0 && p.delay < 0.4 && Number.isFinite(p.dx) && Number.isFinite(p.dy) && p.dy > -40 && Math.hypot(p.dx, p.dy) < 90, app + ': 飛び方（核から外へ弾ける。上のかけらは上へも飛ぶが、遠くへは行かない）');
+    // 落ち方（2026-11-09 先生「四方に散らばるんじゃなくて、地面に落ちる（ものによっては弧を描いて落ちる）」）
+    const vy = (p) => p.pts.reduce((s, q) => s + Math.min(100, Math.max(0, q[1])), 0) / p.pts.length;
+    for (const p of ps) {
+      assert.ok(p.dy >= 0 && (vy(p) >= SHATTER_GROUND_T - 3 || Math.abs(vy(p) + p.dy - SHATTER_GROUND_T) <= 3.01), app + ': 地面（足もと）まで落ちる');
+      assert.ok(Math.abs(p.dx) <= 15.01 && p.up <= 0 && p.up >= -9.01, app + ': 横へは少しだけ。上へは弧の分だけ');
+      assert.ok(p.dur > 0.25 && p.dur <= 0.77 && p.delay >= 0 && p.delay < 0.2, app + ': 落ちる秒');
+    }
+    const high = ps.filter((p) => vy(p) < 40); const low = ps.filter((p) => vy(p) > 80);
+    assert.ok(Math.min(...high.map((p) => p.dur)) > Math.max(...low.map((p) => p.dur)), app + ': 高いところのかけらほど長く落ちる');
+    const arcs = ps.filter((p) => p.up < 0).length;
+    assert.ok(arcs >= 3 && arcs <= ps.length / 2, app + ': 弧を描くのは一部だけ ' + arcs);
   }
   assert.deepEqual(piecesOf({ x: 50, y: 50 }, []), []);
   const css = crackRead(crackUrl(new URL('../css/app.css', import.meta.url)), 'utf8');
-  assert.match(css, /\.tb-frag \{ animation: none; \} \.tb-shatter \{ display: none; \}/, '動きを減らす設定では、かけらを飛ばさない');
+  assert.match(css, /\.tb-frag, \.tb-frag-fall \{ animation: none; \} \.tb-shatter \{ display: none; \}/, '動きを減らす設定では、かけらを落とさない');
+  assert.match(css, /@keyframes tb-frag-fall \{ from \{ transform: none; \} to \{ transform: translateY\(var\(--dy\)\) rotate\(var\(--rot\)\); \} \}/);
+  assert.doesNotMatch(css, /scale\(0\.6\); opacity: 0; \} \}/, '四方へ弾けて縮みながら消える動きに戻さない');
   const view = crackRead(crackUrl(new URL('../js/views/trueboss.js', import.meta.url)), 'utf8');
   assert.ok(view.includes('if (url && buildShatter(ui.fx,'), '割れる瞬間は、ひびの位置で砕く');
 });
