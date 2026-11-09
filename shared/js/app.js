@@ -46,7 +46,7 @@ import { createIntro } from './views/intro.js';
 import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
 import { createUpdateWatcher, UPDATE_NOTICE_TEXT, UPDATE_NOTICE_BUTTON, UPDATE_NOTICE_LATER } from './lib/updatenotice.js';
-import { waitForSwUpdate, dataFingerprint, SW_UPDATING_TEXT } from './lib/swupdate.js';
+import { waitForSwUpdate, dataFingerprint, monotonicFraction, SW_UPDATING_TEXT } from './lib/swupdate.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -149,7 +149,11 @@ export async function start() {
   // 新しい版があれば、保存が終わって入れ替わるまでタイトル画面で待ってから、問題のデータを読む（3-2-c 見直し。2026-11-09 先生の案）。
   // 待ったあとのデータは新しい版の保存から読むので、遊んでいる途中で古い問題だと分かる、ということが起きない
   if ('serviceWorker' in navigator && !sample) {
-    await waitForSwUpdate(navigator.serviceWorker, { onUpdating: () => title.setNote(SW_UPDATING_TEXT) }).catch(() => null);
+    const dlFraction = monotonicFraction(); // 総数は取るものが分かるたびに増えるので、ゲージが戻らないようにする
+    await waitForSwUpdate(navigator.serviceWorker, {
+      onUpdating: () => title.setNote(SW_UPDATING_TEXT),
+      onProgress: (p) => title.setDownload(dlFraction(p), p.done, p.total, SW_UPDATING_TEXT),
+    }).catch(() => null);
   }
   const tracker = createLoadTracker((s) => title.setProgress(s));
   // 科目のあるアプリは、前回選んだ科目があればそのデータを読む。初めてなら、タイトルのあとで科目を選んでもらうので、ここでは読まない

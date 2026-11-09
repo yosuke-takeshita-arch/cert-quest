@@ -241,13 +241,18 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
   const SWITCH_MS = 600;
   const shownAt = Date.now();
   let failed = false;
+  // 新しい版をダウンロードしたときは、ゲージの前の DL_SHARE をダウンロード、残りを問題の読み込みに使う（3-2-c 見直し。2026-11-09 先生）
+  const DL_SHARE = 0.85;
+  let dlDone = false;
+  let dlPct = 0;
   return {
     el,
     setProgress(s) {
       if (failed) return;
       // 一瞬で読めたときに一気に満タンにならないよう、出してからの時間でも頭打ちにする（残りは ready で伸ばす）
       const byTime = Math.min(1, (Date.now() - shownAt) / MIN_SHOW_MS);
-      const pct = Math.round(Math.max(0, Math.min(1, s.fraction || 0, byTime)) * 100);
+      const f = Math.max(0, Math.min(1, s.fraction || 0, dlDone ? 1 : byTime));
+      const pct = dlDone ? Math.max(dlPct, Math.round((DL_SHARE + (1 - DL_SHARE) * f) * 100)) : Math.round(f * 100);
       fill.style.width = pct + '%';
       gauge.setAttribute('aria-valuenow', String(pct));
       status.textContent = s.total ? '読み込み中… ' + Math.min(s.done, s.total) + ' / ' + s.total : '読み込み中…';
@@ -255,6 +260,15 @@ export function createTitleScreen({ config, examDate = null, now = new Date(), s
     /** ゲージの下の文だけを替える（新しい版を受け取っている間。3-2-c） */
     setNote(text) {
       if (!failed) status.textContent = text;
+    },
+    /** 新しい版のダウンロードの進み具合。fraction は 0〜1（戻らない値を渡す）。label はゲージの下の文 */
+    setDownload(fraction, done, total, label) {
+      if (failed) return;
+      dlDone = true;
+      dlPct = Math.max(dlPct, Math.round(Math.max(0, Math.min(1, fraction)) * DL_SHARE * 100));
+      fill.style.width = dlPct + '%';
+      gauge.setAttribute('aria-valuenow', String(dlPct));
+      status.textContent = label + ' ' + done + ' / ' + total;
     },
     ready(onTap) {
       if (failed) return Promise.resolve();

@@ -25,7 +25,7 @@ async function installUrls(cfg) {
     URL,
     Request: class { constructor(u) { this.url = u; } },
     Response,
-    Promise, console,
+    Promise, console, setTimeout, clearTimeout, // 本物の service worker にもある（受け取りの進み具合を間を空けて知らせるのに使う）
   };
   vm.runInNewContext(src, ctx);
   let p;

@@ -451,7 +451,7 @@ async function runInstall(fetchMap, cfg = {}) {
       if (hit === undefined) return { ok: false, status: 404, clone() { return this; }, json: async () => { throw new Error('404'); } };
       return { ok: true, status: 200, clone() { return this; }, json: async () => hit };
     },
-    URL, Request: class { constructor(u) { this.url = u; } }, Response, Promise, console, setTimeout,
+    URL, Request: class { constructor(u) { this.url = u; } }, Response, Promise, console, setTimeout, clearTimeout,
   };
   vm.runInNewContext(swSrc, ctx);
   let p;

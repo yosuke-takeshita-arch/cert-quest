@@ -178,14 +178,34 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 // 置き場の下のURLか（キャッシュ優先＋裏で更新にするもの）。'/data/' のほか、dataDirs のフォルダ
 const DATA_PATH = new RegExp('/(?:' + DATA_DIRS.map(escapeRe).join('|') + ')/');
 
+// 受け取りの進み具合（何個中何個）。タイトル画面のゲージに出す（要件定義書 3-2-c 見直し。2026-11-09 先生「ダウンロードの総量が分かれば、今のゲージを使って、ダウンロード中のゲージ表現ができる」）。
+// 総数は、取るものが分かった時点で足す（データの中身を読むまで図の数は分からない）。知らせるのは 0.15 秒に1回まで
+const PROGRESS = { done: 0, total: 0, timer: null };
+function progressAdd(n) { PROGRESS.total += n; progressSend(); }
+function progressTick() { PROGRESS.done += 1; progressSend(); }
+function progressSend(final) {
+  const send = async () => {
+    PROGRESS.timer = null;
+    try {
+      const list = await self.clients.matchAll({ includeUncontrolled: true, type: 'window' });
+      for (const c of list) c.postMessage({ type: 'cq-install-progress', done: Math.min(PROGRESS.done, PROGRESS.total), total: PROGRESS.total });
+    } catch (e) { /* 知らせられなくても受け取りは続ける */ }
+  };
+  if (final) { if (PROGRESS.timer) clearTimeout(PROGRESS.timer); return send(); }
+  if (!PROGRESS.timer) PROGRESS.timer = setTimeout(send, 150);
+}
+
 async function prefetchData(cache, dir) {
+  progressAdd(4); // index.json と、ボス・真ボス・基礎のことばの3つ
   try {
     const base = './' + dir + '/';
-    const idxRes = await fetch(base + 'index.json', { cache: 'reload' });
-    if (!idxRes.ok) return;
+    let idxRes;
+    try { idxRes = await fetch(base + 'index.json', { cache: 'reload' }); } finally { progressTick(); }
+    if (!idxRes.ok) { PROGRESS.done += 3; return; }
     const idx = await idxRes.clone().json();
     await cache.put(new URL(base + 'index.json', self.location).href, idxRes);
     const files = [idx.syllabus, ...(idx.questions || []), ...(idx.concepts || [])].filter((f) => typeof f === 'string');
+    progressAdd(files.length);
     const figureIds = new Set(); // 問題・カードの figures が指す図（<置き場>/figures/<id>.svg）。オフラインでも出すため、ここで取る
     await Promise.all(
       files.map(async (f) => {
@@ -198,7 +218,7 @@ async function prefetchData(cache, dir) {
             if (Array.isArray(arr)) for (const o of arr) if (o && Array.isArray(o.figures)) for (const id of o.figures) if (typeof id === 'string' && FIGURE_ID.test(id)) figureIds.add(id);
           } catch (e) { /* JSON でないもの（シラバス）は図を持たない */ }
           await cache.put(u, r);
-        } catch (e) { /* 取れないものは飛ばす */ }
+        } catch (e) { /* 取れないものは飛ばす */ } finally { progressTick(); }
       })
     );
     // 章のボスの名前・せりふ（<置き場>/bosses.json。index.json の bosses で名前を変えてもよい）。無い(404)ときは飛ばす（ボスは汎用の名前とせりふで動く）
@@ -206,13 +226,13 @@ async function prefetchData(cache, dir) {
       const bu = new URL(base + (typeof idx.bosses === 'string' && idx.bosses ? idx.bosses : 'bosses.json'), self.location).href;
       const br = await fetch(bu, { cache: 'reload' });
       if (br.ok) await cache.put(bu, br);
-    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ } finally { progressTick(); }
     // 真ボスの名前・せりふ（<置き場>/trueboss.json。真ボスを出すアプリだけが持つ）。無い(404)ときは飛ばす
     try {
       const tu = new URL(base + 'trueboss.json', self.location).href;
       const tr = await fetch(tu, { cache: 'reload' });
       if (tr.ok) await cache.put(tu, tr);
-    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ } finally { progressTick(); }
     // 基礎のことば（<置き場>/basics.json。index.json の basics で名前を変えてもよい）。無い(404)ときは飛ばす。図を持っていれば、その図も取る
     try {
       const nu = new URL(base + (typeof idx.basics === 'string' && idx.basics ? idx.basics : 'basics.json'), self.location).href;
@@ -225,14 +245,15 @@ async function prefetchData(cache, dir) {
         } catch (e) { /* 読めない JSON は図を持たない */ }
         await cache.put(nu, nr);
       }
-    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ }
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ } finally { progressTick(); }
+    progressAdd(figureIds.size);
     await Promise.all(
       [...figureIds].map(async (id) => {
         try {
           const u = new URL(base + 'figures/' + id + '.svg', self.location).href;
           const r = await fetch(u, { cache: 'reload' });
           if (r.ok) await cache.put(u, r);
-        } catch (e) { /* 取れない図は飛ばす（開いたときに取れれば、そのときキャッシュに入る） */ }
+        } catch (e) { /* 取れない図は飛ばす（開いたときに取れれば、そのときキャッシュに入る） */ } finally { progressTick(); }
       })
     );
   } catch (e) { /* データ無しでも本体は使える */ }
@@ -242,10 +263,18 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
-      // 本体が1つでも取れなければインストール失敗にする（中途半端なオフラインにしない）
-      await cache.addAll([...CFG.appFiles, ...SHARED_URLS, ...SFX_URLS].map((u) => new Request(u, { cache: 'reload' })));
+      // 進み具合の総数がはやく決まるよう、データ（中身を読むまで図の数が分からない）を先に取り、本体をあとで取る
+      const core = [...CFG.appFiles, ...SHARED_URLS, ...SFX_URLS];
+      progressAdd(core.length);
       // データは有る分だけ。無い(404)ものは飛ばす。置き場が複数あるアプリ（科目ごとのフォルダ）は、全部の置き場を順に取る
       for (const dir of DATA_DIRS) await prefetchData(cache, dir);
+      // 本体が1つでも取れなければインストール失敗にする（中途半端なオフラインにしない。cache.addAll と同じく、取れないものが1つでもあれば失敗）
+      // 1つずつ addAll するのは、1つ取れるごとに数えるため（addAll は取れないものがあれば失敗する）
+      await Promise.all(core.map(async (u) => {
+        await cache.addAll([new Request(u, { cache: 'reload' })]);
+        progressTick();
+      }));
+      await progressSend(true);
       await self.skipWaiting();
     })()
   );
