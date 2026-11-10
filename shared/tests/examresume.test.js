@@ -433,6 +433,15 @@ test('結線（app.js）: resetAll は lib/subjects.js の openExamRunStore(app)
   assert.equal(subj.split('examRunKey(').length - 1, 1, '鍵を作る所は lib/subjects.js の中でも1か所');
 });
 
+// 2026-11-10 先生の言葉「Bかきたして」: 消す前の確かめの小窓に、途中の模擬試験も消えると書く。
+// 見ているのは views/more.js の文字だけ。小窓が実際に出す文は、実ブラウザで別に見る。
+test('確かめの文（views/more.js）: 「学習記録を消す」の小窓の文に、途中の模擬試験も消えると書いてある（科目のあるアプリ用・無いアプリ用の2つとも）', () => {
+  const s = src('js/views/more.js');
+  const lines = s.split('\n').filter((l) => l.includes('学習記録（') && l.includes('元に戻せません。'));
+  assert.equal(lines.length, 2, '確かめの文が2つ（科目のあるアプリ用・無いアプリ用）見つからない');
+  for (const l of lines) assert.ok(l.includes('途中の模擬試験も消えます。'), '確かめの文に「途中の模擬試験も消えます。」が無い: ' + l.trim());
+});
+
 test('登録: テストが package.json の一覧に入っている', () => {
   assert.ok(src('package.json').includes('tests/examresume.test.js'), 'tests/examresume.test.js が package.json の一覧に無い');
 });

@@ -131,8 +131,8 @@ export function renderSettings(app) {
   const bySubject = !!app.subject;
   const reset = h('button', { class: 'btn danger', type: 'button', 'data-reset': bySubject ? 'subject' : 'all', onClick: async () => {
     const msg = bySubject
-      ? '「' + app.subject.name + '」の学習記録（復習・星・バッジ・模試・ボス）を消します。XP・連続日数・設定は、ほかの科目と共通なので残ります。元に戻せません。'
-      : '学習記録（XP・復習・星・バッジ）をすべて消します。元に戻せません。';
+      ? '「' + app.subject.name + '」の学習記録（復習・星・バッジ・模試・ボス）を消します。途中の模擬試験も消えます。XP・連続日数・設定は、ほかの科目と共通なので残ります。元に戻せません。'
+      : '学習記録（XP・復習・星・バッジ）をすべて消します。途中の模擬試験も消えます。元に戻せません。';
     if (await confirmDialog({ title: '学習記録を消しますか？', message: msg, ok: '消す', cancel: 'やめる', danger: true })) app.resetAll();
   } }, bySubject ? 'この科目の学習記録を消す' : '学習記録をすべて消す');
   root.appendChild(h('div', { class: 'card' }, h('h2', { text: '学習記録' }),
