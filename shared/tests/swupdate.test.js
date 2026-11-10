@@ -7,32 +7,78 @@ import { join } from 'node:path';
 import { root } from './apps.js';
 import { waitForSwUpdate, dataFingerprint, parseProgress, monotonicFraction, SW_UPDATING_TEXT, CHECK_TIMEOUT_MS, INSTALL_TIMEOUT_MS } from '../js/lib/swupdate.js';
 
-/** navigator.serviceWorker の偽物。found: update() で新しい版が見つかるか。swapAfter: 見つかってから入れ替わるまでの ms（null なら入れ替わらない） */
-function fakeSw({ controller = true, found = false, swapAfter = 10, updateRejects = false, updateHangs = false, alreadyInstalling = false, registerRejects = false } = {}) {
-  const listeners = [];
-  const msgListeners = [];
+const realSetTimeout = globalThis.setTimeout; // 偽物の中の待ちは、これで動かす（下の「時間の上限が残らない」のテストが setTimeout を数えるため）
+const later = (ms, f) => realSetTimeout(f, ms);
+const sleep = (ms) => new Promise((r) => later(ms, r));
+
+/** 受け取り中の service worker の偽物。set('redundant') などで状態を変えると、聞いている人に知らせる */
+function fakeWorker(state = 'installing') {
+  const ls = [];
+  const w = {
+    state,
+    addEventListener: (t, f) => { if (t === 'statechange') ls.push(f); },
+    removeEventListener: (t, f) => { const i = ls.indexOf(f); if (t === 'statechange' && i >= 0) ls.splice(i, 1); },
+    set(s) { w.state = s; for (const f of ls.slice()) f({ target: w }); },
+    count: () => ls.length,
+  };
+  return w;
+}
+
+/**
+ * navigator.serviceWorker の偽物。found: update() で新しい版が見つかるか。swapAfter: 見つかってから入れ替わるまでの ms（null なら入れ替わらない）
+ * failAfter: 見つかってから受け取りが失敗する（redundant になる）までの ms。keepRef: 失敗の知らせの時点で、reg.installing がまだ失敗したものを指したまま（本物のブラウザの順番）
+ * count(): いま聞いている数（入れ替わり・進み具合・新しい版の見つかり・状態の変わり目の合計）。抜けたあとは 0 のはず
+ */
+function fakeSw({ controller = true, found = false, swapAfter = 10, updateRejects = false, updateHangs = false, alreadyInstalling = false, registerRejects = false, failAfter = null, keepRef = false } = {}) {
+  const ls = { controllerchange: [], message: [] };
+  const regLs = [];
+  const workers = [];
+  const mkWorker = (state) => { const w = fakeWorker(state); workers.push(w); return w; };
   const reg = {
-    installing: alreadyInstalling ? {} : null,
+    installing: null,
     waiting: null,
+    active: null,
+    addEventListener: (t, f) => { if (t === 'updatefound') regLs.push(f); },
+    removeEventListener: (t, f) => { const i = regLs.indexOf(f); if (t === 'updatefound' && i >= 0) regLs.splice(i, 1); },
     update() {
       if (updateRejects) return Promise.reject(new Error('offline'));
       if (updateHangs) return new Promise(() => {});
-      if (found) reg.installing = {};
+      if (found) sw.find();
       return Promise.resolve();
     },
   };
   const sw = {
     controller: controller ? {} : null,
+    reg,
     register: () => (registerRejects ? Promise.reject(new Error('x')) : Promise.resolve(reg)),
-    addEventListener: (t, f) => { if (t === 'controllerchange') listeners.push(f); if (t === 'message') msgListeners.push(f); },
-    removeEventListener: (t, f) => { const i = msgListeners.indexOf(f); if (t === 'message' && i >= 0) msgListeners.splice(i, 1); },
+    addEventListener: (t, f) => { if (ls[t]) ls[t].push(f); },
+    removeEventListener: (t, f) => { const i = ls[t] ? ls[t].indexOf(f) : -1; if (i >= 0) ls[t].splice(i, 1); },
     startMessages() {},
-    emit: (data) => { for (const f of msgListeners.slice()) f({ data }); },
-    msgCount: () => msgListeners.length,
+    emit: (data) => { for (const f of ls.message.slice()) f({ data }); },
+    msgCount: () => ls.message.length,
+    count: () => ls.controllerchange.length + ls.message.length + regLs.length + workers.reduce((n, w) => n + w.count(), 0),
+    mkWorker,
+    /** 新しい版が見つかる（reg.installing に入り、updatefound を知らせる） */
+    find() {
+      const w = mkWorker('installing');
+      reg.installing = w;
+      for (const f of regLs.slice()) f();
+      schedule(w);
+      return w;
+    },
+    /** 入れ替わる（controllerchange を知らせる） */
+    swap() { for (const f of ls.controllerchange.slice()) f(); },
   };
-  if ((found || alreadyInstalling) && swapAfter != null) {
-    setTimeout(() => { reg.installing = null; for (const f of listeners.splice(0)) f(); }, swapAfter);
+  /** 受け取りが失敗する。本物では、状態が redundant に変わった知らせが先で、reg.installing が空になるのはそのあと */
+  const fail = (w) => {
+    if (keepRef) { w.set('redundant'); later(1, () => { if (reg.installing === w) reg.installing = null; }); } else { reg.installing = null; w.set('redundant'); }
+  };
+  function schedule(w) {
+    if (failAfter != null) later(failAfter, () => fail(w));
+    else if (swapAfter != null) later(swapAfter, () => { reg.installing = null; reg.active = w; w.set('activating'); sw.swap(); w.set('activated'); });
   }
+  sw.fail = fail;
+  if (alreadyInstalling) { const w = mkWorker('installing'); reg.installing = w; schedule(w); }
   return sw;
 }
 
@@ -73,6 +119,127 @@ test('確かめが返ってこないときは上限で打ち切る', async () =>
 test('受け取りが終わらないときは上限で打ち切る（いまの版で始める）', async () => {
   const r = await waitForSwUpdate(fakeSw({ found: true, swapAfter: null }), { installMs: 30 });
   assert.equal(r.state, 'timeout');
+});
+
+// ---- 受け取りが途中で失敗したら、上限（45秒）を待たずに、いまの版で始める（2026-11-10） ----
+// どのテストも、上限は長いまま（installMs 3000。本番は 45000）にして、「上限より前に返ること」を時間で確かめる。
+
+test('受け取りが失敗したら、上限を待たずに failed を返す（update で見つかり、そのあと失敗）', async () => {
+  for (const keepRef of [false, true]) {
+    let notes = 0;
+    const sw = fakeSw({ found: true, failAfter: 20, keepRef });
+    const t0 = Date.now();
+    const r = await waitForSwUpdate(sw, { onUpdating: () => notes++, installMs: 3000 });
+    assert.equal(r.state, 'failed', 'keepRef=' + keepRef);
+    assert.ok(Date.now() - t0 < 1000, '上限を待っている: ' + (Date.now() - t0) + 'ms');
+    assert.equal(notes, 1, '失敗する前に「受け取り中」は出ている');
+    assert.equal(sw.count(), 0, '聞くのを全部やめる');
+  }
+});
+
+test('開いた時点でもう受け取りが始まっていて、それが失敗したときも failed', async () => {
+  for (const keepRef of [false, true]) {
+    const sw = fakeSw({ alreadyInstalling: true, failAfter: 20, keepRef });
+    const t0 = Date.now();
+    const r = await waitForSwUpdate(sw, { installMs: 3000 });
+    assert.equal(r.state, 'failed', 'keepRef=' + keepRef);
+    assert.ok(Date.now() - t0 < 1000);
+    assert.equal(sw.count(), 0);
+  }
+});
+
+test('開いた時点で、失敗したもの（redundant）が reg.installing に残っているだけなら、待たずに failed（「受け取り中」は出さない）', async () => {
+  const sw = fakeSw({});
+  sw.reg.installing = sw.mkWorker('redundant');
+  let notes = 0;
+  const r = await waitForSwUpdate(sw, { onUpdating: () => notes++, installMs: 3000 });
+  assert.equal(r.state, 'failed');
+  assert.equal(notes, 0);
+  assert.equal(sw.count(), 0);
+});
+
+test('確かめている途中で見つかり（updatefound）、確かめが返る前に失敗したとき: failed（「受け取り中」は出さない）', async () => {
+  for (const keepRef of [false, true]) {
+    const sw = fakeSw({ failAfter: 5, keepRef });
+    sw.reg.update = () => new Promise((resolve) => { later(10, () => sw.find()); later(40, resolve); });
+    let notes = 0;
+    const t0 = Date.now();
+    const r = await waitForSwUpdate(sw, { onUpdating: () => notes++, installMs: 3000 });
+    assert.equal(r.state, 'failed', 'keepRef=' + keepRef);
+    assert.ok(Date.now() - t0 < 1000);
+    assert.equal(notes, 0);
+    assert.equal(sw.count(), 0);
+  }
+});
+
+test('見つかったその場で失敗したとき（確かめが返る前に、もう redundant）: failed', async () => {
+  const sw = fakeSw({});
+  sw.reg.update = () => { const w = sw.find(); sw.fail(w); return Promise.resolve(); };
+  const r = await waitForSwUpdate(sw, { installMs: 3000 });
+  assert.equal(r.state, 'failed');
+  assert.equal(sw.count(), 0);
+});
+
+test('確かめが上限で打ち切られたあとに見つかった版が失敗したときも、上限を待たない', async () => {
+  // 確かめ（update）は返ってこないが、その間に新しい版が見つかって受け取りが始まり、失敗する
+  const sw = fakeSw({ failAfter: 60 });
+  sw.reg.update = () => { later(10, () => sw.find()); return new Promise(() => {}); };
+  const t0 = Date.now();
+  const r = await waitForSwUpdate(sw, { checkMs: 30, installMs: 3000 });
+  assert.equal(r.state, 'failed');
+  assert.ok(Date.now() - t0 < 1000);
+  assert.equal(sw.count(), 0);
+});
+
+test('古い待ちの版が、新しい版に置き換わって redundant になっただけなら、失敗にしない（入れ替わりまで待つ）', async () => {
+  const sw = fakeSw({});
+  const w1 = sw.mkWorker('installed');
+  const w2 = sw.mkWorker('installing');
+  sw.reg.waiting = w1;
+  sw.reg.installing = w2;
+  // w2 の受け取りが終わる → w2 が待ちになり、w1 は捨てられる → w2 が動き始める → 少しあとで入れ替わりの知らせ
+  later(10, () => { sw.reg.installing = null; sw.reg.waiting = w2; w2.set('installed'); w1.set('redundant'); });
+  later(30, () => { sw.reg.waiting = null; sw.reg.active = w2; w2.set('activating'); });
+  later(60, () => { sw.swap(); w2.set('activated'); });
+  const r = await waitForSwUpdate(sw, { installMs: 3000 });
+  assert.equal(r.state, 'updated');
+  assert.equal(sw.count(), 0);
+});
+
+test('どの出口でも、聞いていたものを全部やめる', async () => {
+  const cases = [
+    ['updated', () => fakeSw({ found: true }), {}],
+    ['updated', () => fakeSw({ alreadyInstalling: true }), {}],
+    ['none', () => fakeSw({ found: false }), {}],
+    ['error', () => fakeSw({ updateRejects: true }), {}],
+    ['timeout', () => fakeSw({ updateHangs: true }), { checkMs: 20 }],
+    ['timeout', () => fakeSw({ found: true, swapAfter: null }), { installMs: 20 }],
+    ['failed', () => fakeSw({ found: true, failAfter: 10 }), { installMs: 3000 }],
+  ];
+  for (const [want, make, opts] of cases) {
+    const sw = make(); // 使う直前に作る（偽物の中の時間は、作ったときから進む）
+    const r = await waitForSwUpdate(sw, opts);
+    assert.equal(r.state, want);
+    assert.equal(sw.count(), 0, want + ' で抜けたあとに聞いているものが残っている');
+  }
+});
+
+test('抜けたあとに、時間の上限（タイマー）が残らない（残ると、このテストのファイルが45秒終わらない）', async () => {
+  const live = new Set();
+  const st = globalThis.setTimeout;
+  const ct = globalThis.clearTimeout;
+  globalThis.setTimeout = (f, ms, ...a) => { const id = st(f, ms, ...a); live.add(id); return id; };
+  globalThis.clearTimeout = (id) => { live.delete(id); return ct(id); };
+  try {
+    for (const sw of [fakeSw({ found: true }), fakeSw({ found: false }), fakeSw({ found: true, failAfter: 10 }), fakeSw({ updateRejects: true })]) {
+      await waitForSwUpdate(sw); // 上限は本番のまま（確かめ 5秒・受け取り 45秒）
+      assert.equal(live.size, 0, '止めていないタイマーが ' + live.size + ' 個ある');
+    }
+  } finally {
+    globalThis.setTimeout = st;
+    globalThis.clearTimeout = ct;
+    for (const id of live) ct(id);
+  }
 });
 
 test('上限の長さと文言', () => {

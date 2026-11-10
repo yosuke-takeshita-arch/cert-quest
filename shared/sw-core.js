@@ -6,10 +6,21 @@
 //  - アプリ本体（HTML/JS/CSS/config/アイコン）: ネット優先。4秒で返らなければキャッシュ。→ 更新が1回で反映され、新旧が混ざらない
 //  - data/（問題・カード・図）: キャッシュ優先＋裏で更新。オフラインでも即開く。更新は次に開いたとき見える。図（data/figures/*.svg）は、問題・カード・基礎のことば（data/basics.json）の figures が指すものをインストール時に取る
 //  - audio/（効果音・BGM）: 効果音は小さいのでインストール時に取る。BGM は大きいので、最初に流したときに取ってキャッシュに入れ、以後はキャッシュ優先（オフラインでも鳴る）
+//    BGM だけは、版ごとのキャッシュではなく、版が上がっても残る別のキャッシュ（BGM_CACHE）に入れる（下の BGM_VERSION の説明）
 //  - 404 などの失敗応答はキャッシュしない（まだ無いデータを「無い」と覚えない）
 /* global self, caches, fetch, URL, Response */
 const CFG = self.CERT_QUEST;
 const CACHE = 'certquest-' + CFG.appId + '-v' + CFG.version;
+// BGM のキャッシュ（2026-11-10）。前は版ごとのキャッシュ（CACHE）に入れていたので、公開のたびに消えて、13曲・約20MB を取り直していた。
+//  - 5つのアプリで1つを共有する。BGM の URL（/shared/audio/bgm/…）はどのアプリから見ても同じで、キャッシュは同じサイトの中で共通なので、
+//    1つにすれば同じ曲を二重に持たず、あるアプリで取った曲がほかのアプリでもそのまま鳴る
+//  - 名前は 'certquest-' で始めない。activate は 'certquest-<アプリのID>-' で始まる古いキャッシュを消すので、どんなアプリのIDでも当たらない名前にする
+//  - BGM のファイルを、同じ名前のまま中身だけ差し替えたときは、BGM_VERSION を1つ上げる（上げないと、前に取った人には古い曲が鳴り続ける）。
+//    上げると、番号の小さい BGM のキャッシュは activate で消える。新しい名前のファイルを足すだけなら上げなくてよい
+const BGM_VERSION = 1;
+const BGM_PREFIX = 'certquest_bgm-v';
+const BGM_CACHE = BGM_PREFIX + BGM_VERSION;
+const BGM_PATH = /\/shared\/audio\/bgm\//;
 const FIGURE_ID = /^fig-[a-z0-9]+(?:-[a-z0-9]+)*$/; // shared/js/lib/figures.js の FIGURE_ID_RE と同じ
 
 // shared/ の中身（sw.js から見た相対パス）。ファイルを足したらここにも足す。
@@ -88,6 +99,8 @@ const SHARED = [
   '../shared/js/lib/appversion.js',
   '../shared/js/lib/updatenotice.js',
   '../shared/js/lib/swupdate.js',
+  '../shared/js/lib/backguard.js',
+  '../shared/js/lib/pauseclock.js',
   '../shared/js/lib/outline.js',
   '../shared/js/lib/logotrace.js',
   '../shared/js/lib/weakness.js',
@@ -289,12 +302,46 @@ self.addEventListener('message', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
+      // 消すのは、このアプリの古い版のキャッシュだけ（ほかのアプリのキャッシュと BGM のキャッシュは名前が当たらないので残る）
       const prefix = 'certquest-' + CFG.appId + '-';
-      for (const k of await caches.keys()) if (k.startsWith(prefix) && k !== CACHE) await caches.delete(k);
+      const keys = await caches.keys();
+      const old = keys.filter((k) => k.startsWith(prefix) && k !== CACHE);
+      // 切り替えのときだけ: 前の作りでは BGM が版ごとのキャッシュに入っている。消す前に BGM のキャッシュへ移す（取り直させない）。
+      // 番号が 1 の間だけ移す。番号を上げたあとに移すと、差し替える前の古い曲を持ちこんでしまう
+      if (BGM_VERSION === 1) await moveBgm(old);
+      for (const k of old) await caches.delete(k);
+      // 番号の小さい BGM のキャッシュを消す（大きい番号は消さない。まだ古い作りで動いているアプリが、新しいほうを消さないように）
+      for (const k of keys) if (isOlderBgmCache(k)) await caches.delete(k);
       await self.clients.claim();
     })()
   );
 });
+
+/** 古い版のキャッシュに入っている BGM を、BGM のキャッシュへ移す。もう入っている曲は移さない。失敗しても先へ進む（その曲は次に流したとき取り直すだけ） */
+async function moveBgm(oldNames) {
+  try {
+    let bgm = null;
+    for (const name of oldNames) {
+      const from = await caches.open(name);
+      for (const req of await from.keys()) {
+        if (!BGM_PATH.test(new URL(req.url).pathname)) continue;
+        bgm = bgm || (await caches.open(BGM_CACHE));
+        if (await bgm.match(req)) continue;
+        const res = await from.match(req);
+        if (res && res.status === 200) await bgm.put(req, res);
+      }
+    }
+  } catch (e) {
+    /* 移せなくても止めない */
+  }
+}
+
+/** 名前が BGM のキャッシュで、番号がいまより小さいか */
+function isOlderBgmCache(name) {
+  if (!name.startsWith(BGM_PREFIX)) return false;
+  const n = name.slice(BGM_PREFIX.length);
+  return /^[1-9]\d*$/.test(n) && Number(n) < BGM_VERSION;
+}
 
 async function networkFirst(request, timeoutMs) {
   const cache = await caches.open(CACHE);
@@ -328,13 +375,18 @@ async function cacheFirstRevalidate(request) {
   return res || new Response('', { status: 404 });
 }
 
-// 音のファイル: キャッシュ優先。無ければネットから取って（時間切れなし）キャッシュに入れる。失敗した応答は入れない
-async function cacheFirst(request) {
-  const cache = await caches.open(CACHE);
+// 音のファイル: キャッシュ優先。無ければネットから取って（時間切れなし）キャッシュに入れる。失敗した応答は入れない。
+// 効果音は版ごとのキャッシュ（CACHE）、BGM は版が上がっても残るキャッシュ（BGM_CACHE）。
+// 一部分だけの求め（Range）の扱いは前のまま: キャッシュにあれば丸ごと（200）を返す。無ければネットの応答（206）をそのまま返し、キャッシュには入れない
+// （アプリは BGM を丸ごと取ってから鳴らすので、Range は送らない。shared/js/audio.js）
+async function cacheFirst(request, cacheName = CACHE) {
+  const cache = await caches.open(cacheName);
   const hit = await cache.match(request);
   if (hit) return hit;
   try {
-    const res = await fetch(request);
+    // BGM は一度入れると版が上がっても残るので、ブラウザが少し前に覚えた古い応答ではなく、サーバーに確かめたものを入れる
+    const fresh = cacheName === BGM_CACHE && !(request.headers && request.headers.get('range'));
+    const res = await (fresh ? fetch(request, { cache: 'no-cache' }) : fetch(request));
     if (res && res.ok && res.status === 200) cache.put(request, res.clone());
     return res;
   } catch (e) {
@@ -348,6 +400,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
   if (DATA_PATH.test(url.pathname)) event.respondWith(cacheFirstRevalidate(req));
+  else if (BGM_PATH.test(url.pathname)) event.respondWith(cacheFirst(req, BGM_CACHE));
   else if (/\/shared\/audio\//.test(url.pathname)) event.respondWith(cacheFirst(req));
   else event.respondWith(networkFirst(req, 4000));
 });

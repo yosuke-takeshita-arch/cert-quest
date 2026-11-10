@@ -3,7 +3,9 @@
 import { h, clear, burst, toast, mascotLine, confirmDialog, confirmQuit } from '../ui.js';
 import { examMascot, CHARACTER_TEXT } from '../lib/characters.js';
 import { normalizePassGuide, passGuideLabel, passGuideStatus } from '../lib/forecast.js';
-import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion, examFlagStep, examMissRecord, examMissItem, byMiddle } from '../lib/quiz.js';
+import { shuffleChoices, orderExamUnseenFirst, examPlan, byMajor, byQtype, QTYPE_LABEL, readBlueprint, pickExamByBlueprint, secondsPerQuestion, examFlagStep, examMissRecord, examMissItem, byMiddle, examRunSnapshot, examRunRestore, examRunSummary } from '../lib/quiz.js';
+import { visibleNow } from '../lib/pauseclock.js';
+import { openExamRunStore } from '../lib/subjects.js';
 import { playSfx, playDrumRoll } from '../audio.js';
 import { recordAnswer, recordExam, recordExamSeen } from '../lib/progress.js';
 import { statusChip, openCardSheet } from './cards.js';
@@ -25,7 +27,10 @@ export function renderExam(app) {
   let timer = null;
   let revealTimers = []; // 結果発表の演出のタイマー（画面を離れる・もう一度のとき止める）
   let stopDrum = null; // 鳴っているドラムロールを止める関数
+  let stopSave = null; // 裏に回ったときに途中の試験を保存する見張りを外す関数
   const cleanup = () => {
+    if (stopSave) stopSave();
+    stopSave = null;
     if (timer) clearInterval(timer);
     timer = null;
     revealTimers.forEach(clearTimeout);
@@ -44,8 +49,38 @@ export function renderExam(app) {
   const preview = pickAll();
   const plan = examPlan(cfg, blueprint ? preview.items.length : app.data.questions.length);
   let running = null; // 解いている試験（start の S）。採点したら done
-  // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）
-  app.guardBack(() => !running || running.done || confirmQuit('ここまでの答えは採点されず、記録にも残りません。'));
+  // 解いている途中の試験の置き場（2026-11-10 の決定「続きから」）。学習の記録の鍵の後ろに付けた別の鍵（科目のあるアプリでは科目ごと）。
+  // 答える・見直しの印・別の問題へ移る・裏に回る、のたびに書く。採点したとき・「戻る」でやめたときに消す。
+  // 鍵の式は lib/subjects.js の1か所にある（「学習記録を消す」も同じ鍵を消すので、ここに式を書かない）
+  const runStore = openExamRunStore(app);
+  let lostNote = false; // 「続きからは始められません」を、次に入口を描くときに1回だけ出す
+  // 途中の試験を読む。続きから始められない保存（壊れている・問題が無くなった・選択肢の数が変わった）は、ここで消す
+  const loadRun = () => {
+    let got = { run: null, broken: false };
+    try {
+      got = runStore.load();
+    } catch (e) {
+      return null;
+    }
+    if (!got.run && !got.broken) return null;
+    const run = got.run ? examRunRestore(got.run, app.data.questions) : null;
+    if (!run) {
+      runStore.clear();
+      lostNote = true;
+    }
+    return run;
+  };
+  // スマホの「戻る」を押されたら、解いている途中なら確かめる（app.guardBack。2026-10-15 先生の決定 A）。
+  // 「やめる」を選んだら、途中の試験も消す（小窓の文「記録にも残りません」のとおり。2026-11-10）
+  app.guardBack(async () => {
+    if (!running || running.done) return true;
+    const leave = await confirmQuit('ここまでの答えは採点されず、記録にも残りません。');
+    if (leave && running && !running.done) {
+      running.quit = true; // このあと裏に回っても、保存し直さない
+      runStore.clear();
+    }
+    return leave;
+  });
 
   // 始める前の画面の「戻る」。この画面は下のメニューを隠すので、これが無いとブラウザの戻るしか出口が無かった（2026-10-15 先生の指摘）
   const backBtn = () => h('button', { class: 'btn big exam-back', type: 'button', onClick: () => app.go('#/home') }, '戻る');
@@ -93,7 +128,21 @@ export function renderExam(app) {
     if (blueprint && preview.filled) card.appendChild(h('p', { class: 'small muted exam-fill-note', text: '構造型の問題がまだ少ないため、一部を用語・関係など別の型の問題で補っています（' + preview.filled + '問）。' }));
     if (plan.reduced) card.appendChild(h('p', { class: 'note', text: '問題数が本番に足りないため、いまある ' + plan.count + '問の縮小版です（時間も ' + plan.minutes + '分に縮めています）。' }));
     card.appendChild(h('ul', { class: 'plain' }, h('li', { text: '途中では正解も解説も出ません。終わってからまとめて見られます。' }), h('li', { text: '時間になると自動で終了します。' }), h('li', { text: '答えていない問題は不正解になります。' })));
-    card.appendChild(h('button', { class: 'btn primary big', type: 'button', onClick: start }, '試験を始める'));
+    // 解いている途中の試験があれば「続きから」と「消して、新しく始める」を出す（2026-11-10 の決定）。無ければ今までどおり「試験を始める」
+    const resume = loadRun();
+    if (lostNote) card.appendChild(h('p', { class: 'note exam-run-lost', role: 'status', 'data-exam-run-lost': '1', text: '問題が新しくなったため、前回の続きからは始められません。' }));
+    lostNote = false;
+    if (resume) {
+      const sum = examRunSummary(resume);
+      card.appendChild(h('button', { class: 'btn primary big exam-resume', type: 'button', 'data-exam-resume': '1', onClick: () => start(resume) }, '続きから', h('span', { class: 'exam-resume-sub', text: '（' + sum.total + '問中 ' + sum.answered + '問 回答ずみ・残り 約' + sum.minutesLeft + '分）' }))); // 数は2行目に小さく出す（1行だと文の途中で折れる）
+      card.appendChild(h('button', { class: 'btn big exam-restart', type: 'button', 'data-exam-restart': '1', onClick: async () => {
+        if (!(await confirmDialog({ title: '消して、新しく始めますか？', message: '解いている途中の試験（' + sum.answered + '問 回答ずみ）は消えます。元には戻せません。', ok: '消して始める', cancel: 'やめる', danger: true }))) return;
+        runStore.clear();
+        start();
+      } }, '消して、新しく始める'));
+    } else {
+      card.appendChild(h('button', { class: 'btn primary big', type: 'button', 'data-exam-start': '1', onClick: () => start() }, '試験を始める'));
+    }
     root.appendChild(card);
     root.appendChild(backBtn());
     const hist = app.state.exams.slice().reverse();
@@ -117,10 +166,40 @@ export function renderExam(app) {
     }
   }
 
-  function start() {
-    const items = pickAll().items.slice(0, plan.count).map((q) => shuffleChoices(q, app.rng));
-    const S = { items, answers: items.map(() => null), cur: 0, deadline: Date.now() + plan.minutes * 60000, t0: Date.now(), grid: false, done: false, flags: items.map(() => false), flagMode: false }; // flags … 見直しの印（その回だけ。保存しない）。flagMode … 印の問題だけを回っている
+  // resumed … 入口で読んだ途中の試験（loadRun の戻り値）。無ければ新しく始める
+  function start(resumed) {
+    cleanup();
+    // 試験の形（問題数・分・縮小版か）。続きからのときは、始めたときの形のまま（そのあと問題が増えていても変えない）
+    const run = resumed ? { count: resumed.count, minutes: resumed.minutes, reduced: resumed.reduced } : { count: plan.count, minutes: plan.minutes, reduced: plan.reduced };
+    const items = resumed ? resumed.items : pickAll().items.slice(0, plan.count).map((q) => shuffleChoices(q, app.rng));
+    // 時計は「画面が見えている間だけ進む時計」（visibleNow。2026-11-10 の決定）。裏に回している間は残り時間が減らない。
+    // deadline … 時計がこの値になったら時間切れ。t0 … 始めたときの時計の値（続きからのときは、それまでに使った時間のぶん前にずらす）
+    const now0 = visibleNow();
+    const left0 = resumed ? resumed.leftMs : run.minutes * 60000;
+    const S = { items, answers: resumed ? resumed.answers.slice() : items.map(() => null), cur: resumed ? resumed.cur : 0, deadline: now0 + left0, t0: now0 + left0 - run.minutes * 60000, startedAt: resumed ? resumed.startedAt : Date.now(), grid: false, done: false, quit: false, flags: resumed ? resumed.flags.slice() : items.map(() => false), flagMode: false }; // flags … 見直しの印（その回だけ。途中の試験と一緒に取っておき、採点したら消える。「あとで見る」には入れない）。flagMode … 印の問題だけを回っている
     running = S;
+    // 途中の試験を取っておく。byUser … 画面を操作したとき（true）か、裏に回ったとき（false）か。保存できなくても試験は止めない
+    const saveRun = (byUser) => {
+      if (S.done) return;
+      if (byUser) S.quit = false;
+      else if (S.quit) return; // 「やめる」を選んだあと
+      try {
+        runStore.save(examRunSnapshot(S, { leftMs: S.deadline - visibleNow(), startedAt: S.startedAt, count: run.count, minutes: run.minutes, reduced: run.reduced }));
+      } catch (e) {
+        // 保存できなくても先へ進む
+      }
+    };
+    // 裏に回るとき・ページを閉じるときに、残りの時間を取っておく（このあとアプリを終わらせられても、続きから始められる）
+    const onHidden = () => {
+      if (document.visibilityState === 'hidden') saveRun(false);
+    };
+    const onPageHide = () => saveRun(false);
+    document.addEventListener('visibilitychange', onHidden);
+    window.addEventListener('pagehide', onPageHide);
+    stopSave = () => {
+      document.removeEventListener('visibilitychange', onHidden);
+      window.removeEventListener('pagehide', onPageHide);
+    };
 
     const GRADE_MASCOT = { art: 'sensei-think', text: CHARACTER_TEXT.confirmGrade }; // 採点の小窓はあい先生（要件定義書 §6「確かめの小窓」）
     async function finish(auto) {
@@ -134,6 +213,7 @@ export function renderExam(app) {
       if (S.done) return; // 小窓を出している間に時間切れで採点された
       S.done = true;
       cleanup();
+      runStore.clear(); // 採点したら、途中の試験（見直しの印も）は消す
       const results = S.items.map((sq, i) => {
         const chosen = S.answers[i];
         const correct = chosen !== null && chosen === sq.answer;
@@ -143,7 +223,7 @@ export function renderExam(app) {
       const ok = results.filter((r) => r.correct).length;
       const majors = byMajor(results);
       recordExamSeen(app.state, S.items.map((sq) => sq.q.id));
-      recordExam(app.state, { total: results.length, correct: ok, reduced: plan.reduced, minutes: Math.round((Date.now() - S.t0) / 60000), byMajor: majors.map((m) => ({ major: m.major, total: m.total, correct: m.correct })), miss: examMissRecord(results) });
+      recordExam(app.state, { total: results.length, correct: ok, reduced: run.reduced, minutes: Math.round((visibleNow() - S.t0) / 60000), byMajor: majors.map((m) => ({ major: m.major, total: m.total, correct: m.correct })), miss: examMissRecord(results) });
       app.commit();
       result(results, ok, majors, auto);
     }
@@ -152,15 +232,16 @@ export function renderExam(app) {
     function draw(stay) {
       const y = window.scrollY;
       clear(root);
+      saveRun(true); // 画面を描き直すのは、始めた・答えた・印を付けた・別の問題へ移った とき。そのたびに途中の試験を取っておく
       const sq = S.items[S.cur];
       const q = sq.q;
       const answered = S.answers.filter((a) => a !== null).length;
-      const clock = h('strong', { class: 'clock', text: mmss(S.deadline - Date.now()) });
+      const clock = h('strong', { class: 'clock', text: mmss(S.deadline - visibleNow()) });
       root.appendChild(h('div', { class: 'play-head' },
         h('div', { class: 'play-title' }, h('strong', { text: '模擬試験 ' + (S.cur + 1) + ' / ' + S.items.length }), h('span', { class: 'small muted', text: '回答 ' + answered + ' / ' + S.items.length })),
         h('div', { class: 'clock-box', role: 'timer', 'aria-label': '残り時間' }, '残り ', clock)));
       timer = timer || setInterval(() => {
-        const left = S.deadline - Date.now();
+        const left = S.deadline - visibleNow();
         const c = root.querySelector('.clock');
         if (c) c.textContent = mmss(left);
         if (left <= 0) finish(true);
@@ -240,7 +321,7 @@ export function renderExam(app) {
         h('h1', { class: 'dochi-announce', text: '結果発表！' }),
         auto ? h('p', { class: 'note', text: '時間切れで自動採点しました。' }) : null,
         scoreEl,
-        plan.reduced ? h('p', { class: 'small muted', text: '縮小版（' + plan.count + '問）の結果です。' }) : null,
+        run.reduced ? h('p', { class: 'small muted', text: '縮小版（' + run.count + '問）の結果です。' }) : null,
         afterSlot);
       root.appendChild(card);
       const later = (fn, ms) => revealTimers.push(setTimeout(fn, ms));

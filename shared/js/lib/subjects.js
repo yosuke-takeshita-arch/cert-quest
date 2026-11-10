@@ -10,6 +10,7 @@
 // 画面やほかの部品は、これまでどおり「平らな1つの記録（defaultState の形）」だけを見る。
 // 読むときに共通＋科目を合わせ、書くときに2つへ分ける（createSubjectStore の open）。
 import { defaultState, mergeState } from './progress.js';
+import { examRunKey, createExamRunStore } from './storage.js';
 
 /** 科目をまたいで共通にする記録の項目（goalAwarded は daily の「今日の目標を達成した日」なので daily と一緒に共通）。 */
 export const COMMON_KEYS = ['xp', 'streak', 'daily', 'settings', 'goalAwarded', 'studySeconds', 'studyDays']; // 総学習時間もアプリ単位の合計（§6-1）。日ごとの内訳も共通（§6-2）
@@ -32,6 +33,22 @@ export function commonKey(appId, sample = false) {
 /** 科目のあるアプリの、科目ごとの記録の保存キー。 */
 export function subjectKey(appId, subjectId, sample = false) {
   return 'certquest:' + (appId || 'app') + (sample ? ':sample' : '') + ':' + subjectId + ':v1';
+}
+
+/**
+ * いま開いているアプリの、途中の模擬試験の鍵（科目のあるアプリでは、いま開いている科目の分）。
+ * 鍵の式はここ1か所だけに書く（2026-11-10 の決定）。模擬試験の画面（views/exam.js）と「学習記録を消す」（app.js の resetAll）の両方がここを呼ぶ。
+ * 理由: 2か所に同じ式を書くと、片方だけ直したときに鍵がずれて、消したはずの途中の試験が残るため。
+ * app … { baseConfig, config, subject, sample }。アプリの id は、アプリ全体の config（baseConfig）から取る（科目を開くと config は科目の分を重ねたものに替わるため）。
+ */
+export function openExamRunKey(app) {
+  const appId = (app.baseConfig && app.baseConfig.id) || (app.config && app.config.id);
+  return examRunKey(app.subject ? subjectKey(appId || 'app', app.subject.id, app.sample) : singleKey(appId, app.sample));
+}
+
+/** いま開いているアプリ（科目のあるアプリでは、いまの科目）の、途中の模擬試験の置き場。backing はテスト用（省くと localStorage）。 */
+export function openExamRunStore(app, backing) {
+  return createExamRunStore(openExamRunKey(app), backing);
 }
 
 /** config.json に科目の一覧があるか。 */

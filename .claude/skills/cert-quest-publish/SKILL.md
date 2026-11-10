@@ -25,6 +25,7 @@ description: cert-quest（G検定・DXビジネス検定・生成AIパスポー�
    - shared/ を変えたら4つとも上げる（どのアプリを入れた人にも古い shared/ が出続けるため）
    - **人に見せる版の番号も上げる**（2026-10-22 先生決定。要件定義書 §3-2-b）: 各アプリの `config.json` の `"appVersion"`（3行目）。前の公開からのコミット（`git log <前の公開>..HEAD -- <アプリ> shared`）を見て、作り直し→1つ目／機能を足した→2つ目／直しだけ→3つ目を1つ上げ、右は0に戻す。アプリごとに別の番号。中身が変わっていないアプリは上げない（sw の版も上げないとき）。ストアに出す日に 1.0.0。コミットメッセージに「G検定 0.9.1」のように書く
 4. **新しいファイルを先取りに載せたか**: 新しい JS は `shared/sw-core.js` の `SHARED`、効果音は `SFX`、ボスの絵は各アプリの `sw.js` の `appFiles`（`./images/bosses/boss-N.webp`）。BGM は初めて流したときに取る（載せない）
+   - **BGM（`shared/audio/bgm/`）のファイルを、同じ名前のまま中身だけ差し替えたときは、`shared/sw-core.js` の `BGM_VERSION` を1つ上げる**（2026-11-10。BGM は版を上げても消えない別のキャッシュに入れている。上げないと、前に取った人には古い曲が鳴り続ける。`git diff --stat <前の公開>..HEAD -- shared/audio/bgm` で見る）。新しい名前のファイルを足しただけなら上げない。上げたら `shared/tests/swbase.test.js` の「BGM の番号を上げると」のテストの数字も直す
    - ai-passport は地図・ボス・章のバッジの絵がまだ無い（2026-10-13。タイトルは置いた）。置いたら `appFiles` に足し、地図は config.json の `mapImage` も足す（`shared/tests/appframe.test.js`・`maplayout.test.js` が、絵の有無と一覧・config の食い違いで落とす）
 5. **コミットして push**: メッセージは「公開のため service worker の版を NN に上げる（何が入るか）」。`git push origin main`
 6. **公開の完了を待つ**: `gh api repos/yosuke-takeshita-arch/cert-quest/pages/builds/latest --jq '.status+" "+.commit'` が `built <自分のコミット>` になるまで（10秒おきに。Monitor か until ループ）

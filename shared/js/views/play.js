@@ -7,6 +7,7 @@ import { statusChip, openCardSheet } from './cards.js';
 import { setBgmRush } from '../audio.js';
 import { XP } from '../lib/scoring.js';
 import { explanation, laterButton, stumbleBlock, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
+import { visibleNow } from '../lib/pauseclock.js';
 
 /**
  * spec: { mode:'stage'|'review'|'challenge', title, pick(app)->質問の配列, stageKey?, backHash }
@@ -143,10 +144,10 @@ export function renderPlay(app) {
     const after = h('div', { class: 'after' });
     root.appendChild(after);
     S.ui = { btns, after, card };
-    S.t0 = Date.now();
+    S.t0 = visibleNow(); // 画面が見えている間だけ進む時計（裏に回している間は止まる。2026-11-10）。残りの秒・時間切れ・「時間内」の経験値が同じ時計を読む
     if (timed) {
       S.timer = setInterval(() => {
-        const sec = (Date.now() - S.t0) / 1000;
+        const sec = (visibleNow() - S.t0) / 1000;
         const rest = Math.max(0, limit - sec);
         fill.style.width = (rest / limit) * 100 + '%';
         left.textContent = 'あと ' + Math.ceil(rest) + ' 秒';
@@ -162,7 +163,7 @@ export function renderPlay(app) {
     stop();
     const sq = S.items[S.idx];
     const correct = chosen !== null && chosen === sq.answer;
-    const seconds = (Date.now() - S.t0) / 1000;
+    const seconds = (visibleNow() - S.t0) / 1000;
     S.streak = correct ? S.streak + 1 : 0;
     const r = app.recordAnswer(sq.q, { correct, seconds, sessionStreak: S.streak, limit, review: spec.mode === 'review' });
     S.xp += r.xp;

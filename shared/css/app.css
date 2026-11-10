@@ -846,6 +846,10 @@ button.basic-term:hover { background: var(--accent-soft); }
 .exam-hist-row .row-line { margin: 0; }
 .exam-past-miss, .exam-hist-more { min-height: 48px; }
 .exam-hist-more { width: 100%; margin-top: 8px; }
+/* 模擬試験の入口の「続きから」（2026-11-10）: 何問答えたか・残りの分は、2行目に小さく出す（1行だと「約」と「100分」の間で折れる） */
+.btn.exam-resume { flex-direction: column; gap: 2px; }
+.exam-resume-sub { display: block; font-size: 0.875rem; font-weight: 400; }
+.exam-run-lost { margin: 0 0 12px; }
 
 /* 合格予想メーター（要件定義書 §3-6）。色は既存の変数だけ（暗い配色でもそのまま読める） */
 .card.forecast h2 { margin-top: 0; }

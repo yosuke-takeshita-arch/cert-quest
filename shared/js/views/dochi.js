@@ -6,6 +6,7 @@ import { CHOICE_LABELS } from './explain.js';
 import { dochiMascot } from '../lib/characters.js';
 import { openCardSheet } from './cards.js';
 import { setBgmRush } from '../audio.js';
+import { visibleNow } from '../lib/pauseclock.js';
 
 const OK_PAUSE_MS = 600; // 正解のとき、次へ進むまでの間
 // 結果発表の演出の長さ（要件定義書 §3-5）
@@ -138,9 +139,9 @@ export function renderDochi(app) {
     const after = h('div', { class: 'after' });
     root.appendChild(after);
     S.ui = { btns, after, combo, left };
-    S.t0 = Date.now();
+    S.t0 = visibleNow(); // 画面が見えている間だけ進む時計（裏に回している間は止まる。2026-11-10）
     S.timer = setInterval(() => {
-      const rest = Math.max(0, secs - (Date.now() - S.t0) / 1000);
+      const rest = Math.max(0, secs - (visibleNow() - S.t0) / 1000);
       fill.style.width = (rest / secs) * 100 + '%';
       left.textContent = 'あと ' + Math.ceil(rest) + ' 秒';
       if (rest <= 0) answer(null);

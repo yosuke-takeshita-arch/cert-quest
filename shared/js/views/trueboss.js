@@ -20,6 +20,7 @@ import { setBgmBoss, startBossTheme, stopBossTheme, playSynth, playBossSfx } fro
 import { statusChip, openCardSheet } from './cards.js';
 import { explanation, stemPlainBlock, stemFigureBlock, pastExamLine, choiceLabelsOf } from './explain.js';
 import { toggleExpand } from '../lib/expand.js';
+import { visibleNow } from '../lib/pauseclock.js';
 
 export const TRUE_BOSS_SYMBOL = '真';
 
@@ -763,7 +764,7 @@ export function renderTrueBoss(app) {
     const tm = ui.timer;
     const t0 = S.t0;
     const paint = () => {
-      const left = Math.max(0, lim - (Date.now() - t0) / 1000);
+      const left = Math.max(0, lim - (visibleNow() - t0) / 1000);
       tm.left.textContent = '残り ' + Math.ceil(left) + ' 秒';
       tm.fill.style.setProperty('--left', String(left / lim));
       tm.left.classList.toggle('low', left <= 5);
@@ -818,7 +819,7 @@ export function renderTrueBoss(app) {
     });
     card.appendChild(choices);
     ui.qarea.appendChild(card);
-    S.t0 = Date.now();
+    S.t0 = visibleNow(); // 画面が見えている間だけ進む時計（裏に回している間は止まる。2026-11-10）。時間制限の技の残り・時間切れ・「時間内」の経験値・会心が同じ時計を読む
     startTimer();
     if (S.log.length) window.scrollTo(0, 0);
   }
@@ -830,7 +831,7 @@ export function renderTrueBoss(app) {
     stopTick();
     const sq = S.item;
     const before = battle();
-    const seconds = (Date.now() - S.t0) / 1000;
+    const seconds = (visibleNow() - S.t0) / 1000;
     const late = !!timedOut || isTimedOut(before.skill, seconds, sq.q, limit);
     const correct = !late && chosen !== null && chosen === sq.answer;
     S.streak = correct ? S.streak + 1 : 0;

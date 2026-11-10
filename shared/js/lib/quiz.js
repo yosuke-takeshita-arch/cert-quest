@@ -272,3 +272,80 @@ export function examMissItem(q, rec) {
   const ci = Number.isInteger(rec.chosen) ? perm.indexOf(rec.chosen) : -1;
   return { sq, chosen: ci >= 0 ? ci : null };
 }
+
+// ---- 模擬試験の「続きから」（2026-11-10 の決定）----
+// 解いている途中の模擬試験を端末に取っておき、アプリを閉じても続きから始められるようにする。
+// 取っておくのは、問題の ID と並び・答え・見直しの印・いまの問題・残りの時間・始めた日時・試験の形だけ。問題の文や解説は入れない（ID だけ）。
+
+/** 途中の模擬試験の保存の形の版。形を変えたら上げる（古い版の保存からは、続きを始めない）。 */
+export const EXAM_RUN_VERSION = 1;
+
+/**
+ * 解いている途中の模擬試験（S = { items, answers, flags, cur }）から、保存する形を作る。
+ * info = { leftMs（残りの時間）, startedAt（始めた日時。Date.now() の値）, count, minutes, reduced（試験の形） }。
+ * answers はその回の並びでの番号（未回答は null）。
+ */
+export function examRunSnapshot(S, info) {
+  return {
+    v: EXAM_RUN_VERSION,
+    ids: S.items.map((sq) => sq.q.id),
+    perms: S.items.map((sq) => sq.perm.slice()),
+    answers: S.answers.map((a) => (Number.isInteger(a) ? a : null)),
+    flags: S.flags.map((f) => !!f),
+    cur: S.cur,
+    leftMs: Math.max(0, Math.round(info.leftMs)),
+    startedAt: info.startedAt,
+    count: info.count,
+    minutes: info.minutes,
+    reduced: !!info.reduced,
+  };
+}
+
+/**
+ * 保存から、続きを始められる形 { items, answers, flags, cur, leftMs, startedAt, count, minutes, reduced } に戻す。
+ * 続きから始められないときは null（保存が壊れている・保存の問題がいまのデータに無い・選択肢の数や並びがいまの問題に合わない）。
+ * 1問でも合わなければ全体を null にする（一部だけ入れ替えた試験にはしない）。
+ */
+export function examRunRestore(saved, questions) {
+  if (!saved || typeof saved !== 'object' || Array.isArray(saved) || saved.v !== EXAM_RUN_VERSION) return null;
+  const { ids, perms, answers, flags } = saved;
+  if (![ids, perms, answers, flags].every(Array.isArray)) return null;
+  const n = ids.length;
+  if (n < 1 || perms.length !== n || answers.length !== n || flags.length !== n || saved.count !== n) return null;
+  if (new Set(ids).size !== n) return null; // 同じ問題が2回入っている
+  if (!(Number.isFinite(saved.minutes) && saved.minutes > 0)) return null;
+  if (!(Number.isFinite(saved.leftMs) && saved.leftMs >= 0 && saved.leftMs <= saved.minutes * 60000)) return null;
+  if (!Number.isFinite(saved.startedAt)) return null;
+  if (!(Number.isInteger(saved.cur) && saved.cur >= 0 && saved.cur < n)) return null;
+  if (typeof saved.reduced !== 'boolean') return null;
+  const byId = new Map((Array.isArray(questions) ? questions : []).map((q) => [q.id, q]));
+  const items = [];
+  for (let i = 0; i < n; i++) {
+    const q = byId.get(ids[i]);
+    if (!q || !Array.isArray(q.choices)) return null; // いまのデータに無い問題
+    const m = q.choices.length;
+    const p = perms[i];
+    if (!Array.isArray(p) || p.length !== m || new Set(p).size !== m || !p.every((x) => Number.isInteger(x) && x >= 0 && x < m)) return null; // 選択肢の数が変わった
+    if ((q.format === 'scenario' || isPastQuestion(q)) && p.some((x, j) => x !== j)) return null; // 並べ替えない決まりの問題（shuffleChoices）なのに、並べ替えた保存
+    const a = answers[i];
+    if (a !== null && !(Number.isInteger(a) && a >= 0 && a < m)) return null;
+    if (typeof flags[i] !== 'boolean') return null;
+    items.push({
+      q,
+      perm: p.slice(),
+      choices: p.map((o) => q.choices[o]),
+      answer: p.indexOf(q.answer),
+      whyWrong: p.map((o) => (q.whyWrong && q.whyWrong[o] !== undefined ? q.whyWrong[o] : null)),
+    });
+  }
+  return { items, answers: answers.slice(), flags: flags.slice(), cur: saved.cur, leftMs: saved.leftMs, startedAt: saved.startedAt, count: saved.count, minutes: saved.minutes, reduced: saved.reduced };
+}
+
+/** 入口の「続きから」に出す数。{ total（問題の数）, answered（答えた数）, minutesLeft（残りの分。切り上げ、最小1） }。 */
+export function examRunSummary(run) {
+  return {
+    total: run.items.length,
+    answered: run.answers.filter((a) => a !== null).length,
+    minutesLeft: Math.max(1, Math.ceil(run.leftMs / 60000)),
+  };
+}

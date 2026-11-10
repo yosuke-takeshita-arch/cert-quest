@@ -1,7 +1,7 @@
 // 起動・ルーティング。資格固有のことは config.json と data/ からだけ読む。
 import { h, clear, icon, toast, celebrate, badgeBases, setTapHost, setImagesBase } from './ui.js';
 import { appTitle } from './lib/appname.js';
-import { normalizeSubjects, hasSubjects, createSubjectStore, singleKey, subjectConfig, subjectDataBase, subjectImagesBase } from './lib/subjects.js';
+import { normalizeSubjects, hasSubjects, createSubjectStore, singleKey, subjectConfig, subjectDataBase, subjectImagesBase, openExamRunStore } from './lib/subjects.js';
 import { renderSubjectPicker } from './views/subjects.js';
 import { installStudyClock } from './studyclock.js';
 import { loadData } from './lib/data.js';
@@ -47,6 +47,7 @@ import { needsIntro } from './lib/intro.js';
 import { normalizeTextSize } from './lib/textsize.js';
 import { createUpdateWatcher, UPDATE_NOTICE_TEXT, UPDATE_NOTICE_BUTTON, UPDATE_NOTICE_LATER } from './lib/updatenotice.js';
 import { waitForSwUpdate, dataFingerprint, monotonicFraction, SW_UPDATING_TEXT } from './lib/swupdate.js';
+import { createBackNav } from './lib/backguard.js';
 
 const NAV = [
   { id: 'home', label: 'ホーム', icon: 'home', hash: '#/home' },
@@ -231,9 +232,11 @@ export async function start() {
   const openConfig = curSub ? subjectConfig(baseConfig, curSub) : config; // 科目を開いているときは、科目の名前・試験時間などを重ねたもの
   setImagesBase(curSub ? subjectImagesBase(curSub, location.href) : null); // ボス・章のバッジの絵は科目ごとの images/<科目id>/
   if (curSub) document.title = openConfig.name;
-  // スマホの「戻る」の見張り（app.guardBack）。backGuard … 見張っている画面の { ask }。onGuardEntry … いま見張りの履歴の上にいるか
-  let backGuard = null;
-  let onGuardEntry = !!(history.state && history.state.cqGuard);
+  // スマホの「戻る」の見張り（app.guardBack）と、画面を変えるときの履歴の動かし方（app.go）。決まりとしくみは lib/backguard.js。
+  // backNav.backGuard … 見張っている画面の { ask }。backNav.drawing … 画面を描いている最中か（render が立てる）
+  // hash が無いまま開いたらホーム。backNav が最初の履歴に印を書く前に済ませる（あとで書き換えると印が消える）
+  if (!location.hash) history.replaceState(null, '', location.pathname + location.search + '#/home');
+  const backNav = createBackNav(window, { render: () => render() });
   const app = {
     config: openConfig,
     baseConfig, // アプリ全体の config（科目の一覧 subjects を含む）
@@ -249,12 +252,12 @@ export async function start() {
     rng: Math.random,
     session: null,
     starThresholds: (config.stage && config.stage.stars) || STAR_THRESHOLDS,
-    go(hash) {
-      if (location.hash === hash) render();
-      // 見張りの履歴（guardBack）の上にいるなら、それを置き換えて進む（戻ったときに同じ画面が2回出ないように）
-      else if (onGuardEntry) { onGuardEntry = false; location.replace(location.pathname + location.search + hash); }
-      else location.hash = hash;
-    },
+    /**
+     * 画面を変える。ふつうは履歴を1つ足す。次の2つのときだけ、履歴を足さずに片づける（2026-11-10。「戻る」でアプリを抜けられなかった不具合の直し）。
+     * ・見張っている画面（guardBack）を画面の中のボタンで出るとき … その画面を履歴から消したものとして進む（あとの「戻る」で、出た画面に戻らない）
+     * ・画面を描いている最中に呼ばれたとき（出す問題が無い #/play からホームへ送り直す）… いまの履歴を行き先に置き換える
+     */
+    go(hash) { backNav.go(hash); },
     /**
      * スマホの「戻る」（ブラウザの戻る）を見張る。問題を解いている画面が開いたときに呼ぶ。
      * 戻るが押されたら ask() を呼び、true なら一つ前の画面へ戻り、false なら今の画面に残る（ask の中で confirm を出す）。
@@ -262,13 +265,7 @@ export async function start() {
      * 2026-10-15 先生「ブラウザバックはアプリでは無効化したい」→ A（問題の途中だけ「やめますか？」と聞く）。
      * 戻るを止めきることはブラウザが許さない。同じ URL の履歴を1つ足して、戻るでそれが抜けたときに聞き直す
      */
-    guardBack(ask) {
-      backGuard = { ask };
-      if (!onGuardEntry) {
-        history.pushState({ cqGuard: true }, '', location.href);
-        onGuardEntry = true;
-      }
-    },
+    guardBack(ask) { backNav.guardBack(ask); },
     // お祝いの待ち行列。問題を解いている最中は出さず、結果画面かホームに戻ったとき flushCelebrations() で順に出す
     pending: [],
     lastLevel: levelFromXp(storage.load().xp).level,
@@ -372,6 +369,12 @@ export async function start() {
     },
     resetAll() {
       app.storage.clear();
+      // 途中の模擬試験も一緒に消す（2026-11-10 の決定）。科目のあるアプリは、いまの科目の分だけ。消せなくても、学習記録を消す流れは止めない
+      try {
+        openExamRunStore(app).clear();
+      } catch (e) {
+        // 消せなかったときは、そのまま進む（次に模擬試験を開くと「続きから」が出る）
+      }
       // 科目のあるアプリは、その科目の分だけ消える。XP・連続日数・設定（共通）は残す
       app.state = app.subject ? app.storage.load() : defaultState();
       app.applyScheme();
@@ -490,13 +493,14 @@ export async function start() {
       try { cleanup(); } catch (e) { /* 後始末の失敗で画面遷移を止めない */ }
       cleanup = null;
     }
-    backGuard = null; // 見張りは描いた画面ごと。見張りたい画面は描くときに app.guardBack を呼び直す
+    backNav.backGuard = null; // 見張りは描いた画面ごと。見張りたい画面は描くときに app.guardBack を呼び直す
     const parts = location.hash.replace(/^#\/?/, '').split('/');
     const name = parts[0] || 'home';
     const arg = parts.length > 1 ? decodeURIComponent(parts.slice(1).join('/')) : '';
     const route = ROUTES.find((r) => r[0] === name) || ROUTES[0];
     if (name !== 'play' && name !== 'exam') app.session = null;
     clear(main);
+    backNav.drawing = true; // 描いている最中の app.go（開けない画面からの送り直し）は、履歴を足さない
     try {
       const res = route[2](arg);
       const el = res && res.el ? res.el : res;
@@ -505,6 +509,8 @@ export async function start() {
     } catch (e) {
       console.error(e);
       main.appendChild(h('div', { class: 'view' }, h('div', { class: 'card empty' }, h('p', { text: 'この画面を表示できませんでした。' }), h('button', { class: 'btn', type: 'button', onClick: () => app.go('#/home') }, 'ホームへ'))));
+    } finally {
+      backNav.drawing = false;
     }
     const full = route[3] === true;
     shown = { name, full };
@@ -528,30 +534,7 @@ export async function start() {
     tabPressed = false;
     transitioner.go(sceneKind(shown, routeOfHash(), viaTab), () => render({ tab: viaTab }));
   });
-  // 見張りの履歴から戻った（URL は同じなので hashchange は来ない）。見張りを足し直して画面に残り、ask の答え（アプリの小窓）を待つ。
-  // やめるなら、足し直した見張りと元の履歴の2つ分戻る。見張りが無ければ（結果の画面など）すぐもう一つ戻る
-  let skipPop = 0; // こちらから戻したときの popstate を数えて無視する
-  let asking = null; // 答えを待っている見張り（小窓を2つ出さない）
-  window.addEventListener('popstate', () => {
-    const was = onGuardEntry;
-    onGuardEntry = !!(history.state && history.state.cqGuard);
-    if (skipPop) { skipPop--; return; }
-    if (!was || onGuardEntry) return;
-    const g = backGuard;
-    if (!g) { skipPop++; history.back(); return; }
-    history.pushState({ cqGuard: true }, '', location.href);
-    onGuardEntry = true;
-    if (asking === g) return;
-    asking = g;
-    Promise.resolve(g.ask()).then((leave) => {
-      if (asking === g) asking = null;
-      if (!leave || backGuard !== g || !onGuardEntry) return;
-      backGuard = null;
-      skipPop++;
-      history.go(-2);
-    });
-  });
-  if (!location.hash) history.replaceState(null, '', location.pathname + location.search + '#/home');
+  // 「戻る」（popstate）の見張りは lib/backguard.js の中（createBackNav が、上の hashchange より先に自分の分を付けている）
   render();
 
   // アプリ内の「インストール」ボタン用。Android の Chrome はメニューの「ホーム画面に追加」で、
