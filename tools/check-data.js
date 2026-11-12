@@ -43,6 +43,10 @@
 //   combo 以外の問題で、「白書は、…としている」のような出典の名乗り（SOURCE-CUE）や、文の終わりの「とされる・としている」など（HEDGE-CUE）が
 //   一部の選択肢だけにあり、みな正しい文（またはみな誤った文）なら WARN。SOURCE 行・HEDGE 行に件数を出す。見ていないものは check-voice-cue.cjs の冒頭
 //
+// 誤答の語のカードが concepts に無い（WARN のみ。2026-11-12 追加。tools/check-choice-concepts.cjs。tools/check-data-dx.js と共通の部品）
+//   誤答の文（組み合わせは区切った1つずつ）がカードの title の別名か取り違え欄の title と完全に一致するのに、そのカードが concepts に無いと WARN（CHOICE-CONCEPT）。
+//   CHOICE-CONCEPT 行に件数を出す。見ていないものは check-choice-concepts.cjs の冒頭
+//
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか
 'use strict';
 
@@ -50,6 +54,7 @@ const fs = require('fs');
 const path = require('path');
 const { checkBasics } = require('./check-basics.cjs'); // 基礎のことば（data/basics.json）の検査。G検定・DX・AIパスポートで共通
 const { makeVoiceCueChecker } = require('./check-voice-cue.cjs'); // 出典の名乗り・控えめな言い方の偏り。tools/check-data-dx.js と共通
+const { makeChoiceConceptChecker } = require('./check-choice-concepts.cjs'); // 誤答の語のカードが concepts に無い。tools/check-data-dx.js と共通
 
 const args = process.argv.slice(2);
 let syllabusPath = null;
@@ -153,6 +158,8 @@ for (const d of dirs) {
     } catch (_) { /* 読めないファイルは自分の検査で NG になる */ }
   }
 }
+
+const choiceConcept = makeChoiceConceptChecker(warn, [...dirs]); // 誤答の語のカードが concepts に無い（CHOICE-CONCEPT。tools/check-choice-concepts.cjs）
 
 // ---- 図（要件定義書 §7-2）----
 // figures の ID に対応する data/figures/<ID>.svg が実在すること。data/figures/ の SVG すべてが、禁止事項（script・外部参照など）を含まず、
@@ -475,6 +482,7 @@ for (const { file: f, kind, data, syl } of loaded) {
       checkAnswerLength(f, id, o);
       checkCueWords(f, id, o);
       voiceCue.check(f, id, o);
+      choiceConcept.check(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿|（[ア-ンあ-ん]）/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り|効果がない/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
       // 適切でないものを選ばせるのに札が出ない問題を止める（要件定義書 §7 の negative）
@@ -551,6 +559,7 @@ if (cueStats.n) console.log(`CUE 全体: 語の偏りがある ${cueStats.flagge
 if (segStats.n) console.log(`SEG 全体: 部分ごとの多数派が正解になる ${segStats.flagged}/${segStats.n}`);
 // 出典の名乗り・控えめな言い方で答えが絞れる（全体）
 voiceCue.summary().forEach((l) => console.log(l));
+choiceConcept.summary().forEach((l) => console.log(l));
 warns.forEach((w) => console.log(w));
 errors.forEach((e) => console.log(e));
 console.log(errors.length ? `結果: NG ${errors.length}件` : '結果: OK');

@@ -104,7 +104,7 @@
       "ウォーターフォールは、工程を順に進める開発の進め方。"
     ],
     "memoryTip": "「疎＝まばら」。つながりがゆるいから、外す・付け替えるが楽。",
-    "concepts": ["DC-02-008", "DC-02-007"],
+    "concepts": ["DC-02-008", "DC-02-007", "DC-02-009"],
     "figures": ["fig-dx-microservices"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 ITシステム開発手法・技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
@@ -283,7 +283,7 @@
       "仮想マシン（VM）は、ハードウェアを仮想化する技術で、1台ずつが自分の仮想のハードウェアと丸ごとのOS（ゲストOS）を持ち、その上でアプリを動かす（NIST SP 800-190 の説明）。OSの中核（カーネル）はほかのコンテナと共有し、アプリとその動作に必要なものを箱にまとめるコンテナとは、仮想化する水準が違う。"
     ],
     "memoryTip": "貨物のコンテナと同じ。中身（アプリ）と梱包（必要なもの）を規格の箱にまとめれば、どの船（環境）にも積める。",
-    "concepts": ["DC-11-102"],
+    "concepts": ["DC-11-102", "DC-02-009"],
     "figures": ["fig-dx-container-vm"],
     "sources": [
       { "title": "NIST SP 800-190「Application Container Security Guide」", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-190.pdf" }

@@ -150,7 +150,7 @@
       "デジタルツインは、現実の物や環境をデジタル空間に再現すること。"
     ],
     "memoryTip": "ディープフェイク＝ディープラーニング＋フェイク。「本人が言っていない」を作れてしまう。",
-    "concepts": ["DC-05-031", "DC-05-032"],
+    "concepts": ["DC-05-031", "DC-05-032", "DC-12-104", "DC-07-104", "DC-07-106", "DC-03-023"],
     "sources": [
       { "title": "総務省「令和6年版 情報通信白書」偽・誤情報の流通・拡散等の課題及び対策", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" }
     ],
@@ -173,7 +173,7 @@
       "RPAは定型的なパソコン操作をソフトウェアのロボットで自動化するもの。"
     ],
     "memoryTip": "MCP＝AIアプリと外部のツール・データをつなぐ「つなぎ方の共通規格」。RAGは「検索して参照してから答える」回答の作り方で、規格ではない。",
-    "concepts": ["DC-02-020", "DC-02-019"],
+    "concepts": ["DC-02-020", "DC-02-019", "DC-02-022", "DC-02-014"],
     "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "Model Context Protocol 公式ドキュメント「What is the Model Context Protocol (MCP)?」", "url": "https://modelcontextprotocol.io/docs/getting-started/intro" }
@@ -226,7 +226,7 @@
       "スマートスピーカーは、声で話しかけて使うスピーカー型の端末。"
     ],
     "memoryTip": "答えるだけ＝生成AI、調べて答える＝RAG、自分で段取りして動く＝AIエージェント。",
-    "concepts": ["DC-02-018", "DC-02-019", "DC-02-014"],
+    "concepts": ["DC-02-018", "DC-02-019", "DC-02-014", "DC-02-013"],
     "figures": ["fig-dx-agent-mcp-a2a"],
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」AIエージェント", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }

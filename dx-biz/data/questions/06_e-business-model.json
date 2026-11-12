@@ -75,7 +75,7 @@
       null
     ],
     "memoryTip": "経験価値＝「何を買ったか」より「どう過ごしたか」。",
-    "concepts": ["DC-04-001"],
+    "concepts": ["DC-04-001", "DC-04-006", "DC-04-015"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
     ],
@@ -184,7 +184,7 @@
       "インダストリー4.0は、ドイツ発の製造業の変革構想。"
     ],
     "memoryTip": "○○テックの○○が業界名。Fin（金融）・Food（食）・Travel（旅行）。",
-    "concepts": ["DC-05-025", "DC-05-026", "DC-05-027"],
+    "concepts": ["DC-05-025", "DC-05-026", "DC-05-027", "DC-02-031"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」FinTech", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc112210.html" },
       { "title": "日本銀行「FinTech（フィンテック）とは何ですか？」", "url": "https://www.boj.or.jp/about/education/oshiete/kess/i25.htm" }
@@ -239,7 +239,7 @@
       "パーソナライゼーションは、利用者ごとのデータに合わせて、表示する情報やおすすめを個別に変えること。データを使う点は似ているが、画面やおすすめを一人ひとりに合わせる手法で、製造業が販売した製品からデータを集めてサービスを提供する取組を指す言葉ではないので、答えにならない。"
     ],
     "memoryTip": "ものづくり → ことづくり。売った製品のデータが、次のサービスの材料になる。",
-    "concepts": ["DC-06-019", "DC-06-022"],
+    "concepts": ["DC-06-019", "DC-06-022", "DC-06-018", "DC-06-020", "DC-06-021"],
     "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省「2020年版ものづくり白書」第1部第1章第2節 不確実性の高まる世界の現状と競争力強化", "url": "https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/101021_2.html" }
@@ -356,7 +356,7 @@
       "ウィンドウイングは、映画などを流通経路ごとに時期をずらして提供する戦略。"
     ],
     "memoryTip": "サブスク＝「所有」ではなく「利用」に月額で払う。レンタルとリースの良いところ取り。",
-    "concepts": ["DC-08-001", "DC-08-004", "DC-06-019"],
+    "concepts": ["DC-08-001", "DC-08-004", "DC-06-019", "DC-08-002"],
     "figures": ["fig-dx-subscription-vs-rental", "fig-dx-revenue-models"],
     "sources": [
       { "title": "経済産業省「2019年版ものづくり白書」第1部第2章第3節", "url": "https://www.meti.go.jp/report/whitepaper/mono/2019/honbun_pdf/pdf/honbun_01_02_03.pdf" }
@@ -409,7 +409,7 @@
       "フィンテックは、金融と情報技術を結びつけたサービス。"
     ],
     "memoryTip": "X-Tech＝前半が業界。フード（食）・トラベル（旅行）・フィン（金融）。",
-    "concepts": ["DC-05-026", "DC-05-020"],
+    "concepts": ["DC-05-026", "DC-05-020", "DC-05-027", "DC-05-025"],
     "sources": [
       { "title": "農林水産省「令和2年度 食料・農業・農村白書」トピックス7 フードテックの現状", "url": "https://www.maff.go.jp/j/wpaper/w_maff/r2/r2_h/trend/part1/chap0/c0_7_00.html" }
     ],

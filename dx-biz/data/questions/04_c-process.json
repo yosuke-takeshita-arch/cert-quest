@@ -16,7 +16,7 @@
       "チャットボットは、利用者が文字や音声で話しかけると、会話の形で自動で答えるプログラム。問い合わせへの応対を自動化するもので、表計算ソフトから基幹システムへの転記のような画面の操作を代わりに行うものではないので、答えにならない。"
     ],
     "memoryTip": "RPA＝人が決めた画面操作の手順を、ソフトのロボットがそのままなぞる（判断はしない）。手順そのものを目標から自分で組み立てるのはAIエージェント。",
-    "concepts": ["DC-02-014"],
+    "concepts": ["DC-02-014", "DC-03-016", "DC-02-013"],
     "sources": [
       { "title": "総務省 情報通信統計データベース「RPA（働き方改革：業務自動化による生産性向上）」", "url": "https://www.soumu.go.jp/menu_news/s-news/02tsushin02_04000043.html" }
     ],
@@ -44,7 +44,7 @@
       "垂直統合は、開発・生産・販売など複数の段階を1社の中にまとめて持つこと。製造を外に出すX社はその逆の向き。"
     ],
     "memoryTip": "ファブ（工場）＋レス（無し）＝工場を持たないメーカー。作るのは外、考えるのは中。",
-    "concepts": ["DC-07-001", "DC-07-004", "DC-06-001"],
+    "concepts": ["DC-07-001", "DC-07-004", "DC-06-001", "DC-07-007", "DC-07-016"],
     "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "経済産業省「2019年版ものづくり白書」第1部第2章第3節", "url": "https://www.meti.go.jp/report/whitepaper/mono/2019/honbun_pdf/pdf/honbun_01_02_03.pdf" }
@@ -68,7 +68,7 @@
       "デジタル産業宣言は、経済産業省のDXレポート2.2で策定された、企業が行動指針と価値観を示す宣言。"
     ],
     "memoryTip": "4.0＝4回目の産業革命。発祥はドイツの製造業。",
-    "concepts": ["DC-02-031", "DC-02-016"],
+    "concepts": ["DC-02-031", "DC-02-016", "DC-01-024"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」第4次産業革命を巡る世界的な動き", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/html/nc131100.html" },
       { "title": "内閣府「Society 5.0」", "url": "https://www8.cao.go.jp/cstp/society5_0/" },
@@ -98,7 +98,7 @@
       null
     ],
     "memoryTip": "RFID＝電波で「何が」通ったか、GPS＝衛星で「どこに」いるか。",
-    "concepts": ["DC-02-005", "DC-02-004"],
+    "concepts": ["DC-02-005", "DC-02-004", "DC-02-003", "DC-02-002", "DC-02-001"],
     "figures": ["fig-dx-rfid-gps", "fig-dx-edge-cloud-iot"],
     "sources": [
       { "title": "総務省 北陸総合通信局「RFIDについて」", "url": "https://www.soumu.go.jp/soutsu/hokuriku/denpa/about_rfid.html" },
@@ -161,7 +161,7 @@
       null
     ],
     "memoryTip": "SPA＝S（専門店）P（自社ブランド）A（アパレル）。売り場のデータが、そのまま次の企画に流れる。",
-    "concepts": ["DC-07-007", "DC-06-001", "DC-05-005"],
+    "concepts": ["DC-07-007", "DC-06-001", "DC-05-005", "DC-07-004", "DC-07-016", "DC-07-009"],
     "figures": ["fig-dx-zara-cycle"],
     "sources": [
       { "title": "日本繊維産業連盟「我が国繊維産業の現状」（産業構造審議会 繊維産業小委員会 資料7、令和3年11月22日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/textile_industry/pdf/001_07_00.pdf" }

@@ -21,7 +21,7 @@
       "RLHFは、人が答えの良し悪しを比べた評価をもとに、強化学習でモデルを調整する方法。学習で重みを変えるので、入力の工夫とは別物。"
     ],
     "memoryTip": "入力を変えるのがプロンプト、重みを変えるのが学習。",
-    "concepts": ["C-AP-05-001", "C-AP-02-045"],
+    "concepts": ["C-AP-05-001", "C-AP-02-045", "C-AP-01-036", "C-AP-02-019", "C-AP-02-022"],
     "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
@@ -79,7 +79,7 @@
       null
     ],
     "memoryTip": "一発で決めず、見て、足して、また見る。",
-    "concepts": ["C-AP-05-002", "C-AP-05-001"],
+    "concepts": ["C-AP-05-002", "C-AP-05-001", "C-AP-05-006", "C-AP-05-013", "C-AP-01-036"],
     "figures": ["fig-ap-prompt-parts"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
@@ -196,7 +196,7 @@
       "Chain-of-Thoughtは、途中の考えを順に書いてから答えるよう促す方法。例の数ではなく、考えの過程を書かせるかどうかの話。"
     ],
     "memoryTip": "zero＝例0個。指示だけ。",
-    "concepts": ["C-AP-05-005", "C-AP-05-006"],
+    "concepts": ["C-AP-05-005", "C-AP-05-006", "C-AP-05-008"],
     "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
@@ -312,7 +312,7 @@
       "強化学習は、試した行動に報酬を与え、報酬が多くなるよう学ぶ方法。お手本を並べて続きを書かせるのとは別の学び方。"
     ],
     "memoryTip": "重みはそのまま、文脈で学ぶ。",
-    "concepts": ["C-AP-05-007", "C-AP-05-006"],
+    "concepts": ["C-AP-05-007", "C-AP-05-006", "C-AP-01-036"],
     "figures": ["fig-ap-shot-types"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
@@ -399,7 +399,7 @@
       "ロールプロンプトは役割を与える頼み方で、途中の考えを書かせる方法ではない。"
     ],
     "memoryTip": "途中を書かせると、間違いが減る。",
-    "concepts": ["C-AP-05-008", "C-AP-02-058"],
+    "concepts": ["C-AP-05-008", "C-AP-02-058", "C-AP-01-036"],
     "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" }
@@ -459,7 +459,7 @@
       null
     ],
     "memoryTip": "『あなたは〜』で立場を決める＝役割設定。",
-    "concepts": ["C-AP-05-009", "C-AP-03-038"],
+    "concepts": ["C-AP-05-009", "C-AP-03-038", "C-AP-05-010", "C-AP-05-006", "C-AP-03-062"],
     "sources": [
       { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" }
     ],
@@ -631,7 +631,7 @@
       null
     ],
     "memoryTip": "校正＝文字の誤り。添削＝表現と構成。整形＝見た目の形。",
-    "concepts": ["C-AP-05-014", "C-AP-05-015", "C-AP-05-016"],
+    "concepts": ["C-AP-05-014", "C-AP-05-015", "C-AP-05-016", "C-AP-05-017"],
     "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
@@ -660,7 +660,7 @@
       "（ア）（イ）（ウ）すべてが違う。文字の誤りを直すのが校正、構成や表現まで直すのが添削、見た目をそろえるのが整形。要点抽出は決めた項目を拾い出すこと、要約は文章を短くまとめること。"
     ],
     "memoryTip": "誤り→校正、より良く→添削、形→整形。",
-    "concepts": ["C-AP-05-014", "C-AP-05-015", "C-AP-05-016", "C-AP-05-019"],
+    "concepts": ["C-AP-05-014", "C-AP-05-015", "C-AP-05-016", "C-AP-05-019", "C-AP-05-017"],
     "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
@@ -718,7 +718,7 @@
       null
     ],
     "memoryTip": "全体を縮めるのが要約、項目を拾うのが要点抽出。",
-    "concepts": ["C-AP-05-017", "C-AP-05-019"],
+    "concepts": ["C-AP-05-017", "C-AP-05-019", "C-AP-05-014", "C-AP-05-022"],
     "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" },
@@ -748,7 +748,7 @@
       "（ア）が違い、（イ）と（ウ）も逆。TTSは文字を読み上げる声を作る技術で、向きが逆。決めた項目を拾うのが要点抽出、全体を短くするのが要約。"
     ],
     "memoryTip": "音→文字（文字起こし）→拾う（要点抽出）／縮める（要約）。",
-    "concepts": ["C-AP-05-020", "C-AP-05-019", "C-AP-05-017"],
+    "concepts": ["C-AP-05-020", "C-AP-05-019", "C-AP-05-017", "C-AP-05-016"],
     "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "Microsoft Support『Catch up on meetings with Microsoft Copilot in Teams』", "url": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1" },
@@ -778,7 +778,7 @@
       "文字起こしは、話し声を文字にすること。"
     ],
     "memoryTip": "中身は同じ、伝え方を読み手に合わせる。",
-    "concepts": ["C-AP-05-018"],
+    "concepts": ["C-AP-05-018", "C-AP-05-020"],
     "sources": [
       { "title": "Claude Docs『Prompting best practices』", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
       { "title": "OpenAI Help Center『Best practices for prompt engineering with the OpenAI API』", "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api" }
@@ -1100,7 +1100,7 @@
       null
     ],
     "memoryTip": "出す時は判断しない。選ぶのは後で。",
-    "concepts": ["C-AP-05-025"],
+    "concepts": ["C-AP-05-025", "C-AP-05-013", "C-AP-05-019"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
     ],
@@ -1272,7 +1272,7 @@
       "サイトマップは、サイトにどんなページがあるかを一覧にしたページ（や検索エンジン向けのファイル）。"
     ],
     "memoryTip": "広告からの着地点＝ランディングページ。",
-    "concepts": ["C-AP-05-029"],
+    "concepts": ["C-AP-05-029", "C-AP-05-036"],
     "sources": [
       { "title": "Google Ads Help『Landing page』", "url": "https://support.google.com/google-ads/answer/14086?hl=en" }
     ],
@@ -1300,7 +1300,7 @@
       "ファインチューニングは、追加の学習でAIモデルの重みを調整すること。"
     ],
     "memoryTip": "作る→試しの環境で確かめる→承認→本番にデプロイ。",
-    "concepts": ["C-AP-05-030", "C-AP-05-029"],
+    "concepts": ["C-AP-05-030", "C-AP-05-029", "C-AP-05-051", "C-AP-03-052", "C-AP-01-036"],
     "figures": ["fig-ap-deploy"],
     "sources": [
       { "title": "GitHub Docs『Deploying with GitHub Actions』", "url": "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/control-deployments" }
@@ -1416,7 +1416,7 @@
       "（ア）（イ）が違う。電子透かしは生成物にAIで作ったことの印を埋め込む技術で、主張の根拠を示すものではない。まとめ記事は誰かが元の情報を要約したもので、決め手の数字を確かめる先にならない。"
     ],
     "memoryTip": "Webを調べる＝ディープリサーチ、社内文書から答える＝RAG。",
-    "concepts": ["C-AP-05-046", "C-AP-05-032", "C-AP-05-045"],
+    "concepts": ["C-AP-05-046", "C-AP-05-032", "C-AP-05-045", "C-AP-04-049", "C-AP-01-036", "C-AP-02-067"],
     "sources": [
       { "title": "OpenAI『Introducing deep research』（2025年2月2日）", "url": "https://openai.com/index/introducing-deep-research/" },
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
@@ -1531,7 +1531,7 @@
       "著作物性（思想又は感情を創作的に表現したものか）は、守られる作品かどうかの話で、侵害の判断で両方が要るとされる2つの要件ではない。商用かどうかも侵害の要件ではなく、商用でなくても類似性と依拠性があれば侵害になりうる。"
     ],
     "memoryTip": "似ていて（類似）、元にした（依拠）なら侵害になりうる。",
-    "concepts": ["C-AP-05-037", "C-AP-02-028"],
+    "concepts": ["C-AP-05-037", "C-AP-02-028", "C-AP-04-088", "C-AP-04-083"],
     "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -1645,7 +1645,7 @@
       null
     ],
     "memoryTip": "Text→Speech が TTS、Speech→Text が文字起こし。",
-    "concepts": ["C-AP-05-035", "C-AP-05-020"],
+    "concepts": ["C-AP-05-035", "C-AP-05-020", "C-AP-02-038", "C-AP-02-072"],
     "figures": ["fig-ap-text-tasks"],
     "sources": [
       { "title": "OpenAI『Introducing next-generation audio models in the API』（2025年3月20日）", "url": "https://openai.com/index/introducing-our-next-generation-audio-models/" }
@@ -1787,7 +1787,7 @@
       null
     ],
     "memoryTip": "規約＝サービスとの約束、権利＝他人との関係。",
-    "concepts": ["C-AP-05-039", "C-AP-05-037"],
+    "concepts": ["C-AP-05-039", "C-AP-05-037", "C-AP-04-084", "C-AP-04-061"],
     "figures": ["fig-ap-license-vs-rights", "fig-ap-similarity-reliance"],
     "sources": [
       { "title": "OpenAI『Terms of Use』（2026年1月1日発効の版）", "url": "https://openai.com/policies/row-terms-of-use/" },
@@ -1817,7 +1817,7 @@
       "要約は、長い文章を短くまとめること。"
     ],
     "memoryTip": "翻訳は言葉、ローカライズは素材まるごと。",
-    "concepts": ["C-AP-05-040", "C-AP-05-022"],
+    "concepts": ["C-AP-05-040", "C-AP-05-022", "C-AP-05-020", "C-AP-05-017"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" },
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -1994,7 +1994,7 @@
       "構造化出力は、答えをJSONなどの決めた形にそろえる機能。形は整っても、中の数字を計算で確かめるわけではないので、計算の正しさは上がらない。"
     ],
     "memoryTip": "計算はコードに任せる。",
-    "concepts": ["C-AP-05-044", "C-AP-05-043"],
+    "concepts": ["C-AP-05-044", "C-AP-05-043", "C-AP-02-040"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" }
     ],
@@ -2166,7 +2166,7 @@
       "共有は、会話や作ったものを、ほかの人にも見られるようにすること。作業を決まった時刻に動かしたり、変化を見張らせたりする機能ではない。"
     ],
     "memoryTip": "決まった時刻の作業は、予約して回す。",
-    "concepts": ["C-AP-05-047", "C-AP-05-056"],
+    "concepts": ["C-AP-05-047", "C-AP-05-056", "C-AP-03-033"],
     "sources": [
       { "title": "OpenAI Help Center『Scheduled tasks in ChatGPT』", "url": "https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt" },
       { "title": "OpenAI Help Center『Memory in ChatGPT』", "url": "https://help.openai.com/en/articles/8590148-memory-faq" }
@@ -2251,7 +2251,7 @@
       "（ア）（イ）が違う。クラスタリングは種類を決めずに似たものどうしを自動でまとめる方法で、人が決めた種類に振り分けるのは分類。整形は見た目の形をそろえることで、件数を数えて表やグラフにするのは集計と可視化。"
     ],
     "memoryTip": "分ける→数える→数え直す。",
-    "concepts": ["C-AP-05-042", "C-AP-05-043", "C-AP-05-044", "C-AP-01-014"],
+    "concepts": ["C-AP-05-042", "C-AP-05-043", "C-AP-05-044", "C-AP-01-014", "C-AP-05-016", "C-AP-05-017"],
     "sources": [
       { "title": "デジタル庁『テキスト生成AI利活用におけるリスクへの対策ガイドブック（α版）』（2024年6月10日）", "url": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/c1959599-efad-472e-a640-97ae67617219/fe843dc6/20240610_resources_generalitve-ai-guidebook_01.pdf" },
       { "title": "OpenAI Help Center『Data analysis with ChatGPT』", "url": "https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt" }
@@ -2368,7 +2368,7 @@
       "勾配消失は、深いネットワークの学習で、誤差を逆向きに伝えるうちに勾配が小さくなりすぎて、学習が進まなくなる問題。"
     ],
     "memoryTip": "詰め込むほど、思い出しにくくなる。",
-    "concepts": ["C-AP-05-050", "C-AP-02-042", "C-AP-03-037"],
+    "concepts": ["C-AP-05-050", "C-AP-02-042", "C-AP-03-037", "C-AP-02-037", "C-AP-01-030", "C-AP-01-042"],
     "figures": ["fig-ap-context-rot", "fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
@@ -2397,7 +2397,7 @@
       null
     ],
     "memoryTip": "動きはそのまま、中身を整える。",
-    "concepts": ["C-AP-05-051"],
+    "concepts": ["C-AP-05-051", "C-AP-05-030"],
     "sources": [
       { "title": "Martin Fowler『Refactoring』（refactoring.com）", "url": "https://refactoring.com/" }
     ],
@@ -2743,7 +2743,7 @@
       "RAGは、関係する文書を検索して答えに添える仕組み。ツールの更新などの操作をつなぐ決まりの名前ではない。"
     ],
     "memoryTip": "AIとツールをつなぐ共通の差し込み口＝MCP。",
-    "concepts": ["C-AP-05-058", "C-AP-03-042", "C-AP-03-049"],
+    "concepts": ["C-AP-05-058", "C-AP-03-042", "C-AP-03-049", "C-AP-02-069", "C-AP-02-038"],
     "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Claude Code Docs『Overview』", "url": "https://code.claude.com/docs/en/overview" },
@@ -2773,7 +2773,7 @@
       "（ア）（イ）が違う。ファインチューニングは学習で重みを変える方法で、仕事を分ける作業ではない。ルーティングは入力を分類して別の処理に振り分ける流れで、前の答えを次の入力につなぐのはプロンプトの連鎖。"
     ],
     "memoryTip": "分ける→つなぐ→途中で確かめる。",
-    "concepts": ["C-AP-05-059", "C-AP-03-029"],
+    "concepts": ["C-AP-05-059", "C-AP-03-029", "C-AP-01-036"],
     "figures": ["fig-ap-prompt-chain"],
     "sources": [
       { "title": "Google AI for Developers『Prompt design strategies』（Gemini API）", "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies" },
@@ -3120,7 +3120,7 @@
       "アカウンタビリティは、AIが予期しない結果や不利益を起こした場合に備え、誰がどのように責任を持つかを決めておくこと。"
     ],
     "memoryTip": "危害を防ぐ＝安全性、偏りを防ぐ＝公平性。",
-    "concepts": ["C-AP-05-066", "C-AP-05-068"],
+    "concepts": ["C-AP-05-066", "C-AP-05-068", "C-AP-04-117", "C-AP-04-118"],
     "sources": [
       { "title": "東京都デジタルサービス局『東京都 AI導入・活用ガイドライン』（令和8年3月）", "url": "https://www.digitalservice.metro.tokyo.lg.jp/ict/pdf/ai_guideline.pdf" }
     ],

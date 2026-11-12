@@ -288,7 +288,7 @@
       "フィルターバブルは、見たい情報ばかりが表示されて、ほかの情報から隔離される状態。一覧に実在しない山が入る現象とは別。"
     ],
     "memoryTip": "ハルシネーション＝AIの『幻覚』。無いものをあるように言う。",
-    "concepts": ["C-AP-04-005", "C-AP-02-037"],
+    "concepts": ["C-AP-04-005", "C-AP-02-037", "C-AP-01-030", "C-AP-04-034", "C-AP-04-124"],
     "sources": [
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -746,7 +746,7 @@
       "ファインチューニングは、学習済みのモデルに追加のデータで学習させ、特定の用途に合わせること。出力の事実を確かめる作業ではない。"
     ],
     "memoryTip": "ファクト（事実）をチェック（確認）。",
-    "concepts": ["C-AP-04-014"],
+    "concepts": ["C-AP-04-014", "C-AP-05-025", "C-AP-01-036"],
     "sources": [
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -1007,7 +1007,7 @@
       null
     ],
     "memoryTip": "肖像権＝人格の権利。知的財産権＝頭で生んだ成果の権利。",
-    "concepts": ["C-AP-04-021", "C-AP-04-082"],
+    "concepts": ["C-AP-04-021", "C-AP-04-082", "C-AP-04-084", "C-AP-04-097", "C-AP-04-099"],
     "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" },
@@ -1038,7 +1038,7 @@
       "（ア）と（ウ）が逆で、（イ）も違う。顔は著作物ではなく、無断で使えば肖像権の問題。小説は著作物。意匠権は物の形などのデザインを守る権利で、ロゴのようなマークは商標権が守る。"
     ],
     "memoryTip": "顔＝肖像権、マーク＝商標権、作品＝著作権。",
-    "concepts": ["C-AP-04-021", "C-AP-04-097", "C-AP-04-019"],
+    "concepts": ["C-AP-04-021", "C-AP-04-097", "C-AP-04-019", "C-AP-04-098"],
     "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" },
@@ -1070,7 +1070,7 @@
       "意匠権は、物品などのデザインを登録によって守る権利。人の顔の利用には関係しない。"
     ],
     "memoryTip": "有名人の顔で物を売る→パブリシティ権。",
-    "concepts": ["C-AP-04-022"],
+    "concepts": ["C-AP-04-022", "C-AP-04-087", "C-AP-04-097", "C-AP-04-098"],
     "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
@@ -1099,7 +1099,7 @@
       null
     ],
     "memoryTip": "肖像権＝だれにでも。パブリシティ権＝売る力（顧客吸引力）。",
-    "concepts": ["C-AP-04-021", "C-AP-04-022", "C-AP-04-100"],
+    "concepts": ["C-AP-04-021", "C-AP-04-022", "C-AP-04-100", "C-AP-04-087", "C-AP-04-083"],
     "figures": ["fig-ap-portrait-publicity"],
     "sources": [
       { "title": "裁判所『最高裁判所第一小法廷 平成24年2月2日判決（平成21(受)2056 損害賠償請求事件）』", "url": "https://www.courts.go.jp/hanrei/81957/detail2/index.html" }
@@ -1646,7 +1646,7 @@
       null
     ],
     "memoryTip": "自分で打ち込む＝直接、読ませる資料に仕込む＝間接。",
-    "concepts": ["C-AP-04-034"],
+    "concepts": ["C-AP-04-034", "C-AP-02-037"],
     "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "総務省『AIのセキュリティ確保のための技術的対策に係るガイドライン』（令和8年3月）", "url": "https://www.soumu.go.jp/main_content/001064122.pdf" }
@@ -1762,7 +1762,7 @@
       "（ア）が違い、（イ）と（ウ）も逆。学習データに細工するのはデータポイズニング攻撃。自分で細工したプロンプトを打ち込むのが直接、AIが読む資料に仕込むのが間接。"
     ],
     "memoryTip": "入力に細工＝インジェクション（直接・間接）。学習データに細工＝ポイズニング。",
-    "concepts": ["C-AP-04-034"],
+    "concepts": ["C-AP-04-034", "C-AP-01-068"],
     "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "総務省『AIのセキュリティ確保のための技術的対策に係るガイドライン』（令和8年3月）", "url": "https://www.soumu.go.jp/main_content/001064122.pdf" }
@@ -2144,7 +2144,7 @@
       "（ア）（イ）が違う。アクセス権限はだれがどこまで触れてよいかの設定で、入力の記録ではない。アクセシビリティは障害の有無などにかかわらず使いやすいことで、後からたどれる性質（トレーサビリティ）とは別。"
     ],
     "memoryTip": "ログ（記録）→トレーサビリティ（たどれる）→アカウンタビリティ（説明と責任）。",
-    "concepts": ["C-AP-04-044", "C-AP-04-045", "C-AP-04-118"],
+    "concepts": ["C-AP-04-044", "C-AP-04-045", "C-AP-04-118", "C-AP-04-120", "C-AP-04-079"],
     "figures": ["fig-ap-log-traceability"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
@@ -2439,7 +2439,7 @@
       "（ア）（イ）が違う。出力の長さは誤ったときの害の大きさとは関係せず、物差しは影響度。別の生成AIの答えも又聞きで、同じ誤りを共有していることがある。数字と出典は一次情報で確かめる。"
     ],
     "memoryTip": "物差し＝影響度、照らす先＝一次情報、最後の砦＝専門家。",
-    "concepts": ["C-AP-04-048", "C-AP-04-058"],
+    "concepts": ["C-AP-04-048", "C-AP-04-058", "C-AP-04-003"],
     "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
@@ -2527,7 +2527,7 @@
       "（ア）（イ）が違う。誤情報は勘違いや誤解で広まった間違いで、意図して作ったウソは偽情報。ディープフェイクは、AIで作った本物そっくりの偽の画像・音声・動画のことで、勘違いで広まった間違った情報の呼び名ではない。"
     ],
     "memoryTip": "偽＝わざと、誤＝うっかり。",
-    "concepts": ["C-AP-04-050"],
+    "concepts": ["C-AP-04-050", "C-AP-01-056"],
     "sources": [
       { "title": "総務省『生成AIはじめの一歩～生成AIの入門的な使い方と注意点～』教材", "url": "https://www.soumu.go.jp/use_the_internet_wisely/special/generativeai/data/file01.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -2812,7 +2812,7 @@
       "アクセス権限は、だれがどの情報やツールに触れてよいかの設定。作った出力をどこまで見せるかの範囲とは別。"
     ],
     "memoryTip": "見せる範囲が広いほど、確認は厚く。",
-    "concepts": ["C-AP-04-056", "C-AP-04-048"],
+    "concepts": ["C-AP-04-056", "C-AP-04-048", "C-AP-04-066", "C-AP-04-079"],
     "figures": ["fig-ap-verification-levels"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -2870,7 +2870,7 @@
       "（ア）（イ）（ウ）すべてが違う。問題が無いものは直す必要が無いので採用。部分的な誤りは捨てずに直して使う（修正）。前提から誤っているものは使わない（破棄）。専門家確認は、自分では判断できない専門的な内容を回す先。"
     ],
     "memoryTip": "OK→採用、一部NG→修正、根本NG→破棄。",
-    "concepts": ["C-AP-04-057"],
+    "concepts": ["C-AP-04-057", "C-AP-04-058"],
     "figures": ["fig-ap-adopt-fix-discard"],
     "sources": [
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" }
@@ -2987,7 +2987,7 @@
       "（ア）が違い、（イ）と（ウ）も逆。名刺の氏名や連絡先は要配慮個人情報ではなく、ふつうの個人情報。病気の事情を広めるのはプライバシーの問題、図面を漏らさないのは秘密保持の問題。"
     ],
     "memoryTip": "人を識別→個人情報、私生活→プライバシー、預かった秘密→秘密保持。",
-    "concepts": ["C-AP-04-059"],
+    "concepts": ["C-AP-04-059", "C-AP-04-064"],
     "figures": ["fig-ap-privacy-secrecy"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" },
@@ -3509,7 +3509,7 @@
       "（ア）（イ）が違う。匿名加工情報は識別も復元もできないように加工した情報で、照合すれば分かる余地が残る（ア）ではない。個人識別符号は、指紋のデータやマイナンバーなど、それだけで個人を識別できる符号で、加工した情報の名前ではない。"
     ],
     "memoryTip": "仮名＝照らせば分かる、匿名＝もう戻れない。",
-    "concepts": ["C-AP-04-070", "C-AP-04-071"],
+    "concepts": ["C-AP-04-070", "C-AP-04-071", "C-AP-04-063"],
     "figures": ["fig-ap-personal-data-scope"],
     "sources": [
       { "title": "e-Gov法令検索 個人情報の保護に関する法律（平成十五年法律第五十七号）", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
@@ -3826,7 +3826,7 @@
       null
     ],
     "memoryTip": "NDA＝Non-Disclosure（開示しない）。",
-    "concepts": ["C-AP-04-076"],
+    "concepts": ["C-AP-04-076", "C-AP-04-020"],
     "sources": [
       { "title": "経済産業省『秘密情報の保護ハンドブック』（最終改訂：令和6年2月）", "url": "https://www.meti.go.jp/policy/economy/chizai/chiteki/pdf/handbook/full.pdf" }
     ],
@@ -4089,7 +4089,7 @@
       "（ア）が違い、（イ）と（ウ）も逆。小説や絵は著作権で守られ、商標権はだれの商品かを見分ける目印を守る。技術的な発明は特許権、見た目のデザインは意匠権。"
     ],
     "memoryTip": "作品＝著作権、発明＝特許権、デザイン＝意匠権、マーク＝商標権。",
-    "concepts": ["C-AP-04-082"],
+    "concepts": ["C-AP-04-082", "C-AP-04-084", "C-AP-04-099", "C-AP-04-098", "C-AP-04-097"],
     "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
@@ -4121,7 +4121,7 @@
       "商標権も、特許庁への出願と登録が要る。存続期間は登録の日から10年で、更新できる。"
     ],
     "memoryTip": "著作権は作った瞬間に。ほかの3つは登録して。",
-    "concepts": ["C-AP-04-082", "C-AP-04-084"],
+    "concepts": ["C-AP-04-082", "C-AP-04-084", "C-AP-04-099", "C-AP-04-098", "C-AP-04-097"],
     "figures": ["fig-ap-ip-map"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" },
@@ -4245,7 +4245,7 @@
       "著作権は登録しなくても生まれる（17条2項）。登録は、著作者が専有する権利の名前ではない。"
     ],
     "memoryTip": "21条＝複製権。コピーは作者の専権。",
-    "concepts": ["C-AP-04-085"],
+    "concepts": ["C-AP-04-085", "C-AP-04-094", "C-AP-04-096"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
     ],
@@ -4273,7 +4273,7 @@
       null
     ],
     "memoryTip": "作り変え（訳す・脚色・映画化）＝翻案権。",
-    "concepts": ["C-AP-04-086"],
+    "concepts": ["C-AP-04-086", "C-AP-04-087"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
     ],
@@ -4329,7 +4329,7 @@
       "（ア）（イ）（ウ）すべてが違う。公表するかを決めるのが公表権、名前を表示するかを決めるのが氏名表示権、改変されないのが同一性保持権。翻案権は作り変えを独占する財産としての権利で、著作者人格権には入らない。"
     ],
     "memoryTip": "人格権の3つ＝公表・氏名表示・同一性保持。",
-    "concepts": ["C-AP-04-087"],
+    "concepts": ["C-AP-04-087", "C-AP-04-086"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
     ],
@@ -4500,7 +4500,7 @@
       "（ア）（イ）が違う。依拠性は既存の著作物をもとにしたこと（作り方）で、本質的な特徴を感じ取れること（出来上がったものの比べ方）は類似性。同一性は、同一性保持権（意に反する改変を受けない権利）などで使う語で、侵害の要件の名前ではない。"
     ],
     "memoryTip": "似ている＝類似性、もとにした＝依拠性。",
-    "concepts": ["C-AP-04-088", "C-AP-04-089", "C-AP-04-090"],
+    "concepts": ["C-AP-04-088", "C-AP-04-089", "C-AP-04-090", "C-AP-04-087"],
     "figures": ["fig-ap-similarity-reliance"],
     "sources": [
       { "title": "文化審議会著作権分科会法制度小委員会『AIと著作権に関する考え方について』（令和6年3月15日）", "url": "https://www.bunka.go.jp/seisaku/bunkashingikai/chosakuken/pdf/94037901_01.pdf" }
@@ -4790,7 +4790,7 @@
       "（ア）（イ）（ウ）すべてが違う。自分の文章の中に取り入れるのが引用、そのまま載せるのが転載、書き換えるのが翻案。複製はそのままコピーすることで、書き換えではない。"
     ],
     "memoryTip": "取り入れる＝引用、そのまま載せる＝転載、作り変える＝翻案。",
-    "concepts": ["C-AP-04-094", "C-AP-04-095", "C-AP-04-086"],
+    "concepts": ["C-AP-04-094", "C-AP-04-095", "C-AP-04-086", "C-AP-04-085"],
     "sources": [
       { "title": "e-Gov法令検索 著作権法（昭和四十五年法律第四十八号）", "url": "https://laws.e-gov.go.jp/law/345AC0000000048" }
     ],
@@ -5170,7 +5170,7 @@
       "公正競争確保は、AIをめぐる公正な競争環境の維持に努めること。"
     ],
     "memoryTip": "透明性＝検証できるようにして、情報を示す。",
-    "concepts": ["C-AP-04-103", "C-AP-04-117"],
+    "concepts": ["C-AP-04-103", "C-AP-04-117", "C-AP-04-114", "C-AP-04-113", "C-AP-04-120"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -5658,7 +5658,7 @@
       null
     ],
     "memoryTip": "7つ（各主体）＋3つ（社会と連携：教育・公正競争・イノベーション）。",
-    "concepts": ["C-AP-04-111"],
+    "concepts": ["C-AP-04-111", "C-AP-04-120", "C-AP-04-119", "C-AP-04-121"],
     "figures": ["fig-ap-common-guidelines"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" },
@@ -5688,7 +5688,7 @@
       "（ア）（イ）（ウ）すべてが違う。持続可能性の確保は人間中心の中の小項目で、10項目の名前ではない。公正競争確保は社会と連携した取組、アカウンタビリティは各主体が取り組む事項。"
     ],
     "memoryTip": "各主体7つの終わり＝透明性・アカウンタビリティ。",
-    "concepts": ["C-AP-04-111"],
+    "concepts": ["C-AP-04-111", "C-AP-04-117", "C-AP-04-120", "C-AP-04-118"],
     "figures": ["fig-ap-common-guidelines"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -5773,7 +5773,7 @@
       null
     ],
     "memoryTip": "堅牢性＝状況が変わっても崩れない（robust）。",
-    "concepts": ["C-AP-04-113"],
+    "concepts": ["C-AP-04-113", "C-AP-04-117"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -5829,7 +5829,7 @@
       "感情バイアスは、人間の感情や都合に起因する心理的な偏り。データからの類推で残る偏りの名前ではない。"
     ],
     "memoryTip": "消しても、ほかから類推されて残る＝潜在的なバイアス。",
-    "concepts": ["C-AP-04-114"],
+    "concepts": ["C-AP-04-114", "C-AP-04-128"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -6026,7 +6026,7 @@
       "（ア）と（イ）が逆で、（ウ）も違う。情報開示が透明性、責任がアカウンタビリティ。アクセシビリティは障害の有無などにかかわらず使いやすいことで、追跡できることはトレーサビリティ。"
     ],
     "memoryTip": "示す＝透明性、負う＝アカウンタビリティ、たどる＝トレーサビリティ。",
-    "concepts": ["C-AP-04-117", "C-AP-04-118", "C-AP-04-045"],
+    "concepts": ["C-AP-04-117", "C-AP-04-118", "C-AP-04-045", "C-AP-04-120"],
     "figures": ["fig-ap-common-guidelines"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -6341,7 +6341,7 @@
       "（ア）（イ）が違う。エコーチェンバーは、自分と同じような考えばかりが周囲から返ってくる現象で、見たい情報に囲まれる状態（フィルターバブル）とは別。アテンションエコノミーは、注目を集めるほど利益になる経済の構造のことで、考えが響き合う現象ではない。"
     ],
     "memoryTip": "バブル＝見たい情報の泡、チェンバー＝同じ声が響く部屋。",
-    "concepts": ["C-AP-04-124", "C-AP-04-125"],
+    "concepts": ["C-AP-04-124", "C-AP-04-125", "C-AP-04-126"],
     "figures": ["fig-ap-filter-bubble"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』別添（付属資料）（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064286.pdf" },
@@ -6456,7 +6456,7 @@
       "公開情報は、だれでも見られる状態の情報。偽りや偏りを表す言葉ではない。"
     ],
     "memoryTip": "偽・誤・偏向の3つ。",
-    "concepts": ["C-AP-04-050", "C-AP-04-112"],
+    "concepts": ["C-AP-04-050", "C-AP-04-112", "C-AP-04-003"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -6800,7 +6800,7 @@
       null
     ],
     "memoryTip": "自社の決まり＝社内ガイドライン、相手の決まり＝利用規約。",
-    "concepts": ["C-AP-04-134"],
+    "concepts": ["C-AP-04-134", "C-AP-04-101", "C-AP-04-139"],
     "sources": [
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
     ],
@@ -6913,7 +6913,7 @@
       "APIは、アプリケーションやシステムを連携させ、通信やデータ交換を行うための仕組み（Application Programming Interface）。暗号化の仕組みそのものではない。"
     ],
     "memoryTip": "TLS＝通信の暗号化（https の s）。",
-    "concepts": ["C-AP-04-138"],
+    "concepts": ["C-AP-04-138", "C-AP-04-139", "C-AP-04-150"],
     "sources": [
       { "title": "総務省 国民のためのサイバーセキュリティサイト 用語集（英数字）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/en/" }
     ],
@@ -6969,7 +6969,7 @@
       "（イ）と（ウ）が逆。統制の評価の報告がSOC 2、品質の保証基準の合意がSLA。"
     ],
     "memoryTip": "27001＝ISMS規格、SOC 2＝監査の報告、SLA＝品質の約束。",
-    "concepts": ["C-AP-04-140", "C-AP-04-141", "C-AP-04-139"],
+    "concepts": ["C-AP-04-140", "C-AP-04-141", "C-AP-04-139", "C-AP-04-076"],
     "sources": [
       { "title": "ISO『ISO/IEC 27001:2022 Information security management systems — Requirements』", "url": "https://www.iso.org/standard/27001" },
       { "title": "AICPA & CIMA『SOC 2 - SOC for Service Organizations: Trust Services Criteria』", "url": "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2" },
@@ -7433,7 +7433,7 @@
       null
     ],
     "memoryTip": "RPM＝リクエスト/分、TPM＝トークン/分。",
-    "concepts": ["C-AP-04-148", "C-AP-04-149"],
+    "concepts": ["C-AP-04-148", "C-AP-04-149", "C-AP-04-139"],
     "sources": [
       { "title": "OpenAI API Docs『Rate limits』", "url": "https://platform.openai.com/docs/guides/rate-limits" },
       { "title": "OpenAI Help Center『Best Practices for API Key Safety』", "url": "https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety" },
@@ -8066,7 +8066,7 @@
       null
     ],
     "memoryTip": "リスクベース・関与・一気通貫・アジャイル。",
-    "concepts": ["C-AP-04-158"],
+    "concepts": ["C-AP-04-158", "C-AP-01-003", "C-AP-04-123", "C-AP-04-133"],
     "sources": [
       { "title": "人工知能戦略本部『人工知能関連技術の研究開発及び活用の適正性確保に関する指針』（令和7年12月19日）", "url": "https://www8.cao.go.jp/cstp/ai/ai_guideline/ai_gl_2025.pdf" },
       { "title": "総務省・経済産業省『AI事業者ガイドライン（第1.2版）』本編（令和8年3月31日）", "url": "https://www.soumu.go.jp/main_content/001064279.pdf" }
@@ -8300,7 +8300,7 @@
       "（ア）（イ）（ウ）すべてが違う。禁止されるのは許容できないリスク、厳しい義務は高リスク、開示の義務は透明性リスク。最小リスクは規律の対象外。"
     ],
     "memoryTip": "禁止＞厳しい義務＞開示＞なし。",
-    "concepts": ["C-AP-04-165", "C-AP-04-164"],
+    "concepts": ["C-AP-04-165", "C-AP-04-164", "C-AP-04-117"],
     "figures": ["fig-ap-eu-ai-act"],
     "sources": [
       { "title": "European Commission『AI Act』（Shaping Europe's digital future）", "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" }

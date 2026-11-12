@@ -275,7 +275,9 @@
     ],
     "memoryTip": "ストライド＝歩幅（stride）。大股で歩くと足跡（出力）が減る。",
     "concepts": [
-      "C-05-006"
+      "C-05-006",
+      "C-05-005",
+      "C-05-007"
     ],
     "figures": [
       "fig-g-conv-op"
@@ -359,7 +361,8 @@
     "concepts": [
       "C-05-010",
       "C-05-016",
-      "C-05-007"
+      "C-05-007",
+      "C-05-011"
     ],
     "figures": [
       "fig-g-dilated-conv"
@@ -405,7 +408,8 @@
     "concepts": [
       "C-05-010",
       "C-05-017",
-      "C-05-049"
+      "C-05-049",
+      "C-05-011"
     ],
     "figures": [
       "fig-g-dilated-conv"
@@ -670,7 +674,8 @@
     "concepts": [
       "C-05-014",
       "C-05-015",
-      "C-04-020"
+      "C-04-020",
+      "C-05-012"
     ],
     "figures": [
       "fig-g-layer-norm"
@@ -711,7 +716,9 @@
     "memoryTip": "インスタンス（1枚1枚）＝1枚ごとの画風を扱うスタイル変換。",
     "concepts": [
       "C-05-015",
-      "C-04-021"
+      "C-04-021",
+      "C-05-014",
+      "C-05-013"
     ],
     "figures": [
       "fig-g-instance-norm"
@@ -1091,7 +1098,9 @@
     "memoryTip": "BPTT＝Back Propagation Through Time＝時間をさかのぼる逆伝播。",
     "concepts": [
       "C-05-025",
-      "C-05-032"
+      "C-05-032",
+      "C-04-025",
+      "C-05-026"
     ],
     "figures": [
       "fig-g-bptt"
@@ -1319,7 +1328,8 @@
     "concepts": [
       "C-05-026",
       "C-04-040",
-      "C-03-020"
+      "C-03-020",
+      "C-05-025"
     ],
     "figures": [
       "fig-g-teacher-forcing"
@@ -1575,7 +1585,9 @@
     "concepts": [
       "C-05-038",
       "C-05-035",
-      "C-05-026"
+      "C-05-026",
+      "C-06-027",
+      "C-05-007"
     ],
     "figures": [
       "fig-g-positional-encoding"
@@ -2126,7 +2138,8 @@
     "concepts": [
       "C-05-045",
       "C-05-044",
-      "C-05-003"
+      "C-05-003",
+      "C-05-046"
     ],
     "figures": [
       "fig-g-cutout-erasing"
@@ -2218,7 +2231,8 @@
     "concepts": [
       "C-05-047",
       "C-05-046",
-      "C-05-048"
+      "C-05-048",
+      "C-05-045"
     ],
     "figures": [
       "fig-g-randaugment"
@@ -3410,7 +3424,8 @@
     "concepts": [
       "C-05-033",
       "C-05-034",
-      "C-05-035"
+      "C-05-035",
+      "C-05-038"
     ],
     "figures": [
       "fig-g-source-target-attention"
@@ -3495,7 +3510,8 @@
     "concepts": [
       "C-05-026",
       "C-05-051",
-      "C-05-021"
+      "C-05-021",
+      "C-04-024"
     ],
     "figures": [
       "fig-g-teacher-forcing",

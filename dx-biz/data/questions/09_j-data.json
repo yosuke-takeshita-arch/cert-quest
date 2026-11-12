@@ -76,7 +76,7 @@
       "オンプレミスは自社で設備を持って運用する形のことで、台数の増減の方式ではない。"
     ],
     "memoryTip": "アウト＝横に広げる（台数）、アップ＝縦に伸ばす（1台の強さ）。",
-    "concepts": ["DC-03-005"],
+    "concepts": ["DC-03-005", "DC-02-009"],
     "figures": ["fig-dx-scale"],
     "sources": [
       { "title": "Microsoft Learn「スケールアウトのための設計」（Azure Architecture Center）", "url": "https://learn.microsoft.com/ja-jp/azure/architecture/guide/design-principles/scale-out" },
@@ -131,7 +131,7 @@
       "ユニオン（UNION）は、2つの問い合わせの結果の行を、もう一方の結果の後ろに付け加える（縦に積み重ねる）操作。PostgreSQL の文書は「UNIONは、query2の結果をquery1の結果に付加します」としている。顧客IDで行どうしを突き合わせて列を横に増やすのは結合（JOIN）。"
     ],
     "memoryTip": "結合（JOIN）＝共通のキー（顧客IDなど）を手がかりに、別々の表を横につなぐ。グルーピングは、1つの表の行を決めた項目ごとに分けて集計する操作。",
-    "concepts": ["DC-03-008", "DC-03-020"],
+    "concepts": ["DC-03-008", "DC-03-020", "DC-03-014"],
     "figures": ["fig-dx-join"],
     "sources": [
       { "title": "PostgreSQL 16 文書「2.6. テーブル間を結合」", "url": "https://www.postgresql.jp/document/16/html/tutorial-join.html" },
@@ -157,7 +157,7 @@
       "RPAは定型的なパソコン操作を自動化するもので、可視化のツールではない。"
     ],
     "memoryTip": "BI＝見える化（今を知る）、BA＝分析・予測（先を読む）。",
-    "concepts": ["DC-03-016", "DC-03-015"],
+    "concepts": ["DC-03-016", "DC-03-015", "DC-02-014", "DC-03-013"],
     "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
@@ -181,7 +181,7 @@
       "データマイニングは、大量のデータから、アソシエーション（一緒に起きる事柄の関係）・分類・クラスター化などの手法でパターンや関係を掘り出す取り組みの名前。ここで問われているのは、手法ではなく、突発的な問いのためにその場でデータを取り出して1回限りで調べるという分析のやり方の呼び名。"
     ],
     "memoryTip": "アドホック分析＝その場の問いのために、必要なデータを取り出して1回限りで行う分析。毎月同じ形式で作るのは定型レポートで、対になる言葉。",
-    "concepts": ["DC-03-017"],
+    "concepts": ["DC-03-017", "DC-03-014", "DC-03-012"],
     "sources": [
       { "title": "Microsoft Learn「Power BI Desktop のモデルからレポートを分離する」", "url": "https://learn.microsoft.com/ja-jp/power-bi/guidance/report-separate-from-model" },
       { "title": "AWS「ビジネスインテリジェンス (BI) とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/business-intelligence/" },
@@ -266,7 +266,7 @@
       "データクレンジングは、データの誤りや表記ゆれを直す作業。"
     ],
     "memoryTip": "回帰＝「要因 → 結果」を式にする。単回帰は要因1つ、重回帰は2つ以上。",
-    "concepts": ["DC-03-022"],
+    "concepts": ["DC-03-022", "DC-03-019", "DC-03-020", "DC-03-014"],
     "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード（回帰分析）", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
@@ -290,7 +290,7 @@
       "クラスター分析は、似た特徴を持つデータどうし（たとえば買い方の似た顧客どうし）を自動でまとまりに分ける手法。AWS の説明でも、クラスター化は類似性に基づいてデータをグループ化することとされる。顧客や商品を似た者のグループに分けることはできるが、「一緒に買われる商品の組み合わせ」を見つける手法ではない。"
     ],
     "memoryTip": "バスケット＝買い物かご。かごの中に一緒に入る物を探す。",
-    "concepts": ["DC-03-019", "DC-03-012"],
+    "concepts": ["DC-03-019", "DC-03-012", "DC-03-022", "DC-03-017"],
     "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" },
@@ -491,7 +491,7 @@
       "BIツールは、データを可視化して意思決定に生かすツール。"
     ],
     "memoryTip": "RDB（表）を操る言葉がSQL。NoSQLは「SQLを使わない言語」ではなく、データベースの種類。",
-    "concepts": ["DC-03-007"],
+    "concepts": ["DC-03-007", "DC-03-013", "DC-03-016"],
     "figures": ["fig-dx-rdb-nosql"],
     "sources": [
       { "title": "AWS「SQL とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/sql/" },
@@ -548,7 +548,7 @@
       "ETLツールはデータを抽出・変換・格納する処理の道具で、データを置いておく場所ではない。"
     ],
     "memoryTip": "倉庫（ウェアハウス）＝全社、売り場（マート）＝部門ごと、湖（レイク）＝生のまま。",
-    "concepts": ["DC-03-011", "DC-03-010", "DC-03-009"],
+    "concepts": ["DC-03-011", "DC-03-010", "DC-03-009", "DC-03-013"],
     "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "AWS「データマートとは?」", "url": "https://aws.amazon.com/jp/what-is/data-mart/" }
@@ -603,7 +603,7 @@
       "アドホック分析は、その場で生じた問いに答えるために、必要なデータを取り出して1回限りで行う分析のやり方の呼び名（毎月決まった形で作る定型レポートと対になる）。アソシエーション・分類・クラスター化といった手法で、大量のデータからパターンを掘り出す取り組みの名前ではない。"
     ],
     "memoryTip": "データマイニング＝大量のデータから「一緒に起きる・分類できる・似ている」といったパターンを掘り出す分析。クレンジングは、その前に誤りや重複を直す準備作業。",
-    "concepts": ["DC-03-012", "DC-03-019", "DC-03-020"],
+    "concepts": ["DC-03-012", "DC-03-019", "DC-03-020", "DC-03-014", "DC-03-009", "DC-03-017"],
     "figures": ["fig-dx-data-mining", "fig-dx-analysis-methods"],
     "sources": [
       { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" },
@@ -664,7 +664,7 @@
       "回帰分析は、目的変数と説明変数の関係を数式モデルで表す手法。"
     ],
     "memoryTip": "グルーピング＝人が切り口を決めて「分ける・比べる」。クラスタリング＝データに切り口を見つけさせる。",
-    "concepts": ["DC-03-020", "DC-03-008"],
+    "concepts": ["DC-03-020", "DC-03-008", "DC-03-022"],
     "figures": ["fig-dx-analysis-methods"],
     "sources": [
       { "title": "PostgreSQL 16 文書「2.7. 集約関数」", "url": "https://www.postgresql.jp/document/16/html/tutorial-agg.html" },
@@ -749,7 +749,7 @@
       "データマートは部門ごとに切り出したデータの置き場。"
     ],
     "memoryTip": "クレンジング＝洗う。重複・欠損・表記ゆれを洗い落としてから分析する。",
-    "concepts": ["DC-03-014", "DC-03-012"],
+    "concepts": ["DC-03-014", "DC-03-012", "DC-03-011"],
     "figures": ["fig-dx-data-cleansing"],
     "sources": [
       { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" },
@@ -774,7 +774,7 @@
       "BIツールは整形されたデータを可視化して意思決定に生かすツールで、データの保存場所ではない。"
     ],
     "memoryTip": "データレイク＝元の形式のまま何でもためる置き場（画像・音声もそのまま、加工はあと）。部門・用途ごとに加工済みのデータを切り出したものがデータマート。",
-    "concepts": ["DC-03-009", "DC-03-004"],
+    "concepts": ["DC-03-009", "DC-03-004", "DC-03-011", "DC-03-007", "DC-03-016"],
     "figures": ["fig-dx-data-pipeline"],
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }

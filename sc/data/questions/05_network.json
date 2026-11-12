@@ -387,7 +387,8 @@
     "concepts": [
       "C-SC-05-019",
       "C-SC-05-076",
-      "C-SC-05-010"
+      "C-SC-05-010",
+      "C-SC-05-013"
     ],
     "pastExam": [
       {
@@ -671,7 +672,9 @@
     "memoryTip": "DHCP でもらったら ARP で『この番号の人いる？』と確かめてから使う。",
     "concepts": [
       "C-SC-05-049",
-      "C-SC-05-022"
+      "C-SC-05-022",
+      "C-SC-05-048",
+      "C-SC-05-029"
     ],
     "pastExam": [
       {
@@ -1017,7 +1020,8 @@
     "memoryTip": "VRRP＝Virtual Router（仮想ルータ）で出口を二重に。名前の似た RARP・RSTP・RTSP に注意。",
     "concepts": [
       "C-SC-05-016",
-      "C-SC-05-018"
+      "C-SC-05-018",
+      "C-SC-05-022"
     ],
     "pastExam": [
       {
@@ -1201,7 +1205,8 @@
     "memoryTip": "スイッチの輪（L2 のループ）を止める＝スパニングツリー。",
     "concepts": [
       "C-SC-05-018",
-      "C-SC-05-032"
+      "C-SC-05-032",
+      "C-SC-05-034"
     ],
     "figures": [
       "fig-sc-net-stp"
@@ -1268,7 +1273,8 @@
     "memoryTip": "VXLAN＝L2 を UDP/IP に包んで L3 の上へ。eXtensible＝VLAN の上限を広げる。",
     "concepts": [
       "C-SC-05-007",
-      "C-SC-05-024"
+      "C-SC-05-024",
+      "C-SC-03-104"
     ],
     "pastExam": [
       {
@@ -1563,7 +1569,8 @@
     "memoryTip": "センサーの値を『集める』網＝センサーネットワーク。CDN は『配る』網。",
     "concepts": [
       "C-SC-05-001",
-      "C-SC-05-073"
+      "C-SC-05-073",
+      "C-SC-05-007"
     ],
     "sources": [
       {
@@ -1693,7 +1700,8 @@
     "memoryTip": "隠れ端末＝見えない相手とぶつかる。さらし端末＝見える相手に遠慮しすぎる。対策は RTS/CTS。",
     "concepts": [
       "C-SC-05-004",
-      "C-SC-05-017"
+      "C-SC-05-017",
+      "C-SC-05-051"
     ],
     "figures": [
       "fig-sc-net-hidden-exposed"
@@ -1774,7 +1782,8 @@
     "memoryTip": "NAPT の P は Port。ポートで見分けて1つのアドレスを共有。",
     "concepts": [
       "C-SC-05-006",
-      "C-SC-05-005"
+      "C-SC-05-005",
+      "C-SC-05-016"
     ],
     "figures": [
       "fig-sc-net-napt"
@@ -1988,7 +1997,9 @@
     "memoryTip": "OFDMA＝周波数（Frequency）で分けて多数（Multiple Access）。MU-MIMO＝アンテナ（空間）で分ける。",
     "concepts": [
       "C-SC-05-011",
-      "C-SC-05-052"
+      "C-SC-05-052",
+      "C-SC-05-017",
+      "C-SC-05-010"
     ],
     "sources": [
       {
@@ -2370,7 +2381,9 @@
     ],
     "memoryTip": "802.1Q＝VLAN タグ。802.1X＝認証。802.1AX＝束ねる。802.11＝無線。番号が似ているので注意。",
     "concepts": [
-      "C-SC-05-024"
+      "C-SC-05-024",
+      "C-SC-03-108",
+      "C-SC-05-052"
     ],
     "sources": [
       {
@@ -2463,7 +2476,8 @@
     "memoryTip": "RS＝ルータいますか、RA＝ルータです・網の番号はこれ、NS＝MAC は？、NA＝MAC はこれ。",
     "concepts": [
       "C-SC-05-031",
-      "C-SC-05-030"
+      "C-SC-05-030",
+      "C-SC-05-022"
     ],
     "sources": [
       {
@@ -2505,7 +2519,10 @@
     "memoryTip": "IGMP の G は Group。グループの参加を管理する。",
     "concepts": [
       "C-SC-05-032",
-      "C-SC-05-027"
+      "C-SC-05-027",
+      "C-SC-05-029",
+      "C-SC-05-077",
+      "C-SC-05-035"
     ],
     "sources": [
       {
@@ -3092,7 +3109,8 @@
     ],
     "memoryTip": "Secure＝安全な通信だけ。HttpOnly＝HTTP だけ（スクリプトには見せない）。",
     "concepts": [
-      "C-SC-05-059"
+      "C-SC-05-059",
+      "C-SC-04-016"
     ],
     "sources": [
       {
@@ -3131,7 +3149,9 @@
     "concepts": [
       "C-SC-05-048",
       "C-SC-05-044",
-      "C-SC-05-042"
+      "C-SC-05-042",
+      "C-SC-05-056",
+      "C-SC-05-055"
     ],
     "sources": [
       {
@@ -3219,7 +3239,10 @@
     "memoryTip": "IP-VPN＝ラベル（MPLS）。広域 Ethernet＝VLAN タグ。インターネット VPN＝IPsec。",
     "concepts": [
       "C-SC-05-050",
-      "C-SC-05-065"
+      "C-SC-05-065",
+      "C-SC-05-007",
+      "C-SC-05-024",
+      "C-SC-03-104"
     ],
     "sources": [
       {
@@ -3507,7 +3530,8 @@
     "concepts": [
       "C-SC-05-058",
       "C-SC-05-057",
-      "C-SC-05-056"
+      "C-SC-05-056",
+      "C-SC-05-077"
     ],
     "sources": [
       {
@@ -3828,7 +3852,8 @@
       "C-SC-05-067",
       "C-SC-05-012",
       "C-SC-05-016",
-      "C-SC-05-036"
+      "C-SC-05-036",
+      "C-SC-05-032"
     ],
     "sources": [
       {

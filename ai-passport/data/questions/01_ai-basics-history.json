@@ -47,7 +47,7 @@
       "ニューラルネットワークは、ノードを層に並べてつないだ計算の仕組み。それを深く重ねたものがディープラーニングで、機械学習全体を含む呼び名ではない。"
     ],
     "memoryTip": "AI ⊃ 機械学習 ⊃ ディープラーニング。外側ほど広い。",
-    "concepts": ["C-AP-01-002", "C-AP-01-001"],
+    "concepts": ["C-AP-01-002", "C-AP-01-001", "C-AP-01-016", "C-AP-01-003", "C-AP-01-022"],
     "figures": ["fig-ap-ai-ml-dl"],
     "sources": [{ "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }],
     "status": "verified"
@@ -74,7 +74,7 @@
       "ディープラーニングは、層を深く重ねたニューラルネットワークで、何に注目するかまでデータから学ぶ機械学習。条件を人が書く仕組みとは逆。"
     ],
     "memoryTip": "『誰が判断のしかたを決めたか』で切る。人が書いた→ルールベース、データから学んだ→機械学習。",
-    "concepts": ["C-AP-01-003", "C-AP-01-004"],
+    "concepts": ["C-AP-01-003", "C-AP-01-004", "C-AP-01-007", "C-AP-01-016", "C-AP-01-026"],
     "figures": ["fig-ap-ai-ml-dl"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
@@ -101,7 +101,7 @@
       null
     ],
     "memoryTip": "例と答えを見せて学ばせる＝機械学習。規則を書く＝ルールベース。",
-    "concepts": ["C-AP-01-004", "C-AP-01-007"],
+    "concepts": ["C-AP-01-004", "C-AP-01-007", "C-AP-01-003", "C-AP-01-063", "C-AP-01-059"],
     "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
@@ -161,7 +161,7 @@
       null
     ],
     "memoryTip": "ルール＝人が書く、学習＝データから。",
-    "concepts": ["C-AP-01-003", "C-AP-01-004"],
+    "concepts": ["C-AP-01-003", "C-AP-01-004", "C-AP-01-063", "C-AP-01-026"],
     "figures": ["fig-ap-ai-ml-dl"],
     "sources": [
       { "title": "生成AIパスポート試験シラバス（2027年2月試験より適用）", "url": "https://guga.or.jp/assets/syllabus.pdf" },
@@ -302,7 +302,7 @@
       "次元削減は、データの項目の数を減らす処理（例：20問のアンケートを2つの軸にまとめる）。予測を出す工程の名前ではない。"
     ],
     "memoryTip": "学習＝作る、推論＝使う。",
-    "concepts": ["C-AP-01-006"],
+    "concepts": ["C-AP-01-006", "C-AP-01-059", "C-AP-01-032", "C-AP-01-015"],
     "figures": ["fig-ap-train-infer"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（inference）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -329,7 +329,7 @@
       "半教師あり学習は、正解付きの少しのデータと、正解の無いたくさんのデータを組み合わせる。この問題のデータはすべてに売れた値段が付いている。"
     ],
     "memoryTip": "正解付きで学ぶ＝教師あり。答えが数なら回帰、種類なら分類。",
-    "concepts": ["C-AP-01-007", "C-AP-01-010"],
+    "concepts": ["C-AP-01-007", "C-AP-01-010", "C-AP-01-013", "C-AP-01-016", "C-AP-01-020"],
     "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（label・regression model）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -359,7 +359,7 @@
       "クラスタリングは、正解を使わずに似たデータ同士をグループに分ける教師なし学習（例：会員を客層に分ける）。売れた個数という正解を使って数を当てる問題ではない。"
     ],
     "memoryTip": "答えが数（個数・値段・気温）→回帰。種類→分類。",
-    "concepts": ["C-AP-01-010", "C-AP-01-009"],
+    "concepts": ["C-AP-01-010", "C-AP-01-009", "C-AP-01-011", "C-AP-01-014"],
     "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（regression model・classification model）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -386,7 +386,7 @@
       "次元削減は、データの項目（次元）の数を減らす処理（例：画素の情報を少ない数の組にまとめる）。答えを判定する問題の種類ではない。"
     ],
     "memoryTip": "2択なら二値、3つ以上なら多値。",
-    "concepts": ["C-AP-01-011", "C-AP-01-009"],
+    "concepts": ["C-AP-01-011", "C-AP-01-009", "C-AP-01-010", "C-AP-01-015"],
     "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（binary classification）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -521,7 +521,7 @@
       "強化学習は、行動の結果の報酬を手がかりに行動のしかたを学ぶ。過去の購入履歴をグループに分ける処理ではない。"
     ],
     "memoryTip": "正解なしでまとめる＝クラスタリング。正解ありで種類を当てる＝分類。",
-    "concepts": ["C-AP-01-014", "C-AP-01-013"],
+    "concepts": ["C-AP-01-014", "C-AP-01-013", "C-AP-01-011", "C-AP-01-010", "C-AP-01-016"],
     "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
@@ -551,7 +551,7 @@
       null
     ],
     "memoryTip": "次元削減は『列』を減らす。クラスタリングは『行』をまとめる。",
-    "concepts": ["C-AP-01-015", "C-AP-01-014"],
+    "concepts": ["C-AP-01-015", "C-AP-01-014", "C-AP-01-011", "C-AP-01-010"],
     "figures": ["fig-ap-dim-reduction"],
     "sources": [
       { "title": "scikit-learn User Guide: Decomposing signals in components（PCA）", "url": "https://scikit-learn.org/stable/modules/decomposition.html" },
@@ -608,7 +608,7 @@
       null
     ],
     "memoryTip": "教師あり＝分類・回帰、教師なし＝クラスタリング・次元削減。",
-    "concepts": ["C-AP-01-007", "C-AP-01-013", "C-AP-01-014"],
+    "concepts": ["C-AP-01-007", "C-AP-01-013", "C-AP-01-014", "C-AP-01-016", "C-AP-01-010"],
     "figures": ["fig-ap-ml-three-types"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（著者公開版）", "url": "https://www.deeplearningbook.org/contents/ml.html" }],
     "status": "verified"
@@ -635,7 +635,7 @@
       "半教師あり学習は、正解付きの少しのデータと正解の無い多くのデータを組み合わせる。この問題では正解付きのデータを使っていない。"
     ],
     "memoryTip": "正解は無いが『点数』がある→強化学習。",
-    "concepts": ["C-AP-01-016", "C-AP-01-017"],
+    "concepts": ["C-AP-01-016", "C-AP-01-017", "C-AP-01-007", "C-AP-01-013", "C-AP-01-020"],
     "figures": ["fig-ap-ml-three-types"],
     "sources": [{ "title": "Sutton & Barto (2018) Reinforcement Learning: An Introduction, 2nd ed.（著者公開版）", "url": "http://incompleteideas.net/book/RLbook2020.pdf" }],
     "status": "verified"
@@ -770,7 +770,7 @@
       null
     ],
     "memoryTip": "正解あり少し＋正解なしたくさん＝半教師あり。",
-    "concepts": ["C-AP-01-020"],
+    "concepts": ["C-AP-01-020", "C-AP-01-013", "C-AP-01-016"],
     "figures": ["fig-ap-semi-supervised"],
     "sources": [{ "title": "scikit-learn User Guide: Semi-supervised learning", "url": "https://scikit-learn.org/stable/modules/semi_supervised.html" }],
     "status": "verified"
@@ -876,7 +876,7 @@
       "推論は、学習済みモデルに新しいデータを入れて答えを出させる工程の名前。分類にも回帰にもある工程で、問題の種類の名前ではない。"
     ],
     "memoryTip": "分類＝種類、回帰＝数。",
-    "concepts": ["C-AP-01-010", "C-AP-01-009"],
+    "concepts": ["C-AP-01-010", "C-AP-01-009", "C-AP-01-014", "C-AP-01-015"],
     "figures": ["fig-ap-answer-types"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（regression model）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -1044,7 +1044,7 @@
       "（ア）（イ）（ウ）すべてが違う。隠れ層は入力層の後ろで計算を重ねる層で、データを最初に受け取る層ではない。出力層は答えを出す層で、途中の計算をする（イ）ではない。損失関数は予測と正解のずれを数にする関数で、答えを出す層ではない。"
     ],
     "memoryTip": "入る→隠れて計算→出る。",
-    "concepts": ["C-AP-01-023"],
+    "concepts": ["C-AP-01-023", "C-AP-01-025", "C-AP-01-027"],
     "figures": ["fig-ap-mlp-layers"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（hidden layer・layer）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -1098,7 +1098,7 @@
       "隠れ層の数は、学習の前に人が決めるモデルの作りの設定。学習の中で少しずつ直していく数ではない。"
     ],
     "memoryTip": "学習で変わる＝重み。変わらない＝活性化関数の形・層の数。",
-    "concepts": ["C-AP-01-024", "C-AP-01-025"],
+    "concepts": ["C-AP-01-024", "C-AP-01-025", "C-AP-01-008", "C-AP-01-023"],
     "figures": ["fig-ap-weight", "fig-ap-mlp-layers"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（weight・training）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -1152,7 +1152,7 @@
       null
     ],
     "memoryTip": "ReLU＝マイナスは切り捨て、プラスは素通し。シグモイド＝0〜1に押し込む。",
-    "concepts": ["C-AP-01-025"],
+    "concepts": ["C-AP-01-025", "C-AP-01-028"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（activation function・ReLU）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
   },
@@ -1265,7 +1265,7 @@
       "方策は、強化学習で『この状態ならこう動く』という行動の決め方。予測と正解のずれとは関係しない。"
     ],
     "memoryTip": "損失関数＝ずれの物差し。小さいほど良い。",
-    "concepts": ["C-AP-01-027", "C-AP-01-025"],
+    "concepts": ["C-AP-01-027", "C-AP-01-025", "C-AP-01-019"],
     "figures": ["fig-ap-learning-cycle"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（loss function）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -1292,7 +1292,7 @@
       "探索は、迷路の分かれ道のように選択肢を順に調べて答えを見つける方法。傾きを手がかりに少しずつ動く方法ではない。"
     ],
     "memoryTip": "勾配（傾き）を見て降下（下る）＝勾配降下法。",
-    "concepts": ["C-AP-01-028", "C-AP-01-029"],
+    "concepts": ["C-AP-01-028", "C-AP-01-029", "C-AP-01-034", "C-AP-01-059"],
     "figures": ["fig-ap-gradient-descent"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -1349,7 +1349,7 @@
       "（ア）が違い、（イ）と（ウ）も逆。活性化関数は値を変換する関数で、ずれを数にするのは損失関数。勾配を計算するのが誤差逆伝播法、その勾配で重みを動かすのが勾配降下法。"
     ],
     "memoryTip": "測る（損失関数）→ 計算する（誤差逆伝播法）→ 直す（勾配降下法）。",
-    "concepts": ["C-AP-01-027", "C-AP-01-028", "C-AP-01-029"],
+    "concepts": ["C-AP-01-027", "C-AP-01-028", "C-AP-01-029", "C-AP-01-025", "C-AP-01-034"],
     "figures": ["fig-ap-learning-cycle"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（loss function・backpropagation・gradient descent）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -1433,7 +1433,7 @@
       null
     ],
     "memoryTip": "学習用◎・新しいデータ×＝過学習（丸暗記）。両方×＝未学習。",
-    "concepts": ["C-AP-01-030", "C-AP-01-031"],
+    "concepts": ["C-AP-01-030", "C-AP-01-031", "C-AP-01-043"],
     "figures": ["fig-ap-overfitting"],
     "sources": [
       { "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 5 Machine Learning Basics（5.2 Capacity, Overfitting and Underfitting）", "url": "https://www.deeplearningbook.org/contents/ml.html" },
@@ -1664,7 +1664,7 @@
       "アーリーストッピングは、検証用の損失が増え始めたら学習を止める過学習の対策。学習済みモデルを借りる学び方ではない。"
     ],
     "memoryTip": "学んだことを『移す（transfer）』＝転移学習。少ないデータで済む。",
-    "concepts": ["C-AP-01-035", "C-AP-01-006"],
+    "concepts": ["C-AP-01-035", "C-AP-01-006", "C-AP-01-016", "C-AP-01-015", "C-AP-01-033"],
     "figures": ["fig-ap-transfer-learning"],
     "sources": [{ "title": "Goodfellow, Bengio & Courville \"Deep Learning\" Chapter 15 Representation Learning（15.2 Transfer Learning and Domain Adaptation）", "url": "https://www.deeplearningbook.org/contents/representation.html" }],
     "status": "verified"
@@ -1691,7 +1691,7 @@
       null
     ],
     "memoryTip": "事前学習（何でも屋）→ ファインチューニング（専門家に仕上げる）。",
-    "concepts": ["C-AP-01-036", "C-AP-01-035"],
+    "concepts": ["C-AP-01-036", "C-AP-01-035", "C-AP-01-014", "C-AP-01-034", "C-AP-01-020"],
     "figures": ["fig-ap-transfer-learning"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（fine-tuning）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -1972,7 +1972,7 @@
       "ノーフリーランチ定理は、どんな問題にも効く万能の学習方法は無いという定理。学習中の勾配の大きさの問題ではない。"
     ],
     "memoryTip": "勾配が『消える』＝前の層まで直す合図が届かない。",
-    "concepts": ["C-AP-01-042", "C-AP-01-040"],
+    "concepts": ["C-AP-01-042", "C-AP-01-040", "C-AP-01-028", "C-AP-01-030", "C-AP-01-021"],
     "figures": ["fig-ap-vanish-explode"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -2059,7 +2059,7 @@
       null
     ],
     "memoryTip": "消える（小）・爆発（大）。消えるのを防ぐのが LSTM。",
-    "concepts": ["C-AP-01-042", "C-AP-01-043", "C-AP-01-044"],
+    "concepts": ["C-AP-01-042", "C-AP-01-043", "C-AP-01-044", "C-AP-01-030", "C-AP-01-037"],
     "figures": ["fig-ap-vanish-explode"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（vanishing gradient problem・exploding gradient problem・Long Short-Term Memory）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -2287,7 +2287,7 @@
       "（ア）（イ）が違う。CNNは格子状のデータ（画像など）を扱うモデルで、順番のあるデータを1つずつ読むのはRNN。GANは生成器と識別器を競わせる生成モデルで、RNNの改良ではない。"
     ],
     "memoryTip": "RNN → LSTM → Transformer（Attention）。",
-    "concepts": ["C-AP-01-040", "C-AP-01-044", "C-AP-01-046"],
+    "concepts": ["C-AP-01-040", "C-AP-01-044", "C-AP-01-046", "C-AP-01-045", "C-AP-01-037", "C-AP-01-038", "C-AP-01-052"],
     "figures": ["fig-ap-rnn-to-transformer"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
@@ -2347,7 +2347,7 @@
       "（ア）と（ウ）が逆で、（イ）も違う。縮めるのがエンコーダ、戻すのがデコーダ。教師データは学習に使う入力と正解の組で、縮めた結果の数の組は潜在ベクトル。"
     ],
     "memoryTip": "エン（入り口で縮める）→ 潜在ベクトル → デ（出口で戻す）。",
-    "concepts": ["C-AP-01-048", "C-AP-01-049", "C-AP-01-050", "C-AP-01-047"],
+    "concepts": ["C-AP-01-048", "C-AP-01-049", "C-AP-01-050", "C-AP-01-047", "C-AP-01-008", "C-AP-01-053"],
     "figures": ["fig-ap-vae"],
     "sources": [{ "title": "Kingma & Welling (2013) Auto-Encoding Variational Bayes (arXiv:1312.6114)", "url": "https://arxiv.org/abs/1312.6114" }],
     "status": "verified"
@@ -2401,7 +2401,7 @@
       "活性化関数は、ノードの中で値を変換する関数（例：ReLU）。モデルの中の部品の役割の名前ではない。"
     ],
     "memoryTip": "翻訳：エンコーダ（読む・まとめる）→ デコーダ（書く）。",
-    "concepts": ["C-AP-01-048", "C-AP-01-049"],
+    "concepts": ["C-AP-01-048", "C-AP-01-049", "C-AP-01-050", "C-AP-01-053", "C-AP-01-025"],
     "figures": ["fig-ap-seq2seq-attention"],
     "sources": [{ "title": "Google for Developers: Machine Learning Glossary（encoder・decoder）", "url": "https://developers.google.com/machine-learning/glossary" }],
     "status": "verified"
@@ -2655,7 +2655,7 @@
       "ディープウェブは、検索エンジンで見つからないWebの部分を指す言葉。AIで作る偽物とは関係しない。"
     ],
     "memoryTip": "ディープフェイクの『ディープ』は深層学習。",
-    "concepts": ["C-AP-01-056"],
+    "concepts": ["C-AP-01-056", "C-AP-01-026"],
     "sources": [
       { "title": "総務省 令和6年版 情報通信白書 偽・誤情報の流通・拡散", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" },
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）とは", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142110.html" }
@@ -2770,7 +2770,7 @@
       "Transformer（2017年）と大規模言語モデルは、第三次ブームの延長にある生成AIの時代の技術。"
     ],
     "memoryTip": "第一次＝探索・推論、第二次＝知識、第三次＝機械学習。",
-    "concepts": ["C-AP-01-058", "C-AP-01-059", "C-AP-01-060"],
+    "concepts": ["C-AP-01-058", "C-AP-01-059", "C-AP-01-060", "C-AP-01-063", "C-AP-01-064", "C-AP-01-004", "C-AP-01-066", "C-AP-02-001", "C-AP-01-068"],
     "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" }],
     "status": "verified"
@@ -2797,7 +2797,7 @@
       "生成AIのブームは2022年ごろからの、第三次ブームの延長にある流れで、迷路やパズルしか解けなかった時代の話ではない。"
     ],
     "memoryTip": "おもちゃの問題（トイ・プロブレム）しか解けなかった＝第一次。",
-    "concepts": ["C-AP-01-058", "C-AP-01-061"],
+    "concepts": ["C-AP-01-058", "C-AP-01-061", "C-AP-01-062", "C-AP-01-065"],
     "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
@@ -2882,7 +2882,7 @@
       "（ア）（イ）（ウ）すべてが違う。知識（エキスパートシステム）は第二次、機械学習は第三次の中心。ルールベースは第二次のエキスパートシステムと同じ考え方。第一次の中心は探索・推論。"
     ],
     "memoryTip": "探索・推論 → 知識 → 機械学習（人が書く量がだんだん減る）。",
-    "concepts": ["C-AP-01-058", "C-AP-01-062", "C-AP-01-065"],
+    "concepts": ["C-AP-01-058", "C-AP-01-062", "C-AP-01-065", "C-AP-01-063", "C-AP-01-004", "C-AP-01-003"],
     "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "総務省 令和6年版 情報通信白書 第1〜3次AIブームと冬の時代", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd131110.html" }],
     "status": "verified"
@@ -2909,7 +2909,7 @@
       "クラスタリングは、正解を使わずに似たデータ同士をグループに分ける教師なし学習。専門家の判断を再現するプログラムではない。"
     ],
     "memoryTip": "エキスパート＝専門家。知識を入れて専門家のまねをする＝第二次ブーム。",
-    "concepts": ["C-AP-01-063", "C-AP-01-062"],
+    "concepts": ["C-AP-01-063", "C-AP-01-062", "C-AP-01-016", "C-AP-01-067", "C-AP-01-014"],
     "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [
       { "title": "総務省 平成28年版 情報通信白書 人工知能（AI）研究の歴史", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h28/html/nc142120.html" },
@@ -3159,7 +3159,7 @@
       null
     ],
     "memoryTip": "2012年・画像認識の大会・ディープラーニング圧勝。",
-    "concepts": ["C-AP-01-065", "C-AP-01-026"],
+    "concepts": ["C-AP-01-065", "C-AP-01-026", "C-AP-01-063", "C-AP-01-064"],
     "figures": ["fig-ap-ai-boom-timeline"],
     "sources": [{ "title": "松尾豊「人工知能の未来 －ディープラーニングの先にあるもの－」（経済産業研究所 BBLセミナー資料、2015年6月3日）", "url": "https://www.rieti.go.jp/jp/events/bbl/15060301.pdf" }],
     "status": "verified"
@@ -3216,7 +3216,7 @@
       "（ア）（イ）が違う。逆拡散過程はノイズを取り除いてデータを作る向きで、ノイズを足して壊す（ア）ではない。次元削減は、データの項目の数を減らす処理で、ノイズを取り除いてデータを作る過程の名前ではない。"
     ],
     "memoryTip": "拡散（壊す）→ 逆拡散（作る）。学ぶのは作る側。",
-    "concepts": ["C-AP-01-067"],
+    "concepts": ["C-AP-01-067", "C-AP-02-009", "C-AP-01-029", "C-AP-01-015"],
     "figures": ["fig-ap-diffusion"],
     "sources": [{ "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" }],
     "status": "verified"
@@ -3466,7 +3466,7 @@
       "過学習は学び方の種類ではなく、学習用データに合わせすぎて、新しいデータで当たらなくなった『状態』の名前（例：学習用で99％、新しいデータで70％）。名前に『学習』が付くが、データの与え方の分類ではないので、この問いの答えにならない。"
     ],
     "memoryTip": "学び方は『教師あり・教師なし・半教師あり・強化』の4つ。『過学習』『未学習』は学び方ではなく、学んだ結果の状態の名前。",
-    "concepts": ["C-AP-01-016", "C-AP-01-030", "C-AP-01-007"],
+    "concepts": ["C-AP-01-016", "C-AP-01-030", "C-AP-01-007", "C-AP-01-020"],
     "figures": ["fig-ap-ml-three-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（reinforcement learning・overfitting）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -3496,7 +3496,7 @@
       "未学習（学習不足）は学び方の種類ではなく、学習が足りず、学習用データでもうまく当たらない『状態』の名前（例：学習用のメールでも60％しか当たらない）。名前に『学習』が付くが、データの与え方の分類ではない。"
     ],
     "memoryTip": "正解付きのデータで当てさせる＝教師あり。『未学習』『過学習』は学び方ではなく状態。",
-    "concepts": ["C-AP-01-007", "C-AP-01-008", "C-AP-01-030"],
+    "concepts": ["C-AP-01-007", "C-AP-01-008", "C-AP-01-030", "C-AP-01-013", "C-AP-01-016"],
     "figures": ["fig-ap-answer-types"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（supervised machine learning・underfitting）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -3556,7 +3556,7 @@
       null
     ],
     "memoryTip": "GAN＝偽札づくり（生成器）と警察（識別器）の競争。作る役＝生成器、見破る役＝識別器。",
-    "concepts": ["C-AP-01-052", "C-AP-01-053", "C-AP-01-056"],
+    "concepts": ["C-AP-01-052", "C-AP-01-053", "C-AP-01-056", "C-AP-01-049", "C-AP-01-047", "C-AP-01-048"],
     "figures": ["fig-ap-gan"],
     "sources": [
       { "title": "Goodfellow et al. (2014) Generative Adversarial Networks (arXiv:1406.2661)", "url": "https://arxiv.org/abs/1406.2661" },

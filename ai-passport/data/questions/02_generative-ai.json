@@ -167,7 +167,7 @@
       "（ア）（イ）（ウ）すべてが違う。エンコーダはTransformerの大きな部品の名前で、照らし合わせに使うベクトルではない。各語の側で照らし合わせに使う見出しは Key、混ぜ合わせる中身は Value。Query は、表現を作ろうとしている語が何を探しているかを表す側。"
     ],
     "memoryTip": "Q＝探しもの、K＝見出し、V＝中身。QとKで重みを決め、Vを混ぜる。",
-    "concepts": ["C-AP-02-004", "C-AP-02-003"],
+    "concepts": ["C-AP-02-004", "C-AP-02-003", "C-AP-02-007"],
     "figures": ["fig-ap-qkv"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
@@ -344,7 +344,7 @@
       "識別器は、GANで本物か偽物かを見分ける側の名前。Transformerで訳文を作る部分ではない。"
     ],
     "memoryTip": "エンコーダ＝読む、デコーダ＝書く。",
-    "concepts": ["C-AP-02-007", "C-AP-02-001"],
+    "concepts": ["C-AP-02-007", "C-AP-02-001", "C-AP-01-053"],
     "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" }
@@ -404,7 +404,7 @@
       "もとの翻訳用のTransformerは両方を組にした形だが、GPTの系統はデコーダだけを使う。"
     ],
     "memoryTip": "GPT＝デコーダだけ。次の語を当て続けて文章を書く。",
-    "concepts": ["C-AP-02-008", "C-AP-02-007"],
+    "concepts": ["C-AP-02-008", "C-AP-02-007", "C-AP-01-053"],
     "figures": ["fig-ap-encoder-decoder"],
     "sources": [
       { "title": "Radford et al. (2018) Improving Language Understanding by Generative Pre-Training（OpenAI）", "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" },
@@ -524,7 +524,7 @@
       "報酬モデルは、LLM（大規模言語モデル）のRLHF（人間のフィードバックによる強化学習）で、人が良いと思う回答に高い点を付けるよう学習したモデル。画像の拡散モデルを動かす空間ではない。"
     ],
     "memoryTip": "画素で拡散＝重い、潜在で拡散＝軽い。",
-    "concepts": ["C-AP-02-010"],
+    "concepts": ["C-AP-02-010", "C-AP-01-023", "C-AP-01-027", "C-AP-02-023"],
     "figures": ["fig-ap-latent-diffusion"],
     "sources": [
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" },
@@ -554,7 +554,7 @@
       null
     ],
     "memoryTip": "拡散＝壊す、逆拡散＝作る、潜在＝縮めた空間で。",
-    "concepts": ["C-AP-02-009", "C-AP-02-010"],
+    "concepts": ["C-AP-02-009", "C-AP-02-010", "C-AP-01-029", "C-AP-01-052"],
     "figures": ["fig-ap-diffusion"],
     "sources": [
       { "title": "Sohl-Dickstein et al. (2015) Deep Unsupervised Learning using Nonequilibrium Thermodynamics (arXiv:1503.03585)", "url": "https://arxiv.org/abs/1503.03585" },
@@ -702,7 +702,7 @@
       "レイヤー（層）は、ニューラルネットワークの中の計算の段。2つ以上の層を持つことは、ディープラーニングでは当たり前で、マルチモーダルの条件ではない。"
     ],
     "memoryTip": "マルチ（複数の）＋モーダル（モダリティ＝データの種類）。",
-    "concepts": ["C-AP-02-013", "C-AP-02-012"],
+    "concepts": ["C-AP-02-013", "C-AP-02-012", "C-AP-02-031", "C-AP-02-017"],
     "figures": ["fig-ap-modality"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（multimodal model・modality）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -731,7 +731,7 @@
       "（ア）（イ）（ウ）すべてが違う。手本をまねる教師ありファインチューニングは事前学習のあとに行う段階で、最初の（ア）ではない。RLHFは最後の仕上げの段階。RAGは回答のたびに文書を検索して添える技術で、学習の段階ではない。"
     ],
     "memoryTip": "事前学習（読み込む）→ SFT（手本をまねる）→ RLHF（好みに合わせる）。",
-    "concepts": ["C-AP-02-014", "C-AP-02-015", "C-AP-02-018", "C-AP-02-022", "C-AP-01-068"],
+    "concepts": ["C-AP-02-014", "C-AP-02-015", "C-AP-02-018", "C-AP-02-022", "C-AP-01-068", "C-AP-02-038"],
     "figures": ["fig-ap-llm-training-stages"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" },
@@ -852,7 +852,7 @@
       "学習データの文書の数は、学ぶ材料の量。モデルの中に持つ重みの数とは別のものさし。"
     ],
     "memoryTip": "パラメータ＝学習で決まる重み。GPT-3は1,750億個。",
-    "concepts": ["C-AP-02-017"],
+    "concepts": ["C-AP-02-017", "C-AP-02-031"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" },
       { "title": "Google for Developers: Machine Learning Glossary（parameter）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -909,7 +909,7 @@
       "RAGは、回答のたびに関連する文書を検索して入力に添える技術で、モデルを追加学習させない。"
     ],
     "memoryTip": "SFT＝お手本をまねる。RLHF＝好みの順位で整える。",
-    "concepts": ["C-AP-02-018", "C-AP-02-014", "C-AP-01-068"],
+    "concepts": ["C-AP-02-018", "C-AP-02-014", "C-AP-01-068", "C-AP-02-022", "C-AP-02-038"],
     "figures": ["fig-ap-llm-training-stages"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
@@ -938,7 +938,7 @@
       null
     ],
     "memoryTip": "指示チューニング＝いろいろな仕事を『指示の文』にして学ばせる。初めての指示にも強くなる。",
-    "concepts": ["C-AP-02-019"],
+    "concepts": ["C-AP-02-019", "C-AP-02-029"],
     "sources": [
       { "title": "Wei et al. (2021) Finetuned Language Models Are Zero-Shot Learners (arXiv:2109.01652)", "url": "https://arxiv.org/abs/2109.01652" },
       { "title": "Google for Developers: Machine Learning Glossary（instruction tuning）", "url": "https://developers.google.com/machine-learning/glossary" }
@@ -997,7 +997,7 @@
       "次元削減は、データを表す項目の数を、情報をなるべく失わずに減らす教師なし学習の処理。モデルを分野に合わせる学習ではない。"
     ],
     "memoryTip": "ドメイン＝分野。分野の文章で追加学習してその分野に強くする。",
-    "concepts": ["C-AP-02-020", "C-AP-02-021"],
+    "concepts": ["C-AP-02-020", "C-AP-02-021", "C-AP-02-019", "C-AP-02-022", "C-AP-01-015"],
     "figures": ["fig-ap-weight-change"],
     "sources": [
       { "title": "Gururangan et al. (2020) Don't Stop Pretraining: Adapt Language Models to Domains and Tasks (arXiv:2004.10964)", "url": "https://arxiv.org/abs/2004.10964" }
@@ -1056,7 +1056,7 @@
       null
     ],
     "memoryTip": "人が順位 → 報酬モデルが採点 → 強化学習で仕上げ ＝ RLHF。",
-    "concepts": ["C-AP-02-022", "C-AP-02-023"],
+    "concepts": ["C-AP-02-022", "C-AP-02-023", "C-AP-01-013", "C-AP-01-052", "C-AP-01-053"],
     "figures": ["fig-ap-rlhf"],
     "sources": [
       { "title": "Ouyang et al. (2022) Training language models to follow instructions with human feedback (arXiv:2203.02155)", "url": "https://arxiv.org/abs/2203.02155" }
@@ -1286,7 +1286,7 @@
       "長距離依存は、文の中の離れた語どうしの意味のつながり。偏った出力の問題の名前ではない。"
     ],
     "memoryTip": "データが偏っていれば、出力も偏る＝バイアス。",
-    "concepts": ["C-AP-02-027", "C-AP-02-037"],
+    "concepts": ["C-AP-02-027", "C-AP-02-037", "C-AP-01-030", "C-AP-02-006"],
     "sources": [
       { "title": "Brown et al. (2020) Language Models are Few-Shot Learners (arXiv:2005.14165)", "url": "https://arxiv.org/abs/2005.14165" }
     ],
@@ -1461,7 +1461,7 @@
       "転移学習は、ある仕事で学習したモデルを、別の仕事の学習の出発点に使う方法。規模に応じて能力が現れる現象の名前ではない。"
     ],
     "memoryTip": "創発＝ある大きさで『急に』できるようになる。",
-    "concepts": ["C-AP-02-030", "C-AP-02-029"],
+    "concepts": ["C-AP-02-030", "C-AP-02-029", "C-AP-01-031", "C-AP-01-035"],
     "figures": ["fig-ap-emergent"],
     "sources": [
       { "title": "Wei et al. (2022) Emergent Abilities of Large Language Models (arXiv:2206.07682)", "url": "https://arxiv.org/abs/2206.07682" }
@@ -1490,7 +1490,7 @@
       "（ア）（イ）が違う。創発的能力は、ある規模を超えたときに急に現れる能力で、なめらかに予測どおり損失が下がる経験則ではない。ノーフリーランチ定理は、あらゆる問題で平均すると、どの学習方法も成績は変わらない、という定理で、規模を超えたときに現れる能力ではない。"
     ],
     "memoryTip": "スケーリング則＝なだらかな坂、創発＝急な段差。",
-    "concepts": ["C-AP-02-029", "C-AP-02-030"],
+    "concepts": ["C-AP-02-029", "C-AP-02-030", "C-AP-01-030", "C-AP-01-021"],
     "figures": ["fig-ap-emergent"],
     "sources": [
       { "title": "Kaplan et al. (2020) Scaling Laws for Neural Language Models (arXiv:2001.08361)", "url": "https://arxiv.org/abs/2001.08361" },
@@ -1579,7 +1579,7 @@
       "RAGは、質問に関係する文書を検索して入力に添える仕組み。文章を区切る処理の名前ではない。"
     ],
     "memoryTip": "トークン化（区切って番号）→ 埋め込み（数の並びに）→ 計算。",
-    "concepts": ["C-AP-02-032", "C-AP-02-034", "C-AP-01-068"],
+    "concepts": ["C-AP-02-032", "C-AP-02-034", "C-AP-01-068", "C-AP-01-015", "C-AP-02-038"],
     "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "OpenAI Help Center『Understanding and counting tokens』", "url": "https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" }
@@ -1638,7 +1638,7 @@
       null
     ],
     "memoryTip": "区切る（トークン化）→ かけら（サブワード）→ 数の並びに（埋め込み）。",
-    "concepts": ["C-AP-02-032", "C-AP-02-033", "C-AP-02-034", "C-AP-01-068"],
+    "concepts": ["C-AP-02-032", "C-AP-02-033", "C-AP-02-034", "C-AP-01-068", "C-AP-02-017", "C-AP-01-015"],
     "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（token・embedding space）", "url": "https://developers.google.com/machine-learning/glossary" },
@@ -1698,7 +1698,7 @@
       "プロンプトは、利用者がモデルに入力する指示や質問の文。数の並びの名前ではない。"
     ],
     "memoryTip": "ベクトル＝数の並び。語は数百個の数の並びで表される。",
-    "concepts": ["C-AP-02-035", "C-AP-02-034"],
+    "concepts": ["C-AP-02-035", "C-AP-02-034", "C-AP-02-031", "C-AP-02-017", "C-AP-02-045"],
     "figures": ["fig-ap-token-flow"],
     "sources": [
       { "title": "Vaswani et al. (2017) Attention Is All You Need (arXiv:1706.03762)", "url": "https://arxiv.org/abs/1706.03762" },
@@ -1787,7 +1787,7 @@
       "プロンプトインジェクションは、入力や参照する文書に悪意のある指示を紛れ込ませ、AIに本来の指示に反した動きをさせる攻撃（第3章・第4章）。AIが自分から誤りを作る現象ではない。"
     ],
     "memoryTip": "ハルシネーション＝幻覚。無いものを自信満々に語る。",
-    "concepts": ["C-AP-02-037"],
+    "concepts": ["C-AP-02-037", "C-AP-02-027", "C-AP-01-030", "C-AP-03-062"],
     "sources": [
       { "title": "Google for Developers: Machine Learning Glossary（hallucination）", "url": "https://developers.google.com/machine-learning/glossary" }
     ],
@@ -1962,7 +1962,7 @@
       "学習データの量は、モデルを作るときの話で、使うときの答えのばらつきを調整する設定ではない。"
     ],
     "memoryTip": "決まった答え＝低温、アイデア出し＝高温。",
-    "concepts": ["C-AP-02-040", "C-AP-02-039"],
+    "concepts": ["C-AP-02-040", "C-AP-02-039", "C-AP-02-042"],
     "figures": ["fig-ap-temperature"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" },
@@ -2051,7 +2051,7 @@
       "スケーリング則は、モデルを大きくすると損失が予測どおり下がるという経験則で、文章を作るときの設定ではない。"
     ],
     "memoryTip": "Temperature＝ばらつきのつまみ、Top-p＝候補のふるい。",
-    "concepts": ["C-AP-02-040", "C-AP-02-041"],
+    "concepts": ["C-AP-02-040", "C-AP-02-041", "C-AP-02-042", "C-AP-02-029"],
     "figures": ["fig-ap-top-p"],
     "sources": [
       { "title": "Google Cloud『パラメータ値を試す』（Gemini の生成パラメータの説明）", "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/adjust-parameter-values?hl=ja" }
@@ -2340,7 +2340,7 @@
       "（ア）と（イ）が逆で、（ウ）も違う。オンプレミスは自分たちのサーバーで動かす形。オープンウェイトはモデルの重みが公開されていることで、データを自分たちの管理のもとで扱う考え方はデータ主権。"
     ],
     "memoryTip": "クラウド＝よそで動かす、オンプレミス＝自分の敷地で動かす。データ主権＝自分で決められること。",
-    "concepts": ["C-AP-02-046", "C-AP-02-047", "C-AP-02-048"],
+    "concepts": ["C-AP-02-046", "C-AP-02-047", "C-AP-02-048", "C-AP-02-050", "C-AP-02-049"],
     "figures": ["fig-ap-cloud-onprem"],
     "sources": [
       { "title": "NIST Special Publication 800-145 The NIST Definition of Cloud Computing（2011）", "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" },
@@ -2903,7 +2903,7 @@
       "コンテキストウィンドウは、1回に扱えるトークンの上限。考える時間を長くして計算を増やすことの名前ではない。"
     ],
     "memoryTip": "作るときに鍛える＝学習時の計算、答えるときに考える＝推論時の計算。",
-    "concepts": ["C-AP-02-057", "C-AP-02-056"],
+    "concepts": ["C-AP-02-057", "C-AP-02-056", "C-AP-02-042"],
     "figures": ["fig-ap-reasoning-model"],
     "sources": [
       { "title": "OpenAI『Learning to reason with LLMs』（2024年9月12日）", "url": "https://openai.com/index/learning-to-reason-with-llms/" }
@@ -2932,7 +2932,7 @@
       "Temperatureは、次のトークンを選ぶときのばらつきの度合いの設定。途中の考えを書き出させるものではない。"
     ],
     "memoryTip": "思考の連鎖＝途中式を書かせると、正解しやすい。",
-    "concepts": ["C-AP-02-058", "C-AP-01-068"],
+    "concepts": ["C-AP-02-058", "C-AP-01-068", "C-AP-02-040"],
     "figures": ["fig-ap-cot"],
     "sources": [
       { "title": "Wei et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (arXiv:2201.11903)", "url": "https://arxiv.org/abs/2201.11903" }
@@ -2992,7 +2992,7 @@
       "Gemini Nanoは、Googleのスマートフォンの中で動く小さなGeminiのモデル。ブラウザを操作するエージェントではない。"
     ],
     "memoryTip": "Operator＝画面を見てクリックする係。Codex＝コードを書く係。",
-    "concepts": ["C-AP-02-059", "C-AP-02-060"],
+    "concepts": ["C-AP-02-059", "C-AP-02-060", "C-AP-02-064", "C-AP-02-062"],
     "sources": [
       { "title": "OpenAI『Introducing Operator』（2025年1月23日。2025年7月17日の更新を含む）", "url": "https://openai.com/index/introducing-operator/" }
     ],
@@ -3020,7 +3020,7 @@
       "電子透かしは、画像などに見えない目印を埋め込み、AIで作ったものか見分けられるようにする技術。コードを直す道具ではない。"
     ],
     "memoryTip": "コーディングエージェント＝コードを自分で書いて試して提案するAI（例：Codex）。",
-    "concepts": ["C-AP-02-060"],
+    "concepts": ["C-AP-02-060", "C-AP-02-013"],
     "sources": [
       { "title": "OpenAI『Introducing Codex』（2025年5月16日）", "url": "https://openai.com/index/introducing-codex/" }
     ],
@@ -3106,7 +3106,7 @@
       "GPT-3はOpenAIが2020年に発表した文章の言語モデル（1,750億パラメータ）で、最初から音声・画像・動画まで学習したモデルではない。"
     ],
     "memoryTip": "Gemini（Google）＝最初からマルチモーダル。Ultra・Pro・Nano。",
-    "concepts": ["C-AP-02-062", "C-AP-02-013"],
+    "concepts": ["C-AP-02-062", "C-AP-02-013", "C-AP-02-063", "C-AP-02-064"],
     "sources": [
       { "title": "Google『Introducing Gemini: our largest and most capable AI model』（2023年12月6日）", "url": "https://blog.google/technology/ai/google-gemini-ai/" }
     ],
@@ -3221,7 +3221,7 @@
       null
     ],
     "memoryTip": "いまの画像生成AI＝拡散モデル（とくに潜在拡散）。",
-    "concepts": ["C-AP-02-065", "C-AP-02-010"],
+    "concepts": ["C-AP-02-065", "C-AP-02-010", "C-AP-02-038"],
     "figures": ["fig-ap-latent-diffusion"],
     "sources": [
       { "title": "CompVis/stable-diffusion（GitHub の公式リポジトリ）", "url": "https://github.com/CompVis/stable-diffusion" },
@@ -3251,7 +3251,7 @@
       "次元削減は、データを表す項目の数を減らす処理。画像の一部を描き埋める技術ではない。"
     ],
     "memoryTip": "インペインティング＝『内側を塗り直す』。消したい所を描き埋める。",
-    "concepts": ["C-AP-02-066"],
+    "concepts": ["C-AP-02-066", "C-AP-02-067", "C-AP-02-069", "C-AP-01-015"],
     "sources": [
       { "title": "Rombach et al. (2021) High-Resolution Image Synthesis with Latent Diffusion Models (arXiv:2112.10752)", "url": "https://arxiv.org/abs/2112.10752" }
     ],
@@ -3371,7 +3371,7 @@
       "コンテキストウィンドウは、LLM（大規模言語モデル）が1回に扱えるトークンの上限。作品の履歴とは関係が無い。"
     ],
     "memoryTip": "来歴＝作品の『履歴書』。",
-    "concepts": ["C-AP-02-068"],
+    "concepts": ["C-AP-02-068", "C-AP-02-067", "C-AP-02-034", "C-AP-02-042"],
     "figures": ["fig-ap-watermark-c2pa"],
     "sources": [
       { "title": "C2PA『FAQs』", "url": "https://c2pa.org/faqs/" }
@@ -3515,7 +3515,7 @@
       "C2PAは、コンテンツに来歴情報を付けるための標準。音声を作る技術ではない。"
     ],
     "memoryTip": "TTS＝Text→Speech（文字から声）。STT＝Speech→Text（声から文字）。",
-    "concepts": ["C-AP-02-072", "C-AP-02-071"],
+    "concepts": ["C-AP-02-072", "C-AP-02-071", "C-AP-02-066"],
     "sources": [
       { "title": "van den Oord et al. (2016) WaveNet: A Generative Model for Raw Audio (arXiv:1609.03499)", "url": "https://arxiv.org/abs/1609.03499" }
     ],
@@ -3599,7 +3599,7 @@
       null
     ],
     "memoryTip": "Voice Cloning＝声のコピー。15秒で似せられる時代。",
-    "concepts": ["C-AP-02-073"],
+    "concepts": ["C-AP-02-073", "C-AP-02-066", "C-AP-02-069"],
     "sources": [
       { "title": "OpenAI『Navigating the Challenges and Opportunities of Synthetic Voices』（2024年3月29日）", "url": "https://openai.com/index/navigating-the-challenges-and-opportunities-of-synthetic-voices/" }
     ],

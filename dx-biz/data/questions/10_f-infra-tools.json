@@ -50,7 +50,7 @@
       "部分所有モデルは、高価な資産の所有権を複数人で分けて持つ形。"
     ],
     "memoryTip": "ライセンス＝「使っていいよ」と許して使用料をもらう。作って売るのは許された側（ライセンシー）。",
-    "concepts": ["DC-08-007", "DC-07-004"],
+    "concepts": ["DC-08-007", "DC-07-004", "DC-08-006", "DC-08-004"],
     "figures": ["fig-dx-licensing"],
     "sources": [
       { "title": "ジェトロ 貿易・投資相談Q&A「OEM契約とライセンス契約の違い：日本」", "url": "https://www.jetro.go.jp/world/qa/04A-010822.html" }
@@ -107,7 +107,7 @@
       "SEO（Search Engine Optimization、検索エンジン最適化）は、検索エンジンにコンテンツを理解させ、従来の検索結果（リンクの一覧）からサイトを見つけてもらいやすくする取り組み。AIがまとめる回答の中で引用されることを目標にした取り組みは、SEO と区別して GEO と呼ぶ。"
     ],
     "memoryTip": "SEO＝リンク一覧で上位に、GEO＝AIの回答で引用される。",
-    "concepts": ["DC-02-022", "DC-02-023"],
+    "concepts": ["DC-02-022", "DC-02-023", "DC-02-014", "DC-08-010"],
     "sources": [
       { "title": "Aggarwal ほか「GEO: Generative Engine Optimization」（arXiv:2311.09735, 2023）", "url": "https://arxiv.org/abs/2311.09735" },
       { "title": "Google 検索セントラル「検索エンジン最適化（SEO）スターター ガイド」", "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ja" }

@@ -21,7 +21,7 @@
       "RAGは、質問に関係する文書を探し出し、質問に添えてLLMに渡して答えさせる仕組み。答えの根拠を補う方法で、目標に向けてタスクを決めて実行する働きそのものを指す語ではない。"
     ],
     "memoryTip": "エージェント＝代理人。決めて、動いて、やり遂げる。",
-    "concepts": ["C-AP-03-001", "C-AP-03-006"],
+    "concepts": ["C-AP-03-001", "C-AP-03-006", "C-AP-02-056", "C-AP-02-013", "C-AP-02-038"],
     "figures": ["fig-ap-chat-vs-agent"],
     "sources": [
       { "title": "総務省 令和7年版 情報通信白書 AI研究開発における最近の動向（AIエージェント）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }
@@ -109,7 +109,7 @@
       null
     ],
     "memoryTip": "ワークフロー＝道筋を人が敷く。自律型＝道をLLM（大規模言語モデル）が選ぶ。",
-    "concepts": ["C-AP-03-004", "C-AP-03-005"],
+    "concepts": ["C-AP-03-004", "C-AP-03-005", "C-AP-03-047", "C-AP-03-048"],
     "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -138,7 +138,7 @@
       null
     ],
     "memoryTip": "道を敷くのが人ならワークフロー、道を選ぶのがLLM（大規模言語モデル）なら自律型。",
-    "concepts": ["C-AP-03-004", "C-AP-03-005"],
+    "concepts": ["C-AP-03-004", "C-AP-03-005", "C-AP-02-038"],
     "figures": ["fig-ap-workflow-vs-autonomous"],
     "sources": [
       { "title": "Anthropic『Building effective agents』（2024年12月19日）", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
@@ -283,7 +283,7 @@
       "Chain-of-Thought は思考の連鎖のこと。LLM（大規模言語モデル）に答えの前の途中の考えを書き出させる方法で、人が承認する仕組みではない。"
     ],
     "memoryTip": "ループの中に人がいる＝大事な一手の前で人が止められる。",
-    "concepts": ["C-AP-03-008"],
+    "concepts": ["C-AP-03-008", "C-AP-02-058"],
     "figures": ["fig-ap-human-loop", "fig-ap-autonomy-levels"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" },
@@ -401,7 +401,7 @@
       "エピソードは、記憶の分け方で、過去の経験の流れ（エピソード記憶）を指すときなどに使う語。計画で分ける仕事の単位ではない。"
     ],
     "memoryTip": "大きな仕事→小さなサブタスクに分けて→順に片づける。",
-    "concepts": ["C-AP-03-002", "C-AP-03-029"],
+    "concepts": ["C-AP-03-002", "C-AP-03-029", "C-AP-02-031", "C-AP-03-014"],
     "sources": [
       { "title": "Wang et al. (2023) Plan-and-Solve Prompting (arXiv:2305.04091)", "url": "https://arxiv.org/abs/2305.04091" }
     ],
@@ -459,7 +459,7 @@
       "（ア）が違い、（イ）と（ウ）も逆。事前学習はモデルの重みを作る工程で、文書をしまう準備は索引づくり。まず検索でかたまりを取り出し、それを渡して生成する。生成の後に検索するのでは、答えの根拠にならない。"
     ],
     "memoryTip": "しまう→探す→答える。準備は質問の前に済ませる。",
-    "concepts": ["C-AP-03-010", "C-AP-03-015"],
+    "concepts": ["C-AP-03-010", "C-AP-03-015", "C-AP-02-015"],
     "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -488,7 +488,7 @@
       "RLHFは、人の評価をもとに答えの好ましさを強化学習で身につけさせる方法。新しい規程の中身をモデルに渡す方法ではない。"
     ],
     "memoryTip": "資料がよく変わる＋学習し直したくない＝RAG。",
-    "concepts": ["C-AP-03-010", "C-AP-03-011"],
+    "concepts": ["C-AP-03-010", "C-AP-03-011", "C-AP-01-036", "C-AP-02-015", "C-AP-02-022"],
     "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -575,7 +575,7 @@
       "再現性は、同じ条件で同じ結果が出ること。古い料金表でも毎回同じ古い料金を答えるので、再現性はむしろ保たれている。"
     ],
     "memoryTip": "古い資料→古い答え。最新性は索引の手入れで守る。",
-    "concepts": ["C-AP-03-012", "C-AP-03-017"],
+    "concepts": ["C-AP-03-012", "C-AP-03-017", "C-AP-04-114"],
     "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -604,7 +604,7 @@
       null
     ],
     "memoryTip": "サイロ＝仕切られた倉庫。あるのに届かない。",
-    "concepts": ["C-AP-03-013"],
+    "concepts": ["C-AP-03-013", "C-AP-02-048"],
     "sources": [
       { "title": "IBM『What are data silos?』", "url": "https://www.ibm.com/think/topics/data-silos" },
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" }
@@ -633,7 +633,7 @@
       "クエリの書き換えは、利用者の質問を検索に向いた形に言い直すこと。文書の側を切り分ける処理ではない。"
     ],
     "memoryTip": "チャンク＝検索用のかたまり。トークン＝モデル用の細かい単位。",
-    "concepts": ["C-AP-03-014", "C-AP-02-038"],
+    "concepts": ["C-AP-03-014", "C-AP-02-038", "C-AP-02-032", "C-AP-03-019", "C-AP-03-021"],
     "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Microsoft Learn『Chunk Documents - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents" },
@@ -692,7 +692,7 @@
       "データサイロは、データが部署やシステムごとに閉じこもって共有できない状態のこと。データの置き場の種類の名前ではない。"
     ],
     "memoryTip": "意味を数の並びにして、近さで探す置き場＝ベクトルDB。",
-    "concepts": ["C-AP-03-015"],
+    "concepts": ["C-AP-03-015", "C-AP-03-024", "C-AP-03-013"],
     "figures": ["fig-ap-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" },
@@ -781,7 +781,7 @@
       "クエリの書き換えは、質問を検索に向いた形に言い直す、検索の前の工夫。2種類の検索を組み合わせる方法ではない。"
     ],
     "memoryTip": "型番に強いキーワード＋言い換えに強いベクトル＝ハイブリッド。",
-    "concepts": ["C-AP-03-018", "C-AP-03-016"],
+    "concepts": ["C-AP-03-018", "C-AP-03-016", "C-AP-03-019", "C-AP-03-021"],
     "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Microsoft Learn『Hybrid Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview" }
@@ -810,7 +810,7 @@
       null
     ],
     "memoryTip": "BM25（語）とベクトル（意味）の順位を、RRFで1本に。",
-    "concepts": ["C-AP-03-018"],
+    "concepts": ["C-AP-03-018", "C-AP-02-022"],
     "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Microsoft Learn『Hybrid Search Overview - Azure AI Search』", "url": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview" }
@@ -839,7 +839,7 @@
       "ハイブリッド検索は、キーワード検索とベクトル検索を同時に行って候補を集める方法。集めた後に別のモデルで点を付け直す処理とは別。"
     ],
     "memoryTip": "集めてから、丁寧に並べ直して、上だけ渡す。",
-    "concepts": ["C-AP-03-019", "C-AP-01-068"],
+    "concepts": ["C-AP-03-019", "C-AP-01-068", "C-AP-03-021", "C-AP-03-014", "C-AP-03-018"],
     "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -897,7 +897,7 @@
       "（ア）と（イ）が逆で、（ウ）も違う。質問を言い直すのは検索の前、候補を並べ直すのは検索の後。流れ自体を組み替えるのは Modular RAG の特徴で、Advanced RAGの流れは一直線のまま。"
     ],
     "memoryTip": "前は質問を直す、後は並べ直す。流れは一直線のまま。",
-    "concepts": ["C-AP-03-020", "C-AP-03-021", "C-AP-03-019"],
+    "concepts": ["C-AP-03-020", "C-AP-03-021", "C-AP-03-019", "C-AP-01-036"],
     "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -926,7 +926,7 @@
       "Agentic RAGは、エージェントが、どこを・何回・どう探すかを結果を見て決める形。Gaoらの総説の3つの区分の名前ではなく、流れも一直線ではない。"
     ],
     "memoryTip": "Naive（素朴）→ Advanced（前後を工夫）→ Modular（組み替え）。",
-    "concepts": ["C-AP-03-020"],
+    "concepts": ["C-AP-03-020", "C-AP-03-022"],
     "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -955,7 +955,7 @@
       "チャンク分割は、文書の側をかたまりに切り分ける準備。質問の言い方を直す工夫ではない。"
     ],
     "memoryTip": "『それ』を言い直してから探す＝クエリの書き換え（検索の前）。",
-    "concepts": ["C-AP-03-021"],
+    "concepts": ["C-AP-03-021", "C-AP-03-019", "C-AP-03-014"],
     "figures": ["fig-ap-advanced-rag"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" },
@@ -985,7 +985,7 @@
       "ハイブリッド検索は、キーワード検索とベクトル検索を同時に行って結果をまとめる検索の方法。何回探すかを判断するエージェントの仕組みではない。"
     ],
     "memoryTip": "Agentic＝探し方・回数をエージェントが決める。",
-    "concepts": ["C-AP-03-022"],
+    "concepts": ["C-AP-03-022", "C-AP-03-023", "C-AP-03-018"],
     "figures": ["fig-ap-agentic-rag"],
     "sources": [
       { "title": "Singh et al. (2025) Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG (arXiv:2501.09136)", "url": "https://arxiv.org/abs/2501.09136" }
@@ -1043,7 +1043,7 @@
       "クエリの書き換えは、質問を検索に向く形に言い直す工夫。資料全体を見渡すための知識グラフや要約は作らない。"
     ],
     "memoryTip": "全体のテーマを聞くなら、関係の網（グラフ）と要約で答える。",
-    "concepts": ["C-AP-03-023", "C-AP-03-024"],
+    "concepts": ["C-AP-03-023", "C-AP-03-024", "C-AP-03-018", "C-AP-03-019", "C-AP-03-021"],
     "figures": ["fig-ap-graph-rag"],
     "sources": [
       { "title": "Edge et al. (2024) From Local to Global: A GraphRAG Approach to Query-Focused Summarization (arXiv:2404.16130)", "url": "https://arxiv.org/abs/2404.16130" }
@@ -1072,7 +1072,7 @@
       "（ア）（イ）が違う。ベクトルデータベースと埋め込みのベクトルは、ふつうのRAGの部品（かたまりを数の並びにして置き場にしまう）。GraphRAGが文書から作るのは、実体を点、関係を線で結んだ知識グラフで、コミュニティごとに作るのはLLMで書いた要約の文。"
     ],
     "memoryTip": "グラフで分けて、要約を作っておき、要約から答える。",
-    "concepts": ["C-AP-03-023", "C-AP-03-024"],
+    "concepts": ["C-AP-03-023", "C-AP-03-024", "C-AP-03-015", "C-AP-05-017"],
     "figures": ["fig-ap-graph-rag"],
     "sources": [
       { "title": "Edge et al. (2024) From Local to Global: A GraphRAG Approach to Query-Focused Summarization (arXiv:2404.16130)", "url": "https://arxiv.org/abs/2404.16130" }
@@ -1101,7 +1101,7 @@
       null
     ],
     "memoryTip": "知識グラフ＝点（物事）と線（関係）の網。",
-    "concepts": ["C-AP-03-024"],
+    "concepts": ["C-AP-03-024", "C-AP-02-034", "C-AP-01-064", "C-AP-03-015"],
     "figures": ["fig-ap-graph-rag"],
     "sources": [
       { "title": "Google『Introducing the Knowledge Graph: things, not strings』（2012年5月16日）", "url": "https://blog.google/products-and-platforms/products/search/introducing-knowledge-graph-things-not/" },
@@ -1131,7 +1131,7 @@
       "トークンは、LLMが文を扱う細かい単位。文書に付ける年度や文書名の情報ではない。"
     ],
     "memoryTip": "中身で探すのは埋め込み、付け札で絞るのはメタデータ。",
-    "concepts": ["C-AP-03-017", "C-AP-02-038"],
+    "concepts": ["C-AP-03-017", "C-AP-02-038", "C-AP-03-038", "C-AP-02-031"],
     "figures": ["fig-ap-rag-filter"],
     "sources": [
       { "title": "Gao et al. (2023) Retrieval-Augmented Generation for Large Language Models: A Survey (arXiv:2312.10997)", "url": "https://arxiv.org/abs/2312.10997" }
@@ -1188,7 +1188,7 @@
       "Structured Outputsは、OpenAIの、モデルの出力を決めたJSONの形に合わせる機能。RAGを組むためのフレームワークではない。"
     ],
     "memoryTip": "LangChain・LlamaIndex＝RAGを組む道具箱。",
-    "concepts": ["C-AP-03-026"],
+    "concepts": ["C-AP-03-026", "C-AP-03-032"],
     "sources": [
       { "title": "LlamaIndex Developer Documentation『LlamaIndex Framework』", "url": "https://developers.llamaindex.ai/python/framework/" },
       { "title": "Docs by LangChain『Retrieval Augmented Generation (RAG)』", "url": "https://docs.langchain.com/oss/python/deepagents/rag" }
@@ -1217,7 +1217,7 @@
       "（ア）（イ）（ウ）すべてが違う。推論と判断をするのはモデル（LLM）、外部の関数やAPIはツール、ふるまいの指針が指示。Evalは出来を測るテストで、3つの部品に入っていない。"
     ],
     "memoryTip": "考える（モデル）・動く（ツール）・決まり（指示）。",
-    "concepts": ["C-AP-03-027"],
+    "concepts": ["C-AP-03-027", "C-AP-03-068"],
     "figures": ["fig-ap-agent-parts"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
@@ -1276,7 +1276,7 @@
       "リランキングは、RAG（検索拡張生成。資料を探して添え、答えさせる仕組み）で検索の候補を並べ直す処理。安全のための見張りではない。"
     ],
     "memoryTip": "ガードレール＝機械の柵。人の確認は Human-in-the-Loop。",
-    "concepts": ["C-AP-03-028", "C-AP-03-008"],
+    "concepts": ["C-AP-03-028", "C-AP-03-008", "C-AP-03-065", "C-AP-03-019"],
     "figures": ["fig-ap-guardrails", "fig-ap-defense-in-depth"],
     "sources": [
       { "title": "OpenAI『A practical guide to building agents』（PDF）", "url": "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf" }
@@ -1535,7 +1535,7 @@
       "Agent Skillsは、仕事のやり方を手順書やスクリプトのフォルダにまとめて、エージェントに持たせる仕組み。Anthropicの基盤で実行される道具の分類の名前ではない。"
     ],
     "memoryTip": "アプリで動く＝クライアント、Anthropic（Claude を作っている会社）で動く＝サーバー。",
-    "concepts": ["C-AP-03-031"],
+    "concepts": ["C-AP-03-031", "C-AP-03-050"],
     "sources": [
       { "title": "Claude Docs『Tool use with Claude』", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" }
     ],
@@ -1563,7 +1563,7 @@
       "リランキングは、検索で集めた候補を並べ直す処理。LLMの出力の項目や型を決める機能ではない。"
     ],
     "memoryTip": "出力の形を決めておく＝構造化出力。",
-    "concepts": ["C-AP-03-032"],
+    "concepts": ["C-AP-03-032", "C-AP-02-038", "C-AP-03-019"],
     "sources": [
       { "title": "OpenAI『Introducing Structured Outputs in the API』（2024年8月6日）", "url": "https://openai.com/index/introducing-structured-outputs-in-the-api/" }
     ],
@@ -1648,7 +1648,7 @@
       null
     ],
     "memoryTip": "短期＝この会話の中。長期＝会話をまたぐ。",
-    "concepts": ["C-AP-03-034", "C-AP-03-035"],
+    "concepts": ["C-AP-03-034", "C-AP-03-035", "C-AP-02-015", "C-AP-03-038"],
     "figures": ["fig-ap-agent-memory"],
     "sources": [
       { "title": "Docs by LangChain『Memory overview』", "url": "https://docs.langchain.com/oss/python/concepts/memory" }
@@ -1677,7 +1677,7 @@
       "コンテキストウィンドウは、1回のやり取りで扱えるトークンの上限。上限を大きくしても、会話を閉じれば中身は残らないので、別の日の会話に好みを持ち越せない。"
     ],
     "memoryTip": "別の日も覚えている＝長期メモリ。",
-    "concepts": ["C-AP-03-035", "C-AP-03-034"],
+    "concepts": ["C-AP-03-035", "C-AP-03-034", "C-AP-02-038", "C-AP-01-036", "C-AP-02-042"],
     "figures": ["fig-ap-agent-memory"],
     "sources": [
       { "title": "OpenAI『Memory and new controls for ChatGPT』（2024年2月13日。2025年4月10日などの更新を含む）", "url": "https://openai.com/index/memory-and-new-controls-for-chatgpt/" }
@@ -1736,7 +1736,7 @@
       "ファインチューニングは、追加の学習でモデルの重みを調整する方法。会話の内容を要約して上限に収める方法ではない。"
     ],
     "memoryTip": "いっぱいになったら、要約して詰め直す＝コンパクション。",
-    "concepts": ["C-AP-03-036"],
+    "concepts": ["C-AP-03-036", "C-AP-03-019", "C-AP-03-014", "C-AP-01-036"],
     "figures": ["fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
@@ -1794,7 +1794,7 @@
       "ハーネスエンジニアリングは、道具・手順書・テスト・記録など、エージェントが動く周りの環境を整える取り組み。推論のたびに渡すトークンの組を選ぶことそのものを指す語ではない。"
     ],
     "memoryTip": "プロンプト＝指示の文。コンテキスト＝毎回渡す情報の全部。",
-    "concepts": ["C-AP-03-037", "C-AP-03-055"],
+    "concepts": ["C-AP-03-037", "C-AP-03-055", "C-AP-01-036", "C-AP-03-054"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
     ],
@@ -1851,7 +1851,7 @@
       "Toolformerは、どの道具を・いつ・どんな引数で呼ぶかをモデル自身に学ばせた研究。推論の過程と行動を交互に書き出して進める手法の名前ではない。"
     ],
     "memoryTip": "ReAct＝Reason＋Act。考える・動く・見る、を繰り返す。",
-    "concepts": ["C-AP-03-039", "C-AP-01-068"],
+    "concepts": ["C-AP-03-039", "C-AP-01-068", "C-AP-02-058", "C-AP-02-022"],
     "figures": ["fig-ap-react-loop"],
     "sources": [
       { "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)", "url": "https://arxiv.org/abs/2210.03629" }
@@ -1880,7 +1880,7 @@
       "（ア）が違い、（イ）と（ウ）も逆。事前学習はモデルを作るときの段階で、次の手を考えるのは推論。道具を使って外に働きかけるのが行動、その結果を受け取るのが観察。"
     ],
     "memoryTip": "考える→動く→見る→考える…。",
-    "concepts": ["C-AP-03-039", "C-AP-03-040"],
+    "concepts": ["C-AP-03-039", "C-AP-03-040", "C-AP-02-015"],
     "figures": ["fig-ap-react-loop"],
     "sources": [
       { "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)", "url": "https://arxiv.org/abs/2210.03629" },
@@ -1911,7 +1911,7 @@
       "クエリの書き換えは、同じ検索の中で質問の言い方を直す工夫。公式サイトから主催者の資料へと、調べる手順そのものを切り替えることとは別。"
     ],
     "memoryTip": "だめだと分かったら、道を変える＝再計画。",
-    "concepts": ["C-AP-03-041", "C-AP-03-040"],
+    "concepts": ["C-AP-03-041", "C-AP-03-040", "C-AP-03-019", "C-AP-03-021"],
     "figures": ["fig-ap-react-loop"],
     "sources": [
       { "title": "Yao et al. (2022) ReAct: Synergizing Reasoning and Acting in Language Models (arXiv:2210.03629)", "url": "https://arxiv.org/abs/2210.03629" },
@@ -1941,7 +1941,7 @@
       "RAGは、質問に関係する文書を探してLLM（大規模言語モデル）に添える仕組みの名前。会社が公開した、外部とつなぐための決まり（プロトコル）ではない。"
     ],
     "memoryTip": "MCP＝AIと道具・データをつなぐ共通の差し込み口。",
-    "concepts": ["C-AP-03-042"],
+    "concepts": ["C-AP-03-042", "C-AP-03-049", "C-AP-03-050", "C-AP-02-038"],
     "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" }
@@ -2060,7 +2060,7 @@
       null
     ],
     "memoryTip": "情報のサイロ＝あるのに届かない。MCPはその壁に穴を開ける。",
-    "concepts": ["C-AP-03-013", "C-AP-03-042", "C-AP-03-044"],
+    "concepts": ["C-AP-03-013", "C-AP-03-042", "C-AP-03-044", "C-AP-04-124", "C-AP-04-125"],
     "sources": [
       { "title": "Anthropic『Introducing the Model Context Protocol』（2024年11月25日）", "url": "https://www.anthropic.com/news/model-context-protocol" }
     ],
@@ -2176,7 +2176,7 @@
       "プロンプトの連鎖は、決まったサブタスクの呼び出しを順につなぐワークフローの形。テーマの違う複数のエージェントに同時に調べさせるものではない。"
     ],
     "memoryTip": "指揮役が配って、作業役が並んで調べる＝マルチエージェント。",
-    "concepts": ["C-AP-03-047", "C-AP-03-048"],
+    "concepts": ["C-AP-03-047", "C-AP-03-048", "C-AP-03-018", "C-AP-03-023"],
     "figures": ["fig-ap-multi-agent"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" }
@@ -2234,7 +2234,7 @@
       "ベクトルデータベースは、文書のかたまりのベクトルをしまって近さで探す置き場。自分で作業して要約を返すエージェントではない。"
     ],
     "memoryTip": "深く調べて、短く返す＝サブエージェント。",
-    "concepts": ["C-AP-03-048", "C-AP-03-036"],
+    "concepts": ["C-AP-03-048", "C-AP-03-036", "C-AP-03-043", "C-AP-03-038", "C-AP-03-015"],
     "figures": ["fig-ap-context-management"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" },
@@ -2293,7 +2293,7 @@
       "AGENTS.md は、コーディングのエージェントに、そのリポジトリでの作業のしかたを伝えるためのファイルの形式。エージェントどうしが仕事を頼み合う決まりではない。"
     ],
     "memoryTip": "A2A＝Agent to Agent。エージェントどうしの共通語。",
-    "concepts": ["C-AP-03-049"],
+    "concepts": ["C-AP-03-049", "C-AP-03-042", "C-AP-03-050"],
     "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Google for Developers Blog『Announcing the Agent2Agent Protocol (A2A)』（2025年4月9日）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
@@ -2325,7 +2325,7 @@
       null
     ],
     "memoryTip": "MCP＝道具と、A2A＝仲間と。名刺は Agent Card。",
-    "concepts": ["C-AP-03-049", "C-AP-03-042"],
+    "concepts": ["C-AP-03-049", "C-AP-03-042", "C-AP-03-030"],
     "figures": ["fig-ap-agent-mcp-a2a"],
     "sources": [
       { "title": "Google for Developers Blog『Announcing the Agent2Agent Protocol (A2A)』（2025年4月9日）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
@@ -2384,7 +2384,7 @@
       "サブエージェントは、親のエージェントから仕事の一部を任される立場のエージェントのこと。何の仕事をするかの種類の名前ではない。"
     ],
     "memoryTip": "直して、試して、プルリクエストで人に見せる＝コーディングエージェント。",
-    "concepts": ["C-AP-03-051", "C-AP-03-052"],
+    "concepts": ["C-AP-03-051", "C-AP-03-052", "C-AP-03-057", "C-AP-03-056", "C-AP-03-048"],
     "figures": ["fig-ap-coding-agent"],
     "sources": [
       { "title": "GitHub Blog『GitHub Copilot: Meet the new coding agent』（2025年5月19日）", "url": "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/" },
@@ -2564,7 +2564,7 @@
       "リランキングは、RAG（検索拡張生成。資料を探して添え、答えさせる仕組み）で検索の候補を並べ直す処理。エージェントの作業の環境を整える取り組みではない。"
     ],
     "memoryTip": "馬（モデル）ではなく、馬具（周りの仕組み）を整える。",
-    "concepts": ["C-AP-03-054"],
+    "concepts": ["C-AP-03-054", "C-AP-03-055", "C-AP-01-036", "C-AP-03-019"],
     "sources": [
       { "title": "OpenAI『Harness engineering: leveraging Codex in an agent-first world』（2026年2月11日）", "url": "https://openai.com/index/harness-engineering/" }
     ],
@@ -2620,7 +2620,7 @@
       "（ア）（イ）が違う。コンテキストエンジニアリングは、プロンプトの外の情報まで含めて渡すトークンを選ぶ戦略で、指示の文を書いて整理する（ア）ではない。ハーネスエンジニアリングは、道具・検査・記録など、エージェントの周りの環境を整える取り組みで、推論のたびに最適なトークンの組を選び保つ戦略の名前ではない。"
     ],
     "memoryTip": "プロンプト（指示の文）→ コンテキスト（渡す情報の全部）。",
-    "concepts": ["C-AP-03-055", "C-AP-03-037"],
+    "concepts": ["C-AP-03-055", "C-AP-03-037", "C-AP-01-036", "C-AP-03-054"],
     "sources": [
       { "title": "Anthropic『Effective context engineering for AI agents』（2025年9月29日）", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" }
     ],
@@ -2676,7 +2676,7 @@
       "Structured Outputsは、OpenAIの、モデルの出力を決めたJSON（データを書く決まった形式）の形に合わせる機能。画面を操作する機能ではない。"
     ],
     "memoryTip": "画面を見て、カーソルで押す＝computer use。",
-    "concepts": ["C-AP-03-056"],
+    "concepts": ["C-AP-03-056", "C-AP-03-050"],
     "sources": [
       { "title": "Anthropic『Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku』（2024年10月22日）", "url": "https://www.anthropic.com/news/3-5-models-and-computer-use" }
     ],
@@ -2734,7 +2734,7 @@
       "ChatGPTのメモリは、利用者の好みなどを会話をまたいで覚えておく機能。何段階もウェブを調べて報告書を作る機能ではない。"
     ],
     "memoryTip": "深く調べて、出典つきで報告＝ディープリサーチ。",
-    "concepts": ["C-AP-03-057"],
+    "concepts": ["C-AP-03-057", "C-AP-02-059", "C-AP-02-060", "C-AP-03-033"],
     "sources": [
       { "title": "OpenAI『Introducing deep research』（2025年2月2日）", "url": "https://openai.com/index/introducing-deep-research/" }
     ],
@@ -2847,7 +2847,7 @@
       "データサイロは、データが部署やシステムごとに閉じこもり、共有できない状態。権限を与えすぎる弱点とはむしろ逆向きの問題。"
     ],
     "memoryTip": "きっかけは誤りやだまし、被害を大きくするのは与えすぎ。",
-    "concepts": ["C-AP-03-060"],
+    "concepts": ["C-AP-03-060", "C-AP-03-062", "C-AP-02-037", "C-AP-03-013"],
     "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
@@ -2876,7 +2876,7 @@
       "（ア）（イ）（ウ）すべてが違う。道具そのものが要らない機能を持つのが過剰な機能、つなぐ先で要らない権限を持つのが過剰な権限、確認なしに実行させるのが過剰な自律。ハルシネーションは事実と違う内容を出すことで、3つの原因の名前ではない。"
     ],
     "memoryTip": "道具の中身＝機能、つなぐ先の鍵＝権限、確認なし＝自律。",
-    "concepts": ["C-AP-03-060"],
+    "concepts": ["C-AP-03-060", "C-AP-02-037"],
     "figures": ["fig-ap-excessive-agency"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM06:2025 Excessive Agency』", "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" }
@@ -2934,7 +2934,7 @@
       "データサイロは、データが部署やシステムごとに閉じこもって共有できない状態。誤りが積み重なる現象ではない。"
     ],
     "memoryTip": "1つの誤りが、次の手の前提になって広がる＝連鎖的なエラー。",
-    "concepts": ["C-AP-03-061"],
+    "concepts": ["C-AP-03-061", "C-AP-02-037", "C-AP-01-030", "C-AP-03-013"],
     "figures": ["fig-ap-cascading-error"],
     "sources": [
       { "title": "Anthropic『How we built our multi-agent research system』（2025年6月13日）", "url": "https://www.anthropic.com/engineering/multi-agent-research-system" },
@@ -3023,7 +3023,7 @@
       null
     ],
     "memoryTip": "指示の注入＝プロンプトインジェクション。",
-    "concepts": ["C-AP-03-062"],
+    "concepts": ["C-AP-03-062", "C-AP-02-037", "C-AP-01-056", "C-AP-03-060"],
     "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM01:2025 Prompt Injection』", "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/" }
@@ -3052,7 +3052,7 @@
       "連鎖的なエラーは、1つの誤りが次の手に引き継がれて広がること。攻撃者がページに命令を仕込む手口の名前ではない。"
     ],
     "memoryTip": "利用者が打つ＝直接。読みに行った先に仕込む＝間接。",
-    "concepts": ["C-AP-03-062", "C-AP-03-040"],
+    "concepts": ["C-AP-03-062", "C-AP-03-040", "C-AP-02-037", "C-AP-03-061"],
     "figures": ["fig-ap-prompt-injection"],
     "sources": [
       { "title": "OWASP Gen AI Security Project『LLM01:2025 Prompt Injection』", "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/" },
@@ -3230,7 +3230,7 @@
       null
     ],
     "memoryTip": "要るぶんだけ渡す＝最小権限。",
-    "concepts": ["C-AP-03-064"],
+    "concepts": ["C-AP-03-064", "C-AP-03-067", "C-AP-03-066", "C-AP-03-065"],
     "figures": ["fig-ap-least-privilege-principle", "fig-ap-excessive-agency"],
     "sources": [
       { "title": "NIST CSRC Glossary『least privilege』", "url": "https://csrc.nist.gov/glossary/term/least_privilege" }
@@ -3289,7 +3289,7 @@
       "プルリクエストは、直したコードを取り込んでほしいと提案し、レビューを受ける仕組み。コマンドを実行させる環境ではない。"
     ],
     "memoryTip": "砂場の中なら、何をしても外は汚れない。",
-    "concepts": ["C-AP-03-065"],
+    "concepts": ["C-AP-03-065", "C-AP-03-066", "C-AP-03-015", "C-AP-03-052"],
     "sources": [
       { "title": "NIST CSRC Glossary『sandbox』", "url": "https://csrc.nist.gov/glossary/term/sandbox" },
       { "title": "OpenAI『Introducing Codex』（2025年5月16日。2025年6月3日の更新を含む）", "url": "https://openai.com/index/introducing-codex/" }
@@ -3318,7 +3318,7 @@
       "（ア）（イ）が違う。使ってよいものだけを並べるのはホワイトリスト（許可リスト）で、ブラックリストは止めるものを並べる一覧。サンドボックスは隔離された実行環境で、一覧の名前ではない。"
     ],
     "memoryTip": "ホワイト＝載ったものだけ通す。ブラック＝載ったものだけ止める。",
-    "concepts": ["C-AP-03-066"],
+    "concepts": ["C-AP-03-066", "C-AP-03-065"],
     "figures": ["fig-ap-allowlist"],
     "sources": [
       { "title": "NIST CSRC Glossary『whitelist』", "url": "https://csrc.nist.gov/glossary/term/whitelist" },
@@ -3348,7 +3348,7 @@
       null
     ],
     "memoryTip": "1枚の壁ではなく、性質の違う壁を何枚も。",
-    "concepts": ["C-AP-03-067", "C-AP-03-064", "C-AP-03-008"],
+    "concepts": ["C-AP-03-067", "C-AP-03-064", "C-AP-03-008", "C-AP-03-066"],
     "figures": ["fig-ap-defense-in-depth"],
     "sources": [
       { "title": "NIST CSRC Glossary『defense-in-depth』", "url": "https://csrc.nist.gov/glossary/term/defense_in_depth" },

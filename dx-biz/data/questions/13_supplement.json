@@ -261,7 +261,7 @@
       "共通プラットフォーム推進は、業界内の協調領域を共同化する中長期の取組。"
     ],
     "memoryTip": "共通理解の形成＝経営層・事業部門・IT部門の間でDXの意味と進め方をそろえる、社内の最初の一歩。共通プラットフォームやデジタルアーキテクチャは、業界・社会とつなぐ中長期の取組。",
-    "concepts": ["DC-01-011", "DC-01-012", "DC-01-015"],
+    "concepts": ["DC-01-011", "DC-01-012", "DC-01-015", "DC-01-014"],
     "sources": [
       { "title": "経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）4.2", "url": "https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf" }
     ],
@@ -406,7 +406,7 @@
       "向きが逆。維持・運営に近いのはSoR（守り）で、新しい施策に近いのはSoE（攻め）。白書も、予算の区分がSoR/SoEにそのまま対応するとは限らないと注記している。"
     ],
     "memoryTip": "Run（回す）＝維持、Value-up（価値を上げる）＝攻め。日本は8：2で「回す」に偏り。",
-    "concepts": ["DC-01-021", "DC-01-005"],
+    "concepts": ["DC-01-021", "DC-01-005", "DC-01-002", "DC-01-014"],
     "figures": ["fig-dx-defense-offense-it"],
     "sources": [
       { "title": "総務省「令和元年版 情報通信白書」ICT投資の状況", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r01/html/nd112210.html" },
@@ -867,7 +867,7 @@
       "OMO（Online Merges Offline）は、実店舗にいながら、そのお店のインターネット上のサービスも使えるようにする取組（例: 店に在庫が無い商品を店内のデジタルサイネージ（デジタルの看板）で確かめて、オンラインストアで買う）。オンラインとオフラインを組み合わせる点はO2Oと同じだが、問いの例（ネットで買って店で受け取る・ネットで店の在庫を確かめる）は、総務省の説明ではO2Oの例。"
     ],
     "memoryTip": "O2O＝ネットの店と実店舗を結びつける（ネットで在庫を見て、店で受け取る）。OMO＝店の中にいながらネットのサービスも使える（店内の看板で見て、ネットで買う）。",
-    "concepts": ["DC-04-007"],
+    "concepts": ["DC-04-007", "DC-04-023", "DC-04-013", "DC-04-008"],
     "figures": ["fig-dx-o2o-omo-omni"],
     "sources": [
       { "title": "総務省「情報通信白書 for Kids」ネットショッピングのO2O・OMOって何？", "url": "https://www.soumu.go.jp/hakusho-kids/use/economy/economy_01.html" }
@@ -919,7 +919,7 @@
       "グルーポンモデルは期間・数量限定の割引クーポンを販売する仕組み。"
     ],
     "memoryTip": "One to One＝「1社対1人」。データがあるから一人ずつ違う提案ができる。",
-    "concepts": ["DC-04-025", "DC-04-016"],
+    "concepts": ["DC-04-025", "DC-04-016", "DC-04-006"],
     "figures": ["fig-dx-segment-one2one"],
     "sources": [
       { "title": "観光庁「観光地域づくり法人（DMO）による観光地域マーケティングガイドブック」", "url": "https://www.mlit.go.jp/kankocho/content/001580600.pdf" }
@@ -943,7 +943,7 @@
       "ランディングページは、広告などから最初に着地するWebページ。"
     ],
     "memoryTip": "ジェネレーション＝生む（集める）、ナーチャリング＝育てる（nurture）。",
-    "concepts": ["DC-04-013"],
+    "concepts": ["DC-04-013", "DC-04-015", "DC-04-014"],
     "figures": ["fig-dx-lead"],
     "sources": [
       { "title": "セールスフォース・ジャパン「リードジェネレーションとは？意味や役割、代表的な9つの手法を解説」", "url": "https://www.salesforce.com/jp/marketing/lead-generation-guide/" }
@@ -1086,7 +1086,7 @@
       "バスケット分析は一緒に買われる商品の組み合わせを見る手法。"
     ],
     "memoryTip": "ABテストのコツ＝『変えるのは1か所だけ』『振り分けはランダム』。いくつもの要素を組み合わせて比べるなら多変量テスト。",
-    "concepts": ["DC-04-023", "DC-04-024"],
+    "concepts": ["DC-04-023", "DC-04-024", "DC-03-019"],
     "figures": ["fig-dx-ab-test"],
     "sources": [
       { "title": "アナリティクス ヘルプ「[GA4] A/B テスト」", "url": "https://support.google.com/analytics/answer/13468470?hl=ja" },
@@ -1168,7 +1168,7 @@
       "プロダクトアウトは作り手の技術を起点にする商品づくりの考え方。"
     ],
     "memoryTip": "USP＝「うちにしかない、お客さんにとっての価値」。言いたい強みではなく、選ばれる理由。",
-    "concepts": ["DC-04-005"],
+    "concepts": ["DC-04-005", "DC-04-003", "DC-04-013", "DC-04-006"],
     "sources": [
       { "title": "INPIT 知財総合支援窓口（滋賀）「知財の広場 指名買いブランドを創るには？」", "url": "https://chizai-portal.inpit.go.jp/madoguchi/shiga/files/docs/hiroba_10.pdf" }
     ],
@@ -1276,7 +1276,7 @@
       "キュレーションは、テーマに沿って情報を選んで編集して見せること。"
     ],
     "memoryTip": "リターゲティング広告＝一度サイトに来た人を、別のサイトを見ているときに追いかけて広告を出す。リスティング広告は、検索したキーワードに合わせて検索結果に出す広告。",
-    "concepts": ["DC-04-015"],
+    "concepts": ["DC-04-015", "DC-04-013", "DC-04-022"],
     "figures": ["fig-dx-web-ads"],
     "sources": [
       { "title": "Google 広告 ヘルプ「データ セグメントについて」", "url": "https://support.google.com/google-ads/answer/2453998?hl=ja" }
@@ -1442,7 +1442,7 @@
       "リターゲティングは、一度サイトを訪れた人に広告を再び表示する手法。"
     ],
     "memoryTip": "キュレーション＝人（第三者）がテーマに沿って情報を選び、編集して見せる。学芸員（キュレーター）の仕事が語源。行動データから機械がおすすめを出すのはレコメンデーション。",
-    "concepts": ["DC-04-022", "DC-04-016"],
+    "concepts": ["DC-04-022", "DC-04-016", "DC-04-021", "DC-04-015"],
     "sources": [
       { "title": "IPA「2010年度 未踏IT人材発掘・育成事業 採択案件評価書（Webキュレーションシステムの開発）」", "url": "https://www.ipa.go.jp/archive/files/000011091.pdf" }
     ],
@@ -1553,7 +1553,7 @@
       "ロングテールは、売れ筋以外の多数の商品の売上を積み上げて稼ぐ考え方。"
     ],
     "memoryTip": "クリティカルマス＝利用者がこの数を超えると、利用者が利用者を呼んで一気に普及する境目。損益分岐点は売上と費用が釣り合う「お金」の境目で、別物。",
-    "concepts": ["DC-05-007", "DC-05-006"],
+    "concepts": ["DC-05-007", "DC-05-006", "DC-05-001", "DC-06-013"],
     "figures": ["fig-dx-network-effect"],
     "sources": [
       { "title": "総務省「平成23年版 情報通信白書」コラム ネットワーク型サービスの背後にある考え方", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h23/html/nc232c00.html" }
@@ -1638,7 +1638,7 @@
       "農商工連携は、農林漁業者と商工業者（中小企業者など）が、通常の取引を超えて協力し、互いの強みを生かして新商品・新サービスを開発・販売する取組（中小企業基盤整備機構 J-Net21）。農家と別の会社が組む形で、Xさんのように農家が自分で加工・販売まで手がける六次産業化とは違う。"
     ],
     "memoryTip": "1次（作る）×2次（加工する）×3次（売る）＝6次。",
-    "concepts": ["DC-05-020"],
+    "concepts": ["DC-05-020", "DC-05-019", "DC-05-023"],
     "figures": ["fig-dx-sixth-industry"],
     "sources": [
       { "title": "農林水産省「農山漁村での『6次産業化』とは、どのようなことですか。」", "url": "https://www.maff.go.jp/j/heya/sodan/1202/a04.html" },
@@ -1687,7 +1687,7 @@
       "デファクトスタンダードは、市場で事実上の標準になった規格や製品。"
     ],
     "memoryTip": "密度の経済＝「近くにお客が多い」ほど得。サービスは運べないから効く。",
-    "concepts": ["DC-05-004", "DC-05-023"],
+    "concepts": ["DC-05-004", "DC-05-023", "DC-05-003", "DC-05-007", "DC-05-001"],
     "figures": ["fig-dx-economies"],
     "sources": [
       { "title": "経済産業研究所（RIETI）「サービス業の生産性と密度の経済性－事業所データによる対個人サービス業の分析－」", "url": "https://www.rieti.go.jp/jp/publications/nts/08j008.html" }
@@ -1855,7 +1855,7 @@
       "ドミナント戦略は、特定の地域に集中して出店する戦略。"
     ],
     "memoryTip": "モジュール化＝「規格どおりの部品をはめるだけ」。すり合わせ不要だから誰でも組める。",
-    "concepts": ["DC-05-016"],
+    "concepts": ["DC-05-016", "DC-06-001", "DC-05-020", "DC-05-023"],
     "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」第1部第3節 ICT産業の構造変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/pdf/n1300000.pdf" }
@@ -1879,7 +1879,7 @@
       "オープンソースは、ソースコードを公開するソフトウェアの考え方。"
     ],
     "memoryTip": "1社がまとめて握る＝垂直統合。層ごとに別の会社＝レイヤー化（水平分業）。",
-    "concepts": ["DC-05-018", "DC-06-001"],
+    "concepts": ["DC-05-018", "DC-06-001", "DC-05-017"],
     "figures": ["fig-dx-modular-layer"],
     "sources": [
       { "title": "総務省「平成24年版 情報通信白書」ICT産業の構造とエコシステムの変化", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h24/html/nc122210.html" }
@@ -1903,7 +1903,7 @@
       "レイヤーマスターは、産業のある層を押さえて影響力を持つ企業のこと。"
     ],
     "memoryTip": "BOP＝ピラミッドの底辺（Base of the Pyramid）を「お客さん」「仲間」として見る。",
-    "concepts": ["DC-05-019"],
+    "concepts": ["DC-05-019", "DC-05-023", "DC-05-001", "DC-06-002"],
     "figures": ["fig-dx-bop-business"],
     "sources": [
       { "title": "JICAバングラデシュ事務所「次世代のBOPビジネスがやってくる!」", "url": "https://www.jica.go.jp/bangladesh/bangland/reports/report21.html" },
@@ -1962,7 +1962,7 @@
       "シェアリングは資産を共有する仕組み、投げ銭は配信などへの応援のお金で、どちらも当てはまらない。"
     ],
     "memoryTip": "crowd（群衆）に、sourcing＝仕事を頼む／funding＝お金を集める。",
-    "concepts": ["DC-06-010", "DC-06-011"],
+    "concepts": ["DC-06-010", "DC-06-011", "DC-06-009", "DC-08-011"],
     "figures": ["fig-dx-crowd"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」クラウドソーシング", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc243120.html" },
@@ -2044,7 +2044,7 @@
       "垂直統合は、事業の複数の段階を自社で持つこと。"
     ],
     "memoryTip": "ロングテール＝1点ずつは少ししか売れない多数の商品の売上を積み上げて稼ぐ。棚や在庫の制約が小さいネット・デジタルの商品で成り立ちやすい。",
-    "concepts": ["DC-06-013", "DC-04-016"],
+    "concepts": ["DC-06-013", "DC-04-016", "DC-06-016", "DC-05-023", "DC-06-001"],
     "figures": ["fig-dx-long-tail"],
     "sources": [
       { "title": "総務省「平成18年版 情報通信白書」コンテンツとロングテール現象", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h18/html/i1911000.html" }
@@ -2099,7 +2099,7 @@
       "サブスクリプションは、月額などの定額料金を払うと、一定期間使い放題・見放題になる課金の形（定額制）。料金は使った量にかかわらず一定で、X社のように機械が止まらずに動いた時間に応じて受け取る形ではない。売り切らずに続けて対価を得る点は似ているので取り違えやすい。"
     ],
     "memoryTip": "稼働保証＝『機械を売る』から『動いている時間を売る』へ。定額で使い放題ならサブスクリプション。",
-    "concepts": ["DC-06-022", "DC-06-019", "DC-02-004"],
+    "concepts": ["DC-06-022", "DC-06-019", "DC-02-004", "DC-07-009", "DC-06-023", "DC-08-001"],
     "figures": ["fig-dx-servitization"],
     "sources": [
       { "title": "経済産業省 製造産業局「我が国航空機産業の今後の方向性について」（2024年3月27日）", "url": "https://www.meti.go.jp/shingikai/sankoshin/seizo_sangyo/kokuki_uchu/pdf/2023_001_02_00.pdf" },
@@ -2125,7 +2125,7 @@
       "代行ビジネスは、顧客の手間を代わりに引き受けるビジネス。"
     ],
     "memoryTip": "グロサリー＋レストラン＝グローサラント。",
-    "concepts": ["DC-06-024"],
+    "concepts": ["DC-06-024", "DC-05-011", "DC-05-023", "DC-06-025"],
     "sources": [
       { "title": "Square「スーパーとレストランの融合、グローサラントとは」", "url": "https://squareup.com/jp/ja/townsquare/what-is-the-grocerant" },
       { "title": "内閣府「令和7年度 高齢者の生活と意識に関する国際比較調査」分析「家・職場に続く高齢者の『サードプレイス』の実態」", "url": "https://www8.cao.go.jp/kourei/ishiki/r07/zentai/pdf/chapter4_2.pdf" },
@@ -2241,7 +2241,7 @@
       "匿名配送は、名前や住所を相手に知らせずに商品を配送できる仕組み。総務省は、エスクローサービスとあわせて使うよう勧めているが、守るのは名前や住所で、代金の支払いの時期を決める仕組みではない。"
     ],
     "memoryTip": "エスクロー＝お金をいったん「第三者が預かる」。届いてから支払う。",
-    "concepts": ["DC-06-012"],
+    "concepts": ["DC-06-012", "DC-06-011", "DC-08-001"],
     "figures": ["fig-dx-c2c-escrow"],
     "sources": [
       { "title": "総務省「上手にネットと付き合おう！」テーマ4 フリマなどネットを介した取引によるトラブル", "url": "https://www.soumu.go.jp/use_the_internet_wisely/trouble/case/fleamarket.html" }
@@ -2323,7 +2323,7 @@
       "クリームスキミングは、採算性の高い地域や顧客だけを相手にすること。"
     ],
     "memoryTip": "リバース＝逆。ふつうは先進国→途上国、リバースは途上国→先進国。",
-    "concepts": ["DC-06-015", "DC-05-019"],
+    "concepts": ["DC-06-015", "DC-05-019", "DC-07-005", "DC-04-006", "DC-06-016"],
     "figures": ["fig-dx-bop"],
     "sources": [
       { "title": "国土交通政策研究所紀要 第79号（2021年）「新興国・都市におけるリープフロッグに関する調査研究」", "url": "https://www.mlit.go.jp/pri/kikanshi/pdf/2021/79_1.pdf" }
@@ -2347,7 +2347,7 @@
       "ドミナント出店は、特定の地域に集中して出店すること。採算の良い顧客を選ぶことではない。"
     ],
     "memoryTip": "クリーム（上澄み）だけすくう＝おいしい客と地域だけ取る。",
-    "concepts": ["DC-06-016"],
+    "concepts": ["DC-06-016", "DC-06-013", "DC-06-018"],
     "sources": [
       { "title": "総務省「規制の事前評価書（特定信書便役務の範囲の拡大及び特定信書便役務に係る約款の認可手続の簡素化等）」", "url": "https://www.soumu.go.jp/main_content/000349599.pdf" }
     ],
@@ -2398,7 +2398,7 @@
       "ドミナント戦略は、特定の地域に集中して出店する戦略。"
     ],
     "memoryTip": "マス（大量）×カスタマイズ（個別）＝大量生産の効率で、一人ひとりに合わせる。",
-    "concepts": ["DC-06-018", "DC-07-002"],
+    "concepts": ["DC-06-018", "DC-07-002", "DC-04-025", "DC-06-016", "DC-05-023"],
     "sources": [
       { "title": "経済産業省「2020年版ものづくり白書」第1部第1章第2節 不確実性の高まる世界の現状と競争力強化", "url": "https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/101021_2.html" }
     ],
@@ -2508,7 +2508,7 @@
       "直販（ダイレクトセル）は当てはまるが、見込み生産が誤り。見込み生産は、注文の前に売れる量を見込んで作り、在庫を持っておく方式。X社は注文を受けてから、顧客が選んだ組み合わせで1台ずつ組み立てているので、受注生産（メイクトゥオーダー）にあたる。"
     ],
     "memoryTip": "直接売る＝ダイレクトセル、注文してから作る＝MTO。セットで在庫が減る。",
-    "concepts": ["DC-07-003", "DC-07-002"],
+    "concepts": ["DC-07-003", "DC-07-002", "DC-07-009", "DC-07-016", "DC-07-008"],
     "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "日本政策金融公庫総合研究所「中小企業の売る力を強化するDtoC」（日本公庫総研レポート No.2022-2、2022年3月）", "url": "https://www.jfc.go.jp/n/findings/pdf/soukenrepo_22_03_07.pdf" },
@@ -2538,7 +2538,7 @@
       "SPAは製造小売、ファブレスは工場を持たない経営。"
     ],
     "memoryTip": "フランチャイズ＝本部が主役（看板とノウハウを貸す）、ボランタリー＝加盟店が主役（自主的に組む）。",
-    "concepts": ["DC-07-009", "DC-07-016"],
+    "concepts": ["DC-07-009", "DC-07-016", "DC-07-008", "DC-07-004", "DC-07-001", "DC-07-007"],
     "figures": ["fig-dx-franchise-voluntary"],
     "sources": [
       { "title": "公正取引委員会「食品分野におけるプライベート・ブランド商品の取引に関する実態調査報告書」（平成26年6月20日）", "url": "https://www.jftc.go.jp/houdou/pressrelease/h26/jun/140620.html" },
@@ -2652,7 +2652,7 @@
       "シリーズロックインは、同じシリーズの製品を組み合わせる便利さで離れにくくする型。"
     ],
     "memoryTip": "「面倒だから他に移らない」＝コンビニエンス（便利さ）。",
-    "concepts": ["DC-07-015", "DC-07-013"],
+    "concepts": ["DC-07-015", "DC-07-013", "DC-07-021", "DC-07-019", "DC-07-020"],
     "figures": ["fig-dx-lockin"],
     "sources": [
       { "title": "公正取引委員会 競争政策研究センター共同研究「ネットワーク外部性とスイッチングコストの経済分析」（2005年11月）", "url": "https://www.jftc.go.jp/cprc/reports/index_files/cr-0605.pdf" },
@@ -2707,7 +2707,7 @@
       "シリーズロックインは、同じシリーズの製品どうしの連携の便利さで離れにくくする型。"
     ],
     "memoryTip": "「仲間がいるから離れない」＝コミュニティ。",
-    "concepts": ["DC-07-019", "DC-07-013"],
+    "concepts": ["DC-07-019", "DC-07-013", "DC-07-015", "DC-07-017", "DC-07-020"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -2730,7 +2730,7 @@
       "フランチャイジーは、フランチャイズの加盟者のこと。"
     ],
     "memoryTip": "プロ（Producer）＋シューマー（Consumer）＝作る消費者。",
-    "concepts": ["DC-07-006"],
+    "concepts": ["DC-07-006", "DC-07-008"],
     "sources": [
       { "title": "経済産業省「消費者理解に基づく消費経済市場の活性化」研究会（消費インテリジェンス研究会）報告書（平成29年3月31日）", "url": "https://www.meti.go.jp/shingikai/shokeishin/tokutei_shotorihiki/pdf/h29_001_s00_00.pdf" }
     ],
@@ -2758,7 +2758,7 @@
       "フランチャイズは、本部が加盟者に商標などの使用を許して経営を指導し、対価を受け取る事業形態で、製造の受託ではない。"
     ],
     "memoryTip": "OEM＝M（Manufacturing：作る）だけ受託。ODM＝D（Design：設計）からM（作る）まで受託。どちらも売るときのブランドは発注元。",
-    "concepts": ["DC-07-004", "DC-07-001"],
+    "concepts": ["DC-07-004", "DC-07-001", "DC-07-009"],
     "figures": ["fig-dx-make-sell-models"],
     "sources": [
       { "title": "ジェトロ 貿易・投資相談Q&A「OEM生産とODM生産の違い」", "url": "https://www.jetro.go.jp/world/qa/04A-011247.html" },
@@ -2783,7 +2783,7 @@
       "ボランタリーチェーンは、独立した小売店どうしが共同で仕入れなどを行うチェーンで、人を表す言葉ではない。"
     ],
     "memoryTip": "プロ（Producer：作る）＋シューマー（Consumer：使う）＝作りもする消費者。",
-    "concepts": ["DC-07-006", "DC-07-005"],
+    "concepts": ["DC-07-006", "DC-07-005", "DC-07-008", "DC-07-016"],
     "sources": [
       { "title": "経済産業省「消費者理解に基づく消費経済市場の活性化」研究会（消費インテリジェンス研究会）報告書（平成29年3月31日）", "url": "https://www.meti.go.jp/shingikai/shokeishin/tokutei_shotorihiki/pdf/h29_001_s00_00.pdf" }
     ],
@@ -2841,7 +2841,7 @@
       "アフィリエイトは、成果報酬型の広告手法。"
     ],
     "memoryTip": "ボランタリー＝自発的に集まる仲間。フランチャイズ＝看板を借りる加盟者。仲間か、看板か。",
-    "concepts": ["DC-07-016", "DC-07-009", "DC-05-002"],
+    "concepts": ["DC-07-016", "DC-07-009", "DC-05-002", "DC-07-007", "DC-07-008"],
     "figures": ["fig-dx-franchise-voluntary"],
     "sources": [
       { "title": "公正取引委員会「食品分野におけるプライベート・ブランド商品の取引に関する実態調査報告書」（平成26年6月20日）", "url": "https://www.jftc.go.jp/houdou/pressrelease/h26/jun/140620.html" },
@@ -2900,7 +2900,7 @@
       "アもイも違う。リスティング広告は検索キーワードに連動して出す広告で、成果に応じて他人のサイトの運営者に報酬を払う形ではない。アはアフィリエイト。イはロイヤルティで、仕入れの共同化はボランタリーチェーンの特徴。"
     ],
     "memoryTip": "アフィリエイト＝紹介して売れたら報酬。ロイヤルティ＝看板とノウハウを借りる対価。",
-    "concepts": ["DC-07-008", "DC-07-009"],
+    "concepts": ["DC-07-008", "DC-07-009", "DC-08-010", "DC-08-006"],
     "figures": ["fig-dx-affiliate-royalty", "fig-dx-affiliate"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" },
@@ -3130,7 +3130,7 @@
       null
     ],
     "memoryTip": "理由が「気持ち（愛着・誇り）」ならブランド、「手間」ならコンビニエンス、「慣れ」ならラーニング、「特典」ならメンバーシップ。",
-    "concepts": ["DC-07-021", "DC-07-013"],
+    "concepts": ["DC-07-021", "DC-07-013", "DC-07-017", "DC-07-015", "DC-07-018"],
     "sources": [
       { "title": "DXビジネス検定 公式ページ シラバス（2026年2月改訂）", "url": "https://www.nextet.net/netkentei/dx-biz/" }
     ],
@@ -3211,7 +3211,7 @@
       "部分所有モデルは、高価な資産の持ち分を複数人で分けて持つモデル。"
     ],
     "memoryTip": "フリーミアム＝Free＋Premium。「基本タダ、上は有料」。",
-    "concepts": ["DC-08-002"],
+    "concepts": ["DC-08-002", "DC-08-001", "DC-08-004"],
     "figures": ["fig-dx-freemium"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }
@@ -3265,7 +3265,7 @@
       "部分所有モデルは、資産の持ち分を複数人で分けて持つモデル。"
     ],
     "memoryTip": "レベニュー（収益）をシェア（分け合う）。初期は安く、成功したら分け前。",
-    "concepts": ["DC-08-006"],
+    "concepts": ["DC-08-006", "DC-08-007", "DC-07-009", "DC-08-004"],
     "figures": ["fig-dx-revenue-share-fit"],
     "sources": [
       { "title": "経済産業省 平成28年度取引条件改善事業（情報サービス・ソフトウェア産業における下請取引等に関する実態調査）調査報告書（平成29年3月）", "url": "https://www.meti.go.jp/meti_lib/report/H28FY/000804.pdf" }
@@ -3318,7 +3318,7 @@
       "アフィリエイトは、他人のサイトに広告を載せてもらい、成果に応じて報酬を払う手法。"
     ],
     "memoryTip": "検索キーワードに連動＝リスティング。過去の訪問に連動＝リターゲティング。",
-    "concepts": ["DC-08-010", "DC-04-015"],
+    "concepts": ["DC-08-010", "DC-04-015", "DC-07-008"],
     "figures": ["fig-dx-ad-model"],
     "sources": [
       { "title": "公正取引委員会「デジタル広告分野の取引実態に関する最終報告書（概要）」（令和3年2月）", "url": "https://www.jftc.go.jp/houdou/pressrelease/2021/feb/digital/210217_gaiyou2.pdf" }
@@ -3374,7 +3374,7 @@
       "レベニューシェアは、共同事業の収益を割合で分け合う契約。"
     ],
     "memoryTip": "アドオン＝add on（付け足す）。基本は安く、オプションで稼ぐ。",
-    "concepts": ["DC-08-003"],
+    "concepts": ["DC-08-003", "DC-08-004", "DC-08-006"],
     "figures": ["fig-dx-addon"],
     "sources": [
       { "title": "国土交通省「平成28年度 政策レビュー結果（評価書）LCCの事業展開の促進」（平成29年3月）", "url": "https://www.mlit.go.jp/common/001179271.pdf" }
@@ -3398,7 +3398,7 @@
       "クラウドソーシングは、不特定の人に業務を委託する仕組み。"
     ],
     "memoryTip": "部分所有＝「みんなで少しずつ持つ」。シェアリング＝「持っている人から借りる」。",
-    "concepts": ["DC-08-004", "DC-06-009"],
+    "concepts": ["DC-08-004", "DC-06-009", "DC-08-002", "DC-06-010"],
     "figures": ["fig-dx-fractional-ownership"],
     "sources": [
       { "title": "タイムシェア型住宅供給研究会（国土交通省）「タイムシェア型住宅供給研究会 報告書」（平成20年8月）", "url": "https://www.mlit.go.jp/common/000022776.pdf" }
@@ -3485,7 +3485,7 @@
       "部分所有モデルは、高価な資産の所有権を複数人で分けて持つ形。"
     ],
     "memoryTip": "成果報酬＝「売れたら払う」。払う側のリスクが小さく、受ける側は成果を出すほど稼げる。",
-    "concepts": ["DC-08-005", "DC-07-008"],
+    "concepts": ["DC-08-005", "DC-07-008", "DC-08-007", "DC-08-001", "DC-08-004"],
     "figures": ["fig-dx-affiliate"],
     "sources": [
       { "title": "消費者庁「インターネット消費者取引に係る広告表示に関する景品表示法上の問題点及び留意事項」", "url": "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_220629_07.pdf" }

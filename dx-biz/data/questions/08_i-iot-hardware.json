@@ -16,7 +16,7 @@
       "RFIDはICタグを近距離で読み取る技術で、遠くの施設からデータを送る通信には向かない。"
     ],
     "memoryTip": "LPWA＝Low Power（電池が長持ち）・Wide Area（遠くまで届く）。速さは捨てている。",
-    "concepts": ["DC-02-002", "DC-02-001"],
+    "concepts": ["DC-02-002", "DC-02-001", "DC-02-005"],
     "figures": ["fig-dx-network-compare"],
     "sources": [
       { "title": "総務省「平成29年版 情報通信白書」第3章第3節（LPWA）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h29/pdf/n3300000.pdf" }
@@ -70,7 +70,7 @@
       "BIはデータを可視化して意思決定に役立てるツール・考え方。"
     ],
     "memoryTip": "IoT＝モノ（Things）がネットにつながる。IoTが集め、AIが分析する。",
-    "concepts": ["DC-02-004"],
+    "concepts": ["DC-02-004", "DC-02-014", "DC-02-008", "DC-03-016"],
     "figures": ["fig-dx-iot-m2m"],
     "sources": [
       { "title": "総務省「平成27年版 情報通信白書」ユビキタスからIoTへ", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h27/html/nc254110.html" }
@@ -94,7 +94,7 @@
       "LPWAは、省電力で広い範囲をカバーする無線通信のコンセプト。"
     ],
     "memoryTip": "プロトコル＝機械どうしがやり取りするときの「データの形と送受信の手順」の決まり。ポート番号は通信の行き先を分ける補助の番号、APIはソフトの機能を外から呼び出す窓口。",
-    "concepts": ["DC-02-006", "DC-02-008"],
+    "concepts": ["DC-02-006", "DC-02-008", "DC-02-002"],
     "sources": [
       { "title": "総務省「国民のためのサイバーセキュリティサイト」用語集（は行）", "url": "https://www.soumu.go.jp/main_sosiki/cybersecurity/kokumin/glossary/ja_06/" }
     ],
@@ -175,7 +175,7 @@
       "AUV（Autonomous Underwater Vehicle。自律型無人探査機）は、人が操作せずに自ら海中を航行して調べる無人の潜水機。自動制御で動く点は似ているが、水中を進む機体で空を飛べないので、答えにならない。"
     ],
     "memoryTip": "人が行くと「高い・遠い・危ない」場所の見回り＝ドローン。",
-    "concepts": ["DC-02-026"],
+    "concepts": ["DC-02-026", "DC-03-107"],
     "sources": [
       { "title": "総務省「平成30年版 情報通信白書」端末（AIスピーカー・ドローン）", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h30/html/nd111350.html" },
       { "title": "総合海洋政策本部「自律型無人探査機（AUV）の社会実装に向けた戦略」（令和5年12月22日）", "url": "https://www8.cao.go.jp/ocean/policies/auv/auv_strategy/pdf/auv_strategy2312.pdf" }
@@ -353,7 +353,7 @@
       "公衆無線LANは、駅や店などで不特定の利用者に開かれた無線LAN。自社専用の5G網ではない。"
     ],
     "memoryTip": "全国の5G＝携帯電話会社が張る。ローカル5G＝自分の敷地に自分たちで張る。",
-    "concepts": ["DC-08-103", "DC-02-001"],
+    "concepts": ["DC-08-103", "DC-02-001", "DC-02-002"],
     "sources": [
       { "title": "総務省「令和5年版 情報通信白書」ローカル5Gの推進", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r05/html/nd256210.html" }
     ],
