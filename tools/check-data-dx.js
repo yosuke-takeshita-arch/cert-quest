@@ -61,12 +61,17 @@
 //   combo 以外の問題で、選択肢を部分に分け、違いのある部分が2つ以上あり、そのすべてで正解の言い方がほかより多く出るなら WARN（SEG-MAJORITY）。SEG 行に件数を出す
 //   見ていないものは checkSegMajority の前のコメント
 //
+// 出典の名乗り・控えめな言い方の偏り（WARN のみ。2026-11-12 追加。tools/check-voice-cue.cjs。tools/check-data.js と共通の部品）
+//   combo 以外の問題で、「白書は、…としている」のような出典の名乗り（SOURCE-CUE）や、文の終わりの「とされる・としている」など（HEDGE-CUE）が
+//   一部の選択肢だけにあり、みな正しい文（またはみな誤った文）なら WARN。SOURCE 行・HEDGE 行に件数を出す。見ていないものは check-voice-cue.cjs の冒頭
+//
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか・qtype が問題の中身に合っているか（人が読む）
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const { checkBasics } = require('./check-basics.cjs'); // 基礎のことば（data/basics.json）の検査。G検定・DX・AIパスポートで共通
+const { makeVoiceCueChecker } = require('./check-voice-cue.cjs'); // 出典の名乗り・控えめな言い方の偏り。tools/check-data.js と共通
 
 // 相互依存の問題（qtype: interdep）の言い回しの偏りを見る語の一覧（2026-10-06。点検 review-1006b・1006c で2回続けて見つかった型）。
 // 実データの正解・誤答を見て作った。部分一致で見る（正規表現。表記ゆれは列挙したものだけ）。
@@ -117,6 +122,7 @@ const errors = [];
 const warns = [];
 const err = (f, id, msg) => errors.push(`NG ${path.basename(f)} ${id || '-'}: ${msg}`);
 const warn = (f, id, msg) => warns.push(`WARN ${path.basename(f)} ${id || '-'}: ${msg}`);
+const voiceCue = makeVoiceCueChecker(warn); // 出典の名乗り・控えめな言い方の偏り（SOURCE-CUE・HEDGE-CUE。tools/check-voice-cue.cjs）
 
 // 基礎のことば（<アプリ>/data/basics.json。要件定義書 §7-5）は data/ の直下にある（問題・カードは data/questions/・data/concepts/ の下）
 const isBasicsFile = (f) => /(^|[\\/])basics\.json$/.test(f);
@@ -506,6 +512,7 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
       checkInterdepWording(f, id, o);
       checkCueWords(f, id, o);
       if (o.format !== 'combo') checkSegMajority(f, id, o);
+      voiceCue.check(f, id, o);
       if (o.format === 'fill' && !/（\s*）|\(\s*\)|【\s*】|＿/.test(o.stem)) warn(f, id, 'fill なのに問題文に空欄の印が無い');
       if (o.format === 'not' && !/不適切|適切でない|誤っている|誤り|効果がない/.test(o.stem)) warn(f, id, 'not なのに問題文に「不適切」等が無い');
       // 適切でないものを選ばせるのに札が出ない問題を止める（要件定義書 §7 の negative）
@@ -588,6 +595,8 @@ if (interdepStats.n) console.log(`INTERDEP 全体: 言い回しの偏りがあ�
 if (cueStats.n) console.log(`CUE 全体: 語の偏りがある ${cueStats.flagged}/${cueStats.n}`);
 // 部分ごとの多数決で正解に当たる（全体）
 if (segStats.n) console.log(`SEG 全体: 部分ごとの多数派が正解になる ${segStats.flagged}/${segStats.n}`);
+// 出典の名乗り・控えめな言い方で答えが絞れる（全体）
+voiceCue.summary().forEach((l) => console.log(l));
 // キーワードの扱い漏れ（--coverage）
 if (coverage && loaded.length) {
   const cnorm = (s) => String(s).normalize('NFKC').toLowerCase().replace(/[\s　()「」『』、。,.・\-－ー]/g, '');
