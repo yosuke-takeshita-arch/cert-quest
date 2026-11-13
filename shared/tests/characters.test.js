@@ -63,12 +63,13 @@ test('daysSinceLastStudy: 今日=0・昨日=1・月またぎ・まだ学習し�
 const T = CHARACTER_TEXT;
 const at = (y, mo, d, h = 15, mi = 0) => new Date(y, mo - 1, d, h, mi, 0);
 // 使っている人の状態（記録あり）。last=最後の学習日、count=連続日数、exam=受験日、done=今日答えた数
-function used({ last = '2026-10-10', count = 1, exam = null, done = 0, goal = 10, today = '2026-10-10' } = {}) {
+function used({ last = '2026-10-10', count = 1, exam = null, done = 0, goal = 10, today = '2026-10-10', exams } = {}) {
   return {
     xp: 50, totals: { answered: 20 }, qstats: { q1: { seen: 1 } },
     streak: { last, count, best: count },
     settings: { dailyGoal: goal, examDate: exam, examAsked: exam !== null },
     daily: done ? { [today]: { answered: done } } : {},
+    ...(exams ? { exams } : {}),
   };
 }
 
@@ -125,8 +126,8 @@ test('homeMascot: 受験日の境界（当日・明日・2〜8日・過ぎた・
   const m = (exam) => homeMascot(used({ last: '2026-10-12', today: '2026-10-12', exam }), now);
   assert.deepEqual(m('2026-10-12'), { art: 'sensei-ok', text: T.homeExamToday });
   assert.deepEqual(m('2026-10-13'), { art: 'sensei-comfort', text: T.homeExamTomorrow });
-  assert.deepEqual(m('2026-10-14'), { art: 'sensei-point', text: T.homeExam2 });
-  assert.deepEqual(m('2026-10-15'), { art: 'sensei-point', text: T.homeExam3 });
+  assert.deepEqual(m('2026-10-14'), { art: 'sensei-point', text: T.homeExam2First });
+  assert.deepEqual(m('2026-10-15'), { art: 'sensei-point', text: T.homeExam3First });
   assert.deepEqual(m('2026-10-16'), { art: 'shiba-cheer', text: '本番まであと4日！ ラストスパート！' });
   assert.deepEqual(m('2026-10-18'), { art: 'shiba-cheer', text: T.homeExamNear(6) });
   assert.deepEqual(m('2026-10-19'), { art: 'sensei-point', text: T.homeExam7 });
@@ -134,6 +135,29 @@ test('homeMascot: 受験日の境界（当日・明日・2〜8日・過ぎた・
   assert.equal(m('2026-10-11').text, T.homeHello);
   assert.equal(m('はてな').text, T.homeHello);
   assert.equal(m(null).text, T.homeHello);
+});
+
+test('homeMascot: 朝（5〜10時）は、今日まだ0問なら「はじめよう」、1問以上なら「朝からえらい」（目標未達のとき）', () => {
+  const m = (done) => homeMascot(used({ last: '2026-10-12', today: '2026-10-12', done, goal: 10 }), at(2026, 10, 12, 8)).text;
+  assert.equal(m(0), T.homeMorning);
+  assert.equal(m(1), T.homeMorningAgain);
+  assert.equal(m(9), T.homeMorningAgain);
+  assert.equal(m(10), T.homeGoalDone);
+  assert.equal(homeMascot(used({ last: '2026-10-12', today: '2026-10-12', done: 3 }), at(2026, 10, 12, 11)).text, T.homeNoon);
+});
+
+test('homeMascot: 2日・3日前は、模擬試験を1回でもやったかで文を分ける（0回・1回・壊れた値）。7日前は分けない', () => {
+  const now = at(2026, 10, 12, 15);
+  const m = (exam, exams) => homeMascot(used({ last: '2026-10-12', today: '2026-10-12', exam, exams }), now).text;
+  const one = [{ date: '2026-10-11', ts: 1 }];
+  assert.equal(m('2026-10-14', []), T.homeExam2First);
+  assert.equal(m('2026-10-14', one), T.homeExam2);
+  assert.equal(m('2026-10-14', 'こわれた'), T.homeExam2First);
+  assert.equal(m('2026-10-15', []), T.homeExam3First);
+  assert.equal(m('2026-10-15', one), T.homeExam3);
+  assert.equal(m('2026-10-19', []), T.homeExam7);
+  assert.equal(m('2026-10-19', one), T.homeExam7);
+  assert.ok(!/もう1回/.test(T.homeExam2First) && !/選んだ/.test(T.homeExam3First) && !/選んだ/.test(T.homeExam3));
 });
 
 test('homeMascot: 連続日数は 3日以上でほめる（2日はほめない）。今日まだ学習していなくても、昨日までの連続は数える', () => {
@@ -161,7 +185,7 @@ test('homeMascot: 優先順の衝突。上の番号が勝つ', () => {
   assert.equal(homeMascot(used({ ...base, count: 5, exam: '2026-10-13' }), at(2026, 10, 12, 8)).text, T.homeExamTomorrow); // 4 が 8 に勝つ
   assert.equal(homeMascot(used({ ...base, done: 10, exam: '2026-10-13' }), at(2026, 10, 12, 15)).text, T.homeExamTomorrow); // 4 が 5 に勝つ
   assert.equal(homeMascot(used({ ...base, exam: '2026-10-15' }), at(2026, 10, 12, 1)).text, T.homeLate); // 6 が 7 に勝つ
-  assert.equal(homeMascot(used({ ...base, count: 5, exam: '2026-10-15' }), at(2026, 10, 12, 8)).text, T.homeExam3); // 7 が 8 に勝つ
+  assert.equal(homeMascot(used({ ...base, count: 5, exam: '2026-10-15' }), at(2026, 10, 12, 8)).text, T.homeExam3First); // 7 が 8 に勝つ
   assert.equal(homeMascot(used({ ...base, done: 10, exam: '2026-10-15' }), at(2026, 10, 12, 15)).text, T.homeGoalDone); // 5 が 7 に勝つ
   assert.equal(homeMascot(used({ ...base, count: 5 }), at(2026, 10, 12, 8)).text, T.homeStreak(5)); // 8 が 9 に勝つ
   assert.equal(homeMascot(used({ last: '2026-10-09', exam: '2026-10-12' }), at(2026, 10, 12, 8)).text, T.homeBack); // 2 が 3 に勝つ
