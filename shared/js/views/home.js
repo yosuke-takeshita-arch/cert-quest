@@ -513,7 +513,7 @@ export function renderStage(app, key) {
   if (p.total) {
     const size = Math.min(p.total, (app.config.stage && app.config.stage.size) || 10);
     root.appendChild(h('button', { class: 'btn primary big', type: 'button', onClick: () => startSession(app, stageSpec(app, st)) }, 'このステージに挑戦（' + size + '問）'));
-    root.appendChild(h('p', { class: 'small muted', text: '未回答の問題→前回まちがえた問題の順に出ます。6割正解で星1、8割で星2、9割以上で星3。' }));
+    root.appendChild(h('p', { class: 'small muted', text: '未回答の問題→前回まちがえた問題→前回正解した問題の順に出ます。6割正解で星1、8割で星2、9割以上で星3。' }));
   } else {
     root.appendChild(h('div', { class: 'empty' }, h('p', { text: 'このステージの問題は準備中です。' })));
   }

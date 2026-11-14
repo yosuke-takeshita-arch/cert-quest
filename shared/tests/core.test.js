@@ -138,9 +138,18 @@ test('選択肢シャッフル: answer と whyWrong の対応を崩さない（2
 test('出題: 未回答→前回誤答→前回正解の順で n 件まで', () => {
   const pool = ['u1', 'u2', 'w1', 'r1', 'r2'].map((id) => ({ id }));
   const stats = { w1: { seen: 1, lastOk: false }, r1: { seen: 2, lastOk: true }, r2: { seen: 1, lastOk: true } };
-  const picked = pickQuestions(pool, stats, 3, seeded(7)).map((q) => q.id).sort();
-  assert.deepEqual(picked, ['u1', 'u2', 'w1']);
-  assert.equal(pickQuestions(pool, stats, 99, seeded(7)).length, 5);
+  const picked = pickQuestions(pool, stats, 3, seeded(7)).map((q) => q.id);
+  assert.deepEqual(picked.slice(0, 2).sort(), ['u1', 'u2']); // 未回答が先頭（2つの中の順はランダム）
+  assert.equal(picked[2], 'w1');
+  const all = pickQuestions(pool, stats, 99, seeded(7)).map((q) => q.id);
+  assert.equal(all.length, 5);
+  assert.deepEqual(all.slice(0, 3).map((id) => id[0]), ['u', 'u', 'w']); // 出す順も 未回答→前回誤答→前回正解
+  assert.deepEqual(all.slice(3).sort(), ['r1', 'r2']);
+  // どの乱数でも、未回答より前に答えたことのある問題が来ない（2026-11-14 先生の指摘）
+  for (let s = 1; s <= 50; s++) {
+    const ids = pickQuestions(pool, stats, 5, seeded(s)).map((q) => q.id);
+    assert.deepEqual(ids.map((id) => id[0]), ['u', 'u', 'w', 'r', 'r'], 'seed ' + s);
+  }
   assert.equal(shuffle([1, 2, 3, 4, 5], seeded(3)).length, 5);
 });
 

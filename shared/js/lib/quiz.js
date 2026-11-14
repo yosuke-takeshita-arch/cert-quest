@@ -41,7 +41,9 @@ export function shuffleChoices(q, rng = Math.random) {
 
 /**
  * 出題する問題を選ぶ。優先順: 未回答 → 前回まちがえた → 前回正解。各グループ内はランダム。
- * n を超えない。選んだ後の並びもシャッフルする。
+ * n を超えない。出す順もこの優先順のまま（未回答を先に出す）。
+ * 2026-11-14 まで、選んだ後に全体をシャッフルしていたため、画面の説明「未回答の問題→前回まちがえた問題の順に出ます」と違い、
+ * 1問目に答えたことのある問題が出た（先生「1問目は既に答えたことのある問題だった。出題ロジックがおかしい」）。
  */
 export function pickQuestions(pool, qstats, n, rng = Math.random) {
   const unseen = [], wrong = [], right = [];
@@ -52,7 +54,7 @@ export function pickQuestions(pool, qstats, n, rng = Math.random) {
     else right.push(q);
   }
   const ordered = [...shuffle(unseen, rng), ...shuffle(wrong, rng), ...shuffle(right, rng)];
-  return shuffle(ordered.slice(0, n), rng);
+  return ordered.slice(0, n);
 }
 
 /** 模擬試験の問題数と制限時間。足りない間は有る分で縮小し、時間も比例して縮める。 */
