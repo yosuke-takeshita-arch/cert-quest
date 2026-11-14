@@ -14,7 +14,8 @@
 //   WARN reviewBy が asOf の12か月後より先（決まりは1年後。2年後などにすると見直しが遅れる）
 //   WARN（STALE）引退していない問題・カードで、reviewBy の月が今日の月と同じか前（見直しの月が来た）。件数は STALE 行に出す
 //        「過ぎた」を月の単位で見るので、見直しの月に入った日から出す（月末まで待たない）
-//   WARN 引退したカード（カードの引退の見せ方は先生の判断待ちで、いまの画面は引退したカードにも『未確認』の印を出す。決まるまでカードには付けない）
+//   （引退したカードは WARN にしない。見せ方は 2026-11-14 先生決定 A で決まった: 一覧・どっち？・カードめくりからは隠し、
+//    リンクから開いたときだけ『古い事例』の印を付けて見せる。shared/js/lib/data.js の loadData・shared/js/views/cards.js の retiredChip）
 //   WARN（EXAM）模試に設計図（config.json の exam.blueprint）がある資格で、引退した問題を除くと設計図の枠を満たせなくなる
 //        （型を満たせず別の型で補う数が増える、または模試の問題数が減る）。EXAM 行に、引退を除いた数と含めた数を出す
 //        数は shared/js/lib/quiz.js の pickExamByBlueprint・blueprintCells をそのまま呼んで出す（アプリと同じ選び方。足りない数は乱数に依らない）
@@ -87,7 +88,6 @@ function makeFreshnessChecker({ err, warn, today, isLatest = null }) {
     }
     if (o.status === 'retired') {
       st.retired[k]++;
-      if (k === 'concepts') warn(f, id, 'カードの引退（status: "retired"）は、画面での見せ方がまだ決まっていない（いまは『未確認』の印が出る）。決まるまでカードには付けない');
       return; // 引退したものは見直しの対象にしない
     }
     if (okR && today && monthIndex(o.reviewBy) <= monthIndex(today)) {
@@ -100,7 +100,7 @@ function makeFreshnessChecker({ err, warn, today, isLatest = null }) {
     const s = st;
     const lines = [];
     lines.push(`STALE 全体: 見直す月が来た ${s.stale.questions + s.stale.concepts}件（問題 ${s.stale.questions}・カード ${s.stale.concepts}。今日 ${today}）`);
-    lines.push(`RETIRED 全体: 引退 問題 ${s.retired.questions}・カード ${s.retired.concepts}（問題は出題に出ない）／asOf あり 問題 ${s.dated.questions}・カード ${s.dated.concepts}`);
+    lines.push(`RETIRED 全体: 引退 問題 ${s.retired.questions}・カード ${s.retired.concepts}（問題は出題に出ない。カードは一覧に出ず、リンクから開くと『古い事例』の印）／asOf あり 問題 ${s.dated.questions}・カード ${s.dated.concepts}`);
     if (isLatest) lines.push(`FRESH 最新事例: 問題 ${s.latest.questions}問のうち asOf なし ${s.latestUndated.questions}・カード ${s.latest.concepts}枚のうち asOf なし ${s.latestUndated.concepts}`);
     return lines;
   }

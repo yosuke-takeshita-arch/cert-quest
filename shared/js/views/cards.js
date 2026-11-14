@@ -1,6 +1,6 @@
 // 用語カードの一覧・1枚の表示・つながりをたどる表示。
 import { h, clear, externalLink } from '../ui.js';
-import { resolveRef } from '../lib/data.js';
+import { resolveRef, retiredLabel, isRetired } from '../lib/data.js';
 import { figureBlock } from './figure.js';
 import { richEl } from './richtext.js';
 import { basicIdsOfTitle } from '../lib/basics.js';
@@ -18,7 +18,19 @@ const RELATION_LABEL = {
 export const relationLabel = (r) => (r ? RELATION_LABEL[r] || r : '関連');
 
 export function statusChip(status) {
-  return status === 'verified' ? null : h('span', { class: 'chip unverified', title: '出典での確認がまだ済んでいません' }, '未確認');
+  // 引退（retired）には『未確認』を出さない。引退したカードは retiredChip が『古い事例』の印を出す（要件定義書 §7-6。2026-11-14 先生決定 A）
+  return status === 'verified' || status === 'retired' ? null : h('span', { class: 'chip unverified', title: '出典での確認がまだ済んでいません' }, '未確認');
+}
+
+/**
+ * 引退したカードの印「古い事例（2025年5月の事実）」。引退していなければ null。
+ * 引退したカードは一覧・どっち？・カードめくりに出さず、解説やほかのカードのリンクから開いたときだけ、この印を付けて見せる
+ * （要件定義書 §7-6。2026-11-14 先生決定 A「古い事実を新しいもののようにも見せん」）。
+ */
+export function retiredChip(c) {
+  const label = retiredLabel(c);
+  if (!label) return null;
+  return h('span', { class: 'chip warn', 'data-retired': '', title: 'いまは問題に出ない、古い事例のカードです。書いてあるのは、その時点の事実です' }, label);
 }
 
 /** 用語カードへの参照。解決できればボタン、できなければ文字だけ。 */
@@ -42,8 +54,11 @@ export function cardBody(app, c, open) {
   const incoming = back.filter((b) => b.kind === 'link');
   const wrap = h('article', { class: 'card concept' });
   wrap.appendChild(h('p', { class: 'crumb small muted', text: c.syllabus.join(' › ') }));
-  wrap.appendChild(h('h2', {}, c.title, ' ', statusChip(c.status)));
-  wrap.appendChild(h('div', { class: 'later-row' }, laterCardButton(app, c)));
+  wrap.appendChild(h('h2', {}, c.title, ' ', statusChip(c.status), retiredChip(c)));
+  if (isRetired(c)) {
+    // 引退したカード: 印の意味を1行で書く。『あとで見る』は出さない（あとで見るの一覧に引退したカードは並ばないため）
+    wrap.appendChild(h('p', { class: 'small muted', 'data-retired-note': '', text: 'いまは問題に出ない、古い事例のカードです。書いてあるのは、その時点の事実です。' }));
+  } else wrap.appendChild(h('div', { class: 'later-row' }, laterCardButton(app, c)));
   const own = () => basicIdsOfTitle(d.basicsMatcher, c.title); // このカード自身の題名と同じ基礎のことば（最初から『印を付けた』ことにして、自分の語には付けない）
   const seen = own(); // 基礎のことばの印。一言と『背景とポイント』は続けて読むので1区画（同じ語に印を付けるのは最初の1回だけ）
   if (c.oneLine) wrap.appendChild(richEl(app, 'p', { class: 'one-line' }, c.oneLine, seen));

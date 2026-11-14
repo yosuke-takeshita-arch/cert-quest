@@ -2,7 +2,7 @@
 import { h, icon, characterImg, tappable } from '../ui.js';
 import { resolveRef } from '../lib/data.js';
 import { isLater, toggleLater, isLaterCard, toggleLaterCard } from '../lib/later.js';
-import { refChip, sourcesList } from './cards.js';
+import { refChip, sourcesList, retiredChip } from './cards.js';
 import { figureBlock } from './figure.js';
 import { richEl } from './richtext.js';
 import { reportButton } from './report.js';
@@ -99,7 +99,9 @@ export function stumbleBlock(app, q, open) {
   const box = h('section', { class: 'stumble', 'aria-label': 'つまずきポイント' }, h('h3', { text: 'まず用語を確認しよう' }));
   const seen = new Set(); // 基礎のことばの印は、この区画で同じ語に最初の1回だけ
   for (const c of cs) {
-    const item = h('div', { class: 'stumble-item' }, h('p', {}, h('button', { class: 'chip link', type: 'button', onClick: () => open(c.id) }, c.title), ' ', richEl(app, 'span', {}, c.oneLine, seen)));
+    // 引退したカード（要件定義書 §7-6）は一行目をここで見せるので、題名の横に『古い事例』の印を付ける（古い事実を新しいもののように見せない）
+    const old = retiredChip(c);
+    const item = h('div', { class: 'stumble-item' }, h('p', {}, h('button', { class: 'chip link', type: 'button', onClick: () => open(c.id) }, c.title), old ? ' ' : null, old, ' ', richEl(app, 'span', {}, c.oneLine, seen)));
     if (c.confusions.length) {
       const ul = h('ul', { class: 'conf-list' });
       for (const f of c.confusions) {

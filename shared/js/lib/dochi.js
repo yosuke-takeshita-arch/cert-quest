@@ -1,6 +1,6 @@
 // 「どっち？」早押し（要件定義書 §3-5）。用語カードの一行目を出し、そのカードの題名と「混同しやすい相手」の題名の2択にする。
 // 純粋な関数だけ（画面は views/dochi.js）。問題は新しく作らず、カードから自動で作る。
-import { resolveRef } from './data.js';
+import { resolveRef, isRetired } from './data.js';
 
 export const DOCHI_ROUNDS = 20; // 1回の問題数
 export const DOCHI_PICK_SECONDS = 3; // 1問の秒数のうち、読んだあと2つから選ぶ分
@@ -84,19 +84,29 @@ export function hasTerm(text, terms) {
 
 /**
  * 出せる組を全部作る。カード1枚の confusions の1件ごとに1組。
- * 出さないもの: 一行目が空／相手が見つからない／相手が自分自身／2つの題名が同じ／伏せきれないカード／一行目に相手の題名が書いてある組
- * 戻り値: { pairs, skipped:{ noOneLine, noOpponent, sameTitle, leak, oppInText } }
+ * 出さないもの: 一行目が空／相手が見つからない／相手が自分自身／2つの題名が同じ／伏せきれないカード／一行目に相手の題名が書いてある組／
+ * どちらかが引退したカード（status "retired"。要件定義書 §7-6、2026-11-14 先生決定 A「『どっち？』…からは隠す」。
+ * loadData は concepts から引退したカードを外すが、conceptIndex には残すので、相手としては引けてしまう。ここで両方を見る）
+ * 戻り値: { pairs, skipped:{ noOneLine, noOpponent, sameTitle, leak, oppInText, retired } }
  */
 export function buildPairs(concepts, index) {
   const pairs = [];
   const seen = new Set();
-  const skipped = { noOneLine: 0, noOpponent: 0, sameTitle: 0, leak: 0, oppInText: 0 };
+  const skipped = { noOneLine: 0, noOpponent: 0, sameTitle: 0, leak: 0, oppInText: 0, retired: 0 };
   for (const c of concepts) {
     const conf = Array.isArray(c.confusions) ? c.confusions : [];
+    if (isRetired(c)) {
+      skipped.retired += conf.length;
+      continue;
+    }
     for (const ref of conf) {
       const r = resolveRef(ref, index);
       if (!r.concept || r.concept.id === c.id) {
         skipped.noOpponent++;
+        continue;
+      }
+      if (isRetired(r.concept)) {
+        skipped.retired++;
         continue;
       }
       const key = c.id + '>' + r.concept.id;

@@ -20,6 +20,17 @@ export const normMonth = (s) => (typeof s === 'string' && MONTH_RE.test(s) ? s :
 /** 引退した問題・カードか（status が retired）。 */
 export const isRetired = (x) => !!x && x.status === 'retired';
 
+/**
+ * 引退したカードに付ける印の文字（要件定義書 §7-6。2026-11-14 先生決定 A）。
+ * asOf があれば「古い事例（2025年5月の事実）」、無い・形が違えば「古い事例」だけ。引退していなければ ''。
+ */
+export function retiredLabel(x) {
+  if (!isRetired(x)) return '';
+  const m = normMonth(x.asOf);
+  if (!m) return '古い事例';
+  return '古い事例（' + Number(m.slice(0, 4)) + '年' + Number(m.slice(5, 7)) + '月の事実）';
+}
+
 async function fetchJson(url, fetchFn) {
   try {
     const res = await fetchFn(url);
@@ -79,7 +90,7 @@ export function normalizeConcept(c) {
     confusions: Array.isArray(c.confusions) ? c.confusions : [],
     figures: normalizeFigureIds(c.figures),
     sources: Array.isArray(c.sources) ? c.sources.filter((s) => s && typeof s.url === 'string') : [],
-    status: normStatus(c.status), // retired のカードの見せ方（一覧から隠すか、印を付けて残すか）は先生の判断待ち。いまは読み込みで落とさないだけ
+    status: normStatus(c.status), // retired のカードは loadData が concepts から外し、retiredConcepts に分ける（要件定義書 §7-6。2026-11-14 先生決定 A）
     asOf: normMonth(c.asOf),
     reviewBy: normMonth(c.reviewBy),
   };
@@ -268,6 +279,7 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
   });
 
   const concepts = [];
+  const retiredConcepts = [];
   const seenC = new Set();
   cRes.forEach((r, i) => {
     if (!r.ok) {
@@ -282,26 +294,34 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
       if (!c) return problems.push({ file: cFiles[i], reason: '形が不正なカードを捨てた(' + k + '番目' + (raw && raw.id ? ' ' + raw.id : '') + ')' });
       if (seenC.has(c.id)) return problems.push({ file: cFiles[i], reason: 'IDの重複を捨てた(' + c.id + ')' });
       seenC.add(c.id);
-      concepts.push(c);
+      // 引退したカードは、ここで concepts から外す（要件定義書 §7-6。2026-11-14 先生決定 A。門番が先生に出した案（逐語）
+      // 「用語の一覧、『どっち？』、カードめくりからは隠す。解説やほかのカードのリンクから開いたときだけ、『古い事例（2025年5月の事実）』の印を付けて見せる。
+      // リンクは切れんし、古い事実を新しいもののようにも見せん」）。カードの一覧・木・カードめくり・カードのあとで見る・基礎のことばの照合・
+      // 地図や章の枚数はみな concepts と木から作るので、1か所で全部から外れる。
+      // ただしリンクは切らないので、conceptIndex（ID・題名からカードを引く）と backlinks には引退したカードも入れる
+      if (c.status === 'retired') retiredConcepts.push(c);
+      else concepts.push(c);
     });
   });
 
   // ボスの名前・せりふのファイル（無くてもよい。読むのは app.js。ここでは読み込みの進み具合に数えないよう、名前だけ返す）
   const bossesFile = typeof idx.json.bosses === 'string' && idx.json.bosses ? idx.json.bosses : 'bosses.json';
   const basicsFile = typeof idx.json.basics === 'string' && idx.json.basics ? idx.json.basics : BASICS_FILE; // 基礎のことば（lib/basics.js）
-  return finish({ indexFound: true, syllabusRaw, questions, retiredQuestions, concepts, problems, missing, bossesFile, basicsFile });
+  return finish({ indexFound: true, syllabusRaw, questions, retiredQuestions, concepts, retiredConcepts, problems, missing, bossesFile, basicsFile });
 
   function finish(d) {
-    const tree = buildTree(d.syllabusRaw, d.questions, d.concepts);
-    const conceptIndex = buildConceptIndex(d.concepts);
+    const tree = buildTree(d.syllabusRaw, d.questions, d.concepts); // 引退したカードは木に入れない（一覧・カードめくり・章の枚数に出さない）
+    const allConcepts = d.concepts.concat(d.retiredConcepts || []); // 引退していないカードが先（同じ題名なら、引退していないほうに解決する）
+    const conceptIndex = buildConceptIndex(allConcepts);
     return {
       indexFound: d.indexFound,
       questions: d.questions,
       questionById: new Map(d.questions.map((q) => [q.id, q])), // 引退した問題は入れない（復習・あとで見るの ID 引きでも出ないように）
       retiredQuestions: d.retiredQuestions || [], // 引退した問題（出題には使わない。要件定義書 §7-6）
-      concepts: d.concepts,
-      conceptIndex,
-      backlinks: buildBacklinks(d.concepts, conceptIndex),
+      concepts: d.concepts, // 引退したカードは入れない（並べる・出題する・数える所はみなここから。要件定義書 §7-6）
+      retiredConcepts: d.retiredConcepts || [], // 引退したカード（リンクから開いたときだけ『古い事例』の印を付けて見せる）
+      conceptIndex, // 引退したカードも入れる（解説・ほかのカード・問題の関連カードのリンクを切らない）
+      backlinks: buildBacklinks(allConcepts, conceptIndex),
       tree,
       problems: d.problems,
       missing: d.missing,

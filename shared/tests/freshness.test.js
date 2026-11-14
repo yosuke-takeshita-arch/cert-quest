@@ -91,8 +91,10 @@ test('loadData: 引退した問題は questions・questionById・木に入らず
   assert.equal(d.tree.stages.find((s) => s.name === '古いだけの章').questions.length, 0);
   // 同じ ID の重複は、引退していてもいままでどおり捨てて problems に書く
   assert.ok(d.problems.some((p) => p.reason.includes('IDの重複') && p.reason.includes('Q-OLD')));
-  // カードは読み込みで落とさない（見せ方は先生の判断待ち）
-  assert.deepEqual(d.concepts.map((c) => [c.id, c.status]), [['C-OLD', 'retired']]);
+  // 引退したカードは concepts から外して retiredConcepts に分ける（落とさない。2026-11-14 先生決定 A。くわしくは tests/retiredcard.test.js）
+  assert.deepEqual(d.concepts, []);
+  assert.deepEqual(d.retiredConcepts.map((c) => [c.id, c.status, c.asOf]), [['C-OLD', 'retired', '2024-05']]);
+  assert.equal(d.conceptIndex.byId.get('C-OLD').id, 'C-OLD');
 });
 
 test('引退した問題は、出題の関数に渡る一覧に無いので、模試・復習・あとで見る・よく間違える問題のどれにも出ない。記録は消さない', async () => {
@@ -212,13 +214,14 @@ for (const which of ['gk', 'dx']) {
     assert.equal(wn(early, /STALE:/).length, 0, early.out);
   });
 
-  test(`検査（${which}）: status の retired は NG にしない。知らない status は NG。引退したカードは WARN`, () => {
+  test(`検査（${which}）: status の retired は NG にしない。知らない status は NG。引退したカードは WARN にしない（見せ方は 2026-11-14 先生決定 A）`, () => {
     assert.equal(run(which, [{ n: 1, extra: { status: 'retired' } }]).status, 0);
     const bad = run(which, [{ n: 1, extra: { status: 'old' } }]);
     assert.equal(ng(bad, /status が不正/).length, 1, bad.out);
     const card = run(which, [{ n: 1 }], { concept: { status: 'retired', asOf: '2024-01', reviewBy: '2025-01' } });
     assert.equal(card.status, 0, card.out);
-    assert.equal(wn(card, /カードの引退/).length, 1, card.out);
+    assert.equal(wn(card, /カードの引退|retired/).length, 0, card.out);
+    assert.match(line(card, 'RETIRED 全体'), /カード 1/, card.out);
     assert.equal(wn(card, /STALE:/).length, 0, card.out); // 引退したカードは見直しの対象にしない
     const staleCard = run(which, [{ n: 1 }], { concept: { asOf: '2024-01', reviewBy: '2025-01' } });
     assert.match(line(staleCard, 'STALE 全体'), /（問題 0・カード 1。/);
