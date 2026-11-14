@@ -895,10 +895,12 @@
     "memoryTip": "OTとITをつなぐ＝データの価値↑、攻撃の入口も↑。弱いほうの対策が全体の弱点になる。",
     "concepts": ["DC-08-111", "DC-08-102"],
     "sources": [
-      { "title": "経済産業省「工場システムにおけるサイバー・フィジカル・セキュリティ対策ガイドライン」概要資料", "url": "https://www.meti.go.jp/policy/netsecurity/wg1/factorysystems_guideline_gaiyou.pdf" }
+      { "title": "経済産業省「工場システムにおけるサイバー・フィジカル・セキュリティ対策ガイドライン」概要資料", "url": "https://www.meti.go.jp/policy/netsecurity/wg1/factorysystems_guideline_gaiyou.pdf" },
+      { "title": "経済産業省「工場システムにおけるサイバー・フィジカル・セキュリティ対策ガイドライン」Ver1.1（2025年4月11日）", "url": "https://www.meti.go.jp/policy/netsecurity/wg1/factorysystems_guideline_ver1.1.pdf" }
     ],
     "asOf": "2022-11",
-    "reviewBy": "2023-11",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
     "status": "verified"
   },
   {
@@ -956,10 +958,12 @@
     "memoryTip": "つなぐと「弱い側の穴が、両側の穴になる」。工場が踏み台になり、本社まで入られる。守るものはS・BC・Q・D・C（安全・事業継続・品質・納期・コスト）。",
     "concepts": ["DC-08-111", "DC-08-102"],
     "sources": [
-      { "title": "経済産業省「工場システムにおけるサイバー・フィジカル・セキュリティ対策ガイドライン」概要資料", "url": "https://www.meti.go.jp/policy/netsecurity/wg1/factorysystems_guideline_gaiyou.pdf" }
+      { "title": "経済産業省「工場システムにおけるサイバー・フィジカル・セキュリティ対策ガイドライン」概要資料", "url": "https://www.meti.go.jp/policy/netsecurity/wg1/factorysystems_guideline_gaiyou.pdf" },
+      { "title": "経済産業省「工場システムにおけるサイバー・フィジカル・セキュリティ対策ガイドライン」Ver1.1（2025年4月11日）", "url": "https://www.meti.go.jp/policy/netsecurity/wg1/factorysystems_guideline_ver1.1.pdf" }
     ],
     "asOf": "2022-11",
-    "reviewBy": "2023-11",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
     "status": "verified"
   },
   {
@@ -1402,7 +1406,8 @@
       { "title": "ソニーセミコンダクタソリューションズ「AITRIOS：エッジAIセンシングプラットフォーム」", "url": "https://www.aitrios.sony-semicon.com/ja/" }
     ],
     "asOf": "2026-11",
-    "reviewBy": "2027-11",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-06",
     "status": "verified"
   },
   {

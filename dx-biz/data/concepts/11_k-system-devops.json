@@ -378,10 +378,12 @@
       { "id": "DC-11-104", "point": "DevOps は、開発と運用が目標を共有して協力し、自動化で速さと品質を両立させる考え方。プラットフォームエンジニアリングは、その協力を、専門のチームが整えたセルフサービスの共通基盤という形で提供する取組。" }
     ],
     "sources": [
-      { "title": "CNCF TAG App Delivery「CNCF Platforms White Paper」", "url": "https://tag-app-delivery.cncf.io/whitepapers/platforms/" }
+      { "title": "CNCF TAG App Delivery「CNCF Platforms White Paper」", "url": "https://tag-app-delivery.cncf.io/whitepapers/platforms/" },
+      { "title": "CNCF TAG App Delivery「CNCF Platforms White Paper」の原稿（GitHub。latest が最新版。2026年11月に確認）", "url": "https://github.com/cncf/tag-app-delivery/tree/main/platforms-whitepaper" }
     ],
     "asOf": "2023-03",
-    "reviewBy": "2024-03",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
     "status": "verified"
   },
   {

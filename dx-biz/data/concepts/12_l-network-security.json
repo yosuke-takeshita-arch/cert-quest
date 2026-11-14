@@ -433,10 +433,12 @@
       { "id": "DC-12-104", "point": "ディープフェイクの検出は、出来上がった中身を見て偽物かどうかを推定する。C2PA は、作られたときからの来歴を署名つきで記録して添え、変えられていないかを確かめられるようにする。" }
     ],
     "sources": [
-      { "title": "C2PA「C2PA and Content Credentials Explainer」（2.2）", "url": "https://c2pa.org/specifications/specifications/2.2/explainer/Explainer.html" }
+      { "title": "C2PA「C2PA and Content Credentials Explainer」（2.2）", "url": "https://c2pa.org/specifications/specifications/2.2/explainer/Explainer.html" },
+      { "title": "C2PA「C2PA and Content Credentials Explainer」（2.4）", "url": "https://spec.c2pa.org/specifications/specifications/2.4/explainer/Explainer.html" }
     ],
     "asOf": "2025-05",
-    "reviewBy": "2026-05",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
     "status": "verified"
   },
   {
