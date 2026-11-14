@@ -209,7 +209,7 @@
     ],
     "asOf": "2025-07",
     "reviewBy": "2026-07",
-    "status": "verified"
+    "status": "retired"
   },
   {
     "id": "D-02-033",
@@ -235,7 +235,7 @@
     ],
     "asOf": "2025-07",
     "reviewBy": "2026-07",
-    "status": "verified"
+    "status": "retired"
   },
   {
     "id": "D-05-013",
@@ -266,7 +266,7 @@
     ],
     "asOf": "2025-04",
     "reviewBy": "2026-04",
-    "status": "verified"
+    "status": "retired"
   },
   {
     "id": "D-07-101",
@@ -893,7 +893,7 @@
     ],
     "asOf": "2025-05",
     "reviewBy": "2026-05",
-    "status": "verified"
+    "status": "retired"
   },
   {
     "id": "D-07-122",
@@ -1017,7 +1017,7 @@
     ],
     "asOf": "2024-07",
     "reviewBy": "2025-07",
-    "status": "verified"
+    "status": "retired"
   },
   {
     "id": "D-07-126",
@@ -1080,7 +1080,7 @@
     ],
     "asOf": "2024-11",
     "reviewBy": "2025-11",
-    "status": "verified"
+    "status": "retired"
   },
   {
     "id": "D-07-128",
@@ -1202,7 +1202,8 @@
       { "title": "Claude Docs「Computer use tool」", "url": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/computer-use-tool" }
     ],
     "asOf": "2024-10",
-    "reviewBy": "2025-10",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
     "status": "verified"
   },
   {
@@ -1234,7 +1235,8 @@
       { "title": "Claude Docs「Computer use tool」", "url": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/computer-use-tool" }
     ],
     "asOf": "2024-10",
-    "reviewBy": "2025-10",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
     "status": "verified"
   },
   {
@@ -1523,7 +1525,8 @@
       }
     ],
     "asOf": "2024-04",
-    "reviewBy": "2025-04",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
     "status": "verified"
   },
   {

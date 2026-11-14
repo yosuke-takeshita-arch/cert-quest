@@ -196,6 +196,25 @@ for (const which of ['gk', 'dx']) {
     assert.equal(wn(far, /12か月後より先/).length, 1, far.out);
   });
 
+  test(`検査（${which}）: checkedAt（見直して残すと決めた月）があれば、そこから1年後までの reviewBy を WARN にしない。形の誤り・前後の誤りは NG`, () => {
+    const kept = run(which, [{ n: 1, extra: { asOf: '2019-07', checkedAt: '2026-11', reviewBy: '2027-11' } }]);
+    assert.equal(kept.status, 0, kept.out);
+    assert.equal(wn(kept, /12か月後より先/).length, 0, kept.out);
+    assert.equal(wn(kept, /STALE/).length, 0, kept.out);
+    const tooFar = run(which, [{ n: 1, extra: { asOf: '2019-07', checkedAt: '2026-11', reviewBy: '2027-12' } }]);
+    assert.equal(wn(tooFar, /checkedAt（2026-11）の12か月後より先/).length, 1, tooFar.out);
+    const cases = [
+      [{ asOf: '2019-07', checkedAt: '2026/11', reviewBy: '2027-11' }, /checkedAt の形が/],
+      [{ asOf: '2026-07', checkedAt: '2026-05', reviewBy: '2027-05' }, /checkedAt（2026-05）が asOf（2026-07）より前/],
+      [{ checkedAt: '2026-11' }, /checkedAt は asOf・reviewBy と一緒に書く/],
+    ];
+    for (const [extra, re] of cases) {
+      const r = run(which, [{ n: 1, extra }]);
+      assert.equal(r.status, 1, JSON.stringify(extra) + '\n' + r.out);
+      assert.equal(ng(r, re).length, 1, JSON.stringify(extra) + '\n' + r.out);
+    }
+  });
+
   test(`検査（${which}）: 見直す月が来たものを ID つきで WARN し、件数を STALE 行に出す（前の月は出さない）`, () => {
     const c = CHECKERS[which];
     const r = run(which, [

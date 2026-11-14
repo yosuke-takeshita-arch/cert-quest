@@ -12,6 +12,8 @@
 //   NG  片方だけ書いてある（asOf だけでは見直しの月が分からず、この検査が永久に出さない。reviewBy だけでは何の事実の見直しか分からない）
 //   NG  reviewBy が asOf と同じか前
 //   WARN reviewBy が asOf の12か月後より先（決まりは1年後。2年後などにすると見直しが遅れる）
+//        ただし checkedAt（見直して「残す」と決めた年月。任意）があれば、そこから12か月後まで（2026-11-14 先生「Aでもいい」）
+//   NG  checkedAt の形が違う／asOf なしで checkedAt だけ／checkedAt が asOf より前
 //   WARN（STALE）引退していない問題・カードで、reviewBy の月が今日の月と同じか前（見直しの月が来た）。件数は STALE 行に出す
 //        「過ぎた」を月の単位で見るので、見直しの月に入った日から出す（月末まで待たない）
 //   （引退したカードは WARN にしない。見せ方は 2026-11-14 先生決定 A で決まった: 一覧・どっち？・カードめくりからは隠し、
@@ -76,10 +78,18 @@ function makeFreshnessChecker({ err, warn, today, isLatest = null }) {
     if (hasA && !okA) err(f, id, `asOf の形が "YYYY-MM" でない: ${JSON.stringify(o.asOf)}（いつの事実かを年と月で書く。例 "2026-10"）`);
     if (hasR && !okR) err(f, id, `reviewBy の形が "YYYY-MM" でない: ${JSON.stringify(o.reviewBy)}（見直す年月。asOf の1年後）`);
     if (hasA !== hasR) err(f, id, `asOf と reviewBy は2つそろえて書く（${hasA ? 'reviewBy' : 'asOf'} が無い）`);
+    // checkedAt（任意）: 見直して「残す」と決めた年月。あれば、見直す年月の1年はそこから数える（先生決定 2026-11-14「Aでもいい」）
+    const hasC = 'checkedAt' in o;
+    const okC = hasC && isMonth(o.checkedAt);
+    if (hasC && !okC) err(f, id, `checkedAt の形が "YYYY-MM" でない: ${JSON.stringify(o.checkedAt)}（見直して残すと決めた年月）`);
+    if (hasC && !hasA) err(f, id, 'checkedAt は asOf・reviewBy と一緒に書く');
+    if (okC && okA && monthIndex(o.checkedAt) < monthIndex(o.asOf)) err(f, id, `checkedAt（${o.checkedAt}）が asOf（${o.asOf}）より前`);
     if (okA && okR) {
-      const gap = monthIndex(o.reviewBy) - monthIndex(o.asOf);
-      if (gap <= 0) err(f, id, `reviewBy（${o.reviewBy}）が asOf（${o.asOf}）より後でない`);
-      else if (gap > REVIEW_MONTHS) warn(f, id, `reviewBy（${o.reviewBy}）が asOf（${o.asOf}）の${REVIEW_MONTHS}か月後より先（決まりは事実から1年後）`);
+      const base = okC && monthIndex(o.checkedAt) > monthIndex(o.asOf) ? o.checkedAt : o.asOf;
+      const baseName = base === o.asOf ? 'asOf' : 'checkedAt';
+      const gap = monthIndex(o.reviewBy) - monthIndex(base);
+      if (monthIndex(o.reviewBy) <= monthIndex(o.asOf)) err(f, id, `reviewBy（${o.reviewBy}）が asOf（${o.asOf}）より後でない`);
+      else if (gap > REVIEW_MONTHS) warn(f, id, `reviewBy（${o.reviewBy}）が ${baseName}（${base}）の${REVIEW_MONTHS}か月後より先（決まりは事実、または見直して残すと決めた月から1年後）`);
     }
     if (okA) st.dated[k]++;
     if (isLatest && isLatest(o, kind)) {
