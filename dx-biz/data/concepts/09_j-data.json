@@ -440,6 +440,8 @@
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
+    "asOf": "2023-03",
+    "reviewBy": "2024-03",
     "status": "verified"
   },
   {
@@ -461,6 +463,8 @@
     "sources": [
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
+    "asOf": "2023-03",
+    "reviewBy": "2024-03",
     "status": "verified"
   },
   {
@@ -484,6 +488,8 @@
       { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "AWS「ビジネスインテリジェンス (BI) とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/business-intelligence/" }
     ],
+    "asOf": "2023-03",
+    "reviewBy": "2024-03",
     "status": "verified"
   },
   {
@@ -712,6 +718,8 @@
       { "title": "Linux Foundation（Joint Development Foundation）「Joint Development Foundation Announces Overture Maps Foundation to Build Interoperable Open Map Data」（2022年12月）", "url": "https://www.linuxfoundation.org/press/linux-foundation-announces-overture-maps-foundation-to-build-interoperable-open-map-data" },
       { "title": "Overture Maps Foundation 公式サイト", "url": "https://overturemaps.org/about/" }
     ],
+    "asOf": "2026-03",
+    "reviewBy": "2027-03",
     "status": "verified"
   },
   {
@@ -733,6 +741,28 @@
       { "title": "LINEヤフー プレスリリース「ヤフー・データソリューション、「DS.INSIGHT」に3つの生成AI機能を連続で試験導入」", "url": "https://www.lycorp.co.jp/ja/news/release/007784/" },
       { "title": "LINEヤフー プレスリリース「ヤフー・データソリューション、データ結果の仮説設計や分析を生成AIがサポートする機能を試験導入」", "url": "https://www.lycorp.co.jp/ja/news/release/000910" },
       { "title": "ヤフー・データソリューション「DATA SOLUTION利用ガイドライン」", "url": "https://ds.yahoo.co.jp/guideline/" }
+    ],
+    "asOf": "2024-03",
+    "reviewBy": "2025-03",
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-113",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "科学的介護情報システム（LIFE）",
+    "oneLine": "介護施設・事業所が、利用者の状態やケアの計画・内容のデータを国に提出し、全国から集まったデータにもとづく比べた結果（フィードバック）を受け取って、ケアの見直しに使う厚生労働省の仕組み。",
+    "why": "名前：LIFE は Long-term care Information system For Evidence の略で、意味は『根拠（エビデンス）のための介護の情報システム』。①何に困っていたか：質の高いケアを続けるには、ケアプランや介護計画、日々のアセスメント（利用者の状態の評価）の結果などのデータを使って、取組の効果や課題をつかみ、見直していくことが大事だが、自分の施設のデータだけでは良し悪しを測りにくい。②何をするか：厚生労働省の説明によれば、LIFE は、施設・事業所で記録しているさまざまな情報のうち、利用者の状態やケアの計画・内容などを集め、集まった全国のデータにもとづいてフィードバックを返す。データを使ったケアの見直しを支えることが目的。令和6年度の介護報酬の改定で、都道府県や要介護度などで全国の値を絞り込んで比べる機能も加わった。③押さえどころ：ケアの質を上げるには、利用者の意向をふまえた目標に対して計画・実行・評価・改善をくり返す PDCA サイクルが大事で、その中で利用者の状態を評価・記録して LIFE に出すと、データにもとづくフィードバックが返ってくる。フィードバックをケアプランなどとあわせた材料の1つにして取組をふり返り、ケアを見直す。例：自分の施設の利用者の状態の変化が全国の同じような利用者と比べてどうかを見て、計画を直す（例）。④混同しやすい点：フィードバックは答えそのものではなく、ふり返りのための材料の1つ。データを出すだけでは質は上がらず、見直しまで回してはじめて効く。",
+    "links": [
+      { "id": "DC-03-024", "relation": "関連" },
+      { "id": "DC-09-102", "relation": "関連" },
+      { "id": "DC-09-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "PDCAサイクル", "point": "PDCA は計画・実行・評価・改善をくり返す進め方そのもの。LIFE は、その評価と改善の材料になる全国のデータとの比べた結果を返す仕組み。" }
+    ],
+    "sources": [
+      { "title": "厚生労働省「科学的介護情報システム（LIFE）について」", "url": "https://www.mhlw.go.jp/stf/shingi2/0000198094_00037.html" },
+      { "title": "厚生労働省「フィードバックの概要」（LIFE 説明資料）", "url": "https://www.mhlw.go.jp/content/12301000/001692925.pdf" }
     ],
     "status": "verified"
   }

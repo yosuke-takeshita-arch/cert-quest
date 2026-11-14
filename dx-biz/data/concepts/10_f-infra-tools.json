@@ -359,6 +359,8 @@
       { "title": "総務省「令和5年版 情報通信白書」O-RAN", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r05/html/nd242320.html" },
       { "title": "ソフトバンク「AI-RAN統合ソリューション「AITRAS」を開発」（2024年11月13日）", "url": "https://www.softbank.jp/corp/news/press/sbkk/2024/20241113_06/" }
     ],
+    "asOf": "2024-11",
+    "reviewBy": "2025-11",
     "status": "verified"
   },
   {
@@ -381,6 +383,8 @@
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
       { "title": "OpenTelemetry ドキュメント「OpenTelemetryとは」", "url": "https://opentelemetry.io/ja/docs/what-is-opentelemetry/" }
     ],
+    "asOf": "2026-10",
+    "reviewBy": "2027-10",
     "status": "verified"
   },
   {
@@ -401,6 +405,87 @@
     "sources": [
       { "title": "Oak Ridge National Laboratory「Frontier supercomputer debuts as world’s fastest, breaking exascale barrier」（2022年5月30日）", "url": "https://www.ornl.gov/news/frontier-supercomputer-debuts-worlds-fastest-breaking-exascale-barrier" },
       { "title": "Oak Ridge Leadership Computing Facility「Frontier」", "url": "https://www.olcf.ornl.gov/frontier/" }
+    ],
+    "asOf": "2022-05",
+    "reviewBy": "2023-05",
+    "status": "verified"
+  },
+  {
+    "id": "DC-10-115",
+    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "最新事例＆トレンド"],
+    "title": "ソブリンクラウド（データ主権を守るクラウド）",
+    "oneLine": "データを置く場所だけでなく、運用する人、運用の仕組み、設定などの付随する情報（メタデータ）まで、特定の国・地域の中にとどめて、その地域の法と管理の下で使えるようにしたクラウド。",
+    "why": "名前：ソブリン（sovereign）は『主権を持つ』という意味。データ主権は、データをその国・地域の法と管理の下に置くこと。①何に困っていたか：公共機関や規制の厳しい業界は、データの所在地、運用の自律、もしもの時の継続について、規制の目が厳しくなっている。データを国内の拠点に置くだけでは、運用や設定の情報が外にあれば、外からの影響を受けうる。②例：AWS は、欧州の顧客向けに、既存の地域（リージョン）から切り離して独立に運用する「AWS European Sovereign Cloud」を作るとし、設備は欧州連合（EU）の中だけに置き、日々の運用は EU に住む人だけが行い、顧客が作る役割・権限・設定などのメタデータもすべて EU の中に置けるとした。EU の外からの運用の操作をゼロにするとし、極端な事態でも運用を続けられるよう、EU に住む権限のある社員がサービスの維持に要るソースコードの複製を使えるようにするとしている。③押さえどころ：ソブリンクラウドで問われるのは、データの場所・運用する人・メタデータ・鍵などの管理を、まとめてその地域の中にとどめること。④混同しやすい点：データを国内の拠点に置くこと（データの所在地の指定）だけでは、ソブリンクラウドの要件の一部しか満たさない。",
+    "links": [
+      { "id": "DC-02-009", "relation": "関連" },
+      { "id": "DC-10-102", "relation": "背景" },
+      { "id": "DC-09-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "データの所在地の指定（データレジデンシー）", "point": "データを置く国・地域を決めることだけ。ソブリンクラウドは、運用する人・メタデータ・運用の自律まで含めて、その地域の中にとどめる。" }
+    ],
+    "sources": [
+      { "title": "AWS Security Blog「AWS Digital Sovereignty Pledge: Announcing a new, independent sovereign cloud in Europe」", "url": "https://aws.amazon.com/blogs/security/aws-digital-sovereignty-pledge-announcing-a-new-independent-sovereign-cloud-in-europe/" },
+      { "title": "Amazon（aboutamazon.eu）「Built, operated, controlled, and secured in Europe: AWS unveils new sovereign controls and governance structure for the AWS European Sovereign Cloud」", "url": "https://www.aboutamazon.eu/news/aws/built-operated-controlled-and-secured-in-europe-aws-unveils-new-sovereign-controls-and-governance-structure-for-the-aws-european-sovereign-cloud" }
+    ],
+    "asOf": "2025-08",
+    "reviewBy": "2026-08",
+    "status": "verified"
+  },
+  {
+    "id": "DC-10-116",
+    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
+    "title": "V2G（電気自動車の電池を電力網に生かす）",
+    "oneLine": "電気自動車（EV）の電池にためた電気を、電力網（系統）へ戻して供給し、電気の需要と供給を合わせる調整に役立てること。",
+    "why": "名前：V2G は Vehicle to Grid の略で、意味は『車から電力網へ』。車と電力網を結び付ける考え方の全体を VGI（Vehicle Grid Integration）と呼ぶこともある。①何に困っていたか：太陽光や風力の発電は天気で出力が変わり、需要を超える余った電気が出ることもある。②例：豊田通商と中部電力は2018年11月と12月、愛知県豊田市で、EV の電池にためた電気を電力系統へ供給する国内初の実証試験を行うと発表した。V2G は、車の電池を使って、再生可能エネルギーの出力の変動を抑える「調整力の提供」や、余った電気をためて要る時間に出す「供給力シフト」を可能にするとし、指令に対して素早い応動が求められる周波数の調整力として使えるかを確かめた。豊田通商は、たくさんの電池を束ねて扱う事業者（アグリゲーター）として、駐車中の EV にも新しい価値を生むことを目指すとした。③押さえどころ：車は走っていない時間が長いので、その間に電池を電力網の役に立てる。1台は小さくても、多くの台数を束ねて1つの調整力にする。④混同しやすい点：V2H（Vehicle to Home）は家に電気を戻すこと、V2G は電力網に戻すこと。",
+    "links": [
+      { "id": "DC-10-106", "relation": "関連" },
+      { "id": "DC-05-028", "relation": "関連" },
+      { "id": "DC-08-114", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "V2H", "point": "V2H（Vehicle to Home）は、車の電池の電気を家で使うこと。V2G は、電力網（系統）に戻して需要と供給の調整に使うこと。" }
+    ],
+    "sources": [
+      { "title": "豊田通商・中部電力「国内初、電気自動車の蓄電池を活用した電力系統への電力供給（V2G）実証試験の実施」（2018年11月7日）", "url": "https://www.toyota-tsusho.com/press/detail/181107_004289.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-10-117",
+    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
+    "title": "電子投票（電磁的記録式投票）",
+    "oneLine": "紙に書く代わりに、投票所の専用の機械（電磁的記録式投票機）で候補者を選んで投票し、記録媒体のデータを集計する方式。日本では、条例を定めた地方公共団体の議会の議員と長の選挙で使える。",
+    "why": "①制度：2001年12月公布・2002年2月施行の法律が、地方公共団体が条例で定めれば、その議会の議員と長の選挙で電磁的記録式投票機を使って投票できるよう、公職選挙法の特例を定めた（総務省）。開票所では、記録媒体に記録された投票を集計し、候補者ごとの得票数を計算する。②良さと怖さ：総務省の「電子投票システムに関する技術的条件」（令和6年6月の第三次改定版）は、電子機器の導入は事務処理の迅速化や利便性の向上を目指すものだが、適切な対策を欠くとデータの消失やシステムの停止など重大な事故につながり、社会的に未成熟な段階でトラブルが起きれば、電子投票そのものの信頼が失われるおそれもあるとする。③押さえどころ：条件には、二重の投票を防ぐこと、投票の秘密が侵されないこと、故障のときは予備機で投票を続けられることなどがあり、検査・監査の考え方も添えている。信頼性と安全性は技術だけでなく、運用管理の対策があって初めて確保されるとしている。総務省は、事業者の申し出で電子投票システムの型式が技術的条件に合うかを確かめている。④混同しやすい点：インターネットで自宅から投票する方式（ネット投票）とは別で、こちらは投票所で専用の機械を使う。",
+    "links": [
+      { "id": "DC-10-103", "relation": "関連" },
+      { "id": "DC-02-036", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "インターネット投票", "point": "インターネット投票は、自宅などから通信で投票する方式。日本の電磁的記録式投票は、投票所に置いた専用の投票機で投票する方式。" }
+    ],
+    "sources": [
+      { "title": "総務省「電磁的記録式投票制度について」", "url": "https://www.soumu.go.jp/senkyo/senkyo_s/news/touhyou/denjiteki/index.html" },
+      { "title": "総務省選挙部「電子投票システムに関する技術的条件及び解説」（令和6年6月 第三次改定版）", "url": "https://www.soumu.go.jp/main_content/000677452.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-10-118",
+    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
+    "title": "ゲームエンジン（Unity）",
+    "oneLine": "ゲームや3Dの体験を作るための開発の土台（エンジン）。Unity はその代表例で、ゲームだけでなく、製造・小売・自動車などの業界で、設計のデータから体験型のアプリを作るのにも使われる。",
+    "why": "①何に困っていたか：ゲームや3Dのアプリをゼロから作ると、描画・物の動き・入力の処理などを毎回作ることになり、手間がかかる。②例：Unity の公式サイトによれば、Unity Engine は、あらゆる見た目の2D・3Dの体験を作れる開発の土台で、25を超えるプラットフォーム（スマートフォン・ゲーム機・パソコンなど）に向けて出せる。製造・小売・自動車などの業界では、CAD（設計の図面のデータ）や3Dのデータを、どの機器でも動く体験型のアプリに変えるのに使えるとする。学ぶ人向けに無料の学習の場（Unity Learn）を用意し、作品の紹介（Made with Unity）も行う。素材（アセット）の売り場の Unity Asset Store では、2D・3Dのモデル、開発の道具、ひな形などを手に入れて、開発を速められる。③押さえどころ：教材・素材・事例がそろうほど新しく使い始める人が増え、その人たちが作品や素材を足していく、という循環が起きやすい（公式サイトの仕組みから導いた見方）。④混同しやすい点：ゲームエンジンは開発の道具で、作られたゲームや3Dの空間（メタバースなど）そのものではない。",
+    "links": [
+      { "id": "DC-05-006", "relation": "関連" },
+      { "id": "DC-11-106", "relation": "対比" }
+    ],
+    "confusions": [
+      { "title": "メタバース", "point": "メタバースは、人が集まって活動する3Dの仮想空間（作られた場）。ゲームエンジンは、そうした空間やゲームを作るための開発の道具。" }
+    ],
+    "sources": [
+      { "title": "Unity「Unity Engine」", "url": "https://unity.com/products/unity-engine" },
+      { "title": "Unity「Unity Asset Store」", "url": "https://assetstore.unity.com/" }
     ],
     "status": "verified"
   }

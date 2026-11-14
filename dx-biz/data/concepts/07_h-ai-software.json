@@ -142,6 +142,8 @@
     "sources": [
       { "title": "総務省「令和7年版 情報通信白書」AI研究開発における最近の動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112120.html" }
     ],
+    "asOf": "2025-07",
+    "reviewBy": "2026-07",
     "status": "verified"
   },
   {
@@ -164,6 +166,8 @@
       { "title": "Model Context Protocol 公式ドキュメント「What is the Model Context Protocol (MCP)?」", "url": "https://modelcontextprotocol.io/docs/getting-started/intro" },
       { "title": "Anthropic「Introducing the Model Context Protocol」（2024年11月）", "url": "https://www.anthropic.com/news/model-context-protocol" }
     ],
+    "asOf": "2024-11",
+    "reviewBy": "2025-11",
     "status": "verified"
   },
   {
@@ -185,6 +189,8 @@
       { "title": "Google Developers Blog「Announcing the Agent2Agent Protocol (A2A)」（2025年4月）", "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" },
       { "title": "A2A Protocol 公式サイト", "url": "https://a2a-protocol.org/latest/" }
     ],
+    "asOf": "2025-04",
+    "reviewBy": "2026-04",
     "status": "verified"
   },
   {
@@ -422,6 +428,8 @@
     "sources": [
       { "title": "Microsoft Learn「Azure OpenAI 推論モデル」", "url": "https://learn.microsoft.com/ja-jp/azure/ai-services/openai/how-to/reasoning" }
     ],
+    "asOf": "2026-10",
+    "reviewBy": "2027-10",
     "status": "verified"
   },
   {
@@ -444,6 +452,8 @@
       { "title": "総務省「令和6年版 情報通信白書」国産LLMの開発", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141120.html" },
       { "title": "IPA「DX白書2023」", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
     ],
+    "asOf": "2024-07",
+    "reviewBy": "2025-07",
     "status": "verified"
   },
   {
@@ -463,6 +473,90 @@
     ],
     "sources": [
       { "title": "文部科学省「AI for Scienceの推進に向けた基本的な戦略方針（案）」（AI for Science推進委員会 第3回 資料1-1、2026年3月27日）", "url": "https://www.mext.go.jp/content/20260327-mxt_jyohoka01-000048596_2.pdf" }
+    ],
+    "asOf": "2026-03",
+    "reviewBy": "2027-03",
+    "status": "verified"
+  },
+  {
+    "id": "DC-07-114",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "最新事例＆トレンド"],
+    "title": "コンピューター操作AI（Computer Use）",
+    "oneLine": "AIが人と同じように画面を見て、カーソルを動かし、ボタンを押し、文字を打って、パソコンの操作を進める機能。Anthropic が2024年10月に公開ベータとして出した「computer use」が代表例。",
+    "why": "名前：Computer Use は英語で『コンピューターを使うこと』。Anthropic（AIの Claude を作る米国の会社）が機能名として使った。①何に困っていたか：会社の仕事の多くは、人が画面を見て使うソフトで動いている。古い業務システムには、プログラムから機能を呼び出す窓口（API）が無いものも多い。RPA（決めた手順をソフトのロボットにくり返させる仕組み）は、手順を前もって書いておく必要があり、画面が変わると止まりやすい。②何をしたか：Anthropic は2024年10月22日、Claude 3.5 Sonnet で computer use を公開ベータとして出し、AIが画面を見て、カーソルを動かし、ボタンを押し、文字を打つという人と同じやり方でコンピューターを使えるようにした。個々の作業ごとに専用の道具を作るのではなく、人向けの標準的な道具やソフトを広く使える一般的な操作の力を教える、という考え方だとしている。例：経費システムに API が無くても、AIが画面の入力欄を読み、金額を打ち込み、送信のボタンを押すところまで進められる。同社は、まだ実験的で、ときに扱いにくく誤りもありうるとした。③押さえどころ：同社の文書は、権限を最小限にした専用の仮想マシンやコンテナ（隔離した実行環境）で動かすこと、現実に重い結果をもたらしうる判断や、クッキーの承諾・金融取引・利用規約への同意のような明確な同意が要る作業は人に確認させることを挙げる。完全な正確さが要る作業や機微な個人情報を扱う作業には、人の監督なしで使わないともしている。人の操作に比べて遅いことがあるので、速さが重要でない作業（情報集め、ソフトの自動テストなど）に向くとする。④混同しやすい点：API で直接つなげる相手なら、そちらのほうが速く確実というのが使い分けの基本（文書の「遅さ」の記述から導いた帰結）。",
+    "links": [
+      { "id": "DC-02-018", "relation": "関連" },
+      { "id": "DC-02-014", "relation": "対比" },
+      { "id": "DC-02-020", "relation": "対比" },
+      { "id": "DC-07-106", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-02-014", "point": "RPA は、人が決めた操作の手順をソフトのロボットがそのとおりにくり返す。コンピューター操作AIは、画面を見てその場で次の操作を自分で選ぶ。" },
+      { "id": "DC-02-020", "point": "MCP は、AIを外部のデータや道具につなぐ共通の取り決め（窓口の規格）。コンピューター操作AIは、窓口が無くても人向けの画面を操作して使う。" }
+    ],
+    "sources": [
+      { "title": "Anthropic「Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku」（2024年10月22日）", "url": "https://www.anthropic.com/news/3-5-models-and-computer-use" },
+      { "title": "Claude Docs「Computer use tool」", "url": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/computer-use-tool" }
+    ],
+    "asOf": "2024-10",
+    "reviewBy": "2025-10",
+    "status": "verified"
+  },
+  {
+    "id": "DC-07-115",
+    "syllabus": ["DX技術イノベーション領域", "H AI技術/ソフトウェア技術", "応用事例"],
+    "title": "小規模言語モデル（SLM）",
+    "oneLine": "大規模言語モデル（LLM）の働きの多くを持ちながら、パラメータ（学習で調整される、モデルの中の数値）の数を小さくし、少ないデータで学習させた言語モデル。小さいので端末の中でも動かしやすい。",
+    "why": "名前：SLM は Small Language Model の略。意味は『小規模な言語モデル』。①何に困っていたか：大規模言語モデルは大きいので、動かすのに多くの計算資源が要り、クラウドに問い合わせるたびに待ち時間も出る。②例：マイクロソフトは2024年4月23日に小規模言語モデルの Phi-3 シリーズを発表し、最初に公開した Phi-3-mini の大きさを38億パラメータと示して、2倍の大きさのモデルより良い性能だとした。言語モデルの規模は、ふつうこのパラメータの数で表す。③何に使うか：同社は、SLM は、クラウドではなく端末の中で動くアプリを作りたい組織や、広い推論を要しない作業、素早い応答が要る場面に向くとする。データを端末の中に置いたままにでき、待ち時間を小さくしプライバシーを守りやすい。ネットにつながらない状態（オフライン）でも動くので、車載のコンピューター、工場のセンサー、遠隔地のカメラなどにも載せられるとしている。④混同しやすい点：複雑な課題では、大規模言語モデルが今も最も優れた選択肢だと同社は述べている。小ささと引き換えに、得意な範囲は狭くなる。日本の軽量なモデル（NTT の tsuzumi など）も、パラメータの数で規模を示している。",
+    "links": [
+      { "id": "DC-07-112", "relation": "対比" },
+      { "id": "DC-07-108", "relation": "関連" },
+      { "id": "DC-08-104", "relation": "使い道" },
+      { "id": "DC-10-107", "relation": "使い道" }
+    ],
+    "confusions": [
+      { "id": "DC-07-108", "point": "AIモデルの軽量化（枝刈り・量子化・蒸留）は、モデルを小さくする「技術」。SLMは、はじめから小さく作った「モデル」。蒸留は SLM を作るときの方法の1つにもなる。" }
+    ],
+    "sources": [
+      { "title": "Microsoft Source「Tiny but mighty: The Phi-3 small language models with big potential」（2024年4月23日）", "url": "https://news.microsoft.com/source/features/ai/the-phi-3-small-language-models-with-big-potential/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-07-116",
+    "syllabus": [
+      "DX技術イノベーション領域",
+      "H AI技術/ソフトウェア技術",
+      "応用事例"
+    ],
+    "title": "感情認識AI（人の様子から感情を推し量るAI）",
+    "oneLine": "人の顔や声などの様子から、その人の感情を推し量るAI。一人ひとりに合わせた対応に使える一方、人の内面に踏み込むので、EUのAI法は職場と教育機関での利用を禁止し、それ以外の場面の利用を高リスクに分けている。",
+    "why": "①何に困るか：接客や学び、見守りで、相手の気持ちに合わせた対応ができれば便利になる。一方、本人が言っていない気持ちまで推し量られると、評価や扱いに使われるおそれがある。とくに職場や学校のように、断りにくい立場の人がいる場では影響が大きい。②例：店の端末が客の表情から迷っている様子を推し量り、店員を呼ぶ、という使い方が考えられる（例として作った場面）。③EUの整理：欧州委員会の解説ページは、AI法が禁止する9つの使い方の1つに『職場と教育機関での感情認識』を挙げ、禁止の1〜8は2025年2月から効力を持ったとしている。それ以外の場面の感情認識のAIシステムは、高リスクの使い道の例に挙がっており、市場に出す前に厳しい義務を果たす必要がある（欧州委員会のページでは、この義務がかかるのは2027年12月2日から）。④押さえどころ：同じ技術でも、使う場面で扱いが変わる（職場・学校は禁止、ほかは高リスク）。便利さとプライバシーの釣り合いを考えるときの代表的な例である。",
+    "links": [
+      {
+        "id": "DC-05-105",
+        "relation": "関連"
+      },
+      {
+        "id": "DC-02-015",
+        "relation": "対比"
+      },
+      {
+        "id": "DC-09-106",
+        "relation": "関連"
+      }
+    ],
+    "confusions": [
+      {
+        "id": "DC-02-015",
+        "point": "顔認証は、顔の特徴から『その人が本人かどうか』を確かめる技術。感情認識は、顔や声の様子から『いまどんな気持ちか』を推し量る技術。確かめるものが違う。"
+      }
+    ],
+    "sources": [
+      {
+        "title": "欧州委員会「AI Act」（Shaping Europe’s digital future）",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+      }
     ],
     "status": "verified"
   }

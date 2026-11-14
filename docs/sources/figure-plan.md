@@ -2468,7 +2468,7 @@
 - 使う問題（4）：D-01-007、D-01-019、D-01-028、D-01-029
 - 根拠にする一次情報（カードの sources から。括弧内はその出典を持つカード）：
   - [経済産業省「DX推進ガイドライン Ver.1.0」（2018年12月）](https://www.meti.go.jp/press/2018/12/20181212004/20181212004-1.pdf)（DC-01-007）
-  - [経済産業省「DXレポート～ITシステム「2025年の崖」の克服とDXの本格的な展開～」（2018年9月7日）](https://www.meti.go.jp/shingikai/mono_info_service/digital_transformation/pdf/20180907_03.pdf)（DC-01-027）
+  - [経済産業省「DXレポート～ITシステム「2025年の崖」の克服とDXの本格的な展開～」（2018年9月7日）](https://www.meti.go.jp/policy/it_policy/dx/20180907_03.pdf)（DC-01-027）
   - [経済産業省「DXレポート2（中間取りまとめ）」（2020年12月28日）5](https://www.meti.go.jp/press/2020/12/20201228004/20201228004-2.pdf)（DC-01-015）
 
 #### fig-dx-rdb-nosql　RDB と NoSQL のデータの持ち方

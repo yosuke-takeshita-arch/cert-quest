@@ -159,6 +159,8 @@
       { "title": "IPA「DX推進スキル標準（DSS-P）概要」ページ", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/about_dss-p.html" },
       { "title": "IPA「The Digital Skill Standards ver.1.2」（英語版、2024年7月）", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/eid2eo00000087hx-att/eiyaku.pdf" }
     ],
+    "asOf": "2026-04",
+    "reviewBy": "2027-04",
     "status": "verified"
   },
   {
@@ -324,6 +326,8 @@
     "sources": [
       { "title": "総務省・経済産業省「AI事業者ガイドライン（第1.2版）」（2026年3月31日）", "url": "https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/pdf/20260331_1.pdf" }
     ],
+    "asOf": "2026-03",
+    "reviewBy": "2027-03",
     "status": "verified"
   },
   {
@@ -344,6 +348,8 @@
     "sources": [
       { "title": "経済産業省「人的資本経営の実現に向けた検討会 報告書 ～人材版伊藤レポート2.0～」（2022年5月）", "url": "https://www.meti.go.jp/policy/economy/jinteki_shihon/pdf/report2.0.pdf" }
     ],
+    "asOf": "2022-05",
+    "reviewBy": "2023-05",
     "status": "verified"
   },
   {
@@ -365,6 +371,8 @@
       { "title": "総務省「令和7年版 情報通信白書」領域をまたいだビッグテック企業の影響力の拡大動向", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd113120.html" },
       { "title": "Meta「Meta Reports Fourth Quarter and Full Year 2025 Results」（2026年1月）", "url": "https://s21.q4cdn.com/399680738/files/doc_news/Meta-Reports-Fourth-Quarter-and-Full-Year-2025-Results-2026.pdf" }
     ],
+    "asOf": "2026-01",
+    "reviewBy": "2027-01",
     "status": "verified"
   },
   {
@@ -402,6 +410,28 @@
     ],
     "sources": [
       { "title": "日本電信電話「NTTデータグループの完全子会社化について」（2025年5月8日）", "url": "https://group.ntt/jp/newsrelease/2025/05/08/pdf/250508bb.pdf" }
+    ],
+    "asOf": "2025-05",
+    "reviewBy": "2026-05",
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-113",
+    "syllabus": ["コアDXBzイノベーション領域", "B ビジネスイノベーション/トレンド/人財", "基本概念"],
+    "title": "プロボノ（職業上のスキルを生かす社会貢献）",
+    "oneLine": "仕事で身につけたスキルや経験を生かして、NPOや地域の団体の課題の解決を手伝う社会貢献の活動。企業が社員を送り出し、中間支援組織がつなぎ、団体が成果を使う3者の協働で進むことが多い。",
+    "why": "名前：ラテン語の Pro Bono Publico（公共善のために）が語源。困っていたこと：NPOや地域の団体は、広報・会計・業務の仕組みづくりなど、運営の基盤を強くする専門のスキルが足りないことが多い。一方、企業の社員には、自分の職場では得にくい経験を積む場が少ない。プロボノをコーディネートする中間支援組織のサービスグラントは、5人前後のチームで期間を区切って取り組むプロジェクト型の仕組みで、団体の課題を棚卸し・整理し、解決への道のりを具体化するところから支援し、ヒアリング・調査、中間提案を経て成果物を作り、最終提案・納品までを進める。企業向けには、人材育成など企業として取り組む目的を聞き取ってプログラムを設計し、企業や立場の違うメンバーのチームでNPOの課題に挑む越境体験として提供している。3者の役割：企業＝目的を決めて社員を送り出す、中間支援組織＝団体の課題を整理し、社員とのマッチングとプロジェクトの進め方を設計する、団体＝自らの課題を示し、成果物を運営に生かす。どれかが欠けると、成果物が団体の運営に生きない。",
+    "links": [
+      { "id": "DC-02-104", "relation": "関連" },
+      { "id": "DC-02-102", "relation": "関連" },
+      { "id": "DC-13-105", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-13-105", "point": "CSR（企業の社会的責任）は、企業が社会に対して負う責任の考え方全体。プロボノは、社員が職業上のスキルを生かして団体の課題の解決を手伝う、具体的な活動の形。" }
+    ],
+    "sources": [
+      { "title": "サービスグラント「プロボノとは？」", "url": "https://www.servicegrant.or.jp/probono/" },
+      { "title": "サービスグラント「企業向けプロボノ・越境体験プログラム」", "url": "https://www.servicegrant.or.jp/corporate/" }
     ],
     "status": "verified"
   }

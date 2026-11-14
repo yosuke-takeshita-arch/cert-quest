@@ -386,6 +386,8 @@
     "sources": [
       { "title": "Anthropic「Project Glasswing: Securing critical software for the AI era」（2026年4月7日）", "url": "https://www.anthropic.com/glasswing" }
     ],
+    "asOf": "2026-04",
+    "reviewBy": "2027-04",
     "status": "verified"
   },
   {
@@ -409,6 +411,46 @@
       { "title": "IPA「情報セキュリティ10大脅威 2026」", "url": "https://www.ipa.go.jp/security/10threats/10threats2026.html" },
       { "title": "IPA「情報セキュリティ10大脅威 2026」解説書（組織編）", "url": "https://www.ipa.go.jp/security/10threats/omgdg50000008fi8-att/kaisetsu_2026_soshiki.pdf" }
     ],
+    "asOf": "2026-03",
+    "reviewBy": "2027-03",
+    "status": "verified"
+  },
+  {
+    "id": "DC-12-113",
+    "syllabus": ["社会実装イノベーション領域", "L インターネット技術・サイバーセキュリティ", "最新事例＆トレンド"],
+    "title": "C2PA（コンテンツの来歴を記録する規格）",
+    "oneLine": "画像・動画・音声などのデジタルの中身が、どこで作られ、どう編集されてきたか（来歴）を、改ざんされたら分かる形で記録して添える、オープンな技術規格。添えた記録を Content Credentials（コンテンツ・クレデンシャル）と呼ぶ。",
+    "why": "名前：C2PA は Coalition for Content Provenance and Authenticity の略で、意味は『コンテンツの来歴と真正性のための連合』。①何に困っていたか：作成や編集の強力な道具が誰でも使えるようになり、メディアの中身を信頼するのが難しくなった。②何をするか：C2PA の説明（Explainer）によれば、C2PA は、作り手・発信者・受け手がデジタルの中身の出どころと履歴を確かめられるようにするオープンな標準を作るために作られた。中心にあるのは Content Credential（C2PA マニフェスト）で、中身の出どころなどについての記述（アサーション）を1つ以上含み、真正性と完全性を守るためにデジタル署名される。中身にそのまま埋め込むことが多いが、見えない電子透かしなどで外部の記録とつなぐこともできる。③例：報道の写真家が、Content Credentials に対応したカメラ（撮影機器）で撮り、対応した編集ソフトで編集し、編集者がさらに編集し、対応した報道機関のコンテンツ管理の仕組みを経てソーシャルメディアに出す。各段で来歴が積み重なり、受け手は、撮影後に変えられていないか、信頼できる仕組みで署名されたか、発信した組織はどこかを確かめて判断できる。④押さえどころ：C2PA は偽情報の万能薬ではなく、メディア・リテラシー、ファクトチェック、ディープフェイクの検出などを補う、来歴を記録する基盤だとしている。",
+    "links": [
+      { "id": "DC-12-104", "relation": "対策" },
+      { "id": "DC-05-032", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-12-104", "point": "ディープフェイクの検出は、出来上がった中身を見て偽物かどうかを推定する。C2PA は、作られたときからの来歴を署名つきで記録して添え、変えられていないかを確かめられるようにする。" }
+    ],
+    "sources": [
+      { "title": "C2PA「C2PA and Content Credentials Explainer」（2.2）", "url": "https://c2pa.org/specifications/specifications/2.2/explainer/Explainer.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-12-114",
+    "syllabus": ["社会実装イノベーション領域", "L インターネット技術・サイバーセキュリティ", "最新事例＆トレンド"],
+    "title": "Wi-Fi 7（Wi-Fi CERTIFIED 7）",
+    "oneLine": "無線LAN（Wi-Fi）の新しい世代。複数の電波の通り道を同時に使うマルチリンク・オペレーション（MLO）と、従来の2倍の320MHz幅の電波の通り道などで、速さ・低遅延・信頼性を高める。",
+    "why": "名前：Wi-Fi 7 は、IEEE（米国の電気電子の技術者の学会）の規格 802.11be の案にもとづく世代の呼び名。認証の名前は Wi-Fi CERTIFIED 7。①何に困っていたか：複数人での AR/VR、ゲーム、ハイブリッドワーク、工場のIoT、自動車などでは、大量のデータを、遅れなく、途切れずに送る必要がある。②何が変わったか：Wi-Fi Alliance（Wi-Fi の認証を行う業界団体）は2024年1月8日、Wi-Fi CERTIFIED 7 を発表した。主な機能として、6GHz帯を Wi-Fi に使える国で、これまでで最も広い通り道の2倍の幅の320MHzのチャネルが使え、数ギガビットの速さと大きな容量を出せる。マルチリンク・オペレーション（MLO）は、複数のリンク（電波の通り道）で同時に送受信して、容量を増やし、遅延を減らし、信頼性を上げる。4K QAM は、1024 QAM より20％高い伝送の速さを出す。③押さえどころ：MLO は「低遅延・高信頼」、320MHz は「容量」と結び付けて覚える。④混同しやすい点：5G（携帯電話の第5世代の通信）は通信事業者の網、Wi-Fi は家や会社の中の無線LAN。",
+    "links": [
+      { "id": "DC-02-001", "relation": "対比" },
+      { "id": "DC-08-103", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-02-001", "point": "5G は携帯電話の通信事業者が提供する無線の網。Wi-Fi 7 は、家や会社などに置いた機器で作る無線LANの新しい世代。" }
+    ],
+    "sources": [
+      { "title": "Wi-Fi Alliance「Wi-Fi Alliance introduces Wi-Fi CERTIFIED 7」（2024年1月8日）", "url": "https://wi-fi.org/news-events/newsroom/wi-fi-alliance-introduces-wi-fi-certified-7" }
+    ],
+    "asOf": "2024-01",
+    "reviewBy": "2025-01",
     "status": "verified"
   }
 ]
