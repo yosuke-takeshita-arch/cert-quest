@@ -6,6 +6,20 @@ import { normalizePastExams } from './pastexam.js';
 
 const norm = (s) => String(s == null ? '' : s).normalize('NFKC').trim().toLowerCase();
 
+// 確認状態。verified（出典で確かめた）／unverified（まだ）／retired（引退。古くなった最新事例など）。
+// retired は 2026-11-14 先生決定（要件定義書 §7-6）。先生の問い（逐語）「古いトレンドの問題は消して、新しいトレンドはどんどん採用していかないといけないよね」、
+// 門番の案に先生（逐語）「全部おすすめでいい」。古いものは消さずに引退にし、問題は出題から外すが、学習記録と問題 ID は残す（戻せるように）。
+// 知らない値は unverified に丸める（それまでと同じ）。
+export const STATUSES = ['verified', 'unverified', 'retired'];
+const normStatus = (s) => (STATUSES.includes(s) ? s : 'unverified');
+
+// 「いつの事実か」asOf と「見直す年月」reviewBy（どちらも任意。"YYYY-MM"）。形が違えば null（検査 tools/check-freshness.cjs が NG にする）。
+const MONTH_RE = /^\d{4}-(0[1-9]|1[0-2])$/;
+export const normMonth = (s) => (typeof s === 'string' && MONTH_RE.test(s) ? s : null);
+
+/** 引退した問題・カードか（status が retired）。 */
+export const isRetired = (x) => !!x && x.status === 'retired';
+
 async function fetchJson(url, fetchFn) {
   try {
     const res = await fetchFn(url);
@@ -45,7 +59,9 @@ export function normalizeQuestion(q) {
     stemFigures: normalizeFigureIds(q.stemFigures), // 答える前に問題文の下へ出す図・表の ID（任意。無ければ []。figures は答えた後の解説の図で、別の欄。要件定義書 §7）
     pastExam: normalizePastExams(q.pastExam), // 過去問題の出典（任意。配列、または1つのオブジェクトで書く。整えて配列で持つ。無い・崩れていれば null。要件定義書 §7・§12）
     sources: Array.isArray(q.sources) ? q.sources.filter((s) => s && typeof s.url === 'string') : [],
-    status: q.status === 'verified' ? 'verified' : 'unverified',
+    status: normStatus(q.status),
+    asOf: normMonth(q.asOf), // いつの事実か（任意。"YYYY-MM"。無ければ null。要件定義書 §7-6）
+    reviewBy: normMonth(q.reviewBy), // 見直す年月（任意。"YYYY-MM"。asOf の1年後。無ければ null）
   };
 }
 
@@ -63,7 +79,9 @@ export function normalizeConcept(c) {
     confusions: Array.isArray(c.confusions) ? c.confusions : [],
     figures: normalizeFigureIds(c.figures),
     sources: Array.isArray(c.sources) ? c.sources.filter((s) => s && typeof s.url === 'string') : [],
-    status: c.status === 'verified' ? 'verified' : 'unverified',
+    status: normStatus(c.status), // retired のカードの見せ方（一覧から隠すか、印を付けて残すか）は先生の判断待ち。いまは読み込みで落とさないだけ
+    asOf: normMonth(c.asOf),
+    reviewBy: normMonth(c.reviewBy),
   };
 }
 
@@ -225,6 +243,7 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
   else missing.push(String(idx.json.syllabus || 'syllabus'));
 
   const questions = [];
+  const retiredQuestions = [];
   const seenQ = new Set();
   qRes.forEach((r, i) => {
     if (!r.ok) {
@@ -239,7 +258,12 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
       if (!q) return problems.push({ file: qFiles[i], reason: '形が不正な問題を捨てた(' + k + '番目' + (raw && raw.id ? ' ' + raw.id : '') + ')' });
       if (seenQ.has(q.id)) return problems.push({ file: qFiles[i], reason: 'IDの重複を捨てた(' + q.id + ')' });
       seenQ.add(q.id);
-      questions.push(q);
+      // 引退した問題は、ここで出題の一覧から外す（要件定義書 §7-6）。questions・questionById・シラバスの木（ステージ・ボス・苦手・模試・
+      // 復習・あとで見る・真ボス・秒数チャレンジ）はみなここから作るので、1か所で全部の出題から外れる。
+      // 学習記録（qstats など）は問題 ID で持ったまま消さない。データに無い ID と同じに扱われ（progress.js の dueQuestions・srs.js の upcoming）、
+      // status を戻せば記録ごと出題に戻る。retiredQuestions は数を出すとき用に残す
+      if (q.status === 'retired') retiredQuestions.push(q);
+      else questions.push(q);
     });
   });
 
@@ -265,7 +289,7 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
   // ボスの名前・せりふのファイル（無くてもよい。読むのは app.js。ここでは読み込みの進み具合に数えないよう、名前だけ返す）
   const bossesFile = typeof idx.json.bosses === 'string' && idx.json.bosses ? idx.json.bosses : 'bosses.json';
   const basicsFile = typeof idx.json.basics === 'string' && idx.json.basics ? idx.json.basics : BASICS_FILE; // 基礎のことば（lib/basics.js）
-  return finish({ indexFound: true, syllabusRaw, questions, concepts, problems, missing, bossesFile, basicsFile });
+  return finish({ indexFound: true, syllabusRaw, questions, retiredQuestions, concepts, problems, missing, bossesFile, basicsFile });
 
   function finish(d) {
     const tree = buildTree(d.syllabusRaw, d.questions, d.concepts);
@@ -273,7 +297,8 @@ export async function loadData({ dataBase, fetchFn = (u) => fetch(u) }) {
     return {
       indexFound: d.indexFound,
       questions: d.questions,
-      questionById: new Map(d.questions.map((q) => [q.id, q])),
+      questionById: new Map(d.questions.map((q) => [q.id, q])), // 引退した問題は入れない（復習・あとで見るの ID 引きでも出ないように）
+      retiredQuestions: d.retiredQuestions || [], // 引退した問題（出題には使わない。要件定義書 §7-6）
       concepts: d.concepts,
       conceptIndex,
       backlinks: buildBacklinks(d.concepts, conceptIndex),

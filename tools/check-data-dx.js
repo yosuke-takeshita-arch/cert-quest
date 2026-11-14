@@ -69,6 +69,11 @@
 //   誤答の文（組み合わせは区切った1つずつ）がカードの title の別名か取り違え欄の title と完全に一致するのに、そのカードが concepts に無いと WARN（CHOICE-CONCEPT）。
 //   CHOICE-CONCEPT 行に件数を出す。見ていないものは check-choice-concepts.cjs の冒頭
 //
+// 最新事例の鮮度と引退（2026-11-14 追加。tools/check-freshness.cjs。tools/check-data.js と共通の部品。要件定義書 §7-6）
+//   asOf・reviewBy（任意。"YYYY-MM"）の形・2つそろっているか・reviewBy が asOf より後か（NG）。status は verified・unverified・retired（引退）。
+//   見直す月が来たものを1件ずつ WARN（STALE）し、件数を STALE 行に出す。引退で模試の配分（config.json の exam.blueprint）を満たせなくなれば WARN（EXAM 行）。
+//   今日の月は --today YYYY-MM で決められる（テスト用。既定はこのパソコンの日付）。FRESH 行に『最新事例＆トレンド』で asOf の無い数を出す
+//
 // 見ていないもの: 内容の正しさ・出典URLが実際に開けるか・出典が答えの根拠を含むか・qtype が問題の中身に合っているか（人が読む）
 'use strict';
 
@@ -77,6 +82,7 @@ const path = require('path');
 const { checkBasics } = require('./check-basics.cjs'); // 基礎のことば（data/basics.json）の検査。G検定・DX・AIパスポートで共通
 const { makeVoiceCueChecker } = require('./check-voice-cue.cjs'); // 出典の名乗り・控えめな言い方の偏り。tools/check-data.js と共通
 const { makeChoiceConceptChecker } = require('./check-choice-concepts.cjs'); // 誤答の語のカードが concepts に無い。tools/check-data.js と共通
+const { makeFreshnessChecker, takeTodayArg } = require('./check-freshness.cjs'); // 最新事例の鮮度と引退（asOf・reviewBy・retired）。tools/check-data.js と共通
 
 // 相互依存の問題（qtype: interdep）の言い回しの偏りを見る語の一覧（2026-10-06。点検 review-1006b・1006c で2回続けて見つかった型）。
 // 実データの正解・誤答を見て作った。部分一致で見る（正規表現。表記ゆれは列挙したものだけ）。
@@ -103,6 +109,8 @@ const CUE_WORDS = [
 ];
 
 const args = process.argv.slice(2);
+const today = takeTodayArg(args); // --today YYYY-MM（テスト用。既定は今日の月）
+if (!today) { console.error('--today は YYYY-MM で書く'); process.exit(2); }
 let syllabusPath = null;
 let strictLinks = false;
 let coverage = false;
@@ -128,6 +136,8 @@ const warns = [];
 const err = (f, id, msg) => errors.push(`NG ${path.basename(f)} ${id || '-'}: ${msg}`);
 const warn = (f, id, msg) => warns.push(`WARN ${path.basename(f)} ${id || '-'}: ${msg}`);
 const voiceCue = makeVoiceCueChecker(warn); // 出典の名乗り・控えめな言い方の偏り（SOURCE-CUE・HEDGE-CUE。tools/check-voice-cue.cjs）
+// 最新事例の鮮度と引退（tools/check-freshness.cjs）。DX は知識区分『最新事例＆トレンド』の数を FRESH 行に出す
+const fresh = makeFreshnessChecker({ err, warn, today, isLatest: (o) => Array.isArray(o.syllabus) && o.syllabus[2] === '最新事例＆トレンド' });
 
 // 基礎のことば（<アプリ>/data/basics.json。要件定義書 §7-5）は data/ の直下にある（問題・カードは data/questions/・data/concepts/ の下）
 const isBasicsFile = (f) => /(^|[\\/])basics\.json$/.test(f);
@@ -208,7 +218,7 @@ const QTYPES = new Set(['term', 'relation', 'causal', 'loop', 'tradeoff', 'inter
 
 const isStr = (v) => typeof v === 'string' && v.trim().length > 0;
 const QFMT = new Set(['single', 'not', 'fill', 'scenario', 'combo']);
-const STATUS = new Set(['verified', 'unverified']);
+const STATUS = new Set(['verified', 'unverified', 'retired']); // retired＝引退（2026-11-14 先生決定。要件定義書 §7-6。tools/check-freshness.cjs）
 
 function checkSources(f, id, s) {
   if (!Array.isArray(s) || s.length === 0) { err(f, id, 'sources が空'); return; }
@@ -563,6 +573,7 @@ for (const { file: f, kind, data, syl, stageCh } of loaded) {
     checkFigureRefs(f, id, o.figures);
     checkFigureRefs(f, id, o.stemFigures, 'stemFigures');
     if (!STATUS.has(o.status)) err(f, id, `status が不正: ${o.status}`);
+    fresh.check(f, id, o, kind);
   });
 }
 
@@ -572,7 +583,8 @@ checkFigureFiles();
 for (const { file: f, kind, data } of loaded) {
   if (kind === 'basics') { console.log(`${path.basename(path.dirname(f))}/${path.basename(f)}: basics ${data.length}語`); continue; }
   const v = data.filter((o) => o.status === 'verified').length;
-  console.log(`${path.basename(path.dirname(f))}/${path.basename(f)}: ${kind} ${data.length}件（verified ${v} / unverified ${data.length - v}）`);
+  const rt = data.filter((o) => o && o.status === 'retired').length;
+  console.log(`${path.basename(path.dirname(f))}/${path.basename(f)}: ${kind} ${data.length}件（verified ${v} / unverified ${data.length - v - rt}${rt ? ' / retired ' + rt : ''}）`);
 }
 // 領域ごとの問題数と qtype の内訳（模試は補足でない領域から選ぶ）
 {
@@ -606,6 +618,7 @@ if (segStats.n) console.log(`SEG 全体: 部分ごとの多数派が正解にな
 // 出典の名乗り・控えめな言い方で答えが絞れる（全体）
 voiceCue.summary().forEach((l) => console.log(l));
 choiceConcept.summary().forEach((l) => console.log(l));
+fresh.summary().forEach((l) => console.log(l));
 // キーワードの扱い漏れ（--coverage）
 if (coverage && loaded.length) {
   const cnorm = (s) => String(s).normalize('NFKC').toLowerCase().replace(/[\s　()「」『』、。,.・\-－ー]/g, '');
@@ -638,7 +651,11 @@ if (coverage && loaded.length) {
   if (miss) errors.push(`NG coverage: 扱っていないキーワードが ${miss} 件`);
 }
 
-warns.forEach((w) => console.log(w));
-errors.forEach((e) => console.log(e));
-console.log(errors.length ? `結果: NG ${errors.length}件` : '結果: OK');
-process.exit(errors.length ? 1 : 0);
+// 引退で模試の配分が割り込まないか（EXAM。tools/check-freshness.cjs。quiz.js を読むので非同期）
+(async () => {
+  (await fresh.checkExam(loaded.filter((l) => l.kind === 'questions').map((l) => dataRootOf(l.file)), readJson)).forEach((l) => console.log(l));
+  warns.forEach((w) => console.log(w));
+  errors.forEach((e) => console.log(e));
+  console.log(errors.length ? `結果: NG ${errors.length}件` : '結果: OK');
+  process.exit(errors.length ? 1 : 0);
+})().catch((e) => { console.log(`NG 検査が途中で止まった: ${e && e.stack ? e.stack : e}`); process.exit(1); });
