@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 618" role="img" aria-labelledby="fig-ap-next-token-t fig-ap-next-token-d">
+<title id="fig-ap-next-token-t">事前学習は次のトークンを当てる練習。答えるときは次のトークンの確率の一覧を出す</title>
+<desc id="fig-ap-next-token-d">1つの文から練習問題がいくつも作れる。例文「今日は天気が良いので散歩に行く」では、入力「今日」の正解は「は」、「今日は」の正解は「天気」、「今日は天気」の正解は「が」、「今日は天気が」の正解は「良い」…「今日は天気が良いので散歩に」の正解は「行く」。区切り方は説明のための例。正解は文の続きそのものなので、人が正解のラベルを付けなくてよく、大量の文章をそのまま練習に使える。事実かどうかの印は付いていない。答えるときは、次のトークンの確率の一覧を出す。例（数は例）：入力「今日は天気が」に対して、良い0.5、悪い0.3、雨0.15、象0.05で、全部足すと1。確率は続きとしての来やすさで、事実である度合いではない。だから、もっともらしいが誤った文も出うる。</desc>
+<text x="12" y="20" class="tb">事前学習：次のトークンを当てる練習</text>
+<text x="12" y="40" class="tm">1つの文から、練習問題がいくつも作れる</text>
+<text x="12" y="62" class="tb ta">例文「今日は天気が良いので散歩に行く」</text>
+<text x="22" y="86" class="tm">入力（途中まで）</text>
+<text x="298" y="86" class="tm" text-anchor="end">正解（次）</text>
+<rect x="12" y="94" width="296" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="111">今日</text>
+<text x="298" y="111" class="tb tok" text-anchor="end">は</text>
+<rect x="12" y="120" width="296" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="137">今日は</text>
+<text x="298" y="137" class="tb tok" text-anchor="end">天気</text>
+<rect x="12" y="146" width="296" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="163">今日は天気</text>
+<text x="298" y="163" class="tb tok" text-anchor="end">が</text>
+<rect x="12" y="172" width="296" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="189">今日は天気が</text>
+<text x="298" y="189" class="tb tok" text-anchor="end">良い</text>
+<rect x="12" y="198" width="296" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="215">…</text>
+<text x="298" y="215" class="tb tok" text-anchor="end">…</text>
+<rect x="12" y="224" width="296" height="24" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="241">今日は天気が良いので散歩に</text>
+<text x="298" y="241" class="tb tok" text-anchor="end">行く</text>
+<text x="12" y="266" class="tm">区切り方は説明のための例</text>
+<text x="12" y="288" class="tb">正解は文の続きそのもの</text>
+<text x="12" y="308">→ 人が正解のラベルを付けなくてよい</text>
+<text x="12" y="328">→ 大量の文章をそのまま練習に使える</text>
+<text x="12" y="348" class="tm">事実かどうかの印は付いていない</text>
+<line x1="12" y1="364" x2="308" y2="364" class="l sb w1"/>
+<text x="12" y="388" class="tb ta">答えるとき：次のトークンの確率の一覧</text>
+<text x="12" y="408" class="tm">入力「今日は天気が」（数は例）</text>
+<text x="52" y="435" text-anchor="end">良い</text>
+<rect x="60" y="420" width="200" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="266" y="435" class="tm">0.5</text>
+<text x="52" y="461" text-anchor="end">悪い</text>
+<rect x="60" y="446" width="120" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="186" y="461" class="tm">0.3</text>
+<text x="52" y="487" text-anchor="end">雨</text>
+<rect x="60" y="472" width="60" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="126" y="487" class="tm">0.15</text>
+<text x="52" y="513" text-anchor="end">象</text>
+<rect x="60" y="498" width="20" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="86" y="513" class="tm">0.05</text>
+<text x="12" y="538">全部足すと 1（0.5＋0.3＋0.15＋0.05）</text>
+<text x="12" y="560" class="tb">確率＝続きとしての来やすさ</text>
+<text x="12" y="580" class="tb tng">事実である度合いではない</text>
+<text x="12" y="600" class="tng">→ もっともらしいが誤った文も出うる</text>
+</svg>

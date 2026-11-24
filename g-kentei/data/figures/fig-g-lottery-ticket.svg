@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 778" role="img" aria-labelledby="fig-g-lottery-ticket-t fig-g-lottery-ticket-d">
+<title id="fig-g-lottery-ticket-t">宝くじ仮説：密なネットワークの中に、最初の初期値のままで学習すれば同じくらいの精度に届く小さな部分がある</title>
+<desc id="fig-g-lottery-ticket-d">宝くじ仮説は、ランダムな初期値の密なネットワークの中に、単独で学習しても同じくらいの精度に届く小さな部分ネットワーク（当たりくじ）がある、という仮説。①図は4・4・4の点の間に32本の重み（線）を持つネットワークで、太い青の6本（32本の約19％）が当たりくじ。②原論文の探し方：1ランダムな初期値で作って学習する、2値の小さい重みを取り除く、3残った重みを学習後の値ではなく1で使った最初の初期値に戻す、4その部分だけで学び直す。2〜4をくり返して小さくしていく。見つかった部分は元の10〜20％以下の大きさで、元と同等以上の精度に、より速く達した。③同じ形でも、最初の初期値に戻して学習すると同等以上の精度に届くが、初期値を付け直して学習すると性能が落ちる。当たったのは形と初期値の組。混同しやすい点：1つのネットワークの中の部分の話で、教師と生徒の2つのモデルを使う蒸留とは別。</desc>
+<text x="12" y="20" class="tb">宝くじ仮説：大きなネットの中に、</text>
+<text x="12" y="40" class="tb">小さな「当たりくじ」が隠れている</text>
+<text x="12" y="62" class="tm">ランダムな初期値の密なネットワークの中に、</text>
+<text x="12" y="80" class="tm">単独で学習しても同じくらいの精度に届く</text>
+<text x="12" y="98" class="tm">小さな部分ネットワークがある、という仮説</text>
+<rect x="12" y="110" width="296" height="188" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="130" class="tb">① 密なネットワークと当たりくじ</text>
+<text x="24" y="148" class="tm">線＝重み（4・4・4 の点の間に32本）</text>
+<line x1="70" y1="166" x2="160" y2="166" class="l sm w1"/>
+<line x1="70" y1="166" x2="160" y2="222" class="l sm w1"/>
+<line x1="70" y1="166" x2="160" y2="250" class="l sm w1"/>
+<line x1="70" y1="194" x2="160" y2="166" class="l sm w1"/>
+<line x1="70" y1="194" x2="160" y2="194" class="l sm w1"/>
+<line x1="70" y1="194" x2="160" y2="222" class="l sm w1"/>
+<line x1="70" y1="194" x2="160" y2="250" class="l sm w1"/>
+<line x1="70" y1="222" x2="160" y2="166" class="l sm w1"/>
+<line x1="70" y1="222" x2="160" y2="222" class="l sm w1"/>
+<line x1="70" y1="250" x2="160" y2="166" class="l sm w1"/>
+<line x1="70" y1="250" x2="160" y2="194" class="l sm w1"/>
+<line x1="70" y1="250" x2="160" y2="222" class="l sm w1"/>
+<line x1="70" y1="250" x2="160" y2="250" class="l sm w1"/>
+<line x1="160" y1="166" x2="250" y2="166" class="l sm w1"/>
+<line x1="160" y1="166" x2="250" y2="194" class="l sm w1"/>
+<line x1="160" y1="166" x2="250" y2="222" class="l sm w1"/>
+<line x1="160" y1="166" x2="250" y2="250" class="l sm w1"/>
+<line x1="160" y1="194" x2="250" y2="194" class="l sm w1"/>
+<line x1="160" y1="194" x2="250" y2="250" class="l sm w1"/>
+<line x1="160" y1="222" x2="250" y2="166" class="l sm w1"/>
+<line x1="160" y1="222" x2="250" y2="194" class="l sm w1"/>
+<line x1="160" y1="222" x2="250" y2="222" class="l sm w1"/>
+<line x1="160" y1="222" x2="250" y2="250" class="l sm w1"/>
+<line x1="160" y1="250" x2="250" y2="166" class="l sm w1"/>
+<line x1="160" y1="250" x2="250" y2="194" class="l sm w1"/>
+<line x1="160" y1="250" x2="250" y2="250" class="l sm w1"/>
+<line x1="70" y1="166" x2="160" y2="194" class="l sa w3"/>
+<line x1="70" y1="222" x2="160" y2="194" class="l sa w3"/>
+<line x1="70" y1="222" x2="160" y2="250" class="l sa w3"/>
+<line x1="160" y1="194" x2="250" y2="166" class="l sa w3"/>
+<line x1="160" y1="194" x2="250" y2="222" class="l sa w3"/>
+<line x1="160" y1="250" x2="250" y2="222" class="l sa w3"/>
+<circle cx="70" cy="166" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="70" cy="194" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="70" cy="222" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="70" cy="250" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="160" cy="166" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="160" cy="194" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="160" cy="222" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="160" cy="250" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="250" cy="166" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="250" cy="194" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="250" cy="222" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="250" cy="250" r="6" class="fs sm" stroke-width="1.5"/>
+<text x="24" y="286" class="tb ta">太い青＝当たりくじ（6本／32本≒19％）</text>
+<line x1="160" y1="298" x2="160.0" y2="306.4" class="l sm w1"/>
+<polygon points="160,312 156.5,306.4 163.5,306.4" class="fm"/>
+<rect x="12" y="318" width="296" height="194" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="338" class="tb">② 当たりくじの探し方（原論文の手順）</text>
+<text x="24" y="360">1. ランダムな初期値で作り、学習する</text>
+<text x="24" y="380">2. 値の小さい重みを取り除く</text>
+<text x="24" y="400" class="tb ta">3. 残った重みを「最初の初期値」に戻す</text>
+<text x="24" y="418" class="tm">　（学習後の値ではなく、1で使った値）</text>
+<text x="24" y="438">4. その部分だけで学び直す</text>
+<text x="24" y="458" class="tm">→ 2〜4 をくり返して小さくしていく</text>
+<text x="24" y="482" class="tb">見つかった部分：元の10〜20％以下の大きさ</text>
+<text x="24" y="500" class="tb tok">元と同等以上の精度に、より速く達した</text>
+<line x1="160" y1="512" x2="160.0" y2="520.4" class="l sm w1"/>
+<polygon points="160,526 156.5,520.4 163.5,520.4" class="fm"/>
+<text x="12" y="548" class="tb">③ 同じ形でも、初期値で結果が変わる</text>
+<rect x="12" y="558" width="144" height="104" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="84" y="580" class="tb" text-anchor="middle">最初の初期値</text>
+<text x="84" y="598" class="tb" text-anchor="middle">に戻して学習</text>
+<text x="84" y="626" class="tb tok" text-anchor="middle">同等以上の</text>
+<text x="84" y="644" class="tb tok" text-anchor="middle">精度に届く</text>
+<rect x="164" y="558" width="144" height="104" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="236" y="580" class="tb" text-anchor="middle">初期値を</text>
+<text x="236" y="598" class="tb" text-anchor="middle">付け直して学習</text>
+<text x="236" y="626" class="tb twn" text-anchor="middle">性能が</text>
+<text x="236" y="644" class="tb twn" text-anchor="middle">落ちる</text>
+<text x="12" y="686" class="tb">→ 当たったのは「形」と「初期値」の組</text>
+<rect x="12" y="700" width="296" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="720" class="tb">混同しやすい点</text>
+<text x="24" y="740">1つのネットワークの中の部分の話。教師と</text>
+<text x="24" y="758">生徒の2つのモデルを使う蒸留とは別</text>
+</svg>

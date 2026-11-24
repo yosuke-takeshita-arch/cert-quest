@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 736" role="img" aria-labelledby="fig-g-object-detection-t fig-g-object-detection-d">
+<title id="fig-g-object-detection-t">物体検出：2段階型と1段階型</title>
+<desc id="fig-g-object-detection-d">上は2段階型（R-CNN 系）。画像から、物体がありそうな候補領域を先に出し（R-CNN は選択的探索、Faster R-CNN はネットワーク内の RPN）、次に各候補の分類と枠の補正をする。Mask R-CNN は Faster R-CNN にマスクを予測する分岐を並列に追加したもの。下は1段階型。1つのネットワークで位置とクラスを一度に出す。YOLO は画像を格子に区切り、物体の中心がある格子が担当する。SSD は解像度の違う複数の特徴マップにデフォルトボックスを置く。FPN は、トップダウンの経路と横の接続で、すべての解像度に強い特徴のピラミッドを作る。精度は2段階型、速さは1段階型が有利。</desc>
+<text x="12" y="20" class="tb">2段階型（R-CNN 系）</text>
+<rect x="12" y="34" width="82" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="53" y="62.5" text-anchor="middle">画像</text>
+<line x1="94" y1="58" x2="108" y2="58" class="l w2"/>
+<polyline points="101,61.85 108,58 101,54.15" class="l w2"/>
+<rect x="110" y="34" width="92" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="156" y="53.5" text-anchor="middle">① 候補領域</text>
+<text x="156" y="71.5" text-anchor="middle">を出す</text>
+<line x1="202" y1="58" x2="216" y2="58" class="l w2"/>
+<polyline points="209,61.85 216,58 209,54.15" class="l w2"/>
+<rect x="218" y="34" width="90" height="48" class="fok sok" stroke-width="1.5"/>
+<text x="263" y="53.5" text-anchor="middle">② 分類と</text>
+<text x="263" y="71.5" text-anchor="middle">枠の補正</text>
+<text x="12" y="106" class="tb">候補の出し方</text>
+<text x="12" y="126">R-CNN：選択的探索</text>
+<text x="12" y="146">Faster R-CNN：RPN（ネットワーク内）</text>
+<text x="12" y="170" class="tb">Mask R-CNN：マスクの分岐を並列に追加</text>
+<line x1="12" y1="190" x2="308" y2="190" class="l sb w1"/>
+<text x="12" y="214" class="tb">1段階型</text>
+<rect x="12" y="228" width="82" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="53" y="256.5" text-anchor="middle">画像</text>
+<line x1="94" y1="252" x2="108" y2="252" class="l w2"/>
+<polyline points="101,255.85 108,252 101,248.15" class="l w2"/>
+<rect x="110" y="228" width="198" height="48" class="fok sok" stroke-width="1.5"/>
+<text x="209" y="247.5" text-anchor="middle">1つのネットワークが</text>
+<text x="209" y="265.5" text-anchor="middle">位置とクラスを一度に</text>
+<text x="12" y="300" class="tb">YOLO</text>
+<rect x="12" y="312" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="32" y="312" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="52" y="312" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="72" y="312" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="12" y="332" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="32" y="332" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="52" y="332" width="20" height="20" class="fas sa" stroke-width="1"/>
+<rect x="72" y="332" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="12" y="352" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="32" y="352" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="52" y="352" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="72" y="352" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="12" y="372" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="32" y="372" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="52" y="372" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="72" y="372" width="20" height="20" class="fs sb" stroke-width="1"/>
+<rect x="46" y="324" width="34" height="36" class="sng w2 l"/>
+<circle cx="62" cy="342" r="3" class="fng sng"/>
+<text x="104" y="330">画像を格子に区切る</text>
+<text x="104" y="350">物体の中心がある格子が</text>
+<text x="104" y="370">枠とクラスを担当する</text>
+<text x="12" y="414" class="tb">SSD</text>
+<rect x="12" y="424" width="48" height="36" class="fs sa" stroke-width="1.5"/>
+<rect x="80" y="430" width="32" height="24" class="fs sa" stroke-width="1.5"/>
+<rect x="146" y="434" width="20" height="16" class="fs sa" stroke-width="1.5"/>
+<text x="12" y="482">解像度の違う特徴マップに</text>
+<text x="12" y="502">デフォルトボックスを置く</text>
+<text x="12" y="536" class="tb">FPN</text>
+<rect x="52" y="550" width="36" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="222" y="550" width="36" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="564" class="tb" text-anchor="middle">C5</text>
+<text x="240" y="564" class="tb ta" text-anchor="middle">P5</text>
+<line x1="90" y1="559" x2="214.4" y2="559" class="l sm w1"/>
+<polygon points="220,559 214.4,562.5 214.4,555.5" class="fm"/>
+<line x1="70" y1="574" x2="70" y2="574.6" class="l sm w1"/>
+<polygon points="70,569 73.5,574.6 66.5,574.6" class="fm"/>
+<line x1="240" y1="569" x2="240" y2="568.4" class="l sa w1"/>
+<polygon points="240,574 236.5,568.4 243.5,568.4" class="fa"/>
+<rect x="45" y="574" width="50" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="215" y="574" width="50" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="588" class="tb" text-anchor="middle">C4</text>
+<text x="240" y="588" class="tb ta" text-anchor="middle">P4</text>
+<line x1="97" y1="583" x2="207.4" y2="583" class="l sm w1"/>
+<polygon points="213,583 207.4,586.5 207.4,579.5" class="fm"/>
+<line x1="70" y1="598" x2="70" y2="598.6" class="l sm w1"/>
+<polygon points="70,593 73.5,598.6 66.5,598.6" class="fm"/>
+<line x1="240" y1="593" x2="240" y2="592.4" class="l sa w1"/>
+<polygon points="240,598 236.5,592.4 243.5,592.4" class="fa"/>
+<rect x="37" y="598" width="66" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="207" y="598" width="66" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="612" class="tb" text-anchor="middle">C3</text>
+<text x="240" y="612" class="tb ta" text-anchor="middle">P3</text>
+<line x1="105" y1="607" x2="199.4" y2="607" class="l sm w1"/>
+<polygon points="205,607 199.4,610.5 199.4,603.5" class="fm"/>
+<line x1="70" y1="622" x2="70" y2="622.6" class="l sm w1"/>
+<polygon points="70,617 73.5,622.6 66.5,622.6" class="fm"/>
+<line x1="240" y1="617" x2="240" y2="616.4" class="l sa w1"/>
+<polygon points="240,622 236.5,616.4 243.5,616.4" class="fa"/>
+<rect x="27" y="622" width="86" height="18" class="fs sb" stroke-width="1.5" rx="3"/>
+<rect x="197" y="622" width="86" height="18" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="636" class="tb" text-anchor="middle">C2</text>
+<text x="240" y="636" class="tb ta" text-anchor="middle">P2</text>
+<line x1="115" y1="631" x2="189.4" y2="631" class="l sm w1"/>
+<polygon points="195,631 189.4,634.5 189.4,627.5" class="fm"/>
+<text x="70" y="662" class="tm" text-anchor="middle">↑ CNN の段（C）</text>
+<text x="240" y="662" class="ta" text-anchor="middle">↓ 2倍に拡大して戻す（P）</text>
+<text x="12" y="684">横の接続で足し、どの段にも意味を持たせる</text>
+<line x1="12" y1="700" x2="308" y2="700" class="l sb w1"/>
+<text x="12" y="724" class="tb">精度は2段階型、速さは1段階型</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-asis-tobe-t fig-dx-asis-tobe-d">
+<title id="fig-dx-asis-tobe-t">AS-IS/To-Be分析：現在の姿と目指す姿の差（ギャップ）を測り、差を埋める施策を決めて見直す</title>
+<desc id="fig-dx-asis-tobe-d">上の図は、下の箱が現在の姿（As-Is）、上の箱が目指す姿（To-Be）。2つの箱の間の幅が差（ギャップ）で、KPI（目標への進み具合を測る指標）で測る。右の上向きの矢印は、差を埋める施策。下は進め方。1 現在の姿と目指す姿を描く。2 差を明らかにする。3 差を埋める施策を決める。4 KPIで差を測り、結果で戦略を見直して、2へ戻る。最後に、今を測らないと差が分からないこと、目指す姿を描かずに今の困りごとを直すだけでは、今の延長の改善にとどまることを書いた。</desc>
+<text x="12" y="20" class="tb">AS-IS/To-Be分析</text>
+<text x="12" y="40" class="tm">As-Is＝今の姿、To-Be＝目指す姿</text>
+<rect x="12" y="54" width="296" height="40" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="79" text-anchor="middle"><tspan class="tb tok">To-Be</tspan>　目指す姿</text>
+<rect x="12" y="196" width="296" height="40" class="fs l" stroke-width="1.5" rx="6"/>
+<text x="160" y="221" text-anchor="middle"><tspan class="tb">As-Is</tspan>　現在の姿</text>
+<line x1="40" y1="100" x2="40" y2="190" class="l sng w2"/>
+<line x1="32" y1="100" x2="48" y2="100" class="l sng w2"/>
+<line x1="32" y1="190" x2="48" y2="190" class="l sng w2"/>
+<text x="56" y="140" class="tng tb">差（ギャップ）</text>
+<text x="56" y="160" class="tng">KPIで測る</text>
+<line x1="270" y1="190" x2="270" y2="110" class="l sa w2"/>
+<polygon points="270,100 264,112 276,112" class="fa"/>
+<text x="258" y="140" class="ta tb" text-anchor="end">差を埋める</text>
+<text x="258" y="160" class="ta tb" text-anchor="end">施策</text>
+<text x="12" y="260" class="tm">KPI＝目標への進み具合を測る指標</text>
+<line x1="12" y1="276" x2="308" y2="276" class="l sb w1"/>
+<text x="12" y="300" class="tb">進め方</text>
+<rect x="12" y="310" width="260" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="331">1 現在の姿と目指す姿を描く</text>
+<polygon points="142,352 136,344 148,344" class="fm"/>
+<rect x="12" y="354" width="260" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="375">2 差（ギャップ）を明らかにする</text>
+<polygon points="142,396 136,388 148,388" class="fm"/>
+<rect x="12" y="398" width="260" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="419">3 差を埋める施策を決める</text>
+<polygon points="142,440 136,432 148,432" class="fm"/>
+<rect x="12" y="442" width="260" height="32" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="463">4 KPIで差を測り、戦略を見直す</text>
+<path d="M 272 458 C 306 458, 306 370, 278 370" class="l sa w2"/>
+<polyline points="284,365 278,370 284,375" class="l sa w2"/>
+<text x="12" y="498" class="ta tb">測ったら2へ戻る（一度で終わらない）</text>
+<text x="12" y="526">今を測らないと、差が分からない</text>
+<text x="12" y="548">目指す姿が無いと、<tspan class="tng tb">今の延長</tspan>にとどまる</text>
+</svg>

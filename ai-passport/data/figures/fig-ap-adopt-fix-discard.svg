@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 394" role="img" aria-labelledby="fig-ap-adopt-fix-discard-t fig-ap-adopt-fix-discard-d">
+<title id="fig-ap-adopt-fix-discard-t">AIの出力を確かめたあとの判断：採用・修正・破棄・専門家確認</title>
+<desc id="fig-ap-adopt-fix-discard-d">まず事実・数字・前提・抜け漏れ・表現を確かめる。問題が無ければ採用してそのまま使う。部分的な誤りなら修正する。例：数字が2か所ちがう報告書は、元の資料で直し、直した所を確かめ直してから使う。前提から誤っていれば破棄する。例：別の業界の数字が土台で、正しい数字に差し替えると結論が成り立たない提案は使わず、正しい数字から考え直す。自分では判断できない専門の内容（契約・医療・税など）は専門家の確認に回す。一部に誤りがあってもすぐ全部を捨てず、また、数字だけ直して崩れた結論を残すこともしない。</desc>
+<text x="12" y="20" class="tb">AI の出力を確かめたあとの判断</text>
+<rect x="12" y="32" width="296" height="34" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="54" class="tb" text-anchor="middle">事実・数字・前提・抜け漏れ・表現を確かめる</text>
+<line x1="160" y1="68" x2="160" y2="82" class="l sa w2"/>
+<polyline points="156.00,75.00 160,82 164.00,75.00" class="l sa w2"/>
+<rect x="12" y="84" width="296" height="48" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="104" class="tb">問題が無い → 採用</text>
+<text x="22" y="124" class="tm">そのまま使う</text>
+<rect x="12" y="140" width="296" height="66" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="160" class="tb">部分的な誤り → 修正</text>
+<text x="22" y="180" class="tm">例：数字が2か所ちがう → 元の資料で直し、</text>
+<text x="22" y="198" class="tm">直した所を確かめ直してから使う</text>
+<rect x="12" y="214" width="296" height="66" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="234" class="tb">前提から誤り → 破棄</text>
+<text x="22" y="254" class="tm">例：別の業界の数字が土台で、差し替えると</text>
+<text x="22" y="272" class="tm">結論が成り立たない → 使わずに考え直す</text>
+<rect x="12" y="288" width="296" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="308" class="tb">自分では判断できない専門の内容 → 専門家確認</text>
+<text x="22" y="328" class="tm">例：契約・医療・税</text>
+<text x="12" y="356" class="tb">一部に誤りがあっても、すぐ全部を捨てない</text>
+<text x="12" y="376" class="tb">数字だけ直して、崩れた結論を残さない</text>
+</svg>

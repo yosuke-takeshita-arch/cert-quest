@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-g-item-based-cf-t fig-g-item-based-cf-d">
+<title id="fig-g-item-based-cf-t">アイテムベース協調フィルタリング：似た商品の表を先に作り、推薦時は引くだけ</title>
+<desc id="fig-g-item-based-cf-d">何のための図か：利用者も商品もとても多い通販サイトで、アイテムベース協調フィルタリングが推薦を軽くこなせる理由を見る（商品名は説明のための例）。①事前に：購買の履歴から、一緒に買われることが多い商品どうしを似た商品とみなし、商品ごとに似た商品の表を作る。例：商品アに似た商品はイとエ、商品ウに似た商品はオとカ。この重い計算は推薦の前に済ませておく。②推薦のとき：利用者Xが買ったのはアとウ。表のアとウの行を引くだけで、候補イ、エ、オ、カが集まる。利用者が何千万人いても、引く行は自分が買った商品の数だけ。③ユーザーベースとの違い：ユーザーベースは推薦のたびに、全利用者の中から購買履歴が似た人を探すので、利用者が多いほど重い。④弱点：まだ誰も買っていない新商品は、一緒に買われた履歴が無いので表に載らず、候補に入らない（コールドスタート問題）。商品の属性（ジャンルなど）だけで似た商品を探すのはコンテンツベースで、他の利用者の履歴は使わない。</desc>
+<text x="12" y="20" class="tb">アイテムベース＝似た商品の表を引く</text>
+<text x="12" y="42" class="tm">何のための図か：利用者も商品も多いサイトで</text>
+<text x="12" y="60" class="tm">推薦が軽くなる理由を見る（商品は例）</text>
+<text x="12" y="88" class="tb">① 事前に：似た商品の表を作る</text>
+<text x="12" y="108" class="tm">一緒に買われることが多い商品どうしを</text>
+<text x="12" y="126" class="tm">「似た商品」とみなす（重い計算は先に）</text>
+<rect x="12" y="136" width="296" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="62" y="155" class="tb" text-anchor="middle">商品</text>
+<text x="200" y="155" class="tb" text-anchor="middle">似た商品</text>
+<rect x="12" y="164" width="296" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="62" y="183" class="tb ta" text-anchor="middle">ア</text>
+<text x="200" y="183" class="tb ta" text-anchor="middle">イ、エ</text>
+<rect x="12" y="192" width="296" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="62" y="211" class="tm" text-anchor="middle">イ</text>
+<text x="200" y="211" class="tm" text-anchor="middle">ア、キ</text>
+<rect x="12" y="220" width="296" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="62" y="239" class="tb ta" text-anchor="middle">ウ</text>
+<text x="200" y="239" class="tb ta" text-anchor="middle">オ、カ</text>
+<line x1="112" y1="136" x2="112" y2="248" class="l sb w1"/>
+<text x="160" y="266" class="tm" text-anchor="middle">…（商品の数だけ行がある）</text>
+<line x1="12" y1="282" x2="308" y2="282" class="l sb w1"/>
+<text x="12" y="304" class="tb">② 推薦のとき：表を引くだけ</text>
+<text x="12" y="326">利用者Xが買ったのは ア と ウ</text>
+<text x="12" y="346" class="tm">→ 表の ア と ウ の行（青）を引く</text>
+<rect x="12" y="356" width="296" height="28" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="375" class="tb tok" text-anchor="middle">候補：イ・エ・オ・カ</text>
+<text x="12" y="404" class="tm">利用者が何千万人いても、引く行は</text>
+<text x="12" y="422" class="tm">自分が買った商品の数だけ → 軽い</text>
+<line x1="12" y1="438" x2="308" y2="438" class="l sb w1"/>
+<text x="12" y="460" class="tb">③ ユーザーベースとの違い</text>
+<text x="12" y="482" class="tng">推薦のたびに、全利用者から似た人を探す</text>
+<text x="12" y="500" class="tm">→ 利用者が多いほど重い</text>
+<line x1="12" y1="516" x2="308" y2="516" class="l sb w1"/>
+<text x="12" y="538" class="tb">④ 弱点：新商品は表に載らない</text>
+<text x="12" y="558" class="tm">誰も買っていないと、一緒に買われた履歴が</text>
+<text x="12" y="576" class="tm">無い（コールドスタート問題）</text>
+<text x="12" y="602" class="tm">属性（ジャンルなど）だけで探すのは</text>
+<text x="12" y="620" class="tm">コンテンツベース（他の人の履歴は使わない）</text>
+</svg>

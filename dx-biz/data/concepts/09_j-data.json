@@ -1,0 +1,773 @@
+[
+  {
+    "id": "DC-03-001",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データサイエンス",
+    "oneLine": "数学・統計・AI・コンピューター工学などの考え方を組み合わせ、大量のデータを分析して、ビジネスにとって意味のある知見（インサイト）を引き出す学際的な取り組み。",
+    "why": "データは集めただけでは価値にならない。何が起きたのか、なぜ起きたのか、次に何が起きるのか、結果で何ができるのかを問い、答えを出すのに使う。総務省統計局は、問題（Problem）→計画（Plan）→データ（Data）→分析（Analysis）→結論（Conclusion）のPPDACサイクルを、統計やデータで問題を解決する枠組みとして紹介している。IPA（情報処理推進機構）のデジタルスキル標準は、DXを推進する人材の類型の1つに「データサイエンティスト」を置いている。",
+    "links": [
+      { "id": "DC-03-004", "relation": "対象" },
+      { "id": "DC-03-002", "relation": "前提" },
+      { "id": "DC-01-020", "relation": "担う人材" },
+      { "id": "DC-03-024", "relation": "進め方" },
+      { "id": "DC-03-012", "relation": "手法" }
+    ],
+    "confusions": [
+      { "id": "DC-03-012", "point": "データマイニングは大量のデータからパターンを掘り出す手法の1つ。データサイエンスはそれを含む、課題設定から意思決定までの広い営み。" }
+    ],
+    "figures": ["fig-dx-ppdac"],
+    "sources": [
+      { "title": "AWS「データサイエンスとは?」", "url": "https://aws.amazon.com/jp/what-is/data-science/" },
+      { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
+      { "title": "IPA「デジタルスキル標準 ver.2.0」", "url": "https://www.ipa.go.jp/jinzai/skill-standard/dss/rcu1hd000000j76k-att/dss_ver2.0.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-002",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データガバナンス",
+    "oneLine": "法令等に従ってデータに適切な保護措置を講じながら、データを管理・活用すること。",
+    "why": "デジタルガバナンス・コード3.0は、国境・産業・組織をまたぐデータ連携で付加価値を高めるとき、データガバナンスを実施することで取引先等からの信頼性が向上するとしている。データを使うほど、誰が・何の目的で・どのルールで使うかの統制が要る。品質、セキュリティ、プライバシー、利用ルールの整備が中身になる。",
+    "links": [
+      { "id": "DC-01-023", "relation": "出典" },
+      { "id": "DC-03-003", "relation": "前提" },
+      { "id": "DC-02-035", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-03-014", "point": "データクレンジングは個々のデータの誤りや表記ゆれを直す作業。データガバナンスはデータの扱い全体を統制する仕組み。" }
+    ],
+    "sources": [
+      { "title": "経済産業省「デジタルガバナンス・コード3.0」（2024年9月19日改訂）", "url": "https://www.meti.go.jp/policy/it_policy/investment/dgc/dgc3.0.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-004",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "ビッグデータと非構造化データ",
+    "oneLine": "ビッグデータは、ICT（情報通信技術）の進展で生まれる多種・多量のデータ。中でも、表の形に整っていない文章・画像・音声・動画・センサーデータなどを非構造化データという。",
+    "why": "ビッグデータには、POS（販売時点情報管理）データや顧客データのような構造化データも含まれるが、注目されているのは、SNSの文字データ、映像配信、電子書籍、GPSやRFID（電波でタグを読み取る技術）などのセンサーデータといった非構造化データが急増し、分析できるようになった点（情報通信白書 平成25年版）。非構造化データは表計算ソフトのような行と列ではそのまま扱えないので、データレイクやNoSQL（表の形に限らないデータベース）のような仕組みが使われる。",
+    "links": [
+      { "id": "DC-03-009", "relation": "保管先" },
+      { "id": "DC-03-007", "relation": "処理の仕組み" },
+      { "id": "DC-02-005", "relation": "データ源" },
+      { "id": "DC-03-003", "relation": "使い道" },
+      { "id": "DC-03-006", "relation": "処理の仕組み" }
+    ],
+    "confusions": [
+      { "title": "構造化データ", "point": "構造化データ＝行と列の表にきれいに収まるデータ（POS、顧客台帳）。非構造化データ＝文章・画像・音声・動画など。" }
+    ],
+    "sources": [
+      { "title": "総務省「平成25年版 情報通信白書」ビッグデータの概念", "url": "https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/h25/html/nc113110.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-005",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "スケールアップ（ダウン）とスケールアウト（イン）",
+    "oneLine": "スケールアップは1台のサーバーの性能（CPU・メモリなど）を上げて処理能力を高めること（下げるのがスケールダウン）。スケールアウトはサーバーの台数を増やして処理を分け合うこと（減らすのがスケールイン）。",
+    "why": "スケールアウトは需要に合わせてインスタンスを足し引きでき、複数の可用性ゾーンにまたがれば障害にも強くなる。ただし、データベースがボトルネックならWebサーバーを足しても改善しない（Microsoft の設計指針）。スケールアップは1つのリソースの容量を増やす方法で、小さく分けにくい処理や、水平方向の拡張に対応していないアプリに向く。RDB（表の形でデータを管理するデータベース）は通常スケールアップ（読み取りはレプリカでスケールアウト）、NoSQL（表の形に限らないデータベース）は通常スケールアウトで伸ばす（AWS）。「アップ/ダウン＝縦（1台の強さ）」「アウト/イン＝横（台数）」で覚える。",
+    "links": [
+      { "id": "DC-03-006", "relation": "組み合わせ" },
+      { "id": "DC-02-009", "relation": "関連" },
+      { "id": "DC-03-007", "relation": "選び方に影響" }
+    ],
+    "confusions": [
+      { "title": "スケールアップとスケールアウト", "point": "台数を増やすのはスケールアウト。1台を強くするのがスケールアップ。逆にしたひっかけが多い。" }
+    ],
+    "figures": ["fig-dx-scale"],
+    "sources": [
+      { "title": "Microsoft Learn「スケールアウトのための設計」（Azure Architecture Center）", "url": "https://learn.microsoft.com/ja-jp/azure/architecture/guide/design-principles/scale-out" },
+      { "title": "Microsoft Learn「スケーリングとパーティション分割のための設計に関する推奨事項」（Azure Well-Architected）", "url": "https://learn.microsoft.com/ja-jp/azure/well-architected/performance-efficiency/scale-partition" },
+      { "title": "AWS「NoSQL とは」", "url": "https://aws.amazon.com/jp/nosql/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-006",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "並列分散処理",
+    "oneLine": "大きな処理を細かく分けて、複数のサーバーで同時に（並列に）処理すること。代表例がオープンソースのHadoop。",
+    "why": "1台では時間がかかりすぎる大量データも、分けて同時に処理すれば速く終わる。例えば1台で12時間かかる処理を3つに分け、3台で4時間分ずつ同時に動かせば、最後に結果をまとめて約4時間で終わる（数は例。分ける・まとめる手間のぶん少し延びる）。総務省の資料は、Hadoopを、複数のサーバを通じた並列処理によって柔軟かつ継続的な大規模データの高速処理を可能にするフレームワークとして紹介している。",
+    "links": [
+      { "id": "DC-03-005", "relation": "組み合わせ" },
+      { "id": "DC-03-004", "relation": "対象" }
+    ],
+    "confusions": [
+      { "id": "DC-02-003", "point": "並列分散処理は「たくさんのサーバーで分けて計算」。エッジコンピューティングは「機器の近くで計算」。分ける目的が違う。" }
+    ],
+    "figures": ["fig-dx-parallel"],
+    "sources": [
+      { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-007",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "RDB・SQL・NoSQL",
+    "oneLine": "RDB（リレーショナルデータベース）はデータを行と列の表で管理するデータベースで、SQLはその表を操作する言語。NoSQLは表形式のRDBとは異なる設計のデータベースの総称。",
+    "why": "名前：RDB は Relational Database の略で、1970年にコッドが論文『A Relational Model of Data for Large Shared Data Banks』で示した関係モデル（relational model）に基づくデータベース。SQL は Structured Query Language の略で、IBM がこのモデルを使うために作った言語 SEQUEL（Structured English Query Language）がのちに SQL になった（Oracle の SQL リファレンス）。RDBは定型データを正確に扱う業務システムに向く。NoSQL（Not only SQL）は、センサーやソーシャルメディアなどの非定型データを含む多様なデータを大量に扱うのに使われる（総務省資料）。整った表で厳密に管理したいならRDB、形の決まらない大量のデータを柔軟に速く扱いたいならNoSQL。",
+    "links": [
+      { "id": "DC-03-008", "relation": "操作" },
+      { "id": "DC-03-004", "relation": "対象" },
+      { "id": "DC-03-010", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "NoSQL", "point": "NoSQLは「SQLを否定」ではなく「Not only SQL」。表形式以外の設計も使うという意味。" }
+    ],
+    "figures": ["fig-dx-rdb-nosql"],
+    "sources": [
+      { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" },
+      { "title": "Oracle「Oracle Database SQL言語リファレンス 19c」History of SQL", "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/History-of-SQL.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-008",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データの結合（JOIN）",
+    "oneLine": "共通の項目（例：顧客ID）を手がかりに、複数の表を横につなぎ合わせて1つの表にする操作。SQL（データベースを操作する言語）ではJOINという。",
+    "why": "購買履歴の表と顧客台帳の表をつなげば「どの年代が何を買ったか」が分かる。PostgreSQL（オープンソースのデータベース）の文書は、一度に複数のテーブルにアクセスする問い合わせを結合問い合わせと呼び、相手の表に一致する行が無い行は結合の際に無視される例を示している。キーの表記がそろっていないとつながらないので、事前のデータクレンジングが要る。",
+    "links": [
+      { "id": "DC-03-007", "relation": "操作" },
+      { "id": "DC-03-014", "relation": "前提" },
+      { "id": "DC-03-015", "relation": "部分" },
+      { "id": "DC-03-020", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-03-020", "point": "結合は表を「つなぐ」操作。グルーピングは行を「まとめて集計する」操作。" }
+    ],
+    "figures": ["fig-dx-join"],
+    "sources": [
+      { "title": "PostgreSQL 16 文書「2.6. テーブル間を結合」", "url": "https://www.postgresql.jp/document/16/html/tutorial-join.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-011",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データマート",
+    "oneLine": "組織の特定の部門（ビジネスユニット）や主題に関係する情報だけを格納した、小規模で厳選されたデータストア。データウェアハウスやデータレイクのデータを元に作る。",
+    "why": "全社のDWH（データウェアハウス）は様々なトピックのデータを持ち、大きい。部門ごとに必要なデータをそろえておけば、その部門がすばやく分析し、十分な情報に基づいた意思決定ができる。データマートを管理する部門が、データのロードと管理を自分で制御できる利点もある（AWS）。「倉庫（ウェアハウス）から、売り場（マート）へ小分けにする」と覚える。",
+    "links": [
+      { "id": "DC-03-010", "relation": "発展形" },
+      { "id": "DC-03-016", "relation": "使う側" },
+      { "id": "DC-03-009", "relation": "元データ" },
+      { "id": "DC-03-017", "relation": "使い道" }
+    ],
+    "confusions": [
+      { "id": "DC-03-009", "point": "部門ごとに再構成したものはデータマート。データレイクは加工前の生データをためる場所で、向きが逆。" }
+    ],
+    "figures": ["fig-dx-data-pipeline"],
+    "sources": [
+      { "title": "AWS「データマートとは?」", "url": "https://aws.amazon.com/jp/what-is/data-mart/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-015",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データ可視化",
+    "oneLine": "データをグラフ・地図・ダッシュボードなどの目に見える形にして、傾向や関係を分かりやすくすること。",
+    "why": "数字の表を眺めても気づけない傾向が、グラフにすると一目で分かる。例えば散布図は、2つの量の関係をつかむのに使う（ただし分かるのは関係があるかどうかで、因果までは分からない）。地図の上に可視化して、関係性・パターン・傾向を示すシステムをGIS（地理情報システム）という（統計局）。",
+    "links": [
+      { "id": "DC-03-016", "relation": "道具" },
+      { "id": "DC-03-018", "relation": "関連" },
+      { "id": "DC-03-017", "relation": "使い道" },
+      { "id": "DC-03-001", "relation": "上位の営み" }
+    ],
+    "confusions": [
+      { "id": "DC-03-018", "point": "散布図で右上がりに見えても、それは相関。原因と結果の関係（因果）とは限らない。" }
+    ],
+    "figures": ["fig-dx-visualization", "fig-dx-correlation"],
+    "sources": [
+      { "title": "総務省統計局「なるほど統計学園」散布図", "url": "https://www.stat.go.jp/naruhodo/9_graph/jyokyu/sanpu.html" },
+      { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-016",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "BI（Business Intelligence）",
+    "oneLine": "BIツールは、ETL（データを抽出・変換・格納する処理）ツールなどで整形されたデータを可視化し、意思決定に活用するためのツール。",
+    "why": "名前：Business Intelligence の略。意味は『事業（ビジネス）の判断に役立つ情報・知見』。経営者や現場が、売上や在庫の状況をダッシュボードで見て判断できるようにする。統計分析や予測・最適化まで行うツールはBA（Business Analytics）ツールと呼んで区別される（IPA DX白書2023）。BIは「今どうなっているか」を見える化、BAは「この先どうなるか」を分析、と覚える。",
+    "links": [
+      { "id": "DC-03-015", "relation": "道具" },
+      { "id": "DC-03-010", "relation": "データの元" },
+      { "id": "DC-03-017", "relation": "使い方" },
+      { "id": "DC-03-011", "relation": "データ源" },
+      { "id": "DC-03-021", "relation": "自動化" }
+    ],
+    "confusions": [
+      { "title": "BAツール", "point": "BIは整形済みデータの可視化で意思決定を助ける。BAは統計分析・予測・最適化まで行う。" }
+    ],
+    "figures": ["fig-dx-data-pipeline"],
+    "sources": [
+      { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-017",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "アドホック分析と定型分析",
+    "oneLine": "アドホック分析は、その都度の目的に応じて必要なデータを取り出し、その場限りで行う分析。毎月同じ形で作るレポートのような定型分析と対になる。",
+    "why": "「なぜ先週この店だけ売上が落ちたのか」のような突発的な問いに答えるのに使う。Microsoft の Power BI（マイクロソフトの、データを見える化するツール）の文書は、ビジネス上の課題を1回限りで評価するレポートを「アドホック」レポートと呼んでいる。担当者が自分でデータを取り出して切り口を変えながら調べるので、ビジネスユーザーがアナリストを待たずに使えるセルフサービスBIがあるとやりやすい。ad hocは「その目的のために」という意味。",
+    "links": [
+      { "id": "DC-03-016", "relation": "使う道具" },
+      { "id": "DC-03-011", "relation": "前提" },
+      { "id": "DC-03-021", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-03-021", "point": "アドホック分析は人が都度問いを立てる。データ分析の自動化は決まった分析を仕組みで繰り返す。" }
+    ],
+    "sources": [
+      { "title": "Microsoft Learn「Power BI Desktop のモデルからレポートを分離する」", "url": "https://learn.microsoft.com/ja-jp/power-bi/guidance/report-separate-from-model" },
+      { "title": "AWS「ビジネスインテリジェンス (BI) とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/business-intelligence/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-012",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データマイニング",
+    "oneLine": "大量のデータから、アソシエーション（関連）・分類・クラスター化などの手法で、これまで知られていなかったパターンや関係を掘り出す（マイニング＝採掘）こと。",
+    "why": "人が仮説を立てて確かめるだけでは見つからない組み合わせを見つけられる。小売業では購買データから販売予測やマーケティングの知見を得る（AWS）。代表的な手法に、一緒に買われる商品を探すバスケット分析（アソシエーション）や、似たもの同士をまとめるクラスタリングがある。総務省の資料は、匿名化や秘密計算でデータを暗号化したままデータマイニングを行い、個人情報流出のリスクを避ける技術（PPDM）も紹介している。",
+    "links": [
+      { "id": "DC-03-019", "relation": "手法" },
+      { "id": "DC-03-020", "relation": "手法" },
+      { "id": "DC-03-004", "relation": "対象" },
+      { "id": "DC-03-014", "relation": "前工程" },
+      { "id": "DC-03-001", "relation": "上位の営み" }
+    ],
+    "confusions": [
+      { "id": "DC-03-001", "point": "データマイニングはパターンを掘り出す手法群。データサイエンスは課題設定から意思決定までを含む広い営み。" }
+    ],
+    "figures": ["fig-dx-analysis-methods"],
+    "sources": [
+      { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" },
+      { "title": "総務省 情報通信審議会ICT基本戦略ボード「ビッグデータの活用の在り方について」（2012年5月17日）", "url": "https://www.soumu.go.jp/main_content/000160628.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-018",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "相関分析と疑似相関",
+    "oneLine": "相関分析（データの相関分析）は、相関係数を計算して2つのデータの関係を分析すること。疑似相関（見せかけの相関）は、実際には直接の関係が無いのに、相関があるように見えること。",
+    "why": "相関係数は-1〜1の値をとり、正なら正の相関、負なら負の相関、絶対値が1に近いほど強い相関。ただし相関関係と因果関係は全く異なる概念で、相関係数が大きくても因果関係があるとは限らない（統計局）。統計局のセミナーの回答は、アイスクリームの販売数と溺死数の高い相関を、暑さで両方が増えた疑似相関の例として挙げている。全く関係の無い変量でも偶然に相関が出ることがあり、これを「見せかけの相関」という（なるほど統計学園）。",
+    "links": [
+      { "id": "DC-03-022", "relation": "発展形" },
+      { "id": "DC-03-015", "relation": "道具" },
+      { "id": "DC-03-001", "relation": "注意点" }
+    ],
+    "confusions": [
+      { "title": "因果関係", "point": "相関＝一緒に動く。因果＝片方が原因でもう片方が起きる。相関があっても因果とは限らない。" }
+    ],
+    "figures": ["fig-dx-correlation"],
+    "sources": [
+      { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
+      { "title": "総務省統計局「なるほど統計学園」複数の変数の関係性を見る", "url": "https://www.stat.go.jp/naruhodo/10_tokucho/hukusu.html" },
+      { "title": "総務省統計局「事例から学ぶビジネスパーソン向け統計データ利活用セミナー」受講者からの質問事項及び講師の回答", "url": "https://www.stat.go.jp/rikatsuyou/pdf/2025_qa.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-022",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "回帰分析",
+    "oneLine": "結果となる数値（目的変数）と、要因となる数値（説明変数）の関係を数式モデルで表す手法。説明変数が1つなら単回帰分析、2つ以上なら重回帰分析。",
+    "why": "「気温と曜日から来店客数を予測する」のように、要因から結果を予測したり、どの要因が効いているかを調べたりできる。推計の精度は決定係数で測る（統計局）。相関分析が「関係の強さ」を見るのに対し、回帰分析は「どれだけ変わるか」を式にする。数の例（図と同じ。数は例）：来店客数＝基本の人数20人＋1度あたりの増え方3人×気温、という式ができたら、気温30度の日は20＋3×30＝20＋90＝110人と予測する。要因が気温だけなら単回帰、曜日も足せば重回帰になる。",
+    "links": [
+      { "id": "DC-03-018", "relation": "発展形" },
+      { "id": "DC-03-021", "relation": "使い道" },
+      { "id": "DC-03-020", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-03-018", "point": "相関分析の2つの変数は対等。回帰分析は目的変数（結果）と説明変数（要因）を分ける。" }
+    ],
+    "figures": ["fig-dx-regression", "fig-dx-analysis-methods"],
+    "sources": [
+      { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード（回帰分析）", "url": "https://www.stat.go.jp/dstart/point/keyword/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-019",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "バスケット分析",
+    "oneLine": "買い物かご（バスケット）の中身、つまり一度に一緒に買われる商品の組み合わせを分析して、商品どうしの関連を見つける手法。",
+    "why": "一緒に買われる商品の組み合わせが分かれば、売り場の配置、セット販売、レコメンデーション（「この商品を買った人はこれも」）に生かせる。Microsoft アソシエーション アルゴリズムの文書は、レコメンデーションエンジンでよく使われ、マーケットバスケット分析にも役立つとし、組み合わせの出現数（サポート）と、Xを含むときにYも含む割合（確率・信頼度）でルールを評価すると説明している。データマイニングの代表例。数の例（図と同じ。数は例）：レシート100枚のうち、パスタを含むのが20枚、そのうちパスタソースも含むのが12枚なら、サポート（組み合わせの出現数）は12件、信頼度は12÷20＝0.6、つまりパスタを買う人の60％がソースも買う。",
+    "links": [
+      { "id": "DC-03-012", "relation": "手法" },
+      { "id": "DC-07-012", "relation": "使い道" },
+      { "title": "レコメンデーション", "relation": "使い道" }
+    ],
+    "confusions": [
+      { "id": "DC-03-020", "point": "バスケット分析は「一緒に買われる商品」の関係を見る。クラスタリングは「似た客・似た商品」をまとめる。" }
+    ],
+    "figures": ["fig-dx-basket-rule", "fig-dx-analysis-methods"],
+    "sources": [
+      { "title": "Microsoft Learn「Microsoft アソシエーション アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-association-algorithm?view=asallproducts-allversions" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-020",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データのクラスタリングとグルーピング",
+    "oneLine": "クラスタリングは、正解のラベルを与えずに、データの特徴が似たもの同士を自動的にまとめる手法。グルーピングは、決めた項目（地域・年代など）でデータを分けて集計すること。",
+    "why": "クラスタリングは、予測したい列を指定する必要がなく、データ内の関係から似た特性のクラスターを作る（Microsoft クラスタリング アルゴリズム）。市場調査では、クラスター分析で消費者を市場セグメントに分類する（AWS）。まとまりはデータから決まるので、人が思いつかなかった顧客像が見つかることがある。グルーピングは「都市ごとのデータ数」のように、人が決めた項目でまとめて集計する（SQLの GROUP BY など）。",
+    "links": [
+      { "id": "DC-03-012", "relation": "手法" },
+      { "title": "セグメントマーケティング", "relation": "使い道" },
+      { "id": "DC-03-008", "relation": "対比" },
+      { "id": "DC-03-019", "relation": "対比" }
+    ],
+    "confusions": [
+      { "title": "分類", "point": "分類は正解ラベルのある学習で、決まったグループに振り分ける。クラスタリングは正解なしで、似たもの同士をまとめる。グルーピングは人が決めた項目で分けて集計する。" }
+    ],
+    "figures": ["fig-dx-analysis-methods"],
+    "sources": [
+      { "title": "Microsoft Learn「Microsoft クラスタリング アルゴリズム」", "url": "https://learn.microsoft.com/ja-jp/analysis-services/data-mining/microsoft-clustering-algorithm?view=asallproducts-allversions" },
+      { "title": "AWS「データマイニングとは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/data-mining/" },
+      { "title": "PostgreSQL 16 文書「2.7. 集約関数」", "url": "https://www.postgresql.jp/document/16/html/tutorial-agg.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-024",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "PPDACサイクル",
+    "oneLine": "問題（Problem）→計画（Plan）→データ（Data）→分析（Analysis）→結論（Conclusion）の5つのフェーズで、データを使って問題を解決する枠組み。",
+    "why": "名前：PPDAC は、5つのフェーズの英語の頭文字（Problem・Plan・Data・Analysis・Conclusion）を順に並べた名前。統計やデータを活用して、科学的・協働的に問題を解決するときに力を発揮する（総務省統計局）。データを集める前に「何を解くか」を決めるのが出発点。分析のフェーズでは、全体を見渡す・分ける比べる・変化や関係を探る・予測する、という視点で進め、理解を促すための可視化が特に重要になる。",
+    "links": [
+      { "id": "DC-03-001", "relation": "上位の営み" },
+      { "id": "DC-03-015", "relation": "分析で使う" },
+      { "id": "DC-03-018", "relation": "分析で使う" }
+    ],
+    "confusions": [
+      { "title": "PDCAサイクル", "point": "PDCA（Plan・Do・Check・Act）は業務改善の枠組み。PPDACは問題を定めてからデータで答えを出す枠組みで、Do も Check も無い。" }
+    ],
+    "figures": ["fig-dx-ppdac"],
+    "sources": [
+      { "title": "総務省統計局 統計データ利活用センター「Data StaRt」キーワード編", "url": "https://www.stat.go.jp/dstart/point/keyword/" },
+      { "title": "総務省統計局「Data StaRt」EBPM活用塾 ゼミナール編（1）A（analysis、分析）", "url": "https://www.stat.go.jp/dstart/point/seminar1/05.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-02-019",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "RAG（Retrieval-Augmented Generation：検索拡張生成）",
+    "oneLine": "生成AIが答える前に、外部の文書やデータベースを検索し、見つけた内容を参照して回答を作る仕組み。",
+    "why": "名前：RAG は Retrieval-Augmented Generation の略。意味は『検索（Retrieval）で補強した（Augmented）生成（Generation）』。原論文（Lewis ほか, 2020）がこの呼び方と略称 RAG を使っている。生成AIは学習していない社内情報や最新情報を知らない。モデルを再学習させなくても、社内マニュアルやFAQを検索させれば、根拠のある回答を作りやすい。原論文（Lewis ほか, 2020）は、事前学習済みの生成モデルと、検索で引ける外部の知識（Wikipediaの索引）を組み合わせたモデルとしてRAGを示した。",
+    "links": [
+      { "id": "DC-02-017", "relation": "発展形" },
+      { "id": "DC-02-020", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "ファインチューニング", "point": "ファインチューニングはモデル自体を追加学習させて変える。RAGはモデルは変えずに、答えるたびに外部の文書を検索して参照する。" }
+    ],
+    "figures": ["fig-dx-rag"],
+    "sources": [
+      { "title": "Lewis ほか「Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks」（arXiv:2005.11401, 2020）", "url": "https://arxiv.org/abs/2005.11401" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-013",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "ETLツール",
+    "oneLine": "ETLはExtract（抽出）・Transform（変換）・Load（格納）の略。様々なデータソースからデータを抽出し、分析しやすい形に整形して、データウェアハウスなどへ格納するツール。",
+    "why": "名前：ETLはExtract（抽出）・Transform（変換）・Load（格納）の略。システムごとにデータの形式や表記が違うので、そのままでは統合して分析できない。ETLツールは処理の流れを画面で作れるので、自前で作るより開発の手間と期間を減らせる。ただし使うにはプログラミングやデータベース操作のスキルが要り、主にITエンジニアが使う。技術スキルの無い分析者向けに簡単に整形できるのがデータプリパレーションツール（IPA DX白書2023）。",
+    "links": [
+      { "id": "DC-03-010", "relation": "流れ" },
+      { "id": "DC-03-014", "relation": "部分" },
+      { "id": "DC-03-009", "relation": "流れ" }
+    ],
+    "confusions": [
+      { "title": "データプリパレーションツール", "point": "ETLツールは主にITエンジニアが使う。データプリパレーションツールは技術スキルの無い分析者やビジネスユーザーが使う。" }
+    ],
+    "figures": ["fig-dx-etl", "fig-dx-data-pipeline"],
+    "sources": [
+      { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-014",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "データクレンジング",
+    "oneLine": "データの誤記・表記ゆれ・重複・欠損などを見つけて修正・整理し、データの品質を高める作業。",
+    "why": "重複、空欄、書式やつづりの誤りがあると、集計がずれたり表が結合できなかったりし、機械学習の予測やBI（データを見える化して判断に生かすツール）の判断もゆがむ。主なステップは、正しくない・不完全な項目の変更や削除、重複や無関係なデータの削除、書式・不足値・スペルミスの修正（AWS）。IPA（情報処理推進機構）のDX白書2023は、欧米では市民データサイエンティストの増加もあり、分析のためのクレンジングや準備にノーコード・ローコードツールを使う割合が多いとしている。",
+    "links": [
+      { "id": "DC-03-013", "relation": "部分" },
+      { "id": "DC-03-008", "relation": "前提" },
+      { "id": "DC-03-002", "relation": "関連" },
+      { "id": "DC-03-016", "relation": "後工程" }
+    ],
+    "confusions": [
+      { "id": "DC-03-012", "point": "クレンジングはデータを「きれいにする」準備。データマイニングはきれいになったデータから「知見を掘り出す」分析。" }
+    ],
+    "figures": ["fig-dx-data-cleansing", "fig-dx-data-pipeline"],
+    "sources": [
+      { "title": "AWS「データクレンジングとは」", "url": "https://aws.amazon.com/jp/what-is/data-cleansing/" },
+      { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-009",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "最新事例＆トレンド"],
+    "title": "データレイク",
+    "oneLine": "多様なデータソースから、加工や変換をせずに元の形式のままデータを保存するデータの置き場（データストア）。",
+    "why": "構造化データだけでなく、画像・動画・音声などの非構造化データもそのまま入れられるので、事前に構造を決める必要がない。どのデータが将来要るか事前に選ぶのは難しいので、まず湖（レイク）にためておき、目的に応じて取り出して加工する（IPA DX白書2023）。",
+    "links": [
+      { "id": "DC-03-010", "relation": "対比" },
+      { "id": "DC-03-004", "relation": "保管するもの" },
+      { "id": "DC-03-013", "relation": "流れ" },
+      { "id": "DC-03-011", "relation": "切り出し先" }
+    ],
+    "confusions": [
+      { "id": "DC-03-010", "point": "データレイク＝生のまま何でもためる。データウェアハウス＝分析しやすいよう整理・加工して統合する。" }
+    ],
+    "figures": ["fig-dx-data-pipeline"],
+    "sources": [
+      { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
+    ],
+    "asOf": "2023-03",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-010",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "最新事例＆トレンド"],
+    "title": "データウェアハウス（DWH）",
+    "oneLine": "複数のデータソースから集めたデータを、分析しやすいように整理・加工して統合し、時系列で蓄積する「データの倉庫」。",
+    "why": "名前：DWH は、データウェアハウスを縮めた書き方（IPA の DX白書2023は『データウェアハウス（DWH）』と書く）。ウェアハウス（warehouse）は英語で倉庫のこと。業務システムのデータベースは日々の処理用で、膨大なデータの分析には向かない。DWHは分析に特化し、長期間の明細データを時系列で保管して過去の履歴を含めて分析できる。必要な列だけを読み込むので、大量データでも速く分析できる（IPA DX白書2023）。",
+    "links": [
+      { "id": "DC-03-009", "relation": "対比" },
+      { "id": "DC-03-011", "relation": "発展形" },
+      { "id": "DC-03-013", "relation": "流れ" },
+      { "id": "DC-03-016", "relation": "使う側" }
+    ],
+    "confusions": [
+      { "id": "DC-03-011", "point": "DWHは全社のデータを統合した倉庫。データマートはそこから部門・用途ごとに切り出した小さな売り場。" }
+    ],
+    "figures": ["fig-dx-data-pipeline"],
+    "sources": [
+      { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" }
+    ],
+    "asOf": "2023-03",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
+    "status": "verified"
+  },
+  {
+    "id": "DC-03-021",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "最新事例＆トレンド"],
+    "title": "データ分析の自動化とシミュレーション",
+    "oneLine": "データ分析の自動化は、データの収集・整形・格納・レポートなどを仕組みにして人手を減らすこと。シミュレーションは、モデルを使って「もし条件がこう変わったら」を仮想的に試し、結果を予測すること。",
+    "why": "ETLツールは、データの抽出・整形・格納をバッチで定期的に自動処理させる（DX白書2023）。セルフサービスBI（データを見える化して判断に生かすツール）なら、ビジネスユーザーがアナリストを待たずにレポートを確認できる（AWS）。シミュレーションは、工場の生産ラインの変更のように実際に試すとコストや時間が大きいことを事前に比べるのに使う。DX白書2023は、物理空間をサイバー空間に再現したデジタルツインで予測・シミュレーション・最適化を行い、結果を物理空間へフィードバックする使い方を紹介している。",
+    "links": [
+      { "id": "DC-03-017", "relation": "対比" },
+      { "id": "DC-03-018", "relation": "使う手法" },
+      { "id": "DC-02-004", "relation": "データ源" },
+      { "id": "DC-03-023", "relation": "仕組み" },
+      { "id": "DC-03-013", "relation": "自動化の道具" }
+    ],
+    "confusions": [
+      { "id": "DC-03-017", "point": "自動化は「決まった分析を仕組みで回す」、アドホック分析は「その場の問いに人が答える」。" }
+    ],
+    "figures": ["fig-dx-digital-twin"],
+    "sources": [
+      { "title": "IPA「DX白書2023」第5部 データ利活用技術", "url": "https://www.ipa.go.jp/publish/wp-dx/gmcbt8000000botk-att/000108041.pdf" },
+      { "title": "AWS「ビジネスインテリジェンス (BI) とは何ですか?」", "url": "https://aws.amazon.com/jp/what-is/business-intelligence/" }
+    ],
+    "asOf": "2023-03",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-101",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データエコシステム（データスペース）",
+    "oneLine": "企業・業界・国境をまたいで、多くの参加者がデータを持ち寄って共有・活用する仕組みと、その参加のルールのまとまり。欧州から広がった「データスペース」はその代表的な形。",
+    "why": "経済産業省は、企業・業界・国境をまたぐ横断的なデータ連携・システム連携の実現を目指す取組として「ウラノス・エコシステム」を推進している。サプライチェーンが国境を越えて広がっていることや、欧州で環境データの管理が強化されていることが背景にあり、データ連携を始めるには、参加する当事者の間で契約条件を議論し合意することが必要とされる。IPA（情報処理推進機構）のDX SQUARE（DXを学ぶためのポータルサイト）の解説（IPAデジタル基盤センター長へのインタビュー）は、データスペースでは、データの提供者や利用者が分散したまま共通の「コネクター」につなぎ、参加の承認やルール違反への対応などを決める枠組み（コンソーシアム）を持つと説明する。日本では地域や業界ごとに別々の仕組みを作ってきたため、他で使えず規模が拡大しない、という課題も指摘している。",
+    "links": [
+      { "id": "DC-06-007", "relation": "関連" },
+      { "id": "DC-03-002", "relation": "前提" },
+      { "id": "DC-02-008", "relation": "対比" },
+      { "id": "DC-09-103", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-09-103", "point": "データファブリックは、1つの組織の中に散らばったデータを横断して使う設計。データエコシステム（データスペース）は、組織の外の多くの参加者とデータを共有する仕組みとルール。" }
+    ],
+    "sources": [
+      { "title": "経済産業省「Ouranos Ecosystem（ウラノス・エコシステム）」", "url": "https://www.meti.go.jp/policy/mono_info_service/digital_architecture/ouranos.html" },
+      { "title": "IPA「DX SQUARE」データスペースとは？", "url": "https://dx.ipa.go.jp/data-space" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-102",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データライフサイクル",
+    "oneLine": "データを、構想・計画から、生成・取得、処理・分析、共有・利用・再利用を経て、保存または廃棄するまでの「一生」として捉え、段階ごとに管理する考え方。",
+    "why": "米国国立標準技術研究所（NIST）の研究データの枠組み（RDaF）は、構想（Envision）、計画（Plan）、生成・取得（Generate/Acquire）、処理・分析（Process/Analyze）、共有・利用・再利用（Share/Use/Reuse）、保存・廃棄（Preserve/Discard）の6段階を骨組みにしている。計画の段階には、データの形式や保管先の選択に加え、共有・公開の方針を先に見越しておくことが含まれ、最後の段階には記録管理・アーカイブ・安全な廃棄が含まれる。後の段階で困らないよう、前の段階で決めておくことがある、という点がポイント。",
+    "links": [
+      { "id": "DC-03-024", "relation": "対比" },
+      { "id": "DC-03-002", "relation": "関連" },
+      { "id": "DC-03-014", "relation": "部分" },
+      { "id": "DC-09-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-03-024", "point": "PPDACは「問題を解く手順」（問題→計画→データ→分析→結論）。データライフサイクルは「データの一生」（作る・使う・共有する・保存または捨てる）。" }
+    ],
+    "figures": ["fig-dx-data-lifecycle"],
+    "sources": [
+      { "title": "NIST「Research Data Framework (RDaF)」", "url": "https://www.nist.gov/programs-projects/research-data-framework-rdaf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-103",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "データファブリック",
+    "oneLine": "組織のあちこち（データレイク、データウェアハウス、オンプレミス、複数のクラウド）に散らばったデータを、1か所に移さずにつなぎ、まとめて見つけて使えるようにする設計の考え方。",
+    "why": "IBMの解説によれば、データファブリックはソフトウェアではなく設計上のアプローチで、分散したデータを単一の場所に移す必要はなく、完全に分散化する必要もない。機械学習、アクティブ・メタデータ、API（プログラムから機能を呼び出す窓口）などを使い、データの統合とガバナンスを自動化し、利用者が自分でデータにアクセスできるようにする。背景には、部門ごとに別々のデータ基盤があるサイロ化と、メタデータ（データの説明情報）の管理が不十分で、探せず信頼されず使われないデータ（ダーク・データ）がたまる問題がある。",
+    "links": [
+      { "id": "DC-03-009", "relation": "組み合わせ" },
+      { "id": "DC-03-010", "relation": "組み合わせ" },
+      { "id": "DC-03-002", "relation": "関連" },
+      { "id": "DC-09-101", "relation": "対比" }
+    ],
+    "confusions": [
+      { "id": "DC-03-009", "point": "データレイクは、データを元の形のまま1か所にためる場所。データファブリックは、散らばったデータを移さずにつないで使う設計。" }
+    ],
+    "sources": [
+      { "title": "IBM「データ・ファブリックとは」", "url": "https://www.ibm.com/jp-ja/think/topics/data-fabric" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-104",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "ベクトル検索",
+    "oneLine": "文章や画像を、意味を表す数値の並び（ベクトル。埋め込みとも言う）に変え、質問のベクトルに近いものを探す検索。言葉が違っても意味が近いものを見つけられる。",
+    "why": "マイクロソフトの技術文書は、ベクトル検索を、コンテンツの数値表現にインデックスを作って照会する情報取得の方法とし、言語的には違っても概念的に似ている（例 \"dog\" と \"canine\"）ものを一致させられると説明する。一方、製品コード・専門用語・日付・人名のように完全一致が大事な検索ではキーワード検索のほうが性能がよいことがあるので、同じ要求でベクトル検索とキーワード検索を並行して行い、結果をまとめる「ハイブリッド検索」も使われる。生成AIに社内文書などを参照させるRAGで、質問に関係する文書を探す部分によく使われる。",
+    "links": [
+      { "id": "DC-02-019", "relation": "使い道" },
+      { "id": "DC-03-004", "relation": "関連" },
+      { "id": "DC-07-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "キーワード検索", "point": "キーワード検索＝同じ言葉を含むものを探す（型番・人名に強い）。ベクトル検索＝意味の近いものを探す（言い換えに強い）。" }
+    ],
+    "sources": [
+      { "title": "Microsoft Learn「Azure AI Search のベクター検索」", "url": "https://learn.microsoft.com/ja-jp/azure/search/vector-search-overview" },
+      { "title": "Microsoft Learn「Azure AI Search のハイブリッド検索」", "url": "https://learn.microsoft.com/ja-jp/azure/search/hybrid-search-overview" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-105",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "ナレッジグラフ",
+    "oneLine": "人・場所・物などの「もの（実体）」と、それらの間の関係を、点と線のつながり（グラフ）として表したデータ。",
+    "why": "Google は2012年、検索にナレッジグラフを導入し、文字列ではなく、現実の実体とその関係を理解するモデル（things, not strings）と説明した。たとえば「タージ・マハル」という語は、建物・音楽家・カジノなど複数のものを指しうるので、実体として区別することで、利用者の意図に合った結果を出しやすくなる。ある人物と、その家族や受賞の関係のように、実体どうしのつながりもたどれる。導入時点で5億を超える実体と、35億を超える事実・関係を含んでいた。Microsoft Research（2024年）は、生成AIに社内文書などを読ませてナレッジグラフを作り、回答に使う「GraphRAG」を示した。意味の近さ（ベクトルの類似）で探す通常のRAG（資料を検索して添え、答えさせる仕組み）は、ばらばらの情報を共通の属性でつないで答える質問や、データ全体の主なテーマのように全体を見渡す質問が苦手だが、グラフを使うとこれらに答えやすくなるとしている。",
+    "links": [
+      { "id": "DC-09-104", "relation": "対比" },
+      { "id": "DC-02-019", "relation": "組み合わせ" },
+      { "id": "DC-03-007", "relation": "関連" },
+      { "id": "DC-07-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-09-104", "point": "ベクトル検索は、意味が近い文章を探す。ナレッジグラフは、実体と実体の関係（つながり）をたどる。" }
+    ],
+    "sources": [
+      { "title": "Google「Introducing the Knowledge Graph: things, not strings」（2012年5月16日）", "url": "https://blog.google/products-and-platforms/products/search/introducing-knowledge-graph-things-not/" },
+      { "title": "Microsoft Research「GraphRAG: Unlocking LLM discovery on narrative private data」（2024年2月13日）", "url": "https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-106",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "プライバシー保護技術（差分プライバシー・連合学習）",
+    "oneLine": "個人のデータを守りながら、データの分析や機械学習を行うための技術。分析の結果にわざと雑音（ノイズ）を加える差分プライバシー、データを各端末に置いたまま学習する連合学習などがある。",
+    "why": "米国NIST（国立標準技術研究所）の文書（SP 800-226、2025年）は、名前や住所などを消すだけの非識別化は難しいとする。1つ1つの項目では個人が分からなくても、項目が組み合わさると個人を特定できてしまい、研究者は公開されている名簿の性別・郵便番号・生年月日を組み合わせて、非識別化された医療記録から個人を割り出した（連結攻撃）。差分プライバシーは、一般に分析結果にランダムな雑音を加えて実現し、プライバシーの強さを表す値（ε）を小さくするほど守りは強くなるが、結果の正確さは下がる（プライバシーと有用性のトレードオフ）。すべての要求を同時に満たすのは難しいことが多く、関係者の間で調整して決める。連合学習（McMahanほか、2016年）は、データを利用者の端末に置いたまま、端末ごとに計算した更新だけを集めて共通のモデルを学習する方法で、データが機密性の高いときや量が多いときに向く。通信の費用が主な制約になる。",
+    "links": [
+      { "id": "DC-09-107", "relation": "関連" },
+      { "id": "DC-03-002", "relation": "関連" },
+      { "id": "DC-05-105", "relation": "関連" },
+      { "id": "DC-08-104", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-09-107", "point": "匿名加工情報・仮名加工情報は、法律が定めるデータの加工の区分。差分プライバシーや連合学習は、分析や学習の仕方で個人を守る技術の名前。" }
+    ],
+    "sources": [
+      { "title": "NIST SP 800-226「Guidelines for Evaluating Differential Privacy Guarantees」（2025年3月）", "url": "https://csrc.nist.gov/pubs/sp/800/226/final" },
+      { "title": "McMahan ほか「Communication-Efficient Learning of Deep Networks from Decentralized Data」（arXiv:1602.05629, 2016）", "url": "https://arxiv.org/abs/1602.05629" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-107",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "匿名加工情報と仮名加工情報",
+    "oneLine": "個人情報保護法が定める、個人情報を加工した情報の区分。仮名加工情報は、他の情報と照合しない限り特定の個人を識別できないように加工したもの。匿名加工情報は、特定の個人を識別できず、元の個人情報に復元もできないように加工したもの。",
+    "why": "個人情報保護法は、仮名加工情報（第2条第5項）を、記述の一部や個人識別符号を削るなどして、他の情報と照合しない限り個人を識別できないようにしたものとする。仮名加工情報は、特定した利用目的の達成に必要な範囲を超えて扱えず（第41条第3項）、法令に基づく場合を除き第三者に提供できず（第41条第6項・第42条第1項）、本人を識別するために他の情報と照合してもいけない（第41条第7項）。主に社内での分析に使う区分である。匿名加工情報（第2条第6項）は、個人を識別できず、元の個人情報に復元もできないようにしたもので、作成したら含まれる項目を公表し（第43条第3項）、第三者に提供するときは項目と提供の方法を公表して、相手に匿名加工情報であることを明示する（第43条第4項）。決まった手続のもとで外部に提供して使う道がある。",
+    "links": [
+      { "id": "DC-09-106", "relation": "関連" },
+      { "id": "DC-03-025", "relation": "使い道" },
+      { "id": "DC-03-002", "relation": "関連" },
+      { "id": "DC-10-102", "relation": "根拠" }
+    ],
+    "confusions": [
+      { "title": "仮名加工情報と匿名加工情報", "point": "仮名＝照合すれば分かりうる程度の加工で、社内で使う（第三者に渡せない）。匿名＝識別も復元もできない加工で、公表などの手続のもとで外にも出せる。" }
+    ],
+    "sources": [
+      { "title": "e-Gov法令検索「個人情報の保護に関する法律」（平成15年法律第57号）第2条・第41条・第42条・第43条", "url": "https://laws.e-gov.go.jp/law/415AC0000000057" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-108",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "プローブデータ（車両の走行データ）",
+    "oneLine": "走っている車から集める、位置・速度・加速度などのデータ。道路の混み具合や危ない箇所を知る材料になる。",
+    "why": "国土交通省のETC2.0は、これまでのETCと比べて大量の情報をやり取りでき、高速道路の出入りだけでなく通った経路も把握できる。対応する車載器が、走行履歴（時刻・位置・速度など。200mごと、または進む向きが45度変わったときに記録）と、挙動履歴（前後左右の加速度など。急な加速・減速などがあったときに記録）をため、道路わきの装置（路側機）の下を通るときに集める。集めたデータから、急ブレーキ・速度超過・抜け道などが多い生活道路の潜在的な危険箇所を特定し、事故が起きる前に速度を抑える対策を打つ。災害時には、ETC2.0の通行実績と、自動車メーカーなど民間の通行実績を集めて、より高密度・高精度にし、「通れるマップ」として救助や物資の輸送に役立てている。",
+    "links": [
+      { "id": "DC-03-004", "relation": "具体例" },
+      { "id": "DC-02-005", "relation": "関連" },
+      { "id": "DC-09-101", "relation": "関連" },
+      { "id": "DC-02-030", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-02-005", "point": "GPSは位置を測る仕組み。プローブデータは、走る車が記録した位置・速度・加速度などを集めたデータそのもの。" }
+    ],
+    "sources": [
+      { "title": "国土交通省「ETC2.0」", "url": "https://www.mlit.go.jp/road/ITS/j-html/etc2/index.html" },
+      { "title": "国土交通省「ETC2.0より収集されるプローブ情報の収集」", "url": "https://www.mlit.go.jp/road/ITS/j-html/etc2/pdf/03.pdf" },
+      { "title": "国土交通省「ビッグデータを活用した生活道路の交通安全対策」", "url": "https://www.mlit.go.jp/road/ITS/j-html/etc2/pdf/11.pdf" },
+      { "title": "国土交通省「官民ビッグデータによる災害通行実績データシステム」", "url": "https://www.mlit.go.jp/road/ITS/j-html/etc2/pdf/17.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-109",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "ビッグデータの特性（3V：量・速度・多様性）",
+    "oneLine": "ビッグデータを特徴づける性質。データの量（Volume）、流れ込む速さ（Velocity）、種類の多さ（Variety）の3つのV。NIST（米国国立標準技術研究所）はこれに変動性（Variability）を加えて説明している。",
+    "why": "米国国立標準技術研究所（NIST）のビッグデータ相互運用性フレームワーク第1巻（定義）は、ビッグデータを『主に量・速度・多様性・変動性の特性を持つ大規模なデータの集まりで、効率よく保存・処理・分析するには拡張できる（スケーラブルな）構成が要るもの』と定義する。量はデータの大きさ、速度はデータが流れ込む速さ、多様性はデータの出どころ・分野・種類の多さ、変動性は流れる速さ・形式・意味・品質が変わること。例えば工場で、数百台ぶんの設備の記録がたまり（量）、センサーの値が1秒ごとに届き（速度）、数値に画像も混ざる（多様性）、という状態がこれに当たる（例）。定義が『データの性質』と『それを扱う仕組みの必要』を組にしている点が要で、NISTは、部品を改良して1台の性能を上げる（垂直スケーリング）だけでなく、資源を足して並列に処理する（水平スケーリング）ことがビッグデータの変化の中心にあると述べる。",
+    "links": [
+      { "id": "DC-03-004", "relation": "詳しく" },
+      { "id": "DC-03-006", "relation": "扱う仕組み" },
+      { "id": "DC-03-005", "relation": "扱う仕組み" },
+      { "id": "DC-11-105", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-03-004", "point": "3Vは性質の分け方。形が決まっていない非構造化データは、そのうち多様性（Variety）に当たる。" }
+    ],
+    "figures": ["fig-dx-3v"],
+    "sources": [
+      { "title": "NIST SP 1500-1r2「NIST Big Data Interoperability Framework: Volume 1, Definitions」（2019年10月）", "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1500-1r2.pdf" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-110",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "基本概念"],
+    "title": "SQLの命令の種類（DDLとDML）",
+    "oneLine": "SQLの命令は役割で分けられる。DDL（データ定義言語）は表などの入れ物を作る・変える・消す命令、DML（データ操作言語）は入れ物の中のデータを読み書きする命令。データを取り出す問い合わせ（クエリ）のSELECTはDMLに含まれる。",
+    "why": "名前：DDL は Data Definition Language（データ定義言語）、DML は Data Manipulation Language（データ操作言語）の略（Oracle の SQL リファレンス）。Definition は『定義』、Manipulation は『操作』の意味。オラクル（Oracle Database などを作るソフトの会社）のSQLリファレンス（Oracle Database 19c）は、DDLを、表などのスキーマ・オブジェクトの作成・変更・削除や、権限の付与・取り消しを行う命令とし、CREATE・ALTER・DROPには対象への排他的なアクセスが要ると説明する。例えば、他の利用者がその表で確定していない処理（トランザクション）を開いているとALTER TABLEは失敗する。また同データベースでは、DDLの前後でそれまでの処理が自動的に確定（コミット）される。DMLはINSERT・UPDATE・DELETE・SELECTなどで、既にある表のデータを扱う。SELECTはデータを読むだけで、データベースに保存された中身は書き換えない。",
+    "links": [
+      { "id": "DC-03-007", "relation": "部分" },
+      { "id": "DC-03-008", "relation": "具体例" }
+    ],
+    "confusions": [
+      { "id": "DC-03-008", "point": "JOINは複数の表のデータを結び付けて取り出す問い合わせ（DMLのSELECTの使い方）。表の形を変えるDDLではない。" }
+    ],
+    "sources": [
+      { "title": "Oracle「Oracle Database SQL言語リファレンス 19c」Types of SQL Statements", "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html" }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-111",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "最新事例＆トレンド"],
+    "title": "地図データの共通基盤（国の3次元地図・オープンな地図データ）",
+    "oneLine": "多くの地図サービスや分析の土台として、国や複数の企業が共通に使える形で整備・提供する地図データ。利用する側は、その土台に自社のデータやサービスを重ねる。",
+    "why": "国土地理院は2026年4月から、全国の様々な地図の基礎となる電子国土基本図のうち、建物・道路（道路中心線）・鉄道（軌道の中心線）に高さを持たせた3次元電子国土基本図の提供を始め、令和10年度末の全国整備を目指している。全国統一の規格で整備することで、より高度な解析ができるなど利活用の幅が広がるとし、防災シミュレーション、景観を考えたまちづくり、ドローンの飛行ルートの検討などを挙げている。民間では、AWS（Amazon のクラウドサービス）・Meta・Microsoft・TomTom（地図とナビの技術の会社）が2022年12月に Overture Maps Foundation を立ち上げ、互いにつなげて使えるオープンな地図データを共有の資産として作るとした。AWS は、正確で網羅的な地図データを維持し続けるのは費用がかかりすぎて複雑だとし、TomTom は、Overture の土台の地図と自社のデータを組み合わせて顧客に提供するとしている。異なるデータの中の同じ実在物を同じIDで結ぶ仕組み（GERS）も用意している。競合する企業どうしが、差がつきにくい土台は共同で作り、その上のサービスで競う形である。",
+    "links": [
+      { "id": "DC-01-014", "relation": "考え方" },
+      { "id": "DC-03-023", "relation": "使い道" },
+      { "id": "DC-09-101", "relation": "関連" },
+      { "id": "DC-08-110", "relation": "使い道" }
+    ],
+    "confusions": [
+      { "id": "DC-09-101", "point": "データエコシステム（データスペース）は、組織をまたいでデータを安全にやり取りする仕組み全般。地図データの共通基盤は、その中でも、多くの組織が同じ地図を土台として使うために共同で整える例。" }
+    ],
+    "sources": [
+      { "title": "国土地理院「３次元電子国土基本図の提供を開始！～全国の地図を３次元化しデジタル社会に貢献～」（2026年3月25日）", "url": "https://www.gsi.go.jp/kibanjoho/kibanjoho61008.html" },
+      { "title": "Linux Foundation（Joint Development Foundation）「Joint Development Foundation Announces Overture Maps Foundation to Build Interoperable Open Map Data」（2022年12月）", "url": "https://www.linuxfoundation.org/press/linux-foundation-announces-overture-maps-foundation-to-build-interoperable-open-map-data" },
+      { "title": "Overture Maps Foundation 公式サイト", "url": "https://overturemaps.org/about/" }
+    ],
+    "asOf": "2026-03",
+    "reviewBy": "2027-03",
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-112",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "最新事例＆トレンド"],
+    "title": "行動ビッグデータの分析サービス（検索データから関心を読む）",
+    "oneLine": "検索や人の流れなど、多くの利用者の行動から集まったビッグデータを統計化し、企業や自治体が人々の関心や隠れたニーズを調べられるようにする分析サービス。",
+    "why": "LINEヤフーは、多様なサービスから得られる行動ビッグデータを使う事業者向けの分析サービスを提供し、検索・人流データから人々の興味・関心を分析できる調査用のツールを出している。ある語と一緒に検索されている語（共起キーワード）を地図のように並べて示し、生成AIがそのつながりから隠れたニーズを提案する機能を試験導入した（例：「マスク」と「ファンデーション」から、マスクに付きにくいファンデーションを探すニーズ）。生成AIが、分析の前工程となるデータクレンジングや分類・考察の作業を短くし、分析の負荷を下げるとしている（データの分析作業の自動化の例）。生成AIの事業者には統計化したデータだけを送るとしている。また、同社の利用ガイドラインは、個人が特定される可能性があるため、対象のユーザー数が少ないデータを使う分析やターゲティングを禁じている。対象を細かく絞るほど具体的に読めるが、人数が減って個人が特定されるおそれが高まる。",
+    "links": [
+      { "id": "DC-03-004", "relation": "材料" },
+      { "id": "DC-03-021", "relation": "関連" },
+      { "id": "DC-03-014", "relation": "自動化の対象" },
+      { "id": "DC-09-106", "relation": "関連" }
+    ],
+    "confusions": [
+      { "id": "DC-03-019", "point": "バスケット分析は、同じ買い物かごに一緒に入る商品の組み合わせを調べる。共起キーワードの分析は、一緒に検索される語の組み合わせから関心やニーズを読む。どちらも「一緒に現れるもの」を見るが、材料が購買か検索かが違う。" }
+    ],
+    "sources": [
+      { "title": "LINEヤフー プレスリリース「ヤフー・データソリューション、「DS.INSIGHT」に3つの生成AI機能を連続で試験導入」", "url": "https://www.lycorp.co.jp/ja/news/release/007784/" },
+      { "title": "LINEヤフー プレスリリース「ヤフー・データソリューション、データ結果の仮説設計や分析を生成AIがサポートする機能を試験導入」", "url": "https://www.lycorp.co.jp/ja/news/release/000910" },
+      { "title": "ヤフー・データソリューション「DATA SOLUTION利用ガイドライン」", "url": "https://ds.yahoo.co.jp/guideline/" }
+    ],
+    "asOf": "2024-03",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
+    "status": "verified"
+  },
+  {
+    "id": "DC-09-113",
+    "syllabus": ["DX技術イノベーション領域", "J ビッグデータ技術・データサイエンス", "応用事例"],
+    "title": "科学的介護情報システム（LIFE）",
+    "oneLine": "介護施設・事業所が、利用者の状態やケアの計画・内容のデータを国に提出し、全国から集まったデータにもとづく比べた結果（フィードバック）を受け取って、ケアの見直しに使う厚生労働省の仕組み。",
+    "why": "名前：LIFE は Long-term care Information system For Evidence の略で、意味は『根拠（エビデンス）のための介護の情報システム』。①何に困っていたか：質の高いケアを続けるには、ケアプランや介護計画、日々のアセスメント（利用者の状態の評価）の結果などのデータを使って、取組の効果や課題をつかみ、見直していくことが大事だが、自分の施設のデータだけでは良し悪しを測りにくい。②何をするか：厚生労働省の説明によれば、LIFE は、施設・事業所で記録しているさまざまな情報のうち、利用者の状態やケアの計画・内容などを集め、集まった全国のデータにもとづいてフィードバックを返す。データを使ったケアの見直しを支えることが目的。令和6年度の介護報酬の改定で、都道府県や要介護度などで全国の値を絞り込んで比べる機能も加わった。③押さえどころ：ケアの質を上げるには、利用者の意向をふまえた目標に対して計画・実行・評価・改善をくり返す PDCA サイクルが大事で、その中で利用者の状態を評価・記録して LIFE に出すと、データにもとづくフィードバックが返ってくる。フィードバックをケアプランなどとあわせた材料の1つにして取組をふり返り、ケアを見直す。例：自分の施設の利用者の状態の変化が全国の同じような利用者と比べてどうかを見て、計画を直す（例）。④混同しやすい点：フィードバックは答えそのものではなく、ふり返りのための材料の1つ。データを出すだけでは質は上がらず、見直しまで回してはじめて効く。",
+    "links": [
+      { "id": "DC-03-024", "relation": "関連" },
+      { "id": "DC-09-102", "relation": "関連" },
+      { "id": "DC-09-101", "relation": "関連" }
+    ],
+    "confusions": [
+      { "title": "PDCAサイクル", "point": "PDCA は計画・実行・評価・改善をくり返す進め方そのもの。LIFE は、その評価と改善の材料になる全国のデータとの比べた結果を返す仕組み。" }
+    ],
+    "sources": [
+      { "title": "厚生労働省「科学的介護情報システム（LIFE）について」", "url": "https://www.mhlw.go.jp/stf/shingi2/0000198094_00037.html" },
+      { "title": "厚生労働省「フィードバックの概要」（LIFE 説明資料）", "url": "https://www.mhlw.go.jp/content/12301000/001692925.pdf" }
+    ],
+    "status": "verified"
+  }
+]

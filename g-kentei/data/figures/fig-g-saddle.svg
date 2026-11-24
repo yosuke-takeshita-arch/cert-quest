@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 926" role="img" aria-labelledby="fig-g-saddle-t fig-g-saddle-d">
+<title id="fig-g-saddle-t">鞍点：傾きが0なのに谷底ではない点。峠のように、ある向きでは谷底、別の向きでは山頂</title>
+<desc id="fig-g-saddle-d">困りごと：勾配降下法は坂の傾き（勾配）を見て下る方へ重みを動かし、傾きが0になると止まる。ところが傾きが0の点は谷底だけではない。たとえ：峠の上に立つと、尾根に沿って歩けば峠はいちばん低い所（谷底）、峠を越える道に沿って歩けばいちばん高い所（山頂）で、どちらの向きも足もとは平ら。本当は峠を越える向きに下れるのに、傾きしか見ない勾配降下法はそこで止まりやすい。数で見る：高さ（誤差）＝x²−y²。x・yは2つの重みで、中心(0,0)の高さは0。xの向きだけに1動くと 1²−0²＝1 で上がり、yの向きだけに1動くと 0²−1²＝−1 で下がる。左の小さな図はxの向きの断面で谷、右はyの向きの断面で山。中心は、xの向きに見ると谷底、yの向きに見ると山頂で、傾きはどちらの向きも0。なぜ大事か：重みがとても多い（高次元）と、悪い局所最適解より鞍点のほうが学習を遅らせる主な原因になり、鞍点の周りには平らな所（プラトー）が広がるので止まったように見える（Dauphin ら 2014 の指摘）。抜け出す工夫はモーメンタムの勢いやSGDのばらつき。試験で出る語：鞍点はある向きでは極小、別の向きでは極大の点で、馬の鞍や峠の形。局所最適解はどの向きにも上り坂の点。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">鞍点：傾きが 0 なのに、谷底ではない点</text>
+<text x="12" y="48" class="tb">① 困りごと</text>
+<text x="12" y="68" class="tm">勾配降下法は、坂の傾き（勾配）を見て、</text>
+<text x="12" y="88" class="tm">下る方へ重みを動かす。傾きが 0 になると、</text>
+<text x="12" y="108" class="tm">もう下る方が分からないので止まる</text>
+<text x="12" y="132" class="tb">→ ところが、傾きが 0 の点は谷底だけではない</text>
+<line x1="12" y1="146" x2="308" y2="146" class="l sb w1"/>
+<text x="12" y="170" class="tb">② たとえ：峠の上に立つ</text>
+<text x="12" y="190" class="tm">尾根に沿って歩くと、峠はいちばん低い所</text>
+<text x="12" y="210" class="tm">（谷底）。峠を越える道に沿って歩くと、</text>
+<text x="12" y="230" class="tm">いちばん高い所（山頂）。どちらの向きも、</text>
+<text x="12" y="250" class="tm">足もとは平ら（傾き 0）</text>
+<text x="12" y="272" class="tb">→ 本当は峠を越える向きに下れるのに、足もと</text>
+<text x="12" y="294" class="tb">　が平らなので、傾きしか見ない勾配降下法は</text>
+<text x="12" y="316" class="tb">　そこで止まりやすい</text>
+<line x1="12" y1="330" x2="308" y2="330" class="l sb w1"/>
+<text x="12" y="354" class="tb">③ 数で見る：高さ（誤差）＝ x² − y²</text>
+<text x="12" y="374" class="tm">x・y＝2つの重み。中心 (0, 0) の高さは 0</text>
+<text x="12" y="402" class="tb ta">x の向きだけ動く：谷</text>
+<rect x="12" y="410" width="140" height="96" class="sb" stroke-width="1"/>
+<polyline points="26.8,440.6 31.4,446.5 36.0,452.0 40.6,456.9 45.2,461.4 49.8,465.3 54.4,468.6 59.0,471.5 63.6,473.8 68.2,475.7 72.8,477.0 77.4,477.7 82.0,478.0 86.6,477.7 91.2,477.0 95.8,475.7 100.4,473.8 105.0,471.5 109.6,468.6 114.2,465.3 118.8,461.4 123.4,456.9 128.0,452.0 132.6,446.5 137.2,440.6" class="l sa w2"/>
+<circle cx="36" cy="452" r="4.5" class="fs sa" stroke-width="2"/>
+<text x="36" y="442" class="tb" text-anchor="middle">1</text>
+<circle cx="82" cy="478" r="4.5" class="fs sng" stroke-width="2"/>
+<text x="82" y="468" class="tb" text-anchor="middle">0</text>
+<circle cx="128" cy="452" r="4.5" class="fs sa" stroke-width="2"/>
+<text x="128" y="442" class="tb" text-anchor="middle">1</text>
+<text x="82" y="500" class="tm" text-anchor="middle">−1 ← x → 1</text>
+<text x="168" y="402" class="tb twn">y の向きだけ動く：山</text>
+<rect x="168" y="410" width="140" height="96" class="sb" stroke-width="1"/>
+<polyline points="182.8,471.4 187.4,465.5 192.0,460.0 196.6,455.1 201.2,450.6 205.8,446.7 210.4,443.4 215.0,440.5 219.6,438.2 224.2,436.3 228.8,435.0 233.4,434.3 238.0,434.0 242.6,434.3 247.2,435.0 251.8,436.3 256.4,438.2 261.0,440.5 265.6,443.4 270.2,446.7 274.8,450.6 279.4,455.1 284.0,460.0 288.6,465.5 293.2,471.4" class="l swn w2"/>
+<circle cx="192" cy="460" r="4.5" class="fs swn" stroke-width="2"/>
+<text x="192" y="478" class="tb" text-anchor="middle">−1</text>
+<circle cx="238" cy="434" r="4.5" class="fs sng" stroke-width="2"/>
+<text x="238" y="452" class="tb" text-anchor="middle">0</text>
+<circle cx="284" cy="460" r="4.5" class="fs swn" stroke-width="2"/>
+<text x="284" y="478" class="tb" text-anchor="middle">−1</text>
+<text x="238" y="500" class="tm" text-anchor="middle">−1 ← y → 1</text>
+<text x="12" y="528">x へ 1：1²−0²＝1（上がる）</text>
+<text x="12" y="550">y へ 1：0²−1²＝−1（下がる）</text>
+<text x="12" y="572" class="tb">中心は、x の向きに見ると谷底、y の向きに</text>
+<text x="12" y="594" class="tb">見ると山頂。傾きはどちらの向きも 0</text>
+<text x="12" y="614" class="tm">（赤い丸が中心。数は説明のための例）</text>
+<line x1="12" y1="628" x2="308" y2="628" class="l sb w1"/>
+<text x="12" y="652" class="tb">④ なぜ大事か</text>
+<text x="12" y="672" class="tm">重みがとても多い（高次元）と、悪い局所</text>
+<text x="12" y="692" class="tm">最適解より鞍点のほうが、学習を遅らせる主な</text>
+<text x="12" y="712" class="tm">原因になる。鞍点の周りには平らな所</text>
+<text x="12" y="732" class="tm">（プラトー）が広がり、止まったように見える</text>
+<text x="12" y="752" class="tm">（Dauphin ら 2014 の指摘）</text>
+<text x="12" y="772" class="tm">抜け出す工夫：モーメンタム（前の動きの勢い</text>
+<text x="12" y="792" class="tm">を足す）や、SGD（データを少しずつ使う）の</text>
+<text x="12" y="812" class="tm">ばらつき</text>
+<line x1="12" y1="826" x2="308" y2="826" class="l sb w1"/>
+<text x="12" y="850" class="tb">試験で出る語</text>
+<text x="12" y="870" class="tm">鞍点＝ある向きでは極小（谷底）、別の向き</text>
+<text x="12" y="890" class="tm">　では極大（山頂）の点。馬の鞍や峠の形</text>
+<text x="12" y="910" class="tm">局所最適解＝どの向きにも上り坂の点</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-g-basic-linear-t fig-g-basic-linear-d">
+<title id="fig-g-basic-linear-t">線形と非線形</title>
+<desc id="fig-g-basic-linear-d">左右2つの折れ線グラフ。どちらも横軸が入力x（0から3）、縦軸が出力y（0から9）。左は線形の例 y＝2x＋1。xが1、2、3のときyは3、5、7で、xが1増えるたびにyはいつも2ずつ増え、グラフはまっすぐな線になる。右は非線形の例 y＝x×x。xが1、2、3のときyは1、4、9で、増え方が3、5と変わり、グラフは曲がる。下の注記：線形の計算は何回重ねても線形のまま（2倍してから3倍しても、6倍1回と同じ）。曲がった関係を表すには、ニューラルネットワークでは層と層の間に非線形の計算（活性化関数）をはさむ。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">線形＝まっすぐ、非線形＝曲がる</text>
+<text x="12" y="44" class="tm">横：入力 x　縦：出力 y（数は説明のための例）</text>
+<text x="85" y="72" class="tb ta" text-anchor="middle">線形 y＝2x＋1</text>
+<text x="235" y="72" class="tb twn" text-anchor="middle">非線形 y＝x×x</text>
+<line x1="30" y1="232" x2="146" y2="232" class="l sm w1"/>
+<line x1="30" y1="232" x2="30" y2="84" class="l sm w1"/>
+<line x1="180" y1="232" x2="296" y2="232" class="l sm w1"/>
+<line x1="180" y1="232" x2="180" y2="84" class="l sm w1"/>
+<text x="26" y="236" class="tm" text-anchor="end">0</text>
+<text x="26" y="92" class="tm" text-anchor="end">9</text>
+<text x="176" y="236" class="tm" text-anchor="end">0</text>
+<text x="176" y="92" class="tm" text-anchor="end">9</text>
+<text x="65" y="250" class="tm" text-anchor="middle">1</text>
+<text x="100" y="250" class="tm" text-anchor="middle">2</text>
+<text x="135" y="250" class="tm" text-anchor="middle">3</text>
+<text x="215" y="250" class="tm" text-anchor="middle">1</text>
+<text x="250" y="250" class="tm" text-anchor="middle">2</text>
+<text x="285" y="250" class="tm" text-anchor="middle">3</text>
+<line x1="30" y1="216" x2="135" y2="120" class="l sa w2"/>
+<circle cx="65" cy="184" r="4" class="fa"/>
+<circle cx="100" cy="152" r="4" class="fa"/>
+<circle cx="135" cy="120" r="4" class="fa"/>
+<text x="58" y="178" class="tb" text-anchor="end">3</text>
+<text x="93" y="146" class="tb" text-anchor="end">5</text>
+<text x="128" y="114" class="tb" text-anchor="end">7</text>
+<polyline points="180,232 197.5,228 215,216 232.5,196 250,168 267.5,132 285,88" class="l swn w2"/>
+<circle cx="215" cy="216" r="4" class="fm"/>
+<circle cx="250" cy="168" r="4" class="fm"/>
+<circle cx="285" cy="88" r="4" class="fm"/>
+<text x="208" y="208" class="tb" text-anchor="end">1</text>
+<text x="257" y="172" class="tb">4</text>
+<text x="270" y="92" class="tb" text-anchor="end">9</text>
+<text x="85" y="276" class="tb ta" text-anchor="middle">増え方 +2, +2</text>
+<text x="85" y="296" class="tm" text-anchor="middle">いつも同じ</text>
+<text x="235" y="276" class="tb twn" text-anchor="middle">増え方 +3, +5</text>
+<text x="235" y="296" class="tm" text-anchor="middle">場所で変わる</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="338" class="tb">線形は何回重ねても線形のまま</text>
+<text x="12" y="360">2倍してから3倍 ＝ 6倍を1回と同じ</text>
+<text x="12" y="382">→ 層を何段重ねても、まっすぐな関係しか</text>
+<text x="12" y="402">　表せない</text>
+<text x="12" y="430" class="tb">曲がった関係を表すために、層の間に</text>
+<text x="12" y="452" class="tb">非線形の計算（活性化関数）をはさむ</text>
+</svg>

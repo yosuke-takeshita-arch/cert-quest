@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 954" role="img" aria-labelledby="fig-g-quantization-t fig-g-quantization-d">
+<title id="fig-g-quantization-t">量子化：32ビットの重みを8ビットの整数に丸め、大きさを4分の1にする。精度は少し下がる</title>
+<desc id="fig-g-quantization-d">重みが−1.0〜1.0の範囲にあるモデルの説明用の例。①8ビットで表せる整数は0〜255の256通りで、−1.0を0、0を128、1.0を255に当てる。刻みは範囲の幅÷255＝2÷255≈0.00784。②重み0.3を丸める。整数は重み÷刻みを四捨五入して128を足す。0.3÷0.00784≈38.3を四捨五入して38、38＋128＝166で、8ビットの整数166として持つ。使うときは(整数−128)×刻みで戻し、(166−128)×0.00784＝38×0.00784≈0.298。ずれは0.3−0.298＝0.002で、これが丸めの誤差。0.3のまわりを拡大すると、使える値は0.290（165）、0.298（166）、0.306（167）で、0.3はいちばん近い166へ丸まる。③1億個の重みなら、32ビットは4バイト×1億＝400MB、8ビットは1バイト×1億＝100MBで4分の1。計算も整数だけで済み、端末で速く動く。④原論文の表では、ResNet-50のImageNetでの正解率が32ビットで76.4%、8ビットで74.9%。下がったのは1.5ポイントで、丸めの誤差のせい。この数は、学習のときから丸めをまねて（量子化を前提に）学習した結果。量子化は1つの重みのビット数を減らし、重みの数は変わらない。重みの数を減らすのはプルーニング。</desc>
+<text x="12" y="20" class="tb">量子化：32ビットの数を8ビットの整数に丸める</text>
+<text x="12" y="42" class="tm">例：重みが −1.0〜1.0 の範囲にあるモデル</text>
+<text x="12" y="60" class="tm">（数は説明用に計算した）</text>
+<text x="12" y="88" class="tb">① 目盛りを 256 段階にする</text>
+<text x="12" y="108" class="tm">8ビットで表せる整数は 0〜255 の 256 通り</text>
+<line x1="24" y1="140" x2="296" y2="140" class="l"/>
+<line x1="24" y1="135" x2="24" y2="145" class="l sm w1"/>
+<line x1="41" y1="135" x2="41" y2="145" class="l sm w1"/>
+<line x1="58" y1="135" x2="58" y2="145" class="l sm w1"/>
+<line x1="75" y1="135" x2="75" y2="145" class="l sm w1"/>
+<line x1="92" y1="135" x2="92" y2="145" class="l sm w1"/>
+<line x1="109" y1="135" x2="109" y2="145" class="l sm w1"/>
+<line x1="126" y1="135" x2="126" y2="145" class="l sm w1"/>
+<line x1="143" y1="135" x2="143" y2="145" class="l sm w1"/>
+<line x1="160" y1="135" x2="160" y2="145" class="l sm w1"/>
+<line x1="177" y1="135" x2="177" y2="145" class="l sm w1"/>
+<line x1="194" y1="135" x2="194" y2="145" class="l sm w1"/>
+<line x1="211" y1="135" x2="211" y2="145" class="l sm w1"/>
+<line x1="228" y1="135" x2="228" y2="145" class="l sm w1"/>
+<line x1="245" y1="135" x2="245" y2="145" class="l sm w1"/>
+<line x1="262" y1="135" x2="262" y2="145" class="l sm w1"/>
+<line x1="279" y1="135" x2="279" y2="145" class="l sm w1"/>
+<line x1="296" y1="135" x2="296" y2="145" class="l sm w1"/>
+<text x="24" y="128" class="tm" text-anchor="middle">−1.0</text>
+<text x="160" y="128" class="tm" text-anchor="middle">0</text>
+<text x="296" y="128" class="tm" text-anchor="middle">1.0</text>
+<text x="24" y="162" class="tb ta" text-anchor="middle">0</text>
+<text x="160" y="162" class="tb ta" text-anchor="middle">128</text>
+<text x="296" y="162" class="tb ta" text-anchor="middle">255</text>
+<text x="12" y="184" class="tm">上の数＝元の重み、青の数＝8ビットの整数</text>
+<text x="12" y="202" class="tm">（目盛りは間引いて描いた。実際は 256 本）</text>
+<text x="12" y="218" class="tm">刻み＝範囲の幅 ÷ 255＝2÷255≈0.00784</text>
+<text x="12" y="236" class="tm">0 は整数 128 に当てる</text>
+<line x1="12" y1="252" x2="308" y2="252" class="l sb w1"/>
+<text x="12" y="276" class="tb">② 重み 0.3 を丸める</text>
+<text x="12" y="296" class="tm">整数＝重み÷刻み を四捨五入して 128 を足す</text>
+<rect x="12" y="308" width="296" height="66" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="24" y="328">0.3÷0.00784≈38.3 → 四捨五入で 38</text>
+<text x="24" y="348">38＋128＝166</text>
+<text x="24" y="366" class="tb ta">→ 8ビットの整数 166 として持つ</text>
+<text x="12" y="392" class="tm">使うときに戻す：(整数−128)×刻み</text>
+<rect x="12" y="402" width="296" height="50" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="24" y="422">(166−128)×0.00784＝38×0.00784≈0.298</text>
+<text x="24" y="442" class="tng">ずれ＝0.3−0.298＝0.002（丸めの誤差）</text>
+<text x="12" y="470" class="tm">0.3 のまわりを拡大（目盛り＝使える値）</text>
+<line x1="24" y1="508" x2="296" y2="508" class="l"/>
+<line x1="69.33333333333333" y1="502" x2="69.33333333333333" y2="514" class="l sa w2"/>
+<text x="69.33333333333333" y="532" class="tb ta" text-anchor="middle">165</text>
+<text x="69.33333333333333" y="496" class="tm" text-anchor="middle">0.290</text>
+<line x1="160" y1="502" x2="160" y2="514" class="l sa w2"/>
+<text x="160" y="532" class="tb ta" text-anchor="middle">166</text>
+<text x="160" y="496" class="tm" text-anchor="middle">0.298</text>
+<line x1="250.66666666666669" y1="502" x2="250.66666666666669" y2="514" class="l sa w2"/>
+<text x="250.66666666666669" y="532" class="tb ta" text-anchor="middle">167</text>
+<text x="250.66666666666669" y="496" class="tm" text-anchor="middle">0.306</text>
+<circle cx="182.7" cy="508" r="4" class="fng sng" stroke-width="1.5"/>
+<text x="184.66666666666669" y="552" class="tng" text-anchor="middle">0.3（元の重み）→ いちばん近い 166 へ</text>
+<line x1="12" y1="570" x2="308" y2="570" class="l sb w1"/>
+<text x="12" y="594" class="tb">③ 大きさ：1億個の重みなら</text>
+<text x="12" y="622" class="tb">32ビット</text>
+<rect x="80" y="606" width="220.00000000000003" height="22" class="fs sb" stroke-width="1.5" rx="2"/>
+<text x="294" y="622" text-anchor="end">4バイト×1億＝400MB</text>
+<text x="12" y="654" class="tb tok">8ビット</text>
+<rect x="80" y="638" width="55.00000000000001" height="22" class="fok sok" stroke-width="1.5" rx="2"/>
+<text x="141" y="654" class="tb tok">1バイト×1億＝100MB</text>
+<text x="12" y="680" class="tm">→ 4分の1。計算も整数だけで済み、</text>
+<text x="12" y="698" class="tm">　スマホなどの端末で速く動く</text>
+<line x1="12" y1="714" x2="308" y2="714" class="l sb w1"/>
+<text x="12" y="738" class="tb">④ 精度：少し下がる（原論文の表）</text>
+<text x="12" y="758" class="tm">ResNet-50 の ImageNet での正解率</text>
+<text x="12" y="786" class="tb">32ビット</text>
+<rect x="80" y="770" width="116.48000000000002" height="22" class="fs sb" stroke-width="1.5" rx="2"/>
+<text x="202.48000000000002" y="786" class="tb">76.4%</text>
+<text x="12" y="818" class="tb tok">8ビット</text>
+<rect x="80" y="802" width="111.68000000000004" height="22" class="fok sok" stroke-width="1.5" rx="2"/>
+<text x="197.68" y="818" class="tb tok">74.9%</text>
+<text x="12" y="842" class="tm">棒は 40% から先を描いた</text>
+<text x="12" y="862" class="tb ta">→ 下がったのは 76.4−74.9＝1.5 ポイント</text>
+<text x="12" y="882" class="tm">丸めの誤差のせい。この数は、学習のときから</text>
+<text x="12" y="900" class="tm">丸めをまねて（量子化を前提に）学習した結果</text>
+<text x="12" y="922" class="tm">量子化は1つの重みのビット数を減らす。</text>
+<text x="12" y="940" class="tm">重みの数は変わらない（減らすのはプルーニング）</text>
+</svg>

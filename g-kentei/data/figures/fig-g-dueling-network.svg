@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1018" role="img" aria-labelledby="fig-g-dueling-network-t fig-g-dueling-network-d">
+<title id="fig-g-dueling-network-t">デュエリングネットワーク：状態の価値Vと行動ごとのアドバンテージAを別の流れで出し、足してQ値にする</title>
+<desc id="fig-g-dueling-network-d">Qはその状態でその行動を選んだときにこれから得られる点数の見積もり。行動は左・右の2つの説明用の例。①ゲームの画面を共通の畳み込み層に通し、2本の流れに分ける。状態の価値V（いまの状態の良さ）は10、アドバンテージA（平均よりどれだけ良いか）は左＋1、右−1。行動ごとに足してQ＝V＋A、左は10＋1＝11、右は10＋(−1)＝9。Qが大きい左を選ぶ。10は左右で共有し、左右の違い2だけをAが受け持つ。②V＝8、A＝左＋3・右＋1でもQは11と9で同じなので、Qを見てもVとAの分け方が決まらない。そこでAからAの平均を引いてから足す。平均は(3＋1)÷2＝2で、左3−2＝＋1、右1−2＝−1。Aの平均は0にそろい、Vはいつも状態の良さそのものを表す。Qの大小の順は変わらない。③左を選んだら目標がQ＝13だった（ずれ2）とし、ずれの半分の1だけ直す説明用の例（デュエリングでは直す分がVに入った場合）。普通のDQNは左のQだけ11から12に直り、右は9のまま。デュエリングはVが10から11に直るので、左は11から12、試していない右も9から10に上がる。どの行動を試してもVが学ばれるので、状態そのものの良し悪しを早く学べ、行動の数が多いほど差が大きい。④原論文の例のカーレースEnduroでは、Vの流れは道路の先（地平線）と点数を見て、Aの流れはすぐ前に車が迫ったときだけ反応する。前に車がいなければ左右どちらでも大差ない。出力の構造を変えるのがデュエリング、目標の作り方を変えるのがダブルDQN。</desc>
+<text x="12" y="20" class="tb">デュエリングネットワーク：</text>
+<text x="12" y="38" class="tb">状態の価値 V と行動ごとの差 A を足して Q</text>
+<text x="12" y="60" class="tm">Q＝その状態でその行動を選んだときの</text>
+<text x="12" y="78" class="tm">　これから得られる点数の見積もり</text>
+<text x="12" y="98" class="tm">例：行動は左・右の2つ（数は説明用）</text>
+<text x="12" y="126" class="tb">① 2本の流れに分けて、最後に足す</text>
+<rect x="90" y="140" width="140" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="160" y="159" text-anchor="middle">ゲームの画面</text>
+<line x1="160" y1="168" x2="160.0" y2="178.4" class="l sm w1"/>
+<polygon points="160,184 156.5,178.4 163.5,178.4" class="fm"/>
+<rect x="90" y="184" width="140" height="28" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="160" y="203" text-anchor="middle">共通の畳み込み層</text>
+<line x1="130" y1="212" x2="87.1" y2="231.7" class="l sa w1"/>
+<polygon points="82,234 85.6,228.5 88.5,234.8" class="fa"/>
+<line x1="190" y1="212" x2="232.9" y2="231.7" class="l sok w1"/>
+<polygon points="238,234 231.5,234.8 234.4,228.5" class="fok"/>
+<rect x="12" y="234" width="140" height="74" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="82" y="254" class="tb ta" text-anchor="middle">状態の価値 V</text>
+<text x="82" y="274" class="tm" text-anchor="middle">いまの状態の良さ</text>
+<text x="82" y="296" class="tb" text-anchor="middle">V＝10</text>
+<rect x="168" y="234" width="140" height="74" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="238" y="254" class="tb tok" text-anchor="middle">アドバンテージ A</text>
+<text x="238" y="274" class="tm" text-anchor="middle">平均よりどれだけ良いか</text>
+<text x="238" y="296" class="tb" text-anchor="middle">左 ＋1　右 −1</text>
+<line x1="82" y1="308" x2="134.9" y2="331.7" class="l sa w1"/>
+<polygon points="140,334 133.5,334.9 136.3,328.5" class="fa"/>
+<line x1="238" y1="308" x2="185.1" y2="331.7" class="l sok w1"/>
+<polygon points="180,334 183.7,328.5 186.5,334.9" class="fok"/>
+<rect x="40" y="334" width="240" height="52" class="fs sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="354" class="tb" text-anchor="middle">Q＝V＋A（行動ごとに足す）</text>
+<text x="160" y="376" text-anchor="middle">左 10＋1＝11　右 10＋(−1)＝9</text>
+<text x="12" y="408" class="tm">→ Q が大きい左を選ぶ。10 は左右で共有し、</text>
+<text x="12" y="426" class="tm">　左右の違い（2）だけを A が受け持つ</text>
+<line x1="12" y1="442" x2="308" y2="442" class="l sb w1"/>
+<text x="12" y="466" class="tb">② なぜ A から平均を引くのか</text>
+<text x="12" y="486" class="tm">V＝8、A＝左＋3・右＋1 でも、Q は 11 と 9 で同じ</text>
+<text x="12" y="504" class="tm">→ Q を見ても V と A の分け方が決まらない</text>
+<text x="12" y="524" class="tm">そこで A から A の平均を引いてから足す</text>
+<text x="12" y="544" class="tb ta">平均＝(3＋1)÷2＝2 → 左 3−2＝＋1、右 1−2＝−1</text>
+<text x="12" y="564" class="tm">A の平均は 0 にそろい、V はいつも状態の良さ</text>
+<text x="12" y="582" class="tm">そのものを表す（Q の大小の順は変わらない）</text>
+<line x1="12" y1="598" x2="308" y2="598" class="l sb w1"/>
+<text x="12" y="622" class="tb">③ 1回の学習で何が変わるか（説明用の例）</text>
+<text x="12" y="642" class="tm">左を選んだら、目標は Q＝13 だった（ずれ 2）</text>
+<text x="12" y="660" class="tm">ずれの半分（1）だけ直す。デュエリングでは</text>
+<text x="12" y="678" class="tm">直す分が V に入った場合</text>
+<rect x="12" y="690" width="140" height="104" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="82" y="710" class="tb" text-anchor="middle">普通の DQN</text>
+<text x="82" y="732" class="tm" text-anchor="middle">左の Q だけ直る</text>
+<text x="82" y="754" text-anchor="middle">左 11→12</text>
+<text x="82" y="776" class="tm" text-anchor="middle">右 9→9（そのまま）</text>
+<rect x="168" y="690" width="140" height="104" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="238" y="710" class="tb ta" text-anchor="middle">デュエリング</text>
+<text x="238" y="732" class="tm" text-anchor="middle">V が直る（10→11）</text>
+<text x="238" y="754" text-anchor="middle">左 11→12</text>
+<text x="238" y="776" class="tb ta" text-anchor="middle">右 9→10</text>
+<text x="12" y="812" class="tm">→ 試していない右の Q も一緒に上がる。</text>
+<text x="12" y="830" class="tm">　どの行動を試しても V が学ばれるので、</text>
+<text x="12" y="848" class="tm">　状態そのものの良し悪しを早く学べる</text>
+<text x="12" y="866" class="tm">（行動の数が多いほど差が大きい）</text>
+<line x1="12" y1="882" x2="308" y2="882" class="l sb w1"/>
+<text x="12" y="906" class="tb">④ 原論文の例：カーレース Enduro</text>
+<text x="12" y="926" class="ta">V の流れ：道路の先（地平線）と点数を見る</text>
+<text x="12" y="946" class="tok">A の流れ：すぐ前に車が迫ったときだけ反応</text>
+<text x="12" y="966" class="tm">前に車がいなければ、左右どちらでも大差ない</text>
+<text x="12" y="986" class="tm">出力の構造を変えるのがデュエリング、</text>
+<text x="12" y="1004" class="tm">目標の作り方を変えるのがダブル DQN</text>
+</svg>

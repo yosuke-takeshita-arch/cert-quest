@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 468" role="img" aria-labelledby="fig-ap-reasoning-model-t fig-ap-reasoning-model-d">
+<title id="fig-ap-reasoning-model-t">推論モデル：答える前に内部で長い思考の連鎖を作る。学習時と推論時の計算</title>
+<desc id="fig-ap-reasoning-model-d">ふつうのLLMは質問からすぐ答えを出す。推論モデル（o1など）は、質問のあと、画面に出ない内部の思考の連鎖を作ってから答える。考えに使うトークンも出力として数え、使用量・料金がかかる。o1の成績を上げた2つの計算：学習時の計算（強化学習を多く行う）を増やすほど、推論時の計算（答える前に考える時間を長くする）を増やすほど、成績が上がった。GPT-5は、ルーターが速いモデルと深く推論するモデルを質問によって選ぶ。「推論」には2つの意味があり、推論モデルの推論は筋道を立てて考えること、学習済みモデルの推論は予測を出す工程のこと。</desc>
+<text x="12" y="20" class="tb">推論モデル：答える前に内部で考える</text>
+<text x="12" y="46" class="tb">ふつうの LLM</text>
+<rect x="12" y="56" width="90" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="57" y="77" text-anchor="middle">質問</text>
+<line x1="104" y1="72" x2="216" y2="72" class="l sa w2"/>
+<polyline points="209.00,76.00 216,72 209.00,68.00" class="l sa w2"/>
+<rect x="218" y="56" width="90" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="263" y="77" text-anchor="middle">答え</text>
+<text x="12" y="116" class="tb ta">推論モデル（o1 など）</text>
+<rect x="12" y="126" width="60" height="46" class="fs sb" stroke-width="1.5"/>
+<text x="42" y="154" text-anchor="middle">質問</text>
+<line x1="74" y1="149" x2="88" y2="149" class="l sa w2"/>
+<polyline points="81.00,153.00 88,149 81.00,145.00" class="l sa w2"/>
+<rect x="90" y="126" width="140" height="46" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="144" text-anchor="middle">内部の思考の連鎖</text>
+<text x="160" y="164" class="tm" text-anchor="middle">画面に出ない</text>
+<line x1="232" y1="149" x2="246" y2="149" class="l sa w2"/>
+<polyline points="239.00,153.00 246,149 239.00,145.00" class="l sa w2"/>
+<rect x="248" y="126" width="60" height="46" class="fok sok" stroke-width="1.5"/>
+<text x="278" y="154" text-anchor="middle">答え</text>
+<text x="12" y="194" class="tng">考えに使うトークンも出力として数え、</text>
+<text x="12" y="212" class="tng">使用量・料金がかかる</text>
+<line x1="12" y1="228" x2="308" y2="228" class="l sb w1"/>
+<text x="12" y="250" class="tb">o1 の成績を上げた2つの計算</text>
+<rect x="12" y="260" width="145" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="84.5" y="283" class="tb" text-anchor="middle">学習時の計算</text>
+<text x="84.5" y="303" text-anchor="middle">強化学習を多く</text>
+<text x="84.5" y="323" class="tok" text-anchor="middle">↑ 成績が上がる</text>
+<rect x="163" y="260" width="145" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="235.5" y="283" class="tb" text-anchor="middle">推論時の計算</text>
+<text x="235.5" y="303" text-anchor="middle">考える時間を長く</text>
+<text x="235.5" y="323" class="tok" text-anchor="middle">↑ 成績が上がる</text>
+<text x="12" y="352" class="tb">GPT-5：ルーターが、速いモデルと</text>
+<text x="12" y="372" class="tb">深く推論するモデルを質問で選ぶ</text>
+<line x1="12" y1="388" x2="308" y2="388" class="l sb w1"/>
+<text x="12" y="410" class="tb">「推論」の2つの意味</text>
+<text x="12" y="430">推論モデルの推論＝筋道を立てて考えること</text>
+<text x="12" y="450" class="tm">学習済みモデルの推論＝予測を出す工程</text>
+</svg>

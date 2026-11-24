@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 872" role="img" aria-labelledby="fig-g-mds-t fig-g-mds-d">
+<title id="fig-g-mds-t">多次元尺度構成法（MDS）：距離の表だけから、距離が保たれるように点を配置する</title>
+<desc id="fig-g-mds-d">多次元尺度構成法（MDS）は、データどうしの距離（似ていなさ）だけから、その距離ができるだけ保たれるように点を低い次元に配置する方法。例：4都市のおよその直線距離（km）で、緯度・経度（位置）は渡さない。①手元にあるのは距離の表だけ：東京–大阪400、東京–福岡890、東京–札幌830、大阪–福岡480、大阪–札幌1,060、福岡–札幌1,420。②距離ができるだけ保たれるように平面に4つの点を置く。MDSが出した配置は向きや裏返しが決まらない。この例では回すと、北が上の日本地図と同じ並び（札幌が北東、福岡が南西、その間に大阪と東京）になる。③置いた点の間を測り直すと、東京–大阪は表400に対して約406、東京–札幌は830に対して約830、大阪–福岡は480に対して約484、福岡–札幌は1,420に対して約1,420で、ほぼ表のとおり（差は10km未満）。どこで使うか：似ていなさの表しか無いデータの地図に。例：飲料10種を2つずつ比べて答えてもらうと、似た飲料が近くに並ぶ地図ができる。PCAとの違い：PCAは特徴量の値から、ばらつきの大きい軸を求める。MDSは距離の表から、距離を保つ配置を求める。</desc>
+<text x="12" y="20" class="tb">MDS：距離の表だけから、点の配置を描く</text>
+<text x="12" y="42" class="tm">例：4都市のおよその直線距離（km）</text>
+<text x="12" y="60" class="tm">緯度・経度（位置）は渡さない。距離だけ</text>
+<text x="12" y="92" class="tb">① 手元にあるのは距離の表だけ</text>
+<text x="94.5" y="114" class="tb tm" text-anchor="middle">東京</text>
+<text x="155.5" y="114" class="tb tm" text-anchor="middle">大阪</text>
+<text x="216.5" y="114" class="tb tm" text-anchor="middle">福岡</text>
+<text x="277.5" y="114" class="tb tm" text-anchor="middle">札幌</text>
+<text x="24" y="140" class="tb">東京</text>
+<rect x="64" y="122" width="61" height="26" class="fbg sb" stroke-width="1"/>
+<text x="94.5" y="140" class="tm" text-anchor="middle">0</text>
+<rect x="125" y="122" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="155.5" y="140" class="tb" text-anchor="middle">400</text>
+<rect x="186" y="122" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="216.5" y="140" class="tb" text-anchor="middle">890</text>
+<rect x="247" y="122" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="277.5" y="140" class="tb" text-anchor="middle">830</text>
+<text x="24" y="166" class="tb">大阪</text>
+<rect x="64" y="148" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="94.5" y="166" class="tb" text-anchor="middle">400</text>
+<rect x="125" y="148" width="61" height="26" class="fbg sb" stroke-width="1"/>
+<text x="155.5" y="166" class="tm" text-anchor="middle">0</text>
+<rect x="186" y="148" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="216.5" y="166" class="tb" text-anchor="middle">480</text>
+<rect x="247" y="148" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="277.5" y="166" class="tb" text-anchor="middle">1,060</text>
+<text x="24" y="192" class="tb">福岡</text>
+<rect x="64" y="174" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="94.5" y="192" class="tb" text-anchor="middle">890</text>
+<rect x="125" y="174" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="155.5" y="192" class="tb" text-anchor="middle">480</text>
+<rect x="186" y="174" width="61" height="26" class="fbg sb" stroke-width="1"/>
+<text x="216.5" y="192" class="tm" text-anchor="middle">0</text>
+<rect x="247" y="174" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="277.5" y="192" class="tb" text-anchor="middle">1,420</text>
+<text x="24" y="218" class="tb">札幌</text>
+<rect x="64" y="200" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="94.5" y="218" class="tb" text-anchor="middle">830</text>
+<rect x="125" y="200" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="155.5" y="218" class="tb" text-anchor="middle">1,060</text>
+<rect x="186" y="200" width="61" height="26" class="fs sb" stroke-width="1"/>
+<text x="216.5" y="218" class="tb" text-anchor="middle">1,420</text>
+<rect x="247" y="200" width="61" height="26" class="fbg sb" stroke-width="1"/>
+<text x="277.5" y="218" class="tm" text-anchor="middle">0</text>
+<line x1="160" y1="234" x2="160" y2="242.4" class="l sm w1"/>
+<polygon points="160,248 156.5,242.4 163.5,242.4" class="fm"/>
+<text x="12" y="270" class="tb">② 距離ができるだけ保たれるように、</text>
+<text x="12" y="290" class="tb">平面に4つの点を置く</text>
+<rect x="12" y="304" width="134" height="134" class="fs sb" stroke-width="1"/>
+<text x="79" y="456" class="tb" text-anchor="middle">MDS が出した配置</text>
+<text x="79" y="474" class="tm" text-anchor="middle">（向きは決まらない）</text>
+<line x1="87" y1="394.7" x2="59.3" y2="377.6" class="l sm w1 dot"/>
+<line x1="87" y1="394.7" x2="28" y2="354.8" class="l sm w1 dot"/>
+<line x1="87" y1="394.7" x2="141.6" y2="356.9" class="l sm w1 dot"/>
+<line x1="59.3" y1="377.6" x2="28" y2="354.8" class="l sm w1 dot"/>
+<line x1="59.3" y1="377.6" x2="141.6" y2="356.9" class="l sm w1 dot"/>
+<line x1="28" y1="354.8" x2="141.6" y2="356.9" class="l sm w1 dot"/>
+<circle cx="87.01" cy="394.69" r="4.5" class="fa"/>
+<text x="94" y="386.7" class="tb">東京</text>
+<circle cx="59.33" cy="377.64" r="4.5" class="fa"/>
+<text x="66.3" y="369.6" class="tb">大阪</text>
+<circle cx="28.03" cy="354.8" r="4.5" class="fa"/>
+<text x="35" y="346.8" class="tb">福岡</text>
+<circle cx="141.63" cy="356.87" r="4.5" class="fa"/>
+<text x="134.6" y="348.9" class="tb" text-anchor="end">札幌</text>
+<line x1="149" y1="374" x2="165" y2="374" class="l sm w1"/>
+<polygon points="171,374 164,378 164,370" class="l sm"/>
+<text x="160" y="364" class="tm" text-anchor="middle">回す</text>
+<rect x="174" y="304" width="134" height="134" class="fs sb" stroke-width="1"/>
+<text x="241" y="456" class="tb" text-anchor="middle">回すと日本地図の</text>
+<text x="241" y="474" class="tm" text-anchor="middle">並び（北が上）</text>
+<line x1="263.9" y1="381" x2="232.7" y2="390" class="l sm w1 dot"/>
+<line x1="263.9" y1="381" x2="194.7" y2="397.8" class="l sm w1 dot"/>
+<line x1="263.9" y1="381" x2="272.6" y2="315.1" class="l sm w1 dot"/>
+<line x1="232.7" y1="390" x2="194.7" y2="397.8" class="l sm w1 dot"/>
+<line x1="232.7" y1="390" x2="272.6" y2="315.1" class="l sm w1 dot"/>
+<line x1="194.7" y1="397.8" x2="272.6" y2="315.1" class="l sm w1 dot"/>
+<circle cx="263.92" cy="381" r="4.5" class="fok sok"/>
+<text x="270.9" y="373" class="tb">東京</text>
+<circle cx="232.7" cy="390.02" r="4.5" class="fok sok"/>
+<text x="239.7" y="382" class="tb">大阪</text>
+<circle cx="194.74" cy="397.83" r="4.5" class="fok sok"/>
+<text x="201.7" y="389.8" class="tb">福岡</text>
+<circle cx="272.65" cy="315.14" r="4.5" class="fok sok"/>
+<text x="279.6" y="333.1" class="tb">札幌</text>
+<text x="12" y="500" class="tm">（裏返しが要る配置が出ることもある）</text>
+<line x1="160" y1="510" x2="160" y2="518.4" class="l sm w1"/>
+<polygon points="160,524 156.5,518.4 163.5,518.4" class="fm"/>
+<text x="12" y="546" class="tb">③ 置いた点の間を測り直す</text>
+<text x="24" y="570" class="tm">2都市</text>
+<text x="176" y="570" class="tm" text-anchor="end">表の距離</text>
+<text x="290" y="570" class="tm" text-anchor="end">配置の上</text>
+<text x="24" y="594" class="tb">東京–大阪</text>
+<text x="176" y="594" class="tb" text-anchor="end">400</text>
+<text x="290" y="594" class="tb ta" text-anchor="end">約406</text>
+<text x="24" y="616" class="tb">東京–札幌</text>
+<text x="176" y="616" class="tb" text-anchor="end">830</text>
+<text x="290" y="616" class="tb ta" text-anchor="end">約830</text>
+<text x="24" y="638" class="tb">大阪–福岡</text>
+<text x="176" y="638" class="tb" text-anchor="end">480</text>
+<text x="290" y="638" class="tb ta" text-anchor="end">約484</text>
+<text x="24" y="660" class="tb">福岡–札幌</text>
+<text x="176" y="660" class="tb" text-anchor="end">1,420</text>
+<text x="290" y="660" class="tb ta" text-anchor="end">約1,420</text>
+<text x="12" y="700" class="tb tok">ほぼ表のとおり（差は 10 km 未満）</text>
+<text x="12" y="736" class="tb">どこで使うか</text>
+<text x="12" y="756">『似ていなさ』の表しか無いデータの地図に</text>
+<text x="12" y="774">例：飲料10種を2つずつ比べて答えてもらう</text>
+<text x="12" y="792">→ 似た飲料が近くに並ぶ地図ができる</text>
+<text x="12" y="820" class="tb">PCA との違い</text>
+<text x="12" y="840">PCA：特徴量の値から、ばらつきの大きい軸</text>
+<text x="12" y="858">MDS：距離の表から、距離を保つ配置</text>
+</svg>

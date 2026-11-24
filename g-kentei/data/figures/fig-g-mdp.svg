@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 900" role="img" aria-labelledby="fig-g-mdp-t fig-g-mdp-d">
+<title id="fig-g-mdp-t">マルコフ決定過程：状態・行動・報酬・遷移で強化学習の問題を表す。遷移の確率を知らなくても学べる</title>
+<desc id="fig-g-mdp-d">マルコフ決定過程（MDP）は、強化学習の問題を、状態・行動・報酬・遷移（状態の移り変わり）で表す枠組み。マルコフ性は、次の状態と報酬が、いまの状態と行動だけで決まり、それより前の履歴によらない性質。①例：ロボットが部屋A・B・Cを動く。状態はいる部屋、行動は右へ動くこと。部屋Aで右へ動くと、確率0.8で部屋Bに移り、0.2で滑ってその場に残る。部屋Bで右へ動くと、0.8で部屋Cに移り報酬10を得る。確率は説明のための例。②マルコフ性：部屋Bで右へ動いたときに部屋Cへ移る確率は0.8で、部屋Aから来たか部屋Cから戻ったかにはよらない。チェスでは、いまの盤面が分かれば、それまでの指し手の順は要らない。マルコフ性が成り立つには、未来に違いを生む過去の情報が、いまの状態に含まれている必要がある。③遷移の確率を知っているか：知っていれば、モデルベースの方法（動的計画法など）で動く前に計画できる。知らなくても、モデルフリーの方法（Q学習・SARSA）で、実際に動いて得た報酬から学べる。どちらもマルコフ決定過程の問題で、遷移の確率を知らなくても学習は始められる。</desc>
+<text x="12" y="20" class="tb">マルコフ決定過程（MDP）</text>
+<text x="12" y="42" class="tm">強化学習の問題を、状態・行動・報酬・</text>
+<text x="12" y="60" class="tm">遷移（状態の移り変わり）の4つで表す枠組み</text>
+<text x="12" y="78" class="tm">マルコフ性＝次の状態と報酬が、いまの状態</text>
+<text x="12" y="96" class="tm">と行動だけで決まり、それより前によらない</text>
+<line x1="12" y1="110" x2="308" y2="110" class="l sb w1"/>
+<text x="12" y="132" class="tb">① 例：ロボットが部屋 A・B・C を動く</text>
+<rect x="12" y="170" width="64" height="40" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="44" y="195" class="tb" text-anchor="middle">部屋A</text>
+<rect x="128" y="170" width="64" height="40" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="160" y="195" class="tb" text-anchor="middle">部屋B</text>
+<rect x="244" y="170" width="64" height="40" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="276" y="195" class="tb tok" text-anchor="middle">部屋C</text>
+<line x1="76" y1="190" x2="122" y2="190" class="l sa w2"/>
+<polygon points="128,190 120,185.5 120,194.5" class="fa"/>
+<text x="100" y="182" class="tb ta" text-anchor="middle">0.8</text>
+<line x1="192" y1="190" x2="238" y2="190" class="l sa w2"/>
+<polygon points="244,190 236,185.5 236,194.5" class="fa"/>
+<text x="216" y="182" class="tb ta" text-anchor="middle">0.8</text>
+<path d="M30,170 C30,146 58,146 58,166" class="l sm w1 dsh"/>
+<polygon points="58,170 54.5,163 61.5,163" class="fm"/>
+<text x="64" y="154" class="tm">0.2 滑って残る</text>
+<path d="M146,170 C146,146 174,146 174,166" class="l sm w1 dsh"/>
+<polygon points="174,170 170.5,163 177.5,163" class="fm"/>
+<text x="180" y="154" class="tm">0.2</text>
+<text x="276" y="232" class="tb tok" text-anchor="middle">報酬 10</text>
+<text x="12" y="232" class="tm">行動はどれも『右へ動く』</text>
+<text x="12" y="258"><tspan class="tb">状態</tspan>：いま、どの部屋にいるか</text>
+<text x="12" y="278"><tspan class="tb">行動</tspan>：右へ動く・左へ動く</text>
+<text x="12" y="298"><tspan class="tb">報酬</tspan>：部屋C に着くともらえる 10</text>
+<text x="12" y="318"><tspan class="tb ta">遷移</tspan>：行動の後、どの部屋に移るか</text>
+<text x="12" y="336">　（矢印に添えた数＝その確率）</text>
+<text x="12" y="356" class="tm">（確率と報酬は説明のための例）</text>
+<line x1="12" y1="370" x2="308" y2="370" class="l sb w1"/>
+<text x="12" y="392" class="tb">② マルコフ性：いまだけ見ればよい</text>
+<text x="12" y="414">部屋B で右へ動くと、部屋C へ移る確率は</text>
+<text x="12" y="432">0.8。部屋A から来たか、部屋C から戻った</text>
+<text x="12" y="450">かには よらない</text>
+<text x="12" y="472" class="tm">例：チェスは、いまの盤面が分かれば、</text>
+<text x="12" y="490" class="tm">それまでの指し手の順は要らない</text>
+<text x="12" y="512">成り立つには、未来に違いを生む過去の</text>
+<text x="12" y="530">情報が、いまの状態の中に入っている必要</text>
+<text x="12" y="548">がある（Sutton と Barto の教科書）</text>
+<line x1="12" y1="562" x2="308" y2="562" class="l sb w1"/>
+<text x="12" y="584" class="tb">③ 遷移の確率を、前もって知っているか</text>
+<rect x="12" y="596" width="142" height="150" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="83" y="618" class="tb" text-anchor="middle">知っている</text>
+<text x="20" y="642">モデルベース</text>
+<text x="20" y="662" class="tm">0.8 や 0.2 を使い、</text>
+<text x="20" y="680" class="tm">動く前に頭の中で</text>
+<text x="20" y="698" class="tm">先を読んで計画する</text>
+<text x="20" y="722" class="tm">例：動的計画法</text>
+<rect x="166" y="596" width="142" height="150" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="237" y="618" class="tb ta" text-anchor="middle">知らない</text>
+<text x="174" y="642">モデルフリー</text>
+<text x="174" y="662" class="tm">確率は分からない。</text>
+<text x="174" y="680" class="tm">実際に動いて得た</text>
+<text x="174" y="698" class="tm">報酬から学ぶ</text>
+<text x="174" y="722" class="tm">例：Q学習・SARSA</text>
+<text x="12" y="770" class="tm">モデル＝環境がどう動くか（遷移の確率など）</text>
+<text x="12" y="788" class="tm">を予測するもの</text>
+<rect x="12" y="802" width="296" height="70" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="824" class="tb tok" text-anchor="middle">どちらもマルコフ決定過程の問題</text>
+<text x="160" y="844" class="tb tok" text-anchor="middle">遷移の確率を知らなくても、</text>
+<text x="160" y="864" class="tb tok" text-anchor="middle">学習は始められる</text>
+</svg>

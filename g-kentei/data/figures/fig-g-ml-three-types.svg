@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 468" role="img" aria-labelledby="fig-g-ml-three-types-t fig-g-ml-three-types-d">
+<title id="fig-g-ml-three-types-t">教師あり学習・教師なし学習・強化学習の違い</title>
+<desc id="fig-g-ml-three-types-d">3つの学習を、学ぶ材料の違いで並べた図。教師ありは、点に正解（ラベル）が付いていて、2つのグループを分ける境界を学ぶ。材料は特徴量と正解。教師なしは、同じ点に正解が無く、似た点どうしのまとまりを見つける。材料は特徴量だけ。強化学習は、エージェントが環境の中で行動し、返ってくる報酬が最大になる行動を学ぶ。材料は行動と報酬。</desc>
+<text x="12" y="20" class="tb">同じ点でも、学ぶ材料が違う</text>
+<rect x="12" y="40" width="120" height="92" class="sb" stroke-width="1"/>
+<circle cx="36" cy="104" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="52" cy="90" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="46" cy="114" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="66" cy="108" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="32" cy="86" r="5" class="fs sa" stroke-width="2"/>
+<circle cx="62" cy="80" r="5" class="fs sa" stroke-width="2"/>
+<line x1="91" y1="69" x2="101" y2="79" class="l swn w2"/>
+<line x1="91" y1="79" x2="101" y2="69" class="l swn w2"/>
+<line x1="105" y1="87" x2="115" y2="97" class="l swn w2"/>
+<line x1="105" y1="97" x2="115" y2="87" class="l swn w2"/>
+<line x1="83" y1="85" x2="93" y2="95" class="l swn w2"/>
+<line x1="83" y1="95" x2="93" y2="85" class="l swn w2"/>
+<line x1="111" y1="67" x2="121" y2="77" class="l swn w2"/>
+<line x1="111" y1="77" x2="121" y2="67" class="l swn w2"/>
+<line x1="99" y1="101" x2="109" y2="111" class="l swn w2"/>
+<line x1="99" y1="111" x2="109" y2="101" class="l swn w2"/>
+<line x1="117" y1="83" x2="127" y2="93" class="l swn w2"/>
+<line x1="117" y1="93" x2="127" y2="83" class="l swn w2"/>
+<line x1="26" y1="130" x2="130" y2="44" class="l w2"/>
+<text x="144" y="56" class="tb">① 教師あり学習</text>
+<text x="144" y="76">答え付きのデータ</text>
+<text x="144" y="94">から境界を学ぶ</text>
+<text x="144" y="116" class="tb ta">材料：特徴量＋正解</text>
+<rect x="12" y="152" width="120" height="92" class="sb" stroke-width="1"/>
+<circle cx="36" cy="216" r="5" class="fm"/>
+<circle cx="52" cy="202" r="5" class="fm"/>
+<circle cx="46" cy="226" r="5" class="fm"/>
+<circle cx="66" cy="220" r="5" class="fm"/>
+<circle cx="32" cy="198" r="5" class="fm"/>
+<circle cx="62" cy="192" r="5" class="fm"/>
+<circle cx="96" cy="186" r="5" class="fm"/>
+<circle cx="110" cy="204" r="5" class="fm"/>
+<circle cx="88" cy="202" r="5" class="fm"/>
+<circle cx="116" cy="184" r="5" class="fm"/>
+<circle cx="104" cy="218" r="5" class="fm"/>
+<circle cx="122" cy="200" r="5" class="fm"/>
+<circle cx="50" cy="208" r="30" class="sm w2 dsh"/>
+<circle cx="105" cy="198" r="30" class="sm w2 dsh"/>
+<text x="144" y="168" class="tb">② 教師なし学習</text>
+<text x="144" y="188">答えなしで、まと</text>
+<text x="144" y="206">まりを見つける</text>
+<text x="144" y="228" class="tb ta">材料：特徴量だけ</text>
+<rect x="12" y="264" width="120" height="108" class="sb" stroke-width="1"/>
+<rect x="20" y="272" width="100" height="28" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="70" y="291" class="tb" text-anchor="middle">エージェント</text>
+<rect x="20" y="336" width="100" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="70" y="355" class="tb" text-anchor="middle">環境</text>
+<line x1="100" y1="302" x2="100" y2="327.6" class="l sa w2"/>
+<polygon points="100,334 96,327.6 104,327.6" class="fa"/>
+<text x="102" y="322" class="ta">行動</text>
+<line x1="40" y1="334" x2="40" y2="308.4" class="l sok w2"/>
+<polygon points="40,302 44,308.4 36,308.4" class="ft"/>
+<text x="36" y="322" class="tok" text-anchor="end">報酬</text>
+<text x="144" y="284" class="tb">③ 強化学習</text>
+<text x="144" y="304">試して、報酬が</text>
+<text x="144" y="322">最大になる行動を</text>
+<text x="144" y="340">学ぶ</text>
+<text x="144" y="362" class="tb ta">材料：行動と報酬</text>
+<line x1="12" y1="392" x2="308" y2="392" class="l sb w1"/>
+<text x="12" y="416" class="tb">正解の有無で見分ける</text>
+<text x="12" y="436">正解あり→教師あり、なし→教師なし</text>
+<text x="12" y="456">正解の代わりに報酬→強化学習</text>
+</svg>

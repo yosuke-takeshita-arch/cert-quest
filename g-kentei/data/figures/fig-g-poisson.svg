@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 744" role="img" aria-labelledby="fig-g-poisson-t fig-g-poisson-d">
+<title id="fig-g-poisson-t">ポアソン分布：決まった時間に出来事が何回起きるかの分布。λ＝3 の例</title>
+<desc id="fig-g-poisson-d">ポアソン分布は、決まった時間や範囲の中で、ある出来事が何回起きるかの分布。例は1時間あたり平均3人の客が来る店（λ＝3）。λ は平均の回数で、これ1つだけで形が決まる。①1時間に来る人数ごとの確率の棒グラフ：0人5%、1人15%、2人22%、3人22%、4人17%、5人10%、6人5%、7人2%、8人と9人は1%未満。横軸の人数に上限は無い。2人と3人がいちばん出やすく（22%ずつ）、7人以上は合わせて約3%でまれ。②平均も分散も λ：平均 λ＝3人は1時間あたり平均何人来るか、分散も3、標準偏差は分散の平方根で√3≒1.7人。1〜5人に収まる確率は14.9%＋22.4%＋22.4%＋16.8%＋10.1%＝86.6%で約87%。③二項分布とほぼ同じになる場面：店の前を1日に1万人が通り、1人が入る確率が0.0003なら、入る人数は二項分布で、λ＝回数×確率＝10000×0.0003＝3。0〜3人の確率は、二項分布が0.0498・0.1493・0.2241・0.2241、ポアソン分布が0.0498・0.1494・0.2240・0.2240で、ほぼ同じ。機会がとても多く、1回ごとにはめったに起きない出来事の回数に向く。</desc>
+<text x="12" y="20" class="tb">ポアソン分布：決まった時間に何回起きるか</text>
+<text x="12" y="42" class="tm">例：1時間あたり平均3人の客が来る店</text>
+<text x="12" y="60" class="tm">λ＝3。λ（平均の回数）1つだけで形が決まる</text>
+<rect x="12" y="72" width="296" height="260" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="92" class="tb">① 1時間に来る人数と、その確率</text>
+<text x="24" y="110" class="tm">棒の高さ＝その人数になる確率</text>
+<rect x="30" y="237.1" width="22" height="24.9" class="fas sa" stroke-width="1"/>
+<text x="41" y="232.10646581606804" class="tm" text-anchor="middle">5%</text>
+<text x="41" y="278" text-anchor="middle">0</text>
+<rect x="57" y="187.3" width="22" height="74.7" class="fas sa" stroke-width="1"/>
+<text x="68" y="182.31939744820409" class="tm" text-anchor="middle">15%</text>
+<text x="68" y="278" text-anchor="middle">1</text>
+<rect x="84" y="150.0" width="22" height="112.0" class="fa sa" stroke-width="1"/>
+<text x="95" y="144.97909617230613" class="tb ta" text-anchor="middle">22%</text>
+<text x="95" y="278" text-anchor="middle">2</text>
+<rect x="111" y="150.0" width="22" height="112.0" class="fa sa" stroke-width="1"/>
+<text x="122" y="144.97909617230613" class="tb ta" text-anchor="middle">22%</text>
+<text x="122" y="278" text-anchor="middle">3</text>
+<rect x="138" y="178.0" width="22" height="84.0" class="fas sa" stroke-width="1"/>
+<text x="149" y="172.98432212922958" class="tm" text-anchor="middle">17%</text>
+<text x="149" y="278" text-anchor="middle">4</text>
+<rect x="165" y="211.6" width="22" height="50.4" class="fas sa" stroke-width="1"/>
+<text x="176" y="206.59059327753778" class="tm" text-anchor="middle">10%</text>
+<text x="176" y="278" text-anchor="middle">5</text>
+<rect x="192" y="236.8" width="22" height="25.2" class="fas sa" stroke-width="1"/>
+<text x="203" y="231.7952966387689" class="tm" text-anchor="middle">5%</text>
+<text x="203" y="278" text-anchor="middle">6</text>
+<rect x="219" y="251.2" width="22" height="10.8" class="fwn swn" stroke-width="1"/>
+<text x="230" y="246.1979842737581" class="tm" text-anchor="middle">2%</text>
+<text x="230" y="278" text-anchor="middle">7</text>
+<rect x="246" y="257.9" width="22" height="4.1" class="fwn swn" stroke-width="1"/>
+<text x="257" y="278" text-anchor="middle">8</text>
+<rect x="273" y="260.6" width="22" height="1.4" class="fwn swn" stroke-width="1"/>
+<text x="284" y="278" text-anchor="middle">9</text>
+<line x1="24" y1="262" x2="300" y2="262" class="l sm w1"/>
+<text x="24" y="298" class="tm">横軸＝来た人数（0, 1, 2, …。上限なし）</text>
+<text x="24" y="318" class="tb ta">2人と3人がいちばん出やすい（22%ずつ）</text>
+<text x="300" y="152" class="twn" text-anchor="end">7人以上は</text>
+<text x="300" y="170" class="tb twn" text-anchor="end">合わせて約3%</text>
+<text x="300" y="188" class="tm" text-anchor="end">8・9人は1%未満</text>
+<line x1="160" y1="332" x2="160.0" y2="340.4" class="l sm w1"/>
+<polygon points="160,346 156.5,340.4 163.5,340.4" class="fm"/>
+<rect x="12" y="352" width="296" height="128" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="372" class="tb">② 平均も分散も λ</text>
+<text x="24" y="394">平均 λ＝3人：1時間あたり平均何人来るか</text>
+<text x="24" y="414">分散も λ＝3</text>
+<text x="24" y="434">標準偏差＝√3≒1.7人（分散の平方根）</text>
+<text x="24" y="456" class="tb tok">→ 1〜5人に収まる確率が約87%</text>
+<text x="24" y="474" class="tm">　（14.9＋22.4＋22.4＋16.8＋10.1＝86.6%）</text>
+<line x1="160" y1="480" x2="160.0" y2="488.4" class="l sm w1"/>
+<polygon points="160,494 156.5,488.4 163.5,488.4" class="fm"/>
+<rect x="12" y="500" width="296" height="230" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="520" class="tb">③ 二項分布とほぼ同じになる場面</text>
+<text x="24" y="540">店の前を1日に1万人が通り、1人が入る</text>
+<text x="24" y="558">確率が0.0003 → 入る人数は二項分布</text>
+<text x="24" y="578" class="tb">λ＝回数×確率＝10000×0.0003＝3</text>
+<text x="56" y="602" class="tm" text-anchor="middle">人数</text>
+<text x="150" y="602" class="tm" text-anchor="middle">二項分布</text>
+<text x="250" y="602" class="tm" text-anchor="middle">ポアソン λ＝3</text>
+<text x="56" y="622" text-anchor="middle">0人</text>
+<text x="150" y="622" text-anchor="middle">0.0498</text>
+<text x="250" y="622" text-anchor="middle">0.0498</text>
+<text x="56" y="640" text-anchor="middle">1人</text>
+<text x="150" y="640" text-anchor="middle">0.1493</text>
+<text x="250" y="640" text-anchor="middle">0.1494</text>
+<text x="56" y="658" text-anchor="middle">2人</text>
+<text x="150" y="658" text-anchor="middle">0.2241</text>
+<text x="250" y="658" text-anchor="middle">0.2240</text>
+<text x="56" y="676" text-anchor="middle">3人</text>
+<text x="150" y="676" text-anchor="middle">0.2241</text>
+<text x="250" y="676" text-anchor="middle">0.2240</text>
+<text x="24" y="700" class="tb tok">→ 機会がとても多く、1回ごとにはめったに</text>
+<text x="24" y="718" class="tb tok">　起きない出来事の回数に向く</text>
+</svg>

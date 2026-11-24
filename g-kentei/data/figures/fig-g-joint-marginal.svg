@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 724" role="img" aria-labelledby="fig-g-joint-marginal-t fig-g-joint-marginal-d">
+<title id="fig-g-joint-marginal-t">同時確率と周辺確率：2行2列の表の中が同時確率、行や列の合計（表の端）が周辺確率</title>
+<desc id="fig-g-joint-marginal-d">例は社員100人で、数は説明のための例。①人数の表。営業部は英語が話せる12人、話せない18人で合計30人。営業部以外は英語が話せる8人、話せない62人で合計70人。英語が話せる人の合計は20人、話せない人の合計は80人、全体は100人。②100で割って確率の表にする。表の中の4つ（0.12、0.18、0.08、0.62）が同時確率で、両方が起きる確率。例えば営業部で、しかも英語が話せる確率は0.12。表の端（右の列と下の行）が周辺確率で、片方だけの確率。行や列を足して端（余白）に書く。P(営業)＝0.12＋0.18＝0.3は行の合計、P(英語)＝0.12＋0.08＝0.2は列の合計。余白は英語でmarginなので周辺と呼ぶ。③条件付き確率は同時確率÷周辺確率。営業部の人が英語を話せる確率はP(英語|営業)＝0.12÷0.3＝0.4。人数で見ても営業部30人のうち12人で、12÷30＝0.4と同じ答え。同時確率0.12は全体100人の中の割合、条件付き確率0.4は営業部30人の中の割合。</desc>
+<text x="12" y="20" class="tb">同時確率と周辺確率：表の中と、表の端</text>
+<text x="12" y="42" class="tm">例：社員100人（数は説明のための例）</text>
+<text x="12" y="68" class="tb">① 人数の表</text>
+<text x="133" y="92" class="tb" text-anchor="middle">英語が</text>
+<text x="133" y="109" class="tb" text-anchor="middle">話せる</text>
+<text x="203" y="92" class="tb" text-anchor="middle">英語が</text>
+<text x="203" y="109" class="tb" text-anchor="middle">話せない</text>
+<text x="273" y="102" class="tb" text-anchor="middle">合計</text>
+<text x="16" y="138" class="tb">営業部</text>
+<rect x="100" y="118" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="133" y="138" class="tb" text-anchor="middle">12</text>
+<rect x="170" y="118" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="203" y="138" class="tb" text-anchor="middle">18</text>
+<rect x="240" y="118" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="273" y="138" class="tb" text-anchor="middle">30</text>
+<text x="16" y="172" class="tb">営業部以外</text>
+<rect x="100" y="152" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="133" y="172" class="tb" text-anchor="middle">8</text>
+<rect x="170" y="152" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="203" y="172" class="tb" text-anchor="middle">62</text>
+<rect x="240" y="152" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="273" y="172" class="tb" text-anchor="middle">70</text>
+<text x="16" y="206" class="tb">合計</text>
+<rect x="100" y="186" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="133" y="206" class="tb" text-anchor="middle">20</text>
+<rect x="170" y="186" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="203" y="206" class="tb" text-anchor="middle">80</text>
+<rect x="240" y="186" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="273" y="206" class="tb" text-anchor="middle">100</text>
+<text x="12" y="246" class="tb">② 100で割って、確率の表にする</text>
+<text x="133" y="270" class="tb" text-anchor="middle">英語が</text>
+<text x="133" y="287" class="tb" text-anchor="middle">話せる</text>
+<text x="203" y="270" class="tb" text-anchor="middle">英語が</text>
+<text x="203" y="287" class="tb" text-anchor="middle">話せない</text>
+<text x="273" y="280" class="tb" text-anchor="middle">合計</text>
+<text x="16" y="316" class="tb">営業部</text>
+<rect x="100" y="296" width="66" height="30" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="133" y="316" class="tb ta" text-anchor="middle">0.12</text>
+<rect x="170" y="296" width="66" height="30" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="203" y="316" class="tb ta" text-anchor="middle">0.18</text>
+<rect x="240" y="296" width="66" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="273" y="316" class="tb twn" text-anchor="middle">0.3</text>
+<text x="16" y="350" class="tb">営業部以外</text>
+<rect x="100" y="330" width="66" height="30" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="133" y="350" class="tb ta" text-anchor="middle">0.08</text>
+<rect x="170" y="330" width="66" height="30" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="203" y="350" class="tb ta" text-anchor="middle">0.62</text>
+<rect x="240" y="330" width="66" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="273" y="350" class="tb twn" text-anchor="middle">0.7</text>
+<text x="16" y="384" class="tb">合計</text>
+<rect x="100" y="364" width="66" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="133" y="384" class="tb twn" text-anchor="middle">0.2</text>
+<rect x="170" y="364" width="66" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="203" y="384" class="tb twn" text-anchor="middle">0.8</text>
+<rect x="240" y="364" width="66" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="273" y="384" class="tb" text-anchor="middle">1</text>
+<rect x="12" y="408" width="16" height="12" class="fas sa" stroke-width="1.5" rx="2"/>
+<text x="34" y="420" class="tb ta">表の中＝同時確率（両方が起きる確率）</text>
+<text x="34" y="438" class="tm">例：営業部で、しかも英語が話せる 0.12</text>
+<rect x="12" y="450" width="16" height="12" class="fwn swn" stroke-width="1.5" rx="2"/>
+<text x="34" y="462" class="tb twn">表の端＝周辺確率（片方だけの確率）</text>
+<text x="34" y="480" class="tm">行や列を足して、端（余白）に書く</text>
+<text x="34" y="498" class="tm">P(営業)＝0.12＋0.18＝0.3（行の合計）</text>
+<text x="34" y="516" class="tm">P(英語)＝0.12＋0.08＝0.2（列の合計）</text>
+<text x="34" y="534" class="tm">余白は英語で margin。だから周辺と呼ぶ</text>
+<line x1="12" y1="552" x2="308" y2="552" class="l sb w1"/>
+<text x="12" y="572" class="tb">③ 条件付き確率は、同時÷周辺</text>
+<text x="12" y="592" class="tm">営業部の人が英語を話せる確率</text>
+<text x="12" y="610" class="tm">P(英語|営業)＝同時確率÷周辺確率</text>
+<text x="12" y="628" class="tb ta">　＝0.12÷0.3＝0.4</text>
+<text x="12" y="648" class="tm">（人数で見ても、営業部30人のうち12人で</text>
+<text x="12" y="666" class="tm">　12÷30＝0.4。同じ答え）</text>
+<text x="12" y="692" class="tm">同時確率 0.12 は全体100人の中の割合、</text>
+<text x="12" y="710" class="tm">条件付き確率 0.4 は営業部30人の中の割合</text>
+</svg>

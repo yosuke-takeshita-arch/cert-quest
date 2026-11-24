@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 696" role="img" aria-labelledby="fig-g-monte-carlo-t fig-g-monte-carlo-d">
+<title id="fig-g-monte-carlo-t">モンテカルロ法：最後までランダムに打つ対局をくり返し、勝率で手を選ぶ</title>
+<desc id="fig-g-monte-carlo-d">囲碁では、途中の局面の良し悪しを点数にする式（評価関数）を作りにくい。そこで、いまの局面から手Aと手Bをそれぞれ打ち、そこから終局までランダムに打つ（プレイアウト）。図は5回だけ描き、手Aは勝・勝・負・勝・負、手Bは勝・負・負・勝・負。例では各1000回打つ。勝率は勝った回数÷打った回数で、手Aは600÷1000＝0.6（60％）、手Bは400÷1000＝0.4（40％）なので、勝率の高い手Aを良い手とみなす。欠点は、回数が少ないとぶれること。10回だけだと手Aが4勝（40％）、手Bが6勝（60％）と逆に出ることもあり、悪いほうの手Bを選んでしまう。回数を増やすほど見積もりが安定する。評価の式を人が作らなくても、対局の結果だけで手の良さを見積もれる。αβ法は評価の点数があることが前提で、読まなくてよい枝を省く方法。AlphaGoはこれを木の探索に組み込んだモンテカルロ木探索とニューラルネットワークを組み合わせた。</desc>
+<text x="12" y="20" class="tb">モンテカルロ法：ランダム対局の勝率で選ぶ</text>
+<text x="12" y="42" class="tm">困りごと：囲碁では、途中の局面の良し悪しを</text>
+<text x="12" y="60" class="tm">点数にする式（評価関数）を作りにくい</text>
+<text x="12" y="84" class="tb">① 手ごとに、最後までランダムに打つ（例）</text>
+<rect x="110" y="96" width="100" height="26" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="160" y="113.5" class="tb" text-anchor="middle">いまの局面</text>
+<line x1="140" y1="122" x2="86" y2="145" class="l sm w1"/>
+<polyline points="90.61,139.73 86,145 92.99,145.33" class="l sm w1"/>
+<line x1="180" y1="122" x2="234" y2="145" class="l sm w1"/>
+<polyline points="227.01,145.33 234,145 229.39,139.73" class="l sm w1"/>
+<rect x="46" y="145" width="80" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="86" y="162.5" class="tb" text-anchor="middle">手A を打つ</text>
+<rect x="194" y="145" width="80" height="26" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="234" y="162.5" class="tb" text-anchor="middle">手B を打つ</text>
+<polyline points="86,171 77,184.25 53,197.5 49,210.75 30,224" class="l sm w1 dsh"/>
+<text x="30" y="240" class="tb tok" text-anchor="middle">勝</text>
+<polyline points="86,171 84,184.25 67,197.5 70,210.75 58,224" class="l sm w1 dsh"/>
+<text x="58" y="240" class="tb tok" text-anchor="middle">勝</text>
+<polyline points="86,171 91,184.25 81,197.5 91,210.75 86,224" class="l sm w1 dsh"/>
+<text x="86" y="240" class="tb tng" text-anchor="middle">負</text>
+<polyline points="86,171 98,184.25 95,197.5 112,210.75 114,224" class="l sm w1 dsh"/>
+<text x="114" y="240" class="tb tok" text-anchor="middle">勝</text>
+<polyline points="86,171 105,184.25 109,197.5 133,210.75 142,224" class="l sm w1 dsh"/>
+<text x="142" y="240" class="tb tng" text-anchor="middle">負</text>
+<polyline points="234,171 225,184.25 201,197.5 197,210.75 178,224" class="l sm w1 dsh"/>
+<text x="178" y="240" class="tb tok" text-anchor="middle">勝</text>
+<polyline points="234,171 232,184.25 215,197.5 218,210.75 206,224" class="l sm w1 dsh"/>
+<text x="206" y="240" class="tb tng" text-anchor="middle">負</text>
+<polyline points="234,171 239,184.25 229,197.5 239,210.75 234,224" class="l sm w1 dsh"/>
+<text x="234" y="240" class="tb tng" text-anchor="middle">負</text>
+<polyline points="234,171 246,184.25 243,197.5 260,210.75 262,224" class="l sm w1 dsh"/>
+<text x="262" y="240" class="tb tok" text-anchor="middle">勝</text>
+<polyline points="234,171 253,184.25 257,197.5 281,210.75 290,224" class="l sm w1 dsh"/>
+<text x="290" y="240" class="tb tng" text-anchor="middle">負</text>
+<text x="12" y="258" class="tm">点線＝終局までランダムに打つ（プレイアウト）</text>
+<text x="12" y="276" class="tm">図は5回だけ描いた。例では各1000回打つ</text>
+<line x1="160" y1="290" x2="160" y2="298.4" class="l sm w1"/>
+<polygon points="160,304 156.5,298.4 163.5,298.4" class="fm"/>
+<rect x="12" y="304" width="296" height="112" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="324" class="tb">② 勝った回数を数えて勝率にする</text>
+<text x="24" y="346" class="tm">勝率＝勝った回数÷打った回数</text>
+<text x="24" y="366" class="tm">手A：600÷1000＝0.6（60％）</text>
+<text x="24" y="386" class="tm">手B：400÷1000＝0.4（40％）</text>
+<text x="24" y="408" class="tb ta">→ 勝率の高い 手A を良い手とみなす</text>
+<line x1="160" y1="416" x2="160" y2="424.4" class="l sm w1"/>
+<polygon points="160,430 156.5,424.4 163.5,424.4" class="fm"/>
+<rect x="12" y="430" width="296" height="112" class="fwn swn" stroke-width="1" rx="6"/>
+<text x="24" y="450" class="tb">③ 欠点：回数が少ないと、ぶれる</text>
+<text x="24" y="472" class="tm">10回だけだと、手A が 4勝（40％）、</text>
+<text x="24" y="492" class="tm">手B が 6勝（60％）と逆に出ることもある</text>
+<text x="24" y="512" class="tng">→ 悪いほうの 手B を選んでしまう</text>
+<text x="24" y="532" class="tm">回数を増やすほど、勝率の見積もりが安定する</text>
+<text x="12" y="568" class="tb">押さえどころ</text>
+<text x="12" y="588" class="tm">・評価の式を人が作らなくても、対局の</text>
+<text x="12" y="606" class="tm">　結果だけで手の良さを見積もれる</text>
+<text x="12" y="626" class="tm">・αβ法＝評価の点数があることが前提で、</text>
+<text x="12" y="644" class="tm">　読まなくてよい枝を省く方法</text>
+<text x="12" y="664" class="tm">・AlphaGo＝これを木の探索に組み込んだ</text>
+<text x="12" y="682" class="tm">　モンテカルロ木探索＋ニューラルネット</text>
+</svg>

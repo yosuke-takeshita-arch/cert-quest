@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 668" role="img" aria-labelledby="fig-g-domain-randomization-t fig-g-domain-randomization-d">
+<title id="fig-g-domain-randomization-t">sim2real とドメインランダマイゼーション：見た目をでたらめに変えて学び、現実を変化の1つにする</title>
+<desc id="fig-g-domain-randomization-d">sim2real は、シミュレーションで学んだ方策やモデルを現実（実機）に移すこと。①困りごと：実機での試行は時間・費用・危険が大きい。シミュレーションなら安全に大量に試せるが、見た目や物理が現実と少しずつ違う（リアリティギャップ）ので、シミュレーションだけで学ぶと実機でうまく動かないことがある。②ドメインランダマイゼーションは、シミュレータの色・質感・照明・カメラの位置などを、でたらめに大きく変えて学ぶ。図は、縞・点・無地など模様と色の違う5枚のシミュレーションの画像で、つかむ物体（黒い四角）の位置もそれぞれ違う。その下は見え方の広がりで、四角がシミュレーションの画像、丸が現実。見た目を変えないと、シミュレーションの画像は小さな範囲に集まり、現実はその外に外れる。でたらめに変えると、範囲が広がり、現実がその中に入る。③現実の見え方が、学んだ変化の範囲の中に入るので、現実を「変化の1つ」として扱える。例：Tobin ら（2017）は、でたらめな模様のシミュレーションの画像だけで物体の位置を学び、実世界で約1.5cm の精度で当てた。混同しやすい点：sim2real はシミュレーションの中で試行錯誤する。オフライン強化学習は過去に集めたデータだけで学び、新たに試さない。</desc>
+<text x="12" y="20" class="tb">sim2real とドメインランダマイゼーション</text>
+<text x="12" y="42" class="tm">sim2real＝シミュレーションで学んだ方策や</text>
+<text x="12" y="60" class="tm">モデルを、現実（実機）に移すこと</text>
+<rect x="12" y="72" width="296" height="122" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="92" class="tb">① 困りごと：リアリティギャップ</text>
+<text x="24" y="112">実機での試行は時間・費用・危険が大きい</text>
+<text x="24" y="130">シミュレーションなら安全に大量に試せるが、</text>
+<text x="24" y="148">見た目や物理が現実と少しずつ違う</text>
+<text x="24" y="170" class="tb">→ シミュレーションだけで学ぶと、</text>
+<text x="24" y="188" class="tb">　実機でうまく動かないことがある</text>
+<line x1="160" y1="194" x2="160.0" y2="202.4" class="l sm w1"/>
+<polygon points="160,208 156.5,202.4 163.5,202.4" class="fm"/>
+<rect x="12" y="214" width="296" height="218" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="234" class="tb">② 見た目をでたらめに大きく変えて学ぶ</text>
+<text x="24" y="252" class="tm">色・質感・照明・カメラの位置などを変える</text>
+<rect x="24" y="262" width="48" height="44" class="fas sm" stroke-width="1"/>
+<line x1="30" y1="263" x2="30" y2="305" class="l sm w1"/>
+<line x1="38" y1="263" x2="38" y2="305" class="l sm w1"/>
+<line x1="46" y1="263" x2="46" y2="305" class="l sm w1"/>
+<line x1="54" y1="263" x2="54" y2="305" class="l sm w1"/>
+<line x1="62" y1="263" x2="62" y2="305" class="l sm w1"/>
+<line x1="70" y1="263" x2="70" y2="305" class="l sm w1"/>
+<rect x="38" y="284" width="12" height="12" class="ft"/>
+<rect x="80" y="262" width="48" height="44" class="fok sm" stroke-width="1"/>
+<circle cx="88" cy="270" r="2" class="fm"/>
+<circle cx="88" cy="282" r="2" class="fm"/>
+<circle cx="88" cy="294" r="2" class="fm"/>
+<circle cx="100" cy="270" r="2" class="fm"/>
+<circle cx="100" cy="282" r="2" class="fm"/>
+<circle cx="100" cy="294" r="2" class="fm"/>
+<circle cx="112" cy="270" r="2" class="fm"/>
+<circle cx="112" cy="282" r="2" class="fm"/>
+<circle cx="112" cy="294" r="2" class="fm"/>
+<circle cx="124" cy="270" r="2" class="fm"/>
+<circle cx="124" cy="282" r="2" class="fm"/>
+<circle cx="124" cy="294" r="2" class="fm"/>
+<rect x="114" y="274" width="12" height="12" class="ft"/>
+<rect x="136" y="262" width="48" height="44" class="fwn sm" stroke-width="1"/>
+<rect x="144" y="270" width="12" height="12" class="ft"/>
+<rect x="192" y="262" width="48" height="44" class="fng sm" stroke-width="1"/>
+<line x1="193" y1="268" x2="239" y2="268" class="l sm w1"/>
+<line x1="193" y1="276" x2="239" y2="276" class="l sm w1"/>
+<line x1="193" y1="284" x2="239" y2="284" class="l sm w1"/>
+<line x1="193" y1="292" x2="239" y2="292" class="l sm w1"/>
+<line x1="193" y1="300" x2="239" y2="300" class="l sm w1"/>
+<rect x="222" y="288" width="12" height="12" class="ft"/>
+<rect x="248" y="262" width="48" height="44" class="fbg sm" stroke-width="1"/>
+<circle cx="256" cy="270" r="2" class="fm"/>
+<circle cx="256" cy="282" r="2" class="fm"/>
+<circle cx="256" cy="294" r="2" class="fm"/>
+<circle cx="268" cy="270" r="2" class="fm"/>
+<circle cx="268" cy="282" r="2" class="fm"/>
+<circle cx="268" cy="294" r="2" class="fm"/>
+<circle cx="280" cy="270" r="2" class="fm"/>
+<circle cx="280" cy="282" r="2" class="fm"/>
+<circle cx="280" cy="294" r="2" class="fm"/>
+<circle cx="292" cy="270" r="2" class="fm"/>
+<circle cx="292" cy="282" r="2" class="fm"/>
+<circle cx="292" cy="294" r="2" class="fm"/>
+<rect x="268" y="278" width="12" height="12" class="ft"/>
+<text x="160" y="326" class="tm" text-anchor="middle">シミュレーションの画像（■＝つかむ物体）</text>
+<text x="24" y="346" class="tm">見え方の広がり（■＝シミュの画像、○＝現実）</text>
+<ellipse cx="80" cy="384" rx="26" ry="14" class="fs sm" stroke-width="1.5"/>
+<rect x="69" y="379" width="6" height="6" class="fm"/>
+<rect x="79" y="385" width="6" height="6" class="fm"/>
+<rect x="87" y="377" width="6" height="6" class="fm"/>
+<rect x="73" y="387" width="6" height="6" class="fm"/>
+<circle cx="134" cy="376" r="6" class="fwn swn" stroke-width="2.5"/>
+<text x="134" y="402" class="tb twn" text-anchor="middle">現実</text>
+<text x="80" y="424" class="tb twn" text-anchor="middle">変えない：外れる</text>
+<ellipse cx="236" cy="384" rx="64" ry="24" class="fas sa" stroke-width="1.5"/>
+<rect x="183" y="379" width="6" height="6" class="fm"/>
+<rect x="197" y="369" width="6" height="6" class="fm"/>
+<rect x="211" y="391" width="6" height="6" class="fm"/>
+<rect x="223" y="365" width="6" height="6" class="fm"/>
+<rect x="251" y="393" width="6" height="6" class="fm"/>
+<rect x="267" y="369" width="6" height="6" class="fm"/>
+<rect x="281" y="383" width="6" height="6" class="fm"/>
+<rect x="203" y="383" width="6" height="6" class="fm"/>
+<rect x="259" y="377" width="6" height="6" class="fm"/>
+<circle cx="240" cy="382" r="6" class="fok sok" stroke-width="2.5"/>
+<text x="236" y="424" class="tb tok" text-anchor="middle">変える：中に入る</text>
+<line x1="160" y1="432" x2="160.0" y2="440.4" class="l sm w1"/>
+<polygon points="160,446 156.5,440.4 163.5,440.4" class="fm"/>
+<rect x="12" y="452" width="296" height="104" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="472" class="tb">③ 現実の見え方が、学んだ変化の範囲に</text>
+<text x="24" y="490" class="tb">　入る → 「変化の1つ」として扱える</text>
+<text x="24" y="512">例：Tobin ら（2017）は、でたらめな模様の</text>
+<text x="24" y="530">シミュの画像だけで物体の位置を学び、</text>
+<text x="24" y="548" class="tb tok">実世界で約1.5cm の精度で当てた</text>
+<rect x="12" y="570" width="296" height="86" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="590" class="tb">混同しやすい点</text>
+<text x="24" y="610">sim2real：シミュレーションの中で試行錯誤</text>
+<text x="24" y="628">オフライン強化学習：過去に集めたデータ</text>
+<text x="24" y="646">　だけで学ぶ（新たに試さない）</text>
+</svg>

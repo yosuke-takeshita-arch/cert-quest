@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-g-basic-inner-product-t fig-g-basic-inner-product-d">
+<title id="fig-g-basic-inner-product-t">内積＝対応する数を掛けて、全部足す</title>
+<desc id="fig-g-basic-inner-product-d">上は内積の計算。ベクトルaが［1, 2, 3］、ベクトルbが［4, 0, 1］のとき、同じ位置どうしを掛けると1×4＝4、2×0＝0、3×1＝3で、足すと4＋0＋3＝7。答えはベクトルではなく数1個。下は向きとの関係。aを右向きの［1, 0］に固定し、bを変える。同じ右向きの［1, 0］なら1×1＋0×0＝1で正、直角の上向き［0, 1］なら1×0＋0×1＝0、反対の左向き［−1, 0］なら1×(−1)＋0×0＝−1で負。向きが似ているほど大きく、直角で0、反対向きで負になるので、2つのベクトルがどれだけ似ているかの目安に使える（Attention、コサイン類似度）。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">内積＝対応する数を掛けて足す</text>
+<text x="12" y="44" class="tm">例（数は説明のための例）</text>
+<text x="56" y="83" class="tb ta" text-anchor="end">a</text>
+<text x="56" y="123" class="tb tok" text-anchor="end">b</text>
+<rect x="70" y="64" width="150" height="28" class="fas sa" stroke-width="1.5"/>
+<line x1="120" y1="64" x2="120" y2="92" class="l sa w1"/>
+<line x1="170" y1="64" x2="170" y2="92" class="l sa w1"/>
+<text x="95" y="83" class="tb" text-anchor="middle">1</text>
+<text x="145" y="83" class="tb" text-anchor="middle">2</text>
+<text x="195" y="83" class="tb" text-anchor="middle">3</text>
+<rect x="70" y="104" width="150" height="28" class="fok sok" stroke-width="1.5"/>
+<line x1="120" y1="104" x2="120" y2="132" class="l sok w1"/>
+<line x1="170" y1="104" x2="170" y2="132" class="l sok w1"/>
+<text x="95" y="123" class="tb" text-anchor="middle">4</text>
+<text x="145" y="123" class="tb" text-anchor="middle">0</text>
+<text x="195" y="123" class="tb" text-anchor="middle">1</text>
+<text x="236" y="103" class="tm">同じ位置</text>
+<text x="236" y="121" class="tm">どうしを掛ける</text>
+<line x1="95" y1="136" x2="95" y2="146" class="l sm w1"/>
+<line x1="145" y1="136" x2="145" y2="146" class="l sm w1"/>
+<line x1="195" y1="136" x2="195" y2="146" class="l sm w1"/>
+<text x="95" y="164" text-anchor="middle">1×4</text>
+<text x="145" y="164" text-anchor="middle">2×0</text>
+<text x="195" y="164" text-anchor="middle">3×1</text>
+<text x="95" y="186" class="tb" text-anchor="middle">4</text>
+<text x="120" y="186" class="tb" text-anchor="middle">＋</text>
+<text x="145" y="186" class="tb" text-anchor="middle">0</text>
+<text x="170" y="186" class="tb" text-anchor="middle">＋</text>
+<text x="195" y="186" class="tb" text-anchor="middle">3</text>
+<text x="220" y="186" class="tb" text-anchor="middle">＝</text>
+<text x="245" y="186" class="tl twn" text-anchor="middle">7</text>
+<text x="12" y="214">答えはベクトルではなく、数1個</text>
+<line x1="12" y1="230" x2="308" y2="230" class="l sb w1"/>
+<text x="12" y="254" class="tb">向きが似ているほど大きい</text>
+<text x="12" y="276" class="tm"><tspan class="ta">a＝［1, 0］</tspan>（右向き）に固定して b を変える</text>
+<line x1="20" y1="350" x2="66" y2="350" class="l sa w2"/>
+<polygon points="74,350 66,346 66,354" class="fm"/>
+<line x1="20" y1="338" x2="66" y2="338" class="l sok w2"/>
+<polygon points="74,338 66,334 66,342" class="fm"/>
+<line x1="132" y1="350" x2="178" y2="350" class="l sa w2"/>
+<polygon points="186,350 178,346 178,354" class="fm"/>
+<line x1="132" y1="350" x2="132" y2="304" class="l sok w2"/>
+<polygon points="132,296 128,304 136,304" class="fm"/>
+<line x1="250" y1="350" x2="296" y2="350" class="l sa w2"/>
+<polygon points="304,350 296,346 296,354" class="fm"/>
+<line x1="250" y1="350" x2="212" y2="350" class="l sok w2"/>
+<polygon points="204,350 212,346 212,354" class="fm"/>
+<text x="47" y="380" class="tb" text-anchor="middle">同じ向き</text>
+<text x="159" y="380" class="tb" text-anchor="middle">直角</text>
+<text x="254" y="380" class="tb" text-anchor="middle">反対向き</text>
+<text x="47" y="402" class="tok" text-anchor="middle">b＝［1, 0］</text>
+<text x="159" y="402" class="tok" text-anchor="middle">b＝［0, 1］</text>
+<text x="254" y="402" class="tok" text-anchor="middle">b＝［−1, 0］</text>
+<text x="47" y="428" class="tl" text-anchor="middle">1</text>
+<text x="159" y="428" class="tl" text-anchor="middle">0</text>
+<text x="254" y="428" class="tl" text-anchor="middle">−1</text>
+<text x="12" y="456" class="tm">例：反対向きは 1×(−1)＋0×0＝−1</text>
+<line x1="12" y1="472" x2="308" y2="472" class="l sb w1"/>
+<text x="12" y="496">2つのベクトルが似ているかの目安になる</text>
+<text x="12" y="518" class="tm">（Attention・コサイン類似度で使う）</text>
+</svg>

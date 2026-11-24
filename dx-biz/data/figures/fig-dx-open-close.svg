@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-dx-open-close-t fig-dx-open-close-d">
+<title id="fig-dx-open-close-t">オープン＆クローズ戦略：自社の技術を、広げる部分（オープン）と守る部分（クローズ）に分け、守る部分は特許か秘密かを情報の性質で選ぶ</title>
+<desc id="fig-dx-open-close-d">上は、全部を一方に寄せたときの困りごと。全部閉じると、仲間や対応製品が増えず、市場も標準も広がらない。全部開くと、他社も同じものを作れ、自社に利益が残らない。中は、自社の技術を左右2つに分けた図。左のオープンは、公開・標準化・ライセンスで仲間と市場を広げる部分。右のクローズは、特許の独占やノウハウの秘匿で守って稼ぐ部分。下は、守る部分の守り方の選び方（経済産業省の秘密情報の保護ハンドブックの事例）。製品を分解すれば分かる技術は特許にする。分解しても分からないノウハウは、秘密として管理する。特許にすると内容が公開されるため。</desc>
+<text x="12" y="20" class="tb">オープン＆クローズ戦略</text>
+<text x="12" y="40" class="tm">全部を一方に寄せると困る</text>
+<rect x="12" y="50" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="70"><tspan class="tb">全部閉じる</tspan> → 仲間・対応製品が増えず、</text>
+<text x="24" y="89">市場も標準も広がらない</text>
+<rect x="12" y="106" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="126"><tspan class="tb">全部開く</tspan> → 他社も同じものを作れ、</text>
+<text x="24" y="145">自社に利益が残らない</text>
+<polygon points="160,176 150,164 170,164" class="fm"/>
+<text x="12" y="198" class="tb">自社の技術を2つに分ける</text>
+<rect x="12" y="208" width="146" height="140" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="85" y="232" text-anchor="middle" class="tb tok">オープン</text>
+<text x="85" y="254" text-anchor="middle">公開・標準化・</text>
+<text x="85" y="273" text-anchor="middle">ライセンス</text>
+<polygon points="85,292 79,282 91,282" class="tok"/>
+<text x="85" y="314" text-anchor="middle" class="tb">仲間と市場を</text>
+<text x="85" y="333" text-anchor="middle" class="tb">広げる</text>
+<rect x="162" y="208" width="146" height="140" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="235" y="232" text-anchor="middle" class="tb ta">クローズ</text>
+<text x="235" y="254" text-anchor="middle">特許の独占・</text>
+<text x="235" y="273" text-anchor="middle">ノウハウの秘匿</text>
+<polygon points="235,292 229,282 241,282" class="fa"/>
+<text x="235" y="314" text-anchor="middle" class="tb">守って稼ぐ</text>
+<text x="12" y="370" class="tm">ライセンス＝他社に技術を使わせること</text>
+<line x1="12" y1="386" x2="308" y2="386" class="l sb w1"/>
+<text x="12" y="410" class="tb">クローズの守り方は、情報の性質で選ぶ</text>
+<text x="12" y="430" class="tm">秘密情報の保護ハンドブックの事例</text>
+<rect x="12" y="440" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="460">製品を<tspan class="tb">分解すれば分かる</tspan>技術</text>
+<text x="24" y="479">→ <tspan class="ta tb">特許</tspan>で守る</text>
+<rect x="12" y="496" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="516"><tspan class="tb">分解しても分からない</tspan>ノウハウ</text>
+<text x="24" y="535">→ <tspan class="ta tb">秘密として管理</tspan>する</text>
+<text x="12" y="568" class="tm">理由：特許にすると中身が公開されるから</text>
+</svg>

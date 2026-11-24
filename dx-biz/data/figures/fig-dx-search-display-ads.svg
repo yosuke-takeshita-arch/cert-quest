@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 368" role="img" aria-labelledby="fig-dx-search-display-ads-t fig-dx-search-display-ads-d">
+<title id="fig-dx-search-display-ads-t">検索連動型広告とディスプレイ広告：どこに出るかで分ける</title>
+<desc id="fig-dx-search-display-ads-d">何のための図か：公正取引委員会の「デジタル広告分野の取引実態に関する最終報告書」の分け方で、検索連動型広告とディスプレイ広告を比べる。検索連動型広告は、Google検索やYahoo!検索で検索結果と共に表示される広告で、検索した語に連動する（リスティング広告とも呼ぶ）。例は、腕時計の修理を検索したときに検索結果と並ぶ修理店の広告。ディスプレイ広告は、記事や動画、SNSなどのコンテンツの周りに表示される広告で、例はニュースの記事の横の画像広告、動画の前に流れる動画広告、SNSのタイムラインに出る広告。見分け方は、検索結果と共に出るかどうか。</desc>
+<text x="12" y="20" class="tb">広告が出る場所で2つに分ける</text>
+<text x="12" y="42" class="tm">公正取引委員会 デジタル広告の最終報告書</text>
+<text x="12" y="72" class="tb">A 検索連動型広告（リスティング広告）</text>
+<rect x="12" y="82" width="296" height="98" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="22" y="90" width="200" height="22" class="fs sm" stroke-width="1"/>
+<text x="30" y="106">腕時計 修理</text>
+<text x="232" y="106" class="tm">← 検索</text>
+<rect x="22" y="120" width="276" height="22" class="fok sok" stroke-width="1"/>
+<text x="30" y="136" class="tok">［広告］修理店の広告</text>
+<text x="30" y="164" class="tm">検索結果 …</text>
+<text x="12" y="202" class="tm">検索結果と共に出る。検索した言葉に連動</text>
+<text x="12" y="232" class="tb">B ディスプレイ広告</text>
+<rect x="12" y="240" width="296" height="88" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="262">記事・動画・SNSなどの周りに出る</text>
+<text x="22" y="280" class="tm">例：ニュースの記事の横の画像広告</text>
+<text x="22" y="298" class="tm">例：動画の前に流れる動画広告</text>
+<text x="22" y="316" class="tm">例：SNSのタイムラインの広告</text>
+<text x="12" y="354" class="tb ta">見分け方：検索結果と共に出るか</text>
+</svg>

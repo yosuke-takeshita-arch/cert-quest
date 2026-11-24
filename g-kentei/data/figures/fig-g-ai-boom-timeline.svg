@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1010" role="img" aria-labelledby="fig-g-ai-boom-timeline-t fig-g-ai-boom-timeline-d">
+<title id="fig-g-ai-boom-timeline-t">AIブームと冬の時代の年表（1950年代から現在まで）</title>
+<desc id="fig-g-ai-boom-timeline-d">上から下へ時間が進む年表。左に1950年から2020年までの年の目盛り。目盛りの右のふくらみは、そのころの盛り上がりの目安で、量を測った値ではない。第1次ブームは1950年代後半から1960年代で、中心は探索と推論。例は1956年のダートマス会議（AIという分野名が生まれた）と、1960年代の会話プログラムELIZA。冬の時代1の理由は、迷路やパズルのような簡単な問題しか解けず、現実の問題は解けなかったこと。その後、冬の時代1で研究が下火になる。第2次ブームは1980年代で、中心はルールの形で書き込んだ知識。例はエキスパートシステム（手本は1970年代のMYCIN）と、日本の第五世代コンピュータ計画。冬の時代2の理由は、知識を人が書き切れなかったこと。1995年頃から冬の時代2。第3次ブームは2000年代からいまも続き、中心は機械学習とディープラーニング。背景はビッグデータと計算力。例は2012年の画像認識の競技会ILSVRCでのディープラーニングの優勝と、2016年にアルファ碁が囲碁の九段に4勝1敗したこと。2022年にChatGPTが公開され、生成AIが急速に広がった（点線のふくらみ）。これを第4次と呼ぶ人もいるが、呼び方は定まっていない。中心の流れは、探索・推論、知識、データから学ぶ、の順。第1次と第2次は人がルールや知識を書き、第3次は機械がデータから学ぶ。G検定では第1次から第3次として問われる。</desc>
+<text x="12" y="20" class="tb">上から下へ時間が進む</text>
+<text x="12" y="40" class="tm">ふくらみ＝盛り上がりの目安</text>
+<path d="M 52,70 L 52,120 C 60,130 92,160 96,190 C 100,220 64,262 58,280 L 58,360 C 64,380 100,400 102,430 C 104,460 66,505 58,520 L 58,570 C 66,590 100,640 104,680 L 104,850 L 52,850 Z" class="fas sa" stroke-width="2"/>
+<path d="M 104,790 C 108,800 116,812 116,850" class="l sa w2 dsh"/>
+<line x1="52" y1="62" x2="52" y2="858" class="l w2"/>
+<line x1="47" y1="70" x2="52" y2="70" class="l w1"/>
+<text x="44" y="75" class="tm" text-anchor="end">1950</text>
+<line x1="47" y1="170" x2="52" y2="170" class="l w1"/>
+<text x="44" y="175" class="tm" text-anchor="end">1960</text>
+<line x1="47" y1="270" x2="52" y2="270" class="l w1"/>
+<text x="44" y="275" class="tm" text-anchor="end">1970</text>
+<line x1="47" y1="370" x2="52" y2="370" class="l w1"/>
+<text x="44" y="375" class="tm" text-anchor="end">1980</text>
+<line x1="47" y1="470" x2="52" y2="470" class="l w1"/>
+<text x="44" y="475" class="tm" text-anchor="end">1990</text>
+<line x1="47" y1="570" x2="52" y2="570" class="l w1"/>
+<text x="44" y="575" class="tm" text-anchor="end">2000</text>
+<line x1="47" y1="670" x2="52" y2="670" class="l w1"/>
+<text x="44" y="675" class="tm" text-anchor="end">2010</text>
+<line x1="47" y1="770" x2="52" y2="770" class="l w1"/>
+<text x="44" y="775" class="tm" text-anchor="end">2020</text>
+<text x="44" y="855" class="tb" text-anchor="end">いま</text>
+<text x="120" y="104" class="tl">第1次ブーム</text>
+<text x="120" y="124" class="tm">50年代後半〜60年代</text>
+<text x="120" y="146" class="tb ta">中心：探索・推論</text>
+<text x="120" y="168">例 1956 ダートマス会議</text>
+<text x="120" y="188" class="tm">（AIという分野名）</text>
+<text x="120" y="210">例 ELIZA（60年代の会話）</text>
+<text x="120" y="234" class="tb tng">冬①の理由：</text>
+<text x="120" y="254" class="tng">簡単な問題しか解けない</text>
+<rect x="60" y="276" width="248" height="88" rx="6" class="sm dot" stroke-width="1.5"/>
+<text x="120" y="314" class="tb">冬の時代①</text>
+<text x="120" y="334" class="tm">研究が下火に</text>
+<text x="120" y="384" class="tl">第2次ブーム</text>
+<text x="120" y="403" class="tm">1980年代</text>
+<text x="120" y="423" class="tb ta">中心：知識（ルール）</text>
+<text x="120" y="443">例 エキスパートシステム</text>
+<text x="120" y="462" class="tm">（手本は70年代のMYCIN）</text>
+<text x="120" y="482">例 第五世代コンピュータ</text>
+<text x="120" y="502" class="tb tng">冬②の理由：</text>
+<text x="120" y="521" class="tng">知識を人が書き切れない</text>
+<rect x="60" y="528" width="248" height="40" rx="6" class="sm dot" stroke-width="1.5"/>
+<text x="120" y="553" class="tb">冬の時代②（1995年頃〜）</text>
+<text x="120" y="596" class="tl">第3次ブーム</text>
+<text x="120" y="616" class="tm">2000年代〜いまも続く</text>
+<text x="120" y="638" class="tb ta">中心：機械学習・</text>
+<text x="120" y="657" class="tb ta">ディープラーニング</text>
+<text x="120" y="679">背景：ビッグデータと計算力</text>
+<text x="120" y="701">例 2012 ILSVRC で</text>
+<text x="120" y="720">ディープラーニングが優勝</text>
+<text x="120" y="742">例 2016 アルファ碁が</text>
+<text x="120" y="761">囲碁の九段に4勝1敗</text>
+<text x="120" y="790" class="tb">2022 ChatGPT 公開</text>
+<text x="120" y="810">生成AIが急速に広がる</text>
+<text x="120" y="830" class="tm">（点線）第4次と呼ぶ</text>
+<text x="120" y="849" class="tm">人もいるが、定まっていない</text>
+<text x="12" y="890" class="tb">中心の流れ：探索・推論 → 知識</text>
+<text x="12" y="910" class="tb">→ データから学ぶ</text>
+<text x="12" y="934">第1次・第2次は人が書いたルールで動く</text>
+<text x="12" y="953">第3次は機械がデータから学ぶ</text>
+<text x="12" y="977" class="tm">ふくらみの幅は目安（測った値ではない）</text>
+<text x="12" y="1000" class="tb">G検定では第1次〜第3次として問われる</text>
+</svg>

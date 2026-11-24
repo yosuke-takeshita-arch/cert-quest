@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 852" role="img" aria-labelledby="fig-g-type-errors-t fig-g-type-errors-d">
+<title id="fig-g-type-errors-t">第一種の過誤と第二種の過誤：検定の2つの向きの間違い</title>
+<desc id="fig-g-type-errors-d">①検定の結論はどちら向きにも間違える。例として帰無仮説を新しい薬は効かないとし、効くと言えたら棄却する。表は、本当は効かない薬か効く薬かと、棄却しない（効くと言えず）か棄却する（効くと判定）かの4通り。本当は効かないのに棄却すると第一種の過誤（確率α）、棄却しなければ正しい。本当は効くのに棄却しないと第二種の過誤（確率β）、棄却すれば正しい（確率1−β、検出力）。第一種の過誤は無いものを有ると言う偽陽性、第二種の過誤は有るものを見逃す偽陰性に当たる。②数で見る。α＝0.05なら、効かない薬で同じ実験と検定を100回すると、平均5回ほど誤って効くと出る。検出力0.8なら、本当に効く薬で同じことを5回すると、1回は見逃す（β＝1−0.8＝0.2）。③αはデータを見る前に自分で決める。βは自分では選べず、本当の差の大きさで決まり、差が小さいほど見逃しやすい。αを小さく（厳しく）するとβは大きくなる。④αは第一種の過誤の確率で有意水準、βは第二種の過誤の確率、検出力は1−β。</desc>
+<text x="12" y="20" class="tb">第一種・第二種の過誤：2つの向きの間違い</text>
+<text x="12" y="48" class="tb">① 検定の結論は、どちら向きにも間違える</text>
+<text x="12" y="68" class="tm">例：帰無仮説を『新しい薬は効かない』とする</text>
+<text x="12" y="86" class="tm">（効くと言えたら、帰無仮説を棄却する）</text>
+<text x="140" y="112" class="tb" text-anchor="middle">棄却しない</text>
+<text x="140" y="130" class="tm" text-anchor="middle">（効くと言えず）</text>
+<text x="252" y="112" class="tb" text-anchor="middle">棄却する</text>
+<text x="252" y="130" class="tm" text-anchor="middle">（効くと判定）</text>
+<text x="12" y="166">本当は</text>
+<text x="12" y="184" class="tb">効かない</text>
+<text x="12" y="222">本当は</text>
+<text x="12" y="240" class="tb">効く</text>
+<rect x="84" y="142" width="112" height="56" class="fok sok" stroke-width="1"/>
+<text x="140" y="175" class="tb" text-anchor="middle">正しい</text>
+<rect x="196" y="142" width="112" height="56" class="fng sng" stroke-width="1"/>
+<text x="252" y="168" class="tb tng" text-anchor="middle">第一種の過誤</text>
+<text x="252" y="186" class="tm" text-anchor="middle">確率 α</text>
+<rect x="84" y="198" width="112" height="56" class="fwn swn" stroke-width="1"/>
+<text x="140" y="224" class="tb twn" text-anchor="middle">第二種の過誤</text>
+<text x="140" y="242" class="tm" text-anchor="middle">確率 β</text>
+<rect x="196" y="198" width="112" height="56" class="fok sok" stroke-width="1"/>
+<text x="252" y="224" class="tb" text-anchor="middle">正しい</text>
+<text x="252" y="242" class="tm" text-anchor="middle">確率 1−β</text>
+<text x="12" y="280" class="tb tng">第一種の過誤＝効かない薬を『効く』と言う</text>
+<text x="12" y="298" class="tm">（無いものを有ると言う＝偽陽性）</text>
+<text x="12" y="320" class="tb twn">第二種の過誤＝効く薬を見逃す</text>
+<text x="12" y="338" class="tm">（有るものを見逃す＝偽陰性）</text>
+<line x1="12" y1="352" x2="308" y2="352" class="l sb w1"/>
+<text x="12" y="374" class="tb">② 数で見る（α＝0.05、検出力 0.8 の例）</text>
+<text x="12" y="394" class="tm">効かない薬で、同じ実験と検定を100回すると</text>
+<rect x="12" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="26.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="41" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="55.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="70" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="84.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="99" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="113.5" y="404" width="12" height="12" class="fng sng" stroke-width="1"/>
+<rect x="128" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="142.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="157" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="171.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="186" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="200.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="215" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="229.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="244" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="258.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="273" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="287.5" y="404" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="12" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="26.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="41" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="55.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="70" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="84.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="99" y="418" width="12" height="12" class="fng sng" stroke-width="1"/>
+<rect x="113.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="128" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="142.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="157" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="171.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="186" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="200.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="215" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="229.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="244" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="258.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="273" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="287.5" y="418" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="12" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="26.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="41" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="55.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="70" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="84.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="99" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="113.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="128" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="142.5" y="432" width="12" height="12" class="fng sng" stroke-width="1"/>
+<rect x="157" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="171.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="186" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="200.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="215" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="229.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="244" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="258.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="273" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="287.5" y="432" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="12" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="26.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="41" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="55.5" y="446" width="12" height="12" class="fng sng" stroke-width="1"/>
+<rect x="70" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="84.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="99" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="113.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="128" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="142.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="157" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="171.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="186" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="200.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="215" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="229.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="244" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="258.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="273" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="287.5" y="446" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="12" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="26.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="41" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="55.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="70" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="84.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="99" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="113.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="128" y="460" width="12" height="12" class="fng sng" stroke-width="1"/>
+<rect x="142.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="157" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="171.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="186" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="200.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="215" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="229.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="244" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="258.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="273" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<rect x="287.5" y="460" width="12" height="12" class="fs sb" stroke-width="1"/>
+<text x="12" y="492" class="tb tng">→ 平均5回ほど、誤って『効く』と出る（α）</text>
+<text x="12" y="516" class="tm">本当に効く薬で、同じことを5回すると</text>
+<rect x="12" y="526" width="26" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="46" y="526" width="26" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="80" y="526" width="26" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="114" y="526" width="26" height="26" class="fwn swn" stroke-width="1.5"/>
+<rect x="148" y="526" width="26" height="26" class="fok sok" stroke-width="1.5"/>
+<text x="186" y="544" class="tm">4回は正しく棄却</text>
+<text x="12" y="576" class="tb twn">→ 5回に1回は見逃す（β＝1−0.8＝0.2）</text>
+<line x1="12" y1="590" x2="308" y2="590" class="l sb w1"/>
+<text x="12" y="612" class="tb">③ 決め方が違う</text>
+<text x="12" y="632">α：データを見る前に、自分で決める（0.05 など）</text>
+<text x="12" y="654">β：自分では選べない</text>
+<text x="12" y="672" class="tm">　本当の差の大きさで決まり、差が小さいほど</text>
+<text x="12" y="690" class="tm">　見逃しやすい（β が大きい）</text>
+<text x="12" y="712" class="tb">α を小さく（厳しく）すると、β は大きくなる</text>
+<text x="12" y="730" class="tm">（本物の差も見逃しやすくなる）</text>
+<line x1="12" y1="744" x2="308" y2="744" class="l sb w1"/>
+<text x="12" y="766" class="tb">④ 試験で出る言い方</text>
+<text x="12" y="786">α＝第一種の過誤の確率＝有意水準</text>
+<text x="12" y="806">β＝第二種の過誤の確率</text>
+<text x="12" y="826">検出力＝1−β</text>
+<text x="12" y="844" class="tm">（本当に差があるとき、正しく棄却できる確率）</text>
+</svg>

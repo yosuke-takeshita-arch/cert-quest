@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-ap-learning-cycle-t fig-ap-learning-cycle-d">
+<title id="fig-ap-learning-cycle-t">ニューラルネットワークの学習の1周：損失関数→誤差逆伝播法→勾配降下法</title>
+<desc id="fig-ap-learning-cycle-d">例は家の値段を当てること（数は例）。①予測する：入力層から出力層の向きに計算し、予測3,000万円を出す（正解は3,200万円）。②損失関数：予測と正解のずれを1つの数にする。ずれは3,200−3,000＝200。③誤差逆伝播法：出力層から入力層へ逆にたどり、重みごとの勾配（直す向きと量）を出す。④勾配降下法：その勾配を使って、損失が下がる向きへ重みを少しだけ動かす。①に戻ってくり返し、2周目は予測3,100万円でずれ100に減る。役割の違い：勾配を計算するのが誤差逆伝播法、重みを動かすのが勾配降下法。活性化関数は①の計算の中の部品。</desc>
+<text x="12" y="20" class="tb">ニューラルネットワークの学習の1周</text>
+<text x="12" y="40" class="tm">例：家の値段を当てる（数は例）</text>
+<rect x="12" y="50" width="296" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="73" class="tb">① 予測する</text>
+<text x="22" y="93">入力層→出力層の向きに計算</text>
+<text x="22" y="113" class="tm">予測 3,000万円（正解は 3,200万円）</text>
+<line x1="160" y1="128" x2="160" y2="146" class="l sa w2"/>
+<polyline points="156.00,139.00 160,146 164.00,139.00" class="l sa w2"/>
+<rect x="12" y="148" width="296" height="76" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="171" class="tb">② 損失関数</text>
+<text x="22" y="191">予測と正解のずれを1つの数にする</text>
+<text x="22" y="211" class="tm">ずれ 3,200−3,000＝200</text>
+<line x1="160" y1="226" x2="160" y2="244" class="l sa w2"/>
+<polyline points="156.00,237.00 160,244 164.00,237.00" class="l sa w2"/>
+<rect x="12" y="246" width="296" height="76" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="269" class="tb">③ 誤差逆伝播法</text>
+<text x="22" y="289">出力層→入力層へ逆にたどり、</text>
+<text x="22" y="309">重みごとの勾配（直す向きと量）を出す</text>
+<line x1="160" y1="324" x2="160" y2="342" class="l sa w2"/>
+<polyline points="156.00,335.00 160,342 164.00,335.00" class="l sa w2"/>
+<rect x="12" y="344" width="296" height="76" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="367" class="tb">④ 勾配降下法</text>
+<text x="22" y="387">勾配を使って、損失が下がる向きへ</text>
+<text x="22" y="407">重みを少しだけ動かす</text>
+<polyline points="308,390 314,390 314,72 310,72" class="l sm w2"/>
+<line x1="314" y1="72" x2="309" y2="72" class="l sm w2"/>
+<polyline points="316.00,68.00 309,72 316.00,76.00" class="l sm w2"/>
+<text x="12" y="444" class="tb">①に戻ってくり返す</text>
+<text x="12" y="464" class="tm">2周目：予測 3,100万円 → ずれ 100 に減る</text>
+<line x1="12" y1="480" x2="308" y2="480" class="l sb w1"/>
+<text x="12" y="502" class="tb">役割の違い</text>
+<text x="12" y="522">勾配を計算する＝誤差逆伝播法（③）</text>
+<text x="12" y="542">重みを動かす＝勾配降下法（④）</text>
+<text x="12" y="562" class="tm">活性化関数は①の中の計算の部品</text>
+</svg>

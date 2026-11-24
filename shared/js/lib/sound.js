@@ -1,0 +1,246 @@
+// 音の設定の正規化と、どの音を鳴らすかの表。ブラウザには触らない（audio.js が鳴らす）。
+// 素材はすべて CC0。出どころは docs/sources/audio-licenses.md。
+export const DEFAULT_SFX_VOLUME = 70;
+export const DEFAULT_BGM_VOLUME = 40;
+
+/** 音量（0〜100）を整数に直す。数字でない・範囲外は初期値／端に寄せる。 */
+export function normalizeVolume(v, fallback) {
+  if (typeof v === 'string' && v.trim() !== '') v = Number(v);
+  const n = v;
+  if (typeof n !== 'number') return fallback;
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(100, Math.max(0, Math.round(n)));
+}
+
+/**
+ * settings の音の項目を、正しい形に直して返す（settings 自体を書き換える）。
+ *  sound … 効果音のオン／オフ（これまでの項目をそのまま引き継ぐ。古い記録でオンの人はオンのまま）
+ *  sfxVolume / bgmVolume … 0〜100
+ *  bgm … 問題を解いているあいだの BGM のオン／オフ（初期オフ）。bgmTrack … その曲
+ *  bgmHome … それ以外（タイトル画面・ホーム・地図など）の BGM のオン／オフ（初期オフ。タイトル画面にも効く）。bgmHomeTrack … タイトル画面を出たあとの曲（初期はタイトル曲。タイトル画面はこの値にかかわらずタイトル曲）
+ *  bgmVolume … BGM の音量（2つの場面で共通）
+ * 古い記録（bgmHome が無い）の移行は mergeState がやる（bgm がオンだった人は bgmHome もオン。ここでは見分けられない）。
+ */
+export function normalizeSoundSettings(settings) {
+  const s = settings;
+  s.sound = s.sound === true;
+  s.bgm = s.bgm === true;
+  s.bgmHome = s.bgmHome === true;
+  s.sfxVolume = normalizeVolume(s.sfxVolume, DEFAULT_SFX_VOLUME);
+  s.bgmVolume = normalizeVolume(s.bgmVolume, DEFAULT_BGM_VOLUME);
+  s.bgmTrack = normalizeBgmTrack(s.bgmTrack);
+  s.bgmHomeTrack = normalizeHomeTrack(s.bgmHomeTrack);
+  return s;
+}
+
+/** それ以外の場面の曲の選択。'title'＝タイトル曲（初期）、'auto'＝おまかせ（BGM_TRACKS を順番に）、それ以外は BGM_TRACKS の id。知らない値は 'title'。 */
+export function normalizeHomeTrack(v, tracks = BGM_TRACKS) {
+  if (v === TITLE_BGM.id || v === BGM_AUTO) return v;
+  return typeof v === 'string' && tracks.some((t) => t.id === v) ? v : TITLE_BGM.id;
+}
+
+/**
+ * いま流すべき BGM（流さないなら null）。場面は3つ。
+ *  quiz … 問題を解いている（inQuiz）か、問題中の曲を試し聴き中（preview）。問題中のオン／オフ（bgm）と曲（bgmTrack）に従う
+ *  title … タイトル画面（inTitle）。『それ以外』のオン／オフ（bgmHome）に従い、曲は選択にかかわらずいつもタイトル曲で固定
+ *  other … それ以外（ホーム・地図・カード・設定など）。『それ以外』のオン／オフと曲（bgmHomeTrack）に従う
+ *  boss … 章のボス戦の間（inBoss）。問題中のオン／オフ（bgm）に従い、曲はいつもボス戦の曲（プログラムで鳴らす。BGM_TRACKS には入れない）。最優先
+ *  rush … 時間制限つきの遊び（秒数チャレンジ・どっち？早押し）の問題中（inRush）。問題中のオン／オフ（bgm）に従い、曲はいつも RUSH_BGM。ボス戦の次に優先（問題中の曲の代わり）
+ * 次に、問題中の判定（タイトル画面の歯車で問題中の曲を試し聴きしている間は、その曲）。
+ * その場面のオン／オフが切れている・アプリが裏に回っている（hidden）なら null。
+ * 返すもの: { scene: 'boss' | 'rush' | 'quiz' | 'title' | 'other', track: 'boss' | 'rush' | 'auto' | 'title' | BGM_TRACKS の id }
+ */
+export function bgmPlan(s, { inQuiz = false, preview = false, inTitle = false, hidden = false, inBoss = false, inRush = false } = {}) {
+  if (!s || hidden) return null;
+  if (inBoss) return s.bgm ? { scene: 'boss', track: BOSS_BGM.id } : null;
+  if (inRush) return s.bgm ? { scene: 'rush', track: RUSH_BGM.id } : null;
+  if (inQuiz || preview) return s.bgm ? { scene: 'quiz', track: normalizeBgmTrack(s.bgmTrack) } : null;
+  if (inTitle) return s.bgmHome ? { scene: 'title', track: TITLE_BGM.id } : null;
+  return s.bgmHome ? { scene: 'other', track: normalizeHomeTrack(s.bgmHomeTrack) } : null;
+}
+
+/** BGM の曲の選択。'auto'＝おまかせ（全曲を順番に）、それ以外は BGM_TRACKS の id。知らない値（古い記録・消えた曲）は 'auto'。 */
+export const BGM_AUTO = 'auto';
+export function normalizeBgmTrack(v, tracks = BGM_TRACKS) {
+  return typeof v === 'string' && tracks.some((t) => t.id === v) ? v : BGM_AUTO;
+}
+/** 選択（'auto' か id）→ 曲の番号。おまかせ・知らない値は -1。 */
+export function bgmTrackIndex(v, tracks = BGM_TRACKS) {
+  return tracks.findIndex((t) => t.id === v);
+}
+
+// 効果音の目盛りは耳に合わせて2乗にする（半分の目盛りで半分の大きさには聞こえないため）。
+export function sfxGain(volume) {
+  const v = normalizeVolume(volume, DEFAULT_SFX_VOLUME) / 100;
+  return v * v;
+}
+// BGM の素材は元の音がとても小さい（効果音は RMS 0.14〜0.27）。以前は 2乗×0.7 で、初期の 40 だと 0.11 倍になり、
+// 実機ではほぼ聞こえなかった。そこで目盛りに比例させ、最大で BGM_GAIN_MAX 倍まで持ち上げる（40 で約1.04倍、100 で 2.6 倍）。
+// さらに、素材ごとに元の音の大きさが違う（RMS が 0.036〜0.256）ので、曲ごとの補正 trim を掛けて、
+// 同じ目盛りでどの曲も同じ大きさ（目盛り40で出力の RMS が約 TARGET_BGM_RMS）になるようにしている。
+// trim ＝ TARGET_BGM_RMS ÷ (その曲の rms × bgmGain(40))。
+// rms・peak は実測（2026-10-04。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// 目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（割れない）になる値にする（Bluebonnet はピークが高いので、これが目標の上限を決めた）。
+// 素材を替えたら、rms・peak を測り直して trim を出し直す。
+export const BGM_GAIN_MAX = 2.6;
+export const TARGET_BGM_RMS = 0.042;
+export function bgmGain(volume, trim = 1) {
+  const v = normalizeVolume(volume, DEFAULT_BGM_VOLUME) / 100;
+  return v * BGM_GAIN_MAX * trim;
+}
+
+// 効果音。キー → ファイル（shared/audio/sfx/ の中）。
+//  ok=正解 ng=不正解 level=レベルアップ badge=バッジ stars=星 goal=1日の目標 start=タイトル画面の「タップしてはじめる」 tap=キャラクターの絵をタップ
+export const SFX_FILES = {
+  ok: 'ok_gold-coin.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Gold Coin」Aeva、CC0）。前の confirmation_001（Kenney）は単音で物足りなかった
+  ng: 'ng_lose-trumpet.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「Game Over Trumpet SFX」0new4y、CC0）。前の error_003（Kenney）は単音で物足りなかった
+  level: 'level_8bit-fanfare.ogg', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「8bit fanfare jingle "The Lick"」Haley、CC0）
+  badge: 'badge_new-thing-get.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「New Thing Get」congusbongus、CC0）。前の jingles_SAX07 は単音で物足りなかった
+  stars: 'stars_sparkle.wav', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「Cure Magic」の Cure5、Someoneman、CC0。モノラルにした）
+  goal: 'goal_cure.wav', // 2026-10-05 先生が聞き比べて選んだ。前の Kenney のジングルは単音で物足りなかった（OpenGameArt「Cure Magic」の Cure2、Someoneman、CC0。モノラルにした）
+  tap: 'drop_001.ogg', // 2026-10-06 先生が聞き比べて選んだ。キャラクターの絵をタップするたびに鳴る『ポンッ』（Kenney Interface Sounds の drop_001、CC0。元のファイル名のまま）
+  start: 'start_16bit-success.ogg', // 2026-10-04 先生が聞き比べて選んだ（OpenGameArt「16bit Success sound」flush、CC0）。前の jingles_NES05 は低いベースが中心でスマホでは弱かった
+  bosshit: 'boss-hit_snare.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で正解して、ボスに当たったとき（OpenGameArt「8-bit/Lo-Fi Snare Drum Sound」Spring Spring、CC0）
+  bosswin: 'boss-win_victory.mp3', // 2026-10-09 先生が聞き比べて選んだ。ボスを倒したときのファンファーレ（OpenGameArt「Victory」celestialghost8、CC0。後ろの無音を 4.0 秒で切った）
+  bosshurt: 'boss-hurt_explosion02.ogg', // 2026-10-09 先生が聞き比べて選んだ。ボス戦で間違えて、ボスからダメージをもらったとき（OpenGameArt「Soundpack 03」crazyduckgames の explosion02、CC0。元の ogg のまま）
+  truecrack1: 'true-crack_ice-small-1.ogg', // 2026-10-23 先生『音や音楽は全部推奨でいい』。真ボスの第1→2進化で、殻にひびが入るたびの小さな音（OpenGameArt「Ice breaking/shattering」IgnasD の LedasLuzta2、CC0。ffmpeg で音量を上げて 0.9 で頭打ち）
+  truecrack2: 'true-crack_ice-small-2.ogg', // 同じ素材の LedasLuzta（ひびの2つ目の音）
+  trueshatter1: 'true-shatter_ice-big-1.ogg', // 殻が砕ける瞬間の大きな音（同じ素材の LedasLuzta5）
+  trueseep: 'true-seep_steam-hiss-1.ogg', // 2026-11-08 先生が聞き比べて選んだ。ヒソミカゲの第1→2で、鎧のすきまから煙が漏れるたびの音（4回鳴る。OpenGameArt「Steam release sounds」bart の steam hisses - Marker #1、CC0。音のある約0.74秒だけに切り、終わりを0.1秒かけてフェードアウトして ogg に変換。補正なし。ほかの真ボスの音より約6〜12dB 小さい）
+  trueclatter: 'true-clatter_metal-falling-01.ogg', // 2026-11-08 先生が聞き比べて選んだ。鎧が崩れ落ちる音（OpenGameArt「100 CC0 metal and wood SFX」rubberduck の metal_falling_01、CC0。元の ogg のまま。補正なし）
+  trueshatter2: 'true-shatter_ice-big-2.ogg', // 砕ける音に重ねる長めの音（同じ素材の LedasLuzta33）
+  truerumble: 'true-rumble_earthquake-shake.ogg', // 第1形態を倒したあとの地鳴り（OpenGameArt「Earthquake and Open sesame」mieki256 の shake、CC0。3.6秒に切って後ろをフェードアウト）
+  trueheartbeat: 'true-heartbeat_slow.ogg', // 2026-10-23 先生『進化の効果音は全部推奨』。真ボス1→2の鼓動の前半（OpenGameArt「Heartbeat Sounds」bart の heartbeat_slow、CC0。1回ぶんを 0.62 秒に切り、低音だけで聞こえにくいので高い成分を足した）
+  trueheartbeatfast: 'true-heartbeat_fast.ogg', // 鼓動の後半（同じ素材の heartbeat_fast。0.45 秒に切った）
+  trueorb: 'true-orb_bell-ding.ogg', // 2→3 で光の玉が灯る音（OpenGameArt「Bell dings/chimes」PWL の bell_ding3、CC0。0.55 秒に切った。13回、再生速度で高くしていく）
+  truecharge: 'true-charge_rocket-launch.ogg', // 2→3 の力をためる音（OpenGameArt「Weird Rocket Launch Sound」qzlocx の beepbox-song_1、CC0。3.2 秒に切って後ろをフェードアウト）
+  trueheal: 'true-heal_magical-3.ogg', // 2026-10-23 先生『推奨のままでいい』。ボスの回復の音（OpenGameArt「Magic Spell SFX」JaggedStone の magical_3、CC0。1.5秒に切って後ろをフェードアウト）
+  trueplayerheal: 'true-playerheal_magical-1.ogg', // 2026-10-23 先生決定。自分の HP が回復するときの音（OpenGameArt「Magic Spell SFX」JaggedStone の magical_1_0、CC0。1.4秒に切ってフェードアウト。元が小さいので 2 倍にして頭打ち）。ボスの回復（trueheal）と聞き分けられる別の音
+  trueimpact: 'true-impact_chunky-explosion.ogg', // 2→3 の大きな衝撃（OpenGameArt「Chunky Explosion」Joth、CC0。頭から1.8秒に切って後ろをフェードアウト）
+  truehit: 'true-impact_transformation-hit.ogg', // 衝撃と同時に鳴らす決めの一撃（OpenGameArt「Epic Transformation」Dizzy Crow の 37.6〜39.8 秒、CC0）
+  tab: 'tab_beep.ogg', // 2026-10-25 先生決定 B、同日『もっと、高い音の「ピッ」がいいな』で替えた。下のタブ（ホーム・地図・復習・カード・もっと）を押したときの高い『ピッ』（約0.07秒・2400Hz。ffmpeg で合成した自作の音、素材なし。前の Kenney の select_002 は 590Hz で低かった。鳴らすときの倍率は TAB_SFX_BOOST）
+  vortex: 'vortex_retro-fall.ogg', // 2026-10-26 先生が聞き比べて選んだ（『ボス戦の音は1で行こう』）。ボス戦・真ボス戦に入る場面転換『ドットの渦』が始まるときの、高い音から低い音へ下がる8bitの音（約1.2秒。OpenGameArt「15 Strange Retro SFX」Aureolus_Omicron の strange_retrosfx04_fall1、CC0。モノラルの ogg に変換。補正なし）
+  bosscrit: 'boss-crit_cut.ogg', // 2026-10-10 先生が聞き比べて選んだ。ボス戦で会心の一撃が出たとき（OpenGameArt「NES Sounds」Baŝto の cut、CC0。元の ogg のまま。ふつうの当たり bosshit より約6dB 小さいので BOSS_SFX.crit.boost で持ち上げる）
+};
+
+// ボス戦で鳴らす効果音。種類 → SFX_FILES のキー。値が null の種類は、音のファイルが無い（何も鳴らさない）。
+// synth … ファイルが取れない・読めないときに、代わりに鳴らすプログラムの音（lib/bossmusic.js の SYNTH_SFX のキー）。
+// sfx … 同じく、代わりに鳴らす効果音（SFX_FILES のキー）。hurt は、ふつうの出題の不正解の音（ng）に戻る。
+// hurt を鳴らす場面（ボス戦で間違えた）では、ふつうの不正解の音（ng）は鳴らさない（この「ドン」に置き換える）。
+// boost … 再生の倍率（省略は 1）。この音の元の大きさが、ほかの効果音より小さいときだけ付ける。
+// crit は、会心の一撃のとき hit（ふつうの当たりの snare）の代わりに鳴らす（重ねない）。
+// 元の音は rms -21.4dBFS・peak -9.1dBFS で、hit の snare（rms -15.6dBFS）より約5.8dB 小さい。1.9 倍（+5.6dB）で rms は約 -15.8dBFS、peak は約 -3.5dBFS（割れない）。
+export const BOSS_SFX = {
+  hit: { key: 'bosshit', synth: 'hit' },
+  crit: { key: 'bosscrit', synth: 'crit', boost: 1.9 },
+  win: { key: 'bosswin', synth: 'fanfare' },
+  hurt: { key: 'bosshurt', sfx: 'ng' },
+  // 真ボス（2026-10-23）。ファイルが取れないとき、砕ける音（shatter1）は昔のプログラムの進化の音に戻り、地鳴りは低い警告音に戻る。ひびの音は鳴らさない
+  crack1: { key: 'truecrack1', synth: null },
+  crack2: { key: 'truecrack2', synth: null },
+  shatter1: { key: 'trueshatter1', synth: 'evolve' },
+  shatter2: { key: 'trueshatter2', synth: null },
+  rumble: { key: 'truerumble', synth: 'skill' },
+  // 第1→2の『染み出す』型（ヒソミカゲ。2026-11-08 先生決定 A）。音は先生が CC0 の候補を聞いて選んだ（2026-11-08）。
+  seep: { key: 'trueseep', synth: null }, // 煙が漏れるたびの小さな音（4回鳴る）。ファイルが取れないときは鳴らさない
+  clatter: { key: 'trueclatter', synth: 'evolve' }, // 鎧が崩れ落ちる音。ファイルが取れないときは昔のプログラムの進化の音
+  // 進化のタメの効果音のフック（要件定義書 §3-9）。素材のファイルは今は無く、プログラムの音で鳴る。素材が入ったら SFX_FILES に key を足すだけで、ファイルが先に鳴る
+  playerheal: { key: 'trueplayerheal', synth: 'playerheal' }, // 自分の HP の回復の音のフック
+  heal: { key: 'trueheal', synth: 'heal' }, // ボスの回復の音のフック。素材のファイル（trueheal）が入るまでは、プログラムの音
+  heartbeat: { key: 'trueheartbeat', synth: 'heartbeat' },
+  heartbeatfast: { key: 'trueheartbeatfast', synth: 'heartbeat' },
+  orb: { key: 'trueorb', synth: null }, // 13回。再生速度で高くする（view が rate と、ファイルが無いときのプログラムの音の名前を渡す）
+  charge: { key: 'truecharge', synth: 'charge', boost: 1.4 }, // 元の rms 約 0.09 が、ほかの効果音より小さいので持ち上げる
+  impact: { key: 'trueimpact', synth: 'impact' },
+  finalhit: { key: 'truehit', synth: null }, // 衝撃と同時に鳴らす決めの一撃
+};
+
+// BGM（shared/audio/bgm/ の中）。おまかせのときは順に流し、repeat 回くり返したら次へ（1回で約100秒）。最後まで行ったら最初に戻る。
+//  id … 設定に保存する名前（変えない。曲を消したら、その id を指す記録は『おまかせ』に戻る）
+//  name・mood … 設定画面に出す名前と雰囲気
+//  trim・rms・peak … 上の音量の補正と、その実測
+export const BGM_TRACKS = [
+  { id: 'contemplation', file: 'contemplation.mp3', name: '静かな思索', mood: 'ゆったりしたアンビエント', repeat: 1, trim: 1.13, rms: 0.0356, peak: 0.26 },
+  { id: 'jrpg-piano', file: 'jrpg-piano.mp3', name: 'ピアノの小品', mood: 'やさしく静かなピアノ', repeat: 4, trim: 0.77, rms: 0.0524, peak: 0.3281 },
+  { id: 'bluebonnet', file: 'bluebonnet.mp3', name: 'ブルーボネット', mood: 'おだやかなクラシック調のピアノ', repeat: 1, trim: 0.55, rms: 0.074, peak: 0.672 },
+  { id: 'calm-loop', file: 'calm-loop.mp3', name: 'ゆるいシンセ', mood: 'ゆったりしたシンセと軽い打楽器', repeat: 5, trim: 0.158, rms: 0.2558, peak: 1.0735 },
+  { id: 'happy-lullaby', file: 'happy-lullaby.mp3', name: '子守歌のベル', mood: '鈴の音のやわらかい子守歌', repeat: 3, trim: 0.216, rms: 0.1869, peak: 1.0005 },
+  { id: 'chill-lofi', file: 'chill-lofi.mp3', name: 'ローファイ・チル', mood: 'ローファイ風のジャズっぽいピアノ', repeat: 1, trim: 0.321, rms: 0.1259, peak: 1.0009 },
+];
+
+// タイトル画面だけで流す曲（2026-10-06 先生が聞き比べて選んだ。OpenGameArt「Once Upon a Time (loop)」TAD、CC0）。
+// 設定の曲の一覧（BGM_TRACKS）・おまかせの順番には入れない。BGM の設定（オン／オフ・音量）に従う。
+// trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-06。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.955）。
+export const TITLE_BGM = { id: 'title', file: 'title_once-upon-a-time.mp3', name: 'Once Upon a Time', trim: 0.4, rms: 0.101, peak: 0.9182, fadeSec: 0.6 };
+
+// ボス戦の曲（2026-10-09 先生が8曲を聞き比べて選んだ。OpenGameArt「8-bit Danger!! Strong Boss」HydroGene、CC0）。BGM の設定（オン／オフ・音量）に従う。
+// 設定の曲の一覧（BGM_TRACKS）・おまかせには入れない。ボス戦の間だけ、このファイルをくり返す。
+// ファイルが取れない・鳴らせないとき（オフラインで、まだ一度も取っていない等）は、プログラムで鳴らす昔のゲーム機風の曲（楽譜は lib/bossmusic.js）に戻る。
+// trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-09。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.539）。
+// synthTrim … 戻り先のプログラムの曲の補正。矩形波は振幅が一定なので、素材の目標 RMS から見積もった（耳で聞き比べて決めた値ではない）。
+export const BOSS_BGM = { id: 'boss', file: 'boss_8-bit-danger-strong-boss.mp3', name: '8-bit Danger!! Strong Boss', trim: 0.212, rms: 0.1902, peak: 0.976, synthTrim: 0.04 };
+
+// 時間制限つきの遊びの曲（2026-10-19 先生が8曲を聞き比べて選んだ。OpenGameArt「Tower Defense Theme」DST、CC0）。BGM の設定（オン／オフ・音量）に従う。
+// 秒数チャレンジ（challengeName）と「どっち？早押し」の問題中だけ、ふつうの問題中の曲（bgm・bgmTrack）の代わりに流す。BGM_TRACKS（設定の曲の一覧・おまかせ）には入れない。
+// ファイルが取れない・鳴らせないときは、ふつうの問題中の曲に戻る（無音で止まらない）。
+// trim・rms・peak は BGM_TRACKS と同じ測り方（2026-10-19。ブラウザで decodeAudioData し、全チャンネルの二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.575）。
+export const RUSH_BGM = { id: 'rush', file: 'rush_tower-defense-theme.mp3', name: 'Tower Defense Theme', trim: 0.22, rms: 0.1834, peak: 1.0042 };
+
+// 真ボスの曲（2026-10-23 先生『音や音楽は全部推奨でいい』。OpenGameArt「Final Stand」Centurion_of_war の phase 1.3・2.2・4.1finalmax、「Starfield Romance」Yoiyami、CC0）。
+// BGM の設定（オン／オフ・音量）に従う。BGM_TRACKS（設定の曲の一覧・おまかせ）には入れない。形態 1〜3 は同じファイルをくり返し、形態が替わったら曲も替える。4 はエンディング（くり返さない。約105秒で終わりを6秒フェードアウト）。
+// ファイルが取れない・鳴らせないときは、プログラムで鳴らす曲（lib/trueboss-music.js）に戻る（エンディングは短いファンファーレ）。
+// trim・rms・peak は BGM_TRACKS と同じ測り方で、128kbps の mp3 を全チャンネルで測った（2026-10-23。ffmpeg でデコードして、二乗平均の平方根と最大の絶対値）。
+// trim ＝ TARGET_BGM_RMS ÷ (rms × bgmGain(40))。目盛り100でも peak × trim × BGM_GAIN_MAX が 1 未満（0.86 / 0.87 / 0.77 / 0.67）。
+export const TRUE_BOSS_BGM = {
+  1: { file: 'true-boss_1-final-stand-1-3.mp3', name: 'Final Stand (phase 1.3)', trim: 0.423, rms: 0.0955, peak: 0.7854 },
+  2: { file: 'true-boss_2-final-stand-2-2.mp3', name: 'Final Stand (phase 2.2)', trim: 0.375, rms: 0.1077, peak: 0.8931 },
+  3: { file: 'true-boss_3-final-stand-4-1max.mp3', name: 'Final Stand (phase 4.1 final max)', trim: 0.373, rms: 0.1081, peak: 0.7965 },
+  4: { file: 'true-boss_ending-starfield-romance.mp3', name: 'Starfield Romance', trim: 0.376, rms: 0.1073, peak: 0.6843 },
+};
+export const TRUE_BOSS_SYNTH_TRIM = 0.04; // 戻り先のプログラムの曲の補正（BOSS_BGM.synthTrim と同じ見積もり。耳で決めた値ではない）
+
+// 下のタブの『ピッ』は控えめに鳴らす（元の rms 約 -13.6dBFS を 0.6 倍＝約 -18dBFS。正解の音などより小さい）。
+export const TAB_SFX_BOOST = 0.6;
+/**
+ * 下のタブを押したとき『ピッ』を鳴らすか。今いるタブを押し直しただけ（そのタブが選ばれていて、アドレスも同じ）では鳴らさない。
+ * 地図のタブにいても、ステージの画面（アドレスが違う）から押したときは画面が替わるので鳴らす。
+ */
+export function shouldPlayTabSfx(isCurrent, locationHash, tabHash) {
+  return !(isCurrent === true && locationHash === tabHash);
+}
+
+/** お祝いの種類 → 効果音のキー。 */
+export function celebrateSfx(kind) {
+  return kind === 'level' ? 'level' : kind === 'badge' ? 'badge' : kind === 'stars' ? 'stars' : 'goal';
+}
+
+/**
+ * 次に流す曲。track は今の曲の番号、plays は今の曲を何回流し終えたか。
+ * selected が曲の id なら、その曲をくり返す（おまかせ・知らない値なら、全曲を順番に）。
+ */
+export function nextBgmPosition(track, plays, tracks = BGM_TRACKS, selected = BGM_AUTO) {
+  const sel = bgmTrackIndex(selected, tracks);
+  if (sel >= 0) return { track: sel, plays: 0 };
+  const cur = tracks[track] ? track : 0;
+  if (plays < tracks[cur].repeat) return { track: cur, plays };
+  return { track: (cur + 1) % tracks.length, plays: 0 };
+}
+
+/**
+ * 模擬試験の結果発表のドラムロール（要件定義書の模擬試験「結果発表の演出」）。snare を打つ時刻（ミリ秒）と強さ（0〜1）の並び。
+ * ms の間、打つ間隔を startGap から endGap へだんだん詰め、強さを from から to へ上げる（だんだん大きく速く）。
+ */
+export const DRUMROLL = { startGap: 120, endGap: 45, from: 0.45, to: 0.9 };
+export function drumRollHits(ms, opt = DRUMROLL) {
+  const hits = [];
+  if (!(ms > 0)) return hits;
+  for (let t = 0; t < ms;) {
+    const p = t / ms;
+    hits.push({ t: Math.round(t), gain: opt.from + (opt.to - opt.from) * p });
+    t += opt.startGap + (opt.endGap - opt.startGap) * p;
+  }
+  return hits;
+}

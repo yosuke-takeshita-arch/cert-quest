@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 926" role="img" aria-labelledby="fig-g-data-augmentation-t fig-g-data-augmentation-d">
+<title id="fig-g-data-augmentation-t">画像のデータ拡張の種類</title>
+<desc id="fig-g-data-augmentation-d">向きのある印（F の形）で、データ拡張を並べた図。左右反転、回転、切り抜き、明るさの変更は、画像全体を変える基本の変換。Cutout は正方形を隠し、Random Erasing は長方形をランダムな値で塗る。Mixup は2枚の画像全体を比率で重ね、ラベルも同じ比率で混ぜる。CutMix は一部を切り取って別の画像のパッチを貼り、ラベルを貼った面積の比率で混ぜる。RandAugment は、用意した変換からN個を選び、共通の強さMで使う。数字の6と9が入れ替わるような回転は、意味を変えるので避ける。</desc>
+<rect x="12" y="18" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="30.00,30.00 58.00,30.00 58.00,40.00 40.00,40.00 40.00,46.00 52.00,46.00 52.00,54.00 40.00,54.00 40.00,70.00 30.00,70.00" class="fa sa"/>
+<text x="92" y="38" class="tb">元の画像</text>
+<text x="92" y="58">この F の形を</text>
+<text x="92" y="76" class="tm">いろいろに変える</text>
+<rect x="12" y="100" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="58.00,112.00 30.00,112.00 30.00,122.00 48.00,122.00 48.00,128.00 36.00,128.00 36.00,136.00 48.00,136.00 48.00,152.00 58.00,152.00" class="fa sa"/>
+<text x="92" y="120" class="tb">Flip（反転）</text>
+<text x="92" y="140">左右（上下）に</text>
+<text x="92" y="158" class="tm">反転する</text>
+<rect x="12" y="182" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="39.76,189.96 65.14,201.79 60.91,210.85 44.60,203.25 42.07,208.68 52.94,213.76 49.56,221.01 38.68,215.93 31.92,230.44 22.86,226.21" class="fa sa"/>
+<text x="92" y="202" class="tb">Rotate（回転）</text>
+<text x="92" y="222">傾ける</text>
+<rect x="12" y="264" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="30.00,276.00 58.00,276.00 58.00,286.00 40.00,286.00 40.00,292.00 52.00,292.00 52.00,300.00 40.00,300.00 40.00,316.00 30.00,316.00" class="fa sa"/>
+<rect x="24" y="270" width="36" height="34" class="sng w2 dsh l"/>
+<text x="92" y="284" class="tb">Crop（切り抜き）</text>
+<text x="92" y="304">一部を切り出して</text>
+<text x="92" y="322" class="tm">使う（破線の中）</text>
+<rect x="12" y="346" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="30.00,358.00 58.00,358.00 58.00,368.00 40.00,368.00 40.00,374.00 52.00,374.00 52.00,382.00 40.00,382.00 40.00,398.00 30.00,398.00" class="fas sa"/>
+<text x="92" y="366" class="tb">Brightness</text>
+<text x="92" y="386">明るさを変える</text>
+<text x="92" y="404" class="tm">Contrast は明暗の差</text>
+<rect x="12" y="428" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="30.00,440.00 58.00,440.00 58.00,450.00 40.00,450.00 40.00,456.00 52.00,456.00 52.00,464.00 40.00,464.00 40.00,480.00 30.00,480.00" class="fa sa"/>
+<rect x="34" y="450" width="24" height="24" class="fm sm" stroke-width="1.5"/>
+<text x="92" y="448" class="tb">Cutout</text>
+<text x="92" y="468">正方形を隠す</text>
+<text x="92" y="486" class="tm">（消すだけ）</text>
+<rect x="12" y="510" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="30.00,522.00 58.00,522.00 58.00,532.00 40.00,532.00 40.00,538.00 52.00,538.00 52.00,546.00 40.00,546.00 40.00,562.00 30.00,562.00" class="fa sa"/>
+<rect x="32" y="538" width="8" height="8" class="fas sb" stroke-width="0.5"/>
+<rect x="40" y="538" width="8" height="8" class="fwn sb" stroke-width="0.5"/>
+<rect x="48" y="538" width="8" height="8" class="fs sb" stroke-width="0.5"/>
+<rect x="56" y="538" width="8" height="8" class="fng sb" stroke-width="0.5"/>
+<rect x="32" y="546" width="8" height="8" class="fm sb" stroke-width="0.5"/>
+<rect x="40" y="546" width="8" height="8" class="fok sb" stroke-width="0.5"/>
+<rect x="48" y="546" width="8" height="8" class="fwn sb" stroke-width="0.5"/>
+<rect x="56" y="546" width="8" height="8" class="fas sb" stroke-width="0.5"/>
+<rect x="32" y="554" width="8" height="8" class="fs sb" stroke-width="0.5"/>
+<rect x="40" y="554" width="8" height="8" class="fng sb" stroke-width="0.5"/>
+<rect x="48" y="554" width="8" height="8" class="fok sb" stroke-width="0.5"/>
+<rect x="56" y="554" width="8" height="8" class="fm sb" stroke-width="0.5"/>
+<text x="92" y="530" class="tb">Random Erasing</text>
+<text x="92" y="550">長方形を、ランダムな</text>
+<text x="92" y="568" class="tm">値で塗りつぶす</text>
+<rect x="12" y="592" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="30.00,604.00 58.00,604.00 58.00,614.00 40.00,614.00 40.00,620.00 52.00,620.00 52.00,628.00 40.00,628.00 40.00,644.00 30.00,644.00" class="fa sa" fill-opacity="0.6"/>
+<circle cx="50" cy="630" r="17" class="fm sm" fill-opacity="0.4"/>
+<text x="92" y="612" class="tb">Mixup</text>
+<text x="92" y="632">2枚の画像全体を重ねる</text>
+<text x="92" y="650" class="tm">ラベルも 0.6：0.4 で混ぜる</text>
+<rect x="12" y="674" width="64" height="64" class="fs sb" stroke-width="1.5"/>
+<polygon points="30.00,686.00 58.00,686.00 58.00,696.00 40.00,696.00 40.00,702.00 52.00,702.00 52.00,710.00 40.00,710.00 40.00,726.00 30.00,726.00" class="fa sa"/>
+<rect x="44" y="674" width="32" height="32" class="fs sm" stroke-width="1.5"/>
+<circle cx="60" cy="690" r="11" class="fm sm"/>
+<text x="92" y="694" class="tb">CutMix</text>
+<text x="92" y="714">一部に別の画像を貼る</text>
+<text x="92" y="732" class="tm">ラベルは面積比 0.75：0.25</text>
+<line x1="12" y1="760" x2="308" y2="760" class="l sb w1"/>
+<text x="12" y="786" class="tb">RandAugment</text>
+<text x="12" y="808">用意した変換から N 個を選び、</text>
+<text x="12" y="828">共通の強さ M で使う（調整は N と M だけ）</text>
+<rect x="12" y="852" width="296" height="66" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="880.5" class="tb" text-anchor="middle">意味が変わる変換は避ける</text>
+<text x="160" y="898.5" class="tb" text-anchor="middle">例：数字の 6 と 9 が入れ替わる回転</text>
+</svg>

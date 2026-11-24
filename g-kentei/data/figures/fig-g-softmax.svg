@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 506" role="img" aria-labelledby="fig-g-softmax-t fig-g-softmax-d">
+<title id="fig-g-softmax-t">ソフトマックス関数：出力を合計1の確率にする</title>
+<desc id="fig-g-softmax-d">3クラス（犬・猫・鳥）の出力値の例が3.0、1.0、0.0。それぞれのeのx乗をとると20.09、2.72、1.00になり、大小の順は変わらない。この合計23.80で割ると、0.844、0.114、0.042になり、すべて0から1の間で合計が1になる。各クラスの確率として読める。</desc>
+<text x="12" y="20" class="tb">① 出力値（スコア）</text>
+<line x1="24" y1="114" x2="300" y2="114" class="l sm w1"/>
+<rect x="70" y="72" width="44" height="42" class="fas sa" stroke-width="1.5" class_="sa"/>
+<text x="92" y="66" class="tb" text-anchor="middle">3.0</text>
+<text x="92" y="132" class="tm" text-anchor="middle">犬</text>
+<rect x="152" y="100" width="44" height="14" class="fas sa" stroke-width="1.5" class_="sa"/>
+<text x="174" y="94" class="tb" text-anchor="middle">1.0</text>
+<text x="174" y="132" class="tm" text-anchor="middle">猫</text>
+<rect x="234" y="112.5" width="44" height="1.5" class="fas sa" stroke-width="1.5" class_="sa"/>
+<text x="256" y="106.5" class="tb" text-anchor="middle">0.0</text>
+<text x="256" y="132" class="tm" text-anchor="middle">鳥</text>
+<line x1="160" y1="138" x2="160" y2="155.6" class="l sm w2"/>
+<polygon points="160,162 156,155.6 164,155.6" class="fm"/>
+<text x="172" y="156" class="tb">eˣ をとる</text>
+<text x="12" y="172" class="tb">② eˣ</text>
+<line x1="24" y1="266" x2="300" y2="266" class="l sm w1"/>
+<rect x="70" y="205.74" width="44" height="60.26" class="fwn swn" stroke-width="1.5" class_="swn"/>
+<text x="92" y="199.74" class="tb" text-anchor="middle">20.09</text>
+<text x="92" y="284" class="tm" text-anchor="middle">犬</text>
+<rect x="152" y="257.85" width="44" height="8.15" class="fwn swn" stroke-width="1.5" class_="swn"/>
+<text x="174" y="251.85" class="tb" text-anchor="middle">2.72</text>
+<text x="174" y="284" class="tm" text-anchor="middle">猫</text>
+<rect x="234" y="263" width="44" height="3" class="fwn swn" stroke-width="1.5" class_="swn"/>
+<text x="256" y="257" class="tb" text-anchor="middle">1.00</text>
+<text x="256" y="284" class="tm" text-anchor="middle">鳥</text>
+<line x1="160" y1="290" x2="160" y2="307.6" class="l sm w2"/>
+<polygon points="160,314 156,307.6 164,307.6" class="fm"/>
+<text x="172" y="308" class="tb">合計 23.80 で割る</text>
+<text x="12" y="324" class="tb">③ 確率（合計 1）</text>
+<line x1="24" y1="418" x2="300" y2="418" class="l sm w1"/>
+<rect x="70" y="350.5" width="44" height="67.5" class="fok sok" stroke-width="1.5" class_="sok"/>
+<text x="92" y="344.5" class="tb" text-anchor="middle">0.844</text>
+<text x="92" y="436" class="tm" text-anchor="middle">犬</text>
+<rect x="152" y="408.86" width="44" height="9.14" class="fok sok" stroke-width="1.5" class_="sok"/>
+<text x="174" y="402.86" class="tb" text-anchor="middle">0.114</text>
+<text x="174" y="436" class="tm" text-anchor="middle">猫</text>
+<rect x="234" y="414.64" width="44" height="3.36" class="fok sok" stroke-width="1.5" class_="sok"/>
+<text x="256" y="408.64" class="tb" text-anchor="middle">0.042</text>
+<text x="256" y="436" class="tm" text-anchor="middle">鳥</text>
+<text x="12" y="472" class="tb">大小の順は変わらず、合計がちょうど 1</text>
+<text x="12" y="494" class="tm">→ 各クラスの確率として読める</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 346" role="img" aria-labelledby="fig-dx-scope-returns-loop-t fig-dx-scope-returns-loop-d">
+<title id="fig-dx-scope-returns-loop-t">範囲に関する収穫逓増：サービスの種類が多いほどデータを組み合わせて質が上がり、人が集まる</title>
+<desc id="fig-dx-scope-returns-loop-d">何のための図か：検索・動画共有・メールなど複数のサービスを持つ企業で、データを組み合わせるほど質が上がり、さらに利用者が集まる輪（令和元年版情報通信白書の範囲に関する収穫逓増）を見る。①検索・動画・メールなど複数のサービスを提供する。②それぞれから得た利用者の関心事項のデータを組み合わせて、利用者をより正確に把握する（精度の高いプロファイリング）。③各サービスの質が上がる。④利用者がさらに集まり、データが増えて①に戻る。白書は、複数のサービスを提供することで範囲の経済性が働くとも述べている。比べる密度の経済は、狭い地域に顧客や店舗が集まるほど効率が上がる、近さの話。</desc>
+<text x="12" y="20" class="tb">種類（幅）が多いほど、質が上がる輪</text>
+<text x="12" y="42" class="tm">令和元年版 白書『範囲に関する収穫逓増』</text>
+<rect x="12" y="56" width="132" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="78" y="76" text-anchor="middle">① 検索・動画・</text>
+<text x="78" y="94" text-anchor="middle">メールなど</text>
+<text x="78" y="112" text-anchor="middle">複数のサービス</text>
+<rect x="176" y="56" width="132" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="242" y="76" text-anchor="middle">② データを</text>
+<text x="242" y="94" text-anchor="middle">組み合わせて</text>
+<text x="242" y="112" text-anchor="middle">利用者を把握</text>
+<rect x="176" y="172" width="132" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="242" y="201" text-anchor="middle">③ 各サービスの</text>
+<text x="242" y="219" text-anchor="middle">質が上がる</text>
+<rect x="12" y="172" width="132" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="78" y="201" text-anchor="middle">④ 利用者が集まり</text>
+<text x="78" y="219" text-anchor="middle">データが増える</text>
+<line x1="146" y1="89" x2="168" y2="89" class="l sa w2"/>
+<polyline points="167,84 174,89 167,94" class="l sa w2" fill="none"/>
+<line x1="242" y1="124" x2="242" y2="164" class="l sa w2"/>
+<polyline points="237,163 242,170 247,163" class="l sa w2" fill="none"/>
+<line x1="174" y1="205" x2="152" y2="205" class="l sa w2"/>
+<polyline points="153,200 146,205 153,210" class="l sa w2" fill="none"/>
+<line x1="78" y1="170" x2="78" y2="130" class="l sa w2"/>
+<polyline points="73,131 78,124 83,131" class="l sa w2" fill="none"/>
+<text x="160" y="144" class="tm" text-anchor="middle">サービスの</text>
+<text x="160" y="160" class="tm" text-anchor="middle">種類が多いほど</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="274" class="tb">比べる</text>
+<text x="12" y="292" class="tm">密度の経済：狭い地域に客や店が集まるほど</text>
+<text x="12" y="310" class="tm">効率が上がる（近さの話。種類の話ではない）</text>
+<text x="12" y="332" class="tm">規模の経済：量が増えるほど1単位が安くなる</text>
+</svg>

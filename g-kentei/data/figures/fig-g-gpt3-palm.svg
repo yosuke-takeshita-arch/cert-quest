@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 962" role="img" aria-labelledby="fig-g-gpt3-palm-t fig-g-gpt3-palm-d">
+<title id="fig-g-gpt3-palm-t">GPT-3・PaLM：ラベルの無い文章で次の語を当てて学んだ大規模言語モデルは、例を数個見せるだけでタスクをこなす</title>
+<desc id="fig-g-gpt3-palm-d">大規模言語モデルは、大量の文章で学んだ、とても大きな言語モデル。パラメータは学習で決まる数（重みなど）。①2つのモデル：GPT-3（OpenAI、2020年）は1750億パラメータ、PaLM（Pathways Language Model、Google、2022年）は5400億パラメータ。どちらも文章で学び、文の続きを1語ずつ予測する自己回帰型の言語モデル。②事前学習：Web などのラベルの無い文章で、次の語を当てる。例：今日は天気が、の次の語の正解は元の文にあるよい、なので人がラベルを付けなくてよい。③Few-shot：重みを変えずに、指示と例を数個、文章で見せる。例：英語を日本語に訳す、dog は犬、cat は猫、と見せると、bird に鳥と答える。ファインチューニングはしない。④大きいほど例を生かす：GPT-3 の論文は、大きいモデルほど文中の例をうまく使うと示した。PaLM の論文は、80億・620億・5400億と大きくするほど few-shot の成績が伸び続けたと示した。文の例は説明のための例。</desc>
+<text x="12" y="20" class="tb">GPT-3・PaLM：大規模言語モデル</text>
+<text x="12" y="42" class="tm">大量の文章で学んだ、とても大きな言語モデル</text>
+<text x="12" y="60" class="tm">パラメータ：学習で決まる数（重みなど）</text>
+<line x1="12" y1="74" x2="308" y2="74" class="l sb w1"/>
+<text x="12" y="96" class="tb">① 2つのモデル</text>
+<rect x="12" y="106" width="144" height="92" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="84" y="128" class="tb ta" text-anchor="middle">GPT-3</text>
+<text x="84" y="148" class="tm" text-anchor="middle">OpenAI・2020年</text>
+<text x="84" y="170" class="tb" text-anchor="middle">1750億</text>
+<text x="84" y="188" class="tm" text-anchor="middle">パラメータ</text>
+<rect x="164" y="106" width="144" height="92" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="236" y="128" class="tb" text-anchor="middle">PaLM</text>
+<text x="236" y="148" class="tm" text-anchor="middle">Google・2022年</text>
+<text x="236" y="170" class="tb" text-anchor="middle">5400億</text>
+<text x="236" y="188" class="tm" text-anchor="middle">パラメータ</text>
+<text x="12" y="220">どちらも文章で学ぶ言語モデル。文の続きを</text>
+<text x="12" y="238">1語ずつ予測する（自己回帰型）</text>
+<text x="12" y="256" class="tm">PaLM＝Pathways Language Model</text>
+<text x="12" y="274" class="tm">（Pathways は Google の機械学習のシステム）</text>
+<line x1="12" y1="288" x2="308" y2="288" class="l sb w1"/>
+<text x="12" y="310" class="tb">② 事前学習：ラベルの無い文章で学ぶ</text>
+<text x="12" y="332">Web などの文章で、次の語を当てる</text>
+<rect x="12" y="344" width="200" height="30" class="fs sm" stroke-width="1"/>
+<text x="112" y="364" text-anchor="middle">今日は天気が</text>
+<line x1="212" y1="359" x2="232" y2="359" class="l w1"/>
+<polygon points="238,359 232,355.5 232,362.5" class="ft"/>
+<rect x="240" y="344" width="68" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="274" y="364" class="tb tok" text-anchor="middle">よい</text>
+<text x="12" y="396">正解（よい）は元の文に書いてある</text>
+<text x="12" y="414">→ 人が正解のラベルを付けなくてよい</text>
+<line x1="12" y1="446" x2="308" y2="446" class="l sb w1"/>
+<text x="12" y="468" class="tb">③ Few-shot：例を数個見せるだけ</text>
+<text x="12" y="486" class="tm">モデルに入れる文（プロンプト）の例</text>
+<rect x="12" y="496" width="200" height="104" class="fs sm" stroke-width="1"/>
+<text x="20" y="516">指示：英語を日本語に訳す</text>
+<text x="20" y="538">例：dog → 犬</text>
+<text x="20" y="560">例：cat → 猫</text>
+<text x="20" y="582" class="tb">問い：bird → ？</text>
+<line x1="212" y1="577" x2="232" y2="577" class="l w1"/>
+<polygon points="238,577 232,573.5 232,580.5" class="ft"/>
+<rect x="240" y="562" width="68" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="274" y="582" class="tb tok" text-anchor="middle">鳥</text>
+<text x="12" y="624">重みは変えない（ファインチューニング</text>
+<text x="12" y="642">をしない）。例は文章で渡すだけ</text>
+<text x="12" y="660" class="tm">例が0個＝Zero-shot、1個＝One-shot</text>
+<line x1="12" y1="674" x2="308" y2="674" class="l sb w1"/>
+<text x="12" y="696" class="tb">④ 大きいほど、例をうまく生かす</text>
+<text x="12" y="716" class="tm">PaLM の論文が比べた3つの大きさ</text>
+<rect x="12" y="728" width="80" height="34" class="fs sm" stroke-width="1"/>
+<text x="52" y="750" text-anchor="middle">80億</text>
+<rect x="120" y="728" width="80" height="34" class="fs sm" stroke-width="1"/>
+<text x="160" y="750" text-anchor="middle">620億</text>
+<rect x="228" y="728" width="80" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="268" y="750" class="tb ta" text-anchor="middle">5400億</text>
+<line x1="94" y1="745" x2="112" y2="745" class="l w1"/>
+<polygon points="118,745 112,741.5 112,748.5" class="ft"/>
+<line x1="202" y1="745" x2="220" y2="745" class="l w1"/>
+<polygon points="226,745 220,741.5 220,748.5" class="ft"/>
+<text x="12" y="786">大きくするほど few-shot の成績が</text>
+<text x="12" y="804">伸び続けた（PaLM の論文）</text>
+<text x="12" y="826">大きいモデルほど、文中の例をうまく使う</text>
+<text x="12" y="844">（GPT-3 の論文）</text>
+<rect x="12" y="862" width="296" height="88" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="884" class="tb tok" text-anchor="middle">GPT-3＝1750億パラメータの</text>
+<text x="160" y="904" class="tb tok" text-anchor="middle">自己回帰型の言語モデル。</text>
+<text x="160" y="924" class="tb tok" text-anchor="middle">例を数個見せるだけで</text>
+<text x="160" y="944" class="tb tok" text-anchor="middle">多くのタスクをこなす</text>
+</svg>

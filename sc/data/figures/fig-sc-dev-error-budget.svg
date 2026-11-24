@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 330" role="img" aria-labelledby="fig-sc-dev-error-budget-t fig-sc-dev-error-budget-d">
+<title id="fig-sc-dev-error-budget-t">エラーバジェット（失敗してよい量の予算）</title>
+<desc id="fig-sc-dev-error-budget-d">SLO（信頼性の目標）が四半期の要求の99.9％に成功、四半期の要求が1,000万件の例。失敗してよい割合は100％から99.9％を引いた0.1％で、失敗してよい件数は1,000万件×0.001＝1万件。これがエラーバジェット。横長の棒が1万件の予算を表し、障害で失敗した4,000件（予算の40％）を使った部分と、残りの6,000件（60％）に分かれている。予算が残っている間は新しい機能を出してよく、使い切ったら公開を止めて信頼性を上げる作業に回す。</desc>
+<text x="12" y="20" class="tb">エラーバジェット＝失敗してよい量の予算</text>
+<text x="12" y="44">SLO：四半期の要求の 99.9％ に成功</text>
+<text x="12" y="66">四半期の要求：1,000万件</text>
+<text x="12" y="92" class="tb">失敗してよい割合＝100％−99.9％＝0.1％</text>
+<text x="12" y="114" class="tb">予算＝1,000万件×0.001＝1万件</text>
+<text x="12" y="146" class="tm">棒の長さ＝予算の1万件</text>
+<rect x="12" y="156" width="296" height="40" class="fs sb" stroke-width="1"/>
+<rect x="12" y="156" width="118" height="40" class="fng sng" stroke-width="1.5"/>
+<rect x="130" y="156" width="178" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="71" y="181" text-anchor="middle" class="tb">使った</text>
+<text x="219" y="181" text-anchor="middle" class="tb">残り</text>
+<text x="71" y="216" text-anchor="middle">4,000件（40％）</text>
+<text x="219" y="216" text-anchor="middle">6,000件（60％）</text>
+<text x="12" y="246" class="tm">障害で 4,000件 失敗した後の状態</text>
+<text x="12" y="276">予算が残る → 新しい機能を出してよい</text>
+<text x="12" y="300">使い切った → 公開を止め、信頼性の作業へ</text>
+</svg>

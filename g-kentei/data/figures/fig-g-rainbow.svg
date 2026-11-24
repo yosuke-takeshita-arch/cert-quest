@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 846" role="img" aria-labelledby="fig-g-rainbow-t fig-g-rainbow-d">
+<title id="fig-g-rainbow-t">Rainbow：DQN に別々に提案された6つの拡張を全部入れ、どれが効いたかを1つずつ抜いて調べた</title>
+<desc id="fig-g-rainbow-d">Rainbow は英語で「虹」。DQN に別々に提案された6つの拡張を1つにまとめたエージェントで、原論文は成績のグラフでこれを虹色の線で描いた。①6つの拡張と直す弱点：1ダブルDQN（Q値の過大評価を抑える）、2優先度付き経験再生（学ぶことの多い経験を多めに再生）、3デュエリング（状態の価値とアドバンテージに分ける）、4マルチステップ学習（数ステップ先までの報酬で目標を作る）、5分布型（収益の平均でなく分布を学ぶ）、6ノイジーネットワーク（重みに入れたノイズで探索する）。この6つを DQN に全部入れたのが Rainbow。②Atari 2600 の57ゲームで、データ効率（少ない経験で強くなる速さ）と最終的な性能の両方で当時の最高水準。6つは互いにおおむね補い合っていた。③1つずつ抜いて比べる実験（アブレーション）で、57ゲームの成績の中央値は、優先度付き経験再生かマルチステップ学習を抜くと大きく落ち（いちばん重要）、次に分布型（学習の後半から差が開いた）、ノイジーネットワークは全体では落ちたがゲームで差が大きく、デュエリングとダブルDQN は中央値ではあまり差が出なかった（ゲームによって良くも悪くもなった）。混同しやすい点：57ゲームすべてで人間の標準スコアを初めて超えたのは別の手法 Agent57。</desc>
+<text x="12" y="20" class="tb">Rainbow：DQN の6つの拡張を全部入れる</text>
+<text x="12" y="42" class="tm">名前は英語で「虹」。別々に出た6つの拡張を</text>
+<text x="12" y="60" class="tm">1つにまとめた（原論文はグラフで虹色の線）</text>
+<rect x="12" y="72" width="296" height="330" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="92" class="tb">① 6つの拡張と、それぞれが直す弱点</text>
+<line x1="28" y1="106" x2="28" y2="142" class="l sng w3"/>
+<text x="40" y="120" class="tb">1 ダブルDQN</text>
+<text x="40" y="138" class="tm">Q値の過大評価を抑える</text>
+<line x1="28" y1="150" x2="28" y2="186" class="l swn w3"/>
+<text x="40" y="164" class="tb">2 優先度付き経験再生</text>
+<text x="40" y="182" class="tm">学ぶことの多い経験を多めに再生</text>
+<line x1="28" y1="194" x2="28" y2="230" class="l sok w3"/>
+<text x="40" y="208" class="tb">3 デュエリング</text>
+<text x="40" y="226" class="tm">状態の価値とアドバンテージに分ける</text>
+<line x1="28" y1="238" x2="28" y2="274" class="l sa w3"/>
+<text x="40" y="252" class="tb">4 マルチステップ学習</text>
+<text x="40" y="270" class="tm">数ステップ先までの報酬で目標を作る</text>
+<line x1="28" y1="282" x2="28" y2="318" class="l sm w3"/>
+<text x="40" y="296" class="tb">5 分布型</text>
+<text x="40" y="314" class="tm">収益の平均でなく、分布を学ぶ</text>
+<line x1="28" y1="326" x2="28" y2="362" class="l sng w3"/>
+<text x="40" y="340" class="tb">6 ノイジーネットワーク</text>
+<text x="40" y="358" class="tm">重みに入れたノイズで探索する</text>
+<text x="24" y="390" class="tb ta">→ 6つを DQN に全部入れたのが Rainbow</text>
+<line x1="160" y1="402" x2="160.0" y2="410.4" class="l sm w1"/>
+<polygon points="160,416 156.5,410.4 163.5,410.4" class="fm"/>
+<rect x="12" y="422" width="296" height="84" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="442" class="tb">② 結果（Atari 2600 の57ゲーム）</text>
+<text x="24" y="462">少ない経験で強くなる速さ（データ効率）と</text>
+<text x="24" y="480" class="tb tok">最終的な性能の両方で、当時の最高水準</text>
+<text x="24" y="498" class="tm">→ 6つは互いにおおむね補い合っていた</text>
+<text x="12" y="530" class="tb">③ 1つずつ抜いて比べた（アブレーション）</text>
+<rect x="12" y="540" width="296" height="214" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="560" class="tm">57ゲームの成績の中央値がどう変わったか</text>
+<text x="24" y="584" class="tb tng">大きく落ちた（いちばん重要）</text>
+<text x="24" y="602">　優先度付き経験再生・マルチステップ学習</text>
+<text x="24" y="626" class="tb twn">次に落ちた</text>
+<text x="24" y="644">　分布型（学習の後半から差が開いた）</text>
+<text x="24" y="668" class="tb">全体では落ちた（ゲームで差が大きい）</text>
+<text x="24" y="686">　ノイジーネットワーク</text>
+<text x="24" y="710" class="tb tm">中央値ではあまり差が出なかった</text>
+<text x="24" y="728">　デュエリング・ダブルDQN</text>
+<text x="24" y="746" class="tm">　（ゲームによって良くも悪くもなった）</text>
+<rect x="12" y="768" width="296" height="66" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="788" class="tb">混同しやすい点</text>
+<text x="24" y="808">57ゲームすべてで人間の標準スコアを</text>
+<text x="24" y="826">初めて超えたのは、別の手法 Agent57</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 634" role="img" aria-labelledby="fig-g-basic-dimension-t fig-g-basic-dimension-d">
+<title id="fig-g-basic-dimension-t">次元＝データを表す数の個数</title>
+<desc id="fig-g-basic-dimension-d">ある人を数で表す例。1次元は身長だけで、数1個。数直線の上の1点（170cm）になる。2次元は身長と体重で、数2個。横軸が身長（cm）、縦軸が体重（kg）のグラフの上の1点（170, 60）になる。3次元は年齢を足して数3個で、立体の中の1点。4次元より上は絵に描けないが、数を並べるだけなら何個でも同じように扱える。784次元は、縦28画素、横28画素の白黒画像で、画素1つの明るさが数1個なので、28×28＝784個の数が並ぶ。次元が多いほど細かく表せるが、計算が重くなり、データが空間の中でまばらになる（次元の呪い）。減らすのが次元削減。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">次元＝データを表す数の個数</text>
+<text x="12" y="44" class="tm">例：ある人を数で表す（数は説明のための例）</text>
+<text x="12" y="74" class="tb">1次元：身長だけ（数1個）</text>
+<line x1="40" y1="100" x2="296" y2="100" class="l sm w1"/>
+<line x1="60" y1="96" x2="60" y2="104" class="l sm w1"/>
+<line x1="115" y1="96" x2="115" y2="104" class="l sm w1"/>
+<line x1="170" y1="96" x2="170" y2="104" class="l sm w1"/>
+<line x1="225" y1="96" x2="225" y2="104" class="l sm w1"/>
+<line x1="280" y1="96" x2="280" y2="104" class="l sm w1"/>
+<text x="60" y="120" class="tm" text-anchor="middle">150</text>
+<text x="115" y="120" class="tm" text-anchor="middle">160</text>
+<text x="170" y="120" class="tm" text-anchor="middle">170</text>
+<text x="225" y="120" class="tm" text-anchor="middle">180</text>
+<text x="280" y="120" class="tm" text-anchor="middle">190</text>
+<circle cx="170" cy="100" r="6" class="fa"/>
+<text x="170" y="86" class="tb ta" text-anchor="middle">170cm</text>
+<text x="12" y="142">数直線の上の1点</text>
+<line x1="12" y1="156" x2="308" y2="156" class="l sb w1"/>
+<text x="12" y="180" class="tb">2次元：身長と体重（数2個）</text>
+<text x="12" y="202" class="tm">縦：体重（kg）</text>
+<line x1="60" y1="210" x2="60" y2="320" class="l sm w1"/>
+<line x1="60" y1="320" x2="290" y2="320" class="l sm w1"/>
+<line x1="56" y1="320" x2="60" y2="320" class="l sm w1"/>
+<line x1="56" y1="270" x2="60" y2="270" class="l sm w1"/>
+<line x1="56" y1="220" x2="60" y2="220" class="l sm w1"/>
+<text x="52" y="324" class="tm" text-anchor="end">40</text>
+<text x="52" y="274" class="tm" text-anchor="end">60</text>
+<text x="52" y="224" class="tm" text-anchor="end">80</text>
+<line x1="115" y1="320" x2="115" y2="324" class="l sm w1"/>
+<line x1="170" y1="320" x2="170" y2="324" class="l sm w1"/>
+<line x1="225" y1="320" x2="225" y2="324" class="l sm w1"/>
+<line x1="280" y1="320" x2="280" y2="324" class="l sm w1"/>
+<text x="60" y="338" class="tm" text-anchor="middle">150</text>
+<text x="115" y="338" class="tm" text-anchor="middle">160</text>
+<text x="170" y="338" class="tm" text-anchor="middle">170</text>
+<text x="225" y="338" class="tm" text-anchor="middle">180</text>
+<text x="280" y="338" class="tm" text-anchor="middle">190</text>
+<line x1="170" y1="270" x2="170" y2="320" class="l sa w1 dsh"/>
+<line x1="60" y1="270" x2="170" y2="270" class="l sa w1 dsh"/>
+<circle cx="170" cy="270" r="6" class="fa"/>
+<text x="182" y="262" class="tb ta">（170, 60）</text>
+<text x="175" y="356" class="tm" text-anchor="middle">横：身長（cm）</text>
+<text x="12" y="378">平面（グラフ）の上の1点</text>
+<line x1="12" y1="392" x2="308" y2="392" class="l sb w1"/>
+<text x="12" y="416" class="tb">3次元：＋年齢（数3個）＝立体の中の1点</text>
+<text x="12" y="438">4次元より上は絵に描けないが、</text>
+<text x="12" y="458">数を並べるだけなら何個でも同じ扱い</text>
+<line x1="12" y1="472" x2="308" y2="472" class="l sb w1"/>
+<text x="12" y="496" class="tb">784次元：28×28画素の白黒画像</text>
+<rect x="12" y="508" width="56" height="56" class="fs sm" stroke-width="1"/>
+<line x1="20" y1="508" x2="20" y2="564" class="l sb w1"/>
+<line x1="28" y1="508" x2="28" y2="564" class="l sb w1"/>
+<line x1="36" y1="508" x2="36" y2="564" class="l sb w1"/>
+<line x1="44" y1="508" x2="44" y2="564" class="l sb w1"/>
+<line x1="52" y1="508" x2="52" y2="564" class="l sb w1"/>
+<line x1="60" y1="508" x2="60" y2="564" class="l sb w1"/>
+<line x1="12" y1="516" x2="68" y2="516" class="l sb w1"/>
+<line x1="12" y1="524" x2="68" y2="524" class="l sb w1"/>
+<line x1="12" y1="532" x2="68" y2="532" class="l sb w1"/>
+<line x1="12" y1="540" x2="68" y2="540" class="l sb w1"/>
+<line x1="12" y1="548" x2="68" y2="548" class="l sb w1"/>
+<line x1="12" y1="556" x2="68" y2="556" class="l sb w1"/>
+<rect x="36" y="516" width="8" height="40" class="fm"/>
+<text x="80" y="526">画素1つの明るさ＝数1個</text>
+<text x="80" y="548">28×28＝784個の数が並ぶ</text>
+<text x="80" y="568" class="tm">（マス目は縮めて描いた）</text>
+<text x="12" y="596" class="tb tng">次元が多いほど細かく表せるが、計算が重く、</text>
+<text x="12" y="618" class="tb tng">データが空間の中でまばらになる</text>
+</svg>

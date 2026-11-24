@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 458" role="img" aria-labelledby="fig-ap-dim-reduction-t fig-ap-dim-reduction-d">
+<title id="fig-ap-dim-reduction-t">次元削減：項目（列）の数を、情報をなるべく残して減らす</title>
+<desc id="fig-ap-dim-reduction-d">例はアンケートの答え（数は例）。上の表は、行が回答した人（1,000人）、列が問1〜問20の20列。情報をなるべく残して縮め、下の表のように「価格を気にする度合い」「品質を気にする度合い」の2列にまとめ直す。2つの軸になるので、グラフに描ける。減るのは列（項目）で、行（人数）は減らない。取り違えやすいもの：次元削減は列をまとめる（20列を2列に）、クラスタリングは行（人）を似たもの同士の組に分ける。</desc>
+<text x="12" y="20" class="tb">次元削減：項目（列）の数を減らす</text>
+<text x="12" y="40" class="tm">例：アンケートの答え（数は例）</text>
+<text x="12" y="62" class="tb ta">問1〜問20（20列）</text>
+<rect x="58" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="70.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="83" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="95.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="108" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="120.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="133" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="145.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="158" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="170.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="183" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="195.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="208" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="220.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="233" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="245.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="258" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="270.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="283" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="295.5" y="72" width="12.5" height="14" class="fas sa" stroke-width="1"/>
+<rect x="58" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="70.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="83" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="95.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="108" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="120.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="133" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="145.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="158" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="170.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="183" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="195.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="208" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="220.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="233" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="245.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="258" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="270.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="283" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="295.5" y="86" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="58" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="70.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="83" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="95.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="108" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="120.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="133" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="145.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="158" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="170.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="183" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="195.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="208" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="220.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="233" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="245.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="258" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="270.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="283" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="295.5" y="100" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="58" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="70.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="83" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="95.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="108" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="120.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="133" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="145.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="158" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="170.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="183" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="195.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="208" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="220.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="233" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="245.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="258" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="270.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="283" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="295.5" y="114" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="58" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="70.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="83" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="95.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="108" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="120.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="133" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="145.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="158" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="170.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="183" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="195.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="208" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="220.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="233" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="245.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="258" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="270.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="283" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<rect x="295.5" y="128" width="12.5" height="14" class="fs sb" stroke-width="1"/>
+<text x="52" y="97" class="tm" text-anchor="end">人1</text>
+<text x="52" y="111" class="tm" text-anchor="end">人2</text>
+<text x="52" y="125" class="tm" text-anchor="end">人3</text>
+<text x="52" y="139" class="tm" text-anchor="end">人4</text>
+<text x="52" y="83" class="tm" text-anchor="end"></text>
+<text x="12" y="160" class="tm">行＝回答した人（1,000人）</text>
+<line x1="160" y1="170" x2="160" y2="200" class="l sa w2"/>
+<polyline points="156.00,193.00 160,200 164.00,193.00" class="l sa w2"/>
+<text x="172" y="190" class="tm">情報をなるべく残して縮める</text>
+<text x="12" y="218" class="tb tok">2列にまとめ直す</text>
+<rect x="58" y="228" width="125" height="18" class="fok sok" stroke-width="1"/>
+<text x="120.5" y="241" class="tm" text-anchor="middle">価格を気にする度合い</text>
+<rect x="183" y="228" width="125" height="18" class="fok sok" stroke-width="1"/>
+<text x="245.5" y="241" class="tm" text-anchor="middle">品質を気にする度合い</text>
+<rect x="58" y="246" width="125" height="18" class="fs sb" stroke-width="1"/>
+<rect x="183" y="246" width="125" height="18" class="fs sb" stroke-width="1"/>
+<rect x="58" y="264" width="125" height="18" class="fs sb" stroke-width="1"/>
+<rect x="183" y="264" width="125" height="18" class="fs sb" stroke-width="1"/>
+<rect x="58" y="282" width="125" height="18" class="fs sb" stroke-width="1"/>
+<rect x="183" y="282" width="125" height="18" class="fs sb" stroke-width="1"/>
+<rect x="58" y="300" width="125" height="18" class="fs sb" stroke-width="1"/>
+<rect x="183" y="300" width="125" height="18" class="fs sb" stroke-width="1"/>
+<text x="52" y="259" class="tm" text-anchor="end">人1</text>
+<text x="52" y="277" class="tm" text-anchor="end">人2</text>
+<text x="52" y="295" class="tm" text-anchor="end">人3</text>
+<text x="52" y="313" class="tm" text-anchor="end">人4</text>
+<text x="12" y="340" class="tb">→ 2つの軸で、グラフに描ける</text>
+<text x="12" y="362" class="tb tng">減るのは列（項目）。行（人数）は減らない</text>
+<line x1="12" y1="378" x2="308" y2="378" class="l sb w1"/>
+<text x="12" y="400" class="tb">取り違えやすい</text>
+<text x="12" y="420">次元削減：列をまとめる（20列→2列）</text>
+<text x="12" y="440">クラスタリング：行（人）を組に分ける</text>
+</svg>

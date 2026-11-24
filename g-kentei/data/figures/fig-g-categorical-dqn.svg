@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 612" role="img" aria-labelledby="fig-g-categorical-dqn-t fig-g-categorical-dqn-d">
+<title id="fig-g-categorical-dqn-t">カテゴリカルDQN：平均1つでなく、収益の分布を出す</title>
+<desc id="fig-g-categorical-dqn-d">例として、行動Aの収益は必ず5、行動Bの収益は半々の確率で0か10とする。DQN の出力はQ値という平均の数1つで、AもBも5になり、違いが分からない。カテゴリカルDQN は、収益の値を0・5・10の点（アトム）に区切り、点ごとの確率を棒グラフのように出す。横軸はアトム（収益の値）、縦軸は確率。Aは5に確率1.0の棒が1本、Bは0と10に確率0.5の棒が2本で、形が違うので区別できる。行動を選ぶときは、値×確率を全部足して期待値を出す。Aは5×1.0＝5、Bは0×0.5＋10×0.5＝0＋5＝5。この期待値が大きい行動を選ぶ。この例ではどちらも5。本物の C51 はアトムを51個使う。</desc>
+<text x="12" y="20" class="tb">カテゴリカルDQN：平均でなく分布を出す</text>
+<text x="12" y="40" class="tm">例：2つの行動の収益が、次のようだとする</text>
+<rect x="12" y="50" width="144" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="68" class="tb" text-anchor="middle">行動A：必ず5</text>
+<text x="84" y="86" class="tm" text-anchor="middle">毎回5もらえる</text>
+<rect x="164" y="50" width="144" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="68" class="tb" text-anchor="middle">行動B：0か10</text>
+<text x="236" y="86" class="tm" text-anchor="middle">確率0.5ずつ</text>
+<text x="12" y="120" class="tb">DQN の出力：Q値（平均）が1つ</text>
+<rect x="12" y="128" width="144" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="148" class="tb" text-anchor="middle">A：Q値＝5</text>
+<rect x="164" y="128" width="144" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="148" class="tb" text-anchor="middle">B：Q値＝5</text>
+<rect x="12" y="166" width="296" height="28" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="185" class="tb tng" text-anchor="middle">どちらも5。違いが分からない</text>
+<text x="12" y="222" class="tb">カテゴリカルDQN の出力：確率の棒</text>
+<text x="12" y="240" class="tm">棒グラフ。横軸＝アトム（収益の値）</text>
+<text x="12" y="258" class="tm">縦軸＝その値が出る確率</text>
+<line x1="34" y1="270" x2="34" y2="350" class="l sm w1"/>
+<line x1="34" y1="350" x2="148" y2="350" class="l sm w1"/>
+<rect x="80" y="276" width="20" height="74" class="fa"/>
+<text x="90" y="272" class="tb ta" text-anchor="middle">1.0</text>
+<text x="50" y="366" class="tm" text-anchor="middle">0</text>
+<text x="90" y="366" class="tm" text-anchor="middle">5</text>
+<text x="130" y="366" class="tm" text-anchor="middle">10</text>
+<text x="84" y="384" class="tb" text-anchor="middle">A</text>
+<line x1="186" y1="270" x2="186" y2="350" class="l sm w1"/>
+<line x1="186" y1="350" x2="300" y2="350" class="l sm w1"/>
+<rect x="192" y="313" width="20" height="37" class="fa"/>
+<rect x="272" y="313" width="20" height="37" class="fa"/>
+<text x="202" y="308" class="tb ta" text-anchor="middle">0.5</text>
+<text x="282" y="308" class="tb ta" text-anchor="middle">0.5</text>
+<text x="202" y="366" class="tm" text-anchor="middle">0</text>
+<text x="242" y="366" class="tm" text-anchor="middle">5</text>
+<text x="282" y="366" class="tm" text-anchor="middle">10</text>
+<text x="236" y="384" class="tb" text-anchor="middle">B</text>
+<rect x="12" y="392" width="296" height="28" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="411" class="tb tok" text-anchor="middle">棒の形が違うので区別できる</text>
+<text x="12" y="448" class="tb">行動を選ぶとき：分布から期待値を出す</text>
+<text x="12" y="466" class="tm">期待値＝値×確率を、全部の棒で足したもの</text>
+<rect x="12" y="474" width="144" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="493" class="tm" text-anchor="middle">A：5×1.0</text>
+<text x="84" y="512" class="tb" text-anchor="middle">＝5</text>
+<rect x="164" y="474" width="144" height="46" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="493" class="tm" text-anchor="middle">B：0×0.5＋10×0.5</text>
+<text x="236" y="512" class="tb" text-anchor="middle">＝0＋5＝5</text>
+<text x="12" y="540" class="tm">期待値が大きい行動を選ぶ（この例は</text>
+<text x="12" y="558" class="tm">どちらも5）。学ぶのは分布、選ぶのは平均</text>
+<text x="12" y="582" class="tm">収益＝その行動の後にもらえる報酬の合計</text>
+<text x="12" y="600" class="tm">アトムはこの図では3つ。本物の C51 は51個</text>
+</svg>

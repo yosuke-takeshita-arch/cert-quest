@@ -1,0 +1,107 @@
+[
+  {
+    "id": "C-GRAD",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "勾配消失問題"],
+    "title": "勾配消失問題",
+    "oneLine": "層が深いと、入力層に近い層ほど勾配が0に近づき、学習が進まなくなる問題。",
+    "why": "ディープラーニングは層を深くして表現力を上げる。しかし深くするほど勾配が消えやすく、深い層を学習できないと意味がない。",
+    "links": [
+      { "id": "C-SIGMOID", "relation": "cause" },
+      { "id": "C-RELU", "relation": "solves" },
+      { "title": "スキップ結合", "relation": "solves" }
+    ],
+    "confusions": [
+      { "title": "勾配爆発", "point": "勾配消失は小さくなりすぎる問題、勾配爆発は大きくなりすぎる問題。" }
+    ],
+    "sources": [{ "title": "G検定 公式ページ（サンプル用の出典）", "url": "https://www.jdla.org/certificate/general/" }],
+    "status": "verified"
+  },
+  {
+    "id": "C-SIGMOID",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "シグモイド関数",
+    "oneLine": "出力が0〜1に収まる活性化関数。微分の最大値は0.25。",
+    "why": "確率のように扱いやすい出力になるが、深い層で使うと微分値が小さく勾配消失を起こしやすい。",
+    "links": [{ "id": "C-GRAD", "relation": "leads_to" }],
+    "confusions": [{ "id": "C-RELU", "point": "シグモイドは出力が0〜1、ReLU は正の領域でそのまま通す。" }],
+    "sources": [],
+    "status": "unverified"
+  },
+  {
+    "id": "C-RELU",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "活性化関数"],
+    "title": "ReLU",
+    "oneLine": "max(0, x)。負は0、正はそのまま通す活性化関数。",
+    "why": "正の領域で微分が1なので勾配が小さくなりにくく、勾配消失を緩和できる。計算も軽い。",
+    "links": [{ "id": "C-GRAD", "relation": "solves" }],
+    "confusions": [{ "id": "C-SIGMOID", "point": "ReLU は上限が無く、シグモイドは1で頭打ち。" }],
+    "sources": [],
+    "status": "unverified"
+  },
+  {
+    "id": "C-SKIP",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "勾配消失問題"],
+    "title": "スキップ結合",
+    "oneLine": "層の入力を、いくつか先の層の出力へ直接足し合わせる接続（ResNet などで使う）。",
+    "why": "勾配が近道を通って入力側へ届くので、非常に深いネットワークでも学習しやすくなる。",
+    "links": [{ "title": "勾配消失問題", "relation": "solves" }],
+    "confusions": [],
+    "sources": [],
+    "status": "unverified"
+  },
+  {
+    "id": "C-BP",
+    "syllabus": ["技術分野", "ディープラーニングの概要", "誤差逆伝播法"],
+    "title": "誤差逆伝播法",
+    "oneLine": "出力の誤差を、出力層から入力層へ向かって伝え、各層の重みの勾配を求める方法。",
+    "why": "層が多いネットワークでも、連鎖律を使って全ての重みの勾配を効率よく計算できる。",
+    "links": [{ "id": "C-GRAD", "relation": "related" }],
+    "confusions": [],
+    "sources": [],
+    "status": "unverified"
+  },
+  {
+    "id": "C-OVERFIT",
+    "syllabus": ["技術分野", "機械学習の概要", "過学習と汎化"],
+    "title": "過学習",
+    "oneLine": "訓練データには強いが、未知のデータでは精度が下がる状態。",
+    "why": "本当に欲しいのは未知のデータへの当てはまり（汎化性能）。訓練データだけに合わせすぎると役に立たない。",
+    "links": [],
+    "confusions": [{ "title": "未学習", "point": "過学習は訓練データでは良い、未学習は訓練データでも悪い。" }],
+    "sources": [],
+    "status": "unverified"
+  },
+  {
+    "id": "C-PREC",
+    "syllabus": ["技術分野", "機械学習の概要", "評価指標"],
+    "title": "適合率",
+    "oneLine": "陽性と予測したもののうち、実際に陽性だった割合。",
+    "why": "「当たったと言ったものが、どれだけ本当に当たりか」を見る指標。誤検知を減らしたいときに重視する。",
+    "links": [],
+    "confusions": [{ "title": "再現率", "point": "分母が違う。適合率は予測した側、再現率は実際の陽性の側。" }],
+    "sources": [],
+    "status": "unverified"
+  },
+  {
+    "id": "C-RECALL",
+    "syllabus": ["技術分野", "機械学習の概要", "評価指標"],
+    "title": "再現率",
+    "oneLine": "実際に陽性だったもののうち、見つけられた割合。",
+    "why": "見逃しを減らしたいとき（病気の検出など）に重視する。",
+    "links": [],
+    "confusions": [{ "title": "適合率", "point": "分母が違う。再現率は実際の陽性の側、適合率は予測した側。" }],
+    "sources": [],
+    "status": "unverified"
+  },
+  {
+    "id": "C-PII",
+    "syllabus": ["法律・倫理", "個人情報の保護", "個人情報保護法"],
+    "title": "要配慮個人情報",
+    "oneLine": "不当な差別・偏見につながるおそれがあるため、特に配慮が要る個人情報。",
+    "why": "病歴や信条などが漏れると、本人が差別を受けるおそれがある。そのため取得に原則として本人の同意を求める。",
+    "links": [],
+    "confusions": [],
+    "sources": [],
+    "status": "unverified"
+  }
+]

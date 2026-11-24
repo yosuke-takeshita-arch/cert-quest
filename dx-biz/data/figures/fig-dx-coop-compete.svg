@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="fig-dx-coop-compete-t fig-dx-coop-compete-d">
+<title id="fig-dx-coop-compete-t">協調領域と競争領域（共通プラットフォーム）</title>
+<desc id="fig-dx-coop-compete-d">A社・B社・C社の3本の柱。柱の上の部分は各社の強みである競争領域で、会社ごとに違う。柱の下の部分は自社の強みと関係の薄い協調領域で、3社が業界共通のシステムを共同で使う共通プラットフォームにまとめる。協調領域では業務プロセスを標準化してSaaSやパッケージを使い、投資を抑える。浮いた投資と人材を、上の競争領域へ回す。</desc>
+<text x="12" y="22" class="tb">競争領域：自社の強み（会社ごとに違う）</text>
+<rect x="12" y="36" width="92" height="62" class="fas sa" stroke-width="1.5"/>
+<text x="58" y="62" class="tb" text-anchor="middle">A社の強み</text>
+<text x="58" y="81" text-anchor="middle">（競争領域）</text>
+<rect x="114" y="36" width="92" height="62" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="62" class="tb" text-anchor="middle">B社の強み</text>
+<text x="160" y="81" text-anchor="middle">（競争領域）</text>
+<rect x="216" y="36" width="92" height="62" class="fok sok" stroke-width="1.5"/>
+<text x="262" y="62" class="tb" text-anchor="middle">C社の強み</text>
+<text x="262" y="81" text-anchor="middle">（競争領域）</text>
+<line x1="58" y1="154" x2="58" y2="104" class="l sa w2"/>
+<polyline points="61.85,111 58,104 54.15,111" class="l sa w2"/>
+<line x1="160" y1="154" x2="160" y2="104" class="l sa w2"/>
+<polyline points="163.85,111 160,104 156.15,111" class="l sa w2"/>
+<line x1="262" y1="154" x2="262" y2="104" class="l sa w2"/>
+<polyline points="265.85,111 262,104 258.15,111" class="l sa w2"/>
+<rect x="12" y="160" width="296" height="102" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="184" class="tb" text-anchor="middle">協調領域</text>
+<text x="160" y="205" text-anchor="middle">業界共通の業務・システム</text>
+<text x="160" y="226" text-anchor="middle">＝共通プラットフォーム</text>
+<text x="160" y="247" text-anchor="middle">標準化・SaaS・パッケージで投資を抑える</text>
+<text x="12" y="288">矢印：協調領域で浮いた投資・人材を、</text>
+<text x="12" y="308">競争領域へ回す</text>
+</svg>

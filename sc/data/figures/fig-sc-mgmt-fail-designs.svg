@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 428" role="img" aria-labelledby="fig-sc-mgmt-fail-designs-t fig-sc-mgmt-fail-designs-d">
+<title id="fig-sc-mgmt-fail-designs-t">故障や誤操作のとき、どちらへ倒すか</title>
+<desc id="fig-sc-mgmt-fail-designs-d">機械が故障したときの考え方が4つ、人が操作を誤ったときの考え方が1つある。フェイルセーフは被害が出ない安全な側で止める。例は停電で扉を開けて人を逃がす。フェイルセキュアは守りを解かずに止める。例は停電でも金庫室の扉を閉じたままにする。フェールソフトは壊れた部分を外し、機能を絞って動き続ける。例はサーバ2台のうち1台が壊れても残りの1台で受付を続ける。フォールトトレランスは部品を二重にして、機能を落とさず動き続ける。フールプルーフは人の誤操作を受け付けない。例は数字の欄に文字を入れると入れ直しを促す。同じ停電の扉でも、人を守るなら開ける（セーフ）、中身を守るなら閉じる（セキュア）と向きが逆になる。</desc>
+<text x="12" y="20" class="tb">故障や誤操作のとき、どちらへ倒すか</text>
+<text x="12" y="44" class="tm">■ 機械が故障したとき</text>
+<rect x="12" y="52" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="72" class="tb">フェイルセーフ：安全な側で止める</text>
+<text x="22" y="90">例：停電で扉を開け、人を逃がす</text>
+<rect x="12" y="108" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="128" class="tb">フェイルセキュア：守りを解かず止める</text>
+<text x="22" y="146">例：停電でも金庫室の扉は閉じたまま</text>
+<rect x="12" y="164" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="184" class="tb">フェールソフト：機能を絞って動き続ける</text>
+<text x="22" y="202">例：2台中1台が壊れても1台で受付</text>
+<rect x="12" y="220" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="240" class="tb">フォールトトレランス：落とさず動く</text>
+<text x="22" y="258">例：部品を二重にして、止まらない</text>
+<text x="12" y="292" class="tm">■ 人が操作を誤ったとき</text>
+<rect x="12" y="300" width="296" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="320" class="tb">フールプルーフ：誤操作を受け付けない</text>
+<text x="22" y="338">例：数字の欄に文字→入れ直しを促す</text>
+<text x="12" y="374" class="ta">同じ停電の扉でも向きが逆になる</text>
+<text x="12" y="394" class="tm">人を守るなら、扉を開ける（セーフ）</text>
+<text x="12" y="414" class="tm">中身を守るなら、扉を閉じる（セキュア）</text>
+</svg>

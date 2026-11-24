@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 536" role="img" aria-labelledby="fig-dx-incident-response-t fig-dx-incident-response-d">
+<title id="fig-dx-incident-response-t">インシデント対応の3ステップ（IPAの手引き）：検知・初動対応、報告・公表、復旧・再発防止と、前もって決めておく体制</title>
+<desc id="fig-dx-incident-response-d">上から下へ進む。いちばん上は、事故が起きる前に、対応の体制（CSIRT＝セキュリティ事故に対応するチームなど）と手順を決めておくこと。ステップ1 検知・初動対応：被害が広がらないよう、ネットワークから切り離す、機器を隔離する、サービスを止める。ただし記録は消さない。ステップ2 報告・公表：影響が広く及ぶときは、関係者に報告し、ウェブサイトなどで公表する。原因が特定されるまで誰にも知らせない、は誤り。ステップ3 復旧・再発防止。</desc>
+<text x="12" y="20" class="tb">インシデント対応の3ステップ</text>
+<text x="12" y="40" class="tm">IPAの手引き。インシデント＝セキュリティの事故</text>
+<rect x="12" y="52" width="296" height="56" class="fs sb dsh" stroke-width="1.5" rx="6"/>
+<text x="24" y="74" class="tb">起きる前に：体制と手順を決めておく</text>
+<text x="24" y="96" class="tm">CSIRT（事故に対応するチーム）など</text>
+<polygon points="160,124 152,112 168,112" class="fm"/>
+<rect x="12" y="128" width="296" height="112" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="152" class="tb">1 検知・初動対応</text>
+<text x="24" y="176">被害を広げない：ネットワークから</text>
+<text x="24" y="196">切り離す・機器の隔離・サービス停止</text>
+<text x="24" y="224" class="twn tb">ただし記録は消さない</text>
+<polygon points="160,256 152,244 168,244" class="fm"/>
+<rect x="12" y="260" width="296" height="152" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="284" class="tb">2 報告・公表</text>
+<text x="24" y="308">影響が広く及ぶときは、関係者に</text>
+<text x="24" y="328">報告し、ウェブサイトなどで公表する</text>
+<rect x="24" y="342" width="272" height="56" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="36" y="364" class="tng tb">✕ 原因が特定されるまで</text>
+<text x="36" y="386" class="tng tb">　誰にも知らせない</text>
+<polygon points="160,428 152,416 168,416" class="fm"/>
+<rect x="12" y="432" width="296" height="40" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="457" class="tb">3 復旧・再発防止</text>
+<text x="12" y="502">知らせることも対応の一部。</text>
+<text x="12" y="522">隠して原因探しだけ進めるのは誤り</text>
+</svg>

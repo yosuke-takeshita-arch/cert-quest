@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 622" role="img" aria-labelledby="fig-g-self-attention-idea-t fig-g-self-attention-idea-d">
+<title id="fig-g-self-attention-idea-t">Self-Attention：同じ文の全部の語を見比べて、関係の深い語の中身を混ぜる</title>
+<desc id="fig-g-self-attention-idea-d">例の文「動物は疲れていたので道を渡らなかった。それは…」を、動物・道・それの3つの語で描く（数は説明のための例）。いま考えている語「それ」から、同じ文の全部の語へ線を引く。線の太さは、どれだけ注目するかの重みで、合計は1。動物に0.71、道に0.19、それ自身に0.10。「それ」の新しい中身は、各語の中身をこの割合で混ぜたもので、動物が71％、道が19％、それが10％。だから「それ」の中身に動物の情報が強く入り、「それ」は動物のことだと分かる。下はRNNとの違い。RNNは動物・疲れ・道・渡ら・それと1語ずつ順に読んで情報を渡すので、動物の情報は何回も渡してやっと「それ」に届く。Self-Attentionは「それ」と「動物」が1回で直接つながり、全部の語どうしを同時に（並列に）計算できる。</desc>
+<text x="12" y="20" class="tb">Self-Attention：同じ文の語を見比べる</text>
+<text x="12" y="42" class="tm">例の文：動物は疲れていたので道を</text>
+<text x="12" y="60" class="tm">渡らなかった。それは…</text>
+<text x="12" y="78" class="tm">（3つの語だけで描く。数は説明の例）</text>
+<rect x="28" y="92" width="64" height="28" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="60" y="111" class="tb" text-anchor="middle">動物</text>
+<rect x="128" y="92" width="64" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="111" class="tb" text-anchor="middle">道</text>
+<rect x="228" y="92" width="64" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="260" y="111" class="tb" text-anchor="middle">それ</text>
+<line x1="160" y1="200" x2="60" y2="120" class="l sa w3"/>
+<line x1="160" y1="200" x2="160" y2="120" class="l w2"/>
+<line x1="160" y1="200" x2="260" y2="120" class="l sm w1"/>
+<text x="100" y="165" class="tb ta" text-anchor="end">0.71</text>
+<text x="166" y="165" class="tb" text-anchor="start">0.19</text>
+<text x="222" y="165" class="tb" text-anchor="start">0.10</text>
+<rect x="60" y="200" width="200" height="30" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="220" class="tb ta" text-anchor="middle">それ（いま考えている語）</text>
+<text x="12" y="250" class="tm">線の太さ＝どれだけ注目するか</text>
+<text x="12" y="268" class="tm">（重み。3本の合計は 1）</text>
+<text x="12" y="294" class="tb">「それ」の新しい中身</text>
+<text x="12" y="312" class="tm">各語の中身を、重みの割合で混ぜる</text>
+<rect x="24" y="322" width="193.1" height="28" class="fa"/>
+<rect x="217.1" y="322" width="51.7" height="28" class="fas sb" stroke-width="1"/>
+<rect x="268.8" y="322" width="27.2" height="28" class="fs sb" stroke-width="1"/>
+<text x="120.5" y="341" class="tb ton" text-anchor="middle">動物 71%</text>
+<text x="243" y="341" class="tm" text-anchor="middle">道</text>
+<text x="296" y="368" class="tm" text-anchor="end">右の2つ：道 19%・それ 10%</text>
+<text x="12" y="392" class="tb ta">→「それ」の中身に「動物」が強く入る</text>
+<text x="12" y="410">＝「それ」は動物のこと、と分かる</text>
+<line x1="12" y1="426" x2="308" y2="426" class="l sb w1"/>
+<text x="12" y="448" class="tb">RNN：1語ずつ順に読んで渡す</text>
+<rect x="12" y="458" width="44" height="26" class="fas sa" stroke-width="1"/>
+<text x="34" y="476" text-anchor="middle">動物</text>
+<rect x="72" y="458" width="44" height="26" class="fs sb" stroke-width="1"/>
+<text x="94" y="476" text-anchor="middle">疲れ</text>
+<rect x="132" y="458" width="44" height="26" class="fs sb" stroke-width="1"/>
+<text x="154" y="476" text-anchor="middle">道</text>
+<rect x="192" y="458" width="44" height="26" class="fs sb" stroke-width="1"/>
+<text x="214" y="476" text-anchor="middle">渡ら</text>
+<rect x="252" y="458" width="44" height="26" class="fs sb" stroke-width="1"/>
+<text x="274" y="476" text-anchor="middle">それ</text>
+<line x1="56" y1="471" x2="66" y2="471" class="l sm w1"/>
+<polygon points="72,471 66,467.5 66,474.5" class="fm"/>
+<line x1="116" y1="471" x2="126" y2="471" class="l sm w1"/>
+<polygon points="132,471 126,467.5 126,474.5" class="fm"/>
+<line x1="176" y1="471" x2="186" y2="471" class="l sm w1"/>
+<polygon points="192,471 186,467.5 186,474.5" class="fm"/>
+<line x1="236" y1="471" x2="246" y2="471" class="l sm w1"/>
+<polygon points="252,471 246,467.5 246,474.5" class="fm"/>
+<text x="12" y="504" class="tm">「動物」の情報は、4回渡してやっと届く</text>
+<text x="12" y="532" class="tb">Self-Attention：全部の語と直接比べる</text>
+<rect x="12" y="542" width="44" height="26" class="fas sa" stroke-width="1"/>
+<text x="34" y="560" text-anchor="middle">動物</text>
+<rect x="72" y="542" width="44" height="26" class="fs sb" stroke-width="1"/>
+<text x="94" y="560" text-anchor="middle">疲れ</text>
+<rect x="132" y="542" width="44" height="26" class="fs sb" stroke-width="1"/>
+<text x="154" y="560" text-anchor="middle">道</text>
+<rect x="192" y="542" width="44" height="26" class="fs sb" stroke-width="1"/>
+<text x="214" y="560" text-anchor="middle">渡ら</text>
+<rect x="252" y="542" width="44" height="26" class="fas sa" stroke-width="1"/>
+<text x="274" y="560" text-anchor="middle">それ</text>
+<path d="M274,568 Q154,598 34,568" class="l sa w2"/>
+<text x="154" y="600" class="tb ta" text-anchor="middle">1回で直接つながる</text>
+<text x="12" y="616" class="tm">全部の語どうしを同時に（並列に）計算できる</text>
+</svg>

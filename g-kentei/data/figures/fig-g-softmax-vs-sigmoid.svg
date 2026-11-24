@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 690" role="img" aria-labelledby="fig-g-softmax-vs-sigmoid-t fig-g-softmax-vs-sigmoid-d">
+<title id="fig-g-softmax-vs-sigmoid-t">同じ点数を、ソフトマックスとクラスごとのシグモイドに通して比べる</title>
+<desc id="fig-g-softmax-vs-sigmoid-d">何のための図か：答えが必ず1つのときはソフトマックス、何種類でもよいときはクラスごとのシグモイドを出力層に使う理由を、同じ点数で比べて見る（数は説明のための例）。①りんごとみかんが一緒に写った画像で、モデルの点数（スコア）がりんご2.2、みかん1.4、ぶどう−2.2だったとする。②ソフトマックス：eの点数乗をとると約9.03、4.06、0.11、合計13.19で割ると0.68、0.31、0.01。合計がちょうど1で、みんなで1を分け合うので、1つが上がると他が下がる。りんごとみかんの両方を高くはできない。答えが必ず1つの分類に向く。③クラスごとのシグモイド：それぞれ1÷(1＋eのマイナス点数乗)で、0.90、0.80、0.10。合計は1.80で、1になる必要はない。例えば0.5以上を写っているとみなすと、りんごとみかんの両方が写っていると読める。1枚に何種類も写りうる分類に向く。④ReLUは負を0にし、正をそのまま出す関数で、主に隠れ層に使う。出力が1を超えうるので、確率としては読めない。</desc>
+<text x="12" y="20" class="tb">合計1で分け合うか、それぞれ0〜1か</text>
+<text x="12" y="42" class="tm">何のための図か：同じ点数を2つの関数に通し、</text>
+<text x="12" y="60" class="tm">出力の違いを比べる（数は説明のための例）</text>
+<text x="12" y="88" class="tb">① りんごとみかんが写った画像の点数</text>
+<text x="12" y="110">りんご 2.2　みかん 1.4　ぶどう −2.2</text>
+<line x1="12" y1="126" x2="308" y2="126" class="l sb w1"/>
+<text x="12" y="148" class="tb ta">② ソフトマックス：みんなで1を分け合う</text>
+<text x="12" y="168" class="tm">e の点数乗：9.03・4.06・0.11、合計 13.19 で割る</text>
+<text x="12" y="194">りんご</text>
+<rect x="72" y="182" width="136" height="16" class="fas sa" stroke-width="1.5"/>
+<text x="216" y="195" class="tb">0.68</text>
+<text x="12" y="218">みかん</text>
+<rect x="72" y="206" width="62" height="16" class="fas sa" stroke-width="1.5"/>
+<text x="142" y="219" class="tb">0.31</text>
+<text x="12" y="242">ぶどう</text>
+<rect x="72" y="230" width="2" height="16" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="243" class="tb">0.01</text>
+<line x1="272" y1="176" x2="272" y2="252" class="l sm w1 dsh"/>
+<text x="272" y="266" class="tm" text-anchor="middle">1</text>
+<text x="12" y="284" class="tb ta">合計 ＝ 1（ちょうど）</text>
+<text x="12" y="304" class="tm">1つが上がると他が下がる。みかんも写って</text>
+<text x="12" y="322" class="tm">いるのに、0.31 にしかならない</text>
+<text x="12" y="344" class="tb ta">→ 答えが必ず1つの分類に向く</text>
+<line x1="12" y1="360" x2="308" y2="360" class="l sb w1"/>
+<text x="12" y="382" class="tb tok">③ クラスごとのシグモイド：それぞれ0〜1</text>
+<text x="12" y="402" class="tm">それぞれ 1 ÷（1 ＋ e の −点数乗）</text>
+<text x="12" y="428">りんご</text>
+<rect x="72" y="416" width="180" height="16" class="fok sok" stroke-width="1.5"/>
+<text x="280" y="429" class="tb">0.90</text>
+<text x="12" y="452">みかん</text>
+<rect x="72" y="440" width="160" height="16" class="fok sok" stroke-width="1.5"/>
+<text x="240" y="453" class="tb">0.80</text>
+<text x="12" y="476">ぶどう</text>
+<rect x="72" y="464" width="20" height="16" class="fok sok" stroke-width="1.5"/>
+<text x="100" y="477" class="tb">0.10</text>
+<line x1="272" y1="410" x2="272" y2="486" class="l sm w1 dsh"/>
+<text x="272" y="500" class="tm" text-anchor="middle">1</text>
+<text x="12" y="518" class="tb tok">合計 ＝ 1.80（1 でなくてよい）</text>
+<text x="12" y="538" class="tm">例えば 0.5 以上を「写っている」とすると、</text>
+<text x="12" y="556" class="tm">りんごとみかんの両方が写っている</text>
+<text x="12" y="578" class="tb tok">→ 1枚に何種類も写りうる分類に向く</text>
+<line x1="12" y1="594" x2="308" y2="594" class="l sb w1"/>
+<text x="12" y="616" class="tb">④ ReLU は出力層の確率には使えない</text>
+<text x="12" y="636" class="tm">負を 0 にし、正をそのまま出す（主に隠れ層）</text>
+<text x="12" y="654" class="tm">りんごの 2.2 は 2.2 のままで、1 を超える</text>
+<text x="12" y="672" class="tm">ので、0〜1 の確率として読めない</text>
+</svg>

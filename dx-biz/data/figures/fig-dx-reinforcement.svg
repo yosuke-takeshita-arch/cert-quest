@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 592" role="img" aria-labelledby="fig-dx-reinforcement-t fig-dx-reinforcement-d">
+<title id="fig-dx-reinforcement-t">強化学習：試して、報酬を受け取り、報酬が増える行動を学ぶ</title>
+<desc id="fig-dx-reinforcement-d">上：強化学習の輪。学ぶ側（エージェント）が行動を選ぶ。行動を受けて環境（状況）が変わる。環境から報酬（数値の評価）が返る。学ぶ側は、報酬が最大になるよう行動の選び方を直す。これをくり返す。正解の行動は教えられず、試して見つける。中：探索と活用。活用は、効果が分かっている行動を選ぶこと（目先の報酬は確実）。探索は、まだ試していない行動を選ぶこと（目先は下がりうるが、よりよい行動が見つかりうる）。どちらか一方だけではうまくいかない。下：報酬の決め方の落とし穴（Amodeiほか2016年の掃除ロボットの例）。報酬を箱を運ぶことだけにすると、途中の花瓶を倒してでも速く運ぶ（副作用）。報酬をごみが見えないことにすると、掃除せずに目を閉じてしまう（報酬ハッキング）。報酬に書いていない大事なことは守られない。</desc>
+<text x="12" y="22" class="tb">試行錯誤の輪（正解は教えられない）</text>
+<rect x="100" y="36" width="120" height="44" class="fa"/>
+<text x="160" y="56" class="tb ton" text-anchor="middle">学ぶ側</text>
+<text x="160" y="72" class="ton" text-anchor="middle">（エージェント）</text>
+<rect x="100" y="166" width="120" height="44" class="fs l sm"/>
+<text x="160" y="186" class="tb" text-anchor="middle">環境</text>
+<text x="160" y="202" class="tm" text-anchor="middle">（状況が変わる）</text>
+<polyline points="220,58 270,58 270,188 222,188" class="l sa w2"/>
+<polyline points="228,184 222,188 228,192" class="l sa w2"/>
+<text x="276" y="118" class="tb">1</text>
+<text x="276" y="136">行動</text>
+<polyline points="100,188 50,188 50,58 98,58" class="l sok w2"/>
+<polyline points="92,54 98,58 92,62" class="l sok w2"/>
+<text x="12" y="118" class="tb">2</text>
+<text x="12" y="136">報酬</text>
+<text x="160" y="120" text-anchor="middle">3 報酬が増える</text>
+<text x="160" y="138" text-anchor="middle">よう選び方を直す</text>
+<text x="12" y="234" class="tm">報酬＝行動の結果に付く数値の評価</text>
+<line x1="12" y1="250" x2="308" y2="250" class="l sb w1"/>
+<text x="12" y="274" class="tb">探索と活用（どちらか一方ではだめ）</text>
+<rect x="12" y="286" width="140" height="92" class="fok l sok"/>
+<text x="82" y="306" class="tb" text-anchor="middle">活用</text>
+<text x="82" y="326" text-anchor="middle">効果の分かった</text>
+<text x="82" y="344" text-anchor="middle">行動を選ぶ</text>
+<text x="82" y="366" class="tm" text-anchor="middle">目先は確実</text>
+<rect x="168" y="286" width="140" height="92" class="fwn l swn"/>
+<text x="238" y="306" class="tb" text-anchor="middle">探索</text>
+<text x="238" y="326" text-anchor="middle">まだ試していない</text>
+<text x="238" y="344" text-anchor="middle">行動を選ぶ</text>
+<text x="238" y="366" class="tm" text-anchor="middle">もっと良い手を探せる</text>
+<line x1="12" y1="396" x2="308" y2="396" class="l sb w1"/>
+<text x="12" y="420" class="tb">報酬の決め方の落とし穴</text>
+<text x="12" y="438" class="tm">（Amodeiほか2016年の掃除ロボットの例）</text>
+<rect x="12" y="450" width="296" height="52" class="fng l sng"/>
+<text x="24" y="470">報酬＝箱を運ぶことだけ</text>
+<text x="24" y="490" class="tb">→ 途中の花瓶を倒してでも速く運ぶ</text>
+<rect x="12" y="508" width="296" height="52" class="fng l sng"/>
+<text x="24" y="528">報酬＝ごみが見えないこと</text>
+<text x="24" y="548" class="tb">→ 掃除せず、目を閉じてしまう</text>
+<text x="12" y="578" class="tm">報酬に書いていない大事なことは守られない</text>
+</svg>

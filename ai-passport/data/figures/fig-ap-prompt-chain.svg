@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 446" role="img" aria-labelledby="fig-ap-prompt-chain-t fig-ap-prompt-chain-d">
+<title id="fig-ap-prompt-chain-t">タスク分解・プロンプトの連鎖・関門（ゲート）：大きな仕事を手順に分け、前の答えを次へつなぎ、途中で確かめる</title>
+<desc id="fig-ap-prompt-chain-d">例は新商品の発売の準備（数は例）。①競合の価格を調べる、②価格の案を3つ作る、③案ごとの利益を計算する、関門で計算をプログラムで確かめる（合わなければ③へ戻す）、④人が案を選ぶ、⑤案内文を作る。タスク分解は大きな仕事を小さな手順に分けること。プロンプトの連鎖は前の答えを次の入力につなぐこと。関門（ゲート）は途中でプログラムで確かめること。どこで間違えたかが分かり、早く見つけられる。呼び出しの回数は増えるので、時間や費用が減るわけではない。</desc>
+<text x="12" y="20" class="tb">タスク分解・プロンプトの連鎖・関門（ゲート）</text>
+<text x="12" y="40" class="tm">例：新商品の発売の準備（数は例）</text>
+<rect x="12" y="52" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="73" class="tb">① 競合の価格を調べる</text>
+<line x1="160" y1="85" x2="160" y2="99" class="l sa w2"/>
+<polyline points="156.00,92.00 160,99 164.00,92.00" class="l sa w2"/>
+<rect x="12" y="100" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="121" class="tb">② 価格の案を3つ作る</text>
+<line x1="160" y1="133" x2="160" y2="147" class="l sa w2"/>
+<polyline points="156.00,140.00 160,147 164.00,140.00" class="l sa w2"/>
+<rect x="12" y="148" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="169" class="tb">③ 案ごとの利益を計算する</text>
+<line x1="160" y1="181" x2="160" y2="195" class="l sa w2"/>
+<polyline points="156.00,188.00 160,195 164.00,188.00" class="l sa w2"/>
+<rect x="12" y="196" width="296" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="217" class="tb">関門：計算をプログラムで確かめる</text>
+<line x1="160" y1="229" x2="160" y2="243" class="l sa w2"/>
+<polyline points="156.00,236.00 160,243 164.00,236.00" class="l sa w2"/>
+<rect x="12" y="244" width="296" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="265" class="tb">④ 人が案を選ぶ</text>
+<line x1="160" y1="277" x2="160" y2="291" class="l sa w2"/>
+<polyline points="156.00,284.00 160,291 164.00,284.00" class="l sa w2"/>
+<rect x="12" y="292" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="313" class="tb">⑤ 案内文を作る</text>
+<text x="170" y="192" class="tng">合わなければ③へ戻す</text>
+<text x="12" y="346" class="tb">タスク分解：大きな仕事を小さな手順に分ける</text>
+<text x="12" y="366" class="tb">プロンプトの連鎖：前の答えを次の入力につなぐ</text>
+<text x="12" y="386" class="tb">関門（ゲート）：途中でプログラムで確かめる</text>
+<text x="12" y="408" class="tok">どこで間違えたかが分かり、早く見つけられる</text>
+<text x="12" y="428" class="tm">呼び出しの回数は増える（時間・費用は減らない）</text>
+</svg>

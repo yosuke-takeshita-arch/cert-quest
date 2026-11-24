@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 484" role="img" aria-labelledby="fig-ap-autonomy-levels-t fig-ap-autonomy-levels-d">
+<title id="fig-ap-autonomy-levels-t">AIエージェントの自律性の5段階（Fengら 2025、利用者の役割で分ける）</title>
+<desc id="fig-ap-autonomy-levels-d">上から下へ5段。L1 操作者：人が指示して決め、エージェントが動く。L2 協力者：一緒に計画し、分担して進める。L3 相談相手：エージェントが主導し、人の知見や好みを聞く。L4 承認者：危ない場面や決めておいた場面でだけ人が関わる。L5 観察者：人は見守り、エージェントが完全に自律して動く。右の下向きの矢印は、上ほど人が多く関わってまちがいを止めやすく、下ほど人の手間は減るが止めにくいことを表す。段階は性能の高さとは別で、設計で選ぶもの。成績の高いエージェントでも、毎回人に確かめる段階で動かせる。リスクの大きい仕事ほど、人の関わりが多い段階を選ぶ。</desc>
+<text x="12" y="20" class="tb">自律性の5段階（Fengら 2025）</text>
+<text x="12" y="44" class="tm">人が多く関わる（止めやすい・手間は多い）</text>
+<rect x="12" y="54" width="264" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="74" class="tb">L1 操作者</text>
+<text x="22" y="94">人が指示して決め、エージェントが動く</text>
+<rect x="12" y="108" width="264" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="128" class="tb">L2 協力者</text>
+<text x="22" y="148">一緒に計画し、分担して進める</text>
+<rect x="12" y="162" width="264" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="182" class="tb">L3 相談相手</text>
+<text x="22" y="202">エージェントが主導、人の知見を聞く</text>
+<rect x="12" y="216" width="264" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="236" class="tb">L4 承認者</text>
+<text x="22" y="256">危ない場面などでだけ人が関わる</text>
+<rect x="12" y="270" width="264" height="48" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="290" class="tb twn">L5 観察者</text>
+<text x="22" y="310">人は見守り、エージェントが完全に自律</text>
+<line x1="294" y1="58" x2="294" y2="312" class="l sm w2"/>
+<polyline points="290.15,305 294,312 297.85,305" class="l sm w2"/>
+<text x="12" y="340" class="tm">人は見守るだけ（手間は減る・止めにくい）</text>
+<line x1="12" y1="354" x2="308" y2="354" class="l sb w1"/>
+<text x="12" y="378" class="tb">段階は、性能の高さとは別</text>
+<text x="12" y="400">設計で選ぶもの。成績の高いエージェント</text>
+<text x="12" y="420">でも、毎回人に確かめる段階で動かせる</text>
+<text x="12" y="448" class="tb twn">リスクの大きい仕事ほど、</text>
+<text x="12" y="470" class="tb twn">人の関わりが多い段階を選ぶ</text>
+</svg>

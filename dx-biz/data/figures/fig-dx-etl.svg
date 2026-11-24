@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-etl-t fig-dx-etl-d">
+<title id="fig-dx-etl-t">ETL：抽出して、そろえて、格納する</title>
+<desc id="fig-dx-etl-d">ETLの3段階を、日付の書き方が違う2つのシステムの例（図の例）で描いた図。E（Extract、抽出）：店舗のPOSは日付を2026/10/18と書き、ECサイトは令和8年10月18日と書く。それぞれからデータを取り出す。T（Transform、変換）：日付の書き方を2026-10-18のように1つにそろえ、分析しやすい形に整える。L（Load、格納）：そろえたデータをデータウェアハウス（DWH）に入れる。これで2つのシステムの売上を同じ日付で合わせて集計できる。ETLツールは、この流れを画面で作れるので、自前で作るより手間と期間を減らせる。ただし使うにはプログラミングやデータベース操作のスキルが要り、主にITエンジニアが使う。技術スキルの無い分析者向けに簡単に整形できるのがデータプリパレーションツール。</desc>
+<text x="12" y="22" class="tb">日付の書き方が違う2つのシステム（図の例）</text>
+<rect x="12" y="36" width="140" height="52" class="fs l sm"/>
+<text x="82" y="56" class="tb" text-anchor="middle">店舗のPOS</text>
+<text x="82" y="77" text-anchor="middle">2026/10/18</text>
+<rect x="168" y="36" width="140" height="52" class="fs l sm"/>
+<text x="238" y="56" class="tb" text-anchor="middle">ECサイト</text>
+<text x="238" y="77" text-anchor="middle">令和8年10月18日</text>
+<line x1="82" y1="88" x2="148" y2="122" class="l sa w2"/>
+<line x1="238" y1="88" x2="172" y2="122" class="l sa w2"/>
+<rect x="12" y="124" width="296" height="56" class="fas l sa"/>
+<text x="24" y="146" class="tb">E 抽出（Extract）</text>
+<text x="24" y="168">それぞれのシステムから取り出す</text>
+<line x1="160" y1="180" x2="160" y2="200" class="l sa w2"/>
+<polyline points="156,194 160,200 164,194" class="l sa w2"/>
+<rect x="12" y="202" width="296" height="78" class="fas l sa"/>
+<text x="24" y="224" class="tb">T 変換（Transform）</text>
+<text x="24" y="246">日付の書き方を1つにそろえる</text>
+<text x="24" y="268" class="tb">→ どちらも 2026-10-18</text>
+<line x1="160" y1="280" x2="160" y2="300" class="l sa w2"/>
+<polyline points="156,294 160,300 164,294" class="l sa w2"/>
+<rect x="12" y="302" width="296" height="56" class="fok l sok"/>
+<text x="24" y="324" class="tb">L 格納（Load）</text>
+<text x="24" y="346">データウェアハウス（DWH）に入れる</text>
+<text x="12" y="380">→ 2つの売上を、同じ日付で合わせて</text>
+<text x="12" y="398">　 集計できる</text>
+<line x1="12" y1="414" x2="308" y2="414" class="l sb w1"/>
+<text x="12" y="436" class="tb">ETLツール</text>
+<text x="12" y="456">この流れを画面で作れる。自前で作るより</text>
+<text x="12" y="474">手間が減る。主にITエンジニアが使う</text>
+<text x="12" y="500" class="tb">データプリパレーションツール</text>
+<text x="12" y="520">技術スキルの無い分析者でも</text>
+<text x="12" y="538">簡単に整形できる</text>
+</svg>

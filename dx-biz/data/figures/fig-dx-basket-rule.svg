@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-dx-basket-rule-t fig-dx-basket-rule-d">
+<title id="fig-dx-basket-rule-t">バスケット分析：一緒に買われる割合を数える</title>
+<desc id="fig-dx-basket-rule-d">数は図の例。レシート100枚を、1枚1マスの10×10のマスで表した図。パスタを含むレシートは20枚。そのうちパスタソースも一緒に含むレシートは12枚（塗りつぶしたマス）、パスタだけは8枚（点線のマス）。サポート（組み合わせの出現数）は、パスタとパスタソースの両方を含むレシートの数で12件。信頼度は、パスタを含むときにパスタソースも含む割合で、12÷20＝0.6、つまり60％。意味は、パスタを買う人の6割がソースも買うということで、隣の棚に並べる、セット販売、おすすめ（この商品を買った人はこれも）に生かせる。</desc>
+<text x="12" y="22" class="tb">レシート100枚（数は図の例）</text>
+<text x="12" y="40" class="tm">マス1つ＝レシート1枚</text>
+<rect x="35" y="56" width="23" height="23" class="fa"/>
+<rect x="60" y="56" width="23" height="23" class="fa"/>
+<rect x="85" y="56" width="23" height="23" class="fa"/>
+<rect x="110" y="56" width="23" height="23" class="fa"/>
+<rect x="135" y="56" width="23" height="23" class="fa"/>
+<rect x="160" y="56" width="23" height="23" class="fa"/>
+<rect x="185" y="56" width="23" height="23" class="fa"/>
+<rect x="210" y="56" width="23" height="23" class="fa"/>
+<rect x="235" y="56" width="23" height="23" class="fa"/>
+<rect x="260" y="56" width="23" height="23" class="fa"/>
+<rect x="35" y="81" width="23" height="23" class="fa"/>
+<rect x="60" y="81" width="23" height="23" class="fa"/>
+<rect x="85" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="110" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="135" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="160" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="185" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="210" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="235" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="260" y="81" width="23" height="23" class="fas l sa w1 dsh"/>
+<rect x="35" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="106" width="23" height="23" class="fs l sb w1"/>
+<rect x="35" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="131" width="23" height="23" class="fs l sb w1"/>
+<rect x="35" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="156" width="23" height="23" class="fs l sb w1"/>
+<rect x="35" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="181" width="23" height="23" class="fs l sb w1"/>
+<rect x="35" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="206" width="23" height="23" class="fs l sb w1"/>
+<rect x="35" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="231" width="23" height="23" class="fs l sb w1"/>
+<rect x="35" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="256" width="23" height="23" class="fs l sb w1"/>
+<rect x="35" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="60" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="85" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="110" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="135" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="160" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="185" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="210" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="235" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="260" y="281" width="23" height="23" class="fs l sb w1"/>
+<rect x="12" y="324" width="18" height="18" class="fa"/>
+<text x="38" y="338">パスタ＋パスタソース：12枚</text>
+<rect x="12" y="350" width="18" height="18" class="fas l sa w1 dsh"/>
+<text x="38" y="364">パスタだけ：8枚</text>
+<rect x="12" y="376" width="18" height="18" class="fs l sb w1"/>
+<text x="38" y="390">パスタを含まない：80枚</text>
+<text x="12" y="414" class="tm">パスタを含むのは、12＋8＝20枚</text>
+<line x1="12" y1="430" x2="308" y2="430" class="l sb w1"/>
+<text x="12" y="452" class="tb">サポート（一緒に出た数）</text>
+<text x="12" y="472">両方を含むレシート ＝ 12件</text>
+<text x="12" y="500" class="tb">信頼度（パスタがあるとき、ソースもある割合）</text>
+<text x="12" y="520">12 ÷ 20 ＝ 0.6 ＝ 60％</text>
+<text x="12" y="548">意味：パスタを買う人の6割がソースも買う</text>
+<text x="12" y="572" class="tm">→ 隣の棚に並べる・セット販売・</text>
+<text x="12" y="592" class="tm">「これを買った人はこれも」のおすすめ</text>
+</svg>

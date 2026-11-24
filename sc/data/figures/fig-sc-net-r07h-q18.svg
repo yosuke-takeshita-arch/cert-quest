@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 228" role="img" aria-labelledby="fig-sc-net-r07h-q18-t fig-sc-net-r07h-q18-d">
+<title id="fig-sc-net-r07h-q18-t">選択肢の表（コリジョンの伝搬／ブロードキャストフレームの中継）</title>
+<desc id="fig-sc-net-r07h-q18-d">選択肢は2列の表になっている。左の列の見出しは「コリジョンの伝搬」、右の列の見出しは「ブロードキャストフレームの中継」。行は4つで、伝搬しない・中継しない、伝搬しない・中継する、伝搬する・中継しない、伝搬する・中継する。選択肢の文は、左の列／右の列の順に斜線で区切って書いてある。</desc>
+<text x="12" y="18" class="tm">選択肢は「左の列／右の列」の順に書いてある</text>
+<rect x="12" y="28" width="296" height="190" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="28" width="296" height="50" class="fas sb" stroke-width="1.5"/>
+<line x1="160" y1="28" x2="160" y2="218" class="l sb w1"/>
+<text x="86" y="58" class="tb" text-anchor="middle">コリジョンの伝搬</text>
+<text x="234" y="50" class="tb" text-anchor="middle">ブロードキャスト</text>
+<text x="234" y="68" class="tb" text-anchor="middle">フレームの中継</text>
+<line x1="12" y1="113" x2="308" y2="113" class="l sb w1"/>
+<line x1="12" y1="148" x2="308" y2="148" class="l sb w1"/>
+<line x1="12" y1="183" x2="308" y2="183" class="l sb w1"/>
+<text x="24" y="101">伝搬しない</text>
+<text x="172" y="101">中継しない</text>
+<text x="24" y="136">伝搬しない</text>
+<text x="172" y="136">中継する</text>
+<text x="24" y="171">伝搬する</text>
+<text x="172" y="171">中継しない</text>
+<text x="24" y="206">伝搬する</text>
+<text x="172" y="206">中継する</text>
+</svg>

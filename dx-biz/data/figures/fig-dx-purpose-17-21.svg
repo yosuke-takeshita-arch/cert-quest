@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 430" role="img" aria-labelledby="fig-dx-purpose-17-21-t fig-dx-purpose-17-21-d">
+<title id="fig-dx-purpose-17-21-t">個人情報の利用目的：特定する→知らせる→変えるなら関連する範囲まで</title>
+<desc id="fig-dx-purpose-17-21-d">何のための図か：会員アプリの購買履歴で顧客ごとにおすすめを届けるときに、個人情報保護法が求める順番を見る。①個人情報を取り扱うに当たっては、利用目的をできる限り特定する（17条1項）。②個人情報を取得したら、あらかじめ利用目的を公表している場合を除き、速やかに本人に通知するか公表する（21条1項）。③利用目的を変えるときは、変更前の利用目的と関連性を有すると合理的に認められる範囲を超えてはならない（17条2項）。変えたら、変えた利用目的を本人に通知するか公表する（21条3項）。④本人の同意を得ないで、特定した利用目的の達成に必要な範囲を超えて取り扱ってはならない（18条1項）。目的を後で考える、知らせない、自由に変えるのは、どれもこの順番に反する。</desc>
+<text x="12" y="20" class="tb">個人情報の利用目的：守る順番</text>
+<text x="12" y="42" class="tm">例：購買履歴で、おすすめの商品を届ける</text>
+<rect x="12" y="54" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="75" text-anchor="middle">① 利用目的をできる限り特定する</text>
+<text x="160" y="93" text-anchor="middle" class="tm">（17条1項）</text>
+<line x1="160" y1="108" x2="160" y2="118" class="l sa w2"/>
+<polyline points="155,117 160,124 165,117" class="l sa w2" fill="none"/>
+<rect x="12" y="124" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="145" text-anchor="middle">② 取得したら、速やかに本人に通知か公表</text>
+<text x="160" y="163" text-anchor="middle" class="tm">あらかじめ公表していればよい（21条1項）</text>
+<line x1="160" y1="178" x2="160" y2="188" class="l sa w2"/>
+<polyline points="155,187 160,194 165,187" class="l sa w2" fill="none"/>
+<rect x="12" y="194" width="296" height="68" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="215" text-anchor="middle">③ 目的を変えるなら、変更前と関連性が</text>
+<text x="160" y="233" text-anchor="middle">あると合理的に認められる範囲まで</text>
+<text x="160" y="251" text-anchor="middle" class="tm">（17条2項）。変えたら通知か公表（21条3項）</text>
+<line x1="160" y1="266" x2="160" y2="276" class="l sa w2"/>
+<polyline points="155,275 160,282 165,275" class="l sa w2" fill="none"/>
+<rect x="12" y="282" width="296" height="50" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="303" text-anchor="middle">④ 特定した目的の範囲で使う</text>
+<text x="160" y="321" text-anchor="middle" class="tm">超えるなら本人の同意（18条1項）</text>
+<text x="12" y="358" class="tm tng">× 目的は後で考える（①に反する）</text>
+<text x="12" y="376" class="tm tng">× 目的を誰にも知らせない（②に反する）</text>
+<text x="12" y="394" class="tm tng">× どんな目的にも自由に変える（③に反する）</text>
+<text x="12" y="416" class="tm">e-Gov「個人情報の保護に関する法律」</text>
+</svg>

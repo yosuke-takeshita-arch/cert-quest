@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-visualization-t fig-dx-visualization-d">
+<title id="fig-dx-visualization-t">データ可視化：同じ数でも、グラフにすると傾向が一目で分かる</title>
+<desc id="fig-dx-visualization-d">ある店の月ごとの売上（単位は万円、数は図の例）を、表と棒グラフの2つで示した図。表は4月120、5月125、6月160、7月230、8月260、9月150。数字を眺めるだけでは気づきにくいが、同じ数を棒グラフ（横軸は月、縦軸は売上）にすると、7月と8月に山があり、9月に下がることが一目で分かる。下：ほかの見せ方。散布図は2つの量の関係をつかむのに使うが、分かるのは関係があるかどうかで、因果までは分からない。地図の上に可視化して、関係性・パターン・傾向を示すシステムをGIS（地理情報システム）という。</desc>
+<text x="12" y="22" class="tb">月ごとの売上（万円。数は図の例）</text>
+<text x="12" y="46" class="tb">表で見る</text>
+<rect x="12" y="56" width="296" height="56" class="fs l sm w1"/>
+<line x1="12" y1="84" x2="308" y2="84" class="l sb w1"/>
+<text x="36" y="76" text-anchor="middle">4月</text>
+<text x="85" y="76" text-anchor="middle">5月</text>
+<text x="134" y="76" text-anchor="middle">6月</text>
+<text x="183" y="76" text-anchor="middle">7月</text>
+<text x="232" y="76" text-anchor="middle">8月</text>
+<text x="281" y="76" text-anchor="middle">9月</text>
+<text x="36" y="104" text-anchor="middle">120</text>
+<text x="85" y="104" text-anchor="middle">125</text>
+<text x="134" y="104" text-anchor="middle">160</text>
+<text x="183" y="104" text-anchor="middle">230</text>
+<text x="232" y="104" text-anchor="middle">260</text>
+<text x="281" y="104" text-anchor="middle">150</text>
+<text x="12" y="132" class="tm">数字を眺めるだけでは、気づきにくい</text>
+<text x="12" y="162" class="tb">同じ数を棒グラフで見る</text>
+<text x="12" y="180" class="tm">縦軸：売上（万円）、横軸：月</text>
+<line x1="12" y1="324" x2="308" y2="324" class="l w1"/>
+<rect x="20" y="264" width="32" height="60" class="fas l sa w1"/>
+<rect x="69" y="261.5" width="32" height="62.5" class="fas l sa w1"/>
+<rect x="118" y="244" width="32" height="80" class="fas l sa w1"/>
+<rect x="167" y="209" width="32" height="115" class="fa"/>
+<rect x="216" y="194" width="32" height="130" class="fa"/>
+<rect x="265" y="249" width="32" height="75" class="fas l sa w1"/>
+<text x="36" y="342" text-anchor="middle">4月</text>
+<text x="85" y="342" text-anchor="middle">5月</text>
+<text x="134" y="342" text-anchor="middle">6月</text>
+<text x="183" y="342" text-anchor="middle">7月</text>
+<text x="232" y="342" text-anchor="middle">8月</text>
+<text x="281" y="342" text-anchor="middle">9月</text>
+<text x="36" y="258" class="tm" text-anchor="middle">120</text>
+<text x="232" y="188" class="tm" text-anchor="middle">260</text>
+<text x="12" y="368" class="tb">→ 7月・8月に山、9月に下がる</text>
+<text x="12" y="386" class="tm">（濃い棒＝山の2か月）</text>
+<line x1="12" y1="404" x2="308" y2="404" class="l sb w1"/>
+<text x="12" y="426" class="tb">ほかの見せ方</text>
+<text x="12" y="450"><tspan class="tb">散布図</tspan>：2つの量の関係をつかむ。</text>
+<text x="12" y="468">分かるのは関係の有無まで。因果は</text>
+<text x="12" y="486">分からない</text>
+<text x="12" y="512"><tspan class="tb">GIS</tspan>（地理情報システム）：地図の上に</text>
+<text x="12" y="530">可視化して、関係性・パターン・傾向を</text>
+<text x="12" y="548">示す</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 688" role="img" aria-labelledby="fig-g-mae-rmse-calc-t fig-g-mae-rmse-calc-d">
+<title id="fig-g-mae-rmse-calc-t">MAE と RMSE の計算：外れが +4・−4・+2・0 のとき</title>
+<desc id="fig-g-mae-rmse-calc-d">何のための図か：予測から実測を引いた差が +4、−4、+2、0 の4件のとき、MAE が2.5、RMSE が3になる理由を、問題と同じ数で見る。①4つの外れを棒で描く（上向きがプラス、下向きがマイナス、0は棒なし）。②MAEは、向きを外した大きさ4、4、2、0の平均。合計÷件数で(4＋4＋2＋0)÷4＝10÷4＝2.5。③RMSEは、それぞれを2回掛けて16、16、4、0にし、平均して(16＋16＋4＋0)÷4＝36÷4＝9（ここまでがMSE）、最後に平方根をとって√9＝3（3×3＝9）。④答えはMAE 2.5、RMSE 3。大きな外れ4を二乗で16と重く数えるので、RMSEはMAEより大きくなる。取り違えやすい数：9はMSEで止めた値、0.5は符号をつけたまま平均した値（4−4＋2＋0＝2、2÷4＝0.5）。</desc>
+<text x="12" y="20" class="tb">MAE と RMSE を、同じ外れで計算する</text>
+<text x="12" y="42" class="tm">何のための図か：外れが +4・−4・+2・0 のとき、</text>
+<text x="12" y="60" class="tm">MAE 2.5・RMSE 3 になる理由を、問題の数で見る</text>
+<text x="12" y="88" class="tb">① 4つの外れ（予測 − 実測）</text>
+<line x1="34" y1="164" x2="300" y2="164" class="l sm w1"/>
+<text x="12" y="168" class="tm">0</text>
+<rect x="50" y="128" width="36" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="68" y="122" class="tb" text-anchor="middle">＋4</text>
+<rect x="114" y="164" width="36" height="36" class="fwn swn" stroke-width="1.5"/>
+<text x="132" y="216" class="tb" text-anchor="middle">−4</text>
+<rect x="178" y="146" width="36" height="18" class="fas sa" stroke-width="1.5"/>
+<text x="196" y="140" class="tb" text-anchor="middle">＋2</text>
+<text x="260" y="156" class="tb" text-anchor="middle">0</text>
+<line x1="12" y1="232" x2="308" y2="232" class="l sb w1"/>
+<text x="12" y="254" class="tb">② MAE：向き（＋−）を外して平均</text>
+<text x="12" y="274" class="tm">大きさ：4・4・2・0（−4 の − を外す）</text>
+<text x="12" y="294">外れの大きさの合計 ÷ 件数</text>
+<rect x="12" y="304" width="296" height="30" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="324" class="tb ta" text-anchor="middle">(4＋4＋2＋0) ÷ 4 ＝ 10 ÷ 4 ＝ 2.5</text>
+<line x1="12" y1="350" x2="308" y2="350" class="l sb w1"/>
+<text x="12" y="372" class="tb">③ RMSE：2回掛けて平均し、平方根</text>
+<rect x="12" y="384" width="32" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="28" y="405" class="tb" text-anchor="middle">16</text>
+<rect x="54" y="384" width="32" height="32" class="fwn swn" stroke-width="1.5"/>
+<text x="70" y="405" class="tb" text-anchor="middle">16</text>
+<rect x="96" y="384" width="16" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="104" y="396" class="tb" text-anchor="middle">4</text>
+<text x="128" y="400" class="tb">0</text>
+<text x="150" y="400" class="tm">←4×4、(−4)×(−4)、</text>
+<text x="150" y="416" class="tm">　2×2、0×0</text>
+<text x="12" y="442">二乗の合計 ÷ 件数（ここまでが MSE）</text>
+<text x="12" y="462" class="tb twn">(16＋16＋4＋0) ÷ 4 ＝ 36 ÷ 4 ＝ 9</text>
+<text x="12" y="484">平方根（2回掛けると 9 になる数）</text>
+<rect x="12" y="494" width="296" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="160" y="514" class="tb" text-anchor="middle">√9 ＝ 3（3×3＝9）</text>
+<line x1="12" y1="540" x2="308" y2="540" class="l sb w1"/>
+<rect x="12" y="552" width="296" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="572" class="tb tok" text-anchor="middle">答え：MAE 2.5、RMSE 3</text>
+<text x="12" y="602" class="tm">大きな外れ 4 を 16 と重く数えるので、</text>
+<text x="12" y="620" class="tm">RMSE（3）は MAE（2.5）より大きくなる</text>
+<text x="12" y="646" class="tng">9 は MSE で止めた値（平方根の前）</text>
+<text x="12" y="666" class="tng">0.5 は符号のまま平均：(4−4＋2＋0)÷4</text>
+</svg>

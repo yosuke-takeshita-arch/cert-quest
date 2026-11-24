@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 716" role="img" aria-labelledby="fig-g-transformer-flow-t fig-g-transformer-flow-d">
+<title id="fig-g-transformer-flow-t">Transformer の動き：入力の文を一度に読み、訳を1語ずつ作る</title>
+<desc id="fig-g-transformer-flow-d">例は「私は猫が好き」を「I like cats」に訳すこと。① エンコーダは入力の文の私・は・猫・が・好きを一度に読み、全部の語どうしを同時に見比べて（Self-Attention）、各語の文脈入りの中身を作り、デコーダに渡す。② デコーダは訳を1語ずつ作る。1回目は始めの印だけを見て I を出す。2回目は始めの印と I を見て like、3回目は始めの印・I・like を見て cats、4回目は cats まで見て終わりの印を出す。出した語は次の回の入力に足していく。3回目に cats を出すとき、デコーダは2つを見る。ⓐ 自分がここまで出した語（始めの印・I・like）。まだ無い後ろの語は隠して見ない（Masked Self-Attention）。ⓑ エンコーダが読んだ入力の私・は・猫・が・好き。猫に大きな重みを付ける（例）（Source-Target Attention）。そして cats を出す。学習では、正解の訳文をまとめて入れ、後ろの語を隠して、全部の位置を同時に計算する。構成図との対応は、① が左のエンコーダ、ⓐ と ⓑ が右のデコーダの2つの Attention の箱。</desc>
+<text x="12" y="20" class="tb">Transformer：読んで、1語ずつ訳す</text>
+<text x="12" y="38" class="tm">例：「私は猫が好き」→「I like cats」</text>
+<rect x="12" y="48" width="296" height="122" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="68" class="tb">① エンコーダ：入力の文を一度に読む</text>
+<rect x="24" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="44" y="94" text-anchor="middle">私</text>
+<rect x="80" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="100" y="94" text-anchor="middle">は</text>
+<rect x="136" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="156" y="94" text-anchor="middle">猫</text>
+<rect x="192" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="212" y="94" text-anchor="middle">が</text>
+<rect x="248" y="78" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="268" y="94" text-anchor="middle">好き</text>
+<path d="M44,100 Q156,124 268,100" class="l sa w1"/>
+<path d="M100,100 Q156,116 212,100" class="l sa w1"/>
+<path d="M44,100 Q100,114 156,100" class="l sa w1"/>
+<text x="24" y="138">全部の語どうしを同時に見比べる</text>
+<text x="24" y="158" class="tm">（Self-Attention）→ 文脈入りの中身</text>
+<line x1="160" y1="170" x2="160" y2="186" class="l w2"/>
+<polyline points="156.15,180 160,187 163.85,180" class="l w2"/>
+<text x="170" y="184" class="tm">読んだ中身をデコーダへ渡す</text>
+<rect x="12" y="194" width="296" height="146" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="214" class="tb">② デコーダ：訳を1語ずつ作る</text>
+<text x="24" y="236" class="tm">回</text>
+<text x="70" y="236" class="tm">見る語（ここまで出した語）</text>
+<text x="296" y="236" class="tm" text-anchor="end">出す</text>
+<text x="24" y="258">1回目</text>
+<text x="70" y="258">〈始〉</text>
+<text x="296" y="258" class="tb" text-anchor="end">I</text>
+<text x="24" y="278">2回目</text>
+<text x="70" y="278">〈始〉 I</text>
+<text x="296" y="278" class="tb" text-anchor="end">like</text>
+<rect x="18" y="284" width="284" height="20" class="fas"/>
+<text x="24" y="299" class="tb ta">3回目</text>
+<text x="70" y="299" class="ta">〈始〉 I like</text>
+<text x="296" y="299" class="tb ta" text-anchor="end">cats</text>
+<text x="24" y="320">4回目</text>
+<text x="70" y="320">〈始〉 I like cats</text>
+<text x="296" y="320" class="tb" text-anchor="end">〈終〉</text>
+<text x="12" y="360" class="tm">出した語を、次の回の入力に足していく</text>
+<text x="12" y="386" class="tb">3回目（cats を出す）に見るもの</text>
+<rect x="12" y="396" width="296" height="80" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="414">ⓐ 自分がここまで出した語</text>
+<text x="24" y="432" class="tm">（Masked Self-Attention）</text>
+<rect x="24" y="442" width="52" height="24" class="fas sa" stroke-width="1"/>
+<text x="50" y="459" text-anchor="middle">〈始〉</text>
+<rect x="84" y="442" width="40" height="24" class="fas sa" stroke-width="1"/>
+<text x="104" y="459" text-anchor="middle">I</text>
+<rect x="132" y="442" width="52" height="24" class="fas sa" stroke-width="1"/>
+<text x="158" y="459" text-anchor="middle">like</text>
+<rect x="192" y="442" width="40" height="24" class="fbg sm dsh" stroke-width="1"/>
+<text x="212" y="459" class="tm" text-anchor="middle">？</text>
+<text x="240" y="459" class="tm">後ろは隠す</text>
+<rect x="12" y="484" width="296" height="96" class="fs sb" stroke-width="1" rx="6"/>
+<text x="24" y="502">ⓑ エンコーダが読んだ入力</text>
+<text x="24" y="520" class="tm">（Source-Target Attention）</text>
+<rect x="24" y="530" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="44" y="546" text-anchor="middle">私</text>
+<rect x="80" y="530" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="100" y="546" text-anchor="middle">は</text>
+<rect x="136" y="530" width="40" height="22" class="fas sa" stroke-width="2.5"/>
+<text x="156" y="546" class="tb ta" text-anchor="middle">猫</text>
+<rect x="192" y="530" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="212" y="546" text-anchor="middle">が</text>
+<rect x="248" y="530" width="40" height="22" class="fbg sb" stroke-width="1"/>
+<text x="268" y="546" text-anchor="middle">好き</text>
+<text x="24" y="572" class="tb ta">「猫」に大きな重みを付ける（例）</text>
+<line x1="160" y1="580" x2="160" y2="592" class="l w2"/>
+<polyline points="156.15,586 160,593 163.85,586" class="l w2"/>
+<rect x="100" y="596" width="120" height="28" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="615" class="tb ta" text-anchor="middle">cats を出す</text>
+<text x="12" y="648" class="tm">学習では、正解の訳文をまとめて入れ、後ろの</text>
+<text x="12" y="666" class="tm">語を隠して、全部の位置を同時に計算する</text>
+<text x="12" y="690">構成図との対応：① は左のエンコーダ、</text>
+<text x="12" y="708">ⓐ ⓑ は右のデコーダの2つの Attention の箱</text>
+</svg>

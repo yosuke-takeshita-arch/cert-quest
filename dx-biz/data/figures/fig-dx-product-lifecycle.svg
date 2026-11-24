@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-dx-product-lifecycle-t fig-dx-product-lifecycle-d">
+<title id="fig-dx-product-lifecycle-t">プロダクトライフサイクル：段階ごとに重視する指標が変わる</title>
+<desc id="fig-dx-product-lifecycle-d">左から導入期、成長期、成熟期、衰退期の4つの段階が並ぶ。観光庁のガイドブックによれば、導入期（開発したばかりで、これから売り出す）は、評価がまだ定まっていないので、価値を評価してもらうこと（購入者満足度・リピート意向度・他人への推奨度）と認知度を重視する。成長期・成熟期（すでに一定程度売れていて、さらに伸ばす）は、それに加えて売上・顧客単価・集客数やコンバージョン率を重視する。段階を取り違えると、育つ前の製品を売上だけで打ち切ったり、伸び止まった製品に投資し続けたりする。</desc>
+<text x="12" y="22" class="tb">段階によって、見る指標が変わる</text>
+<rect x="6" y="36" width="68" height="40" class="fwn l swn"/>
+<text x="40" y="61" class="tb" text-anchor="middle">導入期</text>
+<rect x="82" y="36" width="68" height="40" class="fok l sok"/>
+<text x="116" y="61" class="tb" text-anchor="middle">成長期</text>
+<rect x="158" y="36" width="68" height="40" class="fok l sok"/>
+<text x="192" y="61" class="tb" text-anchor="middle">成熟期</text>
+<rect x="234" y="36" width="80" height="40" class="fs l sm"/>
+<text x="274" y="61" class="tb" text-anchor="middle">衰退期</text>
+<polyline points="74,56 82,56" class="l sa w2"/>
+<polyline points="150,56 158,56" class="l sa w2"/>
+<polyline points="226,56 234,56" class="l sa w2"/>
+<text x="12" y="98" class="tm">時間の流れ →（市場に出てから退くまで）</text>
+<rect x="6" y="112" width="14" height="14" class="fwn l swn w1"/>
+<text x="28" y="124" class="tb">導入期</text>
+<text x="12" y="146">開発したばかりで、これから売り出す</text>
+<text x="12" y="166">評価がまだ定まっていないので重視するのは</text>
+<text x="12" y="188" class="tb">・価値を評価してもらうこと</text>
+<text x="12" y="206">　（満足度・リピート意向・推奨度）</text>
+<text x="12" y="226" class="tb">・認知度</text>
+<rect x="6" y="246" width="14" height="14" class="fok l sok w1"/>
+<text x="28" y="258" class="tb">成長期・成熟期</text>
+<text x="12" y="280">すでに一定程度売れていて、さらに伸ばす</text>
+<text x="12" y="300">導入期の指標に加えて重視するのは</text>
+<text x="12" y="322" class="tb">・売上・顧客単価</text>
+<text x="12" y="342" class="tb">・集客数・コンバージョン率</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="386" class="tng tb">段階を取り違えると</text>
+<text x="12" y="408">・育つ前の製品を、売上だけで打ち切る</text>
+<text x="12" y="430">・伸び止まった製品に、投資し続ける</text>
+<text x="12" y="456" class="tm">出典：観光庁のマーケティングガイドブック</text>
+</svg>

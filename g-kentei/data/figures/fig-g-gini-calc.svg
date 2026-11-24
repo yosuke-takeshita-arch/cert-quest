@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-g-gini-calc-t fig-g-gini-calc-d">
+<title id="fig-g-gini-calc-t">ジニ不純度の計算：クラスA 6件・クラスB 2件のノード</title>
+<desc id="fig-g-gini-calc-d">何のための図か：決定木のあるノードにクラスAが6件、クラスBが2件あるとき、ジニ不純度が0.375になる理由を、問題と同じ数で見る。①ノードの中身：丸6つがA、四角2つがB、合わせて8件。②割合：A＝6÷8＝0.75、B＝2÷8＝0.25。③クラスごとに、その割合×それ以外の割合を出して足す。Aの分は0.75×(1−0.75)＝0.75×0.25＝0.1875、Bの分は0.25×(1−0.25)＝0.25×0.75＝0.1875。足して0.1875＋0.1875＝0.375。1件取って戻し、もう1件取ったとき、2件のクラスが違う確率に当たる。④目盛り：Aだけなら0、4件ずつ半々なら最大の0.5。6件と2件は偏っているので、0.375は0.5より小さい。取り違えやすい数：0.625は割合の2乗の和（0.5625＋0.0625）で、1−0.625＝0.375。0.25はBの割合だけ。0.5は半々のときの値。</desc>
+<text x="12" y="20" class="tb">ジニ不純度＝混ざり具合を1つの数に</text>
+<text x="12" y="42" class="tm">何のための図か：A 6件・B 2件のノードで、</text>
+<text x="12" y="60" class="tm">ジニ不純度がなぜ 0.375 になるかを見る</text>
+<text x="12" y="88" class="tb">① ノードの中身（8件）</text>
+<rect x="12" y="98" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<circle cx="36" cy="118" r="8" class="fs sa" stroke-width="2"/>
+<circle cx="64" cy="118" r="8" class="fs sa" stroke-width="2"/>
+<circle cx="92" cy="118" r="8" class="fs sa" stroke-width="2"/>
+<circle cx="120" cy="118" r="8" class="fs sa" stroke-width="2"/>
+<circle cx="148" cy="118" r="8" class="fs sa" stroke-width="2"/>
+<circle cx="176" cy="118" r="8" class="fs sa" stroke-width="2"/>
+<rect x="196" y="110" width="16" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="224" y="110" width="16" height="16" class="fm sm" stroke-width="1.5"/>
+<text x="306" y="88" class="tm" text-anchor="end">○：A　■：B</text>
+<text x="12" y="166" class="tb">② 割合</text>
+<text x="12" y="188" class="ta">A ＝ 6 ÷ 8 ＝ 0.75</text>
+<text x="160" y="188">B ＝ 2 ÷ 8 ＝ 0.25</text>
+<line x1="12" y1="204" x2="308" y2="204" class="l sb w1"/>
+<text x="12" y="226" class="tb">③ （その割合）×（それ以外の割合）を足す</text>
+<text x="12" y="250" class="ta">A の分：0.75 × (1−0.75)</text>
+<text x="12" y="268" class="ta">　　　＝ 0.75 × 0.25 ＝ 0.1875</text>
+<text x="12" y="292">B の分：0.25 × (1−0.25)</text>
+<text x="12" y="310">　　　＝ 0.25 × 0.75 ＝ 0.1875</text>
+<rect x="12" y="322" width="296" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="342" class="tb tok" text-anchor="middle">0.1875 ＋ 0.1875 ＝ 0.375</text>
+<text x="12" y="372" class="tm">1件取って戻し、もう1件取ったとき、</text>
+<text x="12" y="390" class="tm">2件のクラスが違う確率に当たる</text>
+<line x1="12" y1="404" x2="308" y2="404" class="l sb w1"/>
+<text x="12" y="426" class="tb">④ 目盛りで位置を見る</text>
+<line x1="30" y1="462" x2="290" y2="462" class="l sm w1"/>
+<line x1="30" y1="454" x2="30" y2="470" class="l sm w1"/>
+<line x1="290" y1="454" x2="290" y2="470" class="l sm w1"/>
+<circle cx="225" cy="462" r="6" class="fa sa"/>
+<text x="30" y="448" class="tm" text-anchor="middle">0</text>
+<text x="290" y="448" class="tm" text-anchor="middle">0.5</text>
+<text x="225" y="448" class="tb tok" text-anchor="middle">0.375</text>
+<text x="30" y="490" class="tm" text-anchor="middle">A だけ</text>
+<text x="290" y="490" class="tm" text-anchor="middle">半々</text>
+<text x="225" y="490" class="tm" text-anchor="middle">6件と2件</text>
+<text x="12" y="516" class="tm">偏っているぶん、半々の 0.5 より小さい</text>
+<line x1="12" y1="530" x2="308" y2="530" class="l sb w1"/>
+<text x="12" y="552" class="tb">取り違えやすい数</text>
+<text x="12" y="574" class="tng">0.625：割合の2乗の和（0.5625＋0.0625）</text>
+<text x="12" y="592" class="tm">　1 − 0.625 ＝ 0.375 が不純度</text>
+<text x="12" y="614" class="tng">0.25：B の割合だけ（A の分を足していない）</text>
+</svg>

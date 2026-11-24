@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 408" role="img" aria-labelledby="fig-dx-vr-ar-mr-t fig-dx-vr-ar-mr-d">
+<title id="fig-dx-vr-ar-mr-t">VR・AR・MRの違い：現実と仮想のどちら寄りか</title>
+<desc id="fig-dx-vr-ar-mr-d">VR（仮想現実）・AR（拡張現実）・MR（複合現実）を、現実と仮想のどちら寄りかで比べた図。ARは、目の前の現実世界にコンピューターで作った映像や画像を重ね合わせ、現実を拡張する技術で、現実寄り。MRは、現実と仮想を融合させ、仮想のモデルを現実の空間に重ね合わせて使う技術で、中間。VRは、現実にない世界や体験しにくい状況をCGで仮想空間上に作り出す技術で、仮想寄り。</desc>
+<rect x="12" y="14" width="18" height="14" class="fs sm" stroke-width="1.5"/>
+<text x="36" y="26">現実</text>
+<rect x="90" y="14" width="18" height="14" class="fa"/>
+<text x="114" y="26">仮想（CGなど）</text>
+<text x="12" y="52" class="tm">上ほど現実寄り、下ほど仮想寄り（イメージ）</text>
+<text x="12" y="76" class="tb">AR　拡張現実</text>
+<rect x="12" y="86" width="296" height="18" class="fs"/>
+<rect x="232" y="86" width="76" height="18" class="fa"/>
+<rect x="12" y="86" width="296" height="18" class="sm" stroke-width="1.5"/>
+<text x="12" y="124">目の前の現実世界に、</text>
+<text x="12" y="143">コンピューターで作った映像や</text>
+<text x="12" y="162">画像を重ね合わせる</text>
+<text x="12" y="193" class="tb">MR　複合現実</text>
+<rect x="12" y="203" width="296" height="18" class="fs"/>
+<rect x="160" y="203" width="148" height="18" class="fa"/>
+<rect x="12" y="203" width="296" height="18" class="sm" stroke-width="1.5"/>
+<text x="12" y="241">現実と仮想を融合させ、</text>
+<text x="12" y="260">仮想のモデルを現実の空間に</text>
+<text x="12" y="279">重ね合わせて使う</text>
+<text x="12" y="310" class="tb">VR　仮想現実</text>
+<rect x="12" y="320" width="296" height="18" class="fs"/>
+<rect x="12" y="320" width="296" height="18" class="fa"/>
+<rect x="12" y="320" width="296" height="18" class="sm" stroke-width="1.5"/>
+<text x="12" y="358">現実にない世界や体験しにくい</text>
+<text x="12" y="377">状況を、CGで仮想空間上に</text>
+<text x="12" y="396">作り出す</text>
+</svg>

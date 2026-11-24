@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-dx-container-vm-t fig-dx-container-vm-d">
+<title id="fig-dx-container-vm-t">仮想マシンとコンテナ：OSを丸ごと持つか、カーネルを共有するか</title>
+<desc id="fig-dx-container-vm-d">同じ1台のサーバーで3つのアプリを動かす2つの形を、下から上へ積み重ねた図。上：仮想マシン（VM）。いちばん下がハードウェア、その上にハイパーバイザー（ハードウェアの水準で区切る仕組み）、その上にVMが3つ並び、VMごとにゲストOS（完全なOS）とアプリを持つ。隔離の境界ははっきりしているが、OSの分だけ重い。下：コンテナ。いちばん下がハードウェア、その上に1つのOS、その中核部分（カーネル）を3つのコンテナが共有し、コンテナごとにアプリとその動作に必要なものだけを持つ。軽く、持ち運び・再利用・自動化がしやすい。ただし隔離はVMほど明確な境界ではなく、設定を誤るとコンテナどうしやホストに影響が出やすいので、重要度の違うアプリを混ぜないなどの対策が要る。出典はNIST SP 800-190。</desc>
+<text x="12" y="22" class="tb">1台のサーバーで3つのアプリを動かす</text>
+<text x="12" y="40" class="tm">下から上へ積み重ねて描いている</text>
+<text x="12" y="66" class="tb">仮想マシン（VM）</text>
+<rect x="12" y="78" width="92" height="28" class="fas l sa w1"/>
+<text x="58" y="97" text-anchor="middle">アプリ</text>
+<rect x="114" y="78" width="92" height="28" class="fas l sa w1"/>
+<text x="160" y="97" text-anchor="middle">アプリ</text>
+<rect x="216" y="78" width="92" height="28" class="fas l sa w1"/>
+<text x="262" y="97" text-anchor="middle">アプリ</text>
+<rect x="12" y="106" width="92" height="28" class="fwn l swn w1"/>
+<text x="58" y="125" text-anchor="middle">ゲストOS</text>
+<rect x="114" y="106" width="92" height="28" class="fwn l swn w1"/>
+<text x="160" y="125" text-anchor="middle">ゲストOS</text>
+<rect x="216" y="106" width="92" height="28" class="fwn l swn w1"/>
+<text x="262" y="125" text-anchor="middle">ゲストOS</text>
+<rect x="8" y="74" width="100" height="64" class="l w2"/>
+<rect x="110" y="74" width="100" height="64" class="l w2"/>
+<rect x="212" y="74" width="100" height="64" class="l w2"/>
+<rect x="12" y="144" width="296" height="28" class="fs l sm"/>
+<text x="160" y="163" text-anchor="middle">ハイパーバイザー</text>
+<rect x="12" y="176" width="296" height="28" class="fs l sm"/>
+<text x="160" y="195" text-anchor="middle">ハードウェア</text>
+<text x="12" y="226">太い枠＝VMの境界。VMごとに完全なOSを</text>
+<text x="12" y="244">持つので境界ははっきり。OSの分だけ重い</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<text x="12" y="286" class="tb">コンテナ</text>
+<rect x="12" y="298" width="92" height="44" class="fas l sa w1 dsh"/>
+<text x="58" y="317" text-anchor="middle">アプリ＋</text>
+<text x="58" y="334" class="tm" text-anchor="middle">必要なもの</text>
+<rect x="114" y="298" width="92" height="44" class="fas l sa w1 dsh"/>
+<text x="160" y="317" text-anchor="middle">アプリ＋</text>
+<text x="160" y="334" class="tm" text-anchor="middle">必要なもの</text>
+<rect x="216" y="298" width="92" height="44" class="fas l sa w1 dsh"/>
+<text x="262" y="317" text-anchor="middle">アプリ＋</text>
+<text x="262" y="334" class="tm" text-anchor="middle">必要なもの</text>
+<rect x="12" y="346" width="296" height="28" class="fwn l swn w1"/>
+<text x="160" y="365" text-anchor="middle">1つのOS（中核のカーネルを共有）</text>
+<rect x="12" y="378" width="296" height="28" class="fs l sm"/>
+<text x="160" y="397" text-anchor="middle">ハードウェア</text>
+<text x="12" y="428">OSは1つだけ。軽く、持ち運び・再利用・</text>
+<text x="12" y="446">自動化がしやすい</text>
+<rect x="12" y="462" width="296" height="84" class="fng l sng"/>
+<text x="24" y="484" class="tb">注意：隔離の境界はVMほど明確でない</text>
+<text x="24" y="506">点線の枠＝共有するカーネルの上の区切り。</text>
+<text x="24" y="526">重要度の違うアプリを混ぜない対策が要る</text>
+</svg>

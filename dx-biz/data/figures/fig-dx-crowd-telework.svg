@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 478" role="img" aria-labelledby="fig-dx-crowd-telework-t fig-dx-crowd-telework-d">
+<title id="fig-dx-crowd-telework-t">テレワークとクラウドソーシングは見る点が違う</title>
+<desc id="fig-dx-crowd-telework-d">情報通信白書（平成27年版）の説明を描いた図。テレワークは主に就業者の働く場所（どこで働くか）に着目した概念。クラウドソーシングは主に人材の調達方法（誰にどう頼むか）に着目した概念で、発注者がマッチングサイトに業務を公募し、主に個人事業主（フリーランサー）が受注する。見る点（ものさし）が違うので、クラウドソーシングがテレワークの一部、のように一方が他方に含まれる関係にはない。ただし受注者は自営型テレワーカーであることが多いので、クラウドソーシングが普及すると自営型テレワーカーが増えると考えられる、と白書はしている。</desc>
+<rect x="12" y="14" width="296" height="76" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="36" class="tb">テレワーク</text>
+<text x="24" y="56">着目する点：どこで働くか</text>
+<text x="24" y="76" class="tm">（就業者の働く場所）</text>
+<rect x="12" y="100" width="296" height="122" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="122" class="tb">クラウドソーシング</text>
+<text x="24" y="142">着目する点：誰にどう頼むか</text>
+<text x="24" y="160" class="tm">（人材の調達方法）</text>
+<rect x="24" y="170" width="80" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="64" y="186" text-anchor="middle">発注者</text>
+<text x="64" y="203" text-anchor="middle">業務を公募</text>
+<line x1="104" y1="190" x2="118" y2="190" class="l sa w2"/>
+<polyline points="112,193.3 118,190 112,186.7" class="l sa w2"/>
+<rect x="120" y="170" width="80" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="186" text-anchor="middle">マッチング</text>
+<text x="160" y="203" text-anchor="middle">サイト</text>
+<line x1="200" y1="190" x2="214" y2="190" class="l sa w2"/>
+<polyline points="208,193.3 214,190 208,186.7" class="l sa w2"/>
+<rect x="216" y="170" width="80" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="256" y="186" text-anchor="middle">受注者</text>
+<text x="256" y="203" text-anchor="middle">個人事業主</text>
+<rect x="12" y="234" width="140" height="132" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="254" class="tb">✕ 一部ではない</text>
+<ellipse cx="82" cy="308" rx="58" ry="44" class="l sm w1"/>
+<text x="82" y="284" class="tm" text-anchor="middle">テレワーク</text>
+<ellipse cx="82" cy="320" rx="44" ry="22" class="l sm w1"/>
+<text x="82" y="317" class="tm" text-anchor="middle">クラウド</text>
+<text x="82" y="333" class="tm" text-anchor="middle">ソーシング</text>
+<rect x="168" y="234" width="140" height="132" class="fok sok" stroke-width="1.5"/>
+<text x="178" y="254" class="tb">○ ものさしが別</text>
+<text x="178" y="280" class="tb">テレワーク</text>
+<line x1="180" y1="290" x2="294" y2="290" class="l sa w2"/>
+<polyline points="288,293.3 294,290 288,286.7" class="l sa w2"/>
+<text x="178" y="306" class="tm">働く場所</text>
+<text x="178" y="326" class="tb">クラウドソーシング</text>
+<line x1="180" y1="336" x2="294" y2="336" class="l sa w2"/>
+<polyline points="288,339.3 294,336 288,332.7" class="l sa w2"/>
+<text x="178" y="352" class="tm">人材の調達方法</text>
+<rect x="12" y="378" width="296" height="88" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="400" class="tb">ただし重なりはある</text>
+<text x="24" y="420">受注者は自営型テレワーカーが多い</text>
+<text x="24" y="438">→ 普及すると自営型テレワーカーが</text>
+<text x="24" y="456">増えると考えられる（白書）</text>
+</svg>

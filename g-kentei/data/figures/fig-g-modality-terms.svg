@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 686" role="img" aria-labelledby="fig-g-modality-terms-t fig-g-modality-terms-d">
+<title id="fig-g-modality-terms-t">モダリティ＝情報の種類。種類が2つ以上ならマルチモーダル。変換と融合の違い</title>
+<desc id="fig-g-modality-terms-d">何のための図か：モダリティ・マルチモーダル・変換（translation）・融合（fusion）の語を、例で区別する。①モダリティ：情報の種類のこと。画像（見る）、音声（聞く）、文章（読む）はそれぞれ別のモダリティ。②種類を数える：写真から説明文を作るのは画像と文章の2つ、唇の動きの映像と音声から話した言葉を当てるのは映像と音声の2つで、どちらもマルチモーダル。英語の記事を日本語の記事にする翻訳は、言語は違っても種類は文章の1つだけなので、マルチモーダルではない。③Baltrušaitis ら（2017）は、マルチモーダル機械学習の課題を表現・変換・整列・融合・共同学習の5つに分けた。変換は、ある種類から別の種類へ写すこと（写真→説明文）。融合は、2つ以上の種類を合わせて1つの予測をすること（唇の映像＋音声→話した言葉）。④似た語：マルチタスクは、やること（タスク）が複数あることで、情報の種類は1つでもよい。ドメインは、データの分野や出どころ（医療の画像と街の写真など）。</desc>
+<text x="12" y="20" class="tb">モダリティ＝情報の種類</text>
+<text x="12" y="42" class="tm">何のための図か：似た語を、例で区別する</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">① モダリティ（情報の種類）</text>
+<rect x="12" y="86" width="92" height="44" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="58" y="105" class="tb" text-anchor="middle">画像</text>
+<text x="58" y="123" class="tm" text-anchor="middle">（見る）</text>
+<rect x="112" y="86" width="92" height="44" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="158" y="105" class="tb" text-anchor="middle">音声</text>
+<text x="158" y="123" class="tm" text-anchor="middle">（聞く）</text>
+<rect x="212" y="86" width="92" height="44" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="258" y="105" class="tb" text-anchor="middle">文章</text>
+<text x="258" y="123" class="tm" text-anchor="middle">（読む）</text>
+<text x="12" y="156" class="tb ta">種類が2つ以上 ＝ マルチモーダル</text>
+<line x1="12" y1="168" x2="308" y2="168" class="l sb w1"/>
+<text x="12" y="190" class="tb">② 種類を数える</text>
+<text x="12" y="212" class="tm">写真 → 説明文</text>
+<text x="300" y="230" class="tb tok" text-anchor="end">画像＋文章＝2つ</text>
+<text x="12" y="252" class="tm">唇の映像＋音声 → 話した言葉</text>
+<text x="300" y="270" class="tb tok" text-anchor="end">映像＋音声＝2つ</text>
+<text x="12" y="292" class="tm">英語の記事 → 日本語の記事</text>
+<text x="300" y="310" class="tb tng" text-anchor="end">文章だけ＝1つ</text>
+<text x="12" y="330" class="tm">言語が違っても、種類は文章のまま</text>
+<text x="12" y="350" class="tb tng">→ マルチモーダルではない</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="384" class="tb">③ 課題の5つの分け方</text>
+<text x="12" y="402" class="tm">Baltrušaitis ら（2017）：表現・変換・整列・</text>
+<text x="12" y="420" class="tm">融合・共同学習</text>
+<rect x="12" y="430" width="296" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="450" class="tb">変換（translation）</text>
+<text x="22" y="468" class="tm">ある種類から別の種類へ写す</text>
+<text x="22" y="486" class="tm">例：写真 → 説明文</text>
+<rect x="12" y="502" width="296" height="64" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="522" class="tb">融合（fusion）</text>
+<text x="22" y="540" class="tm">2つ以上を合わせて、1つを当てる</text>
+<text x="22" y="558" class="tm">例：唇の映像＋音声 → 話した言葉</text>
+<line x1="12" y1="578" x2="308" y2="578" class="l sb w1"/>
+<text x="12" y="600" class="tb">④ 似た語</text>
+<text x="12" y="618" class="tm">マルチタスク：やること（タスク）が複数。</text>
+<text x="12" y="636" class="tm">　情報の種類は1つでもよい</text>
+<text x="12" y="654" class="tm">ドメイン：データの分野や出どころ</text>
+<text x="12" y="672" class="tm">　（例：医療の画像と街の写真）</text>
+</svg>

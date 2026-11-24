@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 404" role="img" aria-labelledby="fig-ap-encoder-decoder-t fig-ap-encoder-decoder-d">
+<title id="fig-ap-encoder-decoder-t">Transformerの部品の使い方：エンコーダとデコーダの組、エンコーダだけ、デコーダだけ</title>
+<desc id="fig-ap-encoder-decoder-d">①もとの形はエンコーダとデコーダの組で、翻訳に使われた。エンコーダは入力の文を読み、各語の表現に変える。デコーダはその表現と、ここまでに出した訳語を見て、次の訳語を1語ずつ出す。例：「私は猫が好き」から I、like、cats と順に出す。訳文は一度に全部を決めず、1語ずつ順に出す。②エンコーダだけを使う形（BERTなど）は、文を読んで理解・分類する用途で、文章を1語ずつ作る用途ではない。③デコーダだけを使う形（GPTの系統）は、前に出した語から次の語を1つずつ予測し、それを続けて文章を作る。例：「今日は天気が」から「良い」「ので」…と続ける。</desc>
+<text x="12" y="20" class="tb">Transformer の部品の使い方</text>
+<text x="12" y="46" class="tb ta">① もとの形：エンコーダ＋デコーダ（翻訳）</text>
+<rect x="12" y="56" width="140" height="76" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="79" class="tb" text-anchor="middle">エンコーダ</text>
+<text x="82" y="99" text-anchor="middle">入力の文を読み、</text>
+<text x="82" y="119" text-anchor="middle">各語の表現に変える</text>
+<line x1="154" y1="88" x2="166" y2="88" class="l sa w2"/>
+<polyline points="159.00,92.00 166,88 159.00,84.00" class="l sa w2"/>
+<rect x="168" y="56" width="140" height="76" class="fok sok" stroke-width="1.5"/>
+<text x="238" y="79" class="tb" text-anchor="middle">デコーダ</text>
+<text x="238" y="99" text-anchor="middle">その表現と出した訳語</text>
+<text x="238" y="119" text-anchor="middle">を見て、次を1語ずつ</text>
+<text x="12" y="154" class="tm">例「私は猫が好き」→ I → like → cats</text>
+<text x="12" y="172" class="tm">訳文は1語ずつ順に出す（一度に全部は決めない）</text>
+<line x1="12" y1="186" x2="308" y2="186" class="l sb w1"/>
+<text x="12" y="210" class="tb ta">② エンコーダだけ（BERT など）</text>
+<rect x="12" y="220" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="243" text-anchor="middle">文を読んで理解する・分類する</text>
+<text x="160" y="263" class="tm" text-anchor="middle">文章を1語ずつ作る用途ではない</text>
+<text x="12" y="300" class="tb tok">③ デコーダだけ（GPT の系統）</text>
+<rect x="12" y="310" width="296" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="333" text-anchor="middle">前に出した語から、次の語を1つずつ予測</text>
+<text x="160" y="353" class="tm" text-anchor="middle">これを続けて文章を作る（生成向き）</text>
+<text x="12" y="386" class="tm">例「今日は天気が」→「良い」→「ので」→ …</text>
+</svg>

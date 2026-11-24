@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-yolo-t fig-g-yolo-d">
+<title id="fig-g-yolo-t">YOLO：画像を7×7のマスに区切り、物体の中心があるマスが枠と種類を出す</title>
+<desc id="fig-g-yolo-d">①画像を縦7×横7＝49のマスに区切る。犬の枠の中心（丸い点）が入っている1つのマス（緑）が、この犬を受け持つ。②1つのマスが出す数。枠を2つ出し、1つの枠は中心の横の位置・縦の位置・幅・高さ・確信度（そこに物体がある確からしさ）の5個の数。それに20クラスそれぞれの確率20個。2×5＋20＝10＋20＝30個。③49のマスすべてが30個ずつ出すので、出力全体は7×7×30、49×30＝1,470個の数の塊。画像を1回ネットワークに通すだけでこれを全部出すので速く、毎秒45枚を処理できる。</desc>
+<text x="12" y="22" class="tb">① 画像を 7×7＝49 マスに区切る（例）</text>
+<rect x="12" y="34" width="140" height="140" class="fs l sm w1"/>
+<line x1="32" y1="34" x2="32" y2="174" class="l sb w1"/>
+<line x1="52" y1="34" x2="52" y2="174" class="l sb w1"/>
+<line x1="72" y1="34" x2="72" y2="174" class="l sb w1"/>
+<line x1="92" y1="34" x2="92" y2="174" class="l sb w1"/>
+<line x1="112" y1="34" x2="112" y2="174" class="l sb w1"/>
+<line x1="132" y1="34" x2="132" y2="174" class="l sb w1"/>
+<line x1="12" y1="54" x2="152" y2="54" class="l sb w1"/>
+<line x1="12" y1="74" x2="152" y2="74" class="l sb w1"/>
+<line x1="12" y1="94" x2="152" y2="94" class="l sb w1"/>
+<line x1="12" y1="114" x2="152" y2="114" class="l sb w1"/>
+<line x1="12" y1="134" x2="152" y2="134" class="l sb w1"/>
+<line x1="12" y1="154" x2="152" y2="154" class="l sb w1"/>
+<rect x="72" y="94" width="20" height="20" class="fok l sok w2"/>
+<rect x="40" y="70" width="80" height="80" class="l sa w2"/>
+<text x="44" y="86" class="tb ta">犬</text>
+<circle cx="80" cy="108" r="3.5" class="ft"/>
+<text x="162" y="56" class="tb ta">青い枠＝犬の枠</text>
+<text x="162" y="80">丸い点＝枠の中心</text>
+<text x="162" y="104" class="tb tok">緑のマス＝中心が</text>
+<text x="162" y="124" class="tb tok">入ったマス。</text>
+<text x="162" y="144" class="tb tok">この犬を受け持つ</text>
+<line x1="12" y1="194" x2="308" y2="194" class="l sb w1"/>
+<text x="12" y="218" class="tb">② 1つのマスが出す数</text>
+<rect x="12" y="230" width="140" height="44" class="fas l sa w1" rx="4"/>
+<text x="82" y="248" class="tb" text-anchor="middle">枠1：5個</text>
+<text x="82" y="266" class="tm" text-anchor="middle">横・縦・幅・高さ・確信度</text>
+<rect x="168" y="230" width="140" height="44" class="fas l sa w1" rx="4"/>
+<text x="238" y="248" class="tb" text-anchor="middle">枠2：5個</text>
+<text x="238" y="266" class="tm" text-anchor="middle">（同じ5種類）</text>
+<rect x="12" y="282" width="296" height="40" class="fok l sok w1" rx="4"/>
+<text x="160" y="300" class="tb tok" text-anchor="middle">クラスの確率：20個</text>
+<text x="160" y="316" class="tm" text-anchor="middle">（犬・猫・車…20種類それぞれの確率）</text>
+<text x="12" y="346" class="tm">横・縦＝枠の中心の位置。確信度＝そこに物体が</text>
+<text x="12" y="366" class="tm">ある確からしさ</text>
+<text x="12" y="392" class="tb">2×5＋20＝10＋20＝30個</text>
+<line x1="12" y1="408" x2="308" y2="408" class="l sb w1"/>
+<text x="12" y="432" class="tb">③ 画像全体の出力</text>
+<text x="12" y="456">49マス × 30個 → 7×7×30</text>
+<text x="12" y="478">＝49×30＝1,470個の数</text>
+<rect x="12" y="492" width="296" height="48" class="fwn l swn w1" rx="4"/>
+<text x="160" y="512" class="tb twn" text-anchor="middle">1回ネットワークに通すだけで全部出す</text>
+<text x="160" y="531" class="tb twn" text-anchor="middle">→ 速い（毎秒45枚）</text>
+</svg>

@@ -1,0 +1,406 @@
+// サービスワーカーの本体（各アプリの sw.js から importScripts で読まれる）。
+// 各アプリの sw.js は scope=自分のディレクトリ。ここで ../shared/ のファイルもキャッシュするので、
+// scope の外にある shared/ もオフラインで使える（キャッシュは scope と無関係に何でも入れられる）。
+//
+// 方針
+//  - アプリ本体（HTML/JS/CSS/config/アイコン）: ネット優先。4秒で返らなければキャッシュ。→ 更新が1回で反映され、新旧が混ざらない
+//  - data/（問題・カード・図）: キャッシュ優先＋裏で更新。オフラインでも即開く。更新は次に開いたとき見える。図（data/figures/*.svg）は、問題・カード・基礎のことば（data/basics.json）の figures が指すものをインストール時に取る
+//  - audio/（効果音・BGM）: 効果音は小さいのでインストール時に取る。BGM は大きいので、最初に流したときに取ってキャッシュに入れ、以後はキャッシュ優先（オフラインでも鳴る）
+//    BGM だけは、版ごとのキャッシュではなく、版が上がっても残る別のキャッシュ（BGM_CACHE）に入れる（下の BGM_VERSION の説明）
+//  - 404 などの失敗応答はキャッシュしない（まだ無いデータを「無い」と覚えない）
+/* global self, caches, fetch, URL, Response */
+const CFG = self.CERT_QUEST;
+const CACHE = 'certquest-' + CFG.appId + '-v' + CFG.version;
+// BGM のキャッシュ（2026-11-10）。前は版ごとのキャッシュ（CACHE）に入れていたので、公開のたびに消えて、13曲・約20MB を取り直していた。
+//  - 5つのアプリで1つを共有する。BGM の URL（/shared/audio/bgm/…）はどのアプリから見ても同じで、キャッシュは同じサイトの中で共通なので、
+//    1つにすれば同じ曲を二重に持たず、あるアプリで取った曲がほかのアプリでもそのまま鳴る
+//  - 名前は 'certquest-' で始めない。activate は 'certquest-<アプリのID>-' で始まる古いキャッシュを消すので、どんなアプリのIDでも当たらない名前にする
+//  - BGM のファイルを、同じ名前のまま中身だけ差し替えたときは、BGM_VERSION を1つ上げる（上げないと、前に取った人には古い曲が鳴り続ける）。
+//    上げると、番号の小さい BGM のキャッシュは activate で消える。新しい名前のファイルを足すだけなら上げなくてよい
+const BGM_VERSION = 1;
+const BGM_PREFIX = 'certquest_bgm-v';
+const BGM_CACHE = BGM_PREFIX + BGM_VERSION;
+const BGM_PATH = /\/shared\/audio\/bgm\//;
+const FIGURE_ID = /^fig-[a-z0-9]+(?:-[a-z0-9]+)*$/; // shared/js/lib/figures.js の FIGURE_ID_RE と同じ
+
+// shared/ の中身（sw.js から見た相対パス）。ファイルを足したらここにも足す。
+const SHARED = [
+  '../shared/css/app.css',
+  '../shared/images/aisunia-logo.webp',
+  '../shared/images/badges/first-answer.webp',
+  '../shared/images/badges/correct-10.webp',
+  '../shared/images/badges/correct-100.webp',
+  '../shared/images/badges/streak-3.webp',
+  '../shared/images/badges/streak-7.webp',
+  '../shared/images/badges/streak-30.webp',
+  '../shared/images/badges/level-5.webp',
+  '../shared/images/badges/level-10.webp',
+  '../shared/images/badges/challenge-8.webp',
+  '../shared/images/badges/exam-first.webp',
+  '../shared/images/badges/exam-70.webp',
+  '../shared/images/badges/exam-90.webp',
+  '../shared/images/badges/dochi-perfect.webp',
+  '../shared/images/badges/dochi-combo-10.webp',
+  '../shared/images/badges/boss-first.webp',
+  '../shared/images/badges/boss-all.webp',
+  '../shared/images/badges/boss-flawless.webp',
+  '../shared/images/badges/tap-shiba-100.webp',
+  '../shared/images/badges/tap-sensei-100.webp',
+  '../shared/images/characters/shiba-hello.webp',
+  '../shared/images/characters/shiba-banzai.webp',
+  '../shared/images/characters/shiba-clap.webp',
+  '../shared/images/characters/shiba-cheer.webp',
+  '../shared/images/characters/shiba-think.webp',
+  '../shared/images/characters/shiba-sleepy.webp',
+  '../shared/images/characters/sensei-hello.webp',
+  '../shared/images/characters/sensei-point.webp',
+  '../shared/images/characters/sensei-ok.webp',
+  '../shared/images/characters/sensei-comfort.webp',
+  '../shared/images/characters/sensei-think.webp',
+  '../shared/images/characters/sensei-clap.webp',
+  '../shared/js/app.js',
+  '../shared/js/ui.js',
+  '../shared/js/audio.js',
+  '../shared/js/lib/sound.js',
+  '../shared/js/lib/srs.js',
+  '../shared/js/lib/review.js',
+  '../shared/js/lib/scoring.js',
+  '../shared/js/lib/quiz.js',
+  '../shared/js/lib/data.js',
+  '../shared/js/lib/progress.js',
+  '../shared/js/lib/badges.js',
+  '../shared/js/lib/daily.js',
+  '../shared/js/lib/characters.js',
+  '../shared/js/lib/goals.js',
+  '../shared/js/lib/storage.js',
+  '../shared/js/views/home.js',
+  '../shared/js/views/cards.js',
+  '../shared/js/views/play.js',
+  '../shared/js/views/exam.js',
+  '../shared/js/views/explain.js',
+  '../shared/js/views/more.js',
+  '../shared/js/views/sound-settings.js',
+  '../shared/js/views/title.js',
+  '../shared/js/views/examdate.js',
+  '../shared/js/views/about.js',
+  '../shared/js/views/characters.js',
+  '../shared/js/views/backup.js',
+  '../shared/js/views/report.js',
+  '../shared/js/views/figure.js',
+  '../shared/js/lib/figures.js',
+  '../shared/js/lib/loadprogress.js',
+  '../shared/js/lib/examdate.js',
+  '../shared/js/lib/intro.js',
+  '../shared/js/lib/textsize.js',
+  '../shared/js/lib/maplayout.js',
+  '../shared/js/lib/cardtree.js',
+  '../shared/js/lib/pastexam.js',
+  '../shared/js/lib/appname.js',
+  '../shared/js/lib/appversion.js',
+  '../shared/js/lib/updatenotice.js',
+  '../shared/js/lib/swupdate.js',
+  '../shared/js/lib/backguard.js',
+  '../shared/js/lib/pauseclock.js',
+  '../shared/js/lib/outline.js',
+  '../shared/js/lib/logotrace.js',
+  '../shared/js/lib/weakness.js',
+  '../shared/js/views/weak.js',
+  '../shared/js/views/later.js',
+  '../shared/js/lib/later.js',
+  '../shared/js/views/flip.js',
+  '../shared/js/lib/flip.js',
+  '../shared/js/lib/studytime.js',
+  '../shared/js/lib/studyreport.js',
+  '../shared/js/views/studyreport.js',
+  '../shared/js/studyclock.js',
+  '../shared/js/views/dochi.js',
+  '../shared/js/lib/dochi.js',
+  '../shared/js/views/forecast.js',
+  '../shared/js/lib/forecast.js',
+  '../shared/js/lib/boss.js',
+  '../shared/js/lib/bossrun.js',
+  '../shared/js/lib/bossdata.js',
+  '../shared/js/lib/install.js',
+  '../shared/js/lib/transition.js',
+  '../shared/js/lib/expand.js',
+  '../shared/js/lib/bossmusic.js',
+  '../shared/js/views/boss.js',
+  '../shared/js/lib/trueboss.js',
+  '../shared/js/lib/trueboss-data.js',
+  '../shared/js/lib/trueboss-geom.js',
+  '../shared/js/lib/trueboss-music.js',
+  '../shared/js/views/trueboss.js',
+  '../shared/js/views/curse.js',
+  '../shared/js/views/awaken.js',
+  '../shared/js/views/intro.js',
+  '../shared/js/lib/backup.js',
+  '../shared/js/lib/report.js',
+  '../shared/js/lib/subjects.js',
+  '../shared/js/views/subjects.js',
+  '../shared/js/lib/basics.js',
+  '../shared/js/views/basics.js',
+  '../shared/js/views/richtext.js',
+];
+
+// 効果音（小さいのでインストール時に取る）。BGM は含めない（最初に流したときに取る）。shared/audio/sfx/ を足したらここにも足す。
+const SFX = [
+  'ok_gold-coin.ogg',
+  'ng_lose-trumpet.ogg',
+  'level_8bit-fanfare.ogg',
+  'badge_new-thing-get.ogg',
+  'stars_sparkle.wav',
+  'goal_cure.wav',
+  'start_16bit-success.ogg',
+  'drop_001.ogg',
+  'tab_beep.ogg',
+  'boss-hit_snare.ogg',
+  'boss-win_victory.mp3',
+  'boss-hurt_explosion02.ogg',
+  'boss-crit_cut.ogg',
+  'vortex_retro-fall.ogg',
+  'true-crack_ice-small-1.ogg',
+  'true-crack_ice-small-2.ogg',
+  'true-shatter_ice-big-1.ogg',
+  'true-shatter_ice-big-2.ogg',
+  'true-seep_steam-hiss-1.ogg',
+  'true-clatter_metal-falling-01.ogg',
+  'true-rumble_earthquake-shake.ogg',
+  'true-heartbeat_slow.ogg',
+  'true-heartbeat_fast.ogg',
+  'true-orb_bell-ding.ogg',
+  'true-charge_rocket-launch.ogg',
+  'true-impact_chunky-explosion.ogg',
+  'true-impact_transformation-hit.ogg',
+  'true-heal_magical-3.ogg',
+  'true-playerheal_magical-1.ogg',
+].map((f) => '../shared/audio/sfx/' + f);
+
+// 上の2つのリストは '../shared/' から始まる形で書いてある。sw.js が深い場所にあるとき
+// （例: shindanshi/1ji/sw.js）は CFG.sharedBase（既定 '../shared/'）に差し替えて使う。
+const SHARED_BASE = CFG.sharedBase || '../shared/';
+const LEGACY_BASE = '../shared/';
+const withBase = (u) => (u.startsWith(LEGACY_BASE) ? SHARED_BASE + u.slice(LEGACY_BASE.length) : u);
+const SHARED_URLS = SHARED.map(withBase);
+const SFX_URLS = SFX.map(withBase);
+
+// データの置き場（sw.js から見たフォルダ名）。既定は 'data' の1つ（G検定・DX）。
+// 科目ごとにフォルダが分かれたアプリは CFG.dataDirs に全部書く（例: ['01_economics', '02_finance-accounting', ...]）。
+const VALID_DIRS = Array.isArray(CFG.dataDirs) ? CFG.dataDirs.filter((d) => typeof d === 'string' && /^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(d)) : [];
+const DATA_DIRS = VALID_DIRS.length ? VALID_DIRS : ['data']; // 空の一覧だと正規表現が全部に一致してしまうので、必ず1つ以上にする
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// 置き場の下のURLか（キャッシュ優先＋裏で更新にするもの）。'/data/' のほか、dataDirs のフォルダ
+const DATA_PATH = new RegExp('/(?:' + DATA_DIRS.map(escapeRe).join('|') + ')/');
+
+// 受け取りの進み具合（何個中何個）。タイトル画面のゲージに出す（要件定義書 3-2-c 見直し。2026-11-09 先生「ダウンロードの総量が分かれば、今のゲージを使って、ダウンロード中のゲージ表現ができる」）。
+// 総数は、取るものが分かった時点で足す（データの中身を読むまで図の数は分からない）。知らせるのは 0.15 秒に1回まで
+const PROGRESS = { done: 0, total: 0, timer: null };
+function progressAdd(n) { PROGRESS.total += n; progressSend(); }
+function progressTick() { PROGRESS.done += 1; progressSend(); }
+function progressSend(final) {
+  const send = async () => {
+    PROGRESS.timer = null;
+    try {
+      const list = await self.clients.matchAll({ includeUncontrolled: true, type: 'window' });
+      for (const c of list) c.postMessage({ type: 'cq-install-progress', done: Math.min(PROGRESS.done, PROGRESS.total), total: PROGRESS.total });
+    } catch (e) { /* 知らせられなくても受け取りは続ける */ }
+  };
+  if (final) { if (PROGRESS.timer) clearTimeout(PROGRESS.timer); return send(); }
+  if (!PROGRESS.timer) PROGRESS.timer = setTimeout(send, 150);
+}
+
+async function prefetchData(cache, dir) {
+  progressAdd(4); // index.json と、ボス・真ボス・基礎のことばの3つ
+  try {
+    const base = './' + dir + '/';
+    let idxRes;
+    try { idxRes = await fetch(base + 'index.json', { cache: 'reload' }); } finally { progressTick(); }
+    if (!idxRes.ok) { PROGRESS.done += 3; return; }
+    const idx = await idxRes.clone().json();
+    await cache.put(new URL(base + 'index.json', self.location).href, idxRes);
+    const files = [idx.syllabus, ...(idx.questions || []), ...(idx.concepts || [])].filter((f) => typeof f === 'string');
+    progressAdd(files.length);
+    const figureIds = new Set(); // 問題・カードの figures が指す図（<置き場>/figures/<id>.svg）。オフラインでも出すため、ここで取る
+    await Promise.all(
+      files.map(async (f) => {
+        try {
+          const u = new URL(base + f, self.location).href;
+          const r = await fetch(u, { cache: 'reload' });
+          if (!r.ok) return;
+          try {
+            const arr = await r.clone().json();
+            if (Array.isArray(arr)) for (const o of arr) if (o && Array.isArray(o.figures)) for (const id of o.figures) if (typeof id === 'string' && FIGURE_ID.test(id)) figureIds.add(id);
+          } catch (e) { /* JSON でないもの（シラバス）は図を持たない */ }
+          await cache.put(u, r);
+        } catch (e) { /* 取れないものは飛ばす */ } finally { progressTick(); }
+      })
+    );
+    // 章のボスの名前・せりふ（<置き場>/bosses.json。index.json の bosses で名前を変えてもよい）。無い(404)ときは飛ばす（ボスは汎用の名前とせりふで動く）
+    try {
+      const bu = new URL(base + (typeof idx.bosses === 'string' && idx.bosses ? idx.bosses : 'bosses.json'), self.location).href;
+      const br = await fetch(bu, { cache: 'reload' });
+      if (br.ok) await cache.put(bu, br);
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ } finally { progressTick(); }
+    // 真ボスの名前・せりふ（<置き場>/trueboss.json。真ボスを出すアプリだけが持つ）。無い(404)ときは飛ばす
+    try {
+      const tu = new URL(base + 'trueboss.json', self.location).href;
+      const tr = await fetch(tu, { cache: 'reload' });
+      if (tr.ok) await cache.put(tu, tr);
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ } finally { progressTick(); }
+    // 基礎のことば（<置き場>/basics.json。index.json の basics で名前を変えてもよい）。無い(404)ときは飛ばす。図を持っていれば、その図も取る
+    try {
+      const nu = new URL(base + (typeof idx.basics === 'string' && idx.basics ? idx.basics : 'basics.json'), self.location).href;
+      const nr = await fetch(nu, { cache: 'reload' });
+      if (nr.ok) {
+        try {
+          const raw = await nr.clone().json();
+          const arr = Array.isArray(raw) ? raw : raw && Array.isArray(raw.basics) ? raw.basics : [];
+          for (const o of arr) if (o && Array.isArray(o.figures)) for (const id of o.figures) if (typeof id === 'string' && FIGURE_ID.test(id)) figureIds.add(id);
+        } catch (e) { /* 読めない JSON は図を持たない */ }
+        await cache.put(nu, nr);
+      }
+    } catch (e) { /* 取れないときは、開いたときに取れれば、そのときキャッシュに入る */ } finally { progressTick(); }
+    progressAdd(figureIds.size);
+    await Promise.all(
+      [...figureIds].map(async (id) => {
+        try {
+          const u = new URL(base + 'figures/' + id + '.svg', self.location).href;
+          const r = await fetch(u, { cache: 'reload' });
+          if (r.ok) await cache.put(u, r);
+        } catch (e) { /* 取れない図は飛ばす（開いたときに取れれば、そのときキャッシュに入る） */ } finally { progressTick(); }
+      })
+    );
+  } catch (e) { /* データ無しでも本体は使える */ }
+}
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    (async () => {
+      const cache = await caches.open(CACHE);
+      // 進み具合の総数がはやく決まるよう、データ（中身を読むまで図の数が分からない）を先に取り、本体をあとで取る
+      const core = [...CFG.appFiles, ...SHARED_URLS, ...SFX_URLS];
+      progressAdd(core.length);
+      // データは有る分だけ。無い(404)ものは飛ばす。置き場が複数あるアプリ（科目ごとのフォルダ）は、全部の置き場を順に取る
+      for (const dir of DATA_DIRS) await prefetchData(cache, dir);
+      // 本体が1つでも取れなければインストール失敗にする（中途半端なオフラインにしない。cache.addAll と同じく、取れないものが1つでもあれば失敗）
+      // 1つずつ addAll するのは、1つ取れるごとに数えるため（addAll は取れないものがあれば失敗する）
+      await Promise.all(core.map(async (u) => {
+        await cache.addAll([new Request(u, { cache: 'reload' })]);
+        progressTick();
+      }));
+      await progressSend(true);
+      await self.skipWaiting();
+    })()
+  );
+});
+
+// 設定画面が「いま動いている版」を聞いてくる（画面の「版 0.9.0（117）」の括弧の数字）
+self.addEventListener('message', (event) => {
+  const d = event.data;
+  if (d && d.type === 'cq-version' && event.ports && event.ports[0]) event.ports[0].postMessage({ version: String(CFG.version) });
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      // 消すのは、このアプリの古い版のキャッシュだけ（ほかのアプリのキャッシュと BGM のキャッシュは名前が当たらないので残る）
+      const prefix = 'certquest-' + CFG.appId + '-';
+      const keys = await caches.keys();
+      const old = keys.filter((k) => k.startsWith(prefix) && k !== CACHE);
+      // 切り替えのときだけ: 前の作りでは BGM が版ごとのキャッシュに入っている。消す前に BGM のキャッシュへ移す（取り直させない）。
+      // 番号が 1 の間だけ移す。番号を上げたあとに移すと、差し替える前の古い曲を持ちこんでしまう
+      if (BGM_VERSION === 1) await moveBgm(old);
+      for (const k of old) await caches.delete(k);
+      // 番号の小さい BGM のキャッシュを消す（大きい番号は消さない。まだ古い作りで動いているアプリが、新しいほうを消さないように）
+      for (const k of keys) if (isOlderBgmCache(k)) await caches.delete(k);
+      await self.clients.claim();
+    })()
+  );
+});
+
+/** 古い版のキャッシュに入っている BGM を、BGM のキャッシュへ移す。もう入っている曲は移さない。失敗しても先へ進む（その曲は次に流したとき取り直すだけ） */
+async function moveBgm(oldNames) {
+  try {
+    let bgm = null;
+    for (const name of oldNames) {
+      const from = await caches.open(name);
+      for (const req of await from.keys()) {
+        if (!BGM_PATH.test(new URL(req.url).pathname)) continue;
+        bgm = bgm || (await caches.open(BGM_CACHE));
+        if (await bgm.match(req)) continue;
+        const res = await from.match(req);
+        if (res && res.status === 200) await bgm.put(req, res);
+      }
+    }
+  } catch (e) {
+    /* 移せなくても止めない */
+  }
+}
+
+/** 名前が BGM のキャッシュで、番号がいまより小さいか */
+function isOlderBgmCache(name) {
+  if (!name.startsWith(BGM_PREFIX)) return false;
+  const n = name.slice(BGM_PREFIX.length);
+  return /^[1-9]\d*$/.test(n) && Number(n) < BGM_VERSION;
+}
+
+async function networkFirst(request, timeoutMs) {
+  const cache = await caches.open(CACHE);
+  const ignoreSearch = request.mode === 'navigate';
+  try {
+    const res = await Promise.race([
+      fetch(request),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), timeoutMs)),
+    ]);
+    if (res && res.ok && !ignoreSearch) cache.put(request, res.clone());
+    else if (res && res.ok && ignoreSearch) cache.put(new URL('./index.html', self.location).href, res.clone());
+    return res;
+  } catch (e) {
+    const hit = (await cache.match(request, { ignoreSearch })) || (ignoreSearch && (await cache.match(new URL('./index.html', self.location).href)));
+    if (hit) return hit;
+    return new Response('オフラインで、まだ保存されていません。', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+  }
+}
+
+async function cacheFirstRevalidate(request) {
+  const cache = await caches.open(CACHE);
+  const hit = await cache.match(request);
+  const refresh = fetch(request)
+    .then((res) => {
+      if (res && res.ok) cache.put(request, res.clone());
+      return res;
+    })
+    .catch(() => null);
+  if (hit) return hit;
+  const res = await refresh;
+  return res || new Response('', { status: 404 });
+}
+
+// 音のファイル: キャッシュ優先。無ければネットから取って（時間切れなし）キャッシュに入れる。失敗した応答は入れない。
+// 効果音は版ごとのキャッシュ（CACHE）、BGM は版が上がっても残るキャッシュ（BGM_CACHE）。
+// 一部分だけの求め（Range）の扱いは前のまま: キャッシュにあれば丸ごと（200）を返す。無ければネットの応答（206）をそのまま返し、キャッシュには入れない
+// （アプリは BGM を丸ごと取ってから鳴らすので、Range は送らない。shared/js/audio.js）
+async function cacheFirst(request, cacheName = CACHE) {
+  const cache = await caches.open(cacheName);
+  const hit = await cache.match(request);
+  if (hit) return hit;
+  try {
+    // BGM は一度入れると版が上がっても残るので、ブラウザが少し前に覚えた古い応答ではなく、サーバーに確かめたものを入れる
+    const fresh = cacheName === BGM_CACHE && !(request.headers && request.headers.get('range'));
+    const res = await (fresh ? fetch(request, { cache: 'no-cache' }) : fetch(request));
+    if (res && res.ok && res.status === 200) cache.put(request, res.clone());
+    return res;
+  } catch (e) {
+    return new Response('', { status: 503 });
+  }
+}
+
+self.addEventListener('fetch', (event) => {
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
+  if (DATA_PATH.test(url.pathname)) event.respondWith(cacheFirstRevalidate(req));
+  else if (BGM_PATH.test(url.pathname)) event.respondWith(cacheFirst(req, BGM_CACHE));
+  else if (/\/shared\/audio\//.test(url.pathname)) event.respondWith(cacheFirst(req));
+  else event.respondWith(networkFirst(req, 4000));
+});

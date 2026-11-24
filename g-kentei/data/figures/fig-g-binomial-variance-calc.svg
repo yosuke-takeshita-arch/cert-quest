@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 713" role="img" aria-labelledby="fig-g-binomial-variance-calc-t fig-g-binomial-variance-calc-d">
+<title id="fig-g-binomial-variance-calc-t">成功確率0.2の挑戦を25回：成功回数の分散は4</title>
+<desc id="fig-g-binomial-variance-calc-d">何のための図か：成功確率0.2の挑戦を独立に25回行うとき、成功回数の分散が4になる理由を見る。①1回分：成功なら1、失敗なら0と数える。1回の平均は0.2。成功したとき（確率0.2）の平均との差は1−0.2＝0.8で、2乗して0.64。失敗したとき（確率0.8）の差は0−0.2＝−0.2で、2乗して0.04。2乗を確率で重みづけして平均すると0.2×0.64＋0.8×0.04＝0.128＋0.032＝0.16。これは成功確率×失敗確率（0.2×0.8）と同じ。②25回分：1回ずつが独立なので、ばらつき（分散）は足し合わせられる。0.16が25回分で、25×0.16＝4。ことばの式は、分散＝回数×成功確率×失敗確率＝25×0.2×0.8＝4（記号でnp(1−p)）。③棒グラフ：横軸は25回のうち成功した回数、縦軸はその確率。平均は25×0.2＝5回。標準偏差は√4＝2回で、3〜7回に約79%が入る。似た数との違い：5は平均、0.16は1回分の分散、2は標準偏差。</desc>
+<text x="12" y="20" class="tb">成功確率0.2を25回：成功回数の分散</text>
+<text x="12" y="42" class="tm">この問題の数（成功確率0.2、25回）で見る</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="78" class="tb">① 1回分の分散</text>
+<text x="12" y="96" class="tm">成功＝1、失敗＝0 と数える。1回の平均は 0.2</text>
+<text x="12" y="114">成功（確率0.2）：差 1−0.2＝0.8 → 2乗 0.64</text>
+<text x="12" y="132">失敗（確率0.8）：差 0−0.2＝−0.2 → 2乗 0.04</text>
+<text x="12" y="150" class="tm">2乗を確率で重みづけして平均する</text>
+<text x="12" y="168">0.2×0.64 ＋ 0.8×0.04 ＝ 0.128＋0.032</text>
+<text x="12" y="188" class="tb">＝ 0.16（＝成功確率0.2 × 失敗確率0.8）</text>
+<line x1="12" y1="200" x2="308" y2="200" class="l sb w1"/>
+<text x="12" y="224" class="tb">② 25回分の分散</text>
+<text x="12" y="242">1回ずつが独立なので、分散は足し合わせる</text>
+<rect x="12" y="250" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="270" class="tb tok">25 × 0.16 ＝ 4</text>
+<text x="12" y="306" class="tm">ことばの式：分散 ＝ 回数 × 成功確率 × 失敗確率</text>
+<text x="12" y="324" class="tm">　＝ 25 × 0.2 × 0.8 ＝ 4（np(1−p)）</text>
+<line x1="12" y1="336" x2="308" y2="336" class="l sb w1"/>
+<text x="12" y="360" class="tb">③ 棒グラフ：25回のうち何回成功するか</text>
+<text x="12" y="378" class="tm">横軸＝成功した回数、縦軸＝その確率</text>
+<line x1="26" y1="536" x2="298" y2="536" class="l sm w1"/>
+<rect x="32" y="533.9" width="18.3" height="2.1" class="fas sa" stroke-width="1"/>
+<text x="41.2" y="551" text-anchor="middle">0</text>
+<rect x="54.3" y="523" width="18.3" height="13" class="fas sa" stroke-width="1"/>
+<text x="63.5" y="551" text-anchor="middle">1</text>
+<rect x="76.7" y="497" width="18.3" height="39" class="fas sa" stroke-width="1"/>
+<text x="85.8" y="551" text-anchor="middle">2</text>
+<rect x="99" y="461.3" width="18.3" height="74.7" class="fa sa" stroke-width="1"/>
+<text x="108.2" y="551" text-anchor="middle">3</text>
+<rect x="121.3" y="433.3" width="18.3" height="102.7" class="fa sa" stroke-width="1"/>
+<text x="130.5" y="551" text-anchor="middle">4</text>
+<rect x="143.7" y="428.2" width="18.3" height="107.8" class="fa sa" stroke-width="1"/>
+<text x="152.8" y="551" text-anchor="middle">5</text>
+<text x="152.8" y="423.2" class="tb ta" text-anchor="middle">20%</text>
+<rect x="166" y="446.2" width="18.3" height="89.8" class="fa sa" stroke-width="1"/>
+<text x="175.2" y="551" text-anchor="middle">6</text>
+<rect x="188.3" y="475" width="18.3" height="61" class="fa sa" stroke-width="1"/>
+<text x="197.5" y="551" text-anchor="middle">7</text>
+<rect x="210.7" y="501.7" width="18.3" height="34.3" class="fas sa" stroke-width="1"/>
+<text x="219.8" y="551" text-anchor="middle">8</text>
+<rect x="233" y="519.8" width="18.3" height="16.2" class="fas sa" stroke-width="1"/>
+<text x="242.2" y="551" text-anchor="middle">9</text>
+<rect x="255.3" y="529.5" width="18.3" height="6.5" class="fas sa" stroke-width="1"/>
+<text x="264.5" y="551" text-anchor="middle">10</text>
+<rect x="277.7" y="533.8" width="18.3" height="2.2" class="fas sa" stroke-width="1"/>
+<text x="286.8" y="551" text-anchor="middle">11</text>
+<line x1="152.8" y1="400" x2="152.8" y2="536" class="l sok w1 dsh"/>
+<text x="158.8" y="402" class="tb tok">平均 5回</text>
+<text x="12" y="573" class="tm">強調した棒（3〜7回）に約79%が入る</text>
+<text x="12" y="591" class="tm">12回以上は合わせて1%未満</text>
+<text x="12" y="609" class="tm">標準偏差 √4 ＝ 2回：平均5回 ± 2回のあたり</text>
+<line x1="12" y1="621" x2="308" y2="621" class="l sb w1"/>
+<text x="12" y="645" class="tb">似た数と取り違えない</text>
+<text x="12" y="663">5：平均（25 × 0.2）。分散ではない</text>
+<text x="12" y="681">0.16：1回分の分散。25回分ではない</text>
+<text x="12" y="699">2：標準偏差（分散4の平方根）</text>
+</svg>

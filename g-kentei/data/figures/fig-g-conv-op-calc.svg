@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-g-conv-op-calc-t fig-g-conv-op-calc-d">
+<title id="fig-g-conv-op-calc-t">畳み込みの計算：3×3の入力に2×2のフィルタを重ね、掛けて足す。出力の右上は5</title>
+<desc id="fig-g-conv-op-calc-d">何のための図か：3×3の入力（1行目1,2,0、2行目0,1,3、3行目2,1,1）に、2×2のフィルタ（1行目1,0、2行目0,1）をストライド1・パディングなしで重ねたとき、出力の右上がなぜ5になるかを、問題と同じ数で見る。①フィルタを右へ1つずらした位置（入力の1〜2行目・2〜3列目）に重ねる。重なる4つは2,0,1,3。②重なったマスどうしを掛けて足す：2×1＋0×0＋1×0＋3×1＝2＋0＋0＋3＝5。フィルタは左上と右下だけが1なので、重なった4つのうち左上と右下（2と3）を足すことになる。③出力は2×2になる（フィルタは横に2か所、縦に2か所置ける）。出力は左上2、右上5、左下1、右下2。④取り違えやすい数：4つをそのまま足すと2＋0＋1＋3＝6。左上の位置の2や、左下の位置の1は、別の場所の出力。</desc>
+<text x="12" y="20" class="tb">畳み込み＝重ねて、掛けて、足す</text>
+<text x="12" y="42" class="tm">何のための図か：出力の右上がなぜ 5 かを、</text>
+<text x="12" y="60" class="tm">問題と同じ数で見る</text>
+<line x1="12" y1="72" x2="308" y2="72" class="l sb w1"/>
+<text x="12" y="94" class="tb">① 右上の位置に重ねる</text>
+<text x="57" y="112" class="tm" text-anchor="middle">入力 3×3</text>
+<rect x="12" y="120" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="27" y="140" class="tm" text-anchor="middle">1</text>
+<rect x="42" y="120" width="30" height="30" class="fas sa" stroke-width="1.2"/>
+<text x="57" y="140" class="tb" text-anchor="middle">2</text>
+<rect x="72" y="120" width="30" height="30" class="fas sa" stroke-width="1.2"/>
+<text x="87" y="140" class="tb" text-anchor="middle">0</text>
+<rect x="12" y="150" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="27" y="170" class="tm" text-anchor="middle">0</text>
+<rect x="42" y="150" width="30" height="30" class="fas sa" stroke-width="1.2"/>
+<text x="57" y="170" class="tb" text-anchor="middle">1</text>
+<rect x="72" y="150" width="30" height="30" class="fas sa" stroke-width="1.2"/>
+<text x="87" y="170" class="tb" text-anchor="middle">3</text>
+<rect x="12" y="180" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="27" y="200" class="tm" text-anchor="middle">2</text>
+<rect x="42" y="180" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="57" y="200" class="tm" text-anchor="middle">1</text>
+<rect x="72" y="180" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="87" y="200" class="tm" text-anchor="middle">1</text>
+<rect x="42" y="120" width="60" height="60" class="l sa w3" fill="none"/>
+<text x="140" y="112" class="tm" text-anchor="middle">フィルタ 2×2</text>
+<rect x="110" y="120" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="125" y="140" class="tb" text-anchor="middle">1</text>
+<rect x="140" y="120" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="155" y="140" class="tb" text-anchor="middle">0</text>
+<rect x="110" y="150" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="125" y="170" class="tb" text-anchor="middle">0</text>
+<rect x="140" y="150" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="155" y="170" class="tb" text-anchor="middle">1</text>
+<text x="190" y="140" class="tm">太枠＝右へ1つ</text>
+<text x="190" y="158" class="tm">ずらした位置</text>
+<text x="190" y="176" class="tm">（1〜2行・2〜3列）</text>
+<text x="12" y="236" class="tb">② 重なったマスどうしを掛けて足す</text>
+<text x="12" y="254" class="tm">入力 2・0・1・3 と フィルタ 1・0・0・1</text>
+<rect x="12" y="264" width="296" height="50" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="284" class="tb" text-anchor="middle">2×1 ＋ 0×0 ＋ 1×0 ＋ 3×1</text>
+<text x="160" y="304" class="tb tok" text-anchor="middle">＝ 2＋0＋0＋3 ＝ 5</text>
+<text x="12" y="336" class="tm">フィルタの 1 は左上と右下だけ</text>
+<text x="12" y="354" class="tm">→ 重なった左上と右下（2 と 3）を足す</text>
+<line x1="12" y1="366" x2="308" y2="366" class="l sb w1"/>
+<text x="12" y="388" class="tb">③ 出力は 2×2</text>
+<text x="12" y="406" class="tm">フィルタは横に2か所、縦に2か所置ける</text>
+<rect x="12" y="418" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="27" y="438" class="tm" text-anchor="middle">2</text>
+<rect x="42" y="418" width="30" height="30" class="fok sok" stroke-width="1.2"/>
+<text x="57" y="438" class="tb tok" text-anchor="middle">5</text>
+<rect x="12" y="448" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="27" y="468" class="tm" text-anchor="middle">1</text>
+<rect x="42" y="448" width="30" height="30" class="fs sb" stroke-width="1.2"/>
+<text x="57" y="468" class="tm" text-anchor="middle">2</text>
+<text x="84" y="438" class="tm">右上＝5（この問いの答え）</text>
+<text x="84" y="456" class="tm">左上＝2、左下＝1、右下＝2</text>
+<text x="84" y="474" class="tm">（どれも同じ手順で計算）</text>
+<line x1="12" y1="490" x2="308" y2="490" class="l sb w1"/>
+<text x="12" y="512" class="tb">④ 取り違えやすい数</text>
+<text x="12" y="530" class="tng">4つをそのまま足す：2＋0＋1＋3＝6</text>
+<text x="12" y="548" class="tm">　掛けてから足すので、0 が掛かる所は 0</text>
+<text x="12" y="566" class="tng">2 や 1：左上・左下の位置の出力</text>
+</svg>

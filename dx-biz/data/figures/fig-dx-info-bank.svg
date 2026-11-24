@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 392" role="img" aria-labelledby="fig-dx-info-bank-t fig-dx-info-bank-d">
+<title id="fig-dx-info-bank-t">情報銀行とデータマーケットプレイス</title>
+<desc id="fig-dx-info-bank-d">上：情報銀行。個人が、データを情報銀行に預ける。情報銀行は、個人に代わってデータを集約・管理し、本人のニーズに沿って第三者の事業者に提供する（本人の納得感を得ながらデータを流通させるモデル）。下：データマーケットプレイス（データ取引市場）。データを提供したい事業者と、活用したい事業者の間に、売買などの取引を仲介する市場がある。</desc>
+<text x="12" y="22" class="tb">情報銀行：本人に代わって預かる</text>
+<rect x="12" y="28" width="296" height="40" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="52.5" class="tb" text-anchor="middle">個人</text>
+<line x1="60" y1="70" x2="60" y2="108" class="l sa w2"/>
+<polyline points="56.15,101 60,108 63.85,101" class="l sa w2"/>
+<text x="74" y="94">データを預ける</text>
+<rect x="12" y="110" width="296" height="60" class="fa" stroke-width="1.5"/>
+<text x="160" y="133.5" class="tb ton" text-anchor="middle">情報銀行</text>
+<text x="160" y="155.5" class="ton" text-anchor="middle">本人に代わって集約・管理する</text>
+<line x1="60" y1="172" x2="60" y2="210" class="l sa w2"/>
+<polyline points="56.15,203 60,210 63.85,203" class="l sa w2"/>
+<text x="74" y="188">本人のニーズに沿って</text>
+<text x="74" y="206">第三者に提供</text>
+<rect x="12" y="214" width="296" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="238.5" class="tb" text-anchor="middle">第三者の事業者</text>
+<line x1="12" y1="276" x2="308" y2="276" class="l sb w1"/>
+<text x="12" y="298" class="tb">データマーケットプレイス：売買を仲介</text>
+<rect x="12" y="312" width="92" height="44" class="fs sok" stroke-width="1.5"/>
+<text x="58" y="329.5" text-anchor="middle">データを</text>
+<text x="58" y="347.5" text-anchor="middle">提供する事業者</text>
+<rect x="114" y="312" width="92" height="44" class="fa" stroke-width="1.5"/>
+<text x="160" y="329.5" class="tb ton" text-anchor="middle">市場</text>
+<text x="160" y="347.5" class="ton" text-anchor="middle">（仲介）</text>
+<rect x="216" y="312" width="92" height="44" class="fok sok" stroke-width="1.5"/>
+<text x="262" y="329.5" text-anchor="middle">データを</text>
+<text x="262" y="347.5" text-anchor="middle">活用する事業者</text>
+<line x1="104" y1="334" x2="112" y2="334" class="l sa w2"/>
+<polyline points="107,336.75 112,334 107,331.25" class="l sa w2"/>
+<line x1="206" y1="334" x2="214" y2="334" class="l sa w2"/>
+<polyline points="209,336.75 214,334 209,331.25" class="l sa w2"/>
+<text x="12" y="380">交換・売買などの取引を仲介する</text>
+</svg>

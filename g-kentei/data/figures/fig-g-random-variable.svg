@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 744" role="img" aria-labelledby="fig-g-random-variable-t fig-g-random-variable-d">
+<title id="fig-g-random-variable-t">確率変数・確率分布・確率密度：飛び飛びの値と、切れ目なく続く値</title>
+<desc id="fig-g-random-variable-d">①確率変数は偶然で値が決まる数（サイコロの目、身長）。確率分布はどの値がどれくらい出やすいか。機械学習の多くは、データがある確率分布から生まれたとみなし、その分布を推定する。②飛び飛びの値（離散）の例のサイコロでは、1から6の目がそれぞれ確率1/6の棒グラフ。高さがそのまま確率で、全部足すと1/6×6＝1。③切れ目なく続く値（連続）の例で、0から0.5の間のどの値も同じ出やすさで出る数。横軸は値、縦軸は確率密度（確率の濃さ）で、グラフは幅0.5・高さ2の長方形。全体の面積は0.5×2＝1。0.1から0.2に入る確率は幅0.1×高さ2＝0.2で、その部分を色で塗っている。高さ2は1を超えるが、高さは確率ではない（幅の狭い分布ほど高さは大きくなる）。ちょうど0.15になる確率は幅が0なので0。連続の値は、この範囲に入る確率で考える。④確率密度は連続の値で確率の濃さを表す高さ。範囲に入る確率はグラフのその範囲の面積で、面積を求める計算が積分。</desc>
+<text x="12" y="20" class="tb">確率変数と確率分布：偶然で決まる数</text>
+<text x="12" y="48" class="tb">① 確率変数＝偶然で値が決まる数</text>
+<text x="12" y="68" class="tm">例：サイコロの目、身長</text>
+<text x="12" y="90" class="tb">確率分布＝どの値がどれくらい出やすいか</text>
+<text x="12" y="110" class="tm">機械学習の多くは、データがある確率分布から</text>
+<text x="12" y="128" class="tm">生まれたとみなし、その分布を推定する</text>
+<line x1="12" y1="142" x2="308" y2="142" class="l sb w1"/>
+<text x="12" y="164" class="tb">② 飛び飛びの値（離散）：サイコロ</text>
+<rect x="40" y="192" width="30" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="55" y="186" class="tm" text-anchor="middle">1/6</text>
+<text x="55" y="260" text-anchor="middle">1</text>
+<rect x="82" y="192" width="30" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="97" y="186" class="tm" text-anchor="middle">1/6</text>
+<text x="97" y="260" text-anchor="middle">2</text>
+<rect x="124" y="192" width="30" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="139" y="186" class="tm" text-anchor="middle">1/6</text>
+<text x="139" y="260" text-anchor="middle">3</text>
+<rect x="166" y="192" width="30" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="181" y="186" class="tm" text-anchor="middle">1/6</text>
+<text x="181" y="260" text-anchor="middle">4</text>
+<rect x="208" y="192" width="30" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="223" y="186" class="tm" text-anchor="middle">1/6</text>
+<text x="223" y="260" text-anchor="middle">5</text>
+<rect x="250" y="192" width="30" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="265" y="186" class="tm" text-anchor="middle">1/6</text>
+<text x="265" y="260" text-anchor="middle">6</text>
+<line x1="30" y1="242" x2="290" y2="242" class="l sm w1"/>
+<text x="12" y="282" class="tm">高さ＝そのまま確率。全部足すと 1/6×6＝1</text>
+<text x="12" y="300" class="tm">（横軸＝サイコロの目、縦軸＝確率）</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="336" class="tb">③ 切れ目なく続く値（連続）</text>
+<text x="12" y="356" class="tm">0〜0.5 の間のどの値も、同じ出やすさで出る数</text>
+<rect x="50" y="376" width="200" height="100" class="fas sa" stroke-width="1.5"/>
+<rect x="90" y="376" width="40" height="100" class="fok sok" stroke-width="1.5"/>
+<line x1="40" y1="476" x2="300" y2="476" class="l sm w1"/>
+<line x1="50" y1="370" x2="50" y2="476" class="l sm w1"/>
+<text x="44" y="381" class="tm" text-anchor="end">2</text>
+<text x="44" y="480" class="tm" text-anchor="end">0</text>
+<text x="50" y="494" class="tm" text-anchor="middle">0</text>
+<text x="90" y="494" class="tm" text-anchor="middle">0.1</text>
+<text x="130" y="494" class="tm" text-anchor="middle">0.2</text>
+<text x="250" y="494" class="tm" text-anchor="middle">0.5</text>
+<text x="110" y="434" class="tb tok" text-anchor="middle">0.2</text>
+<text x="12" y="516" class="tm">横軸＝値　縦軸＝確率密度（確率の濃さ）</text>
+<text x="12" y="538" class="tm">全体の面積 ＝ 幅0.5 × 高さ2 ＝ 1</text>
+<text x="12" y="558" class="tb tok">0.1〜0.2 に入る確率＝幅0.1×高さ2＝0.2</text>
+<text x="12" y="580" class="tm">高さ2は1を超えるが、高さは確率ではない</text>
+<text x="12" y="598" class="tm">（幅の狭い分布ほど、高さは大きくなる）</text>
+<text x="12" y="620" class="tb">ちょうど 0.15 になる確率＝幅0なので 0</text>
+<text x="12" y="640" class="tm">→ 連続の値は『この範囲に入る』確率で考える</text>
+<line x1="12" y1="654" x2="308" y2="654" class="l sb w1"/>
+<text x="12" y="676" class="tb">④ 試験で出る言い方</text>
+<text x="12" y="696" class="tm">確率密度＝確率の濃さを表す高さ（連続の値）</text>
+<text x="12" y="716" class="tm">範囲に入る確率＝グラフのその範囲の面積</text>
+<text x="12" y="734" class="tm">（面積を求める計算＝積分）</text>
+</svg>

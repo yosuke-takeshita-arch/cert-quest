@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-g-shap-t fig-g-shap-d">
+<title id="fig-g-shap-t">SHAP：1件の予測を特徴量ごとに分け、足すと予測の差に一致する</title>
+<desc id="fig-g-shap-d">①1件の予測を、特徴量ごとに分ける例。平均の予測（基準）は50、この1件の予測は80。特徴量Aが20押し上げて70、特徴量Bが5押し下げて65、特徴量Cが15押し上げて80になる。20−5＋15＝30で、80−50＝30にちょうど一致する（局所的な正確さ）。緑は予測を上げた特徴量、赤は下げた特徴量。②分け方はシャープレイ値。例：何も使わないとき0、Aだけで10、Bだけで20、AとBの両方で40。加える順番がAが先なら、Aで10増え、Bで30増える。Bが先なら、Bで20増え、Aで20増える。Aの寄与は2つの順番の平均で(10＋20)÷2＝15、Bは(30＋20)÷2＝25。15＋25＝40で、両方使った予測40にちょうど一致する。</desc>
+<text x="12" y="22" class="tb">① 1件の予測を、特徴量ごとに分ける（例）</text>
+<text x="12" y="44" class="tm">平均の予測（基準）＝50、この1件の予測＝80</text>
+<text x="135" y="72" class="tm" text-anchor="middle">基準 50</text>
+<line x1="135" y1="80" x2="135" y2="226" class="l sm w1 dsh"/>
+<text x="12" y="105.5">特徴量A</text>
+<rect x="135" y="88" width="70" height="26" class="fok l sok"/>
+<text x="211" y="105.5" class="tok tb">＋20 → 70</text>
+<line x1="205" y1="114" x2="205" y2="126" class="l sm w1"/>
+<text x="12" y="143.5">特徴量B</text>
+<rect x="187.5" y="126" width="17.5" height="26" class="fng l sng"/>
+<text x="211" y="143.5" class="tng tb">−5 → 65</text>
+<line x1="187.5" y1="152" x2="187.5" y2="164" class="l sm w1"/>
+<text x="12" y="181.5">特徴量C</text>
+<rect x="187.5" y="164" width="52.5" height="26" class="fok l sok"/>
+<text x="246" y="181.5" class="tok tb">＋15 → 80</text>
+<line x1="135" y1="212" x2="240" y2="212" class="l sa w2"/>
+<line x1="240" y1="202" x2="240" y2="222" class="l sa w2"/>
+<text x="246" y="217" class="ta tb">この予測 80</text>
+<text x="12" y="217" class="tm">差 30</text>
+<text x="12" y="252" class="tb">＋20 −5 ＋15 ＝ 30 ＝ 80−50</text>
+<text x="12" y="274">足すと、予測と基準の差にぴったり合う</text>
+<text x="12" y="294" class="tm">（局所的な正確さ）。緑＝上げた、赤＝下げた</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="338" class="tb">② 分け方：シャープレイ値（例）</text>
+<text x="12" y="360" class="tm">使う特徴量ごとの予測</text>
+<rect x="12" y="370" width="68" height="40" class="fs l sm w1"/>
+<text x="46" y="386" class="tm" text-anchor="middle">なし</text>
+<text x="46" y="403" class="tb" text-anchor="middle">0</text>
+<rect x="88" y="370" width="68" height="40" class="fs l sm w1"/>
+<text x="122" y="386" class="tm" text-anchor="middle">Aだけ</text>
+<text x="122" y="403" class="tb" text-anchor="middle">10</text>
+<rect x="164" y="370" width="68" height="40" class="fs l sm w1"/>
+<text x="198" y="386" class="tm" text-anchor="middle">Bだけ</text>
+<text x="198" y="403" class="tb" text-anchor="middle">20</text>
+<rect x="240" y="370" width="68" height="40" class="fas l sa w1"/>
+<text x="274" y="386" class="tm" text-anchor="middle">AとB</text>
+<text x="274" y="403" class="tb" text-anchor="middle">40</text>
+<text x="12" y="436">加える順番で、増えた分が変わる</text>
+<text x="12" y="460" class="tb">Aが先：</text>
+<text x="76" y="460">0→10（A ＋10）→40（B ＋30）</text>
+<text x="12" y="484" class="tb">Bが先：</text>
+<text x="76" y="484">0→20（B ＋20）→40（A ＋20）</text>
+<text x="12" y="512">順番の平均を、その特徴量の寄与にする</text>
+<rect x="12" y="524" width="144" height="44" class="fok l sok w1"/>
+<text x="84" y="542" class="tb" text-anchor="middle">A＝(10＋20)÷2</text>
+<text x="84" y="560" class="tok tb" text-anchor="middle">＝15</text>
+<rect x="164" y="524" width="144" height="44" class="fok l sok w1"/>
+<text x="236" y="542" class="tb" text-anchor="middle">B＝(30＋20)÷2</text>
+<text x="236" y="560" class="tok tb" text-anchor="middle">＝25</text>
+<text x="12" y="594" class="tb">15＋25＝40（両方使った予測にぴったり）</text>
+<text x="12" y="616" class="tm">①の＋20・−5・＋15 も、この分け方で出す</text>
+</svg>

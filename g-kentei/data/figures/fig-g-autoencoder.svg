@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-autoencoder-t fig-g-autoencoder-d">
+<title id="fig-g-autoencoder-t">オートエンコーダ：784個の数を32個に絞ってから784個に戻し、入力そのものを正解にする</title>
+<desc id="fig-g-autoencoder-d">①28×28＝784画素の手書き数字の画像を入力する。エンコーダが真ん中で32個の数（潜在表現）に絞り、デコーダが784画素に戻す。784÷32＝24.5で、約25分の1に絞る。正解は入力そのものなので、ラベルは要らない。入力と出力のずれ（復元誤差）が小さくなるように学習する。32個から元に戻せるなら、その32個に数字の要点が詰まっている。②異常検知の例。正常な製品の画像だけで学習させる。正常品の画像は復元誤差が0.02と小さく、傷のある画像は0.30と大きい。しきい値を0.1とすると、0.30は0.1を超えるので異常とみなす。学習で見たことのない傷はうまく戻せないので、誤差が大きくなる。</desc>
+<text x="12" y="22" class="tb">① 絞ってから、元に戻す（例）</text>
+<rect x="12" y="40" width="64" height="120" class="fs l sm w1" rx="4"/>
+<text x="44" y="94" class="tb" text-anchor="middle">入力</text>
+<text x="44" y="114" class="tb" text-anchor="middle">784</text>
+<text x="44" y="176" class="tm" text-anchor="middle">28×28画素</text>
+<polygon points="84,40 136,82 136,118 84,160" class="fas l sa w1"/>
+<text x="110" y="104" class="tm" text-anchor="middle">圧縮</text>
+<rect x="140" y="80" width="40" height="40" class="fok l sok w2" rx="4"/>
+<text x="160" y="105" class="tb tok" text-anchor="middle">32</text>
+<polygon points="184,82 236,40 236,160 184,118" class="fas l sa w1"/>
+<text x="210" y="104" class="tm" text-anchor="middle">復元</text>
+<rect x="244" y="40" width="64" height="120" class="fs l sm w1" rx="4"/>
+<text x="276" y="94" class="tb" text-anchor="middle">出力</text>
+<text x="276" y="114" class="tb" text-anchor="middle">784</text>
+<text x="110" y="176" class="tm" text-anchor="middle">エンコーダ</text>
+<text x="210" y="176" class="tm" text-anchor="middle">デコーダ</text>
+<text x="160" y="140" class="tb tok" text-anchor="middle">潜在表現</text>
+<text x="12" y="204">784÷32＝24.5 → 約25分の1に絞る</text>
+<rect x="12" y="216" width="296" height="48" class="fwn l swn w1" rx="4"/>
+<text x="160" y="236" class="tb twn" text-anchor="middle">正解＝入力そのもの（ラベル不要）</text>
+<text x="160" y="255" class="tb twn" text-anchor="middle">入力と出力のずれ（復元誤差）を小さく</text>
+<text x="12" y="288" class="tm">32個から戻せる → 32個に数字の要点が詰まる</text>
+<line x1="12" y1="302" x2="308" y2="302" class="l sb w1"/>
+<text x="12" y="326" class="tb">② 使い道の例：異常検知</text>
+<text x="12" y="348" class="tm">正常な製品の画像だけで学習させる</text>
+<text x="12" y="374" class="tb">復元誤差（しきい値 0.1）</text>
+<text x="12" y="402">正常品</text>
+<rect x="76" y="389" width="12" height="18" class="fok l sok w1"/>
+<text x="146" y="402" class="tb tok">0.02 → 正常</text>
+<text x="12" y="434">傷あり</text>
+<rect x="76" y="421" width="180" height="18" class="fng l sng w1"/>
+<text x="304" y="434" class="tb tng" text-anchor="end">0.30</text>
+<line x1="136" y1="380" x2="136" y2="446" class="l swn w2 dsh"/>
+<text x="140" y="462" class="tb twn">0.1</text>
+<text x="12" y="490" class="tb tng">0.30 は 0.1 を超える → 異常とみなす</text>
+<text x="12" y="514" class="tm">学習で見たことのない傷は、うまく戻せず</text>
+<text x="12" y="534" class="tm">ずれが大きくなる（棒の長さ＝復元誤差）</text>
+</svg>

@@ -1,0 +1,34 @@
+{
+  "id": "ai-passport",
+  "appVersion": "0.30.6",
+  "series": "CertQuest",
+  "name": "創りの空港",
+  "shortName": "創りの空港",
+  "subtitle": "生成AIパスポート対策",
+  "examDate": "2027-02-28",
+  "titleImage": "images/title.webp",
+  "titleLogo": "images/logo.webp",
+  "mapImage": "images/map.webp",
+  "mapImages": ["images/map-1.webp", "images/map-2.webp", "images/map-3.webp", ["images/map-4a.webp", "images/map-4b.webp"], "images/map-5.webp"],
+  "exam": { "questions": 60, "minutes": 60 },
+  "passGuide": { "min": 70, "max": 80 },
+  "secondsPerQuestion": 60,
+  "trueBoss": true,
+  "trueBossEnding": "./images/ending.webp",
+  "trueBossBadge": { "name": "そらを えがきし もの", "art": true },
+  "trueBossWords": { "place": "そらの いちばん たかい ところ", "ending": "そらを えがいた！", "reached": "そらの いちばん たかい ところまで たどりついたよ！" },
+  "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
+  "challenge": { "questions": 10 },
+  "reportUrl": "mailto:support@aisunia.com",
+  "about": { "examName": "生成AIパスポート試験", "organizer": "一般社団法人生成AI活用普及協会（GUGA）", "organizerUrl": "https://guga.or.jp/" },
+  "officialUrl": "https://guga.or.jp/generativeaiexam/",
+  "officialLinks": [
+    { "title": "生成AIパスポート 公式ページ（試験概要・日程）", "url": "https://guga.or.jp/generativeaiexam/" },
+    { "title": "シラバス（2027年2月試験より適用）", "url": "https://guga.or.jp/assets/syllabus.pdf" },
+    { "title": "よくある質問", "url": "https://guga.or.jp/qa" }
+  ],
+  "theme": {
+    "light": { "accent": "#bf360c", "onAccent": "#ffffff", "accentSoft": "#fbe9e7" },
+    "dark": { "accent": "#ffab91", "onAccent": "#3e1005", "accentSoft": "#3a2219" }
+  }
+}

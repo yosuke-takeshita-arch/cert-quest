@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 590" role="img" aria-labelledby="fig-dx-baas-embedded-t fig-dx-baas-embedded-d">
+<title id="fig-dx-baas-embedded-t">BaaS とエンベデッドファイナンス：銀行が機能を貸し出し、銀行でない企業が組み込む</title>
+<desc id="fig-dx-baas-embedded-d">IPAのDX白書2023が紹介するデジタルバンクの事例を、上から下への流れで描いた図。上の箱はデジタルバンクで、自社のアプリ向けに作った金融の機能やサービスを、API（ソフトウェアどうしをつなぐ窓口）を通じて銀行ではない企業に提供する。この提供する側の事業がBaaS（Banking as a Service）。中の箱は銀行ではない企業で、受け取った金融の機能を自社のアプリなどに組み込み、利用者に金融サービスを届ける。この組み込む側から見た名前がエンベデッドファイナンス（組込み型金融、埋込み型金融）。下の箱はその企業のアプリの利用者。DX白書2023は、BaaS事業がエンベデッドファイナンスを実現するとし、事業パートナーの参入を容易にしている点を取組のポイントに挙げる。最後に、同じ as a Service の仲間との違い：SaaSはソフトウェアの機能、PaaSはシステムを作る土台、BaaSは銀行の機能をサービスとして提供する。</desc>
+<text x="12" y="20" class="tb">BaaS とエンベデッドファイナンス</text>
+<text x="12" y="40" class="tm">IPA「DX白書2023」の事例（デジタルバンク）</text>
+<rect x="12" y="54" width="296" height="80" class="fas l sa"/>
+<text x="24" y="76" class="tb">デジタルバンク（銀行）</text>
+<text x="24" y="96">自社アプリ向けに作った金融の機能を</text>
+<text x="24" y="122" class="ta tb">ここが BaaS（提供する側の事業）</text>
+<line x1="160" y1="134" x2="160" y2="176" class="l sa w2"/>
+<polyline points="156,170 160,176 164,170" class="l sa w2"/>
+<text x="170" y="152" class="tb">API で提供</text>
+<text x="170" y="170" class="tm">（ソフトをつなぐ窓口）</text>
+<rect x="12" y="178" width="296" height="80" class="fok l sok"/>
+<text x="24" y="200" class="tb">銀行ではない企業</text>
+<text x="24" y="220">自社のアプリに金融の機能を組み込む</text>
+<text x="24" y="246" class="tok tb">ここがエンベデッドファイナンス</text>
+<line x1="160" y1="258" x2="160" y2="290" class="l sa w2"/>
+<polyline points="156,284 160,290 164,284" class="l sa w2"/>
+<text x="170" y="278" class="tm">金融サービスを届ける</text>
+<rect x="12" y="292" width="296" height="40" class="fs l sm"/>
+<text x="160" y="317" text-anchor="middle">その企業のアプリの利用者</text>
+<text x="12" y="358">BaaS＝銀行の機能を、サービスとして</text>
+<text x="12" y="376">貸し出す（Banking as a Service）</text>
+<text x="12" y="402">エンベデッドファイナンス＝銀行でない</text>
+<text x="12" y="420">企業が金融を自社のサービスに組み込む</text>
+<text x="12" y="438" class="tm">（日本語では組込み型金融・埋込み型金融）</text>
+<text x="12" y="464">白書：BaaS がエンベデッドファイナンス</text>
+<text x="12" y="482">を実現し、事業パートナーの参入を容易に</text>
+<line x1="12" y1="498" x2="308" y2="498" class="l sb w1"/>
+<text x="12" y="520" class="tb">同じ as a Service の仲間との違い</text>
+<text x="12" y="542">SaaS：ソフトウェアの機能を提供</text>
+<text x="12" y="562">PaaS：システムを作る土台を提供</text>
+<text x="12" y="582" class="ta tb">BaaS：銀行の機能を提供</text>
+</svg>

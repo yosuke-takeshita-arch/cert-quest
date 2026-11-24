@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 504" role="img" aria-labelledby="fig-g-sgd-sampling-t fig-g-sgd-sampling-d">
+<title id="fig-g-sgd-sampling-t">SGD：毎回ランダムに選んだ一部のデータで更新する</title>
+<desc id="fig-g-sgd-sampling-d">例：訓練データが100万件ある。①全データで勾配を求めると、100万件すべてを使って1回更新するだけで時間がかかる。②SGD は毎回100万件からランダムに100件をくじ引きし、その100件の勾配で更新する。次は別の100件をくじ引きして、また更新する。全データで1回更新する手間で、100件ずつなら1,000,000÷100＝1万回更新できる。下の図は1回ごとの向き。点線の矢印が全データで求めた向き、実線の3本が100件ずつで求めた向きで、少しずつばらつく。平均すると全データの向きに近い。ばらつきで谷をジグザグに進みやすい一方、局所最適解や鞍点から抜け出す助けにもなる。厳密には1件ずつの更新を指し、少数ずつ（ミニバッチ）の更新も SGD と呼ぶ。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">SGD：毎回ランダムに一部を選んで更新</text>
+<text x="12" y="42" class="tm">例：訓練データが100万件</text>
+<text x="12" y="68" class="tb">① 全データで求める</text>
+<rect x="12" y="80" width="120" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="72" y="101" class="tb" text-anchor="middle">100万件すべて</text>
+<line x1="132" y1="96" x2="188.4" y2="96" class="l sm w1"/>
+<polygon points="194,96 188.4,99.5 188.4,92.5" class="fm"/>
+<rect x="196" y="80" width="112" height="32" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="252" y="101" class="tb tng" text-anchor="middle">やっと1回更新</text>
+<text x="12" y="144" class="tb">② SGD：ランダムに100件ずつ</text>
+<circle cx="20" cy="160" r="3" class="fm"/><circle cx="32" cy="160" r="3" class="fm"/><circle cx="44" cy="160" r="4" class="fa"/><circle cx="56" cy="160" r="3" class="fm"/><circle cx="68" cy="160" r="3" class="fm"/><circle cx="80" cy="160" r="4" class="fa"/><circle cx="92" cy="160" r="3" class="fm"/><circle cx="104" cy="160" r="3" class="fm"/><circle cx="116" cy="160" r="3" class="fm"/><circle cx="128" cy="160" r="3" class="fm"/>
+<circle cx="20" cy="172" r="3" class="fm"/><circle cx="32" cy="172" r="3" class="fm"/><circle cx="44" cy="172" r="3" class="fm"/><circle cx="56" cy="172" r="3" class="fm"/><circle cx="68" cy="172" r="3" class="fm"/><circle cx="80" cy="172" r="3" class="fm"/><circle cx="92" cy="172" r="3" class="fm"/><circle cx="104" cy="172" r="4" class="fa"/><circle cx="116" cy="172" r="3" class="fm"/><circle cx="128" cy="172" r="3" class="fm"/>
+<circle cx="20" cy="184" r="3" class="fm"/><circle cx="32" cy="184" r="3" class="fm"/><circle cx="44" cy="184" r="3" class="fm"/><circle cx="56" cy="184" r="3" class="fm"/><circle cx="68" cy="184" r="4" class="fa"/><circle cx="80" cy="184" r="3" class="fm"/><circle cx="92" cy="184" r="3" class="fm"/><circle cx="104" cy="184" r="3" class="fm"/><circle cx="116" cy="184" r="3" class="fm"/><circle cx="128" cy="184" r="3" class="fm"/>
+<circle cx="20" cy="196" r="4" class="fa"/><circle cx="32" cy="196" r="3" class="fm"/><circle cx="44" cy="196" r="3" class="fm"/><circle cx="56" cy="196" r="3" class="fm"/><circle cx="68" cy="196" r="3" class="fm"/><circle cx="80" cy="196" r="3" class="fm"/><circle cx="92" cy="196" r="3" class="fm"/><circle cx="104" cy="196" r="3" class="fm"/><circle cx="116" cy="196" r="3" class="fm"/><circle cx="128" cy="196" r="4" class="fa"/>
+<line x1="138" y1="178" x2="188.4" y2="178" class="l sm w1"/>
+<polygon points="194,178 188.4,181.5 188.4,174.5" class="fm"/>
+<rect x="196" y="158" width="112" height="40" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="252" y="174" class="tok" text-anchor="middle">その100件の</text>
+<text x="252" y="191" class="tb tok" text-anchor="middle">勾配で更新</text>
+<text x="12" y="220" class="tm">青い点＝今回くじ引きしたデータ</text>
+<text x="12" y="240" class="tm">次は別の100件を引いて、また更新</text>
+<text x="12" y="264" class="tok">全データで1回の手間で、100件ずつなら</text>
+<text x="12" y="284" class="tb tok">1,000,000÷100＝1万回 更新できる</text>
+<line x1="12" y1="300" x2="308" y2="300" class="l sb w1"/>
+<text x="12" y="324" class="tb">1回ごとの向きは、少しばらつく</text>
+<line x1="40" y1="370" x2="270.4" y2="370" class="l sm w1 dsh"/>
+<polygon points="276,370 270.4,373.5 270.4,366.5" class="fm"/>
+<line x1="40" y1="370" x2="144.6" y2="341.47" class="l sa w2"/>
+<polygon points="150,340 145.52,344.85 143.68,338.09" class="fa"/>
+<line x1="40" y1="370" x2="142.42" y2="362.41" class="l sa w2"/>
+<polygon points="148,362 142.68,365.9 142.16,358.92" class="fa"/>
+<line x1="40" y1="370" x2="149.5" y2="390.95" class="l sa w2"/>
+<polygon points="155,392 148.84,394.39 150.16,387.51" class="fa"/>
+<circle cx="40" cy="370" r="4" class="ft"/>
+<text x="158" y="346" class="ta">100件ずつの向き</text>
+<text x="276" y="392" class="tm" text-anchor="end">全データの向き</text>
+<text x="12" y="422" class="tm">平均すると、全データの向きに近い</text>
+<text x="12" y="442" class="tm">ばらつきでジグザグに進みやすい一方、</text>
+<text x="12" y="460" class="tm">局所最適解や鞍点から抜ける助けにもなる</text>
+<text x="12" y="482" class="tm">厳密には1件ずつ。少数ずつも SGD と呼ぶ</text>
+<text x="12" y="500" class="tm">数は説明のための例</text>
+</svg>

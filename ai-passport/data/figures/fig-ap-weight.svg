@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 652" role="img" aria-labelledby="fig-ap-weight-t fig-ap-weight-d">
+<title id="fig-ap-weight-t">重み：ノードとノードのつながりの強さを表す数。入力に掛けて次へ渡し、学習でずれが小さくなるように直す</title>
+<desc id="fig-ap-weight-d">重みは、ノードとノードのつながりの強さを表す数。入力にこの数を掛けて次へ渡す。Googleの用語集は、学習をモデルの最もよい重みを決める過程、推論をその重みを使って予測する過程としている。①たとえ：家の値段を当てるとき、どの手がかりをどれだけ重く見るかを表すのが重み。②例（数は説明のための例）：入力Aは3、入力Bは1。重みはAへのつながりが2、Bへのつながりが1（線の太さ＝重みの大きさ）。ノードは3×2＋1×1＝7を計算し、活性化関数（ReLU：負なら0、正ならそのまま）を通して7を出す。正解は9なので、ずれは2。③学習：ずれが小さくなるように重みを直す。Aの重みを2から2.5にすると、3×2.5＋1×1＝8.5になり、ずれは0.5に減る。④学習で変わるのは重み。ReLUなどの決まった形の活性化関数と隠れ層の数は学習の前に人が決め、学習では変わらない。教師データは学習の材料（入力と正解の組）。</desc>
+<text x="12" y="20" class="tb">重み：つながりの強さを表す数</text>
+<text x="12" y="40" class="tm">入力に掛けて次へ渡す。学習で直していく数</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">① たとえ</text>
+<text x="12" y="98">家の値段を当てるとき、どの手がかりを</text>
+<text x="12" y="116">どれだけ重く見るか＝重み</text>
+<line x1="12" y1="130" x2="308" y2="130" class="l sb w1"/>
+<text x="12" y="152" class="tb">② ノード1つの計算（数は例）</text>
+<text x="12" y="170" class="tm">線の太さ＝重みの大きさ</text>
+<circle cx="44" cy="206" r="20" class="fs sm" stroke-width="1.5"/>
+<text x="44" y="211" class="tb" text-anchor="middle">3</text>
+<text x="44" y="242" class="tm" text-anchor="middle">入力A</text>
+<circle cx="44" cy="286" r="20" class="fs sm" stroke-width="1.5"/>
+<text x="44" y="291" class="tb" text-anchor="middle">1</text>
+<text x="44" y="322" class="tm" text-anchor="middle">入力B</text>
+<line x1="64" y1="210" x2="170" y2="240" class="l sa w3"/>
+<line x1="64" y1="282" x2="170" y2="256" class="l sa w1"/>
+<text x="112" y="212" class="tb ta" text-anchor="middle">重み 2</text>
+<text x="112" y="294" class="tb ta" text-anchor="middle">重み 1</text>
+<circle cx="194" cy="248" r="24" class="fas sa" stroke-width="1.5"/>
+<text x="194" y="253" class="tb" text-anchor="middle">7</text>
+<text x="194" y="290" class="tm" text-anchor="middle">ノード</text>
+<line x1="218" y1="248" x2="252" y2="248" class="l sm w1"/>
+<polygon points="258,248 251,244 251,252" class="fm"/>
+<text x="284" y="244" class="tb" text-anchor="middle">出力</text>
+<text x="284" y="264" class="tb" text-anchor="middle">7</text>
+<text x="12" y="348">3×2 ＋ 1×1 ＝ 6 ＋ 1 ＝ 7</text>
+<text x="12" y="368" class="tm">7 を活性化関数（ReLU：負なら0、正ならその</text>
+<text x="12" y="386" class="tm">まま）に通して、出力は 7</text>
+<text x="12" y="408">正解は 9 → ずれは 9 − 7 ＝ 2</text>
+<line x1="12" y1="422" x2="308" y2="422" class="l sb w1"/>
+<text x="12" y="444" class="tb">③ 学習＝ずれが小さくなるよう重みを直す</text>
+<rect x="12" y="454" width="296" height="62" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="22" y="474">A の重みを 2 → 2.5 に直すと</text>
+<text x="22" y="494">3×2.5 ＋ 1×1 ＝ 7.5 ＋ 1 ＝ 8.5</text>
+<text x="22" y="510" class="tb tok">ずれは 9 − 8.5 ＝ 0.5 に減る</text>
+<line x1="12" y1="530" x2="308" y2="530" class="l sb w1"/>
+<text x="12" y="552" class="tb">④ 学習で変わるもの・変わらないもの</text>
+<text x="12" y="574" class="tb ta">変わる：重み</text>
+<text x="12" y="596">変わらない：ReLU などの関数の形・層の数</text>
+<text x="12" y="614" class="tm">（学習の前に人が決める）</text>
+<text x="12" y="638">教師データ＝学習の材料（入力と正解の組）</text>
+</svg>

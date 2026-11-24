@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 946" role="img" aria-labelledby="fig-g-relu-t fig-g-relu-d">
+<title id="fig-g-relu-t">ReLU：負は0、正はそのまま。正の側の傾きが1なので、層を重ねても勾配が小さくなりにくい</title>
+<desc id="fig-g-relu-d">ReLUは、入力が0以下なら0、正ならそのまま出す活性化関数で、ReLU(x)＝max(0, x)＝0とxの大きいほう。①グラフ（横は入力x、縦は出力）：ReLU(−2)＝0、ReLU(3)＝3。傾き（微分）は、入力を少し動かすと出力が何倍動くかで、正の側は1、負の側は0。②層を重ねても勾配が小さくなりにくい：誤差を前の層へ戻すとき、層ごとの傾きを掛けていく（例は5層。重みの分は省いた）。勾配は重みをどれだけ直すかの量。シグモイドは傾きが最大でも0.25なので、出力側から1、0.25、0.06、0.016、0.004、0.001と小さくなり、0.25を5回掛けると約0.001で、入力に近い層の重みはほとんど直らない。ReLUの正の側は傾きが1なので、1を何回掛けても1で、勾配が届く。③弱点：入力がいつも負のユニットは傾きがいつも0なので、重みを直す量は届いた勾配×0＝0になり、重みが変わらず学習しなくなる。避ける工夫はLeaky ReLUやPReLU（負の側にも小さな傾きを持たせる）。押さえどころ：計算は0と比べるだけで軽く、隠れ層の標準的な選択。</desc>
+<text x="12" y="20" class="tb">ReLU：負は 0、正はそのまま出す</text>
+<text x="12" y="42" class="tm">ReLU(x)＝max(0, x)＝0 と x の大きいほう</text>
+<text x="12" y="72" class="tb">① グラフ（横＝入力 x、縦＝出力）</text>
+<rect x="40" y="84" width="264" height="120" class="sb fs" stroke-width="1"/>
+<line x1="40" y1="184" x2="304" y2="184" class="l sm w1"/>
+<line x1="172" y1="84" x2="172" y2="204" class="l sm w1"/>
+<text x="35" y="188.5" class="tm" text-anchor="end">0</text>
+<text x="35" y="168.5" class="tm" text-anchor="end">1</text>
+<text x="35" y="88.5" class="tm" text-anchor="end">5</text>
+<text x="40" y="219" class="tm" text-anchor="middle">−5</text>
+<text x="172" y="219" class="tm" text-anchor="middle">0</text>
+<text x="304" y="219" class="tm" text-anchor="middle">5</text>
+<polyline points="40,184 172,184 304,84" class="l sa w2" fill="none"/>
+<circle cx="119.2" cy="184" r="4.5" class="fa"/>
+<text x="119.2" y="174" class="tb ta" text-anchor="middle">ReLU(−2)＝0</text>
+<circle cx="251.2" cy="124" r="4.5" class="fa"/>
+<text x="243.20000000000002" y="128" class="tb ta" text-anchor="end">ReLU(3)＝3</text>
+<text x="50.56000000000001" y="202" class="tb twn">傾き 0</text>
+<text x="288.16" y="114.00000000000001" class="tb twn" text-anchor="end">傾き 1</text>
+<text x="12" y="244" class="tm">傾き（微分）＝入力を少し動かすと、出力が</text>
+<text x="12" y="262" class="tm">何倍動くか。正の側は 1、負の側は 0</text>
+<line x1="160" y1="272" x2="160" y2="280.4" class="l sm w1"/>
+<polygon points="160,286 156.5,280.4 163.5,280.4" class="fm"/>
+<text x="12" y="306" class="tb">② 層を重ねても、勾配が小さくなりにくい</text>
+<text x="12" y="326" class="tm">誤差を前の層へ戻すとき、層ごとの傾きを</text>
+<text x="12" y="344" class="tm">掛けていく（例：5層。重みの分は省いた）</text>
+<text x="12" y="362" class="tm">勾配＝重みをどれだけ直すかの量</text>
+<text x="12" y="400" class="tb">シグモイド（傾きは最大でも 0.25）</text>
+<rect x="30" y="434" width="26" height="50" class="fwn swn" stroke-width="1.5"/>
+<text x="43" y="429" class="tm" text-anchor="middle">1</text>
+<rect x="76" y="471.5" width="26" height="12.5" class="fwn swn" stroke-width="1.5"/>
+<text x="89" y="466.5" class="tm" text-anchor="middle">0.25</text>
+<text x="69" y="480" class="tm" text-anchor="middle">×</text>
+<rect x="122" y="480.875" width="26" height="3.125" class="fwn swn" stroke-width="1.5"/>
+<text x="135" y="475.875" class="tm" text-anchor="middle">0.06</text>
+<text x="115" y="480" class="tm" text-anchor="middle">×</text>
+<rect x="168" y="483" width="26" height="1" class="fwn swn" stroke-width="1.5"/>
+<text x="181" y="478" class="tm" text-anchor="middle">0.016</text>
+<text x="161" y="480" class="tm" text-anchor="middle">×</text>
+<rect x="214" y="483" width="26" height="1" class="fwn swn" stroke-width="1.5"/>
+<text x="227" y="478" class="tm" text-anchor="middle">0.004</text>
+<text x="207" y="480" class="tm" text-anchor="middle">×</text>
+<rect x="260" y="483" width="26" height="1" class="fwn swn" stroke-width="1.5"/>
+<text x="273" y="478" class="tm" text-anchor="middle">0.001</text>
+<text x="253" y="480" class="tm" text-anchor="middle">×</text>
+<line x1="22" y1="484" x2="300" y2="484" class="l sm w1"/>
+<text x="12" y="520" class="tb">ReLU（正の側の傾きは 1）</text>
+<rect x="30" y="554" width="26" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="43" y="549" class="tm" text-anchor="middle">1</text>
+<rect x="76" y="554" width="26" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="89" y="549" class="tm" text-anchor="middle">1</text>
+<text x="69" y="600" class="tm" text-anchor="middle">×</text>
+<rect x="122" y="554" width="26" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="135" y="549" class="tm" text-anchor="middle">1</text>
+<text x="115" y="600" class="tm" text-anchor="middle">×</text>
+<rect x="168" y="554" width="26" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="181" y="549" class="tm" text-anchor="middle">1</text>
+<text x="161" y="600" class="tm" text-anchor="middle">×</text>
+<rect x="214" y="554" width="26" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="227" y="549" class="tm" text-anchor="middle">1</text>
+<text x="207" y="600" class="tm" text-anchor="middle">×</text>
+<rect x="260" y="554" width="26" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="273" y="549" class="tm" text-anchor="middle">1</text>
+<text x="253" y="600" class="tm" text-anchor="middle">×</text>
+<line x1="22" y1="604" x2="300" y2="604" class="l sm w1"/>
+<text x="43" y="624" class="tm" text-anchor="middle">出力側</text>
+<text x="273" y="624" class="tm" text-anchor="middle">入力側</text>
+<line x1="80" y1="620" x2="230" y2="620" class="l sm w1"/>
+<polygon points="236,620 229,624 229,616" class="l sm"/>
+<text x="12" y="650" class="tm">シグモイド：0.25 を5回掛けると約 0.001。</text>
+<text x="12" y="668" class="tb twn">入力に近い層の重みはほとんど直らない</text>
+<text x="12" y="688" class="tb ta">ReLU：1 を何回掛けても 1。勾配が届く</text>
+<line x1="160" y1="698" x2="160" y2="706.4" class="l sm w1"/>
+<polygon points="160,712 156.5,706.4 163.5,706.4" class="fm"/>
+<rect x="12" y="718" width="296" height="150" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="738" class="tb tng">③ 弱点：負の入力ばかりのユニット</text>
+<text x="24" y="758">入力がいつも負 → 傾きはいつも 0</text>
+<text x="24" y="778">重みを直す量＝届いた勾配 × 0＝0</text>
+<text x="24" y="798" class="tb">→ 重みが変わらず、学習しなくなる</text>
+<text x="24" y="822" class="tm">避ける工夫：Leaky ReLU・PReLU</text>
+<text x="24" y="840" class="tm">（負の側にも小さな傾きを持たせる）</text>
+<text x="12" y="894" class="tb">押さえどころ</text>
+<text x="12" y="914">計算は 0 と比べるだけで軽い。隠れ層の</text>
+<text x="12" y="932">標準的な選択</text>
+</svg>

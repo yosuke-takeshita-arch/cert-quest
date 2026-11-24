@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 478" role="img" aria-labelledby="fig-dx-bop-business-t fig-dx-bop-business-d">
+<title id="fig-dx-bop-business-t">BOPモデル：底辺の層を、援助の相手ではなく顧客・担い手として見る</title>
+<desc id="fig-dx-bop-business-d">上：所得のピラミッド。上から、所得が高い層、中間の層、底辺のBOP層（Base of the Pyramid）。BOP層は世界で40億人を超えるとされる。下：援助とBOPビジネスの違い。援助は、企業や国などがお金や物を一方向に渡し、BOP層は受け取る側になる。続けるには渡し続ける必要がある。BOPビジネスは、企業が現地の課題を解く商品やサービスを届け、BOP層が代金を払う顧客になる。現地で作る・売るパートナー（担い手）としても組む。収益があるので事業として続き、雇用や生活の向上にもつながる。</desc>
+<text x="12" y="22" class="tb">所得のピラミッド</text>
+<polygon points="92,34 62,74 122,74" class="fs sb"/>
+<polygon points="62,74 122,74 146,124 38,124" class="fas sa"/>
+<polygon points="38,124 146,124 172,184 12,184" class="fa"/>
+<text x="180" y="64">所得が高い層</text>
+<text x="180" y="106">中間の層</text>
+<text x="180" y="156" class="tb">BOP層</text>
+<text x="180" y="176" class="tm">世界で40億人超とされる</text>
+<text x="92" y="162" class="tb ton" text-anchor="middle">BOP</text>
+<line x1="12" y1="198" x2="308" y2="198" class="l sb w1"/>
+<text x="12" y="220" class="tb">援助：渡すだけ</text>
+<rect x="12" y="230" width="100" height="44" class="fs sm" stroke-width="1.5"/>
+<text x="62" y="256.5" text-anchor="middle">企業・国など</text>
+<rect x="208" y="230" width="100" height="44" class="fs sm" stroke-width="1.5"/>
+<text x="258" y="248" text-anchor="middle">BOP層</text>
+<text x="258" y="266" class="tm" text-anchor="middle">受け取る側</text>
+<line x1="114" y1="252" x2="200" y2="252" class="l sm w2"/>
+<polyline points="193,255.85 200,252 193,248.15" class="l sm w2"/>
+<text x="157" y="244" class="tm" text-anchor="middle">お金・物</text>
+<text x="12" y="296" class="tm">続けるには、渡し続ける必要がある</text>
+<line x1="12" y1="310" x2="308" y2="310" class="l sb w1"/>
+<text x="12" y="332" class="tb">BOPビジネス：顧客・担い手として組む</text>
+<rect x="12" y="342" width="100" height="52" class="fas sa" stroke-width="1.5"/>
+<text x="62" y="372.5" class="tb" text-anchor="middle">企業</text>
+<rect x="208" y="342" width="100" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="258" y="362" class="tb" text-anchor="middle">BOP層</text>
+<text x="258" y="382" text-anchor="middle">顧客・担い手</text>
+<line x1="114" y1="356" x2="200" y2="356" class="l sa w2"/>
+<polyline points="193,359.85 200,356 193,352.15" class="l sa w2"/>
+<text x="157" y="350" class="tm" text-anchor="middle">課題を解く品</text>
+<line x1="206" y1="382" x2="120" y2="382" class="l sok w2"/>
+<polyline points="127,378.15 120,382 127,385.85" class="l sok w2"/>
+<text x="157" y="400" class="tm" text-anchor="middle">代金</text>
+<text x="12" y="424">現地で作る・売る仲間（担い手）にもなる</text>
+<text x="12" y="446" class="tb">収益があるので事業として続き、</text>
+<text x="12" y="466">雇用や生活の向上にもつながる</text>
+</svg>

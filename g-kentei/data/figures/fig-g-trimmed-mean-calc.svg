@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 430" role="img" aria-labelledby="fig-g-trimmed-mean-calc-t fig-g-trimmed-mean-calc-d">
+<title id="fig-g-trimmed-mean-calc-t">10個の数のトリム平均（両側10％を除く）</title>
+<desc id="fig-g-trimmed-mean-calc-d">何のための図か：10個の数 2, 3, 3, 4, 5, 6, 8, 9, 10, 60 から、両側10％ずつを除いてから平均をとるトリム平均を求める。困りごと：60だけが飛び抜けて大きく、ふつうの平均は合計110÷10＝11.0 で、ほとんどの値（2〜10）より大きくなる。手順：10個の10％は1個。小さい側の2と大きい側の60を1個ずつ除く。残る8個は3, 3, 4, 5, 6, 8, 9, 10 で、合計48。48÷8＝6.0 がトリム平均。比べると、ふつうの平均11.0、中央値は5と6の真ん中で5.5、トリム平均6.0。</desc>
+<text x="12" y="20" class="tb">トリム平均：両端を同じだけ切ってから平均</text>
+<text x="12" y="42" class="tm">データ（小さい順）：10個</text>
+<rect x="14" y="52" width="26" height="28" class="fng sng" stroke-width="1.2" rx="3"/>
+<text x="27" y="71" class="tb tng" text-anchor="middle">2</text>
+<line x1="17" y1="55" x2="37" y2="77" class="l sng w1"/>
+<rect x="43.4" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="56.4" y="71" class="" text-anchor="middle">3</text>
+<rect x="72.8" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="85.8" y="71" class="" text-anchor="middle">3</text>
+<rect x="102.2" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="115.2" y="71" class="" text-anchor="middle">4</text>
+<rect x="131.6" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="144.6" y="71" class="" text-anchor="middle">5</text>
+<rect x="161" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="174" y="71" class="" text-anchor="middle">6</text>
+<rect x="190.4" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="203.4" y="71" class="" text-anchor="middle">8</text>
+<rect x="219.8" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="232.8" y="71" class="" text-anchor="middle">9</text>
+<rect x="249.2" y="52" width="26" height="28" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="262.2" y="71" class="" text-anchor="middle">10</text>
+<rect x="278.6" y="52" width="26" height="28" class="fng sng" stroke-width="1.2" rx="3"/>
+<text x="291.6" y="71" class="tb tng" text-anchor="middle">60</text>
+<line x1="281.6" y1="55" x2="301.6" y2="77" class="l sng w1"/>
+<text x="12" y="102" class="tm">赤＝除く2個（小さい側1個・大きい側1個）</text>
+<line x1="12" y1="114" x2="308" y2="114" class="l sb w1"/>
+<text x="12" y="138" class="tb">困りごと：60 だけが飛び抜けている</text>
+<text x="12" y="156">ふつうの平均：合計110 ÷ 10 ＝ 11.0</text>
+<text x="12" y="174" class="tng">→ 2〜10 のほとんどの値より大きい</text>
+<line x1="12" y1="186" x2="308" y2="186" class="l sb w1"/>
+<text x="12" y="210" class="tb">手順</text>
+<text x="12" y="228">1. 何個除くか：10個の10％ ＝ 1個</text>
+<text x="12" y="246">2. 小さい側の 2、大きい側の 60 を除く</text>
+<text x="12" y="264">3. 残り8個：3, 3, 4, 5, 6, 8, 9, 10</text>
+<text x="12" y="282" class="tm">　 合計 3＋3＋4＋5＋6＋8＋9＋10 ＝ 48</text>
+<text x="12" y="302" class="tb tok">4. 残った個数で割る：48 ÷ 8 ＝ 6.0</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="338" class="tb">3つを比べる</text>
+<text x="12" y="356">ふつうの平均 11.0：60 に引っ張られる</text>
+<text x="12" y="374">中央値 5.5：5番目の5と6番目の6の真ん中</text>
+<text x="12" y="394" class="tb tok">トリム平均 6.0：外れた値を除いてならす</text>
+<text x="12" y="416" class="tm">割るのは残った8個。10で割らない</text>
+</svg>

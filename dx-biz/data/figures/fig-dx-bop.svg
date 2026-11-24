@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 419" role="img" aria-labelledby="fig-dx-bop-t fig-dx-bop-d">
+<title id="fig-dx-bop-t">BOPモデルとリバースイノベーション</title>
+<desc id="fig-dx-bop-d">上：所得のピラミッド。上から、所得が高い層、中間の層、底辺のBOP層（Base of the Pyramid）。BOP層は世界で40億人を超えるとされ、援助の対象ではなく、新しい購買層や、バリューチェーンで組むパートナーとして見る。下：リバースイノベーション。新興国・途上国の課題を出発点に作った、安くて簡素な製品やサービスが、逆に先進国の市場にも展開される。</desc>
+<text x="12" y="22" class="tb">所得のピラミッド</text>
+<polygon points="92,34 62,74 122,74" class="fs sb"/>
+<polygon points="62,74 122,74 146,124 38,124" class="fas sa"/>
+<polygon points="38,124 146,124 172,184 12,184" class="fa"/>
+<text x="184" y="64">所得が高い層</text>
+<text x="184" y="106">中間の層</text>
+<text x="184" y="156" class="tb">BOP層</text>
+<text x="184" y="176" class="tm">底辺の層</text>
+<text x="92" y="162" class="tb ton" text-anchor="middle">BOP</text>
+<text x="12" y="206" class="tb">世界で40億人を超えるとされる</text>
+<text x="12" y="230">援助の対象ではなく、</text>
+<text x="12" y="249">新しい購買層・パートナーとして見る</text>
+<line x1="12" y1="271" x2="308" y2="271" class="l sb w1"/>
+<text x="12" y="295" class="tb">リバースイノベーション：逆に流れる</text>
+<rect x="12" y="309" width="124" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="74" y="332" class="tb" text-anchor="middle">新興国・途上国</text>
+<text x="74" y="351" text-anchor="middle">課題から生まれる</text>
+<rect x="184" y="309" width="124" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="246" y="332" class="tb" text-anchor="middle">先進国</text>
+<text x="246" y="351" text-anchor="middle">市場にも展開</text>
+<line x1="140" y1="337" x2="180" y2="337" class="l sa w2"/>
+<polyline points="173,340.85 180,337 173,333.15" class="l sa w2"/>
+<text x="12" y="387">安くて簡素な製品・サービスが、</text>
+<text x="12" y="407" class="tb">先進国へ逆に流れる</text>
+</svg>

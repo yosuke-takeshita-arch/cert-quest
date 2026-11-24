@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 486" role="img" aria-labelledby="fig-dx-iot-m2m-t fig-dx-iot-m2m-d">
+<title id="fig-dx-iot-m2m-t">M2MからIoTへ：機械どうしの通信から、モノがインターネットにつながる形へ</title>
+<desc id="fig-dx-iot-m2m-d">上：M2M（Machine to Machine、機械から機械へ）。例は計量器（メーター）の遠隔読み取りで、メーターと読み取る側の機械が1対1でやり取りする。2000年頃から注目されたが、爆発的には普及しなかった。中：センサーや通信が安く小さくなり、集めたデータをクラウドやAIで分析できるようになった。下：IoT（Internet of Things、モノのインターネット）。家電・車・工場の設備など様々なモノが、センサーと無線通信でインターネットにつながり、データがクラウドに集まり、AIが分析する。役割は、IoTが集める、AIが分析する。</desc>
+<text x="12" y="22" class="tb">M2M：機械から機械へ</text>
+<text x="12" y="40" class="tm">例：計量器（メーター）の遠隔読み取り</text>
+<rect x="24" y="54" width="96" height="40" class="fs l sm"/>
+<text x="72" y="79" text-anchor="middle">メーター</text>
+<line x1="124" y1="74" x2="192" y2="74" class="l sm w2"/>
+<polyline points="186,70 192,74 186,78" class="l sm w2"/>
+<polyline points="130,70 124,74 130,78" class="l sm w2"/>
+<text x="158" y="66" class="tm" text-anchor="middle">通信</text>
+<rect x="196" y="54" width="100" height="40" class="fs l sm"/>
+<text x="246" y="79" text-anchor="middle">読み取る機械</text>
+<text x="12" y="118">機器どうしがやり取りする。</text>
+<text x="12" y="136">2000年頃から注目されたが、広がりきらず</text>
+<line x1="160" y1="148" x2="160" y2="196" class="l sa w2"/>
+<polyline points="155,189 160,196 165,189" class="l sa w2"/>
+<rect x="12" y="152" width="134" height="40" class="fbg"/>
+<text x="140" y="168" text-anchor="end" class="tm">センサー・通信が</text>
+<text x="140" y="186" text-anchor="end" class="tm">安く小さくなった</text>
+<rect x="174" y="152" width="134" height="40" class="fbg"/>
+<text x="180" y="168" class="tm">クラウド・AIで</text>
+<text x="180" y="186" class="tm">分析できるように</text>
+<text x="12" y="222" class="tb">IoT：モノがインターネットにつながる</text>
+<rect x="12" y="236" width="88" height="30" class="fs l sm"/>
+<text x="56" y="256" text-anchor="middle">家電</text>
+<rect x="12" y="272" width="88" height="30" class="fs l sm"/>
+<text x="56" y="292" text-anchor="middle">車</text>
+<rect x="12" y="308" width="88" height="30" class="fs l sm"/>
+<text x="56" y="328" text-anchor="middle">工場の設備</text>
+<line x1="100" y1="251" x2="126" y2="287" class="l sm w1"/>
+<line x1="100" y1="287" x2="126" y2="287" class="l sm w1"/>
+<line x1="100" y1="323" x2="126" y2="287" class="l sm w1"/>
+<ellipse cx="160" cy="287" rx="34" ry="24" class="fs l sm"/>
+<text x="160" y="283" text-anchor="middle">イン</text>
+<text x="160" y="299" text-anchor="middle">ターネット</text>
+<line x1="194" y1="287" x2="210" y2="287" class="l sa w2"/>
+<polyline points="204,283 210,287 204,291" class="l sa w2"/>
+<rect x="212" y="236" width="96" height="40" class="fok l sok"/>
+<text x="260" y="254" class="tb" text-anchor="middle">クラウドに</text>
+<text x="260" y="270" class="tb" text-anchor="middle">集める</text>
+<line x1="260" y1="276" x2="260" y2="294" class="l sa w2"/>
+<polyline points="256,288 260,294 264,288" class="l sa w2"/>
+<rect x="212" y="296" width="96" height="40" class="fas l sa"/>
+<text x="260" y="321" class="tb" text-anchor="middle">AIが分析する</text>
+<text x="12" y="368">センサーと無線通信で、様々なモノが</text>
+<text x="12" y="386">データを送り出す</text>
+<line x1="12" y1="404" x2="308" y2="404" class="l sb w1"/>
+<text x="12" y="428" class="tb">役割の分担で覚える</text>
+<rect x="12" y="440" width="140" height="32" class="fok l sok"/>
+<text x="82" y="461" class="tb" text-anchor="middle">IoT ＝ 集める</text>
+<rect x="168" y="440" width="140" height="32" class="fas l sa"/>
+<text x="238" y="461" class="tb" text-anchor="middle">AI ＝ 分析する</text>
+</svg>

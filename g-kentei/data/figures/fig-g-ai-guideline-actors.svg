@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 614" role="img" aria-labelledby="fig-g-ai-guideline-actors-t fig-g-ai-guideline-actors-d">
+<title id="fig-g-ai-guideline-actors-t">AI事業者ガイドライン：AI開発者・AI提供者・AI利用者の3つの立場（銀行の例）と成り立ち</title>
+<desc id="fig-g-ai-guideline-actors-d">例は説明のための架空の場面。上段は3つの立場。文章生成AIのモデルを作った会社がAI開発者。そのAIを問い合わせ窓口に組み込んで客に出す銀行がAI提供者。業務でAIを使う行員の部署がAI利用者。開発者から提供者へモデルが渡り、提供者がサービスとして出したものを利用者が使う。ガイドラインは立場ごとに取り組むことの例を示す。中段は成り立ち。総務省と経済産業省が別々に出していた3つのガイドラインを、2024年4月に統合・見直してAI事業者ガイドラインにした。状況に合わせて書き換え続ける文書（Living Document）で、2026年3月に第1.2版が出た。下段。法的な強制力の無いソフトローで、守らなくても罰金は無く、事業者の自主的な取組の目安になる。基本理念は、人間の尊厳、多様な背景を持つ人々が多様な幸せを追求できる社会、持続可能な社会の3つ。</desc>
+<text x="12" y="20" class="tb">AI事業者ガイドライン：3つの立場（例）</text>
+<rect x="12" y="32" width="296" height="56" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="54" class="tb twn">AI開発者</text>
+<text x="24" y="76">文章生成AIのモデルを作った会社</text>
+<line x1="160" y1="88" x2="160" y2="110.4" class="l sm w1"/>
+<polygon points="160,116 156.5,110.4 163.5,110.4" class="fm"/>
+<text x="170" y="106" class="tm">モデルを渡す</text>
+<rect x="12" y="118" width="296" height="74" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="140" class="tb ta">AI提供者</text>
+<text x="24" y="162">AIを問い合わせ窓口に組み込み、</text>
+<text x="24" y="182">客に出す銀行</text>
+<line x1="160" y1="192" x2="160" y2="214.4" class="l sm w1"/>
+<polygon points="160,220 156.5,214.4 163.5,214.4" class="fm"/>
+<text x="170" y="210" class="tm">サービスとして使う</text>
+<rect x="12" y="222" width="296" height="56" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="244" class="tb tok">AI利用者</text>
+<text x="24" y="266">業務でAIを使う行員の部署</text>
+<text x="12" y="300" class="tm">立場ごとに、取り組むことの例を示す</text>
+<line x1="12" y1="316" x2="308" y2="316" class="l sb w1"/>
+<text x="12" y="340" class="tb">成り立ち</text>
+<rect x="12" y="350" width="296" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="368" text-anchor="middle">総務省・経済産業省が別々に出していた</text>
+<text x="160" y="384" text-anchor="middle">3つのガイドライン</text>
+<line x1="160" y1="390" x2="160" y2="404.4" class="l sm w1"/>
+<polygon points="160,410 156.5,404.4 163.5,404.4" class="fm"/>
+<rect x="12" y="412" width="296" height="30" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="432" class="tb" text-anchor="middle">2024年4月　統合・見直し</text>
+<line x1="160" y1="442" x2="160" y2="456.4" class="l sm w1"/>
+<polygon points="160,462 156.5,456.4 163.5,456.4" class="fm"/>
+<rect x="12" y="464" width="296" height="30" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="484" class="tb" text-anchor="middle">2026年3月　第1.2版</text>
+<text x="12" y="514" class="tm">書き換え続ける文書（Living Document）</text>
+<text x="12" y="540">罰則の無い<tspan class="tb">ソフトロー</tspan>（自主的な取組の目安）</text>
+<text x="12" y="566" class="tm">基本理念：①人間の尊厳</text>
+<text x="12" y="584" class="tm">②多様な背景を持つ人々が多様な幸せを</text>
+<text x="12" y="602" class="tm">　追求できる社会　③持続可能な社会</text>
+</svg>

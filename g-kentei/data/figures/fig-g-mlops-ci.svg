@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 542" role="img" aria-labelledby="fig-g-mlops-ci-t fig-g-mlops-ci-d">
+<title id="fig-g-mlops-ci-t">ふつうのソフト（DevOps）と機械学習（MLOps）で、CI・CD・CTの中身がどう違うか</title>
+<desc id="fig-g-mlops-ci-d">何のための図か：Google Cloud の解説が挙げる、ふつうのソフトと機械学習システムの違いを、CI・CD・CT・運用の4つの行で比べる。似ている点：ソース管理、単体テスト・統合テストのCI（変更のたびに自動でテストする）や、CD（自動で届ける）を使う点は同じ。①CIでテスト・検証するもの：ふつうのソフトはコードとコンポーネント。機械学習は、それに加えてデータ、データスキーマ（列の名前や型などデータの形の決まり）、モデル。②CDで届けるもの：ふつうのソフトは1つのソフトのパッケージやサービス。機械学習は、予測サービスを自動でデプロイする仕組みである学習パイプライン。③CT（継続的トレーニング）：機械学習に固有で、自動でモデルを再学習して提供する。④運用中：ふつうのソフトもソフトの動作を監視するが、機械学習はデータが変わると性能が下がりうるので、それに加えてデータの統計と予測の性能を監視する。</desc>
+<text x="12" y="20" class="tb">DevOps と MLOps：CI・CD・CT の中身</text>
+<text x="12" y="42" class="tm">Google Cloud の解説の整理</text>
+<text x="12" y="64" class="tm">似ている点：ソース管理、CI（変更のたびに</text>
+<text x="12" y="82" class="tm">自動でテスト）と CD（自動で届ける）を使う</text>
+<text x="146" y="100" class="tb" text-anchor="middle">ふつうのソフト</text>
+<text x="255" y="100" class="tb ta" text-anchor="middle">機械学習</text>
+<text x="12" y="130" class="tb">① CI で</text>
+<text x="12" y="148" class="tm">テストする</text>
+<rect x="96" y="110" width="100" height="102" class="fs sb" stroke-width="1.5" rx="5"/>
+<rect x="202" y="110" width="106" height="102" class="fok sok" stroke-width="1.5" rx="5"/>
+<text x="104" y="130">コード</text>
+<text x="104" y="148">コンポーネント</text>
+<text x="210" y="130" class="">コード</text>
+<text x="210" y="148" class="">コンポーネント</text>
+<text x="210" y="166" class="tb tok">＋データ</text>
+<text x="210" y="184" class="tb tok">＋データスキーマ</text>
+<text x="210" y="202" class="tb tok">＋モデル</text>
+<text x="12" y="242" class="tb">② CD で</text>
+<text x="12" y="260" class="tm">届ける</text>
+<rect x="96" y="222" width="100" height="84" class="fs sb" stroke-width="1.5" rx="5"/>
+<rect x="202" y="222" width="106" height="84" class="fok sok" stroke-width="1.5" rx="5"/>
+<text x="104" y="242">ソフトの</text>
+<text x="104" y="260">パッケージや</text>
+<text x="104" y="278">サービス</text>
+<text x="210" y="242" class="">学習パイプ</text>
+<text x="210" y="260" class="">ライン（予測</text>
+<text x="210" y="278" class="">サービスを自動</text>
+<text x="210" y="296" class="">でデプロイ）</text>
+<text x="12" y="336" class="tb">③ CT</text>
+<text x="12" y="354" class="tm">再学習</text>
+<rect x="96" y="316" width="100" height="48" class="fs sb" stroke-width="1.5" rx="5"/>
+<rect x="202" y="316" width="106" height="48" class="fok sok" stroke-width="1.5" rx="5"/>
+<text x="104" y="336">なし</text>
+<text x="210" y="336" class="">自動で再学習</text>
+<text x="210" y="354" class="">して提供</text>
+<text x="12" y="394" class="tb">④ 運用中</text>
+<text x="12" y="412" class="tm">監視する</text>
+<rect x="96" y="374" width="100" height="66" class="fs sb" stroke-width="1.5" rx="5"/>
+<rect x="202" y="374" width="106" height="66" class="fok sok" stroke-width="1.5" rx="5"/>
+<text x="104" y="394">ソフトの動作</text>
+<text x="210" y="394" class="">ソフトの動作</text>
+<text x="210" y="412" class="tb tok">＋データの統計</text>
+<text x="210" y="430" class="tb tok">＋予測の性能</text>
+<text x="12" y="466" class="tm">データスキーマ：列の名前や型など、</text>
+<text x="12" y="484" class="tm">データの形の決まり</text>
+<text x="12" y="508" class="tb">データもモデルも変わるので、コードだけ</text>
+<text x="12" y="528" class="tb">テストしても品質は確かめられない</text>
+</svg>

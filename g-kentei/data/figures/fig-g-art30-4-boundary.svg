@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 464" role="img" aria-labelledby="fig-g-art30-4-boundary-t fig-g-art30-4-boundary-d">
+<title id="fig-g-art30-4-boundary-t">第30条の4で学習に使えるか：量は理由にならず、売り物をただで取るとただし書に当たりうる</title>
+<desc id="fig-g-art30-4-boundary-d">何のための図か：AIの学習のための複製に第30条の4が使えるかの境目を、2つの場面で見る（文化庁「AIと著作権に関する考え方について」）。①量：学習に使う作品が大量であること。深層学習は大量のデータを必要とする性質があるので、量が多いことだけを理由に、必要と認められる限度を超えるとは評価されない。②ただし書：著作権者の利益を不当に害する場合は使えない。例：ニュースサイトが、記事を閲覧用に無料で公開し、別に、情報解析に使いやすく整理したデータベースのデータを有料のAPI（プログラムからデータを取り出す窓口）で売っている。B社がAPIを使わずに、閲覧用のページから、そのデータベースに当たるまとまった情報を情報解析のために複製すると、売り物の市場をただで奪うことになり、ただし書に当たって第30条の4が使えない場合がありうる。robots.txt（どの自動収集プログラムに読まれてよいかを書いておくファイル）でAI学習用のクローラを止めているなどの措置は、データベースを売る予定があると推認させる事情になりうる。</desc>
+<text x="12" y="20" class="tb">第30条の4で、学習に使えるか</text>
+<text x="12" y="42" class="tm">2つの場面（文化庁の整理）</text>
+<rect x="12" y="50" width="296" height="92" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="72" class="tb">① 学習に使う作品が大量</text>
+<text x="24" y="90">深層学習は、大量のデータが要る性質</text>
+<text x="24" y="110" class="tb tok">→ 量が多いことだけでは、必要な限度を</text>
+<text x="24" y="130" class="tb tok">　 超えるとは評価されない</text>
+<text x="12" y="172" class="tb">② ただし書：権利者の利益を不当に害する</text>
+<text x="12" y="192" class="tb">　 場合は使えない</text>
+<text x="12" y="214" class="tm">例：ニュースサイトのA社</text>
+<rect x="12" y="224" width="142" height="64" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="83" y="244" class="tb" text-anchor="middle">閲覧用のページ</text>
+<text x="83" y="264" text-anchor="middle">記事を無料で</text>
+<text x="83" y="281" text-anchor="middle">読める</text>
+<rect x="166" y="224" width="142" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="237" y="244" class="tb" text-anchor="middle">有料のAPI</text>
+<text x="237" y="264" text-anchor="middle">解析用に整えた</text>
+<text x="237" y="281" text-anchor="middle">データを売る</text>
+<text x="12" y="312">B社：APIを使わず、閲覧用のページから</text>
+<text x="12" y="330">データベースに当たるまとまりを複製</text>
+<text x="12" y="350" class="tb tng">→ 売り物の市場を、ただで奪う</text>
+<text x="12" y="370" class="tb tng">→ ただし書に当たり、第30条の4が</text>
+<text x="12" y="390" class="tb tng">　 使えない場合がありうる</text>
+<text x="12" y="414" class="tm">robots.txt（読まれてよい自動収集プログラム</text>
+<text x="12" y="432" class="tm">を書くファイル）でAI学習用の収集を止めて</text>
+<text x="12" y="450" class="tm">いる等は、売る予定を推認させる事情になる</text>
+</svg>

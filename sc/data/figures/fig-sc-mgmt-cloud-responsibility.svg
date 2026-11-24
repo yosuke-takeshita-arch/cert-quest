@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 330" role="img" aria-labelledby="fig-sc-mgmt-cloud-responsibility-t fig-sc-mgmt-cloud-responsibility-d">
+<title id="fig-sc-mgmt-cloud-responsibility-t">クラウドの責任共有モデル：誰がどこを守るか</title>
+<desc id="fig-sc-mgmt-cloud-responsibility-d">システムを下からハードウェアと仮想化、OS、DBMS などの土台のソフト、アプリの4段に分け、IaaS・PaaS・SaaS ごとに守る人を書いた表。IaaS は、ハードウェアと仮想化を事業者が守り、OS・土台のソフト・アプリは利用者が守る。PaaS は、ハードウェア・OS・土台のソフトを事業者が守り、アプリは利用者が守る。SaaS は4段とも事業者が守るが、どの区分でも、利用者のアカウントの管理とデータへのアクセス権の設定は利用者の側に残る。</desc>
+<text x="12" y="20" class="tb">責任共有モデル：誰がどの段を守るか</text>
+<text x="12" y="40" class="tm">表の上ほど利用者に近い段</text>
+<text x="166" y="62" class="tb" text-anchor="middle">IaaS</text>
+<text x="226" y="62" class="tb" text-anchor="middle">PaaS</text>
+<text x="286" y="62" class="tb" text-anchor="middle">SaaS</text>
+<text x="12" y="92">アプリ</text>
+<rect x="138" y="72" width="56" height="34" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="166" y="94" class="ta" text-anchor="middle">利用者</text>
+<rect x="198" y="72" width="56" height="34" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="226" y="94" class="ta" text-anchor="middle">利用者</text>
+<rect x="258" y="72" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="286" y="94" class="tm" text-anchor="middle">事業者</text>
+<text x="12" y="130">DBMS など土台</text>
+<rect x="138" y="110" width="56" height="34" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="166" y="132" class="ta" text-anchor="middle">利用者</text>
+<rect x="198" y="110" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="226" y="132" class="tm" text-anchor="middle">事業者</text>
+<rect x="258" y="110" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="286" y="132" class="tm" text-anchor="middle">事業者</text>
+<text x="12" y="168">OS</text>
+<rect x="138" y="148" width="56" height="34" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="166" y="170" class="ta" text-anchor="middle">利用者</text>
+<rect x="198" y="148" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="226" y="170" class="tm" text-anchor="middle">事業者</text>
+<rect x="258" y="148" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="286" y="170" class="tm" text-anchor="middle">事業者</text>
+<text x="12" y="200">ハードウェア</text>
+<text x="12" y="216">・仮想化</text>
+<rect x="138" y="186" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="166" y="208" class="tm" text-anchor="middle">事業者</text>
+<rect x="198" y="186" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="226" y="208" class="tm" text-anchor="middle">事業者</text>
+<rect x="258" y="186" width="56" height="34" class="fs sm dsh" stroke-width="1.5" rx="4"/>
+<text x="286" y="208" class="tm" text-anchor="middle">事業者</text>
+<rect x="12" y="236" width="296" height="80" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="256" class="tb">どの区分でも利用者に残るもの</text>
+<text x="22" y="276">・利用者のアカウントの管理</text>
+<text x="22" y="296">・データへのアクセス権の設定</text>
+</svg>

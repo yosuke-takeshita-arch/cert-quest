@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-ap-semantic-search-t fig-ap-semantic-search-d">
+<title id="fig-ap-semantic-search-t">意味的検索（セマンティック検索）：質問と文書の言い方が違っても、意味の近さで探す。キーワード検索との違い</title>
+<desc id="fig-ap-semantic-search-d">semanticは『意味の』。意味的検索は、語の一致ではなく意味の近さで探す。①困りごと（Microsoft LearnのAzure AI SearchのRAGの説明の例）：利用者は『2023年より後に採用した在宅勤務者の有給休暇の決まり』を聞くが、文書には『テレワーク』『休暇』『最近の採用者』と書いてある。②語の組ごとに比べる：在宅勤務とテレワーク、有給休暇と休暇、2023年より後に採用と最近の採用者。キーワード検索（語の一致）は、語がそろわないと外れやすい。意味的検索は、意味が近いので見つけられる。③仕組み：質問と文書を、意味を表す数の並び（ベクトル）にして、近いものを探す。Microsoftの説明は、ベクトルの似ている度合いで探す検索は語ではなく概念で照合するとし、例に『dog』と『canine』（犬とイヌ科）を挙げる。④取り違えやすいもの：キーワード検索は型番や人名のようなぴったりの一致に強い。メタデータの絞り込みは日付や部署などの付け札で範囲を狭める。新しい順の並べ替えは新しい文書を先に出すだけで、意味は見ない。</desc>
+<text x="12" y="20" class="tb">意味的検索：意味の近さで探す</text>
+<text x="12" y="40" class="tm">semantic＝「意味の」。語が違っても見つける</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">① 困りごと：言い方が違う</text>
+<text x="12" y="96" class="tm">Microsoft の説明の例</text>
+<rect x="12" y="104" width="296" height="44" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="22" y="122">質問：2023年より後に採用した</text>
+<text x="22" y="140">在宅勤務者の有給休暇の決まりは？</text>
+<text x="12" y="172" class="tb">② 語の組ごとに比べる</text>
+<text x="12" y="194" class="tb tm">質問の語</text>
+<text x="132" y="194" class="tb tm">文書の語</text>
+<text x="214" y="194" class="tb tm">キー</text>
+<text x="262" y="194" class="tb tm">意味</text>
+<line x1="12" y1="202" x2="308" y2="202" class="l sb w1"/>
+<text x="12" y="222">在宅勤務</text>
+<text x="132" y="222">テレワーク</text>
+<text x="222" y="222" class="tb tng" text-anchor="middle">×</text>
+<text x="274" y="222" class="tb tok" text-anchor="middle">○</text>
+<text x="12" y="246">有給休暇</text>
+<text x="132" y="246">休暇</text>
+<text x="222" y="246" class="tb twn" text-anchor="middle">△</text>
+<text x="274" y="246" class="tb tok" text-anchor="middle">○</text>
+<text x="12" y="270">2023年より後</text>
+<text x="12" y="288">に採用</text>
+<text x="132" y="270">最近の採用者</text>
+<text x="222" y="270" class="tb tng" text-anchor="middle">×</text>
+<text x="274" y="270" class="tb tok" text-anchor="middle">○</text>
+<line x1="12" y1="298" x2="308" y2="298" class="l sb w1"/>
+<text x="12" y="318" class="tm">キー＝キーワード検索（語の一致）</text>
+<text x="12" y="336" class="tm">意味＝意味的検索　△＝語の一部だけ一致</text>
+<text x="12" y="358" class="tb tng">キーワード検索：語がそろわず外れやすい</text>
+<text x="12" y="378" class="tb tok">意味的検索：意味が近いので見つかる</text>
+<line x1="12" y1="392" x2="308" y2="392" class="l sb w1"/>
+<text x="12" y="414" class="tb">③ 仕組み</text>
+<rect x="12" y="424" width="296" height="64" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="22" y="444">質問も文書も、意味を表す数の並び</text>
+<text x="22" y="462">（ベクトル）にして、近いものを探す</text>
+<text x="22" y="480" class="tm">例：dog と canine（犬とイヌ科）は近い</text>
+<line x1="12" y1="502" x2="308" y2="502" class="l sb w1"/>
+<text x="12" y="524" class="tb">④ 取り違えやすいもの</text>
+<text x="12" y="546">キーワード検索：型番・人名など、</text>
+<text x="12" y="564">　ぴったりの一致に強い</text>
+<text x="12" y="586">メタデータの絞り込み：日付・部署などの</text>
+<text x="12" y="604">　付け札で範囲を狭める</text>
+<text x="12" y="626">新しい順の並べ替え：意味は見ない</text>
+</svg>

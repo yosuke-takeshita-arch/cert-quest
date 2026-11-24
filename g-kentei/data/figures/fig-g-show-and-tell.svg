@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 900" role="img" aria-labelledby="fig-g-show-and-tell-t fig-g-show-and-tell-d">
+<title id="fig-g-show-and-tell-t">Show and Tell（NIC）：CNN が画像を読み、LSTM が説明文を1語ずつ書く</title>
+<desc id="fig-g-show-and-tell-d">NIC は Neural Image Caption の略で、Vinyals ら（2014）の Show and Tell の論文のモデル。画像を見て説明文を作る画像キャプション生成を行う。エンコーダは入力を読んで数の並び（ベクトル）にする部品、デコーダはその数の並びから出力を作る部品。①考え方：機械翻訳では、エンコーダの RNN が元の文を読んで決まった長さのベクトルにし、デコーダの RNN が訳文を作る。NIC は元の文の代わりに画像を入れ、読む部品を CNN に替えた。画像を文に訳すと考える。②流れ：画像分類で事前学習した CNN が画像を読み、最後の隠れ層の数の並びを LSTM に渡す。画像は最初に1回だけ入れる。LSTM は開始の印から始め、前に出した語を次の入力にして、犬が、走る、終了の印と1語ずつ出す。文は説明のための例。③似たものとの違い：NIC は画像から文。Text-to-Image（DALL-E など）は文から画像で向きが逆。VQA は画像と質問から答え。ViT の画像分類は画像をパッチに分けて Transformer に入れ、クラスを出す。</desc>
+<text x="12" y="20" class="tb">Show and Tell（NIC）：画像を文に訳す</text>
+<text x="12" y="42" class="tm">NIC＝Neural Image Caption（Vinyals ら 2014）</text>
+<text x="12" y="60" class="tm">画像を見て、その説明文を作るモデル</text>
+<text x="12" y="78" class="tm">エンコーダ：入力を読み、数の並びにする部品</text>
+<text x="12" y="96" class="tm">デコーダ：数の並びから出力を作る部品</text>
+<line x1="12" y1="110" x2="308" y2="110" class="l sb w1"/>
+<text x="12" y="132" class="tb">① 考え方：機械翻訳の型を借りる</text>
+<text x="12" y="154" class="tm">機械翻訳（元の文 → 訳文）</text>
+<rect x="12" y="164" width="60" height="40" class="fs sm" stroke-width="1"/>
+<text x="42" y="189" text-anchor="middle">英文</text>
+<rect x="86" y="164" width="72" height="40" class="fs sm" stroke-width="1"/>
+<text x="122" y="181" text-anchor="middle">RNN</text>
+<text x="122" y="198" class="tm" text-anchor="middle">読む</text>
+<rect x="172" y="164" width="72" height="40" class="fs sm" stroke-width="1"/>
+<text x="208" y="181" text-anchor="middle">RNN</text>
+<text x="208" y="198" class="tm" text-anchor="middle">書く</text>
+<rect x="258" y="164" width="50" height="40" class="fs sm" stroke-width="1"/>
+<text x="283" y="189" text-anchor="middle">訳文</text>
+<line x1="72" y1="184" x2="80" y2="184" class="l w1"/>
+<polygon points="86,184 80,180.5 80,187.5" class="ft"/>
+<line x1="158" y1="184" x2="166" y2="184" class="l w1"/>
+<polygon points="172,184 166,180.5 166,187.5" class="ft"/>
+<line x1="244" y1="184" x2="252" y2="184" class="l w1"/>
+<polygon points="258,184 252,180.5 252,187.5" class="ft"/>
+<text x="12" y="230" class="tb ta">NIC（画像 → 説明文）</text>
+<rect x="12" y="240" width="60" height="40" class="fs sm" stroke-width="1"/>
+<text x="42" y="265" text-anchor="middle">画像</text>
+<rect x="86" y="240" width="72" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="122" y="257" class="tb ta" text-anchor="middle">CNN</text>
+<text x="122" y="274" class="tm" text-anchor="middle">読む</text>
+<rect x="172" y="240" width="72" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="208" y="257" class="tb tok" text-anchor="middle">LSTM</text>
+<text x="208" y="274" class="tm" text-anchor="middle">書く</text>
+<rect x="258" y="240" width="50" height="40" class="fs sm" stroke-width="1"/>
+<text x="283" y="265" text-anchor="middle">文</text>
+<line x1="72" y1="260" x2="80" y2="260" class="l w1"/>
+<polygon points="86,260 80,256.5 80,263.5" class="ft"/>
+<line x1="158" y1="260" x2="166" y2="260" class="l w1"/>
+<polygon points="172,260 166,256.5 166,263.5" class="ft"/>
+<line x1="244" y1="260" x2="252" y2="260" class="l w1"/>
+<polygon points="258,260 252,256.5 252,263.5" class="ft"/>
+<text x="12" y="304">元の文の代わりに画像を入れ、読む部品</text>
+<text x="12" y="322">（エンコーダ）を CNN に替えた</text>
+<text x="12" y="340" class="tm">LSTM：長い並びも覚えやすくした RNN</text>
+<line x1="12" y1="354" x2="308" y2="354" class="l sb w1"/>
+<text x="12" y="376" class="tb">② 流れ（文は説明のための例）</text>
+<rect x="12" y="388" width="296" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="405" class="tb ta" text-anchor="middle">CNN（画像分類で事前学習したもの）</text>
+<text x="160" y="421" class="tm" text-anchor="middle">犬が走る写真を読み、数の並びにする</text>
+<line x1="44" y1="428" x2="44" y2="528" class="l sa w1"/>
+<polygon points="44,534 40.5,528 47.5,528" class="fa"/>
+<text x="52" y="452" class="tm">最後の隠れ層の数の並びを渡す</text>
+<text x="52" y="470" class="tm">（画像を入れるのは最初の1回だけ）</text>
+<rect x="12" y="536" width="64" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="44" y="556" class="tb tok" text-anchor="middle">LSTM</text>
+<rect x="88" y="536" width="64" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="120" y="556" class="tb tok" text-anchor="middle">LSTM</text>
+<rect x="164" y="536" width="64" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="196" y="556" class="tb tok" text-anchor="middle">LSTM</text>
+<rect x="240" y="536" width="68" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="274" y="556" class="tb tok" text-anchor="middle">LSTM</text>
+<line x1="76" y1="551" x2="82" y2="551" class="l w1"/>
+<polygon points="88,551 82,547.5 82,554.5" class="ft"/>
+<line x1="152" y1="551" x2="158" y2="551" class="l w1"/>
+<polygon points="164,551 158,547.5 158,554.5" class="ft"/>
+<line x1="228" y1="551" x2="234" y2="551" class="l w1"/>
+<polygon points="240,551 234,547.5 234,554.5" class="ft"/>
+<text x="120" y="526" class="tb" text-anchor="middle">犬が</text>
+<text x="196" y="526" class="tb" text-anchor="middle">走る</text>
+<text x="274" y="526" class="tb" text-anchor="middle">〈終了〉</text>
+<text x="120" y="586" class="tm" text-anchor="middle">〈開始〉</text>
+<text x="196" y="586" class="tm" text-anchor="middle">犬が</text>
+<text x="274" y="586" class="tm" text-anchor="middle">走る</text>
+<text x="12" y="610">箱の上の行：その回に LSTM が出す語</text>
+<text x="12" y="628">箱の下の行：その回に入れる語</text>
+<text x="12" y="646" class="tm">前に出した語を次の回に入れ、1語ずつ書く。</text>
+<text x="12" y="664" class="tm">〈終了〉を出したら、文ができあがり</text>
+<line x1="12" y1="678" x2="308" y2="678" class="l sb w1"/>
+<text x="12" y="700" class="tb">③ 似たものとの違い（入力 → 出力）</text>
+<rect x="12" y="710" width="132" height="40" class="fas sa" stroke-width="1"/>
+<text x="78" y="735" class="tb ta" text-anchor="middle">NIC</text>
+<rect x="144" y="710" width="164" height="40" class="fas sa" stroke-width="1"/>
+<text x="152" y="727">画像 → 文</text>
+<text x="152" y="743" class="tm">CNN で読み LSTM で書く</text>
+<rect x="12" y="750" width="132" height="40" class="fs sb" stroke-width="1"/>
+<text x="78" y="767" text-anchor="middle">Text-to-Image</text>
+<text x="78" y="783" class="tm" text-anchor="middle">（DALL-E など）</text>
+<rect x="144" y="750" width="164" height="40" class="fs sb" stroke-width="1"/>
+<text x="152" y="767">文 → 画像</text>
+<text x="152" y="783" class="tm">NIC と向きが逆</text>
+<rect x="12" y="790" width="132" height="40" class="fs sb" stroke-width="1"/>
+<text x="78" y="815" text-anchor="middle">VQA</text>
+<rect x="144" y="790" width="164" height="40" class="fs sb" stroke-width="1"/>
+<text x="152" y="807">画像＋質問 → 答え</text>
+<text x="152" y="823" class="tm">質問に答える</text>
+<rect x="12" y="830" width="132" height="40" class="fs sb" stroke-width="1"/>
+<text x="78" y="847" text-anchor="middle">ViT の</text>
+<text x="78" y="863" text-anchor="middle">画像分類</text>
+<rect x="144" y="830" width="164" height="40" class="fs sb" stroke-width="1"/>
+<text x="152" y="847">画像 → クラス</text>
+<text x="152" y="863" class="tm">パッチに分け Transformer へ</text>
+<text x="12" y="892" class="tm">NIC だけが、画像から文を1語ずつ書く</text>
+</svg>

@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 728" role="img" aria-labelledby="fig-g-invariance-t fig-g-invariance-d">
+<title id="fig-g-invariance-t">不変性の獲得：最大値プーリングで、模様が少しずれても出力が同じになる</title>
+<desc id="fig-g-invariance-d">例は4×4の特徴マップで、9は猫の耳の模様が強く出た所。2×2の区画ごとに最大の値を取る（最大値プーリング）。ほかの値は、右上の区画に1、右下の区画に4、左下の区画に2。①9が左上の区画の右上にあるとき、出力は上の行が9・1、下の行が2・4。②9が左へ1マス動いても同じ区画の中なので、特徴マップは2マス違うのに出力は①と同じ9・1、2・4。③9が右へ1マス動いて隣の区画に入ると、出力は0・9、2・4になり、上の行の2つが変わる。区画の中のどこにあるかを捨て、あるかどうかを残すので、小さなずれに強くなる。畳み込みの出力は模様がずれると一緒にずれ、プーリングがそれを和らげる。位置を捨てるので、画素ごとに答えるセグメンテーションでは縮めた分を戻す。データ拡張はずらした画像で学習して強くする方法、プーリングはしくみ（構造）で強くする方法。</desc>
+<text x="12" y="20" class="tb">不変性：少しずれても、出力が同じ</text>
+<text x="12" y="42" class="tm">例：特徴マップ 4×4。9＝猫の耳の模様が</text>
+<text x="12" y="60" class="tm">強く出た所。2×2 の区画（太線）ごとに</text>
+<text x="12" y="78" class="tm">最大の値を取る（最大値プーリング）</text>
+<text x="12" y="118" class="tb">① もとの位置（左上の区画の右上）</text>
+<rect x="24" y="128" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="144.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="128" width="24" height="24" class="fwn swn" stroke-width="1"/>
+<text x="60" y="144.5" class="tb" text-anchor="middle">9</text>
+<rect x="72" y="128" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="144.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="128" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="144.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="152" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="168.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="152" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="168.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="152" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="168.5" class="tm" text-anchor="middle">1</text>
+<rect x="96" y="152" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="168.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="176" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="192.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="176" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="192.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="176" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="192.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="176" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="192.5" class="tm" text-anchor="middle">4</text>
+<rect x="24" y="200" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="216.5" class="tm" text-anchor="middle">2</text>
+<rect x="48" y="200" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="216.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="200" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="216.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="200" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="216.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="128" width="96" height="96" class="l sa w2" stroke-width="2.5"/>
+<line x1="72" y1="128" x2="72" y2="224" class="l sa w2"/>
+<line x1="24" y1="176" x2="120" y2="176" class="l sa w2"/>
+<line x1="130" y1="176" x2="186" y2="176" class="l sm w1"/>
+<polyline points="179.7,179.04 186,176 179.7,172.96" class="l sm w1"/>
+<text x="158" y="168" class="tm" text-anchor="middle">最大値</text>
+<rect x="196" y="146" width="30" height="30" class="fwn swn" stroke-width="1"/>
+<text x="211" y="165.5" class="tb" text-anchor="middle">9</text>
+<rect x="226" y="146" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="241" y="165.5" class="tb" text-anchor="middle">1</text>
+<rect x="196" y="176" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="211" y="195.5" class="tb" text-anchor="middle">2</text>
+<rect x="226" y="176" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="241" y="195.5" class="tb" text-anchor="middle">4</text>
+<text x="12" y="252" class="tb">② 9 が左へ1マス（同じ区画の中）</text>
+<rect x="24" y="262" width="24" height="24" class="fwn swn" stroke-width="1"/>
+<text x="36" y="278.5" class="tb" text-anchor="middle">9</text>
+<rect x="48" y="262" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="278.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="262" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="278.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="262" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="278.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="286" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="302.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="286" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="302.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="286" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="302.5" class="tm" text-anchor="middle">1</text>
+<rect x="96" y="286" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="302.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="310" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="326.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="310" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="326.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="310" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="326.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="310" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="326.5" class="tm" text-anchor="middle">4</text>
+<rect x="24" y="334" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="350.5" class="tm" text-anchor="middle">2</text>
+<rect x="48" y="334" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="350.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="334" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="350.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="334" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="350.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="262" width="96" height="96" class="l sa w2" stroke-width="2.5"/>
+<line x1="72" y1="262" x2="72" y2="358" class="l sa w2"/>
+<line x1="24" y1="310" x2="120" y2="310" class="l sa w2"/>
+<line x1="130" y1="310" x2="186" y2="310" class="l sm w1"/>
+<polyline points="179.7,313.04 186,310 179.7,306.96" class="l sm w1"/>
+<text x="158" y="302" class="tm" text-anchor="middle">最大値</text>
+<rect x="196" y="280" width="30" height="30" class="fwn swn" stroke-width="1"/>
+<text x="211" y="299.5" class="tb" text-anchor="middle">9</text>
+<rect x="226" y="280" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="241" y="299.5" class="tb" text-anchor="middle">1</text>
+<rect x="196" y="310" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="211" y="329.5" class="tb" text-anchor="middle">2</text>
+<rect x="226" y="310" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="241" y="329.5" class="tb" text-anchor="middle">4</text>
+<text x="12" y="378" class="tok">→ 特徴マップは2マス違うのに、出力は①と同じ</text>
+<text x="12" y="406" class="tb">③ 9 が右へ1マス（隣の区画へ）</text>
+<rect x="24" y="416" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="432.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="416" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="432.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="416" width="24" height="24" class="fwn swn" stroke-width="1"/>
+<text x="84" y="432.5" class="tb" text-anchor="middle">9</text>
+<rect x="96" y="416" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="432.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="440" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="456.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="440" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="456.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="440" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="456.5" class="tm" text-anchor="middle">1</text>
+<rect x="96" y="440" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="456.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="464" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="480.5" class="tm" text-anchor="middle">0</text>
+<rect x="48" y="464" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="480.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="464" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="480.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="464" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="480.5" class="tm" text-anchor="middle">4</text>
+<rect x="24" y="488" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="36" y="504.5" class="tm" text-anchor="middle">2</text>
+<rect x="48" y="488" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="60" y="504.5" class="tm" text-anchor="middle">0</text>
+<rect x="72" y="488" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="84" y="504.5" class="tm" text-anchor="middle">0</text>
+<rect x="96" y="488" width="24" height="24" class="fs sb" stroke-width="1"/>
+<text x="108" y="504.5" class="tm" text-anchor="middle">0</text>
+<rect x="24" y="416" width="96" height="96" class="l sa w2" stroke-width="2.5"/>
+<line x1="72" y1="416" x2="72" y2="512" class="l sa w2"/>
+<line x1="24" y1="464" x2="120" y2="464" class="l sa w2"/>
+<line x1="130" y1="464" x2="186" y2="464" class="l sm w1"/>
+<polyline points="179.7,467.04 186,464 179.7,460.96" class="l sm w1"/>
+<text x="158" y="456" class="tm" text-anchor="middle">最大値</text>
+<rect x="196" y="434" width="30" height="30" class="fng sng" stroke-width="1"/>
+<text x="211" y="453.5" class="tb tng" text-anchor="middle">0</text>
+<rect x="226" y="434" width="30" height="30" class="fng sng" stroke-width="1"/>
+<text x="241" y="453.5" class="tb tng" text-anchor="middle">9</text>
+<rect x="196" y="464" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="211" y="483.5" class="tb" text-anchor="middle">2</text>
+<rect x="226" y="464" width="30" height="30" class="fs sb" stroke-width="1"/>
+<text x="241" y="483.5" class="tb" text-anchor="middle">4</text>
+<text x="12" y="532" class="tng">→ 区画をまたぐと、出力が変わる（赤）</text>
+<text x="12" y="562" class="tb">押さえどころ</text>
+<text x="12" y="582" class="tm">・区画の中のどこにあるかを捨て、あるか</text>
+<text x="12" y="600" class="tm">　どうかを残す → 小さなずれに強くなる</text>
+<text x="12" y="620" class="tm">・畳み込みの出力は、模様がずれると一緒に</text>
+<text x="12" y="638" class="tm">　ずれる。プーリングがそれを和らげる</text>
+<text x="12" y="658" class="tm">・位置を捨てるので、画素ごとに答える用途</text>
+<text x="12" y="676" class="tm">　（セグメンテーション）では縮めた分を戻す</text>
+<text x="12" y="696" class="tm">・データ拡張＝ずらした画像で学習して強くする</text>
+<text x="12" y="714" class="tm">・プーリング＝しくみ（構造）で強くする</text>
+</svg>

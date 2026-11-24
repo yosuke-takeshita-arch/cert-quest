@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-labelledby="fig-sc-mgmt-csirt-psirt-soc-t fig-sc-mgmt-csirt-psirt-soc-d">
+<title id="fig-sc-mgmt-csirt-psirt-soc-t">CSIRT・PSIRT・SOC と情報セキュリティ委員会の役割</title>
+<desc id="fig-sc-mgmt-csirt-psirt-soc-d">いちばん上に情報セキュリティ委員会があり、方針と改善計画を決める。その下は2つに分かれる。左は自社の社内システムを守る流れで、SOC がログや通信を見張って攻撃の兆しを見つけ、CSIRT に知らせ、CSIRT が調べて封じ込めと復旧をする。右は自社が売る製品を守る流れで、外部の発見者が製品の脆弱性を知らせ、PSIRT が受け付けて調べ、修正版と告知を出す。</desc>
+<text x="12" y="20" class="tb">誰が何をするか</text>
+<rect x="40" y="32" width="240" height="50" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="52" class="tb" text-anchor="middle">情報セキュリティ委員会</text>
+<text x="160" y="70" class="ta" text-anchor="middle">決める：方針・改善計画</text>
+<line x1="84" y1="82" x2="84" y2="100.4" class="l sm w1"/>
+<polygon points="84,106 80.5,100.4 87.5,100.4" class="fm"/>
+<line x1="236" y1="82" x2="236" y2="100.4" class="l sm w1"/>
+<polygon points="236,106 232.5,100.4 239.5,100.4" class="fm"/>
+<text x="84" y="124" class="tb" text-anchor="middle">自社のシステム</text>
+<text x="236" y="124" class="tb" text-anchor="middle">自社が売る製品</text>
+<rect x="12" y="134" width="144" height="58" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="156" class="tb" text-anchor="middle">SOC</text>
+<text x="84" y="176" text-anchor="middle">見張る→兆しを発見</text>
+<line x1="84" y1="192" x2="84" y2="210.4" class="l sm w1"/>
+<polygon points="84,216 80.5,210.4 87.5,210.4" class="fm"/>
+<text x="92" y="208" class="tm">知らせる</text>
+<rect x="12" y="218" width="144" height="76" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="240" class="tb" text-anchor="middle">CSIRT</text>
+<text x="84" y="260" text-anchor="middle">調べて対処する</text>
+<text x="84" y="280" text-anchor="middle">封じ込め・復旧</text>
+<rect x="164" y="134" width="144" height="58" class="fs sb dsh" stroke-width="1.5" rx="6"/>
+<text x="236" y="156" class="tb" text-anchor="middle">外部の発見者</text>
+<text x="236" y="176" text-anchor="middle">製品の脆弱性を報告</text>
+<line x1="236" y1="192" x2="236" y2="210.4" class="l sm w1"/>
+<polygon points="236,216 232.5,210.4 239.5,210.4" class="fm"/>
+<rect x="164" y="218" width="144" height="76" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="240" class="tb" text-anchor="middle">PSIRT</text>
+<text x="236" y="260" text-anchor="middle">受け付けて調べる</text>
+<text x="236" y="280" text-anchor="middle">修正版・告知を出す</text>
+<text x="12" y="324" class="tm">C＝Computer（自社のシステム）</text>
+<text x="12" y="344" class="tm">P＝Product（自社の製品）</text>
+<text x="12" y="364" class="tm">SOC＝Security Operation Center</text>
+<text x="12" y="384" class="tm">　　（見張りの拠点）</text>
+</svg>

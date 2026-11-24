@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 368" role="img" aria-labelledby="fig-sc-audit-risk-t fig-sc-audit-risk-d">
+<title id="fig-sc-audit-risk-t">固有リスク・統制リスク・残存リスクとリスク・アプローチ</title>
+<desc id="fig-sc-audit-risk-d">例はネット通販のカード決済。左の長い棒が固有リスクで、対策が何も無いと仮定したときのリスクの大きさ。真ん中の棒は、暗号化などの対策をした後に残るリスクで、残存リスク。対策に不備や不足があって防げない部分が統制リスク。右下は、リスク・アプローチの例。決済は残存リスクが大きいので監査の時間を多く、社内の掲示板は小さいので少なく配る。監査資源をすべての対象に均等には配らない。また、監査人が重要な不備を見逃して結論を誤る監査リスクは、完全には無くせず、合理的に低い水準に抑えるもの。</desc>
+<text x="12" y="20" class="tb">監査対象に対するリスク（例：カード決済）</text>
+<rect x="12" y="36" width="230" height="30" class="fng sng w1"/>
+<text x="20" y="56">固有リスク（対策が無いと仮定）</text>
+<rect x="12" y="76" width="120" height="30" class="fwn l w1"/>
+<text x="20" y="96">残存リスク</text>
+<text x="140" y="96" class="tm">←対策の後も残る分</text>
+<text x="12" y="130">統制リスク＝対策の不備・不足で</text>
+<text x="12" y="148">防げない・見つけられない部分</text>
+<text x="12" y="166" class="tm">例：暗号化はあるが委託先の管理が甘い</text>
+<text x="12" y="200" class="tb">リスク・アプローチ（監査の時間の配り方）</text>
+<rect x="12" y="212" width="200" height="26" class="fas sa w1"/>
+<text x="20" y="230">カード決済　多く</text>
+<rect x="12" y="244" width="110" height="26" class="fas sa w1"/>
+<text x="20" y="262">在庫　中</text>
+<rect x="12" y="276" width="44" height="26" class="fas sa w1"/>
+<text x="64" y="294">社内掲示板　少し</text>
+<text x="12" y="326" class="tng">均等に配る→リスク・アプローチの逆</text>
+<text x="12" y="350" class="tm">監査リスク（見逃して誤る）は完全には</text>
+<text x="12" y="366" class="tm">無くせない→合理的に低く抑える</text>
+</svg>

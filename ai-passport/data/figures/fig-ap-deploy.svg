@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 370" role="img" aria-labelledby="fig-ap-deploy-t fig-ap-deploy-d">
+<title id="fig-ap-deploy-t">デプロイ：作ったものを検証の環境で確かめ、人が承認してから本番の環境に置く</title>
+<desc id="fig-ap-deploy-d">例はコーディングエージェントで作ったLP（ランディングページ）。①作る（開発）：自分の手元にあり、外の人は見られない。②検証の環境（staging）にデプロイし、表示・リンク・フォームを確かめる。③人が承認する（GitHubの環境の機能で承認を求められる）。④本番の環境（production）にデプロイして公開する。AIで作ったページも②③を飛ばさない。効果や実績の言い方は景品表示法も確かめる。</desc>
+<text x="12" y="20" class="tb">デプロイ：作ったものを使える環境に置く</text>
+<text x="12" y="40" class="tm">例：コーディングエージェントで作った LP</text>
+<rect x="12" y="52" width="296" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="75" class="tb">① 作る（開発）</text>
+<text x="22" y="95">自分の手元。外の人は見られない</text>
+<line x1="160" y1="110" x2="160" y2="124" class="l sa w2"/>
+<polyline points="156.00,117.00 160,124 164.00,117.00" class="l sa w2"/>
+<text x="170" y="122" class="tm">デプロイ</text>
+<rect x="12" y="126" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="149" class="tb">② 検証の環境（staging）に置く</text>
+<text x="22" y="169">表示・リンク・フォームを確かめる</text>
+<line x1="160" y1="184" x2="160" y2="198" class="l sa w2"/>
+<polyline points="156.00,191.00 160,198 164.00,191.00" class="l sa w2"/>
+<rect x="12" y="200" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="223" class="tb">③ 人が承認する</text>
+<text x="22" y="243" class="tm">GitHub の環境の機能で、承認を求められる</text>
+<line x1="160" y1="258" x2="160" y2="272" class="l sa w2"/>
+<polyline points="156.00,265.00 160,272 164.00,265.00" class="l sa w2"/>
+<text x="170" y="270" class="tm">デプロイ</text>
+<rect x="12" y="274" width="296" height="34" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="296" class="tb">④ 本番の環境（production）で公開</text>
+<text x="12" y="332" class="tb tng">AI で作ったページも、②③を飛ばさない</text>
+<text x="12" y="352" class="tm">効果や実績の言い方は景品表示法も確かめる</text>
+</svg>

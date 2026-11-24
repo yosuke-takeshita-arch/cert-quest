@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 764" role="img" aria-labelledby="fig-g-leaky-relu-t fig-g-leaky-relu-d">
+<title id="fig-g-leaky-relu-t">Leaky ReLU：負の側にも小さな傾き（例 0.01）を残すので、負の入力ばかりのユニットでも重みが動く</title>
+<desc id="fig-g-leaky-relu-d">Leaky ReLUは、xが0以上ならx、負なら0.01×xを出す活性化関数で、ReLUの改良版。leakyは漏れのあるという意味。①ReLUとの違いは負の側だけ：ReLUは負の側が0で傾きも0、Leaky ReLUは負の側に小さな傾きがある。正の側は同じで傾き1。負の側の傾き0.01は小さすぎて見えないので、グラフでは大きくして描いた。②数で比べる（傾き0.01のとき）：入力−3、−1、2に対して、ReLUの出力は0、0、2で傾きは0、0、1。Leaky ReLUの出力は−0.03、−0.01、2で傾きは0.01、0.01、1。③入力がいつも負のユニットで重みは動くか（後ろから届いた勾配を2とする例）：ReLUは2×傾き0＝0で、重みが動かず学習しなくなる。Leaky ReLUは2×傾き0.01＝0.02で、小さくても0ではないので重みが動く。似た仲間：負の側の傾きを固定（例0.01）するのがLeaky ReLU、学習で決めるのがPReLU、乱数で選ぶのがRReLU。</desc>
+<text x="12" y="20" class="tb">Leaky ReLU：負の側に小さな傾きを残す</text>
+<text x="12" y="42" class="tm">x が 0 以上なら x、負なら 0.01×x</text>
+<text x="12" y="60" class="tm">（leaky＝漏れのある）</text>
+<text x="12" y="90" class="tb">① ReLU との違いは負の側だけ</text>
+<rect x="40" y="102" width="264" height="130" class="sb fs" stroke-width="1"/>
+<line x1="40" y1="202" x2="304" y2="202" class="l sm w1"/>
+<line x1="172" y1="102" x2="172" y2="232" class="l sm w1"/>
+<text x="35" y="206.5" class="tm" text-anchor="end">0</text>
+<text x="35" y="106.5" class="tm" text-anchor="end">5</text>
+<text x="40" y="247" class="tm" text-anchor="middle">−5</text>
+<text x="172" y="247" class="tm" text-anchor="middle">0</text>
+<text x="304" y="247" class="tm" text-anchor="middle">5</text>
+<polyline points="40,202 172,202" class="l sm w2 dsh" fill="none"/>
+<polyline points="40,227 172,202 304,102" class="l sa w2" fill="none"/>
+<text x="45.28" y="194" class="tm">ReLU：0（傾き 0）</text>
+<text x="179.92000000000002" y="222" class="tb ta">← Leaky ReLU（青）</text>
+<text x="293.44" y="132" class="tb twn" text-anchor="end">正の側は同じ（傾き 1）</text>
+<text x="12" y="270" class="tm">（負の側の傾き 0.01 は小さすぎて見えない</text>
+<text x="12" y="288" class="tm">　ので、大きくして描いた）</text>
+<text x="12" y="320" class="tb">② 数で比べる（傾き 0.01 のとき）</text>
+<rect x="12" y="332" width="100" height="26" class="fbg sb" stroke-width="1"/>
+<text x="62" y="350" class="tb tm" text-anchor="middle">入力</text>
+<rect x="112" y="332" width="66" height="26" class="fbg sb" stroke-width="1"/>
+<text x="145" y="350" class="tb tm" text-anchor="middle">−3</text>
+<rect x="178" y="332" width="66" height="26" class="fbg sb" stroke-width="1"/>
+<text x="211" y="350" class="tb tm" text-anchor="middle">−1</text>
+<rect x="244" y="332" width="64" height="26" class="fbg sb" stroke-width="1"/>
+<text x="276" y="350" class="tb tm" text-anchor="middle">2</text>
+<rect x="12" y="358" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="62" y="376" class="tb" text-anchor="middle">ReLU 出力</text>
+<rect x="112" y="358" width="66" height="26" class="fs sb" stroke-width="1"/>
+<text x="145" y="376" class="tb" text-anchor="middle">0</text>
+<rect x="178" y="358" width="66" height="26" class="fs sb" stroke-width="1"/>
+<text x="211" y="376" class="tb" text-anchor="middle">0</text>
+<rect x="244" y="358" width="64" height="26" class="fs sb" stroke-width="1"/>
+<text x="276" y="376" class="tb" text-anchor="middle">2</text>
+<rect x="12" y="384" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="62" y="402" class="tb" text-anchor="middle">ReLU 傾き</text>
+<rect x="112" y="384" width="66" height="26" class="fng sng" stroke-width="1"/>
+<text x="145" y="402" class="tb tng" text-anchor="middle">0</text>
+<rect x="178" y="384" width="66" height="26" class="fng sng" stroke-width="1"/>
+<text x="211" y="402" class="tb tng" text-anchor="middle">0</text>
+<rect x="244" y="384" width="64" height="26" class="fs sb" stroke-width="1"/>
+<text x="276" y="402" class="tb" text-anchor="middle">1</text>
+<rect x="12" y="410" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="62" y="428" class="tb" text-anchor="middle">Leaky 出力</text>
+<rect x="112" y="410" width="66" height="26" class="fs sb" stroke-width="1"/>
+<text x="145" y="428" class="tb" text-anchor="middle">−0.03</text>
+<rect x="178" y="410" width="66" height="26" class="fs sb" stroke-width="1"/>
+<text x="211" y="428" class="tb" text-anchor="middle">−0.01</text>
+<rect x="244" y="410" width="64" height="26" class="fs sb" stroke-width="1"/>
+<text x="276" y="428" class="tb" text-anchor="middle">2</text>
+<rect x="12" y="436" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="62" y="454" class="tb" text-anchor="middle">Leaky 傾き</text>
+<rect x="112" y="436" width="66" height="26" class="fas sa" stroke-width="1"/>
+<text x="145" y="454" class="tb ta" text-anchor="middle">0.01</text>
+<rect x="178" y="436" width="66" height="26" class="fas sa" stroke-width="1"/>
+<text x="211" y="454" class="tb ta" text-anchor="middle">0.01</text>
+<rect x="244" y="436" width="64" height="26" class="fs sb" stroke-width="1"/>
+<text x="276" y="454" class="tb" text-anchor="middle">1</text>
+<line x1="160" y1="472" x2="160" y2="480.4" class="l sm w1"/>
+<polygon points="160,486 156.5,480.4 163.5,480.4" class="fm"/>
+<text x="12" y="508" class="tb">③ 入力がいつも負のユニットで、重みは</text>
+<text x="12" y="528" class="tb">動くか（後ろから届いた勾配を 2 とする例）</text>
+<rect x="12" y="542" width="144" height="112" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="84" y="564" class="tb tng" text-anchor="middle">ReLU</text>
+<text x="84" y="586" class="tb" text-anchor="middle">2 × 傾き 0</text>
+<text x="84" y="606" class="tl tng" text-anchor="middle">＝ 0</text>
+<text x="84" y="628" class="tm" text-anchor="middle">重みが動かない</text>
+<text x="84" y="646" class="tm" text-anchor="middle">（学習しなくなる）</text>
+<rect x="164" y="542" width="144" height="112" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="236" y="564" class="tb ta" text-anchor="middle">Leaky ReLU</text>
+<text x="236" y="586" class="tb" text-anchor="middle">2 × 傾き 0.01</text>
+<text x="236" y="606" class="tl ta" text-anchor="middle">＝ 0.02</text>
+<text x="236" y="628" class="tm" text-anchor="middle">小さくても 0 では</text>
+<text x="236" y="646" class="tm" text-anchor="middle">ない → 重みが動く</text>
+<text x="12" y="684" class="tb">似た仲間：負の側の傾きをどう決めるか</text>
+<text x="12" y="706" class="tb">固定（例 0.01）</text>
+<text x="150" y="706" class="tb ta">→ Leaky ReLU</text>
+<text x="12" y="728" class="tb">学習で決める</text>
+<text x="150" y="728" class="tb">→ PReLU</text>
+<text x="12" y="750" class="tb">乱数で選ぶ</text>
+<text x="150" y="750" class="tb">→ RReLU</text>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 590" role="img" aria-labelledby="fig-dx-customer-journey-t fig-dx-customer-journey-d">
+<title id="fig-dx-customer-journey-t">ペルソナとカスタマージャーニー</title>
+<desc id="fig-dx-customer-journey-d">上：ペルソナは、典型的な利用者を、名前・年齢・利用の状況・サービスで実現したいことまで細かく設定した、架空の一人の人物像（図は例）。下：カスタマージャーニーマップ。顧客が、知る、興味、比較、購入、利用、推奨の段階で、どの接点で、どう行動し、何を感じるかを時系列で並べた表（図は例）。比較から購入の段階に不安がある、のように、気持ちの谷を見つけて、どの接点で何を伝えるかを考える。ジャーニーマップには、観察を通じて現状のありのままを記載するAs Isと、課題がどう解消されるかというアイデアも記載するTo Beがある。</desc>
+<text x="12" y="22" class="tb">ペルソナ：架空の一人の人物像（例）</text>
+<rect x="12" y="28" width="296" height="100" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="52" class="tb">佐藤さん（34歳・会社員）</text>
+<text x="24" y="74">状況：平日は帰宅が遅い</text>
+<text x="24" y="94">したいこと：家事の時間を減らす</text>
+<text x="24" y="114">悩み：選ぶ時間がない</text>
+<line x1="12" y1="144" x2="308" y2="144" class="l sb w1"/>
+<text x="12" y="160" class="tb">カスタマージャーニーマップ（例）</text>
+<rect x="12" y="166" width="52" height="28" class="fas sa" stroke-width="1"/>
+<text x="38" y="185" class="tb" text-anchor="middle">段階</text>
+<rect x="64" y="166" width="88" height="28" class="fas sa" stroke-width="1"/>
+<text x="108" y="185" class="tb" text-anchor="middle">接点</text>
+<rect x="152" y="166" width="100" height="28" class="fas sa" stroke-width="1"/>
+<text x="202" y="185" class="tb" text-anchor="middle">行動</text>
+<rect x="252" y="166" width="56" height="28" class="fas sa" stroke-width="1"/>
+<text x="280" y="185" class="tb" text-anchor="middle">気持ち</text>
+<rect x="12" y="194" width="52" height="28" class="fs sb" stroke-width="1"/>
+<text x="38" y="213" class="tb" text-anchor="middle">知る</text>
+<rect x="64" y="194" width="88" height="28" class="fs sb" stroke-width="1"/>
+<text x="108" y="213" text-anchor="middle">SNS・広告</text>
+<rect x="152" y="194" width="100" height="28" class="fs sb" stroke-width="1"/>
+<text x="202" y="213" text-anchor="middle">広告を見る</text>
+<rect x="252" y="194" width="56" height="28" class="fs sb" stroke-width="1"/>
+<text x="280" y="213" text-anchor="middle">関心</text>
+<rect x="12" y="222" width="52" height="28" class="fs sb" stroke-width="1"/>
+<text x="38" y="241" class="tb" text-anchor="middle">興味</text>
+<rect x="64" y="222" width="88" height="28" class="fs sb" stroke-width="1"/>
+<text x="108" y="241" text-anchor="middle">Webサイト</text>
+<rect x="152" y="222" width="100" height="28" class="fs sb" stroke-width="1"/>
+<text x="202" y="241" text-anchor="middle">情報を調べる</text>
+<rect x="252" y="222" width="56" height="28" class="fs sb" stroke-width="1"/>
+<text x="280" y="241" text-anchor="middle">期待</text>
+<rect x="12" y="250" width="52" height="28" class="fs sb" stroke-width="1"/>
+<text x="38" y="269" class="tb" text-anchor="middle">比較</text>
+<rect x="64" y="250" width="88" height="28" class="fs sb" stroke-width="1"/>
+<text x="108" y="269" text-anchor="middle">口コミ・店舗</text>
+<rect x="152" y="250" width="100" height="28" class="fs sb" stroke-width="1"/>
+<text x="202" y="269" text-anchor="middle">他社と比べる</text>
+<rect x="252" y="250" width="56" height="28" class="fs sb" stroke-width="1"/>
+<text x="280" y="269" text-anchor="middle">迷い</text>
+<rect x="12" y="278" width="52" height="28" class="fng sng" stroke-width="1"/>
+<text x="38" y="297" class="tb" text-anchor="middle">購入</text>
+<rect x="64" y="278" width="88" height="28" class="fng sng" stroke-width="1"/>
+<text x="108" y="297" text-anchor="middle">EC・店舗</text>
+<rect x="152" y="278" width="100" height="28" class="fng sng" stroke-width="1"/>
+<text x="202" y="297" text-anchor="middle">申し込む</text>
+<rect x="252" y="278" width="56" height="28" class="fng sng" stroke-width="1"/>
+<text x="280" y="297" text-anchor="middle">不安</text>
+<rect x="12" y="306" width="52" height="28" class="fs sb" stroke-width="1"/>
+<text x="38" y="325" class="tb" text-anchor="middle">利用</text>
+<rect x="64" y="306" width="88" height="28" class="fs sb" stroke-width="1"/>
+<text x="108" y="325" text-anchor="middle">アプリ</text>
+<rect x="152" y="306" width="100" height="28" class="fs sb" stroke-width="1"/>
+<text x="202" y="325" text-anchor="middle">使い始める</text>
+<rect x="252" y="306" width="56" height="28" class="fs sb" stroke-width="1"/>
+<text x="280" y="325" text-anchor="middle">満足</text>
+<rect x="12" y="334" width="52" height="28" class="fs sb" stroke-width="1"/>
+<text x="38" y="353" class="tb" text-anchor="middle">推奨</text>
+<rect x="64" y="334" width="88" height="28" class="fs sb" stroke-width="1"/>
+<text x="108" y="353" text-anchor="middle">SNS</text>
+<rect x="152" y="334" width="100" height="28" class="fs sb" stroke-width="1"/>
+<text x="202" y="353" text-anchor="middle">人に勧める</text>
+<rect x="252" y="334" width="56" height="28" class="fs sb" stroke-width="1"/>
+<text x="280" y="353" text-anchor="middle">愛着</text>
+<text x="12" y="384">色つきの行（購入）：気持ちが落ち込む</text>
+<text x="12" y="404">ところ。どの接点で何を伝えるか考える</text>
+<line x1="12" y1="422" x2="308" y2="422" class="l sb w1"/>
+<text x="12" y="446" class="tb">ジャーニーマップは2種類</text>
+<rect x="12" y="470" width="296" height="52" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="491" text-anchor="middle">As Is：ユーザーを観察して、</text>
+<text x="160" y="510" text-anchor="middle">現状のありのままを書く</text>
+<rect x="12" y="530" width="296" height="52" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="551" text-anchor="middle">To Be：課題がどう解消されるか、</text>
+<text x="160" y="570" text-anchor="middle">そのアイデアも書く</text>
+</svg>

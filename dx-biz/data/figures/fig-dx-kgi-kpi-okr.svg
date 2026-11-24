@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 500" role="img" aria-labelledby="fig-dx-kgi-kpi-okr-t fig-dx-kgi-kpi-okr-d">
+<title id="fig-dx-kgi-kpi-okr-t">KGI・KPI・OKR の関係</title>
+<desc id="fig-dx-kgi-kpi-okr-d">上の段は KGI と KPI。KGI は最終的に達成したい目標の達成度を測る指標で、上の箱。その下の KPI の箱2つは、KGI を達成するために、途中の重要な業務の進み具合を測る指標で、矢印で KGI につながる。デジタルガバナンス・コード3.0は、すべての取組に KPI を設定して評価し、KPI と KGI を連携させることを望ましい方向性に挙げる。下の段は OKR。目指す目標（Objectives）と、その達成を測る主要な成果（Key Results）を組で決める。組織の O と KR の下に個人の O と KR を置き、組織と個人の目標をつなぐ。</desc>
+<text x="12" y="22" class="tb">KGI と KPI：ゴールと途中の物差し</text>
+<rect x="60" y="36" width="200" height="52" class="fa l sa"/>
+<text x="160" y="58" class="tb ton" text-anchor="middle">KGI</text>
+<text x="160" y="78" class="ton" text-anchor="middle">最終的な目標の達成度</text>
+<rect x="12" y="130" width="140" height="52" class="fok l sok"/>
+<text x="82" y="152" class="tb" text-anchor="middle">KPI</text>
+<text x="82" y="172" text-anchor="middle">途中の業務の進み</text>
+<rect x="168" y="130" width="140" height="52" class="fok l sok"/>
+<text x="238" y="152" class="tb" text-anchor="middle">KPI</text>
+<text x="238" y="172" text-anchor="middle">途中の業務の進み</text>
+<line x1="82" y1="128" x2="120" y2="94" class="l sa w2"/>
+<polyline points="112.4,96.4 120,94 117.0,101.4" class="l sa w2"/>
+<line x1="238" y1="128" x2="200" y2="94" class="l sa w2"/>
+<polyline points="203.0,101.4 200,94 207.6,96.4" class="l sa w2"/>
+<text x="160" y="118" class="ta" text-anchor="middle">達成に向けて</text>
+<text x="12" y="208">すべての取組に KPI を置き、KGI（財務</text>
+<text x="12" y="226">の成果）と連携させる（デジタルガバナンス・</text>
+<text x="12" y="244">コード3.0 の望ましい方向性）</text>
+<line x1="12" y1="262" x2="308" y2="262" class="l sb w1"/>
+<text x="12" y="286" class="tb">OKR：目標と成果を組で決める</text>
+<text x="12" y="306" class="tm">O＝目指す目標　KR＝達成を測る主要な成果</text>
+<rect x="12" y="320" width="296" height="62" class="fas l sa"/>
+<text x="22" y="342" class="tb">組織</text>
+<text x="70" y="342">O：組織の目標</text>
+<text x="70" y="366">KR1・KR2：達成を測る成果</text>
+<line x1="160" y1="384" x2="160" y2="408" class="l sa w2"/>
+<polyline points="155,402 160,408 165,402" class="l sa w2"/>
+<text x="168" y="402" class="ta tb">つなぐ</text>
+<rect x="12" y="410" width="296" height="62" class="fs l sm"/>
+<text x="22" y="432" class="tb">個人</text>
+<text x="70" y="432">O：個人の目標</text>
+<text x="70" y="456">KR：達成を測る成果</text>
+<text x="12" y="492" class="tm">個人の目標と組織の優先項目を結び付ける</text>
+</svg>

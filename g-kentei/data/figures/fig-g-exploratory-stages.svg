@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 974" role="img" aria-labelledby="fig-g-exploratory-stages-t fig-g-exploratory-stages-d">
+<title id="fig-g-exploratory-stages-t">探索的段階型の開発方式：4つの段階と、段階ごとに次へ進むかを決める門、段階ごとの契約</title>
+<desc id="fig-g-exploratory-stages-d">例は工場の不良品検出AIで、経済産業省の契約ガイドライン（AI編）が提唱する進め方。①アセスメント（下調べ）：ユーザが手軽に出せる一部の画像で、AIを作れそうかを事前に調べる。成果物はレポート等、契約は秘密保持契約書等。門で次へ進むかを決め、進むかやめる。②PoC（試作して確かめる）：画像で試作し、望む精度のモデルが作れるかを確かめる。試行錯誤なので何回か行うことも少なくない。成果物はレポート、試作版のモデル等、契約は導入検証契約書等。門では、例えば精度が目標に遠く届かなければやめる。③開発：本番用の学習済みモデルを作って納品する。成果物は学習済みモデル等、契約はソフトウェア開発契約書。門で進むかを決める。④追加学習：納品したモデルを、運用後の新しいデータで学習し直す。成果物は再利用モデル等。決まったモデル契約はなく、保守運用契約の中に定める、別に結ぶなどが考えられている。段階に分ける理由：AIは試すまで精度が分からないので、段階ごとに結果を見て決めれば、作れないと分かった所でやめられ損失がそこで止まる。ユーザとベンダの認識の違いも段階ごとにすり合わせられる。ウォーターフォールは最初に成果物を確定するが、探索的段階型は最初に確定しない。アジャイルは全体を1つの基本契約で決めるが、探索的段階型は段階ごとに契約を結ぶ。</desc>
+<text x="12" y="20" class="tb">探索的段階型：4つの段階と、段階ごとの門</text>
+<text x="12" y="42" class="tm">例：工場の不良品検出AI。経済産業省の契約</text>
+<text x="12" y="60" class="tm">ガイドライン（AI編）が提唱する進め方</text>
+<rect x="12" y="74" width="296" height="108" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="12" y="74" width="296" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="92" class="tb ta">① アセスメント（下調べ）</text>
+<text x="22" y="120" class="tm">ユーザが手軽に出せる一部の画像で、</text>
+<text x="22" y="138" class="tm">AIを作れそうかを事前に調べる</text>
+<text x="22" y="158" class="tm">成果物：レポート等</text>
+<text x="22" y="178" class="tb">契約：秘密保持契約書等</text>
+<line x1="110" y1="182" x2="110.0" y2="190.4" class="l sm w1"/>
+<polygon points="110,196 106.5,190.4 113.5,190.4" class="fm"/>
+<polygon points="40,212 50,196 170,196 180,212 170,228 50,228" class="fwn l swn w1"/>
+<text x="110" y="217" class="tb twn" text-anchor="middle">門：次へ進むか決める</text>
+<line x1="180" y1="212" x2="208.4" y2="212.0" class="l sng w1"/>
+<polygon points="214,212 208.4,215.5 208.4,208.5" class="fng"/>
+<text x="220" y="217" class="tb tng">やめる</text>
+<line x1="110" y1="228" x2="110.0" y2="242.4" class="l sm w1"/>
+<polygon points="110,248 106.5,242.4 113.5,242.4" class="fm"/>
+<text x="118" y="243" class="tm">進む</text>
+<rect x="12" y="248" width="296" height="126" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="12" y="248" width="296" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="266" class="tb ta">② PoC（試作して確かめる）</text>
+<text x="22" y="294" class="tm">画像で試作し、望む精度のモデルが</text>
+<text x="22" y="312" class="tm">作れるかを確かめる。試行錯誤なので</text>
+<text x="22" y="330" class="tm">何回か行うことも少なくない</text>
+<text x="22" y="350" class="tm">成果物：レポート、試作版のモデル等</text>
+<text x="22" y="370" class="tb">契約：導入検証契約書等</text>
+<line x1="110" y1="374" x2="110.0" y2="382.4" class="l sm w1"/>
+<polygon points="110,388 106.5,382.4 113.5,382.4" class="fm"/>
+<polygon points="40,404 50,388 170,388 180,404 170,420 50,420" class="fwn l swn w1"/>
+<text x="110" y="409" class="tb twn" text-anchor="middle">門：次へ進むか決める</text>
+<line x1="180" y1="404" x2="208.4" y2="404.0" class="l sng w1"/>
+<polygon points="214,404 208.4,407.5 208.4,400.5" class="fng"/>
+<text x="220" y="409" class="tb tng">やめる</text>
+<text x="308" y="430" class="tng" text-anchor="end">例：精度が遠く届かない</text>
+<line x1="110" y1="420" x2="110.0" y2="434.4" class="l sm w1"/>
+<polygon points="110,440 106.5,434.4 113.5,434.4" class="fm"/>
+<text x="118" y="435" class="tm">進む</text>
+<rect x="12" y="440" width="296" height="108" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="12" y="440" width="296" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="458" class="tb ta">③ 開発</text>
+<text x="22" y="486" class="tm">本番用の学習済みモデルを作って</text>
+<text x="22" y="504" class="tm">納品する</text>
+<text x="22" y="524" class="tm">成果物：学習済みモデル等</text>
+<text x="22" y="544" class="tb">契約：ソフトウェア開発契約書</text>
+<line x1="110" y1="548" x2="110.0" y2="556.4" class="l sm w1"/>
+<polygon points="110,562 106.5,556.4 113.5,556.4" class="fm"/>
+<polygon points="40,578 50,562 170,562 180,578 170,594 50,594" class="fwn l swn w1"/>
+<text x="110" y="583" class="tb twn" text-anchor="middle">門：次へ進むか決める</text>
+<line x1="180" y1="578" x2="208.4" y2="578.0" class="l sng w1"/>
+<polygon points="214,578 208.4,581.5 208.4,574.5" class="fng"/>
+<text x="220" y="583" class="tb tng">やめる</text>
+<line x1="110" y1="594" x2="110.0" y2="608.4" class="l sm w1"/>
+<polygon points="110,614 106.5,608.4 113.5,608.4" class="fm"/>
+<text x="118" y="609" class="tm">進む</text>
+<rect x="12" y="614" width="296" height="108" class="fs sb" stroke-width="1.5" rx="6"/>
+<rect x="12" y="614" width="296" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="632" class="tb ta">④ 追加学習</text>
+<text x="22" y="660" class="tm">納品したモデルを、運用後の新しい</text>
+<text x="22" y="678" class="tm">データで学習し直す</text>
+<text x="22" y="698" class="tm">成果物：再利用モデル等</text>
+<text x="22" y="718" class="tb">契約：決まったモデル契約なし</text>
+<text x="22" y="740" class="tm">（保守運用契約の中に定める、別に結ぶなど）</text>
+<text x="12" y="768" class="tb">なぜ段階に分けるか</text>
+<text x="12" y="788" class="tm">AIは試すまで精度が分からない。段階ごとに</text>
+<text x="12" y="806" class="tm">結果を見て決めれば、作れないと分かった所</text>
+<text x="12" y="824" class="tm">でやめられ、損失がそこで止まる。ユーザと</text>
+<text x="12" y="842" class="tm">ベンダの認識の違いも、段階ごとにすり合わ</text>
+<text x="12" y="860" class="tm">せられる</text>
+<text x="12" y="886" class="tb">似た進め方との違い</text>
+<text x="12" y="906" class="tm">・ウォーターフォール：最初に成果物を確定</text>
+<text x="12" y="924" class="tm">　する。探索的段階型は最初に確定しない</text>
+<text x="12" y="942" class="tm">・アジャイル：全体を1つの基本契約で決める。</text>
+<text x="12" y="960" class="tm">　探索的段階型は段階ごとに契約を結ぶ</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 606" role="img" aria-labelledby="fig-dx-matching-flow-t fig-dx-matching-flow-d">
+<title id="fig-dx-matching-flow-t">マッチング・マーケットプレイス型：集客から再取引までを一気通貫で設計する</title>
+<desc id="fig-dx-matching-flow-d">上：価値の源泉は自社の資産ではなく、参加者が持ち寄る分散したリソース（モノ・お金・スキル・時間・需要）。提供したい人と求める人が、場（運営者）に集まる。中：場の中の流れ。1 集客（両方の参加者を集める）、2 検索、3 マッチング（相手が決まる）、4 取引（運営者が代金を預かり、不正を監視する）、5 評価（お互いを評価する）、6 再取引（評価があるので、また安心して取引する）。再取引は、次の集客・検索につながって輪になる。下：知らない人どうしの取引では、相手を信用できるかが最大の取引コスト。代金の預かりと相互評価が、それを下げる。参加者が増えるほど価値が高まる仕組み（ネットワーク外部性）で、クリティカルマスを超えると広がる。</desc>
+<text x="12" y="22" class="tb">価値の源泉＝参加者が持ち寄るリソース</text>
+<text x="12" y="40" class="tm">モノ・お金・スキル・時間・需要</text>
+<rect x="12" y="52" width="120" height="40" class="fwn l swn"/>
+<text x="72" y="70" text-anchor="middle">提供したい</text>
+<text x="72" y="86" text-anchor="middle">人</text>
+<rect x="188" y="52" width="120" height="40" class="fok l sok"/>
+<text x="248" y="70" text-anchor="middle">求める</text>
+<text x="248" y="86" text-anchor="middle">人</text>
+<line x1="72" y1="92" x2="72" y2="118" class="l swn w2"/>
+<polyline points="68,112 72,118 76,112" class="l swn w2"/>
+<line x1="248" y1="92" x2="248" y2="118" class="l sok w2"/>
+<polyline points="244,112 248,118 252,112" class="l sok w2"/>
+<rect x="12" y="120" width="296" height="350" class="fs l sa"/>
+<text x="24" y="142" class="tb ta">場（運営者）の中の流れ</text>
+<circle cx="40" cy="170" r="12" class="fa"/>
+<text x="40" y="174.5" class="tb ton" text-anchor="middle">1</text>
+<text x="62" y="175">集客：両方の参加者を集める</text>
+<circle cx="40" cy="218" r="12" class="fa"/>
+<text x="40" y="222.5" class="tb ton" text-anchor="middle">2</text>
+<text x="62" y="223">検索：条件で相手を探す</text>
+<circle cx="40" cy="266" r="12" class="fa"/>
+<text x="40" y="270.5" class="tb ton" text-anchor="middle">3</text>
+<text x="62" y="271">マッチング：相手が決まる</text>
+<circle cx="40" cy="314" r="12" class="fa"/>
+<text x="40" y="318.5" class="tb ton" text-anchor="middle">4</text>
+<text x="62" y="311">取引：運営者が代金を預かり、</text>
+<text x="62" y="329">不正を監視する</text>
+<circle cx="40" cy="366" r="12" class="fa"/>
+<text x="40" y="370.5" class="tb ton" text-anchor="middle">5</text>
+<text x="62" y="371">評価：お互いを評価する</text>
+<circle cx="40" cy="414" r="12" class="fok l sok"/>
+<text x="40" y="418.5" class="tb" text-anchor="middle">6</text>
+<text x="62" y="411" class="tb">再取引：評価があるので、</text>
+<text x="62" y="429" class="tb">また安心して取引する</text>
+<line x1="40" y1="183" x2="40" y2="204" class="l sa w1"/>
+<line x1="40" y1="231" x2="40" y2="252" class="l sa w1"/>
+<line x1="40" y1="279" x2="40" y2="300" class="l sa w1"/>
+<line x1="40" y1="327" x2="40" y2="352" class="l sa w1"/>
+<line x1="40" y1="379" x2="40" y2="400" class="l sa w1"/>
+<polyline points="40,427 40,458 286,458 286,170 236,170" class="l sok w2 dsh"/>
+<polyline points="242,166 236,170 242,174" class="l sok w2"/>
+<text x="276" y="450" class="tm" text-anchor="end">輪になって、また1へ</text>
+<line x1="12" y1="490" x2="308" y2="490" class="l sb w1"/>
+<text x="12" y="512">知らない人どうしでは「相手を信用でき</text>
+<text x="12" y="530">るか」が最大の取引コスト。4と5が下げる</text>
+<text x="12" y="556" class="tm">参加者が増えるほど価値が上がる</text>
+<text x="12" y="574" class="tm">（ネットワーク外部性）。分岐点の人数</text>
+<text x="12" y="592" class="tm">（クリティカルマス）を超えると広がる</text>
+</svg>

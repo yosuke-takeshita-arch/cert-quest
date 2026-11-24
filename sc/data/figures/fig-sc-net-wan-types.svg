@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-sc-net-wan-types-t fig-sc-net-wan-types-d">
+<title id="fig-sc-net-wan-types-t">拠点をつなぐ3つのサービス：IP-VPN・広域Ethernet・インターネットVPN</title>
+<desc id="fig-sc-net-wan-types-d">本社と支社をつなぐ方法の比較。IP-VPNは、通信事業者がインターネットと切り離して持つ閉じた網を通る。網の入口でパケットにラベルを付け（MPLS）、経路は事業者のルータが決める。帯域を確保できる。広域Ethernetも事業者の閉じた網を通るが、イーサネットのフレームのまま運び、入口でVLANタグを付ける。経路は利用者のルータが決めるので、ルーティングを自社で設計できる。インターネットVPNは、だれでも通るインターネットを使い、拠点の装置どうしがIPsecなどで暗号化した通り道を作る。安いが、速さはベストエフォート（保証なし）。</desc>
+<text x="12" y="20" class="tb">本社と支社を、何の上でつなぐか</text>
+<rect x="12" y="34" width="296" height="112" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="58" class="tb">IP-VPN</text>
+<text x="24" y="80">事業者の閉じた網（IPで運ぶ）</text>
+<text x="24" y="100" class="tm">入口でラベルを付ける（MPLS）</text>
+<text x="24" y="120" class="tm">経路は事業者のルータが決める</text>
+<text x="24" y="138" class="tm">帯域を確保できる</text>
+<rect x="12" y="156" width="296" height="112" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="180" class="tb">広域Ethernet</text>
+<text x="24" y="202">事業者の閉じた網（フレームのまま）</text>
+<text x="24" y="222" class="tm">入口でVLANタグを付ける</text>
+<text x="24" y="242" class="tm">経路は利用者のルータが決める</text>
+<text x="24" y="260" class="tm">ルーティングを自社で設計できる</text>
+<rect x="12" y="278" width="296" height="112" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="302" class="tb">インターネットVPN</text>
+<text x="24" y="324">だれでも通るインターネット</text>
+<text x="24" y="344" class="tm">拠点の装置がIPsecなどで暗号化</text>
+<text x="24" y="364" class="tm">安いが速さはベストエフォート</text>
+<text x="24" y="382" class="tm">（混んだら遅くなる。保証なし）</text>
+<text x="12" y="410" class="ta">上の2つ＝閉域網。下＝共用の網を暗号で守る</text>
+</svg>

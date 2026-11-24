@@ -1,0 +1,164 @@
+// 解説4点セットと、間違えたときの「つまずきポイント」。問題画面と模試の見直しで共通に使う。
+import { h, icon, characterImg, tappable } from '../ui.js';
+import { resolveRef } from '../lib/data.js';
+import { isLater, toggleLater, isLaterCard, toggleLaterCard } from '../lib/later.js';
+import { refChip, sourcesList, retiredChip } from './cards.js';
+import { figureBlock } from './figure.js';
+import { richEl } from './richtext.js';
+import { reportButton } from './report.js';
+import { explainSensei, TIP_SENSEI } from '../lib/characters.js';
+import { pastExamCitation, choiceLabelsOf, CHOICE_LABELS_ORIGINAL } from '../lib/pastexam.js';
+
+// 選択肢の記号。オリジナルは A〜、過去問題は本試験どおり ア〜（問題ごとの記号は choiceLabelsOf(q)）
+export const CHOICE_LABELS = CHOICE_LABELS_ORIGINAL;
+export { choiceLabelsOf };
+
+function laterLabel(on) {
+  return on ? 'あとで見る ✓' : 'あとで見る';
+}
+
+function laterContent(b, on, compact) {
+  b.textContent = '';
+  if (compact) b.appendChild(icon(on ? 'bookmark' : 'bookmarkOff')); // 見出しの小さい形だけ、しおりの絵を添える
+  b.appendChild(h('span', { text: laterLabel(on) }));
+}
+
+/**
+ * 「あとで見る」の印のボタン（押すごとにオン／オフ。要件定義書 §3-4）。
+ * 同じ問題のボタンが画面に複数あっても（問題の画面と解説など）、押したら全部そろえる。
+ * compact: 問題の画面の見出しに置く小さい形（選択肢の並びに置くと、選択肢の1つに見えるため）。
+ */
+export function laterButton(app, q, opts = {}) {
+  const on = isLater(app.state, q.id);
+  const b = h('button', { class: 'btn later-btn' + (opts.compact ? ' compact' : '') + (on ? ' on' : ''), type: 'button', 'data-later': q.id, 'aria-pressed': String(on), onClick: () => {
+    const now = toggleLater(app.state, q.id, new Date());
+    app.commit();
+    document.querySelectorAll('.later-btn').forEach((x) => {
+      if (x.getAttribute('data-later') !== q.id) return;
+      x.classList.toggle('on', now);
+      x.setAttribute('aria-pressed', String(now));
+      laterContent(x, now, x.classList.contains('compact'));
+    });
+  } });
+  laterContent(b, on, opts.compact);
+  return b;
+}
+
+/** 用語カードの「あとで見る」ボタン（見た目・押したら同じカードのボタンを全部そろえる動きは問題用と同じ）。 */
+export function laterCardButton(app, c) {
+  const on = isLaterCard(app.state, c.id);
+  const b = h('button', { class: 'btn later-btn' + (on ? ' on' : ''), type: 'button', 'data-later-card': c.id, 'aria-pressed': String(on), onClick: () => {
+    const now = toggleLaterCard(app.state, c.id, new Date());
+    app.commit();
+    document.querySelectorAll('.later-btn').forEach((x) => {
+      if (x.getAttribute('data-later-card') !== c.id) return;
+      x.classList.toggle('on', now);
+      x.setAttribute('aria-pressed', String(now));
+      laterContent(x, now, false);
+    });
+  } });
+  laterContent(b, on, false);
+  return b;
+}
+
+/** 問題に紐づく用語カード（解決できたものだけ）。 */
+export function conceptsOf(app, q) {
+  const out = [];
+  for (const x of q.concepts) {
+    const r = resolveRef(x, app.data.conceptIndex);
+    if (r.concept && !out.includes(r.concept)) out.push(r.concept);
+  }
+  return out;
+}
+
+/** 答える前に問題文の下へ出す図・表（stemFigures。要件定義書 §7）。無い問題は null。問題を出す画面は問題文の直後・選択肢の前に、見直しの一覧は問題文の意味の前に置く。 */
+export function stemFigureBlock(app, q) {
+  return figureBlock(app, q && q.stemFigures, { heading: '問題の図・表', className: 'stem-figures' });
+}
+
+/** 問題文の意味（要件定義書 §7-3）。stemPlain が無い問題は null。解説と『まず用語を確認しよう』より前に、呼ぶ側が置く（問題の意味が分かってから用語を見る順）。 */
+export function stemPlainBlock(q) {
+  if (!q.stemPlain) return null;
+  return h('section', { class: 'ex-block stem-plain' }, h('h3', { text: '問題文の意味' }), h('p', { text: q.stemPlain }));
+}
+
+/**
+ * 過去問題の出典の1行（問題の画面と解説に出す）。pastExam が無い問題は null。
+ * 例: 出典：令和7年度 秋期 情報処理安全確保支援士試験 午前Ⅱ 問1（複数の出典は「／」でつなぐ。改変した出典は末尾に（一部改変））。決まりは要件定義書 §12
+ */
+export function pastExamLine(q) {
+  const t = pastExamCitation(q && q.pastExam);
+  if (!t) return null;
+  return h('p', { class: 'past-exam small muted', 'data-past-exam': '1', text: t });
+}
+
+/** 間違えた直後に、解説より先に見せる: その問題の用語カードと、混同しやすい相手。 */
+export function stumbleBlock(app, q, open) {
+  const cs = conceptsOf(app, q);
+  if (!cs.length) return null;
+  const box = h('section', { class: 'stumble', 'aria-label': 'つまずきポイント' }, h('h3', { text: 'まず用語を確認しよう' }));
+  const seen = new Set(); // 基礎のことばの印は、この区画で同じ語に最初の1回だけ
+  for (const c of cs) {
+    // 引退したカード（要件定義書 §7-6）は一行目をここで見せるので、題名の横に『古い事例』の印を付ける（古い事実を新しいもののように見せない）
+    const old = retiredChip(c);
+    const item = h('div', { class: 'stumble-item' }, h('p', {}, h('button', { class: 'chip link', type: 'button', onClick: () => open(c.id) }, c.title), old ? ' ' : null, old, ' ', richEl(app, 'span', {}, c.oneLine, seen)));
+    if (c.confusions.length) {
+      const ul = h('ul', { class: 'conf-list' });
+      for (const f of c.confusions) {
+        const r = resolveRef(f, app.data.conceptIndex);
+        ul.appendChild(h('li', {}, h('span', { class: 'small muted', text: '混同しやすい: ' }), refChip(app, f, open), r.point ? richEl(app, 'span', { class: 'point' }, ' ' + r.point, seen) : null));
+      }
+      item.appendChild(ul);
+    }
+    box.appendChild(item);
+  }
+  return box;
+}
+
+/**
+ * 解説4点セット。sq は shuffleChoices の結果、chosen は選んだ位置（時間切れ・未回答は null）。
+ * opts.sensei=false なら先生の絵を出さない（同じ画面に別のキャラクターがいるとき・結果の見直しの一覧のとき。1画面に1人まで）。
+ */
+export function explanation(app, sq, chosen, open, opts = {}) {
+  const q = sq.q;
+  const sensei = opts.sensei !== false;
+  const box = h('div', { class: 'explain' });
+  const labels = choiceLabelsOf(q);
+  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '1'), '正解の理由', sensei ? tappable(characterImg(explainSensei(chosen !== null && chosen === sq.answer), 'sensei-mini')) : null),
+    h('p', { class: 'ex-answer' }, h('strong', { text: '正解: ' + labels[sq.answer] + '. ' + sq.choices[sq.answer] })),
+    richEl(app, 'p', {}, q.explanation || '（解説は準備中です）', new Set())));
+  const fig = figureBlock(app, q.figures, { heading: '図で確かめる', tag: 'section', className: 'ex-block' });
+  if (fig) box.appendChild(fig);
+
+  const wrongs = sq.choices.map((c, i) => ({ c, i, why: sq.whyWrong[i] })).filter((x) => x.i !== sq.answer);
+  const ul = h('ul', { class: 'why-wrong' });
+  const whySeen = new Set(); // 誤答の説明は1つの区画。同じ基礎のことばに印を付けるのは最初の1回だけ
+  for (const w of wrongs) {
+    ul.appendChild(h('li', { class: w.i === chosen ? 'chosen' : '' },
+      h('span', { class: 'lbl', text: labels[w.i] + '. ' + w.c }),
+      richEl(app, 'span', { class: 'why' }, w.why || '（理由は準備中です）', whySeen),
+      w.i === chosen ? h('span', { class: 'chip you' }, 'あなたの回答') : null));
+  }
+  // 「適切でないもの」を選ぶ問題では、ほかの選択肢は正しい文なので「誤答」と呼ばない
+  const othersHeading = q.negative ? 'ほかの選択肢がなぜ答えにならないか' : '誤答がなぜ違うか';
+  box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '2'), othersHeading), ul));
+
+  if (q.memoryTip) box.appendChild(h('section', { class: 'ex-block tip' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '3'), '覚え方', sensei ? tappable(characterImg(TIP_SENSEI, 'sensei-mini')) : null), richEl(app, 'p', {}, q.memoryTip, new Set())));
+
+  const cs = conceptsOf(app, q);
+  const unresolved = q.concepts.filter((x) => !resolveRef(x, app.data.conceptIndex).concept);
+  if (cs.length || unresolved.length) {
+    const row = h('div', { class: 'chips' });
+    for (const c of cs) row.appendChild(h('button', { class: 'chip link', type: 'button', onClick: () => open(c.id) }, c.title));
+    for (const x of unresolved) row.appendChild(refChip(app, x, null));
+    box.appendChild(h('section', { class: 'ex-block' }, h('h3', {}, h('span', { class: 'num', 'aria-hidden': 'true' }, '4'), '関連する用語カード'), row));
+  }
+  const past = pastExamLine(q);
+  if (past) box.appendChild(past);
+  const src = sourcesList(q.sources);
+  if (src) box.appendChild(src);
+  if (opts.later !== false) box.appendChild(laterButton(app, q));
+  const rep = reportButton(app, { kind: 'question', id: q.id, text: q.stem });
+  if (rep) box.appendChild(rep);
+  return box;
+}

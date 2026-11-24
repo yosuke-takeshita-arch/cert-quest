@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-g-fixmatch-t fig-g-fixmatch-d">
+<title id="fig-g-fixmatch-t">FixMatch：弱い拡張の画像への自信のある予測を疑似ラベルにし、強い拡張の画像でそれを当てさせる</title>
+<desc id="fig-g-fixmatch-d">ラベルの無い猫の画像1枚を2通りに加工する。①弱い拡張（左右の反転と少しの平行移動）をした画像をモデルに入れ、予測を見る。原論文のしきい値0.95と比べ、猫0.97なら0.97≧0.95なので、猫を疑似ラベル（モデル自身の予測を仮の正解にしたもの）にする。猫0.6なら0.6＜0.95なので、この画像は使わない。②同じ画像に強い拡張（色や形を大きく崩す）をした画像をモデルに入れ、①の疑似ラベルの猫を当てるように学習する。同じ画像なら加工が違っても同じ答えになるように学ばせるのが一致性正則化で、FixMatch はこれと疑似ラベルを組み合わせる。役割は、ラベルを作るのが弱い拡張の側、当てさせるのが強い拡張の側。逆にすると、崩れた画像から誤ったラベルを作ってしまう。</desc>
+<text x="12" y="20" class="tb">FixMatch：弱い側で作り、強い側で当てる</text>
+<rect x="90" y="32" width="140" height="30" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="160" y="52" class="tb" text-anchor="middle">ラベルの無い猫の画像</text>
+<line x1="130" y1="62" x2="84" y2="78.4" class="l sm w1"/>
+<line x1="190" y1="62" x2="236" y2="78.4" class="l sm w1"/>
+<rect x="12" y="82" width="144" height="58" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="84" y="102" class="tb ta" text-anchor="middle">① 弱い拡張</text>
+<text x="84" y="120" class="tm" text-anchor="middle">反転・少しずらす</text>
+<text x="84" y="134" class="tm" text-anchor="middle">（形はほぼそのまま）</text>
+<rect x="164" y="82" width="144" height="58" class="fs swn" stroke-width="1.5" rx="6"/>
+<text x="236" y="102" class="tb twn" text-anchor="middle">② 強い拡張</text>
+<text x="236" y="120" class="tm" text-anchor="middle">色や形を大きく崩す</text>
+<text x="236" y="134" class="tm" text-anchor="middle">（同じ画像から）</text>
+<line x1="84" y1="140" x2="84" y2="150.4" class="l sm w1"/>
+<polygon points="84,156 80.5,150.4 87.5,150.4" class="fm"/>
+<rect x="12" y="158" width="144" height="30" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="84" y="178" class="tb" text-anchor="middle">モデルの予測を見る</text>
+<line x1="84" y1="188" x2="84" y2="198.4" class="l sm w1"/>
+<polygon points="84,204 80.5,198.4 87.5,198.4" class="fm"/>
+<text x="12" y="222" class="tm">しきい値0.95と比べる</text>
+<rect x="12" y="230" width="144" height="58" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="84" y="250" class="tb tok" text-anchor="middle">猫 0.97</text>
+<text x="84" y="268" class="tok" text-anchor="middle">0.97≧0.95</text>
+<text x="84" y="284" class="tb tok" text-anchor="middle">→「猫」を疑似ラベルに</text>
+<rect x="12" y="296" width="144" height="58" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="84" y="316" class="tb tng" text-anchor="middle">猫 0.6 のときは</text>
+<text x="84" y="334" class="tng" text-anchor="middle">0.6＜0.95</text>
+<text x="84" y="350" class="tb tng" text-anchor="middle">→ この画像は使わない</text>
+<line x1="156" y1="259" x2="230" y2="259" class="l sok w1"/>
+<line x1="236" y1="140" x2="236" y2="226.4" class="l sm w1"/>
+<polygon points="236,232 232.5,226.4 239.5,226.4" class="fm"/>
+<rect x="164" y="232" width="144" height="58" class="fs swn" stroke-width="1.5" rx="6"/>
+<text x="236" y="252" class="tb" text-anchor="middle">崩れた画像から</text>
+<text x="236" y="270" class="tb" text-anchor="middle">「猫」を当てる</text>
+<text x="236" y="286" class="tm" text-anchor="middle">ように学習する</text>
+<text x="12" y="386" class="tm">疑似ラベル＝モデル自身の予測を仮の正解に</text>
+<text x="12" y="404" class="tm">　したもの</text>
+<text x="12" y="428" class="tm">一致性正則化＝同じ画像なら加工が違って</text>
+<text x="12" y="446" class="tm">　も同じ答えになるように学ばせる</text>
+<rect x="12" y="462" width="296" height="64" class="fwn swn" stroke-width="1" rx="4"/>
+<text x="22" y="482" class="tb twn">役割を逆にしない</text>
+<text x="22" y="500" class="tm">ラベルを作る＝弱い側。当てる＝強い側</text>
+<text x="22" y="518" class="tm">逆だと崩れた画像から誤ったラベルを作る</text>
+</svg>

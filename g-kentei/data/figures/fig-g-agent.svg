@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 650" role="img" aria-labelledby="fig-g-agent-t fig-g-agent-d">
+<title id="fig-g-agent-t">エージェント：知覚→判断→行動をくり返す主体</title>
+<desc id="fig-g-agent-d">困りごと：掃除ロボット、対話システム、ゲームのAIは、見た目も用途もばらばらで共通点が見えにくい。そこでAIを、周りの環境を知覚し、判断し、行動する主体（エージェント）として捉える。掃除ロボットの例：センサーで壁やごみを感じ取る（知覚）→どちらへ進むか決める（判断）→車輪を回して動く（行動）。動くと部屋の様子が変わり、その様子をまたセンサーで受け取る。この輪をくり返す。対話システムも同じ形で、利用者の文を受け取る（知覚）→返事を決める（判断）→文を返す（行動）。体が無くても、ソフトウェアだけでもエージェントになる。試験で出る言い方：エージェントは環境を知覚して行動する主体。強化学習では、行動を選び、その結果として報酬（よい行動にもらえる点数）を受け取って学ぶ学習者をエージェントと呼ぶ。会話が人間らしいかで知能を判定するチューリングテストとは別の話。</desc>
+<text x="12" y="20" class="tb">エージェント：知覚→判断→行動の主体</text>
+<text x="12" y="48" class="tb">① 困りごと</text>
+<text x="12" y="68" class="tm">掃除ロボット・対話システム・ゲームのAI は、</text>
+<text x="12" y="86" class="tm">見た目も用途もばらばらで、共通点が見えにくい</text>
+<line x1="12" y1="100" x2="308" y2="100" class="l sb w1"/>
+<text x="12" y="122" class="tb">② 3つの働きで捉える（掃除ロボット）</text>
+<rect x="12" y="134" width="88" height="88" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="56" y="154" class="tb ta" text-anchor="middle">知覚</text>
+<text x="56" y="174" text-anchor="middle">センサーで</text>
+<text x="56" y="192" text-anchor="middle">壁やごみを</text>
+<text x="56" y="210" text-anchor="middle">感じ取る</text>
+<rect x="116" y="134" width="88" height="88" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="154" class="tb ta" text-anchor="middle">判断</text>
+<text x="160" y="174" text-anchor="middle">どちらへ</text>
+<text x="160" y="192" text-anchor="middle">進むかを</text>
+<text x="160" y="210" text-anchor="middle">決める</text>
+<rect x="220" y="134" width="88" height="88" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="264" y="154" class="tb ta" text-anchor="middle">行動</text>
+<text x="264" y="174" text-anchor="middle">車輪を</text>
+<text x="264" y="192" text-anchor="middle">回して</text>
+<text x="264" y="210" text-anchor="middle">動く</text>
+<line x1="101" y1="178" x2="109" y2="178" class="l w2"/>
+<polygon points="115,178 108,174 108,182" class="ft"/>
+<line x1="205" y1="178" x2="213" y2="178" class="l w2"/>
+<polygon points="219,178 212,174 212,182" class="ft"/>
+<line x1="280" y1="224" x2="280" y2="258" class="l w2"/>
+<polygon points="280,265 276,258 284,258" class="ft"/>
+<line x1="40" y1="265" x2="40" y2="231" class="l w2"/>
+<polygon points="40,224 36,231 44,231" class="ft"/>
+<text x="48" y="248" class="tm">様子を受け取る</text>
+<text x="272" y="248" class="tm" text-anchor="end">動くと様子が変わる</text>
+<rect x="12" y="266" width="296" height="36" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="289" class="tb" text-anchor="middle">環境（部屋：壁・ごみ・家具）</text>
+<text x="12" y="326" class="tb tok">→ この輪をくり返して、部屋を掃除する</text>
+<line x1="12" y1="340" x2="308" y2="340" class="l sb w1"/>
+<text x="12" y="362" class="tb">③ ほかのAIも同じ形で言える</text>
+<text x="12" y="384" class="tb">対話システム</text>
+<text x="12" y="404"><tspan class="tb ta">知覚</tspan>：利用者の文を受け取る</text>
+<text x="12" y="424"><tspan class="tb ta">判断</tspan>：返事を決める</text>
+<text x="12" y="444"><tspan class="tb ta">行動</tspan>：文を返す</text>
+<text x="12" y="468" class="tb tok">→ 体が無くても（ソフトウェアだけでも）</text>
+<text x="12" y="486" class="tb tok">　 エージェントになる</text>
+<line x1="12" y1="500" x2="308" y2="500" class="l sb w1"/>
+<text x="12" y="522" class="tb">④ 試験で出る言い方</text>
+<text x="12" y="542">エージェント＝環境を知覚して行動する主体</text>
+<text x="12" y="564" class="tm">強化学習では、行動を選び、その結果として</text>
+<text x="12" y="582" class="tm">報酬（よい行動にもらえる点数）を受け取って</text>
+<text x="12" y="600" class="tm">学ぶ学習者を、エージェントと呼ぶ</text>
+<text x="12" y="622" class="tm">チューリングテスト（会話が人間らしいかで</text>
+<text x="12" y="640" class="tm">知能を判定する）とは別の話</text>
+</svg>

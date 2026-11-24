@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1536" role="img" aria-labelledby="fig-g-vae-variants-t fig-g-vae-variants-d">
+<title id="fig-g-vae-variants-t">VAE の改良3つ：z が使われない・z の意味が混ざる、という困りごとを、VQ-VAE はいちばん近い見本に置き換え、InfoVAE は z とのつながりを保ち、β-VAE は KL の項に β を掛けて直す</title>
+<desc id="fig-g-vae-variants-d">VAEの改良3つが、何に困ってどう直したものかを先に示し、そのあとでしくみを描いた図。VAEとは：画像を少しの数の並び（潜在変数z）に縮め（エンコーダ）、zから画像に戻す（デコーダ）。zを少し変えて戻すと新しい画像が作れる。例：顔の写真をz＝(0.7, 0.3)に縮め、顔の写真に戻す（数は例）。困りごと1：zが使われなくなる。戻す側（デコーダ）が強いと、zを見なくてもそれらしい画像を作れてしまい、zを変えても画像が変わらず、作り分けられない。VQ-VAEはzを見本の表の番号に置き換え、InfoVAEは入力とzのつながりを強く保つよう学習の目標を変える。困りごと2：zの数の意味が混ざる。zの数を1つ動かすと、顔の向き・髪の色・表情が一度に変わり、どの数が何を表すか分からない。β-VAEはKLの項（zの分布と、決めておいた分布の食い違い）にβを掛けて強め、1つの数に1つの性質が対応しやすくする。下の図：それぞれのしくみ。VAE は新しいデータを作れるオートエンコーダ。①VQ-VAE：例は2次元で、エンコーダの出力が (0.7, 0.3)、見本の表（コード表）に1番 (1, 0)・2番 (0, 1)・3番 (1, 1) がある。距離の2乗（成分の差を2乗して足した値）は、見本1が0.09＋0.09＝0.18、見本2が0.49＋0.49＝0.98、見本3が0.09＋0.49＝0.58で、いちばん小さい見本1を選ぶ。デコーダには (1, 0) を渡し、覚えておくのは番号の1だけ。原論文の例では見本は512個で、128×128 の画像を 32×32 の番号の並びで表す。番号の出方（事前分布）も別に学習する。②β-VAE：学習で小さくする量は、復元のずれ＋β×KL。KL は潜在の分布と決めた分布の食い違い。β＝1 が普通の VAE で、β を1より大きくすると KL が強まり、1つの次元に1つの性質が対応しやすくなる。例として z1 だけを動かすと顔の向きだけが変わる（性質は例）。③InfoVAE：強いデコーダは潜在変数 z を見ずに出力を作り、z を使わなくなりがち（posterior collapse）。入力と z の相互情報量を大きく保つよう、学習で小さくする式を変えて防ぐ。覚え方：VQ＝番号（離散）、β＝係数で分ける、Info＝情報を残す。</desc>
+<text x="12" y="20" class="tb">VAE の改良3つ：何に困って、どう直したか</text>
+<text x="12" y="48" class="tb">VAE とは</text>
+<text x="12" y="68" class="tm">画像を、少しの数の並び（潜在変数 z）に</text>
+<text x="12" y="88" class="tm">縮め（エンコーダ）、z から画像に戻す</text>
+<text x="12" y="108" class="tm">（デコーダ）。z を少し変えて戻すと、</text>
+<text x="12" y="128" class="tm">新しい画像が作れる</text>
+<rect x="12" y="142" width="80" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="52" y="162" class="tb" text-anchor="middle">顔の写真</text>
+<rect x="120" y="142" width="80" height="30" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="162" class="tb" text-anchor="middle">z (0.7, 0.3)</text>
+<rect x="228" y="142" width="80" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="268" y="162" class="tb" text-anchor="middle">顔の写真</text>
+<line x1="94" y1="157" x2="111" y2="157" class="l sm w2"/>
+<polygon points="118,157 110.5,152.5 110.5,161.5" class="fm"/>
+<line x1="202" y1="157" x2="219" y2="157" class="l sm w2"/>
+<polygon points="226,157 218.5,152.5 218.5,161.5" class="fm"/>
+<text x="106" y="190" class="tm" text-anchor="middle">縮める</text>
+<text x="214" y="190" class="tm" text-anchor="middle">戻す</text>
+<text x="12" y="210" class="tm">（数は例）</text>
+<line x1="12" y1="224" x2="308" y2="224" class="l sb w1"/>
+<text x="12" y="248" class="tb">困りごと1：z が使われなくなる</text>
+<text x="12" y="268" class="tm">戻す側（デコーダ）が強いと、z を見なくても</text>
+<text x="12" y="288" class="tm">それらしい画像を作れてしまう → z を変えても</text>
+<text x="12" y="308" class="tm">画像が変わらず、作り分けられない</text>
+<text x="12" y="332" class="tb ta">→ VQ-VAE：z を、見本の表の番号に置き換える</text>
+<text x="12" y="354" class="tb ta">→ InfoVAE：入力と z のつながりを強く保つ</text>
+<text x="12" y="374" class="tb ta">　 よう、学習の目標を変える</text>
+<line x1="12" y1="388" x2="308" y2="388" class="l sb w1"/>
+<text x="12" y="412" class="tb">困りごと2：z の数の意味が混ざる</text>
+<text x="12" y="432" class="tm">z の数を1つ動かすと、顔の向き・髪の色・</text>
+<text x="12" y="452" class="tm">表情が一度に変わり、どの数が何を表すか</text>
+<text x="12" y="472" class="tm">分からない</text>
+<text x="12" y="496" class="tb ta">→ β-VAE：KL の項に β を掛けて強め、</text>
+<text x="12" y="516" class="tb ta">　 1つの数に1つの性質が対応しやすくする</text>
+<text x="12" y="538" class="tm">（KL＝z の分布と、決めておいた分布の</text>
+<text x="12" y="558" class="tm">　食い違い。下の図の②）</text>
+<line x1="12" y1="572" x2="308" y2="572" class="l sb w1"/>
+<text x="12" y="596" class="tb">下の図：それぞれのしくみ</text>
+<line x1="12" y1="606" x2="308" y2="606" class="l sb w1"/>
+<g transform="translate(0,610)">
+<text x="12" y="20" class="tb">VAE の改良3つ：VQ-VAE・β-VAE・InfoVAE</text>
+<text x="12" y="42" class="tm">VAE＝新しいデータを作れるオートエンコーダ</text>
+<rect x="12" y="54" width="296" height="404" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="74" class="tb">① VQ-VAE：いちばん近い見本に置き換える</text>
+<text x="24" y="94" class="tm">例：2次元。エンコーダの出力が (0.7, 0.3)</text>
+<text x="24" y="112" class="tm">見本の表（コード表）に 1〜3 番がある</text>
+<line x1="60" y1="254" x2="196" y2="254" class="l sm w1"/>
+<line x1="70" y1="262" x2="70" y2="134" class="l sm w1"/>
+<text x="62" y="270" class="tm" text-anchor="end">0</text>
+<line x1="147" y1="221" x2="180" y2="254" class="l sa w2 dsh"/>
+<rect x="170" y="244" width="20" height="20" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="180" y="258.5" class="tb" text-anchor="middle">1</text>
+<rect x="60" y="134" width="20" height="20" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="70" y="148.5" class="tb" text-anchor="middle">2</text>
+<rect x="170" y="134" width="20" height="20" class="fas sa" stroke-width="1.5" rx="3"/>
+<text x="180" y="148.5" class="tb" text-anchor="middle">3</text>
+<circle cx="147" cy="221" r="6" class="fwn swn" stroke-width="2"/>
+<text x="135" y="215" class="twn" text-anchor="end">出力</text>
+<text x="212" y="160" class="tm">□＝見本</text>
+<text x="212" y="180" class="tm">○＝出力</text>
+<text x="212" y="200" class="tm">点線＝最も近い</text>
+<text x="24" y="286" class="tm">距離の2乗＝成分の差を2乗して足す</text>
+<text x="24" y="306" class="tok">見本1 (1, 0)：0.09＋0.09＝0.18 ←最小</text>
+<text x="24" y="324">見本2 (0, 1)：0.49＋0.49＝0.98</text>
+<text x="24" y="342">見本3 (1, 1)：0.09＋0.49＝0.58</text>
+<text x="24" y="366" class="tb">→ 見本1 を選び、デコーダには (1, 0) を</text>
+<text x="24" y="384" class="tb">　渡す。覚えておくのは番号の 1 だけ</text>
+<text x="24" y="408" class="tm">原論文の例：見本は512個。128×128 の</text>
+<text x="24" y="426" class="tm">画像を 32×32 の番号の並びで表す</text>
+<text x="24" y="446" class="tm">番号の出方（事前分布）も別に学習する</text>
+<rect x="12" y="470" width="296" height="214" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="490" class="tb">② β-VAE：KL の項に β を掛ける</text>
+<text x="24" y="510">小さくする量＝復元のずれ＋β×KL</text>
+<text x="24" y="528" class="tm">KL＝潜在の分布と決めた分布の食い違い</text>
+<text x="24" y="552">β＝1 が普通の VAE。β を1より大きく</text>
+<text x="24" y="570">すると KL が強まり、1つの次元に</text>
+<text x="24" y="588">1つの性質が対応しやすくなる</text>
+<text x="24" y="626" class="tb">z1 だけ</text>
+<text x="24" y="644" class="tb">動かす</text>
+<circle cx="118" cy="630" r="14" class="fs l" stroke-width="1.5"/>
+<circle cx="107" cy="627" r="1.8" class="ft"/>
+<circle cx="117" cy="627" r="1.8" class="ft"/>
+<line x1="108" y1="636" x2="116" y2="636" class="l w1"/>
+<circle cx="170" cy="630" r="14" class="fs l" stroke-width="1.5"/>
+<circle cx="165" cy="627" r="1.8" class="ft"/>
+<circle cx="175" cy="627" r="1.8" class="ft"/>
+<line x1="166" y1="636" x2="174" y2="636" class="l w1"/>
+<circle cx="222" cy="630" r="14" class="fs l" stroke-width="1.5"/>
+<circle cx="223" cy="627" r="1.8" class="ft"/>
+<circle cx="233" cy="627" r="1.8" class="ft"/>
+<line x1="224" y1="636" x2="232" y2="636" class="l w1"/>
+<line x1="136" y1="630" x2="144.4" y2="630.0" class="l sm w1"/>
+<polygon points="150,630 144.4,633.5 144.4,626.5" class="fm"/>
+<line x1="188" y1="630" x2="196.4" y2="630.0" class="l sm w1"/>
+<polygon points="202,630 196.4,633.5 196.4,626.5" class="fm"/>
+<text x="270" y="636" class="ta" text-anchor="middle">向き</text>
+<text x="24" y="672" class="tm">→ 顔の向きだけが変わる（性質は例）</text>
+<rect x="12" y="696" width="296" height="178" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="716" class="tb">③ InfoVAE：潜在変数が無視されるのを防ぐ</text>
+<rect x="26" y="730" width="60" height="24" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="56" y="746.5" text-anchor="middle">入力</text>
+<rect x="130" y="730" width="60" height="24" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="160" y="746.5" text-anchor="middle">潜在 z</text>
+<rect x="234" y="730" width="60" height="24" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="264" y="746.5" text-anchor="middle">出力</text>
+<line x1="86" y1="742" x2="123.4" y2="742.0" class="l sm w1"/>
+<polygon points="129,742 123.4,745.5 123.4,738.5" class="fm"/>
+<line x1="190" y1="742" x2="228" y2="742" class="l sng w1 dsh"/>
+<polyline points="226,738 233,742 226,746" class="l sng w1"/>
+<text x="212" y="772" class="twn" text-anchor="middle">z を見ずに作る</text>
+<text x="24" y="798">強いデコーダは z を使わなくなりがち</text>
+<text x="24" y="816" class="tm">（posterior collapse）</text>
+<text x="24" y="840" class="tb">→ 入力と z の相互情報量を大きく保つ</text>
+<text x="24" y="858" class="tb">　よう、学習で小さくする式を変える</text>
+<text x="12" y="896" class="tm">覚え方：VQ＝番号（離散）、β＝係数で</text>
+<text x="12" y="914" class="tm">分ける、Info＝情報を残す</text>
+</g>
+</svg>

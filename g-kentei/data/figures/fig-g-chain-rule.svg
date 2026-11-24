@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 884" role="img" aria-labelledby="fig-g-chain-rule-t fig-g-chain-rule-d">
+<title id="fig-g-chain-rule-t">連鎖律：段ごとの倍率を、順に掛ける</title>
+<desc id="fig-g-chain-rule-d">連鎖律が何のためで、なぜ掛け算になるかを示す図。何をしたいか：何段も計算を通した後の結果が、最初の数を少し動かすと何倍動くか（微分）を知りたい。たとえ：歯車AとBとCをつなぐ。Aを1回すとBが3回、Bを1回すとCが8回なら、Aを1回すとCは3×8＝24回。段ごとの倍率を掛ければ、最初から最後までの倍率になる。これが連鎖律の考え方。式の例：y＝(3x＋1)²、x＝1のとき、中身g＝3x＋1＝4、外側y＝g²＝16の2段に分ける。xを1から1.01へ0.01だけ動かすと、gは4から4.03へ0.03動き、0.01の3倍。yは16から16.2409へ約0.24動き、gの動き0.03の約8倍（g²の傾きは2×g＝2×4＝8）。xからyへは0.01で約0.24なので約24倍で、3×8と同じ。動かす幅を小さくするほど、ちょうど24に近づく。ことばの式：xからyへの倍率＝（gからyへの倍率）×（xからgへの倍率）。記号d○/d△は、△を少し動かすと○が何倍動くか。dy/dx＝dy/dg×dg/dx＝8×3＝24。何に使うか：ニューラルネットワークは計算を何段も重ねたもので、出力側から段ごとの倍率を掛けていけば、どの重みが誤差に何倍効くか（勾配）が求まる。これが誤差逆伝播法のしくみ。1より小さい倍率が何段も続くと掛け算で0に近づき（勾配消失）、1より大きいとどんどん膨らむ（勾配爆発）。英語はchain rule（chainは鎖）。</desc>
+<text x="12" y="20" class="tb">連鎖律：段ごとの倍率を、順に掛ける</text>
+<text x="12" y="48" class="tb">① 何をしたいか</text>
+<text x="12" y="68" class="tm">何段も計算を通した後の結果が、最初の数を</text>
+<text x="12" y="88" class="tm">少し動かすと何倍動くか（微分）を知りたい</text>
+<line x1="12" y1="102" x2="308" y2="102" class="l sb w1"/>
+<text x="12" y="126" class="tb">② たとえ：歯車をつなぐ</text>
+<circle cx="50" cy="170" r="26" class="fs sb" stroke-width="1.5"/>
+<text x="50" y="176" class="tb" text-anchor="middle">A</text>
+<circle cx="160" cy="170" r="26" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="176" class="tb" text-anchor="middle">B</text>
+<circle cx="270" cy="170" r="26" class="fs sb" stroke-width="1.5"/>
+<text x="270" y="176" class="tb" text-anchor="middle">C</text>
+<line x1="80" y1="170" x2="122" y2="170" class="l sa w2"/>
+<polygon points="129,170 121.5,165.5 121.5,174.5" class="fa"/>
+<text x="105" y="160" class="tb ta" text-anchor="middle">×3</text>
+<line x1="190" y1="170" x2="232" y2="170" class="l sok w2"/>
+<polygon points="239,170 231.5,165.5 231.5,174.5" class="fok"/>
+<text x="215" y="160" class="tb tok" text-anchor="middle">×8</text>
+<text x="12" y="220">A を1回すと B が3回、B を1回すと C が8回</text>
+<text x="12" y="240" class="tb">→ A を1回すと、C は 3×8＝24 回</text>
+<text x="12" y="262" class="tm">段ごとの倍率を掛ければ、最初から最後までの</text>
+<text x="12" y="282" class="tm">倍率になる。これが連鎖律の考え方</text>
+<line x1="12" y1="296" x2="308" y2="296" class="l sb w1"/>
+<text x="12" y="320" class="tb">③ 式でやってみる（例）</text>
+<text x="12" y="342">y＝(3x＋1)²、x＝1 のとき。2段に分ける：</text>
+<text x="12" y="362" class="tb">中身 g＝3x＋1＝4　外側 y＝g²＝16</text>
+<text x="12" y="388">x を 1→1.01 と、0.01 だけ動かすと</text>
+<text x="12" y="410" class="tb ta">g：4→4.03。0.03 動く → 0.01 の 3倍</text>
+<text x="12" y="432" class="tb tok">y：16→16.2409。約 0.24 動く</text>
+<text x="12" y="452" class="tb tok">　→ g の動き 0.03 の約 8倍</text>
+<text x="12" y="472" class="tm">　（g² の傾きは 2×g＝2×4＝8）</text>
+<text x="12" y="496" class="tb">x→y：0.01 で約 0.24 → 約 24倍＝3×8</text>
+<text x="12" y="516" class="tm">（動かす幅を小さくするほど、ちょうど 24 に近づく）</text>
+<line x1="12" y1="530" x2="308" y2="530" class="l sb w1"/>
+<text x="12" y="554" class="tb">④ ことばの式と、記号</text>
+<text x="12" y="576">x から y への倍率</text>
+<text x="12" y="598">＝（g から y への倍率）×（x から g への倍率）</text>
+<text x="12" y="622" class="tm">記号の読み方：d○/d△＝△を少し動かすと、</text>
+<text x="12" y="642" class="tm">○が何倍動くか</text>
+<text x="12" y="666" class="tb">dy/dx ＝ dy/dg × dg/dx ＝ 8 × 3 ＝ 24</text>
+<line x1="12" y1="680" x2="308" y2="680" class="l sb w1"/>
+<text x="12" y="704" class="tb">⑤ 何に使うか</text>
+<text x="12" y="724" class="tm">ニューラルネットワークは、計算を何段も重ねた</text>
+<text x="12" y="744" class="tm">もの。出力側から段ごとの倍率を掛けていけば、</text>
+<text x="12" y="764" class="tm">どの重みが誤差に何倍効くか（勾配）が求まる</text>
+<text x="12" y="784" class="tm">→ 誤差逆伝播法のしくみ（次の図）</text>
+<text x="12" y="804" class="tm">1 より小さい倍率が何段も続くと、掛け算で</text>
+<text x="12" y="824" class="tm">0 に近づく（勾配消失）。1 より大きいと</text>
+<text x="12" y="844" class="tm">どんどん膨らむ（勾配爆発）</text>
+<text x="12" y="868" class="tm">英語は chain rule（chain＝鎖）</text>
+</svg>

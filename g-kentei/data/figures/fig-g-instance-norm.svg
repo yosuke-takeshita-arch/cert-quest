@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 738" role="img" aria-labelledby="fig-g-instance-norm-t fig-g-instance-norm-d">
+<title id="fig-g-instance-norm-t">インスタンス正規化：画像1枚の、チャネル1枚ずつで平均と分散をとり、明暗の差を消す</title>
+<desc id="fig-g-instance-norm-d">①平均と分散をとる範囲は、画像1枚の、チャネル1枚だけ（重なった3枚のうち太い枠の1枚）。その全画素で平均と分散を1組とり、ほかの画像やほかのチャネルとは混ぜない。②例：同じチャネルの3つの画素の値が、画像Aは1・2・3、画像Bは明暗の差が2倍の2・4・6。Aは平均2、ずれ−1・0・1、標準偏差は約0.82。Bは平均4、ずれ−2・0・2、標準偏差は約1.63。（値−平均）÷標準偏差で直すと、Aは−1÷0.82で約−1.22、Bは−2÷1.63で約−1.22となり、そろえた後はどちらも約−1.22・0・1.22の同じ形になる。標準偏差はばらつきの大きさで、分散の平方根。③画風変換では、写真ごとの明暗の差が消えるので、出来上がりの明暗は画風の絵で決まる。Ulyanov らは生成器のバッチ正規化をインスタンス正規化に替え、推論時も同じ計算を使って品質が上がったと報告した。範囲の違い：レイヤー正規化は全チャネル、グループ正規化はチャネルの束、インスタンス正規化はチャネル1枚ずつ。</desc>
+<text x="12" y="20" class="tb">インスタンス正規化：明暗の差を消す</text>
+<text x="12" y="42" class="tm">1枚の画像の、チャネル1枚ずつでそろえる</text>
+<rect x="12" y="54" width="296" height="124" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="74" class="tb">① 平均と分散をとる範囲</text>
+<rect x="46" y="86" width="50" height="50" class="fs sm" stroke-width="1.5"/>
+<rect x="38" y="94" width="50" height="50" class="fs sm" stroke-width="1.5"/>
+<rect x="30" y="102" width="50" height="50" class="fas sa" stroke-width="2.5"/>
+<text x="55" y="166" class="tm" text-anchor="middle">チャネル</text>
+<text x="110" y="104">画像1枚の、チャネル1枚だけ</text>
+<text x="110" y="124" class="tb">その全画素で平均と分散を1組</text>
+<text x="110" y="146" class="tm">ほかの画像・ほかのチャネル</text>
+<text x="110" y="164" class="tm">とは混ぜない</text>
+<rect x="12" y="190" width="296" height="370" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="210" class="tb">② 例：明暗の差が2倍ちがう2枚</text>
+<text x="24" y="228" class="tm">同じチャネルの3つの画素の値</text>
+<rect x="42" y="294.0" width="18" height="10.0" class="fas sa" stroke-width="1.5"/>
+<text x="51" y="290" class="tm" text-anchor="middle">1</text>
+<rect x="64" y="284.0" width="18" height="20.0" class="fas sa" stroke-width="1.5"/>
+<text x="73" y="280" class="tm" text-anchor="middle">2</text>
+<rect x="86" y="274.0" width="18" height="30.0" class="fas sa" stroke-width="1.5"/>
+<text x="95" y="270" class="tm" text-anchor="middle">3</text>
+<rect x="190" y="284.0" width="18" height="20.0" class="fwn swn" stroke-width="1.5"/>
+<text x="199" y="280" class="tm" text-anchor="middle">2</text>
+<rect x="212" y="264.0" width="18" height="40.0" class="fwn swn" stroke-width="1.5"/>
+<text x="221" y="260" class="tm" text-anchor="middle">4</text>
+<rect x="234" y="244.0" width="18" height="60.0" class="fwn swn" stroke-width="1.5"/>
+<text x="243" y="240" class="tm" text-anchor="middle">6</text>
+<line x1="34" y1="304" x2="112" y2="304" class="l sm w1"/>
+<line x1="182" y1="304" x2="260" y2="304" class="l sm w1"/>
+<text x="73" y="322" class="tb" text-anchor="middle">画像A</text>
+<text x="221" y="322" class="tb" text-anchor="middle">画像B</text>
+<text x="24" y="346">平均 2</text>
+<text x="24" y="364">ずれ −1, 0, 1</text>
+<text x="24" y="382">標準偏差≈0.82</text>
+<text x="168" y="346">平均 4</text>
+<text x="168" y="364">ずれ −2, 0, 2</text>
+<text x="168" y="382">標準偏差≈1.63</text>
+<text x="24" y="408" class="tb">（値−平均）÷標準偏差 で直す</text>
+<text x="24" y="428">−1÷0.82≈−1.22</text>
+<text x="168" y="428">−2÷1.63≈−1.22</text>
+<text x="160" y="452" class="tm" text-anchor="middle">そろえた後</text>
+<rect x="42" y="492.0" width="18" height="24.4" class="fas sa" stroke-width="1.5"/>
+<rect x="190" y="492.0" width="18" height="24.4" class="fwn swn" stroke-width="1.5"/>
+<rect x="64" y="492.0" width="18" height="0.0" class="fas sa" stroke-width="1.5"/>
+<rect x="212" y="492.0" width="18" height="0.0" class="fwn swn" stroke-width="1.5"/>
+<rect x="86" y="467.6" width="18" height="24.4" class="fas sa" stroke-width="1.5"/>
+<rect x="234" y="467.6" width="18" height="24.4" class="fwn swn" stroke-width="1.5"/>
+<line x1="34" y1="492" x2="112" y2="492" class="l sm w1"/>
+<line x1="182" y1="492" x2="260" y2="492" class="l sm w1"/>
+<text x="160" y="534" class="tb" text-anchor="middle">どちらも約 −1.22, 0, 1.22</text>
+<text x="24" y="552" class="tm">標準偏差＝ばらつきの大きさ（分散の平方根）</text>
+<rect x="12" y="572" width="296" height="112" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="592" class="tb">③ なぜ画風変換に効くか</text>
+<text x="24" y="612">写真ごとの明暗の差が消える</text>
+<text x="24" y="630">→ 出来上がりの明暗は、画風の絵で決まる</text>
+<text x="24" y="654" class="tm">Ulyanov ら：生成器のバッチ正規化を</text>
+<text x="24" y="672" class="tm">これに替え、推論時も同じ計算で品質向上</text>
+<text x="12" y="708" class="tm">範囲：レイヤー＝全チャネル、グループ＝束、</text>
+<text x="12" y="726" class="tm">　インスタンス＝チャネル1枚ずつ</text>
+</svg>

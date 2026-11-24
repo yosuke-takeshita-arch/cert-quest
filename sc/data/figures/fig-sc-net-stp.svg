@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-sc-net-stp-t fig-sc-net-stp-d">
+<title id="fig-sc-net-stp-t">スパニングツリー：輪の1か所を止めて木の形にする</title>
+<desc id="fig-sc-net-stp-d">スイッチ3台A・B・Cを三角の輪につなぐと、全員あてのフレームが輪を回り続けて網が止まる。スパニングツリーは、スイッチどうしが情報（BPDU）を交換して、まず根になるルートブリッジを1台決める（ここではA）。各スイッチは、ルートへの経路コストがいちばん小さい自分のポートをルートポートにする（BのA向き、CのA向き）。各リンクでは、ルートまでの経路コストが小さいスイッチの側のポートを代表ポートにする（Aの2つのポート、B–C間ではB側）。どちらでもないポート（B–C間のC側）はブロックして使わない。こうして輪が切れて木の形になり、A–B間などが切れたら、ブロックしていたポートを使って迂回する。</desc>
+<text x="12" y="20" class="tb">輪につなぐと、全員あてのフレームが</text>
+<text x="12" y="40" class="tb">回り続ける → 1か所を止めて木にする</text>
+<rect x="120" y="58" width="80" height="40" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="76" class="tb" text-anchor="middle">A</text>
+<text x="160" y="92" class="ta" text-anchor="middle">ルート</text>
+<rect x="24" y="226" width="80" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="64" y="251" class="tb" text-anchor="middle">B</text>
+<rect x="216" y="226" width="80" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="256" y="251" class="tb" text-anchor="middle">C</text>
+<line x1="138" y1="98" x2="72" y2="226" class="l w2"/>
+<line x1="182" y1="98" x2="248" y2="226" class="l w2"/>
+<line x1="104" y1="246" x2="216" y2="246" class="l sm w1 dsh"/>
+<text x="92" y="122" class="ta">DP</text>
+<text x="208" y="122" class="ta">DP</text>
+<text x="56" y="214" class="tok">RP</text>
+<text x="246" y="214" class="tok">RP</text>
+<text x="110" y="238" class="ta">DP</text>
+<text x="196" y="238" class="tng">×</text>
+<text x="160" y="268" class="tm" text-anchor="middle">止めた予備</text>
+<text x="12" y="300" class="tok">RP＝ルートポート：自分のポートで</text>
+<text x="12" y="318" class="tok">ルートまでの経路コストが最小</text>
+<text x="12" y="342" class="ta">DP＝代表ポート：そのリンクで</text>
+<text x="12" y="360" class="ta">ルートまでの経路コストが小さい側</text>
+<text x="12" y="384" class="tng">×＝ブロック：どちらでもないポート</text>
+<text x="12" y="406" class="tm">B–C間はコストが同じなので、IDの小さいB側がDP</text>
+</svg>

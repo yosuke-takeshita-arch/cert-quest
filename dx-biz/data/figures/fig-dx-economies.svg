@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 558" role="img" aria-labelledby="fig-dx-economies-t fig-dx-economies-d">
+<title id="fig-dx-economies-t">規模・範囲・密度・速度の経済</title>
+<desc id="fig-dx-economies-d">4つの経済性を同じ形の枠で比べた図。規模の経済は、生産量や利用者数が増えるほど1単位あたりのコストが下がること。デジタルでは、追加の1単位の費用（限界費用）がほぼゼロなので強く働く。範囲の経済は、複数の事業を1社でまとめて行い、共通の資源（設備・顧客基盤・データ）を使い回して、コストを下げたり価値を上げたりすること。密度の経済は、顧客や店舗、配送先が狭い地域に集まっているほど、移動や配送の効率が上がること。特定の地域に集中して出店するドミナント戦略はこれをねらう。速度の経済は公式シラバスにある用語で、定義は公式の資料で確認できていないため、図では説明しない。</desc>
+<rect x="12" y="14" width="296" height="150" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="36" class="tb">規模の経済：増えるほど安くなる</text>
+<line x1="40" y1="50" x2="40" y2="142" class="l sm w1"/>
+<line x1="40" y1="142" x2="170" y2="142" class="l sm w1"/>
+<path d="M44 58 C 60 110, 100 126, 164 132" class="l sa w3"/>
+<text x="24" y="58" class="tm">費</text>
+<text x="24" y="76" class="tm">用</text>
+<text x="70" y="160" class="tm">生産量・利用者数</text>
+<text x="180" y="74">1単位あたり</text>
+<text x="180" y="94">のコストが</text>
+<text x="180" y="114" class="tb">下がる</text>
+<rect x="12" y="174" width="296" height="130" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="196" class="tb">範囲の経済：資源を使い回す</text>
+<rect x="24" y="208" width="116" height="76" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="231.5" class="tb" text-anchor="middle">共通の資源</text>
+<text x="82" y="250.5" text-anchor="middle">設備・顧客基盤</text>
+<text x="82" y="269.5" text-anchor="middle">データ</text>
+<line x1="144" y1="246" x2="192" y2="220" class="l sa w2"/>
+<polyline points="188.3,225.76 192,220 185.15,219.96" class="l sa w2"/>
+<rect x="196" y="208" width="100" height="22" class="fok sok" stroke-width="1.5"/>
+<text x="246" y="223.5" text-anchor="middle">事業A</text>
+<line x1="144" y1="246" x2="192" y2="246" class="l sa w2"/>
+<polyline points="186,249.3 192,246 186,242.7" class="l sa w2"/>
+<rect x="196" y="234" width="100" height="22" class="fok sok" stroke-width="1.5"/>
+<text x="246" y="249.5" text-anchor="middle">事業B</text>
+<line x1="144" y1="246" x2="192" y2="272" class="l sa w2"/>
+<polyline points="185.15,272.04 192,272 188.3,266.24" class="l sa w2"/>
+<rect x="196" y="260" width="100" height="22" class="fok sok" stroke-width="1.5"/>
+<text x="246" y="275.5" text-anchor="middle">事業C</text>
+<rect x="12" y="314" width="296" height="130" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="336" class="tb">密度の経済：近くに集まる</text>
+<rect x="24" y="348" width="130" height="82" class="fs sm" stroke-width="1"/>
+<circle cx="60" cy="384" r="4" class="fa"/>
+<circle cx="76" cy="376" r="4" class="fa"/>
+<circle cx="88" cy="394" r="4" class="fa"/>
+<circle cx="100" cy="380" r="4" class="fa"/>
+<circle cx="70" cy="402" r="4" class="fa"/>
+<circle cx="112" cy="396" r="4" class="fa"/>
+<circle cx="96" cy="410" r="4" class="fa"/>
+<text x="166" y="370">店舗・配送先が</text>
+<text x="166" y="390">狭い地域に集まる</text>
+<text x="166" y="410" class="tb">→ 移動が短い</text>
+<text x="166" y="428" class="tm">（ドミナント戦略）</text>
+<rect x="12" y="454" width="296" height="96" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="476" class="tb">速度の経済</text>
+<text x="24" y="500">公式シラバスにある用語。</text>
+<text x="24" y="520">定義は公式の資料で確認できて</text>
+<text x="24" y="538">いないため、図では説明しません</text>
+</svg>

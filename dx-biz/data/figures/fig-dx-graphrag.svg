@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 592" role="img" aria-labelledby="fig-dx-graphrag-t fig-dx-graphrag-d">
+<title id="fig-dx-graphrag-t">全体を見渡す質問に、ふつうのRAGが弱くGraphRAGが答えられる理由</title>
+<desc id="fig-dx-graphrag-d">何のための図か：数千件の報告書に「全体で多く出てくる課題の上位5つは何か」と聞いたとき、意味の近い断片を拾うふつうのRAG（生成AIが答える前に文書を検索して参照する仕組み）が的外れになり、GraphRAGなら答えやすい理由を比べる。上：ふつうのRAG。質問の言葉に近い断片を数件拾って生成AIに渡すだけ。質問の言葉には目当ての文書へ導く手がかりが無いので、拾うのは数千件のうちたまたま近い数件で、全体でどの課題が多いかは分からない。下：GraphRAG。質問が来る前に、生成AIが文書全体から実体（部署・設備・課題など）と関係のグラフ（ナレッジグラフ）を作り、関係の深いまとまりごとに要約しておく。全体の質問には、そのまとまりの要約を集めて答えるので、全体のテーマが分かる。</desc>
+<text x="12" y="20" class="tb">「全体で多い課題の上位5つは？」に答えるには</text>
+<text x="12" y="42" class="tm">対象：社内の報告書 数千件</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="78" class="tb">① ふつうのRAG：近い断片を拾う</text>
+<rect x="20" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="44" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="68" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="92" y="90" width="16" height="20" class="fa sa" stroke-width="1"/>
+<rect x="116" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="140" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="164" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="188" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="212" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="236" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="260" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="284" y="90" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="20" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="44" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="68" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="92" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="116" y="116" width="16" height="20" class="fa sa" stroke-width="1"/>
+<rect x="140" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="164" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="188" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="212" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="236" y="116" width="16" height="20" class="fa sa" stroke-width="1"/>
+<rect x="260" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<rect x="284" y="116" width="16" height="20" class="fs sb" stroke-width="1"/>
+<text x="12" y="160" class="tm">色の付いた3つ＝質問の言葉に近い断片（数件）</text>
+<text x="12" y="182" class="tm">質問の言葉には、目当ての文書へ導く手がかりが</text>
+<text x="12" y="200" class="tm">無い。拾うのは、たまたま言葉が近い数件</text>
+<text x="12" y="220" class="tb tng">→ 全体でどの課題が多いかは分からない</text>
+<line x1="12" y1="232" x2="308" y2="232" class="l sb w1"/>
+<text x="12" y="256" class="tb">② GraphRAG：先にグラフを作ってまとめる</text>
+<text x="12" y="278" class="tm">質問が来る前に、生成AIが文書全体を読んで、</text>
+<text x="12" y="296" class="tm">実体と関係のグラフ（ナレッジグラフ）を作る</text>
+<line x1="50" y1="338" x2="116" y2="328" class="l sm w1"/>
+<line x1="50" y1="338" x2="84" y2="380" class="l sm w1"/>
+<line x1="116" y1="328" x2="84" y2="380" class="l sm w1"/>
+<line x1="210" y1="334" x2="270" y2="366" class="l sm w1"/>
+<line x1="210" y1="334" x2="196" y2="386" class="l sm w1"/>
+<line x1="270" y1="366" x2="196" y2="386" class="l sm w1"/>
+<line x1="116" y1="328" x2="210" y2="334" class="l sm w1"/>
+<ellipse cx="84" cy="358" rx="66" ry="50" class="sok dsh" fill="none" stroke-width="1.5"/>
+<ellipse cx="232" cy="360" rx="70" ry="50" class="swn dsh" fill="none" stroke-width="1.5"/>
+<circle cx="50" cy="338" r="5" class="fa"/>
+<text x="50" y="329" class="tb" text-anchor="middle">設備</text>
+<circle cx="116" cy="328" r="5" class="fa"/>
+<text x="116" y="319" class="tb" text-anchor="middle">停止</text>
+<circle cx="84" cy="380" r="5" class="fa"/>
+<text x="84" y="371" class="tb" text-anchor="middle">保守</text>
+<circle cx="210" cy="334" r="5" class="fa"/>
+<text x="210" y="325" class="tb" text-anchor="middle">納期</text>
+<circle cx="270" cy="366" r="5" class="fa"/>
+<text x="270" y="357" class="tb" text-anchor="middle">物流</text>
+<circle cx="196" cy="386" r="5" class="fa"/>
+<text x="196" y="377" class="tb" text-anchor="middle">在庫</text>
+<text x="12" y="434" class="tm">点＝実体（部署・設備・課題など）、線＝関係</text>
+<text x="12" y="452" class="tm">破線の囲み＝関係の深いまとまり（テーマ）</text>
+<text x="12" y="474" class="tb ta">→ まとまりごとに、先に要約しておく</text>
+<rect x="12" y="486" width="296" height="70" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="506" class="tb tok">全体の質問には、まとまりの要約を</text>
+<text x="22" y="526" class="tb tok">集めて答える</text>
+<text x="22" y="544" class="tm">→ どのテーマが多いかが分かる</text>
+<text x="12" y="578" class="tm">（名前・数は説明用の例）</text>
+</svg>

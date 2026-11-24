@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 430" role="img" aria-labelledby="fig-dx-basic-b2b-t fig-dx-basic-b2b-d">
+<title id="fig-dx-basic-b2b-t">B2B・B2C・C2C＝誰が誰に売るか</title>
+<desc id="fig-dx-basic-b2b-d">B は企業（Business）、C は消費者（Consumer）。上から順に、製粉会社がパン工場に小麦粉を売るのは企業から企業なので B2B。パン工場がスーパーにパンを売るのも B2B。スーパーが買い物客にパンを売るのは企業から消費者なので B2C。いちばん下は別の例で、個人がフリマアプリを通して個人に売るのは消費者から消費者なので C2C。四角の枠は企業、丸い枠は個人。</desc>
+<text x="12" y="22" class="tl">誰が誰に売るか</text>
+<text x="12" y="44" class="tm">B＝企業（Business）　C＝消費者（Consumer）</text>
+<rect x="60" y="58" width="200" height="34" class="fs sm" stroke-width="1.5"/>
+<text x="160" y="80" text-anchor="middle">製粉会社（企業）</text>
+<line x1="160" y1="92" x2="160" y2="118" class="l sm w2"/>
+<polygon points="160,124 155,116 165,116" class="fm"/>
+<text x="176" y="113" class="tb ta">B2B　小麦粉を売る</text>
+<rect x="60" y="126" width="200" height="34" class="fs sm" stroke-width="1.5"/>
+<text x="160" y="148" text-anchor="middle">パン工場（企業）</text>
+<line x1="160" y1="160" x2="160" y2="186" class="l sm w2"/>
+<polygon points="160,192 155,184 165,184" class="fm"/>
+<text x="176" y="181" class="tb ta">B2B　パンを卸す</text>
+<rect x="60" y="194" width="200" height="34" class="fs sm" stroke-width="1.5"/>
+<text x="160" y="216" text-anchor="middle">スーパー（企業）</text>
+<line x1="160" y1="228" x2="160" y2="254" class="l sm w2"/>
+<polygon points="160,260 155,252 165,252" class="fm"/>
+<text x="176" y="249" class="tb tok">B2C　パンを売る</text>
+<rect x="60" y="262" width="200" height="34" class="fok sok" stroke-width="1.5" rx="17"/>
+<text x="160" y="284" text-anchor="middle">買い物客（個人）</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="338" class="tm">別の例：個人どうし</text>
+<rect x="12" y="350" width="80" height="34" class="fok sok" stroke-width="1.5" rx="17"/>
+<text x="52" y="372" text-anchor="middle">個人</text>
+<line x1="92" y1="367" x2="218" y2="367" class="l sm w2"/>
+<polygon points="226,367 218,362 218,372" class="fm"/>
+<text x="158" y="358" class="tm" text-anchor="middle">フリマアプリ</text>
+<text x="158" y="386" class="tb twn" text-anchor="middle">C2C</text>
+<rect x="228" y="350" width="80" height="34" class="fok sok" stroke-width="1.5" rx="17"/>
+<text x="268" y="372" text-anchor="middle">個人</text>
+<text x="12" y="414" class="tm">四角＝企業、丸い枠＝個人</text>
+</svg>

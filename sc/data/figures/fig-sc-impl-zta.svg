@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-sc-impl-zta-t fig-sc-impl-zta-d">
+<title id="fig-sc-impl-zta-t">ゼロトラストの PDP と PEP</title>
+<desc id="fig-sc-impl-zta-d">上の枠がポリシー決定ポイント（PDP）で、中にポリシーエンジン（PE、許可するかを決める）とポリシー管理者（PA、決定に従って通信路を開け閉めする）がある。下の段は左から、利用者と端末、ポリシー実施ポイント（PEP、門）、資源（経費システム）。利用者の要求はまず PEP に届き、PEP が PDP に問い合わせる。PDP は本人の認証・端末の状態・時刻や場所を見て判断し、許可なら PEP がその資源への通信だけを通す。社内のネットワークにいるかどうかでは信用しない。別の資源（人事システム）には、改めて判断が要る。</desc>
+<text x="12" y="20" class="tb">ゼロトラスト：要求のたびに判断</text>
+<text x="12" y="40" class="tm">社内にいるだけでは信用しない</text>
+<rect x="60" y="54" width="200" height="96" class="fas sa" stroke-width="1.5" rx="8"/>
+<text x="72" y="74" class="tb">PDP（決める役）</text>
+<text x="72" y="96">PE：許可するか決める</text>
+<text x="72" y="116">PA：決定どおりに</text>
+<text x="96" y="134">通信路を開け閉め</text>
+<line x1="160" y1="150" x2="160" y2="196" class="l sa w1"/>
+<polygon points="160,202 156.5,196 163.5,196" class="fa"/>
+<text x="168" y="180" class="ta">許可／拒否</text>
+<line x1="150" y1="196" x2="150" y2="156" class="l sm w1 dsh"/>
+<polygon points="150,150 146.5,156 153.5,156" class="fm"/>
+<text x="20" y="180" class="tm">問い合わせ</text>
+<rect x="8" y="206" width="84" height="64" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="16" y="230" class="tb">利用者</text>
+<text x="16" y="250">＋端末</text>
+<rect x="118" y="206" width="84" height="64" class="fok sok" stroke-width="2" rx="6"/>
+<text x="126" y="230" class="tb">PEP</text>
+<text x="126" y="250">（門）</text>
+<rect x="228" y="206" width="84" height="64" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="230" class="tb">資源</text>
+<text x="236" y="250">経費システム</text>
+<line x1="92" y1="238" x2="112" y2="238" class="l sm w1"/>
+<polygon points="118,238 112,234.5 112,241.5" class="fm"/>
+<line x1="202" y1="238" x2="222" y2="238" class="l sm w1"/>
+<polygon points="228,238 222,234.5 222,241.5" class="fm"/>
+<text x="12" y="300" class="tb">PDP が見るもの（例）</text>
+<text x="12" y="320">・本人の認証（多要素など）</text>
+<text x="12" y="340">・端末の状態（修正は当たっているか）</text>
+<text x="12" y="360">・時刻や場所、脅威の情報</text>
+<text x="12" y="388" class="tb">別の資源（人事システム）は</text>
+<text x="12" y="408" class="tb">改めて判断。自動では入れない</text>
+</svg>

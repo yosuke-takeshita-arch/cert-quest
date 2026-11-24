@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-contract-types-t fig-g-contract-types-d">
+<title id="fig-g-contract-types-t">請負契約と準委任契約の違い：何を約束し、何に払い、目標に届かないとどうなるか</title>
+<desc id="fig-g-contract-types-d">左の列が請負契約、右の列が準委任契約。何を約束するか：請負は仕事の完成、準委任は一定の作業（事務）を行うことで、完成の義務は無い。報酬は何に払うか：請負は完成した成果物に、準委任の履行割合型は作業の割合に応じて払う。うまくいかないと：請負は、契約の内容に合わない不具合があれば直させたり代金を減らさせたりできる（契約不適合責任）。準委任は、専門家としての注意（善良な管理者の注意）を尽くして作業していれば、目標の精度に届かないだけでは約束違反にならない。AIの開発には：学習済みモデルは契約の時点で性能が分からず、未知の入力への挙動も保証しにくいので、経済産業省の契約ガイドラインは、請負型はなじみにくく、準委任型が親和的とする。注記：準委任にも、成果物に報酬を払う成果完成型がある。</desc>
+<rect x="12" y="12" width="144" height="32" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="84" y="33" class="tb twn" text-anchor="middle">請負</text>
+<rect x="164" y="12" width="144" height="32" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="236" y="33" class="tb ta" text-anchor="middle">準委任</text>
+<text x="12" y="70" class="tb">何を約束する？</text>
+<rect x="12" y="78" width="144" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="107" class="tb" text-anchor="middle">仕事の完成</text>
+<rect x="164" y="78" width="144" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="98" class="tb" text-anchor="middle">作業をすること</text>
+<text x="236" y="117" class="tm" text-anchor="middle">完成の義務は無い</text>
+<text x="12" y="152" class="tb">報酬は何に払う？</text>
+<rect x="12" y="160" width="144" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="181" text-anchor="middle">完成した</text>
+<text x="84" y="199" text-anchor="middle">成果物に</text>
+<rect x="164" y="160" width="144" height="48" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="181" text-anchor="middle">作業の割合に応じて</text>
+<text x="236" y="199" class="tm" text-anchor="middle">（履行割合型）</text>
+<text x="12" y="234" class="tb">うまくいかないと？</text>
+<rect x="12" y="242" width="144" height="88" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="84" y="264" text-anchor="middle">不具合があれば</text>
+<text x="84" y="283" text-anchor="middle">直させる・</text>
+<text x="84" y="302" text-anchor="middle">代金を減らさせる</text>
+<text x="84" y="321" class="tm" text-anchor="middle">（契約不適合責任）</text>
+<rect x="164" y="242" width="144" height="88" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="236" y="264" text-anchor="middle">注意を尽くして</text>
+<text x="236" y="283" text-anchor="middle">作業していれば、</text>
+<text x="236" y="302" text-anchor="middle">精度が届かないだけ</text>
+<text x="236" y="321" text-anchor="middle">では約束違反でない</text>
+<text x="12" y="356" class="tb">AIの開発には？</text>
+<rect x="12" y="364" width="144" height="40" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="389" class="tm" text-anchor="middle">なじみにくい</text>
+<rect x="164" y="364" width="144" height="40" class="fok sok" stroke-width="2.5" rx="6"/>
+<text x="236" y="389" class="tb tok" text-anchor="middle">親和的</text>
+<text x="12" y="430">理由：学習済みモデルは、契約の時点で</text>
+<text x="12" y="450">性能が分からず、未知の入力への挙動も</text>
+<text x="12" y="470">保証しにくい（経済産業省の契約ガイドライン）</text>
+<line x1="12" y1="488" x2="308" y2="488" class="l sb w1"/>
+<text x="12" y="510" class="tm">準委任にも、成果物に報酬を払う</text>
+<text x="12" y="528" class="tm">「成果完成型」がある。どちらの型かを</text>
+<text x="12" y="546" class="tm">当事者ではっきりさせておく</text>
+</svg>

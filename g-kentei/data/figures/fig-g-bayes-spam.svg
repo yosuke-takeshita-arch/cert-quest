@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 606" role="img" aria-labelledby="fig-g-bayes-spam-t fig-g-bayes-spam-d">
+<title id="fig-g-bayes-spam-t">「当選」を含むメールが迷惑メールである確率：事前確率20％から事後確率約56％へ</title>
+<desc id="fig-g-bayes-spam-d">何のための図か：メールの20％が迷惑メールで、「当選」という語が迷惑メールの50％、通常のメールの10％に含まれるとき、「当選」を含むメールが迷惑メールである確率を、1,000通の数で数える。あわせて、ベイズの定理の各部分の呼び名を同じ数で示す。木の図：1,000通のうち迷惑メールは20％の200通、通常のメールは800通。迷惑メール200通のうち50％の100通が「当選」を含み、100通は含まない。通常のメール800通のうち10％の80通が「当選」を含み、720通は含まない。「当選」を含むメールだけを集めると100＋80＝180通で、そのうち迷惑メールは100通。帯の図：180通のうち迷惑メールが100通、通常のメールが80通。100÷180≒0.56で約56％。呼び名：事前確率は「当選」を見る前の迷惑メールの割合で20％。尤度は迷惑メールが「当選」を含む確率で50％。同時確率は迷惑メールで、しかも「当選」を含む割合で100÷1,000＝10％。周辺確率は「当選」を含むメールの割合の全体で180÷1,000＝18％。事後確率は「当選」を含むと分かった後の迷惑メールの確率で約56％。式では、事後確率＝尤度×事前確率÷周辺確率＝0.5×0.2÷0.18≒0.56。</desc>
+<text x="12" y="20" class="tb">「当選」を含むメールは迷惑メールか</text>
+<text x="12" y="42" class="tm">1,000通いると考えて数える（割合から計算）</text>
+<rect x="105" y="54" width="110" height="27" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="160" y="72" class="tb" text-anchor="middle">1,000通</text>
+<line x1="140" y1="81" x2="84" y2="115" class="l sm w1"/>
+<text x="106" y="102" class="tm" text-anchor="end">20%</text>
+<line x1="180" y1="81" x2="236" y2="115" class="l sm w1"/>
+<text x="214" y="102" class="tm" text-anchor="start">80%</text>
+<rect x="14" y="115" width="140" height="27" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="84" y="133" class="tb" text-anchor="middle">迷惑 200通</text>
+<rect x="166" y="115" width="140" height="27" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="236" y="133" class="tb" text-anchor="middle">通常 800通</text>
+<line x1="70" y1="142" x2="46" y2="176" class="l sm w1"/>
+<text x="52" y="163" class="tm" text-anchor="end">50%</text>
+<line x1="98" y1="142" x2="120" y2="176" class="l sm w1"/>
+<text x="115" y="163" class="tm" text-anchor="start">50%</text>
+<line x1="222" y1="142" x2="200" y2="176" class="l sm w1"/>
+<text x="205" y="163" class="tm" text-anchor="end">10%</text>
+<line x1="250" y1="142" x2="274" y2="176" class="l sm w1"/>
+<text x="268" y="163" class="tm" text-anchor="start">90%</text>
+<rect x="11" y="176" width="70" height="44" class="fok sok" stroke-width="1.5" rx="5"/>
+<text x="46" y="194" class="tb tok" text-anchor="middle">当選あり</text>
+<text x="46" y="211" class="tok" text-anchor="middle">100通</text>
+<rect x="85" y="176" width="70" height="44" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="120" y="194" class="tb" text-anchor="middle">当選なし</text>
+<text x="120" y="211" class="tm" text-anchor="middle">100通</text>
+<rect x="165" y="176" width="70" height="44" class="fng sng" stroke-width="1.5" rx="5"/>
+<text x="200" y="194" class="tb tng" text-anchor="middle">当選あり</text>
+<text x="200" y="211" class="tng" text-anchor="middle">80通</text>
+<rect x="239" y="176" width="70" height="44" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="274" y="194" class="tb" text-anchor="middle">当選なし</text>
+<text x="274" y="211" class="tm" text-anchor="middle">720通</text>
+<line x1="12" y1="232" x2="308" y2="232" class="l sb w1"/>
+<text x="12" y="256" class="tb">「当選」を含むメールだけを集める</text>
+<text x="12" y="274">100 ＋ 80 ＝ 180通（帯の全体）</text>
+<rect x="12" y="288" width="164.4" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="176.4" y="288" width="131.6" height="26" class="fng sng" stroke-width="1.5"/>
+<text x="242.2" y="306" class="tng" text-anchor="middle">通常 80通</text>
+<text x="12" y="332" class="tok">← 左：迷惑メール 100通</text>
+<rect x="12" y="340" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="360" class="tb tok">100 ÷ 180 ≒ 0.56 → 約56%</text>
+<line x1="12" y1="384" x2="308" y2="384" class="l sb w1"/>
+<text x="12" y="408" class="tb">同じ数で見る、各部分の呼び名</text>
+<text x="12" y="430" class="tb">事前確率</text>
+<text x="112" y="430" class="tb" text-anchor="end">20%</text>
+<text x="120" y="430" class="tm">見る前の迷惑の割合</text>
+<text x="12" y="452" class="tb">尤度</text>
+<text x="112" y="452" class="tb" text-anchor="end">50%</text>
+<text x="120" y="452" class="tm">迷惑が当選を含む確率</text>
+<text x="12" y="474" class="tb">同時確率</text>
+<text x="112" y="474" class="tb" text-anchor="end">10%</text>
+<text x="120" y="474" class="tm">迷惑かつ当選 100÷1,000</text>
+<text x="12" y="496" class="tb">周辺確率</text>
+<text x="112" y="496" class="tb" text-anchor="end">18%</text>
+<text x="120" y="496" class="tm">当選ありの全体 180÷1,000</text>
+<text x="12" y="518" class="tb tok">事後確率</text>
+<text x="112" y="518" class="tb tok" text-anchor="end">約56%</text>
+<text x="120" y="518" class="tm">見た後の迷惑の確率</text>
+<text x="12" y="552" class="tb">事後 ＝ 尤度 × 事前 ÷ 周辺</text>
+<text x="12" y="570">　　 ＝ 0.5 × 0.2 ÷ 0.18 ≒ 0.56</text>
+<text x="12" y="592" class="tm">データを見る前（事前）→ 見た後（事後）</text>
+</svg>

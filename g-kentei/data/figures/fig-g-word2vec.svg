@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 660" role="img" aria-labelledby="fig-g-word2vec-t fig-g-word2vec-d">
+<title id="fig-g-word2vec-t">word2vec：CBOW とスキップグラム</title>
+<desc id="fig-g-word2vec-d">例文「私は魚を食べる」で、中心の語を魚、窓の幅を2とすると、周りの語は私、は、を、食べるの4つ。CBOW は周りの4語から中心の1語を予測する。矢印が中心に集まる。スキップグラムは中心の1語から周りの4語を予測する。矢印が外へ広がる。fastText はスキップグラムを拡張し、単語を文字 n-gram の集まりとして表し、そのベクトルの和で単語ベクトルを作る。</desc>
+<text x="12" y="20" class="tb">例文（窓の幅 2、中心の語＝魚）</text>
+<rect x="12" y="32" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="38" y="50.5" class="tb" text-anchor="middle">私</text>
+<rect x="73" y="32" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="99" y="50.5" class="tb" text-anchor="middle">は</text>
+<rect x="134" y="32" width="52" height="28" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="50.5" class="tb" text-anchor="middle">魚</text>
+<rect x="195" y="32" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="221" y="50.5" class="tb" text-anchor="middle">を</text>
+<rect x="256" y="32" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="282" y="50.5" class="tb" text-anchor="middle">食べる</text>
+<text x="12" y="84" class="tm">周りの4語（私・は・を・食べる）</text>
+<line x1="12" y1="98" x2="308" y2="98" class="l sb w1"/>
+<text x="12" y="122" class="tb">CBOW：周り → 中心を予測</text>
+<rect x="12" y="136" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="38" y="154.5" class="tb" text-anchor="middle">私</text>
+<rect x="73" y="136" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="99" y="154.5" class="tb" text-anchor="middle">は</text>
+<rect x="195" y="136" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="221" y="154.5" class="tb" text-anchor="middle">を</text>
+<rect x="256" y="136" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="282" y="154.5" class="tb" text-anchor="middle">食べる</text>
+<line x1="38" y1="164" x2="138.04" y2="216" class="l sa w2"/>
+<polyline points="130.05,216.19 138.04,216 133.6,209.36" class="l sa w2"/>
+<line x1="99" y1="164" x2="149.02" y2="216" class="l sa w2"/>
+<polyline points="141.39,213.62 149.02,216 146.94,208.29" class="l sa w2"/>
+<line x1="221" y1="164" x2="170.98" y2="216" class="l sa w2"/>
+<polyline points="173.06,208.29 170.98,216 178.61,213.62" class="l sa w2"/>
+<line x1="282" y1="164" x2="181.96" y2="216" class="l sa w2"/>
+<polyline points="186.4,209.36 181.96,216 189.95,216.19" class="l sa w2"/>
+<rect x="124" y="218" width="72" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="237.5" class="tb" text-anchor="middle">魚？</text>
+<text x="12" y="276">周りの4語から、中心の1語を当てる</text>
+<line x1="12" y1="294" x2="308" y2="294" class="l sb w1"/>
+<text x="12" y="318" class="tb">スキップグラム：中心 → 周りを予測</text>
+<rect x="124" y="332" width="72" height="30" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="351.5" class="tb" text-anchor="middle">魚</text>
+<line x1="138.04" y1="362" x2="38" y2="414" class="l sa w2"/>
+<polyline points="42.44,407.36 38,414 45.99,414.19" class="l sa w2"/>
+<line x1="149.02" y1="362" x2="99" y2="414" class="l sa w2"/>
+<polyline points="101.08,406.29 99,414 106.63,411.62" class="l sa w2"/>
+<line x1="170.98" y1="362" x2="221" y2="414" class="l sa w2"/>
+<polyline points="213.37,411.62 221,414 218.92,406.29" class="l sa w2"/>
+<line x1="181.96" y1="362" x2="282" y2="414" class="l sa w2"/>
+<polyline points="274.01,414.19 282,414 277.56,407.36" class="l sa w2"/>
+<rect x="12" y="416" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="38" y="434.5" class="tb" text-anchor="middle">？</text>
+<rect x="73" y="416" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="99" y="434.5" class="tb" text-anchor="middle">？</text>
+<rect x="195" y="416" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="221" y="434.5" class="tb" text-anchor="middle">？</text>
+<rect x="256" y="416" width="52" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="282" y="434.5" class="tb" text-anchor="middle">？</text>
+<text x="12" y="472">中心の1語から、周りの4語を当てる</text>
+<line x1="12" y1="490" x2="308" y2="490" class="l sb w1"/>
+<text x="12" y="514" class="tb">fastText：文字 n-gram の和で表す</text>
+<text x="12" y="538" class="tm">例：where（3文字ずつ）</text>
+<rect x="12" y="550" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="38" y="567.5" class="tb" text-anchor="middle">&lt;wh</text>
+<rect x="70" y="550" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="96" y="567.5" class="tb" text-anchor="middle">whe</text>
+<rect x="128" y="550" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="154" y="567.5" class="tb" text-anchor="middle">her</text>
+<rect x="186" y="550" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="212" y="567.5" class="tb" text-anchor="middle">ere</text>
+<rect x="244" y="550" width="52" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="270" y="567.5" class="tb" text-anchor="middle">re&gt;</text>
+<text x="12" y="600">＋ 単語そのもの &lt;where&gt;</text>
+<text x="12" y="624" class="tb">これらのベクトルの和 ＝ 単語ベクトル</text>
+<text x="12" y="648" class="tm">学習データに無かった単語にも作れる</text>
+</svg>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 918" role="img" aria-labelledby="fig-g-t-sne-t fig-g-t-sne-d">
+<title id="fig-g-t-sne-t">t-SNE：高次元で近い点どうしを、2次元の地図でも近くに置く</title>
+<desc id="fig-g-t-sne-d">例：手書き数字の画像5枚。0の画像がP・Q・R、1の画像がS・T。1枚は784個の数（784次元）なので絵に描けない。①もとの784次元でPからの距離を測る。例の数はQまで2、Rまで3、Sまで10、Tまで11で、P・Q・Rは近く、S・Tは遠い。②距離を、Pが近所を1つ選ぶとしたらだれを選ぶかの割合（合計1）に直す。近いほど大きく、Qが0.65、Rが0.35、遠いS・Tはほぼ0。近所どうしの関係だけが強く残り、どの点からも同じように計算する。③2次元の地図に点を置き、地図の上でも同じ割合になるように点を少しずつ動かす。最初はでたらめに置き、動かした後は0の島（P・Q・R）と1の島（S・T）に分かれて見える。地図の上の近さは、すその重いt分布で割合に直す。中くらいに遠い点を地図ではもっと離して置けるので、島の間にすき間ができる。名前のtはこのt分布から。④注意：島どうしの距離や島の大きさはそのまま信じない（全体の位置関係は保たれない）。乱数の種を変えると違う地図になる。PCA（次の図）はばらつきの大きい向きへ直線的に写し、t-SNEは近所の関係を保つ。</desc>
+<text x="12" y="20" class="tb">t-SNE：近い点どうしを、近いまま地図に</text>
+<text x="12" y="42" class="tm">例：手書き数字の画像5枚。『0』の画像が</text>
+<text x="12" y="60" class="tm">P・Q・R、『1』の画像がS・T。1枚は</text>
+<text x="12" y="78" class="tm">784個の数（784次元）なので絵に描けない</text>
+<text x="12" y="104" class="tb">① もとの784次元で、Pからの距離を測る</text>
+<rect x="12" y="114" width="296" height="28" class="fbg sb" stroke-width="1" rx="0"/>
+<text x="30" y="133" class="tm" text-anchor="middle">相手</text>
+<text x="84" y="133" class="tb ta" text-anchor="middle">Q</text>
+<text x="142" y="133" class="tb ta" text-anchor="middle">R</text>
+<text x="200" y="133" class="tb twn" text-anchor="middle">S</text>
+<text x="258" y="133" class="tb twn" text-anchor="middle">T</text>
+<rect x="12" y="142" width="296" height="28" class="fs sb" stroke-width="1" rx="0"/>
+<text x="30" y="161" class="tm" text-anchor="middle">距離</text>
+<text x="84" y="161" class="tb" text-anchor="middle">2</text>
+<text x="142" y="161" class="tb" text-anchor="middle">3</text>
+<text x="200" y="161" class="tb" text-anchor="middle">10</text>
+<text x="258" y="161" class="tb" text-anchor="middle">11</text>
+<text x="12" y="188" class="tm">（数は説明のための例。P・Q・Rは近く、</text>
+<text x="12" y="206" class="tm">　S・Tは遠い）</text>
+<line x1="160" y1="214" x2="160.0" y2="222.4" class="l sm w1"/>
+<polygon points="160,228 156.5,222.4 163.5,222.4" class="fm"/>
+<text x="12" y="248" class="tb">② 距離を『近所に選ぶ割合』に直す</text>
+<text x="12" y="268" class="tm">Pが近所を1つ選ぶとしたら、だれを選ぶか</text>
+<text x="12" y="286" class="tm">の割合（合計1）。近いほど大きい</text>
+<rect x="72" y="322" width="24" height="78" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="84" y="316" class="tb ta" text-anchor="middle">0.65</text>
+<text x="84" y="418" class="tb ta" text-anchor="middle">Q</text>
+<rect x="130" y="358" width="24" height="42" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="142" y="352" class="tb ta" text-anchor="middle">0.35</text>
+<text x="142" y="418" class="tb ta" text-anchor="middle">R</text>
+<rect x="188" y="398.5" width="24" height="1.5" class="fwn swn" stroke-width="1.5" rx="0"/>
+<text x="200" y="392.5" class="tb twn" text-anchor="middle">ほぼ0</text>
+<text x="200" y="418" class="tb twn" text-anchor="middle">S</text>
+<rect x="246" y="398.5" width="24" height="1.5" class="fwn swn" stroke-width="1.5" rx="0"/>
+<text x="258" y="392.5" class="tb twn" text-anchor="middle">ほぼ0</text>
+<text x="258" y="418" class="tb twn" text-anchor="middle">T</text>
+<line x1="50" y1="400" x2="290" y2="400" class="l sm w1"/>
+<text x="12" y="442">遠いS・Tはほぼ0。近所どうしの関係だけ</text>
+<text x="12" y="460">が強く残る（どの点からも同じように計算）</text>
+<line x1="160" y1="470" x2="160.0" y2="478.4" class="l sm w1"/>
+<polygon points="160,484 156.5,478.4 163.5,478.4" class="fm"/>
+<text x="12" y="504" class="tb">③ 2次元の地図に置き、地図でも同じ割合</text>
+<text x="12" y="522" class="tb">になるように点を少しずつ動かす</text>
+<rect x="12" y="536" width="140" height="120" class="fbg sb" stroke-width="1" rx="6"/>
+<rect x="168" y="536" width="140" height="120" class="fbg sb" stroke-width="1" rx="6"/>
+<text x="82" y="674" class="tm" text-anchor="middle">最初：でたらめに置く</text>
+<text x="238" y="674" class="tb" text-anchor="middle">動かした後</text>
+<circle cx="40" cy="576" r="9" class="fas sa" stroke-width="1.5"/>
+<text x="40" y="580.5" class="tb ta" text-anchor="middle">P</text>
+<circle cx="120" cy="632" r="9" class="fas sa" stroke-width="1.5"/>
+<text x="120" y="636.5" class="tb ta" text-anchor="middle">Q</text>
+<circle cx="64" cy="636" r="9" class="fas sa" stroke-width="1.5"/>
+<text x="64" y="640.5" class="tb ta" text-anchor="middle">R</text>
+<circle cx="96" cy="566" r="9" class="fwn swn" stroke-width="1.5"/>
+<text x="96" y="570.5" class="tb twn" text-anchor="middle">S</text>
+<circle cx="126" cy="592" r="9" class="fwn swn" stroke-width="1.5"/>
+<text x="126" y="596.5" class="tb twn" text-anchor="middle">T</text>
+<circle cx="202" cy="574" r="9" class="fas sa" stroke-width="1.5"/>
+<text x="202" y="578.5" class="tb ta" text-anchor="middle">P</text>
+<circle cx="188" cy="598" r="9" class="fas sa" stroke-width="1.5"/>
+<text x="188" y="602.5" class="tb ta" text-anchor="middle">Q</text>
+<circle cx="218" cy="600" r="9" class="fas sa" stroke-width="1.5"/>
+<text x="218" y="604.5" class="tb ta" text-anchor="middle">R</text>
+<circle cx="274" cy="618" r="9" class="fwn swn" stroke-width="1.5"/>
+<text x="274" y="622.5" class="tb twn" text-anchor="middle">S</text>
+<circle cx="286" cy="640" r="9" class="fwn swn" stroke-width="1.5"/>
+<text x="286" y="644.5" class="tb twn" text-anchor="middle">T</text>
+<line x1="154" y1="596" x2="160.4" y2="596.0" class="l sm w1"/>
+<polygon points="166,596 160.4,599.5 160.4,592.5" class="fm"/>
+<text x="12" y="700" class="tb">『0』の島と『1』の島に分かれて見える</text>
+<text x="12" y="718" class="tm">地図の近さも、すその重い t分布で割合</text>
+<text x="12" y="736" class="tm">に直す。中くらいに遠い点を地図ではもっと</text>
+<text x="12" y="754" class="tm">離して置けるので、島の間にすき間ができる</text>
+<text x="12" y="772" class="tm">（名前の t はこの t分布から）</text>
+<line x1="12" y1="788" x2="308" y2="788" class="l sb w1"/>
+<text x="12" y="812" class="tb">④ 注意</text>
+<text x="12" y="832" class="twn">島どうしの距離や島の大きさは、そのまま</text>
+<text x="12" y="850" class="twn">信じない（全体の位置関係は保たれない）</text>
+<text x="12" y="870" class="twn">乱数の種を変えると、違う地図になる</text>
+<text x="12" y="890" class="tm">PCA（次の図）は、ばらつきの大きい向き</text>
+<text x="12" y="908" class="tm">へ直線的に写す。t-SNE は近所の関係を保つ</text>
+</svg>

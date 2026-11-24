@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 530" role="img" aria-labelledby="fig-g-moving-average-calc-t fig-g-moving-average-calc-d">
+<title id="fig-g-moving-average-calc-t">10, 12, 14, 16 の直近3時点の移動平均</title>
+<desc id="fig-g-moving-average-calc-d">何のための図か：時系列データ 10, 12, 14, 16 について、直近3時点の単純移動平均を求める。棒グラフ：横軸は時点（1〜4）、棒の高さはその時点の値。窓（3時点ぶんの枠）を1つずつ右へずらし、窓の中の3つだけを平均する。1時点目と2時点目は、さかのぼって3つそろわないので計算しない。3時点目の窓は10, 12, 14 で、36÷3＝12。4時点目（16の時点）の窓は12, 14, 16 で、42÷3＝14。窓に入らない10は使わない。似た数との違い：12は3時点目の移動平均、13は4つ全部の平均（52÷4）、16はその時点の値そのもの。</desc>
+<text x="12" y="20" class="tb">移動平均：窓をずらして、窓の中だけ平均</text>
+<text x="12" y="42" class="tm">データ：10, 12, 14, 16（時間の順）</text>
+<text x="12" y="60" class="tm">横軸＝時点、棒の高さ＝その時点の値</text>
+<line x1="30" y1="222" x2="300" y2="222" class="l sm w1"/>
+<rect x="42" y="162" width="36" height="60" class="fas sa" stroke-width="1"/>
+<text x="60" y="156" class="tb" text-anchor="middle">10</text>
+<text x="60" y="238" class="tm" text-anchor="middle">1時点目</text>
+<rect x="106" y="150" width="36" height="72" class="fa sa" stroke-width="1"/>
+<text x="124" y="144" class="tb" text-anchor="middle">12</text>
+<text x="124" y="238" class="tm" text-anchor="middle">2時点目</text>
+<rect x="170" y="138" width="36" height="84" class="fa sa" stroke-width="1"/>
+<text x="188" y="132" class="tb" text-anchor="middle">14</text>
+<text x="188" y="238" class="tm" text-anchor="middle">3時点目</text>
+<rect x="234" y="126" width="36" height="96" class="fa sa" stroke-width="1"/>
+<text x="252" y="120" class="tb" text-anchor="middle">16</text>
+<text x="252" y="238" class="tm" text-anchor="middle">4時点目</text>
+<rect x="92" y="90" width="192" height="158" class="sok" stroke-width="2" rx="6"/>
+<text x="278" y="84" class="tb tok" text-anchor="end">4時点目の窓</text>
+<line x1="12" y1="264" x2="308" y2="264" class="l sb w1"/>
+<text x="12" y="288" class="tb">窓を1つずつ右へずらす</text>
+<text x="12" y="306" class="tm">1・2時点目：3つそろわないので計算しない</text>
+<text x="12" y="324">3時点目の窓：10, 12, 14</text>
+<text x="12" y="342">　(10 ＋ 12 ＋ 14) ÷ 3 ＝ 36 ÷ 3 ＝ 12</text>
+<text x="12" y="362" class="tb">4時点目（16の時点）の窓：12, 14, 16</text>
+<rect x="12" y="370" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="390" class="tb tok">(12 ＋ 14 ＋ 16) ÷ 3 ＝ 42 ÷ 3 ＝ 14</text>
+<text x="12" y="426" class="tm">窓から外れた 10 は、もう使わない</text>
+<line x1="12" y1="438" x2="308" y2="438" class="l sb w1"/>
+<text x="12" y="462" class="tb">似た数と取り違えない</text>
+<text x="12" y="480">12：3時点目の移動平均（1つ前の窓）</text>
+<text x="12" y="498">13：4つ全部の平均（52 ÷ 4）</text>
+<text x="12" y="516">16：その時点の値そのもの</text>
+</svg>

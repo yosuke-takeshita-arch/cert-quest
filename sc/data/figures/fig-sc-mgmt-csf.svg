@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 410" role="img" aria-labelledby="fig-sc-mgmt-csf-t fig-sc-mgmt-csf-d">
+<title id="fig-sc-mgmt-csf-t">NIST サイバーセキュリティフレームワーク（CSF）の6つの機能</title>
+<desc id="fig-sc-mgmt-csf-d">いちばん上に GOVERN（統治）があり、リスク管理の方針・役割・サプライチェーンのリスク管理を決めて、下の5つ全体を束ねる。下の5つは順に、IDENTIFY（識別：守る資産とリスクをつかむ）、PROTECT（防御：アクセス制御や教育で守る）、DETECT（検知：異常を見つける）、RESPOND（対応：インシデントに対処する）、RECOVER（復旧：元に戻す）。2018年の1.1版は下の5つだけだった。2024年の2.0版で GOVERN が足されて6つになった。</desc>
+<text x="12" y="20" class="tb">CSF のコア：6つの機能</text>
+<rect x="12" y="32" width="296" height="58" class="fas sa" stroke-width="2.5" rx="6"/>
+<text x="160" y="54" class="tb ta" text-anchor="middle">GOVERN（統治）2.0版で追加</text>
+<text x="160" y="76" text-anchor="middle">方針・役割を決め、5つを束ねる</text>
+<line x1="160" y1="90" x2="160" y2="100.4" class="l sm w1"/>
+<polygon points="160,106 156.5,100.4 163.5,100.4" class="fm"/>
+<rect x="12" y="108" width="296" height="232" class="sb dsh" stroke-width="1.5" rx="8"/>
+<text x="22" y="128" class="tm">1.1版からある5つ（上から順に）</text>
+<rect x="22" y="136" width="276" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="32" y="158" class="tb">IDENTIFY（識別）</text>
+<text x="290" y="158" class="tm" text-anchor="end">何を守るか</text>
+<rect x="22" y="176" width="276" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="32" y="198" class="tb">PROTECT（防御）</text>
+<text x="290" y="198" class="tm" text-anchor="end">守る</text>
+<rect x="22" y="216" width="276" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="32" y="238" class="tb">DETECT（検知）</text>
+<text x="290" y="238" class="tm" text-anchor="end">見つける</text>
+<rect x="22" y="256" width="276" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="32" y="278" class="tb">RESPOND（対応）</text>
+<text x="290" y="278" class="tm" text-anchor="end">対処する</text>
+<rect x="22" y="296" width="276" height="34" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="32" y="318" class="tb">RECOVER（復旧）</text>
+<text x="290" y="318" class="tm" text-anchor="end">元に戻す</text>
+<text x="12" y="366">1.1版（2018年）：下の5つ</text>
+<text x="12" y="388">2.0版（2024年）：GOVERN を足して6つ</text>
+</svg>

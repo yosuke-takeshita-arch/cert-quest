@@ -1,0 +1,27 @@
+{
+  "syllabus": "syllabus.json",
+  "questions": [
+    "questions/01_security-threats.json",
+    "questions/02_security-management.json",
+    "questions/03_security-measures.json",
+    "questions/04_security-implementation.json",
+    "questions/05_network.json",
+    "questions/06_database.json",
+    "questions/07_service-management.json",
+    "questions/08_governance-audit.json",
+    "questions/09_system-lifecycle.json",
+    "questions/10_dev-ops-methods.json"
+  ],
+  "concepts": [
+    "concepts/01_security-threats.json",
+    "concepts/02_security-management.json",
+    "concepts/03_security-measures.json",
+    "concepts/04_security-implementation.json",
+    "concepts/05_network.json",
+    "concepts/06_database.json",
+    "concepts/07_service-management.json",
+    "concepts/08_governance-audit.json",
+    "concepts/09_system-lifecycle.json",
+    "concepts/10_dev-ops-methods.json"
+  ]
+}

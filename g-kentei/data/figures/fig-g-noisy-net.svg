@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 578" role="img" aria-labelledby="fig-g-noisy-net-t fig-g-noisy-net-d">
+<title id="fig-g-noisy-net-t">ノイジーネットワーク：重みを揺らして、選ぶ行動をばらつかせる</title>
+<desc id="fig-g-noisy-net-d">例として、右か左を選ぶ。左のQ値は4で固定。右のQ値は、重みに入力の値10を掛けて出す。従来の ε-greedy（ε＝5%）では、重みは0.5で、右のQ値は0.5×10＝5。5は4より大きいので、95%はQ値が大きい右を選び、5%はQ値を見ずにくじで右か左を選ぶ。どの場面でも同じ5%ででたらめに試す。ノイジーネットワークでは、重み＝平均μ＋ばらつきの大きさσ×乱数とし、μ＝0.5、σ＝0.2。乱数は使うたびに変わる。乱数が＋0.5なら重みは0.5＋0.2×0.5＝0.5＋0.1＝0.6で、右のQ値は0.6×10＝6。6は4より大きいので右を選ぶ。乱数が−1.0なら重みは0.5＋0.2×(−1.0)＝0.5−0.2＝0.3で、右のQ値は0.3×10＝3。3は4より小さいので左を選ぶ。重みが揺れるので、選ぶ行動がばらつき、いろいろな行動を試す（探索）。ε-greedy は揺らし方を人が決め、ノイジーネットワークは σ も学習で決める。学習が進んで σ が小さくなれば、ばらつきも小さくなる。</desc>
+<text x="12" y="20" class="tb">ノイジーネットワーク：重みを揺らす</text>
+<text x="12" y="40" class="tm">例：右か左を選ぶ。左のQ値は4で固定</text>
+<text x="12" y="58" class="tm">右のQ値＝重み×入力の値10</text>
+<text x="12" y="76" class="tm">Q値＝その行動の後の報酬の合計の見込み</text>
+<text x="12" y="104" class="tb">従来：ε-greedy（ε＝5%）</text>
+<rect x="12" y="112" width="296" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="130" class="tm" text-anchor="middle">重みは0.5のまま。右のQ値＝0.5×10＝5</text>
+<text x="160" y="148" class="tb" text-anchor="middle">5＞4 なので、Q値では いつも右</text>
+<line x1="84" y1="156" x2="84" y2="166.4" class="l sm w1"/>
+<polygon points="84,172 80.5,166.4 87.5,166.4" class="fm"/>
+<line x1="236" y1="156" x2="236" y2="166.4" class="l sm w1"/>
+<polygon points="236,172 232.5,166.4 239.5,166.4" class="fm"/>
+<rect x="12" y="174" width="144" height="44" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="84" y="192" class="tb tok" text-anchor="middle">95%：右</text>
+<text x="84" y="210" class="tok" text-anchor="middle">Q値が大きいほう</text>
+<rect x="164" y="174" width="144" height="44" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="236" y="192" class="tb twn" text-anchor="middle">5%：くじで右か左</text>
+<text x="236" y="210" class="twn" text-anchor="middle">Q値を見ない</text>
+<text x="12" y="238" class="tm">どの場面でも、同じ5%ででたらめに試す</text>
+<text x="12" y="270" class="tb">ノイジーネットワーク</text>
+<text x="12" y="290" class="tm">重み＝平均μ＋ばらつきσ×乱数</text>
+<text x="12" y="308" class="tm">μ＝0.5、σ＝0.2。乱数は使うたびに変わる</text>
+<rect x="12" y="318" width="144" height="84" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="84" y="336" class="tb" text-anchor="middle">乱数が＋0.5</text>
+<text x="84" y="354" class="tm" text-anchor="middle">重み＝0.5＋0.2×0.5</text>
+<text x="84" y="372" class="tm" text-anchor="middle">＝0.5＋0.1＝0.6</text>
+<text x="84" y="392" class="tb" text-anchor="middle">右のQ値＝0.6×10＝6</text>
+<rect x="164" y="318" width="144" height="84" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="236" y="336" class="tb" text-anchor="middle">乱数が−1.0</text>
+<text x="236" y="354" class="tm" text-anchor="middle">重み＝0.5＋0.2×(−1.0)</text>
+<text x="236" y="372" class="tm" text-anchor="middle">＝0.5−0.2＝0.3</text>
+<text x="236" y="392" class="tb" text-anchor="middle">右のQ値＝0.3×10＝3</text>
+<line x1="84" y1="402" x2="84" y2="412.4" class="l sm w1"/>
+<polygon points="84,418 80.5,412.4 87.5,412.4" class="fm"/>
+<line x1="236" y1="402" x2="236" y2="412.4" class="l sm w1"/>
+<polygon points="236,418 232.5,412.4 239.5,412.4" class="fm"/>
+<rect x="12" y="420" width="144" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="84" y="440" class="tb tok" text-anchor="middle">6＞4 → 右を選ぶ</text>
+<rect x="164" y="420" width="144" height="30" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="236" y="440" class="tb twn" text-anchor="middle">3＜4 → 左を選ぶ</text>
+<text x="12" y="474" class="tm">重みが揺れるので、選ぶ行動がばらつく</text>
+<text x="12" y="492" class="tm">＝いろいろな行動を試す（探索）</text>
+<text x="12" y="520" class="tm">ε-greedy：揺らし方（5%）は人が決める</text>
+<text x="12" y="538" class="tm">ノイジー：揺らし方（σ）も学習で決まる</text>
+<text x="12" y="556" class="tm">σ が小さくなれば、ばらつきも小さくなる</text>
+</svg>

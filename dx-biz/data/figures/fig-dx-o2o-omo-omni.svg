@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 492" role="img" aria-labelledby="fig-dx-o2o-omo-omni-t fig-dx-o2o-omo-omni-d">
+<title id="fig-dx-o2o-omo-omni-t">O2O・オムニチャネル・OMOの違い</title>
+<desc id="fig-dx-o2o-omo-omni-d">3つの考え方を並べた図。O2Oは、オンラインとオフライン（実店舗）を別の場として、ネットから店へ人を送ったり結びつけたりする取組で、例はクーポンで来店、ネットで買って店で受け取る、ネットで店の在庫を確認する。オムニチャネルは、店舗・EC・アプリ・SNS・コールセンターなどすべての顧客接点をつなぎ、在庫・会員情報・ポイントを全チャネルで統合する小売の戦略。OMOは、オンラインとオフラインを区別せず、溶け合ったひと続きの顧客体験として設計する考え方で、例は店内のデジタルサイネージで在庫を確かめてオンラインストアで買う。</desc>
+<rect x="12" y="14" width="18" height="14" class="fas sa" stroke-width="1"/>
+<text x="36" y="26">オンライン</text>
+<rect x="120" y="14" width="18" height="14" class="fwn swn" stroke-width="1"/>
+<text x="144" y="26">オフライン（実店舗）</text>
+<text x="12" y="58" class="tb">O2O：別の場を行き来させる</text>
+<rect x="12" y="72" width="110" height="54" class="fas sa" stroke-width="1.5"/>
+<text x="67" y="94" class="tb" text-anchor="middle">ネット</text>
+<text x="67" y="113" text-anchor="middle">SNS</text>
+<rect x="198" y="72" width="110" height="54" class="fwn swn" stroke-width="1.5"/>
+<text x="253" y="103.5" class="tb" text-anchor="middle">実店舗</text>
+<line x1="126" y1="99" x2="194" y2="99" class="l sa w2"/>
+<polyline points="187,102.85 194,99 187,95.15" class="l sa w2"/>
+<text x="12" y="146">クーポンで来店・店で受け取り・在庫確認</text>
+<line x1="12" y1="166" x2="308" y2="166" class="l sb w1"/>
+<text x="12" y="188" class="tb">オムニチャネル：すべての接点をつなぐ</text>
+<rect x="12" y="200" width="92" height="34" class="fs sa" stroke-width="1.5"/>
+<text x="58" y="221.5" text-anchor="middle">店舗</text>
+<rect x="114" y="200" width="92" height="34" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="221.5" text-anchor="middle">EC</text>
+<rect x="216" y="200" width="92" height="34" class="fs sa" stroke-width="1.5"/>
+<text x="262" y="221.5" text-anchor="middle">アプリ</text>
+<rect x="12" y="240" width="140" height="34" class="fs sa" stroke-width="1.5"/>
+<text x="82" y="261.5" text-anchor="middle">SNS</text>
+<rect x="168" y="240" width="140" height="34" class="fs sa" stroke-width="1.5"/>
+<text x="238" y="261.5" text-anchor="middle">コールセンター</text>
+<line x1="58" y1="274" x2="58" y2="288" class="l sm w1"/>
+<line x1="160" y1="274" x2="160" y2="288" class="l sm w1"/>
+<line x1="262" y1="274" x2="262" y2="288" class="l sm w1"/>
+<rect x="12" y="288" width="296" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="303.5" class="tb" text-anchor="middle">在庫・会員情報・ポイントを</text>
+<text x="160" y="321.5" text-anchor="middle">全チャネルで1つにつなぐ</text>
+<line x1="12" y1="350" x2="308" y2="350" class="l sb w1"/>
+<text x="12" y="372" class="tb">OMO：境目のないひと続きの体験</text>
+<rect x="12" y="384" width="92" height="54" class="fwn swn" stroke-width="1.5"/>
+<text x="58" y="406.5" text-anchor="middle">店内で</text>
+<text x="58" y="424.5" text-anchor="middle">商品を探す</text>
+<rect x="104" y="384" width="100" height="54" class="fok sok" stroke-width="1.5"/>
+<text x="154" y="397.5" text-anchor="middle">店内の</text>
+<text x="154" y="415.5" text-anchor="middle">サイネージで</text>
+<text x="154" y="433.5" text-anchor="middle">在庫を確認</text>
+<rect x="204" y="384" width="104" height="54" class="fas sa" stroke-width="1.5"/>
+<text x="256" y="406.5" text-anchor="middle">ネットの</text>
+<text x="256" y="424.5" text-anchor="middle">ストアで買う</text>
+<text x="12" y="460">実店舗にいながら、その店のネットの</text>
+<text x="12" y="480">サービスも使う。体験全体で考える</text>
+</svg>

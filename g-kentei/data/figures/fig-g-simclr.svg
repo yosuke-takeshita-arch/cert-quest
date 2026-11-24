@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1224" role="img" aria-labelledby="fig-g-simclr-t fig-g-simclr-d">
+<title id="fig-g-simclr-t">対照学習（SimCLR）：同じ画像から作った2枚を近づけ、ほかの画像から作ったものと遠ざける</title>
+<desc id="fig-g-simclr-d">何のための図か：ラベル（いぬ・ねこのような正解）が無い画像だけで、画像のとらえ方（表現）をどう学ぶかを見る。ことば：表現はネットワークが画像から出す数の並びで、図では点で描く。似た画像ほど点が近い。ミニバッチは1回の学習でまとめて使う数枚。考え方：同じ1枚の写真を2通りに加工しても、写っている物は同じ。これを正解の代わりにするので、人は「いぬ」と教えなくてよい。例：①3枚（いぬ・ねこ・車）のミニバッチを、それぞれ2通りに加工し、6枚にする。例として片方は切り抜き、もう片方は色を変える（論文では切り抜き・色の変更・ぼかしを毎回ランダムに組み合わせる）。②6枚とも同じ1つのネットワークに通して、6つの点にする。③いぬ①から見ると、同じいぬの写真から作ったいぬ②が正の組で、近づける。残りの4つ（ねこ①②・車①②）が負の例で、遠ざける。4＝2×（3−1）で、負の例は同じミニバッチのほかの画像から作ったものを使い、わざわざ探して選ばない。6つの点すべてで同じことを同時にする。④学んだ後は、同じ写真から作った2枚の点が近くに集まり、ほかとは離れる。2枚は色が違うので、色では同じと見抜けず、形など何が写っているかをとらえる表現が育つ。その後：少しのラベルで分類に使える。論文の例では、ImageNet のラベルを1%だけ使って微調整し、上位5候補に正解が入る割合が85.8%だった。</desc>
+<text x="12" y="20" class="tb">対照学習（SimCLR）のしくみ</text>
+<text x="12" y="42" class="tm">何のための図か：ラベル（正解）が無い画像</text>
+<text x="12" y="60" class="tm">だけで、画像のとらえ方をどう学ぶかを見る</text>
+<rect x="12" y="72" width="296" height="80" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="92" class="tb">まずことば</text>
+<text x="22" y="110" class="tm">表現＝ネットワークが画像から出す数の並び</text>
+<text x="22" y="127" class="tm">図では点で描く。似た画像ほど点が近い</text>
+<text x="22" y="144" class="tm">ミニバッチ＝1回の学習でまとめて使う数枚</text>
+<line x1="12" y1="168" x2="308" y2="168" class="l sb w1"/>
+<text x="12" y="190" class="tb">考え方：同じ1枚から作った2枚は同じ物</text>
+<text x="12" y="210" class="tm">同じ写真を2通りに加工しても、写っている</text>
+<text x="12" y="228" class="tm">物は同じ。これを正解の代わりにするので、</text>
+<text x="12" y="246" class="tm">人は『いぬ』と教えなくてよい</text>
+<line x1="12" y1="260" x2="308" y2="260" class="l sb w1"/>
+<text x="12" y="282" class="tb">① 3枚を、それぞれ2通りに加工する</text>
+<rect x="12" y="294" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="313" class="tb" text-anchor="middle">いぬ</text>
+<line x1="58" y1="308" x2="72" y2="308" class="l w2"/>
+<polyline points="66,303 72,308 66,313" class="l w2"/>
+<rect x="76" y="294" width="110" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="131" y="313" class="ta" text-anchor="middle">いぬ① 切り抜き</text>
+<rect x="192" y="294" width="116" height="28" class="fas sa" stroke-width="1.5"/>
+<text x="250" y="313" class="ta" text-anchor="middle">いぬ② 色を変える</text>
+<rect x="12" y="330" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="349" class="tb" text-anchor="middle">ねこ</text>
+<line x1="58" y1="344" x2="72" y2="344" class="l w2"/>
+<polyline points="66,339 72,344 66,349" class="l w2"/>
+<rect x="76" y="330" width="110" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="131" y="349" text-anchor="middle">ねこ① 切り抜き</text>
+<rect x="192" y="330" width="116" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="250" y="349" text-anchor="middle">ねこ② 色を変える</text>
+<rect x="12" y="366" width="44" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="34" y="385" class="tb" text-anchor="middle">車</text>
+<line x1="58" y1="380" x2="72" y2="380" class="l w2"/>
+<polyline points="66,375 72,380 66,385" class="l w2"/>
+<rect x="76" y="366" width="110" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="131" y="385" text-anchor="middle">車① 切り抜き</text>
+<rect x="192" y="366" width="116" height="28" class="fs sb" stroke-width="1.5"/>
+<text x="250" y="385" text-anchor="middle">車② 色を変える</text>
+<text x="12" y="414" class="tm">例として片方は切り抜き、片方は色を変える</text>
+<text x="12" y="432" class="tm">（論文では切り抜き・色の変更・ぼかしを</text>
+<text x="12" y="450" class="tm">毎回ランダムに組み合わせる）</text>
+<line x1="12" y1="464" x2="308" y2="464" class="l sb w1"/>
+<text x="12" y="486" class="tb">② 6枚を同じネットワークに通し、点にする</text>
+<rect x="12" y="498" width="50" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="37" y="519" class="tb" text-anchor="middle">6枚</text>
+<line x1="64" y1="514" x2="82" y2="514" class="l w2"/>
+<polyline points="76,509 82,514 76,519" class="l w2"/>
+<rect x="86" y="498" width="120" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="146" y="519" class="tb" text-anchor="middle">同じネットワーク</text>
+<line x1="208" y1="514" x2="226" y2="514" class="l w2"/>
+<polyline points="220,509 226,514 220,519" class="l w2"/>
+<rect x="230" y="498" width="78" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="269" y="519" class="tb" text-anchor="middle">6つの点</text>
+<line x1="12" y1="544" x2="308" y2="544" class="l sb w1"/>
+<text x="12" y="566" class="tb">③ 学ぶこと（いぬ① から見た場合）</text>
+<rect x="12" y="578" width="296" height="160" class="fs sb" stroke-width="1.5" rx="6"/>
+<line x1="100" y1="650" x2="240" y2="606" class="l sng w2 dsh"/>
+<line x1="100" y1="650" x2="276" y2="686" class="l sng w2 dsh"/>
+<line x1="100" y1="650" x2="44" y2="708" class="l sng w2 dsh"/>
+<line x1="100" y1="650" x2="186" y2="712" class="l sng w2 dsh"/>
+<line x1="100" y1="650" x2="170" y2="612" class="l sok w3"/>
+<circle cx="100" cy="650" r="6" class="fa sa"/>
+<text x="92" y="638" class="tb ta" text-anchor="end">いぬ①</text>
+<circle cx="170" cy="612" r="6" class="fa sa"/>
+<text x="164" y="598" class="tb ta" text-anchor="middle">いぬ②</text>
+<circle cx="240" cy="606" r="6" class="fng sng" stroke-width="1.5"/>
+<text x="248" y="598" class="tng">ねこ①</text>
+<circle cx="276" cy="686" r="6" class="fng sng" stroke-width="1.5"/>
+<text x="276" y="710" class="tng" text-anchor="middle">ねこ②</text>
+<circle cx="44" cy="708" r="6" class="fng sng" stroke-width="1.5"/>
+<text x="56" y="728" class="tng">車①</text>
+<circle cx="186" cy="712" r="6" class="fng sng" stroke-width="1.5"/>
+<text x="198" y="730" class="tng">車②</text>
+<line x1="14" y1="756" x2="40" y2="756" class="l sok w3"/>
+<text x="48" y="761" class="tb tok">正の組：いぬ② の1つ → 近づける</text>
+<line x1="14" y1="778" x2="40" y2="778" class="l sng w2 dsh"/>
+<text x="48" y="783" class="tb tng">負の例：残りの4つ → 遠ざける</text>
+<text x="12" y="806" class="tm">負の例＝同じミニバッチのほかの画像から</text>
+<text x="12" y="824" class="tm">作ったもの。わざわざ探して選ばない</text>
+<text x="12" y="844" class="tm">4 ＝ 2 ×（3 − 1）：いぬ以外の2枚 × 加工2通り</text>
+<text x="12" y="864" class="tm">6つの点すべてで、同じことを同時にする</text>
+<line x1="12" y1="880" x2="308" y2="880" class="l sb w1"/>
+<text x="12" y="902" class="tb">④ 学んだ後：同じ写真の2枚が集まる</text>
+<rect x="12" y="914" width="296" height="134" class="fs sb" stroke-width="1.5" rx="6"/>
+<ellipse cx="72" cy="960" rx="40" ry="24" class="sm w1 l dsh"/>
+<circle cx="58" cy="956" r="6" class="fa sa"/>
+<circle cx="84" cy="966" r="6" class="fa sa"/>
+<text x="72" y="1000" class="tb ta" text-anchor="middle">いぬ①②</text>
+<ellipse cx="248" cy="950" rx="40" ry="24" class="sm w1 l dsh"/>
+<circle cx="236" cy="946" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="260" cy="956" r="6" class="fs sm" stroke-width="1.5"/>
+<text x="248" y="990" class="tb" text-anchor="middle">ねこ①②</text>
+<ellipse cx="160" cy="1006" rx="40" ry="20" class="sm w1 l dsh"/>
+<circle cx="148" cy="1002" r="6" class="fs sm" stroke-width="1.5"/>
+<circle cx="172" cy="1010" r="6" class="fs sm" stroke-width="1.5"/>
+<text x="160" y="1043" class="tb" text-anchor="middle">車①②</text>
+<text x="12" y="1072" class="tb tok">→ 切り抜いても色を変えても、同じ所に来る</text>
+<text x="12" y="1092" class="tm">2枚は色が違うので、色では同じと見抜けない。</text>
+<text x="12" y="1110" class="tm">形など『何が写っているか』をとらえる表現が育つ</text>
+<line x1="12" y1="1126" x2="308" y2="1126" class="l sb w1"/>
+<text x="12" y="1148" class="tb">その後：少しのラベルで分類に使える</text>
+<text x="12" y="1168" class="tm">論文の例：ImageNet（大きな画像のデータ集）の</text>
+<text x="12" y="1186" class="tm">ラベルを1%だけ使って微調整し、上位5候補に</text>
+<text x="12" y="1204" class="tm">正解が入る割合 85.8%</text>
+</svg>

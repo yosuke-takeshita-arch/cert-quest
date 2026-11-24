@@ -1,0 +1,51 @@
+[
+  {
+    "id": "S-T",
+    "title": "技術分野",
+    "keywords": [],
+    "children": [
+      {
+        "id": "S-T-CH01",
+        "title": "ディープラーニングの概要",
+        "keywords": [],
+        "children": [
+          { "id": "S-T-01", "title": "勾配消失問題", "children": [], "keywords": ["勾配消失", "シグモイド関数"] },
+          { "id": "S-T-02", "title": "活性化関数", "children": [], "keywords": ["ReLU", "tanh"] },
+          { "id": "S-T-03", "title": "誤差逆伝播法", "children": [], "keywords": ["バックプロパゲーション"] }
+        ]
+      },
+      {
+        "id": "S-T-CH02",
+        "title": "機械学習の概要",
+        "keywords": [],
+        "children": [
+          { "id": "S-T-04", "title": "過学習と汎化", "children": [], "keywords": ["過学習"] },
+          { "id": "S-T-05", "title": "評価指標", "children": [], "keywords": ["適合率", "再現率"] }
+        ]
+      },
+      {
+        "id": "S-T-CH03",
+        "title": "強化学習の応用",
+        "keywords": [],
+        "children": [
+          { "id": "S-T-06", "title": "報酬設計", "children": [], "keywords": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "S-L",
+    "title": "法律・倫理",
+    "keywords": [],
+    "children": [
+      {
+        "id": "S-L-CH01",
+        "title": "個人情報の保護",
+        "keywords": [],
+        "children": [
+          { "id": "S-L-01", "title": "個人情報保護法", "children": [], "keywords": ["要配慮個人情報"] }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 444" role="img" aria-labelledby="fig-dx-basic-law-t fig-dx-basic-law-d">
+<title id="fig-dx-basic-law-t">法令とガイドラインの違い＝誰が作り、どれだけ縛るか</title>
+<desc id="fig-dx-basic-law-d">上の大きな枠が法令。中に3段あり、国会が作る法律、内閣が法律を実施するために作る政令、各省の大臣が作る省令。ほかに委員会の規則などもあり、まとめて法令と呼ぶ。守らないと罰則や行政の処分がありうる。下の枠はガイドライン。省庁や業界団体が、法令の読み方や望ましいやり方を示す指針で、それ自体は国会が作った法律ではない。ただし、法令の義務を説明している部分は守る必要がある。例は経済産業省の DX推進ガイドライン。</desc>
+<text x="12" y="22" class="tl">法令とガイドライン</text>
+<text x="12" y="44" class="tm">誰が作るか・どれだけ縛るか</text>
+<rect x="12" y="58" width="296" height="200" class="fas sa" stroke-width="2" rx="8"/>
+<text x="24" y="80" class="tb ta">法令（守らなければならない）</text>
+<rect x="24" y="92" width="272" height="36" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="36" y="115"><tspan class="tb">国会</tspan> → <tspan class="tb">法律</tspan></text>
+<rect x="24" y="136" width="272" height="36" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="36" y="159"><tspan class="tb">内閣</tspan> → <tspan class="tb">政令</tspan>（法律を実施する）</text>
+<rect x="24" y="180" width="272" height="36" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="36" y="203"><tspan class="tb">各省の大臣</tspan> → <tspan class="tb">省令</tspan></text>
+<text x="24" y="242" class="tm">ほかに規則など。破ると罰則・処分の場合も</text>
+<rect x="12" y="274" width="296" height="126" class="fs sm dsh" stroke-width="1.5" rx="8"/>
+<text x="24" y="296" class="tb">ガイドライン（指針）</text>
+<text x="24" y="318">省庁・団体が、法令の読み方や</text>
+<text x="24" y="338">望ましいやり方を示す</text>
+<text x="24" y="384" class="tm">例：DX推進ガイドライン（経済産業省）</text>
+<text x="24" y="360" class="tb">それ自体は法律ではない</text>
+<text x="12" y="426" class="twn">法令の義務を説明する部分は守る必要あり</text>
+</svg>

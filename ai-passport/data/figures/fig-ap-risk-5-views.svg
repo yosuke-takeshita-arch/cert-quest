@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" role="img" aria-labelledby="fig-ap-risk-5-views-t fig-ap-risk-5-views-d">
+<title id="fig-ap-risk-5-views-t">生成AIのリスクを見渡す5つの観点と、複数の観点にまたがる事例</title>
+<desc id="fig-ap-risk-5-views-d">社内で生成AIのチャットボットを使い始めるときに、上から順に点検する5つの観点。出力内容：事実でない答え（ハルシネーション）。情報管理：入力した顧客情報の漏えい。権利侵害：生成画像が既存の作品に似る、他人の顔を無断で使う。倫理：差別的な出力、ディープフェイクの悪用。セキュリティ：プロンプトインジェクション、フィッシングへの悪用。右の列は、ディープフェイクによるなりすましがどの観点にかかわるかで、権利侵害・倫理・セキュリティの3つに印がある。1つの事例が複数の観点にまたがる。思いついたものだけ対策すると穴が残る。</desc>
+<text x="12" y="20" class="tb">生成AIのリスク：5つの観点</text>
+<text x="12" y="40" class="tm">例：社内でチャットボットを使い始める</text>
+<text x="274" y="62" class="tm" text-anchor="middle">なりすまし</text>
+<text x="274" y="80" class="tm" text-anchor="middle">の事例</text>
+<rect x="12" y="88" width="228" height="60" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="110" class="tb">① 出力内容</text>
+<text x="22" y="132" class="tm">事実でない答え（ハルシネーション）</text>
+<rect x="12" y="154" width="228" height="60" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="176" class="tb">② 情報管理</text>
+<text x="22" y="198" class="tm">入力した顧客情報の漏えい</text>
+<rect x="12" y="220" width="228" height="60" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="242" class="tb">③ 権利侵害</text>
+<text x="22" y="264" class="tm">既存の作品に似る・顔の無断使用</text>
+<rect x="12" y="286" width="228" height="60" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="308" class="tb">④ 倫理</text>
+<text x="22" y="330" class="tm">差別的な出力・ディープフェイク悪用</text>
+<rect x="12" y="352" width="228" height="60" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="374" class="tb">⑤ セキュリティ</text>
+<text x="22" y="396" class="tm">プロンプトインジェクション</text>
+<rect x="246" y="88" width="56" height="60" class="fs sb" stroke-width="1"/>
+<rect x="246" y="154" width="56" height="60" class="fs sb" stroke-width="1"/>
+<rect x="246" y="220" width="56" height="60" class="fwn swn" stroke-width="1.5"/>
+<text x="274" y="256" class="tb twn" text-anchor="middle">●</text>
+<rect x="246" y="286" width="56" height="60" class="fwn swn" stroke-width="1.5"/>
+<text x="274" y="322" class="tb twn" text-anchor="middle">●</text>
+<rect x="246" y="352" width="56" height="60" class="fwn swn" stroke-width="1.5"/>
+<text x="274" y="388" class="tb twn" text-anchor="middle">●</text>
+<text x="12" y="438" class="twn">ディープフェイクのなりすまし＝3つにまたがる</text>
+<text x="12" y="464" class="tb">思いついたものだけ対策すると穴が残る</text>
+</svg>

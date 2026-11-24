@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 418" role="img" aria-labelledby="fig-sc-dev-ci-cd-t fig-sc-dev-ci-cd-d">
+<title id="fig-sc-dev-ci-cd-t">継続的インテグレーション・継続的デリバリー・継続的デプロイの範囲</title>
+<desc id="fig-sc-dev-ci-cd-d">コードの変更が本番に届くまでの流れを上から下へ4段で描いた図。1段目、開発者がコードを共有の置き場所へまとめる。2段目、自動でビルドとテストが走る。ここまでが継続的インテグレーション（CI）。3段目、テストに通った変更がステージング環境へ自動で出される。ここまでを自動で行うのが継続的デリバリー（CD）。4段目、本番環境へ出す。継続的デリバリーでは、本番へ出す前に人が承認する。継続的デプロイでは、人の承認を挟まず自動で本番へ出す。右側の括弧で、CI は1〜2段目、CD は1〜3段目と人の承認、継続的デプロイは1〜4段目のすべてが自動、という範囲を示す。</desc>
+<text x="12" y="20" class="tb">コードの変更が本番に届くまで</text>
+<rect x="12" y="34" width="200" height="44" class="fas sb" stroke-width="1" rx="4"/>
+<text x="22" y="61">① 共有の置き場所へまとめる</text>
+<line x1="112" y1="78" x2="112" y2="96" class="l w1"/>
+<polygon points="107,96 112,104 117,96" class="ft"/>
+<rect x="12" y="104" width="200" height="44" class="fas sb" stroke-width="1" rx="4"/>
+<text x="22" y="131">② 自動でビルドとテスト</text>
+<line x1="112" y1="148" x2="112" y2="166" class="l w1"/>
+<polygon points="107,166 112,174 117,166" class="ft"/>
+<rect x="12" y="174" width="200" height="44" class="fas sb" stroke-width="1" rx="4"/>
+<text x="22" y="201">③ ステージングへ自動で出す</text>
+<line x1="112" y1="218" x2="112" y2="262" class="l w1"/>
+<polygon points="107,262 112,270 117,262" class="ft"/>
+<rect x="60" y="228" width="104" height="26" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="112" y="246" text-anchor="middle" class="tb">人が承認？</text>
+<rect x="12" y="270" width="200" height="44" class="fas sb" stroke-width="1" rx="4"/>
+<text x="22" y="297">④ 本番環境へ出す</text>
+<line x1="226" y1="36" x2="226" y2="146" class="l sa w2"/>
+<text x="234" y="96" class="ta tb">CI</text>
+<line x1="256" y1="36" x2="256" y2="216" class="l sa w2"/>
+<text x="262" y="132" class="ta tb">CD</text>
+<line x1="290" y1="36" x2="290" y2="312" class="l sa w2"/>
+<text x="296" y="180" class="ta tb">デ</text>
+<text x="296" y="198" class="ta tb">プ</text>
+<text x="296" y="216" class="ta tb">ロ</text>
+<text x="296" y="234" class="ta tb">イ</text>
+<text x="12" y="344" class="tb">継続的デリバリー：④の前に人が承認する</text>
+<text x="12" y="368" class="tb">継続的デプロイ：承認なしで④まで自動</text>
+<text x="12" y="392" class="tm">右の線＝自動で行う範囲</text>
+<text x="12" y="408" class="tm">デプロイ＝継続的デプロイ</text>
+</svg>

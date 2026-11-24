@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 836" role="img" aria-labelledby="fig-g-imitation-learning-t fig-g-imitation-learning-d">
+<title id="fig-g-imitation-learning-t">模倣学習：専門家の手本の行動を正解として方策を学ぶ。弱点は誤りの積み重なりで、DAgger が抑える</title>
+<desc id="fig-g-imitation-learning-d">模倣学習は、専門家が示した行動（デモンストレーション）から方策（どの状況でどう行動するかの決め方）を学ぶ。①例：人が運転したときの記録で、カメラ画像（道が右へ曲がる・まっすぐ・左へ曲がる）と、そのときのハンドルの操作（右へ切る・まっすぐ・左へ切る）を組にする。画像を入力、手本の行動を正解として分類や回帰で学ぶ（行動クローニング）。強化学習は報酬を手がかりに試行錯誤するが、模倣学習は手本の行動そのものを正解にする。②弱点：学習者が小さな誤りをして車線から少しはみ出すと、手本に無い状況に入り、どうすればよいか分からずさらにずれる。図は、破線の手本の道から、小さな誤りの点を境にずれが大きくなり車線の外へ出る道。③DAgger（2011）は、1学習した方策で学習者自身が走る、2そこで出会った状況（はみ出した所など）に専門家が正しい行動を付ける、3データに足して学び直し1へ戻る、をくり返して、手本に無かった状況での誤りを抑える。混同しやすい点：記録の中の報酬を使って方策を良くするのはオフライン強化学習で、模倣学習は報酬を使わない。</desc>
+<text x="12" y="20" class="tb">模倣学習：専門家の手本をまねて方策を学ぶ</text>
+<text x="12" y="42" class="tm">方策＝どの状況でどう行動するかの決め方</text>
+<rect x="12" y="54" width="296" height="216" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="74" class="tb">① 手本を記録して、当てる問題として学ぶ</text>
+<text x="24" y="92" class="tm">例：人が運転したときの記録</text>
+<text x="70" y="114" class="tm" text-anchor="middle">カメラ画像</text>
+<text x="230" y="114" class="tm" text-anchor="middle">ハンドル</text>
+<rect x="38" y="122" width="64" height="40" class="fbg sm" stroke-width="1"/>
+<path d="M 56 162 Q 56 136 72 124" class="l w1"/>
+<path d="M 84 162 Q 84 136 100 124" class="l w1"/>
+<line x1="112" y1="142" x2="170.4" y2="142.0" class="l sm w1"/>
+<polygon points="176,142 170.4,145.5 170.4,138.5" class="fm"/>
+<text x="230" y="147" class="tb" text-anchor="middle">右へ切る</text>
+<rect x="38" y="168" width="64" height="40" class="fbg sm" stroke-width="1"/>
+<path d="M 56 208 Q 56 182 56 170" class="l w1"/>
+<path d="M 84 208 Q 84 182 84 170" class="l w1"/>
+<line x1="112" y1="188" x2="170.4" y2="188.0" class="l sm w1"/>
+<polygon points="176,188 170.4,191.5 170.4,184.5" class="fm"/>
+<text x="230" y="193" class="tb" text-anchor="middle">まっすぐ</text>
+<rect x="38" y="214" width="64" height="40" class="fbg sm" stroke-width="1"/>
+<path d="M 56 254 Q 56 228 40 216" class="l w1"/>
+<path d="M 84 254 Q 84 228 68 216" class="l w1"/>
+<line x1="112" y1="234" x2="170.4" y2="234.0" class="l sm w1"/>
+<polygon points="176,234 170.4,237.5 170.4,230.5" class="fm"/>
+<text x="230" y="239" class="tb" text-anchor="middle">左へ切る</text>
+<line x1="160" y1="270" x2="160.0" y2="278.4" class="l sm w1"/>
+<polygon points="160,284 156.5,278.4 163.5,278.4" class="fm"/>
+<rect x="12" y="290" width="296" height="84" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="310">画像を入力、手本の行動を正解として</text>
+<text x="24" y="328" class="tb tok">分類や回帰で学ぶ（行動クローニング）</text>
+<text x="24" y="350" class="tm">強化学習：報酬を手がかりに試行錯誤</text>
+<text x="24" y="368" class="tm">模倣学習：手本の行動そのものを正解にする</text>
+<text x="12" y="400" class="tb">② 弱点：誤りが積み重なる</text>
+<rect x="12" y="410" width="296" height="176" class="fwn swn" stroke-width="1.5" rx="6"/>
+<line x1="30" y1="430" x2="290" y2="430" class="l sm w1"/>
+<line x1="30" y1="490" x2="290" y2="490" class="l sm w1"/>
+<line x1="30" y1="460" x2="290" y2="460" class="l sm w1 dsh"/>
+<path d="M 30 460 L 110 460 C 150 460 180 470 210 484 C 240 498 260 510 290 522" class="l swn w2"/>
+<circle cx="110" cy="460" r="4" class="ft"/>
+<text x="116" y="452" class="tm" text-anchor="middle">小さな誤り</text>
+<text x="206" y="524" class="tb twn" text-anchor="end">車線の外へ</text>
+<text x="34" y="480" class="tm">手本の道（破線）</text>
+<text x="24" y="544">少しはみ出す → 手本に無い状況に入る</text>
+<text x="24" y="562">→ どうすればよいか分からず、さらにずれる</text>
+<line x1="160" y1="586" x2="160.0" y2="594.4" class="l sm w1"/>
+<polygon points="160,600 156.5,594.4 163.5,594.4" class="fm"/>
+<rect x="12" y="606" width="296" height="138" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="626" class="tb">③ DAgger（2011）：出会った状況を足す</text>
+<text x="24" y="648">1. 学習した方策で、学習者自身が走る</text>
+<text x="24" y="668">2. そこで出会った状況（はみ出した所など）</text>
+<text x="24" y="686">　に、専門家が正しい行動を付ける</text>
+<text x="24" y="706">3. データに足して学び直す（1へ戻る）</text>
+<text x="24" y="730" class="tb tok">→ 手本に無かった状況での誤りを抑える</text>
+<rect x="12" y="756" width="296" height="68" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="776" class="tb">混同しやすい点</text>
+<text x="24" y="796">記録の中の報酬を使って方策を良くするのは</text>
+<text x="24" y="814">オフライン強化学習。模倣学習は報酬を使わない</text>
+</svg>

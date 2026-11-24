@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 538" role="img" aria-labelledby="fig-g-dqn-continuous-t fig-g-dqn-continuous-d">
+<title id="fig-g-dqn-continuous-t">DQN は行動ごとに出口（Q 値）を1つずつ持つ。連続値の行動は、出口を並べ切れない</title>
+<desc id="fig-g-dqn-continuous-d">何のための図か：DQN が、ロボットの関節の角度のような連続値の行動に、そのままでは使えない理由を見る。①DQN の出口：ゲームの画面を読んだネットワークは、行動の数だけ出口を持ち、それぞれが Q 値（その行動の良さの見積もり）を出す。例：ボタンが4つなら出口は4つで、左2.1・右3.5・上0.4・下1.0 なら、いちばん大きい右を選ぶ（数は例）。②関節の角度：31.4度、31.5度…と切れ目なく続くので、出口を1つずつ並べられない。③区切って数える：関節1つを10段階に区切れば出口は10個。関節が7つなら、組み合わせは10を7回掛けた1000万通りで、出口が1000万個になり、全部の Q 値を出して比べるのは現実的でない。④連続値の行動には、行動そのものを出す方策を学ぶ手法（アクタークリティック系など）が使われる。</desc>
+<text x="12" y="20" class="tb">DQN：行動ごとに出口を1つ持つ</text>
+<text x="12" y="42" class="tm">何のための図か：連続値の行動に、そのまま</text>
+<text x="12" y="60" class="tm">では使えない理由を見る</text>
+<line x1="12" y1="72" x2="308" y2="72" class="l sb w1"/>
+<text x="12" y="94" class="tb">① 出口は行動の数だけ並ぶ</text>
+<text x="12" y="112" class="tm">例：ボタンが4つのゲーム（数は例）</text>
+<rect x="12" y="146" width="74" height="40" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="49" y="164" class="tm" text-anchor="middle">ゲームの</text>
+<text x="49" y="180" class="tm" text-anchor="middle">画面</text>
+<line x1="86" y1="166" x2="104" y2="166" class="l sm w1"/>
+<rect x="104" y="138" width="74" height="56" class="fs sb" stroke-width="1.5" rx="4"/>
+<text x="141" y="162" class="tm" text-anchor="middle">ネット</text>
+<text x="141" y="180" class="tm" text-anchor="middle">ワーク</text>
+<line x1="178" y1="166" x2="194" y2="134" class="l sm w1"/>
+<rect x="194" y="124" width="110" height="20" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="249" y="139" class="tm" text-anchor="middle">左　Q＝2.1</text>
+<line x1="178" y1="166" x2="194" y2="156" class="l sm w1"/>
+<rect x="194" y="146" width="110" height="20" class="fok sok" stroke-width="1.5" rx="3"/>
+<text x="249" y="161" class="tb tok" text-anchor="middle">右　Q＝3.5</text>
+<line x1="178" y1="166" x2="194" y2="178" class="l sm w1"/>
+<rect x="194" y="168" width="110" height="20" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="249" y="183" class="tm" text-anchor="middle">上　Q＝0.4</text>
+<line x1="178" y1="166" x2="194" y2="200" class="l sm w1"/>
+<rect x="194" y="190" width="110" height="20" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="249" y="205" class="tm" text-anchor="middle">下　Q＝1.0</text>
+<text x="12" y="230" class="tb tok">出口4つ → いちばん大きい「右」を選ぶ</text>
+<line x1="12" y1="242" x2="308" y2="242" class="l sb w1"/>
+<text x="12" y="264" class="tb">② ロボットの関節の角度は連続値</text>
+<text x="12" y="282" class="tm">31.4度、31.5度、31.51度…と切れ目が無い</text>
+<text x="12" y="302" class="tb tng">→ 出口を1つずつ並べられない</text>
+<line x1="12" y1="314" x2="308" y2="314" class="l sb w1"/>
+<text x="12" y="336" class="tb">③ 区切って数えると</text>
+<text x="12" y="354" class="tm">関節1つを10段階に区切る → 出口10個</text>
+<text x="12" y="372" class="tm">関節が7つなら、組み合わせは10を7回掛ける</text>
+<rect x="12" y="382" width="296" height="50" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="402" class="tb" text-anchor="middle">10×10×10×10×10×10×10</text>
+<text x="160" y="422" class="tb tng" text-anchor="middle">＝1000万通り → 出口が1000万個</text>
+<text x="12" y="454" class="tm">全部の Q 値を出して比べるのは現実的でない</text>
+<line x1="12" y1="466" x2="308" y2="466" class="l sb w1"/>
+<text x="12" y="488" class="tb">④ 連続値の行動には</text>
+<text x="12" y="506" class="tm">行動そのもの（角度の値）を出す方策を学ぶ</text>
+<text x="12" y="524" class="tm">手法（アクタークリティック系など）を使う</text>
+</svg>

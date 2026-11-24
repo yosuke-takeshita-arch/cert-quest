@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 590" role="img" aria-labelledby="fig-ap-chatgpt-agent-t fig-ap-chatgpt-agent-d">
+<title id="fig-ap-chatgpt-agent-t">ChatGPTエージェント（2025年7月17日発表）：自分専用の仮想のコンピュータで動き、影響のある操作の前に許可を求める</title>
+<desc id="fig-ap-chatgpt-agent-d">OpenAIが2025年7月17日に発表したChatGPTエージェントの中身。上：Operator（ウェブのページを押したり入力したりして操作するAIエージェント）とディープリサーチ（情報を調べて分析し、まとめる機能）を1つにまとめたので、ウェブの操作も調べ物もできる。中：作業は、自分専用の仮想のコンピュータの中で行う。利用者のパソコンのブラウザを直接動かすのではない。流れの例は、調べる、フォームに入力する、そして購入のような現実に影響のある操作の前で止まり、利用者に許可を求める。右：利用者はいつでも割り込み、ブラウザの操作を代わり、作業を止められる。メールの送信のような大事な作業は、利用者が見守る形（Watch Mode）にしている。人が作業の輪の中に残るので、Human-in-the-Loop の例になる。</desc>
+<text x="12" y="20" class="tb">ChatGPTエージェント</text>
+<text x="12" y="40" class="tm">（OpenAI、2025年7月17日の発表）</text>
+<rect x="12" y="52" width="140" height="64" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="82" y="74" class="tb" text-anchor="middle">Operator</text>
+<text x="82" y="94" class="tm" text-anchor="middle">ウェブを操作する</text>
+<text x="82" y="110" class="tm" text-anchor="middle">（押す・入力する）</text>
+<rect x="168" y="52" width="140" height="64" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="238" y="74" class="tb" text-anchor="middle">ディープリサーチ</text>
+<text x="238" y="94" class="tm" text-anchor="middle">調べて、まとめる</text>
+<line x1="82" y1="116" x2="150" y2="138" class="l sm w2"/>
+<line x1="238" y1="116" x2="170" y2="138" class="l sm w2"/>
+<polyline points="156,138 160,146 164,138" class="l sm w2"/>
+<rect x="12" y="148" width="296" height="232" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="170" class="tb ta">2つを1つに。調べ物もできる</text>
+<text x="22" y="192" class="tb">自分専用の仮想のコンピュータで動く</text>
+<text x="22" y="210" class="tm">利用者のパソコンのブラウザではない</text>
+<rect x="22" y="222" width="128" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="86" y="241" text-anchor="middle">① 調べる</text>
+<line x1="86" y1="250" x2="86" y2="262" class="l w2"/>
+<polyline points="82.15,256 86,262 89.85,256" class="l w2"/>
+<rect x="22" y="264" width="128" height="28" class="fs sb" stroke-width="1" rx="4"/>
+<text x="86" y="283" text-anchor="middle">② フォームに入力</text>
+<line x1="86" y1="292" x2="86" y2="304" class="l w2"/>
+<polyline points="82.15,298 86,304 89.85,298" class="l w2"/>
+<rect x="22" y="306" width="276" height="64" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="32" y="326" class="tb twn">③ 購入など、現実に影響する操作</text>
+<text x="32" y="346">→ その前で止まり、</text>
+<text x="32" y="364" class="tb">利用者に許可を求める</text>
+<rect x="160" y="222" width="138" height="70" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="229" y="242" class="tb tok" text-anchor="middle">利用者はいつでも</text>
+<text x="229" y="262" text-anchor="middle">割り込む・止める</text>
+<text x="229" y="282" text-anchor="middle">操作を代わる</text>
+<text x="12" y="406" class="tb">大事な作業は、利用者が見守る</text>
+<text x="12" y="426" class="tm">例：メールの送信（Watch Mode という形）</text>
+<line x1="12" y1="442" x2="308" y2="442" class="l sb w1"/>
+<text x="12" y="466" class="tb">人が作業の輪の中に残る</text>
+<text x="12" y="486">＝ Human-in-the-Loop の例</text>
+<text x="12" y="514" class="tm">発表の言葉の要点：影響のある操作の前に</text>
+<text x="12" y="532" class="tm">許可を求める。いつでも割り込み、ブラウザ</text>
+<text x="12" y="550" class="tm">の操作を代わり、作業を止められる</text>
+<text x="12" y="576" class="tm">（図の流れ①〜③は説明のための例）</text>
+</svg>

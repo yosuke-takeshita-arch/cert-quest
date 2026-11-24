@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 770" role="img" aria-labelledby="fig-g-dev-process-t fig-g-dev-process-d">
+<title id="fig-g-dev-process-t">ウォーターフォール・アジャイル・探索的段階型：開発の進め方の形</title>
+<desc id="fig-g-dev-process-d">AI開発の3つの進め方。ウォーターフォールは、最初に要件定義を固め、設計、実装、テストと上から下へ順に進める。アジャイルは、要求、開発、テスト、リリースを短い期間で何周も繰り返す。スクラムでは1か月以内の決まった長さのスプリントを、間を空けずに繰り返す。探索的段階型は、経済産業省の契約ガイドラインが提唱する方式で、アセスメント、PoC、開発、追加学習の4段階に分け、各段階の間で次に進むかを確認する。開発の初期に成果物を確定しない点がウォーターフォールと違う。</desc>
+<text x="12" y="20" class="tb">① ウォーターフォール：滝のように下へ</text>
+<rect x="12" y="34" width="78" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="51" y="53.5" class="tb" text-anchor="middle">要件定義</text>
+<line x1="82" y1="64" x2="82" y2="80" class="l sm w2"/>
+<polyline points="78.7,74 82,80 85.3,74" class="l sm w2"/>
+<rect x="68" y="80" width="78" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="107" y="99.5" class="tb" text-anchor="middle">設計</text>
+<line x1="138" y1="110" x2="138" y2="126" class="l sm w2"/>
+<polyline points="134.7,120 138,126 141.3,120" class="l sm w2"/>
+<rect x="124" y="126" width="78" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="163" y="145.5" class="tb" text-anchor="middle">実装</text>
+<line x1="194" y1="156" x2="194" y2="172" class="l sm w2"/>
+<polyline points="190.7,166 194,172 197.3,166" class="l sm w2"/>
+<rect x="180" y="172" width="78" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="219" y="191.5" class="tb" text-anchor="middle">テスト</text>
+<text x="12" y="224" class="tm">最初に要件を固めて、順に進める</text>
+<line x1="12" y1="246" x2="308" y2="246" class="l sb w1"/>
+<text x="12" y="274" class="tb">② アジャイル：短い輪を何周も</text>
+<rect x="12" y="288" width="62" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="43" y="308.5" class="tb" text-anchor="middle">要求</text>
+<line x1="75" y1="304" x2="87" y2="304" class="l sa w2"/>
+<polyline points="81,307.3 87,304 81,300.7" class="l sa w2"/>
+<rect x="88" y="288" width="62" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="119" y="308.5" class="tb" text-anchor="middle">開発</text>
+<line x1="151" y1="304" x2="163" y2="304" class="l sa w2"/>
+<polyline points="157,307.3 163,304 157,300.7" class="l sa w2"/>
+<rect x="164" y="288" width="62" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="195" y="308.5" class="tb" text-anchor="middle">テスト</text>
+<line x1="227" y1="304" x2="239" y2="304" class="l sa w2"/>
+<polyline points="233,307.3 239,304 233,300.7" class="l sa w2"/>
+<rect x="240" y="288" width="62" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="271" y="308.5" class="tb" text-anchor="middle">リリース</text>
+<path d="M271 321 L271 340 L43 340 L43 324" class="l sa w2 dsh"/>
+<polyline points="37,332 43,323 49,332" class="l sa w2"/>
+<text x="160" y="360" class="tb ta" text-anchor="middle">くり返す</text>
+<text x="12" y="386">スクラムは、1か月以内の決まった長さ</text>
+<text x="12" y="406">のスプリントを、間を空けず繰り返す</text>
+<line x1="12" y1="428" x2="308" y2="428" class="l sb w1"/>
+<text x="12" y="456" class="tb">③ 探索的段階型：門のある4段階</text>
+<rect x="12" y="470" width="130" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="77" y="491.5" class="tb" text-anchor="middle">アセスメント</text>
+<line x1="77" y1="504" x2="77" y2="540" class="l sm w2"/>
+<polyline points="73.15,533 77,540 80.85,533" class="l sm w2"/>
+<polygon points="77,510 89,522 77,534 65,522" class="fwn swn"/>
+<text x="98" y="527" class="tb twn">次に進むか確認</text>
+<rect x="12" y="540" width="130" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="77" y="561.5" class="tb" text-anchor="middle">PoC</text>
+<line x1="77" y1="574" x2="77" y2="610" class="l sm w2"/>
+<polyline points="73.15,603 77,610 80.85,603" class="l sm w2"/>
+<polygon points="77,580 89,592 77,604 65,592" class="fwn swn"/>
+<text x="98" y="597" class="tb twn">次に進むか確認</text>
+<rect x="12" y="610" width="130" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="77" y="631.5" class="tb" text-anchor="middle">開発</text>
+<line x1="77" y1="644" x2="77" y2="680" class="l sm w2"/>
+<polyline points="73.15,673 77,680 80.85,673" class="l sm w2"/>
+<polygon points="77,650 89,662 77,674 65,662" class="fwn swn"/>
+<text x="98" y="667" class="tb twn">次に進むか確認</text>
+<rect x="12" y="680" width="130" height="34" class="fas sa" stroke-width="1.5"/>
+<text x="77" y="701.5" class="tb" text-anchor="middle">追加学習</text>
+<text x="12" y="738" class="tb">開発の初期に成果物を確定しない</text>
+<text x="12" y="758" class="tm">（ウォーターフォールとの違い）</text>
+</svg>

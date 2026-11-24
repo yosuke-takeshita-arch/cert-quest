@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 546" role="img" aria-labelledby="fig-g-conv-params-calc-t fig-g-conv-params-calc-d">
+<title id="fig-g-conv-params-calc-t">畳み込み層のパラメータ数：3×3のフィルタ、入力16チャネル、出力32チャネル、バイアスあり</title>
+<desc id="fig-g-conv-params-calc-d">何のための図か：3×3のフィルタで入力16チャネル・出力32チャネルの畳み込み層が、なぜ4,640個のパラメータを持つかを、問題と同じ数で見る。チャネル＝特徴マップの枚数。①フィルタ1枚の形：3×3の窓が、入力の16枚すべてに重なる厚みを持つ。重みは3×3×16＝144個、それにバイアス1つで、1枚あたり145個。②出力32チャネル＝フィルタ32枚：フィルタ1枚が出力の1枚を作るので、145×32＝4,640個。入力画像の縦横の大きさは式に出てこない（同じフィルタを画像全体で使い回すため）。③取り違えやすい数：バイアスを忘れると144×32＝4,608。入力チャネルを掛け忘れると(3×3＋1)×32＝320。入力を32チャネルと取り違えると(3×3×32＋1)×32＝9,248。</desc>
+<text x="12" y="20" class="tb">パラメータ数＝（重み＋バイアス）×枚数</text>
+<text x="12" y="42" class="tm">何のための図か：3×3、16ch → 32ch の層が</text>
+<text x="12" y="60" class="tm">なぜ 4,640 個かを、問題の数で見る</text>
+<text x="12" y="78" class="tm">ch（チャネル）＝特徴マップの枚数</text>
+<line x1="12" y1="90" x2="308" y2="90" class="l sb w1"/>
+<text x="12" y="112" class="tb">① フィルタ1枚の形</text>
+<rect x="54" y="127" width="54" height="54" class="fs sb" stroke-width="1.2"/>
+<rect x="48" y="132" width="54" height="54" class="fs sb" stroke-width="1.2"/>
+<rect x="42" y="137" width="54" height="54" class="fs sb" stroke-width="1.2"/>
+<rect x="36" y="142" width="54" height="54" class="fs sb" stroke-width="1.2"/>
+<rect x="30" y="147" width="54" height="54" class="fs sb" stroke-width="1.2"/>
+<rect x="24" y="152" width="54" height="54" class="fas sa" stroke-width="1.2"/>
+<line x1="42" y1="152" x2="42" y2="206" class="l sa w1"/>
+<line x1="24" y1="170" x2="78" y2="170" class="l sa w1"/>
+<line x1="60" y1="152" x2="60" y2="206" class="l sa w1"/>
+<line x1="24" y1="188" x2="78" y2="188" class="l sa w1"/>
+<text x="51" y="224" class="tm" text-anchor="middle">3×3</text>
+<text x="90" y="140" class="tm">← 厚み＝入力の16枚</text>
+<text x="128" y="172" class="tm">3×3 の窓が、入力の</text>
+<text x="128" y="190" class="tm">16枚すべてに重なる</text>
+<text x="12" y="254" class="tb">重み：3×3×16＝144 個</text>
+<text x="12" y="274" class="tb">バイアス：1 個</text>
+<text x="12" y="294" class="tb ta">1枚あたり 144＋1＝145 個</text>
+<line x1="12" y1="306" x2="308" y2="306" class="l sb w1"/>
+<text x="12" y="328" class="tb">② 出力32ch ＝ フィルタ32枚</text>
+<text x="12" y="346" class="tm">フィルタ1枚が、出力の1枚を作る</text>
+<rect x="12" y="356" width="296" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="376" class="tb tok" text-anchor="middle">145 × 32 ＝ 4,640 個</text>
+<text x="12" y="408" class="tm">入力画像の縦横の大きさは式に出てこない</text>
+<text x="12" y="426" class="tm">（同じフィルタを画像全体で使い回すため）</text>
+<line x1="12" y1="438" x2="308" y2="438" class="l sb w1"/>
+<text x="12" y="460" class="tb">③ 取り違えやすい数</text>
+<text x="12" y="478" class="tng">バイアスを忘れる：144×32＝4,608</text>
+<text x="12" y="496" class="tng">入力chを掛け忘れる：(9＋1)×32＝320</text>
+<text x="12" y="514" class="tng">入力を32chと取り違える：</text>
+<text x="12" y="532" class="tng">　(3×3×32＋1)×32＝289×32＝9,248</text>
+</svg>

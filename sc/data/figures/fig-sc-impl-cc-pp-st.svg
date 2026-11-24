@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" role="img" aria-labelledby="fig-sc-impl-cc-pp-st-t fig-sc-impl-cc-pp-st-d">
+<title id="fig-sc-impl-cc-pp-st-t">ISO/IEC 15408（CC）による製品の評価と認証</title>
+<desc id="fig-sc-impl-cc-pp-st-d">上から順に流れる。1段目、調達者が PP（プロテクションプロファイル：その分野の製品に要る典型的なセキュリティ要件。特定の製品によらない）を示す。2段目、ベンダーが PP に沿って、自社製品の ST（セキュリティターゲット：その製品のセキュリティの設計方針）を作る。3段目、評価機関が TOE（評価の対象の製品）を、CEM（ISO/IEC 18045 の共通評価方法）で評価する。評価の厳密さは EAL1〜EAL7。4段目、認証機関（日本では IPA の JISEC）が評価の報告を確かめて認証する。調達者は認証された製品から選ぶ。</desc>
+<text x="12" y="20" class="tb">CC（ISO/IEC 15408）の流れ</text>
+<rect x="8" y="32" width="304" height="76" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="54" class="tb">① 調達者：PP を示す</text>
+<text x="18" y="76">分野の典型的な要件</text>
+<text x="18" y="96" class="tm">特定の製品によらない</text>
+<line x1="160" y1="108" x2="160" y2="118" class="l sm w1"/>
+<polygon points="160,124 156.5,118 163.5,118" class="fm"/>
+<rect x="8" y="126" width="304" height="76" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="148" class="tb">② ベンダー：ST を作る</text>
+<text x="18" y="170">自社製品のセキュリティの</text>
+<text x="18" y="190">設計方針（PP に沿う）</text>
+<line x1="160" y1="202" x2="160" y2="212" class="l sm w1"/>
+<polygon points="160,218 156.5,212 163.5,212" class="fm"/>
+<rect x="8" y="220" width="304" height="100" class="fas sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="242" class="tb">③ 評価機関：TOE を評価</text>
+<text x="18" y="264">方法は CEM（ISO/IEC 18045）</text>
+<text x="18" y="286">厳密さは EAL1〜EAL7</text>
+<text x="18" y="308" class="tm">数字が大きいほど厳しく確かめる</text>
+<line x1="160" y1="320" x2="160" y2="330" class="l sm w1"/>
+<polygon points="160,336 156.5,330 163.5,330" class="fm"/>
+<rect x="8" y="338" width="304" height="76" class="fok sok" stroke-width="1.5" rx="8"/>
+<text x="18" y="360" class="tb">④ 認証機関：認証する</text>
+<text x="18" y="382">日本は JISEC（認証は IPA）</text>
+<text x="18" y="402" class="tm">CCRA の加盟国でも通用</text>
+<text x="12" y="432" class="tm">TOE＝評価の対象の製品</text>
+</svg>

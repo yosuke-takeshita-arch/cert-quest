@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" role="img" aria-labelledby="fig-ap-open-weight-t fig-ap-open-weight-d">
+<title id="fig-ap-open-weight-t">オープンウェイトとオープンソースAI：重み・学習のプログラム・学習データの情報のどこまでを公開するか</title>
+<desc id="fig-ap-open-weight-d">表は公開しているものの比べ。オープンウェイトは重みを公開し、学習のプログラムと学習データの詳しい情報は公開しない。オープンソースAI（OSIの定義）は、重み・学習のプログラム・学習データの詳しい情報を公開し、使う・調べる・作り変える・共有するの4つの自由を認める。APIだけで提供するものは、どれも公開しない。重みだけの公開はオープンウェイトで、OSIの定義をそのまま満たすわけではない。ライセンス（利用条件）は別に確かめる。例：Llama 3.1は、月間の利用者が7億人を超える会社はMetaに別の許可を求める必要がある。重みをダウンロードできても、何にでも使えるとは限らない。</desc>
+<text x="12" y="20" class="tb">何を公開しているかで呼び名が変わる</text>
+<rect x="12" y="34" width="296" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="146.5" y="51" class="tb" text-anchor="middle">重み</text>
+<text x="146.5" y="68" class="tb" text-anchor="middle"></text>
+<text x="215.5" y="51" class="tb" text-anchor="middle">学習の</text>
+<text x="215.5" y="68" class="tb" text-anchor="middle">プログラム</text>
+<text x="284.5" y="51" class="tb" text-anchor="middle">学習デー</text>
+<text x="284.5" y="68" class="tb" text-anchor="middle">タの情報</text>
+<rect x="12" y="74" width="296" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="20" y="94" class="tb">オープン</text>
+<text x="20" y="112" class="tb">ウェイト</text>
+<text x="146.5" y="104" class="tb tok" text-anchor="middle">○</text>
+<text x="215.5" y="104" class="tb tng" text-anchor="middle">×</text>
+<text x="284.5" y="104" class="tb tng" text-anchor="middle">×</text>
+<rect x="12" y="122" width="296" height="48" class="fok sok" stroke-width="1.5"/>
+<text x="20" y="142" class="tb">オープン</text>
+<text x="20" y="160" class="tb">ソースAI</text>
+<text x="146.5" y="152" class="tb tok" text-anchor="middle">○</text>
+<text x="215.5" y="152" class="tb tok" text-anchor="middle">○</text>
+<text x="284.5" y="152" class="tb tok" text-anchor="middle">○</text>
+<rect x="12" y="170" width="296" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="20" y="190" class="tb">APIだけ</text>
+<text x="20" y="208" class="tb">（非公開）</text>
+<text x="146.5" y="200" class="tb tng" text-anchor="middle">×</text>
+<text x="215.5" y="200" class="tb tng" text-anchor="middle">×</text>
+<text x="284.5" y="200" class="tb tng" text-anchor="middle">×</text>
+<text x="12" y="240" class="tb">オープンソースAI は OSI の定義。</text>
+<text x="12" y="260">4つの自由を認める</text>
+<text x="12" y="280" class="tb tok">使う・調べる・作り変える・共有する</text>
+<text x="12" y="304" class="tb">重みだけ公開＝オープンウェイト。</text>
+<text x="12" y="324">学習データや学習のプログラムは含まない</text>
+<line x1="12" y1="340" x2="308" y2="340" class="l sb w1"/>
+<text x="12" y="362" class="tb tng">ライセンス（利用条件）は別に確かめる</text>
+<text x="12" y="382">例 Llama 3.1：月間の利用者が7億人を超え</text>
+<text x="12" y="402">る会社は、Meta に別の許可を求める</text>
+<text x="12" y="422" class="tm">重みを落とせても、何にでも使えるとは限らない</text>
+</svg>

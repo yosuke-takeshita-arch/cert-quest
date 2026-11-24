@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 926" role="img" aria-labelledby="fig-g-fcn-t fig-g-fcn-d">
+<title id="fig-g-fcn-t">FCN：全結合層を畳み込み層に置き換え、画素ごとに答える</title>
+<desc id="fig-g-fcn-d">①したいこと：画像の画素1つ1つに何が写っているかを付けたい（セマンティックセグメンテーション）。例として猫の画素と背景の画素を塗り分ける升目。②困りごと：分類用のCNNは、画像→畳み込み層→全結合層→答え「猫」と進み、全結合層が画像全体を1つの答えにまとめるので、どの画素が何かは出ない。入力の大きさも224×224などに固定される。③FCNは全結合層を畳み込み層に置き換える。畳み込みは小さな窓を画像の上でずらしながら同じ計算をするので、答えが場所ごとに地図のまま残る。これを予測の地図（場所ごとの答えの表）と呼ぶ。どの大きさの画像にも使える。④例：500×500の画像は、途中で縦横を半分にする縮小を5回通るので2×2×2×2×2＝32分の1になり、地図の一辺は500÷32≒15.6で約16×16。これを拡大して元の500×500に戻す。拡大だけだと境界がぼやけるので、解像度の高い途中の層（1/16など）の予測も足して細部を補う。⑤FCNはFully Convolutional Networkの略で、全部が畳み込み層、全結合層を持たない。どんな大きさの画像も入れられ、U-NetやSegNetなど後続のモデルの土台。欠点は細い物体の境界が粗くなりやすいこと。</desc>
+<text x="12" y="20" class="tb">FCN：画素ごとに答える、畳み込みだけの CNN</text>
+<text x="12" y="48" class="tb">① したいこと</text>
+<rect x="12" y="62" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="62" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="48" y="62" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="66" y="62" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="84" y="62" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="102" y="62" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="80" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="80" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="48" y="80" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="66" y="80" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="84" y="80" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="102" y="80" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="98" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="98" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="48" y="98" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="66" y="98" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="84" y="98" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="102" y="98" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="116" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="116" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="48" y="116" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="66" y="116" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="84" y="116" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="102" y="116" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="134" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="134" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="48" y="134" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="66" y="134" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="84" y="134" width="18" height="18" class="fok sok" stroke-width="1"/>
+<rect x="102" y="134" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="12" y="152" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="30" y="152" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="48" y="152" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="66" y="152" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="84" y="152" width="18" height="18" class="fs sb" stroke-width="1"/>
+<rect x="102" y="152" width="18" height="18" class="fs sb" stroke-width="1"/>
+<text x="136" y="78">画像の画素 1つ1つに</text>
+<text x="136" y="96">『何が写っているか』を</text>
+<text x="136" y="114">付けたい</text>
+<text x="136" y="140" class="tm">例：猫の画素と、</text>
+<text x="136" y="158" class="tm">背景の画素を塗り分ける</text>
+<rect x="12" y="180" width="14" height="14" class="fok sok" stroke-width="1"/>
+<text x="30" y="192" class="tm">猫</text>
+<rect x="60" y="180" width="14" height="14" class="fs sb" stroke-width="1"/>
+<text x="78" y="192" class="tm">背景</text>
+<line x1="12" y1="208" x2="308" y2="208" class="l sb w1"/>
+<text x="12" y="230" class="tb">② 困りごと：分類用の CNN では出せない</text>
+<rect x="12" y="244" width="50" height="36" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="37" y="267" class="tb" text-anchor="middle">画像</text>
+<line x1="62" y1="262" x2="68" y2="262" class="l w2"/>
+<polygon points="74,262 67,258 67,266" class="ft"/>
+<rect x="74" y="244" width="84" height="36" class="fas sa" stroke-width="1.5" rx="5"/>
+<text x="116" y="267" class="tb" text-anchor="middle">畳み込み</text>
+<line x1="158" y1="262" x2="164" y2="262" class="l w2"/>
+<polygon points="170,262 163,258 163,266" class="ft"/>
+<rect x="170" y="244" width="84" height="36" class="fng sng" stroke-width="1.5" rx="5"/>
+<text x="212" y="267" class="tb" text-anchor="middle">全結合</text>
+<line x1="254" y1="262" x2="260" y2="262" class="l w2"/>
+<polygon points="266,262 259,258 259,266" class="ft"/>
+<text x="288" y="267" class="tb tng" text-anchor="middle">猫</text>
+<text x="12" y="304" class="tm">全結合層が、画像全体を1つの答えにまとめる</text>
+<text x="12" y="322" class="tb tng">→『どの画素が何か』は出ない</text>
+<text x="12" y="340" class="tm">入力の大きさも固定（例：224×224）</text>
+<line x1="12" y1="354" x2="308" y2="354" class="l sb w1"/>
+<text x="12" y="376" class="tb">③ 全結合層を、畳み込み層に置き換える</text>
+<rect x="12" y="390" width="50" height="36" class="fs sb" stroke-width="1.5" rx="5"/>
+<text x="37" y="413" class="tb" text-anchor="middle">画像</text>
+<line x1="62" y1="408" x2="68" y2="408" class="l w2"/>
+<polygon points="74,408 67,404 67,412" class="ft"/>
+<rect x="74" y="390" width="84" height="36" class="fas sa" stroke-width="1.5" rx="5"/>
+<text x="116" y="413" class="tb" text-anchor="middle">畳み込み</text>
+<line x1="158" y1="408" x2="164" y2="408" class="l w2"/>
+<polygon points="170,408 163,404 163,412" class="ft"/>
+<rect x="170" y="390" width="84" height="36" class="fas sa" stroke-width="1.5" rx="5"/>
+<text x="212" y="413" class="tb" text-anchor="middle">畳み込み</text>
+<line x1="254" y1="408" x2="260" y2="408" class="l w2"/>
+<polygon points="266,408 259,404 259,412" class="ft"/>
+<rect x="268" y="389" width="13" height="13" class="fs sb" stroke-width="1"/>
+<rect x="281" y="389" width="13" height="13" class="fok sok" stroke-width="1"/>
+<rect x="294" y="389" width="13" height="13" class="fs sb" stroke-width="1"/>
+<rect x="268" y="402" width="13" height="13" class="fok sok" stroke-width="1"/>
+<rect x="281" y="402" width="13" height="13" class="fok sok" stroke-width="1"/>
+<rect x="294" y="402" width="13" height="13" class="fok sok" stroke-width="1"/>
+<rect x="268" y="415" width="13" height="13" class="fs sb" stroke-width="1"/>
+<rect x="281" y="415" width="13" height="13" class="fok sok" stroke-width="1"/>
+<rect x="294" y="415" width="13" height="13" class="fs sb" stroke-width="1"/>
+<text x="12" y="446" class="tb tok">右端の升目＝予測の地図（場所ごとの答えの表）</text>
+<text x="12" y="468" class="tm">畳み込みは、小さな窓を画像の上でずらして</text>
+<text x="12" y="486" class="tm">同じ計算をする → 答えが場所ごとに、地図の</text>
+<text x="12" y="504" class="tm">まま残る。どの大きさの画像にも使える</text>
+<line x1="12" y1="518" x2="308" y2="518" class="l sb w1"/>
+<text x="12" y="540" class="tb">④ 例：500×500 の画像を入れると</text>
+<text x="12" y="560" class="tm">途中で縦横を半分にする縮小を、5回通る</text>
+<text x="12" y="578" class="tm">→ 2×2×2×2×2＝32 分の1の大きさ</text>
+<text x="12" y="596" class="tm">地図の一辺＝500÷32≒15.6 → 約16×16</text>
+<rect x="12" y="610" width="80" height="80" class="fas sa" stroke-width="1.5"/>
+<line x1="100" y1="650" x2="128" y2="650" class="l w2"/>
+<polygon points="134,650 127,646 127,654" class="ft"/>
+<rect x="142" y="640" width="20" height="20" class="fok sok" stroke-width="1.5"/>
+<line x1="170" y1="650" x2="202" y2="650" class="l w2"/>
+<polygon points="208,650 201,646 201,654" class="ft"/>
+<rect x="216" y="610" width="80" height="80" class="fok sok" stroke-width="1.5"/>
+<text x="52" y="708" text-anchor="middle">500×500</text>
+<text x="152" y="708" text-anchor="middle">約16×16</text>
+<text x="256" y="708" text-anchor="middle">500×500</text>
+<text x="117" y="636" class="tm" text-anchor="middle">縮小</text>
+<text x="189" y="636" class="tm" text-anchor="middle">拡大</text>
+<text x="12" y="732" class="tm">拡大だけだと境界がぼやける → 解像度の高い</text>
+<text x="12" y="750" class="tm">途中の層（1/16 など）の予測も足して補う</text>
+<line x1="12" y1="782" x2="308" y2="782" class="l sb w1"/>
+<text x="12" y="804" class="tb">⑤ 試験で出る言い方</text>
+<text x="12" y="824">FCN＝Fully Convolutional Network</text>
+<text x="12" y="842" class="tm">（全部が畳み込み層。全結合層を持たない）</text>
+<text x="12" y="860" class="tm">U-Net・SegNet など後続のモデルの土台</text>
+<text x="12" y="878" class="tm">画素ごとの分類＝セマンティック</text>
+<text x="12" y="896" class="tm">セグメンテーション。この分野の基本のモデル</text>
+<text x="12" y="914" class="tm">欠点：細い物体の境界は粗くなりやすい</text>
+</svg>

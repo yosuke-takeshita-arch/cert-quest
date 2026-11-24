@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 388" role="img" aria-labelledby="fig-ap-eu-ai-act-t fig-ap-eu-ai-act-d">
+<title id="fig-ap-eu-ai-act-t">EU AI Act：リスクの4区分</title>
+<desc id="fig-ap-eu-ai-act-d">4段のピラミッド。いちばん上は許容できないリスクで、禁止。例は社会的スコアリング。2段目は高リスクで、リスク評価・ログの記録・人間による監督などの厳しい義務。例は採用のための履歴書の選別と与信の審査。3段目は透明性リスクで、AIと対話していることを知らせる、生成AIの出力にラベルを付けるといった開示の義務。例はチャットボット。いちばん下は最小リスクで、規律の対象外。例はスパムフィルター。上の段ほど規律が強い。</desc>
+<text x="12" y="20" class="tb">段が上がるほど、規律が強い</text>
+<rect x="75" y="34" width="170" height="70" class="fng sng" stroke-width="1.5"/>
+<text x="160" y="57" class="tb tng" text-anchor="middle">許容できないリスク</text>
+<text x="160" y="77" class="tb" text-anchor="middle">禁止</text>
+<text x="160" y="96" class="tm" text-anchor="middle">例：社会的スコアリング</text>
+<rect x="53" y="110" width="214" height="70" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="133" class="tb twn" text-anchor="middle">高リスク</text>
+<text x="160" y="153" class="tb" text-anchor="middle">評価・記録・人の監督などの義務</text>
+<text x="160" y="172" class="tm" text-anchor="middle">例：履歴書の選別・与信の審査</text>
+<rect x="32" y="186" width="256" height="70" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="209" class="tb ta" text-anchor="middle">透明性リスク</text>
+<text x="160" y="229" class="tb" text-anchor="middle">AIだと知らせる・ラベルを付ける</text>
+<text x="160" y="248" class="tm" text-anchor="middle">例：チャットボット</text>
+<rect x="12" y="262" width="296" height="70" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="285" class="tb tok" text-anchor="middle">最小リスク</text>
+<text x="160" y="305" class="tb" text-anchor="middle">規律の対象外（AIの大半）</text>
+<text x="160" y="324" class="tm" text-anchor="middle">例：スパムフィルター</text>
+<text x="12" y="356" class="tb">リスクの大きさに合わせて、</text>
+<text x="12" y="376" class="tb">規律の強さを変える（リスクベース）</text>
+</svg>

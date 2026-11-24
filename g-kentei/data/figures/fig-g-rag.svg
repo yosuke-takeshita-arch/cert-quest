@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 790" role="img" aria-labelledby="fig-g-rag-t fig-g-rag-d">
+<title id="fig-g-rag-t">RAG：検索器が索引から文書を探し、生成器が質問と文書から答える</title>
+<desc id="fig-g-rag-d">例は社内の問い合わせのチャット（説明のための場面）。質問「今年の夏季休暇は何日？」に対し、1 検索器が、外の文書の集まり（索引）を引き、関係しそうな文書を数件取り出す。原論文はこの外の文書をノンパラメトリック記憶と呼ぶ。2 生成器に、質問と取り出した文書を一緒に渡す。生成器が重みの中に覚えた知識はパラメトリック記憶と呼ぶ（原論文は BART）。3 生成器が文書を手がかりに答えを作る。中段は知識の新しくし方の違い。ファインチューニングは追加の学習で重みを変える。RAGは重みを変えず、索引の文書を差し替える。規程が改定されたら、索引の文書を差し替えれば答えが新しくなる。原論文は、2016年12月のWikipediaで作った索引を2018年12月のものに差し替えるだけで、世界の首脳についての答えが新しくなることを示した。下段は2つの形。答えのトークン（語の断片）4つについて、RAG-Sequence は4つとも同じ文書1を使う。RAG-Token はトークンごとに文書1・文書2・文書1・文書3のように別の文書を使える。</desc>
+<text x="12" y="20" class="tb">RAG：答える前に探して読む（例）</text>
+<rect x="12" y="32" width="296" height="40" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="57" class="tb" text-anchor="middle">質問「今年の夏季休暇は何日？」</text>
+<line x1="160" y1="72" x2="160" y2="86.4" class="l sm w1"/>
+<polygon points="160,92 156.5,86.4 163.5,86.4" class="fm"/>
+<rect x="12" y="94" width="296" height="84" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="114" class="tb">① 検索器が索引を引く</text>
+<text x="24" y="134">索引＝外の文書（社内規程）の集まり</text>
+<text x="24" y="152">関係しそうな文書を数件取り出す</text>
+<text x="24" y="170" class="twn tb">外の文書＝ノンパラメトリック記憶</text>
+<line x1="160" y1="178" x2="160" y2="192.4" class="l sm w1"/>
+<polygon points="160,198 156.5,192.4 163.5,192.4" class="fm"/>
+<rect x="12" y="200" width="296" height="84" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="220" class="tb">② 生成器に「質問＋文書」を渡す</text>
+<text x="24" y="240">生成器が重みに覚えた知識も使う</text>
+<text x="24" y="258" class="ta tb">重みの知識＝パラメトリック記憶</text>
+<text x="24" y="276" class="tm">（原論文の生成器は BART）</text>
+<line x1="160" y1="284" x2="160" y2="298.4" class="l sm w1"/>
+<polygon points="160,304 156.5,298.4 163.5,298.4" class="fm"/>
+<rect x="12" y="306" width="296" height="40" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="331" class="tb tok" text-anchor="middle">③ 文書を手がかりに答えを作る</text>
+<line x1="12" y1="364" x2="308" y2="364" class="l sb w1"/>
+<text x="12" y="388" class="tb">知識を新しくするには</text>
+<text x="12" y="412" class="tb">ファインチューニング</text>
+<text x="24" y="432">追加の学習で、重みを変える</text>
+<text x="12" y="458" class="tb ta">RAG</text>
+<text x="24" y="478">重みはそのまま。索引の文書を差し替える</text>
+<text x="24" y="498">（規程が改定されたら、文書を入れ替える）</text>
+<text x="12" y="524" class="tm">原論文：Wikipedia の索引を2016年12月版</text>
+<text x="12" y="542" class="tm">から2018年12月版に差し替えるだけで、</text>
+<text x="12" y="560" class="tm">世界の首脳についての答えが新しくなった</text>
+<line x1="12" y1="578" x2="308" y2="578" class="l sb w1"/>
+<text x="12" y="602" class="tb">2つの形（答えの4つのトークン）</text>
+<text x="12" y="622" class="tm">トークン＝語の断片。箱の数字＝使う文書</text>
+<text x="12" y="650" class="tb">RAG-Sequence：全体で同じ文書</text>
+<rect x="24" y="660" width="56" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="52" y="680" text-anchor="middle">文書1</text>
+<rect x="94" y="660" width="56" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="122" y="680" text-anchor="middle">文書1</text>
+<rect x="164" y="660" width="56" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="192" y="680" text-anchor="middle">文書1</text>
+<rect x="234" y="660" width="56" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="262" y="680" text-anchor="middle">文書1</text>
+<text x="12" y="720" class="tb">RAG-Token：トークンごとに選べる</text>
+<rect x="24" y="730" width="56" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="52" y="750" text-anchor="middle">文書1</text>
+<rect x="94" y="730" width="56" height="30" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="122" y="750" text-anchor="middle">文書2</text>
+<rect x="164" y="730" width="56" height="30" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="192" y="750" text-anchor="middle">文書1</text>
+<rect x="234" y="730" width="56" height="30" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="262" y="750" text-anchor="middle">文書3</text>
+<text x="12" y="780" class="tm">複数の文書の情報を1つの答えに混ぜられる</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 458" role="img" aria-labelledby="fig-ap-shot-types-t fig-ap-shot-types-d">
+<title id="fig-ap-shot-types-t">Zero-shot・One-shot・Few-shot：プロンプトで見せるお手本の数。どれも重みは更新しない</title>
+<desc id="fig-ap-shot-types-d">例は英語をフランス語に訳させること。Zero-shot（お手本0個）は「英語をフランス語に訳して」の指示のあとに cheese =&gt; とだけ書く。One-shot（1個）は sea otter =&gt; loutre de mer を1組見せてから cheese =&gt; と書く。Few-shot（数個）は sea otter =&gt; loutre de mer、peppermint =&gt; menthe poivrée のように数組見せてから cheese =&gt; と書く。モデルは最後の行の続きとして fromage と書く（例は説明のため）。その場の文脈だけからやり方をつかむ働きをIn-Context Learning（文脈内学習）と呼ぶ。どれもモデルの重みは更新しないので、次の会話ではお手本をまた見せる。ファインチューニングは重みを追加で学習する方法で、別もの。</desc>
+<text x="12" y="20" class="tb">お手本の数で呼び名が変わる</text>
+<text x="12" y="40" class="tm">例：英語をフランス語に訳させる</text>
+<rect x="12" y="52" width="296" height="66" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="72" class="tb">Zero-shot（0個）</text>
+<text x="34" y="92" class="tm">「英語をフランス語に訳して」</text>
+<text x="34" y="110" class="tb">cheese =&gt;</text>
+<rect x="12" y="126" width="296" height="66" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="146" class="tb">One-shot（1個）</text>
+<text x="34" y="166" class="tm">sea otter =&gt; loutre de mer</text>
+<text x="34" y="184" class="tb">cheese =&gt;</text>
+<rect x="12" y="200" width="296" height="84" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="220" class="tb">Few-shot（数個）</text>
+<text x="34" y="240" class="tm">sea otter =&gt; loutre de mer</text>
+<text x="34" y="258" class="tm">peppermint =&gt; menthe poivrée</text>
+<text x="34" y="276" class="tb">cheese =&gt;</text>
+<text x="12" y="302" class="tb">最後の行の続きとして、モデルが fromage と書く</text>
+<text x="12" y="320" class="tm">（例は説明のため）</text>
+<line x1="12" y1="336" x2="308" y2="336" class="l sb w1"/>
+<text x="12" y="358" class="tb ta">In-Context Learning（文脈内学習）</text>
+<text x="12" y="378">その場の文脈だけからやり方をつかむ</text>
+<text x="12" y="398" class="tb tok">どれもモデルの重みは更新しない</text>
+<text x="12" y="418" class="tm">→ 次の会話では、お手本をまた見せる</text>
+<text x="12" y="440" class="tm">ファインチューニング＝重みを追加で学習する</text>
+</svg>

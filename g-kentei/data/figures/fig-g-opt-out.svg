@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 690" role="img" aria-labelledby="fig-g-opt-out-t fig-g-opt-out-d">
+<title id="fig-g-opt-out-t">オプトアウトによる第三者提供：誰から誰へ何が渡るか（住宅地図の例）と、使えないもの</title>
+<desc id="fig-g-opt-out-d">住宅地図を作って売る事業者の例。前もって、事業者は本人に、提供する項目・取得の方法・提供の方法・本人の求めを受け付ける方法などを知れる状態にする（ホームページに載せ続けるなど）。同じく前もって、事業者は個人情報保護委員会に届け出て、委員会は届け出られた事項を公表する。そのあと、事業者は本人の同意を取らずに第三者に個人データを渡す（地図を売る）。本人はいつでも、提供をやめてと求めることができ、事業者はそれ以後の提供を止める。オプトアウトでは渡せないものは、要配慮個人情報、不正に取得したもの、他の事業者からオプトアウトで受け取ったもの（複製・加工したものを含む）。また、委託・事業の承継（合併など）・共同利用で受け取る相手は、そもそも第三者に当たらないので、同意もオプトアウトの届出も要らない。</desc>
+<text x="12" y="20" class="tb">オプトアウトの流れ（住宅地図の例）</text>
+<text x="12" y="40" class="tm">委員会＝個人情報保護委員会</text>
+<text x="12" y="66" class="tb ta">前もって</text>
+<rect x="12" y="76" width="72" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="48" y="94" text-anchor="middle" class="tb">事業者</text>
+<line x1="88" y1="89" x2="114" y2="89" class="l w2"/>
+<polygon points="122,89 113,84 113,94" class="ft"/>
+<rect x="124" y="76" width="72" height="26" class="fs l" stroke-width="1.5" rx="6"/>
+<text x="160" y="94" text-anchor="middle" class="tb">本人</text>
+<text x="24" y="124">項目・取得や提供の方法・やめての</text>
+<text x="24" y="142">受付方法などを、知れる状態にする</text>
+<text x="24" y="160" class="tm">（ホームページに載せ続けるなど）</text>
+<rect x="12" y="174" width="72" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="48" y="192" text-anchor="middle" class="tb">事業者</text>
+<line x1="88" y1="187" x2="114" y2="187" class="l w2"/>
+<polygon points="122,187 113,182 113,192" class="ft"/>
+<rect x="124" y="174" width="72" height="26" class="fs l" stroke-width="1.5" rx="6"/>
+<text x="160" y="192" text-anchor="middle" class="tb">委員会</text>
+<text x="204" y="192">届け出る</text>
+<text x="24" y="222">委員会は、届け出られた事項を公表する</text>
+<line x1="12" y1="238" x2="308" y2="238" class="l sb w1"/>
+<text x="12" y="262" class="tb ta">そのあと</text>
+<rect x="12" y="272" width="72" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="48" y="290" text-anchor="middle" class="tb">事業者</text>
+<line x1="88" y1="285" x2="114" y2="285" class="l sok w2"/>
+<polygon points="122,285 113,280 113,290" class="tok"/>
+<rect x="124" y="272" width="72" height="26" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="290" text-anchor="middle" class="tb">第三者</text>
+<text x="204" y="290">地図を売る</text>
+<text x="24" y="320"><tspan class="tok tb">本人の同意を取らずに</tspan>個人データを渡す</text>
+<line x1="12" y1="336" x2="308" y2="336" class="l sb w1"/>
+<text x="12" y="360" class="tb ta">いつでも</text>
+<rect x="12" y="370" width="72" height="26" class="fs l" stroke-width="1.5" rx="6"/>
+<text x="48" y="388" text-anchor="middle" class="tb">本人</text>
+<line x1="88" y1="383" x2="114" y2="383" class="l w2"/>
+<polygon points="122,383 113,378 113,388" class="ft"/>
+<rect x="124" y="370" width="72" height="26" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="388" text-anchor="middle" class="tb">事業者</text>
+<text x="204" y="388">『やめて』</text>
+<text x="24" y="418">事業者は、それ以後の提供を止める</text>
+<rect x="12" y="436" width="296" height="114" class="fng sng" stroke-width="1.5" rx="8"/>
+<text x="24" y="460" class="tng tb">オプトアウトでは渡せないもの</text>
+<text x="24" y="484">・要配慮個人情報<tspan class="tm">（病歴など）</tspan></text>
+<text x="24" y="504">・不正に取得したもの</text>
+<text x="24" y="524">・他社からオプトアウトで受け取ったもの</text>
+<text x="36" y="542" class="tm">（複製・加工したものも含む）</text>
+<rect x="12" y="564" width="296" height="114" class="fs sb dsh" stroke-width="1.5" rx="8"/>
+<text x="24" y="588" class="tb">そもそも第三者に当たらない相手</text>
+<text x="24" y="610">委託先・事業の承継（合併など）・</text>
+<text x="24" y="628">共同利用で受け取る相手</text>
+<text x="24" y="652">→ 同意もオプトアウトの届出も要らない</text>
+<text x="24" y="670" class="tm">オプトアウトは、相手が第三者のまま</text>
+</svg>

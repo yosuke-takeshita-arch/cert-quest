@@ -1,0 +1,27 @@
+{
+  "syllabus": "syllabus.json",
+  "questions": [
+    "questions/01_ai-basics.json",
+    "questions/02_ai-trends.json",
+    "questions/03_ml-overview.json",
+    "questions/04_dl-overview.json",
+    "questions/05_dl-components.json",
+    "questions/06_dl-applications.json",
+    "questions/07_social-implementation.json",
+    "questions/08_math-stats.json",
+    "questions/09_law-contract.json",
+    "questions/10_ethics-governance.json"
+  ],
+  "concepts": [
+    "concepts/01_ai-basics.json",
+    "concepts/02_ai-trends.json",
+    "concepts/03_ml-overview.json",
+    "concepts/04_dl-overview.json",
+    "concepts/05_dl-components.json",
+    "concepts/06_dl-applications.json",
+    "concepts/07_social-implementation.json",
+    "concepts/08_math-stats.json",
+    "concepts/09_law-contract.json",
+    "concepts/10_ethics-governance.json"
+  ]
+}

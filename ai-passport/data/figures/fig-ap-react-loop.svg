@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 496" role="img" aria-labelledby="fig-ap-react-loop-t fig-ap-react-loop-d">
+<title id="fig-ap-react-loop-t">ReAct：推論（考える）→行動（道具で動く）→観察（結果を見る）の輪</title>
+<desc id="fig-ap-react-loop-d">上から下へ3つの箱。①推論（考える）：例はまず創業者の名前を調べる、と考える。②行動（道具で動く）：例は「○○社 創業者」で検索する。③観察（結果を見る）：例は創業者はAさんと分かる。左の矢印で観察の結果を①の推論に戻し、2周目はAさんの学歴を調べる、と考えて同じ輪を回し、答えに届く。ループの出口として、目標に届いたら答えを出して止め、回数の上限も決めておく。片方だけだと、考えるだけでは知らない事実を想像で埋めてハルシネーションを起こし、動くだけでは何のために動くかを見失う。</desc>
+<text x="12" y="20" class="tb">ReAct：考える→動く→見る、の輪</text>
+<rect x="46" y="34" width="262" height="58" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="58" y="56" class="tb ta">① 推論（考える）</text>
+<text x="58" y="78" class="tm">例：まず創業者の名前を調べよう</text>
+<line x1="177" y1="92" x2="177" y2="112" class="l w2"/>
+<polyline points="173.15,105 177,112 180.85,105" class="l w2"/>
+<rect x="46" y="114" width="262" height="58" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="58" y="136" class="tb tok">② 行動（道具で動く）</text>
+<text x="58" y="158" class="tm">例：検索『○○社 創業者』</text>
+<line x1="177" y1="172" x2="177" y2="192" class="l w2"/>
+<polyline points="173.15,185 177,192 180.85,185" class="l w2"/>
+<rect x="46" y="194" width="262" height="58" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="58" y="216" class="tb">③ 観察（結果を見る）</text>
+<text x="58" y="238" class="tm">例：創業者はAさんと分かった</text>
+<polyline points="46,223 24,223 24,63 39,63" class="l sa w2"/>
+<polyline points="39,59.15 46,63 39,66.85" class="l sa w2"/>
+<text x="12" y="276" class="ta">左の矢印：結果を①に戻して、また考える</text>
+<text x="12" y="296" class="tm">2周目：Aさんの学歴を調べる→…→答え</text>
+<line x1="12" y1="310" x2="308" y2="310" class="l sb w1"/>
+<text x="12" y="334" class="tb twn">ループの出口（止める条件）</text>
+<text x="12" y="356">・目標に届いたら、答えを出して止める</text>
+<text x="12" y="376">・回数の上限も決めておく</text>
+<line x1="12" y1="392" x2="308" y2="392" class="l sb w1"/>
+<text x="12" y="416" class="tb">片方だけだと</text>
+<text x="12" y="438">考えるだけ：知らない事実を想像で埋め、</text>
+<text x="12" y="458">　ハルシネーションを起こす</text>
+<text x="12" y="482">動くだけ：何のために動くかを見失う</text>
+</svg>

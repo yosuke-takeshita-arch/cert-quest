@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 996" role="img" aria-labelledby="fig-g-pseudo-anon-t fig-g-pseudo-anon-d">
+<title id="fig-g-pseudo-anon-t">仮名加工情報と匿名加工情報：社内で使うなら仮名加工、社外へ出すなら匿名加工</title>
+<desc id="fig-g-pseudo-anon-d">何に困るか：社内でデータを分析したいが、氏名つきのままだと漏れたときの被害が大きく、当初の目的にない分析には目的の制限もかかる。そのための制度が仮名加工情報（社内で使う）。他社とデータを共有・販売したいが、個人データのままでは本人の同意が要る。そのための制度が匿名加工情報（社外へ出す）。仮名加工情報の例：会員データ 山田花子・090-1234-5678・1月に靴を購入 から氏名と電話番号を削り、ID に置き換えて X7Q2・1月に靴を購入 にする。元の名簿（削除した情報や加工の方法）と照らせば誰か分かるが、照らさない限り分からない。当初の目的になかった商品開発の分析にも使える（変更後の目的は公表する）。社外へは出せず、法令に基づく場合を除き本人の同意があっても不可。委託先や共同利用の相手には渡せる。匿名加工情報の例：IC カードの乗降履歴から氏名とカードの番号を消し、生年月日を30代のように丸め、珍しい記録（深夜に1人しか使わない駅の利用など）を削るか丸めて、誰のものか分からず元にも戻せないようにする。決まった基準で加工し、含む項目を公表し、相手に匿名加工情報だと示せば、本人の同意なく社外へ出せる（例：駅周辺の開発会社へ）。くらべる：誰か分かるかは、仮名加工は元の名簿と照らせば分かり、匿名加工は分からず戻せない。社外へは、仮名加工は出せず（同意でも）、匿名加工はルールを守れば同意なく出せる。使い道は、仮名加工は社内の分析、匿名加工は社外との共有。どちらも照合して本人を割り出すことは禁止。外に出すなら匿名加工、中で使うなら仮名加工。例は説明のための例。</desc>
+<text x="12" y="20" class="tb">仮名加工情報と匿名加工情報</text>
+<text x="12" y="42" class="tb ta">社内で使うか、社外へ出すか</text>
+<text x="12" y="70" class="tb">① 何に困るか</text>
+<text x="12" y="90" class="tm">社内でデータを分析したいが、氏名つきのまま</text>
+<text x="12" y="110" class="tm">だと、漏れたときの被害が大きい。当初の目的</text>
+<text x="12" y="130" class="tm">にない分析には、目的の制限もかかる</text>
+<text x="12" y="152" class="tb ta">→ 仮名加工情報（社内で使う）</text>
+<text x="12" y="176" class="tm">他社とデータを共有・販売したいが、個人データ</text>
+<text x="12" y="200" class="tm">のままでは本人の同意が要る</text>
+<text x="12" y="222" class="tb twn">→ 匿名加工情報（社外へ出す）</text>
+<line x1="12" y1="236" x2="308" y2="236" class="l sb w1"/>
+<text x="12" y="260" class="tb">② 仮名加工情報の例：会員データ</text>
+<rect x="12" y="270" width="296" height="28" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="289" class="tb" text-anchor="middle">山田花子・090-1234-5678・1月に靴を購入</text>
+<line x1="40" y1="300" x2="40" y2="315" class="l sm w2"/>
+<polygon points="40,322 35.5,314.5 44.5,314.5" class="fm"/>
+<text x="52" y="316" class="tm">氏名と電話番号を削り、ID に置き換える</text>
+<rect x="12" y="324" width="296" height="28" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="343" class="tb" text-anchor="middle">X7Q2・1月に靴を購入</text>
+<text x="12" y="374" class="tm">元の名簿（削除した情報や加工の方法）と照ら</text>
+<text x="12" y="396" class="tm">せば誰か分かる。照らさない限り分からない</text>
+<text x="12" y="418" class="tm">・当初の目的になかった商品開発の分析にも使え</text>
+<text x="12" y="440" class="tm">　る（変更後の目的は公表する）</text>
+<text x="12" y="462" class="tm">・社外へは出せない（法令に基づく場合を除き、</text>
+<text x="12" y="484" class="tm">　本人の同意があっても不可）</text>
+<text x="12" y="506" class="tm">・委託先や共同利用の相手には渡せる</text>
+<line x1="12" y1="520" x2="308" y2="520" class="l sb w1"/>
+<text x="12" y="544" class="tb">③ 匿名加工情報の例：IC カードの乗降履歴</text>
+<text x="12" y="564" class="tm">・氏名とカードの番号を消す</text>
+<text x="12" y="584" class="tm">・生年月日を『30代』のように丸める</text>
+<text x="12" y="604" class="tm">・珍しい記録（深夜に1人しか使わない駅の利用</text>
+<text x="12" y="624" class="tm">　など）を削るか丸める</text>
+<text x="12" y="648" class="tb twn">→ 誰のものか分からず、元にも戻せない</text>
+<text x="12" y="670" class="tm">決まった基準で加工し、含む項目を公表し、</text>
+<text x="12" y="692" class="tm">相手に匿名加工情報だと示せば、本人の同意</text>
+<text x="12" y="714" class="tm">なく社外へ出せる（例：駅周辺の開発会社へ）</text>
+<line x1="12" y1="728" x2="308" y2="728" class="l sb w1"/>
+<text x="12" y="752" class="tb">④ くらべる</text>
+<text x="166" y="778" class="tb ta" text-anchor="middle">仮名加工</text>
+<text x="262" y="778" class="tb twn" text-anchor="middle">匿名加工</text>
+<line x1="12" y1="786" x2="308" y2="786" class="l sb w1"/>
+<text x="12" y="808" class="tb">誰か分かるか</text>
+<text x="166" y="808" text-anchor="middle">元の名簿と</text>
+<text x="166" y="826" text-anchor="middle">照らせば分かる</text>
+<text x="262" y="808" text-anchor="middle">分からない</text>
+<text x="262" y="826" text-anchor="middle">戻せない</text>
+<line x1="12" y1="834" x2="308" y2="834" class="l sb w1"/>
+<text x="12" y="856" class="tb">社外へ</text>
+<text x="166" y="856" text-anchor="middle">出せない</text>
+<text x="166" y="874" text-anchor="middle">（同意でも）</text>
+<text x="262" y="856" text-anchor="middle">ルールを守れば</text>
+<text x="262" y="874" text-anchor="middle">同意なく出せる</text>
+<line x1="12" y1="882" x2="308" y2="882" class="l sb w1"/>
+<text x="12" y="904" class="tb">使い道</text>
+<text x="166" y="904" text-anchor="middle">社内の分析</text>
+<text x="262" y="904" text-anchor="middle">社外との共有</text>
+<line x1="12" y1="912" x2="308" y2="912" class="l sb w1"/>
+<text x="12" y="934" class="tm">どちらも、照合して本人を割り出すことは禁止</text>
+<text x="12" y="960" class="tb">外に出すなら匿名加工、中で使うなら仮名加工</text>
+<text x="12" y="980" class="tm">（例は説明のための例）</text>
+</svg>

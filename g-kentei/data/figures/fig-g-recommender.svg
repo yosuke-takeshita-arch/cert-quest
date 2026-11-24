@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 490" role="img" aria-labelledby="fig-g-recommender-t fig-g-recommender-d">
+<title id="fig-g-recommender-t">協調フィルタリングとコンテンツベースフィルタリング</title>
+<desc id="fig-g-recommender-d">上は協調フィルタリング。利用者と商品の評価表を使う。評価がよく似た利用者1と利用者2を同じ枠で囲み、利用者1だけが高く評価した商品エを、利用者2に薦める。評価の履歴がまったく無い新しい利用者は、手がかりが無く薦められない（コールドスタート問題）。アイテムベースは、列どうし（商品どうし）の類似度を使う。下はコンテンツベースフィルタリング。商品の特徴（ジャンルなど）と利用者の好みを照らし合わせ、同じ特徴の商品を薦める。他の利用者のデータは使わない。</desc>
+<text x="12" y="20" class="tb">① 協調フィルタリング：評価表を使う</text>
+<text x="104" y="52" class="tb tm" text-anchor="middle">ア</text>
+<text x="148" y="52" class="tb tm" text-anchor="middle">イ</text>
+<text x="192" y="52" class="tb tm" text-anchor="middle">ウ</text>
+<text x="236" y="52" class="tb tm" text-anchor="middle">エ</text>
+<text x="280" y="52" class="tb tm" text-anchor="middle">オ</text>
+<text x="12" y="52" class="tm">商品→</text>
+<text x="12" y="80" class="tb">利用者1</text>
+<rect x="82" y="60" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="104" y="80" class="tb" text-anchor="middle">5</text>
+<rect x="126" y="60" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="148" y="80" class="tb" text-anchor="middle">4</text>
+<rect x="170" y="60" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="214" y="60" width="44" height="30" class="fok sok" stroke-width="2.5"/>
+<text x="236" y="80" class="tb" text-anchor="middle">5</text>
+<rect x="258" y="60" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="12" y="110" class="tb">利用者2</text>
+<rect x="82" y="90" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="104" y="110" class="tb" text-anchor="middle">5</text>
+<rect x="126" y="90" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="148" y="110" class="tb" text-anchor="middle">4</text>
+<rect x="170" y="90" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="192" y="110" class="tb" text-anchor="middle">2</text>
+<rect x="214" y="90" width="44" height="30" class="fok sok" stroke-width="2.5"/>
+<text x="236" y="110" class="tb tok" text-anchor="middle">？</text>
+<rect x="258" y="90" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="12" y="140" class="tb">利用者3</text>
+<rect x="82" y="120" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="104" y="140" class="tb" text-anchor="middle">1</text>
+<rect x="126" y="120" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="170" y="120" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="192" y="140" class="tb" text-anchor="middle">5</text>
+<rect x="214" y="120" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="258" y="120" width="44" height="30" class="fs sb" stroke-width="1"/>
+<text x="280" y="140" class="tb" text-anchor="middle">4</text>
+<text x="12" y="170" class="tb">新規</text>
+<rect x="82" y="150" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="126" y="150" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="170" y="150" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="214" y="150" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="258" y="150" width="44" height="30" class="fs sb" stroke-width="1"/>
+<rect x="78" y="57" width="228" height="66" class="sa" stroke-width="2.5" rx="6"/>
+<text x="300" y="78"></text>
+<text x="90" y="170" class="tb tng">履歴なし → 薦められない</text>
+<text x="12" y="202">似た人（青い枠）が高く評価した</text>
+<text x="12" y="222" class="tb tok">商品エ（緑）を、利用者2に薦める</text>
+<text x="12" y="246" class="tb tng">新規の行：コールドスタート問題</text>
+<text x="12" y="266" class="tm">アイテムベース：列どうし（商品）の類似度</text>
+<line x1="12" y1="282" x2="308" y2="282" class="l sb w1"/>
+<text x="12" y="308" class="tb">② コンテンツベース：商品の特徴を使う</text>
+<rect x="12" y="320" width="56" height="28" class="fs sb" stroke-width="1"/>
+<rect x="68" y="320" width="96" height="28" class="fs sb" stroke-width="1"/>
+<text x="40" y="339" class="tb tm" text-anchor="middle">商品</text>
+<text x="116" y="339" class="tb tm" text-anchor="middle">ジャンル</text>
+<rect x="12" y="348" width="56" height="28" class="fs sb" stroke-width="1"/>
+<rect x="68" y="348" width="96" height="28" class="fs sb" stroke-width="1"/>
+<text x="40" y="367" class="tb" text-anchor="middle">ア</text>
+<text x="116" y="367" class="tb" text-anchor="middle">推理</text>
+<rect x="12" y="376" width="56" height="28" class="fs sb" stroke-width="1"/>
+<rect x="68" y="376" width="96" height="28" class="fs sb" stroke-width="1"/>
+<text x="40" y="395" class="tb" text-anchor="middle">ウ</text>
+<text x="116" y="395" class="tb" text-anchor="middle">料理</text>
+<rect x="12" y="404" width="56" height="28" class="fs sb" stroke-width="1"/>
+<rect x="68" y="404" width="96" height="28" class="fok sok" stroke-width="2.5"/>
+<text x="40" y="423" class="tb" text-anchor="middle">エ</text>
+<text x="116" y="423" class="tb" text-anchor="middle">推理</text>
+<text x="178" y="343" class="tb ta">利用者の好み</text>
+<text x="178" y="363" class="ta">アを高評価</text>
+<text x="178" y="385" class="ta">＝ 推理が好き</text>
+<text x="178" y="423" class="tb tok">→ エを薦める</text>
+<text x="12" y="456" class="tb">他の利用者のデータは使わない</text>
+<text x="12" y="478" class="tm">新商品でも、特徴が分かれば薦められる</text>
+</svg>

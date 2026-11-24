@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-dx-bottleneck-shift-t fig-dx-bottleneck-shift-d">
+<title id="fig-dx-bottleneck-shift-t">自動化によるボトルネック移動（例の数）と5つの集中ステップ</title>
+<desc id="fig-dx-bottleneck-shift-d">横棒グラフ。棒の長さは、その工程が1時間にさばける件数（例）。工程A・B・Cが順につながる流れで、自動化の前はA10件・B4件・C6件。流れはいちばん少ない工程の速さでしか進まないので、全体は1時間4件で、制約（ボトルネック）は工程B。工程Bを自動化して12件にすると、全体は1時間6件に増えるが、今度は工程Cがいちばん少なくなり、制約は工程Cへ移る。下に、制約理論の5つの集中ステップ。1 制約を見つける、2 制約を最大限に生かす、3 ほかを制約に従わせる、4 制約を強化する（自動化・設備投資など）、5 惰性が制約にならないようにして1へ戻る。4の投資に飛びつく前に1から3を行うと、投資なしに隠れた能力が見つかることが多い。</desc>
+<text x="12" y="22" class="tb">横棒グラフ（例の数）</text>
+<text x="12" y="42" class="tm">棒の長さ＝その工程が1時間にさばける件数</text>
+<text x="12" y="70" class="tb">自動化の前</text>
+<text x="12" y="96">工程A</text>
+<rect x="64" y="82" width="160" height="20" class="fs l sm"/>
+<text x="230" y="97">10件</text>
+<text x="12" y="126">工程B</text>
+<rect x="64" y="112" width="64" height="20" class="fng l sng"/>
+<text x="134" y="127" class="tng tb">4件 ← 制約</text>
+<text x="12" y="156">工程C</text>
+<rect x="64" y="142" width="96" height="20" class="fs l sm"/>
+<text x="166" y="157">6件</text>
+<text x="12" y="186">全体＝いちばん少ない工程の</text>
+<text x="12" y="204" class="tb">4件／時間</text>
+<line x1="160" y1="216" x2="160" y2="236" class="l sa w2"/>
+<polyline points="155,230 160,236 165,230" class="l sa w2"/>
+<text x="170" y="230" class="ta tb">工程Bを自動化</text>
+<text x="12" y="264" class="tb">自動化の後</text>
+<text x="12" y="290">工程A</text>
+<rect x="64" y="276" width="160" height="20" class="fs l sm"/>
+<text x="230" y="291">10件</text>
+<text x="12" y="320">工程B</text>
+<rect x="64" y="306" width="192" height="20" class="fok l sok"/>
+<text x="262" y="321" class="tok">12件</text>
+<text x="12" y="350">工程C</text>
+<rect x="64" y="336" width="96" height="20" class="fng l sng"/>
+<text x="166" y="351" class="tng tb">6件 ← 新しい制約</text>
+<text x="12" y="380">全体は<tspan class="tb">6件／時間</tspan>に増えるが、</text>
+<text x="12" y="398">今度は工程Cが詰まる</text>
+<line x1="12" y1="416" x2="308" y2="416" class="l sb w1"/>
+<text x="12" y="440" class="tb">5つの集中ステップ（制約理論）</text>
+<text x="12" y="464">1 制約を見つける</text>
+<text x="12" y="484">2 制約を最大限に生かす</text>
+<text x="12" y="504">3 ほかをすべて制約に従わせる</text>
+<text x="12" y="524">4 制約を強化する（自動化・設備投資）</text>
+<text x="12" y="544">5 惰性が制約にならないようにする</text>
+<path d="M 284 540 C 316 540, 316 460, 284 460" class="l sa w2"/>
+<polyline points="290,455 284,460 290,465" class="l sa w2"/>
+<text x="12" y="572" class="ta tb">制約が移ったら、1へ戻る</text>
+<text x="12" y="596" class="tm">4の投資の前に1〜3で隠れた能力を探す</text>
+</svg>

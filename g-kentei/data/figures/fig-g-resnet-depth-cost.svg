@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-g-resnet-depth-cost-t fig-g-resnet-depth-cost-d">
+<title id="fig-g-resnet-depth-cost-t">ResNet-152 は VGG の約8倍深いのに、計算の量（積和の回数）は VGG より少ない</title>
+<desc id="fig-g-resnet-depth-cost-d">何のための図か：ResNet の論文が示した『152層まで深くしても、計算の複雑さは VGG より低い』を、層の数と計算の量の2つの棒で比べる。①層の数：VGG-16 は16層、VGG-19 は19層、ResNet-152 は152層。152÷19≒8 で、VGG の約8倍の深さ。②1枚の画像を読むのに要る積和（掛けて足す計算）の回数：VGG-16 は153億回、VGG-19 は196億回、ResNet-152 は113億回。深さは8倍なのに、計算は VGG-16 より約4分の1少ない（113÷153≒0.74）。③なぜ少ないか：ResNet は各層のフィルタの数（チャネル数）を VGG より少なくし、50層以上では 1×1 の畳み込みでチャネルを一度減らしてから 3×3 を当て、また 1×1 で戻すボトルネックの形にした。スキップ結合は入力をそのまま足すだけで、重みも計算もほとんど増やさない。数は He ら（2015）の論文の値。</desc>
+<text x="12" y="20" class="tb">深さは8倍、計算はかえって少ない</text>
+<text x="12" y="42" class="tm">何のための図か：ResNet の論文の『152層でも</text>
+<text x="12" y="60" class="tm">VGG より複雑さが低い』を、棒で比べる</text>
+<line x1="12" y1="72" x2="308" y2="72" class="l sb w1"/>
+<text x="12" y="94" class="tb">① 層の数（深さ）</text>
+<rect x="96" y="106" width="15.8" height="18" class="fs sb" stroke-width="1.5"/>
+<text x="12" y="120" class="tm">VGG-16</text>
+<text x="117.78947368421052" y="120" class="tb">16 層</text>
+<rect x="96" y="132" width="18.8" height="18" class="fs sb" stroke-width="1.5"/>
+<text x="12" y="146" class="tm">VGG-19</text>
+<text x="120.75" y="146" class="tb">19 層</text>
+<rect x="96" y="158" width="150.0" height="18" class="fok sok" stroke-width="1.5"/>
+<text x="12" y="172" class="tm">ResNet-152</text>
+<text x="252" y="172" class="tb">152 層</text>
+<text x="12" y="198" class="tm">152 ÷ 19 ≒ 8 → VGG の約8倍の深さ</text>
+<line x1="12" y1="210" x2="308" y2="210" class="l sb w1"/>
+<text x="12" y="232" class="tb">② 1枚の画像を読む計算の量</text>
+<text x="12" y="250" class="tm">積和＝掛けて足す計算の回数（論文の FLOPs）</text>
+<rect x="96" y="262" width="109.3" height="18" class="fs sb" stroke-width="1.5"/>
+<text x="12" y="276" class="tm">VGG-16</text>
+<text x="211.28571428571428" y="276" class="tb">153億回</text>
+<rect x="96" y="288" width="140.0" height="18" class="fs sb" stroke-width="1.5"/>
+<text x="12" y="302" class="tm">VGG-19</text>
+<text x="242" y="302" class="tb">196億回</text>
+<rect x="96" y="314" width="80.7" height="18" class="fok sok" stroke-width="1.5"/>
+<text x="12" y="328" class="tm">ResNet-152</text>
+<text x="182.71428571428572" y="328" class="tb">113億回</text>
+<text x="12" y="354" class="tb tok">113 ÷ 153 ≒ 0.74</text>
+<text x="12" y="374" class="tb tok">→ VGG-16 より約4分の1少ない</text>
+<line x1="12" y1="386" x2="308" y2="386" class="l sb w1"/>
+<text x="12" y="408" class="tb">③ なぜ深いのに少ないか</text>
+<text x="12" y="426" class="tm">・各層のフィルタの数（チャネル数）を、VGG</text>
+<text x="12" y="444" class="tm">　より少なくした</text>
+<text x="12" y="462" class="tm">・50層以上は 1×1 でチャネルを一度減らし、</text>
+<text x="12" y="480" class="tm">　細い所で 3×3 を当て、1×1 で戻す</text>
+<text x="12" y="498" class="tm">　（ボトルネック：瓶の首のように細い所）</text>
+<text x="12" y="516" class="tm">・スキップ結合は入力をそのまま足すだけで、</text>
+<text x="12" y="534" class="tm">　重みも計算もほとんど増やさない</text>
+<text x="12" y="558" class="tm">数は He ら（2015）の論文の値</text>
+</svg>

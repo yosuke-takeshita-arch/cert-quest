@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-sc-db-normal-forms-t fig-sc-db-normal-forms-d">
+<title id="fig-sc-db-normal-forms-t">第2正規形と第3正規形への分け方</title>
+<desc id="fig-sc-db-normal-forms-d">正規化は、同じ事実を1か所にだけ持つように表を分けること。上の区画は第2正規形。注文明細（注文番号、商品番号、商品名、数量）は、主キーが注文番号と商品番号の組。商品名は商品番号だけで決まる（部分関数従属）ので、注文明細（注文番号、商品番号、数量）と商品（商品番号、商品名）に分ける。下の区画は第3正規形。社員（社員番号、部署番号、部署名）は、社員番号で部署番号が決まり、部署番号で部署名が決まる（推移関数従属）ので、社員（社員番号、部署番号）と部署（部署番号、部署名）に分ける。分けると、商品名や部署名を変えるときに1行だけ直せば済む。</desc>
+<text x="12" y="20" class="tb">正規化＝同じ事実を1か所にだけ持つ</text>
+<text x="12" y="40" class="tm">［ ］は主キー。→ は「これで決まる」</text>
+<rect x="8" y="50" width="304" height="170" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="72" class="tb">第2正規形：キーの一部で決まる列を分ける</text>
+<text x="18" y="96">注文明細（［注文番号，商品番号］，</text>
+<text x="40" y="116">商品名，数量）</text>
+<text x="18" y="140" class="tng">商品番号 → 商品名（部分関数従属）</text>
+<text x="18" y="164" class="tok">注文明細（［注文番号，商品番号］，数量）</text>
+<text x="18" y="186" class="tok">＋ 商品（［商品番号］，商品名）</text>
+<text x="18" y="208" class="tm">商品名を変えても、直すのは商品の1行</text>
+<rect x="8" y="232" width="304" height="170" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="254" class="tb">第3正規形：キー以外の列で決まる列を分ける</text>
+<text x="18" y="278">社員（［社員番号］，部署番号，部署名）</text>
+<text x="18" y="302" class="tng">社員番号 → 部署番号 → 部署名</text>
+<text x="18" y="322" class="tng">（推移関数従属）</text>
+<text x="18" y="346" class="tok">社員（［社員番号］，部署番号）</text>
+<text x="18" y="368" class="tok">＋ 部署（［部署番号］，部署名）</text>
+<text x="18" y="390" class="tm">部署名を変えても、直すのは部署の1行</text>
+</svg>

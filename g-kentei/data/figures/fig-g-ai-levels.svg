@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-ai-levels-t fig-g-ai-levels-d">
+<title id="fig-g-ai-levels-t">AIの4つのレベル：段階が上がるほど、人が決める部分が減り、データから学ぶ部分が増える（エアコンの例）</title>
+<desc id="fig-g-ai-levels-d">エアコンの例で4つのレベルを並べる。各レベルの下の帯は、色の無い部分が人が決める部分、緑の部分がデータから学ぶ部分。レベル1 単純な制御プログラム：温度が上がるとスイッチを入れ、下がると切る。帯は全部が人の部分で、人が動き方を決める。レベル2 古典的な人工知能：室温・湿度・時刻などの組み合わせごとに、人が決めた動き方を大量に持つ。探索・推論・知識ベースを使う。帯は全部が人で、人がルールを大量に決める。学習はしないがAIに含まれる。レベル3 機械学習：帯の左が人、右が緑。人は特徴量（何に注目するか）を決め、対応のパターンはデータから学ぶ。レベル4 深層学習：帯は全部が緑。特徴量も対応のパターンもデータから学ぶ。人が決める部分は、動き方、ルール、特徴量と減っていく。ロボットかどうか（体があるか）で分けた段階は無い。</desc>
+<text x="12" y="20" class="tb">AIの4つのレベル（エアコンの例）</text>
+<rect x="12" y="32" width="18" height="14" class="fs l sm" stroke-width="1"/>
+<text x="36" y="44" class="tm">＝人が決める</text>
+<rect x="140" y="32" width="18" height="14" class="fok l sok" stroke-width="1"/>
+<text x="164" y="44" class="tm">＝データから学ぶ</text>
+<text x="12" y="76" class="tb">レベル1　単純な制御プログラム</text>
+<text x="12" y="96">温度が上がれば入、下がれば切</text>
+<rect x="12" y="104" width="296" height="24" class="fs l sm" stroke-width="1"/>
+<text x="160" y="121" text-anchor="middle">人が「動き方」を決める</text>
+<text x="12" y="160" class="tb">レベル2　古典的な人工知能</text>
+<text x="12" y="180">室温・湿度・時刻の組み合わせごとの</text>
+<text x="12" y="198">動き方を大量に持つ（探索・推論）</text>
+<rect x="12" y="206" width="296" height="24" class="fs l sm" stroke-width="1"/>
+<text x="160" y="223" text-anchor="middle">人が「ルール」を大量に決める</text>
+<text x="12" y="248" class="tm">学習はしないが、AIに含まれる</text>
+<text x="12" y="280" class="tb">レベル3　機械学習</text>
+<text x="12" y="300">対応のパターンをデータから学ぶ</text>
+<rect x="12" y="308" width="118" height="44" class="fs l sm" stroke-width="1"/>
+<text x="71" y="326" text-anchor="middle">人が</text>
+<text x="71" y="344" text-anchor="middle">「特徴量」</text>
+<rect x="130" y="308" width="178" height="44" class="fok l sok" stroke-width="1"/>
+<text x="219" y="326" class="tok" text-anchor="middle">データから</text>
+<text x="219" y="344" class="tok" text-anchor="middle">「対応のパターン」</text>
+<text x="12" y="370" class="tm">特徴量＝何に注目するか（室温・湿度など）</text>
+<text x="12" y="402" class="tb">レベル4　深層学習</text>
+<text x="12" y="422">何に注目するかも、データから学ぶ</text>
+<rect x="12" y="430" width="296" height="44" class="fok l sok" stroke-width="1"/>
+<text x="160" y="448" class="tok" text-anchor="middle">データから</text>
+<text x="160" y="466" class="tok" text-anchor="middle">「特徴量」も「対応のパターン」も</text>
+<line x1="12" y1="490" x2="308" y2="490" class="l sb w1"/>
+<text x="12" y="512" class="ta tb">人が決める部分：動き方→ルール→特徴量</text>
+<text x="12" y="530" class="ta tb">と、段階が上がるほど減る</text>
+<text x="12" y="552" class="tm">体（ロボット）かどうかで分けた段階は無い</text>
+</svg>

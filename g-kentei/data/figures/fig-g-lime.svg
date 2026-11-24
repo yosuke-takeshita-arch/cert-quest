@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-g-lime-t fig-g-lime-d">
+<title id="fig-g-lime-t">LIME：1件のまわりで入力を変え、直線の式でまねて理由を読む</title>
+<desc id="fig-g-lime-d">①説明したい1枚の画像を、雪（背景）・顔・体の3つの区画に分ける。元のモデルはこの画像をオオカミの確率0.9と答えた。モデルの中身は見ない。②区画を隠した画像を作って元のモデルに答えさせる例。何も隠さないと0.9、雪を隠すと0.3、顔を隠すと0.7、体を隠すと0.9、雪と顔を隠すと0.1。③見える区画を1、隠した区画を0として、この表を直線の式でまねる。確率＝0.1＋0.6×雪＋0.2×顔＋0×体。全部見えるときは0.1＋0.6＋0.2＝0.9で表と合う。重みは雪0.6、顔0.2、体0。④雪の重みがいちばん大きいので、モデルは背景の雪を根拠にオオカミと答えていると分かり、このモデルは信頼しにくいと判断できる。この式はこの1枚のまわりでだけのまねで、別の画像では別の式になる。</desc>
+<text x="12" y="22" class="tb">① 説明したい1件（例）</text>
+<rect x="12" y="34" width="150" height="96" class="fs l sm w1"/>
+<rect x="12" y="34" width="150" height="34" class="fbg l sm w1"/>
+<text x="87" y="56" class="tb" text-anchor="middle">雪（背景）</text>
+<rect x="12" y="68" width="60" height="62" class="fas l sm w1"/>
+<text x="42" y="104" class="tb" text-anchor="middle">顔</text>
+<text x="117" y="104" class="tb" text-anchor="middle">体</text>
+<line x1="168" y1="82" x2="190" y2="82" class="l sa w2"/>
+<polygon points="196,82 189,77 189,87" class="fa"/>
+<rect x="200" y="58" width="108" height="48" class="fas l sa w1" rx="4"/>
+<text x="254" y="78" class="tm" text-anchor="middle">元のモデル</text>
+<text x="254" y="97" class="tb ta" text-anchor="middle">オオカミ 0.9</text>
+<text x="200" y="124" class="tm">中身は見ない</text>
+<text x="12" y="152" class="tm">画像を3つの区画に分ける。0.9＝オオカミの確率</text>
+<line x1="12" y1="166" x2="308" y2="166" class="l sb w1"/>
+<text x="12" y="190" class="tb">② 区画を隠した画像を作り、答えさせる</text>
+<text x="20" y="214" class="tm">隠した区画</text>
+<text x="300" y="214" class="tm" text-anchor="end">オオカミの確率</text>
+<line x1="12" y1="222" x2="308" y2="222" class="l sb w1"/>
+<text x="20" y="242">なし（元の画像）</text>
+<text x="300" y="242" class="tb" text-anchor="end">0.9</text>
+<text x="20" y="266">雪</text>
+<text x="300" y="266" class="tb tng" text-anchor="end">0.3（大きく下がる）</text>
+<text x="20" y="290">顔</text>
+<text x="300" y="290" class="tb" text-anchor="end">0.7</text>
+<text x="20" y="314">体</text>
+<text x="300" y="314" class="tb" text-anchor="end">0.9（変わらない）</text>
+<text x="20" y="338">雪と顔</text>
+<text x="300" y="338" class="tb" text-anchor="end">0.1</text>
+<line x1="12" y1="352" x2="308" y2="352" class="l sb w1"/>
+<text x="12" y="376" class="tb">③ 表を直線の式でまねる</text>
+<text x="12" y="396" class="tm">見える区画＝1、隠した区画＝0 として</text>
+<text x="12" y="420" class="tb">確率＝0.1＋0.6×雪＋0.2×顔＋0×体</text>
+<text x="12" y="442" class="tm">全部見える：0.1＋0.6＋0.2＋0＝0.9（表と同じ）</text>
+<text x="12" y="462" class="tm">雪を隠す：0.1＋0＋0.2＋0＝0.3（表と同じ）</text>
+<text x="12" y="488">区画ごとの重み（＝予測への効き方）</text>
+<text x="12" y="514">雪</text>
+<rect x="48" y="501" width="180" height="18" class="fok l sok w1"/>
+<text x="236" y="514" class="tb tok">0.6</text>
+<text x="12" y="540">顔</text>
+<rect x="48" y="527" width="60" height="18" class="fok l sok w1"/>
+<text x="116" y="540" class="tb tok">0.2</text>
+<text x="12" y="566">体</text>
+<line x1="48" y1="554" x2="48" y2="572" class="l sm w2"/>
+<text x="56" y="566" class="tb">0</text>
+<rect x="12" y="582" width="296" height="48" class="fwn l swn w1" rx="6"/>
+<text x="160" y="602" class="tb twn" text-anchor="middle">④ 根拠は背景の「雪」→ 信頼しにくい</text>
+<text x="160" y="621" class="tm" text-anchor="middle">この式はこの1枚のまわりだけのまね</text>
+</svg>

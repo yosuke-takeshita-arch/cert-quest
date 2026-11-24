@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 422" role="img" aria-labelledby="fig-dx-value-chain-roles-t fig-dx-value-chain-roles-d">
+<title id="fig-dx-value-chain-roles-t">事業の構え方：垂直統合・レイヤーマスター・オーケストレーター・イネーブラー</title>
+<desc id="fig-dx-value-chain-roles-d">事業の流れ（調達、開発、生産、販売、サービス）のどの段階を自社で持つかを、4つの構え方で塗り分けた図。垂直統合は、1つの会社が全部の段階を持つ。レイヤーマスターは、レイヤー化した産業のある1つの層を押さえ、その支配力で業界全体に影響を及ぼす。オーケストレーターは、顧客との接点（販売・サービス）を握り、ほかの段階は外部の会社に任せて束ねる。イネーブラーは、顧客の前には出ず、パートナーやオーケストレーターに、製品や機能を裏方として提供する。</desc>
+<rect x="12" y="14" width="18" height="14" class="fa"/>
+<text x="36" y="26">自社で持つ</text>
+<rect x="120" y="14" width="18" height="14" class="fas sa" stroke-width="1"/>
+<text x="144" y="26">外部の会社に任せる</text>
+<rect x="12" y="38" width="18" height="14" class="fs sb" stroke-width="1"/>
+<text x="36" y="50">他社の領域</text>
+<text x="12" y="82" class="tb">垂直統合</text>
+<rect x="12" y="90" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="41.6" y="110" class="tb ton" text-anchor="middle">調達</text>
+<rect x="71.2" y="90" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="100.8" y="110" class="tb ton" text-anchor="middle">開発</text>
+<rect x="130.4" y="90" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="160" y="110" class="tb ton" text-anchor="middle">生産</text>
+<rect x="189.6" y="90" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="219.2" y="110" class="tb ton" text-anchor="middle">販売</text>
+<rect x="248.8" y="90" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="278.4" y="110" class="tb ton" text-anchor="middle">サービス</text>
+<text x="12" y="140" class="tm">1社が全部の段階を持つ</text>
+<text x="12" y="172" class="tb">レイヤーマスター</text>
+<rect x="12" y="180" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="41.6" y="200" text-anchor="middle">調達</text>
+<rect x="71.2" y="180" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="100.8" y="200" class="tb ton" text-anchor="middle">開発</text>
+<rect x="130.4" y="180" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="160" y="200" text-anchor="middle">生産</text>
+<rect x="189.6" y="180" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="219.2" y="200" text-anchor="middle">販売</text>
+<rect x="248.8" y="180" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="278.4" y="200" text-anchor="middle">サービス</text>
+<text x="12" y="230" class="tm">1つの層を押さえ、業界全体に影響を及ぼす</text>
+<text x="12" y="262" class="tb">オーケストレーター</text>
+<rect x="12" y="270" width="59.2" height="30" class="fas sa" stroke-width="1"/>
+<text x="41.6" y="290" text-anchor="middle">調達</text>
+<rect x="71.2" y="270" width="59.2" height="30" class="fas sa" stroke-width="1"/>
+<text x="100.8" y="290" text-anchor="middle">開発</text>
+<rect x="130.4" y="270" width="59.2" height="30" class="fas sa" stroke-width="1"/>
+<text x="160" y="290" text-anchor="middle">生産</text>
+<rect x="189.6" y="270" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="219.2" y="290" class="tb ton" text-anchor="middle">販売</text>
+<rect x="248.8" y="270" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="278.4" y="290" class="tb ton" text-anchor="middle">サービス</text>
+<text x="12" y="320" class="tm">顧客との接点を握り、他は外部に任せて束ねる</text>
+<text x="12" y="352" class="tb">イネーブラー</text>
+<rect x="12" y="360" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="41.6" y="380" text-anchor="middle">調達</text>
+<rect x="71.2" y="360" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="100.8" y="380" text-anchor="middle">開発</text>
+<rect x="130.4" y="360" width="59.2" height="30" class="fa" stroke-width="1"/>
+<text x="160" y="380" class="tb ton" text-anchor="middle">生産</text>
+<rect x="189.6" y="360" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="219.2" y="380" text-anchor="middle">販売</text>
+<rect x="248.8" y="360" width="59.2" height="30" class="fs sb" stroke-width="1"/>
+<text x="278.4" y="380" text-anchor="middle">サービス</text>
+<text x="12" y="410" class="tm">顧客の前には出ず、他社に機能を提供する</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 542" role="img" aria-labelledby="fig-g-mt-history-t fig-g-mt-history-d">
+<title id="fig-g-mt-history-t">機械翻訳の方式の変遷：ルールベース → 統計的 → ニューラル</title>
+<desc id="fig-g-mt-history-d">3つの方式を並べた図。ルールベース機械翻訳は、人が書いた文法規則や辞書で訳す。知識の出どころは人。統計的機械翻訳は、対訳コーパス（原文と訳文の組）から訳語や語順の確率を学び、最もありそうな訳を選ぶ。1990年に IBM の研究者らが提案した。知識の出どころはデータの統計。ニューラル機械翻訳は、Seq2Seq や Transformer のエンコーダ・デコーダで、文全体を1つのネットワークで変換する。知識の出どころはデータからの表現学習。</desc>
+<rect x="12" y="12" width="296" height="128" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="38" class="tb">① ルールベース</text>
+<text x="24" y="62">人が書いた文法規則・辞書で、</text>
+<text x="24" y="82">規則どおりに訳す</text>
+<text x="24" y="124" class="tb">知識の出どころ：人</text>
+<line x1="160" y1="142" x2="160" y2="164" class="l sm w2"/>
+<polyline points="156.15,157 160,164 163.85,157" class="l sm w2"/>
+<rect x="12" y="166" width="296" height="128" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="192" class="tb">② 統計的（1990年ごろ〜）</text>
+<text x="24" y="216">対訳コーパスから、訳語・語順の</text>
+<text x="24" y="236">確率を学び、最もありそうな訳を選ぶ</text>
+<text x="24" y="278" class="tb">知識の出どころ：データの統計</text>
+<line x1="160" y1="296" x2="160" y2="318" class="l sm w2"/>
+<polyline points="156.15,311 160,318 163.85,311" class="l sm w2"/>
+<rect x="12" y="320" width="296" height="128" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="346" class="tb">③ ニューラル</text>
+<text x="24" y="370">エンコーダ・デコーダで、</text>
+<text x="24" y="390">文全体を1つのネットワークで変換</text>
+<text x="24" y="432" class="tb">知識の出どころ：データからの表現学習</text>
+<text x="12" y="480" class="tb">統計的・ニューラルは、対訳コーパス</text>
+<text x="12" y="502" class="tb">（原文と訳文の組）から訳し方を学ぶ</text>
+<text x="12" y="530" class="tm">組が多いほど、学べることが増える</text>
+</svg>

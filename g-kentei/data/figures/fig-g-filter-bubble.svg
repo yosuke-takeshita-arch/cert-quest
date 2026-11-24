@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 492" role="img" aria-labelledby="fig-g-filter-bubble-t fig-g-filter-bubble-d">
+<title id="fig-g-filter-bubble-t">フィルターバブルとエコーチェンバー：原因の違い</title>
+<desc id="fig-g-filter-bubble-d">上はフィルターバブル。アルゴリズムが利用者の検索やクリックの履歴を学習し、見たい情報を優先して表示するので、利用者は自分の好みの情報の泡の中にいて、異なる意見から隔離される。原因はアルゴリズム。下はエコーチェンバー。似た考えの人どうしの輪の中で、同じ考えが返ってきて、強まり、増幅される。原因は人のつながり。どちらも、多様な意見に触れる機会を奪い、社会の分断につながるおそれがある。</desc>
+<text x="12" y="20" class="tb">① フィルターバブル</text>
+<rect x="12" y="54" width="86" height="50" class="fs sa" stroke-width="1.5"/>
+<text x="55" y="75" class="tb" text-anchor="middle">情報の</text>
+<text x="55" y="92" class="tb" text-anchor="middle">山</text>
+<rect x="112" y="40" width="76" height="78" class="fwn swn" stroke-width="1.5"/>
+<text x="150" y="65.5" class="tb" text-anchor="middle">アルゴ</text>
+<text x="150" y="83.5" class="tb" text-anchor="middle">リズム</text>
+<text x="150" y="101.5" class="tb" text-anchor="middle">（選別）</text>
+<line x1="99" y1="79" x2="111" y2="79" class="l sm w2"/>
+<polyline points="105,82.3 111,79 105,75.7" class="l sm w2"/>
+<line x1="189" y1="79" x2="205" y2="79" class="l sm w2"/>
+<polyline points="199,82.3 205,79 199,75.7" class="l sm w2"/>
+<ellipse cx="258" cy="79" rx="50" ry="40" class="fas sa" stroke-width="2"/>
+<circle cx="258" cy="70" r="7" class="fa"/>
+<text x="258" y="104" class="tb" text-anchor="middle">好みの</text>
+<text x="258" y="80"></text>
+<text x="12" y="134">見たい情報が優先され、</text>
+<text x="12" y="154">異なる意見から隔離される</text>
+<text x="12" y="176" class="tb twn">原因：アルゴリズム</text>
+<line x1="12" y1="196" x2="308" y2="196" class="l sb w1"/>
+<text x="12" y="224" class="tb">② エコーチェンバー</text>
+<circle cx="80" cy="294" r="52" class="fas sa"/>
+<circle cx="58" cy="280" r="8" class="fa"/>
+<circle cx="104" cy="282" r="8" class="fa"/>
+<circle cx="76" cy="318" r="8" class="fa"/>
+<polyline points="138,272 144,272 138,272" class="l sm w1"/>
+<polyline points="150,272 156,272 150,272" class="l sm w1"/>
+<polyline points="162,272 168,272 162,272" class="l sm w1"/>
+<text x="170" y="276" class="tb">似た考え</text>
+<text x="170" y="298" class="tb">ばかりが</text>
+<text x="170" y="320" class="tb">返ってくる</text>
+<text x="12" y="368">同じ考えが反響して、強まる</text>
+<text x="12" y="390" class="tb ta">原因：人のつながり</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="438" class="tb">見分けるポイントは、原因</text>
+<text x="12" y="460">アルゴリズムの選別があるか、</text>
+<text x="12" y="480">人どうしの反響か</text>
+</svg>

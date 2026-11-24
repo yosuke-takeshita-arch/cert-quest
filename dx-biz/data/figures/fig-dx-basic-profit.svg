@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" role="img" aria-labelledby="fig-dx-basic-profit-t fig-dx-basic-profit-d">
+<title id="fig-dx-basic-profit-t">利益＝売上－コスト</title>
+<desc id="fig-dx-basic-profit-d">棒グラフ。縦軸は金額（万円）で、棒の高さが金額を表す。パン屋の1か月の例。1個300円のパンを1,000個売ると、売上は300×1,000＝30万円で、左の棒の高さになる。右の棒はコストと利益を積み上げたもの。コストは、材料費10万円（1個100円×1,000個）と、家賃・人件費14万円で、合わせて24万円。売上30万円からコスト24万円を引いた残りの6万円が利益で、右の棒のいちばん上に乗る。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">利益＝売上－コスト</text>
+<text x="12" y="44" class="tm">例：パン屋の1か月（数は例）</text>
+<text x="12" y="66">売上＝300円×1,000個＝<tspan class="tb ta">30万円</tspan></text>
+<text x="12" y="90" class="tm">棒グラフ。縦軸＝金額（万円）</text>
+<line x1="40" y1="110" x2="40" y2="290" class="l sm w1"/>
+<line x1="40" y1="290" x2="300" y2="290" class="l sm w1"/>
+<text x="34" y="294" class="tm" text-anchor="end">0</text>
+<text x="34" y="116" class="tm" text-anchor="end">30</text>
+<line x1="36" y1="110" x2="300" y2="110" class="l sb w1 dsh"/>
+<rect x="60" y="110" width="80" height="180" class="fas sa" stroke-width="1.5"/>
+<text x="100" y="196" class="tb ta" text-anchor="middle">売上</text>
+<text x="100" y="216" class="tb ta" text-anchor="middle">30万円</text>
+<rect x="170" y="110" width="80" height="36" class="fok sok" stroke-width="1.5"/>
+<text x="210" y="133" class="tb tok" text-anchor="middle">利益 6万円</text>
+<rect x="170" y="146" width="80" height="84" class="fs sm" stroke-width="1.5"/>
+<text x="210" y="184" class="tb" text-anchor="middle">家賃・</text>
+<text x="210" y="202" class="tb" text-anchor="middle">人件費14万</text>
+<rect x="170" y="230" width="80" height="60" class="fs sm" stroke-width="1.5"/>
+<text x="210" y="256" class="tb" text-anchor="middle">材料費</text>
+<text x="210" y="274" class="tb" text-anchor="middle">10万円</text>
+<line x1="260" y1="146" x2="260" y2="290" class="l sm w1"/>
+<line x1="256" y1="146" x2="264" y2="146" class="l sm w1"/>
+<line x1="256" y1="290" x2="264" y2="290" class="l sm w1"/>
+<text x="268" y="214" class="tm">コスト</text>
+<text x="268" y="232" class="tm">24万</text>
+<text x="100" y="310" class="tm" text-anchor="middle">入ったお金</text>
+<text x="210" y="310" class="tm" text-anchor="middle">出たお金＋残り</text>
+<line x1="12" y1="326" x2="308" y2="326" class="l sb w1"/>
+<text x="12" y="350">材料費＝100円×1,000個＝10万円</text>
+<text x="12" y="372">コスト＝10万円＋14万円＝24万円</text>
+<text x="12" y="398" class="tb">利益＝30万円－24万円＝<tspan class="tok">6万円</tspan></text>
+<text x="12" y="424" class="tm">売上を増やすか、コストを減らすと増える</text>
+</svg>

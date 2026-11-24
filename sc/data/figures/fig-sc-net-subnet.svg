@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" role="img" aria-labelledby="fig-sc-net-subnet-t fig-sc-net-subnet-d">
+<title id="fig-sc-net-subnet-t">サブネットマスク：アドレスの並びを同じ大きさの部屋に分ける</title>
+<desc id="fig-sc-net-subnet-d">例は、末尾の8ビット（256個）を自由に使えるネットワークを、50台ずつ入る4つの部屋（サブネット）に分ける場合。50台以上入る2のべき乗の大きさは64個（32個では足りない）。256を64で割ると4部屋になる。部屋は0〜63、64〜127、128〜191、192〜255。各部屋の先頭はネットワークアドレス、最後はブロードキャストアドレスに使うので、台に付けられるのは64−2で62個。部屋の番号に末尾8ビットの上の2ビットを使うので、マスクの末尾は2進数で11000000、10進数で192になり、サブネットマスクは255.255.255.192。末尾が10000000（16進数で80）なら部屋は128個ずつで、台に付けられるのは128−2で126個。</desc>
+<text x="12" y="20" class="tb">例：末尾8ビット＝256個を</text>
+<text x="12" y="40" class="tb">50台ずつの部屋4つに分ける</text>
+<text x="12" y="66">① 50台以上入る大きさ：64個</text>
+<text x="28" y="84" class="tm">（32個では足りない。64は2の6乗）</text>
+<text x="12" y="108">② 256÷64＝4部屋</text>
+<rect x="12" y="122" width="74" height="44" class="fas sa" stroke-width="1.5"/>
+<rect x="86" y="122" width="74" height="44" class="fs sb" stroke-width="1.5"/>
+<rect x="160" y="122" width="74" height="44" class="fas sa" stroke-width="1.5"/>
+<rect x="234" y="122" width="74" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="49" y="150" text-anchor="middle">0〜63</text>
+<text x="123" y="150" text-anchor="middle">64〜127</text>
+<text x="197" y="150" text-anchor="middle">128〜191</text>
+<text x="271" y="150" text-anchor="middle">192〜255</text>
+<text x="12" y="196">③ 1部屋で台に付けられる数</text>
+<text x="28" y="216">64−2＝62個（50台が入る）</text>
+<text x="28" y="236" class="tm">先頭＝ネットワークアドレス</text>
+<text x="28" y="254" class="tm">最後＝ブロードキャストアドレス</text>
+<text x="12" y="282">④ 部屋番号に上の2ビットを使う</text>
+<text x="28" y="304" class="tb">末尾のマスク 11000000＝192</text>
+<rect x="12" y="314" width="296" height="34" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="337" class="tb tok" text-anchor="middle">255.255.255.192</text>
+<text x="12" y="376" class="tm">別の例：マスクが16進数でFFFFFF80</text>
+<text x="12" y="396" class="tm">末尾 80＝10000000 → 部屋は128個ずつ</text>
+<text x="12" y="416" class="tm">台に付けられるのは 128−2＝126個</text>
+</svg>

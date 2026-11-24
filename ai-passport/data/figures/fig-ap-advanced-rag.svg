@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 650" role="img" aria-labelledby="fig-ap-advanced-rag-t fig-ap-advanced-rag-d">
+<title id="fig-ap-advanced-rag-t">Advanced RAG：検索の前（クエリの書き換え）、検索（ハイブリッド検索）、検索の後（リランキング）の工夫</title>
+<desc id="fig-ap-advanced-rag-d">例は社内の規程に答えるRAG（数は例）。質問「それの申請の締め切りは？」。検索の前：クエリの書き換えで、前の会話から「育児休業給付の申請の締め切り」に言い直す。検索：キーワード検索（型番・人名に強い）とベクトル検索（言い換えに強い）を同時に行い、2つの順位を1つにまとめるのがハイブリッド検索（Azure AI SearchではRRFという方法）。候補は50件。検索の後：リランキングで、50件を質問と1件ずつ照らし合わせて点を付け直し、上位5件だけにする（新しく探し直すのではない）。5件を質問に添えてLLMが答える。流れは1本道のまま（鎖のような形）。Agentic RAGは、エージェントが結果を見てどこを・何回探すかを決め、足りなければ探し直す点が違う。</desc>
+<text x="12" y="20" class="tb">RAG の検索を良くする工夫（Advanced RAG）</text>
+<text x="12" y="40" class="tm">例：社内の規程に答える（数は例）</text>
+<rect x="12" y="50" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="71" class="tb" text-anchor="middle">質問「それの申請の締め切りは？」</text>
+<line x1="160" y1="84" x2="160" y2="98" class="l sa w2"/>
+<polyline points="156.00,91.00 160,98 164.00,91.00" class="l sa w2"/>
+<text x="12" y="114" class="tb twn">検索の前</text>
+<rect x="12" y="122" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="145" class="tb">クエリの書き換え</text>
+<text x="22" y="165">前の会話から「育児休業給付の申請の締め切り」に</text>
+<line x1="160" y1="180" x2="160" y2="194" class="l sa w2"/>
+<polyline points="156.00,187.00 160,194 164.00,187.00" class="l sa w2"/>
+<text x="12" y="210" class="tb ta">検索</text>
+<rect x="12" y="218" width="140" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="82" y="237" class="tb" text-anchor="middle">キーワード検索</text>
+<text x="82" y="257" class="tm" text-anchor="middle">型番・人名に強い</text>
+<rect x="168" y="218" width="140" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="238" y="237" class="tb" text-anchor="middle">ベクトル検索</text>
+<text x="238" y="257" class="tm" text-anchor="middle">言い換えに強い</text>
+<line x1="82" y1="268" x2="150" y2="288" class="l sa w1"/>
+<polyline points="142.16,289.86 150,288 144.41,282.19" class="l sa w1"/>
+<line x1="238" y1="268" x2="170" y2="288" class="l sa w1"/>
+<polyline points="175.59,282.19 170,288 177.84,289.86" class="l sa w1"/>
+<rect x="12" y="290" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="313" class="tb" text-anchor="middle">ハイブリッド検索：2つの順位を1つにまとめる</text>
+<text x="160" y="333" class="tm" text-anchor="middle">（Azure AI Search では RRF という方法）</text>
+<text x="12" y="364" class="tm">→ 候補 50件</text>
+<line x1="160" y1="368" x2="160" y2="382" class="l sa w2"/>
+<polyline points="156.00,375.00 160,382 164.00,375.00" class="l sa w2"/>
+<text x="12" y="398" class="tb tok">検索の後</text>
+<rect x="12" y="406" width="296" height="76" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="429" class="tb">リランキング：50件を質問と1件ずつ</text>
+<text x="22" y="449">照らし合わせて点を付け直し、上位5件だけ</text>
+<text x="22" y="469" class="tm">（新しく探し直すのではない）</text>
+<line x1="160" y1="484" x2="160" y2="498" class="l sa w2"/>
+<polyline points="156.00,491.00 160,498 164.00,491.00" class="l sa w2"/>
+<rect x="12" y="500" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="521" text-anchor="middle">5件を質問に添えて LLM が答える</text>
+<text x="12" y="554" class="tb">流れは1本道のまま（鎖のような形）</text>
+<line x1="12" y1="570" x2="308" y2="570" class="l sb w1"/>
+<text x="12" y="592" class="tb">Agentic RAG との違い</text>
+<text x="12" y="612">エージェントが結果を見て、どこを・何回</text>
+<text x="12" y="632">探すかを決め、足りなければ探し直す</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-dx-platform-app-loop-t fig-dx-platform-app-loop-d">
+<title id="fig-dx-platform-app-loop-t">基盤型プラットフォーム：共通の土台があると、アプリと利用者が増え合う</title>
+<desc id="fig-dx-platform-app-loop-d">プラットフォームは、通信ネットワークとアプリの間をつなぐ共通の規格（例：スマートフォンのOS）。平成29年版情報通信白書の説明をもとにした図。何に困っていたか：左は垂直統合で、1社がアプリ・通信網・端末まで全部そろえるので、投資や開発が大きく、入りにくい。右は土台がある場合で、土台との接続性を確保すれば、アプリを提供するだけでよく、参入のハードルが下がり、多くの利用者が見込める。増え合う循環：①作り手が入る（入りやすい）、②多様なアプリが生まれる、③アプリを求めて利用者が増える、④多くの利用者が見込める、そして①へ戻り、さらに作り手が増える。③と、④から①へ戻る部分は、白書の記述から導いた見方で、白書がそのまま書いた文ではない。選びがちな誤り：起点を自前で全部そろえる形にするのは逆。作り手どうしの競争でアプリが減って止まる、という働きは白書は挙げていない。</desc>
+<text x="12" y="20" class="tb">共通の土台で、アプリと利用者が増え合う</text>
+<text x="12" y="40" class="tm">土台（プラットフォーム）＝通信網とアプリ</text>
+<text x="12" y="58" class="tm">の間をつなぐ共通の規格（例：スマホのOS）</text>
+<line x1="12" y1="72" x2="308" y2="72" class="l sb w1"/>
+<text x="12" y="94" class="tb">何に困っていたか</text>
+<text x="82" y="116" class="tb" text-anchor="middle">1社で全部作る</text>
+<text x="238" y="116" class="tb" text-anchor="middle">土台につなぐ</text>
+<rect x="12" y="124" width="140" height="26" class="fas l sa"/>
+<text x="82" y="142" text-anchor="middle">アプリ</text>
+<rect x="12" y="154" width="140" height="26" class="fas l sa"/>
+<text x="82" y="172" text-anchor="middle">通信網</text>
+<rect x="12" y="184" width="140" height="26" class="fas l sa"/>
+<text x="82" y="202" text-anchor="middle">端末</text>
+<text x="82" y="230" class="tm" text-anchor="middle">色の箱＝自社で用意</text>
+<rect x="168" y="124" width="140" height="26" class="fas l sa"/>
+<text x="238" y="142" text-anchor="middle">アプリ</text>
+<rect x="168" y="154" width="140" height="26" class="fs l sm"/>
+<text x="238" y="172" text-anchor="middle">土台（OS など）</text>
+<rect x="168" y="184" width="140" height="26" class="fs l sm"/>
+<text x="238" y="202" text-anchor="middle">通信網</text>
+<rect x="168" y="214" width="140" height="26" class="fs l sm"/>
+<text x="238" y="232" text-anchor="middle">端末</text>
+<text x="82" y="264" class="tng" text-anchor="middle">投資・開発が大きい</text>
+<text x="82" y="282" class="tng" text-anchor="middle">→ 入りにくい</text>
+<text x="238" y="264" class="tok" text-anchor="middle">アプリだけでよい</text>
+<text x="238" y="282" class="tok" text-anchor="middle">→ 入りやすい</text>
+<line x1="12" y1="298" x2="308" y2="298" class="l sb w1"/>
+<text x="12" y="320" class="tb">増え合う循環（①→②→③→④→①）</text>
+<rect x="12" y="332" width="136" height="50" class="fas l sa"/>
+<text x="20" y="353">① 作り手が入る</text>
+<text x="20" y="372" class="tm">（入りやすい）</text>
+<rect x="172" y="332" width="136" height="50" class="fs l sa"/>
+<text x="180" y="353">② 多様なアプリ</text>
+<text x="180" y="372">が生まれる</text>
+<rect x="172" y="412" width="136" height="50" class="fs l sa"/>
+<text x="180" y="433">③ アプリを求め</text>
+<text x="180" y="452">て利用者が増える</text>
+<rect x="12" y="412" width="136" height="50" class="fs l sa"/>
+<text x="20" y="433">④ 多くの利用者</text>
+<text x="20" y="452">が見込める</text>
+<line x1="148" y1="357" x2="172" y2="357" class="l sa w2"/>
+<polyline points="166,353 172,357 166,361" class="l sa w2"/>
+<line x1="240" y1="382" x2="240" y2="412" class="l sa w2"/>
+<polyline points="236,406 240,412 244,406" class="l sa w2"/>
+<line x1="172" y1="437" x2="148" y2="437" class="l sa w2"/>
+<polyline points="154,433 148,437 154,441" class="l sa w2"/>
+<line x1="80" y1="412" x2="80" y2="382" class="l sa w2"/>
+<polyline points="76,388 80,382 84,388" class="l sa w2"/>
+<text x="160" y="401" class="ta tb" text-anchor="middle">回るほど強まる</text>
+<text x="12" y="486" class="tm">③と、④から①へ戻る部分は、白書の</text>
+<text x="12" y="504" class="tm">記述から導いた見方（白書の文ではない）</text>
+<line x1="12" y1="518" x2="308" y2="518" class="l sb w1"/>
+<text x="12" y="540" class="tb">選びがちな誤り</text>
+<text x="12" y="562" class="tng">✕ 起点が「自前で全部そろえる」</text>
+<text x="12" y="580" class="tm">　→ 白書は、土台があると入りやすいとする</text>
+<text x="12" y="606" class="tng">✕ 作り手の競争でアプリが減って止まる</text>
+<text x="12" y="624" class="tm">　→ 白書はこの向きの働きを挙げていない</text>
+</svg>

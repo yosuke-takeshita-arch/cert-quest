@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 388" role="img" aria-labelledby="fig-g-eu-ai-act-t fig-g-eu-ai-act-d">
+<title id="fig-g-eu-ai-act-t">EU の AI 法：リスクの4区分</title>
+<desc id="fig-g-eu-ai-act-d">4段のピラミッド。いちばん上は許容できないリスクで、禁止。例は社会的スコアリング。2段目は高リスクで、市場に出す前の厳しい義務。例は採用や与信。3段目は透明性のリスクで、AIと関わっていることなどを知らせる表示の義務。例はチャットボット。いちばん下は最小限またはリスクなしで、AI法は新しい規則を設けない。例はスパムフィルタ。上の段ほど規制が重い。</desc>
+<text x="12" y="20" class="tb">段が上がるほど、規制が重い</text>
+<rect x="75" y="34" width="170" height="70" class="fng sng" stroke-width="1.5"/>
+<text x="160" y="57" class="tb tng" text-anchor="middle">許容できないリスク</text>
+<text x="160" y="77" class="tb" text-anchor="middle">禁止</text>
+<text x="160" y="96" class="tm" text-anchor="middle">例：社会的スコアリング</text>
+<rect x="53" y="110" width="214" height="70" class="fwn swn" stroke-width="1.5"/>
+<text x="160" y="133" class="tb twn" text-anchor="middle">高リスク</text>
+<text x="160" y="153" class="tb" text-anchor="middle">市場に出す前の厳しい義務</text>
+<text x="160" y="172" class="tm" text-anchor="middle">例：採用・与信</text>
+<rect x="32" y="186" width="256" height="70" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="209" class="tb ta" text-anchor="middle">透明性のリスク</text>
+<text x="160" y="229" class="tb" text-anchor="middle">表示などの開示の義務</text>
+<text x="160" y="248" class="tm" text-anchor="middle">例：チャットボット</text>
+<rect x="12" y="262" width="296" height="70" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="285" class="tb tok" text-anchor="middle">最小限またはリスクなし</text>
+<text x="160" y="305" class="tb" text-anchor="middle">新しい規則は設けない</text>
+<text x="160" y="324" class="tm" text-anchor="middle">例：スパムフィルタ</text>
+<text x="12" y="356" class="tb">リスクの大きさに合わせて、</text>
+<text x="12" y="376" class="tb">対策の重さを変える（リスクベース）</text>
+</svg>

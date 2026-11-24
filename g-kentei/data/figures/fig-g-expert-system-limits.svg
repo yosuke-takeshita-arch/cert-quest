@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 620" role="img" aria-labelledby="fig-g-expert-system-limits-t fig-g-expert-system-limits-d">
+<title id="fig-g-expert-system-limits-t">エキスパートシステムは狭く深い：専門の判断は得意、常識は書き切れない</title>
+<desc id="fig-g-expert-system-limits-d">何のための図か：エキスパートシステムが得意なことと苦手なことを、専門の知識と常識を比べて見る。①専門の知識（狭く深い）：医療診断の例（説明のための例のルール）。もし発熱があり検査値がこうなら、この感染症を疑う。もしこの感染症なら、この薬を勧める。こうしたルールを人が書き、連鎖させて判断する。分野を絞れば書ける。②常識（広く浅い）：コップを落とすと割れる、雨の日は傘をさす、夜は暗い、など際限なく続く。人が全部書くのは難しい。一般常識を知識ベースにしようとしたCycプロジェクトも、長い年月をかけても書き終わらなかった。③知識を人が書く負担：知識獲得のボトルネックと呼ばれ、第2次ブームの限界になった。周辺の技術として、専門家から知識を聞き出すインタビューシステムが研究され、蓄積されたデータから有用なパターンを見つけるデータマイニングも使われる。</desc>
+<text x="12" y="20" class="tb">エキスパートシステム＝狭く深く</text>
+<text x="12" y="42" class="tm">何のための図か：得意なこと・苦手なことを、</text>
+<text x="12" y="60" class="tm">専門の知識と常識で比べる</text>
+<text x="12" y="88" class="tb tok">① 専門の知識（狭く深い）：書ける</text>
+<text x="12" y="108" class="tm">例：医療診断（説明のための例のルール）</text>
+<rect x="12" y="118" width="296" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="140">もし 発熱があり検査値がこうなら</text>
+<text x="22" y="158" class="tm">　→ この感染症を疑う</text>
+<text x="22" y="176">もし この感染症なら → この薬を勧める</text>
+<text x="12" y="204" class="tm">分野を絞れば、人がルールを書いて判断できる</text>
+<line x1="12" y1="218" x2="308" y2="218" class="l sb w1"/>
+<text x="12" y="240" class="tb tng">② 常識（曖昧で広い）：書き切れない</text>
+<rect x="12" y="252" width="296" height="84" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="22" y="274">コップを落とすと割れる</text>
+<text x="22" y="294">雨の日は傘をさす</text>
+<text x="22" y="314">夜は暗い</text>
+<text x="180" y="314" class="tb">… 際限なく続く</text>
+<text x="12" y="358" class="tm">常識を書き込もうとした Cyc プロジェクト</text>
+<text x="12" y="376" class="tm">も、長い年月をかけて書き終わらなかった</text>
+<text x="12" y="400" class="tb tng">→ 常識のような広い知識は苦手だった</text>
+<line x1="12" y1="416" x2="308" y2="416" class="l sb w1"/>
+<text x="12" y="438" class="tb">③ 人が書く負担が、第2次ブームの限界に</text>
+<text x="12" y="458" class="tm">（知識獲得のボトルネック）</text>
+<text x="12" y="486" class="tb">周辺の技術</text>
+<text x="12" y="508">インタビューシステム：</text>
+<text x="12" y="526" class="tm">　専門家から知識を聞き出すのを助ける</text>
+<text x="12" y="552">データマイニング：</text>
+<text x="12" y="570" class="tm">　蓄積されたデータから有用なパターンを</text>
+<text x="12" y="588" class="tm">　見つけ出す</text>
+</svg>

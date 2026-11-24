@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 832" role="img" aria-labelledby="fig-g-search-bfs-dfs-t fig-g-search-bfs-dfs-d">
+<title id="fig-g-search-bfs-dfs-t">幅優先探索と深さ優先探索：訪問の順番</title>
+<desc id="fig-g-search-bfs-dfs-d">同じ探索木（根A、子BとC、BにDとE、CにFとG）をたどる順番の比較。幅優先探索は同じ深さを横に調べてから次の深さへ進み、順番はA、B、C、D、E、F、Gで、先入れ先出しのキューで実装する。深さ優先探索は行き止まりまで進んでから戻り、順番はA、B、D、E、C、F、Gで、今たどっている道筋だけを覚えればよいので再帰やスタックで実装しやすい。幅優先は手数の少ない解を必ず先に見つけるがメモリを多く使う。深さ優先はメモリが少ないが、最初に見つかる解が最短とは限らない。</desc>
+<text x="12" y="20" class="tb">① 幅優先探索：横に全部見てから下へ</text>
+<line x1="160" y1="66" x2="90" y2="122" class="l sm w1"/>
+<line x1="160" y1="66" x2="230" y2="122" class="l sm w1"/>
+<line x1="90" y1="122" x2="55" y2="178" class="l sm w1"/>
+<line x1="90" y1="122" x2="125" y2="178" class="l sm w1"/>
+<line x1="230" y1="122" x2="195" y2="178" class="l sm w1"/>
+<line x1="230" y1="122" x2="265" y2="178" class="l sm w1"/>
+<circle cx="160" cy="66" r="14" class="fs sa"/>
+<text x="160" y="70.5" class="tb" text-anchor="middle">A</text>
+<circle cx="90" cy="122" r="14" class="fs sa"/>
+<text x="90" y="126.5" class="tb" text-anchor="middle">B</text>
+<circle cx="230" cy="122" r="14" class="fs sa"/>
+<text x="230" y="126.5" class="tb" text-anchor="middle">C</text>
+<circle cx="55" cy="178" r="14" class="fs sa"/>
+<text x="55" y="182.5" class="tb" text-anchor="middle">D</text>
+<circle cx="125" cy="178" r="14" class="fs sa"/>
+<text x="125" y="182.5" class="tb" text-anchor="middle">E</text>
+<circle cx="195" cy="178" r="14" class="fs sa"/>
+<text x="195" y="182.5" class="tb" text-anchor="middle">F</text>
+<circle cx="265" cy="178" r="14" class="fs sa"/>
+<text x="265" y="182.5" class="tb" text-anchor="middle">G</text>
+<circle cx="174" cy="52" r="9" class="fa"/>
+<text x="174" y="56.5" class="tb ton" text-anchor="middle">1</text>
+<circle cx="104" cy="108" r="9" class="fa"/>
+<text x="104" y="112.5" class="tb ton" text-anchor="middle">2</text>
+<circle cx="244" cy="108" r="9" class="fa"/>
+<text x="244" y="112.5" class="tb ton" text-anchor="middle">3</text>
+<circle cx="69" cy="164" r="9" class="fa"/>
+<text x="69" y="168.5" class="tb ton" text-anchor="middle">4</text>
+<circle cx="139" cy="164" r="9" class="fa"/>
+<text x="139" y="168.5" class="tb ton" text-anchor="middle">5</text>
+<circle cx="209" cy="164" r="9" class="fa"/>
+<text x="209" y="168.5" class="tb ton" text-anchor="middle">6</text>
+<circle cx="279" cy="164" r="9" class="fa"/>
+<text x="279" y="168.5" class="tb ton" text-anchor="middle">7</text>
+<line x1="110" y1="122" x2="210" y2="122" class="l swn w1 dsh"/>
+<polyline points="204,125.3 210,122 204,118.7" class="l swn w1"/>
+<line x1="75" y1="178" x2="105" y2="178" class="l swn w1 dsh"/>
+<polyline points="99,181.3 105,178 99,174.7" class="l swn w1"/>
+<line x1="145" y1="178" x2="175" y2="178" class="l swn w1 dsh"/>
+<polyline points="169,181.3 175,178 169,174.7" class="l swn w1"/>
+<line x1="215" y1="178" x2="245" y2="178" class="l swn w1 dsh"/>
+<polyline points="239,181.3 245,178 239,174.7" class="l swn w1"/>
+<text x="12" y="214" class="tm">青い丸の数字＝調べる順。同じ深さを左から右へ</text>
+<text x="12" y="244" class="tb">実装はキュー（先入れ先出し）</text>
+<text x="12" y="274" class="tm">Aを調べた後</text>
+<rect x="150" y="256" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="167" y="274" class="tb" text-anchor="middle">B</text>
+<rect x="188" y="256" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="205" y="274" class="tb" text-anchor="middle">C</text>
+<text x="12" y="308" class="tm">Bを調べた後</text>
+<rect x="150" y="290" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="167" y="308" class="tb" text-anchor="middle">C</text>
+<rect x="188" y="290" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="205" y="308" class="tb" text-anchor="middle">D</text>
+<rect x="226" y="290" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="243" y="308" class="tb" text-anchor="middle">E</text>
+<text x="12" y="336" class="tm">同じ深さの節点をまとめて覚える → メモリ大</text>
+<line x1="12" y1="356" x2="308" y2="356" class="l sb w1"/>
+<text x="12" y="386" class="tb">② 深さ優先探索：行き止まりまで進む</text>
+<line x1="160" y1="432" x2="90" y2="488" class="l sm w1"/>
+<line x1="160" y1="432" x2="230" y2="488" class="l sm w1"/>
+<line x1="90" y1="488" x2="55" y2="544" class="l sm w1"/>
+<line x1="90" y1="488" x2="125" y2="544" class="l sm w1"/>
+<line x1="230" y1="488" x2="195" y2="544" class="l sm w1"/>
+<line x1="230" y1="488" x2="265" y2="544" class="l sm w1"/>
+<circle cx="160" cy="432" r="14" class="fs sa"/>
+<text x="160" y="436.5" class="tb" text-anchor="middle">A</text>
+<circle cx="90" cy="488" r="14" class="fs sa"/>
+<text x="90" y="492.5" class="tb" text-anchor="middle">B</text>
+<circle cx="230" cy="488" r="14" class="fs sa"/>
+<text x="230" y="492.5" class="tb" text-anchor="middle">C</text>
+<circle cx="55" cy="544" r="14" class="fs sa"/>
+<text x="55" y="548.5" class="tb" text-anchor="middle">D</text>
+<circle cx="125" cy="544" r="14" class="fs sa"/>
+<text x="125" y="548.5" class="tb" text-anchor="middle">E</text>
+<circle cx="195" cy="544" r="14" class="fs sa"/>
+<text x="195" y="548.5" class="tb" text-anchor="middle">F</text>
+<circle cx="265" cy="544" r="14" class="fs sa"/>
+<text x="265" y="548.5" class="tb" text-anchor="middle">G</text>
+<circle cx="174" cy="418" r="9" class="fa"/>
+<text x="174" y="422.5" class="tb ton" text-anchor="middle">1</text>
+<circle cx="104" cy="474" r="9" class="fa"/>
+<text x="104" y="478.5" class="tb ton" text-anchor="middle">2</text>
+<circle cx="69" cy="530" r="9" class="fa"/>
+<text x="69" y="534.5" class="tb ton" text-anchor="middle">3</text>
+<circle cx="139" cy="530" r="9" class="fa"/>
+<text x="139" y="534.5" class="tb ton" text-anchor="middle">4</text>
+<circle cx="244" cy="474" r="9" class="fa"/>
+<text x="244" y="478.5" class="tb ton" text-anchor="middle">5</text>
+<circle cx="209" cy="530" r="9" class="fa"/>
+<text x="209" y="534.5" class="tb ton" text-anchor="middle">6</text>
+<circle cx="279" cy="530" r="9" class="fa"/>
+<text x="279" y="534.5" class="tb ton" text-anchor="middle">7</text>
+<path d="M41 532 Q17 512 74 498" class="l swn w1 dsh"/>
+<polyline points="68.96,502.64 74,498 67.39,496.23" class="l swn w1"/>
+<text x="12" y="580" class="tm">点線の矢印＝戻る（Dは行き止まり → Bへ）</text>
+<text x="12" y="610" class="tb">実装は再帰（またはスタック）</text>
+<text x="12" y="640" class="tm">Dまで進んだとき</text>
+<rect x="150" y="622" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="167" y="640" class="tb" text-anchor="middle">A</text>
+<rect x="188" y="622" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="205" y="640" class="tb" text-anchor="middle">B</text>
+<rect x="226" y="622" width="34" height="26" class="fas sa" stroke-width="1.5"/>
+<text x="243" y="640" class="tb" text-anchor="middle">D</text>
+<text x="12" y="668" class="tm">今たどっている道筋だけ覚える → メモリ小</text>
+<line x1="12" y1="688" x2="308" y2="688" class="l sb w1"/>
+<text x="12" y="718" class="tb">③ 2つの違い</text>
+<rect x="12" y="732" width="296" height="28" class="fas sb" stroke-width="1"/>
+<text x="155" y="751" class="tb" text-anchor="middle">幅優先</text>
+<text x="257" y="751" class="tb" text-anchor="middle">深さ優先</text>
+<rect x="12" y="760" width="296" height="32" class="fs sb" stroke-width="1"/>
+<text x="18" y="781" class="tb">覚える節点</text>
+<text x="155" y="781" text-anchor="middle">多い</text>
+<text x="257" y="781" text-anchor="middle">少ない</text>
+<rect x="12" y="792" width="296" height="32" class="fs sb" stroke-width="1"/>
+<text x="18" y="813" class="tb">最短の解</text>
+<text x="155" y="813" text-anchor="middle">必ず見つかる</text>
+<text x="257" y="813" text-anchor="middle">限らない</text>
+<line x1="104" y1="732" x2="104" y2="824" class="l sb w1"/>
+<line x1="206" y1="732" x2="206" y2="824" class="l sb w1"/>
+</svg>

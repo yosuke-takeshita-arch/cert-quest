@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 588" role="img" aria-labelledby="fig-g-derivative-slope-t fig-g-derivative-slope-d">
+<title id="fig-g-derivative-slope-t">微分と最適化：その点の傾きを見て、下り坂へ動く</title>
+<desc id="fig-g-derivative-slope-d">損失 f(x)＝x² の曲線を、x＝0 から 3.5 まで描く。x＝3 の点（f＝9）に、その点での傾きを表す直線（接線）を引き、点線の三角で、右へ1進むと上へ6上がる、つまり傾きが6であることを示す。xを3から3.01に動かすとfは9から9.0601に増え、増えた量0.0601を動かした量0.01で割ると6.01で約6になり、公式2xにx＝3を入れた6と一致する。傾きが正なので、xを小さくする向き（左）へ動かせばfは下がる。新しいx＝いまのx−学習率×傾きで、学習率0.1なら 3−0.1×6＝3−0.6＝2.4。x軸の下に、3から2.4へ左に0.6動く矢印を描き、曲線の上の x＝2.4 の点（f＝5.76）に印を付ける。fは9から5.76に下がる。</desc>
+<text x="12" y="20" class="tb">微分と最適化：傾きを見て下り坂へ</text>
+<text x="46" y="46" class="tm">損失 f(x)＝x²</text>
+<line x1="40" y1="250" x2="304" y2="250" class="l sm"/>
+<line x1="40" y1="250" x2="40" y2="52" class="l sm"/>
+<text x="306" y="246" class="tm" text-anchor="end">x</text>
+<text x="40" y="266" class="tm" text-anchor="middle">0</text>
+<text x="112" y="266" class="tm" text-anchor="middle">1</text>
+<text x="184" y="266" class="tm" text-anchor="middle">2</text>
+<text x="256" y="266" class="tm" text-anchor="middle">3</text>
+<path d="M40,250 L58,249 L76,246 L94,241 L112,234 L130,225 L148,214 L166,201 L184,186 L202,169 L220,150 L238,129 L256,106 L274,81 L292,54" class="l w2"/>
+<line x1="166" y1="226" x2="292" y2="58" class="l sa"/>
+<line x1="184" y1="202" x2="256" y2="202" class="l sa w1 dsh"/>
+<line x1="256" y1="202" x2="256" y2="106" class="l sa w1 dsh"/>
+<text x="220" y="218" class="ta" text-anchor="middle">右へ1</text>
+<text x="262" y="150" class="ta">上へ6</text>
+<text x="262" y="170" class="tb ta">傾き6</text>
+<line x1="212.8" y1="164" x2="212.8" y2="250" class="l sm w1 dot"/>
+<circle cx="256" cy="106" r="5" class="fa"/>
+<text x="246" y="100" class="tb ta" text-anchor="end">x＝3：f＝9</text>
+<circle cx="212.8" cy="157.8" r="5" class="fok l sok"/>
+<text x="204" y="154" class="tb tok" text-anchor="end">x＝2.4：f＝5.76</text>
+<line x1="252" y1="282" x2="219" y2="282" class="l sok"/>
+<polygon points="212.8,282 219,278.5 219,285.5" class="fm"/>
+<text x="234" y="302" class="tok" text-anchor="middle">左へ0.6動く</text>
+<text x="12" y="332" class="tb">① 微分＝その点での傾き</text>
+<text x="12" y="352">xを 3 → 3.01 と動かすと</text>
+<text x="12" y="372">f は 9 → 9.0601（0.0601増える）</text>
+<text x="12" y="392">0.0601÷0.01＝6.01 → 約6</text>
+<text x="12" y="412" class="tm">公式 2x に x＝3 を入れた 2×3＝6 と同じ</text>
+<text x="12" y="432" class="tm">青い直線＝この点の傾きをもつ直線（接線）</text>
+<line x1="12" y1="450" x2="308" y2="450" class="l sb w1"/>
+<text x="12" y="474" class="tb">② 傾きの逆へ動くと、損失が減る</text>
+<text x="12" y="494" class="tm">傾きが正（右上がり）なら、左へ動けば下がる</text>
+<text x="12" y="516">新しいx＝いまのx−学習率×傾き</text>
+<text x="12" y="536">＝3−0.1×6＝3−0.6＝2.4</text>
+<text x="12" y="558" class="tb tok">f は 9 → 2.4×2.4＝5.76 に下がる</text>
+<text x="12" y="578" class="tm">学習率0.1は、説明のための例</text>
+</svg>

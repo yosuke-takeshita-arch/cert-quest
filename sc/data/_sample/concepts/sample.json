@@ -1,0 +1,15 @@
+[
+  {
+    "id": "C-SC-SQLI",
+    "syllabus": ["セキュリティ", "情報セキュリティの脅威", "攻撃手法"],
+    "title": "SQL インジェクション",
+    "oneLine": "入力欄などから SQL 文を紛れ込ませ、データベースを不正に操作する攻撃。",
+    "why": "アプリケーションが入力値を SQL 文の一部として組み立てると、入力した人が SQL 文の意味を変えられる。プレースホルダ（値の入る場所を印だけにしておく仕組み）で防ぐ。",
+    "links": [],
+    "confusions": [
+      { "title": "クロスサイトスクリプティング", "point": "SQL インジェクションの狙いはデータベース。クロスサイトスクリプティングは、利用者のブラウザ上でスクリプトを動かす攻撃。" }
+    ],
+    "sources": [{ "title": "情報処理安全確保支援士試験 シラバス（案）Ver.0.1（サンプル用の出典）", "url": "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf" }],
+    "status": "verified"
+  }
+]

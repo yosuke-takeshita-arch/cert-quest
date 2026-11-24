@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 450" role="img" aria-labelledby="fig-sc-impl-purdue-t fig-sc-impl-purdue-d">
+<title id="fig-sc-impl-purdue-t">Purdue モデルと IT／OT の境界の DMZ</title>
+<desc id="fig-sc-impl-purdue-d">上から下へ階層が並ぶ。いちばん上が IT の側で、レベル4・5の会社の情報システム。その下に IT と OT の境界の DMZ（緩衝のネットワーク、中継サーバを置く）。その下が OT の側で、レベル3の工場全体の運用管理、レベル2の監視（HMI など）、レベル1の制御（PLC など）、レベル0の現場のセンサー・アクチュエータ。各段の間にはファイアウォールがあり、隣り合う段の間の許可した通信だけを通す。レベル4から0〜2へ直接の通信は通さない。一方向ゲートウェイを置くと、下から上へだけデータが流れる。</desc>
+<text x="12" y="20" class="tb">Purdue モデル：階層に分けて守る</text>
+<rect x="8" y="32" width="304" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="18" y="54" class="tb">レベル4・5（IT）</text>
+<text x="18" y="74">会社の情報システム</text>
+<rect x="8" y="98" width="304" height="52" class="fwn swn" stroke-width="2" rx="6"/>
+<text x="18" y="120" class="tb">IT／OT 境界の DMZ</text>
+<text x="18" y="140">中継サーバ（直結させない）</text>
+<rect x="8" y="164" width="304" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="18" y="186" class="tb">レベル3（OT）</text>
+<text x="18" y="206">工場全体の運用管理</text>
+<rect x="8" y="230" width="304" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="18" y="252" class="tb">レベル2</text>
+<text x="18" y="272">監視（HMI など）</text>
+<rect x="8" y="296" width="304" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="18" y="318" class="tb">レベル1</text>
+<text x="18" y="338">制御（PLC など）</text>
+<rect x="8" y="362" width="304" height="52" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="18" y="384" class="tb">レベル0</text>
+<text x="18" y="404">センサー・アクチュエータ</text>
+<text x="200" y="94" class="ta">FW</text>
+<text x="200" y="160" class="ta">FW</text>
+<text x="200" y="226" class="ta">FW</text>
+<text x="200" y="292" class="ta">FW</text>
+<text x="200" y="358" class="ta">FW</text>
+<text x="12" y="436" class="tm">FW＝隣り合う段の許可した通信だけ</text>
+</svg>

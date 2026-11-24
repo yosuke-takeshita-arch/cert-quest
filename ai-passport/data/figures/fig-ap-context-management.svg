@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 394" role="img" aria-labelledby="fig-ap-context-management-t fig-ap-context-management-d">
+<title id="fig-ap-context-management-t">コンテキストを小さく保つ工夫：コンパクション、古い結果の削除、サブエージェント、外のメモ、要る分だけ読む</title>
+<desc id="fig-ap-context-management-d">コンテキストに入れるほど良いのではなく、語が増えると中身を正確に思い出す力が落ちる（context rot）。①コンパクション：これまでの会話が上限の92％（例）に近づいたら要約し、その要約から新しいコンテキストで続ける。②ずっと前に呼んだ検索などの道具の結果を消す。③サブエージェントに任せる：親が仕事の一部を任せ、サブエージェントはまっさらな文脈で調べて、親は要点の要約だけを受け取る。④外にメモを書き、あとで読み戻す。⑤全部を先に読み込まず、grepなどで要るファイルを探して読む。</desc>
+<text x="12" y="20" class="tb">コンテキストを小さく保つ工夫</text>
+<text x="12" y="40" class="tm">入れるほど良いのではない：語が増えると</text>
+<text x="12" y="58" class="tm">中身を正確に思い出す力が落ちる（context rot）</text>
+<text x="12" y="84" class="tb ta">① コンパクション：上限に近づいたら要約</text>
+<rect x="12" y="94" width="272.32" height="26" class="fwn swn" stroke-width="1.5"/>
+<rect x="12" y="94" width="296" height="26" class="sb" stroke-width="1.5" fill="none"/>
+<text x="22" y="112" class="tm">これまでの会話（上限の92％）</text>
+<line x1="160" y1="122" x2="160" y2="140" class="l sa w2"/>
+<polyline points="156.00,133.00 160,140 164.00,133.00" class="l sa w2"/>
+<rect x="12" y="142" width="44.4" height="26" class="fok sok" stroke-width="1.5"/>
+<rect x="12" y="142" width="296" height="26" class="sb" stroke-width="1.5" fill="none"/>
+<text x="64.4" y="160" class="tm">要約から新しいコンテキストで続ける</text>
+<text x="12" y="194" class="tb ta">② 古い道具の結果を消す</text>
+<text x="12" y="214">ずっと前に呼んだ検索の結果などを外す</text>
+<text x="12" y="240" class="tb ta">③ サブエージェントに任せる</text>
+<rect x="12" y="250" width="120" height="46" class="fs sb" stroke-width="1.5"/>
+<text x="72" y="268" class="tb" text-anchor="middle">親</text>
+<text x="72" y="288" class="tm" text-anchor="middle">要約だけ受け取る</text>
+<line x1="134" y1="262" x2="186" y2="262" class="l sa w2"/>
+<polyline points="179.00,266.00 186,262 179.00,258.00" class="l sa w2"/>
+<text x="160" y="256" class="tm" text-anchor="middle">任せる</text>
+<line x1="186" y1="286" x2="134" y2="286" class="l sok w2"/>
+<polyline points="141.00,282.00 134,286 141.00,290.00" class="l sok w2"/>
+<text x="160" y="306" class="tok" text-anchor="middle">要点</text>
+<rect x="188" y="250" width="120" height="46" class="fas sa" stroke-width="1.5"/>
+<text x="248" y="268" class="tb" text-anchor="middle">サブエージェント</text>
+<text x="248" y="288" class="tm" text-anchor="middle">別の文脈で調べる</text>
+<text x="12" y="334" class="tb ta">④ 外にメモを書き、あとで読み戻す</text>
+<text x="12" y="358" class="tb ta">⑤ 全部を先に読み込まず、要るファイルを</text>
+<text x="12" y="376" class="tb ta">　探して読む（grep などで）</text>
+</svg>

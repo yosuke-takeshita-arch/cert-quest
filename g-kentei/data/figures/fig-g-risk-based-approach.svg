@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 728" role="img" aria-labelledby="fig-g-risk-based-approach-t fig-g-risk-based-approach-d">
+<title id="fig-g-risk-based-approach-t">リスクベースアプローチ：危害の大きさと起こりやすさで、対策の重さを変える</title>
+<desc id="fig-g-risk-based-approach-d">①縦を危害の大きさ（小・中・大）、横を起こりやすさ（低・中・高）とした3行3列のマス目。上・右のマスほどリスクが大きく、対策を重くする。左下の3マスは軽い対策、対角線上の3マスは中くらい、右上の3マスは重い対策。マス目の分け方は説明のための例。②同じ会社の2つのAI。会議の議事録をまとめるAIは、誤っても読み直せば直せるので、対策の棒は短く、簡単な確認で済ませる。採用の書類選考で応募者に点をつけるAIは、偏りがあれば特定の人が不当に落とされるので、対策の棒は長く、偏りの検査や人の確認を厚く入れる。③ルールベースとの違い。リスクベースでは2つのAIの対策の棒の長さが違うが、ルールベースでは全部に同じ義務を一律に課すので、棒の長さが同じになる。AI事業者ガイドラインは、ルールベースの規制はイノベーションを阻害する可能性があると述べている。</desc>
+<text x="12" y="20" class="tb">リスクベース：対策の重さを合わせる</text>
+<text x="12" y="44" class="tb ta">① リスク＝危害の大きさ×起こりやすさ</text>
+<text x="12" y="62" class="tm">危害の大きさ</text>
+<rect x="84" y="68" width="72" height="40" class="fwn"/>
+<rect x="156" y="68" width="72" height="40" class="fng"/>
+<rect x="228" y="68" width="72" height="40" class="fng"/>
+<rect x="84" y="108" width="72" height="40" class="fok"/>
+<rect x="156" y="108" width="72" height="40" class="fwn"/>
+<rect x="228" y="108" width="72" height="40" class="fng"/>
+<rect x="84" y="148" width="72" height="40" class="fok"/>
+<rect x="156" y="148" width="72" height="40" class="fok"/>
+<rect x="228" y="148" width="72" height="40" class="fwn"/>
+<rect x="84" y="68" width="216" height="120" class="l sb w1"/>
+<line x1="156" y1="68" x2="156" y2="188" class="l sb w1"/>
+<line x1="228" y1="68" x2="228" y2="188" class="l sb w1"/>
+<line x1="84" y1="108" x2="300" y2="108" class="l sb w1"/>
+<line x1="84" y1="148" x2="300" y2="148" class="l sb w1"/>
+<text x="120" y="93" class="twn" text-anchor="middle">中くらい</text>
+<text x="192" y="93" class="tb tng" text-anchor="middle">重い</text>
+<text x="264" y="93" class="tb tng" text-anchor="middle">重い</text>
+<text x="120" y="133" class="tok" text-anchor="middle">軽い</text>
+<text x="192" y="133" class="twn" text-anchor="middle">中くらい</text>
+<text x="264" y="133" class="tb tng" text-anchor="middle">重い</text>
+<text x="120" y="173" class="tok" text-anchor="middle">軽い</text>
+<text x="192" y="173" class="tok" text-anchor="middle">軽い</text>
+<text x="264" y="173" class="twn" text-anchor="middle">中くらい</text>
+<text x="76" y="93" class="tb" text-anchor="end">大</text>
+<text x="76" y="133" class="tb" text-anchor="end">中</text>
+<text x="76" y="173" class="tb" text-anchor="end">小</text>
+<text x="120" y="206" class="tb" text-anchor="middle">低</text>
+<text x="192" y="206" class="tb" text-anchor="middle">中</text>
+<text x="264" y="206" class="tb" text-anchor="middle">高</text>
+<text x="192" y="226" class="tm" text-anchor="middle">起こりやすさ →</text>
+<text x="12" y="250" class="tm">マスの中＝対策の重さ。上・右ほど重くする</text>
+<text x="12" y="270" class="tm">マス目の分け方は説明のための例</text>
+<line x1="12" y1="286" x2="308" y2="286" class="l sb w1"/>
+<text x="12" y="310" class="tb ta">② 例：同じ会社の2つのAI</text>
+<rect x="12" y="320" width="296" height="74" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="340" class="tb">議事録をまとめるAI</text>
+<text x="22" y="360" class="tm">誤っても、読み直せば直せる</text>
+<text x="22" y="384" class="tm">対策</text>
+<rect x="60" y="373" width="40" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="108" y="384" class="tok">簡単な確認で済ませる</text>
+<rect x="12" y="402" width="296" height="96" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="422" class="tb">書類選考で点をつけるAI</text>
+<text x="22" y="442" class="tm">偏りがあると、人が不当に落とされる</text>
+<text x="22" y="466" class="tm">対策</text>
+<rect x="60" y="455" width="200" height="14" class="fng sng" stroke-width="1.5"/>
+<text x="22" y="488" class="tng">偏りの検査・人の確認を厚く入れる</text>
+<line x1="12" y1="514" x2="308" y2="514" class="l sb w1"/>
+<text x="12" y="538" class="tb ta">③ ルールベースとの違い</text>
+<text x="12" y="566" class="tb">リスクベース</text>
+<rect x="112" y="550" width="40" height="12" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="561" class="tm">議事録</text>
+<rect x="112" y="568" width="140" height="12" class="fng sng" stroke-width="1.5"/>
+<text x="260" y="579" class="tm">選考</text>
+<text x="12" y="612" class="tb">ルールベース</text>
+<rect x="112" y="596" width="90" height="12" class="fwn swn" stroke-width="1.5"/>
+<text x="210" y="607" class="tm">議事録</text>
+<rect x="112" y="614" width="90" height="12" class="fwn swn" stroke-width="1.5"/>
+<text x="210" y="625" class="tm">選考</text>
+<text x="12" y="652" class="tm">棒＝対策の重さ。ルールベースは、全部に</text>
+<text x="12" y="672" class="tm">同じ義務を一律に課す</text>
+<text x="12" y="696" class="tm">AI事業者ガイドラインは、一律の規制は</text>
+<text x="12" y="716" class="tm">イノベーションを阻害しうると述べる</text>
+</svg>

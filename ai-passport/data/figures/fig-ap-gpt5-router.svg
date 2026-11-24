@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 600" role="img" aria-labelledby="fig-ap-gpt5-router-t fig-ap-gpt5-router-d">
+<title id="fig-ap-gpt5-router-t">GPT-5の仕組み：ルーターが、速いモデルと深く推論するモデルのどちらを使うかを、質問ごとに選ぶ</title>
+<desc id="fig-ap-gpt5-router-d">OpenAIのGPT-5の発表（Introducing GPT-5、2025年8月7日）から。GPT-5は、多くの質問に答える賢く効率的なモデル、難しい問題用の深い推論のモデル（GPT-5 thinking）、どちらを使うかを素早く決めるリアルタイムのルーター、からなる1つの仕組み。①何に困るか：易しい質問まで毎回長く考えると、時間と費用がかかる。速いモデルだけだと、難しい問題に弱い。②ルーターが見るもの：会話の種類、複雑さ、道具が要るか、利用者の明示の意図（プロンプトに『よく考えて』と書くなど）。利用者が毎回メニューで選ばなくても、ルーターが振り分ける。③例（説明のための例）：『「会議」を英語で何と言う？』は速いモデル、『契約書の3つの条項の矛盾を探して』は深く推論するモデル。ルーターは、利用者がモデルを切り替えたこと、答えの好まれ方、正しさの測定などの実際の手がかりで学び続ける。</desc>
+<text x="12" y="20" class="tb">GPT-5：ルーターが答え手を選ぶ</text>
+<text x="12" y="40" class="tm">OpenAI の発表（2025年8月7日）から</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="76" class="tb">① 何に困るか</text>
+<text x="12" y="98">易しい質問まで毎回長く考える → 遅く、高い</text>
+<text x="12" y="116">速いモデルだけ → 難しい問題に弱い</text>
+<line x1="12" y1="130" x2="308" y2="130" class="l sb w1"/>
+<text x="12" y="152" class="tb">② 1つの仕組みの中で振り分ける</text>
+<rect x="60" y="164" width="200" height="34" class="fs sm" stroke-width="1.5" rx="6"/>
+<text x="160" y="186" class="tb" text-anchor="middle">利用者の質問</text>
+<line x1="160" y1="200" x2="160" y2="208" class="l sm w1"/>
+<polygon points="160,214 156,207 164,207" class="fm"/>
+<rect x="12" y="216" width="296" height="120" class="fas sa" stroke-width="2" rx="4"/>
+<text x="22" y="238" class="tb ta">ルーター（ここが振り分け役）</text>
+<text x="22" y="260">見るもの：</text>
+<text x="22" y="280">・会話の種類　・複雑さ　・道具が要るか</text>
+<text x="22" y="300">・利用者の明示の意図</text>
+<text x="22" y="320" class="tm">（プロンプトに「よく考えて」と書くなど）</text>
+<line x1="100" y1="338" x2="84" y2="352" class="l sm w1"/>
+<polygon points="80,356 82,348 88,353" class="fm"/>
+<line x1="220" y1="338" x2="236" y2="352" class="l sm w1"/>
+<polygon points="240,356 232,353 238,348" class="fm"/>
+<rect x="12" y="358" width="144" height="74" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="84" y="380" class="tb tok" text-anchor="middle">速いモデル</text>
+<text x="84" y="400" text-anchor="middle">多くの質問に</text>
+<text x="84" y="418" text-anchor="middle">素早く答える</text>
+<rect x="164" y="358" width="144" height="74" class="fwn swn" stroke-width="1.5" rx="4"/>
+<text x="236" y="380" class="tb twn" text-anchor="middle">深く推論する</text>
+<text x="236" y="400" text-anchor="middle">GPT-5 thinking</text>
+<text x="236" y="418" text-anchor="middle">難しい問題に</text>
+<line x1="12" y1="446" x2="308" y2="446" class="l sb w1"/>
+<text x="12" y="468" class="tb">③ 例（説明のための例）</text>
+<text x="12" y="490">「会議」を英語で何と言う？</text>
+<text x="12" y="508" class="tb tok">→ 速いモデル</text>
+<text x="12" y="530">契約書の3つの条項の矛盾を探して</text>
+<text x="12" y="548" class="tb twn">→ 深く推論するモデル</text>
+<text x="12" y="574" class="tm">利用者が毎回メニューで選ばなくても、</text>
+<text x="12" y="592" class="tm">ルーターが振り分ける</text>
+</svg>

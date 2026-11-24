@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-g-ssd-t fig-g-ssd-d">
+<title id="fig-g-ssd-t">SSD：形の違う枠を、粗さの違う特徴マップに置く</title>
+<desc id="fig-g-ssd-d">①デフォルトボックス：特徴マップの1つの位置に、縦横比や大きさの違う決まった形の枠を数個置く（小さい正方形・大きい正方形・横長・縦長）。枠ごとに、何の物体か（クラス）と、枠をどれだけずらせばよいかを出す。②解像度の違う複数の特徴マップで予測する。8×8 の細かい地図では1マスが小さいので、小さい物体（鳥）を受け持つ。4×4 の粗い地図では1マスが大きいので、大きい物体（車）を受け持つ。どちらも1回ネットワークに通すだけで出る1段階型。例：入力 300×300 で毎秒59枚・mAP 74.3%（Faster R-CNN は毎秒7枚・73.2%）。鳥と車は説明のための例。</desc>
+<text x="12" y="20" class="tb">SSD：形の違う枠を、粗さの違う地図に</text>
+<text x="12" y="46" class="tb">① デフォルトボックス：決まった形の枠</text>
+<rect x="12" y="58" width="90" height="90" class="fs sm" stroke-width="1"/>
+<line x1="42" y1="58" x2="42" y2="148" class="l sm w1"/>
+<line x1="12" y1="88" x2="102" y2="88" class="l sm w1"/>
+<line x1="72" y1="58" x2="72" y2="148" class="l sm w1"/>
+<line x1="12" y1="118" x2="102" y2="118" class="l sm w1"/>
+<rect x="42" y="88" width="30" height="30" class="fas sa" stroke-width="1"/>
+<circle cx="57" cy="103" r="2.5" class="ft"/>
+<rect x="46" y="92" width="22" height="22" class="l sa w2"/>
+<rect x="32" y="78" width="50" height="50" class="l sok w2 dsh"/>
+<rect x="19" y="86" width="76" height="34" class="l swn w2"/>
+<rect x="42" y="68" width="30" height="70" class="l sng w2 dsh"/>
+<text x="112" y="72">1つの位置に、縦横比や</text>
+<text x="112" y="90">大きさの違う枠を数個置く</text>
+<text x="112" y="116" class="tm">枠ごとに出すもの</text>
+<text x="112" y="134" class="tm">・何の物体か（クラス）</text>
+<text x="112" y="152" class="tm">・枠をどれだけずらすか</text>
+<text x="12" y="192" class="tb">② 細かい地図と粗い地図で予測する</text>
+<rect x="12" y="206" width="120" height="120" class="fs sm" stroke-width="1"/>
+<line x1="27" y1="206" x2="27" y2="326" class="l sm w1"/>
+<line x1="12" y1="221" x2="132" y2="221" class="l sm w1"/>
+<line x1="42" y1="206" x2="42" y2="326" class="l sm w1"/>
+<line x1="12" y1="236" x2="132" y2="236" class="l sm w1"/>
+<line x1="57" y1="206" x2="57" y2="326" class="l sm w1"/>
+<line x1="12" y1="251" x2="132" y2="251" class="l sm w1"/>
+<line x1="72" y1="206" x2="72" y2="326" class="l sm w1"/>
+<line x1="12" y1="266" x2="132" y2="266" class="l sm w1"/>
+<line x1="87" y1="206" x2="87" y2="326" class="l sm w1"/>
+<line x1="12" y1="281" x2="132" y2="281" class="l sm w1"/>
+<line x1="102" y1="206" x2="102" y2="326" class="l sm w1"/>
+<line x1="12" y1="296" x2="132" y2="296" class="l sm w1"/>
+<line x1="117" y1="206" x2="117" y2="326" class="l sm w1"/>
+<line x1="12" y1="311" x2="132" y2="311" class="l sm w1"/>
+<rect x="87" y="236" width="15" height="15" class="fas sa" stroke-width="1"/>
+<rect x="83.5" y="232.5" width="22" height="22" class="l sa w2"/>
+<rect x="84" y="264" width="21" height="20" class="fs" rx="3"/>
+<text x="94.5" y="279" class="tb ta" text-anchor="middle">鳥</text>
+<rect x="176" y="206" width="120" height="120" class="fs sm" stroke-width="1"/>
+<line x1="206" y1="206" x2="206" y2="326" class="l sm w1"/>
+<line x1="176" y1="236" x2="296" y2="236" class="l sm w1"/>
+<line x1="236" y1="206" x2="236" y2="326" class="l sm w1"/>
+<line x1="176" y1="266" x2="296" y2="266" class="l sm w1"/>
+<line x1="266" y1="206" x2="266" y2="326" class="l sm w1"/>
+<line x1="176" y1="296" x2="296" y2="296" class="l sm w1"/>
+<rect x="236" y="266" width="30" height="30" class="fok sok" stroke-width="1"/>
+<rect x="203" y="256" width="96" height="50" class="l sok w2"/>
+<rect x="240" y="309" width="22" height="20" class="fs" rx="3"/>
+<text x="251" y="324" class="tb tok" text-anchor="middle">車</text>
+<text x="72" y="346" class="tb" text-anchor="middle">8×8（細かい）</text>
+<text x="236" y="346" class="tb" text-anchor="middle">4×4（粗い）</text>
+<text x="72" y="364" class="ta" text-anchor="middle">小さい物体を受け持つ</text>
+<text x="236" y="364" class="tok" text-anchor="middle">大きい物体を受け持つ</text>
+<line x1="12" y1="380" x2="308" y2="380" class="l sb w1"/>
+<text x="12" y="402">どちらも1回通すだけで出る（1段階型）</text>
+<text x="12" y="424" class="tm">入力 300×300 で毎秒59枚・mAP 74.3%</text>
+<text x="12" y="442" class="tm">（Faster R-CNN は毎秒7枚・73.2%）</text>
+<text x="12" y="462" class="tm">鳥と車は説明のための例</text>
+</svg>

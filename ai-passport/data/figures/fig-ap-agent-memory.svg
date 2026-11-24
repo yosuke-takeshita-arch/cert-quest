@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 452" role="img" aria-labelledby="fig-ap-agent-memory-t fig-ap-agent-memory-d">
+<title id="fig-ap-agent-memory-t">AIエージェントの記憶：短期メモリと長期メモリ、長期の記憶の3つの種類</title>
+<desc id="fig-ap-agent-memory-d">短期メモリは1つの会話の中だけで使い、会話の履歴や途中の結果を持つ。会話が終われば使わない。長期メモリは会話をまたいで残し、外の置き場にしまって要るときに読み込む。例：「会議メモは見出しと箇条書きで」と伝えると、別の日の会話でもその書き方でまとめる。モデルの重みには書き込まないので、確かめたり消したりできる。個人の情報も入るので、何を覚えさせるかを管理する。長期の記憶の3つ（CoALAの分け方）：意味記憶は世の中の事実、エピソード記憶は過去にした行動の流れ（経験の記録）、手続き記憶はふるまいの決まり（手順など）。作業記憶はいまの判断に使う短期の情報。</desc>
+<text x="12" y="20" class="tb">AI エージェントの記憶（メモリ）</text>
+<text x="12" y="46" class="tb ta">短期メモリ：1つの会話の中だけ</text>
+<rect x="12" y="56" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="79" text-anchor="middle">会話の履歴、途中の結果</text>
+<text x="160" y="99" class="tm" text-anchor="middle">会話が終われば使わない</text>
+<text x="12" y="132" class="tb tok">長期メモリ：会話をまたいで残す</text>
+<rect x="12" y="142" width="296" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="165" text-anchor="middle">外の置き場にしまい、要るときに読み込む</text>
+<text x="160" y="185" class="tm" text-anchor="middle">例「会議メモは見出しと箇条書きで」→別の日も</text>
+<text x="12" y="216" class="tb">重みには書き込まない → 確かめる・消すができる</text>
+<text x="12" y="236" class="tm">個人の情報も入るので、何を覚えさせるか管理する</text>
+<line x1="12" y1="252" x2="308" y2="252" class="l sb w1"/>
+<text x="12" y="274" class="tb">長期の記憶の3つ（CoALA の分け方）</text>
+<rect x="12" y="284" width="296" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="301" class="tb">意味記憶</text>
+<text x="22" y="318" class="tm">世の中の事実</text>
+<rect x="12" y="330" width="296" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="347" class="tb">エピソード記憶</text>
+<text x="22" y="364" class="tm">過去にした行動の流れ（経験の記録）</text>
+<rect x="12" y="376" width="296" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="393" class="tb">手続き記憶</text>
+<text x="22" y="410" class="tm">ふるまいの決まり（手順など）</text>
+<text x="12" y="434" class="tm">作業記憶＝いまの判断に使う短期の情報</text>
+</svg>

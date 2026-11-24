@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 528" role="img" aria-labelledby="fig-ap-rag-filter-t fig-ap-rag-filter-d">
+<title id="fig-ap-rag-filter-t">RAGの検索を、メタデータ（年度・見てよい人）で先に絞る</title>
+<desc id="fig-ap-rag-filter-d">メタデータは文書に付けた見出しの情報。例の文書は3つ：旅費規程（2026年度、全社員）、旅費規程（2025年度、全社員）、人事の検討資料（2026年度、人事部だけ）。一般の社員が「出張の日当は？」と聞いたとき、年度で絞る（2026年度だけ）と2025年度版が外れ、見てよい人で絞る（質問した人の権限）と人事部だけの資料が外れる。残った2026年度の旅費規程から探して答える。絞らないと、古い版の規程で答えたり、見てはいけない資料の中身が答えに混ざったりする。答えの最後に「社外秘」と書くだけでは防げない。</desc>
+<text x="12" y="20" class="tb">RAG の検索を、メタデータで先に絞る</text>
+<text x="12" y="40" class="tm">メタデータ＝文書に付けた見出しの情報</text>
+<rect x="12" y="52" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="70" class="tb">旅費規程</text>
+<text x="22" y="88" class="tm">年度：2026年度　見てよい人：全社員</text>
+<rect x="12" y="102" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="120" class="tb">旅費規程</text>
+<text x="22" y="138" class="tm">年度：2025年度　見てよい人：全社員</text>
+<rect x="12" y="152" width="296" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="170" class="tb">人事の検討資料</text>
+<text x="22" y="188" class="tm">年度：2026年度　見てよい人：人事部だけ</text>
+<text x="12" y="218" class="tb ta">例：一般の社員が「出張の日当は？」と聞く</text>
+<rect x="12" y="228" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="251" class="tb">年度で絞る（2026年度だけ）</text>
+<text x="22" y="271" class="tng">→ 2025年度版を外す</text>
+<rect x="12" y="292" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="315" class="tb">見てよい人で絞る（質問した人の権限）</text>
+<text x="22" y="335" class="tng">→ 人事部だけの資料を外す</text>
+<line x1="160" y1="356" x2="160" y2="374" class="l sa w2"/>
+<polyline points="156.00,367.00 160,374 164.00,367.00" class="l sa w2"/>
+<rect x="12" y="376" width="296" height="34" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="398" class="tb" text-anchor="middle">残った「2026年度の旅費規程」から探して答える</text>
+<line x1="12" y1="426" x2="308" y2="426" class="l sb w1"/>
+<text x="12" y="448" class="tb tng">絞らないと</text>
+<text x="12" y="468">・古い版の規程で答えてしまう</text>
+<text x="12" y="488">・見てはいけない資料の中身が答えに混ざる</text>
+<text x="12" y="510" class="tm">答えの最後に「社外秘」と書くだけでは防げない</text>
+</svg>

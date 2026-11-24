@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-ai-hard-problems-t fig-g-ai-hard-problems-d">
+<title id="fig-g-ai-hard-problems-t">AIの3つの難問：フレーム問題・シンボルグラウンディング問題・知識獲得のボトルネックは、つまずく所が違う</title>
+<desc id="fig-g-ai-hard-problems-d">3つの難問を、例とつまずく所で並べる。①フレーム問題（マッカーシーとヘイズ、1969年）。例は、爆弾のある部屋から予備バッテリーを運び出すロボット。台車を引いても壁の色は変わらない、といった関係の無い結論を一つずつ確かめているうちに時間切れになる。言葉の意味は分かっている。つまずく所は、関係のある事柄だけを選べないこと。②シンボルグラウンディング問題（ハルナッド、1990年）。記号の上ではシマウマ＝縞＋馬と分かっても、その記号が実物のシマウマに結びつかない。つまずく所は、記号を実世界の意味に結びつけられないこと。手がかりとして、体で世界にふれて意味を得る身体性に注目する研究者もいる。③知識獲得のボトルネック（第2次AIブームの壁）。医師などの専門家の経験則を、人が「もし〜なら〜」のルールに書き起こして知識ベースに入れる。扱う範囲が増えるほど書く量が膨れ、作り切れない。つまずく所は、知識を書き切れないこと。データから知識を学ぶ機械学習が、これを乗り越える方向になった。見分け方は、選べない・結びつかない・書き切れない。</desc>
+<text x="12" y="20" class="tb">AIの3つの難問：どこでつまずくか</text>
+<rect x="12" y="32" width="296" height="146" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="52" class="tb ta">① フレーム問題（1969年）</text>
+<text x="22" y="72" class="tm">例：爆弾の部屋からバッテリーを運ぶ</text>
+<text x="22" y="90" class="tm">ロボットが、「台車を引いても壁の色は</text>
+<text x="22" y="108" class="tm">変わらない」…と関係の無い結論を</text>
+<text x="22" y="126" class="tm">1つずつ確かめて、時間切れになる</text>
+<rect x="22" y="136" width="276" height="32" class="fng sng" stroke-width="1" rx="4"/>
+<text x="160" y="157" class="tb tng" text-anchor="middle">関係のあることだけを選べない</text>
+<rect x="12" y="188" width="296" height="160" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="208" class="tb ta">② シンボルグラウンディング問題</text>
+<text x="22" y="226" class="tm">（1990年）</text>
+<rect x="22" y="236" width="120" height="40" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="82" y="252" class="tm" text-anchor="middle">記号の上では</text>
+<text x="82" y="270" class="tb" text-anchor="middle">シマウマ＝縞＋馬</text>
+<line x1="146" y1="256" x2="172" y2="256" class="l sng w1 dsh"/>
+<text x="159" y="250" class="tb tng" text-anchor="middle">×</text>
+<rect x="178" y="236" width="120" height="40" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="238" y="252" class="tm" text-anchor="middle">実物の</text>
+<text x="238" y="270" class="tb" text-anchor="middle">シマウマ</text>
+<rect x="22" y="286" width="276" height="32" class="fng sng" stroke-width="1" rx="4"/>
+<text x="160" y="307" class="tb tng" text-anchor="middle">記号を実物の意味に結びつけられない</text>
+<text x="22" y="338" class="tm">手がかり：身体性（体で世界にふれる）</text>
+<rect x="12" y="358" width="296" height="164" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="378" class="tb ta">③ 知識獲得のボトルネック</text>
+<text x="22" y="396" class="tm">（第2次AIブームの壁）</text>
+<rect x="22" y="406" width="80" height="40" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="62" y="422" class="tm" text-anchor="middle">医師の</text>
+<text x="62" y="440" class="tb" text-anchor="middle">経験則</text>
+<line x1="102" y1="426" x2="114.4" y2="426" class="l sm w1"/>
+<polygon points="120,426 114.4,422.5 114.4,429.5" class="fm"/>
+<rect x="120" y="406" width="88" height="40" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="164" y="422" class="tm" text-anchor="middle">人が書く</text>
+<text x="164" y="440" class="tb" text-anchor="middle">もし〜なら〜</text>
+<line x1="208" y1="426" x2="220.4" y2="426" class="l sm w1"/>
+<polygon points="226,426 220.4,422.5 220.4,429.5" class="fm"/>
+<rect x="226" y="406" width="72" height="40" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="262" y="422" class="tm" text-anchor="middle">知識</text>
+<text x="262" y="440" class="tb" text-anchor="middle">ベース</text>
+<rect x="22" y="456" width="276" height="32" class="fng sng" stroke-width="1" rx="4"/>
+<text x="160" y="477" class="tb tng" text-anchor="middle">書く量が膨大で、書き切れない</text>
+<text x="22" y="510" class="tm">乗り越え方：データから学ぶ機械学習</text>
+<text x="12" y="546" class="tm">見分け方：選べない・結びつかない・書き切れない</text>
+</svg>

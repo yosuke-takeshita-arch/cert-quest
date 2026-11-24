@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-labelledby="fig-sc-db-recovery-t fig-sc-db-recovery-d">
+<title id="fig-sc-db-recovery-t">ロールフォワードとロールバック（障害の種類で使い分ける）</title>
+<desc id="fig-sc-db-recovery-d">障害の後は、ログ（ジャーナル）を使って前へ進めるか後ろへ戻すかする。時間の線の上に、0時のフルバックアップ、10時のチェックポイント、10時5分の障害を置く。T1 は10時2分にコミット済み、T2 は障害のときコミットしていない。区画1はシステム障害（停電）で、データファイルは残っている。10時のチェックポイントから後のログを見て、コミット済みの T1 は更新後ログでやり直す（ロールフォワード）、コミットしていない T2 は更新前ログで取り消す（ロールバック）。区画2はディスク障害で、データファイルが消えた。0時のバックアップを新しいディスクに戻し、0時から障害の直前までの更新後ログを順に当てて進める（ロールフォワード）。</desc>
+<text x="12" y="20" class="tb">障害の後：ログで前へ進める・後ろへ戻す</text>
+<line x1="16" y1="60" x2="304" y2="60" class="l"/>
+<line x1="24" y1="52" x2="24" y2="68" class="l"/>
+<text x="10" y="44" class="tm">0時</text>
+<text x="10" y="84" class="tm">バックアップ</text>
+<line x1="170" y1="52" x2="170" y2="68" class="l sa"/>
+<text x="154" y="44" class="ta">10:00</text>
+<text x="120" y="84" class="ta">チェックポイント</text>
+<line x1="288" y1="50" x2="288" y2="70" class="l sng w2"/>
+<text x="262" y="44" class="tng">10:05</text>
+<text x="272" y="84" class="tng">障害</text>
+<text x="16" y="108">T1：10:02 にコミット済み</text>
+<text x="16" y="128">T2：障害のとき、まだコミットしていない</text>
+<rect x="8" y="142" width="304" height="152" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="164" class="tb">① システム障害（停電など）</text>
+<text x="18" y="186" class="tm">データファイルは残っている</text>
+<text x="18" y="210">チェックポイントから後のログを見る</text>
+<text x="18" y="234" class="tok">T1 → 更新後ログでやり直す</text>
+<text x="140" y="254" class="tok">（ロールフォワード）</text>
+<text x="18" y="276" class="twn">T2 → 更新前ログで取り消す（ロールバック）</text>
+<rect x="8" y="306" width="304" height="152" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="328" class="tb">② ディスク障害</text>
+<text x="18" y="350" class="tm">データファイルそのものが消えた</text>
+<text x="18" y="374">0時のバックアップを新しいディスクへ戻す</text>
+<text x="18" y="398">0時から障害の直前までの更新後ログを</text>
+<text x="18" y="418">順に当てて進める</text>
+<text x="18" y="442" class="tok">→ ロールフォワード（コミット済みまで戻る）</text>
+</svg>

@@ -1,0 +1,121 @@
+[
+  {
+    "id": "FA",
+    "title": "財務・会計",
+    "keywords": [],
+    "children": [
+      {
+        "id": "FA-CH01",
+        "title": "簿記の基礎",
+        "keywords": [],
+        "children": [
+          {"id": "FA-001", "title": "簿記原理", "children": [], "keywords": ["簿記原理"]},
+          {"id": "FA-002", "title": "会計帳簿", "children": [], "keywords": ["会計帳簿"]},
+          {"id": "FA-003", "title": "決算処理一巡", "children": [], "keywords": ["試算表・精算表の作成", "決算仕訳", "貸借対照表・損益計算書の作成"]}
+        ]
+      },
+      {
+        "id": "FA-CH02",
+        "title": "企業会計の基礎",
+        "keywords": [],
+        "children": [
+          {"id": "FA-004", "title": "損益計算書", "children": [], "keywords": ["収益の会計", "費用の会計"]},
+          {"id": "FA-005", "title": "貸借対照表", "children": [], "keywords": ["資産の会計", "負債の会計", "純資産の会計"]},
+          {"id": "FA-006", "title": "キャッシュ・フロー計算書", "children": [], "keywords": ["キャッシュ・フロー計算書"]},
+          {"id": "FA-007", "title": "企業結合", "children": [], "keywords": ["合併・分割", "連結決算"]},
+          {"id": "FA-008", "title": "会計ディスクロージャー", "children": [], "keywords": ["会計ディスクロージャー"]}
+        ]
+      },
+      {
+        "id": "FA-CH03",
+        "title": "税務会計の基礎",
+        "keywords": [],
+        "children": [
+          {"id": "FA-009", "title": "益金と損金", "children": [], "keywords": ["益金と損金"]},
+          {"id": "FA-010", "title": "課税所得と税額の計算", "children": [], "keywords": ["課税所得と税額の計算"]}
+        ]
+      },
+      {
+        "id": "FA-CH04",
+        "title": "原価計算",
+        "keywords": [],
+        "children": [
+          {"id": "FA-011", "title": "原価概念", "children": [], "keywords": ["原価概念"]},
+          {"id": "FA-012", "title": "原価計算の種類と方法", "children": [], "keywords": ["原価計算の種類と方法"]},
+          {"id": "FA-013", "title": "原価情報の利用", "children": [], "keywords": ["原価情報の利用"]}
+        ]
+      },
+      {
+        "id": "FA-CH05",
+        "title": "経営分析",
+        "keywords": [],
+        "children": [
+          {"id": "FA-014", "title": "経営比率分析", "children": [], "keywords": ["収益性", "安全性", "生産性", "成長性"]},
+          {"id": "FA-015", "title": "CVP 分析", "children": [], "keywords": ["CVP 分析"]}
+        ]
+      },
+      {
+        "id": "FA-CH06",
+        "title": "利益と資金の管理",
+        "keywords": [],
+        "children": [
+          {"id": "FA-016", "title": "利益計画", "children": [], "keywords": ["限界利益と貢献利益", "プロダクト・ミックス"]},
+          {"id": "FA-017", "title": "予算・実績差異分析", "children": [], "keywords": ["予算・実績差異分析"]},
+          {"id": "FA-018", "title": "資金繰りと資金計画", "children": [], "keywords": ["資金繰りと資金計画"]},
+          {"id": "FA-019", "title": "キャッシュ・フロー管理", "children": [], "keywords": ["フリー・キャッシュ・フロー", "運転資金の管理", "キャッシュ・フロー関連比率"]}
+        ]
+      },
+      {
+        "id": "FA-CH07",
+        "title": "資金調達と配当政策",
+        "keywords": [],
+        "children": [
+          {"id": "FA-020", "title": "資金調達の形態", "children": [], "keywords": ["内部金融と外部金融", "直接金融と間接金融", "自己資本と他人資本", "企業間信用", "リース"]},
+          {"id": "FA-021", "title": "資本コスト", "children": [], "keywords": ["負債のコスト", "自己資本のコスト", "加重平均資本コスト"]},
+          {"id": "FA-022", "title": "ペイアウト政策", "children": [], "keywords": ["配当の種類", "配当性向", "配当政策の効果", "自社株買い"]},
+          {"id": "FA-023", "title": "最適資本構成", "children": [], "keywords": ["財務レバレッジ", "モジリアーニ・ミラー（MM）理論"]}
+        ]
+      },
+      {
+        "id": "FA-CH08",
+        "title": "実物投資",
+        "keywords": [],
+        "children": [
+          {"id": "FA-024", "title": "貨幣の時間価値と割引キャッシュフロー（DCF）", "children": [], "keywords": ["貨幣の時間価値と割引キャッシュフロー（DCF）"]},
+          {"id": "FA-025", "title": "投資評価基準", "children": [], "keywords": ["回収期間法", "会計的投資利益率法", "内部収益率（IRR）法", "正味現在価値（NPV）法", "収益性指数法"]},
+          {"id": "FA-026", "title": "不確実性下の投資決定", "children": [], "keywords": ["不確実性下の投資決定"]}
+        ]
+      },
+      {
+        "id": "FA-CH09",
+        "title": "証券投資",
+        "keywords": [],
+        "children": [
+          {"id": "FA-027", "title": "ポートフォリオ理論", "children": [], "keywords": ["ポートフォリオのリスクとリターン", "効率的ポートフォリオ", "最適ポートフォリオの選択"]},
+          {"id": "FA-028", "title": "資本市場理論", "children": [], "keywords": ["効率的市場仮説", "資本資産評価モデル（CAPM）の理論", "市場モデル"]}
+        ]
+      },
+      {
+        "id": "FA-CH10",
+        "title": "企業価値",
+        "keywords": [],
+        "children": [
+          {"id": "FA-029", "title": "株主価値の算定", "children": [], "keywords": ["配当割引モデル", "株価収益率", "株価純資産倍率", "株価キャッシュフロー倍率"]},
+          {"id": "FA-030", "title": "企業価値評価モデル", "children": [], "keywords": ["残余利益モデル", "割引キャッシュフローモデル"]},
+          {"id": "FA-031", "title": "企業合併・買収における企業評価", "children": [], "keywords": ["収益還元方式", "純資産方式", "市場株価比較方式", "乗数法（マルチプル法）"]}
+        ]
+      },
+      {
+        "id": "FA-CH11",
+        "title": "デリバティブとリスク管理",
+        "keywords": [],
+        "children": [
+          {"id": "FA-032", "title": "リスクの種類", "children": [], "keywords": ["リスクの種類"]},
+          {"id": "FA-033", "title": "オプション取引", "children": [], "keywords": ["コールオプション", "プットオプション"]},
+          {"id": "FA-034", "title": "先物取引", "children": [], "keywords": ["先物為替予約", "通貨先物取引"]},
+          {"id": "FA-035", "title": "スワップ", "children": [], "keywords": ["金利スワップ", "通貨スワップ"]}
+        ]
+      }
+    ]
+  }
+]

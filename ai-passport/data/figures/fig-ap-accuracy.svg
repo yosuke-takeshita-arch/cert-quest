@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 474" role="img" aria-labelledby="fig-ap-accuracy-t fig-ap-accuracy-d">
+<title id="fig-ap-accuracy-t">正解率の計算と、偏ったデータで正解率だけを見る落とし穴</title>
+<desc id="fig-ap-accuracy-d">正解率は、正しく判定できた数を全部の数で割って求める。例1：テスト用の画像200枚のうち、正しいのが170枚、誤りが30枚。170÷200＝0.85で、正解率は85％。割る数は全部の200枚で、正しい170枚ではない。30÷200＝15％は誤りの割合。例2：検査100件のうち病気の人は1件しかない。モデルが全員を病気でないと答えると、当たる数は病気でない99件で、99÷100＝99％になる。でも病気の1人を見つけていない。再現率（本当に病気の人のうち見つけた割合）は0÷1＝0％。偏ったデータでは、正解率だけで判断せず、再現率なども確かめる。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">正解率＝正しく判定できた数÷全部の数</text>
+<text x="12" y="46" class="tb ta">例1：テスト用の画像 200枚を判定</text>
+<rect x="12" y="58" width="251.6" height="34" class="fok sok" stroke-width="1.5"/>
+<rect x="263.6" y="58" width="44.400000000000006" height="34" class="fng sng" stroke-width="1.5"/>
+<text x="137.8" y="80" class="tb tok" text-anchor="middle">正しい 170枚</text>
+<text x="285.8" y="80" class="tb tng" text-anchor="middle">誤り30</text>
+<text x="12" y="116" class="tb">170 ÷ 200 ＝ 0.85 → 正解率 85％</text>
+<text x="12" y="136" class="tm">割る数は全部の200枚（正しい170ではない）</text>
+<text x="12" y="156" class="tm">30 ÷ 200 ＝ 15％ は誤りの割合</text>
+<line x1="12" y1="172" x2="308" y2="172" class="l sb w1"/>
+<text x="12" y="196" class="tb ta">例2：見つけたいものが、まれなとき</text>
+<text x="12" y="218">検査 100件のうち、病気の人は 1件</text>
+<rect x="12" y="230" width="293.04" height="30" class="fok sok" stroke-width="1.5"/>
+<rect x="305.04" y="230" width="2.9599999999999795" height="30" class="fng sng" stroke-width="1.5"/>
+<text x="158.52" y="250" class="tok" text-anchor="middle">病気でない 99件</text>
+<text x="300" y="278" class="tng" text-anchor="end">病気 1件 ↑</text>
+<text x="12" y="304" class="tb">モデルが全員「病気でない」と答えると</text>
+<text x="12" y="326">当たる数＝病気でない 99件</text>
+<text x="12" y="346">99 ÷ 100 ＝ 99％</text>
+<text x="12" y="370" class="tb tng">でも、病気の1人を見つけていない</text>
+<text x="12" y="392">再現率＝本当に病気の人のうち見つけた割合</text>
+<text x="12" y="412">　　　＝ 0 ÷ 1 ＝ 0％</text>
+<text x="12" y="436" class="tb">→ 偏ったデータでは、正解率だけで判断しない</text>
+<text x="12" y="456" class="tm">（数は説明のための例）</text>
+</svg>

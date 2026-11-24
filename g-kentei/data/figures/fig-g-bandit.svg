@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1148" role="img" aria-labelledby="fig-g-bandit-t fig-g-bandit-d">
+<title id="fig-g-bandit-t">バンディット問題：当たり確率の分からない台を限られた回数で引き、当たりの合計を増やす</title>
+<desc id="fig-g-bandit-d">例：スロットマシン4台A〜D。1回引くと当たりか外れで、引ける回数は全部で100回。この100回で当たりの合計を増やしたい。①本当の当たり確率は引く人に見えず、見えるのは引いた結果だけ。本当の値（例）はA 0.4、B 0.6、C 0.3、D 0.2で、Bが最高。②まず5回ずつ、計20回引いた。当たった回数はA 3回、B 1回、C 2回、D 1回で、見かけの当たり率はA 0.6、B 0.2、C 0.4、D 0.2。Aは本当は0.4なのに運よく0.6に見えて見かけの1位になり、Bは本当は0.6で最高なのに運悪く1回しか当たらなかった。0.6の台が5回で1回以下しか当たらないことは約9％の確率で起きる。③残り80回の使い方。活用だけ（見かけ1位のAを80回引く）だと当たりは平均80×0.4＝32回。Bをもう引かないのでBの見かけは0.2のままで、本当に良いBを見逃す。Bを80回引けば80×0.6＝48回で、16回の差がある。探索（B・C・Dもときどき引く）なら、Bの見かけが本当の0.6へ近づき、Bが最高だと気づける。ただし外れの台も引くので、例えばDを10回引くと、Aなら10×0.4＝4回のところDは10×0.2＝2回で、その10回では当たりが2回減る。④活用はいまの当たりが多いが見逃し、探索は見逃さないがいまの当たりが減る。1回の引きで両方はできない。これが探索と活用のトレードオフ。⑤この迷いをうまく解く選び方がε-greedyとUCB（次の図）で、解き方をまとめてバンディットアルゴリズムという。台は広告などの選択肢、当たりはクリックなどの報酬にあたる。</desc>
+<text x="12" y="20" class="tb">バンディット問題：どの台が当たりやすい？</text>
+<text x="12" y="42" class="tm">例：スロットマシン4台（A〜D）。1回引くと</text>
+<text x="12" y="60" class="tm">当たりか外れ。引ける回数は全部で100回。</text>
+<text x="12" y="78" class="tm">この100回で、当たりの合計を増やしたい</text>
+<rect x="12" y="90" width="296" height="196" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="110" class="tb">① 本当の当たり確率は、引く人に見えない</text>
+<text x="60" y="132" class="tb" text-anchor="middle">A</text>
+<rect x="34" y="140" width="48" height="56" class="fbg l" stroke-width="1.5" rx="6"/>
+<text x="58" y="176" class="tl" text-anchor="middle">？</text>
+<line x1="82" y1="156" x2="88" y2="150" class="l"/>
+<line x1="88" y1="150" x2="88" y2="136" class="l"/>
+<circle cx="88" cy="133" r="3" class="l"/>
+<text x="132" y="132" class="tb" text-anchor="middle">B</text>
+<rect x="106" y="140" width="48" height="56" class="fbg l" stroke-width="1.5" rx="6"/>
+<text x="130" y="176" class="tl" text-anchor="middle">？</text>
+<line x1="154" y1="156" x2="160" y2="150" class="l"/>
+<line x1="160" y1="150" x2="160" y2="136" class="l"/>
+<circle cx="160" cy="133" r="3" class="l"/>
+<text x="204" y="132" class="tb" text-anchor="middle">C</text>
+<rect x="178" y="140" width="48" height="56" class="fbg l" stroke-width="1.5" rx="6"/>
+<text x="202" y="176" class="tl" text-anchor="middle">？</text>
+<line x1="226" y1="156" x2="232" y2="150" class="l"/>
+<line x1="232" y1="150" x2="232" y2="136" class="l"/>
+<circle cx="232" cy="133" r="3" class="l"/>
+<text x="276" y="132" class="tb" text-anchor="middle">D</text>
+<rect x="250" y="140" width="48" height="56" class="fbg l" stroke-width="1.5" rx="6"/>
+<text x="274" y="176" class="tl" text-anchor="middle">？</text>
+<line x1="298" y1="156" x2="304" y2="150" class="l"/>
+<line x1="304" y1="150" x2="304" y2="136" class="l"/>
+<circle cx="304" cy="133" r="3" class="l"/>
+<text x="24" y="216" class="tm">引く人に見えるのは、引いた結果だけ</text>
+<rect x="24" y="226" width="272" height="50" class="fbg l sm dsh" stroke-width="1" rx="4"/>
+<text x="160" y="244" class="tm" text-anchor="middle">本当の値（例。引く人には見えない）</text>
+<text x="60" y="266" class="tb" text-anchor="middle">A 0.4</text>
+<text x="132" y="266" class="tb tok" text-anchor="middle">B 0.6</text>
+<text x="204" y="266" class="tb" text-anchor="middle">C 0.3</text>
+<text x="276" y="266" class="tb" text-anchor="middle">D 0.2</text>
+<line x1="160" y1="286" x2="160.0" y2="294.4" class="l sm w1"/>
+<polygon points="160,300 156.5,294.4 163.5,294.4" class="fm"/>
+<rect x="12" y="300" width="296" height="302" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="320" class="tb">② まず5回ずつ引いてみた（計20回）</text>
+<rect x="24" y="330" width="14" height="12" class="fas sa" stroke-width="1.5" rx="2"/>
+<text x="44" y="341" class="tm">見かけ＝5回のうち当たった割合</text>
+<rect x="24" y="350" width="14" height="12" class="l sm dsh" stroke-width="1" rx="2"/>
+<text x="44" y="361" class="tm">本当の確率（見えない。比べるため）</text>
+<rect x="37" y="392" width="21" height="60" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="47.5" y="386" class="tb ta" text-anchor="middle">0.6</text>
+<rect x="62" y="412" width="21" height="40" class="l sm dsh" stroke-width="1" rx="0"/>
+<text x="72.5" y="406" class="tm" text-anchor="middle">0.4</text>
+<text x="60" y="470" class="tb" text-anchor="middle">A</text>
+<text x="60" y="487" class="tm" text-anchor="middle">5回中3回</text>
+<rect x="109" y="432" width="21" height="20" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="119.5" y="426" class="ta" text-anchor="middle">0.2</text>
+<rect x="134" y="392" width="21" height="60" class="l sm dsh" stroke-width="1" rx="0"/>
+<text x="144.5" y="386" class="tb tok" text-anchor="middle">0.6</text>
+<text x="132" y="470" class="tb" text-anchor="middle">B</text>
+<text x="132" y="487" class="tm" text-anchor="middle">5回中1回</text>
+<rect x="181" y="412" width="21" height="40" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="191.5" y="406" class="ta" text-anchor="middle">0.4</text>
+<rect x="206" y="422" width="21" height="30" class="l sm dsh" stroke-width="1" rx="0"/>
+<text x="216.5" y="416" class="tm" text-anchor="middle">0.3</text>
+<text x="204" y="470" class="tb" text-anchor="middle">C</text>
+<text x="204" y="487" class="tm" text-anchor="middle">5回中2回</text>
+<rect x="253" y="432" width="21" height="20" class="fas sa" stroke-width="1.5" rx="0"/>
+<text x="263.5" y="426" class="ta" text-anchor="middle">0.2</text>
+<rect x="278" y="432" width="21" height="20" class="l sm dsh" stroke-width="1" rx="0"/>
+<text x="288.5" y="426" class="tm" text-anchor="middle">0.2</text>
+<text x="276" y="470" class="tb" text-anchor="middle">D</text>
+<text x="276" y="487" class="tm" text-anchor="middle">5回中1回</text>
+<line x1="24" y1="452" x2="296" y2="452" class="l sm w1"/>
+<text x="24" y="512" class="ta">A：本当は0.4。運よく5回中3回当たり、</text>
+<text x="24" y="530" class="ta">　0.6に見える（見かけの1位）</text>
+<text x="24" y="552" class="tok">B：本当は0.6で最高。運悪く1回だけ</text>
+<text x="24" y="570" class="tm">　（0.6の台が5回で1回以下は約9％）</text>
+<text x="24" y="592" class="tb">見かけの1位はA、本当の1位はB</text>
+<line x1="160" y1="602" x2="160.0" y2="610.4" class="l sm w1"/>
+<polygon points="160,616 156.5,610.4 163.5,610.4" class="fm"/>
+<text x="12" y="636" class="tb">③ 残り80回を、どう使う？</text>
+<rect x="12" y="646" width="296" height="112" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="666" class="tb tng">活用だけ：見かけ1位のAを80回引く</text>
+<text x="24" y="686">当たりは平均 80×0.4＝32回</text>
+<text x="24" y="706" class="tng">Bをもう引かないので、Bの見かけは</text>
+<text x="24" y="724" class="tng">0.2のまま → 本当に良いBを見逃す</text>
+<text x="24" y="746" class="tm">もしBを80回なら 80×0.6＝48回（16回の差）</text>
+<rect x="12" y="768" width="296" height="134" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="788" class="tb twn">探索：B・C・Dもときどき引く</text>
+<text x="24" y="808">Bを引き直すと、見かけが本当の0.6へ</text>
+<text x="24" y="826">近づき、Bが最高だと気づける</text>
+<text x="24" y="848" class="twn">ただし外れの台も引く。例：Dを10回</text>
+<text x="24" y="866" class="twn">Aなら 10×0.4＝4回、Dは 10×0.2＝2回</text>
+<text x="24" y="886" class="twn">→ その10回では2回ぶん当たりが減る</text>
+<line x1="160" y1="902" x2="160.0" y2="910.4" class="l sm w1"/>
+<polygon points="160,916 156.5,910.4 163.5,910.4" class="fm"/>
+<rect x="12" y="916" width="296" height="104" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="936" class="tb ta">④ 探索と活用のトレードオフ（迷い）</text>
+<text x="24" y="956">活用：いまの当たりは多いが、見逃す</text>
+<text x="24" y="976">探索：見逃さないが、いまの当たりが減る</text>
+<text x="24" y="996" class="tb">1回の引きで、両方はできない</text>
+<text x="24" y="1012" class="tm">（試した回数が少ない台ほど見かけは不確か）</text>
+<line x1="160" y1="1020" x2="160.0" y2="1028.4" class="l sm w1"/>
+<polygon points="160,1034 156.5,1028.4 163.5,1028.4" class="fm"/>
+<rect x="12" y="1034" width="296" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="1054" class="tb tok">⑤ この迷いをうまく解く選び方</text>
+<text x="24" y="1074" class="tb tok">→ ε-greedy・UCB（次の図）</text>
+<text x="24" y="1090" class="tm">解き方をまとめてバンディットアルゴリズム</text>
+<text x="12" y="1120" class="tm">台＝広告などの選択肢、当たり＝クリック</text>
+<text x="12" y="1138" class="tm">などの報酬。数は説明のための例</text>
+</svg>

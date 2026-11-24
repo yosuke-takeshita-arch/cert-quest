@@ -1,0 +1,43 @@
+{
+  "id": "dx-biz",
+  "appVersion": "0.31.1",
+  "series": "CertQuest",
+  "name": "変革の都",
+  "shortName": "変革の都",
+  "subtitle": "DXビジネス検定対策",
+  "examDate": "2026-11-12",
+  "titleImage": "images/title.webp",
+  "titleLogo": "images/logo.webp",
+  "mapImage": "images/map.webp",
+  "exam": {
+    "questions": 100, "minutes": 80,
+    "blueprint": {
+      "perRoot": 25,
+      "qtypeGroups": [
+        { "types": ["term", "relation"], "count": 25 },
+        { "types": ["causal", "loop"], "count": 50 },
+        { "types": ["tradeoff", "interdep", "miscon"], "count": 25 }
+      ]
+    }
+  },
+  "secondsPerQuestion": 48,
+  "trueBoss": true,
+  "trueBossEnding": "./images/ending.webp",
+  "trueBossBadge": { "name": "みやこを かえし もの", "art": true },
+  "trueBossWords": { "place": "みやこの いちばん おく", "ending": "みやこを かえた！", "reached": "みやこの いちばん おくまで たどりついたよ！" },
+  "stage": { "size": 10, "stars": [0.6, 0.8, 0.9] },
+  "challenge": { "questions": 10 },
+  "reportUrl": "mailto:support@aisunia.com",
+  "about": { "examName": "DXビジネス検定（DXBz検定）", "organizer": "一般社団法人 日本イノベーション融合学会（IFSJ）", "organizerUrl": "https://www.ifsj.or.jp/" },
+  "officialUrl": "https://www.ifsj.or.jp/dx_certificate/",
+  "officialLinks": [
+    { "title": "イノベーション検定シリーズ（試験情報・チラシ）", "url": "https://www.ifsj.or.jp/dx_certificate/%e3%82%a4%e3%83%8e%e3%83%99%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e6%a4%9c%e5%ae%9a%e3%82%b7%e3%83%aa%e3%83%bc%e3%82%ba/" },
+    { "title": "実施スケジュール", "url": "https://www.ifsj.or.jp/dx_certificate/%e5%ae%9f%e6%96%bd%e3%82%b9%e3%82%b1%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab/" },
+    { "title": "よくある質問（試験時間・レベル認定）", "url": "https://www.ifsj.or.jp/faq/" },
+    { "title": "類似の検定についての学会のお知らせ", "url": "https://www.ifsj.or.jp/dx_certificate/%e2%98%85%e6%97%a5%e6%9c%ac%e3%82%a4%e3%83%8e%e3%83%99%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e8%9e%8d%e5%90%88%e5%ad%a6%e4%bc%9a%e3%81%8b%e3%82%89%e3%81%ae%e3%80%90%e9%87%8d%e8%a6%81%e3%80%91%e3%81%aa/" }
+  ],
+  "theme": {
+    "light": { "accent": "#00796b", "onAccent": "#ffffff", "accentSoft": "#dff2ef" },
+    "dark": { "accent": "#80cbc4", "onAccent": "#062b27", "accentSoft": "#163330" }
+  }
+}

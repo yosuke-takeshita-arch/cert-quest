@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 428" role="img" aria-labelledby="fig-sc-svc-incident-problem-t fig-sc-svc-incident-problem-d">
+<title id="fig-sc-svc-incident-problem-t">インシデント・問題・既知の誤りのつながり</title>
+<desc id="fig-sc-svc-incident-problem-d">例はメールが送れない障害。上から順に進む。1、インシデント：メールが送れないという計画外の中断。インシデント管理が、送信サーバの再起動などで、まずサービスを早く戻す。2、同じインシデントが毎週月曜に繰り返すので、まだ分からない原因を問題として登録し、問題管理が傾向分析で根本原因を探す。3、原因は送信の待ち行列の上限と分かったが、修正は来月なので、既知の誤りとして記録し、回避策（月曜の朝に古い待ち行列を消す）を書く。サービスデスクは同じ連絡が来たら回避策をすぐ案内する。4、恒久的な対策（上限の設定の変更）は変更管理を通して本番に入れ、再発しないことを確かめて問題を終了する。</desc>
+<text x="12" y="20" class="tb">例：『メールが送れない』</text>
+<rect x="12" y="32" width="296" height="70" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="54" class="tb">①インシデント（症状）</text>
+<text x="24" y="74">インシデント管理：まず早く戻す</text>
+<text x="24" y="92" class="tm">送信サーバを再起動→40分で復旧</text>
+<line x1="160" y1="104" x2="160" y2="118" class="l sm w1"/>
+<polygon points="160,124 156.5,118 163.5,118" class="fm"/>
+<text x="168" y="118" class="tm">毎週月曜に繰り返す</text>
+<rect x="12" y="128" width="296" height="70" class="fwn l w1" rx="6"/>
+<text x="24" y="150" class="tb">②問題（原因がまだ分からない）</text>
+<text x="24" y="170">問題管理：傾向分析で根本原因を探す</text>
+<text x="24" y="188" class="tm">記録を並べる→月曜の大量送信が引き金</text>
+<line x1="160" y1="200" x2="160" y2="214" class="l sm w1"/>
+<polygon points="160,220 156.5,214 163.5,214" class="fm"/>
+<text x="168" y="214" class="tm">原因は分かった</text>
+<rect x="12" y="224" width="296" height="88" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="24" y="246" class="tb">③既知の誤り（原因判明・未解決）</text>
+<text x="24" y="266">原因：送信の待ち行列の上限</text>
+<text x="24" y="284">修正は来月→回避策を記録する</text>
+<text x="24" y="302" class="tm">回避策：月曜の朝に古い待ち行列を消す</text>
+<line x1="160" y1="314" x2="160" y2="328" class="l sm w1"/>
+<polygon points="160,334 156.5,328 163.5,328" class="fm"/>
+<text x="168" y="328" class="tm">恒久的な対策</text>
+<rect x="12" y="338" width="296" height="70" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="360" class="tb">④解決（問題を終了）</text>
+<text x="24" y="380">上限の設定の変更を変更管理で入れる</text>
+<text x="24" y="398" class="tm">再発しないと確かめてから終了</text>
+<text x="12" y="424" class="tm">①は早く戻す、②〜④は二度と起こさない</text>
+</svg>

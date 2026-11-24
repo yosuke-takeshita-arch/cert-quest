@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 428" role="img" aria-labelledby="fig-dx-legacy-flow-t fig-dx-legacy-flow-d">
+<title id="fig-dx-legacy-flow-t">改修の繰り返し→ブラックボックス化→直せない・保守費が増える→DXの足かせ</title>
+<desc id="fig-dx-legacy-flow-d">何のための図か：長く使った基幹システムが、なぜDXの足かせになるかを、IPAのDX白書2023の説明で順に見る。①20年以上、機能の追加・改修を重ねる。②肥大化・複雑化し、中の構造が分からなくなる（ブラックボックス化）。技術面でも老朽化する。③構造が分からないので改修や機能追加が難しくなり、運用保守のコストが増える。古い技術を扱える人材の補充が難しいことも、結果として挙げられた問題の1つ。④新しい取り組みにお金と人を回しにくく、DXの足かせになる。対策として白書は移行の検討を挙げ、デジタルガバナンス・コード3.0は技術的負債が発生しないよう体制を整え、再レガシー化を防ぐ仕組みを求めている。</desc>
+<text x="12" y="20" class="tb">継ぎ足すほど、中が見えなくなる</text>
+<text x="12" y="42" class="tm">IPA「DX白書2023」の説明</text>
+<rect x="12" y="56" width="296" height="32" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="77" text-anchor="middle">① 20年以上、機能の追加・改修を重ねる</text>
+<line x1="160" y1="92" x2="160" y2="102" class="l sa w2"/>
+<polyline points="155,101 160,108 165,101" class="l sa w2" fill="none"/>
+<rect x="12" y="108" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="129" text-anchor="middle">② 肥大化・複雑化して、中の構造が</text>
+<text x="160" y="147" text-anchor="middle">分からなくなる（ブラックボックス化）</text>
+<line x1="160" y1="162" x2="160" y2="172" class="l sa w2"/>
+<polyline points="155,171 160,178 165,171" class="l sa w2" fill="none"/>
+<rect x="12" y="178" width="296" height="50" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="199" text-anchor="middle" class="tng">③ 改修や機能追加が難しくなり、</text>
+<text x="160" y="217" text-anchor="middle" class="tng">運用保守のコストが増える</text>
+<line x1="160" y1="232" x2="160" y2="242" class="l sa w2"/>
+<polyline points="155,241 160,248 165,241" class="l sa w2" fill="none"/>
+<rect x="12" y="248" width="296" height="50" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="160" y="269" text-anchor="middle" class="tng">④ 新しい取り組みに回すお金と人が</text>
+<text x="160" y="287" text-anchor="middle" class="tng">足りず、DXの足かせになる</text>
+<text x="12" y="324" class="tm">古い技術を扱える人の補充も難しい</text>
+<text x="12" y="342" class="tm">（これは起点ではなく、結果の1つ）</text>
+<line x1="12" y1="354" x2="308" y2="354" class="l sb w1"/>
+<text x="12" y="378" class="tm">対策：移行を検討する。作り直した後も、</text>
+<text x="12" y="396" class="tm">再レガシー化を防ぐ仕組みを持つ</text>
+<text x="12" y="414" class="tm">（デジタルガバナンス・コード3.0）</text>
+</svg>

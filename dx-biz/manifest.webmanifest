@@ -1,0 +1,18 @@
+{
+  "id": "/cert-quest/dx-biz/",
+  "name": "CertQuest 変革の都（DXビジネス検定対策）",
+  "short_name": "変革の都",
+  "description": "DXビジネス検定をゲーム感覚で体系的に学ぶ",
+  "lang": "ja",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f6fb",
+  "theme_color": "#00796b",
+  "icons": [
+    { "src": "icons/icon-192.png?v=2", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png?v=2", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png?v=2", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

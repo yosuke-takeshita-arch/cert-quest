@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 628" role="img" aria-labelledby="fig-g-ai-attacks-t fig-g-ai-attacks-d">
+<title id="fig-g-ai-attacks-t">AI への攻撃の種類：学習時と推論時</title>
+<desc id="fig-g-ai-attacks-d">上は、データ収集、学習、公開されたモデル（API）という流れ。データ収集と学習の段階を狙うのが学習時の攻撃、公開後の運用中を狙うのが推論時の攻撃。学習時の攻撃は2つ。データ汚染は学習データに不正なデータを混ぜる。バックドアは学習データの一部に小さな模様を付けてラベルを書き換え、模様がある入力だけを誤分類させる。推論時の攻撃は3つ。敵対的サンプルは、画像に人には見えない小さなノイズを足して誤分類させる。モデル窃取は、APIに多数の問い合わせをして応答から機能を複製する。メンバーシップ推論は、特定のデータが学習に使われたかを推定する。</desc>
+<text x="12" y="20" class="tb">AI の流れ</text>
+<rect x="12" y="32" width="92" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="58" y="56.5" class="tb" text-anchor="middle">データ収集</text>
+<line x1="105" y1="52" x2="117" y2="52" class="l sm w2"/>
+<polyline points="111,55.3 117,52 111,48.7" class="l sm w2"/>
+<rect x="119" y="32" width="66" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="152" y="56.5" class="tb" text-anchor="middle">学習</text>
+<line x1="186" y1="52" x2="198" y2="52" class="l sm w2"/>
+<polyline points="192,55.3 198,52 192,48.7" class="l sm w2"/>
+<rect x="200" y="32" width="108" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="254" y="48" class="tb" text-anchor="middle">公開モデル</text>
+<text x="254" y="65" class="tb" text-anchor="middle">（API）</text>
+<line x1="12" y1="80" x2="185" y2="80" class="l swn w3"/>
+<line x1="200" y1="80" x2="308" y2="80" class="l sng w3"/>
+<text x="12" y="100" class="tb twn">学習時の攻撃</text>
+<text x="308" y="100" class="tb tng" text-anchor="end">推論時の攻撃</text>
+<text x="12" y="132" class="tb twn">① データ汚染（ポイズニング）</text>
+<rect x="12" y="144" width="56" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="40" y="162" text-anchor="middle">正常な</text>
+<text x="40" y="179" text-anchor="middle">データ</text>
+<text x="77" y="169" class="tb" text-anchor="middle">＋</text>
+<rect x="88" y="144" width="52" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="114" y="162" text-anchor="middle">不正な</text>
+<text x="114" y="179" text-anchor="middle">データ</text>
+<text x="149" y="169" class="tb" text-anchor="middle">→</text>
+<rect x="160" y="144" width="52" height="44" class="fwn swn" stroke-width="1.5"/>
+<text x="186" y="170.5" text-anchor="middle">学習</text>
+<text x="221" y="169" class="tb" text-anchor="middle">→</text>
+<rect x="232" y="144" width="60" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="262" y="162" text-anchor="middle">性能低下</text>
+<text x="262" y="179" text-anchor="middle">誤分類</text>
+<text x="12" y="214" class="tb twn">② バックドア</text>
+<rect x="12" y="226" width="88" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="56" y="244" text-anchor="middle">画像＋小さな</text>
+<text x="56" y="261" text-anchor="middle">模様</text>
+<text x="109" y="251" class="tb" text-anchor="middle">→</text>
+<rect x="120" y="226" width="70" height="44" class="fwn swn" stroke-width="1.5"/>
+<text x="155" y="244" text-anchor="middle">ラベルを</text>
+<text x="155" y="261" text-anchor="middle">書き換え</text>
+<text x="199" y="251" class="tb" text-anchor="middle">→</text>
+<rect x="210" y="226" width="94" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="257" y="244" text-anchor="middle">模様があると</text>
+<text x="257" y="261" text-anchor="middle">誤分類</text>
+<text x="12" y="292" class="tm">模様がない入力では、正常に動く</text>
+<line x1="12" y1="320" x2="308" y2="320" class="l sb w1"/>
+<text x="12" y="348" class="tb tng">③ 敵対的サンプル</text>
+<rect x="12" y="360" width="52" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="38" y="386.5" text-anchor="middle">画像</text>
+<text x="73" y="385" class="tb" text-anchor="middle">＋</text>
+<rect x="84" y="360" width="92" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="130" y="378" text-anchor="middle">小さなノイズ</text>
+<text x="130" y="395" text-anchor="middle">（見えない）</text>
+<text x="185" y="385" class="tb" text-anchor="middle">＝</text>
+<rect x="196" y="360" width="92" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="242" y="378" text-anchor="middle">誤分類</text>
+<text x="242" y="395" text-anchor="middle">される</text>
+<text x="12" y="432" class="tb tng">④ モデル窃取</text>
+<rect x="12" y="444" width="104" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="64" y="462" text-anchor="middle">多数の</text>
+<text x="64" y="479" text-anchor="middle">問い合わせ</text>
+<text x="125" y="469" class="tb" text-anchor="middle">→</text>
+<rect x="136" y="444" width="52" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="162" y="470.5" text-anchor="middle">応答</text>
+<text x="197" y="469" class="tb" text-anchor="middle">→</text>
+<rect x="208" y="444" width="88" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="252" y="462" text-anchor="middle">機能を</text>
+<text x="252" y="479" text-anchor="middle">複製</text>
+<text x="12" y="516" class="tb tng">⑤ メンバーシップ推論</text>
+<rect x="12" y="528" width="88" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="56" y="546" text-anchor="middle">特定の</text>
+<text x="56" y="563" text-anchor="middle">データ</text>
+<text x="109" y="553" class="tb" text-anchor="middle">→</text>
+<rect x="120" y="528" width="52" height="44" class="fs sb" stroke-width="1.5"/>
+<text x="146" y="554.5" text-anchor="middle">モデル</text>
+<text x="181" y="553" class="tb" text-anchor="middle">→</text>
+<rect x="192" y="528" width="108" height="44" class="fng sng" stroke-width="1.5"/>
+<text x="246" y="546" text-anchor="middle">学習に使われた</text>
+<text x="246" y="563" text-anchor="middle">かを推定</text>
+<text x="12" y="596" class="tb">学習時に混ぜる＝汚染</text>
+<text x="12" y="616" class="tb">推論時に細工する＝敵対的攻撃</text>
+</svg>

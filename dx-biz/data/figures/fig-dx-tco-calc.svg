@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 686" role="img" aria-labelledby="fig-dx-tco-calc-t fig-dx-tco-calc-d">
+<title id="fig-dx-tco-calc-t">初期費用200万円・月10万円のA案と、500万円・月4万円のB案の総費用（3年・5年・逆転する月）</title>
+<desc id="fig-dx-tco-calc-d">何のための図か：A案（初期費用200万円・運用費が毎月10万円）とB案（初期費用500万円・毎月4万円）で、使う期間によって安い案が入れ替わることを、問題の数で見る。ことばの式：総費用＝初期費用＋毎月の運用費×使う月数。初期費用は最初の1回だけ、運用費は毎月かかるので月数を掛ける。横棒グラフの棒の長さは総費用で、濃い部分が初期費用、薄い部分が運用費の合計。3年（36か月）：A案＝200＋10×36＝200＋360＝560万円、B案＝500＋4×36＝500＋144＝644万円で、A案が84万円安い。5年（60か月）：A案＝200＋10×60＝200＋600＝800万円、B案＝500＋4×60＝500＋240＝740万円で、B案が60万円安い。逆転する月：初期費用の差は500−200＝300万円、毎月の差は10−4＝6万円なので、差は毎月6万円ずつ縮まる。300÷6＝50か月（4年2か月）で追いつき、50か月ではA案もB案も700万円。それより長く使うとB案が安い。</desc>
+<text x="12" y="20" class="tb">総費用は、使う期間で安い案が入れ替わる</text>
+<text x="12" y="44">A案：初期費用 200万円 ＋ 運用費 月10万円</text>
+<text x="12" y="62">B案：初期費用 500万円 ＋ 運用費 月 4万円</text>
+<rect x="12" y="74" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="94" class="tb">総費用 ＝ 初期費用 ＋ 月の運用費 × 使う月数</text>
+<text x="22" y="112" class="tm">初期費用は最初の1回だけ。運用費は毎月かかる</text>
+<text x="12" y="148" class="tm">横棒グラフ。棒の長さ＝総費用（万円）</text>
+<rect x="12" y="158" width="14" height="14" class="fm"/>
+<text x="32" y="170">初期費用</text>
+<rect x="110" y="158" width="14" height="14" class="fas sa" stroke-width="1"/>
+<text x="130" y="170">運用費の合計</text>
+<line x1="12" y1="184" x2="308" y2="184" class="l sb w1"/>
+<text x="12" y="208" class="tb">① 3年（36か月）使うと</text>
+<text x="12" y="238">A案</text>
+<rect x="44" y="223" width="47.5" height="20" class="fm"/>
+<rect x="91.5" y="223" width="85.5" height="20" class="fas sa" stroke-width="1"/>
+<text x="183" y="238" class="tb tok">560万円</text>
+<text x="12" y="268">B案</text>
+<rect x="44" y="253" width="118.8" height="20" class="fm"/>
+<rect x="162.8" y="253" width="34.2" height="20" class="fas sa" stroke-width="1"/>
+<text x="203" y="268" class="tb">644万円</text>
+<text x="12" y="294" class="tm">A：200 ＋ 10×36 ＝ 200 ＋ 360 ＝ 560</text>
+<text x="12" y="312" class="tm">B：500 ＋ 4×36 ＝ 500 ＋ 144 ＝ 644</text>
+<text x="12" y="334" class="tb tok">→ A案が 84万円 安い</text>
+<line x1="12" y1="346" x2="308" y2="346" class="l sb w1"/>
+<text x="12" y="370" class="tb">② 5年（60か月）使うと</text>
+<text x="12" y="400">A案</text>
+<rect x="44" y="385" width="47.5" height="20" class="fm"/>
+<rect x="91.5" y="385" width="142.5" height="20" class="fas sa" stroke-width="1"/>
+<text x="240" y="400" class="tb">800万円</text>
+<text x="12" y="430">B案</text>
+<rect x="44" y="415" width="118.8" height="20" class="fm"/>
+<rect x="162.8" y="415" width="57" height="20" class="fas sa" stroke-width="1"/>
+<text x="225.8" y="430" class="tb tok">740万円</text>
+<text x="12" y="456" class="tm">A：200 ＋ 10×60 ＝ 200 ＋ 600 ＝ 800</text>
+<text x="12" y="474" class="tm">B：500 ＋ 4×60 ＝ 500 ＋ 240 ＝ 740</text>
+<text x="12" y="496" class="tb tok">→ B案が 60万円 安い（逆転）</text>
+<line x1="12" y1="508" x2="308" y2="508" class="l sb w1"/>
+<text x="12" y="532" class="tb">③ 何か月目で入れ替わるか</text>
+<text x="12" y="550">初期費用の差：500 − 200 ＝ 300万円</text>
+<text x="12" y="568">毎月の差：10 − 4 ＝ 6万円ずつ縮まる</text>
+<rect x="12" y="580" width="296" height="68" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="600" class="tb tok">300 ÷ 6 ＝ 50か月（4年2か月）で追いつく</text>
+<text x="22" y="618" class="tm">50か月：A＝200＋10×50＝700</text>
+<text x="22" y="636" class="tm">　　　　B＝500＋4×50＝700</text>
+<text x="12" y="672" class="tm">それより短ければA案、長ければB案が安い</text>
+</svg>

@@ -1,0 +1,1362 @@
+/* 共通スタイル。色の数値は変数に集め、配色は config.json の theme が上書きする。
+   余白は4pxの倍数、本文16px以上、押せるものは高さ48px以上（片手・縦画面が主）。 */
+:root {
+  color-scheme: light dark;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1b1f2a;
+  --muted: #566074;
+  --border: #d3d8e3;
+  --accent: #1565c0;
+  --on-accent: #ffffff;
+  --accent-soft: #e3effc;
+  --ok: #1b7a3a;
+  --ok-bg: #e2f4e8;
+  --ng: #b3261e;
+  --ng-bg: #fdeae8;
+  --warn: #8a5300;
+  --warn-bg: #fff1d1;
+  --shadow: 0 1px 3px rgba(20, 30, 60, 0.12);
+  --radius: 12px;
+  --nav-h: 64px;
+}
+/* 配色は設定（明るい／暗い／スマホに合わせる）を app.js が data-theme="light"|"dark" に解決して付ける */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f131a;
+    --surface: #1a202b;
+    --text: #e9ecf3;
+    --muted: #a9b2c3;
+    --border: #2f3748;
+    --accent: #90caf9;
+    --on-accent: #0b1b2e;
+    --accent-soft: #1d2d42;
+    --ok: #72d48e;
+    --ok-bg: #16301f;
+    --ng: #ff9a92;
+    --ng-bg: #3b1c1a;
+    --warn: #f3c562;
+    --warn-bg: #3a2e0f;
+    --shadow: none;
+}
+
+* { box-sizing: border-box; }
+/* 下に引っ張ると画面ごと再読み込みされる（ブラウザの動作）のを止める。アプリでは誤操作になるため（2026-10-04 先生の指摘）。
+   Chrome for Developers「Take control of your scroll」: body の overscroll-behavior-y: contain で pull-to-refresh を無効にできる */
+html, body { overscroll-behavior-y: contain; }
+html { -webkit-text-size-adjust: 100%; font-size: 16px; }
+/* 文字の大きさの設定（settings.textSize を app.js が data-text に付ける）。文字は rem で書いてあるので、html の大きさを変えるだけで全体が変わる。
+   倍率は shared/js/lib/textsize.js の TEXT_SCALE（16px × 0.9 / 1 / 1.15 / 1.3）。図（.fig）の文字は図ごと拡大されるので、ここでは変えない */
+html[data-text="small"] { font-size: 14.4px; }
+html[data-text="normal"] { font-size: 16px; }
+html[data-text="large"] { font-size: 18.4px; }
+html[data-text="xlarge"] { font-size: 20.8px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 1rem/1.7 system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', sans-serif;
+  overscroll-behavior-y: contain;
+}
+h1 { font-size: 1.5rem; line-height: 1.4; margin: 8px 0 16px; }
+h2 { font-size: 1.125rem; line-height: 1.5; margin: 0 0 12px; }
+h3 { font-size: 1rem; line-height: 1.5; margin: 0 0 8px; }
+p { margin: 0 0 12px; }
+a { color: var(--accent); }
+.small { font-size: 0.875rem; line-height: 1.6; }
+.muted { color: var(--muted); }
+.center { text-align: center; }
+.warn-text { color: var(--warn); }
+.hidden { display: none !important; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.shell { max-width: 560px; margin: 0 auto; min-height: 100vh; }
+.main { padding: 16px 16px calc(var(--nav-h) + 32px); outline: none; }
+body.no-nav .main { padding-bottom: 96px; }
+.view { display: block; }
+.icon { width: 24px; height: 24px; flex: none; }
+
+/* ---- 下部ナビ ---- */
+.bottom-nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  display: flex; max-width: 560px; margin: 0 auto;
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.nav-item {
+  flex: 1; min-height: var(--nav-h); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; color: var(--muted); text-decoration: none; font-size: 0.75rem; font-weight: 600;
+}
+.nav-item[aria-current='page'] { color: var(--accent); }
+.nav-item[aria-current='page'] .icon { transform: scale(1.1); }
+
+/* ---- 部品 ---- */
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow);
+}
+.card.empty, .empty { text-align: center; color: var(--muted); }
+.note { background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 12px; font-size: 0.9375rem; }
+.btn {
+  appearance: none; font: inherit; font-weight: 700; min-height: 52px; padding: 12px 20px; border-radius: var(--radius);
+  border: 1.5px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-align: center;
+  transition: transform 0.1s, background-color 0.15s;
+}
+.btn:active:not(:disabled) { transform: scale(0.98); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; } /* 押せない間の見た目（disabled にはしない。押したら次のページへ進めるため） */
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.danger { border-color: var(--ng); color: var(--ng); }
+.btn.ghost { border-color: transparent; background: transparent; color: var(--accent); }
+.btn.big { width: 100%; min-height: 60px; font-size: 1.0625rem; margin-bottom: 12px; }
+.btn.icon-only { min-width: 52px; padding: 12px; }
+.btn.back { min-height: 48px; padding: 8px 8px; margin-bottom: 4px; }
+.small-btn { min-height: 48px; padding: 8px 12px; font-size: 0.875rem; }
+.btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-row .btn.big { margin-bottom: 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.btn.tile { flex-direction: column; margin-bottom: 0; min-height: 84px; gap: 0; }
+.cta { flex-direction: column; gap: 0; }
+.cta-sub { font-weight: 600; opacity: 0.9; }
+.badge-count { background: var(--on-accent); color: var(--accent); border-radius: 999px; padding: 0 12px; margin-left: 8px; }
+.link-btn { appearance: none; background: none; border: 0; color: var(--accent); font: inherit; font-weight: 600; text-align: left; padding: 8px 0; min-height: 48px; cursor: pointer; }
+ul.plain { padding-left: 20px; margin: 0 0 12px; }
+ul.plain.link-list { list-style: none; padding: 0; }
+.row-line { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.big-num { font-size: 1.75rem; }
+
+.chip {
+  display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; border-radius: 999px;
+  font-size: 0.8125rem; font-weight: 700; background: var(--accent-soft); color: var(--text); border: 1px solid transparent;
+}
+button.chip.link { min-height: 48px; padding: 0 16px; font-size: 0.9375rem; cursor: pointer; color: var(--accent); border-color: var(--accent); background: var(--surface); font-family: inherit; }
+.chip.plain { background: var(--bg); border-color: var(--border); color: var(--muted); }
+.chip.unverified, .chip.warn { background: var(--warn-bg); color: var(--warn); }
+.chip.you { background: var(--ng-bg); color: var(--ng); align-self: flex-start; }
+.chip.m-none { background: var(--bg); color: var(--muted); border-color: var(--border); }
+.chip.m-empty { background: var(--bg); color: var(--muted); border-color: var(--border); }
+.chip.m-weak { background: var(--ng-bg); color: var(--ng); }
+.chip.m-mid { background: var(--warn-bg); color: var(--warn); }
+.chip.m-strong { background: var(--ok-bg); color: var(--ok); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.row-btn {
+  appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: var(--surface);
+  border: 0; border-bottom: 1px solid var(--border); padding: 12px 4px; min-height: 56px; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.row-btn:last-child { border-bottom: 0; }
+.row-main { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.menu { padding: 4px 16px; }
+.switch { width: 28px; height: 28px; flex: none; accent-color: var(--accent); }
+.slider { width: 140px; min-height: 44px; flex: none; accent-color: var(--accent); }
+.slider:disabled { opacity: .4; }
+.row-btn.plain { cursor: default; }
+.row-btn.row-stack { flex-direction: column; align-items: stretch; gap: 8px; }
+.select-full { width: 100%; min-width: 0; }
+.search { width: 100%; font: inherit; min-height: 52px; padding: 8px 16px; border-radius: var(--radius); border: 1.5px solid var(--border); background: var(--surface); color: var(--text); margin-bottom: 16px; }
+.group-title { margin-top: 16px; }
+.card-groups .row-btn { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; padding: 12px 16px; }
+/* カードを分野で見る（分野 › 中項目 › 小項目）。分野と中項目は開け閉めし、小項目は見出しにする */
+.card-major > .card-tree-inner { padding: 0 16px 8px; }
+details.card-sub { border-top: 1px solid var(--border); }
+details.card-sub > summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 12px 0; min-height: 52px; cursor: pointer; font-weight: 700; }
+details.card-sub > summary::-webkit-details-marker { display: none; }
+.card-major > summary::before, details.card-sub > summary::before { content: '▸'; color: var(--muted); transition: transform 0.15s; }
+.card-major[open]:not(.is-closing) > summary::before, details.card-sub[open]:not(.is-closing) > summary::before { transform: rotate(90deg); }
+/* グループの開け閉めの動き（要件定義書 §6-6、js/lib/expand.js）。動いている間だけ、高さが変わる details のはみ出しを隠す。
+   高さの指定は JS が animate で一時的に当てるだけで、終わると何も残らない。動きを減らす設定では JS が何もしない */
+details.is-expanding { overflow: hidden; }
+.tb-q-panel.is-expanding, .tb-group-body.is-expanding { overflow: hidden; } /* ボタンで開け閉めする折りたたみ（真ボスの結果・よく間違える問題）。toggleExpand が付け外す */
+details.card-sub > .card-tree-inner { margin: 0 0 8px 6px; padding-left: 12px; border-left: 3px solid var(--accent-soft); }
+.card-small-title { font-size: 0.95rem; color: var(--muted); margin: 12px 0 0; }
+.card-tree .row-btn { padding: 10px 4px; }
+.card-tree .row-btn:last-child { border-bottom: 0; }
+
+/* ---- ホーム ---- */
+.hero { background: var(--accent); color: var(--on-accent); border-radius: var(--radius); padding: 20px 16px; margin-bottom: 16px; }
+.hero p { margin: 0; }
+.hero-name { font-weight: 700; opacity: 0.95; }
+.hero-subtitle { opacity: 0.85; }
+.countdown { font-size: 1.125rem; margin-top: 4px !important; }
+.countdown .days { font-size: 2.5rem; line-height: 1.2; }
+.lv-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.lv-row .lv { display: block; font-size: 1.5rem; line-height: 1.3; }
+.streak { display: flex; align-items: center; gap: 4px; }
+.icon.on { color: #d9730d; }
+.icon.off { color: var(--muted); opacity: 0.6; }
+.stars { display: inline-flex; }
+.stars .icon { width: 20px; height: 20px; }
+.stars .icon.on { color: #d19a00; }
+.progress { height: 12px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width 0.4s; }
+.foot { text-align: center; margin-top: 24px; }
+.done-today { text-align: center; }
+
+/* ---- 地図・ステージ ---- */
+details.major { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+details.major > summary { list-style: none; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 16px; min-height: 56px; cursor: pointer; font-weight: 700; }
+details.major > summary::-webkit-details-marker { display: none; }
+.sum-name { flex: 1; min-width: 40%; }
+.stage-row {
+  appearance: none; width: 100%; font: inherit; color: var(--text); text-align: left; background: var(--surface);
+  border: 0; border-top: 1px solid var(--border); border-left: 6px solid var(--border); padding: 12px 16px; min-height: 64px; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+}
+.stage-row.m-border-weak { border-left-color: var(--ng); }
+.stage-row.m-border-mid { border-left-color: var(--warn); }
+.stage-row.m-border-strong { border-left-color: var(--ok); }
+.small-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.small-row:first-of-type { border-top: 0; }
+
+/* ---- 冒険の地図 ----
+   下が最初の章、上へ進む。縦の位置は rem（文字の大きさの設定に合わせて伸び縮み）、横は幅の割合。計算は shared/js/lib/maplayout.js。
+   背景は config.json の mapImage（絵に道や印は描かない。道と印はここで重ねる）。無いときはテーマ色の縦のグラデーション。 */
+.map-switch { display: flex; gap: 4px; padding: 4px; margin: 8px 0 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; }
+.map-switch-btn { appearance: none; flex: 1; font: inherit; font-weight: 700; min-height: 48px; padding: 8px 12px; border: 0; border-radius: 999px; background: transparent; color: var(--text); cursor: pointer; }
+.map-switch-btn.on { background: var(--accent); color: var(--on-accent); }
+.map-board {
+  position: relative; height: calc(var(--map-h) * 1rem); margin-top: 12px; overflow: hidden;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--accent-soft);
+  background: linear-gradient(to top, color-mix(in srgb, var(--accent) 30%, var(--surface)) 0%, var(--accent-soft) 50%, color-mix(in srgb, var(--accent) 45%, var(--surface)) 100%);
+}
+.map-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+/* 章ごとの絵（lib/maplayout.js の mapBands）。下端を --blend rem かけて透明にし、下の章の絵になじませる */
+.map-bg.map-band {
+  inset: auto; left: 0; top: calc(var(--top) * 1rem); height: calc(var(--bh) * 1rem); object-position: center center;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--blend) * 1rem), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - var(--blend) * 1rem), transparent);
+}
+.map-road { position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--map-h) * 1rem); pointer-events: none; }
+.map-road path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.map-road-band { stroke: var(--surface); stroke-width: 24px; opacity: 0.9; }
+.map-road-line { stroke: var(--accent); stroke-width: 4px; stroke-dasharray: 1 12; }
+.map-node, .map-major-row { position: absolute; left: 0; right: 0; top: calc(var(--y) * 1rem); height: 0; margin: 0; pointer-events: none; animation: map-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+.map-major-row { display: flex; align-items: flex-start; justify-content: center; font-size: 1rem; }
+.map-major { display: flex; flex-direction: column; align-items: center; gap: 4px; max-width: 90%; padding: 8px 16px; transform: translateY(-50%); text-align: center; line-height: 1.4; background: var(--accent); color: var(--on-accent); border: 2px solid var(--surface); border-radius: var(--radius); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
+.map-major-meta { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.map-dot {
+  appearance: none; pointer-events: auto; position: absolute; left: calc(var(--x) * 1%); top: 0; width: 4.5rem; height: 4.5rem; margin: -2.25rem 0 0 -2.25rem; padding: 0;
+  display: flex; align-items: center; justify-content: center; font: inherit; font-size: 1.375rem; font-weight: 800; color: var(--text); background: var(--surface);
+  border: 6px solid var(--border); border-radius: 50%; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); cursor: pointer; transition: transform 0.12s;
+}
+.map-dot:active { transform: scale(0.94); }
+.map-dot:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+.map-dot.m-border-weak { border-color: var(--ng); background: var(--ng-bg); }
+.map-dot.m-border-mid { border-color: var(--warn); background: var(--warn-bg); }
+.map-dot.m-border-strong { border-color: var(--ok); background: var(--ok-bg); }
+.map-node.here .map-dot { box-shadow: 0 0 0 4px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.3); animation: map-pulse 2s ease-in-out infinite; }
+.map-name {
+  position: absolute; top: 0; transform: translateY(-50%); pointer-events: auto; cursor: pointer; width: max-content;
+  display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; line-height: 1.4; overflow-wrap: anywhere;
+  background: var(--surface); background: color-mix(in srgb, var(--surface) 94%, transparent); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.map-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.map-node.side-right .map-name { left: calc(var(--x) * 1% + 2.75rem); max-width: calc(100% - var(--x) * 1% - 3.25rem); }
+.map-node.side-left .map-name { right: calc((100 - var(--x)) * 1% + 2.75rem); max-width: calc(var(--x) * 1% - 3.25rem); align-items: flex-end; text-align: right; }
+.map-node.side-left .map-meta { justify-content: flex-end; }
+.char-img.map-sunny { position: absolute; left: calc(var(--x) * 1%); top: -4.5rem; width: 3rem; height: 3rem; margin-left: -1.5rem; transform-origin: 50% 100%; animation: map-hop 1.6s ease-in-out infinite; }
+@keyframes map-pop { 0% { opacity: 0; transform: translateY(1.5rem) scale(0.8); } 100% { opacity: 1; transform: none; } }
+@keyframes map-pulse { 0%, 100% { box-shadow: 0 0 0 4px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.3); } 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--accent) 45%, transparent), 0 2px 8px rgba(0, 0, 0, 0.3); } }
+/* ボスが出ている章（2026-10-12 先生「燃えてるとか、闇がかってるとか」）: 丸を闇の色にし、上へ炎がゆらめき、まわりに紫の闇がにじむ。
+   色は配色に関係なく固定（明るい・暗いどちらでも同じ見え方）。動きを減らす設定では動きだけ止まり、炎と闇の形は残る */
+.map-node.boss-on .map-dot {
+  color: #ffe3b0; border-color: #ff5a1f; text-shadow: 0 0 6px #ff7a2a, 0 0 2px #000;
+  background: radial-gradient(circle at 50% 38%, #4a1650 0%, #1f0822 60%, #0d020c 100%);
+  box-shadow: 0 0 0 3px #7a1fa2, 0 -8px 16px 4px rgba(255, 90, 20, 0.8), 0 0 34px 14px rgba(70, 0, 95, 0.65);
+  animation: boss-burn 1.3s ease-in-out infinite alternate;
+}
+/* 炎は丸の後ろの別の要素（.map-flame）。ぎざぎざの炎の形で切り抜き、丸のまわりから上へ立ちのぼるように見せる */
+.map-flame {
+  position: absolute; left: calc(var(--x) * 1%); top: 0; width: 6.6rem; height: 7.6rem; margin: -4.9rem 0 0 -3.3rem; pointer-events: none; transform-origin: 50% 80%;
+  background: radial-gradient(ellipse 50% 55% at 50% 64%, #fff2a8 0%, #ffc23a 38%, #ff6a1a 62%, #c81e0a 80%, transparent 100%);
+  clip-path: polygon(50% 0%, 58% 18%, 66% 6%, 70% 26%, 82% 14%, 82% 36%, 94% 30%, 90% 52%, 100% 58%, 92% 72%, 96% 88%, 80% 96%, 50% 100%, 20% 96%, 4% 88%, 8% 72%, 0% 58%, 10% 52%, 6% 30%, 18% 36%, 18% 14%, 30% 26%, 34% 6%, 42% 18%);
+  filter: drop-shadow(0 0 6px rgba(255, 90, 20, 0.8)); animation: boss-flame 0.8s ease-in-out infinite alternate;
+}
+.map-node.boss-on .map-name { border-color: #b0283a; box-shadow: 0 0 0 2px rgba(176, 40, 58, 0.45), 0 0 18px rgba(80, 0, 110, 0.45); }
+@keyframes boss-burn {
+  0% { box-shadow: 0 0 0 3px #7a1fa2, 0 -8px 16px 4px rgba(255, 90, 20, 0.8), 0 0 34px 14px rgba(70, 0, 95, 0.65); }
+  100% { box-shadow: 0 0 0 5px #9b2fc9, 0 -12px 22px 7px rgba(255, 60, 10, 0.95), 0 0 46px 20px rgba(70, 0, 95, 0.8); }
+}
+@keyframes boss-flame {
+  0% { transform: scale(0.92, 0.85) skewX(-3deg); opacity: 0.85; }
+  50% { transform: scale(1.04, 1.08) skewX(2deg); opacity: 1; }
+  100% { transform: scale(0.96, 1.15) skewX(-1deg); opacity: 0.9; }
+}
+@keyframes map-hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.4rem); } }
+
+/* ---- 出題 ---- */
+.play-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.play-title { flex: 1; display: flex; flex-direction: column; min-width: 0; line-height: 1.4; }
+.play-head .progress { width: 100%; height: 8px; }
+.clock-box { font-size: 1.125rem; white-space: nowrap; }
+.clock { font-variant-numeric: tabular-nums; }
+.q-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.stem { font-size: 1.125rem; line-height: 1.8; white-space: pre-wrap; margin-bottom: 16px; }
+.timer { height: 10px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.timer-fill { height: 100%; width: 100%; background: var(--accent); }
+.timer-left { display: block; font-size: 0.875rem; color: var(--muted); margin: 4px 0 12px; font-variant-numeric: tabular-nums; }
+.choices { display: flex; flex-direction: column; gap: 12px; }
+.choice {
+  appearance: none; font: inherit; text-align: left; color: var(--text); background: var(--surface);
+  border: 2px solid var(--border); border-radius: var(--radius); min-height: 60px; padding: 12px 16px;
+  display: flex; align-items: center; gap: 12px; cursor: pointer; line-height: 1.6;
+  transition: transform 0.1s, border-color 0.15s;
+}
+.choice:active:not(:disabled) { transform: scale(0.99); }
+/* 選択肢の文の改行をそのまま出す（1列の表の選択肢など。本試験の形。改行の無い選択肢は変わらない）。解説で選択肢を再掲する所も同じ */
+.choice .ctext, .ex-answer, .why-wrong .lbl { white-space: pre-line; }
+.choice .mark { flex: none; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--accent-soft); font-weight: 700; }
+.choice:disabled { cursor: default; color: var(--text); }
+.choice.picked { border-color: var(--accent); background: var(--accent-soft); }
+.choice.ok { border-color: var(--ok); background: var(--ok-bg); }
+.choice.ok .mark { background: var(--ok); color: var(--surface); }
+.choice.ng { border-color: var(--ng); background: var(--ng-bg); }
+.choice.ng .mark { background: var(--ng); color: var(--surface); }
+.verdict { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 12px 16px; border-radius: var(--radius); margin: 16px 0; }
+.verdict strong { font-size: 1.25rem; }
+.verdict.ok { background: var(--ok-bg); color: var(--ok); animation: pop 0.35s; }
+.verdict.ng { background: var(--ng-bg); color: var(--ng); animation: shake 0.3s; }
+.verdict .xp { font-weight: 700; }
+.verdict .levelup { flex-basis: 100%; font-weight: 700; }
+.stumble { background: var(--warn-bg); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
+.stumble h3 { color: var(--warn); }
+.stumble-item { margin-bottom: 8px; }
+.conf-list, .tie-list, .why-wrong { list-style: none; padding: 0; margin: 0; }
+.conf-list li, .tie-list li { margin-bottom: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.point { color: var(--text); }
+.explain { margin-bottom: 16px; }
+.ex-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+.ex-block h3 { display: flex; align-items: center; gap: 8px; }
+.ex-block .num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; font-size: 0.8125rem; }
+.ex-block.tip { background: var(--accent-soft); }
+.ex-block.stem-plain p { margin: 0; line-height: 1.8; overflow-wrap: anywhere; } /* 問題文の意味。長い語は折り返す。文字は rem なので文字の大きさの設定で伸び縮みする */
+.why-wrong li { padding: 8px 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 2px; }
+.why-wrong li:first-child { border-top: 0; }
+.why-wrong .lbl { font-weight: 700; }
+.why-wrong li.chosen .lbl { color: var(--ng); }
+.sources { margin-top: 8px; }
+.sticky-bar { position: sticky; bottom: 0; padding: 12px 0; background: linear-gradient(to top, var(--bg) 70%, transparent); z-index: 5; }
+body:not(.no-nav) .sticky-bar { bottom: var(--nav-h); }
+.sticky-bar .btn.big { margin-bottom: 0; }
+.sticky-bar.two { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 8px; }
+.qgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(48px, 1fr)); gap: 8px; }
+.qnum { appearance: none; font: inherit; font-weight: 700; min-height: 48px; border-radius: 8px; border: 2px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+.qnum.done { background: var(--accent-soft); border-color: var(--accent); }
+.qnum.cur { outline: 3px solid var(--accent); outline-offset: 1px; }
+/* 模擬試験の見直しの印。一覧では番号の右上の三角（色だけに頼らないよう、読み上げは aria-label で伝える） */
+.qnum { position: relative; }
+.qnum.flag::after { content: ''; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0 16px 16px 0; border-color: transparent var(--warn) transparent transparent; border-top-right-radius: 6px; }
+.qgrid-legend { margin: 8px 0; }
+.exam-flag-row { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.exam-flag { min-height: 48px; }
+.exam-flag.on { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); font-weight: 700; }
+.exam-flag-mode { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.result .score { font-size: 1.25rem; }
+.star-result .icon { width: 40px; height: 40px; }
+details.miss { border-top: 1px solid var(--border); padding: 8px 0; }
+details.miss summary { cursor: pointer; padding: 8px 0; min-height: 48px; font-weight: 600; }
+.bar-row { margin-bottom: 12px; }
+.bar-label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.9375rem; }
+.bar { height: 12px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--muted); }
+.bar-fill.strong { background: var(--ok); }
+.bar-fill.mid { background: var(--warn); }
+.bar-fill.weak { background: var(--ng); }
+
+/* ---- 用語カード ---- */
+.concept h2 { font-size: 1.375rem; }
+.one-line { font-size: 1.125rem; font-weight: 600; }
+.why, .tie, .confuse { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
+.arrow { color: var(--muted); }
+.rel { font-size: 0.875rem; color: var(--muted); }
+.crumb { margin-bottom: 4px; }
+
+/* ---- バッジ ---- */
+.badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.badge { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; display: flex; flex-direction: column; gap: 4px; opacity: 0.7; }
+.badge.got { opacity: 1; border-color: var(--accent); background: var(--accent-soft); }
+.badge-ic { color: var(--muted); }
+.badge.got .badge-ic { color: #d19a00; }
+.badge-ic .icon { width: 32px; height: 32px; }
+.badge-ic.art { line-height: 0; }
+.badge-img { display: block; border-radius: 50%; object-fit: cover; }
+.badge-grid-img { width: 72px; height: 72px; }
+/* 取っていないバッジの絵は、灰色で薄く */
+.badge-grid .badge:not(.got) .badge-img, .goal-badge-img { filter: grayscale(1); opacity: 0.5; }
+/* 取っていないバッジの見せ方（要件定義書 §3-8-b）。姿がわからない＝絵は黒い影（形だけ）。ひみつ＝絵も名前も『？』 */
+.badge.shadow .badge-ic { color: var(--text); }
+.badge-grid .badge.shadow .badge-img { filter: grayscale(1) brightness(0.22); opacity: 1; box-shadow: 0 0 0 2px var(--muted); }
+.badge.shadow .badge-ic:not(.art) .icon { filter: brightness(0); opacity: 0.85; }
+:root[data-theme="dark"] .badge-grid .badge.shadow .badge-img { filter: grayscale(1) brightness(0.45); }
+.badge .secret-ic { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.25rem; font-weight: 800; line-height: 1; color: var(--muted); border: 2px dashed var(--muted); }
+.badge.secret strong { font-size: 1.25rem; line-height: 1.2; color: var(--muted); }
+.celebrate-secret { color: var(--accent); font-weight: 800; margin: 0 0 12px; }
+.goal-head { display: flex; align-items: center; gap: 12px; }
+.goal-badge-img { flex: none; width: 40px; height: 40px; }
+
+/* ---- 通知・演出・シート ---- */
+.toasts { position: fixed; left: 0; right: 0; top: 12px; z-index: 50; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; padding: 0 16px; }
+.toast { background: var(--text); color: var(--bg); border-radius: 999px; padding: 12px 20px; font-weight: 700; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); animation: pop 0.3s; }
+.toast.badge { background: var(--accent); color: var(--on-accent); }
+.toast.warn { background: var(--warn); color: var(--bg); }
+/* 新しい版に入れ替わったときの帯（3-2-c）。画面の上に出す（問題を解く画面でも選択肢や「次へ」に重ならない） */
+.update-notice { position: fixed; left: 12px; right: 12px; top: calc(env(safe-area-inset-top) + 12px); z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--surface); color: var(--text); border: 1.5px solid var(--accent); border-radius: var(--radius); padding: 12px 16px; box-shadow: var(--shadow); font-weight: 700; }
+.update-notice-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.update-notice .btn { min-height: 48px; padding: 8px 20px; }
+.burst { position: fixed; z-index: 40; pointer-events: none; width: 0; height: 0; }
+.confetti { position: absolute; width: 10px; height: 10px; border-radius: 2px; animation: fly 0.8s ease-out forwards; }
+.confetti.c0 { background: #e53935; } .confetti.c1 { background: #fbc02d; } .confetti.c2 { background: #43a047; }
+.confetti.c3 { background: #1e88e5; } .confetti.c4 { background: #8e24aa; }
+.sheet-back { position: fixed; inset: 0; z-index: 30; background: rgba(0, 0, 0, 0.5); display: flex; align-items: flex-end; justify-content: center; }
+.sheet { background: var(--bg); width: 100%; max-width: 560px; max-height: 88vh; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; animation: slide 0.25s; }
+.sheet-close { align-self: flex-end; margin: 4px 8px 0; }
+.sheet-body { overflow: auto; padding: 0 16px 24px; }
+.sheet-body .card { box-shadow: none; }
+
+/* ---- 基礎のことば（要件定義書 §7-5）----
+   文中の印は、点線の下線（色だけに頼らない）。文字の色は周りと同じ（--text）なので、明るい配色・暗い配色のどちらでも読める。押すと下から窓が出る */
+button.basic-term { appearance: none; font: inherit; color: inherit; background: none; border: 0; margin: 0; padding: 0 1px; border-radius: 4px; cursor: pointer; text-decoration: underline dotted var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+button.basic-term:hover { background: var(--accent-soft); }
+.basics-entry { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: var(--accent-soft); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; min-height: 64px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.basics-entry .small { color: var(--muted); }
+.basics-entry-arrow { flex: none; font-size: 1.5rem; line-height: 1; color: var(--accent); }
+.basic-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.basic-list .row-main { gap: 2px; }
+/* カードめくり（views/flip.js） */
+.flip-card { min-height: 220px; display: flex; flex-direction: column; justify-content: center; gap: 12px; text-align: center; }
+.flip-card .flip-title { font-size: 1.5rem; margin: 0; }
+.flip-card .btn { align-self: center; }
+.flip .row-btn[disabled] { cursor: default; opacity: 0.55; }
+.flip-rate { font-weight: 700; color: var(--ok); }
+.flip-rate.weak { color: var(--ng); }
+.flip details.major { margin-top: 12px; }
+
+/* ---- お祝いの画面 ---- */
+.celebrate-back { position: fixed; inset: 0; z-index: 60; background: rgba(8, 12, 24, 0.82); display: flex; align-items: center; justify-content: center; padding: 16px; overflow: auto; animation: fade 0.25s; }
+/* 確かめの小窓（ui.js の confirmDialog。ブラウザの confirm の代わり）。お祝いの窓と同じ角丸・影で、お祝いより手前に出す */
+.confirm-back { position: fixed; inset: 0; z-index: 80; background: rgba(8, 12, 24, 0.7); display: flex; align-items: center; justify-content: center; padding: 16px; animation: fade 0.2s; }
+.confirm { width: 100%; max-width: 400px; max-height: 100%; overflow: auto; background: var(--surface); color: var(--text); border-radius: 20px; padding: 22px 20px 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); animation: pop 0.3s; }
+.confirm .confirm-mascot { margin: 0 0 14px; }
+.confirm .confirm-mascot .mascot-img { width: 64px; height: 64px; }
+.confirm-title { font-size: 1.2rem; font-weight: 800; margin: 0 0 10px; }
+.confirm-msg { margin: 0 0 20px; line-height: 1.7; color: var(--muted); }
+.celebrate-confetti { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+.celebrate-confetti .confetti { top: -16px; width: 12px; height: 16px; animation: rain var(--dur, 2.4s) linear var(--delay, 0s) infinite; }
+.celebrate { position: relative; z-index: 1; width: 100%; max-width: 420px; max-height: 100%; overflow: auto; background: var(--surface); color: var(--text); border-radius: 20px; padding: 24px 20px 20px; text-align: center; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); animation: pop 0.4s; }
+.celebrate-close { position: absolute; top: 4px; right: 4px; }
+.celebrate-head { font-size: 1.25rem; font-weight: 800; color: var(--accent); margin: 8px 0 12px; }
+.celebrate-emblem { width: 144px; height: 144px; margin: 0 auto 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; background: var(--accent); color: var(--on-accent); box-shadow: 0 0 0 8px var(--accent-soft); animation: bounce 0.9s ease-out; }
+.celebrate-emblem.lv strong { font-size: 3.75rem; line-height: 1; }
+.celebrate-emblem.lv .lv-label { font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; }
+.celebrate-emblem.badge .icon { width: 84px; height: 84px; }
+/* .badge（一覧のカード）の枠・余白・薄さが移らないようにする */
+.celebrate-emblem.badge.art { background: transparent; border: 0; padding: 0; opacity: 1; box-shadow: 0 0 28px 8px rgba(255, 200, 40, 0.55); }
+.celebrate-badge-img { width: 100%; height: 100%; }
+.celebrate-emblem.goal .icon { width: 84px; height: 84px; }
+.celebrate-emblem.stars { background: var(--accent-soft); color: var(--text); }
+.celebrate-emblem.stars .icon { width: 36px; height: 36px; }
+.celebrate-title { font-size: 1.75rem; line-height: 1.3; margin: 0 0 8px; overflow-wrap: anywhere; }
+.celebrate-sub { color: var(--muted); margin-bottom: 12px; }
+.celebrate-next { background: var(--accent-soft); border-radius: var(--radius); padding: 12px 16px; margin: 12px 0 16px; text-align: left; }
+.celebrate-next-text { margin-bottom: 8px; }
+.celebrate .btn.big:last-child { margin-bottom: 0; }
+
+/* ---- 次の目標・1日の目標 ---- */
+.daily-head { justify-content: space-between; margin-bottom: 8px; }
+.daily-note { margin: 8px 0 0; }
+.card.daily.done { border-color: var(--ok); background: var(--ok-bg); }
+.card.daily.done .progress-fill { background: var(--ok); }
+.goal-row { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: var(--surface); border: 0; border-top: 1px solid var(--border); padding: 12px 0; min-height: 64px; cursor: pointer; display: flex; flex-direction: column; gap: 8px; }
+.goal-row:first-of-type { border-top: 0; }
+.goal-text { display: flex; flex-direction: column; }
+.select { font: inherit; min-height: 48px; padding: 8px 12px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); }
+.badge-prog { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.badge-prog .progress { height: 8px; }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bounce { 0% { transform: scale(0.3); } 50% { transform: scale(1.18); } 70% { transform: scale(0.94); } 100% { transform: scale(1); } }
+@keyframes rain { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--sway, 0px), 110vh) rotate(540deg); opacity: 0.9; } }
+@keyframes pop { 0% { transform: scale(0.92); opacity: 0.4; } 60% { transform: scale(1.04); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@keyframes fly { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(0.6) rotate(200deg); opacity: 0; } }
+@keyframes slide { from { transform: translateY(40px); opacity: 0.5; } to { transform: translateY(0); opacity: 1; } }
+
+/* 動きが苦手な人向け: アニメーションと遷移を止める（紙吹雪は出さない） */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .burst { display: none; }
+  .celebrate-confetti { display: none; }
+}
+@media (min-width: 640px) { .main { padding-top: 32px; } }
+/* ── タイトル画面 ──
+   背景は画像（無い・読めないときはテーマ色のグラデーション）。その上に暗い膜を重ね、文字は白＋影で、
+   明るい配色・暗い配色のどちらでも同じに読める（文字と膜の色は配色に依らず固定）。 */
+.title-screen {
+  position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
+  background: linear-gradient(160deg, var(--accent) 0%, #0b1b2e 100%);
+  background: linear-gradient(160deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 40%, #000) 100%);
+  color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 12px rgba(0, 0, 0, 0.55);
+}
+.title-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; user-select: none; -webkit-user-drag: none; }
+.title-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 38%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0.65) 100%); }
+.title-top, .title-bottom { position: relative; width: 100%; max-width: 560px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+.title-top { min-height: 33%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: calc(24px + env(safe-area-inset-top, 0px)); animation: fade 0.8s ease-out both; }
+.title-name { text-wrap: balance; font-size: clamp(1.75rem, 8.4vw, 3.25rem); line-height: 1.25; font-weight: 800; letter-spacing: 0.02em; margin: 0 0 12px; }
+.title-series { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.2em; margin: 0 0 4px; opacity: 0.9; }
+.title-subtitle { font-size: 0.95rem; font-weight: 700; margin: 0 0 12px; padding: 2px 12px; border-radius: 999px; background: rgba(0, 0, 0, 0.35); }
+.title-name.has-logo { margin-bottom: 8px; line-height: 0; }
+.title-logo-wrap { position: relative; display: block; width: min(100%, 480px); margin: 0 auto; }
+.title-logo { display: block; width: 100%; height: auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)); user-select: none; -webkit-user-drag: none; }
+/* 縁をたどる光の粒（views/title.js の traceLogo）。2026-10-14 先生「ぼやーんと光るんじゃなくて、キラッと光ってほしい。できれば縁を辿るように」。
+   輪郭の長さを100（path の pathLength）として、粒が 4.5秒ごとに約1.6秒で一周する。粒は長さの違う3本（尾16・中7・頭2）で、先の端がそろうよう、
+   どれも「ずらし＝長さ」から「長さ−100」まで動かす。ずらしの値は keyframes に数で書く（var() を使うと Chrome がなめらかに動かさず、始めと終わりに飛んだ）。
+   太さは viewBox（絵の幅240）の単位。vector-effect: non-scaling-stroke は粒の長さの計算を狂わせるので使わない。動きを減らす設定では上の規則で止まり、見えないまま */
+.title-logo-trace { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; filter: drop-shadow(0 0 3px rgba(255, 248, 210, 0.95)) drop-shadow(0 0 7px rgba(255, 205, 90, 0.8)); }
+.title-logo-trace > path { fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.title-logo-trace .trace-tail { stroke: rgba(255, 205, 90, 0.55); stroke-width: 4.5; stroke-dasharray: 16 300; stroke-dashoffset: 16; animation: logo-trace-16 4.5s linear 1.2s infinite; }
+.title-logo-trace .trace-mid { stroke: rgba(255, 236, 160, 0.9); stroke-width: 2.3; stroke-dasharray: 7 300; stroke-dashoffset: 7; animation: logo-trace-7 4.5s linear 1.2s infinite; }
+.title-logo-trace .trace-head { stroke: #ffffff; stroke-width: 1.6; stroke-dasharray: 2 300; stroke-dashoffset: 2; animation: logo-trace-2 4.5s linear 1.2s infinite; }
+.title-logo-trace .trace-star { fill: #ffffff; }
+/* config.titleLogoTrace で決めた部分だけをたどる形（views/title.js の traceParts）。動きは JS が付けるので、上の CSS の動きは止める */
+.title-logo-trace.is-parts > path { animation: none; }
+.title-logo-trace .trace-flash-glow { fill: #fffbe8; }
+.title-logo-trace .trace-flash-ring { fill: none; stroke: #ffe28a; stroke-width: 1.4; }
+@keyframes logo-trace-16 { 0% { stroke-dashoffset: 16; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -84; opacity: 0; } }
+@keyframes logo-trace-7 { 0% { stroke-dashoffset: 7; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -93; opacity: 0; } }
+@keyframes logo-trace-2 { 0% { stroke-dashoffset: 2; opacity: 0; } 4%, 32% { opacity: 1; } 36%, 100% { stroke-dashoffset: -98; opacity: 0; } }
+.title-exam { font-size: 1rem; font-weight: 700; margin: 0; padding: 4px 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); }
+.title-bottom { padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); min-height: 120px; display: flex; flex-direction: column; justify-content: flex-end; }
+.title-gauge { height: 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(255, 255, 255, 0.85); overflow: hidden; }
+.title-gauge-fill { height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #ffb300, #ffe082); transition: width 0.25s ease-out; }
+.title-status { margin: 12px 0 0; text-align: center; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.04em; }
+.title-start {
+  appearance: none; font: inherit; font-size: 1.25rem; font-weight: 800; width: 100%; min-height: 64px; padding: 12px 24px; cursor: pointer;
+  border-radius: 999px; border: 3px solid #fff; background: #fff; color: #0b1b2e; text-shadow: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); animation: title-pulse 1.8s ease-in-out infinite;
+}
+.title-start:active { transform: scale(0.98); }
+.title-start:focus-visible { outline: 3px solid #ffe082; outline-offset: 3px; }
+.title-start:disabled { opacity: 0.7; animation: none; }
+.title-error { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, 0.55); text-shadow: none; }
+.title-error .card { max-width: 480px; width: 100%; color: var(--text); }
+@keyframes title-pulse { 0%, 100% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 224, 130, 0.7); } 50% { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(255, 224, 130, 0); } }
+/* 右上の歯車（音の設定）。読み込み中でも押せる。押せる大きさは48px */
+.title-gear {
+  appearance: none; position: absolute; z-index: 3; top: calc(8px + env(safe-area-inset-top, 0px)); right: 8px; width: 48px; height: 48px; padding: 0;
+  display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.5); color: #fff; text-shadow: none; cursor: pointer;
+}
+.title-gear .icon { width: 26px; height: 26px; }
+.title-gear:active { transform: scale(0.94); }
+.title-gear:focus-visible { outline: 3px solid #ffe082; outline-offset: 3px; }
+/* 音の設定のポップアップ（タイトル画面の上に重ねる。お祝いの画面と同じ作り） */
+.title-pop-back { position: fixed; inset: 0; z-index: 70; background: rgba(8, 12, 24, 0.72); display: flex; align-items: center; justify-content: center; padding: 16px; overflow: auto; animation: fade 0.2s; }
+.title-pop { position: relative; width: 100%; max-width: 480px; max-height: 100%; overflow: auto; background: var(--surface); color: var(--text); border-radius: 20px; padding: 16px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); animation: pop 0.3s; }
+.title-pop-title { font-size: 1.25rem; margin: 8px 56px 8px 8px; }
+.title-pop-close { position: absolute; top: 4px; right: 4px; }
+.title-pop .card { box-shadow: none; border: 0; background: transparent; padding: 0; margin: 0; }
+/* 「タップしてはじめる」を押したときの演出（約1秒）。ボタンが光り、輪がはじけ、画面が白く明るく抜ける。白が最も強い約0.6秒でホームに切り替わる（title.js の SWITCH_MS） */
+.title-screen.starting .title-top { animation: title-lift 0.6s ease-in both; }
+.title-start.go { opacity: 1; animation: title-go 0.55s ease-out both; }
+.title-start-wrap { position: relative; }
+.title-ring { position: absolute; inset: 0; border-radius: 999px; border: 4px solid #ffe082; pointer-events: none; animation: title-ring 0.6s ease-out both; }
+.title-flash { position: fixed; inset: 0; z-index: 90; background: #fff; opacity: 0; pointer-events: none; animation: title-flash 1s ease-in-out both; }
+@keyframes title-go { 0% { transform: scale(1); } 40% { transform: scale(1.07); box-shadow: 0 0 36px 14px rgba(255, 224, 130, 0.95); } 100% { transform: scale(1.12); box-shadow: 0 0 70px 36px rgba(255, 255, 255, 0.9); } }
+/* 輪はボタンの縁から、同じ形（丸い長方形）のまま四方へ等しく広がる。縦に引き伸ばさない */
+@keyframes title-ring { 0% { inset: 0; opacity: 1; } 100% { inset: -20px; opacity: 0; } }
+@keyframes title-lift { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-12px) scale(1.06); } }
+@keyframes title-flash { 0% { opacity: 0; } 55% { opacity: 1; } 100% { opacity: 0; } }
+/* 動きを減らす設定でも、ゲージの伸びだけは残す（進み具合を伝える動きなので）。ほかのアニメーションは上の規則で止まる */
+@media (prefers-reduced-motion: reduce) {
+  .title-gauge-fill { transition: width 0.25s ease-out !important; }
+}
+
+/* ---- 図（SVG）。図のファイル（data/figures/*.svg）は色を持たず、ここのクラスで色を付ける（要件定義書 §7-2）。
+   色は上の変数だけを使うので、明るい配色・暗い配色の両方で見える。文字は13px以上（幅320の図が幅300前後で出ても12px相当を切らない） ---- */
+.fig-block { margin: 0 0 16px; }
+.fig-box { margin: 0 0 16px; }
+.fig-box:last-child { margin-bottom: 0; }
+.fig { display: block; width: 100%; max-width: 360px; height: auto; margin: 0 auto; }
+.fig-cap { margin: 4px 0 0; text-align: center; }
+.fig-status { margin: 0; padding: 8px 0; }
+.fig rect, .fig circle, .fig ellipse, .fig path, .fig polygon, .fig polyline, .fig line { fill: none; stroke: none; }
+.fig text { fill: var(--text); font-size: 13px; font-family: inherit; }
+.fig .tm { fill: var(--muted); }
+.fig .tb { font-weight: 700; }
+.fig .tl { font-size: 15px; font-weight: 700; }
+.fig .ta { fill: var(--accent); }
+.fig .tok { fill: var(--ok); }
+.fig .tng { fill: var(--ng); }
+.fig .twn { fill: var(--warn); }
+.fig .ton { fill: var(--on-accent); }
+.fig .l { stroke: var(--text); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.fig .sa { stroke: var(--accent); }
+.fig .sok { stroke: var(--ok); }
+.fig .sng { stroke: var(--ng); }
+.fig .swn { stroke: var(--warn); }
+.fig .sm { stroke: var(--muted); }
+.fig .sb { stroke: var(--border); }
+.fig .w1 { stroke-width: 1; }
+.fig .w2 { stroke-width: 2.5; }
+.fig .w3 { stroke-width: 3.5; }
+.fig .dsh { stroke-dasharray: 6 4; }
+.fig .dot { stroke-dasharray: 1.5 4; }
+.fig .fs { fill: var(--surface); }
+.fig .fbg { fill: var(--bg); }
+.fig .ft { fill: var(--text); }
+.fig .fm { fill: var(--muted); }
+.fig .fa { fill: var(--accent); }
+.fig .fas { fill: var(--accent-soft); }
+.fig .fok { fill: var(--ok-bg); }
+.fig .fng { fill: var(--ng-bg); }
+.fig .fwn { fill: var(--warn-bg); }
+/* ---- 受験日・このアプリについて・引き継ぎ・誤りの報告 ---- */
+.ng-text { color: var(--ng); }
+.field-label { display: block; font-weight: 700; margin: 4px 0 8px; }
+.date-input { font: inherit; width: 100%; min-height: 52px; padding: 8px 12px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); color-scheme: light dark; margin-bottom: 12px; }
+.ask-screen { max-width: 560px; margin: 0 auto; padding: calc(24px + env(safe-area-inset-top, 0px)) 16px 32px; }
+.ask-screen .btn.big { margin-bottom: 12px; }
+.title-unofficial { margin: 12px 0 0; text-align: center; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.92); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); }
+.title-version { margin: 4px 0 0; text-align: center; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.7); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85); pointer-events: none; overflow-wrap: anywhere; }
+.title-unofficial.title-sound-hint { margin: 0 0 4px; }
+.exam-past { background: var(--warn-bg); color: var(--warn); border-color: var(--warn); }
+.exam-past .btn { margin-top: 4px; }
+.report { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 8px; }
+.report .btn { min-height: 48px; text-decoration: none; display: inline-flex; align-items: center; }
+.report p { margin: 4px 0 0; }
+.credit-list { padding-left: 20px; margin: 8px 0 0; }
+.credit-list li { margin-bottom: 8px; }
+.about .card p { margin: 8px 0; }
+[data-card=backup] .btn-row { grid-template-columns: 1fr; }
+.about-provider { display: flex; align-items: center; gap: 16px; }
+.logo-plate { background: #ffffff; border-radius: 12px; padding: 8px 12px; flex: none; line-height: 0; }
+.provider-logo { width: 160px; height: auto; max-width: 100%; display: block; }
+.provider-name { margin: 0 !important; font-weight: 700; }
+/* ---- キャラクター（柴犬と先生）。飾りの絵で、押せない（タップを邪魔しない）。1画面に1人まで ---- */
+.char-img { display: block; flex: none; width: 64px; height: 64px; object-fit: contain; pointer-events: none; user-select: none; }
+.mascot-line { display: flex; align-items: center; gap: 12px; }
+.mascot-img { width: 72px; height: 72px; }
+.mascot-say { position: relative; flex: 1; min-width: 0; margin: 0; padding: 8px 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-weight: 700; overflow-wrap: anywhere; }
+.mascot-name { display: block; font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+.mascot-say::before { content: ""; position: absolute; left: -6px; top: calc(50% - 5px); width: 10px; height: 10px; background: var(--surface); border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); transform: rotate(45deg); }
+.hero .mascot-line { margin-top: 12px; }
+.mascot-line.cheer { background: var(--warn-bg); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; }
+.result .mascot-line { margin-top: 12px; }
+.about-provider { flex-wrap: wrap; }
+.about-provider .mascot-line { flex-basis: 100%; }
+.ex-block h3 .sensei-mini { width: 48px; height: 48px; margin: -8px 0 -8px auto; }
+.celebrate-stage { position: relative; }
+.celebrate-mascot { position: absolute; right: 0; bottom: 0; width: 68px; height: 68px; }
+/* 出るときは、ぴょこんと飛び出す（下から跳ね上がって、ぽよんと弾んで止まる）。出たあとは、2〜3px だけゆっくり上下して、ときどき小さく傾く。
+   動きを減らす設定では、下の prefers-reduced-motion の規則で全部止まり、そのままの姿で出る */
+.char-img { animation: char-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both, char-idle 4s ease-in-out 0.6s infinite; transform-origin: 50% 90%; }
+[data-char="shiba-cheer"] { animation: char-hop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both, char-idle 3s ease-in-out 0.6s infinite; }
+[data-char="shiba-banzai"], [data-char="shiba-clap"] { animation: char-big 0.6s cubic-bezier(0.3, 1.8, 0.5, 1) 0.2s both, char-idle 3s ease-in-out 0.9s infinite; }
+[data-char="sensei-comfort"], [data-char="shiba-sleepy"] { animation: char-soft 0.6s ease-out both, char-idle 5s ease-in-out 0.7s infinite; }
+.mascot-say { animation: bubble-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both; transform-origin: 0 50%; }
+@keyframes char-pop { 0% { transform: translateY(24px) scale(0.5); opacity: 0; } 55% { transform: translateY(-8px) scale(1.08); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-hop { 0% { transform: translateY(36px) scale(0.6, 0.5); opacity: 0; } 45% { transform: translateY(-16px) scale(0.95, 1.1); opacity: 1; } 70% { transform: translateY(3px) scale(1.06, 0.94); } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-big { 0% { transform: translateY(20px) scale(0.3); opacity: 0; } 50% { transform: translateY(-14px) scale(1.18); opacity: 1; } 75% { transform: translateY(2px) scale(0.96); } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-soft { 0% { transform: translateY(10px) scale(0.9); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+@keyframes char-idle { 0%, 100% { transform: translateY(0) rotate(0); } 40% { transform: translateY(-3px) rotate(0); } 80% { transform: translateY(0) rotate(0); } 86% { transform: translateY(0) rotate(-4deg); } 93% { transform: translateY(0) rotate(3deg); } }
+@keyframes bubble-pop { 0% { transform: scale(0.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@media (min-width: 480px) { .celebrate-mascot { width: 88px; height: 88px; } }
+/* キャラクターをタップする遊び: 絵を包む button。見た目は絵のまま（大きさも変えない）。タップで小さく跳ねる（動きを減らす設定では止まる）。節目の一言は吹き出しに入る。吹き出しが無い所は、絵の下に一時的に出す */
+.char-tap-wrap { position: relative; display: block; flex: none; }
+.char-tap { appearance: none; display: block; padding: 0; margin: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; border-radius: 12px; -webkit-tap-highlight-color: transparent; }
+.char-tap .char-img { margin: 0; }
+.char-tap.hop { animation: char-tap 0.35s ease-out; }
+@keyframes char-tap { 0% { transform: none; } 35% { transform: translateY(-10px) scale(1.08); } 70% { transform: translateY(0) scale(0.96, 1.04); } 100% { transform: none; } }
+.char-temp-say { position: absolute; right: 100%; top: 50%; translate: 0 -50%; margin-right: 8px; width: max-content; max-width: 11rem; z-index: 5; pointer-events: none; text-align: left; transform-origin: 100% 50%; }
+.char-temp-say::before { display: none; }
+.ex-block h3 .char-tap-wrap { margin: -8px 0 -8px auto; }
+.ex-block h3 .char-tap-wrap .sensei-mini { margin: 0; }
+/* ---- 使い方の案内（初めて開いたとき・「もっと」の「使い方」）。画面いっぱいに重ねる。絵は大きめに、ぴょこんと出る（動きは上のキャラクターの規則に乗る） ---- */
+.intro-screen { position: fixed; inset: 0; z-index: 75; display: flex; flex-direction: column; background: var(--bg); color: var(--text); overflow: auto; padding: env(safe-area-inset-top, 0px) 16px calc(16px + env(safe-area-inset-bottom, 0px)); }
+.intro-top { display: flex; justify-content: flex-end; flex: none; padding-top: 8px; }
+.intro-skip { min-width: 72px; }
+.intro-stage { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 480px; margin: 0 auto; touch-action: pan-y; }
+.intro-slide { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 8px 0; }
+.char-img.intro-img { width: 144px; height: 144px; margin-bottom: 12px; }
+.intro-say { flex: none; width: 100%; margin-bottom: 16px; padding: 12px 16px; text-align: left; line-height: 1.7; transform-origin: 50% 0; }
+.intro-say::before { left: calc(50% - 5px); top: -6px; border-left: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 0; transform: rotate(45deg); }
+.intro-title { margin: 0 0 4px; font-size: 1.25rem; }
+.intro-step { margin: 0; }
+.intro-bottom { flex: none; width: 100%; max-width: 480px; margin: 0 auto; }
+.intro-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.intro-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+.intro-dot.on { background: var(--accent); }
+.intro-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; }
+.intro-actions.single { grid-template-columns: 1fr; }
+.intro-actions .btn.big { margin-bottom: 0; }
+
+/* ---- キャラクター紹介（もっと › キャラクター）。1人ずつ切り替える ---- */
+.char-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.char-tab { min-height: 48px; margin: 0; }
+.char-tab.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.char-hero { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 16px; }
+.char-img.char-intro-img { width: 144px; height: 144px; }
+.char-intro-say { width: 100%; text-align: left; line-height: 1.7; transform-origin: 50% 0; }
+.char-intro-say::before { left: calc(50% - 5px); top: -6px; border-left: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 0; transform: rotate(45deg); }
+.char-facts { margin: 0; }
+.char-fact { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.char-fact:last-child { border-bottom: 0; }
+.char-fact dt { font-size: 0.875rem; font-weight: 700; color: var(--accent); }
+.char-fact dd { margin: 0; overflow-wrap: anywhere; }
+.char-note { display: block; }
+.char-where { margin: 0; padding-left: 1.25rem; }
+.char-where li { margin: 4px 0; overflow-wrap: anywhere; }
+
+/* ---- 苦手の分析（もっと › 苦手の分析）と、ホームの一行 ---- */
+.weak-mascot { margin: 8px 0 16px; }
+.weak-row { display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-top: 1px solid var(--border); }
+.weak-row:first-of-type { border-top: 0; padding-top: 4px; }
+.weak-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.weak-rate { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.weak-row.weak .weak-rate { color: var(--ng); }
+.weak-row.strong .weak-rate { color: var(--ok); }
+.weak-bar { height: 8px; }
+.weak-row.weak .progress-fill { background: var(--ng); }
+.weak-bar.ok .progress-fill { background: var(--ok); }
+.weak-note { margin: 0; }
+.weak-row.untouched { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+.weak-row .btn.small-btn { width: 100%; }
+.weak-row.untouched .btn.small-btn { width: auto; min-width: 72px; flex: none; }
+/* すべての分野（要件定義書 §6-4） */
+.weak-actions { display: flex; flex-direction: column; gap: 8px; }
+.weak-actions .btn.small-btn { white-space: normal; overflow-wrap: anywhere; }
+.weak-row.all-row:first-of-type { border-top: 0; }
+.weak-all-list .weak-row:first-child { border-top: 0; padding-top: 4px; }
+.weak-rate-pending { text-align: right; flex: none; max-width: 45%; }
+.weak-row.all-row.learning .weak-rate-pending { color: var(--muted); }
+.weak-row.focus { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: var(--radius); }
+/* ホームの「苦手の分析」カード */
+.weak-home-item { appearance: none; display: flex; flex-direction: column; align-items: stretch; gap: 4px; width: 100%; min-height: 56px; margin: 4px 0; padding: 8px 12px; font: inherit; text-align: left; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-left: 6px solid var(--ng); border-radius: var(--radius); cursor: pointer; }
+.weak-home-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.weak-home-item .weak-rate { color: var(--ng); }
+.weak-home-often { appearance: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 56px; margin: 4px 0; padding: 8px 12px; font: inherit; text-align: left; color: var(--text); background: var(--warn-bg); border: 1px solid var(--warn); border-radius: var(--radius); cursor: pointer; }
+.weak-often .btn.small-btn { width: 100%; margin: 8px 0; }
+.weak-often-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.weak-often .tb-q-panel { padding: 0 4px 12px; }
+.weak-home-go { font-size: 0.9375rem; font-weight: 700; color: var(--accent); }
+.weak-home .btn.small-btn { width: 100%; margin-top: 8px; }
+.weak-entry { margin-bottom: 12px; }
+/* 見て分かる形: レーダーチャートと分野のタイル（要件定義書 §6-4） */
+.radar-wrap { display: flex; justify-content: center; }
+.radar { width: 100%; max-width: 360px; height: auto; display: block; }
+.radar-ring { fill: none; stroke: var(--border); stroke-width: 1; }
+.radar-ring.outer { stroke: var(--muted); }
+.radar-axis { stroke: var(--border); stroke-width: 1; }
+.radar-axis.later { stroke: var(--muted); stroke-dasharray: 4 4; }
+.radar-area { fill: var(--accent); fill-opacity: 0.22; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+.radar-line { stroke: var(--accent); stroke-width: 2.5; }
+.radar-dot { fill: var(--accent); }
+.radar-dot.later { fill: var(--surface); stroke: var(--muted); stroke-width: 2; }
+.radar-lbl-bg { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+.radar-lbl-bg.later { fill: var(--surface); stroke: var(--muted); stroke-dasharray: 3 2; }
+.radar-lbl { fill: var(--text); font-weight: 700; }
+.weak-tiles-title { margin-top: 20px; }
+.weak-tiles-title.first { margin-top: 0; }
+.weak-legend { margin: 4px 0 8px; }
+.tiles-row { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--border); }
+.weak-tiles-head { appearance: none; display: flex; align-items: center; gap: 8px; flex: 0 0 46%; min-width: 0; min-height: 48px; padding: 4px 4px; font: inherit; font-size: 0.875rem; font-weight: 700; text-align: left; color: var(--text); background: none; border: 0; cursor: pointer; }
+.weak-tiles-no { flex: none; width: 24px; height: 24px; border-radius: 999px; background: var(--accent-soft); border: 1px solid var(--accent); font-size: 0.75rem; line-height: 22px; text-align: center; }
+.weak-tiles-text { display: flex; flex-direction: column; min-width: 0; }
+.weak-tiles-name { overflow-wrap: anywhere; line-height: 1.35; }
+.weak-tiles-rate { font-weight: 400; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.tiles { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 4px; padding: 6px 0; }
+.tile-cell { appearance: none; width: 28px; height: 28px; padding: 0; font: inherit; font-size: 0.75rem; font-weight: 700; line-height: 1; border-radius: 6px; border: 2px solid var(--border); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.tile-cell.lv-ok { background: var(--ok-bg); color: var(--ok); border-color: var(--ok); }
+.tile-cell.lv-mid { background: var(--warn-bg); color: var(--warn); border-color: var(--warn); }
+.tile-cell.lv-ng { background: var(--ng-bg); color: var(--ng); border-color: var(--ng); }
+.tile-cell.lv-none { background: var(--surface); color: var(--muted); border-style: dashed; border-color: var(--muted); }
+/* カードの見出しの下の正答率（押すと「すべての分野」のその行へ） */
+.card-rate { appearance: none; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; width: 100%; min-height: 48px; margin: 4px 0 4px; padding: 8px 12px; font: inherit; font-size: 0.9375rem; text-align: left; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; }
+.card-rate-text { font-weight: 700; font-variant-numeric: tabular-nums; }
+.card-rate.weak .card-rate-text { color: var(--ng); }
+.card-rate.strong .card-rate-text { color: var(--ok); }
+.card-rate-bar { flex: 1; min-width: 40px; height: 8px; }
+.card-rate-bar .progress-fill { display: block; }
+.card-rate.weak .progress-fill { background: var(--ng); }
+.card-rate-bar.ok .progress-fill { background: var(--ok); }
+.card-rate-go { margin-left: auto; color: var(--muted); flex: none; }
+.text-sample { margin: 8px 0 0; padding: 12px 16px; border-radius: var(--radius); background: var(--accent-soft); line-height: 1.8; overflow-wrap: anywhere; }
+
+/* ---- あとで見る（要件定義書 §3-4） ---- */
+.later-row { margin-top: 16px; }
+.btn.later-btn { min-height: 48px; width: 100%; font-size: 0.9375rem; }
+.btn.later-btn.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.btn.later-btn .icon { width: 20px; height: 20px; }
+/* 問題の画面の見出しに置く小さい形（選択肢と見間違えないよう、枠を付けず幅も取らない） */
+.btn.later-btn.compact { width: auto; min-height: 48px; padding: 8px 12px; border-color: transparent; background: none; color: var(--accent); font-size: 0.875rem; }
+.btn.later-btn.compact.on { background: var(--accent-soft); border-color: var(--accent); }
+.explain > .later-btn { margin-top: 4px; margin-bottom: 12px; }
+.later-list { padding: 0 16px; }
+.later-item { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-bottom: 1px solid var(--border); padding: 12px 0; min-height: 64px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; overflow-wrap: anywhere; }
+.later-item:last-child { border-bottom: 0; }
+.later-stem { font-weight: 600; line-height: 1.6; }
+.read-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.read-choice { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 2px solid var(--border); border-radius: var(--radius); line-height: 1.6; background: var(--surface); }
+.read-choice.ok { border-color: var(--ok); background: var(--ok-bg); }
+.read-choice .mark { flex: none; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--accent-soft); font-weight: 700; }
+.read-choice .ctext { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+
+/* どっち？早押し（要件定義書 §3-5）。色は既存の変数だけ（暗い配色でもそのまま読める） */
+.btn.tile.dochi-tile { width: 100%; margin-bottom: 16px; }
+.dochi-line { font-size: 1.1875rem; line-height: 1.8; margin: 0 0 8px; overflow-wrap: anywhere; }
+.dochi-choice .ctext { flex: 1; min-width: 0; overflow-wrap: anywhere; font-weight: 700; }
+.dochi-combo { min-width: 6.5em; min-height: 1.6em; text-align: right; font-weight: 700; color: var(--accent); }
+.dochi-point p { margin: 0 0 8px; overflow-wrap: anywhere; }
+.dochi-point p:last-child { margin-bottom: 0; }
+.dochi-pair { overflow-wrap: anywhere; }
+.dochi-newrec { margin: 8px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--ok-bg); color: var(--ok); font-weight: 700; }
+.dochi-miss { min-height: 64px; }
+/* 結果発表の演出（要件定義書 §3-5）。動きを減らす設定では、上の prefers-reduced-motion の規則で animation が止まり、そのままの姿で出る */
+.dochi-result-card { text-align: center; }
+.dochi-result-card .dochi-kind { margin: 0; }
+.dochi-announce { font-size: 2.25rem; line-height: 1.3; margin: 4px 0 12px; color: var(--accent); animation: dochi-announce-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.dochi-score { font-size: 1.25rem; }
+.dochi-score strong { font-size: 2rem; font-variant-numeric: tabular-nums; }
+.dochi-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.dochi-stamp { display: flex; align-items: center; justify-content: center; width: 112px; height: 112px; margin: 16px auto; border-radius: 50%; border: 6px solid currentColor; background: var(--surface); font-weight: 900; transform: rotate(-10deg); }
+.dochi-stamp.pending { visibility: hidden; }
+.dochi-stamp.landed { animation: dochi-stamp-in 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+.dochi-stamp-letter { font-size: 4rem; line-height: 1; }
+.dochi-stamp.rank-S { color: var(--warn); background: var(--warn-bg); }
+.dochi-stamp.rank-A { color: var(--ok); background: var(--ok-bg); }
+.dochi-stamp.rank-B { color: var(--accent); background: var(--accent-soft); }
+.dochi-stamp.rank-C { color: var(--muted); background: var(--surface); }
+.dochi-mascot-slot { min-height: 96px; text-align: left; }
+.dochi-rec-slot.has-rec { min-height: 3.2rem; }
+@keyframes dochi-announce-in { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes dochi-stamp-in { from { transform: scale(2.4) rotate(-30deg); opacity: 0; } to { transform: scale(1) rotate(-10deg); opacity: 1; } }
+/* 模擬試験の結果発表（要件定義書の模擬試験「結果発表の演出」）。数え上げの間に幅が変わってがたつかないよう、数字は等幅 */
+.exam-result-card { text-align: center; }
+.exam-result-card .dochi-kind { margin: 0; }
+.exam-score { font-variant-numeric: tabular-nums; }
+.exam-score .exam-count { font-size: 3.5rem; line-height: 1.1; }
+.exam-score-pop { animation: exam-score-pop 0.6s cubic-bezier(0.2, 1.6, 0.4, 1) both; }
+.exam-after { min-height: 96px; text-align: left; }
+@keyframes exam-score-pop { 0% { transform: scale(1); } 35% { transform: scale(1.35); color: var(--warn); } 100% { transform: scale(1); } }
+.exam-hist-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.exam-hist-row .row-line { margin: 0; }
+.exam-past-miss, .exam-hist-more { min-height: 48px; }
+.exam-hist-more { width: 100%; margin-top: 8px; }
+/* 模擬試験の入口の「続きから」（2026-11-10）: 何問答えたか・残りの分は、2行目に小さく出す（1行だと「約」と「100分」の間で折れる） */
+.btn.exam-resume { flex-direction: column; gap: 2px; }
+.exam-resume-sub { display: block; font-size: 0.875rem; font-weight: 400; }
+.exam-run-lost { margin: 0 0 12px; }
+
+/* 合格予想メーター（要件定義書 §3-6）。色は既存の変数だけ（暗い配色でもそのまま読める） */
+.card.forecast h2 { margin-top: 0; }
+.fc-score { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 8px; }
+.fc-num { font-size: 2.75rem; line-height: 1.2; color: var(--accent); }
+.fc-unit { font-size: 1.25rem; font-weight: 700; }
+.fc-full { margin-left: 4px; }
+.fc-meter { height: 16px; margin-bottom: 12px; position: relative; }
+.fc-band { position: absolute; top: 0; bottom: 0; background: var(--text); opacity: 0.22; border-left: 2px solid var(--text); border-right: 2px solid var(--text); box-sizing: border-box; pointer-events: none; }
+.fc-guide { margin: 0 0 4px; overflow-wrap: anywhere; }
+.fc-guide-status { margin: 0 0 8px; overflow-wrap: anywhere; }
+.exam-guide { margin: 0 0 8px; overflow-wrap: anywhere; }
+.fc-note { margin: 0 0 8px; padding: 8px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); line-height: 1.6; overflow-wrap: anywhere; }
+.fc-sub { font-size: 1rem; margin: 16px 0 4px; }
+.fc-gains { display: flex; flex-direction: column; }
+.fc-gain { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-top: 1px solid var(--border); padding: 12px 0; min-height: 56px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.fc-gain:first-child { border-top: 0; }
+.fc-gain-name { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
+.fc-gain-pt { flex: none; font-weight: 700; color: var(--accent); }
+.fc-chart { display: block; width: 100%; height: auto; }
+.fc-base { stroke: var(--border); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.fc-line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.fc-dot { fill: var(--accent); }
+.fc-trend-cap { margin: 4px 0 0; }
+
+/* 章のボス戦（要件定義書 §3-7 作り直し）。小さな丸のボス（章の画面・地図・復習の一覧）は、色は既存の変数だけ（暗い配色でもそのまま読める）。
+   ボスの絵は .boss-art の中に入る（無いときは記号）。全身の絵は、JS（faceCrop）が --zoom --tx --ty を付けて、顔だけが丸に入るようにする */
+.boss-art { flex: none; width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; background: var(--ng-bg); border: 2px solid var(--ng); color: var(--ng); }
+.boss-art .boss-sym { font-size: 1.75rem; font-weight: 700; line-height: 1; }
+.boss-art .boss-img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: translate(calc(var(--tx, 0) * 100%), calc(var(--ty, 0) * 100%)) scale(var(--zoom, 1)); transform-origin: 0 0; display: block; }
+.boss-art.off { background: var(--bg); border-color: var(--border); color: var(--muted); }
+.boss-art.down { opacity: 0.55; filter: grayscale(1); }
+/* まだ会っていないボス：絵を出さず、暗い丸に「？」だけ（2026-10-11 先生決定） */
+.boss-art.unknown { background: #111; border-color: #333; color: #777; }
+.boss-place { border-left: 6px solid var(--border); }
+.boss-place.on { border-left-color: var(--ng); border-color: var(--ng); background: var(--ng-bg); }
+.boss-place-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.boss-place.on .boss-place-head { margin-bottom: 12px; }
+.boss-place-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
+.boss-place.on .boss-place-text strong { color: var(--ng); }
+.boss-place .btn.big { margin-bottom: 0; }
+.chip.boss-chip { background: linear-gradient(90deg, #2b0a33, #7a1414); color: #ffd36b; border: 1px solid #ff6a1f; font-weight: 700; text-shadow: 0 0 4px #ff6a1f; box-shadow: 0 0 8px rgba(255, 90, 20, 0.55); animation: boss-chip-glow 1.3s ease-in-out infinite alternate; }
+@keyframes boss-chip-glow { 0% { box-shadow: 0 0 6px rgba(255, 90, 20, 0.45); } 100% { box-shadow: 0 0 14px rgba(255, 90, 20, 0.9), 0 0 4px rgba(120, 0, 160, 0.8); } }
+.boss-list h2 { margin-top: 0; }
+.boss-row { appearance: none; width: 100%; font: inherit; text-align: left; color: var(--text); background: none; border: 0; border-top: 1px solid var(--border); padding: 12px 0; min-height: 64px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
+.boss-row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
+.boss-row-go { margin-left: auto; flex: none; color: var(--accent); font-weight: 700; }
+.boss-result { text-align: center; }
+.boss-result p { text-wrap: balance; } /* 中央寄せの文が折り返すとき、短い切れ端を残さない（効かない環境でも崩れない） */
+.boss-result-art { display: flex; justify-content: center; margin-bottom: 8px; }
+.boss-result-art .boss-art { width: 88px; height: 88px; }
+.boss-result-art .boss-art .boss-sym { font-size: 2.75rem; }
+.boss-result.win { border-color: var(--ok); }
+.btn-row.one { grid-template-columns: 1fr; }
+
+/* ---- 戦いの画面（昔の家庭用ゲーム機の RPG 風）。黒い背景・白い縁の窓・ボスの全身。
+   中の部品が使う色の変数を、黒い背景に合わせて決め直す（明るい配色・暗い配色のどちらで開いても同じ見た目。文字は白で、黒との比は 4.5:1 を超える） ---- */
+body.boss-on { background: #000; }
+.boss-rpg {
+  --bg: #000; --surface: #000; --text: #ffffff; --muted: #c9d0de; --border: #98a1b5;
+  --accent: #90caf9; --on-accent: #0b1b2e; --accent-soft: #1d2d42;
+  --ok: #72d48e; --ok-bg: #16301f; --ng: #ff9a92; --ng-bg: #3b1c1a; --warn: #f3c562; --warn-bg: #3a2e0f; --shadow: none;
+  background: #000; color: #fff;
+}
+.boss-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.boss-chapter { color: var(--muted); min-width: 0; overflow-wrap: anywhere; }
+.boss-scene { margin-bottom: 12px; }
+.boss-stage { position: relative; height: clamp(180px, 34vh, 300px); background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px; }
+.boss-fig { height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+.boss-fig .boss-img { height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; }
+.boss-fig-sym { display: flex; align-items: center; justify-content: center; height: 86%; aspect-ratio: 3 / 4; font-size: 4.5rem; font-weight: 700; line-height: 1; color: #fff; background: #111; border: 4px solid var(--boss-color, #c62828); border-radius: 12px; }
+.boss-fig.unseen { visibility: hidden; }
+.boss-fig.gone { visibility: hidden; }
+.boss-fig.down { opacity: 0.25; filter: grayscale(1); }
+.boss-fig.blinkoff { opacity: 0.08; }
+.boss-fig.glow .boss-img, .boss-fig.glow .boss-fig-sym { filter: brightness(2.6) saturate(0.25) drop-shadow(0 0 14px #fff); }
+.boss-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+.boss-flash.on { opacity: 1; }
+.boss-fx { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.boss-bit { position: absolute; background-repeat: no-repeat; filter: brightness(2.2) saturate(0.3); animation: boss-bit 1.15s ease-in var(--delay, 0s) forwards; }
+.boss-confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; display: none; }
+.boss-confetti.on { display: block; }
+.boss-confetti .confetti { top: -16px; width: 12px; height: 16px; animation: boss-rain var(--dur, 2s) linear var(--delay, 0s) infinite; }
+.boss-window { border: 3px solid #fff; border-radius: 8px; background: #000; padding: 12px 16px; min-height: 10.5rem; box-shadow: inset 0 0 0 2px #000, inset 0 0 0 3px #7b8499; transition: opacity 0.3s; }
+.boss-stage.dark + .boss-window { opacity: 0; }
+.boss-win-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.boss-win-name { font-size: 1.0625rem; overflow-wrap: anywhere; }
+.boss-win-hp { display: inline-flex; align-items: center; gap: 8px; flex: none; }
+.boss-hp-label { font-weight: 700; font-variant-numeric: tabular-nums; }
+.boss-hearts { display: inline-flex; gap: 2px; }
+.boss-hearts .icon.heart { width: 24px; height: 24px; }
+.boss-hearts .icon.heart.on { color: var(--ng); }
+.boss-hearts .icon.heart.off { color: var(--muted); opacity: 0.4; }
+.boss-win-text { font-size: 1.0625rem; line-height: 1.9; letter-spacing: 0.04em; min-height: 5.8em; overflow-wrap: anywhere; }
+.boss-line { margin: 0; }
+.boss-win-text.typed .boss-line:last-child::after { content: ' ▼'; animation: boss-caret 1s steps(2, jump-none) infinite; }
+.boss-win-extra:empty { display: none; }
+.boss-xp { margin: 4px 0 0; font-weight: 700; font-size: 1.125rem; font-variant-numeric: tabular-nums; color: #ffe082; }
+.boss-xp-bonus { margin: 2px 0 0; font-weight: 700; font-size: 1rem; color: #ffe082; } /* 撃破のごほうび（XP の内訳） */
+.boss-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.boss-skip { width: 100%; margin-bottom: 12px; }
+.boss-qhead { margin-bottom: 4px; }
+.boss-round { flex: 1; }
+.boss-rule { margin: 0 0 12px; }
+.boss-rpg .card { border: 2px solid #fff; border-radius: 8px; background: #000; }
+.boss-rpg .boss-result.win { border-color: var(--ok); }
+.boss-rpg .sticky-bar { position: fixed; left: 0; right: 0; bottom: 0; max-width: 560px; margin: 0 auto; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(to top, #000 75%, transparent); z-index: 20; }
+.boss-rpg .after { padding-bottom: 72px; }
+
+/* 戦いの演出（要件定義書 §3-7）。動きを減らす設定では、下の規則で動きを止め、色の変化だけにする */
+@keyframes boss-appear { 0% { opacity: 0; transform: scale(0.7); } 40% { opacity: 1; transform: scale(1.05) translateX(-6px); } 55% { transform: scale(1.02) translateX(6px); } 70% { transform: translateX(-4px); } 100% { opacity: 1; transform: none; } }
+@keyframes boss-hit { 0% { opacity: 1; transform: translateX(0); } 10% { opacity: 0.15; transform: translateX(-8px); } 20% { opacity: 1; transform: translateX(8px); } 30% { opacity: 0.15; transform: translateX(-6px); } 40% { opacity: 1; transform: translateX(6px); } 55% { opacity: 0.4; transform: translateX(-3px); } 100% { opacity: 1; transform: none; } }
+@keyframes boss-quake { 0%, 100% { transform: translate(0, 0); } 20% { transform: translate(-5px, 2px); } 40% { transform: translate(5px, -2px); } 60% { transform: translate(-4px, 1px); } 80% { transform: translate(3px, -1px); } }
+@keyframes boss-flash-out { 0% { opacity: 0.85; } 100% { opacity: 0; } }
+@keyframes boss-heart-break { 0% { transform: scale(1.35) rotate(0); opacity: 1; color: var(--ng); } 30% { transform: scale(1.35) rotate(-14deg); } 55% { transform: scale(1.1) rotate(12deg); } 100% { transform: scale(1) rotate(0); opacity: 0.4; color: var(--muted); } }
+@keyframes boss-bit { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.3); opacity: 0; } }
+@keyframes boss-rain { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--sway, 0px), 340px) rotate(540deg); opacity: 0.9; } }
+@keyframes boss-caret { 0% { opacity: 1; } 100% { opacity: 0; } }
+/* 上の帯: 全身の絵が半分より外れたら、画面の上に貼り付く（顔の丸・名前・ハート・最新の一言）。押せない（タップは下へ通す） */
+.boss-mini { position: fixed; top: 0; left: 0; right: 0; max-width: 560px; margin: 0 auto; z-index: 20; display: flex; align-items: center; gap: 10px; padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 8px; background: #000; border-bottom: 2px solid #fff; overflow: hidden; pointer-events: none; transform: translateY(-110%); visibility: hidden; transition: transform 0.16s ease-out, visibility 0s linear 0.16s; }
+.boss-mini.on { transform: none; visibility: visible; transition: transform 0.16s ease-out, visibility 0s; }
+.boss-mini .boss-art { width: 44px; height: 44px; border-color: var(--boss-color, var(--ng)); }
+.boss-mini .boss-art .boss-sym { font-size: 1.375rem; }
+.boss-mini-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.boss-mini-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.boss-mini-name { font-size: 0.9375rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.boss-mini-hp { display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.boss-mini .boss-hearts .icon.heart { width: 20px; height: 20px; }
+.boss-mini-text { font-size: 0.875rem; line-height: 1.4; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.boss-mini-flash { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: #fff; }
+.boss-mini.crit .boss-mini-flash { animation: boss-flash-out 0.45s ease-out; }
+.boss-mini.hurt .boss-mini-flash { background: #e53935; animation: boss-flash-out 0.5s ease-out; }
+.boss-art.hit { animation: boss-hit 0.65s linear; }
+.boss-art.glow .boss-img, .boss-art.glow .boss-sym { filter: brightness(2.6) saturate(0.25) drop-shadow(0 0 6px #fff); }
+.boss-art.blinkoff { opacity: 0.08; }
+.boss-art.gone { visibility: hidden; }
+.boss-fig.appear { animation: boss-appear 0.7s ease-out; }
+.boss-fig.hit { animation: boss-hit 0.65s linear; }
+.boss-scene.quake { animation: boss-quake 0.4s ease-out; }
+.boss-stage.crit .boss-flash { animation: boss-flash-out 0.45s ease-out; }
+.boss-stage.hurt .boss-flash { background: #e53935; animation: boss-flash-out 0.5s ease-out; }
+.boss-hearts .icon.heart.crack { animation: boss-heart-break 0.6s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .boss-fig.hit, .boss-art.hit { filter: sepia(1) saturate(4) hue-rotate(-50deg) brightness(1.2); }
+  .boss-mini, .boss-mini.on { transition: none; }
+  .boss-mini.hurt { box-shadow: inset 0 0 0 4px var(--ng); }
+  .boss-mini.crit { box-shadow: inset 0 0 0 4px #fff; }
+  .boss-stage.hurt { box-shadow: inset 0 0 0 6px var(--ng); }
+  .boss-stage.crit { box-shadow: inset 0 0 0 6px #fff; }
+  .boss-hearts .icon.heart.crack { color: var(--ng); }
+  .boss-fx, .boss-confetti, .boss-confetti.on { display: none; }
+  .boss-flash.on { opacity: 0; }
+}
+
+/* ---- 真ボス（views/trueboss.js。要件定義書 §3-9）。章のボスの戦いの画面（.boss-rpg）に足す分だけ ---- */
+.tb-head-name { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.chip.tb-form { background: #2b0a33; color: #ffd36b; border: 1px solid #ff6a1f; font-weight: 700; }
+.tb-skill { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 12px; padding: 12px; border: 2px solid var(--warn); border-radius: 8px; background: var(--warn-bg); color: var(--warn); }
+.tb-skill-name { font-size: 1.0625rem; }
+.tb-skill-turns { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tb-skill-rule { flex-basis: 100%; color: var(--text); }
+.tb-timer { flex-basis: 100%; height: 10px; border-radius: 5px; background: #3a3a3a; overflow: hidden; }
+.tb-timer-fill { display: block; height: 100%; background: var(--warn); width: calc(var(--left, 1) * 100%); }
+.tb-timer-text { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tb-timer-text.low { color: var(--ng); }
+.tb-noexp { margin: 8px 0 0; }
+.tb-review h2 { margin-top: 0; }
+.tb-review-form { margin: 16px 0 4px; font-size: 1rem; color: var(--muted); }
+.tb-row { border-top: 1px solid var(--border); padding: 4px 0; }
+.tb-row summary { display: flex; align-items: flex-start; gap: 8px; min-height: 48px; padding: 8px 0; cursor: pointer; }
+.tb-mark { flex: none; width: 1.5em; font-weight: 700; text-align: center; }
+.tb-row.right .tb-mark { color: var(--ok); }
+.tb-row.wrong .tb-mark { color: var(--ng); }
+.tb-stem { min-width: 0; overflow-wrap: anywhere; }
+.tb-group { margin-top: 12px; }
+.tb-group-btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 48px; padding: 8px 12px; font: inherit; font-weight: 700; text-align: left; color: var(--text); background: var(--surface); border: 2px solid var(--border); border-radius: 8px; cursor: pointer; overflow-wrap: anywhere; }
+.tb-group.wrong .tb-group-btn { border-color: var(--ng); }
+.tb-group.right .tb-group-btn { border-color: var(--ok); }
+.tb-count { white-space: nowrap; }
+.tb-chev { flex: none; box-sizing: border-box; width: 10px; height: 10px; margin: 0 6px 4px; border-right: 3px solid currentColor; border-bottom: 3px solid currentColor; transform: rotate(45deg); }
+.tb-group-btn[aria-expanded="true"] .tb-chev, .tb-q-btn[aria-expanded="true"] .tb-chev { margin: 4px 6px 0; transform: rotate(-135deg); }
+.tb-group-body { margin-top: 4px; }
+.tb-q { border-top: 1px solid var(--border); }
+.tb-q-btn { display: flex; align-items: flex-start; gap: 8px; width: 100%; min-height: 48px; padding: 8px 4px; font: inherit; text-align: left; color: var(--text); background: none; border: 0; cursor: pointer; }
+.tb-q-btn .tb-stem { flex: 1; min-width: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.tb-q-btn[aria-expanded="true"] .tb-stem { display: block; -webkit-line-clamp: unset; }
+.tb-q.right .tb-mark { color: var(--ok); }
+.tb-q.wrong .tb-mark { color: var(--ng); }
+.tb-q-panel { padding: 0 4px 12px; }
+.tb-ending { position: relative; min-height: 78vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 16px 96px; text-align: center; overflow: hidden; background: #000; color: #fff; border: 2px solid #fff; border-radius: 8px; cursor: pointer; }
+.tb-sky { position: absolute; inset: 0; pointer-events: none; }
+.tb-star { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #ffe082; animation: tb-twinkle var(--dur, 2s) ease-in-out var(--delay, 0s) infinite alternate; }
+.tb-ending-title, .tb-ending-line { position: relative; margin: 0; opacity: 0; transition: opacity 1.2s ease-out; }
+.tb-ending-title { font-size: 1.5rem; font-weight: 700; color: #ffe082; margin-bottom: 12px; }
+.tb-ending-line { font-size: 1.0625rem; line-height: 1.9; max-width: 30em; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; } /* 語りはひらがなを空白で区切ってある。折り返しは空白の位置だけ（1〜2文字の切れ端を出さない）。2行の長さをそろえる（効かない環境でも崩れない）。単語が1行に入らないときだけ break-word */
+.tb-ending-title.shown, .tb-ending-line.shown { opacity: 1; }
+/* エンディング専用の絵（要件定義書 §3-9）。最後の行のあと、文が消え、星空が明けるように絵がゆっくり現れて少し寄る。タイトルは絵の下に出す（暗い帯の上） */ /* 絵はボタンの上までの高さに収め、手前の2人がタイトル・ボタンに隠れないようにする（下の112pxは黒い帯） */
+.tb-ending-art { position: absolute; top: 0; left: 0; right: 0; bottom: 112px; opacity: 0; transition: opacity 4s ease-in; pointer-events: none; overflow: hidden; background: #000; }
+.tb-ending-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; transform: scale(1); transform-origin: 50% 100%; transition: transform 16s linear; }
+.tb-ending-art::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 6%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000); }
+.tb-ending-art-title { position: absolute; left: 16px; right: 16px; bottom: 96px; margin: 0; font-size: 1.5rem; font-weight: 700; line-height: 1.5; color: #ffe082; text-shadow: 0 2px 8px #000; opacity: 0; transition: opacity 2s ease-out 2.5s; pointer-events: none; }
+.tb-ending.art-on .tb-ending-art { opacity: 1; }
+.tb-ending.art-on .tb-ending-art img { transform: scale(1.08); }
+.tb-ending.art-on .tb-ending-art-title { opacity: 1; }
+.tb-ending.art-on .tb-ending-title.shown, .tb-ending.art-on .tb-ending-line.shown { opacity: 0; }
+.tb-ending.art-dim .tb-ending-art { opacity: 0.3; transition: none; }
+.tb-ending-btn { position: absolute; left: 16px; right: 16px; bottom: 16px; }
+.tb-ending-go { width: 100%; }
+.boss-awake { margin: 12px 0 0; color: #ffd36b; font-weight: 700; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; text-wrap: balance; }
+.tb-float { position: relative; z-index: 1; height: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+.tb-float.f2 { height: calc(100% - 34px); animation: tb-float 3.2s ease-in-out infinite; --amp: 20px; }
+.boss-stage.tb-big2 { height: clamp(207px, 39vh, 345px); transition: height 0.8s ease-out; } /* 第2形態は舞台を1.15倍に、第3形態は1.3倍に（浮かぶ分の余白を引いても、前の姿より大きく見える） */
+.boss-stage.tb-big { height: clamp(234px, 44vh, 390px); transition: height 0.8s ease-out; }
+.tb-float.f3 { height: calc(100% - 50px); animation: tb-float 4.6s ease-in-out infinite; --amp: 32px; }
+@keyframes tb-float { 0%, 100% { transform: translateY(calc(var(--amp) * 0.5)); } 50% { transform: translateY(calc(var(--amp) * -0.5)); } }
+.tb-shadow { display: none; position: absolute; z-index: 0; left: 50%; bottom: 4px; width: 46%; height: 12px; margin-left: -23%; border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse closest-side, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0)); }
+.tb-float.f2 + .tb-shadow, .tb-float.f3 + .tb-shadow { display: block; animation: tb-shadow 3.2s ease-in-out infinite; }
+.tb-float.f3 + .tb-shadow { animation-duration: 4.6s; }
+.tb-float.still + .tb-shadow { animation-play-state: paused; }
+@keyframes tb-shadow { 0%, 100% { transform: scaleX(1); opacity: 0.95; } 50% { transform: scaleX(0.55); opacity: 0.4; } }
+.boss-fig { position: relative; }
+.boss-fig.slump { top: 8px; transition: top 0.9s ease-out; }
+.boss-fig.revive { top: 3px; transition: top 0.9s ease-out; }
+.boss-fig.slump .boss-img, .boss-fig.slump .boss-fig-sym { filter: grayscale(0.85) brightness(0.42) contrast(0.9); transition: filter 0.9s ease-out; }
+.boss-fig.revive .boss-img, .boss-fig.revive .boss-fig-sym { filter: grayscale(0.4) brightness(0.72); transition: filter 0.9s ease-out; }
+.tb-crack-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.tb-crack-line { fill: none; stroke: #fff; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 1px #ffd36b); }
+.tb-crack-line.on { animation: tb-crack-draw 0.25s ease-out forwards; }
+.tb-crack-branch { stroke-width: 0.6; }
+.tb-crack-branch.on { animation-duration: 0.3s; animation-delay: 0.12s; }
+.tb-crack-far { stroke-width: 0.4; opacity: 0.6; }
+.tb-crack-far.on { animation-delay: 0.2s; }
+.tb-crack-reveal { stroke-dasharray: 1; stroke-dashoffset: 1; visibility: hidden; } /* 2026-11-09 先生『ヒビが入り始める前に、ちょっとだけ白い線が見える』: 長さ0の破線でも丸い端は点として描かれ、線の両端の割れ目が先に見えていた。現れるまで隠す */
+/* 2026-11-09 先生『パキ！パキパキ！！』: なめらかに伸ばさず、段で跳ぶ（steps）。主線は3段で一瞬、枝は2段。遅れは JS が1本ずつ付ける */
+.tb-crack-reveal.on { animation: tb-crack-snap 0.16s steps(1, end) forwards; }
+.tb-crack-reveal-branch.on { animation: tb-crack-snap2 0.07s steps(1, end) forwards; }
+.tb-crack-flash { opacity: 0; }
+.tb-crack-flash.on { animation: tb-crack-flash 0.2s ease-out forwards; }
+.tb-mesh { opacity: 0; }
+.tb-mesh.on { animation: tb-mesh-in 0.01s linear forwards; }
+.tb-shard { opacity: 0; }
+.tb-shard.on { animation: tb-shard-in 0.35s ease-in 0.3s forwards; }
+/* 砕ける（2026-11-09 先生『ひびの位置と同じように砕けられないか？』）: 割れ目で切ったかけらが、一瞬すき間を開けてから核の外へ弾け、回りながら落ちる。px は絵の中の割合（viewBox）の単位 */
+.tb-shatter { position: absolute; overflow: visible; pointer-events: none; z-index: 2; }
+/* 殻の中の姿（2026-11-09 先生『殻を割って出てくるんだから』）: 次の姿を殻の形で切り抜き、かけらの下に暗く置く。替わるときは、その暗さから光って広がる（awaken） */
+.tb-shatter-inner { position: absolute; overflow: visible; pointer-events: none; z-index: 1; }
+.tb-inner-img { filter: brightness(0.45) saturate(0.7); }
+.boss-fig.awaken { animation: tb-awaken 1s ease-out; }
+@keyframes tb-awaken { 0% { transform: scale(0.94, 0.9); filter: brightness(0.45) saturate(0.7); } 30% { filter: brightness(2.2); } 100% { transform: none; filter: none; } }
+.tb-crack-layer.tb-shatter-cracks { inset: auto; z-index: 3; animation: tb-shatter-cracks 0.14s ease-in forwards; }
+@keyframes tb-shatter-cracks { to { opacity: 0; } }
+/* 2026-11-09 先生『四方に散らばるんじゃなくて、地面に落ちる（ものによっては弧を描いて落ちる）』: 横は等速に近く、縦は重さで速くなる（ease-in）。弧のかけらは少し上がってから落ちる。地面に着いたら少し置いて消える */
+.tb-frag { transform-box: view-box; animation: tb-frag-x var(--t) cubic-bezier(0.2, 0.6, 0.4, 1) var(--d) both, tb-frag-out 0.3s linear calc(var(--d) + var(--t) + 0.2s) forwards; }
+.tb-frag-fall { transform-box: view-box; animation: tb-frag-fall var(--t) cubic-bezier(0.5, 0, 0.9, 0.6) var(--d) both; }
+.tb-frag-fall.arc { animation-name: tb-frag-arc; animation-timing-function: linear; }
+@keyframes tb-frag-x { from { transform: none; } to { transform: translateX(var(--dx)); } }
+@keyframes tb-frag-fall { from { transform: none; } to { transform: translateY(var(--dy)) rotate(var(--rot)); } }
+@keyframes tb-frag-arc { 0% { transform: none; animation-timing-function: cubic-bezier(0.3, 0.6, 0.6, 1); } 28% { transform: translateY(var(--up)) rotate(calc(var(--rot) * 0.25)); animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6); } 100% { transform: translateY(var(--dy)) rotate(var(--rot)); } }
+@keyframes tb-frag-out { to { opacity: 0; } }
+@keyframes tb-crack-snap { 0% { stroke-dashoffset: 0.55; visibility: visible; } 40% { stroke-dashoffset: 0.2; visibility: visible; } 75% { stroke-dashoffset: 0; visibility: visible; } 100% { stroke-dashoffset: 0; visibility: visible; } }
+@keyframes tb-crack-snap2 { 0% { stroke-dashoffset: 0.45; visibility: visible; } 50% { stroke-dashoffset: 0; visibility: visible; } 100% { stroke-dashoffset: 0; visibility: visible; } }
+@keyframes tb-crack-flash { 0% { opacity: 0.95; } 100% { opacity: 0; } }
+@keyframes tb-mesh-in { from { opacity: 1; } to { opacity: 1; } }
+@keyframes tb-shard-in { from { opacity: 0; transform: translateY(-2.5px); } to { opacity: 1; transform: none; } }
+.tb-eye-glow { fill: #bfeaff; opacity: 0; filter: drop-shadow(0 0 2px #5ec8ff); }
+.tb-eye-glow.on { animation: tb-eye-on 0.9s ease-out forwards; }
+/* 第1→2の『染み出す』型（ヒソミカゲ。要件定義書 §3-9）。煙は絵と同じ正方形の SVG（viewBox 0 0 100 100）。色は青緑 #26A69A と黒緑 #10302B */
+.tb-seep-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.tb-puff { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.tb-puff.dark { fill: #10302b; }
+.tb-puff.teal { fill: #26a69a; }
+.tb-seep.on .tb-puff { animation: tb-puff 2.4s ease-out infinite; }
+.tb-seep.on .tb-puff.drift { animation-name: tb-puff-drift; }
+.tb-seep.on .tb-puff:nth-child(2) { animation-delay: 0.4s; }
+.tb-seep.on .tb-puff:nth-child(3) { animation-delay: 0.8s; }
+.tb-seep.on .tb-puff:nth-child(4) { animation-delay: 1.2s; }
+.tb-seep.on .tb-puff:nth-child(5) { animation-delay: 1.6s; }
+.tb-seep-lump { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.tb-seep-layer.gather .tb-seep-lump { animation: tb-seep-lump 0.8s ease-in forwards; }
+.boss-fig.collapse .boss-img, .boss-fig.collapse .boss-fig-sym { transform-origin: 50% 100%; animation: tb-collapse 1s ease-in forwards; }
+.boss-fig.seepin { animation: tb-seepin 1s ease-out; }
+@keyframes tb-puff { 0% { opacity: 0; transform: translate(0, 0) scale(0.5); } 25% { opacity: 0.95; } 100% { opacity: 0; transform: translate(0, -12px) scale(2.6); } }
+@keyframes tb-puff-drift { 0% { opacity: 0; transform: translate(0, 0) scale(0.5); } 25% { opacity: 0.95; } 100% { opacity: 0; transform: translate(7px, -10px) scale(2.6); } }
+@keyframes tb-seep-lump { 0% { opacity: 0; transform: scale(0.3); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes tb-collapse { 0% { transform: none; opacity: 1; filter: grayscale(0.4) brightness(0.72); } 25% { transform: translateY(1%) rotate(-1.5deg) scaleY(0.98); } 55% { transform: translateY(6%) rotate(-4deg) scaleY(0.85); } 100% { transform: translateY(16%) rotate(-6deg) scaleY(0.5) scaleX(1.06); opacity: 0; filter: grayscale(0.6) brightness(0.35); } }
+@keyframes tb-seepin { 0% { opacity: 0; transform: translateY(3%); filter: brightness(0.6); } 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes tb-crack-draw { to { stroke-dashoffset: 0; } }
+@keyframes tb-eye-on { to { opacity: 0.95; } }
+.boss-fig.shake { animation: tb-shake 0.18s linear infinite; }
+.boss-fig.swell { animation: tb-swell 1.7s ease-in forwards; }
+.boss-fig.emerge { animation: tb-emerge 1s ease-out; }
+.boss-fig.spread { animation: tb-spread 1s ease-out; }
+.boss-fig.slump.beat .boss-img, .boss-fig.slump.beat .boss-fig-sym { filter: grayscale(0.8) brightness(0.85); transition: filter 0.06s; }
+.boss-fig.healing .boss-img, .boss-fig.healing .boss-fig-sym { filter: drop-shadow(0 0 4px #9dffb0) drop-shadow(0 0 12px #2ecc71) brightness(1.12) saturate(1.1); animation: tb-heal-glow 1.4s ease-in-out; }
+@keyframes tb-heal-glow { 0%, 100% { filter: drop-shadow(0 0 0 #2ecc71) brightness(1); } 35%, 65% { filter: drop-shadow(0 0 5px #9dffb0) drop-shadow(0 0 14px #2ecc71) brightness(1.18); } }
+.tb-spark-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.tb-spark { opacity: 0; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 1.5px #2ecc71) drop-shadow(0 0 3px #9dffb0); animation: tb-spark var(--dur, 1s) ease-out var(--delay, 0s) forwards; }
+@keyframes tb-spark { 0% { opacity: 0; transform: translateY(2px) scale(0.3); } 30% { opacity: 1; transform: scale(1.4); } 100% { opacity: 0; transform: translateY(-9px) scale(0.6); } }
+.boss-hearts .icon.heart.gain { color: #5fe37a; filter: drop-shadow(0 0 4px #9dffb0) drop-shadow(0 0 8px #2ecc71); animation: tb-heart-gain 1.4s ease-out; }
+@keyframes tb-heart-gain { 0% { transform: scale(0.4); } 25% { transform: scale(1.5); } 50% { transform: scale(1); } 100% { transform: scale(1); } }
+.tb-eye-glow.blink { opacity: 0.75; }
+.tb-orb-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.tb-orb { fill: #ffd54a; opacity: 0; transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 0 1.4px #fff1a8) drop-shadow(0 0 2.4px #ffb300); }
+.tb-orb.on { opacity: 1; animation: tb-orb-on 0.4s ease-out; }
+.tb-orb-layer.blaze .tb-orb { filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #ffb300); }
+@keyframes tb-orb-on { 0% { opacity: 0; transform: scale(0.3); } 60% { opacity: 1; transform: scale(1.6); } 100% { opacity: 1; transform: none; } }
+.boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top { opacity: 0.12; transition: opacity 0.6s; }
+.boss-rpg.tb-dim .boss-fig .boss-img { filter: brightness(0.4); transition: filter 0.8s; }
+.tb-float.still { animation-play-state: paused; }
+.boss-scene.quake2 { animation: boss-quake2 0.45s ease-out; }
+@keyframes boss-quake2 { 0%, 100% { transform: translate(0, 0); } 15% { transform: translate(-11px, 4px); } 35% { transform: translate(11px, -4px); } 55% { transform: translate(-9px, 3px); } 75% { transform: translate(7px, -2px); } }
+.tb-gold-flash { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0; background: radial-gradient(circle at var(--cx, 50%) var(--cy, 30%), #fff 0%, rgba(255, 251, 230, 0.99) 20%, rgba(255, 226, 130, 0.95) 50%, rgba(255, 200, 80, 0.92) 100%); animation: tb-gold 1.9s ease-out forwards; }
+.tb-gold-flash.calm { animation: tb-gold-calm 2.2s ease-in-out forwards; }
+.tb-rays { position: fixed; left: var(--cx); top: var(--cy); width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; z-index: 0; pointer-events: none; opacity: 0; background: repeating-conic-gradient(rgba(255, 244, 190, 0.95) 0deg 5deg, rgba(255, 244, 190, 0) 5deg 15deg); -webkit-mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.8) 30%, transparent 100%); mask-image: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, 0.8) 30%, transparent 100%); animation: tb-rays 2.8s ease-out forwards, tb-rays-spin 12s linear infinite; }
+.tb-ring { position: fixed; left: var(--cx); top: var(--cy); width: 30vmin; height: 30vmin; margin: -15vmin 0 0 -15vmin; border-radius: 50%; border: 0.9vmin solid rgba(255, 244, 190, 0.95); box-shadow: 0 0 3vmin rgba(255, 220, 120, 0.9), inset 0 0 3vmin rgba(255, 220, 120, 0.7); z-index: 41; pointer-events: none; opacity: 0; animation: tb-ring 1.0s ease-out forwards; }
+.boss-rpg.tb-rays-on .boss-stage { background: transparent; }
+.boss-fig.spread3 { animation: tb-spread3 1.8s ease-out; }
+@keyframes tb-spread3 { 0% { transform: scaleX(0.55); filter: brightness(3.4) drop-shadow(0 0 14px #fff); } 60% { filter: brightness(1.8) drop-shadow(0 0 10px #ffe9a0); } 100% { transform: none; filter: none; } }
+@keyframes tb-rays { 0% { opacity: 0; } 12% { opacity: 0.9; } 100% { opacity: 0; } }
+@keyframes tb-rays-spin { to { transform: rotate(40deg); } }
+@keyframes tb-ring { 0% { opacity: 0; transform: scale(0.2); } 12% { opacity: 1; } 100% { opacity: 0; transform: scale(5); } }
+@keyframes tb-gold { 0% { opacity: 0; } 13% { opacity: 1; } 27% { opacity: 1; } 100% { opacity: 0; } } /* ピーク（不透明度1）は 1.9秒の13%〜27%＝約0.25〜0.51秒。この間に絵を入れ替える（EVO_2_TO_3.swap） */
+@keyframes tb-gold-calm { 0% { opacity: 0; } 35% { opacity: 1; } 50% { opacity: 1; } 100% { opacity: 0; } } /* 動きを減らす設定: 点滅ではなくゆっくり明るくなる。ピーク（0.77〜1.1秒）の間に絵を入れ替える */
+.tb-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle closest-side at 50% 50%, #fff 0%, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%); }
+.tb-glow.on { animation: tb-glow 0.5s ease-out forwards; }
+@keyframes tb-glow { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
+.tb-burst { position: absolute; inset: 0; background: radial-gradient(circle closest-side at 50% 50%, #fff 0%, rgba(255, 224, 130, 0.85) 40%, rgba(255, 224, 130, 0) 100%); opacity: 0; animation: tb-burst 1s ease-out forwards; }
+.tb-burst.strong { animation-duration: 1.6s; }
+@keyframes tb-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px) rotate(-1deg); } 75% { transform: translateX(4px) rotate(1deg); } }
+@keyframes tb-swell { 0% { transform: scale(1); } 100% { transform: scale(1.12); filter: brightness(2.2); } }
+@keyframes tb-emerge { 0% { opacity: 0; transform: scale(0.8); filter: brightness(4); } 60% { opacity: 1; filter: brightness(1.8); } 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes tb-spread { 0% { transform: scaleX(0.55); filter: brightness(4); } 100% { transform: none; filter: none; } }
+@keyframes tb-burst { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes tb-twinkle { 0% { opacity: 0.15; transform: scale(0.6); } 100% { opacity: 1; transform: scale(1.4); } }
+@media (prefers-reduced-motion: reduce) {
+  .tb-star { animation: none; opacity: 0.8; }
+  .tb-float.f2, .tb-float.f3 { animation: none; }
+  .tb-float.f2 + .tb-shadow, .tb-float.f3 + .tb-shadow { animation: none; }
+  .boss-fig.healing .boss-img, .boss-fig.healing .boss-fig-sym, .tb-spark { animation: none; }
+  .boss-hearts .icon.heart.gain { animation: none; }
+  .tb-seep.on .tb-puff, .tb-seep-layer.gather .tb-seep-lump, .boss-fig.collapse .boss-img, .boss-fig.collapse .boss-fig-sym, .boss-fig.seepin { animation: none; }
+  .boss-fig.shake, .boss-fig.swell, .boss-fig.emerge, .boss-fig.spread, .tb-crack-line.on, .tb-eye-glow.on, .tb-burst, .tb-glow.on, .tb-orb.on, .tb-gold-flash, .tb-rays, .tb-ring, .boss-fig.spread3 { animation: none; }
+  .tb-crack-line.on { stroke-dashoffset: 0; } /* 動きを止めても、ひび自体は（描き終わった形で）見せる。止めるのは『伸びる動き』だけ */
+  .tb-crack-reveal.on, .tb-mesh.on, .tb-shard.on { animation: none; } /* 割れ目・網目・破片も、動きを止めて、描き終わった形で見せる */
+  .tb-crack-reveal.on { stroke-dashoffset: 0; visibility: visible; }
+  .tb-crack-flash.on { animation: none; opacity: 0; } /* 割れた瞬間の白い光は出さない */
+  .tb-frag, .tb-frag-fall { animation: none; } .tb-shatter { display: none; } .tb-shatter-inner { display: none; } .boss-fig.awaken { animation: none; } .tb-crack-layer.tb-shatter-cracks { display: none; } /* 砕けて飛ぶかけらは出さない（絵が消えて第2形態に替わるだけ） */
+  .tb-mesh.on, .tb-shard.on { opacity: 1; }
+  .tb-gold-flash.calm { animation: tb-gold-calm 2.2s ease-in-out forwards; } /* 点滅ではなく、ゆっくり明るくなって引く形だけ */
+  .boss-rpg.tb-dim .boss-window, .boss-rpg.tb-dim .boss-qarea, .boss-rpg.tb-dim .after, .boss-rpg.tb-dim .boss-top, .boss-rpg.tb-dim .boss-fig .boss-img { transition: none; }
+  .boss-fig.slump, .boss-fig.revive, .boss-fig.slump .boss-img, .boss-fig.revive .boss-img, .boss-fig.slump .boss-fig-sym, .boss-fig.revive .boss-fig-sym { transition: none; }
+  .tb-ending-title, .tb-ending-line { transition: none; }
+  .tb-ending-art, .tb-ending-art img, .tb-ending-art-title { transition: none; }
+  /* 呪われた地図（要件定義書 §3-9）: 霧・粒・稲光・入口の脈打ちを止める。色の変化（暗い絵・紫のもや・四隅）と、晴れるときの色の戻りだけ残す */
+  .map-curse-fog, .map-curse-dot, .map-curse-bolt, .boss-place.cursed { animation: none !important; }
+  .map-curse-dot, .map-curse-bolt { display: none; }
+  .boss-place.cursed { box-shadow: 0 0 14px rgba(176, 42, 90, 0.6); }
+  /* 真ボスが現れる演出: 揺れ・もやの広がり・稲光・影の動き・入口の光る動き・フェードを止める（文と入口は一度に出る。JS も 1 文字ずつ・影・もやを作らない） */
+  .awaken-quake, .awaken-bolt.on, .awaken-shadow.on, .boss-place.awaken-in { animation: none !important; }
+  .awaken-haze, .awaken-overlay, .awaken-text { transition: none; }
+}
+
+/* 科目を選ぶ画面（科目のあるアプリ。views/subjects.js）と、ホームの「科目をかえる」 */
+.subject-list { display: grid; gap: 8px; }
+.btn.big.subject-card { justify-content: flex-start; text-align: left; gap: 12px; margin-bottom: 0; padding: 12px 16px; }
+.subject-card .subject-code { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); color: var(--text); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+.subject-card .subject-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.subject-card.current { border-color: var(--accent); border-width: 2px; }
+.hero .subject-switch { margin: 8px 0 4px; }
+
+/* 学習時間の振り返り（views/studyreport.js。要件定義書 §6-2）。棒は HTML のボタン。色は変数だけなので暗い配色でも読める */
+.study-time { display: block; width: 100%; font-size: 0.9375rem; }
+.sr-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 12px; }
+.sr-tab { appearance: none; font: inherit; font-weight: 700; min-height: 48px; padding: 0 4px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+.sr-tab.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.sr-period { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sr-field { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sr-date { font: inherit; min-height: 48px; width: 100%; padding: 4px 8px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); }
+.sr-msg { margin: 8px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); }
+.sr-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.sr-stat { display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); min-width: 0; overflow-wrap: anywhere; }
+.sr-stat-val { font-size: 1.25rem; line-height: 1.4; }
+.sr-chart { display: flex; gap: 4px; }
+/* 棒の高さは PLOT_PX(160)。その上に、数値のための余白 44px。縦軸の上端は棒の最大の高さ（余白の下） */
+.sr-axis { flex: none; width: 3.5rem; height: 204px; padding-top: 44px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 0.75rem; line-height: 1; color: var(--muted); }
+.sr-scroll { flex: 1; min-width: 0; overflow-x: auto; padding-bottom: 4px; }
+/* 横にスクロールして左が切れているときだけ、左の端をぼかして『まだ続く』と分かるようにする（切れた文字が中途半端に見えない） */
+.sr-scroll.scrolled { -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20px); mask-image: linear-gradient(to right, transparent 0, #000 20px); }
+.sr-cols { display: flex; height: 204px; padding: 44px 16px 0; box-sizing: border-box; border-bottom: 1px solid var(--muted); background-image: linear-gradient(var(--border), var(--border)), linear-gradient(var(--border), var(--border)); background-size: 100% 1px, 100% 1px; background-position: 0 44px, 0 124px; background-repeat: no-repeat; }
+.sr-col { appearance: none; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 0 1px; border: 0; background: none; cursor: pointer; font: inherit; overflow: visible; transition: flex-grow 0.42s ease; }
+.sr-col.entering, .sr-col.leaving { flex-grow: 0; padding: 0; }
+.sr-bar, .sr-val { flex: none; } /* 縮めない（縮むと棒の高さが数値の分だけ削られる） */
+.sr-bar { display: block; width: 100%; height: 2px; background: var(--accent); border-radius: 3px 3px 0 0; transition: height 0.42s ease; }
+.sr-bar.zero { background: var(--border); border-radius: 0; }
+/* 棒の上の数値。横書き1行で、棒の幅より長くてよい（隣にはみ出す）。隣と重なるものは画面側で transform で横に寄せるか margin-bottom を足して段を上げ、それでも重なるものは .sr-val-hidden にして隠す */
+.sr-val { display: block; min-height: 1em; margin-bottom: 6px; font-size: 0.6875rem; line-height: 1; font-weight: 700; color: var(--text); white-space: nowrap; pointer-events: none; transition: margin-bottom 0.42s ease, transform 0.42s ease; }
+.sr-val.sr-val-hidden { visibility: hidden; }
+/* 選んだ棒は、棒そのものに縁を付ける（枠が上まで伸びて、棒と見分けにくくなるのを避ける）。*/
+.sr-col[aria-pressed='true'] .sr-bar { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text); }
+.sr-xs { display: flex; margin-top: 4px; padding: 0 16px; box-sizing: border-box; }
+.sr-x { flex: 1 1 0; min-width: 0; display: flex; justify-content: center; font-size: 0.6875rem; line-height: 1.2; white-space: nowrap; color: var(--muted); transition: flex-grow 0.42s ease; }
+.sr-x.entering, .sr-x.leaving { flex-grow: 0; }
+.sr-x-in { display: flex; flex-direction: column; align-items: center; }
+.sr-x small { display: block; font-size: 0.625rem; }
+.sr-hint { margin-top: 8px; }
+.sr-hint p { margin: 0 0 8px; }
+.sr-detail { margin: 12px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--text); font-weight: 700; overflow-wrap: anywhere; }
+
+/* ===== 呪われた地図（要件定義書 §3-9『呪われた地図』）=====
+   真ボスが現れてから一度も倒していない間、冒険の地図（.map-board.cursed）を暗く・彩度を落とし、紫と暗い赤のもや・黒い霧・暗い粒・遠くの稲光・四隅の暗がりを重ねる。
+   新しい絵は使わない。重ねる層（.map-curse）は操作を邪魔しない（pointer-events: none）。ステージの印は層の上（DOM の順）にあるので、見やすさも変わらない。
+   動きは CSS のアニメだけ（粒は10個）。倒したあとの最初の1回は .lifting で、もやが引いて明るさが戻る（約2.8秒）。 */
+.map-board .map-bg { transition: filter 2.6s ease-in-out; }
+.map-board.cursed .map-bg { filter: brightness(0.4) saturate(0.3) contrast(1.1) hue-rotate(-12deg); }
+.map-board .map-node { transition: filter 2.6s ease-in-out; }
+.map-board.cursed .map-node { filter: saturate(0.65) brightness(0.82); } /* ステージの印は読める明るさのまま、少しだけ沈める */
+.map-board.lifting .map-bg { filter: none; }
+.map-curse { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; opacity: 1; transition: opacity 2.6s ease-in-out; }
+.map-curse.lifting { opacity: 0; }
+.map-curse-haze { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(70, 20, 110, 0.6), rgba(110, 10, 35, 0.45) 55%, rgba(35, 8, 55, 0.65)); mix-blend-mode: multiply; }
+.map-curse-fog { position: absolute; left: -50%; width: 200%; height: 38%; filter: blur(14px); opacity: 0.75; background: radial-gradient(ellipse 30% 50% at 20% 50%, rgba(10, 4, 20, 0.85), transparent 70%), radial-gradient(ellipse 25% 45% at 60% 55%, rgba(35, 8, 55, 0.8), transparent 70%), radial-gradient(ellipse 30% 50% at 90% 45%, rgba(10, 4, 20, 0.85), transparent 70%); }
+.map-curse-fog.f1 { top: 12%; animation: map-fog 46s linear infinite alternate; }
+.map-curse-fog.f2 { top: 58%; animation: map-fog 62s linear infinite alternate-reverse; opacity: 0.45; }
+.map-curse-dot { position: absolute; bottom: -6px; width: 4px; height: 4px; border-radius: 50%; background: rgba(150, 90, 200, 0.7); box-shadow: 0 0 6px rgba(120, 60, 170, 0.8); opacity: 0; animation: map-dot 16s linear infinite; }
+.map-curse-dot:nth-of-type(1) { left: 8%; animation-delay: 0s; } .map-curse-dot:nth-of-type(2) { left: 19%; animation-delay: -5s; animation-duration: 19s; }
+.map-curse-dot:nth-of-type(3) { left: 31%; animation-delay: -9s; } .map-curse-dot:nth-of-type(4) { left: 42%; animation-delay: -2s; animation-duration: 21s; }
+.map-curse-dot:nth-of-type(5) { left: 53%; animation-delay: -12s; } .map-curse-dot:nth-of-type(6) { left: 64%; animation-delay: -7s; animation-duration: 18s; }
+.map-curse-dot:nth-of-type(7) { left: 74%; animation-delay: -14s; } .map-curse-dot:nth-of-type(8) { left: 83%; animation-delay: -3s; animation-duration: 22s; }
+.map-curse-dot:nth-of-type(9) { left: 91%; animation-delay: -10s; } .map-curse-dot:nth-of-type(10) { left: 14%; animation-delay: -16s; animation-duration: 20s; }
+.map-curse-bolt { position: absolute; inset: 0; background: radial-gradient(ellipse 90% 55% at 70% 6%, rgba(235, 220, 255, 0.95), rgba(180, 130, 255, 0.5) 45%, transparent 80%); opacity: 0; animation: map-bolt 11s linear infinite; }
+.map-curse-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.6) 100%); }
+.boss-place.cursed { border-color: #b02a5a; animation: map-place-pulse 2.4s ease-in-out infinite; }
+@keyframes map-fog { from { transform: translateX(0); } to { transform: translateX(25%); } }
+@keyframes map-dot { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: 0.9; } 85% { opacity: 0.5; } 100% { transform: translateY(-110%); opacity: 0; } }
+@keyframes map-bolt { 0%, 92%, 100% { opacity: 0; } 93% { opacity: 0.9; } 94% { opacity: 0.1; } 95% { opacity: 0.7; } 97% { opacity: 0; } }
+@keyframes map-place-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(176, 42, 90, 0.0), 0 0 8px rgba(176, 42, 90, 0.4); } 50% { box-shadow: 0 0 0 4px rgba(176, 42, 90, 0.25), 0 0 22px rgba(176, 42, 90, 0.8); } }
+
+/* ===== 真ボスが初めて現れる演出（要件定義書 §3-9『出現の演出』。js/views/awaken.js が class を付ける）=====
+   地鳴りで画面が揺れる（.awaken-quake）→ 画面の真ん中から暗いもやが広がる（.awaken-haze）→ 地図が呪われる（.map-curse の rising を外す）→ 稲光（.awaken-bolt）
+   → 真ボスの影（.awaken-shadow。一つ目だけ光る）→ 1文字ずつの文（.awaken-text）→ 入口が光って現れる（.boss-place.awaken-in）。タップで飛ばせる。
+   重ねる層は画面いっぱいの fixed（body 直下）。揺らすのは地図の画面（.awaken-quake）。時間は awaken.js の AWAKEN_PLAN と合わせる。 */
+.map-curse.rising { opacity: 0; }
+.boss-place.awaken-wait { visibility: hidden; }
+.boss-place.awaken-in { animation: awaken-place 1.4s ease-out; }
+.awaken-quake { animation: awaken-quake 2.3s linear; }
+.awaken-overlay { position: fixed; inset: 0; z-index: 96; overflow: hidden; cursor: pointer; opacity: 1; transition: opacity 0.5s ease; }
+.awaken-overlay.out { opacity: 0; }
+.awaken-haze { position: absolute; left: 50%; top: 50%; width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; border-radius: 50%; background: radial-gradient(circle, rgba(52, 12, 78, 0.9) 0%, rgba(78, 10, 40, 0.7) 28%, rgba(20, 4, 36, 0.5) 52%, transparent 70%); transform: scale(0); opacity: 0; transition: transform 2.4s ease-out, opacity 0.8s ease-out; }
+.awaken-haze.on { transform: scale(1); opacity: 1; }
+.awaken-bolt { position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse 130% 85% at 60% 0%, rgba(246, 240, 255, 0.95), rgba(196, 156, 255, 0.7) 38%, rgba(120, 70, 200, 0.3) 70%, transparent 100%); }
+.awaken-bolt-line { position: absolute; inset: 0; width: 100%; height: 100%; }
+.awaken-bolt-path { fill: none; stroke: #fff; stroke-width: 3px; stroke-linejoin: miter; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 6px #c9a8ff) drop-shadow(0 0 14px #8f5cff); }
+.awaken-bolt.on { animation: awaken-bolt 0.8s linear; }
+.awaken-shadow { position: absolute; left: 50%; top: 40%; width: min(78vw, 380px); aspect-ratio: 1; transform: translate(-50%, -50%); opacity: 0; }
+.awaken-shadow.on { animation: awaken-shadow 2.4s ease-in-out forwards; }
+.awaken-shadow-img { display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0) drop-shadow(0 0 14px rgba(120, 60, 190, 0.9)); }
+.awaken-eye-layer { position: absolute; inset: 0; width: 100%; height: 100%; }
+.awaken-eye { fill: #cfeeff; filter: drop-shadow(0 0 3px #5ec8ff); }
+.awaken-text { position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%); width: min(90vw, 520px); box-sizing: border-box; margin: 0; padding: 16px 18px; border: 2px solid #b02a5a; border-radius: 10px; background: rgba(12, 6, 22, 0.88); color: #fff; font-size: 1.1rem; line-height: 1.8; text-align: center; opacity: 0; transition: opacity 0.3s ease; min-height: 3.6em; }
+.awaken-text.on { opacity: 1; }
+.awaken-skip { position: absolute; top: 12px; right: 12px; z-index: 1; }
+.awaken-overlay.calm { background: rgba(10, 4, 20, 0.55); }
+@keyframes awaken-quake {
+  0% { transform: translate(0, 0); } 10% { transform: translate(-1px, 1px); } 20% { transform: translate(1px, -1px); } 30% { transform: translate(-2px, 1px); } 40% { transform: translate(2px, -2px); }
+  50% { transform: translate(-3px, 2px); } 60% { transform: translate(3px, -2px); } 70% { transform: translate(-5px, 3px); } 80% { transform: translate(5px, -3px); } 90% { transform: translate(-6px, 2px); } 100% { transform: translate(0, 0); }
+}
+@keyframes awaken-bolt { 0% { opacity: 0; } 8% { opacity: 1; } 22% { opacity: 0.1; } 34% { opacity: 0.85; } 100% { opacity: 0; } }
+@keyframes awaken-shadow { 0% { opacity: 0; transform: translate(-50%, -46%) scale(0.94); } 40% { opacity: 0.8; } 100% { opacity: 0; transform: translate(-50%, -54%) scale(1.06); } }
+@keyframes awaken-place { 0% { opacity: 0; transform: scale(0.94); box-shadow: 0 0 0 0 rgba(176, 42, 90, 0); } 50% { opacity: 1; transform: scale(1.02); box-shadow: 0 0 0 8px rgba(176, 42, 90, 0.35), 0 0 36px rgba(255, 120, 170, 0.95); } 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 4px rgba(176, 42, 90, 0.25), 0 0 22px rgba(176, 42, 90, 0.8); } }
+
+/* ---- 場面が変わるときの演出（要件定義書 §6-5）。js/lib/transition.js が覆い（.scene-veil）を足し、
+   覆いが画面を隠しきったところで画面を入れ替え（.in の終わり）、覆いを明けて（.out）消す。
+   時間は lib/transition.js の TIMES と同じ値（tests/transition.test.js が突き合わせる）。動きを減らす設定では JS が覆いを出さない。 ---- */
+.scene-veil { position: fixed; inset: 0; z-index: 95; overflow: hidden; pointer-events: none; }
+.scene-veil.in { pointer-events: auto; } /* 隠している間だけ、下の画面への誤タップを止める */
+/* ドットの渦（ボス戦）。四角いドットは JS が canvas に描く（1.0 秒＝隠す 700ms ＋明ける 300ms は TIMES.vortex）。CSS は canvas を画面いっぱいに置くだけ */
+.scene-dots { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
+/* 斜めのドット（問題・どっち？・模擬試験）。ボス戦と同じ canvas に JS が描く（隠す 380ms ＋明ける 280ms は TIMES.wipe）。覆いの背景は無し */
+.scene-wipe { background: transparent; }
+/* 地図の章に入る・戻る（zoom・zoomback）。同じく canvas に JS が描く円形のドット（TIMES.zoom は 420ms＋280ms、TIMES.zoomback は 200ms＋220ms）。覆いの背景は無し */
+.scene-zoom, .scene-zoomback { background: transparent; }
+.scene-fade { background: #000; }
+.scene-fade.in { animation: scene-fade-in 150ms linear forwards; }
+.scene-fade.out { animation: scene-fade-out 300ms ease-out forwards; }
+@keyframes scene-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scene-fade-out { from { opacity: 1; } to { opacity: 0; } }
+/* 下のタブを押したときの、画面の中身の弾み（要件定義書 §6-5、先生の言葉を受けて作り直し 2026-10-25）。覆いは使わず、待たせない・操作を止めない。
+   画面（main の中の .view）の直下のかたまりが、上から 40ms ずつ遅れて、20px 下からばね（開け閉めと同じ行き過ぎて戻る手触り）で出る。
+   遅れの class（.rise-1〜.rise-9）は lib/transition.js の tabRise が付けて、終わったら外す。時間・間隔は同ファイルの TAB_RISE_* と同じ。
+   動きを減らす設定では JS が付けず、上の prefers-reduced-motion の規則でも止まる */
+.main.tab-rise .rise-1, .main.tab-rise .rise-2, .main.tab-rise .rise-3, .main.tab-rise .rise-4, .main.tab-rise .rise-5, .main.tab-rise .rise-6, .main.tab-rise .rise-7, .main.tab-rise .rise-8, .main.tab-rise .rise-9 { animation: tab-rise 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.main.tab-rise .rise-1 { animation-delay: 0ms; }
+.main.tab-rise .rise-2 { animation-delay: 40ms; }
+.main.tab-rise .rise-3 { animation-delay: 80ms; }
+.main.tab-rise .rise-4 { animation-delay: 120ms; }
+.main.tab-rise .rise-5 { animation-delay: 160ms; }
+.main.tab-rise .rise-6 { animation-delay: 200ms; }
+.main.tab-rise .rise-7 { animation-delay: 240ms; }
+.main.tab-rise .rise-8 { animation-delay: 280ms; }
+.main.tab-rise .rise-9 { animation-delay: 280ms; }
+@keyframes tab-rise { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+/* 模擬試験の結果の中分類別（要件定義書の模擬試験「中分類別の正答率」）。大項目の行を押すと開く */
+details.exam-major { border-top: 1px solid var(--border); }
+details.exam-major > summary { list-style: none; cursor: pointer; padding: 8px 0; min-height: 48px; }
+details.exam-major > summary::-webkit-details-marker { display: none; }
+details.exam-major > summary .bar-row { margin-bottom: 4px; }
+.exam-major-hint { color: var(--accent); }
+.exam-major-hint::before { content: '▸ '; display: inline-block; }
+details.exam-major[open] .exam-major-hint::before { content: '▾ '; }
+.exam-middles { margin: 4px 0 12px 6px; padding-left: 12px; border-left: 3px solid var(--accent-soft); font-size: 0.92em; }

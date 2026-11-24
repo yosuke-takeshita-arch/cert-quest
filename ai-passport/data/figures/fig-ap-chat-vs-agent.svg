@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 572" role="img" aria-labelledby="fig-ap-chat-vs-agent-t fig-ap-chat-vs-agent-d">
+<title id="fig-ap-chat-vs-agent-t">対話型の生成AIとAIエージェント：1回答えて終わるか、目標まで道具を使って進めるか</title>
+<desc id="fig-ap-chat-vs-agent-d">例は来週の会議の設定。①対話型の生成AIは、「招待の文を書いて」と1回聞くと、案の文を返して終わる。空きを調べたり招待を送ったりするのは人。②AIエージェントは、「来週、3人で1時間の会議を」という目標を受けて、計画（小さな手順に分ける）、道具で実行（予定表で3人の空きを調べる）、結果を見る（木曜15時が全員空いている）、道具で実行（招待を送る。外のシステムへ書き込む）と、自分で進める。うまくいかないときは止めて、人に判断を戻す。見分け方：文を返して終わるなら対話型、道具で調べ外へ書き込んで仕事を進めるならAIエージェント。</desc>
+<text x="12" y="20" class="tb">対話型の生成AI と AIエージェント</text>
+<text x="12" y="40" class="tm">例：来週の会議を設定したい</text>
+<text x="12" y="66" class="tb">① 対話型：1回聞いて、1回答える</text>
+<rect x="12" y="76" width="130" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="77" y="96" text-anchor="middle">「招待の文を</text>
+<text x="77" y="116" text-anchor="middle">書いて」</text>
+<line x1="144" y1="101" x2="176" y2="101" class="l sa w2"/>
+<polyline points="169.00,105.00 176,101 169.00,97.00" class="l sa w2"/>
+<rect x="178" y="76" width="130" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="243" y="96" text-anchor="middle">案の文を返して</text>
+<text x="243" y="116" text-anchor="middle">終わり</text>
+<text x="12" y="148" class="tm">空きを調べる・送るのは人がする</text>
+<line x1="12" y1="164" x2="308" y2="164" class="l sb w1"/>
+<text x="12" y="188" class="tb ta">② AIエージェント：目標まで自分で進める</text>
+<rect x="12" y="198" width="296" height="34" class="fs sb" stroke-width="1.5"/>
+<text x="160" y="220" class="tb" text-anchor="middle">目標「来週、3人で1時間の会議を」</text>
+<line x1="160" y1="234" x2="160" y2="248" class="l sa w2"/>
+<polyline points="156.00,241.00 160,248 164.00,241.00" class="l sa w2"/>
+<rect x="12" y="250" width="296" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="271">計画：小さな手順に分ける</text>
+<line x1="160" y1="284" x2="160" y2="298" class="l sa w2"/>
+<polyline points="156.00,291.00 160,298 164.00,291.00" class="l sa w2"/>
+<rect x="12" y="300" width="296" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="321">道具で実行：予定表で3人の空きを調べる</text>
+<line x1="160" y1="334" x2="160" y2="348" class="l sa w2"/>
+<polyline points="156.00,341.00 160,348 164.00,341.00" class="l sa w2"/>
+<rect x="12" y="350" width="296" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="371" class="tok">結果を見る：木曜15時が全員空いている</text>
+<line x1="160" y1="384" x2="160" y2="398" class="l sa w2"/>
+<polyline points="156.00,391.00 160,398 164.00,391.00" class="l sa w2"/>
+<rect x="12" y="400" width="296" height="32" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="421">道具で実行：招待を送る（外のシステムへ書く）</text>
+<text x="12" y="456" class="tm">うまくいかないときは止めて、人に判断を戻す</text>
+<line x1="12" y1="472" x2="308" y2="472" class="l sb w1"/>
+<text x="12" y="494" class="tb">見分け方</text>
+<text x="12" y="514">文を返して終わり → 対話型</text>
+<text x="12" y="534">道具で調べ、外へ書き込んで仕事を進める</text>
+<text x="12" y="554">→ AIエージェント</text>
+</svg>

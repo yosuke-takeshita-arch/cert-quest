@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 712" role="img" aria-labelledby="fig-g-digital-cartel-t fig-g-digital-cartel-d">
+<title id="fig-g-digital-cartel-t">アルゴリズムによる協調的行為の4つの類型（公正取引委員会の報告書 2021年）と、カルテルとして捉えられるか</title>
+<desc id="fig-g-digital-cartel-d">4つの類型を、何が価格をそろえるかで並べた。①監視型：人が先に値上げで合意し、アルゴリズムが他社の価格を見張って、合意が守られているかを確かめる。②並行利用：合意どおりの価格を付けるアルゴリズムや、同じ第三者が作った価格設定ツールを各社が使い、価格がそろう。③シグナリング：夜中など客に気づかれにくい時間に短く値上げを表示し、他社のアルゴリズムが追随するかを確かめながら価格を上げていく。小さなグラフは、横軸が時間、縦軸が価格で、夜に短い値上げの山が出て、そのあと価格が一段上がる様子。④自己学習：各社が独自に機械学習の価格設定を使い、アルゴリズムどうしの相互作用で価格が上がる。下の囲み：カルテル（不当な取引制限）として禁止するには、事業者の間の意思の連絡が要る。①や②のように先に合意があれば当たりうる。④は各社が独自に使うアルゴリズムどうしの相互作用で価格が上がり、事業者に価格をそろえる意思が無い場合もあり、今の独占禁止法で捉えにくい。他社の値上げを見て自分の判断で追随するだけ（意識的並行行為）は、それだけでは当たらないとされる。</desc>
+<text x="12" y="20" class="tb">アルゴリズムで価格がそろう4つの型</text>
+<text x="12" y="40" class="tm">公正取引委員会の報告書（2021年）の分類</text>
+<rect x="12" y="52" width="296" height="80" class="fs sb" stroke-width="1.5" rx="8"/>
+<text x="24" y="76" class="tb">① 監視型</text>
+<text x="24" y="98"><tspan class="tb">人が先に値上げで合意</tspan>し、アルゴリズム</text>
+<text x="24" y="118">が他社の価格を見張って守らせる</text>
+<rect x="12" y="142" width="296" height="98" class="fs sb" stroke-width="1.5" rx="8"/>
+<text x="24" y="166" class="tb">② 並行利用</text>
+<text x="24" y="188">合意どおりの価格を付けるアルゴリズム</text>
+<text x="24" y="208">や、<tspan class="tb">同じ第三者のツール</tspan>を各社が使い、</text>
+<text x="24" y="228">価格がそろう</text>
+<rect x="12" y="250" width="296" height="150" class="fs sb" stroke-width="1.5" rx="8"/>
+<text x="24" y="274" class="tb">③ シグナリング</text>
+<text x="24" y="296"><tspan class="tb">夜中などに短く値上げを表示</tspan>し、他社</text>
+<text x="24" y="316">のアルゴリズムが追随するか確かめる</text>
+<line x1="44" y1="384" x2="290" y2="384" class="l sm w1"/>
+<line x1="44" y1="330" x2="44" y2="384" class="l sm w1"/>
+<polyline points="44,370 110,370 118,342 128,342 136,370 170,370 178,354 290,354" class="l sa w2" fill="none"/>
+<text x="123" y="337" class="ta tb" text-anchor="middle">夜</text>
+<text x="182" y="346" class="ta">追随を見て上げる</text>
+<text x="24" y="352" class="tm" text-anchor="middle" transform="rotate(-90 24 352)">価格</text>
+<text x="290" y="397" class="tm" text-anchor="end">時間 →</text>
+<rect x="12" y="410" width="296" height="80" class="fs sb" stroke-width="1.5" rx="8"/>
+<text x="24" y="434" class="tb">④ 自己学習</text>
+<text x="24" y="456">各社が独自に使う学習アルゴリズム</text>
+<text x="24" y="476">どうしが<tspan class="tb">反応しあい</tspan>、価格が上がる</text>
+<line x1="12" y1="506" x2="308" y2="506" class="l sb w1"/>
+<text x="12" y="530" class="tb">カルテルとして禁止するには</text>
+<text x="12" y="550">事業者の間の<tspan class="tb">意思の連絡</tspan>が要る</text>
+<rect x="12" y="562" width="296" height="32" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="24" y="583">①②で先に合意があれば → <tspan class="tng tb">当たりうる</tspan></text>
+<rect x="12" y="602" width="296" height="50" class="fs sb dsh" stroke-width="1.5" rx="6"/>
+<text x="24" y="622">④：そろえる意思が無いこともある</text>
+<text x="24" y="642">→ <tspan class="tb">今の独占禁止法で捉えにくい</tspan></text>
+<text x="12" y="676" class="tm">他社を見て自分の判断で追随するだけ</text>
+<text x="12" y="696" class="tm">（意識的並行行為）は、それだけでは当たらない</text>
+</svg>

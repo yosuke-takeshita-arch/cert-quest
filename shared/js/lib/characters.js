@@ -1,0 +1,310 @@
+// キャラクター（柴犬と先生）: どの場面でどの絵を出すかの決まり。純粋な関数だけ（画面の部品は ui.js の characterImg / mascotLine）。
+// 柴犬＝お祝いと応援。先生＝解説の案内。1画面に1人まで（要件定義書 §6）。
+// 名前は 2026-10-05 に先生が決めた（柴犬＝サニー、先生＝あい先生）。名前と一言は、下の CHARACTER_NAMES と CHARACTER_TEXT の1か所にまとめる。
+import { keyDiff, currentStreak } from './scoring.js';
+import { dateKey } from './srs.js';
+import { examStatus } from './examdate.js';
+import { dailyProgress } from './daily.js';
+import { recordIsEmpty } from './intro.js';
+
+/** 素材（shared/images/characters/ の .webp の名前）。sw-core.js の SHARED にも同じものを入れる。 */
+export const CHARACTER_ART = [
+  'shiba-hello', 'shiba-banzai', 'shiba-clap', 'shiba-cheer', 'shiba-think', 'shiba-sleepy',
+  'sensei-hello', 'sensei-point', 'sensei-ok', 'sensei-comfort', 'sensei-think', 'sensei-clap',
+];
+
+/** キャラクターの名前。吹き出しの上に小さく出す。 */
+export const CHARACTER_NAMES = { shiba: 'サニー', sensei: 'あい先生' };
+
+/** 絵の名前から、話している人の名前。知らない絵は空。 */
+export function characterName(art) {
+  if (typeof art !== 'string') return '';
+  if (art.startsWith('shiba-')) return CHARACTER_NAMES.shiba;
+  if (art.startsWith('sensei-')) return CHARACTER_NAMES.sensei;
+  return '';
+}
+
+/** キャラクターが言う一言。文言はここ1か所にまとめる。 */
+export const CHARACTER_TEXT = {
+  homeHello: '今日もいっしょにがんばろう！',
+  homeFirst: 'はじめまして！ サニーだよ。まずは1問、解いてみよう！',
+  // 受験日の7・3・2・1日前と当日は、あい先生がその日にやることを伝える（2026-11-04 先生決定 B「あい先生が言うことによって、温かみが増す」）
+  homeExamToday: '今日は本番。迷ったら「見直す」の印を付けて先へ進み、最後に戻りましょう。落ち着いていけば大丈夫ですよ',
+  homeExamTomorrow: 'いよいよ明日が本番。新しいことはせず、まちがえた問題の見直しだけにして、早めに休みましょう',
+  homeExam2: 'あと2日。模擬試験をもう1回通しましょう。持ち物や受験の案内も、今日のうちに確かめておくと安心です',
+  // 2日・3日前は、模擬試験を1回でもやったかで分ける（2026-11-13 先生決定 A。先生「まだ模擬試験やってないのに、もう一回と言われても⋯」）
+  homeExam2First: 'あと2日。模擬試験を本番と同じ形で1回通しておきましょう。持ち物や受験の案内も、今日のうちに確かめておくと安心です',
+  homeExam3: 'あと3日。模擬試験で正答率の低かった中分類を見直しましょう。まちがえた問題は、解説まで読み直してくださいね',
+  homeExam3First: 'あと3日。模擬試験を1回通して、正答率の低い中分類を見つけておきましょう。まちがえた問題は、解説まで読み直してくださいね',
+  homeExam7: '本番まであと7日。模擬試験を本番と同じ形で通して、正答率の低い中分類を3つ選んでおきましょう',
+  homeGoalDone: '今日の目標、達成！ えらい！',
+  homeLate: 'こんな時間まで…！ 寝るのも大事だよ',
+  homeExamNear: (n) => '本番まであと' + n + '日！ ラストスパート！',
+  homeStreak: (n) => n + '日連続！ その調子！',
+  homeMorning: 'おはよう！ 朝の1問からはじめよう',
+  // 今日もう解いていたら「はじめよう」とは言わない（2026-11-13 先生決定「分ける」）
+  homeMorningAgain: 'おはよう！ 朝からえらい。この調子で進めよう',
+  homeNoon: 'お昼休みに、ちょっとだけ解いていこう',
+  homeEvening: 'おつかれさま！ 今日の分、少しずつ進めよう',
+  homeNight: '夜もがんばってるね。キリのいいところで休もう',
+  homeWeekend: 'お休みの日も、いっしょにがんばろう！',
+  homeBack: 'おかえり！ また会えてうれしいよ',
+  cheer: 'ここで覚えれば本番で取れる！',
+  examHigh: 'よくできました！ この調子！',
+  examLow: 'だいじょうぶ。まちがえたところが伸びしろだよ',
+  aboutShiba: 'Aisunia のマスコット、サニーだよ！ 解説では、あい先生が案内してくれるよ',
+  weakFound: 'ここから解くと、いちばん伸びるよ',
+  weakClear: '苦手と言える所は、いまのところ無いよ。この調子！',
+  // 「どっち？」の結果発表（要件定義書 §3-5。2026-10-20 先生決定 A）。ランクは lib/dochi.js の dochiRank
+  dochiS: '完璧！ 見分けの達人です',
+  dochiA: 'よくできました！ 見分ける力がついてきましたね',
+  dochiB: 'いい調子です。まちがえた組を見直せば、もっと伸びますよ',
+  dochiC: 'まちがえた組を見直して、もう一回！',
+  // 確かめの小窓（ui.js の confirmDialog。要件定義書 §6 キャラクター「確かめの小窓」。2026-10-15 先生決定 A）
+  confirmQuit: 'もう少しだけ、いっしょにがんばろう？',
+  confirmGrade: '見直しは済みましたか？',
+};
+
+/** キャラクター紹介の画面の中身（要件定義書 §6 キャラクター紹介。先生が決めた内容）。文言はここ1か所。
+ *  rows は上から順に出す。note は小さく添える注。where は会える場所（場面を足したら、要件定義書と一緒に直す）。名前の由来は載せない。 */
+export const CHARACTER_PROFILE = {
+  shiba: {
+    art: 'shiba-hello',
+    hello: 'Aisunia のマスコット、サニーだよ！ よろしくね',
+    rows: [
+      { label: '役目', text: 'Aisunia のマスコット。学ぶ人を応援する' },
+      { label: '見た目', text: '赤いバンダナを巻いた柴犬。バンダナの模様は Aisunia の印' },
+      { label: '年齢', text: '3歳（人間でいうと28〜29歳くらい）', note: '米国ケネル・クラブ（AKC）の数え方。犬の大きさで変わります' },
+      { label: '最近のこと', text: '最近の夏の暑さに、うんざりしている' },
+      { label: '苦手なもの', text: '初対面で距離が近い人間' },
+    ],
+    where: ['ホームの上（状況と時間帯で一言が変わる）', '地図の上', 'お祝いの画面（レベルアップ・バッジ・星・1日の目標）', '不正解が続いたときの応援', '「このアプリについて」', '使い方の案内の最後のページ', '問題の途中で「やめますか？」と聞く小窓'],
+  },
+  sensei: {
+    art: 'sensei-hello',
+    hello: 'あい先生です。解説は、私にお任せくださいね',
+    rows: [
+      { label: '役目', text: '解説の案内役' },
+      { label: '見た目', text: '赤い羽織に袴、本を抱えた先生。羽織に Aisunia の印' },
+      { label: '年齢', text: 'ひみつ' },
+      { label: 'スリーサイズ', text: 'ひみつ' },
+      { label: '好きなもの', text: '甘いもの。あんみつ、ティラミス' },
+      { label: '苦手なもの', text: '昆虫、秘密の多い人' },
+    ],
+    where: ['ホームの上（受験日の7・3・2・1日前と当日）', '問題の解説（正解の理由・覚え方）','模擬試験の結果', '「どっち？」の結果発表', '模擬試験の「採点しますか？」の小窓', '苦手の分析', '使い方の案内'],
+  },
+};
+/** 紹介の画面の切り替えの順（上のキーと同じ）。 */
+export const CHARACTER_PROFILE_ORDER = ['shiba', 'sensei'];
+/** 紹介の画面の見出しなど。 */
+export const CHARACTER_PAGE_TEXT = {
+  menu: 'キャラクター',
+  title: 'キャラクター',
+  whereLabel: '会える場所',
+  secretLabel: 'ひみつのヒント',
+  secretHint: '2人を何回もタップすると……？',
+  aboutLink: 'サニーとあい先生を紹介',
+};
+
+/** 何日あいたら「おかえり」にするか。最後に学習した日の差がこの日数以上（＝1日まるごと休んだ）。 */
+export const AWAY_DAYS = 2;
+/** 受験日まで何日以内なら「ラストスパート」にするか（2日前〜この日数）。 */
+export const EXAM_NEAR_DAYS = 7;
+/** 連続日数がこの日数以上なら、ほめる。 */
+export const STREAK_PRAISE_DAYS = 3;
+/** 不正解が何問続いたら応援を出すか。 */
+export const CHEER_RUN = 3;
+/** 模擬試験の正答率（%）がこれ以上なら、ほめる。 */
+export const EXAM_HIGH_RATE = 70;
+
+/** 素材の名前として正しいか（URL に入れる前の確認）。 */
+export function isCharacterArt(name) {
+  return typeof name === 'string' && CHARACTER_ART.includes(name);
+}
+
+/** 絵の URL。知らない名前・基準なしは null。 */
+export function characterImageUrl(name, base) {
+  if (!base || !isCharacterArt(name)) return null;
+  return base + name + '.webp';
+}
+
+/** 最後に学習した日から今日まで何日たったか。まだ学習していない・日付が読めないときは null。時計が戻っていても 0 未満にはしない。 */
+export function daysSinceLastStudy(state, todayKey) {
+  const last = state && state.streak && state.streak.last;
+  if (typeof last !== 'string' || typeof todayKey !== 'string') return null;
+  const d = keyDiff(last, todayKey);
+  return Number.isFinite(d) ? Math.max(0, d) : null;
+}
+
+/** ホームのキャラクター（ふだんは柴犬、受験日の7・3・2・1日前と当日はあい先生）。状況と時間帯で一言が変わる。上から順に、最初に当てはまった1つだけ（要件定義書 §6 キャラクター）。
+ *  now は Date（端末の時刻）。同じ日・同じ時間帯なら、開き直しても同じ一言（乱数は使わない）。 */
+export function homeMascot(state, now = new Date()) {
+  const T = CHARACTER_TEXT;
+  const s = state && typeof state === 'object' ? state : {};
+  const ok = now instanceof Date && !Number.isNaN(now.getTime());
+  if (!ok) return { art: 'shiba-hello', text: T.homeHello };
+  const key = dateKey(now);
+  const hour = now.getHours();
+  if (state && recordIsEmpty(state)) return { art: 'shiba-hello', text: T.homeFirst };
+  const away = daysSinceLastStudy(s, key);
+  if (away !== null && away >= AWAY_DAYS) return { art: 'shiba-sleepy', text: T.homeBack };
+  const days = examStatus(s.settings, now).days;
+  if (days === 0) return { art: 'sensei-ok', text: T.homeExamToday };
+  if (days === 1) return { art: 'sensei-comfort', text: T.homeExamTomorrow };
+  const today = dailyProgress(s, key);
+  if (today.done) return { art: 'shiba-banzai', text: T.homeGoalDone };
+  if (hour < 5) return { art: 'shiba-sleepy', text: T.homeLate };
+  const examDone = Array.isArray(s.exams) && s.exams.length > 0;
+  if (days === 2) return { art: 'sensei-point', text: examDone ? T.homeExam2 : T.homeExam2First };
+  if (days === 3) return { art: 'sensei-point', text: examDone ? T.homeExam3 : T.homeExam3First };
+  if (days === 7) return { art: 'sensei-point', text: T.homeExam7 };
+  if (days !== null && days >= 4 && days < EXAM_NEAR_DAYS) return { art: 'shiba-cheer', text: T.homeExamNear(days) };
+  const streak = currentStreak(s.streak, key);
+  if (streak >= STREAK_PRAISE_DAYS) return { art: 'shiba-clap', text: T.homeStreak(streak) };
+  if (hour >= 5 && hour <= 10) return { art: 'shiba-hello', text: today.answered > 0 ? T.homeMorningAgain : T.homeMorning };
+  if (hour >= 11 && hour <= 13) return { art: 'shiba-hello', text: T.homeNoon };
+  if (hour >= 17 && hour <= 20) return { art: 'shiba-hello', text: T.homeEvening };
+  if (hour >= 21) return { art: 'shiba-hello', text: T.homeNight };
+  const weekend = now.getDay() === 0 || now.getDay() === 6;
+  return { art: 'shiba-hello', text: weekend ? T.homeWeekend : T.homeHello };
+}
+
+/** いま不正解が何問続いているか。corrects は答えた順の正誤（true＝正解）。 */
+export function trailingWrong(corrects) {
+  let n = 0;
+  for (let i = (corrects || []).length - 1; i >= 0; i--) {
+    if (corrects[i]) break;
+    n++;
+  }
+  return n;
+}
+
+/** 応援を出すか。3問続けて不正解になった問題で出す（4・5問めでは出さず、6問めでもう一度）。 */
+export function shouldCheer(corrects) {
+  const n = trailingWrong(corrects);
+  return n >= CHEER_RUN && n % CHEER_RUN === 0;
+}
+
+/** 問題の解説の先生。正解なら丸、不正解なら「大丈夫」。 */
+export function explainSensei(correct) {
+  return correct ? 'sensei-ok' : 'sensei-comfort';
+}
+
+/** 解説の「覚え方」の先生。 */
+export const TIP_SENSEI = 'sensei-point';
+
+/** 模擬試験の結果の先生。rate は正答率（%）。 */
+export function examMascot(rate) {
+  if (Number.isFinite(rate) && rate >= EXAM_HIGH_RATE) return { art: 'sensei-clap', text: CHARACTER_TEXT.examHigh };
+  return { art: 'sensei-comfort', text: CHARACTER_TEXT.examLow };
+}
+
+/** 苦手の分析の先生。state は weakness.js の analyze の state。remaining は『あと何問で判定できるか』。分析できない（none）ときは出さない（null）。 */
+export function weakMascot(state, remaining) {
+  if (state === 'weak') return { art: 'sensei-point', text: CHARACTER_TEXT.weakFound };
+  if (state === 'clear') return { art: 'sensei-ok', text: CHARACTER_TEXT.weakClear };
+  if (state === 'learning' && Number.isFinite(remaining) && remaining > 0) return { art: 'sensei-think', text: 'あと' + remaining + '問、同じ項目の問題に答えると、苦手が分かるよ' };
+  return null;
+}
+
+/** 「どっち？」の結果発表の先生。rank は 'S'｜'A'｜'B'｜'C'。知らない値は C と同じ（はげます一言）。 */
+export function dochiMascot(rank) {
+  if (rank === 'S') return { art: 'sensei-clap', text: CHARACTER_TEXT.dochiS };
+  if (rank === 'A') return { art: 'sensei-ok', text: CHARACTER_TEXT.dochiA };
+  if (rank === 'B') return { art: 'sensei-point', text: CHARACTER_TEXT.dochiB };
+  return { art: 'sensei-comfort', text: CHARACTER_TEXT.dochiC };
+}
+
+/** お祝いの柴犬。レベルアップと1日の目標＝バンザイ、バッジと星＝拍手。知らない種類は出さない。 */
+export function celebrationMascot(kind) {
+  if (kind === 'level' || kind === 'goal') return 'shiba-banzai';
+  if (kind === 'badge' || kind === 'stars') return 'shiba-clap';
+  return null;
+}
+
+// ---- キャラクターをタップする遊び（隠しセリフ）。要件定義書 §6 キャラクター。回数はキャラごとに数え、記録（state.charTaps）に残す ----
+/** タップ回数を数えるキャラ。 */
+export const TAP_WHO = ['shiba', 'sensei'];
+
+/** 隠しセリフが出る回数と、その文言。文言はここ1か所にまとめる。 */
+export const CHARACTER_TAP_TEXT = {
+  shiba: {
+    10: 'くすぐったいよ〜！',
+    20: 'わん！ わんわん！',
+    30: 'そんなに押したら、目が回るよ〜',
+    50: '…もしかして、ぼくのこと好き？',
+    100: '100回！ その根気、勉強にも使っちゃおう！',
+  },
+  sensei: {
+    10: 'はい、なんでしょう？',
+    20: '質問は、解説を読んでからにしましょうね',
+    30: '先生をつついても、点数は上がりませんよ',
+    50: '…休憩も、学習のうちですよ',
+    100: '100回…。その集中力、本番で見せてくださいね',
+  },
+};
+
+/** 数え上げの上限（壊れた値が入っても、桁があふれないように）。 */
+export const TAP_MAX = 1000000;
+
+/** 絵の名前から、タップを数えるキャラ（shiba／sensei）。知らない絵は null。 */
+export function tapWho(art) {
+  if (typeof art !== 'string') return null;
+  if (art.startsWith('shiba-')) return 'shiba';
+  if (art.startsWith('sensei-')) return 'sensei';
+  return null;
+}
+
+/** 保存されたタップ回数を {shiba, sensei} の形に直す。欠け・負・小数・文字・NaN は0か切り捨てで正す。 */
+export function normalizeCharTaps(v) {
+  const o = v && typeof v === 'object' && !Array.isArray(v) ? v : {};
+  const out = {};
+  for (const k of TAP_WHO) {
+    const n = o[k];
+    out[k] = typeof n === 'number' && Number.isFinite(n) && n > 0 ? Math.min(Math.floor(n), TAP_MAX) : 0;
+  }
+  return out;
+}
+
+/** この回数ちょうどで出す隠しセリフ。節目でなければ null。100回のあとは100回ごと（200, 300…）に100回の文。 */
+export function tapLine(who, count) {
+  const lines = CHARACTER_TAP_TEXT[who];
+  if (!lines || !Number.isInteger(count) || count < 1) return null;
+  if (lines[count]) return lines[count];
+  if (count > 100 && count % 100 === 0) return lines[100];
+  return null;
+}
+
+/** 1回タップしたことを記録に足す。state.charTaps を直接更新し、{ count, line } を返す（line は節目のときだけ文、それ以外は null）。知らないキャラは null。 */
+export function recordTap(state, who) {
+  if (!state || typeof state !== 'object' || !TAP_WHO.includes(who)) return null;
+  const taps = normalizeCharTaps(state.charTaps);
+  taps[who] = Math.min(taps[who] + 1, TAP_MAX);
+  state.charTaps = taps;
+  return { count: taps[who], line: tapLine(who, taps[who]) };
+}
+
+// ---- タップのバッジ（要件定義書 §3-8-b）。回数は保存しないまま、『100回に達した』事実だけを state.charTap100 に残す ----
+/** この回数に達したら、そのキャラのタップのバッジの条件を満たす。 */
+export const TAP_BADGE_COUNT = 100;
+
+/** 保存された charTap100 を {shiba, sensei} の真偽の形に直す。true でないもの（欠け・文字・数）は false。 */
+export function normalizeCharTap100(v) {
+  const o = v && typeof v === 'object' && !Array.isArray(v) ? v : {};
+  const out = {};
+  for (const k of TAP_WHO) out[k] = o[k] === true;
+  return out;
+}
+
+/**
+ * タップが count 回になった時点で、100回に達していれば state.charTap100[who] を true にする。
+ * 新しく true になったときだけ true を返す（すでに true なら false。100回未満・知らないキャラも false）。
+ */
+export function markTapBadge(state, who, count) {
+  if (!state || typeof state !== 'object' || !TAP_WHO.includes(who)) return false;
+  const flags = normalizeCharTap100(state.charTap100);
+  state.charTap100 = flags;
+  if (!Number.isInteger(count) || count < TAP_BADGE_COUNT || flags[who]) return false;
+  flags[who] = true;
+  return true;
+}

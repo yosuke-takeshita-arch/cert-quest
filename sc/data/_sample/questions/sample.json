@@ -1,0 +1,53 @@
+[
+  {
+    "id": "SMP-SC-SQLI-001",
+    "syllabus": ["セキュリティ", "情報セキュリティの脅威", "攻撃手法"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "【サンプル】SQL インジェクション攻撃への対策として、最も適切なものはどれか。",
+    "choices": [
+      "入力値を SQL 文に直接連結せず、プレースホルダを使ってバインドする。",
+      "Web ページの出力時に、入力値の HTML 特殊文字をエスケープする。",
+      "Cookie に HttpOnly 属性を付ける。",
+      "リクエストに推測困難なトークンを含め、サーバ側で照合する。"
+    ],
+    "answer": 0,
+    "explanation": "SQL インジェクションは、入力値が SQL 文の一部として解釈されることで起きる。プレースホルダを使うと、入力値は値としてだけ扱われ、SQL 文の構造を変えられない。",
+    "whyWrong": [
+      null,
+      "HTML 特殊文字のエスケープは、クロスサイトスクリプティングへの対策。",
+      "HttpOnly 属性は、スクリプトから Cookie を読み取られないようにする対策で、SQL 文の組み立てとは関係しない。",
+      "推測困難なトークンの照合は、CSRF への対策。"
+    ],
+    "memoryTip": "データベースに入れる値は『連結しない、バインドする』。",
+    "concepts": ["C-SC-SQLI"],
+    "sources": [{ "title": "情報処理安全確保支援士試験 シラバス（案）Ver.0.1（サンプル用の出典）", "url": "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf" }],
+    "status": "verified"
+  },
+  {
+    "id": "SMP-SC-PAST-001",
+    "syllabus": ["セキュリティ", "情報セキュリティの脅威", "攻撃手法"],
+    "format": "single",
+    "difficulty": 1,
+    "stem": "【サンプル・出典の表示を確かめるための例です。実際の試験問題ではありません】SQL インジェクションを説明したものはどれか。",
+    "choices": [
+      "入力値を使って SQL 文の意味を変え、データベースを不正に操作する攻撃",
+      "利用者のブラウザ上で、攻撃者が用意したスクリプトを実行させる攻撃",
+      "ログイン済みの利用者に、意図しないリクエストを送らせる攻撃",
+      "大量のリクエストを送り、サービスを使えなくする攻撃"
+    ],
+    "answer": 0,
+    "explanation": "SQL インジェクションは、入力値の中に SQL 文の断片を紛れ込ませ、アプリケーションが組み立てる SQL 文の意味を変えてしまう攻撃。",
+    "whyWrong": [
+      null,
+      "ブラウザ上でスクリプトを実行させるのは、クロスサイトスクリプティング。",
+      "意図しないリクエストを送らせるのは、CSRF。",
+      "サービスを使えなくするのは、DoS 攻撃・DDoS 攻撃。"
+    ],
+    "memoryTip": "SQL インジェクション＝データベースへの攻撃。",
+    "concepts": ["C-SC-SQLI"],
+    "pastExam": { "year": "令和7年度", "period": "秋期", "exam": "情報処理安全確保支援士試験", "part": "午前Ⅱ", "no": 1, "modified": false },
+    "sources": [{ "title": "IPA 過去問題（サンプル用の出典。この問題自体は例です）", "url": "https://www.ipa.go.jp/shiken/mondai-kaiotu/" }],
+    "status": "verified"
+  }
+]

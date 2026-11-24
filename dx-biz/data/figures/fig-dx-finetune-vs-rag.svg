@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 398" role="img" aria-labelledby="fig-dx-finetune-vs-rag-t fig-dx-finetune-vs-rag-d">
+<title id="fig-dx-finetune-vs-rag-t">覚え込ませる（ファインチューニング）と調べさせる（RAG）：毎月変わる約款ではどう違うか</title>
+<desc id="fig-dx-finetune-vs-rag-d">何のための図か：毎月改定される約款に沿って答える生成AIを作るとき、約款でモデルを追加学習するファインチューニングと、質問のたびに約款を検索して渡すRAGを比べる。ファインチューニングは、事前学習済みのモデルをタスク固有のデータで学習させて重みを少し調整する方法で、口調・スタイルや出力の書式をそろえやすい（Microsoft Learn）。一方、学習とホストの追加の費用がかかり、データが更新されるたびにやり直しが要る場合がある。重みに入った知識は学習した時点の約款のままなので、やり直すまでは古い内容で答える。RAGは重みを変えず、検索で引く文書（索引）を入れ替えれば、再学習なしで知識を更新できる（RAGの原論文）。</desc>
+<text x="12" y="20" class="tb">約款が毎月変わるとき、どちらを選ぶか</text>
+<text x="12" y="50" class="tb">A 覚え込ませる：ファインチューニング</text>
+<rect x="12" y="58" width="296" height="106" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="80">約款でモデルを追加学習し、重みを調整する</text>
+<text x="22" y="98" class="tok">得：口調・書式を約款に合わせてそろえやすい</text>
+<text x="22" y="116" class="tng">損：改定のたびに学習をやり直す</text>
+<text x="22" y="134" class="tm">　（手間と費用がかかる）</text>
+<text x="22" y="152" class="tng">損：やり直すまでは古い約款で答える</text>
+<text x="12" y="194" class="tb">B 調べさせる：RAG</text>
+<rect x="12" y="202" width="296" height="88" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="224">質問のたびに約款を検索して渡す</text>
+<text x="22" y="242">（モデルの重みは変えない）</text>
+<text x="22" y="260" class="tok">得：文書を差し替えれば、再学習なしで</text>
+<text x="22" y="278" class="tok">　新しい約款で答えられる</text>
+<line x1="12" y1="302" x2="308" y2="302" class="l sb w1"/>
+<text x="12" y="326" class="tm">毎月の改定 → A は毎月の学び直し、</text>
+<text x="12" y="344" class="tm">B は文書の差し替えで追いつく</text>
+<text x="12" y="366" class="tm">× 文例を数件プロンプトに添えるのは、重みを</text>
+<text x="12" y="384" class="tm">変えない別の方法（少数ショット）</text>
+</svg>

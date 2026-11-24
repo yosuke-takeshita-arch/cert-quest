@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-rl-data-sources-t fig-g-rl-data-sources-d">
+<title id="fig-g-rl-data-sources-t">オンライン強化学習・オフライン強化学習・模倣学習</title>
+<desc id="fig-g-rl-data-sources-d">オンライン強化学習は、学習中の方策で環境とやり取りして経験を集め続け、その経験で方策を良くする。オフライン強化学習は、環境と新たにやり取りせず、過去に集め終えたデータだけから方策を学ぶ。模倣学習は、専門家の手本（観測と行動の組）から方策を学び、報酬は使わずに手本の行動をまねる。sim2real は、シミュレータで学んだ方策を実機に移すこと。ドメインランダマイゼーションは、シミュレータの見た目などをランダムに大きく変えて学ぶ方法。</desc>
+<text x="12" y="20" class="tb">① オンライン：環境とやり取りし続ける</text>
+<rect x="12" y="36" width="100" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="62" y="60.5" class="tb" text-anchor="middle">エージェント</text>
+<rect x="208" y="36" width="100" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="258" y="60.5" class="tb" text-anchor="middle">環境</text>
+<line x1="112" y1="48" x2="206" y2="48" class="l sa w2"/>
+<polyline points="199,51.85 206,48 199,44.15" class="l sa w2"/>
+<text x="160" y="42" class="tm" text-anchor="middle">行動</text>
+<line x1="206" y1="66" x2="112" y2="66" class="l sok w2"/>
+<polyline points="119,62.15 112,66 119,69.85" class="l sok w2"/>
+<text x="160" y="90" class="tm" text-anchor="middle">経験（状態・報酬）</text>
+<text x="12" y="114">今の方策で経験を集め、方策を良くする</text>
+<line x1="12" y1="134" x2="308" y2="134" class="l sb w1"/>
+<text x="12" y="158" class="tb">② オフライン：集め終えたデータだけ</text>
+<rect x="12" y="174" width="120" height="40" class="fwn swn" stroke-width="1.5"/>
+<text x="72" y="189.5" text-anchor="middle">過去のデータ</text>
+<text x="72" y="207.5" text-anchor="middle">（状態・行動・報酬）</text>
+<line x1="132" y1="194" x2="168" y2="194" class="l sa w2"/>
+<polyline points="161,197.85 168,194 161,190.15" class="l sa w2"/>
+<rect x="170" y="174" width="60" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="200" y="198.5" class="tb" text-anchor="middle">学習</text>
+<rect x="244" y="174" width="64" height="40" class="fs sb" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="276" y="198" class="tm" text-anchor="middle">環境</text>
+<line x1="236" y1="184" x2="252" y2="204" class="l sng w2"/>
+<line x1="252" y1="184" x2="236" y2="204" class="l sng w2"/>
+<text x="12" y="238" class="tb tng">環境と新たにやり取りしない</text>
+<text x="12" y="260" class="tm">→ 試行錯誤で失敗させられない分野向け</text>
+<line x1="12" y1="280" x2="308" y2="280" class="l sb w1"/>
+<text x="12" y="304" class="tb">③ 模倣学習：専門家の手本をまねる</text>
+<rect x="12" y="320" width="130" height="40" class="fok sok" stroke-width="1.5"/>
+<text x="77" y="335.5" text-anchor="middle">専門家の手本</text>
+<text x="77" y="353.5" text-anchor="middle">（観測 → 行動）</text>
+<line x1="142" y1="340" x2="176" y2="340" class="l sa w2"/>
+<polyline points="169,343.85 176,340 169,336.15" class="l sa w2"/>
+<rect x="178" y="320" width="130" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="243" y="335.5" text-anchor="middle">方策を学ぶ</text>
+<text x="243" y="353.5" text-anchor="middle">（観測から行動を予測）</text>
+<text x="12" y="384">報酬は使わず、手本の行動を正解として学ぶ</text>
+<line x1="12" y1="404" x2="308" y2="404" class="l sb w1"/>
+<text x="12" y="428" class="tb">sim2real：シミュレータで学び、実機へ</text>
+<rect x="12" y="444" width="120" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="72" y="457.5" text-anchor="middle">シミュレータで</text>
+<text x="72" y="475.5" text-anchor="middle">学習</text>
+<line x1="132" y1="462" x2="176" y2="462" class="l sa w2"/>
+<polyline points="169,465.85 176,462 169,458.15" class="l sa w2"/>
+<rect x="178" y="444" width="130" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="243" y="457.5" text-anchor="middle">実機（ロボット）</text>
+<text x="243" y="475.5" text-anchor="middle">へ移す</text>
+<text x="12" y="506" class="tb">ドメインランダマイゼーション</text>
+<text x="12" y="528">シミュレータの見た目などを、</text>
+<text x="12" y="548">ランダムに大きく変えて学ぶ</text>
+</svg>

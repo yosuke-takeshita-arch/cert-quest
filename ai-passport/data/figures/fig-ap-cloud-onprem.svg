@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 474" role="img" aria-labelledby="fig-ap-cloud-onprem-t fig-ap-cloud-onprem-d">
+<title id="fig-ap-cloud-onprem-t">クラウド型LLMとオンプレミスLLM：データがどこへ行き、設備をだれが持つか</title>
+<desc id="fig-ap-cloud-onprem-d">①クラウド型LLM：自社のデータを、インターネット越しに提供会社のサーバーへ送って処理する。良い点は設備・保守を提供会社が受け持ち、すぐ使えること。注意点は、入力したデータが会社の外へ出ること、国外のサーバーならその国の法の影響も受けうること。②オンプレミスLLM（ローカルLLM）：自社のサーバーの中で、重みが公開されたモデルを入れて動かす。良い点はデータが外に出ず、データ主権（大事なデータを自分たちの管理のもとで扱えること）を確保しやすいこと。注意点は、GPUなどの設備・保守・安全対策を自社で担うこと。例：病院のカルテの要約は、カルテを外に出せないので、②で院内で動かす。</desc>
+<text x="12" y="20" class="tb">LLM をどこで動かすか</text>
+<text x="12" y="46" class="tb ta">① クラウド型 LLM</text>
+<rect x="12" y="56" width="110" height="50" class="fs sb" stroke-width="1.5"/>
+<text x="67" y="76" class="tb" text-anchor="middle">自社</text>
+<text x="67" y="96" text-anchor="middle">データ</text>
+<line x1="124" y1="81" x2="196" y2="81" class="l swn w2"/>
+<polyline points="189.00,85.00 196,81 189.00,77.00" class="l swn w2"/>
+<text x="160" y="72" class="twn" text-anchor="middle">送る</text>
+<text x="160" y="100" class="tm" text-anchor="middle">ネット越し</text>
+<rect x="198" y="56" width="110" height="50" class="fas sa" stroke-width="1.5"/>
+<text x="253" y="76" class="tb" text-anchor="middle">提供会社</text>
+<text x="253" y="96" text-anchor="middle">のサーバー</text>
+<text x="12" y="128" class="tok">○ 設備・保守は提供会社。すぐ使える</text>
+<text x="12" y="148" class="twn">△ 入力したデータが会社の外へ出る</text>
+<text x="12" y="168" class="twn">△ 国外のサーバーなら、その国の法の影響も</text>
+<line x1="12" y1="184" x2="308" y2="184" class="l sb w1"/>
+<text x="12" y="208" class="tb tok">② オンプレミス LLM（ローカル LLM）</text>
+<rect x="12" y="218" width="296" height="76" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="236" class="tb">自社のサーバーの中</text>
+<rect x="30" y="246" width="110" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="85" y="269" text-anchor="middle">データ</text>
+<line x1="142" y1="264" x2="168" y2="264" class="l sok w2"/>
+<polyline points="161.00,268.00 168,264 161.00,260.00" class="l sok w2"/>
+<rect x="170" y="246" width="120" height="40" class="fs sb" stroke-width="1.5"/>
+<text x="230" y="264" text-anchor="middle">LLM（公開された</text>
+<text x="230" y="281" text-anchor="middle">重みを入れる）</text>
+<text x="12" y="316" class="tok">○ データが外に出ない</text>
+<text x="12" y="336" class="tok">　→ データ主権を確保しやすい</text>
+<text x="12" y="356" class="twn">△ GPU などの設備・保守・安全対策は自社</text>
+<line x1="12" y1="372" x2="308" y2="372" class="l sb w1"/>
+<text x="12" y="394" class="tb">例：病院のカルテの要約</text>
+<text x="12" y="414">カルテを外に出せない → ② で院内で動かす</text>
+<text x="12" y="438" class="tm">データ主権＝大事なデータを自分たちの</text>
+<text x="12" y="456" class="tm">管理のもとで扱えること</text>
+</svg>

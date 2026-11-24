@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 580" role="img" aria-labelledby="fig-g-reinforce-actor-critic-t fig-g-reinforce-actor-critic-d">
+<title id="fig-g-reinforce-actor-critic-t">REINFORCE と Actor-Critic：方策をいつ直すか</title>
+<desc id="fig-g-reinforce-actor-critic-d">どちらも方策勾配法の仲間で、行動を選ぶ確率を直接直す。違いは直す時期と、何を手がかりにするか。①は REINFORCE。1歩目、2歩目、3歩目、4歩目と最後まで進み、エピソードが終わってから、もらった報酬の合計を数え、全部の歩をまとめて直す。例：同じ場面で選んだ行動のあと、局1では合計20、局2では合計5の報酬だったら、20だった行動の確率をより大きく上げる。合計は運でぶれるので、学習が遅くなりやすい。②は Actor-Critic。Actor（役者）が部屋Aで右へを選び、部屋Bに着いて報酬0。Critic（批評家）は学習の途中の価値の見積もりを持ち、部屋Aは4、部屋Bは8。Critic は目標＝もらった報酬＋割引率×次の部屋の見積もりを作り、割引率0.9なら0＋0.9×8＝7.2。ずれ＝目標−いまの見積もり＝7.2−4＝＋3.2で、思ったより良かったと採点する。Actor はずれが正なので右へを選ぶ確率を上げ、負なら下げる。これを1歩ごとにくり返し、エピソードの終わりを待たない。採点の基準があるぶん、ぶれも抑えやすい。数は説明のための例。</desc>
+<text x="12" y="20" class="tb">REINFORCE と Actor-Critic：いつ直すか</text>
+<text x="12" y="44" class="tb">① REINFORCE：終わってからまとめて直す</text>
+<circle cx="30" cy="80" r="13" class="fs sb" stroke-width="1.5"/>
+<text x="30" y="85" class="tb" text-anchor="middle">1</text>
+<line x1="43" y1="80" x2="61.4" y2="80" class="l sm w1"/>
+<polygon points="67,80 61.4,83.5 61.4,76.5" class="fm"/>
+<circle cx="80" cy="80" r="13" class="fs sb" stroke-width="1.5"/>
+<text x="80" y="85" class="tb" text-anchor="middle">2</text>
+<line x1="93" y1="80" x2="111.4" y2="80" class="l sm w1"/>
+<polygon points="117,80 111.4,83.5 111.4,76.5" class="fm"/>
+<circle cx="130" cy="80" r="13" class="fs sb" stroke-width="1.5"/>
+<text x="130" y="85" class="tb" text-anchor="middle">3</text>
+<line x1="143" y1="80" x2="161.4" y2="80" class="l sm w1"/>
+<polygon points="167,80 161.4,83.5 161.4,76.5" class="fm"/>
+<circle cx="180" cy="80" r="13" class="fs sb" stroke-width="1.5"/>
+<text x="180" y="85" class="tb" text-anchor="middle">4</text>
+<line x1="193" y1="80" x2="211.4" y2="80" class="l sm w1"/>
+<polygon points="217,80 211.4,83.5 211.4,76.5" class="fm"/>
+<rect x="219" y="64" width="89" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="263" y="85" class="tb tok" text-anchor="middle">終わり</text>
+<text x="105" y="61" class="tm" text-anchor="middle">歩（直さずに進む）</text>
+<polyline points="263,96 263,116 30,116 30,99.6" class="l sa w2"/>
+<polygon points="30,94 26,100.4 34,100.4" class="fa"/>
+<text x="12" y="140" class="tb ta">報酬の合計を数え、全部の歩をまとめて直す</text>
+<text x="12" y="166" class="tm">例：同じ場面で選んだ行動のあと、</text>
+<text x="12" y="186" class="tm">局1は合計 20、局2は合計 5 の報酬だった</text>
+<text x="12" y="206" class="tok">→ 20 だった行動の確率を、より大きく上げる</text>
+<text x="12" y="230" class="tng">欠点：合計が運でぶれ、学習が遅くなりやすい</text>
+<line x1="12" y1="246" x2="308" y2="246" class="l sb w1"/>
+<text x="12" y="272" class="tb">② Actor-Critic：1歩ごとに採点して直す</text>
+<rect x="12" y="286" width="126" height="44" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="75" y="304" class="tb ta" text-anchor="middle">Actor（役者）</text>
+<text x="75" y="322" class="ta" text-anchor="middle">部屋Aで右へ</text>
+<line x1="138" y1="308" x2="176.4" y2="308" class="l sm w1"/>
+<polygon points="182,308 176.4,311.5 176.4,304.5" class="fm"/>
+<rect x="184" y="286" width="124" height="44" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="246" y="304" class="tb" text-anchor="middle">部屋Bに着いた</text>
+<text x="246" y="322" class="tm" text-anchor="middle">報酬 0</text>
+<line x1="246" y1="330" x2="246" y2="346.4" class="l sm w1"/>
+<polygon points="246,352 242.5,346.4 249.5,346.4" class="fm"/>
+<rect x="12" y="354" width="296" height="90" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="374" class="tb">Critic（批評家）が採点する</text>
+<text x="24" y="394" class="tm">学習途中の見積もり：部屋A＝4、部屋B＝8</text>
+<text x="24" y="413" class="tm">目標＝0＋0.9×8＝7.2</text>
+<text x="24" y="434" class="tb tok">ずれ＝7.2−4＝＋3.2（思ったより良い）</text>
+<line x1="75" y1="354" x2="75" y2="337.6" class="l sa w2"/>
+<polygon points="75,331 71,337.6 79,337.6" class="fa"/>
+<text x="12" y="470" class="tok">→ Actor は右へを選ぶ確率を上げる</text>
+<text x="12" y="490" class="tm">ずれが負なら下げる</text>
+<text x="12" y="514" class="tm">1歩ごとにくり返す（終わりを待たない）</text>
+<text x="12" y="534" class="tm">採点の基準があるぶん、ぶれも抑えやすい</text>
+<text x="12" y="558" class="tm">目標＝もらった報酬＋割引率（例 0.9）×</text>
+<text x="12" y="576" class="tm">次の部屋の見積もり。数は説明のための例</text>
+</svg>

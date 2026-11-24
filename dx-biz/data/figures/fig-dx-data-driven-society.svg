@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 664" role="img" aria-labelledby="fig-dx-data-driven-society-t fig-dx-data-driven-society-d">
+<title id="fig-dx-data-driven-society-t">データ駆動型社会：現実の世界のデータをサイバー空間で分析し、結果を現実に戻す輪と、それを可能にした流れ</title>
+<desc id="fig-dx-data-driven-society-d">上は輪の図。下の箱がフィジカル空間（現実の世界）で、位置情報・行動履歴・センサーのデータが生まれる。左の上向きの矢印で、データを集めてサイバー空間へ送る。上の箱がサイバー空間で、社会の要素をデジタルツインとして再構成し、分析する。右の下向きの矢印で、分析の結果を現実に戻し、産業や社会の仕組みを動かす。動いた現実から、また新しいデータが生まれて輪が回る。下は、それを可能にした流れ（平成29年版情報通信白書）。IoT機器が小さく安くなる、膨大なデータを集めて共有できる、流通するデータが現実の世界のデータへ、BtoCからBtoBへと広がる。最後に、新しい技術で生じる倫理・法・社会の課題（ELSI）には、人文・社会科学も含めた総合知で向き合う。</desc>
+<text x="12" y="20" class="tb">データ駆動型社会の輪</text>
+<rect x="60" y="34" width="200" height="74" class="fas sa" stroke-width="1.5" rx="8"/>
+<text x="160" y="56" text-anchor="middle" class="tb">サイバー空間</text>
+<text x="160" y="78" text-anchor="middle">デジタルツインに再構成し</text>
+<text x="160" y="98" text-anchor="middle">分析する</text>
+<rect x="60" y="214" width="200" height="74" class="fs l" stroke-width="1.5" rx="8"/>
+<text x="160" y="236" text-anchor="middle" class="tb">フィジカル空間（現実）</text>
+<text x="160" y="258" text-anchor="middle">位置情報・行動履歴・</text>
+<text x="160" y="278" text-anchor="middle">センサーのデータ</text>
+<text x="12" y="312">戻した結果で産業や社会の仕組みが動き、</text>
+<text x="12" y="332">そこからまた新しいデータが生まれる</text>
+<text x="12" y="356" class="tm">デジタルツイン＝現実をそっくり写したもの</text>
+<line x1="36" y1="210" x2="36" y2="116" class="l sa w2"/>
+<polygon points="36,106 30,118 42,118" class="fa"/>
+<text x="24" y="162" class="ta tb" text-anchor="middle" transform="rotate(-90 24 162)">データを集める</text>
+<line x1="284" y1="112" x2="284" y2="204" class="l sok w2"/>
+<polygon points="284,214 278,202 290,202" class="tok"/>
+<text x="300" y="160" class="tok tb" text-anchor="middle" transform="rotate(90 300 160)">結果を戻す</text>
+<line x1="12" y1="374" x2="308" y2="374" class="l sb w1"/>
+<text x="12" y="398" class="tb">なぜ今できるのか</text>
+<text x="12" y="418" class="tm">平成29年版情報通信白書</text>
+<rect x="12" y="428" width="296" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="448">IoT機器が小さく安くなる</text>
+<polygon points="160,476 154,466 166,466" class="fm"/>
+<rect x="12" y="478" width="296" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="498">膨大なデータを集めて共有できる</text>
+<polygon points="160,526 154,516 166,516" class="fm"/>
+<rect x="12" y="528" width="296" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="548">流通するデータが、現実の世界のデータへ、</text>
+<text x="24" y="568">BtoC から BtoB へと広がる</text>
+<line x1="12" y1="594" x2="308" y2="594" class="l sb w1"/>
+<text x="12" y="618">技術で生じる倫理・法・社会の課題</text>
+<text x="12" y="638">（ELSI）には、<tspan class="tb">総合知</tspan>で向き合う</text>
+<text x="12" y="658" class="tm">総合知＝人文・社会科学も含めた知</text>
+</svg>

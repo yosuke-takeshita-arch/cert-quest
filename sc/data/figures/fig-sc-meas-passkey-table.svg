@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 236" role="img" aria-labelledby="fig-sc-meas-passkey-table-t fig-sc-meas-passkey-table-d">
+<title id="fig-sc-meas-passkey-table-t">選択肢の表：利用者Aの生体情報を受信するもの</title>
+<desc id="fig-sc-meas-passkey-table-d">選択肢は3列の表。列は左から、利用者AのWebブラウザ、WebサーバB、IdP。アは受信しない、受信しない、受信しない。イは受信しない、受信する、受信する。ウは受信する、受信しない、受信しない。エは受信する、受信する、受信する。</desc>
+<text x="12" y="20" class="tb">選択肢の表（列の並び）</text>
+<rect x="12" y="32" width="296" height="196" class="fs sb" stroke-width="1.5"/>
+<line x1="12" y1="80" x2="308" y2="80" class="l sb w1"/>
+<line x1="12" y1="117" x2="308" y2="117" class="l sb w1"/>
+<line x1="12" y1="154" x2="308" y2="154" class="l sb w1"/>
+<line x1="12" y1="191" x2="308" y2="191" class="l sb w1"/>
+<line x1="40" y1="32" x2="40" y2="228" class="l sb w1"/>
+<line x1="132" y1="32" x2="132" y2="228" class="l sb w1"/>
+<line x1="220" y1="32" x2="220" y2="228" class="l sb w1"/>
+<text x="86" y="52" class="tb" text-anchor="middle">利用者Aの</text>
+<text x="86" y="70" class="tb" text-anchor="middle">Webブラウザ</text>
+<text x="176" y="52" class="tb" text-anchor="middle">Web</text>
+<text x="176" y="70" class="tb" text-anchor="middle">サーバB</text>
+<text x="264" y="61" class="tb" text-anchor="middle">IdP</text>
+<text x="26" y="104" class="tb" text-anchor="middle">ア</text>
+<text x="86" y="104" text-anchor="middle">受信しない</text>
+<text x="176" y="104" text-anchor="middle">受信しない</text>
+<text x="264" y="104" text-anchor="middle">受信しない</text>
+<text x="26" y="141" class="tb" text-anchor="middle">イ</text>
+<text x="86" y="141" text-anchor="middle">受信しない</text>
+<text x="176" y="141" text-anchor="middle">受信する</text>
+<text x="264" y="141" text-anchor="middle">受信する</text>
+<text x="26" y="178" class="tb" text-anchor="middle">ウ</text>
+<text x="86" y="178" text-anchor="middle">受信する</text>
+<text x="176" y="178" text-anchor="middle">受信しない</text>
+<text x="264" y="178" text-anchor="middle">受信しない</text>
+<text x="26" y="215" class="tb" text-anchor="middle">エ</text>
+<text x="86" y="215" text-anchor="middle">受信する</text>
+<text x="176" y="215" text-anchor="middle">受信する</text>
+<text x="264" y="215" text-anchor="middle">受信する</text>
+</svg>

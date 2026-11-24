@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 406" role="img" aria-labelledby="fig-dx-privacy-tradeoff-t fig-dx-privacy-tradeoff-d">
+<title id="fig-dx-privacy-tradeoff-t">履歴を細かく使うほど便利さも不安も上がる。匿名化と説明で不安だけを下げる</title>
+<desc id="fig-dx-privacy-tradeoff-d">何のための図か：ECサイトが閲覧・購入の履歴を細かく使うときの、便利さとプライバシーの折り合いを見る。履歴を細かく使うほど、おすすめは個人に合いやすくなる（便利さが上がる）。一方、令和2年版情報通信白書によると、日本の消費者の約8割がパーソナルデータの提供に不安を感じている。折り合いのつけ方として、白書では安心な提供のための取組に匿名化などの加工処理が最も多く選ばれ、個人が特定できないよう加工されたデータの活用には6割前後が安心できると答えた。使い方を分かりやすく示すことも合わせ、便利さを残しながら不安を下げる。</desc>
+<text x="12" y="20" class="tb">便利さと不安は、一緒に上がる</text>
+<text x="12" y="42" class="tm">例：閲覧・購入の履歴でおすすめを出す</text>
+<text x="12" y="70" class="tb ta">履歴を細かく使うと</text>
+<rect x="12" y="78" width="296" height="110" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="102" class="tb tok">便利さ↑</text>
+<text x="22" y="120">おすすめが一人ひとりに合いやすい</text>
+<text x="22" y="140" class="tb tng">不安↑</text>
+<text x="22" y="158">データの提供に不安を感じる消費者は</text>
+<text x="22" y="176">約8割（令和2年版 情報通信白書）</text>
+<line x1="160" y1="192" x2="160" y2="204" class="l sa w2"/>
+<polyline points="155,203 160,210 165,203" class="l sa w2" fill="none"/>
+<text x="12" y="232" class="tb ta">折り合いのつけ方</text>
+<rect x="12" y="240" width="296" height="108" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="262">匿名化などの加工</text>
+<text x="22" y="280" class="tm">→ 個人が特定できない形なら、6割前後が</text>
+<text x="22" y="298" class="tm">　安心できると答えた</text>
+<text x="22" y="316">使い方を分かりやすく示す（透明性）</text>
+<text x="22" y="336" class="tb tok">→ 便利さは残し、不安を下げる</text>
+<text x="12" y="374" class="tm tng">× 使うのをやめる／同意だけで何でも使う、</text>
+<text x="12" y="392" class="tm tng">の二択ではない</text>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 516" role="img" aria-labelledby="fig-g-leak-eval-gap-t fig-g-leak-eval-gap-d">
+<title id="fig-g-leak-eval-gap-t">検証用データの一部が学習データにも入ると、検証の点だけが良く見える</title>
+<desc id="fig-g-leak-eval-gap-d">何のための図か：検証用データの一部が学習データにも入っていたとき、何が起きるかを見る。数は説明のための例。①正しい分け方：10件のデータのうち、1〜8を学習用、9と10を検証用にする。検証用は学習で1度も見ないので、初めて見るデータでの実力を測れる。②一部が両方に入った：検証用の7〜10のうち、7と8が学習用にも入っている。モデルは7と8の答えを学習で覚えているので、検証では当てられて当然になる。③結果：検証では95％と出たのに、本番の新しいデータでは70％に下がる。検証の点が実力以上に良く見えていた。学習の計算そのものはふつうに進み、止まったりパラメータが増えたりはしない。困るのは評価の数字が当てにならないこと。</desc>
+<text x="12" y="20" class="tb">検証用データが、学習にも入っていたら</text>
+<text x="12" y="42" class="tm">10件のデータで見る（数は説明のための例）</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="78" class="tb">① 正しい分け方</text>
+<text x="12" y="98" class="tm">学習用</text>
+<rect x="70" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="81" y="98" text-anchor="middle">1</text>
+<rect x="96" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="107" y="98" text-anchor="middle">2</text>
+<rect x="122" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="133" y="98" text-anchor="middle">3</text>
+<rect x="148" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="159" y="98" text-anchor="middle">4</text>
+<rect x="174" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="185" y="98" text-anchor="middle">5</text>
+<rect x="200" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="211" y="98" text-anchor="middle">6</text>
+<rect x="226" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="237" y="98" text-anchor="middle">7</text>
+<rect x="252" y="82" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="263" y="98" text-anchor="middle">8</text>
+<text x="12" y="128" class="tm">検証用</text>
+<rect x="70" y="112" width="22" height="22" class="fok sok" stroke-width="1.2" rx="3"/>
+<text x="81" y="128" text-anchor="middle">9</text>
+<rect x="96" y="112" width="22" height="22" class="fok sok" stroke-width="1.2" rx="3"/>
+<text x="107" y="128" text-anchor="middle">10</text>
+<text x="12" y="154">検証用は学習で1度も見ない</text>
+<text x="12" y="174" class="tb tok">→ 初めて見るデータでの実力を測れる</text>
+<line x1="12" y1="186" x2="308" y2="186" class="l sb w1"/>
+<text x="12" y="210" class="tb">② 一部が両方に入った</text>
+<text x="12" y="230" class="tm">学習用</text>
+<rect x="70" y="214" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="81" y="230" text-anchor="middle">1</text>
+<rect x="96" y="214" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="107" y="230" text-anchor="middle">2</text>
+<rect x="122" y="214" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="133" y="230" text-anchor="middle">3</text>
+<rect x="148" y="214" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="159" y="230" text-anchor="middle">4</text>
+<rect x="174" y="214" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="185" y="230" text-anchor="middle">5</text>
+<rect x="200" y="214" width="22" height="22" class="fas sa" stroke-width="1.2" rx="3"/>
+<text x="211" y="230" text-anchor="middle">6</text>
+<rect x="226" y="214" width="22" height="22" class="fng sng" stroke-width="1.2" rx="3"/>
+<text x="237" y="230" text-anchor="middle">7</text>
+<rect x="252" y="214" width="22" height="22" class="fng sng" stroke-width="1.2" rx="3"/>
+<text x="263" y="230" text-anchor="middle">8</text>
+<text x="12" y="260" class="tm">検証用</text>
+<rect x="70" y="244" width="22" height="22" class="fng sng" stroke-width="1.2" rx="3"/>
+<text x="81" y="260" text-anchor="middle">7</text>
+<rect x="96" y="244" width="22" height="22" class="fng sng" stroke-width="1.2" rx="3"/>
+<text x="107" y="260" text-anchor="middle">8</text>
+<rect x="122" y="244" width="22" height="22" class="fok sok" stroke-width="1.2" rx="3"/>
+<text x="133" y="260" text-anchor="middle">9</text>
+<rect x="148" y="244" width="22" height="22" class="fok sok" stroke-width="1.2" rx="3"/>
+<text x="159" y="260" text-anchor="middle">10</text>
+<text x="12" y="286">赤の 7・8 は、学習で答えごと覚えている</text>
+<text x="12" y="306" class="tb tng">→ 検証では当てられて当然</text>
+<line x1="12" y1="318" x2="308" y2="318" class="l sb w1"/>
+<text x="12" y="342" class="tb">③ 結果：点が良く見えるだけ</text>
+<text x="12" y="371">検証</text>
+<rect x="56" y="354" width="209" height="24" class="fng sng" stroke-width="1.5" rx="3"/>
+<text x="271" y="371" class="tb tng">95%</text>
+<text x="12" y="405">本番</text>
+<rect x="56" y="388" width="154" height="24" class="fs sb" stroke-width="1.5" rx="3"/>
+<text x="216" y="405" class="tb ">70%</text>
+<text x="12" y="442" class="tb tng">検証の点が、実力以上に高く出ていた</text>
+<text x="12" y="460">本番の新しいデータでは下がる</text>
+<text x="12" y="484" class="tm">学習の計算はふつうに進む。止まったり、</text>
+<text x="12" y="502" class="tm">パラメータが増えたりはしない</text>
+</svg>

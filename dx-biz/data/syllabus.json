@@ -1,0 +1,154 @@
+[
+  {
+    "id": "CORE",
+    "title": "コアDXBzイノベーション領域",
+    "children": [
+      {
+        "id": "01A",
+        "title": "A ソーシャルイノベーション・科学技術イノベーション",
+        "children": [
+          { "id": "01A-1", "title": "基本概念", "children": [] },
+          { "id": "01A-2", "title": "応用事例", "children": [] },
+          { "id": "01A-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "02B",
+        "title": "B ビジネスイノベーション/トレンド/人財",
+        "children": [
+          { "id": "02B-1", "title": "基本概念", "children": [] },
+          { "id": "02B-2", "title": "応用事例", "children": [] },
+          { "id": "02B-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "03G",
+        "title": "G 新市場/新事業/戦略/理論",
+        "children": [
+          { "id": "03G-1", "title": "基本概念", "children": [] },
+          { "id": "03G-2", "title": "応用事例", "children": [] },
+          { "id": "03G-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "STRATEGY",
+    "title": "DX戦略イノベーション領域",
+    "children": [
+      {
+        "id": "04C",
+        "title": "C プロセス・イノベーション",
+        "children": [
+          { "id": "04C-1", "title": "基本概念", "children": [] },
+          { "id": "04C-2", "title": "応用事例", "children": [] },
+          { "id": "04C-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "05D",
+        "title": "D プロダクト・イノベーション",
+        "children": [
+          { "id": "05D-1", "title": "基本概念", "children": [] },
+          { "id": "05D-2", "title": "応用事例", "children": [] },
+          { "id": "05D-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "06E",
+        "title": "E ビジネスモデル・イノベーション",
+        "children": [
+          { "id": "06E-1", "title": "基本概念", "children": [] },
+          { "id": "06E-2", "title": "応用事例", "children": [] },
+          { "id": "06E-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TECH",
+    "title": "DX技術イノベーション領域",
+    "children": [
+      {
+        "id": "07H",
+        "title": "H AI技術/ソフトウェア技術",
+        "children": [
+          { "id": "07H-1", "title": "基本概念", "children": [] },
+          { "id": "07H-2", "title": "応用事例", "children": [] },
+          { "id": "07H-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "08I",
+        "title": "I IoT技術/ハードウェア技術",
+        "children": [
+          { "id": "08I-1", "title": "基本概念", "children": [] },
+          { "id": "08I-2", "title": "応用事例", "children": [] },
+          { "id": "08I-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "09J",
+        "title": "J ビッグデータ技術・データサイエンス",
+        "children": [
+          { "id": "09J-1", "title": "基本概念", "children": [] },
+          { "id": "09J-2", "title": "応用事例", "children": [] },
+          { "id": "09J-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "IMPL",
+    "title": "社会実装イノベーション領域",
+    "children": [
+      {
+        "id": "10F",
+        "title": "F ITインフラ基盤・ツール",
+        "children": [
+          { "id": "10F-1", "title": "基本概念", "children": [] },
+          { "id": "10F-2", "title": "応用事例", "children": [] },
+          { "id": "10F-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "11K",
+        "title": "K システム基盤技術・開発運用",
+        "children": [
+          { "id": "11K-1", "title": "基本概念", "children": [] },
+          { "id": "11K-2", "title": "応用事例", "children": [] },
+          { "id": "11K-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      },
+      {
+        "id": "12L",
+        "title": "L インターネット技術・サイバーセキュリティ",
+        "children": [
+          { "id": "12L-1", "title": "基本概念", "children": [] },
+          { "id": "12L-2", "title": "応用事例", "children": [] },
+          { "id": "12L-3", "title": "最新事例＆トレンド", "children": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "SUPP",
+    "title": "補足",
+    "supplement": true,
+    "children": [
+      {
+        "id": "13S",
+        "title": "ビジネスとDXの関連知識",
+        "children": [
+          { "id": "13S-1", "title": "DXの前提知識", "children": [] },
+          { "id": "13S-2", "title": "マーケティング", "children": [] },
+          { "id": "13S-3", "title": "経済性・消費・産業構造", "children": [] },
+          { "id": "13S-4", "title": "戦略モデル", "children": [] },
+          { "id": "13S-5", "title": "オペレーションと顧客関係", "children": [] },
+          { "id": "13S-6", "title": "収益モデル", "children": [] },
+          { "id": "13S-7", "title": "DX事例の共通構造", "children": [] }
+        ]
+      }
+    ]
+  }
+]

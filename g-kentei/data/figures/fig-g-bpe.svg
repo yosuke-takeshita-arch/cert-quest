@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-g-bpe-t fig-g-bpe-d">
+<title id="fig-g-bpe-t">BPE：文字から始め、いちばん多い隣どうしの組を1つにまとめることをくり返す</title>
+<desc id="fig-g-bpe-d">例（回数は説明用）：学習の文に low が5回、lowest が2回、newer が6回、wider が3回出る。①まず全部を1文字ずつに分ける。②いちばん多い隣どうしの組を1つの記号にまとめる、をくり返す。1回目は e と r で、newer の6回と wider の3回で9回、er になる。2回目は l と o で、low の5回と lowest の2回で7回、lo になる（o と w も7回で同じ。ここでは l と o を先にした）。3回目は lo と w で7回、low になる。③学習で見ていない lower も、同じ順に結合を当てると、l o w e r が l o w er、lo w er、low er となり、low と er の2つで表せるので、未知語にならない。語彙の大きさは、最初の文字10個（l・o・w・e・s・t・n・r・i・d）に結合の回数3を足して13。決めるのは結合の回数だけ。SentencePiece は、空白で単語に区切っていない生の文から直接学び、空白も記号として扱うので、日本語にもそのまま使える。形態素解析は辞書と文法で区切り品詞を付ける処理で、出てくる回数で区切るのではない。</desc>
+<text x="12" y="20" class="tb">BPE：多い組をまとめていく</text>
+<text x="12" y="40" class="tm">例（回数は説明用）：学習の文に出る語</text>
+<text x="12" y="60" class="tb">low×5　lowest×2　newer×6　wider×3</text>
+<text x="12" y="88" class="tb ta">① 1文字ずつに分ける</text>
+<rect x="12" y="96" width="296" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="160" y="116" class="tm" text-anchor="middle">l o w ／ l o w e s t ／ n e w e r ／ w i d e r</text>
+<text x="12" y="150" class="tb ta">② いちばん多い隣どうしの組を</text>
+<text x="12" y="168" class="tb ta">　 1つにまとめる、をくり返す</text>
+<rect x="12" y="176" width="296" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="22" y="196" class="tb">1回目 e＋r → er</text>
+<text x="298" y="196" class="tm" text-anchor="end">6＋3＝9回</text>
+<rect x="12" y="210" width="296" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="22" y="230" class="tb">2回目 l＋o → lo</text>
+<text x="298" y="230" class="tm" text-anchor="end">5＋2＝7回</text>
+<rect x="12" y="244" width="296" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="22" y="264" class="tb">3回目 lo＋w → low</text>
+<text x="298" y="264" class="tm" text-anchor="end">5＋2＝7回</text>
+<text x="12" y="292" class="tm">回数＝その組が出る語の回数の合計</text>
+<text x="12" y="310" class="tm">（o＋w も7回で同じ。ここは l＋o が先）</text>
+<rect x="12" y="320" width="296" height="30" class="fs sb" stroke-width="1" rx="4"/>
+<text x="160" y="340" class="tm" text-anchor="middle">low ／ low e s t ／ n e w er ／ w i d er</text>
+<text x="12" y="374" class="tb ta">③ 学習で見ていない lower</text>
+<text x="12" y="394" class="tm">同じ順に結合を当てる</text>
+<text x="12" y="414" class="tb">l o w e r → l o w er → lo w er</text>
+<text x="12" y="434" class="tb">→ low er</text>
+<rect x="12" y="444" width="296" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="464" class="tb tok" text-anchor="middle">low と er の2つで表せる（未知語にならない）</text>
+<text x="12" y="498" class="tm">語彙の大きさ＝最初の文字10個＋結合3回</text>
+<text x="12" y="516" class="tm">＝13（決めるのは結合の回数だけ）</text>
+<text x="12" y="544" class="tm">SentencePiece：区切っていない生の文から</text>
+<text x="12" y="562" class="tm">学ぶ（空白も記号）→ 日本語にも使える</text>
+<text x="12" y="588" class="tm">形態素解析：辞書と文法で区切り、品詞を</text>
+<text x="12" y="604" class="tm">付ける（回数で区切るのではない）</text>
+</svg>

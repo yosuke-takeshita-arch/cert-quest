@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 568" role="img" aria-labelledby="fig-g-aic-bic-t fig-g-aic-bic-d">
+<title id="fig-g-aic-bic-t">AIC と BIC：当てはまりの悪さに、パラメータ数の罰則を足し、値の小さいモデルを選ぶ</title>
+<desc id="fig-g-aic-bic-d">ことばの式は、情報量規準＝当てはまりの悪さ＋罰則、罰則＝1個あたりの罰則×パラメータの数。例（説明用の数）は、モデルAが悪さ100でパラメータ3個、モデルBが悪さ96でパラメータ6個。横棒の薄い部分が悪さ、濃い部分が罰則。AIC は1個あたりの罰則が2で、Aは100＋2×3＝100＋6＝106、Bは96＋2×6＝96＋12＝108。小さいAを選び、差は2。BIC は1個あたりの罰則がデータ数の対数で、データ100件なら log 100≒4.6。Aは100＋4.6×3≒100＋13.8＝113.8、Bは96＋4.6×6≒96＋27.6＝123.6。やはりAを選び、差は9.8に開く。データが8件以上なら対数が2を超えるので、BIC は AIC より罰則が強く、単純なモデルを選びやすい。どちらも訓練データで1回学習して式で計算するので、検証データを取り分けて学習をくり返す必要は無い。悪さは−2×対数尤度で、当てはまりが良いほど小さい。</desc>
+<text x="12" y="20" class="tb">AIC・BIC：悪さ＋罰則の小さいほう</text>
+<text x="12" y="40" class="tm">規準＝当てはまりの悪さ＋罰則</text>
+<text x="12" y="58" class="tm">罰則＝1個あたりの罰則×パラメータ数</text>
+<text x="12" y="80" class="tb">例：A 悪さ100・パラメータ3個</text>
+<text x="12" y="98" class="tb">　　B 悪さ96・パラメータ6個</text>
+<text x="12" y="128" class="tb">AIC（1個あたり2）</text>
+<text x="40" y="153" class="tb" text-anchor="middle">A</text>
+<rect x="60" y="138" width="160" height="22" class="fs sb" stroke-width="1"/>
+<text x="140" y="154" class="tm" text-anchor="middle">悪さ100</text>
+<rect x="220" y="138" width="9.6" height="22" class="fa"/>
+<text x="235" y="154" class="tb">106</text>
+<text x="40" y="183" class="tb" text-anchor="middle">B</text>
+<rect x="60" y="168" width="153.6" height="22" class="fs sb" stroke-width="1"/>
+<text x="140" y="184" class="tm" text-anchor="middle">悪さ96</text>
+<rect x="213.6" y="168" width="19.2" height="22" class="fa"/>
+<text x="238" y="184" class="tb">108</text>
+<text x="12" y="212" class="tm">A：100＋2×3＝100＋6＝106</text>
+<text x="12" y="230" class="tm">B：96＋2×6＝96＋12＝108</text>
+<text x="12" y="250" class="tb tok">→ 小さいAを選ぶ（差は2）</text>
+<text x="12" y="280" class="tb">BIC（データ100件：log 100≒4.6）</text>
+<text x="40" y="305" class="tb" text-anchor="middle">A</text>
+<rect x="60" y="290" width="160" height="22" class="fs sb" stroke-width="1"/>
+<text x="140" y="306" class="tm" text-anchor="middle">悪さ100</text>
+<rect x="220" y="290" width="22.1" height="22" class="fa"/>
+<text x="247" y="306" class="tb">113.8</text>
+<text x="40" y="335" class="tb" text-anchor="middle">B</text>
+<rect x="60" y="320" width="153.6" height="22" class="fs sb" stroke-width="1"/>
+<text x="140" y="336" class="tm" text-anchor="middle">悪さ96</text>
+<rect x="213.6" y="320" width="44.2" height="22" class="fa"/>
+<text x="262" y="336" class="tb">123.6</text>
+<text x="12" y="364" class="tm">A：100＋4.6×3≒100＋13.8＝113.8</text>
+<text x="12" y="382" class="tm">B：96＋4.6×6≒96＋27.6＝123.6</text>
+<text x="12" y="402" class="tb tok">→ やはりA。差は9.8に開く</text>
+<rect x="12" y="420" width="18" height="12" class="fs sb" stroke-width="1"/>
+<text x="36" y="431" class="tm">悪さ（−2×対数尤度。合うほど小さい）</text>
+<rect x="12" y="440" width="18" height="12" class="fa"/>
+<text x="36" y="451" class="tm">罰則（パラメータ＝学習で決まる数）</text>
+<text x="12" y="480" class="tm">データが8件以上なら log が2を超える</text>
+<text x="12" y="498" class="tm">→ BIC のほうが罰則が強く、単純な</text>
+<text x="12" y="516" class="tm">　モデルを選びやすい</text>
+<text x="12" y="540" class="tm">訓練データで1回学習し、式で計算する</text>
+<text x="12" y="556" class="tm">（検証データを取り分けなくてよい）</text>
+</svg>

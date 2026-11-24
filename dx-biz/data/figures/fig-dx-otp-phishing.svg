@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 468" role="img" aria-labelledby="fig-dx-otp-phishing-t fig-dx-otp-phishing-d">
+<title id="fig-dx-otp-phishing-t">SMSのワンタイムパスワードとパスキー：偽サイトに対して</title>
+<desc id="fig-dx-otp-phishing-d">パスワード（知識情報）に、SMSで届くワンタイムパスワード（所持情報）を重ねる方式は多要素認証になっており、安全性は上がる（総務省）。しかし偽サイトには弱い。利用者が偽のログイン画面を本物と思い、パスワードとSMSのコードを打ち込むと、打ち込んだ値が攻撃者に渡り、本物のサイトで使われうる。FIDO Alliance は、ワンタイムパスワードはまだフィッシングされうるとしている。パスキーは、端末に保存した鍵で答え、指紋・顔・PINなど端末のロック解除と同じ操作で使う。人が打ち込む物が無く、鍵はサイトごとに別なので、偽サイトに渡す物が無い。FIDO Alliance は、パスキーは単独でもパスワード＋ワンタイムパスワードより安全だとしている。</desc>
+<rect x="12" y="14" width="296" height="76" class="fs sb" stroke-width="1.5"/>
+<text x="24" y="36" class="tb">今の方式：多要素認証にはなっている</text>
+<text x="24" y="56">パスワード（知識）＋SMSのコード（所持）</text>
+<text x="24" y="76" class="tm">要素を重ねると安全性は上がる</text>
+<rect x="12" y="102" width="296" height="196" class="fng sng" stroke-width="1.5"/>
+<text x="24" y="124" class="tb">✕ 偽サイトには弱い</text>
+<rect x="24" y="136" width="272" height="28" class="fs sng" stroke-width="1.5"/>,<text x="32" y="155" class="tb tng">1</text>,<text x="48" y="155">偽のログイン画面を本物と思う</text>,<line x1="160" y1="164" x2="160" y2="176" class="l sng w2"/>
+<polyline points="156.7,170 160,176 163.3,170" class="l sng w2"/>
+<rect x="24" y="176" width="272" height="28" class="fs sng" stroke-width="1.5"/>,<text x="32" y="195" class="tb tng">2</text>,<text x="48" y="195">パスワードとSMSのコードを打ち込む</text>,<line x1="160" y1="204" x2="160" y2="216" class="l sng w2"/>
+<polyline points="156.7,210 160,216 163.3,210" class="l sng w2"/>
+<rect x="24" y="216" width="272" height="28" class="fs sng" stroke-width="1.5"/>,<text x="32" y="235" class="tb tng">3</text>,<text x="48" y="235">打ち込んだ値が攻撃者に渡る</text>,<line x1="160" y1="244" x2="160" y2="256" class="l sng w2"/>
+<polyline points="156.7,250 160,256 163.3,250" class="l sng w2"/>
+<rect x="24" y="256" width="272" height="28" class="fs sng" stroke-width="1.5"/>,<text x="32" y="275" class="tb tng">4</text>,<text x="48" y="275">攻撃者が本物のサイトで使いうる</text>,
+<rect x="12" y="310" width="296" height="146" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="332" class="tb">○ パスキー</text>
+<text x="24" y="352">端末に保存した鍵で答える</text>
+<text x="24" y="370" class="tm">（指紋・顔・PINでロックを解除）</text>
+<text x="24" y="390">打ち込む物が無く、鍵はサイトごとに</text>
+<text x="24" y="408">別 → 偽サイトに渡す物が無い</text>
+<text x="24" y="428" class="tb">単独でもパスワード＋OTPより安全</text>
+<text x="24" y="446" class="tm">（FIDO Alliance。OTP＝ワンタイムパスワード）</text>
+</svg>

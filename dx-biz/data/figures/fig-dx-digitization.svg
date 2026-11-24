@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-dx-digitization-t fig-dx-digitization-d">
+<title id="fig-dx-digitization-t">デジタル化：複製と送信の追加の費用がほぼゼロになり、産業の形まで変わる</title>
+<desc id="fig-dx-digitization-d">上：同じ資料を100人に届ける比べ（人数は図の例）。紙では、情報が紙という媒体と一体なので、100部を印刷して100回送り、1人増えるごとに紙代と送る手間がかかる。デジタルでは、情報が媒体から切り離されているので、ほぼ完全な複製をすぐに送れ、1人増えても追加の費用（限界費用）はほぼゼロ。下：そこから起きること。追加の費用がほぼゼロなので、無料のサービスや世界規模の事業が成り立つ。それが積み重なると、産業の分業の仕方（モジュール化・レイヤー化）まで変わる。</desc>
+<text x="12" y="22" class="tb">同じ資料を100人に届ける（人数は図の例）</text>
+<rect x="12" y="36" width="140" height="150" class="fs l sm"/>
+<text x="82" y="58" class="tb" text-anchor="middle">紙</text>
+<text x="82" y="80" text-anchor="middle">情報が紙と一体</text>
+<text x="82" y="106" text-anchor="middle">100部を印刷し</text>
+<text x="82" y="124" text-anchor="middle">100回送る</text>
+<text x="82" y="152" class="tb tng" text-anchor="middle">1人増えるたびに</text>
+<text x="82" y="170" class="tb tng" text-anchor="middle">紙代と手間</text>
+<rect x="168" y="36" width="140" height="150" class="fok l sok"/>
+<text x="238" y="58" class="tb" text-anchor="middle">デジタル</text>
+<text x="238" y="80" text-anchor="middle">媒体から切り離す</text>
+<text x="238" y="106" text-anchor="middle">ほぼ完全な複製を</text>
+<text x="238" y="124" text-anchor="middle">すぐに送れる</text>
+<text x="238" y="152" class="tb tok" text-anchor="middle">1人増えても</text>
+<text x="238" y="170" class="tb tok" text-anchor="middle">追加の費用≒0</text>
+<text x="12" y="210" class="tm">追加の1人分の費用＝限界費用</text>
+<line x1="12" y1="226" x2="308" y2="226" class="l sb w1"/>
+<text x="12" y="250" class="tb">そこから起きること</text>
+<rect x="12" y="262" width="296" height="46" class="fas l sa"/>
+<text x="160" y="290" class="tb" text-anchor="middle">限界費用がほぼゼロ</text>
+<line x1="160" y1="308" x2="160" y2="328" class="l sa w2"/>
+<polyline points="156,322 160,328 164,322" class="l sa w2"/>
+<rect x="12" y="330" width="296" height="62" class="fas l sa"/>
+<text x="160" y="356" text-anchor="middle">無料のサービスや、</text>
+<text x="160" y="376" text-anchor="middle">世界規模の事業が成り立つ</text>
+<line x1="160" y1="392" x2="160" y2="412" class="l sa w2"/>
+<polyline points="156,406 160,412 164,406" class="l sa w2"/>
+<rect x="12" y="414" width="296" height="62" class="fok l sok"/>
+<text x="160" y="440" text-anchor="middle">積み重なると、産業の分業の仕方</text>
+<text x="160" y="460" class="tb" text-anchor="middle">（モジュール化・レイヤー化）まで変わる</text>
+<text x="12" y="506" class="tm">DXの3段階では、デジタイゼーション・</text>
+<text x="12" y="524" class="tm">デジタライゼーションにあたる</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 478" role="img" aria-labelledby="fig-dx-cia-t fig-dx-cia-d">
+<title id="fig-dx-cia-t">情報セキュリティの3要素（機密性・完全性・可用性）とISMS</title>
+<desc id="fig-dx-cia-d">情報セキュリティの3要素。機密性は、許可されていない人に情報を見せない・使わせない特性で、損なわれると情報漏えい。完全性は、正確で欠けがない特性で、損なわれると改ざん。可用性は、認められた人が必要なときにアクセスして使える特性で、損なわれるとシステム停止。ISMS（情報セキュリティマネジメントシステム）は、3要素をバランスよく維持・改善する仕組みで、組織が必要なセキュリティレベルを決め、計画を立て、資源を配分して運用する。ISO/IEC 27001に基づいて第三者の認証機関が審査するISMS適合性評価制度がある。</desc>
+<text x="12" y="22" class="tb">情報セキュリティの3要素</text>
+<rect x="12" y="34" width="296" height="74" class="fas sa" stroke-width="1.5"/>
+<text x="24" y="58" class="tb">機密性</text>
+<text x="24" y="78">許可されていない人に、</text>
+<text x="24" y="97">見せない・使わせない</text>
+<text x="196" y="58" class="tm">侵害の例</text>
+<text x="196" y="78" class="tb">漏えい</text>
+<rect x="12" y="116" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="24" y="140" class="tb">完全性</text>
+<text x="24" y="160">正確で、欠けがない</text>
+<text x="196" y="140" class="tm">侵害の例</text>
+<text x="196" y="160" class="tb">改ざん</text>
+<rect x="12" y="180" width="296" height="74" class="fok sok" stroke-width="1.5"/>
+<text x="24" y="204" class="tb">可用性</text>
+<text x="24" y="224">認められた人が、</text>
+<text x="24" y="243">必要なときに使える</text>
+<text x="196" y="204" class="tm">侵害の例</text>
+<text x="196" y="224" class="tb">システム停止</text>
+<line x1="12" y1="268" x2="308" y2="268" class="l sb w1"/>
+<text x="12" y="292" class="tb">ISMS：3要素をバランスよく維持・改善</text>
+<rect x="12" y="304" width="296" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="323.5" text-anchor="middle">1　必要なセキュリティレベルを決める</text>
+<line x1="160" y1="334" x2="160" y2="346" class="l sa w2"/>
+<polyline points="157.25,341 160,346 162.75,341" class="l sa w2"/>
+<rect x="12" y="346" width="296" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="365.5" text-anchor="middle">2　計画を立てる</text>
+<line x1="160" y1="376" x2="160" y2="388" class="l sa w2"/>
+<polyline points="157.25,383 160,388 162.75,383" class="l sa w2"/>
+<rect x="12" y="388" width="296" height="30" class="fs sa" stroke-width="1.5"/>
+<text x="160" y="407.5" text-anchor="middle">3　資源を配分して運用する</text>
+<text x="12" y="446">ISO/IEC 27001（JIS Q 27001）に基づき、</text>
+<text x="12" y="466">第三者の認証機関が審査する制度がある</text>
+</svg>

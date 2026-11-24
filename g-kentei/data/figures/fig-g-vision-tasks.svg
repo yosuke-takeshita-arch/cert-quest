@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 656" role="img" aria-labelledby="fig-g-vision-tasks-t fig-g-vision-tasks-d">
+<title id="fig-g-vision-tasks-t">画像認識タスクの違い：同じ絵に、出力がどう変わるか</title>
+<desc id="fig-g-vision-tasks-d">人2人と車1台が写った同じ模式図を6回並べ、タスクごとの出力を示す。物体識別は画像全体に1つのラベル。物体検出は人と車を矩形で囲んでクラスを付ける。セマンティックセグメンテーションは全画素にクラスの色を付け、人2人は同じ色。インスタンスセグメンテーションは検出した物体だけを個体ごとに別の色で塗り、背景は塗らない。パノプティックセグメンテーションは、人を個体ごとに別の色にしつつ、道路や空も含めて全画素を塗る。姿勢推定は人の関節点（キーポイント）と骨格の線を出す。OpenPose は部位と人の対応を付けて複数人を推定する。</desc>
+<text x="12" y="20" class="tb">同じ絵（人2人・車1台）で比べる</text>
+<rect x="12" y="34" width="140" height="56" class="fs sb" stroke-width="1.5"/>
+<rect x="12" y="90" width="140" height="36" class="fbg sb" stroke-width="1.5"/>
+<circle cx="46" cy="68" r="6" class="fm sm"/>
+<rect x="40" y="75" width="12" height="21" class="fm sm" stroke-width="1.5"/>
+<rect x="41" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="47" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<circle cx="74" cy="68" r="6" class="fm sm"/>
+<rect x="68" y="75" width="12" height="21" class="fm sm" stroke-width="1.5"/>
+<rect x="69" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="75" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="96" y="94" width="46" height="16" class="fm sm" stroke-width="1.5"/>
+<polygon points="104,94 110,84 130,84 136,94" class="fm sm"/>
+<circle cx="110" cy="110" r="5" class="ft"/>
+<circle cx="130" cy="110" r="5" class="ft"/>
+<rect x="18" y="40" width="36" height="24" class="fs sa" stroke-width="1.5"/>
+<text x="36" y="57" class="tb ta" text-anchor="middle">人</text>
+<text x="12" y="146" class="tb">① 物体識別</text>
+<text x="12" y="164" class="tm">画像全体にラベル</text>
+<rect x="168" y="34" width="140" height="56" class="fs sb" stroke-width="1.5"/>
+<rect x="168" y="90" width="140" height="36" class="fbg sb" stroke-width="1.5"/>
+<circle cx="202" cy="68" r="6" class="fm sm"/>
+<rect x="196" y="75" width="12" height="21" class="fm sm" stroke-width="1.5"/>
+<rect x="197" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="203" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<circle cx="230" cy="68" r="6" class="fm sm"/>
+<rect x="224" y="75" width="12" height="21" class="fm sm" stroke-width="1.5"/>
+<rect x="225" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="231" y="96" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="252" y="94" width="46" height="16" class="fm sm" stroke-width="1.5"/>
+<polygon points="260,94 266,84 286,84 292,94" class="fm sm"/>
+<circle cx="266" cy="110" r="5" class="ft"/>
+<circle cx="286" cy="110" r="5" class="ft"/>
+<rect x="192" y="60" width="20" height="56" class="sng w2 l"/>
+<rect x="220" y="60" width="20" height="56" class="sng w2 l"/>
+<rect x="248" y="80" width="54" height="38" class="sng w2 l"/>
+<text x="192" y="56" class="tb tng">人</text>
+<text x="220" y="56" class="tb tng">人</text>
+<text x="250" y="76" class="tb tng">車</text>
+<text x="168" y="146" class="tb">② 物体検出</text>
+<text x="168" y="164" class="tm">矩形で位置とクラス</text>
+<rect x="12" y="172" width="140" height="56" class="fas sa" stroke-width="1.5"/>
+<rect x="12" y="228" width="140" height="36" class="fm sm" stroke-width="1.5" fill-opacity="0.45"/>
+<circle cx="46" cy="206" r="6" class="fng sng"/>
+<rect x="40" y="213" width="12" height="21" class="fng sng" stroke-width="1.5"/>
+<rect x="41" y="234" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<rect x="47" y="234" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<circle cx="74" cy="206" r="6" class="fng sng"/>
+<rect x="68" y="213" width="12" height="21" class="fng sng" stroke-width="1.5"/>
+<rect x="69" y="234" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<rect x="75" y="234" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<rect x="96" y="232" width="46" height="16" class="fwn swn" stroke-width="1.5"/>
+<polygon points="104,232 110,222 130,222 136,232" class="fwn swn"/>
+<circle cx="110" cy="248" r="5" class="ft"/>
+<circle cx="130" cy="248" r="5" class="ft"/>
+<text x="12" y="284" class="tb">③ セマンティック</text>
+<text x="12" y="302" class="tm">同じクラスは同じ色</text>
+<rect x="168" y="172" width="140" height="56" class="fs sb" stroke-width="1.5"/>
+<rect x="168" y="228" width="140" height="36" class="fbg sb" stroke-width="1.5"/>
+<circle cx="202" cy="206" r="6" class="fng sng"/>
+<rect x="196" y="213" width="12" height="21" class="fng sng" stroke-width="1.5"/>
+<rect x="197" y="234" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<rect x="203" y="234" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<circle cx="230" cy="206" r="6" class="fok sok"/>
+<rect x="224" y="213" width="12" height="21" class="fok sok" stroke-width="1.5"/>
+<rect x="225" y="234" width="4" height="16" class="fok sok" stroke-width="1.5"/>
+<rect x="231" y="234" width="4" height="16" class="fok sok" stroke-width="1.5"/>
+<rect x="252" y="232" width="46" height="16" class="fwn swn" stroke-width="1.5"/>
+<polygon points="260,232 266,222 286,222 292,232" class="fwn swn"/>
+<circle cx="266" cy="248" r="5" class="ft"/>
+<circle cx="286" cy="248" r="5" class="ft"/>
+<text x="168" y="284" class="tb">④ インスタンス</text>
+<text x="168" y="302" class="tm">個体ごとに別の色</text>
+<rect x="12" y="310" width="140" height="56" class="fas sa" stroke-width="1.5"/>
+<rect x="12" y="366" width="140" height="36" class="fm sm" stroke-width="1.5" fill-opacity="0.45"/>
+<circle cx="46" cy="344" r="6" class="fng sng"/>
+<rect x="40" y="351" width="12" height="21" class="fng sng" stroke-width="1.5"/>
+<rect x="41" y="372" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<rect x="47" y="372" width="4" height="16" class="fng sng" stroke-width="1.5"/>
+<circle cx="74" cy="344" r="6" class="fok sok"/>
+<rect x="68" y="351" width="12" height="21" class="fok sok" stroke-width="1.5"/>
+<rect x="69" y="372" width="4" height="16" class="fok sok" stroke-width="1.5"/>
+<rect x="75" y="372" width="4" height="16" class="fok sok" stroke-width="1.5"/>
+<rect x="96" y="370" width="46" height="16" class="fwn swn" stroke-width="1.5"/>
+<polygon points="104,370 110,360 130,360 136,370" class="fwn swn"/>
+<circle cx="110" cy="386" r="5" class="ft"/>
+<circle cx="130" cy="386" r="5" class="ft"/>
+<text x="12" y="422" class="tb">⑤ パノプティック</text>
+<text x="12" y="440" class="tm">全画素＋個体も区別</text>
+<rect x="168" y="310" width="140" height="56" class="fs sb" stroke-width="1.5"/>
+<rect x="168" y="366" width="140" height="36" class="fbg sb" stroke-width="1.5"/>
+<circle cx="202" cy="344" r="6" class="fm sm"/>
+<rect x="196" y="351" width="12" height="21" class="fm sm" stroke-width="1.5"/>
+<rect x="197" y="372" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="203" y="372" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<circle cx="230" cy="344" r="6" class="fm sm"/>
+<rect x="224" y="351" width="12" height="21" class="fm sm" stroke-width="1.5"/>
+<rect x="225" y="372" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="231" y="372" width="4" height="16" class="fm sm" stroke-width="1.5"/>
+<rect x="252" y="370" width="46" height="16" class="fm sm" stroke-width="1.5"/>
+<polygon points="260,370 266,360 286,360 292,370" class="fm sm"/>
+<circle cx="266" cy="386" r="5" class="ft"/>
+<circle cx="286" cy="386" r="5" class="ft"/>
+<line x1="202" y1="344" x2="202" y2="352" class="l sng w1"/>
+<line x1="202" y1="352" x2="196" y2="354" class="l sng w1"/>
+<line x1="202" y1="352" x2="208" y2="354" class="l sng w1"/>
+<line x1="196" y1="354" x2="194" y2="364" class="l sng w1"/>
+<line x1="208" y1="354" x2="210" y2="364" class="l sng w1"/>
+<line x1="202" y1="352" x2="199" y2="372" class="l sng w1"/>
+<line x1="202" y1="352" x2="205" y2="372" class="l sng w1"/>
+<line x1="199" y1="372" x2="199" y2="380" class="l sng w1"/>
+<line x1="205" y1="372" x2="205" y2="380" class="l sng w1"/>
+<line x1="199" y1="380" x2="199" y2="388" class="l sng w1"/>
+<line x1="205" y1="380" x2="205" y2="388" class="l sng w1"/>
+<circle cx="202" cy="344" r="2.4" class="fa sa"/>
+<circle cx="202" cy="352" r="2.4" class="fa sa"/>
+<circle cx="196" cy="354" r="2.4" class="fa sa"/>
+<circle cx="208" cy="354" r="2.4" class="fa sa"/>
+<circle cx="194" cy="364" r="2.4" class="fa sa"/>
+<circle cx="210" cy="364" r="2.4" class="fa sa"/>
+<circle cx="199" cy="372" r="2.4" class="fa sa"/>
+<circle cx="205" cy="372" r="2.4" class="fa sa"/>
+<circle cx="199" cy="380" r="2.4" class="fa sa"/>
+<circle cx="205" cy="380" r="2.4" class="fa sa"/>
+<circle cx="199" cy="388" r="2.4" class="fa sa"/>
+<circle cx="205" cy="388" r="2.4" class="fa sa"/>
+<line x1="230" y1="344" x2="230" y2="352" class="l sng w1"/>
+<line x1="230" y1="352" x2="224" y2="354" class="l sng w1"/>
+<line x1="230" y1="352" x2="236" y2="354" class="l sng w1"/>
+<line x1="224" y1="354" x2="222" y2="364" class="l sng w1"/>
+<line x1="236" y1="354" x2="238" y2="364" class="l sng w1"/>
+<line x1="230" y1="352" x2="227" y2="372" class="l sng w1"/>
+<line x1="230" y1="352" x2="233" y2="372" class="l sng w1"/>
+<line x1="227" y1="372" x2="227" y2="380" class="l sng w1"/>
+<line x1="233" y1="372" x2="233" y2="380" class="l sng w1"/>
+<line x1="227" y1="380" x2="227" y2="388" class="l sng w1"/>
+<line x1="233" y1="380" x2="233" y2="388" class="l sng w1"/>
+<circle cx="230" cy="344" r="2.4" class="fa sa"/>
+<circle cx="230" cy="352" r="2.4" class="fa sa"/>
+<circle cx="224" cy="354" r="2.4" class="fa sa"/>
+<circle cx="236" cy="354" r="2.4" class="fa sa"/>
+<circle cx="222" cy="364" r="2.4" class="fa sa"/>
+<circle cx="238" cy="364" r="2.4" class="fa sa"/>
+<circle cx="227" cy="372" r="2.4" class="fa sa"/>
+<circle cx="233" cy="372" r="2.4" class="fa sa"/>
+<circle cx="227" cy="380" r="2.4" class="fa sa"/>
+<circle cx="233" cy="380" r="2.4" class="fa sa"/>
+<circle cx="227" cy="388" r="2.4" class="fa sa"/>
+<circle cx="233" cy="388" r="2.4" class="fa sa"/>
+<text x="168" y="422" class="tb">⑥ 姿勢推定</text>
+<text x="168" y="440" class="tm">関節点を推定</text>
+<line x1="12" y1="454" x2="308" y2="454" class="l sb w1"/>
+<text x="12" y="476" class="tb">セグメンテーションの3種類</text>
+<text x="12" y="498">セマンティック：全画素にクラス</text>
+<text x="12" y="518" class="tm">　（人が何人いても同じ「人」）</text>
+<text x="12" y="540">インスタンス：物体を1つずつ切り出す</text>
+<text x="12" y="562">パノプティック：両方を合わせる</text>
+<line x1="12" y1="576" x2="308" y2="576" class="l sb w1"/>
+<text x="12" y="602" class="tb">OpenPose</text>
+<text x="12" y="624">部位と人の対応をつけて、</text>
+<text x="12" y="644">人数によらず複数人を推定する</text>
+</svg>

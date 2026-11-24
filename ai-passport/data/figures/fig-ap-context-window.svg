@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 448" role="img" aria-labelledby="fig-ap-context-window-t fig-ap-context-window-d">
+<title id="fig-ap-context-window-t">コンテキストウィンドウ：1回のやり取りで処理できるトークンの上限に、指示・履歴・資料・答えを収める</title>
+<desc id="fig-ap-context-window-d">例は上限10万トークン（数は例）。指示1,000、会話の履歴5,000、添えた資料80,000、推論6,000、答え8,000で、合計100,000でちょうど上限。推論は、推論モデルが答えの前に使う画面に出ないトークンで、これも見込んでおく。入りきらないときは、古い履歴を消したり要約して縮めたりする。大きいほど多くの情報を一度に使える。取り違えやすいもの：学習に使った文章の総量や、モデルの重みの個数は、この上限とは別のもの。</desc>
+<text x="12" y="20" class="tb">コンテキストウィンドウ</text>
+<text x="12" y="40" class="tm">1回のやり取りで処理できるトークンの上限</text>
+<text x="12" y="64" class="tb ta">例：上限 10万トークン（数は例）</text>
+<rect x="12" y="76" width="2.96" height="36" class="fas sa" stroke-width="1.5"/>
+<rect x="14.96" y="76" width="14.8" height="36" class="fas sa" stroke-width="1.5"/>
+<rect x="29.76" y="76" width="236.8" height="36" class="fas sa" stroke-width="1.5"/>
+<rect x="266.56" y="76" width="17.759999999999998" height="36" class="fwn swn" stroke-width="1.5"/>
+<rect x="284.32" y="76" width="23.68" height="36" class="fok sok" stroke-width="1.5"/>
+<rect x="14" y="121" width="14" height="12" class="fas sa" stroke-width="1.5"/>
+<text x="36" y="132">指示：1,000</text>
+<rect x="14" y="141" width="14" height="12" class="fas sa" stroke-width="1.5"/>
+<text x="36" y="152">会話の履歴：5,000</text>
+<rect x="14" y="161" width="14" height="12" class="fas sa" stroke-width="1.5"/>
+<text x="36" y="172">添えた資料：80,000</text>
+<rect x="14" y="181" width="14" height="12" class="fwn swn" stroke-width="1.5"/>
+<text x="36" y="192">推論：6,000</text>
+<rect x="14" y="201" width="14" height="12" class="fok sok" stroke-width="1.5"/>
+<text x="36" y="212">答え：8,000</text>
+<text x="12" y="236" class="tb">合計 100,000 → ちょうど上限</text>
+<text x="12" y="256" class="tm">推論＝推論モデルが答えの前に使う、</text>
+<text x="12" y="274" class="tm">　　　画面に出ないトークン</text>
+<line x1="12" y1="290" x2="308" y2="290" class="l sb w1"/>
+<text x="12" y="312" class="tb tng">入りきらないとき</text>
+<text x="12" y="332">・古い履歴を消す、要約して縮める</text>
+<text x="12" y="352">・大きいほど多くの情報を一度に使える</text>
+<line x1="12" y1="368" x2="308" y2="368" class="l sb w1"/>
+<text x="12" y="390" class="tb">別のものと取り違えない</text>
+<text x="12" y="410">学習に使った文章の総量 ≠ この上限</text>
+<text x="12" y="430">モデルの重みの個数 ≠ この上限</text>
+</svg>

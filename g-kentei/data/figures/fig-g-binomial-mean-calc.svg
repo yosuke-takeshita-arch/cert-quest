@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 587" role="img" aria-labelledby="fig-g-binomial-mean-calc-t fig-g-binomial-mean-calc-d">
+<title id="fig-g-binomial-mean-calc-t">成功確率0.3の挑戦を10回：成功回数の平均は3回</title>
+<desc id="fig-g-binomial-mean-calc-d">何のための図か：成功確率0.3の挑戦を独立に10回行うとき、成功回数の平均（期待値）が3回になる理由を見る。考え方：1回の挑戦で数える成功回数は、成功なら1回、失敗なら0回。成功は10回に3回の割合なので、1回あたりの成功回数の平均は1×0.3＋0×0.7＝0.3回。10回やれば0.3回が10回分で、10×0.3＝3回。ことばの式は、平均＝回数×成功確率（記号でnp）。棒グラフ：横軸は10回のうち成功した回数、縦軸はちょうどその回数になる確率。0回3%、1回12%、2回23%、3回27%、4回20%、5回10%、6回4%、7回1%、8回以上は1%未満。いちばん出やすいのも3回。似た数との違い：0.3は1回あたりの成功確率、7は失敗回数の平均（10×0.7）、2.1は分散（10×0.3×0.7）で、平均からのばらつきの大きさ。</desc>
+<text x="12" y="20" class="tb">成功確率0.3を10回：成功回数の平均</text>
+<text x="12" y="42" class="tm">この問題の数（成功確率0.3、10回）で見る</text>
+<line x1="12" y1="54" x2="308" y2="54" class="l sb w1"/>
+<text x="12" y="78" class="tb">考え方：1回あたり平均何回成功するか</text>
+<text x="12" y="96">1回の挑戦で数える成功回数は、</text>
+<text x="12" y="114">成功なら 1回、失敗なら 0回</text>
+<text x="12" y="132">1 × 0.3 ＋ 0 × 0.7 ＝ 0.3回（1回あたり）</text>
+<text x="12" y="152" class="tb">→ 10回なら、0.3回が10回分</text>
+<rect x="12" y="160" width="296" height="32" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="180" class="tb tok">10 × 0.3 ＝ 3回</text>
+<text x="12" y="216" class="tm">ことばの式：平均 ＝ 回数 × 成功確率（np）</text>
+<line x1="12" y1="228" x2="308" y2="228" class="l sb w1"/>
+<text x="12" y="252" class="tb">棒グラフ：10回のうち何回成功するか</text>
+<text x="12" y="270" class="tm">横軸＝成功した回数、縦軸＝その確率</text>
+<line x1="26" y1="428" x2="298" y2="428" class="l sm w1"/>
+<rect x="33.9" y="416.5" width="22" height="11.5" class="fas sa" stroke-width="1"/>
+<text x="44.9" y="443" text-anchor="middle">0</text>
+<text x="44.9" y="411.5" class="tm" text-anchor="middle">3%</text>
+<rect x="63.7" y="378.7" width="22" height="49.3" class="fas sa" stroke-width="1"/>
+<text x="74.7" y="443" text-anchor="middle">1</text>
+<text x="74.7" y="373.7" class="tm" text-anchor="middle">12%</text>
+<rect x="93.4" y="332.9" width="22" height="95.1" class="fas sa" stroke-width="1"/>
+<text x="104.4" y="443" text-anchor="middle">2</text>
+<text x="104.4" y="327.9" class="tm" text-anchor="middle">23%</text>
+<rect x="123.2" y="319.3" width="22" height="108.7" class="fa sa" stroke-width="1"/>
+<text x="134.2" y="443" text-anchor="middle">3</text>
+<text x="134.2" y="314.3" class="tb ta" text-anchor="middle">27%</text>
+<rect x="153" y="346.5" width="22" height="81.5" class="fas sa" stroke-width="1"/>
+<text x="164" y="443" text-anchor="middle">4</text>
+<text x="164" y="341.5" class="tm" text-anchor="middle">20%</text>
+<rect x="182.8" y="386.1" width="22" height="41.9" class="fas sa" stroke-width="1"/>
+<text x="193.8" y="443" text-anchor="middle">5</text>
+<text x="193.8" y="381.1" class="tm" text-anchor="middle">10%</text>
+<rect x="212.6" y="413" width="22" height="15" class="fas sa" stroke-width="1"/>
+<text x="223.6" y="443" text-anchor="middle">6</text>
+<text x="223.6" y="408" class="tm" text-anchor="middle">4%</text>
+<rect x="242.3" y="424.3" width="22" height="3.7" class="fas sa" stroke-width="1"/>
+<text x="253.3" y="443" text-anchor="middle">7</text>
+<text x="253.3" y="419.3" class="tm" text-anchor="middle">1%</text>
+<rect x="272.1" y="427.2" width="22" height="0.8" class="fas sa" stroke-width="1"/>
+<text x="283.1" y="443" text-anchor="middle">8</text>
+<line x1="134.2" y1="292" x2="134.2" y2="428" class="l sok w1 dsh"/>
+<text x="140.2" y="294" class="tb tok">平均 3回</text>
+<text x="12" y="465" class="tm">8回以上は1%未満。いちばん出やすいのも3回</text>
+<line x1="12" y1="477" x2="308" y2="477" class="l sb w1"/>
+<text x="12" y="501" class="tb">似た数と取り違えない</text>
+<text x="12" y="519">0.3：1回あたりの成功確率（まだ1回分）</text>
+<text x="12" y="537">7：失敗回数の平均（10 × 0.7）</text>
+<text x="12" y="555">2.1：分散（10 × 0.3 × 0.7）。平均3回から</text>
+<text x="12" y="573">　　どれくらいばらつくかの大きさ</text>
+</svg>

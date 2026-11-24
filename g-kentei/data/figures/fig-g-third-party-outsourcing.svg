@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 510" role="img" aria-labelledby="fig-g-third-party-outsourcing-t fig-g-third-party-outsourcing-d">
+<title id="fig-g-third-party-outsourcing-t">第三者提供と委託：本人の同意が要るか</title>
+<desc id="fig-g-third-party-outsourcing-d">本人（会員）の購買履歴を持つ通販会社A社が、レコメンドAIの開発を請け負うB社にデータを渡す。①B社がA社のためだけに使うなら委託で、B社は第三者に当たらず、本人の同意は要らない。その代わりA社はB社を必要かつ適切に監督する（第25条）。②B社が受け取ったデータを自社の別サービスの学習にも使うなら、A社のための作業を超えるので委託とは言えず、本人の同意のない第三者提供になるおそれがある。下に、第三者に当たらないのは委託・事業の承継（合併など）・共同利用の3つ（第27条第5項）と書く。オプトアウト（第27条第2項）はこれとは別で、提供先は第三者のまま、届け出て同意なしで渡す手続で、要配慮個人情報には使えない。</desc>
+<text x="12" y="20" class="tb">第三者提供と委託：同意が要るか</text>
+<rect x="100" y="32" width="120" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="52" text-anchor="middle">本人（会員）</text>
+<line x1="160" y1="62" x2="160" y2="74.4" class="l sm w1"/>
+<polygon points="160,80 156.5,74.4 163.5,74.4" class="fm"/>
+<text x="170" y="76" class="tm">購買履歴</text>
+<rect x="90" y="80" width="140" height="30" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="100" class="tb" text-anchor="middle">A社（通販）</text>
+<line x1="160" y1="110" x2="160" y2="124" class="l sm w1"/>
+<line x1="84" y1="124" x2="236" y2="124" class="l sm w1"/>
+<line x1="84" y1="124" x2="84" y2="140.4" class="l sm w1"/>
+<polygon points="84,146 80.5,140.4 87.5,140.4" class="fm"/>
+<line x1="236" y1="124" x2="236" y2="140.4" class="l sm w1"/>
+<polygon points="236,146 232.5,140.4 239.5,140.4" class="fm"/>
+<text x="160" y="140" class="tm" text-anchor="middle">B社へ</text>
+<rect x="12" y="146" width="144" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="168" class="tb ta">① 委託</text>
+<text x="22" y="188">B社が、A社の</text>
+<text x="22" y="206">ためだけに使う</text>
+<rect x="164" y="146" width="144" height="70" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="174" y="168" class="tb ta">② 自分でも使う</text>
+<text x="174" y="188">B社が、自社の別</text>
+<text x="174" y="206">サービスの学習にも</text>
+<line x1="84" y1="216" x2="84" y2="230.4" class="l sm w1"/>
+<polygon points="84,236 80.5,230.4 87.5,230.4" class="fm"/>
+<line x1="236" y1="216" x2="236" y2="230.4" class="l sm w1"/>
+<polygon points="236,236 232.5,230.4 239.5,230.4" class="fm"/>
+<rect x="12" y="236" width="144" height="56" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="84" y="258" class="tb tok" text-anchor="middle">第三者に当たらない</text>
+<text x="84" y="278" class="tok" text-anchor="middle">本人の同意は不要</text>
+<rect x="164" y="236" width="144" height="56" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="236" y="258" class="tb tng" text-anchor="middle">委託とは言えない</text>
+<text x="236" y="278" class="tng" text-anchor="middle">本人の同意が要る</text>
+<rect x="12" y="300" width="144" height="48" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="84" y="320" class="tb twn" text-anchor="middle">A社がB社を監督</text>
+<text x="84" y="338" class="twn" text-anchor="middle">（第25条）</text>
+<text x="174" y="320" class="tm">第三者提供になる</text>
+<text x="174" y="338" class="tm">おそれ（第27条第1項）</text>
+<line x1="12" y1="364" x2="308" y2="364" class="l sb w1"/>
+<text x="12" y="388" class="tb">第三者に当たらない3つ（第27条第5項）</text>
+<text x="12" y="408">委託・事業の承継（合併など）・共同利用</text>
+<text x="12" y="436" class="tb">オプトアウト（第27条第2項）は別もの</text>
+<text x="12" y="456" class="tm">提供先は第三者のまま。届け出て、同意</text>
+<text x="12" y="476" class="tm">なしで渡す手続（要配慮個人情報は不可）</text>
+<text x="12" y="500" class="tm">A社・B社の場面は、説明のための例</text>
+</svg>

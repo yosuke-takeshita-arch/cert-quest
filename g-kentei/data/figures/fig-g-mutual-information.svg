@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1076" role="img" aria-labelledby="fig-g-mutual-information-t fig-g-mutual-information-d">
+<title id="fig-g-mutual-information-t">相互情報量：一方を知ると、もう一方の不確かさがどれだけ減るか。相関係数が0でも相互情報量は0でない例</title>
+<desc id="fig-g-mutual-information-d">ことばの式は、相互情報量＝知る前の不確かさ−知った後の不確かさ。不確かさの単位はビットで、表と裏が半々のコイン1枚の不確かさが1ビット。①晴れと雨が半々の地域で、傘が売れる日も半々なので、天気を知る前の不確かさはどの店も1ビット。横長の棒の全体が1ビットで、色の濃い部分が天気を知って減った分（相互情報量）、薄い部分が知った後も残る不確かさ。店Aは雨なら必ず売れ、晴れなら売れないので、残りは0で、相互情報量は1−0＝1ビット。店Bは天気と関係なく半々で売れるので、残りは1で、相互情報量は1−1＝0ビット。店Cは雨なら8割、晴れなら2割売れるので、残りは約0.72で、相互情報量は1−0.72＝約0.28ビット。残りの0.72は、0.8×log₂(1÷0.8)＋0.2×log₂(1÷0.2)≈0.8×0.32＋0.2×2.32≈0.26＋0.46＝0.72。②Xは−2、−1、1、2が同じ確率で出て、Y＝X×X。点は(−2, 4)、(−1, 1)、(1, 1)、(2, 4)。相関係数は0。左半分は右下がり、右半分は右上がりで打ち消し合い、計算でもX×Yの平均が(−8−1＋1＋8)÷4＝0、Xの平均が0なので、共分散は0−0×Yの平均＝0になる。相互情報量は1ビット。知る前はYは1か4が半々で1ビット、Xが決まればYも1つに決まるので知った後は0ビットで、1−0＝1ビット。相関係数は直線の関係だけを見て、相互情報量は曲がった関係も含めどんな依存もとらえる。相互情報量が0になるのは2つが独立のときだけ。</desc>
+<text x="12" y="20" class="tb">相互情報量：知ると減る不確かさ</text>
+<text x="12" y="42" class="tm">一方を知ると、もう一方の予想しにくさ</text>
+<text x="12" y="60" class="tm">（不確かさ）がどれだけ減るか</text>
+<rect x="12" y="72" width="296" height="48" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="92" class="tb">相互情報量＝知る前の不確かさ</text>
+<text x="22" y="111" class="tb">　　　　　−知った後の不確かさ</text>
+<text x="12" y="142" class="tm">不確かさの単位はビット。表と裏が半々の</text>
+<text x="12" y="160" class="tm">コイン1枚の不確かさが1ビット</text>
+<text x="12" y="190" class="tb">① 天気を知ると、傘が売れるかが分かるか</text>
+<text x="12" y="210" class="tm">晴れと雨が半々。傘が売れる日も半々なので、</text>
+<text x="12" y="228" class="tm">天気を知る前の不確かさはどの店も1ビット</text>
+<rect x="12" y="242" width="16" height="12" class="fa" stroke-width="0" rx="2"/>
+<text x="34" y="253" class="tm">天気を知って減った分＝相互情報量</text>
+<rect x="12" y="262" width="16" height="12" class="fs sm" stroke-width="1" rx="2"/>
+<text x="34" y="273" class="tm">知った後も残る不確かさ</text>
+<text x="12" y="300" class="tb">店A：雨なら必ず売れ、晴れなら売れない</text>
+<rect x="12" y="308" width="296" height="18" class="fa" stroke-width="0" rx="2"/>
+<text x="12" y="344" class="tb ta">残り0 → 相互情報量 1−0＝1ビット</text>
+<text x="12" y="372" class="tb">店B：天気と関係なく、半々で売れる</text>
+<rect x="12" y="380" width="296" height="18" class="fs sm" stroke-width="1" rx="2"/>
+<text x="12" y="416" class="tb tm">残り1 → 相互情報量 1−1＝0ビット</text>
+<text x="12" y="444" class="tb">店C：雨なら8割、晴れなら2割売れる</text>
+<rect x="12" y="452" width="82.9" height="18" class="fa" stroke-width="0" rx="2"/>
+<rect x="94.9" y="452" width="213.1" height="18" class="fs sm" stroke-width="1" rx="2"/>
+<text x="12" y="488" class="tb ta">残り約0.72 → 1−0.72＝約0.28ビット</text>
+<text x="12" y="510" class="tm">店C の残り約0.72の出し方：雨の日は売れる</text>
+<text x="12" y="528" class="tm">0.8・売れない0.2。晴れの日は逆で、残りは同じ</text>
+<text x="12" y="546" class="tm">0.8×log₂(1÷0.8)＋0.2×log₂(1÷0.2)</text>
+<text x="12" y="564" class="tm">≈0.8×0.32＋0.2×2.32≈0.26＋0.46＝0.72</text>
+<line x1="12" y1="586" x2="308" y2="586" class="l sb w1"/>
+<text x="12" y="612" class="tb">② 相関係数が0でも、相互情報量は0でない</text>
+<text x="12" y="632" class="tm">例：X は −2・−1・1・2 が同じ確率で出て、</text>
+<text x="12" y="650" class="tm">Y＝X×X（Y＝X²）</text>
+<line x1="50" y1="794" x2="270" y2="794" class="l sm w1"/>
+<line x1="160" y1="802" x2="160" y2="670" class="l sm w1"/>
+<text x="278" y="798" class="tm" text-anchor="start">X</text>
+<text x="166" y="678" class="tm">Y</text>
+<line x1="80" y1="791" x2="80" y2="797" class="l sm w1"/>
+<text x="80" y="812" class="tm" text-anchor="middle">−2</text>
+<line x1="120" y1="791" x2="120" y2="797" class="l sm w1"/>
+<text x="120" y="812" class="tm" text-anchor="middle">−1</text>
+<line x1="200" y1="791" x2="200" y2="797" class="l sm w1"/>
+<text x="200" y="812" class="tm" text-anchor="middle">1</text>
+<line x1="240" y1="791" x2="240" y2="797" class="l sm w1"/>
+<text x="240" y="812" class="tm" text-anchor="middle">2</text>
+<line x1="157" y1="769" x2="163" y2="769" class="l sm w1"/>
+<text x="152" y="773" class="tm" text-anchor="end">1</text>
+<line x1="157" y1="694" x2="163" y2="694" class="l sm w1"/>
+<text x="152" y="698" class="tm" text-anchor="end">4</text>
+<path d="M 80 694 Q 160 894 240 694" class="l sa w1 dsh"/>
+<circle cx="80" cy="694" r="5" class="fa"/>
+<circle cx="120" cy="769" r="5" class="fa"/>
+<circle cx="200" cy="769" r="5" class="fa"/>
+<circle cx="240" cy="694" r="5" class="fa"/>
+<text x="80" y="682" class="tm" text-anchor="middle">(−2, 4)</text>
+<text x="240" y="682" class="tm" text-anchor="middle">(2, 4)</text>
+<text x="12" y="840" class="tb tng">相関係数：0</text>
+<text x="12" y="860" class="tm">左半分は右下がり、右半分は右上がりで、</text>
+<text x="12" y="878" class="tm">打ち消し合う。計算でも共分散が0になる</text>
+<text x="12" y="896" class="tm">（X×Y の平均＝(−8−1＋1＋8)÷4＝0、X の</text>
+<text x="12" y="914" class="tm">平均＝0 なので、0−0×Y の平均＝0）</text>
+<text x="12" y="940" class="tb tok">相互情報量：1ビット</text>
+<text x="12" y="960" class="tm">知る前：Y は 1 か 4 が半々 → 1ビット</text>
+<text x="12" y="978" class="tm">知った後：X が決まれば Y も1つに決まる</text>
+<text x="12" y="996" class="tm">　→ 0ビット。1−0＝1ビット</text>
+<text x="12" y="1022" class="tb">相関係数は直線の関係だけを見る。相互情報量</text>
+<text x="12" y="1042" class="tb">は曲がった関係も含め、どんな依存もとらえる。</text>
+<text x="12" y="1062" class="tb">0 になるのは、2つが独立のときだけ</text>
+</svg>

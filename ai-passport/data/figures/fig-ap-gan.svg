@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-ap-gan-t fig-ap-gan-d">
+<title id="fig-ap-gan-t">GAN：生成器（偽物を作る係）と識別器（見破る係）</title>
+<desc id="fig-ap-gan-d">ノイズの数の組を生成器に入れて、作り物の画像（例は64×64画素の顔）を作る。識別器には、その作り物の画像と本物の画像が入り、本物である確率を答える（例：0.3）。生成器は、識別器が本物と答えるように重みを直す。識別器は、本物には高い確率、作り物には低い確率を出すように重みを直す。学び方が逆向きの2つを競わせる。学習が終わって画像を作るときに使うのは生成器だけ。</desc>
+<text x="12" y="20" class="tb">2つのネットワークを競わせる</text>
+<rect x="12" y="40" width="60" height="36" class="fs sb" stroke-width="1.5"/>
+<text x="42" y="53.5" text-anchor="middle">ノイズ</text>
+<text x="42" y="71.5" class="tm" text-anchor="middle">数の組</text>
+<line x1="72" y1="58" x2="90" y2="58" class="l w2"/>
+<polyline points="83,61.85 90,58 83,54.15" class="l w2"/>
+<rect x="92" y="40" width="74" height="36" class="fas sa" stroke-width="1.5"/>
+<text x="129" y="62.5" class="tb" text-anchor="middle">生成器</text>
+<line x1="166" y1="58" x2="184" y2="58" class="l w2"/>
+<polyline points="177,61.85 184,58 177,54.15" class="l w2"/>
+<rect x="186" y="40" width="122" height="36" class="fng sng" stroke-width="1.5"/>
+<text x="247" y="53.5" class="tb" text-anchor="middle">作り物の画像</text>
+<text x="247" y="71.5" class="tm" text-anchor="middle">例：64×64画素</text>
+<rect x="12" y="140" width="100" height="36" class="fok sok" stroke-width="1.5"/>
+<text x="62" y="162.5" class="tb" text-anchor="middle">本物の画像</text>
+<line x1="112" y1="158" x2="132" y2="158" class="l w2"/>
+<polyline points="125,161.85 132,158 125,154.15" class="l w2"/>
+<rect x="134" y="134" width="80" height="48" class="fas sa" stroke-width="1.5"/>
+<text x="174" y="162.5" class="tb" text-anchor="middle">識別器</text>
+<line x1="246" y1="76" x2="194" y2="132" class="l sng w2"/>
+<polyline points="195.9,124.3 194,132 201.4,129.2" class="l sng w2"/>
+<line x1="214" y1="158" x2="232" y2="158" class="l w2"/>
+<polyline points="225,161.85 232,158 225,154.15" class="l w2"/>
+<rect x="234" y="134" width="74" height="48" class="fs sb" stroke-width="1.5"/>
+<text x="271" y="153.5" class="tm" text-anchor="middle">本物の確率</text>
+<text x="271" y="173.5" class="tb" text-anchor="middle">例 0.3</text>
+<line x1="12" y1="204" x2="308" y2="204" class="l sb w1"/>
+<text x="12" y="228" class="tb">学び方が、逆向き</text>
+<rect x="12" y="242" width="296" height="46" class="fng sng" stroke-width="1.5"/>
+<text x="160" y="260.5" text-anchor="middle">生成器：識別器が『本物』と答える</text>
+<text x="160" y="278.5" text-anchor="middle">ように重みを直す</text>
+<rect x="12" y="298" width="296" height="46" class="fas sa" stroke-width="1.5"/>
+<text x="160" y="316.5" text-anchor="middle">識別器：本物には高い確率、作り物</text>
+<text x="160" y="334.5" text-anchor="middle">には低い確率を出すように重みを直す</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="386" class="tb">学習のあと、画像を作るときに</text>
+<text x="12" y="406" class="tb ta">使うのは生成器だけ</text>
+</svg>

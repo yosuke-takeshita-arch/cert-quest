@@ -1,0 +1,25 @@
+[
+  {
+    "id": "SMP-EC",
+    "title": "経済学・経済政策（サンプル）",
+    "keywords": [],
+    "children": [
+      {
+        "id": "SMP-EC-CH01",
+        "title": "経済指標の見方",
+        "keywords": [],
+        "children": [
+          { "id": "SMP-EC-001", "title": "GDP", "children": [], "keywords": ["国内総生産"] }
+        ]
+      },
+      {
+        "id": "SMP-EC-CH02",
+        "title": "市場の仕組み",
+        "keywords": [],
+        "children": [
+          { "id": "SMP-EC-002", "title": "需要と供給", "children": [], "keywords": ["均衡価格"] }
+        ]
+      }
+    ]
+  }
+]

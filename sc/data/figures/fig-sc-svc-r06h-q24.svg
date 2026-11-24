@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 330" role="img" aria-labelledby="fig-sc-svc-r06h-q24-t fig-sc-svc-r06h-q24-d">
+<title id="fig-sc-svc-r06h-q24-t">選択肢ア〜エのグラフ（縦軸 利用料金、横軸 利用量）</title>
+<desc id="fig-sc-svc-r06h-q24-d">4つの折れ線グラフ。どれも縦軸が利用料金、横軸が利用量で、左下が0。アは0より上の高い所から始まり、利用量が増えるにつれて下がっていく折れ線。イは原点から右上がりの直線で、途中から水平になる折れ線。ウは原点から右上がりで、利用量が増えるにつれて傾きが緩やかになる折れ線。エは原点から右上がりで、利用量が増えるにつれて傾きが急になる折れ線。</desc>
+<text x="12" y="16" class="tm">どれも 縦軸＝利用料金　横軸＝利用量</text>
+<text x="12" y="40" class="tb">ア</text>
+<line x1="30" y1="40" x2="30" y2="140" class="l w1"/>
+<line x1="30" y1="140" x2="150" y2="140" class="l w1"/>
+<text x="24" y="154" text-anchor="end" class="tm">0</text>
+<text x="44" y="52" class="tm">料金</text>
+<text x="150" y="156" text-anchor="end" class="tm">利用量</text>
+<polyline points="32,62 52,98 88,114 140,124" class="l sa w2"/>
+<text x="172" y="40" class="tb">イ</text>
+<line x1="190" y1="40" x2="190" y2="140" class="l w1"/>
+<line x1="190" y1="140" x2="310" y2="140" class="l w1"/>
+<text x="184" y="154" text-anchor="end" class="tm">0</text>
+<text x="194" y="52" class="tm">料金</text>
+<text x="310" y="156" text-anchor="end" class="tm">利用量</text>
+<polyline points="190,140 252,66 304,66" class="l sa w2"/>
+<text x="12" y="200" class="tb">ウ</text>
+<line x1="30" y1="200" x2="30" y2="300" class="l w1"/>
+<line x1="30" y1="300" x2="150" y2="300" class="l w1"/>
+<text x="24" y="314" text-anchor="end" class="tm">0</text>
+<text x="34" y="212" class="tm">料金</text>
+<text x="150" y="316" text-anchor="end" class="tm">利用量</text>
+<polyline points="30,300 52,262 88,234 140,222" class="l sa w2"/>
+<text x="172" y="200" class="tb">エ</text>
+<line x1="190" y1="200" x2="190" y2="300" class="l w1"/>
+<line x1="190" y1="300" x2="310" y2="300" class="l w1"/>
+<text x="184" y="314" text-anchor="end" class="tm">0</text>
+<text x="194" y="212" class="tm">料金</text>
+<text x="310" y="316" text-anchor="end" class="tm">利用量</text>
+<polyline points="190,300 236,286 270,258 300,208" class="l sa w2"/>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 610" role="img" aria-labelledby="fig-g-pruning-t fig-g-pruning-d">
+<title id="fig-g-pruning-t">プルーニング：小さな重みの接続を取り除き、残りを再学習する。Deep Compression の3段</title>
+<desc id="fig-g-pruning-d">①学習済みの6本の接続の重みの例：0.8、−0.02、0.5、0.01、−0.7、0.03。棒の長さは重みの絶対値（大きさ）。絶対値が0.1より小さい3本（−0.02、0.01、0.03）は予測にほとんど効かないので取り除き、6本が3本になる。②残った3本（0.8、0.5、−0.7）を再学習して、取り除いた分の働きを補わせる。再学習を省くと精度が大きく下がる。手順は、学習→小さな重みを取り除く→再学習の3段階。③Deep Compressionは3つを重ねる。プルーニングで接続を9〜13分の1に、量子化（重みの共有）で1つの接続を表すビット数を32から5に、ハフマン符号化でよく出る値ほど短い符号で書く。AlexNetは240MBから6.9MBに、240÷6.9≈35で35分の1になり、精度は落ちなかった。</desc>
+<text x="12" y="22" class="tb">① 小さな重みの接続を取り除く（例）</text>
+<text x="12" y="42" class="tm">学習済みの6本の接続。棒＝重みの大きさ（絶対値）</text>
+<text x="12" y="70">0.8</text>
+<rect x="70" y="57" width="160" height="18" class="fok l sok w1"/>
+<text x="238" y="70" class="tb tok">残す</text>
+<text x="12" y="96">−0.02</text>
+<rect x="70" y="83" width="4" height="18" class="fng l sng w1"/>
+<text x="100" y="96" class="tb tng">取り除く</text>
+<text x="12" y="122">0.5</text>
+<rect x="70" y="109" width="100" height="18" class="fok l sok w1"/>
+<text x="178" y="122" class="tb tok">残す</text>
+<text x="12" y="148">0.01</text>
+<rect x="70" y="135" width="2" height="18" class="fng l sng w1"/>
+<text x="100" y="148" class="tb tng">取り除く</text>
+<text x="12" y="174">−0.7</text>
+<rect x="70" y="161" width="140" height="18" class="fok l sok w1"/>
+<text x="218" y="174" class="tb tok">残す</text>
+<text x="12" y="200">0.03</text>
+<rect x="70" y="187" width="6" height="18" class="fng l sng w1"/>
+<text x="100" y="200" class="tb tng">取り除く</text>
+<line x1="90" y1="50" x2="90" y2="212" class="l swn w2 dsh"/>
+<text x="94" y="226" class="tb twn">基準 0.1</text>
+<text x="12" y="250">絶対値が 0.1 より小さい3本を取り除く</text>
+<text x="12" y="272" class="tb">→ 接続 6本 → 3本（半分）</text>
+<line x1="12" y1="286" x2="308" y2="286" class="l sb w1"/>
+<text x="12" y="310" class="tb">② 残った3本を再学習する</text>
+<text x="12" y="332">0.8・0.5・−0.7 を学習し直し、</text>
+<text x="12" y="352">取り除いた分の働きを補わせる</text>
+<text x="12" y="374" class="tm">（再学習を省くと精度が大きく下がる）</text>
+<text x="12" y="396" class="tm">手順：学習 → 取り除く → 再学習</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="434" class="tb">③ Deep Compression は3つを重ねる</text>
+<rect x="12" y="446" width="296" height="24" class="fs l sm w1" rx="4"/>
+<text x="20" y="463"><tspan class="tb">プルーニング</tspan>：接続を 9〜13分の1 に</text>
+<rect x="12" y="474" width="296" height="24" class="fs l sm w1" rx="4"/>
+<text x="20" y="491"><tspan class="tb">量子化</tspan>（重みの共有）：32 → 5ビット</text>
+<rect x="12" y="502" width="296" height="24" class="fs l sm w1" rx="4"/>
+<text x="20" y="519"><tspan class="tb">ハフマン符号化</tspan>：よく出る値を短い符号に</text>
+<rect x="12" y="536" width="296" height="48" class="fok l sok w1" rx="4"/>
+<text x="160" y="556" class="tb tok" text-anchor="middle">AlexNet：240MB → 6.9MB</text>
+<text x="160" y="575" class="tb tok" text-anchor="middle">240÷6.9≈35 → 35分の1、精度は落ちない</text>
+<text x="12" y="602" class="tm">量子化＝1つの重みを少ないビット数で表すこと</text>
+</svg>

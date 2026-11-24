@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-dx-bottleneck-shift-calc-t fig-dx-bottleneck-shift-calc-d">
+<title id="fig-dx-bottleneck-shift-calc-t">制約の工程2を140個にすると、全体は90個に増え、制約は工程3へ移る</title>
+<desc id="fig-dx-bottleneck-shift-calc-d">何のための図か：工程1＝120個、工程2＝70個、工程3＝90個のラインで、工程2を140個にしたときに全体の数と詰まる場所がどう変わるかを、問題の数で見る。読み方：横棒グラフで、棒の長さはその工程が1時間に処理できる個数。部品は工程1→工程2→工程3の順に流れる。考え方：全体の出力は、いちばん少ない工程（制約）の個数で決まる。ロボットを入れる前：120・70・90個で、制約は工程2、全体は70個。ロボットを入れた後：120・140・90個で、いちばん少ないのは工程3の90個。全体は70個から90個に増えるが、制約は工程3に移る。工程3の手前には、前の工程から1時間120個（工程1の120個が上限）来て、90個しか通せないので、120−90＝30個ずつ仕掛品がたまる。制約を強くしたら、次はどこが制約かを探し直す（5つの集中ステップの1へ戻る）。</desc>
+<text x="12" y="20" class="tb">制約を強くすると、制約は次に遅い工程へ移る</text>
+<text x="12" y="42" class="tm">問題の数：工程1＝120、工程2＝70、工程3＝90個</text>
+<rect x="12" y="54" width="296" height="68" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="22" y="74" class="tb">まず読み方</text>
+<text x="22" y="92" class="tm">横棒グラフ。棒の長さ＝1時間に処理できる個数</text>
+<text x="22" y="110" class="tm">部品は 工程1 → 工程2 → 工程3 の順に流れる</text>
+<text x="12" y="148" class="tb">考え方：どの部品も3つを全部通る</text>
+<text x="12" y="168" class="tb ta">→ 全体＝いちばん少ない工程の個数（制約）</text>
+<line x1="12" y1="180" x2="308" y2="180" class="l sb w1"/>
+<text x="12" y="204" class="tb">① ロボットを入れる前</text>
+<text x="12" y="234">工程1</text>
+<rect x="64" y="219" width="171.4" height="20" class="fs sm" stroke-width="1.5"/>
+<text x="241.4" y="234">120個</text>
+<text x="12" y="264">工程2</text>
+<rect x="64" y="249" width="100" height="20" class="fng sng" stroke-width="1.5"/>
+<text x="170" y="264" class="tb tng">70個 ← 制約</text>
+<text x="12" y="294">工程3</text>
+<rect x="64" y="279" width="128.6" height="20" class="fs sm" stroke-width="1.5"/>
+<text x="198.6" y="294">90個</text>
+<text x="12" y="320" class="tb">全体＝いちばん少ない 70個／時間</text>
+<line x1="12" y1="332" x2="308" y2="332" class="l sb w1"/>
+<text x="12" y="356" class="tb">② 工程2を 140個にした後</text>
+<text x="12" y="386">工程1</text>
+<rect x="64" y="371" width="171.4" height="20" class="fs sm" stroke-width="1.5"/>
+<text x="241.4" y="386">120個</text>
+<text x="12" y="416">工程2</text>
+<rect x="64" y="401" width="200" height="20" class="fok sok" stroke-width="1.5"/>
+<text x="270" y="416" class="tok">140個</text>
+<text x="12" y="446">工程3</text>
+<rect x="64" y="431" width="128.6" height="20" class="fng sng" stroke-width="1.5"/>
+<text x="198.6" y="446" class="tb tng">90個 ← 新しい制約</text>
+<text x="12" y="472" class="tb">全体＝いちばん少ない 90個／時間（70 → 90）</text>
+<line x1="12" y1="484" x2="308" y2="484" class="l sb w1"/>
+<text x="12" y="508" class="tb">③ 次に詰まる場所</text>
+<text x="12" y="526">工程3の手前には 1時間120個が来る</text>
+<text x="12" y="544" class="tm">（工程1の120個が上限。工程2は140個通せる）</text>
+<text x="12" y="564" class="tb tng">120 − 90 ＝ 30個ずつ、工程3の手前にたまる</text>
+<rect x="12" y="576" width="296" height="50" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="22" y="596" class="tb tok">答え：全体は90個に増え、制約は工程3へ移る</text>
+<text x="22" y="614" class="tm">強くしたら「次の制約はどこか」を探し直す</text>
+</svg>

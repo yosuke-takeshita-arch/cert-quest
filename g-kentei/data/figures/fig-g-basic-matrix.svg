@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-g-basic-matrix-t fig-g-basic-matrix-d">
+<title id="fig-g-basic-matrix-t">行列＝数を縦と横の表に並べたもの</title>
+<desc id="fig-g-basic-matrix-d">上は3人の身長と体重の表。Aさん170と60、Bさん160と50、Cさん180と75。横の並び（行）が1人ぶんで、身長と体重の2次元のベクトル。縦の並び（列）が1つの項目（特徴量）で、身長の列と体重の列。3行2列の行列と呼び、数は3×2＝6個。下はニューラルネットワークの重みの例。入力4つを出力3つにつなぐ全結合層の重みは3行4列の行列で、重みは3×4＝12個。入力のベクトル（数4個）にこの行列を掛けると、出力のベクトル（数3個）が一度に計算できる。数は説明のための例。</desc>
+<text x="12" y="22" class="tl">行列＝数を縦と横の表に並べたもの</text>
+<text x="12" y="44" class="tm">例：3人の身長と体重（数は説明のための例）</text>
+<text x="150" y="74" class="tb" text-anchor="middle">身長</text>
+<text x="230" y="74" class="tb" text-anchor="middle">体重</text>
+<rect x="110" y="84" width="160" height="96" class="fs sm" stroke-width="1"/>
+<rect x="110" y="84" width="160" height="32" class="fas sa" stroke-width="2"/>
+<rect x="190" y="84" width="80" height="96" class="sok" stroke-width="2.5"/>
+<line x1="110" y1="148" x2="270" y2="148" class="l sb w1"/>
+<line x1="190" y1="84" x2="190" y2="180" class="l sb w1"/>
+<text x="96" y="105" class="tb ta" text-anchor="end">Aさん</text>
+<text x="96" y="137" text-anchor="end">Bさん</text>
+<text x="96" y="169" text-anchor="end">Cさん</text>
+<text x="150" y="105" class="tb" text-anchor="middle">170</text>
+<text x="230" y="105" class="tb" text-anchor="middle">60</text>
+<text x="150" y="137" text-anchor="middle">160</text>
+<text x="230" y="137" text-anchor="middle">50</text>
+<text x="150" y="169" text-anchor="middle">180</text>
+<text x="230" y="169" text-anchor="middle">75</text>
+<text x="12" y="208"><tspan class="tb ta">行（横の並び）</tspan>＝1人ぶん</text>
+<text x="12" y="228" class="tm">　［170, 60］は2次元のベクトル</text>
+<text x="12" y="252"><tspan class="tb tok">列（縦の並び）</tspan>＝1つの項目（特徴量）</text>
+<text x="12" y="276">3行2列の行列。数は 3×2＝6個</text>
+<line x1="12" y1="294" x2="308" y2="294" class="l sb w1"/>
+<text x="12" y="318" class="tb">ニューラルネットワークの重みも行列</text>
+<text x="12" y="340" class="tm">入力4つ → 出力3つの全結合層</text>
+<rect x="60" y="356" width="128" height="72" class="fas sa" stroke-width="1.5"/>
+<line x1="92" y1="356" x2="92" y2="428" class="l sb w1"/>
+<line x1="124" y1="356" x2="124" y2="428" class="l sb w1"/>
+<line x1="156" y1="356" x2="156" y2="428" class="l sb w1"/>
+<line x1="60" y1="380" x2="188" y2="380" class="l sb w1"/>
+<line x1="60" y1="404" x2="188" y2="404" class="l sb w1"/>
+<text x="124" y="397" class="tb ta" text-anchor="middle">重み 12個</text>
+<text x="52" y="397" class="tm" text-anchor="end">3行</text>
+<text x="124" y="446" class="tm" text-anchor="middle">4列</text>
+<text x="200" y="376">× 入力</text>
+<text x="200" y="396">　（数4個）</text>
+<text x="200" y="420">＝ 出力</text>
+<text x="200" y="440">　（数3個）</text>
+<text x="12" y="474">行列を掛けると、出力3つを</text>
+<text x="12" y="496">一度に計算できる（3×4＝12個の重み）</text>
+</svg>

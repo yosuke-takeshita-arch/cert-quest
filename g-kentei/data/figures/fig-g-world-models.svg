@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-world-models-t fig-g-world-models-d">
+<title id="fig-g-world-models-t">世界モデル（Ha と Schmidhuber 2018）：V・M・C の3つの部品と、夢の中での練習</title>
+<desc id="fig-g-world-models-d">例は車のレースのゲーム（CarRacing）。上段は実際の環境で動くとき。環境の画面の画像を、V（VAE）が小さな数の並びに縮める。縮めた数の並びは、M（MDN-RNN）と C（制御器）の両方へ渡る。M は、その数の並びが次にどう変わるかを予測し、その特徴を C へ渡す。C は V と M の特徴だけを見て、ハンドルとアクセルを決める。その行動が環境へ返り、次の画面になる。C はごく小さくて済む。中段は夢の中での練習。M が予測した場面の連続（夢）を環境の代わりにし、C の行動を M へ、M が予測した次の場面を C へ渡して、実際の環境を使わずに C を学習する。それを実際の環境へ移すこともできた。下段は分類。環境のモデルを持つのでモデルベースの強化学習。環境のモデルを持たず、実際に試した結果だけから学ぶのがモデルフリー（DQN など）。</desc>
+<text x="12" y="20" class="tb">世界モデル：V・M・C（車のレースの例）</text>
+<rect x="12" y="32" width="278" height="40" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="151" y="57" class="tb" text-anchor="middle">環境：車のレースのゲーム</text>
+<line x1="80" y1="72" x2="80" y2="94.4" class="l sm w1"/>
+<polygon points="80,100 76.5,94.4 83.5,94.4" class="fm"/>
+<text x="90" y="91" class="tm">画面の画像</text>
+<rect x="12" y="102" width="278" height="56" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="124" class="tb">V（VAE）</text>
+<text x="24" y="146">画像を小さな数の並びに縮める</text>
+<line x1="60" y1="158" x2="60" y2="180.4" class="l sm w1"/>
+<polygon points="60,186 56.5,180.4 63.5,180.4" class="fm"/>
+<line x1="240" y1="158" x2="240" y2="180.4" class="l sm w1"/>
+<polygon points="240,186 236.5,180.4 243.5,180.4" class="fm"/>
+<text x="150" y="178" class="tm" text-anchor="middle">縮めた数の並び</text>
+<rect x="12" y="188" width="122" height="92" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="22" y="210" class="tb ta">M（MDN-RNN）</text>
+<text x="22" y="232">数の並びが</text>
+<text x="22" y="250">次にどう変わるか</text>
+<text x="22" y="268">を予測する</text>
+<line x1="134" y1="234" x2="156.4" y2="234" class="l sm w1"/>
+<polygon points="162,234 156.4,230.5 156.4,237.5" class="fm"/>
+<rect x="164" y="188" width="126" height="92" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="174" y="210" class="tb tok">C（制御器）</text>
+<text x="174" y="232">V と M の特徴</text>
+<text x="174" y="250">だけを見て、ハンドル</text>
+<text x="174" y="268">とアクセルを決める</text>
+<path d="M 290 234 L 304 234 L 304 52 L 296 52" class="l sa w1" fill="none"/>
+<polygon points="290,52 296,48.5 296,55.5" class="fa"/>
+<text x="312" y="150" class="ta tb" text-anchor="middle" writing-mode="vertical-rl">行動</text>
+<text x="12" y="304" class="tm">C はごく小さくて済む</text>
+<line x1="12" y1="320" x2="308" y2="320" class="l sb w1"/>
+<text x="12" y="344" class="tb">夢の中で練習する</text>
+<rect x="12" y="358" width="112" height="64" class="fas sa" stroke-width="1.5" rx="6"/>
+<text x="68" y="384" class="tb ta" text-anchor="middle">M が作る夢</text>
+<text x="68" y="404" text-anchor="middle">（予測の場面）</text>
+<rect x="196" y="358" width="94" height="64" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="243" y="384" class="tb tok" text-anchor="middle">C を</text>
+<text x="243" y="404" class="tb tok" text-anchor="middle">学習する</text>
+<line x1="124" y1="380" x2="190.4" y2="380" class="l sm w1"/>
+<polygon points="196,380 190.4,376.5 190.4,383.5" class="fm"/>
+<text x="160" y="374" class="tm" text-anchor="middle">次の場面</text>
+<line x1="196" y1="402" x2="129.6" y2="402" class="l sm w1"/>
+<polygon points="124,402 129.6,398.5 129.6,405.5" class="fm"/>
+<text x="160" y="418" class="tm" text-anchor="middle">行動</text>
+<text x="12" y="450">実際の環境を使わずに C を学習し、</text>
+<text x="12" y="470">それを実際の環境へ移すこともできた</text>
+<line x1="12" y1="488" x2="308" y2="488" class="l sb w1"/>
+<text x="12" y="510">環境のモデルを持つ＝<tspan class="tb">モデルベース</tspan></text>
+<text x="12" y="530" class="tm">持たずに、試した結果だけで学ぶ</text>
+<text x="12" y="548" class="tm">＝モデルフリー（DQN など）</text>
+</svg>

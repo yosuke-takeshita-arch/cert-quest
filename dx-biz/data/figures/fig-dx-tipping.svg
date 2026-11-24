@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 450" role="img" aria-labelledby="fig-dx-tipping-t fig-dx-tipping-d">
+<title id="fig-dx-tipping-t">投げ銭モデル：見るのは無料、応援したい人だけが払う</title>
+<desc id="fig-dx-tipping-d">ライブ配信の投げ銭の流れ。配信者が配信し、視聴者は無料で見られる。1 応援したい視聴者が、お金を払って、配信サービスの事業者が発行するポイントを買う。2 視聴者は、ポイントで有料のアイテムを買い、配信者に贈る。3 アイテムの売上が、事業者から配信者に還元される。払うのは気に入った人だけ。注意：高額の投げ銭を重ねてしまうトラブルがあり、未成年の利用などに注意が要る。</desc>
+<text x="12" y="22" class="tb">ライブ配信の場合</text>
+<rect x="12" y="40" width="96" height="60" class="fs l sm"/>
+<text x="60" y="75" class="tb" text-anchor="middle">視聴者</text>
+<rect x="212" y="40" width="96" height="60" class="fok l sok"/>
+<text x="260" y="75" class="tb" text-anchor="middle">配信者</text>
+<line x1="210" y1="54" x2="110" y2="54" class="l sm w2 dsh"/>
+<polyline points="116,50 110,54 116,58" class="l sm w2"/>
+<text x="160" y="46" class="tm" text-anchor="middle">配信（無料）</text>
+<line x1="110" y1="86" x2="210" y2="86" class="l swn w2"/>
+<polyline points="204,82 210,86 204,90" class="l swn w2"/>
+<circle cx="160" cy="86" r="11" class="fs l swn"/>
+<text x="160" y="90.5" class="tb" text-anchor="middle">2</text>
+<text x="160" y="116" class="tm" text-anchor="middle">アイテムを贈る</text>
+<rect x="96" y="170" width="128" height="44" class="fas l sa"/>
+<text x="160" y="189" class="tb" text-anchor="middle">配信サービスの</text>
+<text x="160" y="206" class="tb" text-anchor="middle">事業者</text>
+<line x1="60" y1="102" x2="108" y2="166" class="l sa w2"/>
+<polyline points="101.4,162.4 108,166 107.8,158.4" class="l sa w2"/>
+<circle cx="76" cy="134" r="11" class="fs l sa"/>
+<text x="76" y="138.5" class="tb" text-anchor="middle">1</text>
+<line x1="212" y1="166" x2="258" y2="104" class="l sa w2"/>
+<polyline points="251.6,107.6 258,104 257.8,111.6" class="l sa w2"/>
+<circle cx="244" cy="134" r="11" class="fs l sa"/>
+<text x="244" y="138.5" class="tb" text-anchor="middle">3</text>
+<line x1="12" y1="232" x2="308" y2="232" class="l sb w1"/>
+<text x="12" y="256"><tspan class="tb">1</tspan>　お金を払い、事業者のポイントを買う</text>
+<text x="12" y="282"><tspan class="tb">2</tspan>　ポイントで有料のアイテムを買い、</text>
+<text x="34" y="300">配信者に贈る</text>
+<text x="12" y="326"><tspan class="tb">3</tspan>　アイテムの売上が、配信者に還元される</text>
+<line x1="12" y1="344" x2="308" y2="344" class="l sb w1"/>
+<text x="12" y="368" class="tb">払うのは、気に入った人だけ</text>
+<rect x="12" y="382" width="296" height="54" class="fwn l swn"/>
+<text x="24" y="404">注意：高額の投げ銭を重ねてしまう</text>
+<text x="24" y="424">トラブル。未成年の利用に気をつける</text>
+</svg>

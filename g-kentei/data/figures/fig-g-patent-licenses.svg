@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 484" role="img" aria-labelledby="fig-g-patent-licenses-t fig-g-patent-licenses-d">
+<title id="fig-g-patent-licenses-t">専用実施権と通常実施権：設定した範囲で、誰が使えるか</title>
+<desc id="fig-g-patent-licenses-d">例：A社がAIの画像処理の特許を持ち、範囲を日本国内・医療用途とする。①B社に専用実施権を設定すると、点線で囲んだ範囲の中では、B社だけが使え、特許権者のA社もC社も使えない。専用実施権は特許庁に登録しないと効力が生じない。②B社とC社に通常実施権を許諾すると、範囲の中でA社・B社・C社のどれもが使える。独占ではなく、何社にも許諾できる。通常実施権は登録しなくても、後から特許権などを取得した人に効力を持つ（当然対抗）。見分け方：専用はその範囲を独り占めし、A社も使えない。通常は使ってよいと認めるだけ。</desc>
+<text x="12" y="20" class="tb">専用実施権と通常実施権：誰が使えるか</text>
+<text x="12" y="42" class="tm">例：A社がAIの画像処理の特許を持つ</text>
+<text x="12" y="60" class="tm">範囲（点線の枠）：日本国内・医療用途</text>
+<text x="12" y="86" class="tb ta">① 専用実施権をB社に設定</text>
+<rect x="12" y="96" width="296" height="72" class="l sm w1 dsh" rx="6"/>
+<rect x="22" y="108" width="84" height="48" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="64" y="128" class="tb" text-anchor="middle">A社</text>
+<text x="64" y="148" class="tng" text-anchor="middle">使えない</text>
+<rect x="118" y="108" width="84" height="48" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="128" class="tb" text-anchor="middle">B社</text>
+<text x="160" y="148" class="tb tok" text-anchor="middle">独占</text>
+<rect x="214" y="108" width="84" height="48" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="256" y="128" class="tb" text-anchor="middle">C社</text>
+<text x="256" y="148" class="tng" text-anchor="middle">使えない</text>
+<text x="12" y="188" class="tm">A社は特許権者でも、この範囲では使えない</text>
+<text x="12" y="208" class="tm">特許庁に登録しないと、効力が生じない</text>
+<line x1="12" y1="224" x2="308" y2="224" class="l sb w1"/>
+<text x="12" y="248" class="tb ta">② 通常実施権をB社とC社に許諾</text>
+<rect x="12" y="258" width="296" height="72" class="l sm w1 dsh" rx="6"/>
+<rect x="22" y="270" width="84" height="48" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="64" y="290" class="tb" text-anchor="middle">A社</text>
+<text x="64" y="310" class="tok" text-anchor="middle">使える</text>
+<rect x="118" y="270" width="84" height="48" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="290" class="tb" text-anchor="middle">B社</text>
+<text x="160" y="310" class="tok" text-anchor="middle">使える</text>
+<rect x="214" y="270" width="84" height="48" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="256" y="290" class="tb" text-anchor="middle">C社</text>
+<text x="256" y="310" class="tok" text-anchor="middle">使える</text>
+<text x="12" y="350" class="tm">独占ではない。何社にも許諾できる</text>
+<text x="12" y="370" class="tm">登録しなくても、後から特許権などを</text>
+<text x="12" y="390" class="tm">取得した人に効力を持つ（当然対抗）</text>
+<line x1="12" y1="406" x2="308" y2="406" class="l sb w1"/>
+<text x="12" y="430" class="tb">見分け方</text>
+<text x="12" y="450">専用＝範囲を独り占め（A社も使えない）</text>
+<text x="12" y="470">通常＝使ってよいと認めるだけ</text>
+</svg>

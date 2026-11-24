@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" role="img" aria-labelledby="fig-g-unclip-t fig-g-unclip-d">
+<title id="fig-g-unclip-t">DALL-E 2（unCLIP）：文章から CLIP の画像の埋め込みを作り、拡散モデルで画像にする。DALL-E・GLIDE との違い</title>
+<desc id="fig-g-unclip-d">DALL-E 2（Ramesh ら、2022。論文では unCLIP）は2段階で画像を作る。①文章を CLIP のテキストエンコーダで文の埋め込みにする。②prior（事前のモデル）が、文の埋め込みを CLIP の画像の埋め込みに変える。prior には自己回帰型と拡散型の両方を試した。③decoder（拡散モデル）が、画像の埋め込みを条件に、ノイズを少しずつ取り除いて画像を作る。CLIP は prior と decoder を学習する間は固定し、重みを変えない。同じ画像の埋め込みから、意味や画風を保ったまま細部の違う画像（バリエーション）も作れる。比べると、DALL-E（2021年）は文と画像のトークンを1本の列にして、Transformer で前から順に当てる自己回帰。GLIDE（2021年）は文章を直接の手がかりにする拡散モデルで、画像の埋め込みを作らない。埋め込みは意味を表す数の並び。CLIP は画像と文章を同じ空間に写して近さを測るモデルで、CLIP 自身は画像を作らない。</desc>
+<text x="12" y="20" class="tb">DALL-E 2（unCLIP）：2段階で作る</text>
+<rect x="60" y="34" width="200" height="30" class="fbg sb" stroke-width="1" rx="4"/>
+<text x="160" y="54" class="tb" text-anchor="middle">文章（絵の説明文）</text>
+<line x1="160" y1="64" x2="160" y2="74.4" class="l sm w1"/>
+<polygon points="160,80 156.5,74.4 163.5,74.4" class="fm"/>
+<rect x="30" y="82" width="260" height="48" class="fs sa" stroke-width="1.5" rx="6"/>
+<text x="160" y="102" class="tb" text-anchor="middle">CLIP のテキストエンコーダ</text>
+<text x="160" y="121" class="tm" text-anchor="middle">→ 文の埋め込み（固定・学習しない）</text>
+<line x1="160" y1="130" x2="160" y2="140.4" class="l sm w1"/>
+<polygon points="160,146 156.5,140.4 163.5,140.4" class="fm"/>
+<rect x="30" y="148" width="260" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="168" class="tb" text-anchor="middle">① prior（事前のモデル）</text>
+<text x="160" y="186" class="tm" text-anchor="middle">文の埋め込み → CLIP の画像の埋め込み</text>
+<text x="160" y="204" class="tm" text-anchor="middle">（自己回帰型と拡散型の両方を試した）</text>
+<line x1="160" y1="214" x2="160" y2="224.4" class="l sm w1"/>
+<polygon points="160,230 156.5,224.4 163.5,224.4" class="fm"/>
+<rect x="30" y="232" width="260" height="66" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="160" y="252" class="tb" text-anchor="middle">② decoder（拡散モデル）</text>
+<text x="160" y="270" class="tm" text-anchor="middle">画像の埋め込みを手がかりに、ノイズを</text>
+<text x="160" y="288" class="tm" text-anchor="middle">少しずつ取り除いて画像にする</text>
+<line x1="160" y1="298" x2="160" y2="308.4" class="l sm w1"/>
+<polygon points="160,314 156.5,308.4 163.5,308.4" class="fm"/>
+<rect x="60" y="316" width="200" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="160" y="336" class="tb tok" text-anchor="middle">画像</text>
+<text x="12" y="372" class="tm">CLIP は prior と decoder の学習中は固定</text>
+<text x="12" y="390" class="tm">同じ画像の埋め込みから、細部の違う画像</text>
+<text x="12" y="408" class="tm">（バリエーション）も作れる</text>
+<text x="12" y="438" class="tb">比べる</text>
+<rect x="12" y="446" width="296" height="62" class="fs sb" stroke-width="1" rx="4"/>
+<text x="22" y="465" class="tb">DALL-E（2021年）：自己回帰</text>
+<text x="22" y="483" class="tm">文と画像のトークンを1本の列にして、</text>
+<text x="22" y="501" class="tm">Transformer で前から順に当てる</text>
+<rect x="12" y="514" width="296" height="62" class="fs sb" stroke-width="1" rx="4"/>
+<text x="22" y="533" class="tb">GLIDE（2021年）：拡散モデル</text>
+<text x="22" y="551" class="tm">文章を直接の手がかりにする</text>
+<text x="22" y="569" class="tm">（画像の埋め込みを作らない）</text>
+<text x="12" y="600" class="tm">埋め込み＝意味を表す数の並び</text>
+<text x="12" y="618" class="tm">CLIP＝画像と文章を同じ空間に写して近さを</text>
+<text x="12" y="634" class="tm">測るモデル（自分では画像を作らない）</text>
+</svg>

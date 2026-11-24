@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 520" role="img" aria-labelledby="fig-dx-rfid-gps-t fig-dx-rfid-gps-d">
+<title id="fig-dx-rfid-gps-t">RFIDとGPS：「何が」と「どこに」を自動で集める</title>
+<desc id="fig-dx-rfid-gps-d">上：RFID（電波による識別）。商品などに付けたRFタグが、アンテナ（読み取り機）の前を通ると、無線の電波でタグの情報が読み取られる。触れなくてよい。何が通ったかが分かる。例は乗車カード・電子マネー・社員証、商品の値札の無線ICタグ。下：GPS（地球全体で位置を測るシステム）。米国が運用する複数の衛星から電波が届き、受信機（スマホなど）が自分の位置を求める。どこにいるかが分かる。見える衛星が少ないと安定しないため、日本のみちびき（準天頂衛星システム）がGPSと一体で使えるようにして補う。どちらも、IoTでモノや人の「何が・どこに」を集める手段。</desc>
+<text x="12" y="22" class="tb ta">RFID：電波でタグを読む →「何が」</text>
+<rect x="24" y="50" width="70" height="44" class="fs l sm"/>
+<text x="59" y="70" text-anchor="middle">商品</text>
+<rect x="64" y="76" width="24" height="14" class="fas l sa w1"/>
+<text x="76" y="112" class="tm" text-anchor="middle">RFタグ</text>
+<line x1="100" y1="72" x2="160" y2="72" class="l sm w2 dsh"/>
+<polyline points="154,68 160,72 154,76" class="l sm w2"/>
+<text x="130" y="62" class="tm" text-anchor="middle">通る</text>
+<line x1="186" y1="44" x2="186" y2="104" class="l w2"/>
+<path d="M200 58 a 16 16 0 0 1 0 28" class="l sa w1"/>
+<path d="M210 50 a 26 26 0 0 1 0 44" class="l sa w1"/>
+<text x="186" y="122" text-anchor="middle">アンテナ</text>
+<line x1="226" y1="72" x2="244" y2="72" class="l sa w2"/>
+<polyline points="238,68 244,72 238,76" class="l sa w2"/>
+<rect x="246" y="52" width="62" height="40" class="fok l sok"/>
+<text x="277" y="69" class="tb" text-anchor="middle">何が</text>
+<text x="277" y="86" class="tb" text-anchor="middle">通ったか</text>
+<text x="12" y="146">触れなくても、電波で自動で読み取る</text>
+<text x="12" y="166" class="tm">例：乗車カード・電子マネー・社員証、</text>
+<text x="12" y="184" class="tm">商品の値札の無線ICタグ</text>
+<line x1="12" y1="202" x2="308" y2="202" class="l sb w1"/>
+<text x="12" y="226" class="tb ta">GPS：衛星の電波で位置を測る →「どこに」</text>
+<rect x="34" y="244" width="40" height="22" class="fs l sm"/>
+<text x="54" y="260" text-anchor="middle">衛星</text>
+<rect x="140" y="240" width="40" height="22" class="fs l sm"/>
+<text x="160" y="256" text-anchor="middle">衛星</text>
+<rect x="246" y="244" width="40" height="22" class="fs l sm"/>
+<text x="266" y="260" text-anchor="middle">衛星</text>
+<line x1="60" y1="268" x2="150" y2="338" class="l sa w1 dsh"/>
+<line x1="160" y1="264" x2="160" y2="334" class="l sa w1 dsh"/>
+<line x1="260" y1="268" x2="170" y2="338" class="l sa w1 dsh"/>
+<rect x="92" y="340" width="136" height="30" class="fs l sm"/>
+<text x="160" y="360" text-anchor="middle">受信機（スマホ）</text>
+<line x1="160" y1="370" x2="160" y2="386" class="l sok w2"/>
+<polyline points="156,380 160,386 164,380" class="l sok w2"/>
+<rect x="104" y="388" width="112" height="30" class="fok l sok"/>
+<text x="160" y="408" class="tb" text-anchor="middle">どこにいるか</text>
+<text x="12" y="442">見える衛星が少ないと安定しない →</text>
+<text x="12" y="462">日本の「みちびき」がGPSと一体で補う</text>
+<line x1="12" y1="478" x2="308" y2="478" class="l sb w1"/>
+<text x="12" y="502" class="tb">どちらも、IoTで「何が・どこに」を集める</text>
+</svg>

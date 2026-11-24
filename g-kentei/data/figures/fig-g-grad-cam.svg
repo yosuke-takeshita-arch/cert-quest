@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 880" role="img" aria-labelledby="fig-g-grad-cam-t fig-g-grad-cam-d">
+<title id="fig-g-grad-cam-t">Grad-CAM：重みの代わりに勾配を使い、どんな CNN でも根拠の地図を作る</title>
+<desc id="fig-g-grad-cam-d">①知りたいことはCAMと同じで、CNNが画像のどこを見て犬と判断したかを明るさの地図（ヒートマップ）で見たい。②困りごと：CAMは、地図の平均に重みを掛けて犬のスコアを出す作り（GAPを持つ作り）でないと使えない。全結合層を持つふつうのCNNでは、作りを変えて学習し直す必要があった。③Grad-CAMは重みの代わりに勾配を使う。勾配は、その地図を少し強めたとき犬のスコアがどれだけ上がるか（坂の傾き）。例（数は説明用）：耳の地図は上がり方が大きいので重み2、毛並みは少し上がるので重み1、背景は上がらないので重み0。勾配はチャネルごとに平均して1つの重みにし、あとはCAMと同じく地図に重みを掛けて足す。勾配は対象クラスのスコアから最後の畳み込み層まで逆向きに流して求め、どんなCNNでも計算できるので、作りの変更や学習し直しなしで使える。④何に使うか：Selvarajuら（2016）は、医師か看護師かを分けるモデルをGrad-CAMで見ると、人の顔や髪型を見て判断しており、学習データの性別の偏りを覚えていたことを見つけた。背景など誤った根拠で判断していないかの確認に使う。⑤Grad-CAMはGradient-weighted Class Activation Mappingの略。Grad-CAMはクラスを区別できるが地図は粗い。Guided Backpropagationは画素単位で細かいがクラスを区別できない。2つを要素ごとの積で組み合わせたのがGuided Grad-CAM。LIMEはCNNの中を見ずに、入力を変えて調べる。</desc>
+<text x="12" y="20" class="tb">Grad-CAM：どんな CNN でも根拠の地図を作る</text>
+<text x="12" y="48" class="tb">① 知りたいこと（CAM と同じ）</text>
+<text x="12" y="68" class="tm">CNN が画像のどこを見て『犬』と判断したかを、</text>
+<text x="12" y="86" class="tm">明るさの地図（ヒートマップ）で見たい</text>
+<line x1="12" y1="100" x2="308" y2="100" class="l sb w1"/>
+<text x="12" y="122" class="tb">② 困りごと：CAM は使えるモデルが限られる</text>
+<text x="12" y="142" class="tm">CAM は『地図の平均 × 重み』で犬のスコアを</text>
+<text x="12" y="160" class="tm">出す作り（GAP を持つ作り）でないと使えない</text>
+<text x="12" y="178" class="tm">全結合層を持つふつうの CNN では、作りを</text>
+<text x="12" y="196" class="tb tng">変えて学習し直す必要があった</text>
+<line x1="12" y1="210" x2="308" y2="210" class="l sb w1"/>
+<text x="12" y="232" class="tb">③ 重みの代わりに『勾配』を使う</text>
+<text x="12" y="252" class="tm">勾配＝その地図を少し強めたとき、犬のスコア</text>
+<text x="12" y="270" class="tm">がどれだけ上がるか（坂の傾き）</text>
+<text x="12" y="294" class="tb">例（数は説明用）</text>
+<text x="12" y="316" class="tm">地図</text>
+<text x="90" y="316" class="tm">少し強めると、スコアは</text>
+<text x="290" y="316" class="tm" text-anchor="middle">重み</text>
+<line x1="12" y1="323" x2="308" y2="323" class="l sb w1"/>
+<text x="12" y="342">耳</text>
+<text x="90" y="342">大きく上がる</text>
+<text x="290" y="342" class="tb ta" text-anchor="middle">2</text>
+<text x="12" y="364">毛並み</text>
+<text x="90" y="364">少し上がる</text>
+<text x="290" y="364" class="tb ta" text-anchor="middle">1</text>
+<text x="12" y="386">背景</text>
+<text x="90" y="386">上がらない</text>
+<text x="290" y="386" class="tb ta" text-anchor="middle">0</text>
+<text x="12" y="410" class="tm">勾配はチャネル（地図1枚）ごとに平均して、</text>
+<text x="12" y="428" class="tm">1つの重みにする</text>
+<text x="12" y="448" class="tm">→ あとは CAM と同じ：地図に重みを掛けて足す</text>
+<text x="12" y="472" class="tb tok">勾配は、どんな CNN でも計算できる</text>
+<text x="12" y="490" class="tb tok">→ 作りの変更・学習し直しなしで使える</text>
+<text x="12" y="510" class="tm">（犬のスコアから最後の畳み込み層まで、</text>
+<text x="12" y="528" class="tm">　逆向きにたどって求める）</text>
+<line x1="12" y1="542" x2="308" y2="542" class="l sb w1"/>
+<text x="12" y="564" class="tb">④ 何に使うか：誤った根拠を見つける</text>
+<text x="12" y="584" class="tm">『医師』か『看護師』かを分ける画像のモデルを</text>
+<text x="12" y="602" class="tm">Grad-CAM で見ると、人の顔や髪型を見て</text>
+<text x="12" y="620" class="tm">判断していた（Selvaraju ら 2016）</text>
+<text x="12" y="640" class="tb tng">→ 学習データの性別の偏りを覚えていた</text>
+<text x="12" y="660" class="tm">背景など、誤った根拠で判断していないかの</text>
+<text x="12" y="678" class="tm">確認に使う</text>
+<line x1="12" y1="692" x2="308" y2="692" class="l sb w1"/>
+<text x="12" y="714" class="tb">⑤ 試験で出る言い方</text>
+<text x="12" y="734">Grad-CAM＝Gradient-weighted Class</text>
+<text x="12" y="752">Activation Mapping（勾配で重み付けした CAM）</text>
+<text x="12" y="774" class="tm">Grad-CAM：クラスを区別できるが、地図は粗い</text>
+<text x="12" y="792" class="tm">Guided Backpropagation：画素単位で細かいが、</text>
+<text x="12" y="810" class="tm">　クラスを区別できない</text>
+<text x="12" y="828" class="tm">2つを要素ごとの積で組み合わせたのが</text>
+<text x="12" y="846" class="tm">　Guided Grad-CAM（細かく、クラスも区別）</text>
+<text x="12" y="870" class="tm">LIME は中を見ずに、入力を変えて調べる</text>
+</svg>

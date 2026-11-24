@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 472" role="img" aria-labelledby="fig-ap-answer-types-t fig-ap-answer-types-d">
+<title id="fig-ap-answer-types-t">問題の種類は答えの形で見分ける：回帰・二値分類・多値分類・クラスタリング</title>
+<desc id="fig-ap-answer-types-d">教師あり学習（正解付きのデータで学ぶ）の3つ。回帰は答えが数で、例は家の広さ・築年数から値段3,280万円を当てる。二値分類は答えが2種類のどちらかで、例は部品の画像から良品か不良品かを当てる。多値分類は答えが3種類以上のどれかで、例は手書きの数字が0〜9の10種類のどれかを当てる。教師なし学習（正解が無い）のクラスタリングは、似たもの同士をまとめる。例は購入履歴から買い方の似た会員の組を作る。分類は種類（正解）を先に決めて当て、クラスタリングは正解なしでまとめ、組の意味はあとから人が読み取る。数を当てるのが回帰、種類を当てるのが分類。</desc>
+<text x="12" y="20" class="tb">問題の種類は「答えの形」で見分ける</text>
+<text x="12" y="46" class="tb ta">教師あり学習（正解付きのデータで学ぶ）</text>
+<rect x="12" y="56" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="79" class="tb">回帰：答えが数</text>
+<text x="22" y="99">例 家の広さ・築年数 → 値段 3,280万円</text>
+<rect x="12" y="120" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="143" class="tb">二値分類：答えが2種類のどちらか</text>
+<text x="22" y="163">例 部品の画像 → 良品 か 不良品</text>
+<rect x="12" y="184" width="296" height="56" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="207" class="tb">多値分類：答えが3種類以上のどれか</text>
+<text x="22" y="227">例 手書きの数字 → 0〜9 の10種類</text>
+<text x="12" y="266" class="tb ta">教師なし学習（正解が無い）</text>
+<rect x="12" y="276" width="296" height="56" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="299" class="tb">クラスタリング：似たもの同士をまとめる</text>
+<text x="22" y="319">例 購入履歴 → 買い方の似た会員の組</text>
+<line x1="12" y1="348" x2="308" y2="348" class="l sb w1"/>
+<text x="12" y="370" class="tb">分類とクラスタリングの違い</text>
+<text x="12" y="390">分類：種類（正解）を先に決めて当てる</text>
+<text x="12" y="410">クラスタリング：正解なしでまとめ、</text>
+<text x="12" y="430">　組の意味はあとから人が読み取る</text>
+<text x="12" y="454" class="tm">数を当てる＝回帰。種類を当てる＝分類</text>
+</svg>

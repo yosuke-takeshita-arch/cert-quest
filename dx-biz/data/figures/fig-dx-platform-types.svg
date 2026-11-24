@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 460" role="img" aria-labelledby="fig-dx-platform-types-t fig-dx-platform-types-d">
+<title id="fig-dx-platform-types-t">媒介型プラットフォームと基盤型プラットフォーム、エコシステム</title>
+<desc id="fig-dx-platform-types-d">上：媒介型プラットフォーム。売り手のグループと買い手のグループの間に仲介の場があり、両側からの取引や交流が場を通る。2組の経済主体が仲介者を通じて相互に作用する市場を両面市場という。中：基盤型プラットフォーム。下にOS・クラウド・ゲーム機などの土台があり、その上に他の企業のアプリやサービスが多数載る。共通の規格があれば、事業者は接続性を確保するだけでアプリケーションを提供でき、参入のハードルが下がる。下：エコシステムは、プラットフォームなどを中心に、企業・開発者・利用者が互いに依存し合い、ともに価値を生み出す仕組み。</desc>
+<text x="12" y="22" class="tb">媒介型：間に立って結びつける</text>
+<rect x="12" y="34" width="84" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="54" y="57.5" text-anchor="middle">売り手の</text>
+<text x="54" y="75.5" text-anchor="middle">グループ</text>
+<rect x="118" y="34" width="84" height="56" class="fa" stroke-width="1.5"/>
+<text x="160" y="66.5" class="tb ton" text-anchor="middle">仲介の場</text>
+<rect x="224" y="34" width="84" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="266" y="57.5" text-anchor="middle">買い手の</text>
+<text x="266" y="75.5" text-anchor="middle">グループ</text>
+<line x1="98" y1="54" x2="116" y2="54" class="l sa w2"/>
+<polyline points="111,56.75 116,54 111,51.25" class="l sa w2"/>
+<line x1="116" y1="72" x2="98" y2="72" class="l sa w2"/>
+<polyline points="103,69.25 98,72 103,74.75" class="l sa w2"/>
+<line x1="204" y1="54" x2="222" y2="54" class="l sa w2"/>
+<polyline points="217,56.75 222,54 217,51.25" class="l sa w2"/>
+<line x1="222" y1="72" x2="204" y2="72" class="l sa w2"/>
+<polyline points="209,69.25 204,72 209,74.75" class="l sa w2"/>
+<text x="12" y="112">両側の取引が、場を通る（両面市場）</text>
+<line x1="12" y1="130" x2="308" y2="130" class="l sb w1"/>
+<text x="12" y="152" class="tb">基盤型：下で支える土台</text>
+<rect x="12" y="166" width="92" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="58" y="186.5" text-anchor="middle">アプリA</text>
+<rect x="114" y="166" width="92" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="186.5" text-anchor="middle">アプリB</text>
+<rect x="216" y="166" width="92" height="32" class="fok sok" stroke-width="1.5"/>
+<text x="262" y="186.5" text-anchor="middle">アプリC</text>
+<rect x="12" y="204" width="296" height="44" class="fa" stroke-width="1.5"/>
+<text x="160" y="221" class="tb ton" text-anchor="middle">土台</text>
+<text x="160" y="240" class="ton" text-anchor="middle">OS・クラウド・ゲーム機など</text>
+<text x="12" y="270">他の企業のアプリやサービスが、上に載る</text>
+<line x1="12" y1="288" x2="308" y2="288" class="l sb w1"/>
+<text x="12" y="310" class="tb">エコシステム：互いに依存し合う</text>
+<rect x="108" y="324" width="104" height="44" class="fa" stroke-width="1.5"/>
+<text x="160" y="350.5" class="tb ton" text-anchor="middle">基盤</text>
+<rect x="12" y="392" width="92" height="34" class="fok sok" stroke-width="1.5"/>
+<text x="58" y="413.5" text-anchor="middle">企業</text>
+<rect x="114" y="392" width="92" height="34" class="fok sok" stroke-width="1.5"/>
+<text x="160" y="413.5" text-anchor="middle">開発者</text>
+<rect x="216" y="392" width="92" height="34" class="fok sok" stroke-width="1.5"/>
+<text x="262" y="413.5" text-anchor="middle">利用者</text>
+<line x1="58" y1="390" x2="130" y2="370" class="l sa w2"/>
+<polyline points="125.1,374.79 130,370 123.34,368.43" class="l sa w2"/>
+<line x1="160" y1="390" x2="160" y2="370" class="l sa w2"/>
+<polyline points="163.3,376 160,370 156.7,376" class="l sa w2"/>
+<line x1="262" y1="390" x2="190" y2="370" class="l sa w2"/>
+<polyline points="196.66,368.43 190,370 194.9,374.79" class="l sa w2"/>
+<text x="12" y="448">基盤を中心に、ともに価値を生み出す</text>
+</svg>

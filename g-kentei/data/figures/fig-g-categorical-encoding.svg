@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 456" role="img" aria-labelledby="fig-g-categorical-encoding-t fig-g-categorical-encoding-d">
+<title id="fig-g-categorical-encoding-t">ラベルエンコーディングと One-Hot エンコーディング</title>
+<desc id="fig-g-categorical-encoding-d">赤・青・緑の列を数値に変える2つの方法。ラベルエンコーディングは、赤0、青1、緑2と整数1列にする。数値としては大小関係があるように見えるが、色には本来ない順序なので、モデルが読み取ってしまう。One-Hotエンコーディングは、赤・青・緑の3列を作り、該当する1列だけを1、他を0にする。順序に意味のないカテゴリはOne-Hotにするのが基本。</desc>
+<text x="12" y="20" class="tb">① ラベルエンコーディング</text>
+<rect x="12" y="34" width="70" height="32" class="fas sb" stroke-width="1"/>
+<text x="47" y="54.5" class="tb" text-anchor="middle">色</text>
+<rect x="82" y="34" width="80" height="32" class="fas sb" stroke-width="1"/>
+<text x="122" y="54.5" class="tb" text-anchor="middle">変換後</text>
+<rect x="12" y="66" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="47" y="86.5" text-anchor="middle">赤</text>
+<rect x="82" y="66" width="80" height="32" class="fs sa" stroke-width="1"/>
+<text x="122" y="86.5" class="tb" text-anchor="middle">0</text>
+<rect x="12" y="98" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="47" y="118.5" text-anchor="middle">青</text>
+<rect x="82" y="98" width="80" height="32" class="fs sa" stroke-width="1"/>
+<text x="122" y="118.5" class="tb" text-anchor="middle">1</text>
+<rect x="12" y="130" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="47" y="150.5" text-anchor="middle">緑</text>
+<rect x="82" y="130" width="80" height="32" class="fs sa" stroke-width="1"/>
+<text x="122" y="150.5" class="tb" text-anchor="middle">2</text>
+<line x1="200" y1="82" x2="200" y2="146" class="l swn w2"/>
+<polyline points="196.15,139 200,146 203.85,139" class="l swn w2"/>
+<text x="212" y="104" class="tb twn">大小関係</text>
+<text x="212" y="124" class="tb twn">に見える</text>
+<text x="12" y="188" class="tb tng">色には本来ない順序を、</text>
+<text x="12" y="208" class="tb tng">モデルが読み取ってしまう</text>
+<line x1="12" y1="228" x2="308" y2="228" class="l sb w1"/>
+<text x="12" y="256" class="tb">② One-Hot エンコーディング</text>
+<rect x="12" y="270" width="70" height="32" class="fas sb" stroke-width="1"/>
+<text x="47" y="290.5" class="tb" text-anchor="middle">色</text>
+<rect x="82" y="270" width="56" height="32" class="fas sb" stroke-width="1"/>
+<text x="110" y="290.5" class="tb" text-anchor="middle">赤</text>
+<rect x="138" y="270" width="56" height="32" class="fas sb" stroke-width="1"/>
+<text x="166" y="290.5" class="tb" text-anchor="middle">青</text>
+<rect x="194" y="270" width="56" height="32" class="fas sb" stroke-width="1"/>
+<text x="222" y="290.5" class="tb" text-anchor="middle">緑</text>
+<rect x="12" y="302" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="47" y="322.5" text-anchor="middle">赤</text>
+<rect x="82" y="302" width="56" height="32" class="fa sa" stroke-width="1"/>
+<text x="110" y="322.5" class="tb ton" text-anchor="middle">1</text>
+<rect x="138" y="302" width="56" height="32" class="fs sb" stroke-width="1"/>
+<text x="166" y="322.5" class="tm" text-anchor="middle">0</text>
+<rect x="194" y="302" width="56" height="32" class="fs sb" stroke-width="1"/>
+<text x="222" y="322.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="334" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="47" y="354.5" text-anchor="middle">青</text>
+<rect x="82" y="334" width="56" height="32" class="fs sb" stroke-width="1"/>
+<text x="110" y="354.5" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="334" width="56" height="32" class="fa sa" stroke-width="1"/>
+<text x="166" y="354.5" class="tb ton" text-anchor="middle">1</text>
+<rect x="194" y="334" width="56" height="32" class="fs sb" stroke-width="1"/>
+<text x="222" y="354.5" class="tm" text-anchor="middle">0</text>
+<rect x="12" y="366" width="70" height="32" class="fs sb" stroke-width="1"/>
+<text x="47" y="386.5" text-anchor="middle">緑</text>
+<rect x="82" y="366" width="56" height="32" class="fs sb" stroke-width="1"/>
+<text x="110" y="386.5" class="tm" text-anchor="middle">0</text>
+<rect x="138" y="366" width="56" height="32" class="fs sb" stroke-width="1"/>
+<text x="166" y="386.5" class="tm" text-anchor="middle">0</text>
+<rect x="194" y="366" width="56" height="32" class="fa sa" stroke-width="1"/>
+<text x="222" y="386.5" class="tb ton" text-anchor="middle">1</text>
+<text x="12" y="424" class="tb">該当する1列だけを 1 にする</text>
+<text x="12" y="444" class="tm">順序に意味のないカテゴリは、これが基本</text>
+</svg>

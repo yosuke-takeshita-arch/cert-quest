@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 540" role="img" aria-labelledby="fig-g-privacy-stages-t fig-g-privacy-stages-d">
+<title id="fig-g-privacy-stages-t">AIのプライバシー問題は、データを集める収集段階と、データから推し量る推論段階の2つで起きる（架空の例）</title>
+<desc id="fig-g-privacy-stages-d">上から下へ処理が進む。説明のための架空の場面。①収集段階：通販サイトが同意を得て購買履歴を集めた。ここは適法。この段階で起きうる問題は、本人の想定を超えたデータの取得・利用など。②推論段階：AIが買い物の変化から、ある客に持病があると推定し、その推定に基づく広告を出した。客は病気のことを誰にも伝えていない。この段階で起きうる問題は、本人が明かしていない属性（健康状態・性的指向など）の推定と、学習済みモデルへの問い合わせから、ある人のデータが学習に使われたかを推定されるメンバーシップ推論など。集め方が適法でも推論で害が出ることがあるので、両方の段階で対策を考える。</desc>
+<text x="12" y="20" class="tb">プライバシーの問題は2つの段階で起きる</text>
+<text x="12" y="40" class="tm">上から下へ進む。例は説明のための架空の場面</text>
+<rect x="12" y="52" width="296" height="150" class="fs sb" stroke-width="1.5" rx="8"/>
+<text x="24" y="76" class="tb">① 収集段階：データを集める</text>
+<text x="24" y="100">例：通販サイトが同意を得て</text>
+<text x="24" y="118">購買履歴を集めた</text>
+<text x="24" y="140" class="tok tb">→ ここは適法</text>
+<text x="24" y="166" class="tm">この段階で起きうる問題：本人の</text>
+<text x="24" y="184" class="tm">想定を超えたデータの取得・利用など</text>
+<line x1="160" y1="204" x2="160" y2="222" class="l sm w2"/>
+<polygon points="160,230 154,220 166,220" class="fm"/>
+<rect x="12" y="234" width="296" height="222" class="fng sng" stroke-width="1.5" rx="8"/>
+<text x="24" y="258" class="tb">② 推論段階：データから推し量る</text>
+<text x="24" y="282">例：AIが買い物の変化から</text>
+<text x="24" y="300">『持病がある』と推定し、広告に使った</text>
+<text x="24" y="322" class="tng tb">→ 本人は誰にも伝えていない</text>
+<text x="24" y="348" class="tm">この段階で起きうる問題：</text>
+<text x="24" y="368">・明かしていない属性の推定</text>
+<text x="36" y="386" class="tm">（健康状態・性的指向など）</text>
+<text x="24" y="408">・メンバーシップ推論</text>
+<text x="36" y="426" class="tm">あるデータが学習に使われたかを、</text>
+<text x="36" y="442" class="tm">モデルへの問い合わせから推定される</text>
+<line x1="12" y1="474" x2="308" y2="474" class="l sb w1"/>
+<text x="12" y="498" class="tb">集め方が適法でも、推論で害が出る</text>
+<text x="12" y="520">→ 両方の段階で対策を考える</text>
+</svg>

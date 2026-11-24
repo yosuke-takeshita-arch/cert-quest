@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 482" role="img" aria-labelledby="fig-ap-verification-levels-t fig-ap-verification-levels-d">
+<title id="fig-ap-verification-levels-t">検証レベル：誤ったときの害（影響度）と公開範囲で、確認の深さを決める</title>
+<desc id="fig-ap-verification-levels-d">影響度は誤ったときの害の大きさ。影響度が小さいもの（自分だけ・社内の下書き。例：勉強会のタイトル案）は自分で読み返す。中くらい（取引先・社外に出す資料。例：見積書の数字、報道発表）は一次情報で数字と出典を確かめ、別の人にも見てもらう。大きいもの（契約・健康・お金・人の評価。例：契約書の条項、薬の飲み合わせ、採用の合否）は専門家の確認を経てから使う。棒は確認の厚さの目安。公開範囲（自分だけ、社内、取引先、一般）が広いほど害も広がるので確認を厚くする。AIが自信ありげでも確認は省かない。答えに条文や論文の名前が書いてあっても、専門家の確認の代わりにはならない。</desc>
+<text x="12" y="20" class="tb">確認の深さは、誤ったときの害で決める</text>
+<text x="12" y="40" class="tm">影響度＝誤ったときの害の大きさ。棒＝確認の厚さ</text>
+<text x="12" y="66" class="tb">影響度 小</text>
+<rect x="90" y="54" width="51.1" height="14" class="fok sok" stroke-width="1.5"/>
+<text x="12" y="86">自分だけ・社内の下書き</text>
+<text x="12" y="104" class="tm">例：勉強会のタイトル案</text>
+<text x="12" y="124" class="tb">→ 自分で読み返す</text>
+<text x="12" y="158" class="tb">影響度 中</text>
+<rect x="90" y="146" width="124.1" height="14" class="fwn swn" stroke-width="1.5"/>
+<text x="12" y="178">取引先・社外に出す資料</text>
+<text x="12" y="196" class="tm">例：見積書の数字、報道発表</text>
+<text x="12" y="216" class="tb">→ 一次情報で数字と出典を確かめる＋別の人も</text>
+<text x="12" y="234" class="tb">　見る</text>
+<text x="12" y="268" class="tb">影響度 大</text>
+<rect x="90" y="256" width="216.07999999999998" height="14" class="fng sng" stroke-width="1.5"/>
+<text x="12" y="288">契約・健康・お金・人の評価</text>
+<text x="12" y="306" class="tm">例：契約書の条項、薬の飲み合わせ、採用の合否</text>
+<text x="12" y="326" class="tb">→ 専門家の確認を経てから使う</text>
+<line x1="12" y1="358" x2="308" y2="358" class="l sb w1"/>
+<text x="12" y="380" class="tb">公開範囲（自分だけ→社内→取引先→一般）が</text>
+<text x="12" y="400" class="tb">広いほど害も広がる → 確認を厚くする</text>
+<text x="12" y="424" class="tng">AI が自信ありげでも、確認は省かない</text>
+<text x="12" y="444" class="tng">答えに条文や論文の名が書いてあっても、</text>
+<text x="12" y="464" class="tng">専門家の確認の代わりにはならない</text>
+</svg>

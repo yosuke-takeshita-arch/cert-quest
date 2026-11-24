@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 880" role="img" aria-labelledby="fig-g-poc-contract-t fig-g-poc-contract-d">
+<title id="fig-g-poc-contract-t">PoC段階：学習済みモデルの完成ではなく、開発に進めるかを確かめる段階。だから準委任型の契約が親和的</title>
+<desc id="fig-g-poc-contract-d">経済産業省の AI・データの利用に関する契約ガイドライン（AI編）は、探索的段階型の進め方を提唱する。段階はアセスメント、PoC、開発、追加学習の4つ。PoC段階は、本格的に作る前に試しに作って確かめる段階。①PoC段階でやること：基本的にユーザが持つ一定量のデータで、学習済みモデルを作り精度を上げてみて、その後の開発の可否や妥当性を確かめる。結果はレポートにまとめるのが一般的。既存のシステムの一部を学習済みモデルを使ったモジュールに置き換えて性能を評価するパイロットテストを含むこともある。学習済みモデルの生成は試行錯誤が避けられないので、1回で終わらず複数回行うことも少なくない。②何を約束する契約か：請負型は仕事の完成を約束する。PoC段階はそもそも学習済みモデルの完成を目的とする段階ではないので、なじまない。準委任型は検証の業務をすることを約束する。ガイドラインは、学習済みモデルの生成ではどの段階でも準委任型が親和的とし、PoC段階のモデル契約である導入検証契約書も準委任型。完成を約束しにくいのは、学習済みモデルは契約の時点で仕様や合格の基準を決めにくく、未知のデータへの動きも保証しにくいため。工場の不良品を見分けるモデルは説明のための例。</desc>
+<text x="12" y="20" class="tb">PoC段階：作れるかを確かめる段階</text>
+<text x="12" y="42" class="tm">経済産業省の契約ガイドライン（AI編）が</text>
+<text x="12" y="60" class="tm">提唱する進め方（探索的段階型）の2つ目</text>
+<rect x="12" y="72" width="70" height="30" class="fs sm" stroke-width="1"/>
+<text x="47" y="92" class="tm" text-anchor="middle">アセス</text>
+<rect x="88" y="72" width="70" height="30" class="fas sa" stroke-width="2"/>
+<text x="123" y="92" class="tb ta" text-anchor="middle">PoC</text>
+<rect x="164" y="72" width="70" height="30" class="fs sm" stroke-width="1"/>
+<text x="199" y="92" class="tm" text-anchor="middle">開発</text>
+<rect x="240" y="72" width="68" height="30" class="fs sm" stroke-width="1"/>
+<text x="274" y="92" class="tm" text-anchor="middle">追加学習</text>
+<text x="12" y="120" class="tm">アセス＝アセスメント（下調べ）</text>
+<line x1="12" y1="134" x2="308" y2="134" class="l sb w1"/>
+<text x="12" y="156" class="tb">① PoC段階でやること</text>
+<rect x="12" y="166" width="296" height="64" class="fs sm" stroke-width="1" rx="4"/>
+<text x="20" y="186">ユーザが持つ一定量のデータで、学習済み</text>
+<text x="20" y="204">モデルを作り、精度を上げてみる</text>
+<text x="20" y="222" class="tm">（例：工場の不良品を見分けるモデル）</text>
+<line x1="160" y1="230" x2="160" y2="244" class="l w1"/>
+<polygon points="160,250 156.5,244 163.5,244" class="ft"/>
+<rect x="12" y="252" width="296" height="46" class="fas sa" stroke-width="1.5" rx="4"/>
+<text x="20" y="272" class="tb ta">開発に進むか（可否・妥当性）を決める</text>
+<text x="20" y="290" class="tm">結果はレポートにまとめるのが一般的</text>
+<text x="12" y="320">・パイロットテストを含むことがある</text>
+<text x="12" y="338" class="tm">　既存のシステムの一部を、学習済みモデル</text>
+<text x="12" y="356" class="tm">　を使った部品に置き換えて性能を評価する</text>
+<text x="12" y="378">・1回で終わらず、複数回行うことも少なくない</text>
+<text x="12" y="396" class="tm">　（試行錯誤が避けられないため）</text>
+<line x1="12" y1="410" x2="308" y2="410" class="l sb w1"/>
+<text x="12" y="432" class="tb">② 何を約束する契約か</text>
+<rect x="12" y="444" width="144" height="200" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="84" y="466" class="tb tng" text-anchor="middle">請負型</text>
+<text x="20" y="490">約束するもの：</text>
+<text x="20" y="508" class="tb">仕事の完成</text>
+<text x="20" y="536" class="tm">PoC段階は、そもそも</text>
+<text x="20" y="554" class="tm">学習済みモデルの</text>
+<text x="20" y="572" class="tm">完成を目的とする</text>
+<text x="20" y="590" class="tm">段階ではない</text>
+<text x="84" y="626" class="tb tng" text-anchor="middle">なじまない</text>
+<rect x="164" y="444" width="144" height="200" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="236" y="466" class="tb tok" text-anchor="middle">準委任型</text>
+<text x="172" y="490">約束するもの：</text>
+<text x="172" y="508" class="tb">検証の業務を</text>
+<text x="172" y="526" class="tb">すること</text>
+<text x="172" y="554" class="tm">作れるかを確かめる</text>
+<text x="172" y="572" class="tm">業務を行う。完成は</text>
+<text x="172" y="590" class="tm">約束しない</text>
+<text x="236" y="626" class="tb tok" text-anchor="middle">親和的</text>
+<text x="12" y="668">ガイドライン：学習済みモデルを作るとき</text>
+<text x="12" y="686">は、どの段階でも準委任型が親和的</text>
+<text x="12" y="708" class="tm">PoC段階のモデル契約（導入検証契約書）も</text>
+<text x="12" y="726" class="tm">準委任型として作られている</text>
+<line x1="12" y1="740" x2="308" y2="740" class="l sb w1"/>
+<text x="12" y="762" class="tb">③ なぜ完成を約束できないか</text>
+<text x="12" y="784">学習済みモデルは、契約の時点で仕様や合格</text>
+<text x="12" y="802">の基準を決めにくく、未知のデータへの動き</text>
+<text x="12" y="820">も保証しにくい（ガイドラインの説明）</text>
+<rect x="12" y="834" width="296" height="38" class="fok sok" stroke-width="1.5" rx="4"/>
+<text x="160" y="858" class="tb tok" text-anchor="middle">PoC＝確かめる段階 → 準委任型</text>
+</svg>

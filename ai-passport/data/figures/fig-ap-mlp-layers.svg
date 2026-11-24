@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 450" role="img" aria-labelledby="fig-ap-mlp-layers-t fig-ap-mlp-layers-d">
+<title id="fig-ap-mlp-layers-t">入力層・隠れ層・出力層（家の値段を当てる例）</title>
+<desc id="fig-ap-mlp-layers-d">例は家の値段を当てること（数は説明のための例）。左から入力層・隠れ層・出力層の3列に丸が並び、隣り合う列の丸どうしが線でつながる。入力層は広さ・築年数・駅からの距離の3つの数を受け取る。隠れ層は、それらを組み合わせて『広くて新しい』『駅に近い』のような中間の特徴を作る。出力層は『3,200万円』と答えを出す。計算は入力層、隠れ層、出力層の順に進む。隠れ層が『隠れ』と呼ばれるのは、教師データには入力と最後の答えしか書いておらず、途中の層が何を出すべきかは示されないから。学ぶ中身（重み）は主に層と層をつなぐ線にある。</desc>
+<text x="12" y="20" class="tb">例：家の値段を当てる（数は例）</text>
+<text x="110" y="56" class="tb" text-anchor="middle">入力層</text>
+<text x="200" y="56" class="tb ta" text-anchor="middle">隠れ層</text>
+<text x="280" y="56" class="tb" text-anchor="middle">出力層</text>
+<text x="110" y="76" class="tm" text-anchor="middle">受け取る</text>
+<text x="200" y="76" class="tm" text-anchor="middle">組み合わせる</text>
+<text x="280" y="76" class="tm" text-anchor="middle">答える</text>
+<line x1="123" y1="120" x2="187" y2="135" class="l sm w1"/>
+<line x1="123" y1="120" x2="187" y2="205" class="l sm w1"/>
+<line x1="123" y1="170" x2="187" y2="135" class="l sm w1"/>
+<line x1="123" y1="170" x2="187" y2="205" class="l sm w1"/>
+<line x1="123" y1="220" x2="187" y2="135" class="l sm w1"/>
+<line x1="123" y1="220" x2="187" y2="205" class="l sm w1"/>
+<line x1="213" y1="135" x2="267" y2="170" class="l sm w1"/>
+<line x1="213" y1="205" x2="267" y2="170" class="l sm w1"/>
+<circle cx="110" cy="120" r="13" class="fs sb" stroke-width="1.5"/>
+<text x="91" y="124.5" text-anchor="end">広さ</text>
+<circle cx="110" cy="170" r="13" class="fs sb" stroke-width="1.5"/>
+<text x="91" y="174.5" text-anchor="end">築年数</text>
+<circle cx="110" cy="220" r="13" class="fs sb" stroke-width="1.5"/>
+<text x="91" y="224.5" text-anchor="end">駅からの距離</text>
+<circle cx="200" cy="135" r="13" class="fas sa" stroke-width="1.5"/>
+<text x="200" y="139.5" class="tb ta" text-anchor="middle">a</text>
+<circle cx="200" cy="205" r="13" class="fas sa" stroke-width="1.5"/>
+<text x="200" y="209.5" class="tb ta" text-anchor="middle">b</text>
+<circle cx="280" cy="170" r="13" class="fok sok" stroke-width="1.5"/>
+<text x="280" y="204" class="tb tok" text-anchor="middle">3,200</text>
+<text x="280" y="222" class="tb tok" text-anchor="middle">万円</text>
+<text x="12" y="266" class="tm">線＝層のつながり。重み（学ぶ中身）は主にここ</text>
+<line x1="12" y1="282" x2="308" y2="282" class="l sb w1"/>
+<text x="12" y="306" class="tb">隠れ層が作る中間の特徴（例）</text>
+<text x="12" y="326"><tspan class="tb ta">a</tspan>＝『広くて新しい』</text>
+<text x="12" y="346"><tspan class="tb ta">b</tspan>＝『駅に近い』</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="386" class="tb">なぜ「隠れ」？</text>
+<text x="12" y="406" class="tm">教師データには入力と最後の答えしか</text>
+<text x="12" y="424" class="tm">無く、途中の層が何を出すべきかは</text>
+<text x="12" y="442" class="tm">示されないから</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 442" role="img" aria-labelledby="fig-ap-function-calling-t fig-ap-function-calling-d">
+<title id="fig-ap-function-calling-t">Function Calling（関数呼び出し）：モデルは関数を呼ぶための指示を返し、実行はアプリがする</title>
+<desc id="fig-ap-function-calling-d">前もってget_weather（天気を調べる関数）の説明をモデルに渡しておく。①利用者が「パリの天気は？」と聞く。②モデルが最初に返すのは「呼び出し」で、{"name": "get_weather", "location": "パリ"}のような、関数名と引数を含むJSON。モデル自身は関数を動かさない。③アプリが関数を実行し、天気のサービスに聞く（結果は例で晴れ・18度）。④結果をモデルに返すと、モデルが「パリは晴れ、18度です」と文で答える。取り違えやすい点：最初に返るのは気温の数値ではなく、この関数をこの引数で呼んでという指示。</desc>
+<text x="12" y="20" class="tb">Function Calling（関数呼び出し）の流れ</text>
+<text x="12" y="40" class="tm">前もって get_weather（天気を調べる関数）を渡す</text>
+<rect x="12" y="52" width="296" height="32" class="fs sb" stroke-width="1.5"/>
+<text x="22" y="73" class="tb">① 利用者「パリの天気は？」</text>
+<line x1="160" y1="86" x2="160" y2="100" class="l sa w2"/>
+<polyline points="156.00,93.00 160,100 164.00,93.00" class="l sa w2"/>
+<rect x="12" y="102" width="296" height="76" class="fas sa" stroke-width="1.5"/>
+<text x="22" y="125" class="tb">② モデルが返すのは「呼び出し」（JSON）</text>
+<text x="22" y="145">{ "name": "get_weather",</text>
+<text x="22" y="165">  "location": "パリ" }</text>
+<text x="12" y="196" class="tng">モデル自身は関数を動かさない</text>
+<line x1="160" y1="200" x2="160" y2="214" class="l sa w2"/>
+<polyline points="156.00,207.00 160,214 164.00,207.00" class="l sa w2"/>
+<rect x="12" y="216" width="296" height="56" class="fwn swn" stroke-width="1.5"/>
+<text x="22" y="239" class="tb">③ アプリが関数を実行する</text>
+<text x="22" y="259">天気のサービスに聞く → 晴れ・18度（例）</text>
+<line x1="160" y1="274" x2="160" y2="288" class="l sa w2"/>
+<polyline points="156.00,281.00 160,288 164.00,281.00" class="l sa w2"/>
+<rect x="12" y="290" width="296" height="56" class="fok sok" stroke-width="1.5"/>
+<text x="22" y="313" class="tb">④ 結果をモデルに返す</text>
+<text x="22" y="333">→ 「パリは晴れ、18度です」と文で答える</text>
+<line x1="12" y1="362" x2="308" y2="362" class="l sb w1"/>
+<text x="12" y="384" class="tb">取り違えやすい</text>
+<text x="12" y="404">最初に返るのは気温の数値ではなく、</text>
+<text x="12" y="424">「この関数をこの引数で呼んで」という指示</text>
+</svg>

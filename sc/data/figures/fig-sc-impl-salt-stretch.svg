@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fig-sc-impl-salt-stretch-t fig-sc-impl-salt-stretch-d">
+<title id="fig-sc-impl-salt-stretch-t">ソルトとストレッチング</title>
+<desc id="fig-sc-impl-salt-stretch-d">上の区画はソルト。AさんとBさんが同じパスワード password を使っていても、利用者ごとに違うソルト（例 x7 と k2）を足してからハッシュにするので、保存される値が違う。前もって計算した表では引けず、1人ずつ計算し直させられる。下の区画はストレッチング。ハッシュの計算を1万回くり返すと、1回 0.000001 秒の計算が 0.01 秒になる。攻撃者が1秒に試せる候補は100万個から100個に減る。本人のログインは1回なので 0.01 秒しかかからない。</desc>
+<text x="12" y="20" class="tb">パスワードの保存を強くする2つ</text>
+<rect x="8" y="32" width="304" height="170" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="54" class="tb">① ソルト：表引きを潰す</text>
+<text x="18" y="78">A：password＋x7 → 9c1…</text>
+<text x="18" y="100">B：password＋k2 → 4e8…</text>
+<text x="18" y="124" class="tm">同じパスワードでも値が違う</text>
+<text x="18" y="148">前もって作った表で引けない</text>
+<text x="18" y="170">→ 1人ずつ計算し直させる</text>
+<text x="18" y="192" class="tm">ソルトは値と一緒に保存してよい</text>
+<rect x="8" y="216" width="304" height="196" class="fs sa" stroke-width="1.5" rx="8"/>
+<text x="18" y="238" class="tb">② ストレッチング：1回を重く</text>
+<text x="18" y="262">1回の計算＝0.000001 秒</text>
+<text x="18" y="284">1万回くり返す：</text>
+<text x="36" y="306">0.000001×10,000＝0.01 秒</text>
+<text x="18" y="330">攻撃者が1秒に試せる候補</text>
+<text x="36" y="352" class="tng">100万個 → 100個</text>
+<text x="18" y="376">本人のログインは1回だけ</text>
+<text x="36" y="398" class="tok">0.01 秒なので気にならない</text>
+</svg>

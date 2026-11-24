@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 560" role="img" aria-labelledby="fig-g-info-gain-t fig-g-info-gain-d">
+<title id="fig-g-info-gain-t">情報利得：分ける前のエントロピーから、分けた後のエントロピーの平均を引く。大きい条件で分ける</title>
+<desc id="fig-g-info-gain-d">例（説明用の数、底2の対数）は、クラスA（丸）4件とクラスB（四角）4件の8件。エントロピーはクラスの混ざり具合で、1種類だけなら0、半々なら1。分ける前は半々なのでエントロピー1。条件①で分けると、A4件・B0件と、A0件・B4件になり、どちらもエントロピー0、平均0で、情報利得は1−0＝1。条件②で分けると、A3件・B1件と、A1件・B3件になる。3対1の側のエントロピーは−0.75×log₂0.75−0.25×log₂0.25≈0.75×0.415＋0.25×2≈0.311＋0.5＝0.811で、両側とも0.811、平均も0.811なので、情報利得は1−0.811＝0.189。情報利得が大きい条件①で分ける。平均は各側の件数の割合で重みを付ける（ここは4件ずつなので半々）。分ける前の1はどの条件でも同じなので、情報利得が最大の条件は、分けた後の混ざり具合の平均が最小の条件と同じ。</desc>
+<text x="12" y="20" class="tb">情報利得：混ざり具合がどれだけ減ったか</text>
+<text x="12" y="40" class="tm">情報利得＝分ける前のエントロピー</text>
+<text x="12" y="58" class="tm">　　　　−分けた後のエントロピーの平均</text>
+<text x="12" y="76" class="tm">エントロピー＝クラスの混ざり具合</text>
+<text x="12" y="94" class="tm">（1種類だけなら0、半々なら1）</text>
+<rect x="70" y="106" width="180" height="50" class="fs sb" stroke-width="1.5" rx="6"/>
+<circle cx="104" cy="122" r="4" class="fa"/>
+<circle cx="116" cy="122" r="4" class="fa"/>
+<circle cx="128" cy="122" r="4" class="fa"/>
+<circle cx="140" cy="122" r="4" class="fa"/>
+<rect x="176" y="118" width="8" height="8" class="ft"/>
+<rect x="188" y="118" width="8" height="8" class="ft"/>
+<rect x="200" y="118" width="8" height="8" class="ft"/>
+<rect x="212" y="118" width="8" height="8" class="ft"/>
+<text x="160" y="148" class="tb" text-anchor="middle">分ける前：エントロピー1</text>
+<line x1="120" y1="156" x2="84" y2="170.4" class="l sm w1"/>
+<line x1="200" y1="156" x2="236" y2="170.4" class="l sm w1"/>
+<text x="84" y="186" class="tb" text-anchor="middle">条件①で分ける</text>
+<text x="236" y="186" class="tb" text-anchor="middle">条件②で分ける</text>
+<rect x="12" y="194" width="68" height="50" class="fs sb" stroke-width="1" rx="4"/>
+<circle cx="25" cy="210" r="4" class="fa"/>
+<circle cx="37" cy="210" r="4" class="fa"/>
+<circle cx="49" cy="210" r="4" class="fa"/>
+<circle cx="61" cy="210" r="4" class="fa"/>
+<text x="46" y="236" class="tb" text-anchor="middle">0</text>
+<rect x="88" y="194" width="68" height="50" class="fs sb" stroke-width="1" rx="4"/>
+<rect x="97" y="206" width="8" height="8" class="ft"/>
+<rect x="109" y="206" width="8" height="8" class="ft"/>
+<rect x="121" y="206" width="8" height="8" class="ft"/>
+<rect x="133" y="206" width="8" height="8" class="ft"/>
+<text x="122" y="236" class="tb" text-anchor="middle">0</text>
+<rect x="164" y="194" width="68" height="50" class="fs sb" stroke-width="1" rx="4"/>
+<circle cx="177" cy="210" r="4" class="fa"/>
+<circle cx="189" cy="210" r="4" class="fa"/>
+<circle cx="201" cy="210" r="4" class="fa"/>
+<rect x="209" y="206" width="8" height="8" class="ft"/>
+<text x="198" y="236" class="tb" text-anchor="middle">0.811</text>
+<rect x="240" y="194" width="68" height="50" class="fs sb" stroke-width="1" rx="4"/>
+<circle cx="253" cy="210" r="4" class="fa"/>
+<rect x="261" y="206" width="8" height="8" class="ft"/>
+<rect x="273" y="206" width="8" height="8" class="ft"/>
+<rect x="285" y="206" width="8" height="8" class="ft"/>
+<text x="274" y="236" class="tb" text-anchor="middle">0.811</text>
+<text x="84" y="264" class="tm" text-anchor="middle">後の平均 0</text>
+<text x="236" y="264" class="tm" text-anchor="middle">後の平均 0.811</text>
+<rect x="12" y="272" width="144" height="30" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="84" y="292" class="tb tok" text-anchor="middle">利得 1−0＝1</text>
+<rect x="164" y="272" width="144" height="30" class="fng sng" stroke-width="1.5" rx="6"/>
+<text x="236" y="292" class="tb tng" text-anchor="middle">利得 1−0.811＝0.189</text>
+<text x="12" y="326" class="tb tok">→ 利得が大きい①で分ける</text>
+<text x="12" y="354" class="tm">箱の下の数＝その側のエントロピー</text>
+<text x="12" y="376" class="tm">3対1の側（底2の対数）：</text>
+<text x="12" y="394" class="tm">−0.75×log₂0.75−0.25×log₂0.25</text>
+<text x="12" y="412" class="tm">≈0.75×0.415＋0.25×2</text>
+<text x="12" y="430" class="tm">≈0.311＋0.5＝0.811</text>
+<text x="12" y="456" class="tm">平均は件数の割合で重み付け</text>
+<text x="12" y="474" class="tm">（ここは4件ずつなので半々）</text>
+<text x="12" y="500" class="tm">分ける前の1はどの条件でも同じ</text>
+<text x="12" y="518" class="tm">→ 利得が最大＝分けた後が最小</text>
+<circle cx="18" cy="540" r="4" class="fa"/>
+<text x="28" y="545" class="tm">クラスA</text>
+<rect x="90" y="536" width="8" height="8" class="ft"/>
+<text x="104" y="545" class="tm">クラスB</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 446" role="img" aria-labelledby="fig-dx-rdb-nosql-t fig-dx-rdb-nosql-d">
+<title id="fig-dx-rdb-nosql-t">RDBとNoSQLのデータの持ち方、並列分散処理</title>
+<desc id="fig-dx-rdb-nosql-d">上：RDB（リレーショナルデータベース）は、データを行と列の表で管理し、SQLで操作する。定型データを正確に扱う業務システムに向き、ACID特性を備える。中：NoSQL（Not only SQL）は、RDBとは異なる設計のデータベースの総称で、柔軟なスキーマを持ち、センサーやSNSなどの非定型データを大量に扱うのに使われ、分散したハードウェアのクラスターでスケールアウトしやすい。下：並列分散処理は、大きな処理を細かく分けて、複数のサーバーで同時に処理すること。代表例がHadoop。</desc>
+<text x="12" y="22" class="tb">RDB：行と列の表（SQLで操作）</text>
+<rect x="12" y="28" width="90" height="26" class="fas sa" stroke-width="1"/>
+<text x="57" y="45.5" class="tb" text-anchor="middle">顧客ID</text>
+<rect x="102" y="28" width="100" height="26" class="fas sa" stroke-width="1"/>
+<text x="152" y="45.5" class="tb" text-anchor="middle">氏名</text>
+<rect x="202" y="28" width="90" height="26" class="fas sa" stroke-width="1"/>
+<text x="247" y="45.5" class="tb" text-anchor="middle">年代</text>
+<rect x="12" y="54" width="90" height="26" class="fs sb" stroke-width="1"/>
+<text x="57" y="71.5" text-anchor="middle">C01</text>
+<rect x="102" y="54" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="152" y="71.5" text-anchor="middle">青木</text>
+<rect x="202" y="54" width="90" height="26" class="fs sb" stroke-width="1"/>
+<text x="247" y="71.5" text-anchor="middle">30代</text>
+<rect x="12" y="80" width="90" height="26" class="fs sb" stroke-width="1"/>
+<text x="57" y="97.5" text-anchor="middle">C02</text>
+<rect x="102" y="80" width="100" height="26" class="fs sb" stroke-width="1"/>
+<text x="152" y="97.5" text-anchor="middle">伊藤</text>
+<rect x="202" y="80" width="90" height="26" class="fs sb" stroke-width="1"/>
+<text x="247" y="97.5" text-anchor="middle">40代</text>
+<text x="12" y="128">定型データを正確に扱う業務システム向き</text>
+<text x="12" y="148" class="tm">（ACID特性：整合性を厳密に守る）</text>
+<line x1="12" y1="164" x2="308" y2="164" class="l sb w1"/>
+<text x="12" y="186" class="tb">NoSQL：表の形に縛られない</text>
+<rect x="12" y="200" width="80" height="40" class="fas sa" stroke-width="1.5"/>
+<text x="52" y="224.5" text-anchor="middle">センサー</text>
+<rect x="104" y="200" width="96" height="52" class="fwn swn" stroke-width="1.5"/>
+<text x="152" y="221.5" text-anchor="middle">SNSの投稿</text>
+<text x="152" y="239.5" text-anchor="middle">（形が違う）</text>
+<rect x="212" y="200" width="96" height="34" class="fok sok" stroke-width="1.5"/>
+<text x="260" y="221.5" text-anchor="middle">ログ</text>
+<text x="12" y="268">非定型のデータを大量に扱う</text>
+<text x="12" y="288">柔軟なスキーマ。スケールアウトしやすい</text>
+<line x1="12" y1="304" x2="308" y2="304" class="l sb w1"/>
+<text x="12" y="326" class="tb">並列分散処理：分けて同時に処理</text>
+<rect x="12" y="340" width="100" height="44" class="fa" stroke-width="1.5"/>
+<text x="62" y="366.5" class="tb ton" text-anchor="middle">大きな処理</text>
+<line x1="116" y1="362" x2="198" y2="346" class="l sa w2"/>
+<polyline points="192.74,350.39 198,346 191.48,343.91" class="l sa w2"/>
+<rect x="200" y="338" width="108" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="254" y="352.5" text-anchor="middle">サーバー1</text>
+<line x1="116" y1="362" x2="198" y2="362" class="l sa w2"/>
+<polyline points="192,365.3 198,362 192,358.7" class="l sa w2"/>
+<rect x="200" y="360" width="108" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="254" y="374.5" text-anchor="middle">サーバー2</text>
+<line x1="116" y1="362" x2="198" y2="378" class="l sa w2"/>
+<polyline points="191.48,380.09 198,378 192.74,373.61" class="l sa w2"/>
+<rect x="200" y="382" width="108" height="20" class="fas sa" stroke-width="1.5"/>
+<text x="254" y="396.5" text-anchor="middle">サーバー3</text>
+<text x="12" y="414">1台では時間がかかる大量データを、</text>
+<text x="12" y="434">分けて高速に処理する（例：Hadoop）</text>
+</svg>

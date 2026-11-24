@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 858" role="img" aria-labelledby="fig-g-permutation-importance-t fig-g-permutation-importance-d">
+<title id="fig-g-permutation-importance-t">Permutation Importance：1つの列だけを並べ替えたときの精度の下がり幅で重要度を測る</title>
+<desc id="fig-g-permutation-importance-d">Permutation Importance は、ある特徴量の値だけをデータの間でランダムに並べ替え、予測精度がどれだけ落ちるかで、その特徴量の重要度を測る。例は住宅の価格を当てるモデルで、数は説明用に作ったもの。①そのままの検証用のデータで測ると精度0.90。表は4行で、広さ（80・50・120・30㎡）・築年数（5・20・10・30）・価格（正解）。②広さの列だけを行の間で並べ替える（30・120・80・50）。値は同じ4つのままで、価格との関係だけが壊れる。精度は0.90から0.60になり、下がり幅は0.90−0.60＝0.30。③築年数の列だけを同じ手順で並べ替えると、精度は0.90から0.88で、下がり幅は0.02。④下がり幅を棒で比べると広さ0.30・築年数0.02で、広さのほうが予測に効いている。押さえどころ：モデルの種類によらず使え、データ全体での重要度が分かる（1件ずつの説明の LIME とは違う）。欠点：似た情報の列（例：広さと部屋数）があると、1つを並べ替えてもモデルはもう一方から同じ情報を得られるので、両方とも重要度が低く見えることがある。</desc>
+<text x="12" y="20" class="tb">Permutation Importance：列を並べ替え、</text>
+<text x="12" y="40" class="tb">精度がどれだけ落ちるかで重要度を測る</text>
+<text x="12" y="62" class="tm">例：住宅の価格を当てるモデル（数は説明用）</text>
+<rect x="12" y="74" width="296" height="170" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="94" class="tb">① そのままのデータで測る</text>
+<text x="70" y="114" class="tm" text-anchor="middle">広さ㎡</text>
+<text x="150" y="114" class="tm" text-anchor="middle">築年数</text>
+<text x="240" y="114" class="tm" text-anchor="middle">価格</text>
+<rect x="40" y="122" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="70" y="138" text-anchor="middle">80</text>
+<rect x="120" y="122" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="138" text-anchor="middle">5</text>
+<rect x="210" y="122" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="138" class="tm" text-anchor="middle">正解</text>
+<rect x="40" y="146" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="70" y="162" text-anchor="middle">50</text>
+<rect x="120" y="146" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="162" text-anchor="middle">20</text>
+<rect x="210" y="146" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="162" class="tm" text-anchor="middle">正解</text>
+<rect x="40" y="170" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="70" y="186" text-anchor="middle">120</text>
+<rect x="120" y="170" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="186" text-anchor="middle">10</text>
+<rect x="210" y="170" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="186" class="tm" text-anchor="middle">正解</text>
+<rect x="40" y="194" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="70" y="210" text-anchor="middle">30</text>
+<rect x="120" y="194" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="210" text-anchor="middle">30</text>
+<rect x="210" y="194" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="210" class="tm" text-anchor="middle">正解</text>
+<text x="24" y="236" class="tb">精度 0.90（検証用のデータで）</text>
+<line x1="160" y1="244" x2="160.0" y2="252.4" class="l sm w1"/>
+<polygon points="160,258 156.5,252.4 163.5,252.4" class="fm"/>
+<rect x="12" y="264" width="296" height="212" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="284" class="tb">② 広さの列だけを、行の間で並べ替える</text>
+<text x="70" y="304" class="tm" text-anchor="middle">広さ㎡</text>
+<text x="150" y="304" class="tm" text-anchor="middle">築年数</text>
+<text x="240" y="304" class="tm" text-anchor="middle">価格</text>
+<rect x="40" y="312" width="60" height="22" class="fwn swn" stroke-width="1"/>
+<text x="70" y="328" class="tb" text-anchor="middle">30</text>
+<rect x="120" y="312" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="328" text-anchor="middle">5</text>
+<rect x="210" y="312" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="328" class="tm" text-anchor="middle">正解</text>
+<rect x="40" y="336" width="60" height="22" class="fwn swn" stroke-width="1"/>
+<text x="70" y="352" class="tb" text-anchor="middle">120</text>
+<rect x="120" y="336" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="352" text-anchor="middle">20</text>
+<rect x="210" y="336" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="352" class="tm" text-anchor="middle">正解</text>
+<rect x="40" y="360" width="60" height="22" class="fwn swn" stroke-width="1"/>
+<text x="70" y="376" class="tb" text-anchor="middle">80</text>
+<rect x="120" y="360" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="376" text-anchor="middle">10</text>
+<rect x="210" y="360" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="376" class="tm" text-anchor="middle">正解</text>
+<rect x="40" y="384" width="60" height="22" class="fwn swn" stroke-width="1"/>
+<text x="70" y="400" class="tb" text-anchor="middle">50</text>
+<rect x="120" y="384" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="150" y="400" text-anchor="middle">30</text>
+<rect x="210" y="384" width="60" height="22" class="fs sm" stroke-width="1"/>
+<text x="240" y="400" class="tm" text-anchor="middle">正解</text>
+<text x="24" y="430" class="tm">値は同じ4つのまま、価格との関係だけ壊れる</text>
+<text x="24" y="452" class="tb">精度 0.90 → 0.60</text>
+<text x="24" y="470" class="tb tng">下がり幅 0.90−0.60＝0.30</text>
+<rect x="12" y="488" width="296" height="74" class="fs sb" stroke-width="1.5" rx="6"/>
+<text x="24" y="508" class="tb">③ 築年数の列だけを並べ替える（同じ手順）</text>
+<text x="24" y="530" class="tb">精度 0.90 → 0.88</text>
+<text x="24" y="550" class="tb twn">下がり幅 0.90−0.88＝0.02</text>
+<line x1="160" y1="562" x2="160.0" y2="570.4" class="l sm w1"/>
+<polygon points="160,576 156.5,570.4 163.5,570.4" class="fm"/>
+<rect x="12" y="582" width="296" height="112" class="fok sok" stroke-width="1.5" rx="6"/>
+<text x="24" y="602" class="tb">④ 下がり幅を比べる（長い＝重要）</text>
+<text x="24" y="630" class="tb">広さ</text>
+<rect x="76" y="618" width="180" height="16" class="fng sng" stroke-width="1.5"/>
+<text x="262" y="631" class="tb">0.30</text>
+<text x="24" y="656" class="tb">築年数</text>
+<rect x="76" y="644" width="12" height="16" class="fwn swn" stroke-width="1.5"/>
+<text x="94" y="657" class="tb">0.02</text>
+<text x="24" y="684" class="tb tok">→ 広さのほうが予測に効いている</text>
+<rect x="12" y="706" width="296" height="140" class="fwn swn" stroke-width="1.5" rx="6"/>
+<text x="24" y="726" class="tb">押さえどころと欠点</text>
+<text x="24" y="746">モデルの種類によらず使え、データ全体での</text>
+<text x="24" y="764">重要度が分かる（1件ずつの LIME とは違う）</text>
+<text x="24" y="786">似た情報の列（例：広さと部屋数）があると、</text>
+<text x="24" y="804">1つを並べ替えてもモデルはもう一方から</text>
+<text x="24" y="822">同じ情報を得られるので、両方とも</text>
+<text x="24" y="840">重要度が低く見えることがある</text>
+</svg>

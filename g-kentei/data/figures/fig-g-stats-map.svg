@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1976" role="img" aria-labelledby="fig-g-stats-map-t fig-g-stats-map-d">
+<title id="fig-g-stats-map-t">統計の用語の地図（5人の勉強時間と点で、平均から相関係数まで）</title>
+<desc id="fig-g-stats-map-d">例として5人の勉強時間（1、2、3、4、5時間）とテストの点（50、70、60、80、90点）を使い、統計の用語を5つの段で上から並べた図。数は説明のための例。①1つの量の真ん中：平均は合計350を5で割って70点。中央値は小さい順に並べた真ん中の70点。最頻値は点が全部違うので決まらない。90点が190点なら平均は90点に上がるが中央値は70点のまま。矢印で②へ。②1つの量のばらつき：各人の点から平均を引いた偏差は−20、0、−10、10、20（時間は−2、−1、0、1、2）で、足すと必ず0になるので2乗してから足す。2乗して平均すると分散で、点は1000÷5＝200（単位は点の2乗）、時間は10÷5＝2。平方根をとって単位を元に戻すと標準偏差で、点は√200≒14.1点、時間は√2≒1.41時間。全体の一部とみるなら5−1で割る。③2つの量がいっしょに動く度合い：偏差から右側の緑の線で共分散へ。時間の偏差×点の偏差の平均が共分散で、(40＋0＋0＋10＋40)÷5＝18。単位は時間×点で、分で数えると1080に変わる。②の標準偏差2つで割る矢印で相関係数へ。共分散を2つの標準偏差で割ると相関係数で、18÷(1.41×14.1)＝18÷20＝0.9。−1から1に収まり、分で数えても0.9。相関があっても原因とは限らず、第3の量が両方を動かすだけなら疑似相関で、偏相関係数で確かめる。曲がった関係まで測るなら相互情報量。④確率の言葉：くじで1人選んだ点が確率変数、50から90点がそれぞれ1/5が確率分布、期待値は350×1/5＝70点で①の平均と同じ。正規分布は平均と標準偏差の2つで形が決まり、平均70・標準偏差14なら56から84点に約68％。二項分布はn回のうち成功が何回か、ポアソン分布は決まった時間に何回起きるか。同時確率・周辺確率・条件付き確率。⑤一部のデータから全体を推し量る：標本抽出は全体から偏りなく一部を選ぶこと。最小二乗法で引く直線の傾きは共分散18÷時間の分散2＝9、切片は70−9×3＝43で、点＝9×時間＋43、残差の2乗の和は190。最尤法、微分、仮説検定（相関0.9は偶然か、p値・過誤）、ベイズの定理（事前確率から事後確率へ）。押さえどころ：分散は点の2乗で標準偏差は点、共分散は単位で変わり相関係数は−1から1、相関があっても原因とは限らない。</desc>
+<text x="12" y="20" class="tl">統計の用語の地図</text>
+<text x="12" y="40" class="tm">上の段が、下の段の土台になる</text>
+<text x="12" y="66" class="tb">例：5人の勉強時間と点（数は例）</text>
+<rect x="12" y="76" width="296" height="84" rx="6" class="fs sb" stroke-width="1"/>
+<line x1="12" y1="104" x2="308" y2="104" class="l sb w1"/>
+<line x1="12" y1="132" x2="308" y2="132" class="l sb w1"/>
+<text x="50" y="95" class="tm" text-anchor="middle">人</text>
+<text x="50" y="123" class="tb" text-anchor="middle">時間</text>
+<text x="50" y="151" class="tb" text-anchor="middle">点</text>
+<text x="116" y="95" class="tm" text-anchor="middle">A</text>
+<text x="116" y="123" text-anchor="middle">1</text>
+<text x="116" y="151" text-anchor="middle">50</text>
+<text x="160" y="95" class="tm" text-anchor="middle">B</text>
+<text x="160" y="123" text-anchor="middle">2</text>
+<text x="160" y="151" text-anchor="middle">70</text>
+<text x="204" y="95" class="tm" text-anchor="middle">C</text>
+<text x="204" y="123" text-anchor="middle">3</text>
+<text x="204" y="151" text-anchor="middle">60</text>
+<text x="248" y="95" class="tm" text-anchor="middle">D</text>
+<text x="248" y="123" text-anchor="middle">4</text>
+<text x="248" y="151" text-anchor="middle">80</text>
+<text x="292" y="95" class="tm" text-anchor="middle">E</text>
+<text x="292" y="123" text-anchor="middle">5</text>
+<text x="292" y="151" text-anchor="middle">90</text>
+<text x="12" y="190" class="tb ta">① 1つの量の「真ん中」</text>
+<text x="12" y="210" class="tm">何を知りたいか：ふつうの点はいくつか</text>
+<rect x="12" y="220" width="280" height="70" rx="6" class="fas sa" stroke-width="2"/>
+<text x="22" y="242" class="tb">平均</text>
+<text x="22" y="264">(50＋70＋60＋80＋90)÷5</text>
+<text x="22" y="284">＝350÷5＝70点</text>
+<text x="12" y="312">中央値＝小さい順の真ん中（3番目）＝70点</text>
+<text x="12" y="332">最頻値＝点が全部違うので決まらない</text>
+<text x="12" y="352" class="tng">外れ値：90点が190点なら</text>
+<text x="12" y="372" class="tng">　平均は90点に上がり、中央値は70点のまま</text>
+<line x1="40" y1="384" x2="40" y2="407" class="l w1"/>
+<polygon points="40,414 36,407 44,407" class="ft"/>
+<text x="52" y="404" class="tm">各人の点 − 平均</text>
+<text x="12" y="430" class="tb ta">② 1つの量の「ばらつき」</text>
+<text x="12" y="450" class="tm">何を知りたいか：70点からどれだけ散らばるか</text>
+<rect x="12" y="460" width="280" height="90" rx="6" class="fas sa" stroke-width="2"/>
+<text x="22" y="482" class="tb">偏差（平均からのずれ）</text>
+<text x="284" y="482" class="tb tok" text-anchor="end">→③共分散</text>
+<text x="22" y="504">点：−20、0、−10、10、20</text>
+<text x="22" y="524">時間：−2、−1、0、1、2</text>
+<text x="22" y="544">足すと必ず0 → 2乗してから足す</text>
+<line x1="40" y1="552" x2="40" y2="575" class="l w1"/>
+<polygon points="40,582 36,575 44,575" class="ft"/>
+<text x="52" y="572" class="tm">2乗して平均</text>
+<rect x="12" y="584" width="280" height="90" rx="6" class="fas sa" stroke-width="2"/>
+<text x="22" y="606" class="tb">分散</text>
+<text x="22" y="628">点：(400＋0＋100＋100＋400)÷5</text>
+<text x="22" y="648">　＝1000÷5＝200（単位は点の2乗）</text>
+<text x="22" y="668">時間：(4＋1＋0＋1＋4)÷5＝2</text>
+<line x1="40" y1="676" x2="40" y2="699" class="l w1"/>
+<polygon points="40,706 36,699 44,699" class="ft"/>
+<text x="52" y="696" class="tm">平方根（単位を元に戻す）</text>
+<rect x="12" y="708" width="280" height="70" rx="6" class="fas sa" stroke-width="2"/>
+<text x="22" y="730" class="tb">標準偏差</text>
+<text x="284" y="730" class="tb tok" text-anchor="end">→③相関係数</text>
+<text x="22" y="752">点：√200≒14.1点</text>
+<text x="22" y="772">時間：√2≒1.41時間</text>
+<text x="12" y="800" class="tm">全体の一部（標本）とみるなら÷(5−1)で割る</text>
+<text x="12" y="834" class="tb ta">③ 2つの量が「いっしょに動く度合い」</text>
+<text x="12" y="854" class="tm">何を知りたいか：時間が長いほど点が高いか</text>
+<rect x="12" y="864" width="280" height="90" rx="6" class="fok sok" stroke-width="2"/>
+<text x="22" y="886" class="tb">共分散</text>
+<text x="22" y="908">時間の偏差×点の偏差を平均</text>
+<text x="22" y="928">(40＋0＋0＋10＋40)÷5＝18</text>
+<text x="22" y="948">単位は時間×点（分で数えると1080）</text>
+<line x1="292" y1="478" x2="302" y2="478" class="l sok w2"/>
+<line x1="302" y1="478" x2="302" y2="882" class="l sok w2"/>
+<line x1="302" y1="882" x2="300" y2="882" class="l sok w2"/>
+<polygon points="292,882 301,877 301,887" class="ft"/>
+<line x1="40" y1="956" x2="40" y2="979" class="l w1"/>
+<polygon points="40,986 36,979 44,979" class="ft"/>
+<text x="52" y="976" class="tm">②の標準偏差2つで割る</text>
+<rect x="12" y="988" width="280" height="90" rx="6" class="fok sok" stroke-width="2"/>
+<text x="22" y="1010" class="tb">相関係数</text>
+<text x="22" y="1032">18÷(1.41×14.1)</text>
+<text x="22" y="1052">＝18÷20＝0.9</text>
+<text x="22" y="1072">−1〜1に収まる（分で数えても0.9）</text>
+<text x="12" y="1100" class="twn">相関≠因果：第3の量（やる気など）が</text>
+<text x="12" y="1120" class="twn">　両方を動かすだけなら疑似相関</text>
+<text x="12" y="1140">→ 偏相関係数で第3の量を取り除いて確かめる</text>
+<text x="12" y="1160" class="tm">曲がった関係まで測るなら相互情報量</text>
+<line x1="40" y1="1172" x2="40" y2="1195" class="l w1"/>
+<polygon points="40,1202 36,1195 44,1195" class="ft"/>
+<text x="52" y="1192" class="tm">全体のことを言うには確率の言葉</text>
+<text x="12" y="1218" class="tb ta">④ 確率の言葉</text>
+<text x="12" y="1238" class="tm">何を知りたいか：どの値がどれくらい出やすいか</text>
+<rect x="12" y="1248" width="280" height="90" rx="6" class="fs sb" stroke-width="2"/>
+<text x="22" y="1270" class="tb">確率変数・確率分布・期待値</text>
+<text x="22" y="1292">くじで1人選んだ点＝確率変数</text>
+<text x="22" y="1312">50〜90点がそれぞれ1/5＝確率分布</text>
+<text x="22" y="1332">期待値＝350×1/5＝70点（①の平均）</text>
+<rect x="12" y="1348" width="280" height="90" rx="6" class="fs sb" stroke-width="2"/>
+<text x="22" y="1370" class="tb">正規分布</text>
+<text x="22" y="1392">平均と標準偏差（②）の2つで形が決まる</text>
+<text x="22" y="1412">平均70・標準偏差14なら</text>
+<text x="22" y="1432">　56〜84点に約68％</text>
+<text x="12" y="1460">二項分布：n回のうち成功が何回か</text>
+<text x="12" y="1480">ポアソン分布：決まった時間に何回起きるか</text>
+<text x="12" y="1500" class="tm">同時確率・周辺確率・条件付き確率</text>
+<line x1="40" y1="1512" x2="40" y2="1535" class="l w1"/>
+<polygon points="40,1542 36,1535 44,1535" class="ft"/>
+<text x="52" y="1532" class="tm">手元のデータから全体を推し量る</text>
+<text x="12" y="1558" class="tb ta">⑤ 一部のデータから全体を推し量る</text>
+<text x="12" y="1578" class="tm">何を知りたいか：5人から学年全体を言えるか</text>
+<rect x="12" y="1588" width="280" height="70" rx="6" class="fs sb" stroke-width="2"/>
+<text x="22" y="1610" class="tb">標本抽出</text>
+<text x="22" y="1632">全体から偏りなく一部を選ぶ</text>
+<text x="22" y="1652">②の÷(n−1)はこの場面</text>
+<rect x="12" y="1668" width="280" height="90" rx="6" class="fs sb" stroke-width="2"/>
+<text x="22" y="1690" class="tb">最小二乗法（直線を引く）</text>
+<text x="22" y="1712">傾き＝共分散18÷時間の分散2＝9</text>
+<text x="22" y="1732">切片＝70−9×3＝43</text>
+<text x="22" y="1752">点＝9×時間＋43（残差の2乗の和190）</text>
+<text x="12" y="1780">最尤法：データが最も起こりやすい値を選ぶ</text>
+<text x="12" y="1800">微分：最小・最大になる所を探す道具</text>
+<text x="12" y="1820">仮説検定：相関0.9は偶然か（p値・過誤）</text>
+<text x="12" y="1840">ベイズの定理：事前確率→事後確率に更新</text>
+<line x1="12" y1="1856" x2="308" y2="1856" class="l sb w1"/>
+<text x="12" y="1880" class="tb">押さえどころ</text>
+<text x="12" y="1900">分散は点の2乗、標準偏差は点（単位が違う）</text>
+<text x="12" y="1920">共分散は単位で変わる（18と1080）</text>
+<text x="12" y="1940">相関係数は−1〜1（どちらも0.9）</text>
+<text x="12" y="1960">相関があっても原因とは限らない</text>
+</svg>
