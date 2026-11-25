@@ -1132,39 +1132,6 @@
     "status": "verified"
   },
   {
-    "id": "D-10-133",
-    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "最新事例＆トレンド"],
-    "format": "not",
-    "qtype": "miscon",
-    "difficulty": 3,
-    "stem": "AWS は、欧州向けに「AWS European Sovereign Cloud」を作ると発表した。発表に照らして、ソブリンクラウドの説明として、最も不適切なものを選びなさい。",
-    "stemPlain": "国や地域の決まりの中でデータを守るためのクラウドについて、まちがった説明を1つ選ぶ問題。",
-    "choices": [
-      "設備は欧州連合（EU）の中に置き、既存の地域（リージョン）から切り離して独立に運用する",
-      "日々の運用やデータセンターへの立ち入り、技術の支援は、EU に住む社員だけが行う",
-      "顧客が作る役割・権限・設定などのメタデータも、EU の中にとどめられるようにする",
-      "データの保管先を EU の中にしておけば、運用する社員がどの国にいても要件は満たされる"
-    ],
-    "answer": 3,
-    "explanation": "AWS の発表によれば、AWS European Sovereign Cloud は、既存のリージョンから切り離して独立に運用し、設備を EU の中だけに置く。日々の運用（データセンターへの立ち入り、技術の支援、顧客の窓口を含む）は EU に住む AWS の社員だけが行い、EU の外からの運用の操作はゼロにするとした。顧客が作るメタデータ（役割・権限・リソースのラベル・設定など）もすべて EU の中に置けるようにする。データの所在地だけでなく、運用する人や運用の自律まで地域の中にとどめるのがソブリンクラウドの考え方で、データを置く場所だけを決めれば足りるという説明は不適切である。",
-    "whyWrong": [
-      "適切。発表は、既存のリージョンから切り離して独立に運用し、設備は EU の中だけに置くとしている。",
-      "適切。発表は、日々の運用、データセンターへの立ち入り、技術の支援、顧客の窓口を EU に住む社員だけが行い、EU の外からの運用の操作はゼロにするとしている。",
-      "適切。発表は、顧客が作る役割・権限・リソースのラベル・設定などのメタデータをすべて EU の中に置けるとしている。",
-      null
-    ],
-    "memoryTip": "ソブリン＝場所（データ）だけでなく、人（運用者）と設定（メタデータ）も地域の中に。",
-    "concepts": ["DC-10-115", "DC-02-009"],
-    "sources": [
-      { "title": "AWS Security Blog「AWS Digital Sovereignty Pledge: Announcing a new, independent sovereign cloud in Europe」", "url": "https://aws.amazon.com/blogs/security/aws-digital-sovereignty-pledge-announcing-a-new-independent-sovereign-cloud-in-europe/" },
-      { "title": "Amazon（aboutamazon.eu）「Built, operated, controlled, and secured in Europe: AWS unveils new sovereign controls and governance structure for the AWS European Sovereign Cloud」", "url": "https://www.aboutamazon.eu/news/aws/built-operated-controlled-and-secured-in-europe-aws-unveils-new-sovereign-controls-and-governance-structure-for-the-aws-european-sovereign-cloud" }
-    ],
-    "asOf": "2025-08",
-    "checkedAt": "2026-11",
-    "reviewBy": "2027-11",
-    "status": "verified"
-  },
-  {
     "id": "D-10-134",
     "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "最新事例＆トレンド"],
     "format": "fill",
@@ -1261,49 +1228,6 @@
     "status": "verified"
   },
   {
-    "id": "D-10-137",
-    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
-    "format": "fill",
-    "qtype": "relation",
-    "difficulty": 3,
-    "stem": "マイクロソフトは2024年5月、AIの処理を端末の中で行う新しい種類のパソコン「Copilot+ PC」を発表した。最初の機種は、クアルコムの Snapdragon X Elite と Snapdragon X Plus を載せて出た。マイクロソフトの発表とクアルコムの製品資料に照らして、（ア）（イ）に入る語句の組み合わせとして、最も適切なものを選びなさい。\nCopilot+ PC の半導体は、1秒あたり（ア＿＿）の演算ができるものとされた。最初の機種に載った Snapdragon X Elite と Snapdragon X Plus の NPU の性能は、クアルコムの製品資料で（イ＿＿）とされている",
-    "stemPlain": "Copilot+ PC という「AIパソコン」の条件として示された計算の速さと、最初の機種に実際に載ったクアルコムの半導体の、AIの計算を担う部分（NPU）の速さを区別する問題。",
-    "choices": [
-      "ア：40兆回以上（40+ TOPS）　イ：X Elite も X Plus も 75兆回（75 TOPS）",
-      "ア：45兆回以上（45+ TOPS）　イ：X Elite も X Plus も 45兆回（45 TOPS）",
-      "ア：40兆回以上（40+ TOPS）　イ：X Elite も X Plus も 45兆回（45 TOPS）",
-      "ア：45兆回以上（45+ TOPS）　イ：X Elite も X Plus も 75兆回（75 TOPS）"
-    ],
-    "answer": 2,
-    "explanation": "TOPS は、1秒あたり何兆回の演算ができるかを表す単位（trillion operations per second）。マイクロソフトの発表（2024年5月20日）は、Copilot+ PC を、40+ TOPS（40兆回以上）の演算ができる新しい半導体を載せた Windows のパソコンとして紹介した（ア）。これは Copilot+ PC という種類の条件として示された数である。一方、同じ発表は、最初の Copilot+ PC が Snapdragon X Elite と Snapdragon X Plus の両方で出るとし、「Snapdragon X Series delivers 45 NPU TOPS」と書いている。クアルコムの製品資料も、Snapdragon X Elite の NPU（Neural Processing Unit。AIの計算を専門に担う部分）を45 TOPS、Snapdragon X Plus の NPU を45 TOPS としている（イ）。つまり、条件は40 TOPS 以上で、最初に載ったチップはどちらもそれを上回る45 TOPS だった。条件の数（40）と、実際のチップの数（45）を取り違えないことが押さえどころ。",
-    "whyWrong": [
-      "イが誤り。クアルコムの製品資料は、Snapdragon X Elite と X Plus の NPU の性能をどちらも45 TOPS としている。75 TOPS ではない。",
-      "アが誤り。45 TOPS は最初の機種に載ったチップの NPU の性能。マイクロソフトが Copilot+ PC の半導体として示したのは40 TOPS 以上で、45 TOPS 以上ではない。",
-      null,
-      "アもイも誤り。Copilot+ PC の半導体として示されたのは40 TOPS 以上（45 TOPS 以上ではない）。最初の機種の Snapdragon X Elite と X Plus の NPU は、どちらも45 TOPS（75 TOPS ではない）。"
-    ],
-    "memoryTip": "条件は40 TOPS 以上（マイクロソフト）、最初に載ったチップは45 TOPS（クアルコムの Snapdragon X Elite・X Plus）。条件と実物の数を分けて覚える。",
-    "concepts": ["DC-10-107", "DC-08-104"],
-    "sources": [
-      {
-        "title": "Official Microsoft Blog「Introducing Copilot+ PCs」（2024年5月20日）",
-        "url": "https://blogs.microsoft.com/blog/2024/05/20/introducing-copilot-pcs/"
-      },
-      {
-        "title": "Qualcomm「Snapdragon X Elite Product Overview」",
-        "url": "https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-X-Elite-Product-Overview.pdf"
-      },
-      {
-        "title": "Qualcomm「Snapdragon X Plus Product Brief」",
-        "url": "https://qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-X-Plus-Product-Brief.pdf"
-      }
-    ],
-    "asOf": "2024-05",
-    "checkedAt": "2026-11",
-    "reviewBy": "2027-11",
-    "status": "verified"
-  },
-  {
     "id": "D-10-138",
     "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
     "format": "fill",
@@ -1333,36 +1257,6 @@
     "asOf": "2018-11",
     "checkedAt": "2026-11",
     "reviewBy": "2027-11",
-    "status": "verified"
-  },
-  {
-    "id": "D-10-139",
-    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
-    "format": "fill",
-    "qtype": "tradeoff",
-    "difficulty": 3,
-    "stem": "ある市が、議会の議員の選挙に電子投票（電磁的記録式投票）を導入しようとしている。総務省の「電子投票システムに関する技術的条件」（令和6年6月）に照らして、次の（ア）（イ）に入る語句の組み合わせとして、最も適切なものを選びなさい。\n電子機器の導入は（ア＿＿）を目指す→ただし適切な対策を欠くと、データの消失やシステムの停止が起き、電子投票そのものの信頼が失われかねない→そのため、二重の投票の防止、投票の秘密の保護、（イ＿＿）、検査・監査の考え方などの条件を満たす",
-    "stemPlain": "投票を専用の機械で行うと、何が良くなり、どんな危なさがあり、それをどう防ぐかを選ぶ問題。",
-    "choices": [
-      "ア：事務処理の迅速化と利便性の向上　イ：故障のときは予備機で投票を続けられること",
-      "ア：投票の秘密を省いて事務を軽くすること　イ：故障のときは予備機で投票を続けられること",
-      "ア：事務処理の迅速化と利便性の向上　イ：故障のときは紙を使わず復旧まで投票を止めること",
-      "ア：投票の秘密を省いて事務を軽くすること　イ：故障のときは紙を使わず復旧まで投票を止めること"
-    ],
-    "answer": 0,
-    "explanation": "総務省の「電子投票システムに関する技術的条件」は、電子機器や情報システムの導入は事務処理の迅速化、利便性の向上などのメリットを目指すものだとしたうえで（ア）、適切な対策を欠いたまま導入すると、データの消失やシステムの停止など重大な事故につながり、社会的に未成熟な段階でトラブルが起きれば電子投票そのものの信頼が失われるおそれもあるとする。そこで、二重の投票を防げること、投票の秘密が侵されないこと、故障が起きたときには予備機を使って投票を続けられること（イ）などを条件とし、検査・監査の考え方も示している。信頼性と安全性は、技術面だけでなく運用管理面の対策があって初めて確保されるとしている。",
-    "whyWrong": [
-      null,
-      "アが誤り。投票の秘密は、技術的条件が「侵されないものであること」として守らせている条件で、省いてよいものではない。導入が目指すのは、事務処理の迅速化と利便性の向上。",
-      "イが誤り。技術的条件は、故障が発生した場合には予備機を使って投票を続けられることを求めている。復旧まで投票を止めるのでは、選挙の執行が止まってしまう。",
-      "アとイの両方が誤り。投票の秘密は守るべき条件で、省くものではない。また、故障のときは予備機で投票を続けられることが求められており、投票を止めるのではない。"
-    ],
-    "memoryTip": "電子投票＝速く便利（開票の集計）。代わりに、秘密を守る・予備機で止めない・検査と監査で信頼を守る。",
-    "concepts": ["DC-10-117", "DC-10-103"],
-    "sources": [
-      { "title": "総務省選挙部「電子投票システムに関する技術的条件及び解説」（令和6年6月 第三次改定版）", "url": "https://www.soumu.go.jp/main_content/000677452.pdf" },
-      { "title": "総務省「電磁的記録式投票制度について」", "url": "https://www.soumu.go.jp/senkyo/senkyo_s/news/touhyou/denjiteki/index.html" }
-    ],
     "status": "verified"
   },
   {
@@ -1426,6 +1320,99 @@
     ],
     "asOf": "2026-11",
     "reviewBy": "2027-11",
+    "status": "verified"
+  },
+  {
+    "id": "D-10-142",
+    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "最新事例＆トレンド"],
+    "format": "single",
+    "qtype": "causal",
+    "difficulty": 3,
+    "stem": "AWS は2025年6月、欧州向けの独立したクラウド「AWS European Sovereign Cloud」の運営の体制と設計を発表した。このクラウドとほかの世界との接続が途切れた場合に備える設計の説明として、最も適切なものを選びなさい。",
+    "stemPlain": "ヨーロッパの中で動くクラウドが、外の世界とのつながりが切れても動き続けるために、何を用意しているかを選ぶ問題。",
+    "choices": [
+      "接続が途切れた時点で、処理を外にある既存のリージョンへ移し、接続が戻ったときに結果を送り返してもらう。",
+      "接続が途切れた時点で、顧客の処理を読み取りに絞り、外にある本社の許可が届くまで待つようにする。",
+      "外の設備に欠かせない依存を持たず、許可された担当者が、維持に要るソースコードの写しを使えるようにする。",
+      "外にある本社とつながる衛星の回線を予備に持ち、認証に要る鍵を、外の仕組みから受け取り続ける。"
+    ],
+    "answer": 2,
+    "explanation": "発表によれば、AWS European Sovereign Cloud は、ほかの世界との接続が途切れても、運用を無期限に続けられるように設計されている。EU の外のインフラに欠かせない依存を持たない。極端な状況でも続けられるよう、許可された担当者が、サービスの維持に要るソースコードの写しに独立してアクセスできる。専用の Route 53（ドメイン名の住所録に当たる DNS のサービス）や、専用のルート認証局も置き、名前の解決や証明書も中で動かす。ソブリンクラウド（データ主権を守るクラウド）では、外から切れても自分で立っていられること（運用の自律）も大切になる。",
+    "whyWrong": [
+      "外の既存のリージョンへ移すのは、通常の災害対策で見られる考え方。発表の設計は、欧州連合（EU）の外の設備に欠かせない依存を持たず、中で動き続けるものである。",
+      "発表は、接続が途切れても運用を無期限に続けられる設計だとしている。外の許可を待って処理を絞るのではない。",
+      null,
+      "発表は、専用のルート認証局（通信の相手を確かめる証明書のおおもと）を置き、鍵や証明書の仕組みを中で自律して動かすとする。外の仕組みに頼り続けるのではない。"
+    ],
+    "memoryTip": "ソブリンの自律＝外と切れても動く。欠かせない依存なし・ソースコードの写し・自前の DNS と認証局。",
+    "concepts": ["DC-10-115", "DC-02-009"],
+    "sources": [
+      { "title": "Amazon（aboutamazon.eu）「Built, operated, controlled, and secured in Europe: AWS unveils new sovereign controls and governance structure for the AWS European Sovereign Cloud」", "url": "https://www.aboutamazon.eu/news/aws/built-operated-controlled-and-secured-in-europe-aws-unveils-new-sovereign-controls-and-governance-structure-for-the-aws-european-sovereign-cloud" }
+    ],
+    "asOf": "2025-06",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
+    "status": "verified"
+  },
+  {
+    "id": "D-10-143",
+    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
+    "format": "single",
+    "qtype": "relation",
+    "difficulty": 3,
+    "stem": "マイクロソフトは2024年5月、Copilot+ PC の機能として、画面の写しを定期的に残して後から探せる「Recall」を発表した。寄せられた声を受けて、同年6月7日に示した見直しの内容として、最も適切なものを選びなさい。",
+    "stemPlain": "パソコンの画面を自動で記録して後から探せる機能について、心配の声を受けて何をどう変えたかを選ぶ問題。",
+    "choices": [
+      "画面の写しを端末から会社のクラウドへ移し、情報システムの管理者が中身を見て残すものを選ぶようにする。",
+      "利用者が自分で有効にすると選ばなければ既定ではオフとし、有効にするには Windows Hello の登録を求める。",
+      "画面の写しを残す仕組みをやめ、利用者が自分で書いたメモや予定の中から、言葉で探せる機能に作り替える。",
+      "画面の写しを見られる期間を1日とし、期間を過ぎた写しは、利用者の操作を待たずに端末から消えるようにする。"
+    ],
+    "answer": 1,
+    "explanation": "マイクロソフトの発表（2024年6月7日）によれば、Recall は画面の写し（スナップショット）を端末の中で暗号化して保存し、端末の中のAIで分析する。提供の前から、有効にするかを選びやすくし、プライバシーと安全の守りを強めてほしいという声が届いた。そこで、①設定の画面を改め、利用者が進んで有効にしない限り既定でオフとする（オプトイン）、②有効にするには Windows Hello（顔・指紋・PIN などによる本人の確認）の登録を必須とし、見るときにも本人がその場にいる確認を求める、③本人の認証があったときに復号する守りを足す、とした。端末の中で処理するというだけでは利用者の不安は解けず、選べることと本人の確認が要る、という学びになる（最後の文は、発表から導いた見方）。",
+    "whyWrong": [
+      "写しは端末の中で暗号化して保存・分析される説明で、クラウドへ移して管理者が選ぶ形への変更ではない。",
+      null,
+      "画面の写しを使う点は変わっていない。見直したのは、有効にするかの選び方と、見るときの本人の確認、暗号の守りである。",
+      "1日で消えるという見直しは示されていない。写しの削除や一時停止は、利用者がいつでも自分でできると説明されている。"
+    ],
+    "memoryTip": "Recall の見直し＝既定はオフ（自分で選ぶ）＋Windows Hello。端末の中の処理でも、選ぶ権利と本人確認が要る。",
+    "concepts": ["DC-10-107", "DC-08-104"],
+    "sources": [
+      { "title": "Windows Experience Blog「Update on the Recall preview feature for Copilot+ PCs」（2024年6月7日）", "url": "https://blogs.windows.com/windowsexperience/2024/06/07/update-on-the-recall-preview-feature-for-copilot-pcs/" }
+    ],
+    "asOf": "2024-06",
+    "checkedAt": "2026-11",
+    "reviewBy": "2027-11",
+    "status": "verified"
+  },
+  {
+    "id": "D-10-144",
+    "syllabus": ["社会実装イノベーション領域", "F ITインフラ基盤・ツール", "応用事例"],
+    "format": "single",
+    "qtype": "term",
+    "difficulty": 3,
+    "stem": "総務省の「電子投票システムに関する技術的条件及び解説」（令和6年6月）に照らして、電子投票（電磁的記録式投票）の、投票から集計までの進み方として、最も適切なものを選びなさい。",
+    "stemPlain": "投票所の機械で選んだ票が、どこで、どのように数えられるかを選ぶ問題。",
+    "choices": [
+      "投票機は票を記録するたびに選挙管理委員会へ送る。委員会の装置が合計を保ち、締め切りの時刻に結果を公表する。",
+      "投票機は締め切りの時刻に自分で票を数え上げる。投票所ごとの結果を紙に刷り、開票所へ運んで足し合わせる。",
+      "投票機は選挙人のスマートフォンへ投票の控えを送る。控えの数を開票所の装置で数え、票の合計と見比べる。",
+      "投票機は電気通信回線につながず、集計の機能も持たない。票を記録した媒体を開票所へ運び、別の装置で集計する。"
+    ],
+    "answer": 3,
+    "explanation": "総務省の資料は、手順を、選挙人名簿との対照、投票機での投票、投票の終了後に記録媒体を取り出して開票所へ送致、開票所で電子計算機により候補者ごとの得票数を集計、と示す。投票機は電気通信回線（投票所と開票所のように、離れた拠点を結ぶ通信の回線）に接続してはならず、LTE や Wi-Fi など外部とつながる機能も使えない状態にする。また、投票機は開票・集計の機能を持たないこととし、開票の前に集計されることを防ぐ。媒体は、送致の間に内容が変更・破壊されないように守る。家からネットで投票する仕組み（インターネット投票）とは別物である。",
+    "whyWrong": [
+      "回線で票を送る形は認められていない。技術的条件は、投票機を電気通信回線に接続してはならないとし、票を記録した媒体を運ぶ。",
+      "技術的条件は、電磁的記録式投票機は開票・集計の機能を持たないこととしている。集計は開票所の装置で行う。",
+      "外部とつながる通信の機能は使えない状態にする必要があり、控えをスマートフォンへ送る仕組みは無い。集計の元になるのは、投票機から取り出した記録媒体である。",
+      null
+    ],
+    "memoryTip": "電子投票＝投票所の機械で記録→媒体を運ぶ→開票所の装置で数える。機械は回線につながず、数える機能も持たない。",
+    "concepts": ["DC-10-117", "DC-10-103"],
+    "sources": [
+      { "title": "総務省選挙部「電子投票システムに関する技術的条件及び解説」（令和6年6月 第三次改定版）", "url": "https://www.soumu.go.jp/main_content/000677452.pdf" }
+    ],
     "status": "verified"
   }
 ]
